@@ -121,7 +121,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | uncommon · 2 copie nel mazzo |
 | dopo il voto | si scarta sempre |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | dove si discute diventa contesa |
+| cosa lascia | dove si discute diventa #contesa |
 | id | `AST_AUTHORITY_CROWN_RIGHT` |
 
 > Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
@@ -215,7 +215,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | dove si discute non e' piu' contesa |
+| cosa lascia | dove si discute non e' piu' #contesa |
 | id | `AST_AUTHORITY_CENSUS` |
 
 > +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
@@ -261,7 +261,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
-| cosa lascia | dove si discute non e' piu' inquieta |
+| cosa lascia | dove si discute non e' piu' #inquieta |
 | id | `AST_AUTHORITY_EDICT` |
 
 > Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
@@ -728,7 +728,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | RIVENDICARE — ti prendi il diritto di aprire il Consiglio |
 | al Consiglio | +1 se ti opponi |
-| cosa lascia | nella sede del rivale diventa indebitata |
+| cosa lascia | nella sede del rivale diventa #indebitata |
 | id | `AST_BONDS_OLD_DEBT` |
 
 > +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
@@ -1055,7 +1055,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +1 sempre |
-| cosa lascia | dove si discute diventa inquieta |
+| cosa lascia | dove si discute diventa #inquieta |
 | id | `AST_FORCE_MERCENARIES` |
 
 > +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
@@ -1289,7 +1289,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | si scarta sempre |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | nella sede del rivale diventa inquieta |
+| cosa lascia | nella sede del rivale diventa #inquieta |
 | id | `AST_KNOWLEDGE_WITNESS` |
 
 > +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
@@ -1708,7 +1708,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | INFLUENZARE — alzi o abbassi di 1 una domanda dell'anno |
-| cosa lascia | nella capitale diventa inquieta |
+| cosa lascia | nella capitale diventa #inquieta |
 | id | `AST_PEOPLE_CROWD` |
 
 > Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
@@ -1802,7 +1802,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | dove si discute non e' piu' affamata |
+| cosa lascia | dove si discute non e' piu' #affamata |
 | id | `AST_PEOPLE_HARVEST_HANDS` |
 
 > +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
@@ -1848,7 +1848,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | rarita' | common · 4 copie nel mazzo |
 | dopo il voto | discard |
 | se la cali | MUOVERE — sposti una tua presenza su un'altra Regione |
-| cosa lascia | dove si discute non e' piu' razionata |
+| cosa lascia | dove si discute non e' piu' #razionata |
 | id | `AST_PEOPLE_MARCH` |
 
 > Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
@@ -2035,7 +2035,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +2 se ti opponi |
-| cosa lascia | dove si discute diventa razionata |
+| cosa lascia | dove si discute diventa #razionata |
 | id | `AST_WEALTH_GRANARY_KEYS` |
 
 > +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
@@ -2175,7 +2175,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | dopo il voto | discard |
 | se la cali | TRAMARE — leggi in privato qualcosa che e' coperto |
 | al Consiglio | +1 sul suo tema |
-| cosa lascia | dove si discute non e' piu' magra |
+| cosa lascia | dove si discute non e' piu' #magra |
 | id | `AST_WEALTH_SALT` |
 
 > +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
@@ -2280,7 +2280,7 @@ una funzione di Propp, e alcune convocano un Consiglio.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Amnistia — Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Amnistia. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2306,7 +2306,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Tradimento — Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Tradimento. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2332,7 +2332,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Chiamata — La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Chiamata. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2357,7 +2357,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Carovana Perduta — Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Carovana Perduta. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2382,7 +2382,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Chi Siede — Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Chi Siede. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2407,7 +2407,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Scoperta — Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Scoperta. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2433,7 +2433,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Sedia Vuota — Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Sedia Vuota. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2458,7 +2458,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Partenza — Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Partenza. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2483,7 +2483,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Annata Buona — Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Annata Buona. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2508,7 +2508,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Mancanza — Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Mancanza. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2534,7 +2534,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Giuramento che Nessuno Sciolse — Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Giuramento che Nessuno Sciolse. Painterly oil
 technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2560,7 +2560,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Giorno che la Gilda Chiese Tutto — La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Giorno che la Gilda Chiese Tutto. Painterly oil
 technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2585,7 +2585,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Ballata dell'Anno Buono — Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Ballata dell'Anno Buono. Painterly oil
 technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2610,7 +2610,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Perdita — Qualcuno non c'è più, e la sua parte di lavoro resta scoperta. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Perdita. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2635,7 +2635,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Parola Data — La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Parola Data. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2660,7 +2660,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Giuramento Prestato — Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Giuramento Prestato. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2685,7 +2685,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Offerta — Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema. Painterly oil
+Historical dark-fantasy painting of a narrative moment: L'Offerta. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2710,7 +2710,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Presagio — Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Presagio. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2735,7 +2735,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Incontro — Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa. Painterly oil
+Historical dark-fantasy painting of a narrative moment: L'Incontro. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2761,7 +2761,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Supplica — Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Supplica. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2786,7 +2786,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Conto — Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Conto. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2811,7 +2811,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Riconciliazione — Due parti che si erano contate come nemiche trovano un motivo pratico per smettere. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Riconciliazione. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2837,7 +2837,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Rivelazione — Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Rivelazione. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2862,7 +2862,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Vie Riaperte — Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Vie Riaperte. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2887,7 +2887,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Strada Chiusa — Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Strada Chiusa. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2912,7 +2912,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Sacrificio — Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Sacrificio. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2937,7 +2937,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Presa — Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Presa. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2962,7 +2962,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Interramento — Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Interramento. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -2987,7 +2987,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Copia — Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Copia. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3012,7 +3012,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Crepa — Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Crepa. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3037,7 +3037,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Stagione Scavata — Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Stagione Scavata. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3062,7 +3062,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: I Fuochi Fuori — Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli. Painterly oil
+Historical dark-fantasy painting of a narrative moment: I Fuochi Fuori. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3087,7 +3087,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Tavolo Lungo — Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Tavolo Lungo. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3112,7 +3112,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Pozzo Zitto — La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Pozzo Zitto. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3137,7 +3137,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Anno Corto — Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto. Painterly oil
+Historical dark-fantasy painting of a narrative moment: L'Anno Corto. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3163,7 +3163,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Due Sentenze — Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Due Sentenze. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3189,7 +3189,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Usurpazione — Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Usurpazione. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3214,7 +3214,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Veglia Spostata — L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Veglia Spostata. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -3239,7 +3239,7 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Messo per Iscritto — Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Messo per Iscritto. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space

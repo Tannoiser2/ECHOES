@@ -5,6 +5,76 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.309 — Il 100% delle carte si legge: via il racconto, sulla faccia gli Effetti (D-344)
+
+Il committente: *«ogni azione, effetto e #tag deve essere visibile sulla carta,
+eliminiamo testo narrativo inutile […] il 100% delle carte devono essere lette e
+capite»*. D-340 aveva fatto le Asset, D-341 la scheda del Consiglio e la carta
+Domanda: restavano quattro mazzi.
+
+### Le carte Eco dicevano cosa si prova, mai cosa succede
+
+**39 su 39. 86 Effetti scritti nel dato, zero stampati**, più 38 condizioni che
+dicono quando la carta può uscire e che nessuno vedeva. Adesso la carta porta
+**QUANDO ESCE** e **IL MONDO**:
+
+> **QUANDO ESCE** La Carestia è al tavolo
+> **IL MONDO** La Carestia sale · in una Regione con #granaio diventa #magra ·
+> viene giù Granaio in una Regione con #granaio
+
+Due modi di attaccare un Effetto, e all'inizio ne leggevo uno solo: otto carte
+usano **solo** la forma «Conseguenza per id» e uscivano mute. L'ha presa la prova
+che nessuna faccia sia vuota, che c'era già.
+
+E la condizione **si genera**: le `label` d'autore portano l'id dentro — *«TEN_FAMINE
+è in gioco quest'anno»* — su **24 delle 38**.
+
+### La tessera Regione non portava i suoi segni
+
+**32 segni su dieci tessere, nessuno stampato.** Ed è il difetto che rende
+ingiocabile tutto il resto: una carta Azione si gioca «su un luogo con
+#granaio», e se nessuna tessera dice #granaio quel bersaglio non si trova col
+dito.
+
+`_region` **costruiva già** la riga, e il foglio la buttava via prima di
+disegnarla. Una riga calcolata e mai disegnata è il modo più silenzioso di non
+stampare una regola: la prova nuova legge **l'inchiostro**, non la faccia.
+
+### Il cancelletto, e dove non va
+
+Ogni segno lo porta: `#granaio`, `#magra`, `#conteso`. **Tranne dove il nome
+stampato non è una parola sola** — «dominio: la sopravvivenza», «il grano è stato
+requisito». Il primo tentativo cuciva le parole coi trattini bassi
+(`#tagliata_fuori`, `#cacciata_da_dove_si_discuteva`) e **le ha prese subito la
+prova di D-339**: un `#` con dei trattini somiglia a un id.
+
+### «Dove si discute» non vale su ogni carta
+
+È la parola del Consiglio, sbagliata su una carta Eco che un Consiglio non lo
+apre: **12 Effetti su 110**. Adesso chi disegna la faccia dice come si chiama
+quel posto.
+
+### Il costo
+
+| | fuori dal bordo | col corpo stretto |
+|---|---|---|
+| **Eco (39)** | **0** | **0** |
+| Domanda · Consiglio · Destino · Casata · Regione | 0 | 0 |
+| Asset (48) | 0 | 46 (il debito di D-340) |
+
+Le carte Eco dicono quattro volte più cose e stanno a corpo pieno: quello che
+entra è più corto del racconto che esce.
+
+**Sul gioco niente**: 100 semi identici, **0 seggi bloccati su un solo livello su
+8**. Suite da 650 a **653 prove**.
+
+### Verbali
+
+**D-344** in `DECISIONS.md`. Tre guardie nuove, tutte partite dai dati e tutte
+provate su un difetto piantato.
+
+---
+
 ## 0.1.308 — La prima casella: il Consiglio sa muovere una domanda (D-343)
 
 D-342 ha nominato nove caselle mancanti; questa è la prima, e vale da sola **90

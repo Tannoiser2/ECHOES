@@ -877,11 +877,11 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 
 ### `echo.resolution.liberation` — Amnistia
 
-- **soggetto**: Amnistia — Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice
+- **soggetto**: Amnistia
 - **id**: `ECH_AMNESTY`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Amnistia — Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Amnistia. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -892,11 +892,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.betrayal` — Tradimento
 
-- **soggetto**: Tradimento — Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano
+- **soggetto**: Tradimento
 - **id**: `ECH_BETRAYAL`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Tradimento — Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Tradimento. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -907,11 +907,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.call_of_accounts` — La Chiamata
 
-- **soggetto**: La Chiamata — La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra
+- **soggetto**: La Chiamata
 - **id**: `ECH_CALL_OF_ACCOUNTS`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Chiamata — La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Chiamata. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -922,11 +922,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.attack` — Carovana Perduta
 
-- **soggetto**: Carovana Perduta — Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa
+- **soggetto**: Carovana Perduta
 - **id**: `ECH_CARAVAN_LOST`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Carovana Perduta — Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Carovana Perduta. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -937,11 +937,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.succession` — Chi Siede
 
-- **soggetto**: Chi Siede — Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi
+- **soggetto**: Chi Siede
 - **id**: `ECH_CROWNING`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Chi Siede — Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Chi Siede. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -952,11 +952,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.discovery` — Scoperta
 
-- **soggetto**: Scoperta — Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono
+- **soggetto**: Scoperta
 - **id**: `ECH_DISCOVERY`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Scoperta — Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Scoperta. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -967,11 +967,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.threat` — Sedia Vuota
 
-- **soggetto**: Sedia Vuota — Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo
+- **soggetto**: Sedia Vuota
 - **id**: `ECH_EMPTY_THRONE`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Sedia Vuota — Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Sedia Vuota. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -982,11 +982,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.separation` — La Partenza
 
-- **soggetto**: La Partenza — Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci
+- **soggetto**: La Partenza
 - **id**: `ECH_EXODUS`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Partenza — Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Partenza. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -997,11 +997,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.gift` — Annata Buona
 
-- **soggetto**: Annata Buona — Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno
+- **soggetto**: Annata Buona
 - **id**: `ECH_GOOD_YEAR`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Annata Buona — Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Annata Buona. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1012,11 +1012,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.lack` — Mancanza
 
-- **soggetto**: Mancanza — Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti
+- **soggetto**: Mancanza
 - **id**: `ECH_LACK`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Mancanza — Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Mancanza. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1027,11 +1027,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.memoria.the_broken_oath` — Il Giuramento che Nessuno Sciolse
 
-- **soggetto**: Il Giuramento che Nessuno Sciolse — Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno
+- **soggetto**: Il Giuramento che Nessuno Sciolse
 - **id**: `ECH_LEGEND_BROKEN_OATH`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Giuramento che Nessuno Sciolse — Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Giuramento che Nessuno Sciolse. Painterly oil
 technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1042,11 +1042,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.memoria.the_called_day` — Il Giorno che la Gilda Chiese Tutto
 
-- **soggetto**: Il Giorno che la Gilda Chiese Tutto — La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico
+- **soggetto**: Il Giorno che la Gilda Chiese Tutto
 - **id**: `ECH_LEGEND_CALLED_DAY`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Giorno che la Gilda Chiese Tutto — La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Giorno che la Gilda Chiese Tutto. Painterly oil
 technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1057,11 +1057,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.memoria.the_good_year` — La Ballata dell'Anno Buono
 
-- **soggetto**: La Ballata dell'Anno Buono — Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo
+- **soggetto**: La Ballata dell'Anno Buono
 - **id**: `ECH_LEGEND_GOOD_YEAR`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Ballata dell'Anno Buono — Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Ballata dell'Anno Buono. Painterly oil
 technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1072,11 +1072,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.loss` — Perdita
 
-- **soggetto**: Perdita — Qualcuno non c'è più, e la sua parte di lavoro resta scoperta
+- **soggetto**: Perdita
 - **id**: `ECH_LOSS`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Perdita — Qualcuno non c'è più, e la sua parte di lavoro resta scoperta. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Perdita. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1087,11 +1087,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.violation` — La Parola Data
 
-- **soggetto**: La Parola Data — La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita
+- **soggetto**: La Parola Data
 - **id**: `ECH_OATH_BROKEN`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Parola Data — La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Parola Data. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1102,11 +1102,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.transformation` — Giuramento Prestato
 
-- **soggetto**: Giuramento Prestato — Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge
+- **soggetto**: Giuramento Prestato
 - **id**: `ECH_OATH_SWORN`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Giuramento Prestato — Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Giuramento Prestato. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1117,11 +1117,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.temptation` — L'Offerta
 
-- **soggetto**: L'Offerta — Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema
+- **soggetto**: L'Offerta
 - **id**: `ECH_OFFER`
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Offerta — Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema. Painterly oil
+Historical dark-fantasy painting of a narrative moment: L'Offerta. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1132,11 +1132,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.omen` — Presagio
 
-- **soggetto**: Presagio — Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto
+- **soggetto**: Presagio
 - **id**: `ECH_OMEN`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Presagio — Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Presagio. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1147,11 +1147,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.encounter` — L'Incontro
 
-- **soggetto**: L'Incontro — Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa
+- **soggetto**: L'Incontro
 - **id**: `ECH_PARLEY`
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Incontro — Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa. Painterly oil
+Historical dark-fantasy painting of a narrative moment: L'Incontro. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1162,11 +1162,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.request` — La Supplica
 
-- **soggetto**: La Supplica — Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri
+- **soggetto**: La Supplica
 - **id**: `ECH_PETITION`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Supplica — Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Supplica. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1177,11 +1177,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.punishment` — Il Conto
 
-- **soggetto**: Il Conto — Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude
+- **soggetto**: Il Conto
 - **id**: `ECH_RECKONING`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Conto — Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Conto. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1192,11 +1192,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.reconciliation` — Riconciliazione
 
-- **soggetto**: Riconciliazione — Due parti che si erano contate come nemiche trovano un motivo pratico per smettere
+- **soggetto**: Riconciliazione
 - **id**: `ECH_RECONCILIATION`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Riconciliazione — Due parti che si erano contate come nemiche trovano un motivo pratico per smettere. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Riconciliazione. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1207,11 +1207,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.revelation` — Rivelazione
 
-- **soggetto**: Rivelazione — Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse
+- **soggetto**: Rivelazione
 - **id**: `ECH_REVELATION`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Rivelazione — Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Rivelazione. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1222,11 +1222,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.return` — Vie Riaperte
 
-- **soggetto**: Vie Riaperte — Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita
+- **soggetto**: Vie Riaperte
 - **id**: `ECH_ROADS_OPEN`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Vie Riaperte — Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Vie Riaperte. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1237,11 +1237,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.prohibition` — Strada Chiusa
 
-- **soggetto**: Strada Chiusa — Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente
+- **soggetto**: Strada Chiusa
 - **id**: `ECH_ROAD_CLOSED`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Strada Chiusa — Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Strada Chiusa. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1252,11 +1252,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.sacrifice` — Sacrificio
 
-- **soggetto**: Sacrificio — Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato
+- **soggetto**: Sacrificio
 - **id**: `ECH_SACRIFICE`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Sacrificio — Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Sacrificio. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1267,11 +1267,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.conquest` — La Presa
 
-- **soggetto**: La Presa — Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome
+- **soggetto**: La Presa
 - **id**: `ECH_SEIZURE`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Presa — Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Presa. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1282,11 +1282,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.silt` — Interramento
 
-- **soggetto**: Interramento — Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri
+- **soggetto**: Interramento
 - **id**: `ECH_SILT`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Interramento — Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Interramento. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1297,11 +1297,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.the_copy` — La Copia
 
-- **soggetto**: La Copia — Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre
+- **soggetto**: La Copia
 - **id**: `ECH_THE_COPY`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Copia — Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Copia. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1312,11 +1312,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.the_crack` — La Crepa
 
-- **soggetto**: La Crepa — Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte
+- **soggetto**: La Crepa
 - **id**: `ECH_THE_CRACK`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Crepa — Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Crepa. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1327,11 +1327,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.the_dug_season` — La Stagione Scavata
 
-- **soggetto**: La Stagione Scavata — Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta
+- **soggetto**: La Stagione Scavata
 - **id**: `ECH_THE_DUG_SEASON`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Stagione Scavata — Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Stagione Scavata. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1342,11 +1342,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.the_fires_outside` — I Fuochi Fuori
 
-- **soggetto**: I Fuochi Fuori — Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli
+- **soggetto**: I Fuochi Fuori
 - **id**: `ECH_THE_FIRES_OUTSIDE`
 
 ```
-Historical dark-fantasy painting of a narrative moment: I Fuochi Fuori — Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli. Painterly oil
+Historical dark-fantasy painting of a narrative moment: I Fuochi Fuori. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1357,11 +1357,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.the_long_table` — Il Tavolo Lungo
 
-- **soggetto**: Il Tavolo Lungo — Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema
+- **soggetto**: Il Tavolo Lungo
 - **id**: `ECH_THE_LONG_TABLE`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Tavolo Lungo — Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Tavolo Lungo. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1372,11 +1372,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.the_quiet_shaft` — Il Pozzo Zitto
 
-- **soggetto**: Il Pozzo Zitto — La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono
+- **soggetto**: Il Pozzo Zitto
 - **id**: `ECH_THE_QUIET_SHAFT`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Pozzo Zitto — La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Il Pozzo Zitto. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1387,11 +1387,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.turn.the_short_year` — L'Anno Corto
 
-- **soggetto**: L'Anno Corto — Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto
+- **soggetto**: L'Anno Corto
 - **id**: `ECH_THE_SHORT_YEAR`
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Anno Corto — Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto. Painterly oil
+Historical dark-fantasy painting of a narrative moment: L'Anno Corto. Painterly oil
 technique, muted earth palette, bianco freddo accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1402,11 +1402,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.two_verdicts` — Due Sentenze
 
-- **soggetto**: Due Sentenze — Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime
+- **soggetto**: Due Sentenze
 - **id**: `ECH_TWO_VERDICTS`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Due Sentenze — Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Due Sentenze. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1417,11 +1417,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.rupture.usurpation` — Usurpazione
 
-- **soggetto**: Usurpazione — Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare
+- **soggetto**: Usurpazione
 - **id**: `ECH_USURPATION`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Usurpazione — Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Usurpazione. Painterly oil
 technique, muted earth palette, rosso scuro accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1432,11 +1432,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.pressure.vigil_moved` — La Veglia Spostata
 
-- **soggetto**: La Veglia Spostata — L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane
+- **soggetto**: La Veglia Spostata
 - **id**: `ECH_VIGIL_MOVED`
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Veglia Spostata — L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane. Painterly oil
+Historical dark-fantasy painting of a narrative moment: La Veglia Spostata. Painterly oil
 technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1447,11 +1447,11 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `echo.resolution.written_down` — Messo per Iscritto
 
-- **soggetto**: Messo per Iscritto — Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere
+- **soggetto**: Messo per Iscritto
 - **id**: `ECH_WRITTEN_DOWN`
 
 ```
-Historical dark-fantasy painting of a narrative moment: Messo per Iscritto — Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere. Painterly oil
+Historical dark-fantasy painting of a narrative moment: Messo per Iscritto. Painterly oil
 technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
 not an action climax: the instant before or the instant after. Human scale, few
 figures, strong silhouette reading at small size. Composition: negative space
@@ -1464,7 +1464,7 @@ no frame, no border. Not gory. Boardgame card art.
 
 ### `region.bosco_confini` — Il Bosco dei Confini
 
-- **soggetto**: Il Bosco dei Confini — Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto
+- **soggetto**: Il Bosco dei Confini
 - **id**: `REG_BOSCO_CONFINI`
 
 ```
@@ -1479,7 +1479,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.eredan` — Eredan
 
-- **soggetto**: Eredan — La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle
+- **soggetto**: Eredan
 - **id**: `REG_EREDAN`
 
 ```
@@ -1494,11 +1494,11 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.isola_muta` — L'Isola Muta
 
-- **soggetto**: L'Isola Muta — Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'
+- **soggetto**: L'Isola Muta
 - **id**: `REG_ISOLA_MUTA`
 
 ```
-Top-down three-quarter painted map tile of L'Isola Muta: L'Isola Muta — Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'. Historical
+Top-down three-quarter painted map tile of L'Isola Muta: L'Isola Muta. Historical
 dark-fantasy cartography crossed with painted landscape, muted earth palette,
 l'accento della sua famiglia accent. Readable terrain silhouette from above, clear edges that can
 tile against neighbouring regions. Composition: the centre is deliberately calm
@@ -1509,7 +1509,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.miniere_antiche` — Miniere Antiche
 
-- **soggetto**: Miniere Antiche — Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso
+- **soggetto**: Miniere Antiche
 - **id**: `REG_MINIERE_ANTICHE`
 
 ```
@@ -1524,7 +1524,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.montagne_rosse` — Montagne Rosse
 
-- **soggetto**: Montagne Rosse — Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando
+- **soggetto**: Montagne Rosse
 - **id**: `REG_MONTAGNE_ROSSE`
 
 ```
@@ -1539,11 +1539,11 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.palude_canali` — La Palude dei Canali
 
-- **soggetto**: La Palude dei Canali — Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro
+- **soggetto**: La Palude dei Canali
 - **id**: `REG_PALUDE_CANALI`
 
 ```
-Top-down three-quarter painted map tile of La Palude dei Canali: La Palude dei Canali — Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. Historical
+Top-down three-quarter painted map tile of La Palude dei Canali: La Palude dei Canali. Historical
 dark-fantasy cartography crossed with painted landscape, muted earth palette,
 l'accento della sua famiglia accent. Readable terrain silhouette from above, clear edges that can
 tile against neighbouring regions. Composition: the centre is deliberately calm
@@ -1554,7 +1554,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.porto_cinerino` — Porto Cinerino
 
-- **soggetto**: Porto Cinerino — Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga
+- **soggetto**: Porto Cinerino
 - **id**: `REG_PORTO_CINERINO`
 
 ```
@@ -1569,7 +1569,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.strada_mercanti` — Strada dei Mercanti
 
-- **soggetto**: Strada dei Mercanti — Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri
+- **soggetto**: Strada dei Mercanti
 - **id**: `REG_STRADA_MERCANTI`
 
 ```
@@ -1584,7 +1584,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.terre_nahr` — Terre Nahr
 
-- **soggetto**: Terre Nahr — Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando
+- **soggetto**: Terre Nahr
 - **id**: `REG_TERRE_NAHR`
 
 ```
@@ -1599,7 +1599,7 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `region.valle_verde` — Valle Verde
 
-- **soggetto**: Valle Verde — Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve
+- **soggetto**: Valle Verde
 - **id**: `REG_VALLE_VERDE`
 
 ```
@@ -1616,11 +1616,11 @@ no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
 
 ### `entity.aldric` — Re Aldric
 
-- **soggetto**: Re Aldric — Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome
+- **soggetto**: Re Aldric
 - **id**: `ENT_ALDRIC`
 
 ```
-Historical dark-fantasy portrait of Re Aldric — Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome. Painterly oil technique, visible
+Historical dark-fantasy portrait of Re Aldric. Painterly oil technique, visible
 brushwork, muted earth palette with a single oro spento accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
@@ -1634,11 +1634,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.cenere` — Kessa dei Fuochi
 
-- **soggetto**: Kessa dei Fuochi — Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più
+- **soggetto**: Kessa dei Fuochi
 - **id**: `ENT_CENERE`
 
 ```
-Historical dark-fantasy portrait of Kessa dei Fuochi — Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più. Painterly oil technique, visible
+Historical dark-fantasy portrait of Kessa dei Fuochi. Painterly oil technique, visible
 brushwork, muted earth palette with a single ambra accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
@@ -1652,11 +1652,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.libere` — Le Città Libere
 
-- **soggetto**: Le Città Libere — Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio
+- **soggetto**: Le Città Libere
 - **id**: `ENT_LIBERE`
 
 ```
-Historical dark-fantasy portrait of Le Città Libere — Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio. Painterly oil technique, visible
+Historical dark-fantasy portrait of Le Città Libere. Painterly oil technique, visible
 brushwork, muted earth palette with a single terracotta accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
@@ -1670,11 +1670,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.lyra` — Lyra
 
-- **soggetto**: Lyra — Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda
+- **soggetto**: Lyra
 - **id**: `ENT_LYRA`
 
 ```
-Historical dark-fantasy portrait of Lyra — Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda. Painterly oil technique, visible
+Historical dark-fantasy portrait of Lyra. Painterly oil technique, visible
 brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
@@ -1688,11 +1688,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.nahr` — Popolo Nahr
 
-- **soggetto**: Popolo Nahr — Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere
+- **soggetto**: Popolo Nahr
 - **id**: `ENT_NAHR`
 
 ```
-Historical dark-fantasy portrait of Popolo Nahr — Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere. Painterly oil technique, visible
+Historical dark-fantasy portrait of Popolo Nahr. Painterly oil technique, visible
 brushwork, muted earth palette with a single terracotta accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
@@ -1706,11 +1706,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.sale` — Maestra Ilve
 
-- **soggetto**: Maestra Ilve — Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma
+- **soggetto**: Maestra Ilve
 - **id**: `ENT_SALE`
 
 ```
-Historical dark-fantasy portrait of Maestra Ilve — Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma. Painterly oil technique, visible
+Historical dark-fantasy portrait of Maestra Ilve. Painterly oil technique, visible
 brushwork, muted earth palette with a single ambra accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
@@ -1724,11 +1724,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vaerax` — Vaerax
 
-- **soggetto**: Vaerax — Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola
+- **soggetto**: Vaerax
 - **id**: `ENT_VAERAX`
 
 ```
-Historical dark-fantasy portrait of Vaerax — Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola. Painterly oil technique, visible
+Historical dark-fantasy portrait of Vaerax. Painterly oil technique, visible
 brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
@@ -1742,11 +1742,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vetro` — Priore Anselmo
 
-- **soggetto**: Priore Anselmo — Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione
+- **soggetto**: Priore Anselmo
 - **id**: `ENT_VETRO`
 
 ```
-Historical dark-fantasy portrait of Priore Anselmo — Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione. Painterly oil technique, visible
+Historical dark-fantasy portrait of Priore Anselmo. Painterly oil technique, visible
 brushwork, muted earth palette with a single porpora tenue accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side
@@ -1760,11 +1760,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.aldric_republic` — La Repubblica della Valle
 
-- **soggetto**: La Repubblica della Valle — Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme
+- **soggetto**: La Repubblica della Valle
 - **id**: `INC_ALDRIC_02`
 
 ```
-Historical dark-fantasy portrait of La Repubblica della Valle — Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Repubblica della Valle. Painterly oil technique, visible
 brushwork, muted earth palette with a single oro spento accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
@@ -1778,11 +1778,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.aldric_regency` — La Reggenza del Granaio
 
-- **soggetto**: La Reggenza del Granaio — Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore
+- **soggetto**: La Reggenza del Granaio
 - **id**: `INC_ALDRIC_REGENCY`
 
 ```
-Historical dark-fantasy portrait of La Reggenza del Granaio — Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Reggenza del Granaio. Painterly oil technique, visible
 brushwork, muted earth palette with a single oro spento accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
@@ -1796,11 +1796,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.aldric_restored` — La Corona Restaurata
 
-- **soggetto**: La Corona Restaurata — La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda
+- **soggetto**: La Corona Restaurata
 - **id**: `INC_ALDRIC_RESTORED`
 
 ```
-Historical dark-fantasy portrait of La Corona Restaurata — La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Corona Restaurata. Painterly oil technique, visible
 brushwork, muted earth palette with a single oro spento accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side
@@ -1814,11 +1814,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.cenere_keepers` — Le Custodi della Cenere
 
-- **soggetto**: Le Custodi della Cenere — L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo
+- **soggetto**: Le Custodi della Cenere
 - **id**: `INC_CENERE_02`
 
 ```
-Historical dark-fantasy portrait of Le Custodi della Cenere — L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo. Painterly oil technique, visible
+Historical dark-fantasy portrait of Le Custodi della Cenere. Painterly oil technique, visible
 brushwork, muted earth palette with a single ambra accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
@@ -1832,11 +1832,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.cenere_furnaces` — I Forni Riaccesi
 
-- **soggetto**: I Forni Riaccesi — La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro
+- **soggetto**: I Forni Riaccesi
 - **id**: `INC_CENERE_FURNACES`
 
 ```
-Historical dark-fantasy portrait of I Forni Riaccesi — La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro. Painterly oil technique, visible
+Historical dark-fantasy portrait of I Forni Riaccesi. Painterly oil technique, visible
 brushwork, muted earth palette with a single ambra accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
@@ -1850,11 +1850,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.libere_hegemony` — L'Egemonia di Eredan
 
-- **soggetto**: L'Egemonia di Eredan — Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari
+- **soggetto**: L'Egemonia di Eredan
 - **id**: `INC_LIBERE_HEGEMONY`
 
 ```
-Historical dark-fantasy portrait of L'Egemonia di Eredan — Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari. Painterly oil technique, visible
+Historical dark-fantasy portrait of L'Egemonia di Eredan. Painterly oil technique, visible
 brushwork, muted earth palette with a single terracotta accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
@@ -1868,11 +1868,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.libere_league` — La Lega delle Sette
 
-- **soggetto**: La Lega delle Sette — La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa
+- **soggetto**: La Lega delle Sette
 - **id**: `INC_LIBERE_LEAGUE`
 
 ```
-Historical dark-fantasy portrait of La Lega delle Sette — La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Lega delle Sette. Painterly oil technique, visible
 brushwork, muted earth palette with a single terracotta accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
@@ -1886,11 +1886,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.lyra_cult` — Il Culto della Misura
 
-- **soggetto**: Il Culto della Misura — Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire
+- **soggetto**: Il Culto della Misura
 - **id**: `INC_LYRA_02`
 
 ```
-Historical dark-fantasy portrait of Il Culto della Misura — Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire. Painterly oil technique, visible
+Historical dark-fantasy portrait of Il Culto della Misura. Painterly oil technique, visible
 brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
@@ -1904,11 +1904,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.lyra_academy` — L'Accademia delle Misure
 
-- **soggetto**: L'Accademia delle Misure — Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle
+- **soggetto**: L'Accademia delle Misure
 - **id**: `INC_LYRA_ACADEMY`
 
 ```
-Historical dark-fantasy portrait of L'Accademia delle Misure — Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle. Painterly oil technique, visible
+Historical dark-fantasy portrait of L'Accademia delle Misure. Painterly oil technique, visible
 brushwork, muted earth palette with a single verde-azzurro pallido accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una persona sola, lo strumento del proprio mestiere a portata di mano. Low side
@@ -1922,11 +1922,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.nahr_diaspora` — La Diaspora di Nahr
 
-- **soggetto**: La Diaspora di Nahr — Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro
+- **soggetto**: La Diaspora di Nahr
 - **id**: `INC_NAHR_DIASPORA`
 
 ```
-Historical dark-fantasy portrait of La Diaspora di Nahr — Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Diaspora di Nahr. Painterly oil technique, visible
 brushwork, muted earth palette with a single terracotta accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
@@ -1940,11 +1940,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.nahr_kingdom` — Il Regno di Nahr
 
-- **soggetto**: Il Regno di Nahr — La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere
+- **soggetto**: Il Regno di Nahr
 - **id**: `INC_NAHR_KINGDOM`
 
 ```
-Historical dark-fantasy portrait of Il Regno di Nahr — La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere. Painterly oil technique, visible
+Historical dark-fantasy portrait of Il Regno di Nahr. Painterly oil technique, visible
 brushwork, muted earth palette with a single terracotta accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side
@@ -1958,11 +1958,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.sale_company` — La Compagnia del Sale
 
-- **soggetto**: La Compagnia del Sale — Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno
+- **soggetto**: La Compagnia del Sale
 - **id**: `INC_SALE_02`
 
 ```
-Historical dark-fantasy portrait of La Compagnia del Sale — Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Compagnia del Sale. Painterly oil technique, visible
 brushwork, muted earth palette with a single ambra accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
@@ -1976,11 +1976,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.sale_bank` — Il Banco Nero
 
-- **soggetto**: Il Banco Nero — Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita
+- **soggetto**: Il Banco Nero
 - **id**: `INC_SALE_BANK`
 
 ```
-Historical dark-fantasy portrait of Il Banco Nero — Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita. Painterly oil technique, visible
+Historical dark-fantasy portrait of Il Banco Nero. Painterly oil technique, visible
 brushwork, muted earth palette with a single ambra accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi risponde per la casa: la persona che firma, non quella che possiede. Low side
@@ -1994,11 +1994,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vaerax_cult` — Il Culto della Montagna
 
-- **soggetto**: Il Culto della Montagna — Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più
+- **soggetto**: Il Culto della Montagna
 - **id**: `INC_VAERAX_CULT`
 
 ```
-Historical dark-fantasy portrait of Il Culto della Montagna — Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più. Painterly oil technique, visible
+Historical dark-fantasy portrait of Il Culto della Montagna. Painterly oil technique, visible
 brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
@@ -2012,11 +2012,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vaerax_legend` — La Leggenda della Montagna
 
-- **soggetto**: La Leggenda della Montagna — Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori
+- **soggetto**: La Leggenda della Montagna
 - **id**: `INC_VAERAX_LEGEND`
 
 ```
-Historical dark-fantasy portrait of La Leggenda della Montagna — Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori. Painterly oil technique, visible
+Historical dark-fantasy portrait of La Leggenda della Montagna. Painterly oil technique, visible
 brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
@@ -2030,11 +2030,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vaerax_risen` — Vaerax Ridestato
 
-- **soggetto**: Vaerax Ridestato — Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui
+- **soggetto**: Vaerax Ridestato
 - **id**: `INC_VAERAX_RISEN`
 
 ```
-Historical dark-fantasy portrait of Vaerax Ridestato — Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui. Painterly oil technique, visible
+Historical dark-fantasy portrait of Vaerax Ridestato. Painterly oil technique, visible
 brushwork, muted earth palette with a single grigio-rosso accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. non un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side
@@ -2048,11 +2048,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vetro_friars` — I Frati del Vetro
 
-- **soggetto**: I Frati del Vetro — Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia
+- **soggetto**: I Frati del Vetro
 - **id**: `INC_VETRO_02`
 
 ```
-Historical dark-fantasy portrait of I Frati del Vetro — Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia. Painterly oil technique, visible
+Historical dark-fantasy portrait of I Frati del Vetro. Painterly oil technique, visible
 brushwork, muted earth palette with a single porpora tenue accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side
@@ -2066,11 +2066,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `entity.vetro_inquisition` — L'Inquisizione del Vetro
 
-- **soggetto**: L'Inquisizione del Vetro — Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze
+- **soggetto**: L'Inquisizione del Vetro
 - **id**: `INC_VETRO_INQUISITION`
 
 ```
-Historical dark-fantasy portrait of L'Inquisizione del Vetro — Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze. Painterly oil technique, visible
+Historical dark-fantasy portrait of L'Inquisizione del Vetro. Painterly oil technique, visible
 brushwork, muted earth palette with a single porpora tenue accent. One subject, close,
 facing the viewer: this framing is what separates a House card from an Asset card,
 where a single centred figure looking out is forbidden. chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side
@@ -2086,11 +2086,11 @@ Not gory, not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.aldric` — Il Regno che Resta
 
-- **soggetto**: Il Regno che Resta — Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso
+- **soggetto**: Il Regno che Resta
 - **id**: `DST_ALDRIC`
 
 ```
-Historical dark-fantasy emblematic scene of Il Regno che Resta — Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Il Regno che Resta. Painterly oil technique,
 visible brushwork, muted earth palette with a single oro spento accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata. Seen close and
@@ -2104,11 +2104,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.aldric.record` — Il Regno che Ricorda
 
-- **soggetto**: Il Regno che Ricorda — Il trono regge già. Quello che manca è che le sue decisioni restino scritte e nessuno debba riprenderle da capo
+- **soggetto**: Il Regno che Ricorda
 - **id**: `DST_ALDRIC_RECORD`
 
 ```
-Historical dark-fantasy emblematic scene of Il Regno che Ricorda — Il trono regge già. Quello che manca è che le sue decisioni restino scritte e nessuno debba riprenderle da capo. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Il Regno che Ricorda. Painterly oil technique,
 visible brushwork, muted earth palette with a single oro spento accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata. Seen close and
@@ -2122,11 +2122,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.cenere` — La Montagna è Nostra
 
-- **soggetto**: La Montagna è Nostra — I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro
+- **soggetto**: La Montagna è Nostra
 - **id**: `DST_CENERE`
 
 ```
-Historical dark-fantasy emblematic scene of La Montagna è Nostra — I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro. Painterly oil technique,
+Historical dark-fantasy emblematic scene of La Montagna è Nostra. Painterly oil technique,
 visible brushwork, muted earth palette with a single ambra accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
@@ -2140,11 +2140,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.cenere.deep` — Più a Fondo
 
-- **soggetto**: Più a Fondo — Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine
+- **soggetto**: Più a Fondo
 - **id**: `DST_CENERE_DEEP`
 
 ```
-Historical dark-fantasy emblematic scene of Più a Fondo — Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Più a Fondo. Painterly oil technique,
 visible brushwork, muted earth palette with a single ambra accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
@@ -2158,11 +2158,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.libere` — Una Legge Senza Corona
 
-- **soggetto**: Una Legge Senza Corona — Le città non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema è scriverne una che non diventi un trono
+- **soggetto**: Una Legge Senza Corona
 - **id**: `DST_LIBERE`
 
 ```
-Historical dark-fantasy emblematic scene of Una Legge Senza Corona — Le città non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema è scriverne una che non diventi un trono. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Una Legge Senza Corona. Painterly oil technique,
 visible brushwork, muted earth palette with a single terracotta accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
@@ -2176,11 +2176,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.libere.water` — L'Acqua Torna a Muoversi
 
-- **soggetto**: L'Acqua Torna a Muoversi — Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori
+- **soggetto**: L'Acqua Torna a Muoversi
 - **id**: `DST_LIBERE_WATER`
 
 ```
-Historical dark-fantasy emblematic scene of L'Acqua Torna a Muoversi — Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori. Painterly oil technique,
+Historical dark-fantasy emblematic scene of L'Acqua Torna a Muoversi. Painterly oil technique,
 visible brushwork, muted earth palette with a single terracotta accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
@@ -2194,11 +2194,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.lyra` — Sapere e Poter Tornare a Guardare
 
-- **soggetto**: Sapere e Poter Tornare a Guardare — Scoprire le proprietà del Cristallo Rosso e conservare l'accesso a ciò che lo produce
+- **soggetto**: Sapere e Poter Tornare a Guardare
 - **id**: `DST_LYRA`
 
 ```
-Historical dark-fantasy emblematic scene of Sapere e Poter Tornare a Guardare — Scoprire le proprietà del Cristallo Rosso e conservare l'accesso a ciò che lo produce. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Sapere e Poter Tornare a Guardare. Painterly oil technique,
 visible brushwork, muted earth palette with a single verde-azzurro pallido accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio. Seen close and
@@ -2212,11 +2212,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.lyra.taught` — Quello che Resta Insegnato
 
-- **soggetto**: Quello che Resta Insegnato — Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura
+- **soggetto**: Quello che Resta Insegnato
 - **id**: `DST_LYRA_TAUGHT`
 
 ```
-Historical dark-fantasy emblematic scene of Quello che Resta Insegnato — Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Quello che Resta Insegnato. Painterly oil technique,
 visible brushwork, muted earth palette with a single verde-azzurro pallido accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio. Seen close and
@@ -2230,11 +2230,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.nahr` — Una Terra dove Fermarsi
 
-- **soggetto**: Una Terra dove Fermarsi — Ottenere una patria stabile conservando autonomia e cultura del popolo
+- **soggetto**: Una Terra dove Fermarsi
 - **id**: `DST_NAHR`
 
 ```
-Historical dark-fantasy emblematic scene of Una Terra dove Fermarsi — Ottenere una patria stabile conservando autonomia e cultura del popolo. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Una Terra dove Fermarsi. Painterly oil technique,
 visible brushwork, muted earth palette with a single terracotta accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
@@ -2248,11 +2248,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.nahr.rooted` — La Terra Sotto i Piedi
 
-- **soggetto**: La Terra Sotto i Piedi — Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato
+- **soggetto**: La Terra Sotto i Piedi
 - **id**: `DST_NAHR_ROOTED`
 
 ```
-Historical dark-fantasy emblematic scene of La Terra Sotto i Piedi — Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato. Painterly oil technique,
+Historical dark-fantasy emblematic scene of La Terra Sotto i Piedi. Painterly oil technique,
 visible brushwork, muted earth palette with a single terracotta accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and
@@ -2266,11 +2266,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.sale` — Il Registro che Tiene
 
-- **soggetto**: Il Registro che Tiene — La Gilda non vuole comandare: vuole che quello che è scritto continui a valere, e che a scriverlo sia lei
+- **soggetto**: Il Registro che Tiene
 - **id**: `DST_SALE`
 
 ```
-Historical dark-fantasy emblematic scene of Il Registro che Tiene — La Gilda non vuole comandare: vuole che quello che è scritto continui a valere, e che a scriverlo sia lei. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Il Registro che Tiene. Painterly oil technique,
 visible brushwork, muted earth palette with a single ambra accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
@@ -2284,11 +2284,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.sale.open` — Il Registro Aperto
 
-- **soggetto**: Il Registro Aperto — Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta
+- **soggetto**: Il Registro Aperto
 - **id**: `DST_SALE_OPEN`
 
 ```
-Historical dark-fantasy emblematic scene of Il Registro Aperto — Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Il Registro Aperto. Painterly oil technique,
 visible brushwork, muted earth palette with a single ambra accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and
@@ -2302,14 +2302,14 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.shared.accounts` — I Conti Chiusi
 
-- **soggetto**: I Conti Chiusi — Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci
+- **soggetto**: I Conti Chiusi
 - **id**: `DST_SHARED_ACCOUNTS`
 
 ```
-Historical dark-fantasy emblematic scene of I Conti Chiusi — Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci. Painterly oil technique,
+Historical dark-fantasy emblematic scene of I Conti Chiusi. Painterly oil technique,
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
-place, a threshold, composed like a votive image. I Conti Chiusi — Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci. Seen close and
+place, a threshold, composed like a votive image. I Conti Chiusi. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
@@ -2320,14 +2320,14 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.shared.hand` — Le Riserve
 
-- **soggetto**: Le Riserve — Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano
+- **soggetto**: Le Riserve
 - **id**: `DST_SHARED_HAND`
 
 ```
-Historical dark-fantasy emblematic scene of Le Riserve — Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Le Riserve. Painterly oil technique,
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
-place, a threshold, composed like a votive image. Le Riserve — Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano. Seen close and
+place, a threshold, composed like a votive image. Le Riserve. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
@@ -2338,14 +2338,14 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.shared.land` — La Terra che Risponde
 
-- **soggetto**: La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue
+- **soggetto**: La Terra che Risponde
 - **id**: `DST_SHARED_LAND`
 
 ```
-Historical dark-fantasy emblematic scene of La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue. Painterly oil technique,
+Historical dark-fantasy emblematic scene of La Terra che Risponde. Painterly oil technique,
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
-place, a threshold, composed like a votive image. La Terra che Risponde — Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue. Seen close and
+place, a threshold, composed like a votive image. La Terra che Risponde. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
@@ -2356,14 +2356,14 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.shared.lore` — Quello che si Sa
 
-- **soggetto**: Quello che si Sa — Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare
+- **soggetto**: Quello che si Sa
 - **id**: `DST_SHARED_LORE`
 
 ```
-Historical dark-fantasy emblematic scene of Quello che si Sa — Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Quello che si Sa. Painterly oil technique,
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
-place, a threshold, composed like a votive image. Quello che si Sa — Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare. Seen close and
+place, a threshold, composed like a votive image. Quello che si Sa. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
@@ -2374,14 +2374,14 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.shared.quiet` — La Quiete Tenuta
 
-- **soggetto**: La Quiete Tenuta — Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa
+- **soggetto**: La Quiete Tenuta
 - **id**: `DST_SHARED_QUIET`
 
 ```
-Historical dark-fantasy emblematic scene of La Quiete Tenuta — Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa. Painterly oil technique,
+Historical dark-fantasy emblematic scene of La Quiete Tenuta. Painterly oil technique,
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
-place, a threshold, composed like a votive image. La Quiete Tenuta — Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa. Seen close and
+place, a threshold, composed like a votive image. La Quiete Tenuta. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
@@ -2392,14 +2392,14 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.shared.renown` — Il Nome che Pesa
 
-- **soggetto**: Il Nome che Pesa — Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla
+- **soggetto**: Il Nome che Pesa
 - **id**: `DST_SHARED_RENOWN`
 
 ```
-Historical dark-fantasy emblematic scene of Il Nome che Pesa — Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Il Nome che Pesa. Painterly oil technique,
 visible brushwork, muted earth palette with a single l'accento della sua famiglia accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
-place, a threshold, composed like a votive image. Il Nome che Pesa — Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla. Seen close and
+place, a threshold, composed like a votive image. Il Nome che Pesa. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
@@ -2410,11 +2410,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.vaerax` — Cio che Dorme Resti Addormentato
 
-- **soggetto**: Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse
+- **soggetto**: Cio che Dorme Resti Addormentato
 - **id**: `DST_VAERAX`
 
 ```
-Historical dark-fantasy emblematic scene of Cio che Dorme Resti Addormentato — Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Cio che Dorme Resti Addormentato. Painterly oil technique,
 visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
@@ -2428,11 +2428,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.vaerax.legend` — La Storia che si Racconta
 
-- **soggetto**: La Storia che si Racconta — Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta
+- **soggetto**: La Storia che si Racconta
 - **id**: `DST_VAERAX_LEGEND`
 
 ```
-Historical dark-fantasy emblematic scene of La Storia che si Racconta — Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta. Painterly oil technique,
+Historical dark-fantasy emblematic scene of La Storia che si Racconta. Painterly oil technique,
 visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
@@ -2446,11 +2446,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.vaerax.watched` — Il Sonno Sorvegliato
 
-- **soggetto**: Il Sonno Sorvegliato — La montagna è ancora sua e il Cristallo è ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo
+- **soggetto**: Il Sonno Sorvegliato
 - **id**: `DST_VAERAX_WATCHED`
 
 ```
-Historical dark-fantasy emblematic scene of Il Sonno Sorvegliato — La montagna è ancora sua e il Cristallo è ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Il Sonno Sorvegliato. Painterly oil technique,
 visible brushwork, muted earth palette with a single grigio-rosso accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and
@@ -2464,11 +2464,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.vetro` — Quello che Non si Deve Guardare
 
-- **soggetto**: Quello che Non si Deve Guardare — L'Ordine custodisce un frammento e una regola. La regola è più importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo
+- **soggetto**: Quello che Non si Deve Guardare
 - **id**: `DST_VETRO`
 
 ```
-Historical dark-fantasy emblematic scene of Quello che Non si Deve Guardare — L'Ordine custodisce un frammento e una regola. La regola è più importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo. Painterly oil technique,
+Historical dark-fantasy emblematic scene of Quello che Non si Deve Guardare. Painterly oil technique,
 visible brushwork, muted earth palette with a single porpora tenue accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si custodisce: la teca, il velo, la soglia che non si passa. Seen close and
@@ -2482,11 +2482,11 @@ not horror. Museum-quality illustration, boardgame card art.
 
 ### `destiny.vetro.shown` — La Reliquia Mostrata
 
-- **soggetto**: La Reliquia Mostrata — Un Ordine che ha tenuto la teca chiusa è stato creduto sulla parola. Il passo dopo è più pericoloso: mostrarla, e restare creduto lo stesso
+- **soggetto**: La Reliquia Mostrata
 - **id**: `DST_VETRO_SHOWN`
 
 ```
-Historical dark-fantasy emblematic scene of La Reliquia Mostrata — Un Ordine che ha tenuto la teca chiusa è stato creduto sulla parola. Il passo dopo è più pericoloso: mostrarla, e restare creduto lo stesso. Painterly oil technique,
+Historical dark-fantasy emblematic scene of La Reliquia Mostrata. Painterly oil technique,
 visible brushwork, muted earth palette with a single porpora tenue accent. No faces:
 a Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. ciò che si custodisce: la teca, il velo, la soglia che non si passa. Seen close and

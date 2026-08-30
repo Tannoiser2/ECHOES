@@ -46,10 +46,16 @@ const ACTIONS: Dictionary = {
 ## sembra una regola e non lo e'.
 
 ## Dove cade un Effetto, detto come si dice al tavolo.
-static func _place(id: String, data = null) -> String:
+## **E «dove si discute» non vale su ogni carta** (D-344). E' la parola del
+## Consiglio, giusta sulla scheda e sbagliata su una carta Eco, che un Consiglio
+## non lo apre: dodici Effetti su centodieci puntano al luogo della carta, e su
+## quelli si leggeva una regola che parlava di un tavolo che non c'e'. Chi
+## disegna la faccia dice come si chiama quel posto; il ripiego resta il
+## Consiglio, che e' il caso piu' frequente.
+static func _place(id: String, data = null, here: String = "dove si discute") -> String:
 	match id:
 		"$region_focus", "$focus_region":
-			return "dove si discute"
+			return here
 		"$adjacent":
 			return "in una Regione confinante"
 		"$rival_seat":
@@ -91,9 +97,42 @@ static func _question(id: String, data = null) -> String:
 
 
 ## La parola stampata di un segno; se non ne ha una, il segno nudo.
+##
+## **Col cancelletto davanti quando e' una parola sola** (D-344). Il committente:
+## *«ogni azione, effetto e #tag deve essere visibile sulla carta»* — e al tavolo
+## il cancelletto e' il modo in cui si distingue **una cosa che si posa** da una
+## parola qualunque: `#granaio`, `#razionato`, `#conteso`.
+##
+## Non tutti i segni hanno un nome da segnalino, pero'. Il dizionario stampa
+## `domain:SURVIVAL` come *«dominio: la sopravvivenza»* e le memorie come frasi
+## intere — *«il grano e' stato requisito»* — e un cancelletto davanti a una
+## frase non e' un segnalino, e' un errore di stampa. La regola guarda **il nome
+## stampato dal dizionario**, non una tabella accanto: una parola sola prende il
+## cancelletto, una frase resta una frase.
 static func _sign(tag: String, data = null) -> String:
-	var word: String = SignLabels.label(tag, data) if tag != "" else ""
-	return word if word != "" else tag
+	if tag == "":
+		return tag
+	var word: String = SignLabels.label(tag, data)
+	if word == "":
+		return tag
+	# **Il cancelletto solo su una parola sola.** Un nome stampato di piu' parole
+	# — «tagliato fuori», «dominio: la sopravvivenza», «il grano e' stato
+	# requisito» — non e' un segnalino: e' una frase, e cucirla con dei trattini
+	# bassi per farci stare un cancelletto la fa tornare a somigliare a un id,
+	# che e' esattamente quello che D-339 ha tolto dalle carte. La prova che
+	# nessuna frase porti un nome interno lo ha preso al primo giro.
+	if word.contains(" ") or _category_of(tag, data) == "MEMORY":
+		return word
+	return "#%s" % word
+
+
+## La categoria di un segno, dal dizionario. Vuota se il segno non c'e' o se il
+## set dei dati non e' a portata.
+static func _category_of(tag: String, data = null) -> String:
+	if data == null:
+		return ""
+	var card: Variant = (data.tags as Dictionary).get(tag)
+	return "" if card == null else str((card as Dictionary).get("category", ""))
 
 
 ## Di quanto, e da che parte.
@@ -148,15 +187,15 @@ static func cost_note(asset: Dictionary, data = null) -> String:
 ## Se non c'e' modo di dirlo la funzione **lo dichiara**, invece di stampare il
 ## tipo: un tipo in minuscolo sembra una regola e non lo e'. Cosi' un effetto
 ## nuovo senza parole si vede subito, e la prova lo prende.
-static func effect_note(effect: Dictionary, data = null) -> String:
+static func effect_note(effect: Dictionary, data = null, focus: String = "dove si discute") -> String:
 	var kind: String = str(effect.get("type", ""))
 	var target: Dictionary = effect.get("target", {}) as Dictionary
 	var payload: Dictionary = effect.get("payload", {}) as Dictionary
 	var id: String = str(target.get("id", ""))
 	var tag: String = str(payload.get("tag", ""))
 	# Una Presenza ha come bersaglio la **casa**: il posto sta nel payload.
-	var here: String = _place(str(payload.get("region_id", id)), data)
-	var there: String = _place(id, data)
+	var here: String = _place(str(payload.get("region_id", id)), data, focus)
+	var there: String = _place(id, data, focus)
 
 	match kind:
 		"SET_REGION_TAG":
@@ -282,8 +321,8 @@ static func sign_word(tag: String, data = null) -> String:
 
 
 ## Il posto, per chi disegna una faccia.
-static func place_word(id: String, data = null) -> String:
-	return _place(id, data)
+static func place_word(id: String, data = null, focus: String = "dove si discute") -> String:
+	return _place(id, data, focus)
 
 
 ## Un segno come si legge sulla carta: col cancelletto davanti, che al tavolo e'
