@@ -5,6 +5,51 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.324 — Il mazzo del Narratore arriva sul tavolo 0,4 volte per partita (ISSUES 114)
+
+Una sonda nuova, nessuna regola toccata: prima di scrivere le 39 facce che
+mancano alle carte Eco, il committente ha chiesto se quel mazzo si gioca.
+
+### `cli/run_echo_weight_probe.gd`
+
+Tre domande, nell'ordine in cui le ha poste — la seconda e la terza non hanno
+senso se la prima risponde «quasi mai». Cento anni pescati, tavolo misto, semi
+da 7000: lo stesso tavolo del cancello, così i numeri stanno accanto a quelli
+del playtest.
+
+La sonda stampa **per prima la prova di non essere cieca**: le calate contate
+dal registro degli Effetti contro la pila `echo_played` letta dal mondo. Due
+strade diverse, e se non combaciano si ferma. In questo progetto uno zero è
+quasi sempre la sonda.
+
+### Cosa dice
+
+| | |
+|---|---|
+| carte distribuite in mano | 15,21 per partita |
+| **carte calate sul tavolo** | **0,40 per partita — il 2,6%** |
+| partite in cui nessuno ne cala nessuna | **63 su 100** |
+| carte scritte / mai uscite in 100 partite | 39 / **27** |
+| di 40 calate, quante sono `ECH_SACRIFICE` | **24** |
+
+Quando escono pesano — 3,10 Effetti contro 1,05 di una carta Asset — ma su cento
+partite scrivono 124 Effetti contro i 5093 del Consiglio: **il 2,4%** di quello
+che cambia il mondo.
+
+### La causa
+
+**25 carte su 39 chiedono che una Tensione nominata sia in gioco quest'anno.**
+Il mazzo fu scritto contro i due anni d'autore dalle Tensioni fisse; D-318 li ha
+cancellati e ha misurato il guadagno — 48 carte Tensione su 60 tornate al tavolo
+— senza misurare cosa costava allo strato di Propp. Questo è quel costo, trovato
+due mesi dopo e adesso scritto.
+
+Tre strade in ISSUES 114, e la domanda che viene prima: un mazzo che arriva sul
+tavolo 0,4 volte per partita esiste nella scatola? È una decisione del
+committente, non del misuratore.
+
+---
+
 ## 0.1.323 — Le 48 Risonanze fanno tutte una cosa che non dicono (ISSUES 113)
 
 Nessun codice cambia: cambia un numero, e il numero è tutto.
