@@ -5772,9 +5772,18 @@ dire ad alta voce *«questo segno non lo scrive nessuno»*.
 
 ---
 
-### 102. `MISURA_SEGNI` conta due categorie su cinque, e non vede niente di quello che posa una Pietra
+### 102. ✅ `MISURA_SEGNI` conta due categorie su cinque, e non vede niente di quello che posa una Pietra — chiusa in 0.1.319
 
-`strumenti` · `misura` · aperta in 0.1.299 · **riparazioni 1 e 2 fatte in 0.1.316** ([D-352](DECISIONS.md#d-352))
+`strumenti` · `misura` · aperta in 0.1.299 · **riparazioni 1 e 2 in 0.1.316** ([D-352](DECISIONS.md#d-352)) · **terza in 0.1.319** ([D-355](DECISIONS.md#d-355)) · **chiusa**
+
+> **E la terza.** «Clausole» e «lettori» adesso sono due colonne diverse. Il
+> documento dichiarava muti **venti** segni; muti davvero ne sono **quattro**, e
+> sono i quattro che `REGISTRO_SEGNI` gia' dichiarava con la loro ragione. Fra i
+> sedici sbagliati c'era `condition:guarded`, che da D-353 vieta di tramare.
+>
+> I lettori arrivano dal `read_by` del dizionario, che il controllo 4 di
+> `validate_physical` tiene allineato ai dati nei due versi: appoggiarsi a una
+> lista gia' sorvegliata invece di scrivere un terzo censimento.
 
 > **Fatte le prime due.** `cli/run_table_marks_probe.gd` guarda tutti e 180 i
 > segni con un posto sul tavolo, e vede quello che posa una Pietra: la prova

@@ -134,7 +134,16 @@ func _initialize() -> void:
 			written[what] = int(written.get(what, 0)) + 1
 		session.dispose()
 
-	_report(runs, mixed, written, feared, wanted, who_fears, who_wants, scored, out_path)
+	# Chi legge il segno, oltre alle clausole di punteggio: dal dizionario, che
+	# il validatore tiene allineato ai dati (ISSUES 102, terza riparazione).
+	var readers: Dictionary = {}
+	for tag_id in data.tags:
+		var chi: Array = ((data.tags[tag_id] as Dictionary).get("read_by", []) as Array)
+		if not chi.is_empty():
+			readers[str(tag_id)] = chi
+
+	_report(runs, mixed, written, feared, wanted, who_fears, who_wants, scored,
+		readers, out_path)
 
 
 ## Ogni clausola di un Destino o di un Obiettivo che nomina un segno, coi due
@@ -179,8 +188,17 @@ func _note_owner(where: Dictionary, tag: String, owner: String) -> void:
 ##
 ## Un segno puo' stare in due liste insieme, ed e' giusto: `mine_sealed` regala
 ## un punto a Lyra e mura la VITTORIA di Vaerax con la stessa assenza.
+## `readers` e' l'altra meta' di ISSUES 102: **una clausola non e' un lettore.**
+## Le colonne «temuto» e «voluto» contano solo i passi di Destini e Obiettivi;
+## una regola del segno, la faccia di una carta, un Consiglio o una Tensione che
+## guardano quel segno non comparivano da nessuna parte, e il documento
+## dichiarava muto un segno che mordeva. Qui la lista arriva dal `read_by` del
+## dizionario, che **il controllo 4 di validate_physical tiene onesto** nei due
+## versi: una mano dichiarata e mai vista e' rossa, e una mano vista e non
+## dichiarata pure. Fidarsi di quella lista costa zero cecita' nuove; riscrivere
+## qui un secondo censimento le costava tutte.
 static func letture(written: Dictionary, feared: Dictionary, wanted: Dictionary,
-	soglia_muti: int) -> Dictionary:
+	soglia_muti: int, readers: Dictionary = {}) -> Dictionary:
 	var mute: Array = []
 	var regalati: Array = []
 	var murate: Array = []
@@ -197,7 +215,8 @@ static func letture(written: Dictionary, feared: Dictionary, wanted: Dictionary,
 		var w: int = int(written.get(tag, 0))
 		var f: int = int(feared.get(tag, 0))
 		var v: int = int(wanted.get(tag, 0))
-		if w >= soglia_muti and f == 0 and v == 0:
+		var chi_legge: Array = (readers.get(tag, []) as Array)
+		if w >= soglia_muti and f == 0 and v == 0 and chi_legge.is_empty():
 			mute.append([tag, w])
 		if w == 0 and f > 0:
 			regalati.append([tag, f])
@@ -213,7 +232,7 @@ static func letture(written: Dictionary, feared: Dictionary, wanted: Dictionary,
 func _report(
 	runs: int, mixed: bool, written: Dictionary, feared: Dictionary,
 	wanted: Dictionary, who_fears: Dictionary, who_wants: Dictionary,
-	scored: Dictionary, out_path: String
+	scored: Dictionary, readers: Dictionary, out_path: String
 ) -> void:
 	var lines: Array = []
 	lines.append("# ECHOES — quali segni il mondo scrive, e chi li guarda")
@@ -231,7 +250,12 @@ func _report(
 	lines.append(
 		"Le tre liste in fondo sono quelle da leggere. Un segno **scritto spesso e"
 		+ " guardato da nessuno** e' lavoro del motore che al tavolo non conta"
-		+ " niente. Un segno **mai scritto** vale invece due difetti opposti, e"
+		+ " niente — ma **una clausola non e' un lettore**: le colonne «temuto» e"
+		+ " «voluto» contano solo i passi di Destini e Obiettivi, e la colonna"
+		+ " «chi altro lo legge» dice le altre mani che quel segno lo"
+		+ " interrogano. Un segno con zero clausole e una regola che lo legge non"
+		+ " e' muto: e' solo fuori dal punteggio (ISSUES 102)."
+		+ " Un segno **mai scritto** vale invece due difetti opposti, e"
 		+ " vanno letti separati: chi lo **teme** ha una clausola vera"
 		+ " dall'apertura — un punto regalato; chi lo **vuole** ha una clausola"
 		+ " che non si puo' avverare — una porta murata."
@@ -252,7 +276,7 @@ func _report(
 		if scored.has(tag):
 			visti_wanted[tag] = wanted[tag]
 	var soglia_muti: int = maxi(1, runs / 10)
-	var letto: Dictionary = letture(written, visti_feared, visti_wanted, soglia_muti)
+	var letto: Dictionary = letture(written, visti_feared, visti_wanted, soglia_muti, readers)
 
 	var every: Dictionary = {}
 	for tag in written:
@@ -266,18 +290,26 @@ func _report(
 
 	lines.append("## Segno per segno")
 	lines.append("")
-	lines.append("| segno | scritto | temuto | voluto | |")
-	lines.append("|---|---|---|---|---|")
+	lines.append("| segno | scritto | temuto | voluto | chi altro lo legge | |")
+	lines.append("|---|---|---|---|---|---|")
 	for tag in names:
 		var w: int = int(written.get(tag, 0))
 		var f: int = int(visti_feared.get(tag, 0))
 		var v: int = int(visti_wanted.get(tag, 0))
+		var chi: Array = (readers.get(tag, []) as Array)
+		var chi_testo: String = "—"
+		if not chi.is_empty():
+			var pezzi: Array = []
+			for mano in chi:
+				pezzi.append("`%s`" % str(mano))
+			chi_testo = ", ".join(PackedStringArray(pezzi))
 		var mark: String = ""
-		if w >= soglia_muti and f == 0 and v == 0:
+		if w >= soglia_muti and f == 0 and v == 0 and chi.is_empty():
 			mark = "nessuno lo guarda"
 		elif w == 0 and (f > 0 or v > 0):
 			mark = "**mai scritto**"
-		lines.append("| `%s` | %d | %d | %d | %s |" % [str(tag), w, f, v, mark])
+		lines.append("| `%s` | %d | %d | %d | %s | %s |"
+			% [str(tag), w, f, v, chi_testo, mark])
 	lines.append("")
 
 	lines.append("## Lavoro del motore che al tavolo non conta")

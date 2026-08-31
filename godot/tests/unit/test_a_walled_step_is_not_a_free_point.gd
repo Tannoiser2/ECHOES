@@ -79,3 +79,41 @@ func test_a_sign_the_world_writes_is_in_no_list() -> void:
 func test_a_rare_sign_is_not_engine_noise() -> void:
 	var letto: Dictionary = Probe.letture({"segno_raro": 3}, {}, {}, 10)
 	assert_true((letto["mute"] as Array).is_empty(), "tre volte in cento partite non e' rumore")
+
+
+## La terza riparazione di ISSUES 102: **una clausola non e' un lettore.**
+##
+## Le colonne «temuto» e «voluto» contano solo i passi di Destini e Obiettivi.
+## Un segno che nessun passo nomina, ma che una regola del segno interroga, non
+## e' «lavoro del motore che al tavolo non conta niente»: e' una regola, e sta
+## solo fuori dal punteggio. Prima di questa riga il documento ne dichiarava
+## muti **venti**, e sedici non lo erano — fra cui `condition:guarded`, che da
+## D-353 vieta di tramare.
+func test_a_clause_is_not_a_reader() -> void:
+	var scritti: Dictionary = {"letto_da_una_regola": 40, "muto_davvero": 40}
+	var senza_lettori: Dictionary = Probe.letture(scritti, {}, {}, 10)
+	assert_eq(
+		_tags(senza_lettori["mute"] as Array).size(), 2,
+		"senza sapere chi legge, tutt'e due sembrano muti: e' la misura di prima"
+	)
+
+	var con_lettori: Dictionary = Probe.letture(
+		scritti, {}, {}, 10, {"letto_da_una_regola": ["tag_rule"]}
+	)
+	var muti: Array = _tags(con_lettori["mute"] as Array)
+	assert_eq(
+		muti, ["muto_davvero"],
+		"chi ha una mano che lo legge esce dalla lista dei muti, anche senza clausole"
+	)
+
+
+## E un lettore non salva un segno dagli altri due difetti: chi lo **vuole** ha
+## una porta murata comunque, che qualcuno lo legga o no.
+func test_a_reader_does_not_unwall_a_step() -> void:
+	var letto: Dictionary = Probe.letture(
+		{}, {}, {"voluto_e_mai_scritto": 1}, 10, {"voluto_e_mai_scritto": ["tag_rule"]}
+	)
+	assert_eq(
+		_tags(letto["murate"] as Array), ["voluto_e_mai_scritto"],
+		"la porta resta murata: il mondo non lo scrive, e nessun lettore lo scrive al posto suo"
+	)
