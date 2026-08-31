@@ -13,7 +13,6 @@ extends RefCounted
 ## The `function:` tag every Echo card writes is bookkeeping - it is how a later
 ## card can require an earlier one (D-030) - and saying it out loud would tell a
 ## player about the deck's plumbing instead of about their world.
-const HIDDEN_TAG_PREFIX: String = "function:"
 
 ## Il vocabolario della mappa, in italiano. Un tag e' un identificativo: sta
 ## bene nei dati e non si legge al tavolo. Fino a 0.1.120 il registro pubblico
@@ -136,7 +135,7 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 			return "%s: %s" % [_region(target, data), tag_gone(str(payload.get("tag", "")))]
 		"SET_GLOBAL_TAG":
 			var tag: String = str(payload.get("tag", ""))
-			return "" if tag.begins_with(HIDDEN_TAG_PREFIX) else "Nel mondo: %s" % tag_words(tag)
+			return "Nel mondo: %s" % tag_words(tag)
 		"REMOVE_GLOBAL_TAG":
 			return "Nel mondo: %s" % tag_gone(str(payload.get("tag", "")))
 		"BUILD_STRUCTURE":

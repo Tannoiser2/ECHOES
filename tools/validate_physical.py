@@ -263,10 +263,11 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     # tavolo il motore non esiste: se un segno finisce sulla plancia, c'e' una
     # mano stampata che ce lo mette. Eccole, una per una, lette dal dato.
 
-    # La Funzione e' stampata sulla carta Echo: giocarla la lascia sul mondo.
-    for eco in documenti.get("echo_card", []):
-        if eco.get("function_id"):
-            yield "echo_card", "scrive", "function:%s" % str(eco["function_id"])
+    # La Funzione **non e' piu' un segno del mondo** (D-358). Era un `function:`
+    # che il motore scriveva giocando la carta e che la vista nascondeva:
+    # cambiava chi poteva uscire l'anno dopo, e al tavolo non si vedeva. Adesso
+    # e' la funzione stampata sulla carta, e la si legge dalla pila degli Echi
+    # calati — un'etichetta su un pezzo di cartone, non un gettone da posare.
 
     # La Vita e' stampata sulla scheda della casata: sceglierla in setup la posa.
     for casata in documenti.get("entity", []):
@@ -986,7 +987,6 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         "life:": "HOUSE_SHEET",
         "structure:": "TILE_SLOT",
         "settlement:": "TILE_SLOT",
-        "function:": "NONE",
         "domain:": "TILE_PRINTED",
     }
     AMBITO_VUOLE = {

@@ -130,10 +130,6 @@ static func narrate(effect: Dictionary, data) -> String:
 			]
 		"SET_GLOBAL_TAG":
 			var tag: String = str(payload.get("tag", ""))
-			# `function:` tags are Propp's own bookkeeping (D-030), grammar and
-			# not history: the card that set them already had its section.
-			if tag.begins_with("function:"):
-				return ""
 			return "Il mondo ricorda: «%s»." % SignLabels.label(tag, data)
 		"REMOVE_GLOBAL_TAG":
 			return "Il mondo dimentica: «%s»." % SignLabels.label(str(payload.get("tag", "")), data)

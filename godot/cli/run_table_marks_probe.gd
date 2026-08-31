@@ -29,8 +29,10 @@ extends SceneTree
 ##     Per un segno stampato sulla tessera e' tutta la sua vita: nessuno lo posa
 ##     perche' c'e' gia'.
 ##   · **posato** — quante volte la partita lo mette, dopo l'apertura.
-##   · **tolto** — quante volte la partita lo leva. Su un dischetto rotondo
-##     dev'essere zero: una Cicatrice che si toglie non e' una Cicatrice.
+##   · **tolto** — quante volte la partita lo leva. Su un dischetto rotondo il
+##     numero e' basso e non zero: **togliere una Cicatrice e' raro, non
+##     impossibile** (D-357). Serve un pezzo che sappia farlo, e non capita da
+##     solo ne' a fine Atto come per una condizione.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -48,7 +50,7 @@ const PLACES := [
 	["ZONE_TOKEN", "un gettone accanto alla tessera",
 		"lo stato di adesso: si mette e si toglie."],
 	["SCAR_TOKEN", "un dischetto rotondo",
-		"le Cicatrici. Tolte zero volte, o non sono Cicatrici."],
+		"le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo."],
 	["HOUSE_SHEET", "sulla scheda della casa",
 		"chi sei adesso, e la vita che stai vivendo."],
 	["WORLD_MEMORY", "un gettone sul bordo della mappa",
@@ -269,8 +271,8 @@ func _report(
 			var note: String = ""
 			if open_count == 0 and put_count == 0 and end_count == 0:
 				note = "**non arriva mai**"
-			elif key == "SCAR_TOKEN" and cut_count > 0:
-				note = "**tolta %d volte: non e' una Cicatrice**" % cut_count
+			elif key == "SCAR_TOKEN" and put_count > 0 and cut_count > put_count:
+				note = "**tolta piu' volte di quante si posa**"
 			elif open_count == runs and put_count == 0:
 				note = "sempre in tavola"
 			lines.append("| `%s` | %d | %d | %d | %d | %s |"

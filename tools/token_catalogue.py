@@ -100,7 +100,11 @@ def art_bible_prompts() -> tuple[str, dict]:
 def parole() -> Dict[str, Dict[str, str]]:
     testo = LABELS.read_text(encoding="utf-8")
     out: Dict[str, Dict[str, str]] = {}
-    for nome, dove in (("REGION_WORDS", "REGIONI"), ("ENTITY_WORDS", "CASE")):
+    # `WORLD_WORDS` e' entrato col foglio nuovo (D-351): finche' la memoria del
+    # mondo non aveva un posto sul tavolo, quelle parole non tagliavano nessuna
+    # fustella e il cancello non le chiedeva. Adesso sono gettoni, e le chiede.
+    for nome, dove in (("REGION_WORDS", "REGIONI"), ("ENTITY_WORDS", "CASE"),
+                       ("WORLD_WORDS", "MONDO")):
         blocco = testo.split("const %s: Dictionary = {" % nome, 1)[1].split("\n}", 1)[0]
         for tag, parola in re.findall(r'"([^"]+)":\s*"([^"]*)"', blocco):
             out[tag] = {"parola": parola, "fustella": dove}
@@ -164,6 +168,13 @@ def catalogo() -> str:
          "Si tengono accanto al tarocco della Casata. Dicono chi sei, cosa hai"
          " trovato e cosa hai fatto in una stanza — e certi li scrive il tavolo"
          " su di te, non tu."),
+        ("MONDO", "I segni che stanno sul bordo della mappa",
+         "Quello che il mondo ricorda (D-351). Non stanno su una tessera e non"
+         " stanno su una casa: un fatto del mondo non e' di nessuno dei due, e"
+         " sul bordo si vede da ogni posto al tavolo senza girare un foglio."
+         " La **forma postuma** di un fatto — `legend:`, quando il passaggio di"
+         " Chronicle lo promuove a racconto — non ha un gettone suo: e' lo"
+         " stesso, girato."),
         ("PEDINE", "I pezzi che non sono segni",
          "Non escono dal dizionario: sono i pezzi che contano, si spostano e"
          " camminano sulle corsie."),

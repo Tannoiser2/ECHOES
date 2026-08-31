@@ -7,15 +7,23 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const SchemaDefs := preload("res://scripts/core/schema_defs.gd")
 
 
-## Playing a card records the function it performed, so a later card can require
-## it. Without this the function_id was a label the engine never read. Dalla
-## 0.1.80 (ISSUES 23, D-118) la carta la cala una mano, come azione: la
-## grammatica resta la stessa, cambia chi parla.
+## Calare una carta lascia il segno di quello che e' successo, cosi' una carta
+## dopo puo' chiederlo. Dalla 0.1.80 la carta la cala una mano, come azione.
+##
+## **Dove sta quel segno e' cambiato** (D-358). Prima era un `function:` scritto
+## sul mondo, che `effect_text` nascondeva al giocatore: cambiava chi poteva
+## uscire l'anno dopo, e al tavolo non si vedeva. Adesso e' la carta stessa, nella
+## pila scoperta degli Echi calati — la grammatica di Propp resta identica, e si
+## legge guardando il tavolo invece di fidarsi dell'app.
 func test_playing_a_card_records_its_function() -> void:
 	new_session()
+	assert_true(
+		(session.world["echo_played"] as Array).is_empty(),
+		"all'inizio nessuna carta e' stata calata"
+	)
 	assert_false(
 		str(session.world["global_tags"]).contains("function:"),
-		"all'inizio nessuna funzione e stata svolta"
+		"e il mondo non porta nessun segno nascosto"
 	)
 	var card_id: String = "ECH_LACK"
 	(session.world["entities"]["ENT_ALDRIC"]["echo_hand"] as Array).append(card_id)
@@ -25,15 +33,21 @@ func test_playing_a_card_records_its_function() -> void:
 	)
 	assert_true(bool(result.get("ok", false)), "la carta si cala: %s" % str(result.get("error", "")))
 
-	var recorded: Array = []
-	for tag in session.world["global_tags"]:
-		if str(tag).begins_with("function:"):
-			recorded.append(str(tag))
-	assert_eq(recorded.size(), 1, "una carta calata, una funzione registrata: %s" % str(recorded))
-	assert_eq(
-		recorded[0],
-		"function:%s" % str(data().echo_cards[card_id]["function_id"]),
-		"e la funzione registrata e quella della carta"
+	var calate: Array = session.world["echo_played"] as Array
+	assert_true(calate.has(card_id), "la carta calata sta nella pila scoperta: %s" % str(calate))
+	var conditions: RefCounted = load("res://scripts/world/condition_evaluator.gd").new(
+		session.world, data()
+	)
+	assert_true(
+		conditions.holds({
+			"type": "echo_function_played",
+			"function": str(data().echo_cards[card_id]["function_id"]),
+		}),
+		"e da li' si legge la funzione che ha svolto"
+	)
+	assert_false(
+		str(session.world["global_tags"]).contains("function:"),
+		"senza scriverne niente sul mondo: quel segno non esiste piu' (D-358)"
 	)
 	# La parola si paga (scelta del committente): una carta Asset e' uscita.
 	assert_eq(session.service.hand_size("ENT_ALDRIC"), before - 1, "il prezzo e' una carta Asset")
@@ -58,12 +72,15 @@ func test_a_card_that_presupposes_something_waits_for_it() -> void:
 		"senza un tradimento non e ancora giocabile"
 	)
 
-	session.applier.apply(
-		Effect.make(
-			"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "function:BETRAYAL"},
-			Effect.source("test", "TEST", "", 1, 1, 0)
-		)
-	)
+	# Il tradimento si fa succedere **calando la carta che lo porta**, non
+	# scrivendo un segno a mano: e' la stessa cosa che farebbe un giocatore.
+	var tradimento: String = ""
+	for altro in data().echo_cards.values():
+		if str(altro.get("function_id", "")) == "BETRAYAL":
+			tradimento = str(altro["id"])
+			break
+	assert_ne(tradimento, "", "esiste una carta che porta il tradimento")
+	(session.world["echo_played"] as Array).append(tradimento)
 	assert_true(
 		conditions.all_hold(card["eligibility"], {}),
 		"dopo un tradimento, si"

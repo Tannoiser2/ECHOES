@@ -458,7 +458,7 @@ POSTI: List[tuple] = [
     ("ZONE_TOKEN", "un gettone accanto alla tessera",
      "lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie."),
     ("SCAR_TOKEN", "un dischetto rotondo",
-     "le Cicatrici. Non tornano nella riserva."),
+     "le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo."),
     ("HOUSE_SHEET", "sulla scheda della casa",
      "chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo."),
     ("WORLD_MEMORY", "un gettone sul bordo della mappa",

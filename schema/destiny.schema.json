@@ -53,6 +53,7 @@
             "structure_count",
             "leads_in",
             "scar_count",
+            "echo_function_played",
             "any_of",
             "some_of"
           ]
@@ -90,6 +91,11 @@
         },
         "tag": {
           "type": "string"
+        },
+        "function": {
+          "type": "string",
+          "pattern": "^[A-Z_]+$",
+          "description": "La funzione di una carta Eco, per `echo_function_played` (D-358): «e' gia' stata calata una carta di questo genere?». Si guarda la pila degli Echi scoperti sul tavolo, non un segno del mondo — prima la stessa domanda si faceva con `state_tag_present` su un `function:` che il motore scriveva e la vista nascondeva, e cambiava chi poteva uscire l'anno dopo senza che al tavolo si vedesse."
         },
         "scope": {
           "type": "string",

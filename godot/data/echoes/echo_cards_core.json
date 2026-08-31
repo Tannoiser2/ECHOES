@@ -285,9 +285,8 @@
           "label": "Il Risveglio è già in movimento"
         },
         {
-          "type": "state_tag_present",
-          "scope": "GLOBAL",
-          "tag": "function:DISCOVERY",
+          "type": "echo_function_played",
+          "function": "DISCOVERY",
           "label": "Si rivela quello che qualcuno aveva già scoperto"
         }
       ],
@@ -385,28 +384,24 @@
           "label": "Ci si riconcilia dopo qualunque rottura",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:BETRAYAL",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "BETRAYAL",
+              "label": "e' gia' stata calata una carta Eco di betrayal"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:VIOLATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "VIOLATION",
+              "label": "e' gia' stata calata una carta Eco di violation"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:ATTACK",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "ATTACK",
+              "label": "e' gia' stata calata una carta Eco di attack"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:SEPARATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "SEPARATION",
+              "label": "e' gia' stata calata una carta Eco di separation"
             }
           ]
         }
@@ -608,9 +603,8 @@
       "description": "Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.",
       "eligibility": [
         {
-          "type": "state_tag_present",
-          "scope": "GLOBAL",
-          "tag": "function:LACK",
+          "type": "echo_function_played",
+          "function": "LACK",
           "label": "Un'annata buona si nota solo dopo una che non lo era"
         }
       ],
@@ -634,9 +628,8 @@
       "description": "Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.",
       "eligibility": [
         {
-          "type": "state_tag_present",
-          "scope": "GLOBAL",
-          "tag": "function:THREAT",
+          "type": "echo_function_played",
+          "function": "THREAT",
           "label": "Ci si lega quando qualcosa minaccia entrambi"
         }
       ],
@@ -662,22 +655,19 @@
           "label": "Si perdona dopo che qualcuno si è preso o ha vietato qualcosa",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:USURPATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "USURPATION",
+              "label": "e' gia' stata calata una carta Eco di usurpation"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:PROHIBITION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "PROHIBITION",
+              "label": "e' gia' stata calata una carta Eco di prohibition"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:CONQUEST",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "CONQUEST",
+              "label": "e' gia' stata calata una carta Eco di conquest"
             }
           ]
         }
@@ -719,16 +709,14 @@
           "label": "Si torna da una chiusura o da una partenza",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:PROHIBITION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "PROHIBITION",
+              "label": "e' gia' stata calata una carta Eco di prohibition"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:SEPARATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "SEPARATION",
+              "label": "e' gia' stata calata una carta Eco di separation"
             }
           ]
         }
@@ -846,16 +834,14 @@
           "label": "Si viola qualcosa che era stato proibito o promesso",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:PROHIBITION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "PROHIBITION",
+              "label": "e' gia' stata calata una carta Eco di prohibition"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:REQUEST",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "REQUEST",
+              "label": "e' gia' stata calata una carta Eco di request"
             }
           ]
         }
@@ -977,22 +963,19 @@
           "label": "Si prende qualcosa solo dopo un attacco o una minaccia",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:ATTACK",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "ATTACK",
+              "label": "e' gia' stata calata una carta Eco di attack"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:THREAT",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "THREAT",
+              "label": "e' gia' stata calata una carta Eco di threat"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:USURPATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "USURPATION",
+              "label": "e' gia' stata calata una carta Eco di usurpation"
             }
           ]
         }
@@ -1021,28 +1004,24 @@
           "label": "Non si punisce nessuno prima che qualcuno abbia fatto qualcosa",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:VIOLATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "VIOLATION",
+              "label": "e' gia' stata calata una carta Eco di violation"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:BETRAYAL",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "BETRAYAL",
+              "label": "e' gia' stata calata una carta Eco di betrayal"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:USURPATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "USURPATION",
+              "label": "e' gia' stata calata una carta Eco di usurpation"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:CONQUEST",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "CONQUEST",
+              "label": "e' gia' stata calata una carta Eco di conquest"
             }
           ]
         }
@@ -1071,28 +1050,24 @@
           "label": "Si succede a qualcuno solo dopo che il posto si è liberato o è stato preso",
           "conditions": [
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:THREAT",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "THREAT",
+              "label": "e' gia' stata calata una carta Eco di threat"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:USURPATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "USURPATION",
+              "label": "e' gia' stata calata una carta Eco di usurpation"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:CONQUEST",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "CONQUEST",
+              "label": "e' gia' stata calata una carta Eco di conquest"
             },
             {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "function:SEPARATION",
-              "label": ""
+              "type": "echo_function_played",
+              "function": "SEPARATION",
+              "label": "e' gia' stata calata una carta Eco di separation"
             }
           ]
         }

@@ -1014,12 +1014,13 @@ func play_narrator_card(entity_id: String, card_id: String, source: Dictionary) 
 	log.section("LA CARTA DEL NARRATORE - %s (%s)" % [str(card["title"]), str(card["dramatic_family"])])
 	log.bullet("%s la cala sul tavolo." % _name(entity_id))
 	log.line(str(card["description"]))
-	session.applier.apply(
-		Effect.make(
-			"SET_GLOBAL_TAG", "world", "WORLD",
-			{"tag": "function:%s" % str(card["function_id"])}, source
-		)
-	)
+	# La funzione della carta **non si scrive piu' sul mondo** (D-358). Era un
+	# segno che il giocatore non vedeva — `effect_text` lo nascondeva apposta — e
+	# decideva chi poteva uscire l'anno dopo: viveva solo nell'app. Adesso la
+	# carta si posa scoperta sul tavolo, e la domanda «e' gia' successa una cosa
+	# di questo genere?» si fa guardando quella pila.
+	if not (world["echo_played"] as Array).has(card_id):
+		(world["echo_played"] as Array).append(card_id)
 	var applied: Array = []
 	for hook in card["effect_hooks"]:
 		# Chi cala la carta e' il suo proponente: gli effetti scritti per un

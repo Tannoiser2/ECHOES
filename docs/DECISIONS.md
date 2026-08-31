@@ -10,6 +10,169 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-358 — Via la grammatica di Propp dal mondo: sta sulle carte calate
+
+**implemented** · 0.1.322 · voluto dal committente
+
+> «Io non capisco perche' ancora ci sono cose che vivono solo nell'app e altre
+> che sono sul gioco fisico. **ELIMINA ogni cosa che vive solo nell'app.**»
+
+Il caso peggiore era questo, e non si vedeva perche' funzionava bene.
+
+Giocare una carta Eco scriveva sul mondo un segno `function:ATTACK`,
+`function:BETRAYAL`, uno dei ventiquattro. Quel segno **decideva chi poteva
+uscire l'anno dopo** — la Riconciliazione esce solo dopo un tradimento, la caccia
+al drago solo dopo la Rivelazione — e `effect_text.gd` lo **nascondeva apposta**
+al giocatore, con una costante che si chiamava `HIDDEN_TAG_PREFIX`.
+
+Una regola che cambia il gioco e che al tavolo non si puo' vedere ne' verificare.
+Viveva solo nell'app, per intero.
+
+### La regola era giusta, il posto no
+
+*«Ci si riconcilia dopo qualunque rottura»* e' una bella regola, ed e' Propp. Non
+si tocca. Cambia **dove si legge**: le carte Eco calate stanno **scoperte sul
+tavolo**, e ognuna porta la sua funzione stampata. La domanda «e' gia' successa
+una cosa di questo genere?» si fa guardando quella pila, come la farebbe un
+giocatore.
+
+Nuova condizione `echo_function_played`, e le **27 clausole** che dicevano
+`state_tag_present: function:X` adesso dicono `echo_function_played: X`.
+
+### Cosa e' sparito
+
+| | |
+|---|---|
+| voci del dizionario | **204 → 180** |
+| il motore che scrive `function:` giocando una carta | tolto |
+| `HIDDEN_TAG_PREFIX`, la costante che lo nascondeva | tolta |
+| il verbale che taceva su quei segni | tolto |
+| il validatore che ricavava il segno da `function_id` | tolto |
+
+`function_id` resta dov'e' sempre stato: **stampato sulla carta**. E' un'etichetta
+su un pezzo di cartone, non un gettone da posare.
+
+### Un errore preso in tempo, e vale la pena scriverlo
+
+La prima stesura leggeva `echo_deck.drawn`. Sembra la pila giusta e non lo e':
+`drawn` sono le carte **uscite dal mazzo**, e comprende quelle che stanno ancora
+**in mano** a qualcuno. Avrebbe risposto «c'e' stato un tradimento» perche' uno
+dei giocatori ha in mano la carta del tradimento — allargando la grammatica in
+silenzio, senza che un test se ne accorgesse. Serviva una pila sua: `echo_played`,
+le carte **calate**.
+
+### La prova che il committente aveva gia' scritto
+
+`test_visible_handover` dice: *«l'era nuova nasce dal solo tavolo visibile:
+niente stato nascosto nell'eredita'»*. Ha morso subito, perche' avevo messo la
+pila nell'eredita' e non nel tavolo visibile. E' andata rossa per la ragione
+giusta, e la cura e' stata metterla dove si vede — che e' dove sta davvero:
+scoperta sul tavolo.
+
+### I numeri
+
+| | prima | dopo |
+|---|---|---|
+| seggi bloccati (misto / uniforme) | 0/8 · 0/8 | **0/8 · 0/8** |
+| Consigli media, misto | 3.43 | 3.44 |
+| Consigli media, uniforme | 3.46 | 3.45 |
+| test | 664 | **664, verdi** |
+
+Il gioco non si e' mosso: la grammatica e' la stessa, ha solo smesso di
+nascondersi.
+
+### Quello che resta app-only, e non l'ho toccato
+
+Questa e' **una** cosa, non tutte. Restano da guardare le divergenze fra le due
+grammatiche sulle carte — il caso che ha aperto la conversazione: il Magistrato
+toglie `scar:unanswered` con un effetto digitale, e la sua faccia fisica quella
+Cicatrice non la nomina. E' [ISSUES 113](ISSUES.md), e va misurata prima di
+tagliare: quante carte fanno, nel motore, cose che la loro faccia non dice.
+
+---
+
+## D-357 — Togliere una Cicatrice e' raro, non impossibile
+
+**implemented** · 0.1.322 · voluto dal committente
+
+> «Le cicatrici in senso assoluto sono piu' difficili da togliere ma non deve
+> essere impossibile: togliere una cicatrice e' raro ma puo' accadere.»
+
+[D-350](#d-350) aveva scritto nello schema che il dischetto della Cicatrice **non
+torna nella riserva**, e la sonda del tavolo ne aveva fatto una bandierina:
+*«tolta 11 volte: non e' una Cicatrice»*, accanto a `scar:unanswered`.
+
+**La bandierina aveva torto, e la definizione pure.** Quella rimozione e'
+progettata da D-112: il Magistrato *«chiude la cicatrice del consiglio che non
+decise»*. Non e' un difetto, e' una cura rara — ed e' quello che il committente
+intendeva fin dall'inizio.
+
+La differenza fra un gettone di zona e un dischetto di Cicatrice **non e' «per
+sempre contro temporaneo»**: e' quanto costa levarlo. Una condizione se ne va da
+sola a fine Atto; una Cicatrice ha bisogno di un pezzo che sappia toglierla, e di
+solito quel pezzo non c'e'.
+
+Corretta in tre posti: lo schema, il registro dei segni, e la sonda del tavolo —
+che adesso segnala solo il caso davvero storto, una Cicatrice **tolta piu' volte
+di quante si posa**.
+
+---
+
+## D-356 — I cinquantuno gettoni del bordo hanno una faccia
+
+**implemented** · 0.1.320 · chiude [ISSUES 110](ISSUES.md)
+
+[D-351](#d-351) ha dato un posto alla memoria del mondo — il bordo della mappa —
+e ha lasciato scritto cosa mancava: **51 schede del disegno su 52**, che sono
+l'unica parte del catalogo delle pedine scritta a mano. Adesso ci sono.
+
+**Cinquanta schede nuove**, una per segno, ognuna con cosa vuol dire al tavolo e
+cosa ci va disegnato. Piu' `heir_named`, che la scheda ce l'aveva ma sul foglio
+sbagliato: era fra i segni delle case, ed e' memoria del mondo.
+
+### La forma postuma non e' un gettone in piu'
+
+Tre segni — `legend:debt_called`, `legend:oath_broken`, `legend:order_restored`
+— non hanno una parola stampata, e sembrava un buco. Non lo e': il dizionario
+dice che sono *«la forma postuma di un fatto: il passaggio di Chronicle promuove
+a racconto quello che il mondo non tiene piu' per vero»*, e tutt'e tre hanno il
+loro fatto base gia' nella lista.
+
+Sul tavolo e' **lo stesso gettone, girato**. Il fatto da una parte, il racconto
+dall'altra. Non si tagliano tre pezzi in piu' per dire che una cosa e' diventata
+una storia: si gira quello che c'e' gia'.
+
+### Due segni che non stanno nel dizionario
+
+`seal_kept` e `seal_kept_twice` sono gli anelli della catena delle ere che porta
+a `mountain_forgotten`: hanno la parola stampata, il mondo li scrive, e **non
+sono voci del dizionario**. Le loro schede le ho scritte — sono gettoni veri —
+ma il buco resta, ed e' [ISSUES 112](ISSUES.md).
+
+### Il costo, e non e' piccolo
+
+Il censimento della scatola non li contava: `components_survey` leggeva solo i
+segni delle Regioni e delle case, e finche' la memoria del mondo non aveva un
+posto era giusto cosi'. Adesso li conta, e il numero cambia parecchio:
+
+| | prima | dopo |
+|---|---|---|
+| tipi di segnalino | 67 | **118** |
+| pezzi da tagliare | 91 | **142** |
+| fogli-fustella | 3 | **4** |
+
+**Cinquantuno tipi in piu' in una scatola sola.** Il committente aveva gia'
+reagito una volta a un numero di questo genere — *«183 segnalini sono tanti,
+forse troppi»* — e quella volta il numero era sbagliato. Questo no.
+
+E [MISURA_TAVOLO](MISURA_TAVOLO.md) dice la cosa che pesa di piu': di quei
+cinquantuno, **diciannove non si posano mai** in cento partite. Sarebbero
+diciannove fustelle tagliate per gettoni che nessuno tocca. Non le tolgo io:
+e' contenuto, e prima di togliere un gettone conviene chiedersi se il difetto e'
+il gettone o il fatto che nessuno lo scrive.
+
+---
+
 ## D-355 — Una clausola non e' un lettore
 
 **implemented** · 0.1.319 · chiude [ISSUES 102](ISSUES.md)
@@ -113,6 +276,25 @@ non ha modo di accorgersene.
 Percio' lo strumento **lo dice ad alta voce** quando il disegno e' cambiato,
 invece di lasciarlo scoprire a chi si fida del link. E' il minimo onesto: la
 ripubblicazione resta un gesto a mano, e questo lo scrive invece di nasconderlo.
+
+### Il quinto, trovato dal committente
+
+Guardando il disegno di una Conseguenza — «La Domanda sul Muro» — il committente
+ha chiesto di spiegargliela, e il disegno era **incompleto**: mostrava due frecce
+in uscita su tre. Mancava la Cicatrice.
+
+**Quindici Conseguenze posano una Cicatrice con un blocco loro** (`creates_scar`
+piu' `scar`), non con un Effetto. L'estrattore cercava solo i tipi di effetto, e
+di quelle quindici non ne mostrava **nessuna**: +15 legami, da 1582 a 1597.
+
+E' lo stesso inciampo che il commento di `validate_physical._scava` aveva gia'
+scritto — *«la cicatrice non e' un SET_REGION_TAG: e' un blocco suo, e la prima
+stesura di questa sonda non la vedeva»* — e ci sono cascato lo stesso, sullo
+stesso pezzo, per la seconda volta in un giorno. La prima era stata `ADD_SCAR`
+nella sonda del tavolo (D-352).
+
+**Le Cicatrici sono il posto dove questo progetto e' cieco.** Tre strumenti su
+tre, scritti in giornate diverse, hanno mancato lo stesso blocco.
 
 ### Quattro difetti trovati disegnandolo, e vale la pena scriverli
 

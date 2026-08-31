@@ -248,6 +248,10 @@ func test_time_turns_unwritten_facts_into_legends() -> void:
 	assert_true(carried.has("legend:order_restored"), "ma non sparisce: diventa leggenda")
 	assert_true(carried.has("legend:oath_broken"), "e una leggenda gia' nata attraversa il salto")
 	assert_false(carried.has("legend:legend:oath_broken"), "senza diventare leggenda di se stessa")
+	# `function:REQUEST` nel mondo di prima e' un **salvataggio d'archivio**: da
+	# D-358 quel segno non lo scrive piu' nessuno, e la grammatica di Propp si
+	# legge dalle carte calate. Se ne arriva ancora uno da un'era vecchia, non
+	# deve diventare la leggenda di una contabilita' che non esiste.
 	for tag in carried:
 		assert_false(str(tag).begins_with("legend:function:"), "la grammatica non lascia leggende")
 

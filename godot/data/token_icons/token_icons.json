@@ -390,7 +390,7 @@
     {
       "id": "TOK_HEIR_NAMED",
       "tag": "heir_named",
-      "fustella": "CASE",
+      "fustella": "MONDO",
       "rappresenta": "L'erede ha un nome, e il nome e' stato detto davanti a qualcuno.",
       "soggetto": "una mano di adulto sopra una mano piccola"
     },
@@ -519,6 +519,356 @@
       "fustella": "PEDINE",
       "rappresenta": "Sta fra due case che si sono tradite, e le riguarda tutte e due.",
       "soggetto": "una catena spezzata a meta'"
+    },
+    {
+      "id": "TOK_ACCOUNT_SETTLED",
+      "tag": "account_settled",
+      "fustella": "MONDO",
+      "rappresenta": "Il debito e' chiuso: nessuno deve piu' niente a nessuno.",
+      "soggetto": "due meta' di un bastoncino di conto, spezzate e rimesse una accanto all'altra"
+    },
+    {
+      "id": "TOK_AMNESTY_GRANTED",
+      "tag": "amnesty_granted",
+      "fustella": "MONDO",
+      "rappresenta": "Quello che era stato fatto non si conta piu': si riparte da zero.",
+      "soggetto": "un ceppo di ferro aperto, con la catena che pende vuota"
+    },
+    {
+      "id": "TOK_BETRAYAL_SPOKEN",
+      "tag": "betrayal_spoken",
+      "fustella": "MONDO",
+      "rappresenta": "Non e' piu' un sospetto: qualcuno lo ha detto davanti a tutti.",
+      "soggetto": "una bocca aperta di profilo, e una crepa che parte da li'"
+    },
+    {
+      "id": "TOK_BURDEN_SHARED",
+      "tag": "burden_shared",
+      "fustella": "MONDO",
+      "rappresenta": "Il carico non e' di uno solo: se lo portano in piu' d'uno.",
+      "soggetto": "un giogo a due posti, coi due incavi consumati uguali"
+    },
+    {
+      "id": "TOK_CHARTER_FOR_ALL",
+      "tag": "charter_for_all",
+      "fustella": "MONDO",
+      "rappresenta": "La legge scritta vale per chiunque, senza eccezioni comprate.",
+      "soggetto": "un sigillo pendente da un nastro, largo quanto il rotolo che chiude"
+    },
+    {
+      "id": "TOK_CHARTER_TEMPORARY",
+      "tag": "charter_temporary",
+      "fustella": "MONDO",
+      "rappresenta": "Vale adesso e non per sempre: qualcuno ci ha messo una scadenza.",
+      "soggetto": "una clessidra posata di traverso sopra un rotolo chiuso"
+    },
+    {
+      "id": "TOK_CHARTER_WRITTEN",
+      "tag": "charter_written",
+      "fustella": "MONDO",
+      "rappresenta": "C'e' una legge scritta, e da adesso si mostra invece di ricordarla.",
+      "soggetto": "un rotolo aperto a meta', con la piega ancora alzata"
+    },
+    {
+      "id": "TOK_CROWN_DISPOSSESSED",
+      "tag": "crown_dispossessed",
+      "fustella": "MONDO",
+      "rappresenta": "Chi portava la corona non ha piu' le terre che la reggevano.",
+      "soggetto": "una corona rovesciata, appoggiata su un fianco"
+    },
+    {
+      "id": "TOK_CROWN_DIVIDED",
+      "tag": "crown_divided",
+      "fustella": "MONDO",
+      "rappresenta": "Piu' d'uno la rivendica, e nessuno la porta intera.",
+      "soggetto": "un cerchio spezzato in due archi che non combaciano"
+    },
+    {
+      "id": "TOK_CRYSTAL_EXPLOITED",
+      "tag": "crystal_exploited",
+      "fustella": "MONDO",
+      "rappresenta": "Si e' scavato, e il Cristallo e' uscito dalla montagna.",
+      "soggetto": "una vena di cristallo tagliata di netto da un colpo di piccone"
+    },
+    {
+      "id": "TOK_CRYSTAL_MEASURED",
+      "tag": "crystal_measured",
+      "fustella": "MONDO",
+      "rappresenta": "Qualcuno lo ha pesato e contato invece di temerlo.",
+      "soggetto": "una scheggia di cristallo su un piatto di bilancia"
+    },
+    {
+      "id": "TOK_DEBT_CALLED",
+      "tag": "debt_called",
+      "fustella": "MONDO",
+      "rappresenta": "Chi doveva avere ha chiesto indietro, e adesso si paga.",
+      "soggetto": "una mano tesa aperta, il palmo in su, ferma"
+    },
+    {
+      "id": "TOK_DEBT_FORGIVEN",
+      "tag": "debt_forgiven",
+      "fustella": "MONDO",
+      "rappresenta": "Chi doveva avere ha lasciato perdere, e il conto si chiude.",
+      "soggetto": "una mano che apre le dita e lascia andare una corda"
+    },
+    {
+      "id": "TOK_DEBT_STAGGERED",
+      "tag": "debt_staggered",
+      "fustella": "MONDO",
+      "rappresenta": "Non si paga tutto adesso: il conto e' stato spezzato in piu' volte.",
+      "soggetto": "una corda tesa con tre nodi alla stessa distanza"
+    },
+    {
+      "id": "TOK_DESCENT_WITNESSED",
+      "tag": "descent_witnessed",
+      "fustella": "MONDO",
+      "rappresenta": "Qualcuno e' sceso sotto la pietra, e non lo ha fatto di nascosto.",
+      "soggetto": "una scala calata dentro un'apertura nel terreno, vista da sopra"
+    },
+    {
+      "id": "TOK_DISTRIBUTION_AUDITED",
+      "tag": "distribution_audited",
+      "fustella": "MONDO",
+      "rappresenta": "Qualcuno ha controllato chi ha ricevuto quanto.",
+      "soggetto": "una fila di tacche incise sul bordo di una tavola"
+    },
+    {
+      "id": "TOK_DRAGON_SLAIN",
+      "tag": "dragon_slain",
+      "fustella": "MONDO",
+      "rappresenta": "La cosa che dormiva sotto la pietra e' morta, e il mondo lo ha saputo.",
+      "soggetto": "un cranio lungo con le corna, mezzo interrato"
+    },
+    {
+      "id": "TOK_FAITH_ESTABLISHED",
+      "tag": "faith_established",
+      "fustella": "MONDO",
+      "rappresenta": "Un culto ha smesso di essere una voce e ha avuto un tetto.",
+      "soggetto": "una fiamma dentro una nicchia di pietra"
+    },
+    {
+      "id": "TOK_GRAIN_REQUISITIONED",
+      "tag": "grain_requisitioned",
+      "fustella": "MONDO",
+      "rappresenta": "Il grano e' stato preso a chi lo aveva, per ordine di qualcuno.",
+      "soggetto": "un sacco aperto con una mano che ci affonda dentro"
+    },
+    {
+      "id": "TOK_KNOWLEDGE_SHARED",
+      "tag": "knowledge_shared",
+      "fustella": "MONDO",
+      "rappresenta": "Quello che sapeva uno lo sanno tutti, e non si vende piu'.",
+      "soggetto": "una candela che ne accende un'altra"
+    },
+    {
+      "id": "TOK_LEDGER_PUBLIC",
+      "tag": "ledger_public",
+      "fustella": "MONDO",
+      "rappresenta": "I conti si possono guardare: non sono piu' di chi li tiene.",
+      "soggetto": "un libro aperto su un leggio, e nessuno che lo tiene"
+    },
+    {
+      "id": "TOK_LIST_WITNESSED",
+      "tag": "list_witnessed",
+      "fustella": "MONDO",
+      "rappresenta": "I nomi sono stati detti ad alta voce, e c'era gente ad ascoltare.",
+      "soggetto": "un rotolo srotolato fino a terra"
+    },
+    {
+      "id": "TOK_MINE_SEALED",
+      "tag": "mine_sealed",
+      "fustella": "MONDO",
+      "rappresenta": "L'imbocco e' chiuso: quello che c'e' sotto ci resta.",
+      "soggetto": "un'apertura nella roccia tappata da conci squadrati"
+    },
+    {
+      "id": "TOK_MOUNTAIN_FORGOTTEN",
+      "tag": "mountain_forgotten",
+      "fustella": "MONDO",
+      "rappresenta": "Nessuno ci va piu': e' rimasta solo nelle storie.",
+      "soggetto": "un profilo di montagna tracciato con una linea che si interrompe"
+    },
+    {
+      "id": "TOK_NAHR_SETTLED",
+      "tag": "nahr_settled",
+      "fustella": "MONDO",
+      "rappresenta": "Chi camminava ha smesso: adesso ha un posto e ci resta.",
+      "soggetto": "un palo da tenda piantato a fondo, senza telo"
+    },
+    {
+      "id": "TOK_NO_CHARTER",
+      "tag": "no_charter",
+      "fustella": "MONDO",
+      "rappresenta": "Si e' deciso di non scriverla: la parola resta parola.",
+      "soggetto": "un rotolo ancora chiuso e legato, col nastro intatto"
+    },
+    {
+      "id": "TOK_OATH_BROKEN",
+      "tag": "oath_broken",
+      "fustella": "MONDO",
+      "rappresenta": "Qualcuno ha dato la parola e non l'ha tenuta, e si sa chi.",
+      "soggetto": "un anello spezzato, i due capi piegati in fuori"
+    },
+    {
+      "id": "TOK_ORDER_RESTORED",
+      "tag": "order_restored",
+      "fustella": "MONDO",
+      "rappresenta": "La rivolta e' finita: chi comandava comanda di nuovo.",
+      "soggetto": "una bilancia tornata in piano, i due piatti alla stessa altezza"
+    },
+    {
+      "id": "TOK_PARLEY_HELD",
+      "tag": "parley_held",
+      "fustella": "MONDO",
+      "rappresenta": "Prima di decidere si sono seduti e si sono parlati.",
+      "soggetto": "due sgabelli uno di fronte all'altro, vuoti"
+    },
+    {
+      "id": "TOK_PETITION_HEARD",
+      "tag": "petition_heard",
+      "fustella": "MONDO",
+      "rappresenta": "Chi ha chiesto e' stato ascoltato, che poi gli sia stato dato o no.",
+      "soggetto": "una porta socchiusa vista di lato, con la fessura larga"
+    },
+    {
+      "id": "TOK_PRICE_IN_LIVES",
+      "tag": "price_in_lives",
+      "fustella": "MONDO",
+      "rappresenta": "Quella decisione e' passata al prezzo di chi non c'e' piu'.",
+      "soggetto": "una fila di sassi allineati sul terreno"
+    },
+    {
+      "id": "TOK_QUESTION_UNRESOLVED",
+      "tag": "question_unresolved",
+      "fustella": "MONDO",
+      "rappresenta": "Il Consiglio non ha deciso, e la cosa resta li'.",
+      "soggetto": "un cerchio interrotto, coi due capi che non si toccano"
+    },
+    {
+      "id": "TOK_QUOTA_GUARANTEED",
+      "tag": "quota_guaranteed",
+      "fustella": "MONDO",
+      "rappresenta": "A qualcuno spetta una parte fissa, qualunque cosa succeda.",
+      "soggetto": "una misura di legno rasa, col bastone di livello posato sopra"
+    },
+    {
+      "id": "TOK_RELIC_BURIED",
+      "tag": "relic_buried",
+      "fustella": "MONDO",
+      "rappresenta": "E' stata rimessa sotto terra, e si e' deciso di lasciarla li'.",
+      "soggetto": "un cofanetto chiuso, mezzo coperto di terra"
+    },
+    {
+      "id": "TOK_RELIC_RECORDED",
+      "tag": "relic_recorded",
+      "fustella": "MONDO",
+      "rappresenta": "Esiste, ed e' scritto dove sta e di chi e'.",
+      "soggetto": "un cofanetto chiuso con un sigillo che pende dalla serratura"
+    },
+    {
+      "id": "TOK_RELIC_SHOWN",
+      "tag": "relic_shown",
+      "fustella": "MONDO",
+      "rappresenta": "E' stata tirata fuori e fatta vedere: adesso tutti sanno che c'e'.",
+      "soggetto": "due mani che sollevano un cofanetto aperto"
+    },
+    {
+      "id": "TOK_RETURN_PROMISED",
+      "tag": "return_promised",
+      "fustella": "MONDO",
+      "rappresenta": "Qualcuno ha giurato che tornera', e il mondo se lo segna.",
+      "soggetto": "una soglia di pietra con un solco consumato al centro"
+    },
+    {
+      "id": "TOK_RUMOUR_RUNNING",
+      "tag": "rumour_running",
+      "fustella": "MONDO",
+      "rappresenta": "Se ne parla dappertutto, e nessuno sa piu' chi l'ha detto per primo.",
+      "soggetto": "tre linee ondulate che partono da un punto e si allargano"
+    },
+    {
+      "id": "TOK_SOMEONE_PAID",
+      "tag": "someone_paid",
+      "fustella": "MONDO",
+      "rappresenta": "Quella decisione e' costata a qualcuno, e non a chi l'ha presa.",
+      "soggetto": "una scodella vuota rovesciata"
+    },
+    {
+      "id": "TOK_STUDY_SUPERVISED",
+      "tag": "study_supervised",
+      "fustella": "MONDO",
+      "rappresenta": "Si puo' studiare, ma non da soli: c'e' chi guarda.",
+      "soggetto": "una lente posata su un tavolo, e un'ombra che la copre a meta'"
+    },
+    {
+      "id": "TOK_SUCCESSION_BY_LAW",
+      "tag": "succession_by_law",
+      "fustella": "MONDO",
+      "rappresenta": "Chi viene dopo lo dice la regola scritta, non la forza.",
+      "soggetto": "un seggio vuoto con un rotolo appoggiato sul sedile"
+    },
+    {
+      "id": "TOK_SUCCESSION_SETTLED",
+      "tag": "succession_settled",
+      "fustella": "MONDO",
+      "rappresenta": "Si sa chi viene dopo, e nessuno lo contesta piu'.",
+      "soggetto": "un seggio visto di lato, con un manto piegato sul bracciolo"
+    },
+    {
+      "id": "TOK_SUCCESSION_WITNESSED",
+      "tag": "succession_witnessed",
+      "fustella": "MONDO",
+      "rappresenta": "Il passaggio e' avvenuto davanti a gente che puo' ridirlo.",
+      "soggetto": "due mani che si passano un bastone, viste di lato"
+    },
+    {
+      "id": "TOK_TOLL_SHARED",
+      "tag": "toll_shared",
+      "fustella": "MONDO",
+      "rappresenta": "Chi passa paga, e l'incasso non e' di uno solo.",
+      "soggetto": "una cassetta con due fessure sul coperchio"
+    },
+    {
+      "id": "TOK_VALLEY_SEALED",
+      "tag": "valley_sealed",
+      "fustella": "MONDO",
+      "rappresenta": "Il passaggio e' stato sbarrato: da li' non si passa piu'.",
+      "soggetto": "una gola stretta fra due pareti, chiusa da una trave di traverso"
+    },
+    {
+      "id": "TOK_WATER_MOVES",
+      "tag": "water_moves",
+      "fustella": "MONDO",
+      "rappresenta": "Il corso e' stato spostato, e chi ne viveva adesso e' a secco.",
+      "soggetto": "un solco d'acqua che si divide, e un ramo lasciato asciutto"
+    },
+    {
+      "id": "TOK_WATER_PRICED",
+      "tag": "water_priced",
+      "fustella": "MONDO",
+      "rappresenta": "Bere non e' piu' gratis: qualcuno decide quanto costa.",
+      "soggetto": "un secchio appeso a una catena chiusa da un lucchetto"
+    },
+    {
+      "id": "TOK_WATER_SHARED",
+      "tag": "water_shared",
+      "fustella": "MONDO",
+      "rappresenta": "La sorgente e' di piu' d'uno, e la parte e' stabilita.",
+      "soggetto": "un canale che si apre in due bracci uguali"
+    },
+    {
+      "id": "TOK_SEAL_KEPT",
+      "tag": "seal_kept",
+      "fustella": "MONDO",
+      "rappresenta": "E' passata un'era e le gallerie sono ancora chiuse.",
+      "soggetto": "un chiavistello di pietra ancora al suo posto, sotto la polvere"
+    },
+    {
+      "id": "TOK_SEAL_KEPT_TWICE",
+      "tag": "seal_kept_twice",
+      "fustella": "MONDO",
+      "rappresenta": "Due ere, e nessuno ha riaperto: la montagna sta diventando racconto.",
+      "soggetto": "due tacche incise una sotto l'altra su un architrave di pietra"
     }
   ]
 }

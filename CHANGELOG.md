@@ -5,6 +5,137 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.323 — Le 48 Risonanze fanno tutte una cosa che non dicono (ISSUES 113)
+
+Nessun codice cambia: cambia un numero, e il numero è tutto.
+
+Il committente ha guardato il grafo del flusso su `question_unresolved` — «*a
+volte si trovano cose strane semplicemente guardando*». Il segno era in ordine.
+Le carte che lo leggono no.
+
+```
+carte con Risonanza fisica     : 48
+  con aggravante nel motore    : 48
+  che la faccia NON dice       : 48
+```
+
+Ogni Risonanza ha un `if_target_tag` con `extra_heat` — scalda di più se il
+bersaglio porta un certo segno, e a volte gli posa addosso un gettone in più.
+**Nessuna delle quarantotto lo scrive.** *Le Porte Bruciate* dice «Scalda Potere
++2» e ne dà 3 quando sul bordo della mappa c'è `#question_unresolved`.
+
+È lo stesso difetto del Magistrato che ha aperto ISSUES 113, ma non è un caso
+isolato: è il **100%** del pezzo di carta che CLAUDE.md chiama obbligatorio. La
+misura è nel corpo di ISSUES 113, insieme a cosa comporta per la cura.
+
+---
+
+## 0.1.322 — Via la grammatica di Propp dal mondo, e una Cicatrice si può togliere (D-357, D-358)
+
+Due ordini del committente: *«ELIMINA ogni cosa che vive solo nell'app»* e
+*«togliere una cicatrice è raro ma può accadere»*.
+
+### La grammatica di Propp non si nasconde più (D-358)
+
+Giocare una carta Eco scriveva sul mondo un segno `function:ATTACK`,
+`function:BETRAYAL`, uno dei ventiquattro. Quel segno **decideva chi poteva
+uscire l'anno dopo**, e `effect_text.gd` lo **nascondeva apposta** con una
+costante che si chiamava `HIDDEN_TAG_PREFIX`. Una regola che cambia il gioco e
+che al tavolo non si può vedere.
+
+La regola resta — *«ci si riconcilia dopo qualunque rottura»* è Propp, non si
+tocca. Cambia dove si legge: **le carte Eco calate stanno scoperte sul tavolo**,
+e ognuna porta la sua funzione stampata.
+
+| | prima | dopo |
+|---|---|---|
+| voci del dizionario | 204 | **180** |
+| clausole `state_tag_present: function:X` | 27 | **0** |
+| seggi bloccati (misto / uniforme) | 0/8 · 0/8 | **0/8 · 0/8** |
+| test | 664 | **664, verdi** |
+
+**Un errore preso in tempo:** la prima stesura leggeva `echo_deck.drawn`, che
+comprende le carte ancora **in mano**. Avrebbe risposto «c'è stato un tradimento»
+perché qualcuno ha la carta in mano, allargando la grammatica in silenzio.
+Serviva `echo_played`, le carte **calate**.
+
+E `test_visible_handover` — *«l'era nuova nasce dal solo tavolo visibile: niente
+stato nascosto nell'eredità»* — ha morso subito, per la ragione giusta.
+
+### Una Cicatrice si può togliere, di rado (D-357)
+
+D-350 aveva scritto che il dischetto **non torna nella riserva**, e la sonda ne
+aveva fatto una bandierina contro `scar:unanswered`. **Sbagliate tutt'e due:**
+quella rimozione è progettata da D-112, ed è la cura rara del Magistrato.
+
+La differenza fra un gettone di zona e una Cicatrice non è «per sempre contro
+temporaneo»: è **quanto costa levarla**. Corretta in tre posti.
+
+### Cosa resta app-only (ISSUES 113)
+
+Il Magistrato toglie `scar:unanswered` con un effetto digitale, e la sua faccia
+fisica quella Cicatrice non la nomina. `on_commit_effects` e `physical.actions`
+sono due liste separate, e **nessun cancello controlla che dicano la stessa
+cosa**. Va misurato prima di tagliare.
+
+---
+
+## 0.1.321 — Il grafo non mostrava nessuna Cicatrice (D-354)
+
+Trovato dal committente, guardando il disegno di una Conseguenza e chiedendo di
+spiegargliela: «La Domanda sul Muro» mostrava **due frecce in uscita su tre**.
+Mancava la Cicatrice.
+
+**Quindici Conseguenze posano una Cicatrice con un blocco loro** (`creates_scar`
+più `scar`) invece che con un Effetto, e `build_flow.py` cercava solo i tipi di
+effetto: di quelle quindici non ne mostrava **nessuna**. Da **1582 a 1597
+legami**.
+
+È lo stesso inciampo che un commento in `validate_physical` aveva già scritto —
+*«la cicatrice non è un SET_REGION_TAG: è un blocco suo»* — e ci sono cascato lo
+stesso, sullo stesso pezzo, per la seconda volta in un giorno: la prima era
+`ADD_SCAR` nella sonda del tavolo. **Le Cicatrici sono il posto dove questo
+progetto è cieco**: tre strumenti su tre, scritti in giornate diverse, hanno
+mancato lo stesso blocco.
+
+---
+
+## 0.1.320 — I cinquantuno gettoni del bordo hanno una faccia (D-356)
+
+Chiude [ISSUES 110](docs/ISSUES.md). D-351 aveva dato un posto alla memoria del
+mondo e lasciato scritto cosa mancava: **51 schede del disegno su 52**, l'unica
+parte del catalogo delle pedine che si scrive a mano.
+
+**Cinquanta schede nuove**, più `heir_named` spostato dal foglio delle case a
+quello del mondo, dove doveva stare.
+
+**La forma postuma non è un gettone in più.** I tre `legend:` non hanno una
+parola stampata, e sembrava un buco: non lo è. Sono «la forma postuma di un
+fatto», e tutt'e tre hanno il loro fatto base già nella lista. Sul tavolo è **lo
+stesso gettone, girato** — il fatto da una parte, il racconto dall'altra.
+
+**Il costo, ed è grosso.** `components_survey` non li contava, perché leggeva
+solo i segni delle Regioni e delle case:
+
+| | prima | dopo |
+|---|---|---|
+| tipi di segnalino | 67 | **118** |
+| pezzi da tagliare | 91 | **142** |
+| fogli-fustella | 3 | **4** |
+
+E `MISURA_TAVOLO` dice la cosa che pesa: di quei 51, **19 non si posano mai** in
+cento partite. Diciannove fustelle per gettoni che nessuno tocca. Non le tolgo:
+prima conviene chiedersi se il difetto è il gettone o il fatto che nessuno lo
+scrive.
+
+Nuova [ISSUES 112](docs/ISSUES.md): `seal_kept` e `seal_kept_twice` hanno la
+parola e ora la scheda, ma **non sono voci del dizionario** — li nomina la catena
+delle ere, e quel percorso il censimento non lo raschia.
+
+664 test verdi.
+
+---
+
 ## 0.1.319 — Una clausola non è un lettore (D-355)
 
 L'ultima delle tre riparazioni di [ISSUES 102](docs/ISSUES.md), che **si chiude**.

@@ -6165,7 +6165,7 @@ verita' per la stessa cosa, e nessuna che sorvegli l'altra.**
 **Fatto quando** cambiare il MASTER PROMPT 6 nel documento cambia il catalogo,
 oppure fa fallire un cancello.
 
-### 110. Dove si posa quello che il mondo ricorda — deciso in 0.1.316
+### 110. ✅ Dove si posa quello che il mondo ricorda — chiusa in 0.1.320
 
 `componenti` · `grammatica-fisica` · aperta in 0.1.315 ([D-350](DECISIONS.md#d-350)) · **decisa in 0.1.316** ([D-351](DECISIONS.md#d-351))
 
@@ -6181,6 +6181,11 @@ oppure fa fallire un cancello.
 > E prima di tagliare la fustella conviene guardare
 > [MISURA_TAVOLO](MISURA_TAVOLO.md): di quei 52, **20 non si posano mai** in
 > cento partite. Venti gettoni che resterebbero nella scatola.
+>
+> **Fatta in 0.1.320** ([D-356](DECISIONS.md#d-356)): cinquanta schede nuove piu'
+> `heir_named` spostato sul foglio giusto. I tre `legend:` non ne hanno una loro
+> — sono lo stesso gettone girato. Il censimento della scatola adesso li conta:
+> **da 67 tipi a 118, da 91 pezzi a 142**, e un foglio-fustella in piu'.
 
 Dando a ogni segno il suo posto sul tavolo, cinque posti su sei si sono riempiti
 da soli — la tessera, lo spazio della Pietra, il gettone di zona, il dischetto
@@ -6260,6 +6265,104 @@ gioco.
 
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non e' piu' nel catalogo.
+
+---
+
+### 112. Due segni della catena delle ere non stanno nel dizionario
+
+`dati` · `piccola` · aperta in 0.1.320 ([D-356](DECISIONS.md#d-356))
+
+`seal_kept` e `seal_kept_twice` sono il secondo e il terzo anello della catena
+`TLY_SEAL`, quella che da `mine_sealed` porta a `mountain_forgotten`. Il mondo li
+scrive, `sign_labels.gd` li stampa, e da 0.1.320 hanno la loro scheda del
+disegno — **ma non sono voci del dizionario dei segni.**
+
+Vuol dire che di loro non si sa quello che si sa di tutti gli altri: che
+categoria sono, in che posto del tavolo stanno, chi li posa e chi li legge. E il
+controllo 1 di `validate_physical` — *«ogni segno toccato e' nel dizionario»* —
+non li vede, perche' li nomina la catena delle ere dentro il dato di Chronicle, e
+quel percorso il censimento non lo raschia.
+
+Sono due, e la cura e' due voci con `table_place: WORLD_MEMORY`. La parte da
+guardare e' l'altra: **quanti altri segni entrano dal cancello che questo
+percorso lascia aperto.**
+
+**Fatto quando** i due sono nel dizionario, e il censimento guarda anche le
+catene delle ere.
+
+---
+
+### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice
+
+`regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
+
+> **Richiesta del committente:** *«io non capisco perche' ancora ci sono cose che
+> vivono solo nell'app e altre che sono sul gioco fisico. ELIMINA ogni cosa che
+> vive solo nell'app».*
+
+[D-358](DECISIONS.md#d-358) ne ha tolta **una**: la grammatica di Propp, che
+viveva in ventiquattro segni nascosti sul mondo. Ne resta una famiglia intera, e
+prima di tagliarla va contata.
+
+Il caso che l'ha fatta vedere: **il Magistrato** (`AST_AUTHORITY_MAGISTRATE`).
+I suoi `on_commit_effects` tolgono `scar:unanswered` dal luogo — «il Magistrato
+chiude la cicatrice del consiglio che non decise» (D-112). La sua **faccia
+fisica** ha due Azioni, e nessuna delle due nomina quella Cicatrice: tolgono
+`#conteso` e `#malcontento`.
+
+Cioe': nell'app quella carta cura una Cicatrice **undici volte su cento
+partite**, e al tavolo quella cura non e' scritta da nessuna parte. Un giocatore
+che legge la carta non puo' saperlo.
+
+**Non e' un caso isolato per costruzione**: `on_commit_effects` (la grammatica
+digitale) e `physical.actions` (quella fisica) sono due liste separate, e
+**nessun cancello controlla che dicano la stessa cosa**. Il validatore controlla
+che una carta non nomini segni inesistenti, non che le due facce combacino.
+
+#### Cosa serve prima di decidere
+
+Una misura, per ogni carta con una faccia fisica: **quali effetti digitali non
+hanno una riga corrispondente sulla faccia**. Il numero puo' essere due o
+quaranta, e la cura cambia di conseguenza:
+
+- se sono pochi, si scrivono le righe mancanti sulle facce;
+- se sono tanti, il difetto e' che le due liste si scrivono a mano due volte, e
+  serve un cancello che le confronti.
+
+#### Una parte del numero e' arrivata da sola: 48 su 48
+
+Guardando il grafo del flusso su `question_unresolved` (0.1.322) e' saltata fuori
+la famiglia piu' grande, e non e' negli `on_commit_effects`: e' **nella
+Risonanza**, cioe' nel pezzo di carta che CLAUDE.md chiama obbligatorio.
+
+```
+carte con Risonanza fisica     : 48
+  con aggravante nel motore    : 48
+  che la faccia NON dice       : 48
+```
+
+Ogni Risonanza porta `if_target_tag` + `extra_heat` (spesso anche `extra_tag`):
+se il bersaglio ha quel segno, scalda **di piu'**, e a volte posa un gettone in
+piu'. **Nessuna delle 48 lo scrive nel proprio `resonance.text`.**
+
+| carta | la faccia dice | il motore fa |
+|---|---|---|
+| Le Porte Bruciate | «Scalda Potere **+2**» | +3 se sul mondo c'e' `#question_unresolved` |
+| Leva Contadina | «Scalda Sopravvivenza **+1**» | +2 se il luogo e' `#magro`, e ci posa `#affamato` |
+| Banda Armata | «Scalda Terra **+2**» | +3 se il luogo e' `#saccheggiato`, e ci posa `#malcontento` |
+| Assedio | «Scalda Sopravvivenza **+2**» | +3 se il grano e' gia' stato requisito |
+
+Il difetto e' lo stesso del Magistrato, ma qui non e' un caso isolato: e'
+**il cento per cento** del pezzo di carta piu' letto al tavolo. Un giocatore che
+sceglie dove giocare una carta sta scegliendo, senza saperlo, anche quanto
+scalda.
+
+Il rimedio non e' piu' un ballottaggio fra i due della sezione sopra: a 48 su 48
+la riga va scritta su tutte e 48 le facce **e** serve il cancello, perche' a mano
+si riscrive due volte la stessa cosa e la seconda volta si sbaglia.
+
+**Fatto quando** ogni effetto digitale di una carta ha una riga sulla sua faccia,
+oppure una ragione scritta per cui non ce l'ha — e un cancello lo tiene.
 
 ---
 

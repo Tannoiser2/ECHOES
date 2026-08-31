@@ -58,6 +58,10 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"rng_state": 0,
 		"decks": {},
 		"echo_deck": {"draw": [], "drawn": []},
+		# Le carte Eco **calate**, scoperte sul tavolo (D-358). Non e' `drawn`:
+		# quella e' la pila uscita dal mazzo, e comprende le carte che stanno
+		# ancora in mano a qualcuno, e una carta in mano non e' successa.
+		"echo_played": [],
 		"echoes_played_in_act": 0,
 		"drift_track": [],
 		"drift_index": 0,
@@ -1206,6 +1210,10 @@ static func inheritance_effects(
 		if (chronicle.get("global_tags", []) as Array).has(fact):
 			continue
 		if fades and not enduring.has(fact) and not fact.begins_with("legend:"):
+			# I `function:` non li scrive piu' nessuno (D-358): la grammatica di
+			# Propp si legge dalle carte calate. Questa riga resta come guardia
+			# per un salvataggio d'archivio che ne porti ancora uno — non deve
+			# diventare la leggenda di una contabilita' che non esiste piu'.
 			if fact.begins_with("function:"):
 				continue
 			effects.append(Effect.make(

@@ -197,6 +197,7 @@ func inherit_from(previous: Dictionary, results: Dictionary = {}) -> void:
 	_years_passed = Succession.years_between(_chronicle_def, rng)
 	world["year"] = int(previous.get("year", world["year"])) + _years_passed
 	world["echo_log"] = (previous.get("echo_log", []) as Array).duplicate(true)
+	world["echo_played"] = (previous.get("echo_played", []) as Array).duplicate(true)
 	world["truth_log"] = (previous.get("truth_log", []) as Array).duplicate(true)
 	# **La mappa e' della saga** (D-263): un'era che pesca le tessere gioca su
 	# quelle uscite alla prima, qualunque seme la apra. Se la pesca cieca di

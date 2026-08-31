@@ -123,6 +123,15 @@ def effetti(o, src, why):
         if k in POSA and p.get("tag"):   edge(src, p["tag"], "posa", why, dove)
         if k in TOGLIE and p.get("tag"): edge(src, p["tag"], "toglie", why, dove)
         if k == "ADD_SCAR" and p.get("tag"):    edge(src, p["tag"], "posa", why + " (Cicatrice)", dove)
+        # Una Cicatrice non e' sempre un Effetto: quindici Conseguenze la posano
+        # con un blocco loro, `creates_scar` + `scar`. Cercando solo i tipi di
+        # effetto il grafo non ne mostrava **nessuna** — e' lo stesso inciampo
+        # che il commento di validate_physical._scava aveva gia' scritto.
+        if o.get("creates_scar") and isinstance(o.get("scar"), dict):
+            marchio = (o["scar"] or {}).get("tag")
+            if marchio:
+                dove_scar, _ = dove_finisce({"kind": "region", "id": (o["scar"] or {}).get("region_id", "")})
+                edge(src, marchio, "posa", (o["scar"] or {}).get("description", why), dove_scar)
         if k in ("BUILD_STRUCTURE", "SET_STRUCTURE_GRADE"):
             st = str(p.get("structure_type", ""))
             if st:

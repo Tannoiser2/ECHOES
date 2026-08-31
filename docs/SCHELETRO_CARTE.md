@@ -71,7 +71,7 @@ Due a testa a inizio Atto, dal sacchetto dell'Atto. Costa 1 Occasione.
 
 > **Amnistia**
 > RISOLUZIONE · funzione di Propp: liberazione
-> QUANDO ESCE  il mondo porta #usurpazione oppure il mondo porta #divieto oppure il mondo porta #conquista
+> QUANDO ESCE  e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di conquest
 > IL MONDO  nel luogo della carta non e' piu' #inquieta · nel luogo della carta non e' piu' #contesa · La Successione scende · il mondo registra: l'amnistia e' stata concessa
 
 ## Il mazzo `tension`
