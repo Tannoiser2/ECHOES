@@ -5,6 +5,71 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.311 — Punti regalati e porte murate: due difetti opposti, due liste (D-346)
+
+Il committente: *«Mergia, rigenera il grafo dei #tag e vai avanti.»*
+
+Rigenerato, il grafo era allineato. Quello che non tornava era **cosa diceva**.
+
+### Una tabella che raccontava il rovescio di se stessa
+
+`MISURA_SEGNI.md` chiudeva con una lista sola — **«Punti regalati: guardati e
+mai scritti»** — e ci sommava dentro i due versi in cui una clausola nomina un
+segno, che sono **opposti**:
+
+- lo **teme** (`state_tag_absent`) e il segno non esce mai → la clausola e'
+  **vera dall'apertura**: un punto regalato;
+- lo **vuole** (`state_tag_present`) e il segno non esce mai → la clausola e'
+  **falsa per sempre**: una porta murata.
+
+Dei 14 appigli in quella lista, **4 erano porte murate lette come regali**.
+Ottava volta che un documento generato non fallisce e racconta la storia
+sbagliata.
+
+### Le quattro porte sono tutte di Vaerax
+
+| passo | chiede | esce in 100 partite |
+|---|---|---|
+| `DST_VAERAX` · VITTORIA | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · SOGLIA | `mountain_forgotten` | **0** |
+| `DST_VAERAX_LEGEND` · VITTORIA | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · TRIONFO | `mine_sealed` | **0** |
+
+Un Destino murato a tutti e tre i passi. La catena: in 100 partite il Consiglio
+del Risveglio apre `Q_AWAKENING_CRYSTAL` **una volta**, `Q_AWAKENING_MOUNTAIN`
+**mai**; quell'unica volta il sigillo ando' ai voti e non passo'. Da li' non
+parte la catena delle ere `TLY_SEAL`, quindi `mountain_forgotten` non si posa,
+quindi la vita `INC_VAERAX_LEGEND` non siede **mai** e la regola
+`TGR_LEGEND_VOICE` non morde **mai**.
+
+### E i dieci regali
+
+Il peggiore e' **`DST_LYRA_TAUGHT` · TRIONFO**: tre condizioni, due regalate.
+
+### Cambiato
+
+- `cli/run_world_marks_probe.gd`: tre liste invece di due, e **ogni riga dice il
+  passo del Destino** che ci sta appeso — `DST_VAERAX · VITTORIA`, non un numero.
+- La classificazione e' una funzione **pura**, `letture()`, perche' era li' che
+  il difetto stava e non si poteva interrogare.
+- `tests/unit/test_a_walled_step_is_not_a_free_point.gd`: tre prove, provate
+  rimettendo la somma `f + v` al suo posto.
+- `data/tags/tags_core.json`: la nota di `mountain_forgotten` diceva *«nessuno lo
+  scrive piu'»* e non era vero — lo posa la catena delle ere, che pero' non
+  aggancia mai il primo anello. Adesso lo dice.
+
+### Il conto
+
+| su 100 semi | prima | dopo |
+|---|---|---|
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Nessuna regola del motore toccata. Suite da 654 a **657 prove**. Le quattro
+porte restano murate: aprirle e' bilanciamento, e sta in **ISSUES 108** con le
+tre strade.
+
+---
+
 ## 0.1.310 — Lo scheletro delle carte, e le righe che non dicevano cosa erano (D-345)
 
 Il committente: *«voglio la struttura e lo scheletro di tutte le carte, poi devi

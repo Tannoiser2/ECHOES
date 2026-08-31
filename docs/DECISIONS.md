@@ -10,6 +10,113 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-346 — Due difetti opposti stavano in una lista sola, sotto il titolo di uno dei due
+
+**implemented** — 0.1.311
+
+### La richiesta
+
+> *«Mergia, rigenera il grafo dei #tag e vai avanti.»*
+
+Rigenerato, il grafo era allineato: `REGISTRO_SEGNI` e `MISURA_SEGNI` non
+avevano una deriva. Quello che non tornava era **cosa dicevano**.
+
+### La lista che raccontava il rovescio di se stessa
+
+`MISURA_SEGNI.md` chiudeva con una tabella intitolata **«Punti regalati:
+guardati e mai scritti»**, e sotto ci finiva ogni segno che il mondo non scrive
+mai, con la spiegazione:
+
+> *«Una clausola che teme una cosa che non succede mai e' vera dall'apertura.»*
+
+Vera per meta' della tabella. Una clausola nomina un segno in **due versi
+opposti**, e la sonda li contava separati — le colonne *temuto* e *voluto*
+stanno li' dalla prima versione — per poi **sommarli** in fondo:
+
+```gdscript
+absent.append([tag, f + v])   # f = lo teme, v = lo vuole
+```
+
+- `state_tag_absent` — **lo teme**: se il segno non esce mai, la clausola e'
+  vera dall'apertura e nessuno la puo' rompere. **Un punto regalato.**
+- `state_tag_present` — **lo vuole**: se il segno non esce mai, la clausola e'
+  falsa dall'apertura e nessuno la puo' avverare. **Una porta murata**, ed e' il
+  difetto piu' grave dei due: chi legge quel passo sul suo tarocco sta guardando
+  un traguardo che non si prende.
+
+Dei **14 appigli** nella lista, **4 erano porte murate lette come regali**.
+
+E' l'ottava volta che in questo progetto un documento generato non fallisce e
+racconta la storia sbagliata (D-329, D-333, D-334, D-336, D-338, D-342, D-344).
+Nessun cancello puo' accorgersi che una frase e' il rovescio di meta' della sua
+tabella: il diff combacia, l'uscita e' 0.
+
+### Le quattro porte murate sono tutte della stessa casa
+
+| passo | chiede | esce in 100 partite |
+|---|---|---|
+| `DST_VAERAX` · **VITTORIA** | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · **SOGLIA** | `mountain_forgotten` | **0** |
+| `DST_VAERAX_LEGEND` · **VITTORIA** | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · **TRIONFO** | `mine_sealed` | **0** |
+
+Vaerax ha due Destini, e **uno dei due e' murato a tutti e tre i passi**.
+
+La catena, misurata e non dedotta: `mine_sealed` lo scrive solo `CNS_MINE_SEALED`,
+che sta appesa a `P_SEAL_MINE`, che sta appesa a `Q_AWAKENING_CRYSTAL`, che sta
+nel Consiglio `CNF_AWAKENING_01` di `TEN_AWAKENING`. In **100 partite** la sonda
+delle scelte apre quella domanda **una volta sola** — e l'altra domanda dello
+stesso Consiglio, `Q_AWAKENING_MOUNTAIN`, **mai**. Quell'unica volta il sigillo
+fu messo ai voti e non passo': il segno non si e' scritto **nemmeno una volta**.
+
+E il danno non finisce sul tarocco. `mine_sealed` e' il primo anello della
+catena delle ere `TLY_SEAL` (`mine_sealed` tenuto, `crystal_exploited` mai) che
+al terzo anello posa `mountain_forgotten`; `mountain_forgotten` e' la condizione
+d'entrata di `INC_VAERAX_LEGEND` — la vita che il cancello delle vite conta
+**0 volte su 0** — ed e' il `when_also` di `TGR_LEGEND_VOICE`, che quindi non
+morde mai. **Una proposta che non passa spegne un ramo intero del gioco.**
+
+### E i dieci regali, che sono l'altra meta'
+
+| segno | passi che lo temono |
+|---|---|
+| `mine_sealed` | `DST_LYRA` · VITTORIA, `DST_LYRA_TAUGHT` · VITTORIA, `DST_LYRA_TAUGHT` · TRIONFO |
+| `study_supervised` | `DST_LYRA` · TRIONFO, `DST_LYRA_TAUGHT` · TRIONFO |
+| `valley_sealed` | `DST_NAHR` · TRIONFO, `DST_NAHR_ROOTED` · TRIONFO |
+| `water_priced` | `DST_LIBERE` · VITTORIA, `DST_LIBERE_WATER` · TRIONFO |
+| `oath_broken` | `DST_SHARED_ACCOUNTS` · TRIONFO |
+
+Il caso peggiore e' **`DST_LYRA_TAUGHT` · TRIONFO**: tre condizioni, e due sono
+di quelle regalate. Il TRIONFO di Lyra e' una condizione sola che ne indossa
+tre.
+
+### Cosa cambia
+
+1. **Le liste in fondo sono tre**, e non due: *mute*, *punti regalati*, *porte
+   murate*. Ognuna ha la sua frase, e la frase e' vera per tutta la sua tabella.
+2. **Ogni riga dice di chi e' il passo.** Prima diceva `mine_sealed | 6`, che e'
+   un numero, e un numero non si va a correggere. Adesso dice
+   `DST_VAERAX · VITTORIA`, che e' un posto.
+3. **La parte che decide e' pura.** `letture(written, feared, wanted, soglia)`
+   non gioca niente e non stampa niente: prende tre conti e torna tre liste.
+   E' l'unico modo di provarla senza cento partite, ed e' il punto in cui il
+   difetto e' stato per due versioni.
+4. **Una guardia, provata sul difetto piantato.** Rimessa la somma `f + v` al
+   suo posto, le tre asserzioni che contano vanno rosse.
+
+### Il conto
+
+Nessuna regola del motore e' cambiata: la sonda misura, non gioca. Su 100 semi,
+tavolo misto e uniforme, **0 seggi bloccati su un solo livello su 8**, identico.
+Suite da 654 a **657 prove**.
+
+Quello che questa decisione **non** fa e' aprire le quattro porte: farlo vuol
+dire toccare quanto spesso il Risveglio arriva al tavolo, o dare a `mine_sealed`
+una seconda penna, e sono scelte di bilanciamento del committente. Stanno in
+**ISSUES 108** con le tre strade, e nessuna e' misurata.
+
+---
+
 ## D-345 — Lo scheletro delle carte, e le righe che non dicevano cosa erano
 
 **implemented** — 0.1.310

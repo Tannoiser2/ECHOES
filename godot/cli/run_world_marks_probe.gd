@@ -24,14 +24,30 @@ extends SceneTree
 ##   · **voluto** — quante clausole `state_tag_present` lo nominano.
 ##
 ## Un segno **scritto spesso e guardato da nessuno** e' lavoro del motore che al
-## tavolo non conta niente. Un segno **guardato e mai scritto** e' un punto
-## regalato. Le due liste in fondo sono quelle da leggere.
+## tavolo non conta niente.
+##
+## E un segno **mai scritto** vale due difetti **opposti**, a seconda del verso
+## della clausola che lo nomina — per due versioni questa sonda li ha messi nella
+## stessa lista, sotto il titolo sbagliato per meta' di loro:
+##
+##   · lo **teme** (`state_tag_absent`): la clausola e' vera dall'apertura e
+##     nessuno la puo' rompere. **Un punto regalato.**
+##   · lo **vuole** (`state_tag_present`): la clausola e' falsa dall'apertura e
+##     nessuno la puo' avverare. **Una porta murata**, e chi la legge sulla sua
+##     carta Destino non ha modo di saperlo.
+##
+## Percio' le liste in fondo sono tre, e ognuna dice **di chi e' il passo** che
+## ci sta appeso: un `mine_sealed` mai scritto non e' un numero, e' la VITTORIA
+## di Vaerax che non si prende.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
+
+## I passi di un Destino, con la parola che il giocatore legge sul tarocco.
+const STEPS := {"minimum": "SOGLIA", "victory": "VITTORIA", "triumph": "TRIONFO"}
 
 
 func _initialize() -> void:
@@ -59,12 +75,28 @@ func _initialize() -> void:
 		if category == "MEMORY" or category == "STATE":
 			scored[str(tag_id)] = true
 
-	# Chi guarda cosa: si legge dalla scatola, non dalla partita.
+	# Chi guarda cosa: si legge dalla scatola, non dalla partita. E si tiene
+	# **chi** guarda, non solo quanti: il passo di un Destino e' quello che un
+	# giocatore legge sulla sua carta.
 	var feared: Dictionary = {}
 	var wanted: Dictionary = {}
+	var who_fears: Dictionary = {}
+	var who_wants: Dictionary = {}
 	for source in [data.destinies, data.objectives]:
 		for item_id in (source as Dictionary):
-			_read_clauses((source as Dictionary)[item_id], feared, wanted)
+			var item: Dictionary = (source as Dictionary)[item_id] as Dictionary
+			var owner: String = str(item.get("id", item_id))
+			for step in STEPS:
+				if item.has(step):
+					_read_clauses(
+						item[step], feared, wanted, who_fears, who_wants,
+						"%s · %s" % [owner, str(STEPS[step])]
+					)
+			# Gli Obiettivi non hanno passi: le loro clausole stanno di fianco.
+			for key in item:
+				if STEPS.has(key):
+					continue
+				_read_clauses(item[key], feared, wanted, who_fears, who_wants, owner)
 
 	var written: Dictionary = {}
 	for run in range(runs):
@@ -102,12 +134,15 @@ func _initialize() -> void:
 			written[what] = int(written.get(what, 0)) + 1
 		session.dispose()
 
-	_report(runs, mixed, written, feared, wanted, scored, out_path)
+	_report(runs, mixed, written, feared, wanted, who_fears, who_wants, scored, out_path)
 
 
 ## Ogni clausola di un Destino o di un Obiettivo che nomina un segno, coi due
-## versi separati: chi lo teme e chi lo vuole.
-func _read_clauses(item: Variant, feared: Dictionary, wanted: Dictionary) -> void:
+## versi separati: chi lo teme e chi lo vuole, e **di chi e' il passo**.
+func _read_clauses(
+	item: Variant, feared: Dictionary, wanted: Dictionary,
+	who_fears: Dictionary, who_wants: Dictionary, owner: String
+) -> void:
 	if item is Dictionary:
 		var clause: Dictionary = item as Dictionary
 		var kind: String = str(clause.get("type", ""))
@@ -115,18 +150,70 @@ func _read_clauses(item: Variant, feared: Dictionary, wanted: Dictionary) -> voi
 		if tag != "":
 			if kind == "state_tag_absent":
 				feared[tag] = int(feared.get(tag, 0)) + 1
+				_note_owner(who_fears, tag, owner)
 			elif kind == "state_tag_present":
 				wanted[tag] = int(wanted.get(tag, 0)) + 1
+				_note_owner(who_wants, tag, owner)
 		for key in clause:
-			_read_clauses(clause[key], feared, wanted)
+			_read_clauses(clause[key], feared, wanted, who_fears, who_wants, owner)
 	elif item is Array:
 		for value in (item as Array):
-			_read_clauses(value, feared, wanted)
+			_read_clauses(value, feared, wanted, who_fears, who_wants, owner)
+
+
+func _note_owner(where: Dictionary, tag: String, owner: String) -> void:
+	if not where.has(tag):
+		where[tag] = []
+	var seen: Array = where[tag] as Array
+	if not seen.has(owner):
+		seen.append(owner)
+
+
+## Le tre letture di un segno, separate. **Pura**, perche' e' l'unica parte
+## della sonda che una prova puo' interrogare senza giocare cento partite: e per
+## due versioni e' stata sbagliata senza che niente diventasse rosso.
+##
+##   · `mute`     — scritto spesso, e nessuna clausola lo nomina;
+##   · `regalati` — mai scritto, e qualcuno lo **teme**: clausola sempre vera;
+##   · `murate`   — mai scritto, e qualcuno lo **vuole**: clausola mai vera.
+##
+## Un segno puo' stare in due liste insieme, ed e' giusto: `mine_sealed` regala
+## un punto a Lyra e mura la VITTORIA di Vaerax con la stessa assenza.
+static func letture(written: Dictionary, feared: Dictionary, wanted: Dictionary,
+	soglia_muti: int) -> Dictionary:
+	var mute: Array = []
+	var regalati: Array = []
+	var murate: Array = []
+	var every: Dictionary = {}
+	for tag in written:
+		every[tag] = true
+	for tag in feared:
+		every[tag] = true
+	for tag in wanted:
+		every[tag] = true
+	var names: Array = every.keys()
+	names.sort()
+	for tag in names:
+		var w: int = int(written.get(tag, 0))
+		var f: int = int(feared.get(tag, 0))
+		var v: int = int(wanted.get(tag, 0))
+		if w >= soglia_muti and f == 0 and v == 0:
+			mute.append([tag, w])
+		if w == 0 and f > 0:
+			regalati.append([tag, f])
+		if w == 0 and v > 0:
+			murate.append([tag, v])
+	var by_count: Callable = func(a: Array, b: Array) -> bool: return int(a[1]) > int(b[1])
+	mute.sort_custom(by_count)
+	regalati.sort_custom(by_count)
+	murate.sort_custom(by_count)
+	return {"mute": mute, "regalati": regalati, "murate": murate}
 
 
 func _report(
 	runs: int, mixed: bool, written: Dictionary, feared: Dictionary,
-	wanted: Dictionary, scored: Dictionary, out_path: String
+	wanted: Dictionary, who_fears: Dictionary, who_wants: Dictionary,
+	scored: Dictionary, out_path: String
 ) -> void:
 	var lines: Array = []
 	lines.append("# ECHOES — quali segni il mondo scrive, e chi li guarda")
@@ -142,55 +229,62 @@ func _report(
 	)
 	lines.append("")
 	lines.append(
-		"Le due liste in fondo sono quelle da leggere. Un segno **scritto spesso e"
+		"Le tre liste in fondo sono quelle da leggere. Un segno **scritto spesso e"
 		+ " guardato da nessuno** e' lavoro del motore che al tavolo non conta"
-		+ " niente. Un segno **guardato e mai scritto** e' un punto regalato: la"
-		+ " clausola che lo teme e' vera dall'apertura e nessuno la puo' rompere."
+		+ " niente. Un segno **mai scritto** vale invece due difetti opposti, e"
+		+ " vanno letti separati: chi lo **teme** ha una clausola vera"
+		+ " dall'apertura — un punto regalato; chi lo **vuole** ha una clausola"
+		+ " che non si puo' avverare — una porta murata."
 	)
 	lines.append("")
 	lines.append("Misura: `cli/run_world_marks_probe.gd`, %d partite, tavolo %s, semi da 7000."
 		% [runs, "misto" if mixed else "uniforme"])
 	lines.append("")
 
+	# Le clausole guardano anche segni che non si posano sul tavolo: quelli
+	# restano fuori dalla tabella, come dice l'intestazione.
+	var visti_feared: Dictionary = {}
+	for tag in feared:
+		if scored.has(tag):
+			visti_feared[tag] = feared[tag]
+	var visti_wanted: Dictionary = {}
+	for tag in wanted:
+		if scored.has(tag):
+			visti_wanted[tag] = wanted[tag]
+	var soglia_muti: int = maxi(1, runs / 10)
+	var letto: Dictionary = letture(written, visti_feared, visti_wanted, soglia_muti)
+
 	var every: Dictionary = {}
 	for tag in written:
 		every[tag] = true
-	for tag in feared:
-		if scored.has(tag):
-			every[tag] = true
-	for tag in wanted:
-		if scored.has(tag):
-			every[tag] = true
+	for tag in visti_feared:
+		every[tag] = true
+	for tag in visti_wanted:
+		every[tag] = true
 	var names: Array = every.keys()
 	names.sort()
 
-	var mute: Array = []
-	var absent: Array = []
 	lines.append("## Segno per segno")
 	lines.append("")
 	lines.append("| segno | scritto | temuto | voluto | |")
 	lines.append("|---|---|---|---|---|")
 	for tag in names:
 		var w: int = int(written.get(tag, 0))
-		var f: int = int(feared.get(tag, 0))
-		var v: int = int(wanted.get(tag, 0))
+		var f: int = int(visti_feared.get(tag, 0))
+		var v: int = int(visti_wanted.get(tag, 0))
 		var mark: String = ""
-		if w >= maxi(1, runs / 10) and f == 0 and v == 0:
+		if w >= soglia_muti and f == 0 and v == 0:
 			mark = "nessuno lo guarda"
-			mute.append([tag, w])
 		elif w == 0 and (f > 0 or v > 0):
 			mark = "**mai scritto**"
-			absent.append([tag, f + v])
 		lines.append("| `%s` | %d | %d | %d | %s |" % [str(tag), w, f, v, mark])
 	lines.append("")
 
-	mute.sort_custom(func(a: Array, b: Array) -> bool: return int(a[1]) > int(b[1]))
-	absent.sort_custom(func(a: Array, b: Array) -> bool: return int(a[1]) > int(b[1]))
-
 	lines.append("## Lavoro del motore che al tavolo non conta")
 	lines.append("")
-	lines.append("Scritti almeno %d volte, e nessuna clausola li nomina." % maxi(1, runs / 10))
+	lines.append("Scritti almeno %d volte, e nessuna clausola li nomina." % soglia_muti)
 	lines.append("")
+	var mute: Array = letto["mute"] as Array
 	if mute.is_empty():
 		lines.append("Nessuno: ogni segno che il mondo scrive spesso lo guarda qualcuno.")
 	else:
@@ -200,18 +294,27 @@ func _report(
 			lines.append("| `%s` | %d |" % [str(row[0]), int(row[1])])
 	lines.append("")
 
-	lines.append("## Punti regalati: guardati e mai scritti")
+	lines.append("## Punti regalati: temuti e mai scritti")
 	lines.append("")
-	lines.append("Una clausola che teme una cosa che non succede mai e' vera dall'apertura.")
+	lines.append(
+		"La clausola che teme una cosa che non succede mai e' vera dall'apertura,"
+		+ " e nessuno la puo' rompere: il passo si porta un pezzo gia' fatto."
+	)
 	lines.append("")
-	if absent.is_empty():
-		lines.append("Nessuno.")
-	else:
-		lines.append("| segno | clausole |")
-		lines.append("|---|---|")
-		for row in absent:
-			lines.append("| `%s` | %d |" % [str(row[0]), int(row[1])])
+	_lista(lines, letto["regalati"] as Array, who_fears, "Nessuno.")
+
+	lines.append("## Porte murate: voluti e mai scritti")
 	lines.append("")
+	lines.append(
+		"Il difetto opposto, e piu' grave: la clausola vuole una cosa che non"
+		+ " succede mai, quindi resta falsa per tutta la partita. Chi legge quel"
+		+ " passo sul suo tarocco sta guardando un traguardo che non si prende."
+	)
+	lines.append("")
+	_lista(
+		lines, letto["murate"] as Array, who_wants,
+		"Nessuna: tutto quello che un passo chiede, il mondo lo scrive almeno una volta."
+	)
 
 	var text: String = "\n".join(lines)
 	if out_path == "":
@@ -225,6 +328,23 @@ func _report(
 		handle.store_string(text)
 		handle.close()
 	quit(0)
+
+
+## Una lista in fondo, col passo che ci sta appeso: senza il nome del passo il
+## documento dice un numero, e un numero non si va a correggere.
+func _lista(lines: Array, rows: Array, owners: Dictionary, se_vuota: String) -> void:
+	if rows.is_empty():
+		lines.append(se_vuota)
+		lines.append("")
+		return
+	lines.append("| segno | clausole | dove |")
+	lines.append("|---|---|---|")
+	for row in rows:
+		var tag: String = str(row[0])
+		var chi: Array = (owners.get(tag, []) as Array).duplicate()
+		chi.sort()
+		lines.append("| `%s` | %d | %s |" % [tag, int(row[1]), ", ".join(chi)])
+	lines.append("")
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:
