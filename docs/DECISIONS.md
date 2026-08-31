@@ -10,6 +10,55 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-363 — Su una faccia non si stampa un nome interno
+
+**implemented** (0.1.329) · trovato lavorando su [ISSUES 113](ISSUES.md#113).
+
+### Le 48 facce degli Echi non mancavano
+
+`COMPONENTI.md` le contava **0 su 48**, e sembrava una voce del lavoro da fare.
+Non lo era: la faccia di un Eco **si genera dai dati** ([D-344](#d-344)), e non
+per pigrizia — *«in modo che la carta non possa dire una cosa e il motore farne
+un'altra»*. Scriverne 48 a mano avrebbe sostituito una faccia garantita coerente
+con del testo che puo' divergere: cioe' avrebbe rimesso dentro la classe di
+difetto che [D-362](#d-362) aveva appena chiuso.
+
+Il censimento le conta a zero perche' cerca un blocco `physical` scritto; non e'
+una bugia del censimento, e' una domanda mal posta. Quello che va contato e' se
+la faccia **si legge**, non se e' battuta a mano.
+
+### Quello che era rotto davvero
+
+| | prima | dopo |
+|---|---|---|
+| facce che stampavano `region with:granary` | **19** su 48 | **0** |
+| segni detti col proprio identificativo | **13** | **0** |
+
+Due cause, tutt'e due scorciatoie:
+
+- `EffectText._slot` non conosceva i selettori a segni e faceva l'unica cosa che
+  sapeva: toglieva il dollaro e stampava il resto. `$region_with:granary`
+  diventava «region with:granary», su una carta che un giocatore legge.
+  `AssetText._place` lo sapeva gia' dire — le due strade non si parlavano.
+- `tag_words` aveva una mappa sua, incompleta, e per il resto faceva
+  `replace("_", " ")`: «Nel mondo: amnesty granted», quando il gettone sul tavolo
+  porta scritto «l'amnistia e' stata concessa».
+
+Adesso i selettori si dicono come li dice `AssetText`, e ogni segno passa da
+`SignLabels`, cioe' dal nome che sta stampato sul pezzo. Un selettore che non ha
+una forma sua **non si stampa affatto**: meglio una riga in meno che una riga
+che nessuno puo' eseguire.
+
+### Perche' non se n'era accorto nessuno
+
+Perche' la faccia si genera. La si guarda una volta, si vede che funziona, e poi
+ci si fida — ed e' giusto fidarsi, ma la fiducia va meritata da una prova, non
+dall'abitudine. `test_no_face_prints_an_internal_name` cerca il dollaro, i due
+selettori, e **ogni identificativo di segno detto com'e' scritto nel dato**: 665
+prove, 84717 asserzioni.
+
+---
+
 ## D-362 — La Risonanza dice di quanto scalda, e l'Eco non sceglie un bersaglio
 
 **implemented** (0.1.328) · chiude [ISSUES 113](ISSUES.md#113) e

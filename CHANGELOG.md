@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.329 — Su una faccia non si stampa un nome interno (D-363)
+
+Cercando le 48 facce che mancavano agli Echi ho scoperto che **non mancavano**:
+si generano dai dati per una decisione presa apposta (D-344), perche' la carta
+non possa dire una cosa e il motore farne un'altra. Erano pero' incompiute.
+
+| | prima | dopo |
+|---|---|---|
+| facce che stampavano `region with:granary` | **19** su 48 | **0** |
+| segni detti col proprio identificativo | **13** | **0** |
+
+> scrive «L'Ordine Rimesso in Piedi» · Nel mondo: **l'amnistia e' stata concessa**
+>
+> Il Debito sale di 1, o la domanda che il tavolo ha aperto · **un luogo con
+> commercio**: e' pieno di debiti
+
+Nessuno se n'era accorto **perche'** la faccia si genera: la si guarda una volta
+e poi ci si fida. `test_no_face_prints_an_internal_name` rende quella fiducia
+meritata — 665 prove, 84717 asserzioni.
+
+---
+
 ## 0.1.328 — Le 48 Risonanze dicono di quanto scaldano (D-362)
 
 Chiude ISSUES 113, aperta in 0.1.323 guardando il grafo del flusso, e ISSUES 107.
