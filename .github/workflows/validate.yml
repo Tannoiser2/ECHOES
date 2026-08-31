@@ -170,6 +170,9 @@ jobs:
       - name: Drift check - la misura dei segni
         run: GODOT=~/godot/godot tools/run_marks_survey.sh --check
 
+      - name: Drift check - la misura del tavolo
+        run: GODOT=~/godot/godot tools/run_table_survey.sh --check
+
       - name: Ogni anno arriva in fondo, e lo stesso seme da' lo stesso salvataggio
         run: GODOT=~/godot/godot tools/run_sims.sh
 

@@ -10,6 +10,92 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-352 — La sonda del tavolo: tutti i segni, posto per posto
+
+**implemented** · 0.1.316 · chiude due riparazioni su tre di [ISSUES 102](ISSUES.md)
+
+`MISURA_SEGNI` guarda **66 segni su 204**: le memorie del mondo e le condizioni
+dei luoghi. ISSUES 102 lo aveva gia' scritto, e con un numero che non lascia
+scampo: **214 Pietre alzate, e nel conto dei segni ne risultavano sette.** Non
+un'approssimazione, cecita'.
+
+`cli/run_table_marks_probe.gd` guarda **tutti e 180** i segni che hanno un posto
+sul tavolo (D-350), e li riporta **posto per posto**, perche' un gettone di
+condizione che esce trenta volte e una Cicatrice che non esce mai sono due
+difetti diversi.
+
+**La prova d'accettazione di ISSUES 102 e' superata**: *«il conto dei segni di
+Pietra combacia con le Pietre alzate»*. La sonda delle Pietre conta **1062**
+Pietre alzate in 100 partite; questa conta **1195** segni di Pietra posati, cioe'
+le 1062 piu' **133 cambi di grado**, che un segno lo posano anche loro. Prima
+erano sette.
+
+### Due cecita' pagate mentre la si scriveva
+
+- **Le Pietre non passano dal registro degli Effetti.** `_apply_grade_tag`
+  scrive il segno dritto dentro `region["tags"]`. La sonda le vede perche'
+  guarda `BUILD_STRUCTURE` e i cambi di grado, e ricava il segno dal grado come
+  fa il motore.
+- **Le Cicatrici hanno un blocco loro.** La prima stesura di questa sonda diceva
+  che **12 Cicatrici su 13 non arrivano mai sul tavolo**, ed era falso: non
+  guardava `ADD_SCAR`. Il commento di `validate_physical._scava` lo aveva gia'
+  scritto — *«la prima stesura di questa sonda non la vedeva»* — e questa e' la
+  seconda volta che lo stesso inciampo costa lo stesso difetto. Corrette: ne
+  arrivano **10 su 13**.
+
+Per non pagarne una terza, la sonda porta una colonna che **non passa dal
+registro**: *a fine partita*, cioe' in quante partite quel segno e' sul tavolo
+quando si finisce. Se un segno e' li', ci e' arrivato — comunque ci sia
+arrivato, e qualunque cosa la sonda non sappia leggere.
+
+### Cosa dice la prima misura
+
+**113 segni su 180 arrivano sul tavolo. 67 non ci arrivano mai.**
+
+| posto | arrivano | non arrivano |
+|---|---|---|
+| stampato sulla tessera | 15 | **0** |
+| un gettone accanto alla tessera | 13 | 1 |
+| un dischetto rotondo | 10 | 3 |
+| uno spazio sulla tessera | 17 | 10 |
+| un gettone sul bordo della mappa | 32 | 20 |
+| sulla scheda della casa | 26 | 33 |
+
+I due posti che funzionano sono quelli che il committente aveva gia' messo a
+posto: la tessera (15 su 15) e i gettoni di condizione (13 su 14).
+
+**Resta aperta la terza riparazione di ISSUES 102**: separare «clausole» da
+«lettori». Questa sonda misura *chi arriva sul tavolo*, non *chi lo guarda*.
+
+---
+
+## D-351 — La memoria del mondo si posa sul bordo della mappa
+
+**implemented** · 0.1.316 · voluto dal committente · chiude [ISSUES 110](ISSUES.md)
+
+> «110 — gettoni sul bordo della mappa (il mondo)»
+
+Dando un posto a ogni segno (D-350), cinque posti su sei si erano riempiti da
+soli. Il sesto — **52 segni**, un quarto del dizionario, il gruppo piu' scritto
+di tutti — non stava ne' sulla tessera ne' sulla scheda: `debt_forgiven`,
+`betrayal_spoken`, `heir_named`. Le tre strade erano un registro della Cronaca,
+gettoni sul bordo, o il fatto lasciato sulla carta che lo ha creato.
+
+**Scelta la seconda.** Un fatto del mondo e' del mondo: non e' di un luogo, e non
+e' di una casa. Sul bordo della mappa sta dove sta il mondo, e si vede da ogni
+posto al tavolo senza che nessuno debba girare un foglio.
+
+**Il costo, misurato prima di deciderlo:** 49 dei 52 hanno **gia'** la parola
+stampata in `sign_labels.gd` — la parte che di solito costa. Manca la scheda del
+disegno: **51 su 52** non ce l'hanno, ed e' l'unica parte che si scrive a mano.
+Quello resta da fare, ed e' scritto in ISSUES 110 invece che nascosto qui.
+
+E la sonda del tavolo (D-352) dice quanti di quei 52 arrivano davvero: **32 su
+52**. Venti gettoni della memoria del mondo non si posano mai in cento partite —
+prima di tagliarne 52, conviene sapere che venti resterebbero nella scatola.
+
+---
+
 ## D-350 — Ogni segno dice in che punto del tavolo lo prendi in mano
 
 **implemented** · 0.1.315 · voluto dal committente

@@ -38,7 +38,7 @@ nessuno legge**, contati posto per posto.
 | **un gettone accanto alla tessera** | 14 | 14 | **1** | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Non tornano nella riserva. |
 | **sulla scheda della casa** | 59 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
-| **nessun posto ancora** | 52 | 48 | **7** | quello che il mondo ricorda. Dove stia sul tavolo e' la voce aperta (ISSUES 110). |
+| **un gettone sul bordo della mappa** | 52 | 48 | **7** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
 | **il tavolo non lo mostra** | 24 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
 Ogni segno ha un posto. **180 stanno sul tavolo**, 24 sono contabilita'.
@@ -52,16 +52,16 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 
 | segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |
 |---|---|---|---|
-| `account_settled` | nessun posto ancora | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
-| `burden_shared` | nessun posto ancora | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
+| `account_settled` | un gettone sul bordo della mappa | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
+| `burden_shared` | un gettone sul bordo della mappa | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
 | `condition:guarded` | un gettone accanto alla tessera | Conseguenza | la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278) |
-| `dragon_slain` | nessun posto ancora | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
+| `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
 | `hard_bargain` | sulla scheda della casa | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
-| `list_witnessed` | nessun posto ancora | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
-| `price_in_lives` | nessun posto ancora | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
-| `return_promised` | nessun posto ancora | clausola di Consiglio | il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola |
+| `list_witnessed` | un gettone sul bordo della mappa | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
+| `price_in_lives` | un gettone sul bordo della mappa | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
+| `return_promised` | un gettone sul bordo della mappa | clausola di Consiglio | il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola |
 | `settlement:$proponent` | uno spazio sulla tessera | Conseguenza | chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni |
-| `someone_paid` | nessun posto ancora | carta Echo | qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278) |
+| `someone_paid` | un gettone sul bordo della mappa | carta Echo | qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278) |
 | `spoke_and_lost` | sulla scheda della casa | Conseguenza | ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278) |
 | `took_by_hand` | sulla scheda della casa | Conseguenza | si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278) |
 | `watched` | sulla scheda della casa | Conseguenza | sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278) |

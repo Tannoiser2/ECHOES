@@ -5,6 +5,74 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.316 — La sonda del tavolo, e la memoria del mondo trova il suo posto (D-351, D-352)
+
+**La misura che mancava.** `MISURA_SEGNI` guarda 66 segni su 204. ISSUES 102
+l'aveva scritto con un numero che non lascia scampo: *214 Pietre alzate, e nel
+conto dei segni ne risultavano sette.*
+
+`cli/run_table_marks_probe.gd` guarda **tutti e 180** i segni che hanno un posto
+sul tavolo, e li conta **posto per posto**. Nuovo documento
+[MISURA_TAVOLO.md](docs/MISURA_TAVOLO.md), nuovo cancello
+`tools/run_table_survey.sh --check`, in CI.
+
+**La prova d'accettazione di ISSUES 102 e' superata:** 1062 Pietre alzate in 100
+partite, 1195 segni di Pietra contati — le 1062 piu' 133 cambi di grado. Prima
+erano **sette**.
+
+### Cosa dice la prima misura
+
+**113 segni su 180 arrivano sul tavolo. 67 non ci arrivano mai.**
+
+| posto | arrivano | non arrivano |
+|---|---|---|
+| stampato sulla tessera | 15 | **0** |
+| un gettone accanto alla tessera | 13 | 1 |
+| un dischetto rotondo | 10 | 3 |
+| uno spazio sulla tessera | 17 | 10 |
+| un gettone sul bordo della mappa | 32 | 20 |
+| sulla scheda della casa | 26 | 33 |
+
+### Due cecità pagate scrivendola
+
+- **Le Pietre non passano dal registro degli Effetti** (`_apply_grade_tag` scrive
+  dritto su `region["tags"]`): la sonda guarda `BUILD_STRUCTURE` e i cambi di
+  grado, e ricava il segno dal grado come fa il motore.
+- **Le Cicatrici hanno un blocco loro.** La prima stesura diceva *«12 Cicatrici
+  su 13 non arrivano mai»*, ed era falso: non guardava `ADD_SCAR`. Ne arrivano
+  **10 su 13**. È il secondo strumento di questo progetto a cadere sullo stesso
+  inciampo, e il commento che lo avvisava era già scritto.
+
+Perché non ce ne sia una terza, la sonda porta una colonna che **non passa dal
+registro**: *a fine partita*. Se un segno è sul tavolo quando si finisce, ci è
+arrivato — comunque ci sia arrivato.
+
+### La memoria del mondo si posa sul bordo della mappa (D-351)
+
+Scelta del committente per [ISSUES 110](docs/ISSUES.md): i 52 segni che il mondo
+ricorda sono **gettoni sul bordo della mappa**. Un fatto del mondo è del mondo,
+non di un luogo né di una casa.
+
+Il costo, misurato prima: 49 su 52 hanno già la parola stampata; **51 su 52 non
+hanno la scheda del disegno**, ed è la parte che si scrive a mano. Resta da fare,
+ed è scritto in ISSUES 110. E di quei 52 gettoni, **20 non si posano mai** in
+cento partite: conviene saperlo prima di tagliare la fustella.
+
+### E la potatura non è quello che sembrava (ISSUES 111)
+
+Le 10 Pietre che non si alzano mai sono **due difetti diversi**, non uno:
+
+- **sei hanno già chi le scrive**, e la Conseguenza non viene mai scelta —
+  `CNS_MINE_SEALED` scrive sia `mine_sealed` sia `place:open_site`, ed è lo
+  stesso difetto di ISSUES 108 contato in un altro posto;
+- **tre non hanno nessuno**: `structure:palace`, `settlement:city` (nessun
+  effetto tocca `STR_SETTLEMENT`, a nessun grado) e `structure:road` (ISSUES 101).
+
+Nessuna regola cambiata in questa versione: 662 test verdi, **0 seggi bloccati
+su 8**.
+
+---
+
 ## 0.1.315 — Ogni segno dice in che punto del tavolo lo prendi in mano (D-350)
 
 Voluto dal committente: *«ogni tessera ha tag che la descrivono e non può

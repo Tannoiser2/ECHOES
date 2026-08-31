@@ -5774,7 +5774,18 @@ dire ad alta voce *«questo segno non lo scrive nessuno»*.
 
 ### 102. `MISURA_SEGNI` conta due categorie su cinque, e non vede niente di quello che posa una Pietra
 
-`strumenti` · `misura` · aperta in 0.1.299
+`strumenti` · `misura` · aperta in 0.1.299 · **riparazioni 1 e 2 fatte in 0.1.316** ([D-352](DECISIONS.md#d-352))
+
+> **Fatte le prime due.** `cli/run_table_marks_probe.gd` guarda tutti e 180 i
+> segni con un posto sul tavolo, e vede quello che posa una Pietra: la prova
+> d'accettazione scritta qui sotto e' superata — 1062 Pietre alzate, 1195 segni
+> di Pietra contati (le 1062 piu' 133 cambi di grado). **Prima erano sette.**
+> Il documento e' [MISURA_TAVOLO.md](MISURA_TAVOLO.md), col suo cancello.
+>
+> **Resta la terza:** separare «clausole» da «lettori». La sonda nuova dice *chi
+> arriva sul tavolo*, non *chi lo guarda*: per quello serve ancora contare le
+> regole del segno, le facce delle carte, i Consigli e le Tensioni, che oggi
+> nessuna delle due colonne vede.
 
 Il committente, guardando il grafo dei segni: *«non e' possibile che scritto e
 clausole siano cosi' poche»*. Aveva ragione, e non era il grafo: e' la misura.
@@ -6145,9 +6156,22 @@ verita' per la stessa cosa, e nessuna che sorvegli l'altra.**
 **Fatto quando** cambiare il MASTER PROMPT 6 nel documento cambia il catalogo,
 oppure fa fallire un cancello.
 
-### 110. Dove si posa quello che il mondo ricorda
+### 110. Dove si posa quello che il mondo ricorda — deciso in 0.1.316
 
-`componenti` · `grammatica-fisica` · aperta in 0.1.315 ([D-350](DECISIONS.md#d-350))
+`componenti` · `grammatica-fisica` · aperta in 0.1.315 ([D-350](DECISIONS.md#d-350)) · **decisa in 0.1.316** ([D-351](DECISIONS.md#d-351))
+
+> **Il committente ha scelto la strada 2: gettoni sul bordo della mappa.** Un
+> fatto del mondo e' del mondo — non di un luogo, non di una casa — e sul bordo
+> si vede da ogni posto al tavolo.
+>
+> **Resta da fare la parte che si scrive a mano.** 49 dei 52 segni hanno gia' la
+> parola stampata; **51 su 52 non hanno la scheda del disegno** in
+> `token_icons.json`, che e' l'unica parte del catalogo delle pedine scritta a
+> mano. Finche' non c'e', quei gettoni hanno un posto e non hanno una faccia.
+>
+> E prima di tagliare la fustella conviene guardare
+> [MISURA_TAVOLO](MISURA_TAVOLO.md): di quei 52, **20 non si posano mai** in
+> cento partite. Venti gettoni che resterebbero nella scatola.
 
 Dando a ogni segno il suo posto sul tavolo, cinque posti su sei si sono riempiti
 da soli — la tessera, lo spazio della Pietra, il gettone di zona, il dischetto
@@ -6176,6 +6200,59 @@ qualcosa, contro i 14 gettoni di condizione.
 **Fatto quando** ogni segno `WORLD_MEMORY` ha un pezzo di cartone, oppure una
 riga che dice perche' non gliene serve uno.
 
+
+### 111. Le dieci Pietre che non si alzano mai, e sono due difetti diversi
+
+`regole` · `contenuto` · aperta in 0.1.316 ([D-352](DECISIONS.md#d-352))
+
+> **Richiesta del committente:** *«la potatura — fai leggere le 25 fonti e le 7
+> pietre».*
+
+La sonda del tavolo dice quali segni di Pietra non arrivano mai in cento
+partite. Sono dieci, e **non hanno tutti lo stesso difetto**: metterli in una
+lista sola era l'errore della diagnosi di prima.
+
+#### Sei hanno gia' chi le scrive — la Conseguenza non viene mai scelta
+
+| segno | chi lo scriverebbe |
+|---|---|
+| `place:thinned_wood` | `CNS_VALLEY_CLEARED` |
+| `place:open_site` | `CNS_MINE_SEALED`, `CNS_MINE_REOPENED` |
+| `place:stripped_site` | `CNS_CRYSTAL_EXPLOITED` |
+| `place:low_spring` | `CNS_VALLEY_DRAINED` |
+| `place:dry_spring` | `CNS_WATER_PRICED` |
+| `place:collapsed_pass` | `CNS_MINE_ROAD_CUT` |
+
+Questi **non sono segni muti**: sono Conseguenze che il Consiglio non sceglie
+mai. E' la stessa forma di [ISSUES 56](#) (`dragon_slain`, *«la Conseguenza non
+e' mai stata scelta»*) e di [ISSUES 108](#): `CNS_MINE_SEALED` scrive tutt'e due
+`mine_sealed` **e** `place:open_site`, e nessuno dei due esce mai. **Un solo
+difetto, contato tre volte in tre posti diversi.**
+
+Farli arrivare non vuol dire toccare il dizionario: vuol dire capire perche'
+quelle Conseguenze non vengono mai votate. Chi risolve ISSUES 108 risolve anche
+due righe di questa tabella.
+
+#### Tre non hanno proprio nessuno
+
+- **`structure:palace`** — il terzo grado di `STR_KEEP`. Nessun effetto porta un
+  Presidio al grado 3: la Reggia e' scritta nel catalogo e non si costruisce.
+- **`settlement:city`** — il terzo grado di `STR_SETTLEMENT`. E qui e' peggio:
+  **nessun effetto tocca `STR_SETTLEMENT`**, a nessun grado. Villaggio, Borgo e
+  Citta' sono tre gradi di una Pietra che niente alza.
+- **`structure:road`** — gia' tracciata da [ISSUES 101](#): fra le dieci Pietre
+  non ce n'e' una che si chiami «strada».
+
+#### E uno non e' un difetto
+
+`settlement:$proponent` porta un id dinamico: il nome di chi ci vive si scrive
+dentro il segno, e la forma nuda non compare mai. Va tolto dal conto, non dal
+gioco.
+
+**Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
+partite, o non e' piu' nel catalogo.
+
+---
 
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero

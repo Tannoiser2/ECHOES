@@ -462,8 +462,8 @@ POSTI: List[tuple] = [
      "le Cicatrici. Non tornano nella riserva."),
     ("HOUSE_SHEET", "sulla scheda della casa",
      "chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo."),
-    ("WORLD_MEMORY", "nessun posto ancora",
-     "quello che il mondo ricorda. Dove stia sul tavolo e' la voce aperta (ISSUES 110)."),
+    ("WORLD_MEMORY", "un gettone sul bordo della mappa",
+     "quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351)."),
     ("NONE", "il tavolo non lo mostra",
      "contabilita' che il motore usa e nessuna fustella taglia."),
 ]
