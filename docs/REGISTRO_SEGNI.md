@@ -25,26 +25,46 @@ lettori: disegnare non e' mordere.
 
 ---
 
+## Il tavolo: dove sta ogni segno
+
+Ogni segno del dizionario nel posto fisico dove lo prendi in mano.
+L'ultima colonna e' quella che conta: **segni che qualcosa scrive e
+nessuno legge**, contati posto per posto.
+
+| posto | segni | scritti sul mondo | di cui muti | cos'e' |
+|---|---|---|---|---|
+| **stampato sulla tessera** | 15 | 0 | — | la natura del luogo: montagna, capitale, pascolo. Non cambia mai. |
+| **uno spazio sulla tessera** | 27 | 5 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
+| **un gettone accanto alla tessera** | 14 | 14 | **1** | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
+| **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Non tornano nella riserva. |
+| **sulla scheda della casa** | 59 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
+| **nessun posto ancora** | 52 | 48 | **7** | quello che il mondo ricorda. Dove stia sul tavolo e' la voce aperta (ISSUES 110). |
+| **il tavolo non lo mostra** | 24 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
+
+Ogni segno ha un posto. **180 stanno sul tavolo**, 24 sono contabilita'.
+
+---
+
 ## I segni muti
 
 Scritti da qualcosa, letti da niente. Ognuno e' una carta o una
 Conseguenza che promette un cambiamento che il gioco non registra.
 
-| segno | chi lo scrive | perche' e' ancora qui |
-|---|---|---|
-| `account_settled` | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
-| `burden_shared` | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
-| `condition:guarded` | Conseguenza | la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278) |
-| `dragon_slain` | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
-| `hard_bargain` | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
-| `list_witnessed` | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
-| `price_in_lives` | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
-| `return_promised` | clausola di Consiglio | il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola |
-| `settlement:$proponent` | Conseguenza | chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni |
-| `someone_paid` | carta Echo | qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278) |
-| `spoke_and_lost` | Conseguenza | ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278) |
-| `took_by_hand` | Conseguenza | si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278) |
-| `watched` | Conseguenza | sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278) |
+| segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |
+|---|---|---|---|
+| `account_settled` | nessun posto ancora | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
+| `burden_shared` | nessun posto ancora | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
+| `condition:guarded` | un gettone accanto alla tessera | Conseguenza | la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278) |
+| `dragon_slain` | nessun posto ancora | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
+| `hard_bargain` | sulla scheda della casa | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
+| `list_witnessed` | nessun posto ancora | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
+| `price_in_lives` | nessun posto ancora | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
+| `return_promised` | nessun posto ancora | clausola di Consiglio | il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola |
+| `settlement:$proponent` | uno spazio sulla tessera | Conseguenza | chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni |
+| `someone_paid` | nessun posto ancora | carta Echo | qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278) |
+| `spoke_and_lost` | sulla scheda della casa | Conseguenza | ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278) |
+| `took_by_hand` | sulla scheda della casa | Conseguenza | si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278) |
+| `watched` | sulla scheda della casa | Conseguenza | sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278) |
 
 ---
 

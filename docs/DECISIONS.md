@@ -10,9 +10,98 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-350 — Ogni segno dice in che punto del tavolo lo prendi in mano
+
+**implemented** · 0.1.315 · voluto dal committente
+
+> «Ogni tessera ha tag che la descrivono, e non può cambiare, montagna, foresta,
+> capitale, deserto. Sulla tessera degli spazi che possono cambiare e dove
+> costruire cose. Fuori dalla tessera si posizionano token che indicano lo stato
+> di quella zona che può temporaneamente cambiare, a parte dei token (rotondi)
+> che rappresentano le cicatrici del mondo che non possono cambiare. Sulle schede
+> delle entità altre zone dove posizionare tag o cicatrici che ne determinano lo
+> stato.»
+
+Il dizionario diceva gia' **a chi** appartiene un segno (`scope`) e **che cosa
+e'** (`category`). Non diceva la cosa che serve a chi taglia la fustella:
+**dove lo prendi in mano**. Sono domande diverse, e si vede sul caso che le
+separa: `condition:emptied` e `scar:emptied` vivono tutt'e due su una Regione e
+sono tutt'e due MEMORY o STATE, ma uno e' un gettone che torna nella riserva e
+l'altro un dischetto che resta li' per sempre.
+
+Da qui, `table_place` su ogni voce, con sette valori:
+
+| valore | sul tavolo | quanti |
+|---|---|---|
+| `TILE_PRINTED` | stampato sulla tessera, non cambia mai | 15 |
+| `TILE_SLOT` | uno spazio sulla tessera dove si posa una Pietra | 27 |
+| `ZONE_TOKEN` | un gettone accanto alla tessera, si mette e si toglie | 14 |
+| `SCAR_TOKEN` | un dischetto rotondo, non torna nella riserva | 13 |
+| `HOUSE_SHEET` | sulla scheda della casa | 59 |
+| `WORLD_MEMORY` | quello che il mondo ricorda — **posto da decidere** | 52 |
+| `NONE` | contabilita' che nessuna fustella taglia | 24 |
+
+**180 segni stanno sul tavolo, 24 sono contabilita'.**
+
+Due cose che l'assegnazione ha trovato e che nessuno aveva scritto:
+
+- **I gradi di una Pietra sono lo stesso spazio.** `place:forest`,
+  `place:thinned_wood` e `place:cursed_wood` sono i tre gradi di `STR_FOREST`:
+  un bosco che si assottiglia e diventa selva maledetta non e' un gettone di
+  stato, e' **la stessa Pietra a un grado diverso**. Sul tavolo e' un segnalino
+  che si sostituisce nello stesso spazio, non uno che si aggiunge.
+- **La memoria del mondo non ha un posto.** Cinquantadue segni — un quarto del
+  dizionario — non stanno ne' sulla tessera ne' sulla scheda. Oggi il valore
+  `WORLD_MEMORY` dice *che* esistono e non *dove* si posano: e' la voce aperta
+  [ISSUES 110](ISSUES.md#110-dove-si-posa-quello-che-il-mondo-ricorda).
+
+**La guardia** (controllo 21 di `validate_physical.py`) tiene il campo dal
+marcire, perche' un campo che nessuno controlla si sporca come si sporcava
+l'ambito prima di PZ-0. Morde su quattro difetti piantati: un segno senza posto,
+una Cicatrice messa fra i gettoni che si tolgono, un grado di Pietra spacciato
+per gettone, un segno della scheda messo sulla tessera.
+
+**Quello che questa decisione NON fa.** Non toglie e non aggiunge nessun segno,
+non tocca nessuna regola, e non cambia una riga di gioco: e' un'etichetta su
+quello che c'era gia'. La potatura del dizionario — se `scar:changed_hands`, che
+26 fonti scrivono e nessuno legge, vada tolto o finalmente letto — resta da
+decidere segno per segno, e la decide il committente.
+
+---
+
+## D-349 — Il MASTER PROMPT esce da ART_BIBLE anche per Python
+
+**implemented** · 0.1.314 · [ISSUES 109](ISSUES.md)
+
+Il MASTER PROMPT 6 stava scritto due volte: in `docs/ART_BIBLE.md`, dove lo
+legge chi disegna, e a mano dentro `tools/token_catalogue.py`, dove lo usa il
+catalogo delle pedine. Due copie della stessa frase divergono: e' D-259 detto su
+un altro contenuto.
+
+Adesso `token_catalogue.py` legge il prompt e le sue varianti di contorno da
+ART_BIBLE, come fa GDScript. Se il committente cambia il prompt, lo cambia in un
+posto solo.
+
+*Verbale scritto in ritardo:* il codice e' entrato in 0.1.314 senza la sua riga
+qui e senza il CHANGELOG, contro la terza regola di casa. La riga arriva col
+commit di D-350.
+
+---
+
 ## D-348 — Vaerax ha una seconda via per sigillare la miniera
 
-**implemented** — 0.1.313
+**ritirata in 0.1.315** — provata, misurata, e tolta perche' rompeva un test
+
+> **Come e' finita.** La proposta funzionava per quello che doveva fare — il
+> segno usciva 3 volte su 100 anni contro 0 — ma faceva cadere
+> `test_claim_policy.test_the_natural_proponent_does_not_claim`: la via nuova
+> apre a Vaerax una rivendicazione su SURVIVAL, e la casa rivendica un dominio
+> che come proponente naturale gia' le spetta altrove. **Tolta** in attesa di
+> capire il legame fra le proposte di una casella e la politica di
+> rivendicazione. [ISSUES 108](ISSUES.md) resta aperta.
+>
+> Quello che segue e' il verbale della prova, tenuto perche' i numeri valgono:
+> la strada funziona, il prezzo e' altrove.
 
 ### Il problema: una porta murata a tutti e tre i passi
 

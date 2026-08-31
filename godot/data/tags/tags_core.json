@@ -6,6 +6,7 @@
       "id": "account_settled",
       "title": "il conto e' stato saldato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -22,6 +23,7 @@
       "id": "amnesty_granted",
       "title": "l'amnistia e' stata concessa",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -38,6 +40,7 @@
       "id": "ancient",
       "title": "antica",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -51,6 +54,7 @@
       "id": "anointed",
       "title": "la custodia riconosciuta",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -67,6 +71,7 @@
       "id": "ash",
       "title": "la cenere",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -82,6 +87,7 @@
       "id": "ash_watch",
       "title": "la veglia della cenere",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -98,6 +104,7 @@
       "id": "betrayal_spoken",
       "title": "tradimento detto",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -116,6 +123,7 @@
       "id": "burden_shared",
       "title": "il peso e' stato diviso",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -129,6 +137,7 @@
       "id": "capital",
       "title": "capitale",
       "category": "FUNCTION",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -146,6 +155,7 @@
       "id": "charter_for_all",
       "title": "la Carta vale per tutti",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -163,6 +173,7 @@
       "id": "charter_temporary",
       "title": "la Carta vale per un tempo solo",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -179,6 +190,7 @@
       "id": "charter_written",
       "title": "la Carta e' stata scritta",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -199,6 +211,7 @@
       "id": "condition:abandoned",
       "title": "abbandonato",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -221,6 +234,7 @@
       "id": "condition:contested",
       "title": "conteso",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -247,6 +261,7 @@
       "id": "condition:cut_off",
       "title": "tagliato fuori",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -275,6 +290,7 @@
       "id": "condition:emptied",
       "title": "svuotato",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -301,6 +317,7 @@
       "id": "condition:exploited",
       "title": "sfruttato",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -324,6 +341,7 @@
       "id": "condition:guarded",
       "title": "sorvegliata",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -343,6 +361,7 @@
       "id": "condition:indebted",
       "title": "indebitata",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -362,6 +381,7 @@
       "id": "condition:lean",
       "title": "magro",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -384,6 +404,7 @@
       "id": "condition:mourning",
       "title": "lutto",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -406,6 +427,7 @@
       "id": "condition:plundered",
       "title": "saccheggiato",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -429,6 +451,7 @@
       "id": "condition:rationed",
       "title": "razionato",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -453,6 +476,7 @@
       "id": "condition:requisitioned",
       "title": "requisito",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -471,6 +495,7 @@
       "id": "condition:starving",
       "title": "fame",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -499,6 +524,7 @@
       "id": "condition:unrest",
       "title": "malcontento",
       "category": "STATE",
+      "table_place": "ZONE_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -529,6 +555,7 @@
       "id": "crown_dispossessed",
       "title": "la corona e' stata spogliata",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -544,6 +571,7 @@
       "id": "crown_divided",
       "title": "la corona e' stata divisa",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -566,6 +594,7 @@
       "id": "crowned",
       "title": "la corona",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -584,6 +613,7 @@
       "id": "crystal_exploited",
       "title": "il Cristallo e' stato sfruttato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -605,6 +635,7 @@
       "id": "crystal_measured",
       "title": "cristallo misurato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -626,6 +657,7 @@
       "id": "crystal_site",
       "title": "cristallo",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -646,6 +678,7 @@
       "id": "debt_called",
       "title": "debito chiamato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -672,6 +705,7 @@
       "id": "debt_forgiven",
       "title": "debito rimesso",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -693,6 +727,7 @@
       "id": "debt_staggered",
       "title": "il debito e' stato dilazionato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -708,6 +743,7 @@
       "id": "descent_witnessed",
       "title": "la discesa e' stata fatta davanti a testimoni",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -723,6 +759,7 @@
       "id": "discovery:crystal",
       "title": "scoperta: il cristallo",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -742,6 +779,7 @@
       "id": "discovery:legend",
       "title": "scoperta: la leggenda",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -759,6 +797,7 @@
       "id": "discovery:relic",
       "title": "scoperta: la reliquia",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -777,6 +816,7 @@
       "id": "discovery:shared_record",
       "title": "scoperta: il registro condiviso",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -793,6 +833,7 @@
       "id": "discovery:supervised_record",
       "title": "scoperta: lo studio custodito",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -809,6 +850,7 @@
       "id": "discovery:the_charter",
       "title": "scoperta: la carta",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -825,6 +867,7 @@
       "id": "discovery:the_ledger",
       "title": "scoperta: il registro",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -843,6 +886,7 @@
       "id": "discovery:the_measure",
       "title": "scoperta: la misura",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -859,6 +903,7 @@
       "id": "discovery:the_omen",
       "title": "scoperta: il presagio",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -876,6 +921,7 @@
       "id": "discovery:trade_ledger",
       "title": "scoperta: il registro dei traffici",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -896,6 +942,7 @@
       "id": "discovery:written_law",
       "title": "scoperta: la legge scritta",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -913,6 +960,7 @@
       "id": "distribution_audited",
       "title": "la distribuzione e' stata contata",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -928,6 +976,7 @@
       "id": "domain:ANCIENT",
       "title": "dominio: l'antico",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -947,6 +996,7 @@
       "id": "domain:RESOURCE",
       "title": "dominio: le risorse",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -966,6 +1016,7 @@
       "id": "domain:SURVIVAL",
       "title": "dominio: la sopravvivenza",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -985,6 +1036,7 @@
       "id": "domain:TERRITORY",
       "title": "dominio: il territorio",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -1004,6 +1056,7 @@
       "id": "dragon_slain",
       "title": "il drago e' stato abbattuto",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1017,6 +1070,7 @@
       "id": "escort_sworn",
       "title": "scorta giurata",
       "category": "STATE",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1037,6 +1091,7 @@
       "id": "evicted:$region_focus",
       "title": "cacciata dalla Regione in questione",
       "category": "STATE",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1054,6 +1109,7 @@
       "id": "failed_proposal",
       "title": "la proposta caduta",
       "category": "STATE",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1070,6 +1126,7 @@
       "id": "faith_established",
       "title": "fede stabilita",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1090,6 +1147,7 @@
       "id": "forest",
       "title": "bosco",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -1106,6 +1164,7 @@
       "id": "free_cities",
       "title": "le città libere",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1119,6 +1178,7 @@
       "id": "function:ATTACK",
       "title": "attacco",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1134,6 +1194,7 @@
       "id": "function:BETRAYAL",
       "title": "tradimento",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1149,6 +1210,7 @@
       "id": "function:CONQUEST",
       "title": "conquista",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1164,6 +1226,7 @@
       "id": "function:DISCOVERY",
       "title": "scoperta",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1179,6 +1242,7 @@
       "id": "function:ENCOUNTER",
       "title": "incontro",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1192,6 +1256,7 @@
       "id": "function:GIFT",
       "title": "dono",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1205,6 +1270,7 @@
       "id": "function:LACK",
       "title": "mancanza",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1220,6 +1286,7 @@
       "id": "function:LIBERATION",
       "title": "liberazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1233,6 +1300,7 @@
       "id": "function:LOSS",
       "title": "perdita",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1246,6 +1314,7 @@
       "id": "function:OMEN",
       "title": "presagio",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1259,6 +1328,7 @@
       "id": "function:PROHIBITION",
       "title": "divieto",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1274,6 +1344,7 @@
       "id": "function:PUNISHMENT",
       "title": "punizione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1287,6 +1358,7 @@
       "id": "function:RECONCILIATION",
       "title": "riconciliazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1300,6 +1372,7 @@
       "id": "function:REQUEST",
       "title": "richiesta",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1315,6 +1388,7 @@
       "id": "function:RETURN",
       "title": "ritorno",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1328,6 +1402,7 @@
       "id": "function:REVELATION",
       "title": "rivelazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1344,6 +1419,7 @@
       "id": "function:SACRIFICE",
       "title": "sacrificio",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1357,6 +1433,7 @@
       "id": "function:SEPARATION",
       "title": "separazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1372,6 +1449,7 @@
       "id": "function:SUCCESSION",
       "title": "successione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1385,6 +1463,7 @@
       "id": "function:TEMPTATION",
       "title": "tentazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1398,6 +1477,7 @@
       "id": "function:THREAT",
       "title": "minaccia",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1413,6 +1493,7 @@
       "id": "function:TRANSFORMATION",
       "title": "trasformazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1426,6 +1507,7 @@
       "id": "function:USURPATION",
       "title": "usurpazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1441,6 +1523,7 @@
       "id": "function:VIOLATION",
       "title": "violazione",
       "category": "FUNCTION",
+      "table_place": "NONE",
       "scope": [
         "GLOBAL"
       ],
@@ -1456,6 +1539,7 @@
       "id": "grain_requisitioned",
       "title": "grano requisito",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1476,6 +1560,7 @@
       "id": "granary",
       "title": "granaio",
       "category": "FUNCTION",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -1495,6 +1580,7 @@
       "id": "guild",
       "title": "la gilda",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1508,6 +1594,7 @@
       "id": "harbor",
       "title": "porto",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -1524,6 +1611,7 @@
       "id": "hard_bargain",
       "title": "la parola fredda",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1537,6 +1625,7 @@
       "id": "heir_named",
       "title": "erede nominato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "ENTITY",
         "GLOBAL"
@@ -1559,6 +1648,7 @@
       "id": "island",
       "title": "isola",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -1575,6 +1665,7 @@
       "id": "knowledge_shared",
       "title": "sapere condiviso",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1597,6 +1688,7 @@
       "id": "ledger_public",
       "title": "registro pubblico",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1621,6 +1713,7 @@
       "id": "legend:debt_called",
       "title": "si racconta che il debito e' stato chiamato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1639,6 +1732,7 @@
       "id": "legend:oath_broken",
       "title": "si racconta che il giuramento e' stato rotto",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1655,6 +1749,7 @@
       "id": "legend:order_restored",
       "title": "si racconta che l'ordine e' stato ristabilito",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -1673,6 +1768,7 @@
       "id": "life:INC_ALDRIC_01",
       "title": "vita: Re Aldric",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1686,6 +1782,7 @@
       "id": "life:INC_ALDRIC_02",
       "title": "vita: La Repubblica della Valle",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1701,6 +1798,7 @@
       "id": "life:INC_ALDRIC_REGENCY",
       "title": "vita: La Reggenza del Granaio",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1716,6 +1814,7 @@
       "id": "life:INC_ALDRIC_RESTORED",
       "title": "vita: La Corona Restaurata",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1731,6 +1830,7 @@
       "id": "life:INC_CENERE_01",
       "title": "vita: Kessa dei Fuochi",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1744,6 +1844,7 @@
       "id": "life:INC_CENERE_02",
       "title": "vita: Le Custodi della Cenere",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1759,6 +1860,7 @@
       "id": "life:INC_CENERE_FURNACES",
       "title": "vita: I Forni Riaccesi",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1774,6 +1876,7 @@
       "id": "life:INC_LIBERE_01",
       "title": "vita: Le Città Libere",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1787,6 +1890,7 @@
       "id": "life:INC_LIBERE_HEGEMONY",
       "title": "vita: L'Egemonia di Eredan",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1802,6 +1906,7 @@
       "id": "life:INC_LIBERE_LEAGUE",
       "title": "vita: La Lega delle Sette",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1817,6 +1922,7 @@
       "id": "life:INC_LYRA_01",
       "title": "vita: Lyra",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1830,6 +1936,7 @@
       "id": "life:INC_LYRA_02",
       "title": "vita: Il Culto della Misura",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1845,6 +1952,7 @@
       "id": "life:INC_LYRA_ACADEMY",
       "title": "vita: L'Accademia delle Misure",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1860,6 +1968,7 @@
       "id": "life:INC_NAHR_01",
       "title": "vita: Popolo Nahr",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1873,6 +1982,7 @@
       "id": "life:INC_NAHR_DIASPORA",
       "title": "vita: La Diaspora di Nahr",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1888,6 +1998,7 @@
       "id": "life:INC_NAHR_KINGDOM",
       "title": "vita: Il Regno di Nahr",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1903,6 +2014,7 @@
       "id": "life:INC_SALE_01",
       "title": "vita: Maestra Ilve",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1916,6 +2028,7 @@
       "id": "life:INC_SALE_02",
       "title": "vita: La Compagnia del Sale",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1931,6 +2044,7 @@
       "id": "life:INC_SALE_BANK",
       "title": "vita: Il Banco Nero",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1946,6 +2060,7 @@
       "id": "life:INC_VAERAX_01",
       "title": "vita: Vaerax",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1959,6 +2074,7 @@
       "id": "life:INC_VAERAX_CULT",
       "title": "vita: Il Culto della Montagna",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1974,6 +2090,7 @@
       "id": "life:INC_VAERAX_LEGEND",
       "title": "vita: La Leggenda della Montagna",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -1989,6 +2106,7 @@
       "id": "life:INC_VAERAX_RISEN",
       "title": "vita: Vaerax Ridestato",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2004,6 +2122,7 @@
       "id": "life:INC_VETRO_01",
       "title": "vita: Priore Anselmo",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2017,6 +2136,7 @@
       "id": "life:INC_VETRO_02",
       "title": "vita: I Frati del Vetro",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2032,6 +2152,7 @@
       "id": "life:INC_VETRO_INQUISITION",
       "title": "vita: L'Inquisizione del Vetro",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2047,6 +2168,7 @@
       "id": "list_witnessed",
       "title": "la lista e' stata letta davanti a testimoni",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2060,6 +2182,7 @@
       "id": "marsh",
       "title": "palude",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -2076,6 +2199,7 @@
       "id": "migrating",
       "title": "in cammino",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2089,6 +2213,7 @@
       "id": "mine",
       "title": "miniera",
       "category": "FUNCTION",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -2107,6 +2232,7 @@
       "id": "mine_sealed",
       "title": "le Miniere sono state sigillate",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2129,6 +2255,7 @@
       "id": "mountain_forgotten",
       "title": "la montagna e' diventata racconto",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2148,6 +2275,7 @@
       "id": "nahr_settled",
       "title": "i Nahr si sono fermati",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2167,6 +2295,7 @@
       "id": "no_charter",
       "title": "la Carta non e' stata scritta",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2185,6 +2314,7 @@
       "id": "nomad_range",
       "title": "pascolo",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -2205,6 +2335,7 @@
       "id": "oath_broken",
       "title": "giuramento rotto",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2229,6 +2360,7 @@
       "id": "order",
       "title": "l'ordine",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2242,6 +2374,7 @@
       "id": "order_restored",
       "title": "l'ordine e' stato ristabilito",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2260,6 +2393,7 @@
       "id": "parley_held",
       "title": "ci si e' parlato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2274,6 +2408,7 @@
       "id": "petition_heard",
       "title": "la richiesta e' stata ascoltata",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2288,6 +2423,7 @@
       "id": "place:collapsed_pass",
       "title": "passo franato",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2301,6 +2437,7 @@
       "id": "place:cursed_wood",
       "title": "selva maledetta",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2315,6 +2452,7 @@
       "id": "place:dry_spring",
       "title": "sorgente secca",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2328,6 +2466,7 @@
       "id": "place:forest",
       "title": "foresta",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2342,6 +2481,7 @@
       "id": "place:low_spring",
       "title": "sorgente bassa",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2355,6 +2495,7 @@
       "id": "place:open_site",
       "title": "sito aperto",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2369,6 +2510,7 @@
       "id": "place:pass",
       "title": "passo aperto",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2382,6 +2524,7 @@
       "id": "place:sleeping_site",
       "title": "sito dormiente",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2397,6 +2540,7 @@
       "id": "place:spring",
       "title": "sorgente viva",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2411,6 +2555,7 @@
       "id": "place:stripped_site",
       "title": "sito saccheggiato",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2424,6 +2569,7 @@
       "id": "place:thinned_wood",
       "title": "bosco diradato",
       "category": "PLACE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2437,6 +2583,7 @@
       "id": "price_in_lives",
       "title": "il conto in vite",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2453,6 +2600,7 @@
       "id": "question_unresolved",
       "title": "una domanda e' rimasta aperta",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2474,6 +2622,7 @@
       "id": "quota_guaranteed",
       "title": "una quota e' garantita",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2489,6 +2638,7 @@
       "id": "relic_buried",
       "title": "la reliquia e' stata sepolta",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2507,6 +2657,7 @@
       "id": "relic_recorded",
       "title": "la reliquia e' a registro",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2522,6 +2673,7 @@
       "id": "relic_shown",
       "title": "la reliquia e' stata mostrata",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2539,6 +2691,7 @@
       "id": "renowned",
       "title": "fama",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2562,6 +2715,7 @@
       "id": "return_promised",
       "title": "il ritorno e' stato promesso",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2575,6 +2729,7 @@
       "id": "rumour_running",
       "title": "la voce corre",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2593,6 +2748,7 @@
       "id": "scar:abandoned",
       "title": "l'abbandono",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2609,6 +2765,7 @@
       "id": "scar:broken_bridge",
       "title": "il ponte rotto",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2625,6 +2782,7 @@
       "id": "scar:broken_word",
       "title": "la parola rotta",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2639,6 +2797,7 @@
       "id": "scar:burned_records",
       "title": "l'Archivio bruciato",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2652,6 +2811,7 @@
       "id": "scar:changed_hands",
       "title": "passata di mano",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2668,6 +2828,7 @@
       "id": "scar:divided_seal",
       "title": "il sigillo diviso",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2681,6 +2842,7 @@
       "id": "scar:dragonfall",
       "title": "la caduta del drago",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2695,6 +2857,7 @@
       "id": "scar:emptied",
       "title": "lo sgombero",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2713,6 +2876,7 @@
       "id": "scar:open_wound",
       "title": "la ferita aperta",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2730,6 +2894,7 @@
       "id": "scar:plundered",
       "title": "la razzia",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2745,6 +2910,7 @@
       "id": "scar:sealed_border",
       "title": "il confine sigillato",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2761,6 +2927,7 @@
       "id": "scar:the_empty_chair",
       "title": "il seggio vuoto",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2776,6 +2943,7 @@
       "id": "scar:unanswered",
       "title": "la domanda sul muro",
       "category": "MEMORY",
+      "table_place": "SCAR_TOKEN",
       "scope": [
         "REGION"
       ],
@@ -2792,6 +2960,7 @@
       "id": "scholar",
       "title": "il sapere",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2805,6 +2974,7 @@
       "id": "settlement:$proponent",
       "title": "l'insediamento del proponente",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2818,6 +2988,7 @@
       "id": "settlement:city",
       "title": "città",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2833,6 +3004,7 @@
       "id": "settlement:march",
       "title": "la marca",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2847,6 +3019,7 @@
       "id": "settlement:market",
       "title": "mercato",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2865,6 +3038,7 @@
       "id": "settlement:town",
       "title": "borgo",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2880,6 +3054,7 @@
       "id": "settlement:village",
       "title": "villaggio",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2898,6 +3073,7 @@
       "id": "sleeping",
       "title": "dormiente",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2913,6 +3089,7 @@
       "id": "someone_paid",
       "title": "qualcuno ha pagato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -2926,6 +3103,7 @@
       "id": "spoke_and_lost",
       "title": "ha parlato e ha perso",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -2939,6 +3117,7 @@
       "id": "structure:archive",
       "title": "archivio",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2954,6 +3133,7 @@
       "id": "structure:canal",
       "title": "il canale",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2973,6 +3153,7 @@
       "id": "structure:castle",
       "title": "castello",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -2987,6 +3168,7 @@
       "id": "structure:granary",
       "title": "il granaio",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3008,6 +3190,7 @@
       "id": "structure:library",
       "title": "la grande biblioteca",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3022,6 +3205,7 @@
       "id": "structure:palace",
       "title": "reggia",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3036,6 +3220,7 @@
       "id": "structure:road",
       "title": "strada",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3050,6 +3235,7 @@
       "id": "structure:sealed",
       "title": "sigillato",
       "category": "STATE",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3076,6 +3262,7 @@
       "id": "structure:tollgate",
       "title": "pedaggio",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3100,6 +3287,7 @@
       "id": "structure:watchtower",
       "title": "la torre di veglia",
       "category": "FUNCTION",
+      "table_place": "TILE_SLOT",
       "scope": [
         "REGION"
       ],
@@ -3119,6 +3307,7 @@
       "id": "study_supervised",
       "title": "studio sorvegliato",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3139,6 +3328,7 @@
       "id": "succession_by_law",
       "title": "successione per legge",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3161,6 +3351,7 @@
       "id": "succession_settled",
       "title": "la successione e' stata risolta",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3176,6 +3367,7 @@
       "id": "succession_witnessed",
       "title": "la successione ha avuto testimoni",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3191,6 +3383,7 @@
       "id": "toll_shared",
       "title": "pedaggio diviso",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3210,6 +3403,7 @@
       "id": "took_by_hand",
       "title": "si e' servito",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -3223,6 +3417,7 @@
       "id": "trade",
       "title": "commercio",
       "category": "FUNCTION",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],
@@ -3241,6 +3436,7 @@
       "id": "twice_uprooted",
       "title": "due volte sradicato",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -3258,6 +3454,7 @@
       "id": "uprooted",
       "title": "sradicato",
       "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -3277,6 +3474,7 @@
       "id": "valley_sealed",
       "title": "la Valle e' stata chiusa",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3294,6 +3492,7 @@
       "id": "watched",
       "title": "sotto osservazione",
       "category": "STATE",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -3307,6 +3506,7 @@
       "id": "water_moves",
       "title": "l'acqua ha cambiato strada",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3325,6 +3525,7 @@
       "id": "water_priced",
       "title": "l'acqua ha un prezzo",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3342,6 +3543,7 @@
       "id": "water_rights",
       "title": "i diritti d'acqua",
       "category": "MEMORY",
+      "table_place": "HOUSE_SHEET",
       "scope": [
         "ENTITY"
       ],
@@ -3357,6 +3559,7 @@
       "id": "water_shared",
       "title": "l'acqua si divide",
       "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
       "scope": [
         "GLOBAL"
       ],
@@ -3372,6 +3575,7 @@
       "id": "wild",
       "title": "selvaggio",
       "category": "PLACE",
+      "table_place": "TILE_PRINTED",
       "scope": [
         "REGION"
       ],

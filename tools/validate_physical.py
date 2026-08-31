@@ -967,6 +967,55 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     guai.append(
                         "si accende quando: %s nomina la Pietra «%s», che non "
                         "esiste: la riga non si accende mai" % (dove, pietra))
+
+    # 21. il posto sul tavolo combacia con la forma del nome e con l'ambito (D-350)
+    #
+    # `scope` dice a chi appartiene un segno, `table_place` dove lo prendi in
+    # mano: `condition:emptied` e `scar:emptied` vivono tutt'e due su una
+    # Regione, ma uno e' un gettone che torna nella riserva e l'altro un
+    # dischetto che resta. Senza questa guardia il posto si puo' scrivere
+    # sbagliato, e il campo marcisce in silenzio come marcirebbe un ambito.
+    gradi_di_pietra: Set[str] = set()
+    for pietra in documenti.get("structure_type", []):
+        for grado in pietra.get("grades", []) or []:
+            if grado.get("tag"):
+                gradi_di_pietra.add(str(grado["tag"]))
+    PREFISSO_VUOLE = {
+        "condition:": "ZONE_TOKEN",
+        "scar:": "SCAR_TOKEN",
+        "life:": "HOUSE_SHEET",
+        "structure:": "TILE_SLOT",
+        "settlement:": "TILE_SLOT",
+        "function:": "NONE",
+        "domain:": "TILE_PRINTED",
+    }
+    AMBITO_VUOLE = {
+        "TILE_PRINTED": "REGION", "TILE_SLOT": "REGION", "ZONE_TOKEN": "REGION",
+        "SCAR_TOKEN": "REGION", "HOUSE_SHEET": "ENTITY",
+    }
+    for tag in sorted(voci):
+        voce = voci[tag]
+        posto = str(voce.get("table_place", ""))
+        if not posto:
+            guai.append("segno senza posto sul tavolo: «%s» — ogni segno dice dove "
+                        "si prende in mano, o non si sa cosa stampare" % tag)
+            continue
+        for prefisso, atteso in PREFISSO_VUOLE.items():
+            if tag.startswith(prefisso) and posto != atteso:
+                guai.append("posto che non combacia col nome su «%s»: un «%s» sta "
+                            "in %s, e la voce dice %s" % (tag, prefisso, atteso, posto))
+        # un grado di Pietra e' uno spazio sulla tessera, comunque si chiami:
+        # place:forest e place:cursed_wood sono due stati dello stesso spazio.
+        if tag in gradi_di_pietra and posto != "TILE_SLOT":
+            guai.append("posto che non combacia col catalogo su «%s»: e' il grado di "
+                        "una Pietra, quindi uno spazio sulla tessera, e la voce "
+                        "dice %s" % (tag, posto))
+        ambito_atteso = AMBITO_VUOLE.get(posto)
+        dichiarato = {str(s) for s in voce.get("scope", [])}
+        if ambito_atteso and dichiarato and ambito_atteso not in dichiarato:
+            guai.append("posto che non combacia con l'ambito su «%s»: sta in %s, che "
+                        "vive su %s, e l'ambito dichiarato e' %s"
+                        % (tag, posto, ambito_atteso, "/".join(sorted(dichiarato))))
     return guai
 
 
@@ -1046,6 +1095,22 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         v = voce(prova, bersaglio)
         v["title"] = "carestia"
         v.pop("aliases", None)
+
+    # Il posto sul tavolo (D-350): quattro modi di sbagliarlo, e ognuno deve mordere.
+    def senza_posto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        voce(prova, bersaglio).pop("table_place", None)
+
+    def posto_contro_nome(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # una Cicatrice non e' un gettone che torna nella riserva
+        voce(prova, "scar:emptied")["table_place"] = "ZONE_TOKEN"
+
+    def posto_contro_catalogo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # place:forest e' il primo grado della Pietra STR_FOREST
+        voce(prova, "place:forest")["table_place"] = "ZONE_TOKEN"
+
+    def posto_contro_ambito(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # un segno che vive su una casa non si stampa sulla tessera
+        voce(prova, bersaglio)["table_place"] = "HOUSE_SHEET"
 
     # I sei di PZ-9 (D-272): ogni controllo nuovo si vede mordere una volta.
     def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
@@ -1286,6 +1351,14 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "segno fuori dal dizionario"),
         pianta("scrittore dichiarato che il censimento non vede",
                mano_inventata, "mani inventate"),
+        pianta("segno senza un posto sul tavolo", senza_posto,
+               "segno senza posto sul tavolo"),
+        pianta("Cicatrice messa fra i gettoni che si tolgono", posto_contro_nome,
+               "posto che non combacia col nome"),
+        pianta("grado di Pietra spacciato per gettone", posto_contro_catalogo,
+               "posto che non combacia col catalogo"),
+        pianta("segno della scheda di casa messo sulla tessera", posto_contro_ambito,
+               "posto che non combacia con l'ambito"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

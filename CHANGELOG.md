@@ -5,7 +5,67 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
-## 0.1.313 — Vaerax ha una seconda via per sigillare la miniera (D-348)
+## 0.1.315 — Ogni segno dice in che punto del tavolo lo prendi in mano (D-350)
+
+Voluto dal committente: *«ogni tessera ha tag che la descrivono e non può
+cambiare; sulla tessera degli spazi dove costruire; fuori dalla tessera token
+che indicano lo stato, a parte i token rotondi che rappresentano le cicatrici;
+sulle schede delle entità altre zone».*
+
+**`table_place` su tutte e 204 le voci del dizionario.** `scope` diceva a chi
+appartiene un segno, `category` che cosa è: mancava **dove lo prendi in mano**,
+e senza quello non si sa cosa stampare. `condition:emptied` e `scar:emptied`
+vivono tutt'e due su una Regione, ma uno è un gettone che torna nella riserva e
+l'altro un dischetto che resta.
+
+| posto | segni | di cui scritti sul mondo | muti |
+|---|---|---|---|
+| stampato sulla tessera | 15 | 0 | — |
+| uno spazio sulla tessera (Pietre e loro gradi) | 27 | 5 | 1 |
+| gettone accanto alla tessera | 14 | 14 | 1 |
+| dischetto rotondo (Cicatrici) | 13 | 12 | — |
+| sulla scheda della casa | 59 | 23 | 4 |
+| memoria del mondo — **posto da decidere** | 52 | 48 | 7 |
+| il tavolo non lo mostra | 24 | 0 | — |
+
+**180 segni stanno sul tavolo, 24 sono contabilità.**
+
+Due cose trovate assegnando i posti, e nessuna era scritta:
+
+- **I gradi di una Pietra sono lo stesso spazio.** `place:forest` →
+  `place:thinned_wood` → `place:cursed_wood` sono i tre gradi di `STR_FOREST`:
+  un bosco che si assottiglia è la stessa Pietra a un grado diverso, non un
+  gettone che si aggiunge.
+- **La memoria del mondo non ha un posto** — 52 segni, un quarto del dizionario,
+  che non stanno né sulla tessera né sulla scheda. Nuova [ISSUES 110](docs/ISSUES.md).
+
+**La guardia** (controllo 21 di `validate_physical.py`) morde su quattro difetti
+piantati: un segno senza posto, una Cicatrice messa fra i gettoni che si
+tolgono, un grado di Pietra spacciato per gettone, un segno della scheda messo
+sulla tessera. La guardia sale da 28 a **32 difetti piantati**.
+
+Il registro dei segni guadagna la sezione **«Il tavolo: dove sta ogni segno»**,
+e la tabella dei muti dice in che posto sta ognuno.
+
+**Nessuna regola cambiata, nessun segno tolto o aggiunto:** è un'etichetta su
+quello che c'era. 662 test verdi, **0 seggi bloccati su 8** su tutti e due i
+tavoli, Consigli 3.48 di media (uniforme) — identico a prima.
+
+---
+
+## 0.1.314 — Il MASTER PROMPT esce da ART_BIBLE anche per Python (D-349)
+
+`tools/token_catalogue.py` legge il MASTER PROMPT 6 e le sue varianti di
+contorno da `docs/ART_BIBLE.md`, invece di tenerne una seconda copia scritta a
+mano. Cambiare il documento adesso cambia il catalogo. Chiude
+[ISSUES 109](docs/ISSUES.md).
+
+*Il codice era entrato senza i suoi verbali, contro la terza regola di casa:
+questa riga e D-349 arrivano in ritardo, col commit di D-350.*
+
+---
+
+## 0.1.313 — Vaerax ha una seconda via per sigillare la miniera (D-348, ritirata in 0.1.315)
 
 Aggiunta proposta `P_SEAL_MINE_FOR_FIELDS` al Consiglio del Grano. Il segno
 `mine_sealed` arriva ora da due caselle diverse — il Risveglio (raro) e la

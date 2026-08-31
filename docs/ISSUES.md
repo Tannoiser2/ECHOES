@@ -6054,7 +6054,14 @@ hanno nemmeno una condizione stampata, quindi si calano quando si vuole.
 
 ### 108. Vaerax ha un Destino murato a tutti e tre i passi
 
-`regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 implementata in 0.1.313** ([D-348](DECISIONS.md#d-348))
+`regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 provata e ritirata in 0.1.315** ([D-348](DECISIONS.md#d-348))
+
+> **Stato: aperta.** La strada 2 e' stata scritta, misurata e tolta. Il segno
+> usciva (3 volte su 100 anni contro 0), ma la proposta nuova faceva cadere
+> `test_claim_policy.test_the_natural_proponent_does_not_claim`. Prima di
+> riprovarla serve capire perche' aggiungere una proposta a una casella cambia
+> quale dominio una casa rivendica — probabilmente serve una condizione di
+> eleggibilita' che chiuda quella via a chi e' gia' proponente naturale altrove.
 
 Separando le due liste di `MISURA_SEGNI` sono venute fuori **quattro clausole
 che nessuno puo' avverare**, e sono tutte della stessa casa.
@@ -6104,9 +6111,14 @@ proposta che non passa spegne un ramo intero.**
 esce almeno una volta su 100 partite.
 
 
-### 109. Il MASTER PROMPT 6 e' ricopiato in Python invece che letto
+### 109. ✅ Il MASTER PROMPT 6 e' ricopiato in Python invece che letto — fatta in 0.1.314
 
-`strumenti` · aperta in 0.1.312 ([D-347](DECISIONS.md#d-347))
+`strumenti` · aperta in 0.1.312 ([D-347](DECISIONS.md#d-347)) · **chiusa in 0.1.314** ([D-349](DECISIONS.md#d-349))
+
+> **Presa la strada 1.** `tools/token_catalogue.py` legge il MASTER PROMPT 6 e
+> le sue varianti di contorno da `docs/ART_BIBLE.md`, come fa `art_bible.gd`
+> per gli altri cinque. La costante ricopiata non c'e' piu': cambiare il
+> documento cambia il catalogo.
 
 Cinque MASTER PROMPT su sei li **legge** `art_bible.gd` da `docs/ART_BIBLE.md`,
 e la ragione sta scritta nel suo commento: *«copiarli qui avrebbe creato la
@@ -6132,6 +6144,37 @@ verita' per la stessa cosa, e nessuna che sorvegli l'altra.**
 
 **Fatto quando** cambiare il MASTER PROMPT 6 nel documento cambia il catalogo,
 oppure fa fallire un cancello.
+
+### 110. Dove si posa quello che il mondo ricorda
+
+`componenti` · `grammatica-fisica` · aperta in 0.1.315 ([D-350](DECISIONS.md#d-350))
+
+Dando a ogni segno il suo posto sul tavolo, cinque posti su sei si sono riempiti
+da soli — la tessera, lo spazio della Pietra, il gettone di zona, il dischetto
+della Cicatrice, la scheda della casa. Il sesto no.
+
+**Cinquantadue segni non stanno da nessuna parte.** Sono la memoria del mondo:
+`debt_forgiven`, `betrayal_spoken`, `heir_named`, `question_unresolved`. Non
+sono un tratto di un luogo, non sono uno stato di una casa: sono fatti che il
+mondo ha ricordato, e sul tavolo **nessuno ha ancora deciso che pezzo siano**.
+
+Sono un quarto del dizionario, e il piu' scritto di tutti: 48 dei 52 li scrive
+qualcosa, contro i 14 gettoni di condizione.
+
+#### Le tre strade
+
+1. **Un registro della Cronaca** — una plancia dove i fatti si scrivono in fila,
+   come un libro dei conti. Sta col «l'app di supporto tiene il verbale»: e' il
+   posto dove un fatto si legge, non un pezzo che si prende in mano.
+2. **Gettoni sul bordo del tavolo** — un segnalino per fatto, in una fascia
+   comune. Costa cinquantadue fustelle nuove, ma rende visibile a colpo d'occhio
+   cosa il mondo si sta portando dietro.
+3. **Sulla carta che li ha creati** — il fatto resta sulla carta Tensione o sulla
+   Conseguenza che lo ha scritto, girata a faccia in su davanti a chi l'ha
+   proposta. Zero pezzi nuovi, e il fatto ha un padrone visibile.
+
+**Fatto quando** ogni segno `WORLD_MEMORY` ha un pezzo di cartone, oppure una
+riga che dice perche' non gliene serve uno.
 
 
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
