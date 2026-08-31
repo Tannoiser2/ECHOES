@@ -6474,6 +6474,56 @@ per un mazzo che potrebbe non esistere.
 
 ---
 
+### 115. Una chiave sbagliata nel payload di un Effetto non la vede nessuno
+
+`cancelli` · `dati` · aperta in 0.1.325 ([D-359](DECISIONS.md#d-359))
+
+Scrivendo i nove Echi nuovi ho dato a `ECH_THE_ONE_WHO_SAW` questo Effetto:
+
+```json
+{"type": "SET_TENSION_VISIBILITY", "target": {...}, "payload": {"visible": true}}
+```
+
+La chiave giusta è `visibility`, e il valore `"OPEN"`. Con `visible` la carta
+**non scopriva niente**, e il catalogo generato la stampava come *«tension adesso
+e velata»* — cioè il contrario di quello che la carta racconta di fare, su una
+Tensione che non sapeva nemmeno nominare.
+
+**Nessun cancello l'ha vista.** `validate_data.py` è passato perché in
+`effect.schema.json` il payload è dichiarato `{"type": "object"}`, senza vincoli
+sulle chiavi. `validate_physical.py` è passato perché guarda i segni, non le
+chiavi. Il motore non ha protestato perché **GDScript non alza niente**: una
+chiave che manca interrompe la funzione in silenzio — è la prima delle trappole
+scritte in CLAUDE.md.
+
+L'ha vista **il catalogo delle carte**, che stampa cosa fa ogni carta ricavandolo
+dai dati: leggendo il log della CI si vedeva una revelation che velava. È la
+prova che quei documenti generati servono, ma è un caso: nessuno garantisce che
+la prossima chiave sbagliata produca una riga strana da notare.
+
+#### Cosa serve
+
+Un censimento dei dati di oggi dice che **il resto è pulito** — ogni tipo di
+Effetto usa un solo insieme di chiavi, e le uniche rare sono `optional`, che è
+un modificatore condiviso:
+
+```
+ADJUST_TENSION           {delta: 106}
+SET_GLOBAL_TAG           {tag: 64}
+SET_TENSION_VISIBILITY   {visibility: 9}
+BUILD_STRUCTURE          {structure_type: 8, grade: 8, owner: 8}
+SET_RELATION             {add_tag: 5, remove_tag: 2, level: 6}
+```
+
+Quindi le chiavi ammesse per ogni tipo **si possono dichiarare**, e il posto
+giusto è `effect.schema.json`: un `payload` con `additionalProperties: false` per
+tipo, e `validate_data.py` morde da solo senza codice nuovo.
+
+**Fatto quando** un payload con una chiave che il motore non legge fa andare
+rosso un cancello, e la guardia ha il suo difetto piantato nel `--self-test`.
+
+---
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda

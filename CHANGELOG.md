@@ -45,6 +45,50 @@ calato, non dal sorteggio dell'anno. Se n'e' accorta una prova che c'era gia',
 e il passaggio e' stato rifatto **chirurgico**: si toglie solo `tension_limit`.
 Dieci clausole di Propp prima, dieci dopo.
 
+### E il costo, che si scrive
+
+Cento anni pescati, semi da 7000, tavolo misto — **misurati oggi da tutte e due
+le parti**, non confrontati con un numero di un mese fa:
+
+| su 100 anni, tavolo misto | prima (main) | dopo (D-359) |
+|---|---|---|
+| NONE | 174 | **196** |
+| MINIMUM | 304 | 286 |
+| VICTORY | 316 | 312 |
+| TRIUMPH | 6 | 6 |
+| Consigli per anno | 3,44 | **3,52** |
+| Verita' scritte | 157 | **150** |
+
+**Ventidue seggi in piu' escono a mani vuote**, e il mondo scrive sette Verita'
+in meno. Il gioco e' un po' piu' duro.
+
+Ha una ragione: l'Eco costa **due** carte, e settanta Echi calati su cento anni
+sono settanta carte che non hanno fatto un'Azione. In cambio si tiene mezzo
+Consiglio in piu' per anno, perche' un Eco scalda una questione.
+
+Il vincolo che non si negozia regge: **0 seggi bloccati su un solo livello su
+8**, tavolo misto e uniforme.
+
+### La misura del mazzo, prima e dopo
+
+| su 100 anni | mazzo (0.1.324) | fuso (D-359) |
+|---|---|---|
+| Echi calati per partita | 0,40 | **0,70** |
+| partite con almeno una calata | 37 | **49** |
+| fermi per l'Atto | — | **0** |
+| fermi perche' il mondo non porta i segni | 758 | 482 |
+| fermi ma legali, e nessuno li ha voluti | 495 | **481** |
+
+**+75% di calate, e non basta.** Il numero e' salito e resta basso, e va scritto
+com'e'. Ma e' un numero diverso da prima: non e' piu' un mazzo che non arriva in
+mano — l'Eco e' sempre in mano, sotto le due Azioni, e meta' di quelli fermi
+erano **legali**. Il tavolo lo soppesa e sceglie l'Azione normale, perche' due
+carte per 2,7 Effetti contro due Azioni per 2,1 e' un margine sottile.
+
+Le due leve per alzarlo ancora sono tarature del committente, non difetti: il
+**prezzo** (due carte, o una) e il **tetto di una calata per Atto per seggio**,
+che sta nel decisore e non e' una regola stampata.
+
 ### Un segno muto in meno
 
 `burden_shared` (48 scritture, nessun lettore) adesso accende due Echi: i muti

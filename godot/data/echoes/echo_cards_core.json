@@ -2022,8 +2022,11 @@
               "id": "$tension"
             },
             "payload": {
-              "visible": true
+              "visibility": "OPEN"
             }
+          },
+          "bindings": {
+            "focus_tension": "TEN_SUCCESSION"
           }
         },
         {
