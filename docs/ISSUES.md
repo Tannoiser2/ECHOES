@@ -6329,6 +6329,38 @@ quaranta, e la cura cambia di conseguenza:
 - se sono tanti, il difetto e' che le due liste si scrivono a mano due volte, e
   serve un cancello che le confronti.
 
+#### Una parte del numero e' arrivata da sola: 48 su 48
+
+Guardando il grafo del flusso su `question_unresolved` (0.1.322) e' saltata fuori
+la famiglia piu' grande, e non e' negli `on_commit_effects`: e' **nella
+Risonanza**, cioe' nel pezzo di carta che CLAUDE.md chiama obbligatorio.
+
+```
+carte con Risonanza fisica     : 48
+  con aggravante nel motore    : 48
+  che la faccia NON dice       : 48
+```
+
+Ogni Risonanza porta `if_target_tag` + `extra_heat` (spesso anche `extra_tag`):
+se il bersaglio ha quel segno, scalda **di piu'**, e a volte posa un gettone in
+piu'. **Nessuna delle 48 lo scrive nel proprio `resonance.text`.**
+
+| carta | la faccia dice | il motore fa |
+|---|---|---|
+| Le Porte Bruciate | «Scalda Potere **+2**» | +3 se sul mondo c'e' `#question_unresolved` |
+| Leva Contadina | «Scalda Sopravvivenza **+1**» | +2 se il luogo e' `#magro`, e ci posa `#affamato` |
+| Banda Armata | «Scalda Terra **+2**» | +3 se il luogo e' `#saccheggiato`, e ci posa `#malcontento` |
+| Assedio | «Scalda Sopravvivenza **+2**» | +3 se il grano e' gia' stato requisito |
+
+Il difetto e' lo stesso del Magistrato, ma qui non e' un caso isolato: e'
+**il cento per cento** del pezzo di carta piu' letto al tavolo. Un giocatore che
+sceglie dove giocare una carta sta scegliendo, senza saperlo, anche quanto
+scalda.
+
+Il rimedio non e' piu' un ballottaggio fra i due della sezione sopra: a 48 su 48
+la riga va scritta su tutte e 48 le facce **e** serve il cancello, perche' a mano
+si riscrive due volte la stessa cosa e la seconda volta si sbaglia.
+
 **Fatto quando** ogni effetto digitale di una carta ha una riga sulla sua faccia,
 oppure una ragione scritta per cui non ce l'ha — e un cancello lo tiene.
 

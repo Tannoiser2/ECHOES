@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.323 — Le 48 Risonanze fanno tutte una cosa che non dicono (ISSUES 113)
+
+Nessun codice cambia: cambia un numero, e il numero è tutto.
+
+Il committente ha guardato il grafo del flusso su `question_unresolved` — «*a
+volte si trovano cose strane semplicemente guardando*». Il segno era in ordine.
+Le carte che lo leggono no.
+
+```
+carte con Risonanza fisica     : 48
+  con aggravante nel motore    : 48
+  che la faccia NON dice       : 48
+```
+
+Ogni Risonanza ha un `if_target_tag` con `extra_heat` — scalda di più se il
+bersaglio porta un certo segno, e a volte gli posa addosso un gettone in più.
+**Nessuna delle quarantotto lo scrive.** *Le Porte Bruciate* dice «Scalda Potere
++2» e ne dà 3 quando sul bordo della mappa c'è `#question_unresolved`.
+
+È lo stesso difetto del Magistrato che ha aperto ISSUES 113, ma non è un caso
+isolato: è il **100%** del pezzo di carta che CLAUDE.md chiama obbligatorio. La
+misura è nel corpo di ISSUES 113, insieme a cosa comporta per la cura.
+
+---
+
 ## 0.1.322 — Via la grammatica di Propp dal mondo, e una Cicatrice si può togliere (D-357, D-358)
 
 Due ordini del committente: *«ELIMINA ogni cosa che vive solo nell'app»* e
