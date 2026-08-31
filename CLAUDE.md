@@ -62,6 +62,7 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `bash tools/run_card_skeleton.sh --check` | `docs/SCHELETRO_CARTE.md`: **cosa porta ogni faccia**, ricavato dalle facce vere — i blocchi di ogni mazzo, su quante carte, e una carta vera per mazzo |
 | `bash tools/run_box_survey.sh --check` | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |
 | `bash tools/run_marks_survey.sh --check` | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
+| `bash tools/run_table_survey.sh --check` | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
 | `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
 | `$GODOT --headless --path godot --script res://tests/run_tests.gd` | la suite |
 
