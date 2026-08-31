@@ -1145,6 +1145,23 @@ focal event sits at the lower-left third. Vertical card framing, 2:3. No text, n
 letters, no numerals, no frame, no border. Not gory.
 ```
 
+### `echo.pressure.hands_down` — Le Mani Ferme
+
+- **soggetto**: Le Mani Ferme
+- **scena**: Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
+- **id**: `ECH_HANDS_DOWN`
+
+```
+ECHOES — Echo card. A narrative moment: Le Mani Ferme.
+What is happening: Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
 ### `echo.pressure.lack` — Mancanza
 
 - **soggetto**: Mancanza
@@ -1171,7 +1188,7 @@ letters, no numerals, no frame, no border. Not gory.
 ```
 ECHOES — Echo card. A narrative moment: Il Giuramento che Nessuno Sciolse.
 What is happening: Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+Dominant accent: rosso scuro, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -1188,7 +1205,7 @@ letters, no numerals, no frame, no border. Not gory.
 ```
 ECHOES — Echo card. A narrative moment: Il Giorno che la Gilda Chiese Tutto.
 What is happening: La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -1205,7 +1222,7 @@ letters, no numerals, no frame, no border. Not gory.
 ```
 ECHOES — Echo card. A narrative moment: La Ballata dell'Anno Buono.
 What is happening: Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -1468,6 +1485,40 @@ focal event sits at the lower-left third. Vertical card framing, 2:3. No text, n
 letters, no numerals, no frame, no border. Not gory.
 ```
 
+### `echo.turn.the_called_up` — I Chiamati
+
+- **soggetto**: I Chiamati
+- **scena**: La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
+- **id**: `ECH_THE_CALLED_UP`
+
+```
+ECHOES — Echo card. A narrative moment: I Chiamati.
+What is happening: La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+### `echo.rupture.the_closed_road` — La Strada Chiusa a Chiave
+
+- **soggetto**: La Strada Chiusa a Chiave
+- **scena**: Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
+- **id**: `ECH_THE_CLOSED_ROAD`
+
+```
+ECHOES — Echo card. A narrative moment: La Strada Chiusa a Chiave.
+What is happening: Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
 ### `echo.turn.the_copy` — La Copia
 
 - **soggetto**: La Copia
@@ -1536,6 +1587,23 @@ focal event sits at the lower-left third. Vertical card framing, 2:3. No text, n
 letters, no numerals, no frame, no border. Not gory.
 ```
 
+### `echo.resolution.the_forgiven_debt` — Il Debito Rimesso
+
+- **soggetto**: Il Debito Rimesso
+- **scena**: Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
+- **id**: `ECH_THE_FORGIVEN_DEBT`
+
+```
+ECHOES — Echo card. A narrative moment: Il Debito Rimesso.
+What is happening: Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
 ### `echo.resolution.the_long_table` — Il Tavolo Lungo
 
 - **soggetto**: Il Tavolo Lungo
@@ -1546,6 +1614,74 @@ letters, no numerals, no frame, no border. Not gory.
 ECHOES — Echo card. A narrative moment: Il Tavolo Lungo.
 What is happening: Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.
 Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+### `echo.turn.the_met_road` — L'Incontro sulla Strada
+
+- **soggetto**: L'Incontro sulla Strada
+- **scena**: Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
+- **id**: `ECH_THE_MET_ROAD`
+
+```
+ECHOES — Echo card. A narrative moment: L'Incontro sulla Strada.
+What is happening: Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+### `echo.resolution.the_old_account` — Il Conto Vecchio
+
+- **soggetto**: Il Conto Vecchio
+- **scena**: Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
+- **id**: `ECH_THE_OLD_ACCOUNT`
+
+```
+ECHOES — Echo card. A narrative moment: Il Conto Vecchio.
+What is happening: Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+### `echo.turn.the_one_who_saw` — Quello che c'Era
+
+- **soggetto**: Quello che c'Era
+- **scena**: Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
+- **id**: `ECH_THE_ONE_WHO_SAW`
+
+```
+ECHOES — Echo card. A narrative moment: Quello che c'Era.
+What is happening: Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+### `echo.pressure.the_price_of_salt` — Il Prezzo del Sale
+
+- **soggetto**: Il Prezzo del Sale
+- **scena**: Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
+- **id**: `ECH_THE_PRICE_OF_SALT`
+
+```
+ECHOES — Echo card. A narrative moment: Il Prezzo del Sale.
+What is happening: Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -1580,6 +1716,23 @@ letters, no numerals, no frame, no border. Not gory.
 ECHOES — Echo card. A narrative moment: L'Anno Corto.
 What is happening: Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
 Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+### `echo.rupture.the_walking_year` — L'Anno a Piedi
+
+- **soggetto**: L'Anno a Piedi
+- **scena**: Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
+- **id**: `ECH_THE_WALKING_YEAR`
+
+```
+ECHOES — Echo card. A narrative moment: L'Anno a Piedi.
+What is happening: Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
+Dominant accent: rosso scuro, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
