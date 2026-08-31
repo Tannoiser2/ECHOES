@@ -77,6 +77,10 @@ const BIOMES: Dictionary = {
 ## scalda e sta sulla traccia; il tarocco dice **cosa si puo' proporre e cosa
 ## costa**, e si tira fuori quando il Consiglio si apre. E' il «fatto quando»
 ## di ISSUES 89: una proposta si risolve guardando questa scheda e la mappa.
+## Come si chiama, su una carta Eco, il posto che l'Effetto colpisce: non «dove
+## si discute», che e' la parola del Consiglio (D-344).
+const DOVE_CADE: String = "nel luogo della carta"
+
 const DECKS: Array = ["asset", "echo", "tension", "council", "destiny", "entity"]
 const TILES: Array = ["region"]
 
@@ -158,7 +162,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		"council": return _council(item, data)
 		"destiny": return _destiny(item, data)
 		"entity": return _entity(item, data)
-		"region": return _region(item)
+		"region": return _region(item, data)
 	return {}
 
 
@@ -228,9 +232,13 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 		]
 	else:
 		face["body"] = []
+		# **Ogni riga ha la sua intestazione** (D-345): lo scheletro delle carte
+		# ha trovato 27 facce su 48 con una riga meccanica senza etichetta —
+		# «+1 sul suo tema · si scarta se la impegni · costa: …» — e una riga
+		# senza intestazione e' una riga che al tavolo si legge per ultima.
 		face["notes"] = physical + [
-			AssetText.note(asset, data),
-			str(asset.get("acquisition_rule", "")),
+			"IMPEGNI  %s" % AssetText.note(asset, data),
+			"PRENDI  %s" % str(asset.get("acquisition_rule", "")),
 		]
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
@@ -249,15 +257,89 @@ static func _echo(card: Dictionary, data: RefCounted) -> Dictionary:
 		str(described["label"]).split(" —")[0], str(PROPP.get(function_id, function_id.to_lower())),
 	]
 	face["accent"] = str(described["colour"])
-	face["body"] = [str(card["description"])]
+	# **La carta Eco diceva solo cosa si prova, mai cosa succede** (D-344).
+	#
+	# Trentanove carte su trentanove: **86 Effetti scritti nel dato e zero
+	# stampati**, piu' 38 condizioni che dicono quando la carta puo' uscire e
+	# che nessuno vedeva. Sulla faccia c'era la `description` — *«Qualcosa che
+	# c'era non c'e' piu', e la sua assenza comincia a organizzare le giornate
+	# di tutti»* — e basta.
+	#
+	# Adesso: **QUANDO ESCE** (le condizioni) e **IL MONDO** (quello che la carta
+	# fa), chiesto ad `AssetText` come ogni altra riga meccanica del progetto, in
+	# modo che la carta non possa dire una cosa e il motore farne un'altra.
+	face["body"] = []
+	# **E la condizione si genera, non si ricopia.** Le `label` d'autore portano
+	# l'id dentro — *«TEN_FAMINE e' in gioco quest'anno»* — su 24 delle 38: e' un
+	# id interno su una carta da giocatore, la stessa cosa che D-339 ha tolto da
+	# tutte le altre facce. I campi ci sono (`tension_id`, `tag`), e la frase si
+	# costruisce da quelli; la `label` resta il ripiego per le forme che i campi
+	# non sanno ancora dire.
+	var quando: Array = []
+	for condition in card.get("eligibility", []) as Array:
+		var said: String = _when_it_comes(condition as Dictionary, data)
+		if said != "":
+			quando.append(said)
+	if not quando.is_empty():
+		face["notes"].append("QUANDO ESCE  %s" % " · ".join(PackedStringArray(quando)))
+	# **Due modi di attaccare un Effetto a una carta Eco**, e tutti e due vanno
+	# stampati: un Effetto scritto sulla carta (75 su 86) e una Conseguenza
+	# chiamata per id (11). Otto carte hanno **solo** la seconda forma: la prima
+	# stesura di questa faccia leggeva soltanto `effect`, e quelle otto uscivano
+	# mute. L'ha presa la prova che nessuna faccia sia vuota, che c'era gia'.
+	var fa: Array = []
+	for hook_v in card.get("effect_hooks", []) as Array:
+		var hook: Dictionary = hook_v
+		var said: String = ""
+		match str(hook.get("kind", "")):
+			"EFFECT":
+				var effect: Dictionary = hook.get("effect", {})
+				if not effect.is_empty():
+					said = AssetText.effect_note(effect, data, DOVE_CADE)
+			"CONSEQUENCE":
+				var consequence: Variant = data.consequences.get(
+					str(hook.get("consequence_id", ""))
+				)
+				if consequence != null:
+					said = CouncilText.consequence_note(
+						consequence as Dictionary, data, Callable(), DOVE_CADE
+					)
+		if said != "" and not fa.has(said):
+			fa.append(said)
+	if not fa.is_empty():
+		face["notes"].append("IL MONDO  %s" % " · ".join(PackedStringArray(fa)))
 	# Due delle ventiquattro convocano un Consiglio (§12.1 b): e' la carta che si
 	# prende il tavolo, e sulla carta stampata dev'esserci scritto.
 	var forced: Variant = card.get("forces_confluence_on", null)
 	if forced != null and data.tensions.has(str(forced)):
-		face["notes"] = ["Convoca un Consiglio su %s." % str(data.tensions[str(forced)]["title"])]
+		face["notes"].append(
+			"CONVOCA IL CONSIGLIO  su %s" % str(data.tensions[str(forced)]["title"])
+		)
 	face["art_prompt_key"] = str(card.get("art_prompt_key", ""))
 	face["footer"] = str(card["id"])
 	return face
+
+
+## Quando una carta Eco puo' uscire, in parole del tavolo (D-344).
+static func _when_it_comes(condition: Dictionary, data: RefCounted) -> String:
+	match str(condition.get("type", "")):
+		"tension_limit":
+			var asked: String = str(condition.get("tension_id", ""))
+			if data.tensions.has(asked):
+				return "%s e' al tavolo" % str((data.tensions[asked] as Dictionary)["title"])
+		"state_tag_present":
+			return "il mondo porta %s" % AssetText.sign_word(str(condition.get("tag", "")), data)
+		"any_of":
+			var one: Array = []
+			for inner in condition.get("conditions", []) as Array:
+				var said: String = _when_it_comes(inner as Dictionary, data)
+				if said != "" and not one.has(said):
+					one.append(said)
+			if not one.is_empty():
+				return " oppure ".join(PackedStringArray(one))
+	# Niente da generare: resta la frase d'autore, che almeno e' scritta per chi
+	# gioca — e se porta un id lo prende la prova di D-339.
+	return str(condition.get("label", ""))
 
 
 static func _tension(tension: Dictionary) -> Dictionary:
@@ -297,16 +379,16 @@ static func _tension(tension: Dictionary) -> Dictionary:
 	var rules: Array = tension.get("heats_when", []) as Array
 	var rise: String = ""
 	if rules.is_empty():
-		rise = "sale: %s" % " ".join(PackedStringArray(tension.get("triggers", [])))
+		rise = "SI ACCENDE QUANDO  %s" % " ".join(PackedStringArray(tension.get("triggers", [])))
 	else:
 		var said: Array = []
 		for rule in rules:
 			said.append(str((rule as Dictionary).get("text", "")))
-		rise = "si accende quando: %s" % " · ".join(PackedStringArray(said))
+		rise = "SI ACCENDE QUANDO  %s" % " · ".join(PackedStringArray(said))
 	face["notes"] = [
 		rise,
-		"scende: %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
-		"al Consiglio valgono: %s" % ", ".join(PackedStringArray(
+		"SI RAFFREDDA  %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
+		"AL CONSIGLIO VALGONO  %s" % ", ".join(PackedStringArray(
 			(tension["relevant_asset_families"] as Array).map(
 				func(f: Variant) -> String: return SignLabels.family(str(f))
 			)
@@ -383,17 +465,27 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 		face["subtitle"] = "per chi lo giura"
 	else:
 		face["subtitle"] = str(data.entities[owner_id]["name"]) if data.entities.has(owner_id) else owner_id
-	face["body"] = [str(destiny.get("description", ""))]
+	# **Niente racconto** (D-344), come su Asset e Domanda: la scala e' la carta,
+	# e la `description` era il primo blocco che si leggeva su un pezzo che si
+	# guarda per contare quanto manca.
+	face["body"] = []
 	# La scala per intero, clausola per clausola: e' la carta che un giocatore
 	# guarda piu' di ogni altra, e la guarda per contare quanto gli manca.
 	var rungs: Array = []
+	# **I tre gradini in italiano** (D-345): si leggeva «MINIMUM», «VICTORY»,
+	# «TRIUMPH» sul tarocco che una casa guarda per contare quanto le manca —
+	# tre parole interne su una carta da giocatore, la stessa cosa che D-339 ha
+	# tolto da tutte le altre facce.
+	const STEPS: Dictionary = {
+		"minimum": "SOGLIA", "victory": "VITTORIA", "triumph": "TRIONFO",
+	}
 	for level in ["minimum", "victory", "triumph"]:
 		var rung: Dictionary = destiny[level]
 		var clauses: Array = []
 		for condition in rung["conditions"]:
 			clauses.append(str((condition as Dictionary).get("label", condition["type"])))
-		rungs.append("%s — %s: %s" % [
-			level.to_upper(), str(rung["label"]), " · ".join(PackedStringArray(clauses)),
+		rungs.append("%s  %s: %s" % [
+			str(STEPS[level]), str(rung["label"]), " · ".join(PackedStringArray(clauses)),
 		])
 	face["notes"] = rungs
 	face["footer"] = str(destiny["id"])
@@ -413,7 +505,9 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 		SignLabels.archetype(str(entity["archetype"])),
 		SignLabels.need(str(entity["need"])),
 	]
-	face["body"] = [str(entity.get("description", ""))]
+	# **Niente racconto** (D-344): il tarocco della Casata resta in vista tutta
+	# la partita e deve dire cosa la casa **sa fare** e cosa **vuole lasciare**.
+	face["body"] = []
 	var values: Array = []
 	var actions: Dictionary = entity["action_values"]
 	var names: Array = actions.keys()
@@ -421,7 +515,7 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	for action in names:
 		# I verbi, non i loro nomi interni: si leggeva «acquire 3 · claim 1».
 		values.append("%s %d" % [SignLabels.action(str(action)), int(actions[action])])
-	face["notes"] = [" · ".join(PackedStringArray(values))]
+	face["notes"] = ["SA FARE  %s" % " · ".join(PackedStringArray(values))]
 	# **Cosa questa casa vuole lasciare, e cosa diventa se non ce la fa**
 	# (D-288 e D-290). La strategia dichiarata stava in un file che leggevano il
 	# cervello e lo schermo; sul tavolo fisico non stava da nessuna parte, e una
@@ -468,12 +562,12 @@ static func _house_promise(entity: Dictionary, data: RefCounted) -> Array:
 	for voice in (profile as Dictionary).get("wants", []) as Array:
 		wanted.append(SignLabels.label(str((voice as Dictionary).get("tag", "")), data))
 	if not wanted.is_empty():
-		out.append("vuoi lasciare: %s" % " · ".join(wanted))
+		out.append("VUOI LASCIARE  %s" % " · ".join(wanted))
 	for index in range(now + 1, lives.size()):
 		var door: Dictionary = (lives[index] as Dictionary).get("also_enters", {}) as Dictionary
 		if door.is_empty():
 			continue
-		out.append("dopo %d anni con meno di %d di questi segni: %s" % [
+		out.append("SE NON CE LA FAI  dopo %d anni con meno di %d di questi segni: %s" % [
 			int(door.get("after_years", 0)), int(door.get("holds_at_least", 1)),
 			str((lives[index] as Dictionary).get("name", "")),
 		])
@@ -481,20 +575,32 @@ static func _house_promise(entity: Dictionary, data: RefCounted) -> Array:
 	return out
 
 
-static func _region(region: Dictionary) -> Dictionary:
+static func _region(region: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("region", str(region["id"]), "TILE")
 	face["title"] = str(region["name"])
 	face["subtitle"] = "%s · %d posti" % [
 		str(BIOMES.get(str(region["biome"]), str(region["biome"]).to_lower())),
 		int(region["presence_slots"]),
 	]
-	face["body"] = [str(region.get("description", ""))]
+	# **I segni della tessera** (D-344). Una carta Azione si gioca «su un luogo
+	# con #granaio»: senza i segni stampati sulla tessera quel bersaglio non si
+	# puo' trovare col dito, e la carta e' ingiocabile. Trentadue segni sulle
+	# dieci tessere, e non ne era stampato **nessuno**.
+	face["body"] = []
+	var segni: Array = []
+	for tag in region.get("tags", []) as Array:
+		var word: String = AssetText.sign_word(str(tag), data)
+		if word != "" and not segni.has(word):
+			segni.append(word)
+	face["notes"] = []
+	if not segni.is_empty():
+		face["notes"].append("SEGNI  %s" % " · ".join(PackedStringArray(segni)))
 	# Le famiglie in italiano (D-339): la tessera diceva «fonti: authority, force».
-	face["notes"] = ["fonti: %s" % ", ".join(PackedStringArray(
+	face["notes"].append("FONTI  %s" % ", ".join(PackedStringArray(
 		(region.get("asset_sources", []) as Array).map(
 			func(f: Variant) -> String: return SignLabels.family(str(f))
 		)
-	))]
+	)))
 	face["art_prompt_key"] = str(region.get("art_prompt_key", ""))
 	face["terrain"] = str(region["biome"])
 	face["footer"] = str(region["id"])

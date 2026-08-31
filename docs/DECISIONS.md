@@ -10,6 +10,224 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-345 — Lo scheletro delle carte, e le righe che non dicevano cosa erano
+
+**implemented** — 0.1.310
+
+### La richiesta
+
+> *«Voglio la struttura e lo scheletro di tutte le carte, poi devi chiarire bene
+> cosa sono le carte eco (carte di propp?), quale e' la differenza con carte
+> azione?»*
+
+### Lo scheletro non si scrive: si ricava
+
+`docs/SCHELETRO_CARTE.md`, generato da `cli/run_card_skeleton.gd` e sorvegliato
+da un cancello. Per ogni mazzo guarda **tutte le facce vere**, raccoglie i
+blocchi che portano — titolo, sottotitolo, cifra d'angolo, e l'intestazione di
+ogni riga meccanica — e conta su quante carte ognuno compare. Un blocco che
+sparisce da una carta sparisce dal documento; uno nuovo entra il giorno che
+entra.
+
+Le sole righe scritte a mano sono **il mestiere di ogni mazzo**: cosa quel pezzo
+fa al tavolo e come arriva in mano. Non e' un fatto che il codice possa
+smentire, ed e' quello che un elenco di blocchi da solo non direbbe.
+
+| mazzo | formato | facce | pezzi |
+|---|---|---|---|
+| Asset | 63x88 | 48 | 132 |
+| Eco | 63x88 | 39 | 39 |
+| Domanda | 44x68 | 60 | 60 |
+| Consiglio | 70x120 | 60 | 60 |
+| Destino | 70x120 | 23 | 23 |
+| Casata | 70x120 | 26 | 26 |
+| Regione | 80x80 | 10 | 10 |
+
+### E ricavarlo ha trovato due difetti
+
+**Quattro mazzi avevano righe senza intestazione**: 180 righe sulle carte
+Domanda, 64 sulle Casate, 27 sulle Asset, 20 sulle tessere. Una riga senza
+intestazione e' una riga che al tavolo si legge per ultima, e quando si legge
+non si sa cos'e'. Adesso ognuna ha la sua: `SI ACCENDE QUANDO`, `SI RAFFREDDA`,
+`AL CONSIGLIO VALGONO`, `SEGNI`, `FONTI`, `SA FARE`, `VUOI LASCIARE`, `SE NON
+CE LA FAI`, `IMPEGNI`, `PRENDI`.
+
+**E il Destino stampava tre parole inglesi**: `MINIMUM`, `VICTORY`, `TRIUMPH`,
+sul tarocco che una casa guarda per contare quanto le manca. Sono le chiavi
+interne dei tre gradini, e la prova di D-339 non le prendeva perche' non sono
+enum dei dati. Adesso: **SOGLIA**, **VITTORIA**, **TRIONFO**.
+
+### La guardia
+
+Non guarda un elenco di intestazioni buone, che invecchierebbe: chiede che
+**ogni riga cominci con parole tutte maiuscole**, o col numero di un'Azione, o
+col punto di una casella. E' la forma, non il vocabolario. Morde: tolta
+l'intestazione ai segni della tessera, cade.
+
+### Carte Eco e carte Azione: cosa sono davvero
+
+La domanda del committente ha una risposta misurabile, e il codice la da'.
+
+**Sono tutte e due carte che si calano da una mano, e costano tutte e due
+un'Occasione.** Quello che cambia e' **quanto scegli**.
+
+| | carta **Azione** (Asset) | carta **Eco** (Narratore) |
+|---|---|---|
+| quante | 48 facce, **132 copie** | 39 facce, **una copia ciascuna** |
+| come arriva | ACQUISIRE, o la mappa a inizio Atto | **due a testa a inizio Atto**, dal sacchetto dell'Atto |
+| limite di mano | 7 | 2 per Atto |
+| costo | 1 Occasione | 1 Occasione |
+| **scegli il bersaglio** | **si**, fra i luoghi coi segni della carta | **no**: lo decide il mondo |
+| **scegli cosa fa** | **si**, fra due Azioni | **no**: la carta fa quello che dice |
+| Risonanza | **sempre**, e non si sceglie | mai |
+| al Consiglio | vale forza, se la impegni invece di calarla | non si impegna |
+| lascia nel mondo | i segni delle sue Azioni | **`function:<Propp>`**, il fatto che quella cosa e' successa |
+
+**Si', le carte Eco sono le carte di Propp.** Ognuna porta una funzione della
+morfologia — mancanza, tradimento, scoperta, liberazione — e calarla scrive
+quella funzione **sul mondo** come un segno. E' quello che le rende un motore e
+non un evento: altre carte chiedono che una funzione sia gia' successa
+(*«QUANDO ESCE il mondo porta #usurpazione oppure #divieto»*), e la catena si
+apre da sola.
+
+**La differenza in una riga:** con una carta Azione scegli **dove** e **cosa**;
+con una carta Eco scegli **solo quando**. E' per questo che una carta Eco non ha
+due Azioni e non ha una Risonanza: non c'e' una scelta da pagare.
+
+**E questo e' anche il suo punto debole, dichiarato.** Una carta senza scelta
+non e' una decisione: e' un evento che il giocatore decide di far accadere.
+Se sia il pezzo giusto — o se debba avere un bersaglio come le altre — non lo
+decide una misura. E' **ISSUES 107**.
+
+### Il costo, dichiarato
+
+**Niente sul gioco**: playtest 100 semi identico — **0 seggi bloccati su un
+solo livello su 8**. Sei documenti generati rigenerati, e le derive sono tutte
+intestazioni. Suite da 653 a **654 prove**, e il ventunesimo cancello.
+
+---
+
+## D-344 — Il 100% delle carte si legge: via il racconto, sulla faccia gli Effetti
+
+**implemented** — 0.1.309
+
+### La regola, dal committente
+
+> *«Ogni azione, effetto e #tag deve essere visibile sulla carta, eliminiamo
+> testo narrativo inutile, voglio solo grammatica e meccanica di gioco, solo
+> flavor text e titoli di carte e azioni, ma niente narrazione che non si
+> capisce. Il 100% delle carte devono essere lette e capite.»*
+
+D-340 aveva fatto la carta Asset, D-341 la scheda del Consiglio e la carta
+Domanda. Restavano **quattro mazzi**, e uno di loro era il buco piu' grosso di
+tutti.
+
+### Le carte Eco dicevano cosa si prova, mai cosa succede
+
+Trentanove carte su trentanove. **86 Effetti scritti nel dato, zero stampati.**
+E 38 condizioni che dicono quando la carta puo' uscire, nessuna stampata. Sulla
+faccia c'era la `description` — *«Qualcosa che c'era non c'e' piu', e la sua
+assenza comincia a organizzare le giornate di tutti»* — e basta.
+
+Adesso la carta porta **QUANDO ESCE** e **IL MONDO**:
+
+> **QUANDO ESCE** La Carestia e' al tavolo
+> **IL MONDO** La Carestia sale · in una Regione con #granaio diventa #magra ·
+> viene giu' Granaio in una Regione con #granaio
+
+Le righe le costruisce `AssetText`, come ogni altra riga meccanica del progetto:
+una carta non puo' dire una cosa e il motore farne un'altra (D-042).
+
+**Due modi di attaccare un Effetto, e all'inizio ne leggevo uno solo.** Un
+Effetto scritto sulla carta (75 su 86) e una Conseguenza chiamata per id (11).
+Otto carte hanno **solo** la seconda forma, e la prima stesura le lasciava mute:
+l'ha presa la prova che nessuna faccia sia vuota, che c'era gia' da D-056.
+
+**E la condizione si genera, non si ricopia.** Le `label` d'autore portano l'id
+dentro — *«TEN_FAMINE e' in gioco quest'anno»* — su **24 delle 38**. E' un id
+interno su una carta da giocatore, la stessa cosa che D-339 ha tolto da tutte le
+altre facce. I campi ci sono, e la frase si costruisce da quelli.
+
+### La tessera Regione non portava i suoi segni
+
+Trentadue segni sulle dieci tessere, **nessuno stampato**. Ed e' il difetto che
+rende ingiocabile tutto il resto: una carta Azione si gioca *«su un luogo con
+#granaio»* — se nessuna tessera dice #granaio, quel bersaglio non si trova col
+dito.
+
+`_region` **costruiva gia'** la riga e il foglio la buttava via prima di
+disegnarla: il blocco che compone il testo saltava corpo **e note** su una
+tessera. Una riga calcolata e mai disegnata e' il modo piu' silenzioso di non
+stampare una regola, e nessuna prova la guardava — le altre prove leggono la
+faccia, non l'inchiostro. Quella nuova legge **le righe disegnate**.
+
+### Il cancelletto, e dove non va
+
+*«Ogni #tag deve essere visibile.»* Al tavolo il cancelletto e' il modo in cui
+si distingue **una cosa che si posa** da una parola qualunque, e adesso ogni
+segno lo porta: `#granaio`, `#magra`, `#conteso`, `#depredata`.
+
+**Tranne dove il nome stampato non e' una parola sola.** Il dizionario dei segni
+stampa `domain:SURVIVAL` come *«dominio: la sopravvivenza»* e le memorie come
+frasi intere — *«il grano e' stato requisito»*. Il primo tentativo cuciva le
+parole con dei trattini bassi per farci stare il cancelletto: `#tagliata_fuori`,
+`#la_scorta_giurata`, `#cacciata_da_dove_si_discuteva`. **Le ha prese subito la
+prova di D-339**, e giustamente: un `#` con dei trattini bassi somiglia a un id,
+che e' la cosa che quella decisione ha tolto dalle carte.
+
+Regola finale, letta dal dizionario e non da una tabella accanto: **una parola
+sola prende il cancelletto, una frase resta una frase.**
+
+### «Dove si discute» non vale su ogni carta
+
+E' la parola del Consiglio, giusta sulla scheda e sbagliata su una carta Eco,
+che un Consiglio non lo apre. **Dodici Effetti su centodieci** puntano al luogo
+della carta, e su quelli si leggeva una regola che parlava di un tavolo che non
+c'e'. Adesso chi disegna la faccia dice come si chiama quel posto — *«nel luogo
+della carta»* — e il ripiego resta il Consiglio, che e' il caso piu' frequente.
+
+### E via il racconto dagli altri due
+
+Destino e Casata perdono la `description`, come Asset e Domanda prima di loro.
+Sul Destino la scala di clausole c'era gia' ed e' la carta; sulla Casata
+c'erano gia' archetipo, bisogno, i valori d'azione e la promessa della casa.
+
+### Il costo, dichiarato
+
+| | fuori dal bordo | col corpo stretto |
+|---|---|---|
+| Asset (48) | 0 | 46 |
+| **Eco (39)** | **0** | **0** |
+| Domanda (60) | 0 | 0 |
+| Consiglio (60) | 0 | 0 |
+| Destino (23) | 0 | 0 |
+| Casata (26) | 0 | 0 |
+| Regione (10) | 0 | 0 |
+
+**Le carte Eco dicono quattro volte piu' cose e stanno a corpo pieno**, perche'
+quello che entra e' piu' corto del racconto che esce. Le 46 Asset strette
+restano il debito di D-340, e la scelta fra tarocco e illustrazione fuori dalla
+faccia e' ancora del committente.
+
+**Sul gioco niente**: playtest 100 semi identico — Verita' 159/143 al tavolo
+misto, 149/125 all'uniforme, **0 seggi bloccati su un solo livello su 8**.
+Quattro documenti generati rigenerati, e le derive sono tutte il cancelletto.
+
+Suite da 650 a **653 prove**.
+
+### Le tre guardie
+
+Tutte partono dai dati, e tutte mordono su un difetto piantato:
+
+- **ogni carta Eco con Effetti ne stampa**, e con una condizione la stampa;
+- **ogni tessera porta i suoi segni** — e la prova guarda **l'inchiostro**, non
+  la faccia, perche' e' li' che il difetto viveva;
+- **nessuna faccia stampa il suo racconto**, su nessuno dei sei mazzi: la prova
+  prende il campo d'autore dal dato — `rules_text`, `description` — invece di un
+  elenco di frasi vietate, che invecchierebbe.
+
+---
+
 ## D-343 — La prima casella: il Consiglio sa muovere una domanda
 
 **implemented** — 0.1.308

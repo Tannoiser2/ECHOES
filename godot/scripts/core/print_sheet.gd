@@ -214,15 +214,22 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 	var blocks: Array = [{"size": 3.6, "bold": true, "colour": INK, "text": str(face["title"]), "gap": 1.4}]
 	if str(face["subtitle"]) != "":
 		blocks.append({"size": 2.2, "bold": false, "colour": accent, "text": str(face["subtitle"]), "gap": 2.0})
-	# Sulla tessera Regione descrizione e fonti non salgono sul tavolo; su una
-	# carta Asset il testo di regole ci deve stare, dipinta o no.
+	# Sulla tessera Regione il **racconto** non sale sul tavolo; su una carta
+	# Asset il testo di regole ci deve stare, dipinta o no.
+	#
+	# **Ma le righe meccaniche salgono anche sulla tessera** (D-344): i segni di
+	# una Regione sono il bersaglio che ogni carta Azione nomina — «un luogo con
+	# #granaio» — e una tessera che non li porta rende quella carta ingiocabile.
+	# Fino alla 0.1.308 `_region` costruiva una nota e questo blocco la buttava
+	# via: una riga calcolata e mai disegnata, che e' il modo piu' silenzioso di
+	# non stampare una regola.
 	if not full_tile:
 		for paragraph in face["body"]:
 			if str(paragraph) != "":
 				blocks.append({"size": 2.3, "bold": false, "colour": "#c9bfae", "text": str(paragraph), "gap": 1.6})
-		for note in face["notes"]:
-			if str(note) != "":
-				blocks.append({"size": 2.0, "bold": false, "colour": DIM, "text": str(note), "gap": 0.9})
+	for note in face["notes"]:
+		if str(note) != "":
+			blocks.append({"size": 2.0, "bold": false, "colour": DIM, "text": str(note), "gap": 0.9})
 
 	# Se il testo non ci sta, la prima cosa che cede e' l'illustrazione, non il
 	# corpo del testo: due carte su quarantotto hanno una riga di regole lunga il

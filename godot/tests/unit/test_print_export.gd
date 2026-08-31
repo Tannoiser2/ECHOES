@@ -305,7 +305,7 @@ func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
 			col_prosa += 1
 			continue
 		col_regola += 1
-		assert_true(notes.contains("si accende quando:"),
+		assert_true(notes.contains("SI ACCENDE QUANDO"),
 			"%s ha la casella e la carta non la stampa" % str(card["id"]))
 		for rule in tension["heats_when"] as Array:
 			var line: String = str((rule as Dictionary).get("text", ""))
@@ -528,3 +528,142 @@ func test_the_tension_card_prints_no_description() -> void:
 		assert_false(whole.contains(prose),
 			"%s stampa ancora il racconto" % str(card["id"]))
 	assert_eq(cards, 60, "le carte Domanda")
+
+
+## **La carta Eco diceva cosa si prova, mai cosa succede** (D-344).
+##
+## Il committente: *«ogni azione, effetto e #tag deve essere visibile sulla
+## carta [...] il 100% delle carte devono essere lette e capite»*. Le carte Eco
+## erano il buco piu' grosso: **86 Effetti scritti nel dato e zero stampati**,
+## piu' 38 condizioni che dicono quando la carta puo' uscire. Sulla faccia
+## c'era la `description`, e basta.
+##
+## La prova parte dai dati e conta due volte: ogni carta con Effetti deve
+## stamparne almeno uno, e il racconto non deve restarci accanto.
+func test_the_echo_card_says_what_it_does() -> void:
+	var loaded: RefCounted = data()
+	var con_effetti: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "echo":
+			continue
+		var written: Dictionary = loaded.echo_cards[str(card["id"])]
+		var printed: String = " ".join(PackedStringArray(card.get("notes", []) as Array))
+		var whole: String = printed + " " + " ".join(
+			PackedStringArray(card.get("body", []) as Array)
+		)
+		if not (written.get("effect_hooks", []) as Array).is_empty():
+			con_effetti += 1
+			assert_true(printed.contains("IL MONDO"),
+				"%s ha Effetti e la carta non li stampa" % str(card["id"]))
+		for condition in written.get("eligibility", []) as Array:
+			assert_true(printed.contains("QUANDO ESCE"),
+				"%s ha una condizione e la carta non la stampa" % str(card["id"]))
+			break
+		var prose: String = str(written.get("description", ""))
+		if prose != "":
+			assert_false(whole.contains(prose),
+				"%s stampa ancora il racconto" % str(card["id"]))
+	assert_eq(con_effetti, 39, "le carte Eco che stampano cosa fanno")
+
+
+## **I segni della tessera** (D-344). Una carta Azione si gioca «su un luogo con
+## #granaio»: senza i segni stampati sulla tessera quel bersaglio non si trova
+## col dito. Trentadue segni su dieci tessere, e non ne arrivava **nessuno** —
+## `_region` costruiva una nota e il foglio la buttava via prima di disegnarla.
+func test_the_region_tile_shows_its_signs() -> void:
+	var loaded: RefCounted = data()
+	var tessere: int = 0
+	for face in CardFace.every(loaded):
+		var tile: Dictionary = face as Dictionary
+		if str(tile.get("deck", "")) != "region":
+			continue
+		tessere += 1
+		var region: Dictionary = loaded.regions[str(tile["id"])]
+		var drawn: Dictionary = PrintSheet.layout(
+			tile, PrintSheet.cell_size(str(tile["shape"]))
+		)
+		var inked: Array = []
+		for line in drawn["lines"] as Array:
+			inked.append(str((line as Dictionary)["text"]))
+		var printed: String = " ".join(PackedStringArray(inked))
+		for tag in region.get("tags", []) as Array:
+			# **Disegnato**, non solo calcolato: e' la differenza che questa
+			# tessera ha pagato per otto versioni.
+			assert_true(printed.contains(AssetText.sign_word(str(tag), loaded)),
+				"%s non porta il segno %s" % [str(tile["id"]), str(tag)])
+		var prose: String = str(region.get("description", ""))
+		if prose != "":
+			assert_false(printed.contains(prose),
+				"%s stampa ancora il racconto" % str(tile["id"]))
+	assert_eq(tessere, 10, "le tessere Regione")
+
+
+## **Nessuna faccia stampa piu' il racconto** (D-344), su nessun mazzo. La prova
+## prende il campo d'autore di ogni pezzo — `rules_text`, `description` — e
+## chiede che non arrivi sulla faccia. E' l'unica forma che regge: un elenco di
+## frasi vietate invecchia, un campo del dato no.
+func test_no_face_prints_its_prose() -> void:
+	var loaded: RefCounted = data()
+	var sets: Dictionary = {
+		"asset": [loaded.assets, "rules_text"],
+		"echo": [loaded.echo_cards, "description"],
+		"tension": [loaded.tensions, "description"],
+		"destiny": [loaded.destinies, "description"],
+		"entity": [loaded.entities, "description"],
+		"region": [loaded.regions, "description"],
+	}
+	var guardate: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		var deck: String = str(card.get("deck", ""))
+		if not sets.has(deck):
+			continue
+		var pair: Array = sets[deck]
+		var source: Dictionary = pair[0]
+		if not source.has(str(card["id"])):
+			continue
+		var prose: String = str((source[str(card["id"])] as Dictionary).get(str(pair[1]), ""))
+		if prose == "":
+			continue
+		guardate += 1
+		var whole: String = " ".join(PackedStringArray(card.get("notes", []) as Array)) \
+			+ " " + " ".join(PackedStringArray(card.get("body", []) as Array))
+		assert_false(whole.contains(prose),
+			"%s/%s stampa ancora il racconto" % [deck, str(card["id"])])
+	assert_true(guardate > 150, "guardate %d facce con un testo d'autore" % guardate)
+
+
+## **Ogni riga meccanica porta la sua intestazione** (D-345).
+##
+## Il committente ha chiesto lo scheletro di tutte le carte, e ricavarlo dalle
+## facce vere ha trovato **quattro mazzi con righe senza etichetta**: 180 righe
+## sulle carte Domanda, 64 sulle Casate, 27 sulle Asset, 20 sulle tessere. Una
+## riga senza intestazione e' una riga che al tavolo si legge per ultima — e
+## quando si legge non si sa cos'e'.
+##
+## La prova non guarda un elenco di intestazioni buone, che invecchierebbe:
+## chiede che **ogni riga cominci con parole tutte maiuscole**, o con il numero
+## di un'Azione, o col punto di una casella. E' la forma, non il vocabolario.
+func test_every_mechanical_line_has_a_headword() -> void:
+	var mute: Array = []
+	var guardate: int = 0
+	for face in CardFace.every(data()):
+		var card: Dictionary = face as Dictionary
+		for note in card.get("notes", []) as Array:
+			var line: String = str(note)
+			if line == "":
+				continue
+			guardate += 1
+			if line.begins_with("①") or line.begins_with("②") or line.begins_with("· "):
+				continue
+			var first: String = line.split(" ")[0]
+			var shouted: bool = first.length() >= 2 and first == first.to_upper()
+			if not shouted:
+				mute.append("%s/%s: «%s»" % [
+					str(card["deck"]), str(card["id"]), line.substr(0, 40),
+				])
+	assert_true(guardate > 400, "guardate %d righe" % guardate)
+	assert_eq(mute.size(), 0, "righe senza intestazione: %s" % " | ".join(
+		PackedStringArray(mute.slice(0, 3))
+	))

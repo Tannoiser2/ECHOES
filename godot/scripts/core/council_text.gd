@@ -85,14 +85,15 @@ static func _voice(text: String, voice: Callable) -> String:
 ## Conseguenza che dice una cosa e ne fa un'altra non e' possibile, perche' la
 ## frase nasce dagli stessi campi che il motore applica.
 static func consequence_note(
-	consequence: Dictionary, data = null, voice: Callable = Callable()
+	consequence: Dictionary, data = null, voice: Callable = Callable(),
+	focus: String = "dove si discute"
 ) -> String:
 	var said: Array = []
 	for effect in consequence.get("effects", []):
 		# Il buco puo' stare **dentro il segno**, non solo nella frase d'autore:
 		# `settlement:$proponent` diventa «insediamento: $proponent» e il `$`
 		# arriva fino alla scheda. Si spiega qui, dove si spiega tutto il resto.
-		var line: String = _voice(AssetText.effect_note(effect as Dictionary, data), voice)
+		var line: String = _voice(AssetText.effect_note(effect as Dictionary, data, focus), voice)
 		if line != "" and not said.has(line):
 			said.append(line)
 	# **Una Cicatrice e' un segno in un posto, non una frase** (D-341). Stampava
@@ -104,7 +105,7 @@ static func consequence_note(
 	if not scar.is_empty():
 		said.append("e resta una Cicatrice: %s %s" % [
 			AssetText.sign_word(str(scar.get("tag", "")), data),
-			AssetText.place_word(str(scar.get("region_id", "")), data),
+			AssetText.place_word(str(scar.get("region_id", "")), data, focus),
 		])
 	return " · ".join(PackedStringArray(said))
 
