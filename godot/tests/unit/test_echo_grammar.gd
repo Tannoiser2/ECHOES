@@ -43,6 +43,10 @@ func test_playing_a_card_records_its_function() -> void:
 			str((condition as Dictionary)["tag"])
 		)
 	var before: int = session.service.hand_size("ENT_ALDRIC")
+	var copie_prima: int = 0
+	for card in hand:
+		if str(card) == asset_id:
+			copie_prima += 1
 	var result: Dictionary = session.actions.execute(
 		"ENT_ALDRIC", {"template": "PLAY_ECHO", "params": {"asset_card_id": asset_id}}
 	)
@@ -70,9 +74,16 @@ func test_playing_a_card_records_its_function() -> void:
 		session.service.hand_size("ENT_ALDRIC"), before - 1,
 		"l'Eco costa la carta che parla, e nient'altro"
 	)
-	assert_false(
-		(session.world["entities"]["ENT_ALDRIC"]["hand"] as Array).has(asset_id),
-		"e la carta che l'ha detto non e' piu' in mano"
+	# **Una copia, non la carta.** `AST_FORCE_LEVY` ha quattro copie in scatola e
+	# la mano puo' averne piu' d'una: chiedere che il titolo sia sparito dalla
+	# mano e' la domanda sbagliata, e sbagliava anche quando passava.
+	var rimaste: int = 0
+	for card in (session.world["entities"]["ENT_ALDRIC"]["hand"] as Array):
+		if str(card) == asset_id:
+			rimaste += 1
+	assert_eq(
+		rimaste, copie_prima - 1,
+		"e la copia che ha parlato non e' piu' in mano"
 	)
 
 

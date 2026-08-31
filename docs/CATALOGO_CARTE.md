@@ -3341,7 +3341,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | revelation |
-| cosa fa | tension adesso e velata · Nel mondo: knowledge shared |
+| cosa fa | La Successione adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: knowledge shared |
 | id | `ECH_THE_ONE_WHO_SAW` |
 
 > Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
