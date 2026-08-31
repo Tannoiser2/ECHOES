@@ -6474,7 +6474,7 @@ per un mazzo che potrebbe non esistere.
 
 ---
 
-### 115. Una chiave sbagliata nel payload di un Effetto non la vede nessuno
+### 115. Una chiave sbagliata nel payload di un Effetto non la vede nessuno — CHIUSA in 0.1.327
 
 `cancelli` · `dati` · aperta in 0.1.325 ([D-359](DECISIONS.md#d-359))
 
@@ -6521,6 +6521,19 @@ tipo, e `validate_data.py` morde da solo senza codice nuovo.
 
 **Fatto quando** un payload con una chiave che il motore non legge fa andare
 rosso un cancello, e la guardia ha il suo difetto piantato nel `--self-test`.
+
+#### Chiusa: [D-361](DECISIONS.md#d-361)
+
+`effect.schema.json` dichiara le chiavi ammesse per 27 tipi su 29, ricavate da
+**quello che `EffectApplier` legge** e non dai dati — ricavarle dai dati avrebbe
+reso legge il primo refuso. `CREATE_ECHO` e `APPEND_TRUTH` restano liberi, con la
+ragione scritta: scrivono il payload intero in un registro.
+
+Otto casi piantati nel `--self-test`, fra cui il difetto vero.
+
+E accendendolo il cancello ha trovato subito **30 `optional` decorativi**, su
+tipi dove la tolleranza e' gia' incondizionata e la parola non decide niente.
+Tolti.
 
 ---
 

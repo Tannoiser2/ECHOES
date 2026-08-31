@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.327 — Le chiavi del payload le decide il tipo dell'Effetto (D-361)
+
+Chiude ISSUES 115, aperta ieri quando una carta che ho scritto io diceva il
+contrario di quello che faceva.
+
+`effect.schema.json` dichiara per 27 tipi su 29 quali chiavi il payload puo'
+portare, con `additionalProperties: false`. La lista viene da **quello che
+`EffectApplier` legge**, non dai dati: ricavarla dai dati avrebbe reso legge il
+primo refuso. `CREATE_ECHO` e `APPEND_TRUTH` restano liberi perche' scrivono il
+payload intero in un registro, e li' ogni chiave e' contenuto.
+
+Otto casi piantati nel `--self-test`, fra cui il difetto vero.
+
+### Trenta parole che non facevano niente
+
+Acceso, il cancello ha trovato **30 `optional` decorativi** su tipi dove il
+motore non li guarda: togliere una cosa che non c'e' e' gia' un no-op
+incondizionato. Tolte. Non cambia niente a runtime, ed e' proprio per questo:
+una parola sulla carta che non fa nulla e' una bugia, e finche' resta scritta
+qualcuno la legge come una leva.
+
+---
+
+## 0.1.326 — L'Eco costa la carta, e nient'altro (D-360)
+
+Due leve che la 0.1.325 aveva lasciato in piedi come tarature dichiarate, decise
+dal committente: *«l'eco non deve costare due carte, e' una opzione come le
+azioni, solo che ha condizioni piu' stringenti»*.
+
+**Il prezzo.** La parola pagata di D-118 nasceva quando l'Eco stava in un mazzo
+separato e la carta Asset era il pedaggio per far parlare una carta non tua.
+Adesso l'Eco **e' la carta**: calarlo costa la carta, come giocarla per una
+delle sue due Azioni. A distinguerlo sono le condizioni — l'Atto e i segni del
+mondo — non il conto.
+
+**Il tetto di una calata per Atto per seggio.** Stava nel decisore e non su
+nessun pezzo: un limite che non e' stampato da nessuna parte non e' una regola
+del gioco, e' un'abitudine dell'app. Chi ne cala due ha speso due carte, e
+quello e' gia' il freno.
+
+| su 100 anni | mazzo | fuso | +Atto cumulativo | +D-360 |
+|---|---|---|---|---|
+| Echi calati per partita | 0,40 | 0,64 | 0,70 | **0,81** |
+| partite con almeno una | 37 | 46 | 49 | **49** |
+| Echi mai usciti | 27/39 | 33/48 | 31/48 | **29/48** |
+| fermi per l'Atto | — | 382 | 0 | **0** |
+| fermi per il prezzo | 228 | 58 | 58 | **0** |
+
+Il doppio del mazzo, e i freni strutturali a zero. Quello che resta e' una
+preferenza, non un blocco: meta' degli Echi fermi era **legale**, e il decisore
+sceglie l'Azione normale. Ma il decisore pesa un Eco sui propri obiettivi e non
+su quello che lascia scritto nel mondo, e su quello non e' un buon giudice: il
+numero vero lo dira' un tavolo con delle persone.
+
+---
+
 ## 0.1.325 — Via il mazzo del Narratore: l'Eco e' la versione potenziata della carta (D-359)
 
 Ordine del committente, dopo la misura della 0.1.324: *«fai la 1 e la 3, via

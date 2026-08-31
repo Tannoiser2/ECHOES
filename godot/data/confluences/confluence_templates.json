@@ -545,8 +545,7 @@
                 "id": "$region_focus"
               },
               "payload": {
-                "tag": "condition:unrest",
-                "optional": true
+                "tag": "condition:unrest"
               }
             },
             {
@@ -856,8 +855,7 @@
                 "id": "$region_focus"
               },
               "payload": {
-                "tag": "condition:abandoned",
-                "optional": true
+                "tag": "condition:abandoned"
               }
             },
             {

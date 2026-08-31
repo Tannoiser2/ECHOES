@@ -10,6 +10,64 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-361 — Le chiavi del payload le decide il tipo dell'Effetto
+
+**implemented** (0.1.327) · chiude [ISSUES 115](ISSUES.md#115) · scelta del
+committente: *«fai la 115, il cancello sulle chiavi»*.
+
+### Il difetto
+
+Scrivendo i nove Echi nuovi di [D-359](#d-359), una carta ha preso questo:
+
+```json
+{"type": "SET_TENSION_VISIBILITY", "payload": {"visible": true}}
+```
+
+La chiave che il motore legge e' `visibility`, col valore `"OPEN"`. Con
+`visible` la carta **non scopriva niente**, e il catalogo generato la stampava
+come *«tension adesso e velata»* — una carta che si chiama rivelazione e che, a
+leggerla, dice di velare.
+
+Nessuno l'ha vista: `validate_data.py` passava perche' il payload era dichiarato
+`{"type": "object"}` senza vincoli, `validate_physical.py` guarda i segni e non
+le chiavi, e **GDScript non alza niente** su una chiave che manca — la prima
+delle trappole di CLAUDE.md. L'ha vista il catalogo delle carte, per caso.
+
+### Il cancello
+
+`effect.schema.json` adesso dichiara, **per ognuno dei 27 tipi che prendono
+argomenti**, le chiavi ammesse nel payload, con `additionalProperties: false`.
+La lista non e' ricavata dai dati — sarebbe circolare, un refuso diventerebbe
+legge — ma da **quello che `EffectApplier` legge davvero**, estratto dal codice
+e controllato a mano.
+
+Due tipi restano liberi e la ragione e' scritta: `CREATE_ECHO` e `APPEND_TRUTH`
+scrivono il payload intero in un registro, quindi la' ogni chiave e' contenuto
+d'autore, non un argomento del motore.
+
+E la guardia si vede mordere: otto casi piantati in
+`validate_data.py --self-test`, fra cui il difetto vero.
+
+### Trenta parole che non facevano niente
+
+Accendendolo, il cancello ha trovato **30 `optional` decorativi**: 24 su
+`REMOVE_REGION_TAG`, 4 su `REMOVE_GLOBAL_TAG`, uno su `REMOVE_ENTITY_TAG`, uno
+su `RAZE_STRUCTURE`.
+
+Su quei quattro tipi togliere una cosa che non c'e' e' **gia' un no-op
+incondizionato**: il codice non guarda `optional`, e il commento accanto dice
+«marked optional» descrivendo una convenzione che il motore non applica. La
+tolleranza che l'autore voleva ce l'aveva gia'; la parola non ne era la causa.
+
+Tolte. Non cambia niente a runtime — e' esattamente per questo che andavano
+tolte: una parola sulla carta che non fa nulla e' una bugia, e finche' resta
+scritta qualcuno la legge come una leva.
+
+Dove `optional` **decide** davvero — `SET_STRUCTURE_GRADE`, `ADD_PRESENCE`,
+`REMOVE_PRESENCE`, `CLOSE_PASSAGE`, `OPEN_PASSAGE` — resta, ed e' dichiarata.
+
+---
+
 ## D-360 — L'Eco costa la carta, e nient'altro
 
 **implemented** (0.1.326) · scelta del committente: *«l'eco non deve costare due

@@ -683,8 +683,7 @@
               "id": "$region_with:capital"
             },
             "payload": {
-              "tag": "condition:unrest",
-              "optional": true
+              "tag": "condition:unrest"
             }
           }
         }
@@ -1113,8 +1112,7 @@
               "id": "$region_with:capital"
             },
             "payload": {
-              "tag": "condition:unrest",
-              "optional": true
+              "tag": "condition:unrest"
             }
           }
         }

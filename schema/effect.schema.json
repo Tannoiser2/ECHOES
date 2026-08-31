@@ -42,72 +42,832 @@
     },
     "target": {
       "type": "object",
-      "required": ["kind", "id"],
+      "required": [
+        "kind",
+        "id"
+      ],
       "additionalProperties": false,
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["tension", "theme", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
+          "enum": [
+            "tension",
+            "theme",
+            "entity",
+            "region",
+            "relation",
+            "world",
+            "claim",
+            "scar",
+            "echo",
+            "truth"
+          ]
         },
-        "id": { "type": "string" }
+        "id": {
+          "type": "string"
+        }
       }
     },
     "source": {
       "type": "object",
-      "required": ["kind", "id", "act", "round", "sequence"],
+      "required": [
+        "kind",
+        "id",
+        "act",
+        "round",
+        "sequence"
+      ],
       "additionalProperties": false,
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["action", "system", "confluence", "consequence", "echo_card", "developer"]
+          "enum": [
+            "action",
+            "system",
+            "confluence",
+            "consequence",
+            "echo_card",
+            "developer"
+          ]
         },
-        "id": { "type": "string" },
-        "actor": { "type": "string" },
-        "act": { "type": "integer", "minimum": 0 },
-        "round": { "type": "integer", "minimum": 0 },
-        "sequence": { "type": "integer", "minimum": 0 }
+        "id": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "act": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "round": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        }
       }
     },
     "effect": {
       "type": "object",
-      "required": ["effect_id", "type", "target", "payload", "source", "reversible"],
+      "required": [
+        "effect_id",
+        "type",
+        "target",
+        "payload",
+        "source",
+        "reversible"
+      ],
       "additionalProperties": false,
       "properties": {
-        "effect_id": { "type": "string", "pattern": "^EFF_[0-9]{6}$" },
-        "type": { "$ref": "#/$defs/effect_type" },
-        "target": { "$ref": "#/$defs/target" },
-        "payload": { "type": "object" },
-        "source": { "$ref": "#/$defs/source" },
-        "reversible": { "type": "boolean" },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^EFF_[0-9]{6}$"
+        },
+        "type": {
+          "$ref": "#/$defs/effect_type"
+        },
+        "target": {
+          "$ref": "#/$defs/target"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "reversible": {
+          "type": "boolean"
+        },
         "inverse_type": {
           "$ref": "#/$defs/effect_type",
           "description": "Type applied when undoing this Effect. See DECISIONS D-002."
         },
-        "inverse_payload": { "type": "object" }
+        "inverse_payload": {
+          "type": "object"
+        }
       }
     },
     "effect_spec": {
       "type": "object",
       "description": "Authoring-time Effect template. Strings may contain $variables resolved by ConsequenceCompiler against the Confluence/Action context.",
-      "required": ["type", "target", "payload"],
+      "required": [
+        "type",
+        "target",
+        "payload"
+      ],
       "additionalProperties": false,
       "properties": {
-        "type": { "$ref": "#/$defs/effect_type" },
+        "type": {
+          "$ref": "#/$defs/effect_type"
+        },
         "target": {
           "type": "object",
-          "required": ["kind", "id"],
+          "required": [
+            "kind",
+            "id"
+          ],
           "additionalProperties": false,
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["tension", "theme", "entity", "region", "relation", "world", "claim", "scar", "echo", "truth"]
+              "enum": [
+                "tension",
+                "theme",
+                "entity",
+                "region",
+                "relation",
+                "world",
+                "claim",
+                "scar",
+                "echo",
+                "truth"
+              ]
             },
-            "id": { "type": "string" }
+            "id": {
+              "type": "string"
+            }
           }
         },
-        "payload": { "type": "object" },
-        "note": { "type": "string" }
-      }
+        "payload": {
+          "type": "object",
+          "description": "Gli argomenti dell'Effetto. **Le chiavi ammesse le decide il tipo** (D-361, ISSUES 115): sono quelle che `EffectApplier` legge davvero, e una chiave che il motore non legge fa fallire il cancello invece di essere ignorata in silenzio. Il difetto che ha aperto l'issue era `{\"visible\": true}` al posto di `{\"visibility\": \"OPEN\"}`: una carta che si chiamava rivelazione e che, stampata, diceva di velare. GDScript non alza niente su una chiave che manca, quindi la guardia deve stare qui."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ADD_PRESENCE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "at": true,
+                  "optional": true,
+                  "region_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ADD_SCAR"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "description": true,
+                  "echo_id": true,
+                  "region_id": true,
+                  "scar_id": true,
+                  "tag": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ADJUST_TENSION"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "delta": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ADJUST_THEME_HEAT"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "delta": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "BUILD_STRUCTURE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "grade": true,
+                  "owner": true,
+                  "structure_type": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CLOSE_PASSAGE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "optional": true,
+                  "region_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CONSUME_CLAIM"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "claim_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CREATE_CLAIM"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "act": true,
+                  "claim_id": true,
+                  "domain": true,
+                  "entity_id": true,
+                  "round": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "GRANT_ASSET"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "asset_id": true,
+                  "deck_index": true,
+                  "deck_restore": true,
+                  "hand_index": true,
+                  "reshuffle": true,
+                  "source": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "OPEN_PASSAGE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "optional": true,
+                  "region_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "RAZE_STRUCTURE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "structure_type": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "REMOVE_ASSET"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "asset_id": true,
+                  "deck_restore": true,
+                  "destination": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "REMOVE_ENTITY_TAG"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "tag": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "REMOVE_GLOBAL_TAG"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "tag": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "REMOVE_PRESENCE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "optional": true,
+                  "region_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "REMOVE_REGION_TAG"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "tag": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "REMOVE_SCAR"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "keep_region_tag": true,
+                  "scar_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_CONTROL"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "entity_id": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_ENTITY_ACTIVE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "active": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_ENTITY_TAG"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "tag": true,
+                  "tag_index": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_GLOBAL_TAG"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "tag": true,
+                  "tag_index": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_REGION_TAG"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "tag": true,
+                  "tag_index": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_RELATION"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "add_tag": true,
+                  "level": true,
+                  "remove_tag": true,
+                  "tags": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_STRUCTURE_GRADE"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "grade": true,
+                  "optional": true,
+                  "structure_type": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_STRUCTURE_OWNER"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "entity_id": true,
+                  "structure_type": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "SET_TENSION_VISIBILITY"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "visibility": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "TRANSFER_ASSET"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "asset_id": true,
+                  "from": true,
+                  "hand_index": true,
+                  "to": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CREATE_ECHO"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "description": "Registro: il payload intero diventa una riga di storia, quindi ogni chiave e' contenuto d'autore e non un argomento del motore."
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "APPEND_TRUTH"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "description": "Registro: il payload intero diventa una riga di storia, quindi ogni chiave e' contenuto d'autore e non un argomento del motore."
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

@@ -504,8 +504,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:starving",
-            "optional": true
+            "tag": "condition:starving"
           }
         },
         {
@@ -515,8 +514,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:lean",
-            "optional": true
+            "tag": "condition:lean"
           }
         },
         {
@@ -544,8 +542,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:unrest",
-            "optional": true
+            "tag": "condition:unrest"
           }
         },
         {
@@ -555,8 +552,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:contested",
-            "optional": true
+            "tag": "condition:contested"
           }
         },
         {
@@ -584,8 +580,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:cut_off",
-            "optional": true
+            "tag": "condition:cut_off"
           }
         },
         {
@@ -595,8 +590,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:plundered",
-            "optional": true
+            "tag": "condition:plundered"
           }
         },
         {
@@ -755,8 +749,7 @@
             "id": "$rival"
           },
           "payload": {
-            "tag": "crowned",
-            "optional": true
+            "tag": "crowned"
           }
         }
       ]
@@ -948,8 +941,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:cut_off",
-            "optional": true
+            "tag": "condition:cut_off"
           }
         },
         {
@@ -1201,8 +1193,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:starving",
-            "optional": true
+            "tag": "condition:starving"
           }
         },
         {
@@ -1212,8 +1203,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:rationed",
-            "optional": true
+            "tag": "condition:rationed"
           }
         },
         {
@@ -1337,8 +1327,7 @@
             "id": "WORLD"
           },
           "payload": {
-            "tag": "oath_broken",
-            "optional": true
+            "tag": "oath_broken"
           }
         },
         {
@@ -1405,8 +1394,7 @@
             "id": "WORLD"
           },
           "payload": {
-            "tag": "mine_sealed",
-            "optional": true
+            "tag": "mine_sealed"
           },
           "note": "L'unico modo di disfare un fatto eterno e' deciderlo a un Consiglio (D-085)."
         },
@@ -1417,8 +1405,7 @@
             "id": "$region_with:crystal_site"
           },
           "payload": {
-            "tag": "structure:sealed",
-            "optional": true
+            "tag": "structure:sealed"
           }
         },
         {
@@ -1460,8 +1447,7 @@
             "id": "WORLD"
           },
           "payload": {
-            "tag": "crown_divided",
-            "optional": true
+            "tag": "crown_divided"
           }
         },
         {
@@ -1500,8 +1486,7 @@
             "id": "WORLD"
           },
           "payload": {
-            "tag": "question_unresolved",
-            "optional": true
+            "tag": "question_unresolved"
           },
           "note": "La spirale si chiude solo decidendo: la via di D-085, applicata al fallimento (D-094)."
         },
@@ -1716,8 +1701,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:indebted",
-            "optional": true
+            "tag": "condition:indebted"
           }
         }
       ]

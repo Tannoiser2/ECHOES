@@ -467,8 +467,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "structure_type": "STR_KEEP",
-            "optional": true
+            "structure_type": "STR_KEEP"
           },
           "note": "La seconda meta' del mestiere (D-218): un assedio non affama soltanto, **butta giu'**. Era l'unica carta del mazzo che poteva togliere una pietra dal tavolo e non lo faceva: in cento anni non veniva abbattuto niente."
         }
@@ -727,8 +726,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:unrest",
-            "optional": true
+            "tag": "condition:unrest"
           },
           "note": "Il mestiere della carta (D-112): l'editto è la cura dell'inquietudine che i Mercenari lasciano. Se non c'è, non accade nulla."
         }
@@ -885,8 +883,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:contested",
-            "optional": true
+            "tag": "condition:contested"
           },
           "note": "Il mestiere della carta (D-112): contare chi sta dove toglie il segno della contesa - la cura del Diritto di Corona."
         }
@@ -1058,8 +1055,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "scar:unanswered",
-            "optional": true
+            "tag": "scar:unanswered"
           },
           "note": "Il mestiere della carta (D-112): il Magistrato chiude la cicatrice del consiglio che non decise. Se non c'è, non accade nulla."
         }
@@ -1467,8 +1463,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:mourning",
-            "optional": true
+            "tag": "condition:mourning"
           },
           "note": "Il mestiere della carta (D-114): gli anziani curano il lutto."
         }
@@ -1556,8 +1551,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:starving",
-            "optional": true
+            "tag": "condition:starving"
           },
           "note": "Il mestiere della carta (D-114): le braccia sono la cura della Regione affamata - e della sua regola (D-105)."
         }
@@ -1803,8 +1797,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:rationed",
-            "optional": true
+            "tag": "condition:rationed"
           },
           "note": "Il mestiere della carta (D-114): la marcia rompe le serrature delle Chiavi del Granaio."
         }
@@ -2145,8 +2138,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "scar:broken_bridge",
-            "optional": true
+            "tag": "scar:broken_bridge"
           },
           "note": "Il mestiere della carta (D-114): la mappa vecchia cura la cicatrice della via tagliata."
         }
@@ -2846,8 +2838,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:lean",
-            "optional": true
+            "tag": "condition:lean"
           },
           "note": "Il mestiere della carta (D-114): il sale conserva: la Regione della domanda non è più magra."
         }
@@ -3026,8 +3017,7 @@
             "id": "$region_focus"
           },
           "payload": {
-            "tag": "condition:cut_off",
-            "optional": true
+            "tag": "condition:cut_off"
           },
           "note": "Il mestiere della carta (D-114): la carovana è la cura del taglio - come la Scorta Giurata."
         }
