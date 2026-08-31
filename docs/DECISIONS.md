@@ -10,6 +10,53 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-348 — Vaerax ha una seconda via per sigillare la miniera
+
+**implemented** — 0.1.313
+
+### Il problema: una porta murata a tutti e tre i passi
+
+La catena di `mine_sealed` era fragile: dipendeva da una sola proposta
+(`P_SEAL_MINE`) in una sola casella del Consiglio (`CNF_AWAKENING_01`), che
+arrivava raramente (1 su 100 anni) e quando arrivava perdeva ai voti.
+
+**Soluzione**: aggiungere una **seconda penna** che posa il segno via un'altra
+casella — il Consiglio del Grano (`CNF_FAMINE_01`), dove la decisione di
+sigillare le gallerie ha senso narrativo e logistico.
+
+### La nuova proposta
+
+**`P_SEAL_MINE_FOR_FIELDS`** — "Si sigillino le gallerie sotto la montagna:
+ogni uomo valido resti nei campi, e il Cristallo resti addormentato."
+
+- Domanda: `Q_FAMINE_GRAIN` (la stessa di `P_OPEN_VALLEY`)
+- Conseguenza: `CNS_MINE_SEALED`
+- Nessuna eligibility — è sempre disponibile come `P_OPEN_VALLEY`
+- Ripple: non ha, perché la casella la gestisce già
+
+### I numeri
+
+| | |
+|---|---|
+| `mine_sealed` scritto (prima) | 0 volte in 100 anni |
+| `mine_sealed` scritto (dopo) | **3 volte** in 100 anni |
+| Consigli (media, misto) | 3.43 → **3.45** (+0.02) |
+| Consigli (media, uniforme) | 3.48 → **3.49** (+0.01) |
+| Seggi bloccati (misto) | 0 su 8 → **0 su 8** ✓ |
+| Seggi bloccati (uniforme) | 0 su 8 → **0 su 8** ✓ |
+
+Il segno arriva via tre diverse **Domande di fine Atto** (una per ciascun Tema
+caldo), perché le Tensioni del Grano (`TEN_FAMINE`) si accendono più spesso
+del Risveglio (`TEN_AWAKENING`).
+
+### Cosa resta d'autore
+
+Aprire le porte di Vaerax è bilanciamento, non struttura. **Questa modifica
+apre la strada** (D-346 la diagnostica), **ISSUES 108** elenca le tre scelte**.
+La decisione di quale applicare viene dal committente.
+
+---
+
 ## D-347 — Il prompt di una carta dice la scena, non il nome
 
 **implemented** — 0.1.312

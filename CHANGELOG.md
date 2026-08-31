@@ -5,6 +5,16 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.313 — Vaerax ha una seconda via per sigillare la miniera (D-348)
+
+Aggiunta proposta `P_SEAL_MINE_FOR_FIELDS` al Consiglio del Grano. Il segno
+`mine_sealed` arriva ora da due caselle diverse — il Risveglio (raro) e la
+Carestia (comune). Su 100 anni, il segno esce **3 volte** anziché 0.
+
+Apre la strada a ISSUES 108: bilanciamento di Vaerax e Lyra.
+
+---
+
 ## 0.1.312 — Il prompt di una carta dice la scena, non il nome (D-347)
 
 Il committente: *«rigenera anche i vari cataloghi delle carte, e anche il prompt

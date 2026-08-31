@@ -6054,17 +6054,17 @@ hanno nemmeno una condizione stampata, quindi si calano quando si vuole.
 
 ### 108. Vaerax ha un Destino murato a tutti e tre i passi
 
-`regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346))
+`regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 implementata in 0.1.313** ([D-348](DECISIONS.md#d-348))
 
 Separando le due liste di `MISURA_SEGNI` sono venute fuori **quattro clausole
 che nessuno puo' avverare**, e sono tutte della stessa casa.
 
-| passo | chiede | esce in 100 partite |
-|---|---|---|
-| `DST_VAERAX` · **VITTORIA** | `mine_sealed` | **0** |
-| `DST_VAERAX_LEGEND` · **SOGLIA** | `mountain_forgotten` | **0** |
-| `DST_VAERAX_LEGEND` · **VITTORIA** | `mine_sealed` | **0** |
-| `DST_VAERAX_LEGEND` · **TRIONFO** | `mine_sealed` | **0** |
+| passo | chiede | prima | dopo strada 2 |
+|---|---|---|---|
+| `DST_VAERAX` · **VITTORIA** | `mine_sealed` | **0** | **3 volte** ✓ |
+| `DST_VAERAX_LEGEND` · **SOGLIA** | `mountain_forgotten` | **0** | — (dipende da `mine_sealed`) |
+| `DST_VAERAX_LEGEND` · **VITTORIA** | `mine_sealed` | **0** | **3 volte** ✓ |
+| `DST_VAERAX_LEGEND` · **TRIONFO** | `mine_sealed` | **0** | **3 volte** ✓ |
 
 `DST_VAERAX_LEGEND` e' murato **a tutti e tre i passi**: chi lo pesca ha in mano
 un tarocco su cui non c'e' niente da prendere.
