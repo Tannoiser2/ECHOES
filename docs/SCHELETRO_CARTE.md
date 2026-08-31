@@ -208,5 +208,5 @@ La tessera di mappa. **Porta i segni** che ogni carta Azione bersaglia.
 > **Il Bosco dei Confini**
 > foresta · 3 pedine · 2 Pietre
 > SEGNI  dominio: l'antico · #bosco
-> CI STANNO  presidio
+> CI STANNO  archivio · canale · granaio · presidio · insediamento · pedaggio
 > FONTI  autorità, forza

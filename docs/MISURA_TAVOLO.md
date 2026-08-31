@@ -52,7 +52,7 @@ le Pietre e i gradi che le degradano.
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
 | `place:collapsed_pass` | 0 | 1 | 0 | 0 |  |
-| `place:cursed_wood` | 0 | 25 | 0 | 7 |  |
+| `place:cursed_wood` | 0 | 25 | 0 | 6 |  |
 | `place:dry_spring` | 0 | 1 | 0 | 1 |  |
 | `place:forest` | 98 | 189 | 0 | 96 |  |
 | `place:low_spring` | 0 | 0 | 0 | 0 | **non arriva mai** |
@@ -69,14 +69,14 @@ le Pietre e i gradi che le degradano.
 | `settlement:town` | 0 | 10 | 0 | 9 |  |
 | `settlement:village` | 33 | 41 | 6 | 20 |  |
 | `structure:archive` | 22 | 39 | 6 | 12 |  |
-| `structure:canal` | 0 | 8 | 1 | 5 |  |
+| `structure:canal` | 0 | 8 | 1 | 3 |  |
 | `structure:castle` | 0 | 76 | 0 | 60 |  |
 | `structure:granary` | 0 | 26 | 1 | 21 |  |
 | `structure:library` | 0 | 17 | 0 | 15 |  |
 | `structure:palace` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `structure:road` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `structure:sealed` | 0 | 1 | 26 | 1 |  |
-| `structure:tollgate` | 0 | 111 | 3 | 59 |  |
+| `structure:tollgate` | 0 | 113 | 3 | 58 |  |
 | `structure:watchtower` | 100 | 325 | 69 | 81 |  |
 
 ## un gettone accanto alla tessera
