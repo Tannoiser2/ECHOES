@@ -1618,10 +1618,60 @@ def self_test_token_budget() -> int:
         if not ok:
             failures += 1
 
+    # E la quinta: le chiavi del payload di un Effetto (ISSUES 115, D-361).
+    #
+    # Il difetto vero era `{"visible": true}` al posto di
+    # `{"visibility": "OPEN"}`: una carta che si chiama rivelazione e che,
+    # stampata, diceva di velare. Nessun cancello poteva vederlo perche' il
+    # payload era dichiarato `object` e basta, e **GDScript non alza niente**
+    # su una chiave che manca. La guardia va vista mordere su quel caso
+    # preciso, e tacere sulla forma giusta.
+    schemas = load_schemas()
+    registry = build_registry(schemas)
+    effect_schema = {
+        "$id": "https://echoes.local/schema/self_test_effect.json",
+        "$ref": "effect.schema.json#/$defs/effect_spec",
+    }
+    validator = Draft202012Validator(effect_schema, registry=registry)
+    for spec, expected, what in (
+        ({"type": "SET_TENSION_VISIBILITY", "target": {"kind": "tension", "id": "$tension"},
+          "payload": {"visibility": "OPEN"}}, 0,
+         "la chiave giusta: passa"),
+        ({"type": "SET_TENSION_VISIBILITY", "target": {"kind": "tension", "id": "$tension"},
+          "payload": {"visible": True}}, 1,
+         "il difetto vero di ISSUES 115: morde"),
+        ({"type": "ADJUST_TENSION", "target": {"kind": "tension", "id": "$tension"},
+          "payload": {"delta": 1}}, 0,
+         "un delta su una Tensione: passa"),
+        ({"type": "ADJUST_TENSION", "target": {"kind": "tension", "id": "$tension"},
+          "payload": {"amount": 1}}, 1,
+         "lo stesso delta scritto con un altro nome: morde"),
+        ({"type": "SET_REGION_TAG", "target": {"kind": "region", "id": "$region_focus"},
+          "payload": {"tag": "condition:unrest"}}, 0,
+         "un segno posato su una Regione: passa"),
+        ({"type": "REMOVE_REGION_TAG", "target": {"kind": "region", "id": "$region_focus"},
+          "payload": {"tag": "condition:unrest", "optional": True}}, 1,
+         "un `optional` dove il motore non lo legge: morde"),
+        ({"type": "SET_STRUCTURE_GRADE", "target": {"kind": "region", "id": "$region_focus"},
+          "payload": {"structure_type": "STR_FOREST", "grade": 2, "optional": True}}, 0,
+         "e dove invece lo legge: passa"),
+        ({"type": "CREATE_ECHO", "target": {"kind": "echo", "id": "ECH_X"},
+          "payload": {"qualunque": "cosa", "una": "riga di storia"}}, 0,
+         "il registro degli Echi tiene qualunque chiave: passa"),
+    ):
+        found = list(validator.iter_errors(spec))
+        ok = (len(found) > 0) == (expected > 0)
+        name = "payload keys per effect type"
+        print(f"{'ok  ' if ok else 'FAIL'}  {name:<28} {'':<14} {what}")
+        for error in found:
+            print(f"        {error.message}")
+        if not ok:
+            failures += 1
+
     if failures:
         sys.stderr.write(f"\n{failures} caso/i non si comporta come deve\n")
         return 1
-    print("\nle quattro guardie mordono dove devono e tacciono dove devono")
+    print("\nle cinque guardie mordono dove devono e tacciono dove devono")
     return 0
 
 
