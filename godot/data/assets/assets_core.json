@@ -20,7 +20,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.levy",
-      "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.",
+      "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.",
       "card_action": {
         "kind": "MOVE",
         "note": "Si chiama la leva e i contadini si spostano: e' gente che diventa presenza."
@@ -101,7 +101,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.border_watch",
-      "rules_text": "+1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.",
+      "rules_text": "Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Chi guarda il confine vede passare tutto, e non lo dice a nessuno."
@@ -187,7 +187,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.roadblock",
-      "rules_text": "+1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.",
+      "rules_text": "Fermare un carro costa sempre meno che farlo partire.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -277,7 +277,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.force.warband",
-      "rules_text": "Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.",
+      "rules_text": "Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.",
       "card_action": {
         "kind": "MOVE",
         "note": "La banda si sposta da sola: basta indicarle la Regione."
@@ -364,7 +364,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.mercenaries",
-      "rules_text": "+1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.",
+      "rules_text": "Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.",
       "card_action": {
         "kind": "FORGE",
         "note": "Si comprano, e chi si compra una volta si puo' tenere: la lealta' pagata e' pur sempre un legame."
@@ -437,7 +437,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.force.siege",
-      "rules_text": "+2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.",
+      "rules_text": "Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.",
       "card_action": {
         "kind": "CLAIM",
         "note": "Un assedio non chiede il permesso di parlare: mette la questione davanti al tavolo. Si prenota un dominio, o si strappa il Consiglio se la domanda è già matura."
@@ -535,7 +535,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.force.old_army",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.",
+      "rules_text": "Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.",
       "card_action": {
         "kind": "MOVE",
         "note": "Il vecchio esercito si muove lento e si vede da lontano - ed e' quello il punto."
@@ -615,7 +615,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.force.burned_gate",
-      "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.",
+      "rules_text": "Chi apre una porta così non resta lì a difenderla.",
       "card_action": {
         "kind": "CLAIM",
         "params": {
@@ -705,7 +705,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.edict",
-      "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.",
+      "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.",
       "card_action": {
         "kind": "CLAIM",
         "note": "L'editto prende la parola: si prenota un dominio, o si strappa il Consiglio se la domanda e' gia' matura. Lo decide chi la gioca."
@@ -784,7 +784,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.seal",
-      "rules_text": "+1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.",
+      "rules_text": "Il sigillo che manca ferma più cose del sigillo che c'è.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -858,7 +858,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.census",
-      "rules_text": "+1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.",
+      "rules_text": "Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.",
       "card_action": {
         "kind": "SCHEME",
         "params": {
@@ -950,7 +950,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
-      "rules_text": "Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.",
+      "rules_text": "Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.",
       "card_action": {
         "kind": "CLAIM",
         "note": "Il diritto di corona non chiede il permesso: apre il Consiglio, o se lo prenota."
@@ -1029,7 +1029,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.magistrate",
-      "rules_text": "+2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.",
+      "rules_text": "Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.",
       "card_action": {
         "kind": "MOVE",
         "params": {
@@ -1118,7 +1118,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.investiture",
-      "rules_text": "+1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.",
+      "rules_text": "Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.",
       "card_action": {
         "kind": "FORGE",
         "note": "Investire qualcuno e' legarlo: si accetta la terra e con la terra chi la concede."
@@ -1198,7 +1198,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.authority.interdict",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.",
+      "rules_text": "Vietare una cosa a tutti alza la posta per tutti.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -1278,7 +1278,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.authority.succession_act",
-      "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
+      "rules_text": "Nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
       "card_action": {
         "kind": "CLAIM",
         "note": "L'atto di successione e' scritto e va letto: apre il tavolo quando chi lo tiene decide."
@@ -1360,7 +1360,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.crowd",
-      "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.",
+      "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -1436,7 +1436,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.elders",
-      "rules_text": "+1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.",
+      "rules_text": "Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Gli anziani hanno gia' visto questo anno: sanno dove guardare."
@@ -1524,7 +1524,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.harvest_hands",
-      "rules_text": "+1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.",
+      "rules_text": "Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.",
       "card_action": {
         "kind": "FORGE",
         "note": "Si va a raccogliere nei campi di un altro, e da quel raccolto nasce un debito che somiglia a un'amicizia."
@@ -1609,7 +1609,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.mobilization",
-      "rules_text": "+2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.",
+      "rules_text": "È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -1685,7 +1685,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.spokesman",
-      "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.",
+      "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.",
       "card_action": {
         "kind": "CLAIM",
         "note": "Il portavoce prende la parola al posto della folla — ed è esattamente questo che RIVENDICARE vuol dire."
@@ -1768,7 +1768,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.march",
-      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.",
+      "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.",
       "card_action": {
         "kind": "MOVE",
         "note": "Una marcia e' presenza che cammina."
@@ -1854,7 +1854,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.people.exodus",
-      "rules_text": "Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.",
+      "rules_text": "Chi parte non torna al tavolo.",
       "card_action": {
         "kind": "MOVE",
         "note": "Se ne vanno tutti insieme, e il posto dove arrivano cambia padrone."
@@ -1944,7 +1944,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.people.still_hands",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.",
+      "rules_text": "Un paese che si ferma non si rimette in moto dove l'avevi lasciato.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -2020,7 +2020,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.rumor",
-      "rules_text": "Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.",
+      "rules_text": "Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Le voci di corridoio arrivano prima dei fatti. Cosa si va a sentire lo decide chi le ascolta."
@@ -2106,7 +2106,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.old_map",
-      "rules_text": "+1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.",
+      "rules_text": "I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.",
       "card_action": {
         "kind": "MOVE",
         "note": "Una mappa vecchia mostra una strada che gli altri non sanno di avere."
@@ -2194,7 +2194,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.ledger",
-      "rules_text": "+1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.",
+      "rules_text": "Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.",
       "card_action": {
         "kind": "FORGE",
         "note": "Due case che tengono lo stesso registro hanno gia' cominciato a fidarsi."
@@ -2272,7 +2272,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.proof",
-      "rules_text": "Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.",
+      "rules_text": "Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Una prova gira la carta coperta. Quale, lo sceglie chi la porta."
@@ -2360,7 +2360,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.archive",
-      "rules_text": "Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.",
+      "rules_text": "Le carte non si consumano: si consuma chi le sa leggere.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Negli archivi c'e' scritto quello che qualcuno non dice: una Regione, una domanda coperta, o cosa sta per arrivare. Sceglie chi legge."
@@ -2449,7 +2449,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.witness",
-      "rules_text": "+2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.",
+      "rules_text": "Un testimone si spende una volta sola, e la deposizione agita la casa accusata.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -2529,7 +2529,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.knowledge.red_crystal",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.",
+      "rules_text": "Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Il Cristallo misura cio' che il mondo tiene nascosto, e non guarda sempre nello stesso posto."
@@ -2621,7 +2621,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.knowledge.sealed_testimony",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
+      "rules_text": "Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
       "card_action": {
         "kind": "CLAIM",
         "note": "Una deposizione sigillata, aperta, obbliga il tavolo a riunirsi: si prenota un dominio, o si strappa il Consiglio se la domanda è già matura."
@@ -2708,7 +2708,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.grain",
-      "rules_text": "Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.",
+      "rules_text": "Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -2796,7 +2796,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.salt",
-      "rules_text": "+1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.",
+      "rules_text": "Non nutre nessuno: senza, quello che nutre non arriva.",
       "card_action": {
         "kind": "SCHEME",
         "params": {
@@ -2887,7 +2887,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.toll",
-      "rules_text": "+1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.",
+      "rules_text": "Una corda tesa fra due pali, e il diritto di non alzarla.",
       "card_action": {
         "kind": "CLAIM",
         "params": {
@@ -2977,7 +2977,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.caravan",
-      "rules_text": "Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.",
+      "rules_text": "Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.",
       "card_action": {
         "kind": "MOVE",
         "note": "La carovana porta la casa dove arriva."
@@ -3059,7 +3059,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.credit",
-      "rules_text": "+1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.",
+      "rules_text": "Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.",
       "card_action": {
         "kind": "FORGE",
         "params": {
@@ -3138,7 +3138,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.granary_keys",
-      "rules_text": "+2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.",
+      "rules_text": "Non possiedi il grano: possiedi la serratura, e la serratura raziona.",
       "card_action": {
         "kind": "FORGE",
         "params": {
@@ -3218,7 +3218,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.wealth.treasury",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.",
+      "rules_text": "Aprire il tesoro dice a tutti quanto vale davvero la questione.",
       "card_action": {
         "kind": "MOVE",
         "note": "Col tesoro si compra un posto sulla mappa, senza chiedere a nessuno."
@@ -3300,7 +3300,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.wealth.land_mortgage",
-      "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.",
+      "rules_text": "Impegnare una terra fa arrivare chi la vuole.",
       "card_action": {
         "kind": "FORGE",
         "params": {
@@ -3383,7 +3383,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.favor",
-      "rules_text": "Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.",
+      "rules_text": "Piccolo, ricordato con precisione, e restituito al momento giusto.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -3459,7 +3459,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.guest_right",
-      "rules_text": "+1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.",
+      "rules_text": "Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.",
       "card_action": {
         "kind": "MOVE",
         "params": {
@@ -3538,7 +3538,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.old_debt",
-      "rules_text": "+1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.",
+      "rules_text": "Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.",
       "card_action": {
         "kind": "CLAIM",
         "note": "Un debito vecchio conosce le stanze in cui è stato contratto: chiamarlo dà il diritto di aprire la questione, adesso o al round dopo."
@@ -3617,7 +3617,7 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.oath",
-      "rules_text": "Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.",
+      "rules_text": "Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.",
       "card_action": {
         "kind": "FORGE",
         "params": {
@@ -3699,7 +3699,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.betrothal",
-      "rules_text": "+2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.",
+      "rules_text": "Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.",
       "card_action": {
         "kind": "FORGE",
         "params": {
@@ -3781,7 +3781,7 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.blood_tie",
-      "rules_text": "Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.",
+      "rules_text": "Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.",
       "card_action": {
         "kind": "SCHEME",
         "note": "Il sangue sa prima del tavolo. Cosa sappia, dipende da chi lo chiede."
@@ -3868,7 +3868,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.bonds.hostage",
-      "rules_text": "Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.",
+      "rules_text": "Chi consegna un figlio compra una parola, e la paga a casa propria.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
@@ -3946,7 +3946,7 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.bonds.broken_pact",
-      "rules_text": "Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.",
+      "rules_text": "Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.",
       "card_action": {
         "kind": "INFLUENCE",
         "params": {

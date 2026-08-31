@@ -327,9 +327,16 @@ static func place_word(id: String, data = null, focus: String = "dove si discute
 
 ## Un segno come si legge sulla carta: col cancelletto davanti, che al tavolo e'
 ## il modo in cui si distingue «una cosa che si posa» da una parola qualunque.
+## **Il cancelletto lo decide `_sign`, e nessun altro.**
+##
+## Questa funzione lo rimetteva a forza — `word if word.begins_with("#") else
+## "#%s"` — e cosi' disfaceva, sull'unica riga che la chiama, la regola che
+## D-344 aveva scritto due righe piu' su: il cancelletto **solo su una parola
+## sola**. Risultato, **33 facce su 266**: `#il tradimento e' stato detto ad
+## alta voce`, `#il grano e' stato requisito`, `#l'erede nominato`. Una regola
+## che vale in un posto e non nell'altro non e' una regola.
 static func _hash(tag: String, data = null) -> String:
-	var word: String = _sign(tag, data)
-	return word if word.begins_with("#") else "#%s" % word
+	return _sign(tag, data)
 
 
 ## Il nome stampato di un Tema.

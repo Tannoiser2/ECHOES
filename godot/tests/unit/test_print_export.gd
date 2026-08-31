@@ -13,6 +13,7 @@ const PrintSheet := preload("res://scripts/core/print_sheet.gd")
 const ArtPlaceholder := preload("res://scripts/core/art_placeholder.gd")
 const ArtBible := preload("res://scripts/core/art_bible.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 
 ## Il test che vale per tutti: ogni faccia del set ci sta nella sua carta.
@@ -154,7 +155,7 @@ func test_the_brief_reads_the_art_bible() -> void:
 	# test lo dice prima che se ne accorga l'export.
 	assert_true(bible.read("res://../docs/ART_BIBLE.md"), "la ART_BIBLE si legge")
 	var face: Dictionary = CardFace.of("asset", "AST_FORCE_LEVY", data())
-	var prompt: String = bible.prompt_for(face, "Leva Contadina", "FORCE")
+	var prompt: String = bible.prompt_for(face, "Leva Contadina", "Uomini con attrezzi da lavoro tenuti come lance", "FORCE")
 	assert_true(prompt.contains("Leva Contadina"), "il soggetto e dentro il prompt")
 	assert_true(prompt.contains("rosso ossido"), "e l'accento e quello della sua famiglia")
 	assert_false(prompt.contains("{"), "non resta nessun segnaposto da sostituire")
@@ -169,6 +170,60 @@ func test_every_key_in_use_has_a_master_prompt() -> void:
 	assert_eq(bible.keys_without_prompt(data()), [], "nessuna chiave in uso resta senza prompt")
 
 
+## **Il prompt di una carta dice la scena, non il nome**
+## ([D-347](../../docs/DECISIONS.md#d-347)).
+##
+## D-340 tolse il racconto dalla faccia stampata e scrisse, nel commento che lo
+## faceva, che il racconto *«resta nel dato: lo legge il brief d'arte, che e' il
+## posto dove serve»*. Il brief non lo leggeva: leggeva la **faccia**, che quel
+## giorno era rimasta senza. **48 carte Asset e 39 Echo** sono uscite col prompt
+## fatto del loro titolo dentro un paragrafo di stile, e il cancello del brief e'
+## restato verde perche' confronta il documento con quello che il codice produce
+## — e il codice produceva lo stesso niente dalle due parti.
+##
+## Un cancello che confronta due copie della stessa cosa non si accorge mai che
+## la cosa e' vuota. Questa prova guarda **i dati**: ogni chiave d'arte in uso
+## deve avere, nel dato della sua carta, la riga d'autore che dice cosa succede.
+func test_every_card_sends_its_scene_and_not_its_name() -> void:
+	var bible: RefCounted = ArtBible.new()
+	assert_eq(
+		bible.keys_without_situation(data()), [],
+		"nessuna chiave in uso resta col solo titolo da dipingere"
+	)
+
+
+## E la scena arriva davvero dentro il prompt composto, che e' l'altra meta': un
+## dato pieno e un segnaposto mai sostituito darebbero la stessa carta muta.
+func test_the_scene_reaches_the_composed_prompt() -> void:
+	var bible: RefCounted = ArtBible.new()
+	if not bible.read("res://../docs/ART_BIBLE.md"):
+		return  # senza il documento non c'e' niente da verificare, e il brief lo dice
+	var loaded: RefCounted = data()
+	var levy: Dictionary = CardFace.of("asset", "AST_FORCE_LEVY", loaded)
+	var scene: String = bible._situation(levy, loaded).strip_edges()
+	assert_ne(scene, "", "la Leva Contadina ha la sua scena nel dato")
+	var prompt: String = bible.prompt_for(levy, str(levy["title"]), scene, "FORCE")
+	assert_true(prompt.contains(scene), "e la scena e' dentro il prompt che si manda")
+	assert_true(prompt.contains(str(levy["title"])), "insieme al nome della carta")
+	assert_false(prompt.contains("{"), "e non resta nessun segnaposto")
+
+
+## Lo stile sta scritto una volta. Se torna dentro i sei MASTER PROMPT, il brief
+## torna a essere 146 copie di un paragrafo: e' com'era, e non si vedeva.
+func test_the_style_is_written_once_and_not_in_every_prompt() -> void:
+	var bible: RefCounted = ArtBible.new()
+	if not bible.read("res://../docs/ART_BIBLE.md"):
+		return
+	assert_ne(bible.style(), "", "la ART_BIBLE ha il suo blocco di stile")
+	var loaded: RefCounted = data()
+	var levy: Dictionary = CardFace.of("asset", "AST_FORCE_LEVY", loaded)
+	var prompt: String = bible.prompt_for(levy, "Leva Contadina", "una scena", "FORCE")
+	assert_false(
+		prompt.contains("Painterly concept-art"),
+		"e il prompt della carta non se lo ricopia dentro"
+	)
+
+
 ## E il ritratto di Casata prende l'accento del proprio archetipo, non quello di
 ## una famiglia di Asset che si chiama allo stesso modo: `PEOPLE` e' tutt'e due
 ## le cose, ed e' l'unico posto del documento in cui due tabelle usano la stessa
@@ -178,8 +233,8 @@ func test_a_house_portrait_is_varied_by_its_archetype() -> void:
 	if not bible.read("res://../docs/ART_BIBLE.md"):
 		return  # senza il documento non c'e' niente da verificare, e il brief lo dice
 	var people: Dictionary = CardFace.of("entity", "ENT_NAHR", data())
-	var portrait: String = bible.prompt_for(people, str(people["title"]), "PEOPLE")
-	assert_true(portrait.contains("portrait"), "e il prompt del ritratto")
+	var portrait: String = bible.prompt_for(people, str(people["title"]), "chi risponde per la casa", "PEOPLE")
+	assert_true(portrait.to_lower().contains("portrait"), "e il prompt del ritratto")
 	assert_true(portrait.contains("terracotta"), "con l'accento del proprio archetipo")
 	assert_true(portrait.contains("il volto di uno"), "e la guida che dice come si ritrae un popolo")
 	assert_false(portrait.contains("{"), "non resta nessun segnaposto da sostituire")
@@ -188,7 +243,7 @@ func test_a_house_portrait_is_varied_by_its_archetype() -> void:
 	# accento valido per una carta Asset, e chiederlo deve ricadere sul generico
 	# invece di pescare dalla tabella dei ritratti.
 	var levy: Dictionary = CardFace.of("asset", "AST_FORCE_LEVY", data())
-	var scene: String = bible.prompt_for(levy, str(levy["title"]), "SOVEREIGN")
+	var scene: String = bible.prompt_for(levy, str(levy["title"]), "uomini con attrezzi tenuti come lance", "SOVEREIGN")
 	assert_true(scene.contains("l'accento della sua famiglia"), "l'Asset non vede la tabella 4")
 	assert_false(scene.contains("oro spento"), "e non si prende l'accento di un archetipo")
 
@@ -318,6 +373,68 @@ func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
 				"%s stampa ancora la prosa insieme alla regola" % str(card["id"]))
 	assert_eq(col_regola, 47, "le Tensioni che stampano la regola")
 	assert_eq(col_prosa, 13, "e quelle che, senza casella, tengono la prosa")
+
+
+## **Il cancelletto sta su una parola sola, dappertutto**
+## ([D-347](../../docs/DECISIONS.md#d-347)).
+##
+## D-344 aveva scritto la regola — un nome stampato di piu' parole non e' un
+## segnalino, e cucirgli davanti un cancelletto lo fa tornare a somigliare a un
+## id — e l'aveva messa in `_sign`. Poi `_hash`, che e' la funzione che stampa il
+## segno temuto dalla Risonanza, **lo rimetteva a forza**: `word if
+## word.begins_with("#") else "#%s"`. **33 facce su 266** portavano
+## `#il tradimento e' stato detto ad alta voce`.
+##
+## Non un elenco di frasi vietate: la prova prende **i nomi stampati dei segni**
+## e chiede che nessuna faccia ne porti uno di piu' parole col cancelletto
+## davanti. Un segno nuovo dal nome lungo e' coperto il giorno che entra.
+func test_no_face_hashes_a_whole_sentence() -> void:
+	var loaded: RefCounted = data()
+	var lunghi: Array = []
+	for tag_id in loaded.tags:
+		var word: String = SignLabels.label(str(tag_id), loaded)
+		if word.contains(" "):
+			lunghi.append(word)
+	assert_true(lunghi.size() >= 20, "i segni dal nome lungo guardati: %d" % lunghi.size())
+	var guai: Array = []
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		var said: String = " ".join(PackedStringArray(
+			(card["body"] as Array) + (card["notes"] as Array)
+		))
+		for word in lunghi:
+			if said.contains("#%s" % str(word)):
+				guai.append("%s: #%s" % [str(card["id"]), str(word)])
+	assert_eq(guai, [], "nessuna faccia incolla un cancelletto a una frase")
+
+
+## **La scena di una carta non porta numeri col segno**
+## ([D-347](../../docs/DECISIONS.md#d-347)).
+##
+## `rules_text` faceva due mestieri: era la regola *e* il quadro. D-340 ha
+## portato la regola sulla faccia stampata, e il campo e' rimasto ibrido — **35
+## carte su 48** aprivano con `+1 sul fronte Oppose` o `+2 quando Autorita' e'
+## rilevante`. Finche' nessuno lo leggeva non dava fastidio; da quando e' la
+## **scena che si manda a chi disegna**, un `+1` in cima al prompt e' una riga
+## che non si dipinge.
+##
+## Un `+1` o un `-2` e' sempre una regola e non e' mai un quadro: e' una regola
+## sola, non un elenco di frasi, e non invecchia.
+func test_a_scene_carries_no_signed_numbers() -> void:
+	var loaded: RefCounted = data()
+	var guai: Array = []
+	var guardate: int = 0
+	for asset_id in loaded.assets:
+		var scene: String = str((loaded.assets[str(asset_id)] as Dictionary).get("rules_text", ""))
+		if scene == "":
+			continue
+		guardate += 1
+		for digit in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+			if scene.contains("+%s" % digit) or scene.contains("-%s" % digit):
+				guai.append("%s: %s" % [str(asset_id), scene])
+				break
+	assert_eq(guardate, 48, "le scene guardate")
+	assert_eq(guai, [], "nessuna scena apre con un numero col segno")
 
 
 ## **Nessuna parola interna arriva sulla carta stampata** (D-339).

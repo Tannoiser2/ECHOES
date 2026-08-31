@@ -6052,6 +6052,88 @@ hanno nemmeno una condizione stampata, quindi si calano quando si vuole.
 **Fatto quando** il committente sceglie, e la scelta e' misurata sui 100 semi.
 
 
+### 108. Vaerax ha un Destino murato a tutti e tre i passi
+
+`regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346))
+
+Separando le due liste di `MISURA_SEGNI` sono venute fuori **quattro clausole
+che nessuno puo' avverare**, e sono tutte della stessa casa.
+
+| passo | chiede | esce in 100 partite |
+|---|---|---|
+| `DST_VAERAX` · **VITTORIA** | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · **SOGLIA** | `mountain_forgotten` | **0** |
+| `DST_VAERAX_LEGEND` · **VITTORIA** | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · **TRIONFO** | `mine_sealed` | **0** |
+
+`DST_VAERAX_LEGEND` e' murato **a tutti e tre i passi**: chi lo pesca ha in mano
+un tarocco su cui non c'e' niente da prendere.
+
+#### La catena, misurata
+
+`mine_sealed` lo scrive solo `CNS_MINE_SEALED` ← `P_SEAL_MINE` ←
+`Q_AWAKENING_CRYSTAL` ← `CNF_AWAKENING_01` ← `TEN_AWAKENING`.
+
+- **100 partite** (`run_choice_probe`, semi da 7000): `Q_AWAKENING_CRYSTAL` si
+  apre **1 volta**; `Q_AWAKENING_MOUNTAIN` **mai**. Quell'unica volta
+  `P_SEAL_MINE` ando' ai voti e **non passo'**.
+- **100 partite** (`run_world_marks_probe`): `mine_sealed` scritto **0 volte**.
+- **20 partite** (`run_tension_reach_probe`): `TEN_AWAKENING` e' una delle due
+  Tensioni su 60 che **non arrivano mai al tavolo**.
+
+E la coda: `mine_sealed` e' il primo anello della catena delle ere `TLY_SEAL`,
+che al terzo posa `mountain_forgotten`; `mountain_forgotten` e' la condizione
+d'entrata di `INC_VAERAX_LEGEND` — che il cancello delle vite conta **0 volte**
+— ed e' il `when_also` di `TGR_LEGEND_VOICE`, che quindi non morde mai. **Una
+proposta che non passa spegne un ramo intero.**
+
+#### Le tre strade, e nessuna e' misurata
+
+1. **Il Risveglio arriva piu' spesso.** `TEN_AWAKENING` e' un candidato su 60 e
+   se ne pescano 4: e' il collo di bottiglia a monte. Costo: tocca la pesca
+   delle Tensioni, quindi **tutto**, e va misurato sui 100 semi.
+2. **`mine_sealed` ha una seconda penna.** Una casella del Consiglio (D-280,
+   `POSA UN SEGNO`) o un'Azione stampata che lo posa: il segno smette di
+   dipendere da una proposta sola. E' la strada piu' vicina alla direzione — il
+   Consiglio decide cosa il mondo ricordera'.
+3. **I passi cambiano appiglio.** Vaerax chiede qualcosa che il mondo scrive
+   davvero. Costo: due Destini riscritti, e la storia della montagna sigillata
+   sparisce dal gioco.
+
+**Fatto quando** il committente sceglie, e sotto quella scelta `mine_sealed`
+esce almeno una volta su 100 partite.
+
+
+### 109. Il MASTER PROMPT 6 e' ricopiato in Python invece che letto
+
+`strumenti` · aperta in 0.1.312 ([D-347](DECISIONS.md#d-347))
+
+Cinque MASTER PROMPT su sei li **legge** `art_bible.gd` da `docs/ART_BIBLE.md`,
+e la ragione sta scritta nel suo commento: *«copiarli qui avrebbe creato la
+seconda copia di un testo che deve restare uno, ed e' esattamente l'errore che
+questo progetto ha gia' commesso due volte»*.
+
+Il sesto — il pittogramma del segnalino da 15 mm — sta **ricopiato dentro**
+`tools/token_catalogue.py`, nella costante `PROMPT`, insieme alle due varianti
+del contorno in `BORDO`. Nessun cancello confronta le due copie: si puo'
+cambiare il documento e il catalogo continua a stampare l'altro testo, per
+sempre e in silenzio.
+
+Non ha ancora fatto danni perche' il prompt 6 non si tocca da 0.1.260. E' pero'
+la stessa forma dei difetti che questo progetto trova da nove versioni: **due
+verita' per la stessa cosa, e nessuna che sorvegli l'altra.**
+
+#### Le due strade
+
+1. **Python legge la ART_BIBLE**, come fa `art_bible.gd`: un parser piccolo per
+   un blocco solo, ed e' finita.
+2. **Un cancello che confronta le due copie**, se leggere costa piu' del
+   confronto: piu' economico, ma tiene in piedi la duplicazione.
+
+**Fatto quando** cambiare il MASTER PROMPT 6 nel documento cambia il catalogo,
+oppure fa fallire un cancello.
+
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda

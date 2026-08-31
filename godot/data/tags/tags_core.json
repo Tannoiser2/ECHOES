@@ -2142,7 +2142,7 @@
         "destiny_physical",
         "entity_strategic_profile"
       ],
-      "note": "nessuno lo scrive piu' (ISSUES 24): il Destino DST_VAERAX_LEGEND lo chiede al vuoto"
+      "note": "lo posa la catena delle ere TLY_SEAL, al terzo anello — ma la catena parte da `mine_sealed`, che in 100 partite non si scrive nemmeno una volta, quindi il primo anello non si aggancia mai (ISSUES 108). Il Destino DST_VAERAX_LEGEND ci appoggia la SOGLIA."
     },
     {
       "id": "nahr_settled",

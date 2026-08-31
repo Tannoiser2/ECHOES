@@ -4,7 +4,7 @@
 
 Ogni segno che si posa sul tavolo — le memorie del mondo e le condizioni dei luoghi — con **quante volte la partita lo scrive** e **quante clausole lo guardano**. Fuori restano la contabilita' del motore (`knows_tension:`, `function:`, i posti): quelli nessuno si aspetta che un Destino li punti.
 
-Le due liste in fondo sono quelle da leggere. Un segno **scritto spesso e guardato da nessuno** e' lavoro del motore che al tavolo non conta niente. Un segno **guardato e mai scritto** e' un punto regalato: la clausola che lo teme e' vera dall'apertura e nessuno la puo' rompere.
+Le tre liste in fondo sono quelle da leggere. Un segno **scritto spesso e guardato da nessuno** e' lavoro del motore che al tavolo non conta niente. Un segno **mai scritto** vale invece due difetti opposti, e vanno letti separati: chi lo **teme** ha una clausola vera dall'apertura — un punto regalato; chi lo **vuole** ha una clausola che non si puo' avverare — una porta murata.
 
 Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 
@@ -106,15 +106,23 @@ Scritti almeno 10 volte, e nessuna clausola li nomina.
 | `condition:indebted` | 13 |
 | `account_settled` | 12 |
 
-## Punti regalati: guardati e mai scritti
+## Punti regalati: temuti e mai scritti
 
-Una clausola che teme una cosa che non succede mai e' vera dall'apertura.
+La clausola che teme una cosa che non succede mai e' vera dall'apertura, e nessuno la puo' rompere: il passo si porta un pezzo gia' fatto.
 
-| segno | clausole |
-|---|---|
-| `mine_sealed` | 6 |
-| `study_supervised` | 2 |
-| `valley_sealed` | 2 |
-| `water_priced` | 2 |
-| `mountain_forgotten` | 1 |
-| `oath_broken` | 1 |
+| segno | clausole | dove |
+|---|---|---|
+| `mine_sealed` | 3 | DST_LYRA · VITTORIA, DST_LYRA_TAUGHT · TRIONFO, DST_LYRA_TAUGHT · VITTORIA |
+| `study_supervised` | 2 | DST_LYRA · TRIONFO, DST_LYRA_TAUGHT · TRIONFO |
+| `valley_sealed` | 2 | DST_NAHR · TRIONFO, DST_NAHR_ROOTED · TRIONFO |
+| `water_priced` | 2 | DST_LIBERE · VITTORIA, DST_LIBERE_WATER · TRIONFO |
+| `oath_broken` | 1 | DST_SHARED_ACCOUNTS · TRIONFO |
+
+## Porte murate: voluti e mai scritti
+
+Il difetto opposto, e piu' grave: la clausola vuole una cosa che non succede mai, quindi resta falsa per tutta la partita. Chi legge quel passo sul suo tarocco sta guardando un traguardo che non si prende.
+
+| segno | clausole | dove |
+|---|---|---|
+| `mine_sealed` | 3 | DST_VAERAX · VITTORIA, DST_VAERAX_LEGEND · TRIONFO, DST_VAERAX_LEGEND · VITTORIA |
+| `mountain_forgotten` | 1 | DST_VAERAX_LEGEND · SOGLIA |

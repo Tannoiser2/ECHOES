@@ -10,6 +10,249 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-347 — Il prompt di una carta dice la scena, non il nome
+
+**implemented** — 0.1.312
+
+### La richiesta
+
+> *«Rigenera anche i vari cataloghi delle carte, e anche il prompt che descrive
+> ogni carta: non quello generico — che e' valido per tutta la grafica del gioco
+> e determina lo stile — ma la descrizione della situazione della carta.»*
+
+E col messaggio, lo stile: un blocco di una decina di righe, *painterly
+concept-art*, che vale per tutto.
+
+### Ottantasette carte mandavano a chi disegna il proprio titolo
+
+Il brief d'arte componeva il MASTER PROMPT con `{SOGGETTO}`, e il soggetto lo
+prendeva dalla **prima riga del corpo stampato** della carta. Funzionava finche'
+il corpo era il racconto. Poi **D-340 ha tolto il racconto dalla faccia**, e nel
+commento che lo faceva ha scritto:
+
+> *«Il racconto esce dalla faccia e resta nel dato: lo legge il brief d'arte, che
+> e' il posto dove serve.»*
+
+Il brief non lo leggeva. Leggeva la **faccia**, che quel giorno era rimasta
+senza. Da allora, **48 carte Asset e 39 carte Eco** — 87 su 146 chiavi d'arte —
+uscivano cosi':
+
+```
+Historical dark-fantasy painting, single evocative scene depicting Censimento.
+Painterly oil technique, visible brushwork, muted earth palette ...
+```
+
+Il nome della carta dentro un paragrafo di stile. Nient'altro. **Le tessere
+Regione no**, perche' il loro prompt ha un secondo segnaposto che pesca dal
+bioma: e' l'unico mazzo che si leggeva, ed e' il motivo per cui il difetto non
+si notava sfogliando.
+
+**Il cancello del brief e' rimasto verde tutto il tempo**, e non poteva fare
+altro: confronta il documento committato con quello che il codice produce, e il
+codice produceva lo stesso niente dalle due parti. *Un cancello che confronta due
+copie della stessa cosa non si accorge mai che la cosa e' vuota.* Nona volta.
+
+### Le quattro cose stanno in quattro posti
+
+| | cos'e' | dove sta adesso |
+|---|---|---|
+| **lo stile** | *come* si dipinge | `ART_BIBLE.md`, sezione `LO STILE`, **una volta** |
+| **la tavolozza** | *con quali colori* | «Direzione visiva» e le tabelle di variazione |
+| **l'inquadratura** | *cosa c'e' nel riquadro* | i sei MASTER PROMPT |
+| **la situazione** | *cosa sta succedendo in questa carta* | nel dato, una riga per carta |
+
+Prima erano due, e male: lo stile stava **dentro** ognuno dei sei MASTER PROMPT,
+quindi il brief lo ricopiava **146 volte**; e la situazione non stava da nessuna
+parte.
+
+Adesso il brief stampa lo stile **in cima, una volta**: si manda quello, poi la
+scheda della carta. Il segnaposto `{SITUAZIONE}` lo riempie il dato — la
+`description` d'autore per Eco, Destini, Casate e Regioni, `rules_text` per gli
+Asset — **e non il titolo: un titolo e' un'etichetta, e un'etichetta non si
+dipinge.**
+
+### E `rules_text` faceva ancora due mestieri
+
+**35 carte Asset su 48** aprivano la loro riga d'autore con una regola:
+*«+1 sul fronte Oppose»*, *«Si scarta sempre, e la Tensione in gioco sale di
+1»*, *«Forza 3»*. Era giusto finche' quella riga era **l'unico testo della
+carta**; da D-340 la regola sta sulla faccia, riga per riga, e da oggi quella
+riga e' la scena che si manda a chi disegna. **Un `+1` in cima a un prompt e'
+una riga che non si dipinge.**
+
+Le regole sono state tolte da tutte e 48, **tenendo le parole dell'autore**:
+ognuna era gia' stampata sulla faccia — la riga `IMPEGNI` porta *«+1 sul suo
+tema · si scarta se la impegni · costa: …»* — quindi non si e' perso niente.
+
+> *«+1 quando Autorita' e' rilevante per la Tensione. Una lista di nomi e' la
+> forma piu' semplice del potere — e la lista chiarisce: la Regione della
+> domanda smette di essere contesa.»*
+
+diventa
+
+> *«Una lista di nomi e' la forma piu' semplice del potere, e la lista chiarisce
+> chi sta dove.»*
+
+### E per strada: 33 facce col cancelletto incollato a una frase
+
+Rigenerando i cataloghi si leggeva, su **33 facce di 266**:
+
+> `SEMPRE  Fede +2 · se il bersaglio ha #il giuramento e' stato rotto: +1 ancora`
+
+D-344 aveva scritto la regola — **il cancelletto solo su una parola sola**,
+perche' un nome lungo cucito col cancelletto torna a somigliare a un id — e
+l'aveva messa in `_sign`. `_hash`, che e' la funzione con cui la Risonanza
+stampa il segno che teme, **lo rimetteva a forza**:
+
+```gdscript
+return word if word.begins_with("#") else "#%s" % word
+```
+
+Una regola che vale in un posto e non nell'altro non e' una regola. `_hash`
+adesso si fida di `_sign`.
+
+### Cosa sorveglia cosa, adesso
+
+Cinque guardie nuove, tutte partite dai dati e tutte provate su un difetto
+piantato — quattro dei cinque difetti piantati sono **quelli veri**, rimessi
+com'erano:
+
+1. ogni chiave d'arte in uso ha, nel dato, la riga che dice cosa succede;
+2. e quella riga arriva **dentro** il prompt composto (dato pieno e segnaposto
+   mai sostituito darebbero la stessa carta muta);
+3. lo stile non torna dentro i sei MASTER PROMPT;
+4. nessuna faccia incolla un cancelletto a un nome di piu' parole — presa dai
+   **nomi stampati dei segni**, non da un elenco di frasi vietate, cosi' un segno
+   nuovo dal nome lungo e' coperto il giorno che entra;
+5. nessuna scena porta un numero col segno: `+1` o `-2` e' sempre una regola e
+   non e' mai un quadro. E' una regola sola, e non invecchia.
+
+### Il conto
+
+| su 100 semi | prima | dopo |
+|---|---|---|
+| **seggi bloccati su un solo livello** | **0 su 8** | **0 su 8** |
+| Verita (misto) | 159 / 143 | 159 / 143 |
+| Verita (uniforme) | 149 / 125 | 149 / 125 |
+
+Suite da 657 a **662 prove**. Il brief passa da 146 copie dello stile a una, e
+guadagna 146 righe di scena.
+
+**Quello che resta fuori** e' il MASTER PROMPT 6, quello dei segnalini da 15 mm:
+e' un pittogramma monocromo a due tratti, non un'illustrazione, e lo stile
+pittorico non lo riguarda. Il suo testo pero' e' **ricopiato** dentro
+`tools/token_catalogue.py` invece di essere letto dalla ART_BIBLE come gli altri
+cinque: e' la terza copia di un testo che deve restare uno, ed e' **ISSUES 109**.
+
+---
+
+## D-346 — Due difetti opposti stavano in una lista sola, sotto il titolo di uno dei due
+
+**implemented** — 0.1.311
+
+### La richiesta
+
+> *«Mergia, rigenera il grafo dei #tag e vai avanti.»*
+
+Rigenerato, il grafo era allineato: `REGISTRO_SEGNI` e `MISURA_SEGNI` non
+avevano una deriva. Quello che non tornava era **cosa dicevano**.
+
+### La lista che raccontava il rovescio di se stessa
+
+`MISURA_SEGNI.md` chiudeva con una tabella intitolata **«Punti regalati:
+guardati e mai scritti»**, e sotto ci finiva ogni segno che il mondo non scrive
+mai, con la spiegazione:
+
+> *«Una clausola che teme una cosa che non succede mai e' vera dall'apertura.»*
+
+Vera per meta' della tabella. Una clausola nomina un segno in **due versi
+opposti**, e la sonda li contava separati — le colonne *temuto* e *voluto*
+stanno li' dalla prima versione — per poi **sommarli** in fondo:
+
+```gdscript
+absent.append([tag, f + v])   # f = lo teme, v = lo vuole
+```
+
+- `state_tag_absent` — **lo teme**: se il segno non esce mai, la clausola e'
+  vera dall'apertura e nessuno la puo' rompere. **Un punto regalato.**
+- `state_tag_present` — **lo vuole**: se il segno non esce mai, la clausola e'
+  falsa dall'apertura e nessuno la puo' avverare. **Una porta murata**, ed e' il
+  difetto piu' grave dei due: chi legge quel passo sul suo tarocco sta guardando
+  un traguardo che non si prende.
+
+Dei **14 appigli** nella lista, **4 erano porte murate lette come regali**.
+
+E' l'ottava volta che in questo progetto un documento generato non fallisce e
+racconta la storia sbagliata (D-329, D-333, D-334, D-336, D-338, D-342, D-344).
+Nessun cancello puo' accorgersi che una frase e' il rovescio di meta' della sua
+tabella: il diff combacia, l'uscita e' 0.
+
+### Le quattro porte murate sono tutte della stessa casa
+
+| passo | chiede | esce in 100 partite |
+|---|---|---|
+| `DST_VAERAX` · **VITTORIA** | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · **SOGLIA** | `mountain_forgotten` | **0** |
+| `DST_VAERAX_LEGEND` · **VITTORIA** | `mine_sealed` | **0** |
+| `DST_VAERAX_LEGEND` · **TRIONFO** | `mine_sealed` | **0** |
+
+Vaerax ha due Destini, e **uno dei due e' murato a tutti e tre i passi**.
+
+La catena, misurata e non dedotta: `mine_sealed` lo scrive solo `CNS_MINE_SEALED`,
+che sta appesa a `P_SEAL_MINE`, che sta appesa a `Q_AWAKENING_CRYSTAL`, che sta
+nel Consiglio `CNF_AWAKENING_01` di `TEN_AWAKENING`. In **100 partite** la sonda
+delle scelte apre quella domanda **una volta sola** — e l'altra domanda dello
+stesso Consiglio, `Q_AWAKENING_MOUNTAIN`, **mai**. Quell'unica volta il sigillo
+fu messo ai voti e non passo': il segno non si e' scritto **nemmeno una volta**.
+
+E il danno non finisce sul tarocco. `mine_sealed` e' il primo anello della
+catena delle ere `TLY_SEAL` (`mine_sealed` tenuto, `crystal_exploited` mai) che
+al terzo anello posa `mountain_forgotten`; `mountain_forgotten` e' la condizione
+d'entrata di `INC_VAERAX_LEGEND` — la vita che il cancello delle vite conta
+**0 volte su 0** — ed e' il `when_also` di `TGR_LEGEND_VOICE`, che quindi non
+morde mai. **Una proposta che non passa spegne un ramo intero del gioco.**
+
+### E i dieci regali, che sono l'altra meta'
+
+| segno | passi che lo temono |
+|---|---|
+| `mine_sealed` | `DST_LYRA` · VITTORIA, `DST_LYRA_TAUGHT` · VITTORIA, `DST_LYRA_TAUGHT` · TRIONFO |
+| `study_supervised` | `DST_LYRA` · TRIONFO, `DST_LYRA_TAUGHT` · TRIONFO |
+| `valley_sealed` | `DST_NAHR` · TRIONFO, `DST_NAHR_ROOTED` · TRIONFO |
+| `water_priced` | `DST_LIBERE` · VITTORIA, `DST_LIBERE_WATER` · TRIONFO |
+| `oath_broken` | `DST_SHARED_ACCOUNTS` · TRIONFO |
+
+Il caso peggiore e' **`DST_LYRA_TAUGHT` · TRIONFO**: tre condizioni, e due sono
+di quelle regalate. Il TRIONFO di Lyra e' una condizione sola che ne indossa
+tre.
+
+### Cosa cambia
+
+1. **Le liste in fondo sono tre**, e non due: *mute*, *punti regalati*, *porte
+   murate*. Ognuna ha la sua frase, e la frase e' vera per tutta la sua tabella.
+2. **Ogni riga dice di chi e' il passo.** Prima diceva `mine_sealed | 6`, che e'
+   un numero, e un numero non si va a correggere. Adesso dice
+   `DST_VAERAX · VITTORIA`, che e' un posto.
+3. **La parte che decide e' pura.** `letture(written, feared, wanted, soglia)`
+   non gioca niente e non stampa niente: prende tre conti e torna tre liste.
+   E' l'unico modo di provarla senza cento partite, ed e' il punto in cui il
+   difetto e' stato per due versioni.
+4. **Una guardia, provata sul difetto piantato.** Rimessa la somma `f + v` al
+   suo posto, le tre asserzioni che contano vanno rosse.
+
+### Il conto
+
+Nessuna regola del motore e' cambiata: la sonda misura, non gioca. Su 100 semi,
+tavolo misto e uniforme, **0 seggi bloccati su un solo livello su 8**, identico.
+Suite da 654 a **657 prove**.
+
+Quello che questa decisione **non** fa e' aprire le quattro porte: farlo vuol
+dire toccare quanto spesso il Risveglio arriva al tavolo, o dare a `mine_sealed`
+una seconda penna, e sono scelte di bilanciamento del committente. Stanno in
+**ISSUES 108** con le tre strade, e nessuna e' misurata.
+
+---
+
 ## D-345 — Lo scheletro delle carte, e le righe che non dicevano cosa erano
 
 **implemented** — 0.1.310
