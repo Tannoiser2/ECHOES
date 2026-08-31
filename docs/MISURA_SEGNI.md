@@ -15,20 +15,20 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `account_settled` | 12 | 0 | 0 | nessuno lo guarda |
 | `amnesty_granted` | 1 | 0 | 0 |  |
 | `betrayal_spoken` | 17 | 0 | 0 | nessuno lo guarda |
-| `burden_shared` | 48 | 0 | 0 | nessuno lo guarda |
+| `burden_shared` | 50 | 0 | 0 | nessuno lo guarda |
 | `charter_for_all` | 4 | 0 | 0 |  |
 | `charter_written` | 5 | 0 | 2 |  |
 | `condition:abandoned` | 49 | 0 | 0 | nessuno lo guarda |
 | `condition:contested` | 515 | 2 | 2 |  |
-| `condition:cut_off` | 95 | 1 | 1 |  |
+| `condition:cut_off` | 96 | 1 | 1 |  |
 | `condition:emptied` | 29 | 2 | 1 |  |
 | `condition:exploited` | 7 | 1 | 1 |  |
 | `condition:guarded` | 35 | 0 | 0 | nessuno lo guarda |
 | `condition:indebted` | 13 | 0 | 0 | nessuno lo guarda |
 | `condition:lean` | 1 | 0 | 0 |  |
 | `condition:mourning` | 7 | 0 | 0 |  |
-| `condition:plundered` | 25 | 0 | 0 | nessuno lo guarda |
-| `condition:rationed` | 35 | 0 | 0 | nessuno lo guarda |
+| `condition:plundered` | 26 | 0 | 0 | nessuno lo guarda |
+| `condition:rationed` | 34 | 0 | 0 | nessuno lo guarda |
 | `condition:starving` | 1 | 0 | 0 |  |
 | `condition:unrest` | 207 | 5 | 0 |  |
 | `crown_dispossessed` | 2 | 0 | 0 |  |
@@ -42,24 +42,24 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `discovery:relic` | 10 | 0 | 3 |  |
 | `discovery:the_charter` | 2 | 0 | 0 |  |
 | `discovery:the_ledger` | 340 | 0 | 0 | nessuno lo guarda |
-| `discovery:the_omen` | 447 | 0 | 0 | nessuno lo guarda |
-| `discovery:trade_ledger` | 193 | 0 | 0 | nessuno lo guarda |
+| `discovery:the_omen` | 448 | 0 | 0 | nessuno lo guarda |
+| `discovery:trade_ledger` | 195 | 0 | 0 | nessuno lo guarda |
 | `discovery:written_law` | 160 | 0 | 0 | nessuno lo guarda |
 | `distribution_audited` | 6 | 0 | 0 |  |
-| `escort_sworn` | 219 | 0 | 2 |  |
+| `escort_sworn` | 220 | 0 | 2 |  |
 | `failed_proposal` | 6 | 1 | 0 |  |
 | `faith_established` | 6 | 0 | 0 |  |
 | `grain_requisitioned` | 5 | 0 | 0 |  |
 | `heir_named` | 77 | 0 | 0 | nessuno lo guarda |
 | `knowledge_shared` | 141 | 0 | 0 | nessuno lo guarda |
-| `ledger_public` | 145 | 1 | 1 |  |
+| `ledger_public` | 144 | 1 | 1 |  |
 | `mine_sealed` | 0 | 3 | 3 | **mai scritto** |
 | `mountain_forgotten` | 0 | 0 | 1 | **mai scritto** |
 | `nahr_settled` | 9 | 0 | 2 |  |
 | `no_charter` | 1 | 1 | 0 |  |
 | `oath_broken` | 0 | 1 | 0 | **mai scritto** |
-| `order_restored` | 85 | 0 | 1 |  |
-| `question_unresolved` | 83 | 5 | 0 |  |
+| `order_restored` | 84 | 0 | 1 |  |
+| `question_unresolved` | 84 | 5 | 0 |  |
 | `relic_buried` | 8 | 1 | 0 |  |
 | `relic_shown` | 6 | 1 | 1 |  |
 | `return_promised` | 1 | 0 | 0 |  |
@@ -85,20 +85,20 @@ Scritti almeno 10 volte, e nessuna clausola li nomina.
 
 | segno | scritto |
 |---|---|
-| `discovery:the_omen` | 447 |
+| `discovery:the_omen` | 448 |
 | `discovery:the_ledger` | 340 |
-| `discovery:trade_ledger` | 193 |
+| `discovery:trade_ledger` | 195 |
 | `discovery:written_law` | 160 |
 | `discovery:legend` | 150 |
 | `knowledge_shared` | 141 |
 | `heir_named` | 77 |
+| `burden_shared` | 50 |
 | `condition:abandoned` | 49 |
-| `burden_shared` | 48 |
 | `condition:guarded` | 35 |
-| `condition:rationed` | 35 |
+| `condition:rationed` | 34 |
 | `spoke_and_lost` | 33 |
 | `someone_paid` | 27 |
-| `condition:plundered` | 25 |
+| `condition:plundered` | 26 |
 | `betrayal_spoken` | 17 |
 | `toll_shared` | 16 |
 | `took_by_hand` | 13 |
