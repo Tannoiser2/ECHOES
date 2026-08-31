@@ -10,6 +10,52 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-364 — Il censimento conta le facce che si leggono, non quelle battute a mano
+
+**implemented** (0.1.330) · scelta del committente, dopo la misura: *«1»*.
+
+### La domanda era sbagliata
+
+`COMPONENTI.md` diceva **«84 facce fisiche mancanti»**: 48 Echi, 26 Casate, 10
+tessere. Sembrava una voce del lavoro da fare, ed e' stata trattata come tale —
+il committente l'aveva messa in coda dopo ISSUES 113.
+
+Non mancava niente. Il censimento contava i blocchi `physical` **scritti a
+mano** e chiamava «mancante» tutto il resto; ma una faccia si stampa lo stesso,
+e in tre mazzi su sei si **ricava dai dati** ([D-344](#d-344)). Le facce
+generate non sono abbozzi:
+
+> **Re Aldric** — sovrano · vuole il potere
+> SA FARE  acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1
+> VUOI LASCIARE  la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito
+> SE NON CE LA FAI  dopo 150 anni con meno di 1 di questi segni: La Repubblica della Valle
+
+E scriverle a mano sarebbe stato **un passo indietro**: si perderebbe la
+garanzia che D-344 ha messo apposta — *«che la carta non possa dire una cosa e
+il motore farne un'altra»* — cioe' esattamente quello che
+[D-362](#d-362) ha dovuto rimettere a mano su 48 Risonanze poche ore prima.
+
+### Come si conta adesso
+
+Le facce si contano **dalle facce**: `SCHELETRO_CARTE.md` le ricava chiamando
+`CardFace.every()`, e il censimento legge quel documento invece di indovinare.
+E' la stessa disciplina di `MISURA_CASELLE`, che il vocabolario del Consiglio lo
+chiama invece di ricopiarlo. Tutt'e due i documenti hanno il loro `--check`,
+quindi se uno si sposta l'altro va rosso.
+
+La tabella dice adesso tre cose invece di una: **quante facce si stampano**
+(275, nessun pezzo senza), **quante portano testo d'autore**, e **com'e' fatta**
+ognuna.
+
+### E il buco vero, trovato cercando quello finto
+
+La tessera non dichiara **gli spazi dove si costruisce**, che la struttura
+fisica dettata dal committente mette sulla tessera. I 27 segni con posto
+`TILE_SLOT` esistono nel dizionario e vivono nei dati delle strutture, non sul
+cartone che dovrebbe ospitarli — [ISSUES 116](ISSUES.md#116).
+
+---
+
 ## D-363 — Su una faccia non si stampa un nome interno
 
 **implemented** (0.1.329) · trovato lavorando su [ISSUES 113](ISSUES.md#113).

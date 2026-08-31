@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.330 — Il censimento conta le facce che si leggono (D-364)
+
+«84 facce fisiche mancanti» non era vero: il censimento contava i blocchi
+scritti a mano e chiamava mancante tutto il resto. Tre mazzi su sei hanno una
+faccia **ricavata dai dati** (D-344), e non e' un abbozzo — e' una garanzia, che
+scrivendola a mano si perderebbe.
+
+Adesso le facce si contano dalle facce: `SCHELETRO_CARTE.md` le ricava dalle
+facce vere, e il censimento legge quel documento. **275 facce stampate, nessun
+pezzo senza.**
+
+E il buco vero, trovato cercando quello finto: la tessera non dichiara gli
+spazi dove si costruisce — ISSUES 116.
+
+---
+
 ## 0.1.329 — Su una faccia non si stampa un nome interno (D-363)
 
 Cercando le 48 facce che mancavano agli Echi ho scoperto che **non mancavano**:

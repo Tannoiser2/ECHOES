@@ -6551,6 +6551,49 @@ Tolti.
 
 ---
 
+### 116. La tessera non dice dove si costruisce
+
+`grammatica-fisica` · `da-decidere` · aperta in 0.1.330 ([D-364](DECISIONS.md#d-364))
+
+> **La struttura fisica, come l'ha dettata il committente:** *«Sulla tessera
+> degli spazi che possono cambiare e dove costruire cose, città, granai, ponti,
+> fortezze, castelli ecc.»*
+
+Quegli spazi **non esistono sul cartone**. Una tessera dichiara:
+
+| | |
+|---|---|
+| `presence_slots` | dove vanno le pedine — 4 su Eredan |
+| `tags` | i segni stampati — `capitale`, `dominio: la sopravvivenza`… |
+| `asset_sources` | da che mazzi si pesca standoci |
+
+E basta. **Nessuna delle dieci dice quanti spazi-Pietra ha, né quali.**
+
+Eppure la categoria esiste: `table_place: TILE_SLOT` raccoglie **27 segni** — le
+Pietre e i gradi che le degradano — ed è definita nel dizionario come *«uno
+spazio sulla tessera dove si posa una Pietra»*. Quello spazio è dichiarato nel
+vocabolario e non è dichiarato sulla tessera che dovrebbe ospitarlo.
+
+Oggi il gioco funziona lo stesso perché il motore tiene le strutture in una
+lista sulla Regione, senza limite di posti: si costruisce dove il bersaglio
+della carta arriva. Al tavolo però nessuno sa **dove** appoggiare il pezzo, né
+se ce n'è ancora posto.
+
+#### Le domande che vengono prima, e sono del committente
+
+1. **Quanti spazi per tessera?** Uno fisso, o legato al bioma?
+2. **Il bioma vincola cosa ci si costruisce?** Un porto non fa un granaio; una
+   montagna non fa un pascolo. Oggi nessun vincolo esiste: `BUILD_STRUCTURE`
+   guarda il bersaglio della carta, non la tessera.
+3. **Uno spazio pieno blocca?** Se sì diventa una risorsa contesa — ed è la
+   prima cosa in questo gioco per cui valga la pena litigare stando fermi.
+
+**Fatto quando** una tessera dichiara i suoi spazi, la faccia li stampa, e
+`BUILD_STRUCTURE` rifiuta una Pietra dove un posto non c'è — con la guardia che
+morde su un difetto piantato.
+
+---
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda

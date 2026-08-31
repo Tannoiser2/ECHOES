@@ -72,22 +72,36 @@ I prompt pronti da mandare a chi disegna stanno in
 
 Quattro cose diverse, in ordine di quanto pesano.
 
-### a. Le facce fisiche che non sono scritte
+### a. Le facce: quante si leggono, e come sono fatte
 
-Una **faccia fisica** e' il testo d'autore stampato sul cartoncino: il
-bersaglio a segni, le due Azioni, la Risonanza, le liste del prezzo. Le
-carte che ce l'hanno le controlla il validatore; le altre stampano un
-testo che il motore **ricava** dai dati digitali, e al tavolo si legge
-come una scheda tecnica, non come una carta.
+Fino alla 0.1.329 questa voce diceva **«84 facce mancanti»**, e non era
+vero: contava i blocchi `physical` **scritti a mano** e chiamava
+«mancante» tutto il resto. Ma una faccia si stampa lo stesso, e in tre
+mazzi su sei **si ricava dai dati** ([D-344](DECISIONS.md#d-344)) — non
+per pigrizia, ma perche' una faccia generata non puo' dire una cosa
+mentre il motore ne fa un'altra. Scriverle a mano toglierebbe quella
+garanzia, che e' la stessa che [D-362](DECISIONS.md#d-362) ha appena
+dovuto rimettere a mano su 48 Risonanze.
 
-| componente | faccia scritta | manca |
-|---|---|---|
-| Carte Asset | 48 su 48 | — |
-| Carte Tensione | 60 su 60 | — |
-| Carte Destino | 23 su 23 | — |
-| Echi (sulla faccia della carta Asset) | 0 su 48 | **48** |
-| **Carte Casata** | 0 su 26 | **26** |
-| **Tessere Regione** | 0 su 10 | **10** |
+Il conto delle facce viene da [SCHELETRO_CARTE.md](SCHELETRO_CARTE.md),
+che le legge dalle facce vere; la colonna «d'autore» da questi dati.
+
+| componente | facce stampate | di cui col testo d'autore | com'e' fatta |
+|---|---|---|---|
+| Carte Asset | **48** | 48 su 48 | d'autore, piu' le righe ricavate |
+| Carte Tensione (le Domande) | **60** | 60 su 60 | d'autore |
+| Schede Consiglio | **60** | — | ricavata dalla Tensione |
+| Carte Destino | **23** | 23 su 23 | d'autore |
+| Echi (stampati sulla carta Asset) | **48** | — | ricavata dai dati (D-344) |
+| Carte Casata | **26** | — | ricavata dai dati |
+| Tessere Regione | **10** | — | ricavata dai dati |
+
+**Nessun pezzo esce senza faccia.** Quello che manca sulla tessera non e'
+il testo: sono **gli spazi dove si costruisce**. La tessera dichiara
+`presence_slots` — dove vanno le pedine — e i segni stampati, ma nessuna
+delle dieci dice quanti spazi-Pietra ha ne' quali. I 27 segni con posto
+`TILE_SLOT` esistono nel dizionario e vivono nei dati delle strutture,
+non sul cartone che dovrebbe ospitarli.
 
 ### b. L'arte
 
