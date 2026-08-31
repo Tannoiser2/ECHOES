@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Il flusso del tavolo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+:root{
+  --ink:#14110d; --bone:#f2ede1; --card:#fbf8f0; --ash:#8a8172;
+  --rule:#ddd4c0; --rule-soft:#e9e2d2;
+  --posa:#2f6b58; --legge:#41586b; --vieta:#9d2933; --scalda:#a8761f;
+  --pietra:#6b5335; --tema:#6f4f96;
+  --shadow:0 1px 2px rgba(20,17,13,.10),0 8px 24px rgba(20,17,13,.07);
+  --f-display:"Zilla Slab",Georgia,serif;
+  --f-body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono","SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#ece4d3; --bone:#15130e; --card:#201c15; --ash:#9a9080;
+  --rule:#3a342a; --rule-soft:#2b261e;
+  --posa:#5aa88c; --legge:#7ba0bd; --vieta:#d4626b; --scalda:#d9a445;
+  --pietra:#a98a5f; --tema:#a986d4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+}}
+:root[data-theme="dark"]{
+  --ink:#ece4d3; --bone:#15130e; --card:#201c15; --ash:#9a9080;
+  --rule:#3a342a; --rule-soft:#2b261e;
+  --posa:#5aa88c; --legge:#7ba0bd; --vieta:#d4626b; --scalda:#d9a445;
+  --pietra:#a98a5f; --tema:#a986d4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bone);color:var(--ink);font-family:var(--f-body);font-size:15px;
+  line-height:1.5;-webkit-text-size-adjust:100%;display:flex;flex-direction:column}
+h1{font-family:var(--f-display);font-size:20px;margin:0;letter-spacing:-.01em;white-space:nowrap}
+.top{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:10px 16px;
+  border-bottom:1px solid var(--rule);background:var(--card);flex:none}
+.top .eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);font-weight:700}
+.search{position:relative;flex:1 1 260px;max-width:420px}
+input[type=search]{width:100%;font:inherit;font-size:13.5px;padding:7px 10px;color:var(--ink);
+  background:var(--bone);border:1px solid var(--rule);border-radius:2px}
+input:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.hits{position:absolute;top:calc(100% + 3px);left:0;right:0;z-index:20;background:var(--card);
+  border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);max-height:320px;
+  overflow-y:auto;display:none}
+.hits.on{display:block}
+.hit{width:100%;font:inherit;font-size:12.5px;text-align:left;padding:6px 9px;border:0;
+  background:none;color:var(--ink);cursor:pointer;display:flex;gap:7px;align-items:baseline}
+.hit:hover{background:var(--rule-soft)}
+.hit code{font-family:var(--f-mono);font-size:10px;color:var(--ash);margin-left:auto}
+.kt{font-size:9px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;
+  padding:1px 4px;border-radius:2px;background:var(--rule-soft);color:var(--ash);white-space:nowrap}
+.ctl{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-size:12px;padding:4px 9px;border-radius:2px;cursor:pointer;
+  border:1px solid var(--rule);background:transparent;color:var(--ash);font-weight:500}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.wrap{flex:1;display:grid;grid-template-columns:1fr 216px;min-height:0}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}.side{display:none}.side.on{display:block;
+  position:fixed;inset:auto 0 0 0;max-height:56vh;overflow-y:auto;z-index:30;border-top:1px solid var(--rule)}}
+.stage{position:relative;overflow:hidden;background:var(--bone)}
+svg#flow{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+svg#flow.drag{cursor:grabbing}
+.side{border-left:1px solid var(--rule);background:var(--card);overflow-y:auto;padding:12px 13px}
+.side h2{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ash);
+  margin:0 0 7px;font-family:var(--f-body);font-weight:700}
+.side .grp{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
+.side .grp:last-child{border-bottom:0}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font:inherit;font-size:11.5px;padding:2px 7px;border-radius:2px;cursor:pointer;
+  border:1px solid var(--rule);background:transparent;color:var(--ash);font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.chip .sw{display:inline-block;width:7px;height:7px;border-radius:1px;margin-right:4px;vertical-align:0}
+.legend{font-size:11px;color:var(--ash);line-height:1.7}
+.legend b{color:var(--ink)}
+.bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:10px;justify-content:space-between;
+  align-items:center;padding:6px 11px;font-size:11.5px;color:var(--ash);
+  background:color-mix(in srgb,var(--card) 90%,transparent);border-top:1px solid var(--rule-soft)}
+.zoom{display:flex;gap:4px}
+.zoom button{font:inherit;width:25px;height:25px;line-height:1;cursor:pointer;color:var(--ink);
+  border:1px solid var(--rule);background:var(--bone);border-radius:2px;font-weight:700}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bone);
+  font-size:11.5px;padding:5px 8px;border-radius:2px;max-width:300px;z-index:40;opacity:0;
+  transition:opacity .12s;line-height:1.35}
+.tip.on{opacity:1}
+/* nodi */
+.n rect{stroke-width:1.2}
+.n:hover rect{stroke-width:2.2}
+.n text{font-family:var(--f-body);font-size:12.5px;fill:var(--ink);pointer-events:none}
+.n .kind{font-size:8.5px;letter-spacing:.08em;fill:var(--ash);text-transform:uppercase;font-weight:700}
+.n.mid rect{stroke:var(--ink);stroke-width:2.6}
+.n.mid text{font-family:var(--f-display);font-weight:700;font-size:14.5px}
+.n{cursor:pointer}
+.n.more rect{stroke-dasharray:3 3}
+.e{fill:none;stroke-linecap:round;pointer-events:none}
+.hit{cursor:pointer}
+.elab{font-family:var(--f-body);font-size:9.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;pointer-events:none}
+.edove{font-family:var(--f-body);font-size:9px;fill:var(--ash);pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+
+<div class="top">
+  <div><div class="eyebrow">ECHOES</div><h1>Il flusso del tavolo</h1></div>
+  <div class="search">
+    <input type="search" id="q" placeholder="cerca una carta, un segno, un luogo, un'azione…" autocomplete="off">
+    <div class="hits" id="hits"></div>
+  </div>
+  <div class="ctl">
+    <button class="btn" id="back" title="indietro">←</button>
+    <span class="kt">passi</span>
+    <button class="btn" data-depth="1">1</button>
+    <button class="btn" data-depth="2">2</button>
+    <button class="btn" data-depth="3">3</button>
+    <button class="btn" id="side-toggle">filtri</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stage">
+    <svg id="flow"></svg>
+    <div class="tip" id="tip"></div>
+    <div class="bar">
+      <span id="count"></span>
+      <span class="zoom">
+        <button type="button" id="zin" aria-label="ingrandisci">+</button>
+        <button type="button" id="zout" aria-label="rimpicciolisci">−</button>
+        <button type="button" id="zfit" aria-label="adatta">⤢</button>
+      </span>
+    </div>
+  </div>
+  <div class="side" id="side">
+    <div class="grp"><h2>Legami</h2><div class="chips" id="fverb"></div></div>
+    <div class="grp"><h2>Che cosa</h2><div class="chips" id="fkind"></div></div>
+    <div class="grp"><h2>Come si legge</h2>
+      <p class="legend">A sinistra <b>chi ce lo mette</b>, a destra <b>chi lo legge e cosa
+      ne segue</b>. Le frecce vanno sempre nel verso del gioco.<br><br>
+      Tocca un pezzo per metterlo al centro. Tocca una freccia per leggere perché c'è.<br><br>
+      L'etichetta chiara sopra una freccia dice <b>dove</b> finisce il segno.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const G = __FLOW__;
+const N = new Map(G.nodes.map(n => [n.id, n]));
+const OUT = new Map(), IN = new Map();
+for (const e of G.edges) {
+  if (!N.has(e.a) || !N.has(e.b)) continue;
+  (OUT.get(e.a) || OUT.set(e.a, []).get(e.a)).push(e);
+  (IN.get(e.b) || IN.set(e.b, []).get(e.b)).push(e);
+}
+const KINDS = {carta:"Carta", tag:"Segno", luogo:"Luogo", azione:"Azione", pietra:"Pietra",
+  casa:"Casa", tema:"Tema", eco:"Eco", conseguenza:"Conseguenza", proposta:"Proposta",
+  tensione:"Tensione", destino:"Destino", regola:"Regola"};
+const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["letto da","--legge"],
+  esegue:["esegue","--ink"], vieta:["vieta","--vieta"], scalda:["scalda","--scalda"],
+  raccoglie:["raccoglie","--tema"], osservato_da:["osservato da","--legge"],
+  temuto_da:["temuto da","--vieta"], stampato:["stampato","--pietra"], porta:["porta","--pietra"],
+  costruisce:["costruisce","--pietra"], abbatte:["abbatte","--vieta"], muove:["muove","--scalda"],
+  pesa:["pesa","--scalda"], concede:["concede","--posa"], sconta:["sconta","--posa"],
+  propaga:["propaga","--posa"], guarda_tema:["guarda","--tema"], confina:["confina","--ash"]};
+const POSTI = {TILE_PRINTED:"stampato sulla tessera", TILE_SLOT:"uno spazio sulla tessera",
+  ZONE_TOKEN:"un gettone accanto alla tessera", SCAR_TOKEN:"un dischetto rotondo",
+  HOUSE_SHEET:"sulla scheda della casa", WORLD_MEMORY:"un gettone sul bordo della mappa",
+  NONE:"il tavolo non lo mostra"};
+
+const st = {sel:null, depth:2, hist:[], open:new Set(),
+  verbs:new Set(Object.keys(VERBS)), kinds:new Set(Object.keys(KINDS))};
+const cssv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+const NW = 178, NH = 42, COLW = 300, VGAP = 17, CAP = 9;
+
+function rami(id, dir) {
+  const src = (dir === "dn" ? OUT.get(id) : IN.get(id)) || [];
+  const seen = new Set(); const out = [];
+  for (const e of src) {
+    const other = dir === "dn" ? e.b : e.a;
+    if (!st.verbs.has(e.k) || !st.kinds.has(N.get(other)?.k)) continue;
+    const key = e.k + "|" + other;
+    if (seen.has(key)) continue;
+    seen.add(key); out.push(e);
+  }
+  return out;
+}
+
+/* costruisce le colonne a sinistra e a destra del fuoco */
+function disegna() {
+  const svg = document.getElementById("flow");
+  if (!st.sel) { svg.innerHTML = ""; return; }
+  const cols = {};           // livello -> [{id, e, from}]
+  const posti = new Map();   // "livello:id" -> {x,y}
+  cols[0] = [{id: st.sel}];
+  const archi = [];
+
+  for (const [dir, sgn] of [["up", -1], ["dn", 1]]) {
+    let frontiera = [st.sel];
+    for (let d = 1; d <= st.depth; d++) {
+      const liv = [];
+      for (const src of frontiera) {
+        let rs = rami(src, dir);
+        const key = dir + ":" + src;
+        const tutti = st.open.has(key);
+        const extra = rs.length - CAP;
+        if (!tutti && extra > 0) rs = rs.slice(0, CAP);
+        for (const e of rs) {
+          const other = dir === "dn" ? e.b : e.a;
+          if (liv.some(x => x.id === other)) { archi.push({e, dir, from:src, to:other, lev:sgn*d}); continue; }
+          liv.push({id: other, e});
+          archi.push({e, dir, from:src, to:other, lev:sgn*d});
+        }
+        if (!tutti && extra > 0) liv.push({id:"__more__" + key, more:extra, key, dir});
+      }
+      if (!liv.length) break;
+      // Tetto per colonna, oltre a quello per sorgente: quattordici pezzi in
+      // fila si leggono, quaranta no.
+      const CAPCOL = 14;
+      if (liv.filter(x => !x.more).length > CAPCOL) {
+        const tenuti = liv.filter(x => !x.more).slice(0, CAPCOL);
+        const fuori = liv.filter(x => !x.more).length - CAPCOL
+                    + liv.filter(x => x.more).reduce((s, x) => s + x.more, 0);
+        const chiave = dir + ":col" + (sgn * d);
+        if (st.open.has(chiave)) { /* aperta: si tiene tutto */ }
+        else { liv.length = 0; liv.push(...tenuti, {id:"__more__" + chiave, more:fuori, key:chiave, dir}); }
+      }
+      cols[sgn * d] = liv;
+      frontiera = liv.filter(x => !x.more).map(x => x.id);
+    }
+  }
+
+  const livelli = Object.keys(cols).map(Number).sort((a, b) => a - b);
+  let H = 0;
+  for (const l of livelli) H = Math.max(H, cols[l].length * (NH + VGAP));
+  H = Math.max(H, 260);
+  for (const l of livelli) {
+    const col = cols[l], h = col.length * (NH + VGAP) - VGAP;
+    col.forEach((it, i) => posti.set(l + ":" + it.id,
+      {x: l * COLW, y: -h / 2 + i * (NH + VGAP) + NH / 2}));
+  }
+  // Un pezzo puo' ricomparire piu' in la' (il grafo ha giri). Vale il livello
+  // **piu' vicino al centro**: tenendo l'ultimo, il pezzo al centro finiva a
+  // livello 3 e le frecce si attaccavano al posto sbagliato.
+  const livOf = new Map();
+  for (const l of [...livelli].sort((a, b) => Math.abs(a) - Math.abs(b)))
+    for (const it of cols[l]) if (!livOf.has(it.id)) livOf.set(it.id, l);
+
+  let g = `<defs>`;
+  for (const [k, [, v]] of Object.entries(VERBS))
+    g += `<marker id="m-${k}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6"
+      orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" fill="${cssv(v)}"/></marker>`;
+  g += `</defs>`;
+
+  // archi
+  for (const a of archi) {
+    const lf = livOf.get(a.from), lt = livOf.get(a.to);
+    if (lf === undefined || lt === undefined) continue;
+    const p1 = posti.get(lf + ":" + a.from), p2 = posti.get(lt + ":" + a.to);
+    if (!p1 || !p2) continue;
+    const [, cvar] = VERBS[a.e.k] || ["", "--ash"];
+    const col = cssv(cvar);
+    const x1 = p1.x + (lt > lf ? NW / 2 : -NW / 2), x2 = p2.x + (lt > lf ? -NW / 2 : NW / 2);
+    const mx = (x1 + x2) / 2;
+    const d = `M${x1},${p1.y} C${mx},${p1.y} ${mx},${p2.y} ${x2},${p2.y}`;
+    // due tracciati per freccia: quello che si vede, e una corsia larga e
+    // invisibile che si lascia toccare col dito anche dove la linea e' sottile.
+    const dati = `data-why="${esc(a.e.w)}" data-dove="${esc(a.e.d)}" `
+      + `data-verb="${VERBS[a.e.k] ? VERBS[a.e.k][0] : a.e.k}"`;
+    // Le frecce lontane dal fuoco si assottigliano e sbiadiscono: l'occhio deve
+    // seguire prima quelle che toccano il pezzo scelto.
+    const salto = Math.max(Math.abs(lf), Math.abs(lt));
+    const spesso = salto <= 1 ? 1.9 : salto === 2 ? 1.3 : 1;
+    const opaco = salto <= 1 ? .85 : salto === 2 ? .42 : .24;
+    g += `<path class="e" d="${d}" stroke="${col}" stroke-width="${spesso}" stroke-opacity="${opaco}"
+      marker-end="url(#m-${a.e.k})" ${dati}/>`;
+    g += `<path class="hit" d="${d}" stroke="transparent" stroke-width="14" fill="none" ${dati}/>`;
+    // E la scritta si mette **solo** sulle frecce che toccano il fuoco. Piu' in
+    // la' le etichette si accavallano e non si legge piu' niente: il verso resta
+    // nel colore della freccia, e il resto lo dice il tocco.
+    if (salto <= 1) {
+      // La scritta sta accanto **all'altro pezzo**, non al centro: al centro
+      // tutte le frecce convergono alla stessa altezza e le scritte si
+      // impilavano una sull'altra. Cosi' ce n'e' una per riga, nel corridoio.
+      const fuoriX = (lf === 0) ? p2.x - NW / 2 - 7 : p1.x + NW / 2 + 7;
+      const fuoriY = (lf === 0) ? p2.y : p1.y;
+      const anc = (lf === 0) ? "end" : "start";
+      const alto = a.e.d ? 9 : 3;
+      g += `<text class="elab" x="${fuoriX.toFixed(1)}" y="${(fuoriY - alto).toFixed(1)}"
+        text-anchor="${anc}" fill="${col}">${VERBS[a.e.k] ? VERBS[a.e.k][0] : a.e.k}</text>`;
+      if (a.e.d) g += `<text class="edove" x="${fuoriX.toFixed(1)}" y="${(fuoriY + 4).toFixed(1)}"
+        text-anchor="${anc}">${esc(taglia(a.e.d, 26))}</text>`;
+    }
+  }
+  // nodi
+  for (const l of livelli) for (const it of cols[l]) {
+    const p = posti.get(l + ":" + it.id); if (!p) continue;
+    if (it.more) {
+      g += `<g class="n more" data-more="${esc(it.key)}">
+        <rect x="${p.x - NW / 2}" y="${p.y - NH / 2}" width="${NW}" height="${NH}" rx="2"
+          fill="var(--card)" stroke="var(--rule)"/>
+        <text x="${p.x}" y="${p.y + 4}" text-anchor="middle">+ altri ${it.more}</text></g>`;
+      continue;
+    }
+    const n = N.get(it.id) || {}; const mid = l === 0;
+    g += `<g class="n${mid ? " mid" : ""}" data-id="${esc(it.id)}">
+      <rect x="${p.x - NW / 2}" y="${p.y - NH / 2}" width="${NW}" height="${NH}" rx="2"
+        fill="var(--card)" stroke="${mid ? "var(--ink)" : "var(--rule)"}"/>
+      <text class="kind" x="${p.x - NW / 2 + 9}" y="${p.y - NH / 2 + 13}">${KINDS[n.k] || n.k || ""}</text>
+      <text x="${p.x - NW / 2 + 9}" y="${p.y + 11}">${esc(taglia(n.t || it.id, mid ? 22 : 24))}</text>
+    </g>`;
+  }
+
+  const minL = Math.min(...livelli), maxL = Math.max(...livelli);
+  svg.innerHTML = `<g id="pan">${g}</g>`;
+  if (!vb) {
+    // Si inquadra sulla **larghezza**, col pezzo scelto al centro, e una colonna
+    // lunga si scorre. Incastrando anche l'altezza, venticinque pezzi in colonna
+    // rimpicciolivano tutto finche' non si leggeva piu' un nome.
+    const W0 = (maxL - minL) * COLW + NW + 90;
+    const cx = (minL + maxL) / 2 * COLW;
+    const r = svg.getBoundingClientRect();
+    const aspetto = (r.width && r.height) ? r.width / r.height : 1.6;
+    const w = Math.max(W0, 620), h = w / aspetto;
+    // il fuoco sta al centro in verticale; in orizzontale si tiene il disegno
+    vb = {x: cx - w / 2, y: -h / 2, w, h};
+  }
+  setVB();
+  document.getElementById("count").textContent =
+    `${archi.length} legami · ${Object.values(cols).reduce((s, c) => s + c.length, 0)} pezzi · ${st.depth} passi`;
+  aggancia();
+}
+const esc = s => String(s == null ? "" : s).replace(/[<>&"]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
+const taglia = (s, n) => s.length > n ? s.slice(0, n - 1) + "…" : s;
+
+let vb = null;
+const svgEl = () => document.getElementById("flow");
+function setVB() { if (vb) svgEl().setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`); }
+
+function aggancia() {
+  const svg = svgEl(), tip = document.getElementById("tip");
+  svg.querySelectorAll(".n[data-id]").forEach(el =>
+    el.addEventListener("click", () => vaiA(el.dataset.id)));
+  svg.querySelectorAll(".n.more").forEach(el =>
+    el.addEventListener("click", () => { st.open.add(el.dataset.more); vb = null; disegna(); }));
+  svg.querySelectorAll(".hit").forEach(el => {
+    const mostra = ev => {
+      const why = el.dataset.why, dove = el.dataset.dove;
+      tip.innerHTML = `<b>${el.dataset.verb}</b>${dove ? " · " + dove : ""}${why ? "<br>" + why : ""}`;
+      tip.classList.add("on");
+      const r = document.querySelector(".stage").getBoundingClientRect();
+      tip.style.left = Math.min(ev.clientX - r.left + 12, r.width - 310) + "px";
+      tip.style.top = (ev.clientY - r.top + 12) + "px";
+    };
+    el.addEventListener("mouseenter", mostra);
+    el.addEventListener("mousemove", mostra);
+    el.addEventListener("click", mostra);
+    el.addEventListener("mouseleave", () => tip.classList.remove("on"));
+  });
+}
+
+function vaiA(id) {
+  if (st.sel && st.sel !== id) st.hist.push(st.sel);
+  st.sel = id; st.open.clear(); vb = null; disegna();
+}
+
+/* pan e zoom */
+(function () {
+  const svg = svgEl();
+  svg.addEventListener("pointerdown", ev => {
+    if (ev.target.closest(".n") || ev.target.closest(".e")) return;
+    const s = {x:ev.clientX, y:ev.clientY, vx:vb.x, vy:vb.y};
+    svg.classList.add("drag"); svg.setPointerCapture(ev.pointerId);
+    const mv = m => { const r = svg.getBoundingClientRect();
+      vb.x = s.vx - (m.clientX - s.x) * (vb.w / r.width);
+      vb.y = s.vy - (m.clientY - s.y) * (vb.h / r.height); setVB(); };
+    const up = () => { svg.classList.remove("drag");
+      svg.removeEventListener("pointermove", mv); svg.removeEventListener("pointerup", up); };
+    svg.addEventListener("pointermove", mv); svg.addEventListener("pointerup", up);
+  });
+  const zoom = f => { const cx = vb.x + vb.w / 2, cy = vb.y + vb.h / 2;
+    vb.w *= f; vb.h *= f; vb.x = cx - vb.w / 2; vb.y = cy - vb.h / 2; setVB(); };
+  document.getElementById("zin").onclick = () => zoom(.8);
+  document.getElementById("zout").onclick = () => zoom(1.25);
+  document.getElementById("zfit").onclick = () => { vb = null; disegna(); };
+  svg.addEventListener("wheel", e => { e.preventDefault(); zoom(e.deltaY > 0 ? 1.1 : .91); }, {passive:false});
+})();
+
+/* controlli */
+function chips(host, items, on, hit, colore) {
+  host.innerHTML = "";
+  for (const [id, label, cv] of items) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip";
+    b.innerHTML = (colore && cv ? `<span class="sw" style="background:var(${cv})"></span>` : "") + label;
+    b.setAttribute("aria-pressed", on(id) ? "true" : "false");
+    b.onclick = () => { hit(id); paint(); vb = null; disegna(); };
+    host.appendChild(b);
+  }
+}
+function paint() {
+  chips(document.getElementById("fverb"),
+    Object.entries(VERBS).map(([k, [l, c]]) => [k, l, c]),
+    k => st.verbs.has(k), k => st.verbs.has(k) ? st.verbs.delete(k) : st.verbs.add(k), true);
+  chips(document.getElementById("fkind"), Object.entries(KINDS),
+    k => st.kinds.has(k), k => st.kinds.has(k) ? st.kinds.delete(k) : st.kinds.add(k));
+  document.querySelectorAll("[data-depth]").forEach(b =>
+    b.setAttribute("aria-pressed", +b.dataset.depth === st.depth ? "true" : "false"));
+}
+document.querySelectorAll("[data-depth]").forEach(b => b.onclick = () => {
+  st.depth = +b.dataset.depth; st.open.clear(); paint(); vb = null; disegna(); });
+document.getElementById("back").onclick = () => {
+  const p = st.hist.pop(); if (p) { st.sel = p; st.open.clear(); vb = null; disegna(); } };
+document.getElementById("side-toggle").onclick = () =>
+  document.getElementById("side").classList.toggle("on");
+
+/* ricerca */
+const q = document.getElementById("q"), hits = document.getElementById("hits");
+q.addEventListener("input", () => {
+  const s = q.value.trim().toLowerCase();
+  hits.innerHTML = ""; hits.classList.toggle("on", !!s);
+  if (!s) return;
+  const peso = n => { const t = (n.t || "").toLowerCase(), i = n.id.toLowerCase();
+    if (t === s || i === s) return 0; if (t.startsWith(s)) return 1;
+    if (i.startsWith(s)) return 2; if (t.includes(s)) return 3; return 4; };
+  const f = G.nodes.filter(n => st.kinds.has(n.k) &&
+      (n.id.toLowerCase().includes(s) || (n.t || "").toLowerCase().includes(s)))
+    .sort((a, b) => peso(a) - peso(b) || (a.t || a.id).length - (b.t || b.id).length).slice(0, 30);
+  for (const n of f) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "hit";
+    b.innerHTML = `<span class="kt">${KINDS[n.k] || n.k}</span><span>${esc(n.t || n.id)}</span><code>${esc(n.id)}</code>`;
+    b.onclick = () => { hits.classList.remove("on"); q.value = ""; vaiA(n.id); };
+    hits.appendChild(b);
+  }
+  if (!f.length) hits.innerHTML = `<div class="hit"><span>Niente con questo nome.</span></div>`;
+});
+document.addEventListener("click", e => {
+  if (!e.target.closest(".search")) hits.classList.remove("on"); });
+
+paint();
+vaiA(N.has("AST_FORCE_LEVY") ? "AST_FORCE_LEVY" : G.nodes[0].id);
+st.hist = [];
+</script>
+</body></html>

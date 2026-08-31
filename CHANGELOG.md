@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.318 — Il flusso del tavolo si disegna, e si rigenera da solo (D-354)
+
+Voluto dal committente: *«quando evidenzio una carta, un tag, una locazione o
+qualunque altra cosa, mi deve far vedere l'albero delle connessioni […] più
+grafico con frecce e meno tabelle»*, e *«il grafo deve sempre rigenerarsi»*.
+
+`tools/build_flow.py` → **`docs/flusso.html`**. Si sceglie un pezzo e si vede
+**a sinistra chi ce lo mette, a destra chi lo legge e cosa ne segue**, disegnato
+con le frecce. Uno, due o tre passi; ogni pezzo si mette al centro con un tocco;
+si filtra per tipo di legame e per tipo di pezzo.
+
+**543 pezzi, 1582 legami.** Tre tipi di nodo nuovi: i **luoghi** (le dieci
+tessere coi segni stampati e le adiacenze), le **azioni**, le **Pietre** coi loro
+gradi.
+
+**Il verso della lettura è rovesciato apposta.** Il dato dice «questa carta legge
+#granaio»; il tavolo chiede «#granaio chi lo legge, e quelli cosa fanno». Girato
+l'arco, la catena scorre in un verso solo: *una carta **posa** un segno · il
+segno è **letto da** una regola · la regola **vieta** un'azione.*
+
+**Nuovo cancello** `python3 tools/build_flow.py --check`, in CI: va rosso se il
+disegno non è più quello che i dati dicono. Provato piantando una regola finta.
+
+Il disegno sta in `tools/flow_template.html` e i dati in `godot/data`: si
+incontrano solo nel generatore, come il MASTER PROMPT di D-349.
+
+---
+
 ## 0.1.317 — Sotto gli occhi della guardia non si trama (D-353)
 
 Primo passo della potatura chiesta dal committente. `condition:guarded` — posato

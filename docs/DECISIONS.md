@@ -10,6 +10,65 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-354 — Il flusso del tavolo si disegna, e si rigenera da solo
+
+**implemented** · 0.1.318 · voluto dal committente
+
+> «Quando evidenzio una carta, un tag, una locazione o qualunque altra cosa, mi
+> deve far vedere l'albero delle connessioni: chi mette quel tag, chi lo legge
+> oppure quali azioni accende, e quella azione quali tag mette e dove li mette.
+> […] Il grafo deve sempre rigenerarsi, ma lo vorrei piu' grafico con frecce e
+> meno tabelle.»
+
+`tools/build_flow.py` legge `godot/data` e disegna `docs/flusso.html`: si sceglie
+un pezzo — carta, segno, luogo, azione, Pietra, casa, Tema, Eco, Conseguenza,
+proposta, Tensione, Destino, regola del segno — e si vede **a sinistra chi ce lo
+mette, a destra chi lo legge e cosa ne segue**, con le frecce nel verso del
+gioco. Uno, due o tre passi; ogni pezzo si mette al centro con un tocco.
+
+**543 pezzi, 1582 legami**, e tre tipi di nodo che il grafo di prima non aveva —
+i **luoghi** (le dieci tessere, coi segni stampati e le adiacenze), le **azioni**
+(le sei), e le **Pietre** (coi gradi, perche' un segno di Pietra lo porta il
+grado e non la Pietra).
+
+### Il verso della lettura e' rovesciato apposta
+
+Il dato dice *«questa carta legge #granaio»*, quindi il lettore sta **prima** del
+segno. Ma la domanda del tavolo e' *«#granaio chi lo legge, e quelli cosa
+fanno»*, e con l'arco in quel verso la catena si spezzava a meta'. Girandolo,
+scorre in un verso solo:
+
+> una carta **posa** un segno · il segno e' **letto da** una regola · la regola
+> **vieta** un'azione
+
+### Una sorgente sola, come D-349
+
+Il disegno sta in `tools/flow_template.html`, i dati escono da `godot/data`, e si
+incontrano solo dentro `build_flow.py`. Niente e' scritto a mano due volte.
+
+### Il cancello
+
+`--check` va rosso se il disegno non e' piu' quello che i dati dicono. Provato
+piantando una regola del segno finta: rosso, e verde di nuovo togliendola. Senza
+questo, il grafo sarebbe una fotografia che invecchia — che e' esattamente il
+difetto per cui il committente ha chiesto che «si rigeneri sempre».
+
+### Quattro difetti trovati disegnandolo, e vale la pena scriverli
+
+1. **Le etichette a meta' della freccia finivano sopra i riquadri.** Spostate nel
+   corridoio accanto all'altro pezzo: una per riga.
+2. **Poi si impilavano all'imbocco del centro**, perche' li' tutte le frecce
+   convergono alla stessa altezza. Per questo stanno accanto **all'altro** pezzo,
+   non al centro.
+3. **Un pezzo che ricompare piu' in la' prendeva il livello sbagliato** — la
+   mappa teneva l'ultimo invece del piu' vicino, e il pezzo al centro finiva a
+   livello 3: le frecce si attaccavano al posto sbagliato e le scritte sparivano.
+4. **Incastrare anche l'altezza rimpiccioliva tutto** finche' venticinque pezzi
+   in colonna non si leggevano piu'. Si inquadra sulla larghezza, e una colonna
+   lunga si scorre.
+
+---
+
 ## D-353 — Sotto gli occhi della guardia non si trama
 
 **implemented** · 0.1.317 · voluto dal committente («la potatura — fai leggere…»)

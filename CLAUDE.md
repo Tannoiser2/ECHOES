@@ -50,6 +50,7 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `python3 tools/gen_gd_schema.py --check` | `schema_defs.gd` allineato agli schemi |
 | `python3 tools/build_manifest.py --check` | il manifesto degli asset |
 | `python3 tools/build_sign_registry.py --check` | `docs/REGISTRO_SEGNI.md` |
+| `python3 tools/build_flow.py --check` | `docs/flusso.html`: **il flusso disegnato** — scegli un pezzo e vedi con le frecce chi ce lo mette, dove finisce, chi lo legge e cosa accende |
 | `python3 tools/dead_code.py` | codice che nessuno chiama |
 | `python3 tools/token_catalogue.py --check` | `docs/CATALOGO_PEDINE.md`: **una scheda per segnalino** — cos'e', cosa rappresenta, il prompt — e che nessun segnalino resti senza |
 | `python3 tools/components_survey.py --check` | `docs/COMPONENTI.md`: **quanti pezzi ha la scatola** — carte, tessere, segnalini, arte — e cosa manca perche' l'app dica tutto quello che dice il tavolo |
