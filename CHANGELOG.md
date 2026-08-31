@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.337 — La Reggia esiste, e due voci vecchie rimisurate
+
+Nessun codice: due voci di `ISSUES.md` che portavano numeri di sei versioni fa,
+rifatte sui documenti sorvegliati invece che a memoria.
+
+**ISSUES 111 diceva «dieci Pietre che non si alzano mai».** Erano sei a D-366 e
+adesso sono **cinque** — e quello che se n'è andato è `structure:palace`, la
+**Reggia**: il terzo grado del Presidio non era mai stato costruito in tutta la
+storia misurata del gioco, era scritto nel catalogo e basta. L'ha alzato la
+casella UNA PIETRA SALE di D-370. Confronto fatto sui due documenti committati,
+non a occhio.
+
+Il conto totale dei segni che non arrivano mai sale da 59 a 60, e **non è un
+peggioramento**: `seal_kept` e `seal_kept_twice` sono entrati nel dizionario con
+D-369, quindi adesso si contano. Non arrivavano nemmeno prima — non li guardava
+nessuno.
+
+E i cinque che restano sono **tre difetti diversi**, non una lista sola: uno è il
+grado di mezzo che una frase d'autore salta, due sono Conseguenze mai scelte
+(ISSUES 108), due sono Pietre che quasi nessuna carta costruisce.
+
+**ISSUES 107** diceva «sedici carte su trentanove senza condizione stampata».
+Sono **cinque su quarantotto**: gli Echi sono 48 da D-359 e D-362 li ha accesi
+sui segni del mondo invece che sulla lotteria del limite di Tensione.
+
+---
+
 ## 0.1.336 — Le caselle sulle sessanta carte (D-370)
 
 D-366 ha dato al Consiglio ventiquattro caselle e cinque carte su sessanta le

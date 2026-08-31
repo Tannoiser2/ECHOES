@@ -6096,8 +6096,16 @@ succede adesso, e questo e' gia' un potere.
 
 Ma la domanda di casa — *«questa cosa esisterebbe e sarebbe comprensibile sul
 tavolo fisico?»* — su una carta senza scelta ha una risposta scomoda: **al
-tavolo si cala e si legge cosa e' successo**. Sedici carte su trentanove non
-hanno nemmeno una condizione stampata, quindi si calano quando si vuole.
+tavolo si cala e si legge cosa e' successo**. Quando questa voce fu scritta,
+sedici carte su trentanove non avevano nemmeno una condizione stampata, quindi
+si calavano quando si voleva.
+
+> **Rimisurato in 0.1.336: sono cinque su quarantotto.** Gli Echi sono
+> quarantotto da [D-359](DECISIONS.md#d-359) — uno per carta Asset — e
+> [D-362](DECISIONS.md#d-362) li ha accesi sui segni del mondo invece che sulla
+> lotteria del limite di Tensione. Restano senza nessuna condizione stampata
+> `ECH_CARAVAN_LOST`, `ECH_OFFER`, `ECH_PARLEY`, `ECH_PETITION`,
+> `ECH_SACRIFICE`.
 
 #### Le tre strade, e nessuna e' misurata
 
@@ -6305,6 +6313,46 @@ gioco.
 
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non e' piu' nel catalogo.
+
+> ### Rimisurata in 0.1.336, e i numeri di questa voce erano vecchi
+>
+> «Dieci Pietre» era il conto della 0.1.316. Misurato adesso con
+> `docs/MISURA_TAVOLO.md` — che guarda il tavolo a fine partita e non il
+> registro degli Effetti — **i gradi di Pietra che non arrivano mai sono
+> cinque**, e uno se n'e' andato stanotte.
+>
+> | | a D-366 | adesso |
+> |---|---|---|
+> | gradi di Pietra che non arrivano mai | 6 | **5** |
+>
+> **`structure:palace` arriva.** La Reggia — il terzo grado del Presidio — non
+> era mai stata costruita in tutta la storia misurata del gioco: era scritta nel
+> catalogo e basta. La casella UNA PIETRA SALE di
+> [D-370](DECISIONS.md#d-370) l'ha alzata. Confronto fatto sui due documenti
+> committati, non a occhio.
+>
+> **E il conto totale dei segni che non arrivano mai sale da 59 a 60**, il che
+> sembra un peggioramento e non lo e': `seal_kept` e `seal_kept_twice` sono
+> entrati nel dizionario con [D-369](DECISIONS.md#d-369), quindi adesso si
+> contano. Non arrivavano nemmeno prima — non li guardava nessuno.
+>
+> ### I cinque che restano, e sono tre difetti diversi
+>
+> | grado | Pietra | perche' non arriva |
+> |---|---|---|
+> | `place:thinned_wood` | Foresta, grado 2 | **il grado di mezzo si salta**: la frase d'autore porta la Foresta dal grado 1 al 3 in un colpo, e il motore toglie il segno vecchio e mette quello nuovo — il segno di mezzo non passa. Non e' un difetto del motore: al tavolo si scambia il gettone, non se ne posa uno intermedio. E' la frase che decide di saltare. |
+> | `place:open_site` | Sito antico, grado 2 | le Conseguenze che li muovono **non vengono mai scelte**: e' la [108](#108), non questa voce |
+> | `place:stripped_site` | Sito antico, grado 3 | idem |
+> | `place:low_spring` | Sorgente, grado 2 | **nessuna carta costruisce la Sorgente**, quindi UNA PIETRA SALE non le arriva: la muovono solo le frasi d'autore, e quelle scendono al grado 3 |
+> | `settlement:city` | Insediamento, grado 3 | il grado 2 arriva 10 volte su cento partite; la Citta' vuole che UNA PIETRA SALE sia comprata proprio li', e le carte che costruiscono l'Insediamento sono **tre** su sessanta |
+>
+> Due delle cinque righe le chiude chi chiude la [108](#108). Le altre tre sono
+> contenuto: quale frase d'autore salta un grado, e su quante carte stanno la
+> Sorgente e l'Insediamento.
+>
+> **`structure:road` resta fuori dal conto**: non e' il grado di una Pietra, e'
+> una Pietra che non esiste — [101](#101). E `settlement:$proponent` non era un
+> difetto e non lo e': porta un id dinamico, e la forma nuda non compare mai.
 
 ---
 
