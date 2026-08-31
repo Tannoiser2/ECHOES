@@ -1016,6 +1016,41 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             guai.append("posto che non combacia con l'ambito su «%s»: sta in %s, che "
                         "vive su %s, e l'ambito dichiarato e' %s"
                         % (tag, posto, ambito_atteso, "/".join(sorted(dichiarato))))
+
+    # 22. la Risonanza dice l'aggravante che il motore applica (ISSUES 113)
+    #
+    # Ogni Risonanza porta un `if_target_tag` con `extra_heat`: se il bersaglio
+    # porta quel segno scalda **di piu'**, e a volte gli posa addosso un gettone
+    # in piu'. Misurato in 0.1.323: **48 carte su 48 non lo dicevano.** Le Porte
+    # Bruciate stampava «Scalda Potere +2» e ne dava 3.
+    #
+    # Un giocatore che sceglie dove giocare una carta sta scegliendo, senza
+    # saperlo, anche quanto scalda: e' il difetto piu' diffuso che il progetto
+    # abbia misurato, ed e' sul pezzo che CLAUDE.md chiama obbligatorio.
+    #
+    # Il controllo e' quello che si fa al tavolo: **il nome stampato del segno
+    # compare nel testo della Risonanza?** Titolo o alias, e per i segni di una
+    # parola anche la forma a #cancelletto. Non si controlla la bellezza della
+    # frase — quella e' d'autore — ma che il segno sia nominato.
+    for asset in documenti.get("asset", []):
+        risonanza = (asset.get("physical") or {}).get("resonance")
+        if not risonanza:
+            continue
+        for chiave in ("if_target_tag", "extra_tag"):
+            segno = str(risonanza.get(chiave, ""))
+            if not segno:
+                continue
+            voce = voci.get(_nudo(segno))
+            if voce is None:
+                continue
+            detto = str(risonanza.get("text", "")).lower().replace("_", " ")
+            nomi = [str(voce.get("title", ""))] + list(voce.get("aliases", []))
+            if any(n and n.lower() in detto for n in nomi):
+                continue
+            guai.append(
+                "Risonanza muta su «%s»: la carta scalda di piu' (o posa un segno) "
+                "quando c'e' «%s», e la faccia non lo nomina — chi la legge non "
+                "puo' sapere quanto scalda (ISSUES 113)" % (asset["id"], segno))
     return guai
 
 
@@ -1276,6 +1311,24 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         voce = next(v for v in prova["tag"] if v.get("written_by"))
         voce["written_by"] = list(voce["written_by"]) + ["destiny_physical"]
 
+    def risonanza_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """La Risonanza smette di dire l'aggravante che il motore applica.
+
+        E' il caso vero di ISSUES 113, ridotto all'osso: si toglie dal testo il
+        nome del segno, e la carta continua a scaldare di piu' senza dirlo. Su
+        48 carte su 48 e' stato cosi' fino alla 0.1.328, e nessun cancello lo
+        vedeva: il testo e' d'autore, e nessuno lo confrontava con i campi che
+        il motore legge."""
+        carta = next(
+            a for a in prova["asset"]
+            if ((a.get("physical") or {}).get("resonance") or {}).get("if_target_tag")
+        )
+        fisica = dict(carta["physical"])
+        fisica["resonance"] = dict(
+            fisica["resonance"], text="Scalda, e quanto non lo dice a nessuno."
+        )
+        carta["physical"] = fisica
+
     def accende_segno_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         tensione = next(t for t in prova["tension"] if t.get("heats_when"))
         tensione["heats_when"] = [{
@@ -1305,6 +1358,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "mani non dichiarate su «%s»" % bersaglio),
         pianta("nome cambiato sotto un #cancelletto stampato", cancelletto_orfano,
                "cancelletto senza voce: «#fame»"),
+        pianta("Risonanza che non dice di quanto scalda", risonanza_muta,
+               "Risonanza muta su"),
         pianta("tessera spogliata dei suoi segni", tessera_spogliata,
                "tessera senza segni"),
         pianta("tessera coi soli segni che nessuno legge", tessera_decorativa,

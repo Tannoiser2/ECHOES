@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-362 — La Risonanza dice di quanto scalda, e l'Eco non sceglie un bersaglio
+
+**implemented** (0.1.328) · chiude [ISSUES 113](ISSUES.md#113) e
+[ISSUES 107](ISSUES.md#107) · scelta del committente: *«fai la 113, l'eco non
+ha bisogno di scegliere un bersaglio se non serve»*.
+
+### Le 48 Risonanze mute
+
+[0.1.323](../CHANGELOG.md) l'aveva misurato guardando il grafo del flusso:
+
+```
+carte con Risonanza          : 48
+  con un'aggravante nel motore : 48
+  che NON la dicono in faccia  : 48
+```
+
+*Le Porte Bruciate* stampava «Scalda Potere +2» e ne dava **3** quando sul bordo
+della mappa c'era una domanda rimasta aperta. Non era un caso isolato: era il
+**cento per cento** del pezzo che CLAUDE.md chiama obbligatorio. Un giocatore
+che sceglie dove giocare una carta sceglieva, senza saperlo, anche quanto scalda.
+
+Adesso ogni faccia lo dice, in una riga che si legge sul cartoncino:
+
+> Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene
+> la falce. **Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.**
+
+La frase si costruisce dai campi che il motore legge — condizione, calore
+totale, gettone in piu' — quindi **non puo' dire una cosa e farne un'altra**, ed
+e' la stessa regola di `asset_text.gd` e `echo_text.gd`.
+
+Tre cose che la scrittura ha dovuto rispettare, e ognuna e' un errore che ho
+fatto prima di correggerlo:
+
+- **La portata del segno cambia la frase.** `_carries` guarda, in quest'ordine:
+  la Regione bersaglio, le sue Cicatrici, la casa bersaglio, **la scheda di chi
+  cala la carta**, e infine il mondo. Un segno di casata quindi funziona, ma la
+  faccia deve dire *di chi* e': «se **porti** #fama», non «se il luogo…».
+- **Il nome stampato, non una parafrasi.** La prima stesura scriveva «un debito
+  e' stato chiamato» dove il dizionario stampa «debito chiamato». Il cancello
+  nuovo l'ha rifiutata, e aveva ragione: un giocatore cerca sul tavolo il segno
+  che la carta nomina, e se la carta lo chiama in un terzo modo non lo trova.
+- **Una Cicatrice si dice Cicatrice.** Su *L'Esodo* il gettone in piu' e'
+  `scar:emptied`: la faccia stampa «e ci resta la Cicatrice «lo sgombero»»,
+  perche' un dischetto rotondo non e' un gettone qualunque (D-357).
+
+### Il cancello che lo tiene
+
+Controllo 22 di `validate_physical.py`: se una Risonanza dichiara
+`if_target_tag` o `extra_tag`, il **nome stampato** di quel segno — titolo o
+alias dichiarato — deve comparire nel testo. Non si controlla la bellezza della
+frase, che e' d'autore: si controlla che il segno sia nominato.
+
+La guardia si vede mordere: la pianta «Risonanza che non dice di quanto scalda»
+porta i difetti piantati da 32 a **33**.
+
+### E l'Eco non sceglie un bersaglio
+
+[ISSUES 107](ISSUES.md#107) chiedeva se l'Eco dovesse avere una scelta come le
+due Azioni della carta su cui adesso e' stampato. **No**, per volere del
+committente: *«l'eco non ha bisogno di scegliere un bersaglio se non serve»*.
+
+E' coerente con cos'e' un Eco: un'Azione e' una **mossa** — scegli dove e come —
+mentre un Eco e' un **fatto che decidi di far accadere**. Il posto lo trova da
+solo (`card_bindings` prende la Regione a fuoco della questione), e la scelta
+vera e' un'altra: *questa carta la spendo per una delle sue Azioni, o per il suo
+Eco?* Quella scelta c'e', ed e' sulla stessa carta.
+
+La tabella dell'issue andava anche corretta: parlava ancora di «quale delle due
+che hai in mano», e la mano del Narratore non esiste piu' da [D-359](#d-359).
+
+---
+
 ## D-361 — Le chiavi del payload le decide il tipo dell'Effetto
 
 **implemented** (0.1.327) · chiude [ISSUES 115](ISSUES.md#115) · scelta del

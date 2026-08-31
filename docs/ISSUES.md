@@ -6029,7 +6029,7 @@ essere quella che nessuno compra.
 
 ---
 
-### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere
+### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
 
 `regole` · `direzione` · aperta in 0.1.310
 
@@ -6045,8 +6045,22 @@ netta, e con lei una domanda che nessuno aveva posto.
 
 Una carta Eco si cala e succede. Il posto lo decide `card_bindings`, che prende
 la Regione a fuoco della domanda che la carta nomina; le due Azioni non ci sono;
-la Risonanza nemmeno. **L'unica scelta e' quando calarla**, e con quale delle
-due che hai in mano.
+la Risonanza nemmeno. **L'unica scelta e' quando calarla.**
+
+#### Chiusa: [D-362](DECISIONS.md#d-362) — **no, e va bene cosi'**
+
+Scelta del committente: *«l'eco non ha bisogno di scegliere un bersaglio se non
+serve»*. Un'Azione e' una **mossa** — scegli dove e come — mentre un Eco e' un
+**fatto che decidi di far accadere**, e un fatto non si punta col dito.
+
+E la scelta c'e' lo stesso, solo che sta un gradino piu' su. Da
+[D-359](DECISIONS.md#d-359) l'Eco e' il terzo blocco della carta Asset, accanto
+alle sue due Azioni: la domanda che il giocatore si fa e' **«questa carta la
+spendo per un'Azione, o per il suo Eco?»**. Le condizioni piu' strette sono il
+prezzo di quella potenza, e sono stampate sulla faccia.
+
+Nota: la tabella qui sopra diceva «con quale delle due che hai in mano» — la
+mano del Narratore non esiste piu' da D-359, e la riga e' stata corretta.
 
 #### Perche' e' una domanda e non un difetto
 
@@ -6292,7 +6306,7 @@ catene delle ere.
 
 ---
 
-### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice
+### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328
 
 `regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
 

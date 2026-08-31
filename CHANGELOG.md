@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.328 — Le 48 Risonanze dicono di quanto scaldano (D-362)
+
+Chiude ISSUES 113, aperta in 0.1.323 guardando il grafo del flusso, e ISSUES 107.
+
+Ogni Risonanza porta un'aggravante: se il bersaglio ha un certo segno scalda di
+piu', e a volte gli posa addosso un gettone. **Quarantotto carte su quarantotto
+non lo dicevano.** Adesso lo dicono tutte, in una riga costruita dai campi che
+il motore legge — quindi non puo' dire una cosa e farne un'altra.
+
+| | prima | dopo |
+|---|---|---|
+| Risonanze con un'aggravante | 48 | 48 |
+| **che non la dicono** | **48** | **0** |
+| difetti piantati nella guardia | 32 | **33** |
+
+**Controllo 22**: se una Risonanza dichiara `if_target_tag` o `extra_tag`, il
+nome stampato di quel segno deve comparire nel testo. Non la bellezza della
+frase — quella e' d'autore — ma che il segno sia nominato.
+
+### Tre errori che il cancello mi ha fatto correggere
+
+- **La portata cambia la frase.** `_carries` guarda anche la scheda di chi cala
+  la carta: un segno di casata funziona, ma la faccia deve dire di chi e' —
+  «se **porti** #fama», non «se il luogo…».
+- **Il nome stampato, non una parafrasi.** Avevo scritto «un debito e' stato
+  chiamato» dove il dizionario stampa «debito chiamato». Chi cerca il segno sul
+  tavolo non lo trova, se la carta lo chiama in un terzo modo.
+- **Una Cicatrice si dice Cicatrice**: su *L'Esodo* il gettone in piu' e'
+  `scar:emptied`, e un dischetto rotondo non e' un gettone qualunque.
+
+### E l'Eco non sceglie un bersaglio
+
+Scelta del committente: un'Azione e' una **mossa**, un Eco e' un **fatto che
+decidi di far accadere**. La scelta vera e' un'altra, e sta sulla stessa carta:
+la spendo per una delle sue due Azioni, o per il suo Eco?
+
+---
+
 ## 0.1.327 — Le chiavi del payload le decide il tipo dell'Effetto (D-361)
 
 Chiude ISSUES 115, aperta ieri quando una carta che ho scritto io diceva il
