@@ -3499,7 +3499,7 @@ procedurale, far girare al cancello anche una Chronicle a mappa pescata.
 
 ---
 
-### 89. La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa
+### 89. La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa — CHIUSA in 0.1.332
 
 `regole` · `fisico` · **aperta in 0.1.274** ([D-312](DECISIONS.md#d-312)) —
 parola del committente guardando le carte: *«ci dovrebbe essere indicato i tag
@@ -3643,6 +3643,32 @@ arrivano da un'altra parte.
 >
 > Restano otto caselle, e la piu' grossa e' ora POSA UN SEGNO SU UNA CASATA (4
 > distinti, 44 applicazioni).
+
+> ### Chiusa in 0.1.332: le otto caselle, e il campo che mancava di più
+>
+> Le otto sono scritte ([D-366](DECISIONS.md#d-366)). Ma misurando per scriverle
+> è saltata fuori la riga che questa voce non aveva mai guardato: **venticinque
+> Effetti su quarantasei avevano il verbo giusto e nessun posto dove puntarlo.**
+> Cento e quattro applicazioni — più di quelle che mancavano di verbo.
+>
+> Non era contenuto: era un campo. Ogni casella agiva sul luogo di cui si
+> discuteva e per conto di chi proponeva, e basta. Adesso una casella dice
+> **cosa fa** (il verbo), **su chi** (`chi`) e **dove** (`dove`), e i due campi
+> nuovi sono facoltativi con i valori di riposo di prima: nessuna delle sessanta
+> carte cambia.
+>
+> | | prima | dopo |
+> |---|---|---|
+> | Effetti che una casella sa dire | 5 su 46 | **44 su 46** |
+> | applicazioni coperte | 151 su 336 | **333 su 336** |
+> | verbi che mancano | 16 | **0** |
+> | posti che la casella non sa dire | 25 | **2** |
+>
+> Le due che restano non sono caselle da scrivere: `$conditioner` è un bersaglio
+> che al Consiglio non esiste (vive solo dentro una clausola), e il
+> `SET_GLOBAL_TAG` puntato su `$adjacent` è un difetto dei dati — quel verbo
+> scrive nel mondo qualunque bersaglio gli si dia. Tutti e due nella
+> [117](#117).
 
 
 > ### Rimisurata in 0.1.300, e i due numeri in cima erano sbagliati
@@ -6598,3 +6624,53 @@ Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e l
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda
 verità.
+
+
+---
+
+### 117. Le caselle nuove ci sono, e cinque carte su sessanta le offrono
+
+`contenuto` · `da-misurare` · aperta in 0.1.332
+
+Da [D-366](DECISIONS.md#d-366) il Consiglio ha diciotto caselle in più — otto
+verbi nuovi, e il campo `dove` e il campo `chi` che permettono a **tutte** di
+puntare altrove che sul posto di cui si discute. Il vocabolario copre 44 dei 46
+Effetti che un Consiglio applica, e 333 applicazioni su 336.
+
+**Quello che il vocabolario può dire non è ancora quello che le carte offrono.**
+Le diciotto voci nuove stanno su **cinque carte su sessanta**, e sono lì perché
+il Consiglio di quelle domande già faceva quella cosa in una frase d'autore. Le
+altre cinquantacinque portano ancora le sette caselle di sempre, tutte puntate
+sul posto in discussione.
+
+#### Cosa si apre domani mattina
+
+**(a) Quali caselle offre ciascuna delle sessanta carte.** È contenuto, ed è del
+committente: il motore sa già eseguirle tutte, e il validatore rifiuta una
+casella scritta male prima che il tavolo se ne accorga. Il posto da cui partire
+è `docs/MISURA_CASELLE.md` § *Quello che una casella già dice*: ogni riga è una
+cosa che una Conseguenza d'autore fa e che adesso si può posare con una pedina.
+
+**(b) Le quattro caselle che in cento saghe non si sono viste mai.** Misurato con
+`run_boxes_probe.gd`: UNA PIETRA SALE, UNA PIETRA SCENDE, CHIUDI LA STRADA, UNA
+CASATA LASCIA IL TAVOLO. Non sono rotte — mordono solo dove la loro condizione
+tiene, e le condizioni sono strette apposta: una Pietra già in piedi con un
+grado libero, due tessere col segno giusto una accanto all'altra, una casa che
+porta #dormiente. Il numero è peggiore di quello che si sperava e si scrive.
+Delle altre: POSA UN SEGNO SU UNA CASATA 45 offerte e 12 acquisti, MUOVI UN
+RAPPORTO 8 e 2, UNA PRESENZA SE NE VA 7 e 2, UNA PRESENZA ENTRA 6 e 0, UNA
+DOMANDA VELATA SI SCOPRE 5 e 0, IL MONDO DIMENTICA 2 e 1.
+
+**(c) Due Effetti d'autore che non sono caselle mancanti, ma difetti.**
+`SET_ENTITY_TAG` su `$conditioner` (2 applicazioni) nomina «chi ha posto la
+condizione», che esiste solo dentro il contesto di una clausola: nel momento in
+cui una pedina si posa su una casella non c'è nessuna condizione posta. E
+`SET_GLOBAL_TAG` col bersaglio `$adjacent` (1) dà un bersaglio a un verbo che
+scrive nel mondo qualunque bersaglio gli si dia — il bersaglio lì non vuol dire
+niente, e va tolto o il verbo va cambiato.
+
+#### Cosa la chiude
+
+Il conto di `docs/MISURA_CASELLE.md` a 46 su 46, ogni casella del vocabolario
+offerta almeno una volta in cento saghe, e i due Effetti del punto (c) risolti
+nei dati.

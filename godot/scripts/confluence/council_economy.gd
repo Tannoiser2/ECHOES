@@ -8,11 +8,10 @@ extends RefCounted
 ##
 ## E' il cuore, e ha tre pezzi:
 ##
-## 1. **Un vocabolario chiuso di verbi**, non frasi d'autore. Cinque benefici e
-##    sei costi, gli stessi su ogni carta — come le caselle di un tabellone.
-##    Quello che cambia da carta a carta e' la Domanda, i segni che chiede sul
-##    tavolo, e i **parametri**: quale condizione lascia, quale Pietra alza,
-##    quale Cicatrice incide.
+## 1. **Un vocabolario chiuso di verbi**, non frasi d'autore. Gli stessi su
+##    ogni carta — come le caselle di un tabellone. Quello che cambia da carta
+##    a carta e' la Domanda, i segni che chiede sul tavolo, e i **parametri**:
+##    quale condizione lascia, quale Pietra alza, quale Cicatrice incide.
 ## 2. **Un'economia**: *un beneficio e' gratis; ogni beneficio in piu' costa un
 ##    costo.* Massimo tre benefici, massimo due costi — e il tetto non si
 ##    sfonda: la Cicatrice e' un costo come gli altri (D-303).
@@ -22,7 +21,16 @@ extends RefCounted
 ##
 ## I verbi stanno qui e non nei dati perche' ognuno **produce Effetti**: e'
 ## codice, e il codice si prova. La carta li nomina e li parametrizza; questo
-## modulo li esegue sul luogo di cui si sta discutendo.
+## modulo li esegue.
+##
+## **Ogni casella risponde a tre domande** (D-366): *cosa fa* — il verbo —,
+## *su chi* — il campo `chi` —, e *dove* — il campo `dove`. Fino alla 0.1.312
+## esisteva solo la prima: ogni casella agiva sul posto di cui si stava
+## discutendo e per conto di chi proponeva, e basta. Misurato: dei 46 Effetti
+## distinti che un Consiglio applica, **25 avevano il verbo giusto e un posto
+## che la casella non sapeva dire** — una Regione confinante, la capitale, la
+## sede del rivale, una Regione col segno, una domanda chiamata per nome. Non
+## era un muro: era un campo che mancava.
 
 const Effect := preload("res://scripts/core/effect.gd")
 
@@ -34,15 +42,44 @@ const MAX_COSTS: int = 2
 ## E' lo stesso numero di `EffectApplier.HEAT_MAX`, e la prova lo verifica.
 const MAX_HEAT: int = 6
 
+## **Dove** la pedina punta (D-366). Un vocabolario chiuso come quello dei
+## verbi: sulla casella c'e' un'icona, e l'icona dice il posto. `needs` e' il
+## parametro che il posto chiede alla carta — «una Regione col segno» senza il
+## segno non e' un posto.
+##
+## Il posto si risolve **su quello che il Consiglio gia' calcola**
+## (`ConfluenceController.effect_context`): `region_focus`, `adjacent`,
+## `capital`, `rival_seat`, `tension`. Nessuna chiave nuova nel contesto, e
+## nessuna seconda tabella che possa scostarsi dalla prima.
+const PLACES: Dictionary = {
+	"FOCUS": {"label": "dove si discute", "needs": [], "on": ["region", "tension", "world", "theme", "house", "relation", "road"]},
+	"ADJACENT": {"label": "in una Regione confinante", "needs": [], "on": ["region", "road"]},
+	"CAPITAL": {"label": "nella capitale", "needs": [], "on": ["region", "road"]},
+	"RIVAL_SEAT": {"label": "nella sede del rivale", "needs": [], "on": ["region", "road"]},
+	"REGION_WITH": {"label": "in una Regione col segno", "needs": ["place_tag"], "on": ["region", "road"]},
+	"QUESTION": {"label": "sulla domanda chiamata per nome", "needs": ["question"], "on": ["tension"]},
+}
+
+## **Su chi** la casella parla. Il proponente e' il caso normale, ed e' il
+## valore che una carta senza `chi` ha sempre avuto: nessuna carta di oggi
+## cambia comportamento.
+const HOUSES: Dictionary = {
+	"PROPONENT": {"label": "chi propone", "needs": []},
+	"RIVAL": {"label": "il rivale", "needs": []},
+	"HOUSE_WITH": {"label": "la casa che porta il segno", "needs": ["who_tag"]},
+	"NOBODY": {"label": "nessuno", "needs": []},
+}
+
 ## Il vocabolario. `needs` dice quali parametri la voce deve portare sulla
 ## carta: una voce senza il suo parametro non e' giocabile, e il validatore la
-## rifiuta prima che il tavolo se ne accorga.
+## rifiuta prima che il tavolo se ne accorga. `on` dice **su che genere di cosa**
+## la casella agisce, ed e' quello che decide quali `dove` accetta.
 const BENEFIT_VERBS: Dictionary = {
-	"REOPEN": {"label": "RIAPRI", "needs": []},
-	"CLEAR_CONDITION": {"label": "RIMUOVI CONDIZIONE", "needs": []},
-	"BUILD_STONE": {"label": "COSTRUISCI PIETRA", "needs": ["structure"]},
-	"TAKE_CONTROL": {"label": "CAMBIA CONTROLLO", "needs": []},
-	"COOL_THEME": {"label": "RAFFREDDA TEMA", "needs": []},
+	"REOPEN": {"label": "RIAPRI", "needs": [], "on": "region"},
+	"CLEAR_CONDITION": {"label": "RIMUOVI CONDIZIONE", "needs": [], "on": "region"},
+	"BUILD_STONE": {"label": "COSTRUISCI PIETRA", "needs": ["structure"], "on": "region"},
+	"TAKE_CONTROL": {"label": "CAMBIA CONTROLLO", "needs": [], "on": "region"},
+	"COOL_THEME": {"label": "RAFFREDDA TEMA", "needs": [], "on": "theme"},
 	# **Il verbo che mancava** (D-308, ISSUES 76 strada a).
 	#
 	# «Le Azioni cambiano il mondo. Il Consiglio decide cosa il mondo
@@ -58,7 +95,7 @@ const BENEFIT_VERBS: Dictionary = {
 	# MEMORY e ambito GLOBAL, e solo una frase d'autore la sapeva scrivere.
 	# Cioe': il Consiglio sapeva **infliggere** quello che le case temono e
 	# non sapeva **dare** quello che vogliono.
-	"REMEMBER": {"label": "IL MONDO RICORDA", "needs": ["tag"]},
+	"REMEMBER": {"label": "IL MONDO RICORDA", "needs": ["tag"], "on": "world"},
 	# **La casella che muove una domanda** (D-343, ISSUES 89).
 	#
 	# La misura di D-342: dei 27 Effetti che nessuna casella sapeva dire,
@@ -70,19 +107,73 @@ const BENEFIT_VERBS: Dictionary = {
 	# **Tema** (`ADJUST_THEME_HEAT`); questa muove la traccia di una **domanda**
 	# (`ADJUST_TENSION`). Sul tavolo sono due piste diverse, e fino a qui il
 	# Consiglio sapeva muovere solo la prima.
-	"COOL_QUESTION": {"label": "ABBASSA LA DOMANDA", "needs": []},
+	"COOL_QUESTION": {"label": "ABBASSA LA DOMANDA", "needs": [], "on": "tension"},
+	# --- Le caselle scritte in D-366 -------------------------------------
+	#
+	# Le otto che la misura chiedeva, dalla piu' usata alla piu' rara. Non
+	# sono invenzioni: ognuna e' il nome di quello che una Conseguenza
+	# d'autore gia' faceva senza che il tavolo lo potesse posare con una
+	# pedina.
+	#
+	# **POSA UN SEGNO SU UNA CASATA**, 44 applicazioni: e' la seconda cosa che
+	# un Consiglio fa piu' spesso dopo scrivere una memoria, ed era invisibile.
+	# Un titolo, una fama, una scoperta: cose che si portano addosso e che
+	# viaggiano con la casa da una Regione all'altra.
+	"MARK_HOUSE": {"label": "POSA UN SEGNO SU UNA CASATA", "needs": ["tag"], "on": "house"},
+	"UNMARK_HOUSE": {"label": "TOGLI UN SEGNO A UNA CASATA", "needs": ["tag"], "on": "house"},
+	# **MUOVI UN RAPPORTO**, 11: il filo fra due case. Il Consiglio e' il posto
+	# dove i patti si stringono e si rompono, e non aveva la casella per dirlo.
+	"BIND_HOUSES": {"label": "MUOVI UN RAPPORTO", "needs": ["level"], "on": "relation"},
+	# **UNA PRESENZA ENTRA**, 10 insieme al suo rovescio: una pedina che arriva
+	# senza che nessuno abbia fatto MUOVERE. E' quello che un Consiglio decide
+	# quando manda o richiama qualcuno.
+	"MOVE_IN": {"label": "UNA PRESENZA ENTRA", "needs": [], "on": "region"},
+	"MOVE_OUT": {"label": "UNA PRESENZA SE NE VA", "needs": [], "on": "region"},
+	# **UNA PIETRA SALE**, 9 col suo rovescio: la Pietra c'e' gia', e il
+	# Consiglio decide se cresce. Diverso da COSTRUISCI PIETRA, che ne alza una
+	# che non c'e'.
+	"RAISE_STONE": {"label": "UNA PIETRA SALE", "needs": ["structure"], "on": "region"},
+	# **IL MONDO DIMENTICA**, 3: il rovescio esatto di IL MONDO RICORDA, e
+	# senza di lui una memoria posata non si poteva piu' togliere in Consiglio.
+	"FORGET": {"label": "IL MONDO DIMENTICA", "needs": ["tag"], "on": "world"},
+	# **UNA DOMANDA VELATA SI SCOPRE**, 2: il segnalino girato a faccia in su.
+	"UNVEIL_QUESTION": {"label": "UNA DOMANDA VELATA SI SCOPRE", "needs": [], "on": "tension"},
 }
 const COST_VERBS: Dictionary = {
-	"ADD_CONDITION": {"label": "AGGIUNGI CONDIZIONE", "needs": ["tag"]},
-	"TOLL": {"label": "PEDAGGIO", "needs": []},
-	"YIELD_CONTROL": {"label": "CEDI CONTROLLO", "needs": []},
-	"HEAT_THEME": {"label": "SCALDA TEMA", "needs": []},
-	"TAKE_DEBT": {"label": "PRENDI DEBITO", "needs": []},
-	"SCAR": {"label": "CICATRICE", "needs": ["tag"]},
+	"ADD_CONDITION": {"label": "AGGIUNGI CONDIZIONE", "needs": ["tag"], "on": "region"},
+	"TOLL": {"label": "PEDAGGIO", "needs": [], "on": "region"},
+	"YIELD_CONTROL": {"label": "CEDI CONTROLLO", "needs": [], "on": "region"},
+	"HEAT_THEME": {"label": "SCALDA TEMA", "needs": [], "on": "theme"},
+	"TAKE_DEBT": {"label": "PRENDI DEBITO", "needs": [], "on": "region"},
+	"SCAR": {"label": "CICATRICE", "needs": ["tag"], "on": "region"},
 	# Il rovescio di ABBASSA LA DOMANDA (D-343): 41 delle 90 applicazioni
 	# **alzano** una domanda, ed erano il prezzo che una proposta faceva pagare
 	# al mondo senza che nessuna casella lo sapesse dire.
-	"HEAT_QUESTION": {"label": "ALZA LA DOMANDA", "needs": []},
+	"HEAT_QUESTION": {"label": "ALZA LA DOMANDA", "needs": [], "on": "tension"},
+	# --- E le stesse caselle, dall'altra parte del tavolo (D-366) ---------
+	#
+	# **Sei caselle stanno nelle due liste**, e non e' una svista: con `chi` e
+	# `dove` la stessa casella cambia segno secondo dove punta la pedina. «Il
+	# rivale perde la corona» e' un beneficio; «chi propone porta addosso il
+	# tradimento» e' un prezzo — stesso verbo, casa diversa. Quello che decide
+	# non e' il verbo, e' il bersaglio, ed e' esattamente quello che il tavolo
+	# vede guardando dov'e' posata la pedina.
+	"MARK_HOUSE": {"label": "POSA UN SEGNO SU UNA CASATA", "needs": ["tag"], "on": "house"},
+	"UNMARK_HOUSE": {"label": "TOGLI UN SEGNO A UNA CASATA", "needs": ["tag"], "on": "house"},
+	"BIND_HOUSES": {"label": "MUOVI UN RAPPORTO", "needs": ["level"], "on": "relation"},
+	"MOVE_IN": {"label": "UNA PRESENZA ENTRA", "needs": [], "on": "region"},
+	"MOVE_OUT": {"label": "UNA PRESENZA SE NE VA", "needs": [], "on": "region"},
+	"FORGET": {"label": "IL MONDO DIMENTICA", "needs": ["tag"], "on": "world"},
+	"UNVEIL_QUESTION": {"label": "UNA DOMANDA VELATA SI SCOPRE", "needs": [], "on": "tension"},
+	# **UNA PIETRA SCENDE**: il rovescio di UNA PIETRA SALE, e sta solo qui —
+	# una Pietra che scende non e' mai un beneficio per chi la possiede.
+	"LOWER_STONE": {"label": "UNA PIETRA SCENDE", "needs": ["structure"], "on": "region"},
+	# **CHIUDI LA STRADA**, 1: una frana, un blocco, un ponte tagliato. Il
+	# motore rifiuta da solo la chiusura che isolerebbe una Regione, quindi la
+	# casella non puo' spezzare la mappa.
+	"SEAL_ROAD": {"label": "CHIUDI LA STRADA", "needs": [], "on": "road"},
+	# **UNA CASATA LASCIA IL TAVOLO**, 1: la piu' rara e la piu' grossa.
+	"LEAVE_TABLE": {"label": "UNA CASATA LASCIA IL TAVOLO", "needs": [], "on": "house"},
 }
 
 ## Il segno che il pedaggio lascia sulla tessera, e quello del debito: due
@@ -90,6 +181,10 @@ const COST_VERBS: Dictionary = {
 const TOLL_TAG: String = "structure:tollgate"
 const DEBT_TAG: String = "condition:indebted"
 const CLOSED_TAG: String = "condition:cut_off"
+
+## I livelli di un rapporto, nell'ordine in cui stanno sulla pista. E' la stessa
+## lista che `EffectApplier._set_relation` accetta, e la prova lo verifica.
+const RELATION_LEVELS: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 
 
 ## **Il prezzo di un carrello di benefici.** Uno e' gratis; ogni altro costa un
@@ -101,6 +196,124 @@ const CLOSED_TAG: String = "condition:cut_off"
 ## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
 static func costs_due(benefits: int) -> int:
 	return maxi(0, mini(benefits - 1, MAX_COSTS))
+
+
+# --- dove e su chi ---------------------------------------------------------
+
+## La voce del vocabolario, da qualunque delle due liste venga.
+static func entry(verb: String) -> Dictionary:
+	if BENEFIT_VERBS.has(verb):
+		return BENEFIT_VERBS[verb] as Dictionary
+	if COST_VERBS.has(verb):
+		return COST_VERBS[verb] as Dictionary
+	return {}
+
+
+## Su che genere di cosa agisce questa casella: e' quello che decide quali
+## `dove` puo' portare.
+static func acts_on(verb: String) -> String:
+	return str(entry(verb).get("on", "region"))
+
+
+## I `dove` che una casella accetta. Una casella che agisce su una casa o sul
+## mondo ha un posto solo — *dove si discute* — perche' il suo bersaglio lo dice
+## `chi`, non `dove`: due campi che dicono la stessa cosa sarebbero due modi di
+## sbagliarla.
+static func places_for(verb: String) -> Array:
+	var on: String = acts_on(verb)
+	var out: Array = []
+	for place in PLACES:
+		if ((PLACES[place] as Dictionary)["on"] as Array).has(on):
+			out.append(str(place))
+	return out
+
+
+## **La Regione di cui parla questa casella.** Senza `dove` e' quella di cui si
+## discute, che e' come il Consiglio ha sempre funzionato.
+static func region_of(voice: Dictionary, context: Dictionary, world: Dictionary) -> String:
+	match str(voice.get("dove", "FOCUS")):
+		"ADJACENT":
+			return str(context.get("adjacent", ""))
+		"CAPITAL":
+			return str(context.get("capital", ""))
+		"RIVAL_SEAT":
+			return str(context.get("rival_seat", ""))
+		"REGION_WITH":
+			return _region_with(world, str(voice.get("place_tag", "")), str(context.get("region_focus", "")))
+	return str(context.get("region_focus", ""))
+
+
+## L'altro capo della strada che CHIUDI LA STRADA taglia. Di suo e' il posto di
+## cui si discute: la casella chiude **una** via che esce da qui.
+static func other_region_of(voice: Dictionary, context: Dictionary, world: Dictionary) -> String:
+	var second: Dictionary = {
+		"dove": str(voice.get("verso", "FOCUS")),
+		"place_tag": str(voice.get("verso_tag", "")),
+	}
+	return region_of(second, context, world)
+
+
+## **La domanda di cui parla questa casella.** Senza `dove` e' quella in
+## discussione; con `dove: QUESTION` e' quella che la carta chiama per nome —
+## ma solo se e' al tavolo in questa Cronaca. Una domanda che non e' uscita non
+## si muove, e la casella ricade su quella che c'e': e' la stessa regola con cui
+## `$tension` si lega sulle carte Asset (D-362), e per la stessa ragione — una
+## pedina posata su un segnalino che non esiste non e' una scelta, e' un buco.
+static func question_of(voice: Dictionary, context: Dictionary, world: Dictionary) -> String:
+	if str(voice.get("dove", "FOCUS")) == "QUESTION":
+		var named: String = str(voice.get("question", ""))
+		if named != "" and (world.get("tensions", {}) as Dictionary).has(named):
+			return named
+	return str(context.get("tension", ""))
+
+
+## **La casa di cui parla questa casella.** Senza `chi` e' chi propone, che e'
+## come il Consiglio ha sempre funzionato — e resta cosi' anche quando la voce
+## e' rivendicata, perche' la rivendicazione riscrive `proponent` nel contesto e
+## non la carta (D-304).
+static func house_of(voice: Dictionary, context: Dictionary, world: Dictionary) -> String:
+	match str(voice.get("chi", "PROPONENT")):
+		"RIVAL":
+			return str(context.get("rival", ""))
+		"HOUSE_WITH":
+			return _house_with(world, str(voice.get("who_tag", "")))
+		"NOBODY":
+			return ""
+	return str(context.get("proponent", ""))
+
+
+## La prima Regione dell'ordine della Cronaca che porta il segno, preferendo una
+## che non sia gia' quella di cui si discute — cosi' «una Regione col granaio»
+## non e' un modo lungo di dire «qui». E' la stessa regola di
+## `ConsequenceCompiler._resolve_region_with`, e per la stessa ragione: senza
+## nessuna che lo porti, si ricade sul posto in discussione, perche' un Effetto
+## con un buco e' peggio di uno puntato un po' storto.
+static func _region_with(world: Dictionary, tag: String, avoid: String) -> String:
+	if tag == "":
+		return avoid
+	var fallback: String = ""
+	for region_id in (world.get("regions", {}) as Dictionary):
+		var id: String = str(region_id)
+		if not (((world["regions"] as Dictionary)[id] as Dictionary).get("tags", []) as Array).has(tag):
+			continue
+		if id != avoid:
+			return id
+		fallback = id
+	return fallback if fallback != "" else avoid
+
+
+## La prima casa seduta che porta il segno addosso. Nessuna lo porta: torna
+## vuoto, e la casella non morde — il mondo non parla di chi non siede (D-213).
+static func _house_with(world: Dictionary, tag: String) -> String:
+	if tag == "":
+		return ""
+	for entity_id in (world.get("turn_order", []) as Array):
+		var house: Variant = (world.get("entities", {}) as Dictionary).get(str(entity_id))
+		if house == null:
+			continue
+		if ((house as Dictionary).get("tags", []) as Array).has(tag):
+			return str(entity_id)
+	return ""
 
 
 ## **Questa casella puo' fare qualcosa, qui e adesso?** (D-306)
@@ -121,8 +334,9 @@ static func voice_bites(
 	world: Dictionary, theme_id: String, data = null
 ) -> bool:
 	var verb: String = str(voice.get("verb", ""))
-	var region: String = str(context.get("region_focus", ""))
+	var region: String = region_of(voice, context, world)
 	var proponent: String = str(context.get("proponent", ""))
+	var house: String = house_of(voice, context, world)
 	match verb:
 		"REOPEN":
 			return _region_has(world, region, CLOSED_TAG)
@@ -145,21 +359,21 @@ static func voice_bites(
 				return true
 			if data != null and not _stone_is_owned(data, stone):
 				return false
-			return _stone_owner(world, region, stone) != proponent
+			return _stone_owner(world, region, stone) != house
 		"TAKE_CONTROL":
-			return region != "" and _control_of(world, region) != proponent
+			return region != "" and house != "" and _control_of(world, region) != house
 		"COOL_THEME":
 			return _heat_of(world, theme_id) > 0
 		# Una domanda gia' a zero non si abbassa, e una gia' al limite non si
 		# alza: al tavolo il segnalino e' in fondo alla traccia e si vede.
 		"COOL_QUESTION":
-			return _question_value(world, str(context.get("tension", ""))) > 0
+			return _question_value(world, question_of(voice, context, world)) > 0
 		"HEAT_QUESTION":
 			# E una domanda gia' in cima alla sua traccia non si alza: e' la
 			# stessa regola di SCALDA TEMA, che si ferma al tetto del Calore.
 			# La cima e' la soglia stampata sulla carta, cioe' l'ultima tacca
 			# della traccia dei valori (D-097).
-			var asked: String = str(context.get("tension", ""))
+			var asked: String = question_of(voice, context, world)
 			var now: int = _question_value(world, asked)
 			if now < 0:
 				return false
@@ -168,16 +382,78 @@ static func voice_bites(
 			# Un fatto che il mondo ricorda gia' non si ricorda due volte.
 			var fact: String = str(voice.get("tag", ""))
 			return fact != "" and not ((world.get("global_tags", []) as Array).has(fact))
+		"FORGET":
+			# E uno che il mondo non ricorda non si dimentica.
+			var forgotten: String = str(voice.get("tag", ""))
+			return forgotten != "" and (world.get("global_tags", []) as Array).has(forgotten)
+		"MARK_HOUSE":
+			var mark: String = str(voice.get("tag", ""))
+			return house != "" and mark != "" and not _house_has(world, house, mark)
+		"UNMARK_HOUSE":
+			var worn: String = str(voice.get("tag", ""))
+			return house != "" and worn != "" and _house_has(world, house, worn)
+		"BIND_HOUSES":
+			# Un rapporto con se stessi non esiste, e uno gia' al livello
+			# chiesto non si muove: sono i due no-op che il motore fa in
+			# silenzio, e offrirli sarebbe una scelta finta.
+			var level: String = str(voice.get("level", ""))
+			if proponent == "" or house == "" or proponent == house or level == "":
+				return false
+			return _relation_level(world, proponent, house) != level
+		"MOVE_IN":
+			# Entra chi non c'e' gia', e solo se ha ancora una pedina in mano:
+			# il tetto delle presenze e' lo stesso che l'azione MUOVERE
+			# rispetta (D-223), e una pedina che non c'e' non si posa.
+			if house == "" or region == "":
+				return false
+			if _stands_in(world, house, region):
+				return false
+			return _tokens_left(world, house, data) > 0
+		"MOVE_OUT":
+			return house != "" and region != "" and _stands_in(world, house, region)
+		"RAISE_STONE", "LOWER_STONE":
+			var raised: String = str(voice.get("structure", ""))
+			if region == "" or raised == "":
+				return false
+			var grade: int = _stone_grade(world, region, raised)
+			if grade < 0:
+				return false
+			if verb == "LOWER_STONE":
+				return grade > 1
+			return grade < _stone_grades(data, raised)
+		"UNVEIL_QUESTION":
+			# Una domanda gia' scoperta non si scopre, e una che non e' uscita
+			# in questa Cronaca non e' sul tavolo da girare.
+			var veiled: Variant = (world.get("tensions", {}) as Dictionary).get(
+				question_of(voice, context, world)
+			)
+			if veiled == null:
+				return false
+			return str((veiled as Dictionary).get("visibility", "OPEN")) != "OPEN"
+		"SEAL_ROAD":
+			# Si chiude una strada che c'e'. Se chiuderla isolerebbe una
+			# Regione il motore la riapre da solo, ma quella e' l'ultima rete:
+			# la casella non si offre nemmeno se la strada non esiste.
+			var there: String = other_region_of(voice, context, world)
+			if region == "" or there == "" or region == there:
+				return false
+			return ((world.get("adjacency", {}) as Dictionary).get(region, []) as Array).has(there)
+		"LEAVE_TABLE":
+			if house == "":
+				return false
+			var leaving: Variant = (world.get("entities", {}) as Dictionary).get(house)
+			return leaving != null and bool((leaving as Dictionary).get("active", true))
 		"ADD_CONDITION":
 			return not _region_has(world, region, str(voice.get("tag", "")))
 		"TOLL":
 			return not _region_has(world, region, TOLL_TAG)
 		"YIELD_CONTROL":
 			# Cedere morde se c'e' qualcosa da cedere, e se non lo si sta
-			# cedendo a chi lo tiene gia'.
+			# cedendo a chi lo tiene gia'. Di suo si cede al rivale: e' la casa
+			# che la vecchia versione nominava direttamente.
 			if region == "":
 				return false
-			var to_whom: String = str(context.get("rival", ""))
+			var to_whom: String = _yield_target(voice, context, world)
 			return _control_of(world, region) != to_whom
 		"HEAT_THEME":
 			return theme_id != "" and _heat_of(world, theme_id) < MAX_HEAT
@@ -186,6 +462,14 @@ static func voice_bites(
 		"SCAR":
 			return region != ""
 	return false
+
+
+## A chi va quello che si cede. Di suo il rivale della questione — e se non c'e'
+## rivale, la terra: un posto che nessuno tiene e' un fatto del tavolo.
+static func _yield_target(voice: Dictionary, context: Dictionary, world: Dictionary) -> String:
+	if voice.has("chi"):
+		return house_of(voice, context, world)
+	return str(context.get("rival", ""))
 
 
 ## Il Calore di un Tema, o -1 se il Tema non c'e'.
@@ -218,6 +502,59 @@ static func _region_has(world: Dictionary, region_id: String, tag: String) -> bo
 	if region == null:
 		return false
 	return ((region as Dictionary).get("tags", []) as Array).has(tag)
+
+
+## Questa casa porta questo segno addosso?
+static func _house_has(world: Dictionary, entity_id: String, tag: String) -> bool:
+	var house: Variant = (world.get("entities", {}) as Dictionary).get(entity_id)
+	if house == null:
+		return false
+	return ((house as Dictionary).get("tags", []) as Array).has(tag)
+
+
+## Questa casa ha una pedina in questa Regione?
+static func _stands_in(world: Dictionary, entity_id: String, region_id: String) -> bool:
+	var house: Variant = (world.get("entities", {}) as Dictionary).get(entity_id)
+	if house == null:
+		return false
+	return ((house as Dictionary).get("presence", []) as Array).has(region_id)
+
+
+## Quante pedine di presenza le restano in mano. Senza il set dei dati non c'e'
+## tetto dichiarato, e allora se ne suppone una: e' il caso delle prove che
+## costruiscono un mondo a mano, e la casella deve poterle servire.
+static func _tokens_left(world: Dictionary, entity_id: String, data) -> int:
+	var house: Variant = (world.get("entities", {}) as Dictionary).get(entity_id)
+	if house == null:
+		return 0
+	var posate: int = ((house as Dictionary).get("presence", []) as Array).size()
+	if data == null:
+		return 1
+	var chronicle: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	if chronicle == null:
+		return 1
+	var cap: int = int((chronicle as Dictionary).get("presence_tokens", 0))
+	return 1 if cap <= 0 else cap - posate
+
+
+## Il rapporto fra due case, o "" se non esiste. La chiave e' la stessa che il
+## motore usa, e le due direzioni sono lo stesso filo.
+static func _relation_level(world: Dictionary, one: String, other: String) -> String:
+	var relations: Dictionary = world.get("relations", {}) as Dictionary
+	for key in ["%s|%s" % [one, other], "%s|%s" % [other, one]]:
+		if relations.has(key):
+			return str((relations[key] as Dictionary).get("level", ""))
+	return ""
+
+
+## La chiave con cui il mondo tiene il rapporto fra due case, nel verso in cui
+## e' scritta. Vuota se quel filo non c'e'.
+static func _relation_key(world: Dictionary, one: String, other: String) -> String:
+	var relations: Dictionary = world.get("relations", {}) as Dictionary
+	for key in ["%s|%s" % [one, other], "%s|%s" % [other, one]]:
+		if relations.has(key):
+			return key
+	return ""
 
 
 ## Di chi e' la Pietra di questo tipo, o "" se non c'e' o non e' di nessuno.
@@ -256,18 +593,44 @@ static func _stone_stands(world: Dictionary, region_id: String, type_id: String)
 	return false
 
 
-## Gli Effetti di una voce, sul luogo di cui si discute.
+## A che grado sta la Pietra di questo tipo, o -1 se non c'e'.
+static func _stone_grade(world: Dictionary, region_id: String, type_id: String) -> int:
+	var region: Variant = (world.get("regions", {}) as Dictionary).get(region_id)
+	if region == null or type_id == "":
+		return -1
+	for structure in ((region as Dictionary).get("structures", []) as Array):
+		if str((structure as Dictionary).get("structure_type", "")) == type_id:
+			return int((structure as Dictionary).get("grade", 1))
+	return -1
+
+
+## Quanti gradi ha questo tipo di Pietra. Senza il set dei dati non si sa, e
+## allora si suppone che ce ne sia ancora uno sopra: meglio offrire una casella
+## che non si sarebbe potuta offrire che tacere su una che si puo'. E' la stessa
+## scelta di `_question_top`.
+static func _stone_grades(data, type_id: String) -> int:
+	if data == null or type_id == "":
+		return 99
+	var definition: Variant = data.structure_types.get(type_id)
+	if definition == null:
+		return 99
+	return ((definition as Dictionary).get("grades", []) as Array).size()
+
+
+## Gli Effetti di una voce.
 ##
 ## `context` e' quello che il Consiglio gia' calcola (`effect_context`):
-## `region_focus`, `proponent`, `rival`, `tension`. `world` serve solo alle due
-## voci che devono **guardare la tessera** prima di parlare — togliere una
-## condizione vuol dire togliere *quella che c'e'*.
+## `region_focus`, `proponent`, `rival`, `tension`, `adjacent`, `capital`,
+## `rival_seat`. `world` serve alle voci che devono **guardare il tavolo** prima
+## di parlare — togliere una condizione vuol dire togliere *quella che c'e'*, e
+## risolvere `dove: REGION_WITH` vuol dire trovare la tessera che porta il segno.
 static func effects_for(
 	voice: Dictionary, verb_kind: String, context: Dictionary,
 	world: Dictionary, theme_id: String, source: Dictionary
 ) -> Array:
 	var verb: String = str(voice.get("verb", ""))
-	var region: String = str(context.get("region_focus", ""))
+	var region: String = region_of(voice, context, world)
+	var house: String = house_of(voice, context, world)
 	var out: Array = []
 	match verb:
 		"REOPEN":
@@ -299,52 +662,113 @@ static func effects_for(
 			if _stone_stands(world, region, stone):
 				out.append(Effect.make(
 					"SET_STRUCTURE_OWNER", "region", region,
-					{
-						"structure_type": stone,
-						"entity_id": str(context.get("proponent", "")),
-					}, source
+					{"structure_type": stone, "entity_id": house}, source
 				))
 				return out
 			out.append(Effect.make(
 				"BUILD_STRUCTURE", "region", region,
-				{
-					"structure_type": stone,
-					"grade": 1, "owner": str(context.get("proponent", "")),
-				}, source
+				{"structure_type": stone, "grade": 1, "owner": house}, source
 			))
 		"TAKE_CONTROL":
 			if region == "":
 				return out
 			out.append(Effect.make(
-				"SET_CONTROL", "region", region,
-				{"entity_id": str(context.get("proponent", ""))}, source
+				"SET_CONTROL", "region", region, {"entity_id": house}, source
 			))
 		"COOL_THEME":
 			if theme_id == "":
 				return out
 			out.append(Effect.make("ADJUST_THEME_HEAT", "theme", theme_id, {"delta": -1}, source))
 		"COOL_QUESTION", "HEAT_QUESTION":
-			# **Quale domanda.** Oggi: quella di cui si sta discutendo, che e' il
-			# segnalino che tutti hanno davanti. Il committente ne ha decisa
-			# un'altra — *«la sceglie chi propone»* — e quella chiede che la
+			# **Quale domanda.** Di suo quella di cui si sta discutendo, che e'
+			# il segnalino che tutti hanno davanti; con `dove: QUESTION` quella
+			# che la carta chiama per nome (D-366). Il committente ne ha decisa
+			# una terza — *«la sceglie chi propone»* — e quella chiede che la
 			# pedina posata porti con se' il nome della domanda: e' ISSUES 106,
 			# perche' tocca l'API con cui si comprano i benefici, i due cervelli
 			# e il tabellone.
-			var asked: String = str(context.get("tension", ""))
+			var asked: String = question_of(voice, context, world)
 			if asked == "":
 				return out
 			out.append(Effect.make(
 				"ADJUST_TENSION", "tension", asked,
 				{"delta": -1 if verb == "COOL_QUESTION" else 1}, source
 			))
-		"REMEMBER":
+		"UNVEIL_QUESTION":
+			var veiled: String = question_of(voice, context, world)
+			if veiled == "":
+				return out
+			out.append(Effect.make(
+				"SET_TENSION_VISIBILITY", "tension", veiled, {"visibility": "OPEN"}, source
+			))
+		"REMEMBER", "FORGET":
 			# La memoria si posa sul **mondo**, non sul luogo: e' un fatto che
 			# dura, e il dizionario lo dichiara di ambito GLOBAL. Il validatore
 			# rifiuta una voce RICORDA che nomini un segno di altro ambito.
 			var fact: String = str(voice.get("tag", ""))
 			if fact == "":
 				return out
-			out.append(Effect.make("SET_GLOBAL_TAG", "world", "WORLD", {"tag": fact}, source))
+			out.append(Effect.make(
+				"SET_GLOBAL_TAG" if verb == "REMEMBER" else "REMOVE_GLOBAL_TAG",
+				"world", "WORLD", {"tag": fact}, source
+			))
+		"MARK_HOUSE", "UNMARK_HOUSE":
+			# **Il segno addosso a una casa**, non alla tessera (D-366): viaggia
+			# con lei, e resta anche quando la Regione cambia padrone.
+			var mark: String = str(voice.get("tag", ""))
+			if house == "" or mark == "":
+				return out
+			out.append(Effect.make(
+				"SET_ENTITY_TAG" if verb == "MARK_HOUSE" else "REMOVE_ENTITY_TAG",
+				"entity", house, {"tag": mark}, source
+			))
+		"BIND_HOUSES":
+			# Il filo fra chi propone e la casa nominata. La chiave e' quella
+			# con cui il mondo lo tiene: cercarla nei due versi e' necessario,
+			# perche' `relations` ne scrive uno solo e un bersaglio inventato
+			# fallirebbe dentro l'applicatore, dove nessuno lo vede.
+			var key: String = _relation_key(world, str(context.get("proponent", "")), house)
+			if key == "" or str(voice.get("level", "")) == "":
+				return out
+			out.append(Effect.make(
+				"SET_RELATION", "relation", key, {"level": str(voice["level"])}, source
+			))
+		"MOVE_IN", "MOVE_OUT":
+			# **Una pedina che entra o che esce senza che nessuno abbia fatto
+			# MUOVERE.** `optional` perche' il tetto delle presenze e' del
+			# motore: se la casa non ha piu' pedine, la casella non fallisce —
+			# non lascia niente, che al tavolo e' quello che si vede.
+			if house == "" or region == "":
+				return out
+			out.append(Effect.make(
+				"ADD_PRESENCE" if verb == "MOVE_IN" else "REMOVE_PRESENCE",
+				"entity", house, {"region_id": region, "optional": true}, source
+			))
+		"RAISE_STONE", "LOWER_STONE":
+			var raised: String = str(voice.get("structure", ""))
+			var grade: int = _stone_grade(world, region, raised)
+			if region == "" or raised == "" or grade < 0:
+				return out
+			out.append(Effect.make(
+				"SET_STRUCTURE_GRADE", "region", region,
+				{
+					"structure_type": raised,
+					"grade": grade + (1 if verb == "RAISE_STONE" else -1),
+					"optional": true,
+				}, source
+			))
+		"SEAL_ROAD":
+			var there: String = other_region_of(voice, context, world)
+			if region == "" or there == "" or region == there:
+				return out
+			out.append(Effect.make(
+				"CLOSE_PASSAGE", "region", region,
+				{"region_id": there, "optional": true}, source
+			))
+		"LEAVE_TABLE":
+			if house == "":
+				return out
+			out.append(Effect.make("SET_ENTITY_ACTIVE", "entity", house, {"active": false}, source))
 		"ADD_CONDITION":
 			if region == "":
 				return out
@@ -361,10 +785,10 @@ static func effects_for(
 			# tavolo, non un buco.
 			if region == "":
 				return out
-			var to_whom: Variant = context.get("rival", "")
+			var to_whom: String = _yield_target(voice, context, world)
 			out.append(Effect.make(
 				"SET_CONTROL", "region", region,
-				{"entity_id": to_whom if str(to_whom) != "" else null}, source
+				{"entity_id": to_whom if to_whom != "" else null}, source
 			))
 		"HEAT_THEME":
 			if theme_id == "":
@@ -404,20 +828,28 @@ static func effects_for(
 ## vale prenderlo, una condizione su una tessera che non e' tua non ti pesa
 ## come su una che e' tua, una Cicatrice pesa sempre perche' resta. Si sommano
 ## a quello che il Destino dice, che resta il metro fine.
+##
+## **E adesso guardano anche `chi`** (D-366): la stessa casella vale il
+## contrario se la pedina e' posata su di te o sul rivale, ed e' quello che il
+## tavolo legge in un colpo d'occhio.
 static func intrinsic_value(
 	voice: Dictionary, kind: String, context: Dictionary, world: Dictionary
 ) -> int:
-	var region_id: String = str(context.get("region_focus", ""))
+	var region_id: String = region_of(voice, context, world)
 	var proponent: String = str(context.get("proponent", ""))
+	var house: String = house_of(voice, context, world)
+	var on_me: bool = house != "" and house == proponent
 	var regions: Dictionary = world.get("regions", {}) as Dictionary
 	var region: Dictionary = (regions.get(region_id, {}) as Dictionary)
 	var mine: bool = str(region.get("control", "")) == proponent and proponent != ""
 	var tags: Array = region.get("tags", []) as Array
 	match str(voice.get("verb", "")):
 		"TAKE_CONTROL":
+			if not on_me:
+				return -2 if mine else 0
 			return 0 if mine else 3
 		"BUILD_STONE":
-			return 2
+			return 2 if on_me else 0
 		"CLEAR_CONDITION":
 			for tag in tags:
 				if str(tag).begins_with("condition:"):
@@ -443,6 +875,38 @@ static func intrinsic_value(
 			return -1
 		"SCAR":
 			return -2
+		# Le caselle di D-366. Il segno addosso lo pesa gia' il Destino, che
+		# sa se quel segno lo vuole: qui resta solo il verso — un segno posato
+		# su di me e' mio, uno tolto a me e' una perdita.
+		"MARK_HOUSE":
+			return 1 if on_me else 0
+		"UNMARK_HOUSE":
+			return -1 if on_me else 1
+		"FORGET":
+			return 1
+		"UNVEIL_QUESTION":
+			return 1
+		"RAISE_STONE":
+			return 2 if _stone_owner(world, region_id, str(voice.get("structure", ""))) == proponent else 0
+		"LOWER_STONE":
+			return -2 if _stone_owner(world, region_id, str(voice.get("structure", ""))) == proponent else -1
+		"MOVE_IN":
+			return 1 if on_me else -1
+		"MOVE_OUT":
+			return -2 if on_me else 2
+		"BIND_HOUSES":
+			match str(voice.get("level", "")):
+				"BOUND", "ALLY":
+					return 2
+				"HOSTILE", "ENEMY":
+					return -2
+			return 0
+		"SEAL_ROAD":
+			return -2 if mine else -1
+		# La piu' grossa di tutte: una casa che esce dal tavolo. Se e' la tua
+		# non c'e' beneficio che la paghi.
+		"LEAVE_TABLE":
+			return -6 if on_me else 2
 	return 0
 
 
@@ -464,13 +928,20 @@ static func knows(verb: String, kind: String) -> bool:
 	return (BENEFIT_VERBS if kind == "benefits" else COST_VERBS).has(verb)
 
 
-## I parametri che una voce deve portare per essere giocabile.
+## I parametri che una voce deve portare per essere giocabile: quelli del verbo,
+## piu' quelli che il **posto** e la **casa** chiedono (D-366). «In una Regione
+## col segno» senza il segno e' una pedina posata su un'icona vuota.
 static func missing_parameters(voice: Dictionary, kind: String) -> Array:
 	var book: Dictionary = BENEFIT_VERBS if kind == "benefits" else COST_VERBS
-	var entry: Dictionary = book.get(str(voice.get("verb", "")), {}) as Dictionary
+	var entry_: Dictionary = book.get(str(voice.get("verb", "")), {}) as Dictionary
+	var wanted: Array = (entry_.get("needs", []) as Array).duplicate()
+	var place: Dictionary = PLACES.get(str(voice.get("dove", "FOCUS")), {}) as Dictionary
+	wanted.append_array(place.get("needs", []) as Array)
+	var who: Dictionary = HOUSES.get(str(voice.get("chi", "PROPONENT")), {}) as Dictionary
+	wanted.append_array(who.get("needs", []) as Array)
 	var missing: Array = []
-	for needed in (entry.get("needs", []) as Array):
-		if str(voice.get(str(needed), "")) == "":
+	for needed in wanted:
+		if str(voice.get(str(needed), "")) == "" and not missing.has(str(needed)):
 			missing.append(str(needed))
 	return missing
 

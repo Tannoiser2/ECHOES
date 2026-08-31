@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2277 testi in lettura.
+possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -539,6 +539,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Risveglio.
 
 
+**`TEN_AWAKENING, si ottiene — B_RAISE`**
+> Il Sito dormiente del luogo sale di 1 grado.
+
+
+**`TEN_AWAKENING, si ottiene — B_UNVEIL`**
+> La domanda in discussione si gira a faccia in su.
+
+
 **`TEN_AWAKENING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -565,6 +573,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 
 **`TEN_AWAKENING, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Risveglio.
+
+
+**`TEN_AWAKENING, si paga — C_FORGET`**
+> Il mondo dimentica: le Miniere erano state sigillate.
+
+
+**`TEN_AWAKENING, si paga — C_LEAVE`**
+> La casa che porta #dormiente lascia il tavolo.
 
 
 **`TEN_AWAKENING, se cade — F_CONDITION`**
@@ -1649,6 +1665,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Carestia.
 
 
+**`TEN_FAMINE, si ottiene — B_MARK`**
+> Chi propone esce dal Consiglio con la fama.
+
+
+**`TEN_FAMINE, si ottiene — B_MOVE_OUT`**
+> Il rivale toglie la sua pedina dal luogo.
+
+
 **`TEN_FAMINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1675,6 +1699,18 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 
 **`TEN_FAMINE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Carestia.
+
+
+**`TEN_FAMINE, si paga — C_MOVE_IN`**
+> Il rivale posa una pedina in una Regione confinante.
+
+
+**`TEN_FAMINE, si paga — C_BIND`**
+> Il filo con il rivale scende a nemico.
+
+
+**`TEN_FAMINE, si paga — C_LOWER`**
+> La Foresta del luogo scende di 1 grado.
 
 
 **`TEN_FAMINE, se cade — F_CONDITION`**
@@ -3433,6 +3469,10 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Reliquia.
 
 
+**`TEN_RELIC, si ottiene — B_MARK`**
+> Chi propone porta addosso: scoperta: la reliquia.
+
+
 **`TEN_RELIC, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3459,6 +3499,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 
 **`TEN_RELIC, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_RELIC, si paga — C_UNVEIL`**
+> La Reliquia si gira a faccia in su, per tutti.
+
+
+**`TEN_RELIC, si paga — C_MOVE_IN`**
+> Il rivale posa una pedina nel luogo.
 
 
 **`TEN_RELIC, se cade — F_CONDITION`**
@@ -3511,6 +3559,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Vie Interrotte.
 
 
+**`TEN_ROADS, si ottiene — B_MOVE_IN`**
+> Chi propone posa una pedina in una Regione confinante.
+
+
+**`TEN_ROADS, si ottiene — B_BIND`**
+> Il filo con il rivale sale ad alleato.
+
+
 **`TEN_ROADS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3537,6 +3593,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 
 **`TEN_ROADS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Vie Interrotte.
+
+
+**`TEN_ROADS, si paga — C_SEAL`**
+> Si chiude la strada fra una Regione con #selvaggio e una con #pascolo.
+
+
+**`TEN_ROADS, si paga — C_UNMARK`**
+> Chi propone perde la fama.
 
 
 **`TEN_ROADS, se cade — F_CONDITION`**
@@ -4107,6 +4171,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Successione.
 
 
+**`TEN_SUCCESSION, si ottiene — B_UNMARK`**
+> Al rivale si toglie la corona.
+
+
+**`TEN_SUCCESSION, si ottiene — B_FORGET`**
+> Il mondo dimentica: la corona era stata divisa.
+
+
 **`TEN_SUCCESSION, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4133,6 +4205,14 @@ possono spostare nella frase, non togliere. 2277 testi in lettura.
 
 **`TEN_SUCCESSION, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_SUCCESSION, si paga — C_MOVE_OUT`**
+> Chi propone toglie la sua pedina dalla capitale.
+
+
+**`TEN_SUCCESSION, si paga — C_MARK`**
+> Chi propone resta sotto osservazione.
 
 
 **`TEN_SUCCESSION, se cade — F_CONDITION`**

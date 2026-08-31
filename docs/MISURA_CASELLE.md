@@ -9,89 +9,105 @@ caselle**: questa e' la misura di cosa resta fuori.
 
 ## Il vocabolario che esegue
 
-Letto da `CouncilEconomy` chiamandolo, non ricopiato.
+Letto da `CouncilEconomy` chiamandolo, non ricopiato: ogni casella
+e' stata girata una volta per ogni posto che accetta, e la colonna
+«dove sa puntare» e' **cosa e' uscito puntato**, non un elenco a mano.
 
-| casella | Effetti che produce |
-|---|---|
-| **REOPEN** | REMOVE_REGION_TAG |
-| **CLEAR_CONDITION** | REMOVE_REGION_TAG |
-| **BUILD_STONE** | BUILD_STRUCTURE |
-| **TAKE_CONTROL** | SET_CONTROL |
-| **COOL_THEME** | ADJUST_THEME_HEAT |
-| **REMEMBER** | SET_GLOBAL_TAG |
-| **COOL_QUESTION** | ADJUST_TENSION |
-| **ADD_CONDITION** | SET_REGION_TAG |
-| **TOLL** | SET_REGION_TAG |
-| **YIELD_CONTROL** | SET_CONTROL |
-| **HEAT_THEME** | ADJUST_THEME_HEAT |
-| **TAKE_DEBT** | SET_REGION_TAG |
-| **SCAR** | ADD_SCAR |
-| **HEAT_QUESTION** | ADJUST_TENSION |
+| casella | in quale lista | Effetti che produce | dove sa puntare |
+|---|---|---|---|
+| **REOPEN** — RIAPRI | benefici | REMOVE_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **CLEAR_CONDITION** — RIMUOVI CONDIZIONE | benefici | REMOVE_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **BUILD_STONE** — COSTRUISCI PIETRA | benefici | SET_STRUCTURE_OWNER, BUILD_STRUCTURE | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **TAKE_CONTROL** — CAMBIA CONTROLLO | benefici | SET_CONTROL | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **COOL_THEME** — RAFFREDDA TEMA | benefici | ADJUST_THEME_HEAT | `THM_POTERE` |
+| **REMEMBER** — IL MONDO RICORDA | benefici | SET_GLOBAL_TAG | `$region_focus` |
+| **COOL_QUESTION** — ABBASSA LA DOMANDA | benefici | ADJUST_TENSION | `$region_focus`, `TEN_` |
+| **MARK_HOUSE** — POSA UN SEGNO SU UNA CASATA | benefici e costi | SET_ENTITY_TAG | `$entity_with:`, `$proponent`, `$rival` |
+| **UNMARK_HOUSE** — TOGLI UN SEGNO A UNA CASATA | benefici e costi | REMOVE_ENTITY_TAG | `$entity_with:`, `$proponent`, `$rival` |
+| **BIND_HOUSES** — MUOVI UN RAPPORTO | benefici e costi | SET_RELATION | `|` |
+| **MOVE_IN** — UNA PRESENZA ENTRA | benefici e costi | ADD_PRESENCE | `$entity_with:`, `$proponent`, `$rival` |
+| **MOVE_OUT** — UNA PRESENZA SE NE VA | benefici e costi | REMOVE_PRESENCE | `$entity_with:`, `$proponent`, `$rival` |
+| **RAISE_STONE** — UNA PIETRA SALE | benefici | SET_STRUCTURE_GRADE | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **FORGET** — IL MONDO DIMENTICA | benefici e costi | REMOVE_GLOBAL_TAG | `$region_focus` |
+| **UNVEIL_QUESTION** — UNA DOMANDA VELATA SI SCOPRE | benefici e costi | SET_TENSION_VISIBILITY | `$region_focus`, `TEN_` |
+| **ADD_CONDITION** — AGGIUNGI CONDIZIONE | costi | SET_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **TOLL** — PEDAGGIO | costi | SET_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **YIELD_CONTROL** — CEDI CONTROLLO | costi | SET_CONTROL | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **HEAT_THEME** — SCALDA TEMA | costi | ADJUST_THEME_HEAT | `THM_POTERE` |
+| **TAKE_DEBT** — PRENDI DEBITO | costi | SET_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **SCAR** — CICATRICE | costi | ADD_SCAR | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **HEAT_QUESTION** — ALZA LA DOMANDA | costi | ADJUST_TENSION | `$region_focus`, `TEN_` |
+| **LOWER_STONE** — UNA PIETRA SCENDE | costi | SET_STRUCTURE_GRADE | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **SEAL_ROAD** — CHIUDI LA STRADA | costi | CLOSE_PASSAGE | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
+| **LEAVE_TABLE** — UNA CASATA LASCIA IL TAVOLO | costi | SET_ENTITY_ACTIVE | `$entity_with:`, `$proponent`, `$rival` |
 
 ## Il conto
 
 | | distinti | applicazioni |
 |---|---|---|
-| **una casella di oggi lo sa dire** | 5 | 151 |
-| **verbo giusto, posto che la casella non sa dire** | 25 | 104 |
-| **verbo che manca** | 16 | 81 |
+| **una casella di oggi lo sa dire** | 44 | 333 |
+| **verbo giusto, posto che la casella non sa dire** | 2 | 3 |
+| **verbo che manca** | 0 | 0 |
 | | **46** | **336** |
 
 ## Le caselle che mancano
 
 | casella da scrivere | Effetti | distinti | applicazioni |
 |---|---|---|---|
-| **POSA UN SEGNO SU UNA CASATA** | `SET_ENTITY_TAG`, `REMOVE_ENTITY_TAG` | 4 | 44 |
-| **MUOVI UN RAPPORTO** | `SET_RELATION` | 1 | 11 |
-| **UNA PRESENZA ENTRA O SE NE VA** | `REMOVE_PRESENCE`, `ADD_PRESENCE` | 4 | 10 |
-| **UNA PIETRA SALE O SCENDE** | `SET_STRUCTURE_GRADE` | 2 | 9 |
-| **IL MONDO DIMENTICA** | `REMOVE_GLOBAL_TAG` | 1 | 3 |
-| **UNA DOMANDA VELATA SI SCOPRE** | `SET_TENSION_VISIBILITY` | 2 | 2 |
-| **UNA CASATA LASCIA IL TAVOLO** | `SET_ENTITY_ACTIVE` | 1 | 1 |
-| **CHIUDI LA STRADA FRA DUE SEGNI** | `CLOSE_PASSAGE` | 1 | 1 |
+| *nessuna* | | 0 | 0 |
 
 ## I verbi che mancano
 
 | Effetto | dove | usi | come si direbbe |
 |---|---|---|---|
-| `REMOVE_PRESENCE` | `$rival` | 4 | il rivale se ne va dove si discute |
-| `SET_STRUCTURE_GRADE` | *dove si discute* | 8 | Foresta dove si discute va al grado 2 |
-| `ADD_PRESENCE` | `$rival` | 2 | il rivale entra in una Regione confinante |
-| `SET_RELATION` | `$proponent|$rival` | 11 | il rapporto fra chi propone e il rivale cambia |
-| `SET_ENTITY_TAG` | `$proponent` | 29 | chi propone porta addosso: la fama |
-| `SET_TENSION_VISIBILITY` | `TEN_AWAKENING` | 1 | Il Risveglio si apre a tutti |
-| `SET_ENTITY_TAG` | `$rival` | 12 | il rivale porta addosso: scoperta: lo studio custodito |
-| `REMOVE_GLOBAL_TAG` | *dove si discute* | 3 | il mondo dimentica: le Miniere sono state sigillate |
-| `SET_ENTITY_ACTIVE` | `$entity_with:sleeping` | 1 | la casa che porta #dormiente esce dal tavolo, o ci rientra |
-| `SET_ENTITY_TAG` | `$conditioner` | 2 | chi ha posto la condizione porta addosso: scoperta: il registro condiviso |
-| `REMOVE_ENTITY_TAG` | `$rival` | 1 | il rivale perde: la corona |
-| `SET_STRUCTURE_GRADE` | `$region_with:wild` | 1 | Passo in una Regione con #selvaggio va al grado 2 |
-| `CLOSE_PASSAGE` | `$region_with:wild` | 1 | si chiude la strada in una Regione con #pascolo |
-| `REMOVE_PRESENCE` | `$proponent` | 2 | chi propone se ne va dove si discute |
-| `ADD_PRESENCE` | `$proponent` | 2 | chi propone entra in una Regione confinante |
-| `SET_TENSION_VISIBILITY` | `TEN_RELIC` | 1 | La Reliquia si apre a tutti |
+| *nessuno* | | | |
 
 ## Il posto che la casella non sa dire
 
 | Effetto | dove | usi | come si direbbe |
 |---|---|---|---|
+| `SET_GLOBAL_TAG` | `$adjacent` | 1 | il mondo registra: la Valle e' stata chiusa |
+| `SET_ENTITY_TAG` | `$conditioner` | 2 | chi ha posto la condizione porta addosso: scoperta: il registro condiviso |
+
+## Quello che una casella gia' dice
+
+| Effetto | dove | usi | come si direbbe |
+|---|---|---|---|
 | `BUILD_STRUCTURE` | `$region_with:granary` | 4 | si alza Granaio in una Regione con #granaio |
 | `ADJUST_TENSION` | `TEN_ROADS` | 20 | Le Vie Interrotte sale |
-| `SET_GLOBAL_TAG` | `$adjacent` | 1 | il mondo registra: la Valle e' stata chiusa |
+| `SET_GLOBAL_TAG` | *dove si discute* | 70 | il mondo registra: il grano e' stato requisito |
+| `REMOVE_PRESENCE` | `$rival` | 4 | il rivale se ne va dove si discute |
+| `SET_REGION_TAG` | *dove si discute* | 33 | dove si discute diventa #requisita |
+| `SET_STRUCTURE_GRADE` | *dove si discute* | 8 | Foresta dove si discute va al grado 2 |
+| `ADD_PRESENCE` | `$rival` | 2 | il rivale entra in una Regione confinante |
+| `SET_RELATION` | `$proponent|$rival` | 11 | il rapporto fra chi propone e il rivale cambia |
+| `SET_CONTROL` | *dove si discute* | 4 | dove si discute cambia padrone |
 | `SET_REGION_TAG` | `$rival_seat` | 2 | nella sede del rivale diventa #affamata |
 | `SET_REGION_TAG` | `$adjacent` | 18 | in una Regione confinante diventa #inquieta |
+| `ADJUST_TENSION` | *dove si discute* | 30 | la domanda in gioco sale |
+| `SET_ENTITY_TAG` | `$proponent` | 29 | chi propone porta addosso: la fama |
 | `REMOVE_REGION_TAG` | `$region_with:nomad_range` | 1 | in una Regione con #pascolo non e' piu' #affamata |
 | `ADJUST_TENSION` | `TEN_FAMINE` | 3 | La Carestia scende |
 | `SET_REGION_TAG` | `$region_with:crystal_site` | 3 | in una Regione con #cristallo diventa #sfruttata |
+| `SET_TENSION_VISIBILITY` | `TEN_AWAKENING` | 1 | Il Risveglio si apre a tutti |
+| `SET_ENTITY_TAG` | `$rival` | 12 | il rivale porta addosso: scoperta: lo studio custodito |
 | `ADJUST_TENSION` | `TEN_AWAKENING` | 5 | Il Risveglio scende |
+| `REMOVE_GLOBAL_TAG` | *dove si discute* | 3 | il mondo dimentica: le Miniere sono state sigillate |
 | `REMOVE_REGION_TAG` | `$region_with:crystal_site` | 1 | in una Regione con #cristallo non e' piu' il sigillo |
+| `SET_ENTITY_ACTIVE` | `$entity_with:sleeping` | 1 | la casa che porta #dormiente esce dal tavolo, o ci rientra |
 | `ADJUST_TENSION` | `TEN_SUCCESSION` | 7 | La Successione scende di 2 |
+| `REMOVE_REGION_TAG` | *dove si discute* | 14 | dove si discute non e' piu' #inquieta |
 | `SET_CONTROL` | `$rival_seat` | 2 | nella sede del rivale cambia padrone |
 | `SET_REGION_TAG` | `$capital` | 2 | nella capitale diventa #contesa |
 | `BUILD_STRUCTURE` | `$rival_seat` | 1 | si alza Presidio nella sede del rivale |
 | `SET_CONTROL` | `$capital` | 1 | nella capitale cambia padrone |
+| `REMOVE_ENTITY_TAG` | `$rival` | 1 | il rivale perde: la corona |
 | `SET_CONTROL` | `$region_with:trade` | 2 | in una Regione con #commercio cambia padrone |
 | `BUILD_STRUCTURE` | `$region_with:trade` | 2 | si alza Pedaggio in una Regione con #commercio |
+| `SET_STRUCTURE_GRADE` | `$region_with:wild` | 1 | Passo in una Regione con #selvaggio va al grado 2 |
+| `CLOSE_PASSAGE` | `$region_with:wild` | 1 | si chiude la strada in una Regione con #pascolo |
+| `REMOVE_PRESENCE` | `$proponent` | 2 | chi propone se ne va dove si discute |
+| `ADD_PRESENCE` | `$proponent` | 2 | chi propone entra in una Regione confinante |
 | `ADJUST_TENSION` | `TEN_CHARTER` | 8 | La Carta sale |
 | `ADJUST_TENSION` | `TEN_DEBT` | 6 | Il Debito scende |
 | `ADJUST_TENSION` | `TEN_WATER` | 3 | L'Acqua Ferma scende di 2 |
@@ -100,13 +116,4 @@ Letto da `CouncilEconomy` chiamandolo, non ricopiato.
 | `SET_REGION_TAG` | `$region_with:mine` | 2 | in una Regione con #miniera diventa #svuotata |
 | `ADJUST_TENSION` | `TEN_ASH` | 4 | La Cenere che Sale scende di 2 |
 | `BUILD_STRUCTURE` | `$region_with:wild` | 2 | si alza Presidio in una Regione con #selvaggio |
-
-## Quello che una casella gia' dice
-
-| Effetto | dove | usi | come si direbbe |
-|---|---|---|---|
-| `SET_GLOBAL_TAG` | *dove si discute* | 70 | il mondo registra: il grano e' stato requisito |
-| `SET_REGION_TAG` | *dove si discute* | 33 | dove si discute diventa #requisita |
-| `SET_CONTROL` | *dove si discute* | 4 | dove si discute cambia padrone |
-| `ADJUST_TENSION` | *dove si discute* | 30 | la domanda in gioco sale |
-| `REMOVE_REGION_TAG` | *dove si discute* | 14 | dove si discute non e' piu' #inquieta |
+| `SET_TENSION_VISIBILITY` | `TEN_RELIC` | 1 | La Reliquia si apre a tutti |

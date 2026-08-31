@@ -483,6 +483,34 @@ def _cancelletti(nodo: Any, trovati: Set[str]) -> None:
             _cancelletti(valore, trovati)
 
 
+def caselle_del_motore() -> Dict[str, set]:
+    """**Il vocabolario che il motore esegue davvero**, letto da
+    `docs/MISURA_CASELLE.md`.
+
+    Quel documento non e' scritto a mano: `run_box_survey.gd` gira ogni casella
+    di `CouncilEconomy` e stampa quello che esce, e un cancello fallisce se il
+    documento e' vecchio. E' quindi l'unico posto da cui Python puo' leggere
+    cosa il motore sa fare senza ricopiarlo — e ricopiarlo e' esattamente il
+    difetto che questo progetto ha gia' pagato (D-343: tre copie della stessa
+    lista, e la terza si e' vista il giorno che una casella nuova e' entrata
+    nelle altre due).
+    """
+    doc = REPO_ROOT / "docs" / "MISURA_CASELLE.md"
+    if not doc.exists():
+        return {}
+    caselle: Dict[str, set] = {"benefits": set(), "costs": set()}
+    for riga in doc.read_text(encoding="utf-8").splitlines():
+        trovato = re.match(r"\|\s\*\*([A-Z_]+)\*\*[^|]*\|([^|]*)\|", riga)
+        if not trovato:
+            continue
+        verbo, liste = trovato.group(1), trovato.group(2)
+        if "benefici" in liste:
+            caselle["benefits"].add(verbo)
+        if "costi" in liste:
+            caselle["costs"].add(verbo)
+    return caselle
+
+
 def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai: List[str] = []
     conto = censimento(documenti)
@@ -766,8 +794,17 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     BENEFIT_VERBS = _verbi_dello_schema("benefits")
     COST_VERBS = _verbi_dello_schema("costs")
     NEEDS = {"BUILD_STONE": "structure", "ADD_CONDITION": "tag", "SCAR": "tag",
-             "REMEMBER": "tag"}
+             "REMEMBER": "tag", "FORGET": "tag", "MARK_HOUSE": "tag",
+             "UNMARK_HOUSE": "tag", "BIND_HOUSES": "level",
+             "RAISE_STONE": "structure", "LOWER_STONE": "structure"}
+    # E i parametri che il **posto** e la **casa** chiedono (D-366): «in una
+    # Regione col segno» senza il segno e' una pedina posata su un'icona vuota,
+    # ed e' lo stesso difetto di un verbo senza il suo parametro.
+    NEEDS_DOVE = {"REGION_WITH": "place_tag", "QUESTION": "question"}
+    NEEDS_CHI = {"HOUSE_WITH": "who_tag"}
+    NEEDS_VERSO = {"REGION_WITH": "verso_tag"}
     pietre = {str(s.get("id")) for s in documenti.get("structure_type", [])}
+    domande = {str(t.get("id")) for t in documenti.get("tension", [])}
     for tensione in documenti.get("tension", []):
         faccia = tensione.get("physical") or {}
         if not faccia:
@@ -786,7 +823,9 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             verbi = []
             for v in voci_carta:
                 verbo = str(v.get("verb", ""))
-                verbi.append(verbo)
+                verbi.append("|".join(str(v.get(campo, "")) for campo in (
+                    "verb", "dove", "place_tag", "question", "verso", "verso_tag",
+                    "chi", "who_tag", "tag", "structure", "level")))
                 if verbo not in vocabolario:
                     guai.append("verbo fuori vocabolario su %s: «%s» fra i %s"
                                 % (tensione.get("id"), verbo, come))
@@ -795,6 +834,31 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 if chiede and not str(v.get(chiede, "")):
                     guai.append("voce senza il suo parametro su %s: «%s» chiede "
                                 "`%s`" % (tensione.get("id"), verbo, chiede))
+                for campo_posto, tabella in (("dove", NEEDS_DOVE),
+                                             ("chi", NEEDS_CHI),
+                                             ("verso", NEEDS_VERSO)):
+                    posto = str(v.get(campo_posto, ""))
+                    vuole = tabella.get(posto)
+                    if vuole and not str(v.get(vuole, "")):
+                        guai.append(
+                            "posto senza il suo parametro su %s: «%s» con "
+                            "`%s: %s` chiede `%s`"
+                            % (tensione.get("id"), verbo, campo_posto, posto, vuole))
+                # Una domanda chiamata per nome dev'essere una domanda che
+                # esiste: la casella che la nomina la cerca sul tavolo, e un id
+                # sbagliato ricadrebbe **in silenzio** su quella in discussione.
+                if str(v.get("dove", "")) == "QUESTION":
+                    chiamata = str(v.get("question", ""))
+                    if chiamata and chiamata not in domande:
+                        guai.append("domanda inesistente su %s: «%s»"
+                                    % (tensione.get("id"), chiamata))
+                # E i segni che scelgono il posto e la casa sono segni del
+                # dizionario, come tutti gli altri.
+                for campo_segno in ("place_tag", "who_tag", "verso_tag"):
+                    scelto = str(v.get(campo_segno, ""))
+                    if scelto and scelto not in voci:
+                        guai.append("segno fuori dal dizionario su %s: «%s»"
+                                    % (tensione.get("id"), scelto))
                 if verbo == "BUILD_STONE" and str(v.get("structure", "")) not in pietre:
                     guai.append("Pietra inesistente su %s: «%s»"
                                 % (tensione.get("id"), v.get("structure")))
@@ -803,26 +867,59 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 # ambito REGION o ENTITY finirebbe in un posto dove nessuna
                 # regola lo va a leggere. La categoria e l'ambito li dichiara
                 # il dizionario, e qui si riscontrano.
-                if verbo == "REMEMBER":
+                # **E IL MONDO DIMENTICA e' lo stesso verbo al contrario**
+                # (D-366): scrive nello stesso posto, e un segno che non e' del
+                # mondo non ci sarebbe mai stato da togliere.
+                if verbo in ("REMEMBER", "FORGET"):
+                    come_si_chiama = ("IL MONDO RICORDA" if verbo == "REMEMBER"
+                                      else "IL MONDO DIMENTICA")
                     fatto = str(v.get("tag", ""))
                     voce_fatto = voci.get(fatto, {})
                     if fatto and voce_fatto:
                         if str(voce_fatto.get("category", "")) != "MEMORY":
                             guai.append(
-                                "IL MONDO RICORDA su %s non nomina una memoria: "
-                                "«%s» e' %s" % (tensione.get("id"), fatto,
-                                                voce_fatto.get("category")))
+                                "%s su %s non nomina una memoria: «%s» e' %s"
+                                % (come_si_chiama, tensione.get("id"), fatto,
+                                   voce_fatto.get("category")))
                         if "GLOBAL" not in (voce_fatto.get("scope") or []):
                             guai.append(
-                                "IL MONDO RICORDA su %s posa un segno che non e' "
-                                "del mondo: «%s» ha ambito %s"
-                                % (tensione.get("id"), fatto,
+                                "%s su %s posa un segno che non e' del mondo: "
+                                "«%s» ha ambito %s"
+                                % (come_si_chiama, tensione.get("id"), fatto,
                                    "/".join(voce_fatto.get("scope") or ["nessuno"])))
+                # **Un segno addosso a una casa e' un segno di ambito ENTITY**
+                # (D-366). Uno di ambito REGION posato su una casa finisce in un
+                # posto dove nessuna regola lo va a leggere: e' lo stesso
+                # difetto di IL MONDO RICORDA, sull'altro bersaglio.
+                if verbo in ("MARK_HOUSE", "UNMARK_HOUSE"):
+                    addosso = str(v.get("tag", ""))
+                    voce_addosso = voci.get(addosso, {})
+                    if addosso and voce_addosso:
+                        if "ENTITY" not in (voce_addosso.get("scope") or []):
+                            guai.append(
+                                "un segno su una casata che non e' di una casata "
+                                "su %s: «%s» ha ambito %s"
+                                % (tensione.get("id"), addosso,
+                                   "/".join(voce_addosso.get("scope") or ["nessuno"])))
+                # E il livello di MUOVI UN RAPPORTO e' uno dei gradini della
+                # pista, non una parola qualunque.
+                if verbo == "BIND_HOUSES":
+                    gradino = str(v.get("level", ""))
+                    if gradino and gradino not in LIVELLI:
+                        guai.append(
+                            "livello di rapporto inventato su %s: «%s» non e' un "
+                            "gradino della pista" % (tensione.get("id"), gradino))
                 for campo in ("tag",):
                     segno = str(v.get(campo, ""))
                     if segno and segno not in voci:
                         guai.append("segno fuori dal dizionario su %s: «%s»"
                                     % (tensione.get("id"), segno))
+            # **Due pedine che fanno la stessa cosa** non sono una scelta. Da
+            # D-366 «la stessa cosa» non e' piu' solo il verbo: la stessa
+            # casella puntata su due posti diversi — qui e la capitale — o su
+            # due case diverse e' una scelta vera, e il tavolo la vede. Quello
+            # che resta finto e' il verbo **con lo stesso bersaglio e gli
+            # stessi parametri**.
             if lista != "failure" and len(set(verbi)) < len(verbi):
                 guai.append("scelta finta fra i %s di %s: due pedine fanno la "
                             "stessa cosa" % (come, tensione.get("id")))
@@ -1076,6 +1173,42 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 "Risonanza muta su «%s»: la carta scalda di piu' (o posa un segno) "
                 "quando c'e' «%s», e la faccia non lo nomina — chi la legge non "
                 "puo' sapere quanto scalda (ISSUES 113)" % (asset["id"], segno))
+    # 24. lo schema e il motore nominano le stesse caselle (D-366)
+    #
+    # Due liste, due file: l'enum di `schema/tension.schema.json`, che dice cosa
+    # una carta puo' scrivere, e le tabelle di `CouncilEconomy`, che dicono cosa
+    # il motore sa eseguire. Se si scostano il danno e' **silenzioso** in tutti
+    # e due i versi: un verbo che sta solo nello schema passa la validazione e
+    # poi non produce nessun Effetto, quindi la casella non viene mai offerta e
+    # il contenuto muore senza un errore; uno che sta solo nel motore e' una
+    # casella che nessuna carta puo' posare.
+    #
+    # Il lato motore si legge da `docs/MISURA_CASELLE.md`, che una sonda genera
+    # **chiamando** le caselle e un cancello tiene aggiornato: e' un ponte, non
+    # una terza copia. Stesso mestiere del censimento che legge
+    # `SCHELETRO_CARTE.md` invece di ricontare le facce.
+    motore = documenti.get("_caselle_del_motore")
+    if motore is None:
+        motore = caselle_del_motore()
+    else:
+        # Seam del `--self-test`: la guardia deve poter mordere su un
+        # vocabolario scostato senza che si tocchi un documento generato.
+        motore = {k: set(v) for k, v in dict(motore).items()}
+    if motore:
+        for lista, come in (("benefits", "benefici"), ("costs", "costi")):
+            dallo_schema = _verbi_dello_schema(lista)
+            dal_motore = motore.get(lista, set())
+            for verbo in sorted(dallo_schema - dal_motore):
+                guai.append(
+                    "casella che il motore non esegue: «%s» sta fra i %s dello "
+                    "schema e non esce da CouncilEconomy — una carta potrebbe "
+                    "stamparla, e la pedina non farebbe niente" % (verbo, come))
+            for verbo in sorted(dal_motore - dallo_schema):
+                guai.append(
+                    "casella che nessuna carta puo' posare: «%s» esce da "
+                    "CouncilEconomy fra i %s e non sta nell'enum dello schema"
+                    % (verbo, come))
+
     return guai
 
 
@@ -1227,8 +1360,66 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def scelta_finta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Due pedine di costo che fanno la stessa cosa: al tavolo si posano su
         # due caselle uguali, e la scelta non e' una scelta (D-280).
+        #
+        # «La stessa cosa» da D-366 e' il verbo **col suo bersaglio**: copiare
+        # il solo verbo non basta piu' a piantare il difetto, perche' due
+        # caselle uguali puntate altrove sono una scelta vera. Si copia la voce
+        # intera, tenendo id e testo, che sono guardati da altri due controlli.
         carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
-        carta["physical"]["costs"][1]["verb"] = carta["physical"]["costs"][0]["verb"]
+        gemella = dict(carta["physical"]["costs"][0])
+        gemella["id"] = carta["physical"]["costs"][1]["id"]
+        gemella["text"] = carta["physical"]["costs"][1]["text"]
+        carta["physical"]["costs"][1] = gemella
+
+    def posto_senza_segno(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una casella che dice «in una Regione col segno» e non dice quale
+        # segno (D-366): al tavolo e' un'icona vuota, e il motore ricade in
+        # silenzio sul posto di cui si discute.
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
+        carta["physical"]["costs"][0]["dove"] = "REGION_WITH"
+
+    def domanda_inventata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una casella che chiama per nome una domanda che non esiste: la cerca
+        # sul tavolo, non la trova, e muove **quella in discussione** senza
+        # dirlo a nessuno.
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
+        carta["physical"]["costs"][0]["dove"] = "QUESTION"
+        carta["physical"]["costs"][0]["question"] = "TEN_MAI_USCITA"
+
+    def casa_col_segno_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # E il segno che sceglie la casa e' un segno del dizionario come tutti
+        # gli altri: uno inventato non lo porta nessuno, e la casella non morde
+        # mai.
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
+        carta["physical"]["costs"][0]["chi"] = "HOUSE_WITH"
+        carta["physical"]["costs"][0]["who_tag"] = "trait:inventato_apposta"
+
+    def vocabolario_scostato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Lo schema dichiara una casella che il motore non esegue (D-366). E'
+        # il difetto piu' silenzioso dei due: la carta passa la validazione, la
+        # pedina si posa, e non succede niente.
+        motore = caselle_del_motore()
+        motore["benefits"] = motore["benefits"] - {"REOPEN"}
+        prova["_caselle_del_motore"] = motore  # type: ignore[assignment]
+
+    def segno_sulla_casa_sbagliato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Un segno della tessera posato addosso a una casa (D-366): ci finisce,
+        # e nessuna regola lo va a leggere li'.
+        carta = next(t for t in prova["tension"]
+                     if any(v.get("verb") == "MARK_HOUSE"
+                            for v in (t.get("physical") or {}).get("benefits", [])))
+        voce_marchio = next(v for v in carta["physical"]["benefits"]
+                            if v.get("verb") == "MARK_HOUSE")
+        voce_marchio["tag"] = "condition:starving"
+
+    def rapporto_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Un gradino che sulla pista dei rapporti non esiste.
+        carta = next(t for t in prova["tension"]
+                     if any(v.get("verb") == "BIND_HOUSES"
+                            for v in (t.get("physical") or {}).get("costs", [])))
+        voce_filo = next(v for v in carta["physical"]["costs"]
+                         if v.get("verb") == "BIND_HOUSES")
+        voce_filo["level"] = "AMICONI"
 
     def lista_monca(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una lista con una voce sola: non e' un menu, e' un destino.
@@ -1405,6 +1596,19 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "tessera che nessuno legge"),
         pianta("due pedine di costo che fanno la stessa cosa", scelta_finta,
                "scelta finta fra i costi"),
+        pianta("casella «in una Regione col segno» senza il segno", posto_senza_segno,
+               "posto senza il suo parametro"),
+        pianta("casella che chiama una domanda che non esiste", domanda_inventata,
+               "domanda inesistente"),
+        pianta("casella puntata su una casa col segno inventato",
+               casa_col_segno_inventato, "segno fuori dal dizionario"),
+        pianta("casella dello schema che il motore non esegue", vocabolario_scostato,
+               "casella che il motore non esegue"),
+        pianta("segno della tessera posato addosso a una casata",
+               segno_sulla_casa_sbagliato,
+               "un segno su una casata che non e' di una casata"),
+        pianta("livello di rapporto che sulla pista non esiste", rapporto_inventato,
+               "livello di rapporto inventato"),
         pianta("lista di costi con una voce sola", lista_monca,
                "lista di costi troppo corta"),
         pianta("una Pietra che non esiste sotto una pedina", pedina_muta,
