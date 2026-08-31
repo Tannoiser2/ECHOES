@@ -88,6 +88,16 @@ jobs:
       - name: Codice irraggiungibile nel GDScript
         run: python3 tools/dead_code.py
 
+      # **E i cancelli sono gli stessi da tutte e due le parti** (D-367). La
+      # tabella di CLAUDE.md e' il contratto con chi lavora qui; questi file
+      # sono quello che gira davvero. In una giornata sola si sono scostati nei
+      # due versi, e nessuno dei due si lamenta da solo.
+      - name: Il giro dei cancelli di CLAUDE.md e' quello della CI
+        run: python3 tools/gates_survey.py --check
+
+      - name: La guardia dei cancelli morde
+        run: python3 tools/gates_survey.py --self-test
+
   godot:
     name: Test headless
     runs-on: ubuntu-latest
@@ -176,6 +186,20 @@ jobs:
       - name: Drift check - la misura del tavolo
         run: GODOT=~/godot/godot tools/run_table_survey.sh --check
 
+      # Lo scheletro delle carte (D-333): cosa porta ogni faccia, ricavato dalle
+      # facce vere. Se una faccia smette di stampare un blocco, il documento che
+      # si manda a chi disegna lo dice ancora.
+      - name: Drift check - lo scheletro delle carte
+        run: GODOT=~/godot/godot tools/run_card_skeleton.sh --check
+
+      # Le caselle del Consiglio (D-343, D-366). Questo passo non sorveglia solo
+      # un documento: da D-366 `docs/MISURA_CASELLE.md` e' il **lato motore** del
+      # controllo che tiene uguali l'enum delle carte e il vocabolario che
+      # esegue. Vecchio quel documento, quel controllo confronta l'enum nuovo con
+      # un vocabolario vecchio e da' verde per il motivo sbagliato.
+      - name: Drift check - le caselle del Consiglio
+        run: GODOT=~/godot/godot tools/run_box_survey.sh --check
+
       - name: Ogni anno arriva in fondo, e lo stesso seme da' lo stesso salvataggio
         run: GODOT=~/godot/godot tools/run_sims.sh
 
@@ -203,14 +227,14 @@ jobs:
       - name: Export di stampa
         run: |
           set -euo pipefail
-          OUT="$PWD/export-a" GODOT=~/godot/godot tools/run_export.sh
+          # `--check-brief` esporta **e** controlla che il brief committato sia
+          # quello generato: e' il comando che CLAUDE.md documenta, ed e' meglio
+          # del diff a mano che stava qui — un cancello scritto due volte in due
+          # modi e' un cancello che si puo' scostare da se' stesso.
+          OUT="$PWD/export-a" GODOT=~/godot/godot tools/run_export.sh --check-brief
           OUT="$PWD/export-b" GODOT=~/godot/godot tools/run_export.sh > /dev/null
           diff -r export-a export-b
           echo "l'export e' deterministico"
-          # Il brief committato e' quello generato: e' il documento che si manda
-          # a chi disegna, e se invecchia manda prompt sbagliati.
-          diff export-a/brief_arte.md docs/BRIEF_ARTE.md
-          echo "docs/BRIEF_ARTE.md e' allineato"
 
       - name: Upload sim logs
         if: always()

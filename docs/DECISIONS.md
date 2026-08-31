@@ -10,6 +10,92 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-367 — I cancelli sono gli stessi da tutte e due le parti
+
+**implemented** (0.1.333)
+
+### Il difetto che ha morso due volte in un giorno, una per verso
+
+La tabella «Il giro dei cancelli» di `CLAUDE.md` è il contratto con chi lavora
+qui: dice cosa si lancia prima di spingere. `.github/workflows/` dice cosa si
+lancia davvero quando si spinge. **Sono due liste scritte a mano nello stesso
+repository, e non c'era niente che le tenesse uguali.**
+
+Nella giornata della 0.1.331 si sono scostate nei due versi:
+
+- **CLAUDE.md ne elencava sette e la CI ne girava otto.** Mancava
+  `run_table_survey`. Chi seguiva il documento spingeva un ramo che andava
+  rosso su un cancello che non sapeva di dover girare — successo due volte di
+  fila, e la cura fu aggiungere la riga mancante al documento.
+- **CLAUDE.md ne elencava ventidue e la CI ne girava diciannove.** Mancavano
+  `run_card_skeleton --check`, `run_box_survey --check` e
+  `run_export --check-brief`.
+
+Il secondo verso fa più male ed è anche quello che nessuno nota: **un cancello
+che non gira non si lamenta.** E da [D-366](#d-366) uno di quei tre è peggio
+degli altri: `docs/MISURA_CASELLE.md` non è più solo un documento — è il **lato
+motore** del controllo che tiene uguali l'enum delle carte e il vocabolario che
+esegue. Vecchio quel documento, quel controllo confronta l'enum nuovo con un
+vocabolario vecchio e **dà verde per il motivo sbagliato**.
+
+### La decisione
+
+Non si aggiungono i tre passi mancanti e basta: si scrive la guardia che tiene
+uguali le due liste, `tools/gates_survey.py`, e la si mette nel giro — dove
+guarda anche sé stessa.
+
+Confronta nei due versi, e i due versi non chiedono la stessa cosa:
+
+| verso | cosa guarda | perché così |
+|---|---|---|
+| promesso e non girato | il comando **intero**, strumento e argomenti | `run_export.sh --check-brief` che non gira è esattamente il difetto: lo strumento c'era, il flag no |
+| girato e non promesso | il solo **strumento** | la CI gira `run_export.sh` anche senza `--check-brief`, per confrontare due export e provare che sono uguali, e quello non è un cancello da lanciare a mano — è un pezzo del controllo di determinismo |
+
+Non si prova a capire lo YAML: si guardano le righe che nominano uno strumento
+del repository. Un passo che gira un cancello lo nomina per forza, e leggere il
+testo invece della struttura evita di dipendere da come è scritto il blocco
+`run:` — che qui è a volte una riga sola e a volte un blocco su più righe.
+
+E i due modi di scrivere lo stesso comando si normalizzano prima del confronto:
+`$GODOT`, `~/godot/godot` e il binario per esteso sono la stessa cosa, e un
+confronto che non lo sapesse troverebbe uno scostamento a ogni riga.
+
+### Quello che si è chiuso
+
+| | prima | dopo |
+|---|---|---|
+| cancelli in `CLAUDE.md` | 22 | **25** |
+| di quelli, girati dalla CI | 19 | **25** |
+| girati dalla CI e non documentati | 1 (`run_sims.sh`) | **0** |
+
+I tre aggiunti alla CI: lo scheletro delle carte, le caselle del Consiglio, il
+brief d'arte. E `run_sims.sh` — *ogni anno arriva in fondo, e lo stesso seme dà
+lo stesso salvataggio* — entra nella tabella: la CI lo girava da sempre e il
+documento non lo diceva.
+
+**E un cancello scritto due volte in due modi.** Il passo dell'export
+controllava il brief con un `diff` a mano invece del `--check-brief` che il
+documento promette: due scritture della stessa regola, che possono scostarsi
+l'una dall'altra. Adesso il passo lancia il comando documentato.
+
+### La guardia morde
+
+`--self-test` pianta il difetto nei due versi — un cancello tolto dalla CI, un
+cancello tolto dal documento — e pretende che la guardia lo veda, e che taccia
+sui dati veri. E se la tabella di `CLAUDE.md` cambiasse forma al punto che il
+lettore non ne ricava più nessun cancello, quello **non** viene letto come «un
+documento senza cancelli»: esce 1. Uno zero è quasi sempre la sonda cieca, e qui
+lo sarebbe.
+
+### Il costo
+
+Nessuno sul gioco: non cambia una riga sotto `godot/`, quindi il playtest a 100
+semi non è stato rilanciato — non c'è niente che possa aver mosso. I 25 cancelli
+girano verdi, presi **dalla lista di CLAUDE.md letta a macchina** e non ricopiata
+a occhio: contarli a occhio è il modo in cui si è sbagliato due volte oggi.
+
+---
+
 ## D-366 — Una casella dice cosa fa, su chi, e dove
 
 **implemented** (0.1.332) · chiude [ISSUES 89](ISSUES.md#89) · richiesta del

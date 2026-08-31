@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.333 — I cancelli sono gli stessi da tutte e due le parti (D-367)
+
+La tabella «Il giro dei cancelli» di `CLAUDE.md` e i workflow sono due liste
+scritte a mano nello stesso repository, e non c'era niente che le tenesse
+uguali. In un giorno solo si sono scostate nei due versi: prima il documento ne
+elencava sette e la CI ne girava otto, poi il documento ne elencava ventidue e
+la CI ne girava diciannove.
+
+Il secondo verso fa più male ed è quello che nessuno nota: **un cancello che non
+gira non si lamenta.** E da D-366 uno dei tre mancanti era peggio degli altri —
+`docs/MISURA_CASELLE.md` è il **lato motore** del controllo che tiene uguali
+l'enum delle carte e il vocabolario che esegue: vecchio quel documento, quel
+controllo dà verde per il motivo sbagliato.
+
+**Non i tre passi mancanti e basta**: la guardia che tiene uguali le due liste,
+`tools/gates_survey.py`, messa nel giro dove guarda anche sé stessa.
+
+| | prima | dopo |
+|---|---|---|
+| cancelli in `CLAUDE.md` | 22 | **25** |
+| di quelli, girati dalla CI | 19 | **25** |
+| girati dalla CI e non documentati | 1 | **0** |
+
+Aggiunti alla CI: lo scheletro delle carte, le caselle del Consiglio, il brief
+d'arte. Aggiunto alla tabella: `run_sims.sh`, che la CI girava da sempre e il
+documento non diceva.
+
+E un cancello che era scritto due volte in due modi: il passo dell'export
+controllava il brief con un `diff` a mano invece del `--check-brief` che il
+documento promette. Adesso lancia il comando documentato.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`. I 25 cancelli
+girano verdi, presi dalla lista di `CLAUDE.md` **letta a macchina** — contarli a
+occhio è il modo in cui si è sbagliato due volte oggi.
+
+---
+
 ## 0.1.332 — Una casella dice cosa fa, su chi, e dove (D-366) — chiude ISSUES 89
 
 Le otto caselle che mancavano al Consiglio sono scritte. Ma misurando per
