@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.321 — Il grafo non mostrava nessuna Cicatrice (D-354)
+
+Trovato dal committente, guardando il disegno di una Conseguenza e chiedendo di
+spiegargliela: «La Domanda sul Muro» mostrava **due frecce in uscita su tre**.
+Mancava la Cicatrice.
+
+**Quindici Conseguenze posano una Cicatrice con un blocco loro** (`creates_scar`
+più `scar`) invece che con un Effetto, e `build_flow.py` cercava solo i tipi di
+effetto: di quelle quindici non ne mostrava **nessuna**. Da **1582 a 1597
+legami**.
+
+È lo stesso inciampo che un commento in `validate_physical` aveva già scritto —
+*«la cicatrice non è un SET_REGION_TAG: è un blocco suo»* — e ci sono cascato lo
+stesso, sullo stesso pezzo, per la seconda volta in un giorno: la prima era
+`ADD_SCAR` nella sonda del tavolo. **Le Cicatrici sono il posto dove questo
+progetto è cieco**: tre strumenti su tre, scritti in giornate diverse, hanno
+mancato lo stesso blocco.
+
+---
+
 ## 0.1.320 — I cinquantuno gettoni del bordo hanno una faccia (D-356)
 
 Chiude [ISSUES 110](docs/ISSUES.md). D-351 aveva dato un posto alla memoria del

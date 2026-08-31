@@ -169,6 +169,25 @@ Percio' lo strumento **lo dice ad alta voce** quando il disegno e' cambiato,
 invece di lasciarlo scoprire a chi si fida del link. E' il minimo onesto: la
 ripubblicazione resta un gesto a mano, e questo lo scrive invece di nasconderlo.
 
+### Il quinto, trovato dal committente
+
+Guardando il disegno di una Conseguenza — «La Domanda sul Muro» — il committente
+ha chiesto di spiegargliela, e il disegno era **incompleto**: mostrava due frecce
+in uscita su tre. Mancava la Cicatrice.
+
+**Quindici Conseguenze posano una Cicatrice con un blocco loro** (`creates_scar`
+piu' `scar`), non con un Effetto. L'estrattore cercava solo i tipi di effetto, e
+di quelle quindici non ne mostrava **nessuna**: +15 legami, da 1582 a 1597.
+
+E' lo stesso inciampo che il commento di `validate_physical._scava` aveva gia'
+scritto — *«la cicatrice non e' un SET_REGION_TAG: e' un blocco suo, e la prima
+stesura di questa sonda non la vedeva»* — e ci sono cascato lo stesso, sullo
+stesso pezzo, per la seconda volta in un giorno. La prima era stata `ADD_SCAR`
+nella sonda del tavolo (D-352).
+
+**Le Cicatrici sono il posto dove questo progetto e' cieco.** Tre strumenti su
+tre, scritti in giornate diverse, hanno mancato lo stesso blocco.
+
 ### Quattro difetti trovati disegnandolo, e vale la pena scriverli
 
 1. **Le etichette a meta' della freccia finivano sopra i riquadri.** Spostate nel
