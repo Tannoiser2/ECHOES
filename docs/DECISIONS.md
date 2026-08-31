@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-368 — Il disegno conosce le caselle, e non butta via un pezzo in silenzio
+
+**implemented** (0.1.334) · richiesta del committente: *«dobbiamo rifare anche
+il grafo»*.
+
+### Il disegno diceva una cosa che non era più vera
+
+`docs/flusso.html` scriveva **«sul luogo della domanda»** su ogni freccia che
+usciva da una carta Tensione. Fino alla 0.1.332 era vero: ogni casella agiva
+lì. Da [D-366](#d-366) non lo è più — una casella può puntare su una Regione
+confinante, sulla capitale, sulla sede del rivale, su una Regione col segno, su
+una domanda chiamata per nome. **Un disegno che lo scrive ancora mente, che è
+peggio di un disegno che tace.**
+
+Adesso ogni freccia dice il posto per esteso, col segno o con la domanda che lo
+sceglie stampati dentro, e nomina la casa solo quando non è quella di sempre —
+scriverla su ogni freccia farebbe rumore, e il rumore nasconderebbe le tre
+caselle che parlano di qualcun altro.
+
+### E su cinque caselle su otto taceva del tutto
+
+Il disegno pescava dalle carte due cose sole: il segno che una voce posa e la
+Pietra che alza. **UNA PRESENZA ENTRA, UNA PRESENZA SE NE VA, MUOVI UN RAPPORTO,
+UNA DOMANDA VELATA SI SCOPRE, UNA CASATA LASCIA IL TAVOLO non toccano né un
+segno né una Pietra**, e quindi non producevano nessuna freccia: cinque delle
+otto caselle nuove erano invisibili nel documento che dovrebbe mostrare il
+flusso del tavolo.
+
+La cura è farne **pezzi del grafo**. Una casella è ora un pezzo che si sceglie,
+come una carta o un segno: si vede chi la offre e dove va a finire quando la
+offre. Venticinque pezzi nuovi, e le 60 carte ci puntano con la freccia
+«offre».
+
+I nomi delle caselle non sono ricopiati: si leggono da `docs/MISURA_CASELLE.md`,
+che una sonda genera **chiamando** `CouncilEconomy` e un cancello tiene
+aggiornato. È lo stesso ponte del controllo 24 di `validate_physical`
+([D-366](#d-366)), usato una seconda volta invece di aprire una seconda copia.
+
+| `docs/flusso.html` | prima | dopo |
+|---|---|---|
+| pezzi | 552 | **577** |
+| legami | 1748 | **2742** |
+
+### Le due guardie, che sono la cosa che resta
+
+Il template filtra gli archi su `VERBS` e i pezzi su `KINDS`: **quello che non
+sta in quelle due tabelle finisce nel JSON e sparisce dal disegno, senza che
+nessuno lo dica.** È successo mentre si scriveva questa decisione — il verso
+«chiama» è entrato con le caselle, e tredici archi veri sono stati generati e
+buttati via.
+
+Adesso `build_flow.py` legge quelle due tabelle **dal template** e si ferma se
+sta per emettere un verso o un genere di pezzo che il disegno non conosce.
+Provate tutte e due togliendo la voce dal template: escono 1.
+
+E una terza, sulla stessa forma di difetto: se lo schema della Tensione aggiunge
+un `dove` o un `chi` che nessuno ha ancora imparato a raccontare, lo strumento
+si ferma invece di scrivere una freccia con la frase vuota.
+
+### Il costo
+
+Nessuno sul gioco: non cambia una riga sotto `godot/`, quindi il playtest a 100
+semi non è stato rilanciato. Il documento pesa 479 KB invece di 339.
+
+**La copia pubblicata va ripubblicata a mano**: il cancello sorveglia il file
+nel repository, non l'Artifact. Lo strumento lo dice a ogni giro.
+
+---
+
 ## D-367 — I cancelli sono gli stessi da tutte e due le parti
 
 **implemented** (0.1.333)

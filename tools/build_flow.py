@@ -242,15 +242,140 @@ for a in load("assets/*.json"):
              "l'Eco stampato su questa carta: la sua versione potenziata")
 
 # ---------- TENSIONI ----------
+#
+# **Una casella dice cosa fa, su chi, e dove** (D-366). Fino alla 0.1.332 il
+# disegno scriveva «sul luogo della domanda» su ogni arco che usciva da una
+# carta Tensione, perche' era vero: ogni casella agiva li'. Adesso non lo e'
+# piu', e un disegno che lo scrive ancora **mente** — che e' peggio di un
+# disegno che tace.
+
+# La glossa italiana dei due campi nuovi. Non e' il vocabolario che esegue —
+# quello sta in `CouncilEconomy` — ma la frase che il disegno scrive accanto
+# alla freccia. L'identita' del posto viaggia sempre col suo valore d'enum,
+# cosi' una rinomina non puo' far dire all'arco una cosa per un'altra, e il
+# controllo qui sotto va rosso se lo schema aggiunge un posto che nessuno ha
+# ancora imparato a raccontare.
+DOVE = {"FOCUS": "sul luogo della domanda",
+        "ADJACENT": "su una Regione confinante",
+        "CAPITAL": "sulla capitale",
+        "RIVAL_SEAT": "sulla sede del rivale",
+        "REGION_WITH": "su una Regione che porta il segno",
+        "QUESTION": "sulla domanda chiamata per nome"}
+CHI = {"PROPONENT": "di chi propone", "RIVAL": "del rivale",
+       "HOUSE_WITH": "della casa che porta il segno", "NOBODY": "di nessuno"}
+
+
+def nomi_delle_caselle():
+    """Come si chiama ogni casella, letto da `docs/MISURA_CASELLE.md`.
+
+    Quel documento lo genera una sonda **chiamando** `CouncilEconomy`, e un
+    cancello lo tiene aggiornato: e' l'unico posto da cui Python puo' leggere il
+    vocabolario che esegue senza ricopiarlo. E' lo stesso ponte che usa il
+    controllo 24 di `validate_physical`.
+    """
+    doc = REPO / "docs" / "MISURA_CASELLE.md"
+    if not doc.exists():
+        return {}
+    fuori = {}
+    for riga in doc.read_text(encoding="utf-8").splitlines():
+        trovato = re.match(r"\|\s*\*\*([A-Z_]+)\*\*\s*—\s*([^|]+)\|", riga)
+        if trovato:
+            fuori[trovato.group(1)] = trovato.group(2).strip()
+    return fuori
+
+
+CASELLE = nomi_delle_caselle()
+
+
+def _enum_della_casella(campo):
+    """L'enum di `dove` o di `chi`, preso dallo schema della Tensione."""
+    schema = json.load(open(REPO / "schema" / "tension.schema.json", encoding="utf-8"))
+    trovati = set()
+
+    def scava(nodo):
+        if isinstance(nodo, dict):
+            blocco = nodo.get(campo)
+            if isinstance(blocco, dict) and isinstance(blocco.get("enum"), list):
+                trovati.update(str(v) for v in blocco["enum"])
+            for figlio in nodo.values():
+                scava(figlio)
+        elif isinstance(nodo, list):
+            for figlio in nodo:
+                scava(figlio)
+
+    scava(schema)
+    return trovati
+
+
+# **Un posto che il disegno non sa raccontare non si salta in silenzio.** Se lo
+# schema ne aggiunge uno e nessuno passa di qui, l'arco uscirebbe con una frase
+# vuota e il disegno direbbe meno di quello che i dati dicono, senza lamentarsi.
+for campo, glossa in (("dove", DOVE), ("chi", CHI)):
+    _mancanti = _enum_della_casella(campo) - set(glossa)
+    if _mancanti:
+        sys.exit("il disegno non sa raccontare %s: %s — aggiungilo a build_flow.py"
+                 % (campo, ", ".join(sorted(_mancanti))))
+
+
+def racconta_posto(voce):
+    """Dove va a finire questa casella, e su chi parla — detto per esteso."""
+    dove = str(voce.get("dove", "FOCUS"))
+    chi = str(voce.get("chi", "PROPONENT"))
+    pezzi = [DOVE.get(dove, dove)]
+    if dove == "REGION_WITH" and voce.get("place_tag"):
+        pezzi[0] += " #%s" % voce["place_tag"]
+    if dove == "QUESTION" and voce.get("question"):
+        pezzi[0] += " %s" % voce["question"]
+    # La casa si nomina solo quando non e' quella di sempre: scriverla su ogni
+    # arco farebbe rumore, e il rumore nasconde le tre caselle che parlano di
+    # qualcun altro.
+    if chi != "PROPONENT":
+        pezzi.append("e parla %s" % CHI.get(chi, chi))
+        if chi == "HOUSE_WITH" and voce.get("who_tag"):
+            pezzi[-1] += " #%s" % voce["who_tag"]
+    return ", ".join(pezzi)
+
+
 for t in load("tensions/*.json"):
     ph = t.get("physical") or {}
     node(t["id"], "tensione", t=t.get("title", ""), dom=t.get("domain", ""))
     for buck, nome in (("benefits", "beneficio"), ("costs", "costo"), ("failure", "fallimento")):
         for it in ph.get(buck, []) or []:
+            posto = racconta_posto(it)
+            # **La casella e' un pezzo del tavolo, non solo una riga di testo.**
+            # Cinque caselle su otto — le due della presenza, il rapporto, la
+            # domanda che si scopre, la casa che se ne va — non toccano ne' un
+            # segno ne' una Pietra, e il disegno non le mostrava affatto. Adesso
+            # ognuna e' un pezzo che si puo' scegliere: chi la offre, e dove va
+            # a finire quando la offre.
+            verbo = str(it.get("verb", ""))
+            if verbo:
+                cid = "casella:%s" % verbo
+                node(cid, "casella", t=CASELLE.get(verbo, verbo), d=CASELLE.get(verbo, ""))
+                edge(t["id"], cid, "offre",
+                     "%s: %s" % (nome, it.get("text", "")[:80]), posto)
             if it.get("tag"):
                 edge(t["id"], it["tag"], "posa", "%s «%s»: %s" % (nome, it.get("verb", ""), it.get("text", "")[:80]),
-                     "sul luogo della domanda")
-            if it.get("structure"): edge(t["id"], it["structure"], "costruisce", "%s: %s" % (nome, it.get("verb", "")))
+                     posto)
+            if it.get("structure"):
+                edge(t["id"], it["structure"], "costruisce",
+                     "%s «%s»: %s" % (nome, it.get("verb", ""), it.get("text", "")[:80]), posto)
+            # **I segni che scelgono il bersaglio.** Non sono segni che la carta
+            # posa: sono segni che la carta **legge** per sapere dove mettere la
+            # pedina. Il verso e' quello della lettura, e girato dice la cosa
+            # che serve al tavolo: «#commercio — chi lo guarda, e per farci
+            # cosa».
+            for campo, perche in (("place_tag", "sceglie la Regione di cui parla la casella"),
+                                  ("verso_tag", "sceglie l'altro capo della strada"),
+                                  ("who_tag", "sceglie la casa di cui parla la casella")):
+                if it.get(campo):
+                    edge(t["id"], it[campo], "legge",
+                         "%s «%s»: %s" % (nome, it.get("verb", ""), perche))
+            # E la domanda chiamata per nome: una carta che ne muove un'altra.
+            if it.get("question"):
+                edge(t["id"], it["question"], "chiama",
+                     "%s «%s»: %s" % (nome, it.get("verb", ""), it.get("text", "")[:80]),
+                     "la muove chiamandola per nome")
 
 # ---------- DESTINI ----------
 for d in load("destinies/*.json"):
@@ -294,6 +419,45 @@ for r in load("tag_rules/*.json"):
 
 TEMPLATE = REPO / "tools" / "flow_template.html"
 PAGINA = REPO / "docs" / "flusso.html"
+
+
+def generi_che_il_disegno_conosce():
+    """I generi di pezzo che il template sa mostrare, letti dal template."""
+    testo = TEMPLATE.read_text(encoding="utf-8")
+    blocco = re.search(r"const KINDS = \{(.*?)\};", testo, re.S)
+    if not blocco:
+        sys.exit("il template non ha piu' la tabella KINDS: il disegno non si "
+                 "puo' controllare")
+    return set(re.findall(r"(\w+)\s*:\s*\"", blocco.group(1)))
+
+
+def verbi_che_il_disegno_conosce():
+    """I versi che il template sa disegnare, letti dal template."""
+    testo = TEMPLATE.read_text(encoding="utf-8")
+    blocco = re.search(r"const VERBS = \{(.*?)\};", testo, re.S)
+    if not blocco:
+        sys.exit("il template non ha piu' la tabella VERBS: il disegno non si "
+                 "puo' controllare")
+    return set(re.findall(r"(\w+)\s*:\s*\[", blocco.group(1)))
+
+
+# **Un verso che il template non conosce non si disegna, e non lo dice nessuno.**
+# La pagina filtra gli archi su `VERBS`: un arco con un verso che non sta li'
+# dentro finisce nel JSON e **sparisce dal disegno**. E' successo il giorno che
+# «chiama» e' entrato con le caselle di D-366: tredici archi veri, invisibili.
+_noti = verbi_che_il_disegno_conosce()
+_ignoti = sorted({str(a["k"]) for a in E} - _noti)
+if _ignoti:
+    sys.exit("il template non sa disegnare questi versi, e li butterebbe via in "
+             "silenzio: %s — aggiungili a VERBS in tools/flow_template.html"
+             % ", ".join(_ignoti))
+# Stessa trappola sui **pezzi**: `st.kinds` filtra i nodi come `st.verbs` filtra
+# gli archi, e un genere che il template non elenca sparisce dal disegno.
+_generi_ignoti = sorted({str(n["k"]) for n in N.values()} - generi_che_il_disegno_conosce())
+if _generi_ignoti:
+    sys.exit("il template non sa mostrare questi generi di pezzo, e li butterebbe "
+             "via in silenzio: %s — aggiungili a KINDS in tools/flow_template.html"
+             % ", ".join(_generi_ignoti))
 
 
 def disegna() -> str:

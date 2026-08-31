@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.334 — Il disegno conosce le caselle (D-368)
+
+Il grafo scriveva **«sul luogo della domanda»** su ogni freccia che usciva da
+una carta Tensione. Fino alla 0.1.332 era vero; da D-366 non lo è più, e un
+disegno che lo scrive ancora mente — che è peggio di un disegno che tace.
+
+E su **cinque caselle su otto taceva del tutto**: le due della presenza, il
+rapporto, la domanda che si scopre, la casa che lascia il tavolo non toccano né
+un segno né una Pietra, quindi non producevano nessuna freccia. Erano invisibili
+nel documento che dovrebbe mostrare il flusso del tavolo.
+
+Adesso **una casella è un pezzo del grafo**: si sceglie come una carta o un
+segno, e si vede chi la offre e dove va a finire. I nomi si leggono da
+`MISURA_CASELLE.md` — lo stesso ponte del controllo 24, non una seconda copia.
+
+| `docs/flusso.html` | prima | dopo |
+|---|---|---|
+| pezzi | 552 | **577** |
+| legami | 1748 | **2742** |
+
+**E due guardie che sono la cosa che resta.** Il template filtra gli archi su
+`VERBS` e i pezzi su `KINDS`: quello che non sta lì dentro finisce nel JSON e
+sparisce dal disegno senza che nessuno lo dica. È successo scrivendo questa
+versione — il verso «chiama» è entrato con le caselle, e tredici archi veri sono
+stati generati e buttati via. Adesso lo strumento legge quelle due tabelle dal
+template e si ferma prima. Più una terza: un `dove` o un `chi` nuovo nello
+schema che nessuno ha imparato a raccontare ferma lo strumento invece di
+scrivere una freccia vuota.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`. La copia pubblicata
+come Artifact va ripubblicata a mano — il cancello sorveglia il file nel
+repository, non il link.
+
+---
+
 ## 0.1.333 — I cancelli sono gli stessi da tutte e due le parti (D-367)
 
 La tabella «Il giro dei cancelli» di `CLAUDE.md` e i workflow sono due liste
