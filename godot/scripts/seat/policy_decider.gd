@@ -2028,13 +2028,11 @@ func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -
 func _play_narrator(entity_id: String, session: RefCounted) -> Dictionary:
 	if session.service.hand_size(entity_id) < COMFORTABLE_HAND:
 		return {}
-	var act: int = int(session.world["act"])
-	for effect in session.world["effect_log"]:
-		var src: Dictionary = effect.get("source", {})
-		if str(src.get("id", "")) == "ACT_PLAY_ECHO" \
-				and str(src.get("actor", "")) == entity_id \
-				and int(src.get("act", 0)) == act:
-			return {}
+	# **Via il tetto di una calata per Atto** (D-360, scelta del committente).
+	# Serviva quando l'Eco arrivava da un mazzo del Narratore e calarne due di
+	# fila voleva dire raccontare la storia da soli. Adesso l'Eco e' un'opzione
+	# della carta che si ha in mano, come le sue due Azioni: chi ne cala due in
+	# un Atto ha speso due carte per farlo, e quello e' gia' il freno.
 	# Non basta che la storia accetti la carta: deve servire a chi la cala.
 	# Senza questo filtro le sedie calavano qualunque cosa fosse eleggibile e
 	# Kessa restava piantata al Minimo (46/50): le carte altrui le scaldavano
@@ -2046,12 +2044,16 @@ func _play_narrator(entity_id: String, session: RefCounted) -> Dictionary:
 	# zero per costruzione. E le Conseguenze agganciate contano come contano
 	# in una proposta: sono la parte pesante della carta.
 	var goals: Dictionary = _tag_goals(entity_id, session)
-	for card_id in session.world["entities"][entity_id].get("echo_hand", []):
-		var params: Dictionary = {"echo_card_id": str(card_id)}
+	# D-359: non c'e' piu' una mano del Narratore da scorrere. Si guardano le
+	# carte Asset che il seggio ha in mano, e di ognuna la sua versione
+	# potenziata - l'Eco stampato sulla stessa faccia.
+	for asset_id in session.service.hand(entity_id):
+		var params: Dictionary = {"asset_card_id": str(asset_id)}
 		if not session.actions.can_execute(entity_id, "PLAY_ECHO", params):
 			continue
+		var card_id: String = str((session.data.assets[str(asset_id)] as Dictionary)["echo_id"])
 		var score: int = 0
-		for hook in session.data.echo_cards[str(card_id)].get("effect_hooks", []):
+		for hook in session.data.echo_cards[card_id].get("effect_hooks", []):
 			var bindings: Dictionary = session.chronicle.card_bindings(hook, entity_id)
 			if str(hook.get("kind", "")) == "EFFECT":
 				score += _score_effect(hook["effect"], entity_id, entity_id, goals, session, bindings)

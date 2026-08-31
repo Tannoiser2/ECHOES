@@ -61,7 +61,6 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 # che compare duecento».
 MUTI_NOTI: Dict[str, str] = {
     "account_settled": "«Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni",
-    "burden_shared": "il peso diviso non alleggerisce niente — 2 volte in 100 anni",
     # Memorie del mondo che il Consiglio scrive e che nessuna regola interroga
     # (D-103, D-286): restano perche' il tavolo le legge — sono la cronaca
     # dell'anno, non un requisito. Chi vuole farle mordere le aggiunge agli

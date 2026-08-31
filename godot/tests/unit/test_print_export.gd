@@ -681,7 +681,10 @@ func test_the_echo_card_says_what_it_does() -> void:
 		if prose != "":
 			assert_false(whole.contains(prose),
 				"%s stampa ancora il racconto" % str(card["id"]))
-	assert_eq(con_effetti, 39, "le carte Eco che stampano cosa fanno")
+	assert_eq(
+		con_effetti, loaded.echo_cards.size(),
+		"ogni Eco stampa cosa fa: sono il terzo blocco della carta Asset (D-359)"
+	)
 
 
 ## **I segni della tessera** (D-344). Una carta Azione si gioca «su un luogo con

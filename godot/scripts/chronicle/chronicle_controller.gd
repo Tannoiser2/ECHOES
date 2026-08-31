@@ -163,7 +163,6 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	# ha gia' avuto il suo giro di stagione, e rifarlo cambierebbe la partita.
 	if from_round == 1:
 		_lift_evictions(act)
-		_deal_narrator_hands(act)
 		_refill_hands(act)
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
@@ -858,31 +857,6 @@ func _hottest_with_something_to_say() -> String:
 	return ""
 
 
-## La mano del Narratore (ISSUES 23, D-118): all'apertura dell'atto ogni seggio
-## pesca due carte di Propp dal sacchetto pesato dell'atto (§15) - le famiglie
-## ripetute pescano piu' spesso, l'ordine lo decide l'RNG a seme, e
-## l'eleggibilita' NON si guarda qui: una carta puo' diventare giocabile piu'
-## tardi, quando la funzione che aspetta e' stata compiuta (D-030).
-const NARRATOR_CARDS_PER_ACT: int = 2
-
-
-func _deal_narrator_hands(act: int) -> void:
-	var bag: Array = []
-	for pool in _chronicle["act_echo_pools"]:
-		if int(pool["act"]) == act:
-			bag = (pool["families"] as Array).duplicate()
-	for entity_id in session.service.active_entities():
-		var dealt: int = 0
-		for _i in range(NARRATOR_CARDS_PER_ACT):
-			var card_id: String = _draw_from_bag(bag)
-			if card_id == "":
-				break
-			(world["entities"][str(entity_id)]["echo_hand"] as Array).append(card_id)
-			dealt += 1
-		if dealt > 0:
-			log.bullet("%s riceve %d carte del Narratore." % [_name(str(entity_id)), dealt])
-
-
 ## Il rubinetto della mano (ISSUES 47, D-185): a inizio Atto la mappa da' le
 ## carte.
 ##
@@ -983,32 +957,15 @@ func _fullest_deck() -> String:
 	return best
 
 
-## Una carta dal sacchetto: le famiglie mescolate col seme, la prima famiglia
-## che ha ancora una carta nel mazzo vince, dentro la famiglia decide l'ordine
-## mescolato del mazzo. Niente eleggibilita': quella si giudica quando si cala.
-func _draw_from_bag(bag: Array) -> String:
-	var families: Array = []
-	for family in session.rng.shuffle(bag):
-		if not families.has(str(family)):
-			families.append(str(family))
-	var deck: Dictionary = world["echo_deck"]
-	for family in families:
-		for i in range((deck["draw"] as Array).size()):
-			var card_id: String = str(deck["draw"][i])
-			var card: Variant = data.echo_cards.get(card_id)
-			if card == null or str(card["dramatic_family"]) != str(family):
-				continue
-			(deck["draw"] as Array).remove_at(i)
-			(deck["drawn"] as Array).append(card_id)
-			return card_id
-	return ""
-
-
-## ISSUES 23 (D-118): la carta calata da una mano. Costo e legalita' li ha gia'
-## giudicati l'ActionResolver; qui la carta parla - la funzione diventa un fatto
-## del mondo (D-030), gli effetti si applicano e si raccontano, i presagi
+## L'Eco che parla (D-118, D-359). Costo e legalita' li ha gia' giudicati
+## l'ActionResolver, che ha anche gia' scartato la carta calata e il suo prezzo;
+## qui l'Eco parla - gli effetti si applicano e si raccontano, i presagi
 ## scattano, e un eventuale Consiglio prescritto si prenota nello stesso posto
 ## del CLAIM (`forced_confluence`), per aprirsi a fine round.
+##
+## Non arriva piu' da un mazzo: arriva dalla faccia della carta Asset che
+## qualcuno aveva in mano, ed e' per questo che la pila `echo_played` e' anche
+## il registro di quali carte sono state spese per la loro versione potenziata.
 func play_narrator_card(entity_id: String, card_id: String, source: Dictionary) -> Array:
 	var card: Dictionary = data.echo_cards[card_id]
 	log.section("LA CARTA DEL NARRATORE - %s (%s)" % [str(card["title"]), str(card["dramatic_family"])])

@@ -312,13 +312,12 @@ function disegna(m, clock) {
   aggiornaMappa(clock);
 
   let h = "";
-  if (!m.hand.length && !m.echo_hand.length) h += riga("vuota", "manca");
+  if (!m.hand.length) h += riga("vuota", "manca");
   h += '<div class="mano">';
   for (const c of m.hand) h += carta("asset", c.id, c.title + " — " + c.family.toLowerCase());
-  for (const c of m.echo_hand) h += carta("echo", c.id, c.title + " — narratore");
   h += "</div>";
   manoBox.innerHTML = h;
-  segna("mano", m.hand.length + m.echo_hand.length > 0);
+  segna("mano", m.hand.length > 0);
 
   let s = "<h2>Le domande</h2>";
   for (const t of m.tensions) {

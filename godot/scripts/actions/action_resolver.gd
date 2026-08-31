@@ -385,8 +385,6 @@ func _check_scheme(entity_id: String, params: Dictionary) -> String:
 			if service.knows_tension(entity_id, tension_id):
 				return "%s conosce gia questa Tensione" % entity_id
 			return ""
-		"ECHO_DECK":
-			return ""
 		"REGION":
 			var region_id: String = str(params.get("region_id", ""))
 			if not world["regions"].has(region_id):
@@ -465,38 +463,56 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 	return ""
 
 
-## ISSUES 23 (D-118): calare una carta del Narratore. Legale solo se la carta
-## e' in mano, la storia e' pronta (l'eleggibilita' custodisce l'ordine di
-## Propp, D-030), e c'e' una carta Asset con cui pagare la parola.
+## Calare l'Eco di una carta (D-359). **Non c'e' piu' un mazzo del Narratore**:
+## l'Eco e' il terzo blocco stampato sulla carta Asset che hai in mano - la sua
+## versione potenziata. Si cala al posto di un'Azione normale, e le quattro
+## guardie sono:
+##
+##   1. la carta e' in mano (e' una carta Asset, non un mazzo a parte);
+##   2. l'Atto lo permette: la famiglia drammatica dell'Eco deve stare nel
+##      pool dell'Atto corrente - e' la forma in tre atti, che prima faceva il
+##      sacchetto e adesso fa questo cancello;
+##   3. i segni che l'Eco nomina stanno sul tavolo (D-030 letto a segni, non
+##      piu' col nome della questione dell'anno: strada 1 del committente);
+##
+## **Non costa piu' della carta stessa** (D-360, scelta del committente: *«l'eco
+## non deve costare due carte, e' una opzione come le azioni, solo che ha
+## condizioni piu' stringenti»*). Il prezzo della parola di D-118 nasceva quando
+## l'Eco arrivava da un mazzo a parte e la carta Asset era il pedaggio per farlo
+## parlare; adesso l'Eco **e' la carta**, e farsi pagare due volte lo stesso
+## pezzo non e' una regola, e' un attrito. Quello che lo distingue da un'Azione
+## normale sono le tre guardie qui sopra, non il conto.
 func _check_play_echo(entity_id: String, params: Dictionary) -> String:
-	var card_id: String = str(params.get("echo_card_id", ""))
-	var hand: Array = world["entities"][entity_id].get("echo_hand", [])
-	if not hand.has(card_id):
-		return "'%s' non e nella mano del Narratore di %s" % [card_id, entity_id]
-	var card: Dictionary = data.echo_cards[card_id]
-	if service.hand_size(entity_id) < 1:
-		return "calare una carta del Narratore costa una carta Asset, e la mano e vuota"
-	if not _eligibility.all_hold(card.get("eligibility", []), {}):
-		return "la storia non e pronta per '%s'" % str(card["title"])
-	if card.get("forces_confluence_on", null) != null and world.get("forced_confluence", null) != null:
+	var asset_id: String = str(params.get("asset_card_id", ""))
+	if not service.hand(entity_id).has(asset_id):
+		return "'%s' non e nella mano di %s" % [asset_id, entity_id]
+	var asset: Variant = data.assets.get(asset_id)
+	if asset == null:
+		return "carta sconosciuta '%s'" % asset_id
+	var card_id: String = str((asset as Dictionary).get("echo_id", ""))
+	var card: Variant = data.echo_cards.get(card_id)
+	if card == null:
+		return "'%s' non porta un Eco" % asset_id
+	if not _families_open_by(int(world["act"])).has(str((card as Dictionary)["dramatic_family"])):
+		return "l'Eco di '%s' non si cala in questo Atto" % asset_id
+	if not _eligibility.all_hold((card as Dictionary).get("eligibility", []), {}):
+		return "il mondo non porta i segni di '%s'" % str((card as Dictionary)["title"])
+	if (card as Dictionary).get("forces_confluence_on", null) != null \
+			and world.get("forced_confluence", null) != null:
 		return "il tavolo ha gia un Consiglio prescritto per questo round"
 	return ""
 
 
 func _play_echo(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
-	var card_id: String = str(params.get("echo_card_id", ""))
+	var asset_id: String = str(params.get("asset_card_id", ""))
+	var card_id: String = str((data.assets[asset_id] as Dictionary)["echo_id"])
 	var effects: Array = []
-	# Prima il costo: la parola si paga (scelta del committente, D-118). Senza
-	# una scelta esplicita si scarta la carta piu' debole.
-	var price: String = str(params.get("discard_asset_id", ""))
-	if not service.hand(entity_id).has(price):
-		price = _worst_of(service.hand(entity_id))
-	effects.append_array(_discard(entity_id, price, source))
-	log.bullet("%s paga la parola: scarta %s." % [_name(entity_id), _title(price)])
-	(world["entities"][entity_id]["echo_hand"] as Array).erase(card_id)
+	# La carta se ne va, e basta quello (D-360): e' lei che parla, ed e' lei il
+	# prezzo. Come giocare una carta per una delle sue due Azioni normali.
+	effects.append_array(_discard(entity_id, asset_id, source))
 	var applied: Array = play_card.call(entity_id, card_id, source)
 	effects.append_array(applied)
-	return _ok("PLAY_ECHO", effects, {"echo_card_id": card_id})
+	return _ok("PLAY_ECHO", effects, {"echo_card_id": card_id, "asset_card_id": asset_id})
 
 
 # --- ACQUIRE ---------------------------------------------------------------
@@ -875,21 +891,6 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 				effects,
 				{"private": true, "tension_id": tension_id, "value": tensions.value(tension_id)}
 			)
-		"ECHO_DECK":
-			var peek: Array = _peek_echo_deck(2)
-			effects.append(
-				applier.apply(
-					Effect.make(
-						"SET_ENTITY_TAG",
-						"entity",
-						entity_id,
-						{"tag": "scouted_echo:A%d" % int(world["act"])},
-						source
-					)
-				)
-			)
-			log.bullet("%s guarda le prime carte del mazzo Echo dell'Atto." % _name(entity_id))
-			return _ok("SCHEME", effects, {"private": true, "echo_peek": peek})
 		"REGION":
 			var region_id: String = str(params.get("region_id", ""))
 			var secret: String = str(data.regions[region_id].get("private_information", ""))
@@ -957,15 +958,23 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 	return _error("SCHEME", "modo sconosciuto '%s'" % mode)
 
 
-func _peek_echo_deck(count: int) -> Array:
-	var families: Array = _act_echo_families(int(world["act"]))
+## Le famiglie che possono parlare **da quest'Atto in poi** (D-359).
+##
+## `act_echo_pools` dice dove una famiglia *comincia*: pressione dall'Atto 1,
+## rottura e svolta dal 2, risoluzione dal 3. La prima stesura leggeva il pool
+## come un elenco chiuso — solo quelle famiglie, in quell'Atto — e misurato
+## costava caro: **382 Echi fermi in mano per l'Atto**, piu' di quanti ne
+## fermassero i segni. Era anche una regola sbagliata: una pressione al terzo
+## Atto e' perfettamente drammatica, una risoluzione al primo no.
+##
+## La forma in tre atti e' che **le cose diventano possibili**, non che smettano
+## di esserlo.
+func _families_open_by(act: int) -> Array:
 	var out: Array = []
-	for card_id in world["echo_deck"]["draw"]:
-		if out.size() >= count:
-			break
-		var card: Variant = data.echo_cards.get(str(card_id))
-		if card != null and families.has(str(card["dramatic_family"])):
-			out.append(str(card_id))
+	for earlier in range(1, act + 1):
+		for family in _act_echo_families(earlier):
+			if not out.has(str(family)):
+				out.append(str(family))
 	return out
 
 

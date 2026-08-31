@@ -184,9 +184,6 @@
             "$ref": "#/$defs/deck_state"
           }
         },
-        "echo_deck": {
-          "$ref": "#/$defs/echo_deck_state"
-        },
         "echoes_played_in_act": {
           "type": "integer",
           "minimum": 0,
@@ -445,13 +442,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "echo_hand": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "La mano del Narratore (ISSUES 23, D-118): le carte di Propp pescate a inizio atto e non ancora calate. Facoltativa per i salvataggi scritti prima della 0.1.80."
         },
         "tags": {
           "type": "array",
@@ -733,28 +723,6 @@
           }
         },
         "discard": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "echo_deck_state": {
-      "type": "object",
-      "required": [
-        "draw",
-        "drawn"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "draw": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "drawn": {
           "type": "array",
           "items": {
             "type": "string"

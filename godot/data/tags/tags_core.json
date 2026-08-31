@@ -12,7 +12,8 @@
       ],
       "written_by": [
         "consequence",
-        "tension"
+        "tension",
+        "echo_card"
       ],
       "read_by": [
         "destiny_physical",
@@ -116,7 +117,8 @@
         "echo_card"
       ],
       "read_by": [
-        "asset_physical"
+        "asset_physical",
+        "echo_card"
       ]
     },
     {
@@ -128,9 +130,12 @@
         "GLOBAL"
       ],
       "written_by": [
-        "consequence"
+        "consequence",
+        "echo_card"
       ],
-      "read_by": [],
+      "read_by": [
+        "echo_card"
+      ],
       "note": "memoria del mondo: narrata (D-103), ereditata"
     },
     {
@@ -227,7 +232,8 @@
         "confluence_template",
         "destiny_physical",
         "tension",
-        "chronicle"
+        "chronicle",
+        "echo_card"
       ]
     },
     {
@@ -254,7 +260,8 @@
         "consequence",
         "destiny_physical",
         "tension",
-        "destiny"
+        "destiny",
+        "echo_card"
       ]
     },
     {
@@ -283,7 +290,8 @@
         "chronicle",
         "entity_strategic_profile",
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "echo_card"
       ]
     },
     {
@@ -310,7 +318,8 @@
         "destiny_physical",
         "entity_strategic_profile",
         "objective",
-        "tension"
+        "tension",
+        "echo_card"
       ]
     },
     {
@@ -354,7 +363,8 @@
       ],
       "read_by": [
         "entity_strategic_profile",
-        "tag_rule"
+        "tag_rule",
+        "echo_card"
       ],
       "note": "il prezzo di una proposta che passa (D-278): al tavolo si legge sulla tessera, e da D-353 morde — sotto gli occhi della guardia non si trama"
     },
@@ -470,7 +480,8 @@
         "asset_physical",
         "consequence",
         "tension",
-        "chronicle"
+        "chronicle",
+        "echo_card"
       ]
     },
     {
@@ -629,7 +640,8 @@
         "destiny",
         "destiny_physical",
         "entity",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "echo_card"
       ]
     },
     {
@@ -699,7 +711,8 @@
         "entity",
         "tag_rule",
         "chronicle",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "echo_card"
       ]
     },
     {
@@ -716,7 +729,8 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "tension"
+        "tension",
+        "echo_card"
       ],
       "read_by": [
         "destiny",
@@ -1315,13 +1329,15 @@
       "written_by": [
         "asset_physical",
         "confluence_template",
-        "tension"
+        "tension",
+        "echo_card"
       ],
       "read_by": [
         "asset_physical",
         "destiny_physical",
         "chronicle",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "echo_card"
       ]
     },
     {
@@ -1346,7 +1362,8 @@
         "asset_physical",
         "destiny",
         "destiny_physical",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "echo_card"
       ]
     },
     {
@@ -2025,7 +2042,8 @@
       "read_by": [
         "entity_strategic_profile",
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "echo_card"
       ],
       "note": "vita postuma: vive nella sua forma legend:"
     },
@@ -2255,7 +2273,8 @@
         "destiny_physical",
         "entity_strategic_profile",
         "objective",
-        "tension"
+        "tension",
+        "echo_card"
       ]
     },
     {
@@ -2381,7 +2400,8 @@
       ],
       "read_by": [
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "echo_card"
       ]
     },
     {
@@ -3036,7 +3056,8 @@
       ],
       "read_by": [
         "asset_physical",
-        "chronicle"
+        "chronicle",
+        "echo_card"
       ]
     },
     {

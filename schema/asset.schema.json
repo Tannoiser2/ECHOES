@@ -39,7 +39,8 @@
         "confluence_modifier",
         "discard_or_retain_rule",
         "rarity",
-        "art_prompt_key"
+        "art_prompt_key",
+        "echo_id"
       ],
       "additionalProperties": false,
       "properties": {
@@ -108,6 +109,11 @@
         "art_prompt_key": {
           "type": "string",
           "minLength": 1
+        },
+        "echo_id": {
+          "type": "string",
+          "pattern": "^ECH_[A-Z0-9_]+$",
+          "description": "L'Eco stampato su questa carta (D-359). **Non c'e' piu' un mazzo del Narratore**: le carte di Propp si sono fuse con le carte Asset, e ognuna delle 48 porta il suo Eco come terzo blocco della faccia - la versione potenziata della carta. Si cala al posto di un'Azione normale, costa la carta piu' un'altra scartata (il prezzo della parola, D-118), e si accende solo se i segni che l'Eco nomina stanno sul tavolo. Un Eco per carta e una carta per Eco: il legame e' biunivoco, e il validatore lo controlla."
         },
         "rules_text": {
           "type": "string"

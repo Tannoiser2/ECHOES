@@ -1258,7 +1258,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il conto e' stato saldato
 
-`account_settled` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+`account_settled` · categoria **MEMORY** · sta su global · lo posa: consequence, tension, echo_card
 
 **Cosa vuol dire.** Il debito e' chiuso: nessuno deve piu' niente a nessuno.
 
@@ -1312,7 +1312,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il peso e' stato diviso
 
-`burden_shared` · categoria **MEMORY** · sta su global · lo posa: consequence
+`burden_shared` · categoria **MEMORY** · sta su global · lo posa: consequence, echo_card
 
 **Cosa vuol dire.** Il carico non e' di uno solo: se lo portano in piu' d'uno.
 
@@ -1474,7 +1474,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il debito e' stato perdonato
 
-`debt_forgiven` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
+`debt_forgiven` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension, echo_card
 
 **Cosa vuol dire.** Chi doveva avere ha lasciato perdere, e il conto si chiude.
 
@@ -1600,7 +1600,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### quello che si e' saputo lo sanno tutti
 
-`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, confluence_template, tension
+`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, confluence_template, tension, echo_card
 
 **Cosa vuol dire.** Quello che sapeva uno lo sanno tutti, e non si vende piu'.
 

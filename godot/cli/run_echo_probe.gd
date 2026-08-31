@@ -64,8 +64,11 @@ func _initialize() -> void:
 		session.setup(chronicle_id, SEATS, first_seed + i)
 		await session.run(PolicyDecider.new(session.log))
 
+		# D-359: non c'e' piu' un mazzo, quindi non c'e' piu' una pila «pescata».
+		# La grammatica di Propp si misura su quello che il tavolo ha **calato**:
+		# gli Echi stampati sulle carte Asset che qualcuno ha speso.
 		var drawn: Array = []
-		for card_id in session.world["echo_deck"]["drawn"]:
+		for card_id in session.world["echo_played"]:
 			drawn.append(data.echo_cards[str(card_id)])
 
 		var seen_functions: Dictionary = {}

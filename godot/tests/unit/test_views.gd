@@ -82,42 +82,34 @@ func test_the_table_model_carries_no_seat_secrets() -> void:
 			)
 
 
-## E nemmeno le carte del Narratore in mano (D-144). Questo test e' nato da una
-## fuga vera: la vetrina leggeva `echo_deck.drawn` — tutto cio' che il mazzo ha
-## lasciato — e la chiamava «il mondo ha calato», mentre meta' di quelle carte
-## erano ancora nelle mani dei seggi. Il test sopra non poteva prenderla:
-## cercava i titoli degli **Asset**, e le carte di Propp sono un altro mazzo.
-func test_the_narrator_hands_are_not_on_the_table() -> void:
-	var seat: String = str(session.world["turn_order"][0])
-	# La mano del Narratore si riempie a inizio Atto; qui la si mette a mano e
-	# si finge che la carta venga dal mazzo, che e' esattamente lo stato in cui
-	# la vetrina la svelava.
+## E la vetrina mostra **solo quello che qualcuno ha calato** (D-144, D-359).
+## Questo test e' nato da una fuga vera: la vetrina leggeva `echo_deck.drawn` -
+## tutto cio' che il mazzo aveva lasciato - e la chiamava «il mondo ha calato»,
+## mentre meta' di quelle carte erano ancora nelle mani dei seggi. Il mazzo non
+## c'e' piu', ma la domanda resta la stessa dall'altro verso: un Eco che nessuno
+## ha calato non deve comparire in vetrina.
+func test_the_table_shows_only_echoes_actually_played() -> void:
 	var card_id: String = "ECH_LACK"
-	(session.world["entities"][seat]["echo_hand"] as Array).append(card_id)
-	(session.world["echo_deck"]["drawn"] as Array).append(card_id)
-	var hand: Array = (session.world["entities"][seat] as Dictionary).get("echo_hand", [])
-	assert_true(hand.size() > 0, "il seggio deve avere carte del Narratore in mano")
+	assert_false(
+		(session.world["echo_played"] as Array).has(card_id),
+		"la prova parte da un Eco che nessuno ha calato"
+	)
 	var model: Dictionary = TableModel.build(session)
-	var stringified: String = JSON.stringify(model)
-	for held in hand:
-		var title: String = str(session.data.echo_cards[str(held)]["title"])
-		assert_false(
-			stringified.contains(title),
-			"«%s» e in mano a %s: il tavolo non la nomina" % [title, seat]
-		)
+	assert_false(
+		JSON.stringify(model).contains(str(session.data.echo_cards[card_id]["title"])),
+		"«%s» non l'ha calata nessuno: il tavolo non la nomina" % card_id
+	)
 	assert_true(
 		Protocol.audit_table({"kind": "table", "model": model}, session).is_empty(),
 		"la perquisizione della vetrina non trova niente"
 	)
 
 
-## E la perquisizione della vetrina morde davvero: se una carta in mano finisce
-## fra le calate, deve dirlo. Una guardia che non ha mai detto di no non si sa
-## se funziona.
+## E la perquisizione della vetrina morde davvero: se in vetrina finisce un Eco
+## che nessuno ha calato, deve dirlo. Una guardia che non ha mai detto di no non
+## si sa se funziona.
 func test_the_table_audit_catches_a_planted_leak() -> void:
-	var seat: String = str(session.world["turn_order"][0])
 	var card_id: String = "ECH_LACK"
-	(session.world["entities"][seat]["echo_hand"] as Array).append(card_id)
 	var model: Dictionary = TableModel.build(session)
 	(model["echoes_played"] as Array).append({
 		"id": card_id, "title": str(session.data.echo_cards[card_id]["title"]),

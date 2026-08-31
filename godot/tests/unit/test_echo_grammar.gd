@@ -25,11 +25,30 @@ func test_playing_a_card_records_its_function() -> void:
 		str(session.world["global_tags"]).contains("function:"),
 		"e il mondo non porta nessun segno nascosto"
 	)
+	# D-359: l'Eco non arriva da un mazzo, e' il terzo blocco di una carta Asset
+	# in mano. Si mette in mano la carta che lo porta, e i segni che accende.
 	var card_id: String = "ECH_LACK"
-	(session.world["entities"]["ENT_ALDRIC"]["echo_hand"] as Array).append(card_id)
+	var asset_id: String = "AST_FORCE_LEVY"
+	assert_eq(
+		str(data().assets[asset_id]["echo_id"]), card_id,
+		"la prova punta alla carta che porta questo Eco"
+	)
+	var hand: Array = session.world["entities"]["ENT_ALDRIC"]["hand"] as Array
+	hand.append(asset_id)
+	if hand.size() < 2:
+		hand.append("AST_FORCE_WARBAND")
+	for condition in data().echo_cards[card_id]["eligibility"]:
+		var region: String = str(session.world["regions"].keys()[0])
+		(session.world["regions"][region]["tags"] as Array).append(
+			str((condition as Dictionary)["tag"])
+		)
 	var before: int = session.service.hand_size("ENT_ALDRIC")
+	var copie_prima: int = 0
+	for card in hand:
+		if str(card) == asset_id:
+			copie_prima += 1
 	var result: Dictionary = session.actions.execute(
-		"ENT_ALDRIC", {"template": "PLAY_ECHO", "params": {"echo_card_id": card_id}}
+		"ENT_ALDRIC", {"template": "PLAY_ECHO", "params": {"asset_card_id": asset_id}}
 	)
 	assert_true(bool(result.get("ok", false)), "la carta si cala: %s" % str(result.get("error", "")))
 
@@ -49,11 +68,22 @@ func test_playing_a_card_records_its_function() -> void:
 		str(session.world["global_tags"]).contains("function:"),
 		"senza scriverne niente sul mondo: quel segno non esiste piu' (D-358)"
 	)
-	# La parola si paga (scelta del committente): una carta Asset e' uscita.
-	assert_eq(session.service.hand_size("ENT_ALDRIC"), before - 1, "il prezzo e' una carta Asset")
-	assert_false(
-		(session.world["entities"]["ENT_ALDRIC"]["echo_hand"] as Array).has(card_id),
-		"e la carta del Narratore non e' piu' in mano"
+	# **L'Eco costa la carta, e basta** (D-360): e' un'opzione della carta come
+	# le sue due Azioni, non un pedaggio da pagare con una seconda.
+	assert_eq(
+		session.service.hand_size("ENT_ALDRIC"), before - 1,
+		"l'Eco costa la carta che parla, e nient'altro"
+	)
+	# **Una copia, non la carta.** `AST_FORCE_LEVY` ha quattro copie in scatola e
+	# la mano puo' averne piu' d'una: chiedere che il titolo sia sparito dalla
+	# mano e' la domanda sbagliata, e sbagliava anche quando passava.
+	var rimaste: int = 0
+	for card in (session.world["entities"]["ENT_ALDRIC"]["hand"] as Array):
+		if str(card) == asset_id:
+			rimaste += 1
+	assert_eq(
+		rimaste, copie_prima - 1,
+		"e la copia che ha parlato non e' piu' in mano"
 	)
 
 
@@ -103,23 +133,58 @@ func test_every_dramatic_family_keeps_an_unconditional_card() -> void:
 		)
 
 
-## The Act pool is a weighted bag: repeating a family makes it likelier, and the
-## draw stays seeded. Read as a strict preference it produced the same arc in
-## every measured Chronicle, which is a shape without a story.
-func test_the_act_pool_is_weighted_and_seeded() -> void:
-	var arcs: Dictionary = {}
-	for seed_value in range(9100, 9120):
-		new_session(seed_value, true)
-		await session.run(PolicyDecider.new(session.log))
-		var arc: Array = []
-		for card_id in session.world["echo_deck"]["drawn"]:
-			arc.append(str(data().echo_cards[str(card_id)]["dramatic_family"]))
-		arcs[str(arc)] = true
-		# Act 1 is pure PRESSURE in Chronicle I: the first Act sets a question
-		# up, it does not break it.
-		assert_eq(str(arc[0]), "PRESSURE", "l'Atto 1 apre sempre in tensione")
-		session.dispose()
-	assert_true(arcs.size() > 1, "seed diversi devono dare archi diversi: %d" % arcs.size())
+## L'Atto non pesca piu': **sceglie chi puo' parlare** (D-359). `act_echo_pools`
+## era il sacchetto pesato da cui usciva una carta; adesso e' il cancello che
+## dice quali famiglie si possono calare in quell'Atto. La forma in tre atti
+## regge lo stesso, e la prova va fatta sul cancello, non sull'arco: nell'Atto 1
+## CHR_00 ammette solo PRESSIONE, quindi l'Eco di una carta RISOLUZIONE dev'essere
+## rifiutato **con quella ragione**, e quello di una PRESSIONE no.
+func test_the_act_gates_which_family_may_speak() -> void:
+	new_session()
+	assert_eq(int(session.world["act"]), 1, "la prova parte dall'Atto 1")
+	var pressione: String = _asset_whose_echo_is(data(), "PRESSURE")
+	var risoluzione: String = _asset_whose_echo_is(data(), "RESOLUTION")
+	assert_ne(pressione, "", "esiste una carta col suo Eco di pressione")
+	assert_ne(risoluzione, "", "esiste una carta col suo Eco di risoluzione")
+
+	var hand: Array = session.world["entities"]["ENT_ALDRIC"]["hand"] as Array
+	hand.append(pressione)
+	hand.append(risoluzione)
+	hand.append("AST_FORCE_WARBAND")
+
+	var fuori: String = session.actions.check(
+		"ENT_ALDRIC", "PLAY_ECHO", {"asset_card_id": risoluzione}
+	)
+	assert_true(
+		fuori.contains("non si cala in questo Atto"),
+		"una risoluzione nell'Atto 1 va rifiutata per l'Atto, non per altro: «%s»" % fuori
+	)
+	var dentro: String = session.actions.check(
+		"ENT_ALDRIC", "PLAY_ECHO", {"asset_card_id": pressione}
+	)
+	assert_false(
+		dentro.contains("non si cala in questo Atto"),
+		"e una pressione nell'Atto 1 non deve mai essere rifiutata per l'Atto: «%s»" % dentro
+	)
+
+
+## Una carta il cui Eco e' di quella famiglia e non chiede niente al mondo: cosi'
+## la prova sopra misura il cancello dell'Atto e nient'altro.
+func _asset_whose_echo_is(a_data: RefCounted, family: String) -> String:
+	var ids: Array = a_data.assets.keys()
+	ids.sort()
+	for asset_id in ids:
+		var echo: Variant = a_data.echo_cards.get(
+			str((a_data.assets[str(asset_id)] as Dictionary)["echo_id"])
+		)
+		if echo == null:
+			continue
+		if str((echo as Dictionary)["dramatic_family"]) != family:
+			continue
+		if not ((echo as Dictionary)["eligibility"] as Array).is_empty():
+			continue
+		return str(asset_id)
+	return ""
 
 
 ## The deck covers Propp's set exactly: every function the schema declares has a
@@ -138,37 +203,18 @@ func test_every_declared_function_has_a_card() -> void:
 			by_function.has(str(function_id)),
 			"la funzione '%s' e dichiarata nello schema ma nessuna carta la svolge" % function_id
 		)
-	# Six per family in the first saga, three in the second: a Chronicle only ever
-	# sees the cards that could matter to its own questions (D-049), so the count
-	# that means something is per saga, not in total.
-	var by_saga: Dictionary = {}
-	for card in data().echo_cards.values():
-		var saga: String = "seconda" if _is_second_saga(card) else "prima"
-		var per: Dictionary = by_saga.get(saga, {})
-		per[str(card["dramatic_family"])] = int(per.get(str(card["dramatic_family"]), 0)) + 1
-		by_saga[saga] = per
+	# **Le famiglie stanno in pari** (D-359). Il conto per saga non ha piu' senso:
+	# non c'e' un mazzo che una Chronicle compone coi soli Echi che parlano delle
+	# sue questioni, perche' non c'e' un mazzo — ogni carta Asset porta il suo, e
+	# le 48 carte sono nella scatola tutte insieme. Quello che conta adesso e' che
+	# nessuna famiglia sia sottile: un Atto che ammette solo RISOLUZIONE e ne
+	# trova due sul mazzo delle carte non risolve niente.
+	var atteso: int = data().echo_cards.size() / 4
 	for family in ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"]:
 		assert_eq(
-			int((by_saga["prima"] as Dictionary).get(family, 0)), 6,
-			"prima saga: sei carte per la famiglia %s" % family
+			int(by_family.get(family, 0)), atteso,
+			"la famiglia %s deve pesare quanto le altre" % family
 		)
-		assert_eq(
-			int((by_saga["seconda"] as Dictionary).get(family, 0)), 3,
-			"seconda saga: tre carte per la famiglia %s" % family
-		)
-
-
-## A card belongs to the saga whose questions it names. The ones that name none -
-## or name `$tension`, "the one we are talking about" - belong to both, and are
-## counted with the first because that is where they were written.
-func _is_second_saga(card: Dictionary) -> bool:
-	const SECOND: Array = [
-		"TEN_WATER", "TEN_DEBT", "TEN_RELIC", "TEN_CHARTER", "TEN_NAMELESS", "TEN_ASH",
-	]
-	for condition in card["eligibility"]:
-		if SECOND.has(str((condition as Dictionary).get("tension_id", ""))):
-			return true
-	return false
 
 
 ## Two different cards must not ask for the same drawing (D-049).

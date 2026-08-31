@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**102 segni scritti sul mondo: 90 li legge qualcosa, 12 no.**
+**102 segni scritti sul mondo: 91 li legge qualcosa, 11 no.**
 
 **E 1 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -38,7 +38,7 @@ nessuno legge**, contati posto per posto.
 | **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
 | **sulla scheda della casa** | 59 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
-| **un gettone sul bordo della mappa** | 52 | 48 | **7** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
+| **un gettone sul bordo della mappa** | 52 | 48 | **6** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
 | **il tavolo non lo mostra** | 0 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
 Ogni segno ha un posto. **180 stanno sul tavolo**, 0 sono contabilita'.
@@ -52,8 +52,7 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 
 | segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |
 |---|---|---|---|
-| `account_settled` | un gettone sul bordo della mappa | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
-| `burden_shared` | un gettone sul bordo della mappa | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
+| `account_settled` | un gettone sul bordo della mappa | Conseguenza, carta Echo | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
 | `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
 | `hard_bargain` | sulla scheda della casa | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
 | `list_witnessed` | un gettone sul bordo della mappa | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
@@ -88,31 +87,32 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `amnesty_granted` | carta Echo, clausola di Consiglio | — | pesca delle domande |
 | `anointed` | Conseguenza | — | Destino |
 | `ash_watch` | Conseguenza, clausola di Consiglio | — | Destino |
-| `betrayal_spoken` | Azione stampata, carta Echo | — | Risonanza |
+| `betrayal_spoken` | Azione stampata, carta Echo | — | Risonanza, carta Echo |
+| `burden_shared` | Conseguenza, carta Echo | — | carta Echo |
 | `charter_for_all` | clausola di Consiglio | — | pesca delle domande |
 | `charter_temporary` | carta Echo, clausola di Consiglio | — | pesca delle domande |
 | `charter_written` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
-| `condition:abandoned` | Conseguenza | clausola di Consiglio | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
-| `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, la Regione di cui si discute |
-| `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, la Regione di cui si discute, pesca delle domande |
-| `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, la Regione di cui si discute, obiettivo, pesca delle domande |
+| `condition:abandoned` | Conseguenza | clausola di Consiglio | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
+| `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute |
+| `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
+| `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:exploited` | Conseguenza, Risonanza | — | Destino, la Regione di cui si discute, obiettivo, pesca delle domande |
-| `condition:guarded` | Conseguenza | — | regola del segno |
+| `condition:guarded` | Conseguenza | — | carta Echo, regola del segno |
 | `condition:indebted` | Conseguenza, carta Asset, carta Echo | Conseguenza | la Regione di cui si discute, pesca delle domande |
 | `condition:lean` | Conseguenza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute |
 | `condition:mourning` | Conseguenza, carta Echo | Azione stampata, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:plundered` | Azione stampata, Conseguenza | Conseguenza | Risonanza, la Regione di cui si discute, pesca delle domande, regola del segno |
-| `condition:rationed` | Azione stampata, Conseguenza, carta Asset | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
+| `condition:rationed` | Azione stampata, Conseguenza, carta Asset | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `condition:requisitioned` | Conseguenza | Azione stampata | la Regione di cui si discute |
 | `condition:starving` | Azione stampata, Conseguenza, Risonanza, carta Echo | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | Risonanza, bersaglio a segni, la Regione di cui si discute, pesca delle domande, regola del segno |
-| `condition:unrest` | Azione stampata, Conseguenza, Risonanza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset, carta Echo, clausola di Consiglio | Destino, bersaglio a segni, la Regione di cui si discute, pesca delle domande |
+| `condition:unrest` | Azione stampata, Conseguenza, Risonanza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset, carta Echo, clausola di Consiglio | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `crown_dispossessed` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
 | `crown_divided` | Conseguenza | Conseguenza | Destino, Risonanza, fatto che dura, pesca delle domande, proposta |
 | `crowned` | — | Conseguenza | proposta |
-| `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande |
+| `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande |
 | `crystal_measured` | Azione stampata, carta Echo | — | pesca delle domande |
-| `debt_called` | Azione stampata, Conseguenza, carta Asset | — | Destino, Risonanza, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande, regola del segno |
-| `debt_forgiven` | Azione stampata, Conseguenza | — | Destino |
+| `debt_called` | Azione stampata, Conseguenza, carta Asset | — | Destino, Risonanza, carta Echo, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande, regola del segno |
+| `debt_forgiven` | Azione stampata, Conseguenza, carta Echo | — | Destino |
 | `debt_staggered` | clausola di Consiglio | — | pesca delle domande |
 | `descent_witnessed` | clausola di Consiglio | — | pesca delle domande |
 | `discovery:crystal` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
@@ -133,22 +133,22 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `faith_established` | Conseguenza | — | Risonanza, pesca delle domande |
 | `grain_requisitioned` | Azione stampata, Conseguenza | — | Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo |
-| `knowledge_shared` | Azione stampata, clausola di Consiglio | — | Risonanza, pesca delle domande |
-| `ledger_public` | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | — | Destino, Risonanza, fatto che dura |
+| `knowledge_shared` | Azione stampata, carta Echo, clausola di Consiglio | — | Risonanza, carta Echo, pesca delle domande |
+| `ledger_public` | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | — | Destino, Risonanza, carta Echo, fatto che dura |
 | `mine_sealed` | Conseguenza | Conseguenza | Destino, catena delle ere, fatto che dura, pesca delle domande, proposta |
 | `nahr_settled` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura |
 | `no_charter` | Conseguenza | — | Destino, Risonanza, pesca delle domande |
 | `oath_broken` | Azione stampata, Conseguenza | Conseguenza | Destino, Risonanza, bersaglio a segni, leggenda (un'era dopo), pesca delle domande, regola del segno |
-| `order_restored` | Conseguenza | — | Destino, leggenda (un'era dopo) |
+| `order_restored` | Conseguenza | — | Destino, carta Echo, leggenda (un'era dopo) |
 | `parley_held` | carta Echo | — | Risonanza |
 | `petition_heard` | carta Echo | — | Risonanza |
-| `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, obiettivo, proposta |
+| `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, carta Echo, obiettivo, proposta |
 | `quota_guaranteed` | clausola di Consiglio | — | pesca delle domande |
 | `relic_buried` | Conseguenza | — | Destino, pesca delle domande |
 | `relic_recorded` | clausola di Consiglio | — | pesca delle domande |
 | `relic_shown` | Conseguenza | — | Destino, chi siede l'anno prossimo, pesca delle domande |
 | `renowned` | Azione stampata, Conseguenza, carta Echo | — | Destino, Risonanza, obiettivo, regola del segno |
-| `rumour_running` | Conseguenza | — | Destino |
+| `rumour_running` | Conseguenza | — | Destino, carta Echo |
 | `scar:abandoned` | Conseguenza (cicatrice) | — | conteggio delle cicatrici (`scar_count`), regola del segno |
 | `scar:broken_bridge` | Conseguenza (cicatrice) | carta Asset | conteggio delle cicatrici (`scar_count`), regola del segno |
 | `scar:broken_word` | Conseguenza (cicatrice) | — | conteggio delle cicatrici (`scar_count`), regola del segno |
@@ -169,7 +169,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `succession_by_law` | Azione stampata, Conseguenza | — | Destino, chi siede l'anno prossimo, fatto che dura |
 | `succession_settled` | Conseguenza | — | pesca delle domande |
 | `succession_witnessed` | clausola di Consiglio | — | pesca delle domande |
-| `toll_shared` | Azione stampata, clausola di Consiglio | — | Risonanza, pesca delle domande |
+| `toll_shared` | Azione stampata, clausola di Consiglio | — | Risonanza, carta Echo, pesca delle domande |
 | `valley_sealed` | Conseguenza | — | Destino, fatto che dura, pesca delle domande |
 | `water_moves` | Conseguenza, carta Echo | — | Destino |
 | `water_priced` | Conseguenza | — | Destino, pesca delle domande |

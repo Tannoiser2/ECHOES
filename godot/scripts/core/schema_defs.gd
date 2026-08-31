@@ -82,6 +82,7 @@ const DEFS := {
 			"discard_or_retain_rule",
 			"rarity",
 			"art_prompt_key",
+			"echo_id",
 		],
 		"additional_properties": false,
 		"properties": {
@@ -147,6 +148,10 @@ const DEFS := {
 			"art_prompt_key": {
 				"type": "String",
 				"min_length": 1,
+			},
+			"echo_id": {
+				"type": "String",
+				"pattern": "^ECH_[A-Z0-9_]+$",
 			},
 			"rules_text": {
 				"type": "String",
@@ -602,7 +607,6 @@ const DEFS := {
 					"RUPTURE",
 					"TURN",
 					"RESOLUTION",
-					"MEMORIA",
 				],
 			},
 			"function_id": {
@@ -1867,9 +1871,6 @@ const DEFS := {
 			"decks": {
 				"type": "Dictionary",
 			},
-			"echo_deck": {
-				"type": "Dictionary",
-			},
 			"echoes_played_in_act": {
 				"type": "int",
 				"min": 0,
@@ -2108,5 +2109,4 @@ const DRAMATIC_FAMILIES := [
 	"RUPTURE",
 	"TURN",
 	"RESOLUTION",
-	"MEMORIA",
 ]

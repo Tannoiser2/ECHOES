@@ -83,28 +83,20 @@ func render(
 		) else 0.5)
 		card.chosen.connect(func(chosen_id: String) -> void: card_chosen.emit(chosen_id))
 		card.set_held(str(asset_id) == _held)
-
-	# La mano del Narratore (ISSUES 23, D-118): le carte di Propp accanto agli
-	# Asset, spente quando la storia non le accetta ancora - il motivo sta
-	# sotto il cursore. Il bottone per calarle arriva dal SeatDecider, lo
-	# stesso del terminale: qui si mostra soltanto cosa si ha in mano.
-	var echo_hand: Array = (session.world["entities"].get(viewer_id, {}) as Dictionary).get("echo_hand", [])
-	for card_id in echo_hand:
-		var echo: Variant = session.data.echo_cards.get(str(card_id))
-		if echo == null:
-			continue
-		var picture := TextureRect.new()
-		picture.texture = CardArt.texture_for("echo", str(card_id), session.data)
-		picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		picture.custom_minimum_size = Vector2(70.0, 120.0)
-		var refusal: String = session.actions.check(
-			viewer_id, "PLAY_ECHO", {"echo_card_id": str(card_id)}
+		# L'Eco della carta (D-359). Non c'e' piu' una mano del Narratore da
+		# disegnare accanto: l'Eco e' il terzo blocco di **questa** carta, la
+		# sua versione potenziata. Qui si dice cosa direbbe e, quando non si
+		# puo' calare, perche' - il bottone arriva dal SeatDecider, lo stesso
+		# del terminale.
+		var echo: Variant = session.data.echo_cards.get(
+			str((asset as Dictionary).get("echo_id", ""))
 		)
-		picture.modulate = Color(1, 1, 1, 1.0 if refusal == "" else 0.45)
-		picture.tooltip_text = "%s\n%s%s" % [
-			str(echo["title"]), str(echo["description"]),
-			"" if refusal == "" else "\n(non calabile: %s)" % refusal,
-		]
-		_cards.append(picture)
-		add_child(picture)
+		if echo != null:
+			var refusal: String = session.actions.check(
+				viewer_id, "PLAY_ECHO", {"asset_card_id": str(asset_id)}
+			)
+			card.tooltip_text = "L'ECO - %s\n%s%s" % [
+				str((echo as Dictionary)["title"]),
+				str((echo as Dictionary)["description"]),
+				"" if refusal == "" else "\n(non si cala: %s)" % refusal,
+			]

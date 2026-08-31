@@ -5,6 +5,146 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.325 — Via il mazzo del Narratore: l'Eco e' la versione potenziata della carta (D-359)
+
+Ordine del committente, dopo la misura della 0.1.324: *«fai la 1 e la 3, via
+mazzo separato, le carte di Propp si "fondono" con le carte asset, diciamo che
+sono una versione "potenziata"»*.
+
+### Cosa cambia sul tavolo
+
+Non c'e' piu' un mazzo del Narratore, ne' una mano separata, ne' un sacchetto
+che pesca a inizio Atto. **Ogni carta Asset porta il suo Eco stampato sotto le
+due Azioni**: la sua versione potenziata. Si cala al posto di un'Azione normale,
+costa **la carta**, come giocarla per una delle sue Azioni, e si accende solo se
+il mondo porta i segni che quell'Eco nomina.
+
+| | prima | dopo |
+|---|---|---|
+| mazzi da stampare | 7 | **6** |
+| fogli A4 di carte e tessere | 54 | **49** |
+| Echi scritti | 39 | **48**, uno per carta |
+| clausole `tension_limit` sugli Echi | 25 | **0** |
+| pezzi senza una faccia fisica | 75 | **36** |
+
+### Perche' erano fermi
+
+25 Echi su 39 chiedevano una **Tensione nominata**, e dopo D-318 l'anno pesca
+quattro questioni su sessanta. L'eleggibilita' la nominava perche' **l'effetto**
+la nomina: un `ADJUST_TENSION` su una questione fuori dal tavolo fallisce.
+
+Il nodo si scioglie con `$tension`, che c'era gia': risolve alla questione
+d'autore se e' aperta, e altrimenti a una che c'e'. La carta parla sempre.
+
+### Quello che non si e' toccato, e per poco non lo toccavo
+
+Al primo passaggio avevo cancellato anche le dieci clausole
+`echo_function_played` — la grammatica di Propp che D-358 aveva appena messo
+sul tavolo scoperto. Quella non e' una lotteria: dipende da cosa il tavolo ha
+calato, non dal sorteggio dell'anno. Se n'e' accorta una prova che c'era gia',
+e il passaggio e' stato rifatto **chirurgico**: si toglie solo `tension_limit`.
+Dieci clausole di Propp prima, dieci dopo.
+
+### E il costo, che si scrive
+
+Cento anni pescati, semi da 7000, tavolo misto — **misurati oggi da tutte e due
+le parti**, non confrontati con un numero di un mese fa:
+
+| su 100 anni, tavolo misto | prima (main) | dopo (D-359) |
+|---|---|---|
+| NONE | 174 | **196** |
+| MINIMUM | 304 | 286 |
+| VICTORY | 316 | 312 |
+| TRIUMPH | 6 | 6 |
+| Consigli per anno | 3,44 | **3,52** |
+| Verita' scritte | 157 | **150** |
+
+**Ventidue seggi in piu' escono a mani vuote**, e il mondo scrive sette Verita'
+in meno. Il gioco e' un po' piu' duro.
+
+Ha una ragione: l'Eco costa **due** carte, e settanta Echi calati su cento anni
+sono settanta carte che non hanno fatto un'Azione. In cambio si tiene mezzo
+Consiglio in piu' per anno, perche' un Eco scalda una questione.
+
+Il vincolo che non si negozia regge: **0 seggi bloccati su un solo livello su
+8**, tavolo misto e uniforme.
+
+### La misura del mazzo, prima e dopo
+
+| su 100 anni | mazzo (0.1.324) | fuso (D-359) |
+|---|---|---|
+| Echi calati per partita | 0,40 | **0,70** |
+| partite con almeno una calata | 37 | **49** |
+| fermi per l'Atto | — | **0** |
+| fermi perche' il mondo non porta i segni | 758 | 482 |
+| fermi ma legali, e nessuno li ha voluti | 495 | **481** |
+
+**+75% di calate, e non basta.** Il numero e' salito e resta basso, e va scritto
+com'e'. Ma e' un numero diverso da prima: non e' piu' un mazzo che non arriva in
+mano — l'Eco e' sempre in mano, sotto le due Azioni, e meta' di quelli fermi
+erano **legali**. Il tavolo lo soppesa e sceglie l'Azione normale, perche' due
+carte per 2,7 Effetti contro due Azioni per 2,1 e' un margine sottile.
+
+Le due leve per alzarlo ancora sono tarature del committente, non difetti: il
+**prezzo** (due carte, o una) e il **tetto di una calata per Atto per seggio**,
+che sta nel decisore e non e' una regola stampata.
+
+### Un segno muto in meno
+
+`burden_shared` (48 scritture, nessun lettore) adesso accende due Echi: i muti
+dichiarati scendono da 12 a **11**.
+
+Ne avevo annunciati due. Il secondo, `someone_paid`, non c'e': la sua carta
+aveva gia' una clausola di Propp, e la regola chirurgica non le aggiunge un
+segno. L'ha contato il cancello del registro, non io.
+
+---
+
+## 0.1.324 — Il mazzo del Narratore arriva sul tavolo 0,4 volte per partita (ISSUES 114)
+
+Una sonda nuova, nessuna regola toccata: prima di scrivere le 39 facce che
+mancano alle carte Eco, il committente ha chiesto se quel mazzo si gioca.
+
+### `cli/run_echo_weight_probe.gd`
+
+Tre domande, nell'ordine in cui le ha poste — la seconda e la terza non hanno
+senso se la prima risponde «quasi mai». Cento anni pescati, tavolo misto, semi
+da 7000: lo stesso tavolo del cancello, così i numeri stanno accanto a quelli
+del playtest.
+
+La sonda stampa **per prima la prova di non essere cieca**: le calate contate
+dal registro degli Effetti contro la pila `echo_played` letta dal mondo. Due
+strade diverse, e se non combaciano si ferma. In questo progetto uno zero è
+quasi sempre la sonda.
+
+### Cosa dice
+
+| | |
+|---|---|
+| carte distribuite in mano | 15,21 per partita |
+| **carte calate sul tavolo** | **0,40 per partita — il 2,6%** |
+| partite in cui nessuno ne cala nessuna | **63 su 100** |
+| carte scritte / mai uscite in 100 partite | 39 / **27** |
+| di 40 calate, quante sono `ECH_SACRIFICE` | **24** |
+
+Quando escono pesano — 3,10 Effetti contro 1,05 di una carta Asset — ma su cento
+partite scrivono 124 Effetti contro i 5093 del Consiglio: **il 2,4%** di quello
+che cambia il mondo.
+
+### La causa
+
+**25 carte su 39 chiedono che una Tensione nominata sia in gioco quest'anno.**
+Il mazzo fu scritto contro i due anni d'autore dalle Tensioni fisse; D-318 li ha
+cancellati e ha misurato il guadagno — 48 carte Tensione su 60 tornate al tavolo
+— senza misurare cosa costava allo strato di Propp. Questo è quel costo, trovato
+due mesi dopo e adesso scritto.
+
+Tre strade in ISSUES 114, e la domanda che viene prima: un mazzo che arriva sul
+tavolo 0,4 volte per partita esiste nella scatola? È una decisione del
+committente, non del misuratore.
+
+---
+
 ## 0.1.323 — Le 48 Risonanze fanno tutte una cosa che non dicono (ISSUES 113)
 
 Nessun codice cambia: cambia un numero, e il numero è tutto.

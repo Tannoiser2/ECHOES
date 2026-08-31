@@ -9,15 +9,14 @@ cosa manca perche' l'app dica **tutto** quello che dice il tavolo.
 
 | componente | pezzi diversi | copie in scatola | formato | faccia fisica | fogli A4 |
 |---|---|---|---|---|---|
-| Carte **Asset** | 48 | 132 | 63x88 mm | **tutte** | 15 |
-| Carte **Echo** | 39 | 39 | 63x88 mm | **nessuna** | 5 |
+| Carte **Asset** (ognuna col suo Eco) | 48 | 132 | 63x88 mm | **tutte** | 15 |
 | Carte **Tensione** (le Domande) | 60 | 60 | 44x68 mm | **tutte** | 4 |
 | Schede **Consiglio** | 60 | 60 | 70x120 mm | **tutte** | 15 |
 | Carte **Destino** | 23 | 23 | 70x120 mm | **tutte** | 6 |
 | Carte **Casata** (una per vita) | 26 | 26 | 70x120 mm | **nessuna** | 7 |
 | Tessere **Regione** | 10 | 10 | 80x80 mm | **nessuna** | 2 |
 
-**54 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
+**49 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
 delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 
 ## 2. I segnalini che si posano
@@ -62,9 +61,9 @@ simboli, si impara quello che si vede.
 
 | | |
 |---|---|
-| soggetti da illustrare (`art_prompt_key`) | **146** |
+| soggetti da illustrare (`art_prompt_key`) | **155** |
 | gia' disegnati | **11** |
-| ancora segnaposto | **135** |
+| ancora segnaposto | **144** |
 
 I prompt pronti da mandare a chi disegna stanno in
 [BRIEF_ARTE.md](BRIEF_ARTE.md), generati dagli stessi dati.
@@ -86,13 +85,13 @@ come una scheda tecnica, non come una carta.
 | Carte Asset | 48 su 48 | — |
 | Carte Tensione | 60 su 60 | — |
 | Carte Destino | 23 su 23 | — |
-| **Carte Echo** | 0 su 39 | **39** |
+| Echi (sulla faccia della carta Asset) | 0 su 48 | **48** |
 | **Carte Casata** | 0 su 26 | **26** |
 | **Tessere Regione** | 0 su 10 | **10** |
 
 ### b. L'arte
 
-**135 soggetti su 146 sono ancora segnaposto.** E' il pezzo piu' grosso
+**144 soggetti su 155 sono ancora segnaposto.** E' il pezzo piu' grosso
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
 

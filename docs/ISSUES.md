@@ -6366,6 +6366,164 @@ oppure una ragione scritta per cui non ce l'ha — e un cancello lo tiene.
 
 ---
 
+### 114. Le carte del Narratore si calano il 2,6% delle volte — CHIUSA in 0.1.325
+
+`regole` · `da-decidere` · aperta in 0.1.324
+
+> **Domanda del committente:** *«innanzi tutto quando vengono giocate? Perche' se
+> vengono posate il 2% delle volte, direi che abbiamo un problema. Poi quanto
+> cambiamo il mondo e il gioco quando vengono calate? E per ultimo servono a
+> qualcosa a livello di gioco?»*
+
+Il numero che ha indovinato è **2,6%**. Misura: `cli/run_echo_weight_probe.gd`,
+100 anni pescati, tavolo misto, semi da 7000 — lo stesso tavolo del cancello.
+
+#### 1. Quando
+
+```
+carte distribuite in mano        15.21 per partita   (1521)
+carte calate sul tavolo           0.40 per partita   (40)
+quota delle distribuite che si cala   2.6%
+restano in mano a fine partita   14.81 per partita   (1481)
+partite con almeno una calata    37 su 100
+    Atto 1: 1     Atto 2: 10     Atto 3: 29
+```
+
+**In 63 partite su 100 nessuno cala mai una carta del Narratore.** Il mazzo
+distribuisce quindici carte per partita e ne arriva sul tavolo meno di una.
+
+#### 2. Quanto cambiano il mondo
+
+Al netto del prezzo — una carta Asset scartata, esattamente 1,00 per calata:
+
+| | Effetti | quante volte |
+|---|---|---|
+| una carta del Narratore | **3,10** | 40 |
+| una carta Asset giocata | 1,05 | 2800 |
+| un Consiglio | **14,81** | 344 |
+
+Quando escono **pesano**: tre volte una carta Asset. Ma su 100 partite scrivono
+**124 Effetti contro i 5093 del Consiglio** — il 2,4% di quello che il mondo
+scrive. Il peso per calata è alto, il peso sul gioco è invisibile.
+
+#### 3. Servono a qualcosa
+
+```
+carte scritte                    39
+carte uscite almeno una volta    12
+carte che non escono mai         27
+```
+
+E delle 12 che escono, **una sola fa il 60% del lavoro**: `ECH_SACRIFICE`, 24
+calate su 40. È l'unica carta senza nessuna condizione di eleggibilità che il
+tavolo scelga volentieri. Le altre 38 si dividono 16 calate in cento partite.
+
+Le 9 carte che **prescrivono un Consiglio** — la cosa più potente che una carta
+possa fare in questo gioco — escono **4 volte su 100 partite**.
+
+#### La causa, e non è nel mazzo
+
+**25 carte su 39 chiedono che una Tensione nominata sia in gioco quest'anno.**
+
+Dopo [D-318](DECISIONS.md#d-318) l'anno non è più scritto a mano: le questioni
+si pescano dalle sessanta, `tension_pool.count: 4`, e ne finiscono sul tavolo
+8,8 per partita. Una carta che chiede `TEN_FAMINE` è dunque eleggibile in circa
+**una partita su sette**, e deve anche essere pescata, e deve anche servire a
+chi la tiene.
+
+Il mazzo Eco è stato scritto contro i due anni d'autore con le Tensioni fisse.
+D-318 li ha cancellati — misurando il guadagno, 48 carte Tensione su 60 tornate
+al tavolo — e **non ha misurato cosa costava allo strato di Propp**. È il costo
+non scritto di quella decisione, trovato due mesi dopo.
+
+La fotografia di fine partita dice che non è solo l'eleggibilità:
+
+| perché una carta è rimasta in mano | carte |
+|---|---|
+| la storia non è pronta (eleggibilità) | 758 |
+| **si poteva calare, non l'hanno voluta** | **495** |
+| mano vuota: non c'è con cosa pagarla | 228 |
+
+Un terzo delle carte ferme era **legale**. Le tre porte del decisore — mano
+comoda (≥4 carte), una calata per Atto per seggio, e un punteggio > 0 sui suoi
+obiettivi — pesano quanto l'eleggibilità.
+
+#### Le tre strade, e la domanda che viene prima
+
+**La domanda è del committente e viene prima delle strade:** un mazzo di 39
+carte che arriva sul tavolo 0,4 volte per partita **esiste nella scatola?**
+
+1. **Togliere la Tensione nominata dall'eleggibilità.** Le carte parlano di
+   *carestia*, non di `TEN_FAMINE`: si legano ai **segni** che la carestia
+   lascia sul mondo (`condition:lean`, `grain_requisitioned`) invece che
+   all'identificatore della questione. È la stessa correzione che D-274 ha
+   fatto per il bersaglio delle carte Asset.
+2. **Meno carte, ognuna più larga.** 39 carte per 0,4 calate è un mazzo che il
+   gioco non consuma. Dodici carte senza condizione varrebbero più di trentanove
+   con una lotteria davanti.
+3. **Nessun mazzo separato.** Se la funzione narrativa è quello che una carta
+   Eco porta, e le carte Asset hanno già Risonanza e Temi, il Narratore potrebbe
+   essere **una faccia della carta Asset** e non un mazzo a parte.
+
+**Fatto quando** una carta del Narratore arriva sul tavolo abbastanza spesso da
+giustificare che sia stampata — oppure il mazzo non c'è più.
+
+**Nota su ISSUES 113:** le 39 carte Eco sono anche i pezzi senza faccia fisica
+(`0 su 39`). Scriverle prima di decidere questa issue sarebbe scrivere 39 facce
+per un mazzo che potrebbe non esistere.
+
+---
+
+### 115. Una chiave sbagliata nel payload di un Effetto non la vede nessuno
+
+`cancelli` · `dati` · aperta in 0.1.325 ([D-359](DECISIONS.md#d-359))
+
+Scrivendo i nove Echi nuovi ho dato a `ECH_THE_ONE_WHO_SAW` questo Effetto:
+
+```json
+{"type": "SET_TENSION_VISIBILITY", "target": {...}, "payload": {"visible": true}}
+```
+
+La chiave giusta è `visibility`, e il valore `"OPEN"`. Con `visible` la carta
+**non scopriva niente**, e il catalogo generato la stampava come *«tension adesso
+e velata»* — cioè il contrario di quello che la carta racconta di fare, su una
+Tensione che non sapeva nemmeno nominare.
+
+**Nessun cancello l'ha vista.** `validate_data.py` è passato perché in
+`effect.schema.json` il payload è dichiarato `{"type": "object"}`, senza vincoli
+sulle chiavi. `validate_physical.py` è passato perché guarda i segni, non le
+chiavi. Il motore non ha protestato perché **GDScript non alza niente**: una
+chiave che manca interrompe la funzione in silenzio — è la prima delle trappole
+scritte in CLAUDE.md.
+
+L'ha vista **il catalogo delle carte**, che stampa cosa fa ogni carta ricavandolo
+dai dati: leggendo il log della CI si vedeva una revelation che velava. È la
+prova che quei documenti generati servono, ma è un caso: nessuno garantisce che
+la prossima chiave sbagliata produca una riga strana da notare.
+
+#### Cosa serve
+
+Un censimento dei dati di oggi dice che **il resto è pulito** — ogni tipo di
+Effetto usa un solo insieme di chiavi, e le uniche rare sono `optional`, che è
+un modificatore condiviso:
+
+```
+ADJUST_TENSION           {delta: 106}
+SET_GLOBAL_TAG           {tag: 64}
+SET_TENSION_VISIBILITY   {visibility: 9}
+BUILD_STRUCTURE          {structure_type: 8, grade: 8, owner: 8}
+SET_RELATION             {add_tag: 5, remove_tag: 2, level: 6}
+```
+
+Quindi le chiavi ammesse per ogni tipo **si possono dichiarare**, e il posto
+giusto è `effect.schema.json`: un `payload` con `additionalProperties: false` per
+tipo, e `validate_data.py` morde da solo senza codice nuovo.
+
+**Fatto quando** un payload con una chiave che il motore non legge fa andare
+rosso un cancello, e la guardia ha il suo difetto piantato nel `--self-test`.
+
+---
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda

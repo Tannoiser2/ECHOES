@@ -98,18 +98,23 @@ func _mentions_outside_comments(source: String, needle: String) -> bool:
 	return false
 
 
-## ISSUES 23 (D-118): la mano del Narratore si disegna accanto agli Asset. Il
-## test compila e disegna la vista, che la suite headless altrimenti non
-## carica mai - il debito scoperto in 0.1.60, pagato qui per questa vista.
-func test_hand_view_draws_the_narrator_hand() -> void:
+## D-359: non c'e' piu' una mano del Narratore accanto agli Asset - l'Eco e' il
+## terzo blocco della carta che si ha gia' in mano, e la vista lo dice nel
+## tooltip. Il test compila e disegna la vista, che la suite headless altrimenti
+## non carica mai - il debito scoperto in 0.1.60, pagato qui per questa vista.
+func test_hand_view_draws_one_card_each_with_its_echo() -> void:
 	new_session()
 	var viewer: String = str(session.world["turn_order"][0])
-	(session.world["entities"][viewer]["echo_hand"] as Array).append("ECH_LACK")
 	var view: HBoxContainer = preload("res://ui/hand_view.gd").new()
 	view.render(session, viewer)
 	assert_eq(
 		view.get_child_count(),
-		session.service.hand_size(viewer) + 1,
-		"una figura per ogni Asset in mano, piu' la carta del Narratore"
+		session.service.hand_size(viewer),
+		"una figura per ogni Asset in mano, e nessun mazzo a parte"
 	)
+	var said_echo: bool = false
+	for child in view.get_children():
+		if str((child as Control).tooltip_text).begins_with("L'ECO - "):
+			said_echo = true
+	assert_true(said_echo, "e ogni carta dice quale Eco porta")
 	view.free()

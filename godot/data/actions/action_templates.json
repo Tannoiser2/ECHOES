@@ -166,7 +166,6 @@
           "required": true,
           "values": [
             "TENSION",
-            "ECHO_DECK",
             "REGION"
           ]
         },

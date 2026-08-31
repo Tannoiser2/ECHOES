@@ -57,10 +57,10 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"rng_seed": rng.get_seed(),
 		"rng_state": 0,
 		"decks": {},
-		"echo_deck": {"draw": [], "drawn": []},
-		# Le carte Eco **calate**, scoperte sul tavolo (D-358). Non e' `drawn`:
-		# quella e' la pila uscita dal mazzo, e comprende le carte che stanno
-		# ancora in mano a qualcuno, e una carta in mano non e' successa.
+		# Gli Echi **calati**, scoperti sul tavolo (D-358). Dalla D-359 non c'e'
+		# piu' un mazzo del Narratore da cui pescarli: l'Eco sta stampato sulla
+		# carta Asset, e questa e' la pila di quelli che qualcuno ha davvero
+		# calato - una carta in mano non e' successa.
 		"echo_played": [],
 		"echoes_played_in_act": 0,
 		"drift_track": [],
@@ -112,7 +112,6 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"incarnation": 0,
 			"presence": [],
 			"hand": [],
-			"echo_hand": [],
 			"tags": (definition["tags"] as Array).duplicate(),
 			"active": bool(definition["active"]),
 			"ao_remaining": 0,
@@ -157,7 +156,6 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 
 	_build_relations(world, chronicle, data)
 	_build_asset_decks(world, chronicle, data, rng)
-	_build_echo_deck(world, chronicle, data, rng)
 	_build_drift_track(world, chronicle, rng)
 	return world
 
@@ -864,53 +862,6 @@ static func _build_asset_decks(
 			for _i in range(maxi(0, copies - already_dealt)):
 				pile.append(str(asset["id"]))
 		world["decks"][family] = {"draw": rng.shuffle(pile), "discard": []}
-
-
-## A single shuffled Echo deck; the Act pools (§15) filter it by dramatic family
-## at draw time, so "the top of the Act deck" is well defined and reproducible.
-##
-## The deck is built from the cards that could matter *this year*. A card whose
-## eligibility names a Tension the Chronicle is not asking about can never be
-## legally drawn, and leaving it in the pile is not harmless: the deck is global
-## to the whole game, so a second saga's content would reshuffle the first one's
-## deck and change years nobody touched. Filtering here keeps a Chronicle's deck
-## a function of that Chronicle.
-static func _build_echo_deck(
-	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted
-) -> void:
-	# Un mazzo non porta famiglie che nessun atto pesca: le carte MEMORIA, per
-	# esempio, stanno negli act_echo_pools delle sole Chronicle-biblioteca -
-	# cioe' le ere che una memoria possono averla (D-076). Senza questo filtro
-	# la composizione del mazzo di un anno scritto cambierebbe a ogni carta
-	# aggiunta per le ere, e con lei il mescolamento e la partita.
-	var families: Array = []
-	for pool in chronicle.get("act_echo_pools", []):
-		for family in pool.get("families", []):
-			if not families.has(str(family)):
-				families.append(str(family))
-	var ids: Array = []
-	for card in data.echo_cards.values():
-		if not families.has(str(card["dramatic_family"])):
-			continue
-		if _asks_about_a_question_not_in_play(card, world):
-			continue
-		ids.append(str(card["id"]))
-	ids.sort()
-	world["echo_deck"] = {"draw": rng.shuffle(ids), "drawn": []}
-
-
-static func _asks_about_a_question_not_in_play(card: Dictionary, world: Dictionary) -> bool:
-	for condition in card.get("eligibility", []):
-		if str((condition as Dictionary).get("type", "")) != "tension_limit":
-			continue
-		var tension_id: String = str((condition as Dictionary).get("tension_id", ""))
-		# `$tension` is resolved against the Council being held and means "the one
-		# we are talking about", which is in play by definition.
-		if tension_id.begins_with("$"):
-			continue
-		if not (world["tensions"] as Dictionary).has(tension_id):
-			return true
-	return false
 
 
 ## La ripesca che ascolta (D-079). Al setup l'anno viene pescato alla cieca,

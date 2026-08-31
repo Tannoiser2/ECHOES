@@ -2347,7 +2347,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | betrayal |
 | convoca un Consiglio | su La Carestia |
-| cosa fa | Nel mondo: betrayal spoken · La Carestia sale di 1 · apre subito un Consiglio su La Carestia |
+| cosa fa | Nel mondo: betrayal spoken · La Carestia sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Carestia |
 | id | `ECH_BETRAYAL` |
 
 > Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.
@@ -2374,7 +2374,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | request |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1 · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_CALL_OF_ACCOUNTS` |
 
 > La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
@@ -2452,7 +2452,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | discovery |
-| cosa fa | Il Risveglio adesso e aperta a tutti · Nel mondo: crystal measured · chi la cala: una Scoperta (the measure) |
+| cosa fa | Il Risveglio adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: crystal measured · chi la cala: una Scoperta (the measure) |
 | id | `ECH_DISCOVERY` |
 
 > Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.
@@ -2479,7 +2479,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su La Successione |
-| cosa fa | La Successione sale di 2 · region with:capital: e' conteso · apre subito un Consiglio su La Successione |
+| cosa fa | La Successione sale di 2, o la domanda che il tavolo ha aperto · region with:capital: e' conteso · apre subito un Consiglio su La Successione |
 | id | `ECH_EMPTY_THRONE` |
 
 > Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.
@@ -2505,7 +2505,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | scrive «La Partenza» · La Carestia sale di 1 · la Regione della domanda: adesso e selva maledetta |
+| cosa fa | scrive «La Partenza» · La Carestia sale di 1, o la domanda che il tavolo ha aperto · la Regione della domanda: adesso e selva maledetta |
 | id | `ECH_EXODUS` |
 
 > Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.
@@ -2551,13 +2551,39 @@ letters, no numerals, no frame, no border. Not gory.
 
 </details>
 
+### Le Mani Ferme
+
+| | |
+|---|---|
+| famiglia | pressure |
+| funzione | prohibition |
+| cosa fa | La Carestia sale di 2, o la domanda che il tavolo ha aperto · region with:granary: monta il malcontento |
+| id | `ECH_HANDS_DOWN` |
+
+> Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: Le Mani Ferme.
+What is happening: Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
 ### Mancanza
 
 | | |
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | La Carestia sale di 1 · region with:granary: il raccolto non basta · region with:granary: granaio va giu |
+| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · region with:granary: il raccolto non basta · region with:granary: granaio va giu |
 | id | `ECH_LACK` |
 
 > Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
@@ -2581,10 +2607,10 @@ letters, no numerals, no frame, no border. Not gory.
 
 | | |
 |---|---|
-| famiglia | memoria |
+| famiglia | rupture |
 | funzione | betrayal |
 | convoca un Consiglio | su La Successione |
-| cosa fa | La Successione sale di 1 · apre subito un Consiglio su La Successione |
+| cosa fa | La Successione sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Successione |
 | id | `ECH_LEGEND_BROKEN_OATH` |
 
 > Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.
@@ -2594,7 +2620,7 @@ letters, no numerals, no frame, no border. Not gory.
 ```
 ECHOES — Echo card. A narrative moment: Il Giuramento che Nessuno Sciolse.
 What is happening: Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+Dominant accent: rosso scuro, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -2608,10 +2634,10 @@ letters, no numerals, no frame, no border. Not gory.
 
 | | |
 |---|---|
-| famiglia | memoria |
+| famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1 · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_LEGEND_CALLED_DAY` |
 
 > La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
@@ -2621,7 +2647,7 @@ letters, no numerals, no frame, no border. Not gory.
 ```
 ECHOES — Echo card. A narrative moment: Il Giorno che la Gilda Chiese Tutto.
 What is happening: La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -2635,9 +2661,9 @@ letters, no numerals, no frame, no border. Not gory.
 
 | | |
 |---|---|
-| famiglia | memoria |
+| famiglia | resolution |
 | funzione | return |
-| cosa fa | La Successione scende di 1 · region with:capital: il malcontento si e' spento |
+| cosa fa | La Successione scende di 1, o la domanda che il tavolo ha aperto · region with:capital: il malcontento si e' spento |
 | id | `ECH_LEGEND_GOOD_YEAR` |
 
 > Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
@@ -2647,7 +2673,7 @@ letters, no numerals, no frame, no border. Not gory.
 ```
 ECHOES — Echo card. A narrative moment: La Ballata dell'Anno Buono.
 What is happening: Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
 The image shows a turning point, not an action climax: the instant before or the
 instant after. Human scale, few figures, strong silhouette reading at small size.
 Composition: negative space along the top edge reserved for a title overlay; the
@@ -2663,7 +2689,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | loss |
-| cosa fa | La Carestia sale di 1 · region with:nomad range: e' in lutto · un rivale lascia region with:nomad range |
+| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: e' in lutto · un rivale lascia region with:nomad range |
 | id | `ECH_LOSS` |
 
 > Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
@@ -2767,7 +2793,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | omen |
-| cosa fa | Il Risveglio sale di 1 · chi la cala: una Scoperta (the omen) |
+| cosa fa | Il Risveglio sale di 1, o la domanda che il tavolo ha aperto · chi la cala: una Scoperta (the omen) |
 | id | `ECH_OMEN` |
 
 > Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.
@@ -2872,7 +2898,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | reconciliation |
-| cosa fa | La Carestia scende di 1 · Il Risveglio scende di 1 · region with:capital: il malcontento si e' spento |
+| cosa fa | La Carestia scende di 1, o la domanda che il tavolo ha aperto · Il Risveglio scende di 1, o la domanda che il tavolo ha aperto · region with:capital: il malcontento si e' spento |
 | id | `ECH_RECONCILIATION` |
 
 > Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.
@@ -2899,7 +2925,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | turn |
 | funzione | revelation |
 | convoca un Consiglio | su Il Risveglio |
-| cosa fa | Il Risveglio adesso e aperta a tutti · Il Risveglio sale di 1 · apre subito un Consiglio su Il Risveglio |
+| cosa fa | Il Risveglio adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Il Risveglio sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su Il Risveglio |
 | id | `ECH_REVELATION` |
 
 > Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.
@@ -2951,7 +2977,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | prohibition |
-| cosa fa | Le Vie Interrotte sale di 2 · region with:trade: resta tagliato fuori |
+| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · region with:trade: resta tagliato fuori |
 | id | `ECH_ROAD_CLOSED` |
 
 > Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
@@ -2977,7 +3003,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | sacrifice |
-| cosa fa | La Carestia scende di 2 · Nel mondo: someone paid · chi la cala: renowned |
+| cosa fa | La Carestia scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: someone paid · chi la cala: renowned |
 | id | `ECH_SACRIFICE` |
 
 > Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.
@@ -3029,7 +3055,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | L'Acqua Ferma sale di 1 · region with:granary: il raccolto non basta · region with:granary: canale va giu |
+| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · region with:granary: il raccolto non basta · region with:granary: canale va giu |
 | id | `ECH_SILT` |
 
 > Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
@@ -3049,13 +3075,65 @@ letters, no numerals, no frame, no border. Not gory.
 
 </details>
 
+### I Chiamati
+
+| | |
+|---|---|
+| famiglia | turn |
+| funzione | transformation |
+| cosa fa | I Senza Città sale di 1, o la domanda che il tavolo ha aperto · Nel mondo: burden shared |
+| id | `ECH_THE_CALLED_UP` |
+
+> La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: I Chiamati.
+What is happening: La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
+### La Strada Chiusa a Chiave
+
+| | |
+|---|---|
+| famiglia | rupture |
+| funzione | threat |
+| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · region with:trade: resta tagliato fuori |
+| id | `ECH_THE_CLOSED_ROAD` |
+
+> Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: La Strada Chiusa a Chiave.
+What is happening: Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
 ### La Copia
 
 | | |
 |---|---|
 | famiglia | turn |
 | funzione | discovery |
-| cosa fa | La Reliquia sale di 1 · La Reliquia adesso e aperta a tutti · chi la cala: una Scoperta (relic) |
+| cosa fa | La Reliquia sale di 1, o la domanda che il tavolo ha aperto · La Reliquia adesso e aperta a tutti, o la domanda che il tavolo ha aperto · chi la cala: una Scoperta (relic) |
 | id | `ECH_THE_COPY` |
 
 > Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.
@@ -3081,7 +3159,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | threat |
-| cosa fa | La Reliquia sale di 2 · region with:mine: monta il malcontento · un rivale lascia region with:mine |
+| cosa fa | La Reliquia sale di 2, o la domanda che il tavolo ha aperto · region with:mine: monta il malcontento · un rivale lascia region with:mine |
 | id | `ECH_THE_CRACK` |
 
 > Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.
@@ -3107,7 +3185,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | gift |
-| cosa fa | L'Acqua Ferma scende di 2 · region with:granary: vi sorge canale · Nel mondo: water moves |
+| cosa fa | L'Acqua Ferma scende di 2, o la domanda che il tavolo ha aperto · region with:granary: vi sorge canale · Nel mondo: water moves |
 | id | `ECH_THE_DUG_SEASON` |
 
 > Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
@@ -3133,7 +3211,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | L'Acqua Ferma sale di 1 · region with:nomad range: si e' svuotato · region with:nomad range non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
+| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: si e' svuotato · region with:nomad range non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
 | id | `ECH_THE_FIRES_OUTSIDE` |
 
 > Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
@@ -3153,13 +3231,39 @@ letters, no numerals, no frame, no border. Not gory.
 
 </details>
 
+### Il Debito Rimesso
+
+| | |
+|---|---|
+| famiglia | resolution |
+| funzione | gift |
+| cosa fa | Il Debito scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: debt forgiven |
+| id | `ECH_THE_FORGIVEN_DEBT` |
+
+> Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: Il Debito Rimesso.
+What is happening: Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
 ### Il Tavolo Lungo
 
 | | |
 |---|---|
 | famiglia | resolution |
 | funzione | reconciliation |
-| cosa fa | La Carta scende di 2 · Il Debito scende di 1 · Il rapporto chi la cala / un rivale diventa neutral |
+| cosa fa | La Carta scende di 2, o la domanda che il tavolo ha aperto · Il Debito scende di 1, o la domanda che il tavolo ha aperto · Il rapporto chi la cala / un rivale diventa neutral |
 | id | `ECH_THE_LONG_TABLE` |
 
 > Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.
@@ -3179,13 +3283,117 @@ letters, no numerals, no frame, no border. Not gory.
 
 </details>
 
+### L'Incontro sulla Strada
+
+| | |
+|---|---|
+| famiglia | turn |
+| funzione | encounter |
+| cosa fa | Le Vie Interrotte scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: burden shared |
+| id | `ECH_THE_MET_ROAD` |
+
+> Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: L'Incontro sulla Strada.
+What is happening: Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
+### Il Conto Vecchio
+
+| | |
+|---|---|
+| famiglia | resolution |
+| funzione | punishment |
+| cosa fa | Il Debito scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: account settled |
+| id | `ECH_THE_OLD_ACCOUNT` |
+
+> Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: Il Conto Vecchio.
+What is happening: Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
+### Quello che c'Era
+
+| | |
+|---|---|
+| famiglia | turn |
+| funzione | revelation |
+| cosa fa | La Successione adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: knowledge shared |
+| id | `ECH_THE_ONE_WHO_SAW` |
+
+> Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: Quello che c'Era.
+What is happening: Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
+### Il Prezzo del Sale
+
+| | |
+|---|---|
+| famiglia | pressure |
+| funzione | temptation |
+| cosa fa | Le Vie Interrotte sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti |
+| id | `ECH_THE_PRICE_OF_SALT` |
+
+> Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: Il Prezzo del Sale.
+What is happening: Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
 ### Il Pozzo Zitto
 
 | | |
 |---|---|
 | famiglia | turn |
 | funzione | return |
-| cosa fa | La Cenere che Sale scende di 1 · La Reliquia sale di 1 · chi la cala mette una presenza in region with:mine |
+| cosa fa | La Cenere che Sale scende di 1, o la domanda che il tavolo ha aperto · La Reliquia sale di 1, o la domanda che il tavolo ha aperto · chi la cala mette una presenza in region with:mine |
 | id | `ECH_THE_QUIET_SHAFT` |
 
 > La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.
@@ -3211,7 +3419,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | transformation |
-| cosa fa | L'Acqua Ferma sale di 2 · Il Debito sale di 1 · region with:granary: si muore di fame |
+| cosa fa | L'Acqua Ferma sale di 2, o la domanda che il tavolo ha aperto · Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:granary: si muore di fame |
 | id | `ECH_THE_SHORT_YEAR` |
 
 > Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
@@ -3231,6 +3439,32 @@ letters, no numerals, no frame, no border. Not gory.
 
 </details>
 
+### L'Anno a Piedi
+
+| | |
+|---|---|
+| famiglia | rupture |
+| funzione | separation |
+| cosa fa | I Pozzi Bassi sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: si e' svuotato |
+| id | `ECH_THE_WALKING_YEAR` |
+
+> Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
+
+<details><summary>Prompt per l'immagine</summary>
+
+```
+ECHOES — Echo card. A narrative moment: L'Anno a Piedi.
+What is happening: Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
+```
+
+</details>
+
 ### Due Sentenze
 
 | | |
@@ -3238,7 +3472,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | violation |
 | convoca un Consiglio | su La Carta |
-| cosa fa | La Carta sale di 2 · region with:capital: e' conteso · apre subito un Consiglio su La Carta |
+| cosa fa | La Carta sale di 2, o la domanda che il tavolo ha aperto · region with:capital: e' conteso · apre subito un Consiglio su La Carta |
 | id | `ECH_TWO_VERDICTS` |
 
 > Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.
@@ -3265,7 +3499,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | usurpation |
 | convoca un Consiglio | su La Successione |
-| cosa fa | scrive «La Corona Divisa» · La Successione sale di 1 · apre subito un Consiglio su La Successione |
+| cosa fa | scrive «La Corona Divisa» · La Successione sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Successione |
 | id | `ECH_USURPATION` |
 
 > Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.
@@ -3291,7 +3525,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | omen |
-| cosa fa | La Reliquia sale di 1 · chi la cala mette una presenza in la Regione della domanda |
+| cosa fa | La Reliquia sale di 1, o la domanda che il tavolo ha aperto · chi la cala mette una presenza in la Regione della domanda |
 | id | `ECH_VIGIL_MOVED` |
 
 > L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane.
@@ -3317,7 +3551,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | liberation |
-| cosa fa | La Carta scende di 1 · Nel mondo: charter temporary · chi la cala: renowned |
+| cosa fa | La Carta scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: charter temporary · chi la cala: renowned |
 | id | `ECH_WRITTEN_DOWN` |
 
 > Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.
@@ -3422,4 +3656,4 @@ servono tutti, perche' quali quattro lo decide l'anno.
 
 ---
 
-*87 carte e 65 pezzi diversi da fare.*
+*96 carte e 65 pezzi diversi da fare.*

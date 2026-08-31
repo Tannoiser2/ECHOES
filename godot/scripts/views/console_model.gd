@@ -28,7 +28,6 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 		"round": int(world.get("round", 0)),
 		"tensions": [],
 		"hand": [],
-		"echo_hand": [],
 		"destiny": {},
 		"relations": [],
 		"signs": [],
@@ -59,14 +58,6 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 				"title": str(asset["title"]),
 				"family": str(asset["family"]),
 			})
-	for card_id in (seat as Dictionary).get("echo_hand", []):
-		var card: Variant = data.echo_cards.get(str(card_id))
-		if card != null:
-			(out["echo_hand"] as Array).append({
-				"id": str(card_id),
-				"title": str(card["title"]),
-			})
-
 	# I quattro obiettivi, se la Chronicle li dichiara (D-198): il palese per
 	# primo, poi i tre che ha pescato e che nessun altro conosce. E' la stessa
 	# casella `destiny` — chi legge il modello guarda `rungs` e trova quattro

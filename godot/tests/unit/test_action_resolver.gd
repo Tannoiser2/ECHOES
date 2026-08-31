@@ -213,17 +213,14 @@ func test_scheme_refuses_a_tension_already_known() -> void:
 	assert_false(bool(again["ok"]), "non si spende un'AO per sapere quello che gia si sa")
 
 
-func test_scheme_echo_deck_shows_two_cards_of_the_act_pool() -> void:
+## D-359: non c'e' piu' un mazzo del Narratore, quindi non c'e' piu' niente da
+## sbirciare. Il modo `ECHO_DECK` dello SCHEME e' sparito con lui, e la prova
+## che aveva e' diventata questa: chiederlo adesso e' un'azione illegale, non
+## un'azione che non fa niente. La differenza conta - la seconda si sarebbe
+## portata dietro un'Occasione sprecata senza dirlo a nessuno.
+func test_scheme_cannot_peek_a_deck_that_does_not_exist() -> void:
 	var result: Dictionary = _do("ENT_LYRA", "SCHEME", {"mode": "ECHO_DECK"})
-	assert_true(bool(result["ok"]), "SCHEME sul mazzo Echo: %s" % str(result["error"]))
-	var peek: Array = result["info"]["echo_peek"]
-	assert_true(peek.size() <= 2, "al massimo due carte")
-	for card_id in peek:
-		assert_eq(
-			str(data().echo_cards[str(card_id)]["dramatic_family"]),
-			"PRESSURE",
-			"nell'Atto 1 si pesca solo da PRESSIONE"
-		)
+	assert_false(bool(result["ok"]), "il mazzo del Narratore non esiste piu'")
 
 
 func test_scheme_region_requires_private_information() -> void:

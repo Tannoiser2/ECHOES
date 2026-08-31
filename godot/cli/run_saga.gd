@@ -62,7 +62,7 @@ func _initialize() -> void:
 			func(_act: int, _round: int, phase: String) -> void:
 				if phase != "ACT_ECHO":
 					return
-				before_cards = (session.world["echo_deck"]["drawn"] as Array).size()
+				before_cards = (session.world["echo_played"] as Array).size()
 		)
 
 		# Captured on the first phase that is not SETUP, because inheritance is
@@ -87,7 +87,7 @@ func _initialize() -> void:
 		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
 		var world: Dictionary = session.world
 
-		for card_id in world["echo_deck"]["drawn"]:
+		for card_id in world["echo_played"]:
 			var card: Dictionary = data.echo_cards[str(card_id)]
 			cards.append({
 				"title": str(card["title"]),
