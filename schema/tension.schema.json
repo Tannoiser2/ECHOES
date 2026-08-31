@@ -160,9 +160,17 @@
                       "TAKE_CONTROL",
                       "COOL_THEME",
                       "REMEMBER",
-                      "COOL_QUESTION"
+                      "COOL_QUESTION",
+                      "MARK_HOUSE",
+                      "UNMARK_HOUSE",
+                      "BIND_HOUSES",
+                      "MOVE_IN",
+                      "MOVE_OUT",
+                      "RAISE_STONE",
+                      "FORGET",
+                      "UNVEIL_QUESTION"
                     ],
-                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Agisce sul luogo di cui si discute, tranne IL MONDO RICORDA (D-308), che posa una memoria sul mondo intero: e' il verbo con cui il Consiglio decide cosa il mondo ricordera'."
+                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Cosa fa lo dice il verbo, su chi lo dice `chi`, dove lo dice `dove` (D-366). Senza quei due campi la casella parla di chi propone e del posto di cui si discute, che e' come il Consiglio ha sempre funzionato."
                   },
                   "text": {
                     "type": "string",
@@ -176,7 +184,71 @@
                   "structure": {
                     "type": "string",
                     "pattern": "^STR_[A-Z0-9_]+$",
-                    "description": "La Pietra che COSTRUISCI PIETRA alza."
+                    "description": "La Pietra che COSTRUISCI PIETRA alza, o che UNA PIETRA SALE/SCENDE muove di un grado."
+                  },
+                  "dove": {
+                    "type": "string",
+                    "enum": [
+                      "FOCUS",
+                      "ADJACENT",
+                      "CAPITAL",
+                      "RIVAL_SEAT",
+                      "REGION_WITH",
+                      "QUESTION"
+                    ],
+                    "default": "FOCUS",
+                    "description": "**Dove** la pedina punta (D-366). Senza il campo e' il posto di cui si discute, che e' come il Consiglio ha sempre funzionato. `REGION_WITH` chiede `place_tag`, `QUESTION` chiede `question`. Una casella che agisce su una casa, sul mondo o su un Tema accetta solo `FOCUS`: il suo bersaglio lo dice `chi`."
+                  },
+                  "place_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie la Regione, quando `dove` e' `REGION_WITH`."
+                  },
+                  "question": {
+                    "type": "string",
+                    "pattern": "^TEN_[A-Z0-9_]+$",
+                    "description": "La domanda chiamata per nome, quando `dove` e' `QUESTION`. Se quella domanda non e' uscita in questa Cronaca la casella ricade su quella in discussione."
+                  },
+                  "verso": {
+                    "type": "string",
+                    "enum": [
+                      "FOCUS",
+                      "ADJACENT",
+                      "CAPITAL",
+                      "RIVAL_SEAT",
+                      "REGION_WITH"
+                    ],
+                    "default": "FOCUS",
+                    "description": "L'altro capo della strada che CHIUDI LA STRADA taglia."
+                  },
+                  "verso_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie l'altro capo, quando `verso` e' `REGION_WITH`."
+                  },
+                  "chi": {
+                    "type": "string",
+                    "enum": [
+                      "PROPONENT",
+                      "RIVAL",
+                      "HOUSE_WITH",
+                      "NOBODY"
+                    ],
+                    "default": "PROPONENT",
+                    "description": "**Su chi** la casella parla (D-366). Senza il campo e' chi propone. `HOUSE_WITH` chiede `who_tag`."
+                  },
+                  "who_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie la casa, quando `chi` e' `HOUSE_WITH`."
+                  },
+                  "level": {
+                    "type": "string",
+                    "enum": [
+                      "ENEMY",
+                      "HOSTILE",
+                      "NEUTRAL",
+                      "ALLY",
+                      "BOUND"
+                    ],
+                    "description": "Il livello a cui MUOVI UN RAPPORTO porta il filo fra chi propone e la casa nominata."
                   }
                 }
               }
@@ -208,9 +280,19 @@
                       "HEAT_THEME",
                       "TAKE_DEBT",
                       "SCAR",
-                      "HEAT_QUESTION"
+                      "HEAT_QUESTION",
+                      "MARK_HOUSE",
+                      "UNMARK_HOUSE",
+                      "BIND_HOUSES",
+                      "MOVE_IN",
+                      "MOVE_OUT",
+                      "FORGET",
+                      "UNVEIL_QUESTION",
+                      "LOWER_STONE",
+                      "SEAL_ROAD",
+                      "LEAVE_TABLE"
                     ],
-                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Agisce sul luogo di cui si discute."
+                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Cosa fa lo dice il verbo, su chi lo dice `chi`, dove lo dice `dove` (D-366). Senza quei due campi la casella parla di chi propone e del posto di cui si discute, che e' come il Consiglio ha sempre funzionato."
                   },
                   "text": {
                     "type": "string",
@@ -224,7 +306,71 @@
                   "structure": {
                     "type": "string",
                     "pattern": "^STR_[A-Z0-9_]+$",
-                    "description": "La Pietra che COSTRUISCI PIETRA alza."
+                    "description": "La Pietra che COSTRUISCI PIETRA alza, o che UNA PIETRA SALE/SCENDE muove di un grado."
+                  },
+                  "dove": {
+                    "type": "string",
+                    "enum": [
+                      "FOCUS",
+                      "ADJACENT",
+                      "CAPITAL",
+                      "RIVAL_SEAT",
+                      "REGION_WITH",
+                      "QUESTION"
+                    ],
+                    "default": "FOCUS",
+                    "description": "**Dove** la pedina punta (D-366). Senza il campo e' il posto di cui si discute, che e' come il Consiglio ha sempre funzionato. `REGION_WITH` chiede `place_tag`, `QUESTION` chiede `question`. Una casella che agisce su una casa, sul mondo o su un Tema accetta solo `FOCUS`: il suo bersaglio lo dice `chi`."
+                  },
+                  "place_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie la Regione, quando `dove` e' `REGION_WITH`."
+                  },
+                  "question": {
+                    "type": "string",
+                    "pattern": "^TEN_[A-Z0-9_]+$",
+                    "description": "La domanda chiamata per nome, quando `dove` e' `QUESTION`. Se quella domanda non e' uscita in questa Cronaca la casella ricade su quella in discussione."
+                  },
+                  "verso": {
+                    "type": "string",
+                    "enum": [
+                      "FOCUS",
+                      "ADJACENT",
+                      "CAPITAL",
+                      "RIVAL_SEAT",
+                      "REGION_WITH"
+                    ],
+                    "default": "FOCUS",
+                    "description": "L'altro capo della strada che CHIUDI LA STRADA taglia."
+                  },
+                  "verso_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie l'altro capo, quando `verso` e' `REGION_WITH`."
+                  },
+                  "chi": {
+                    "type": "string",
+                    "enum": [
+                      "PROPONENT",
+                      "RIVAL",
+                      "HOUSE_WITH",
+                      "NOBODY"
+                    ],
+                    "default": "PROPONENT",
+                    "description": "**Su chi** la casella parla (D-366). Senza il campo e' chi propone. `HOUSE_WITH` chiede `who_tag`."
+                  },
+                  "who_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie la casa, quando `chi` e' `HOUSE_WITH`."
+                  },
+                  "level": {
+                    "type": "string",
+                    "enum": [
+                      "ENEMY",
+                      "HOSTILE",
+                      "NEUTRAL",
+                      "ALLY",
+                      "BOUND"
+                    ],
+                    "description": "Il livello a cui MUOVI UN RAPPORTO porta il filo fra chi propone e la casa nominata."
                   }
                 }
               }
@@ -255,9 +401,20 @@
                       "YIELD_CONTROL",
                       "HEAT_THEME",
                       "TAKE_DEBT",
-                      "SCAR"
+                      "SCAR",
+                      "HEAT_QUESTION",
+                      "MARK_HOUSE",
+                      "UNMARK_HOUSE",
+                      "BIND_HOUSES",
+                      "MOVE_IN",
+                      "MOVE_OUT",
+                      "FORGET",
+                      "UNVEIL_QUESTION",
+                      "LOWER_STONE",
+                      "SEAL_ROAD",
+                      "LEAVE_TABLE"
                     ],
-                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Scatta da solo quando la proposta cade."
+                    "description": "Il verbo del vocabolario chiuso (D-280): e' il motore a eseguirlo. Cosa fa lo dice il verbo, su chi lo dice `chi`, dove lo dice `dove` (D-366). Senza quei due campi la casella parla di chi propone e del posto di cui si discute, che e' come il Consiglio ha sempre funzionato."
                   },
                   "text": {
                     "type": "string",
@@ -271,7 +428,71 @@
                   "structure": {
                     "type": "string",
                     "pattern": "^STR_[A-Z0-9_]+$",
-                    "description": "La Pietra che COSTRUISCI PIETRA alza."
+                    "description": "La Pietra che COSTRUISCI PIETRA alza, o che UNA PIETRA SALE/SCENDE muove di un grado."
+                  },
+                  "dove": {
+                    "type": "string",
+                    "enum": [
+                      "FOCUS",
+                      "ADJACENT",
+                      "CAPITAL",
+                      "RIVAL_SEAT",
+                      "REGION_WITH",
+                      "QUESTION"
+                    ],
+                    "default": "FOCUS",
+                    "description": "**Dove** la pedina punta (D-366). Senza il campo e' il posto di cui si discute, che e' come il Consiglio ha sempre funzionato. `REGION_WITH` chiede `place_tag`, `QUESTION` chiede `question`. Una casella che agisce su una casa, sul mondo o su un Tema accetta solo `FOCUS`: il suo bersaglio lo dice `chi`."
+                  },
+                  "place_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie la Regione, quando `dove` e' `REGION_WITH`."
+                  },
+                  "question": {
+                    "type": "string",
+                    "pattern": "^TEN_[A-Z0-9_]+$",
+                    "description": "La domanda chiamata per nome, quando `dove` e' `QUESTION`. Se quella domanda non e' uscita in questa Cronaca la casella ricade su quella in discussione."
+                  },
+                  "verso": {
+                    "type": "string",
+                    "enum": [
+                      "FOCUS",
+                      "ADJACENT",
+                      "CAPITAL",
+                      "RIVAL_SEAT",
+                      "REGION_WITH"
+                    ],
+                    "default": "FOCUS",
+                    "description": "L'altro capo della strada che CHIUDI LA STRADA taglia."
+                  },
+                  "verso_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie l'altro capo, quando `verso` e' `REGION_WITH`."
+                  },
+                  "chi": {
+                    "type": "string",
+                    "enum": [
+                      "PROPONENT",
+                      "RIVAL",
+                      "HOUSE_WITH",
+                      "NOBODY"
+                    ],
+                    "default": "PROPONENT",
+                    "description": "**Su chi** la casella parla (D-366). Senza il campo e' chi propone. `HOUSE_WITH` chiede `who_tag`."
+                  },
+                  "who_tag": {
+                    "type": "string",
+                    "description": "Il segno che sceglie la casa, quando `chi` e' `HOUSE_WITH`."
+                  },
+                  "level": {
+                    "type": "string",
+                    "enum": [
+                      "ENEMY",
+                      "HOSTILE",
+                      "NEUTRAL",
+                      "ALLY",
+                      "BOUND"
+                    ],
+                    "description": "Il livello a cui MUOVI UN RAPPORTO porta il filo fra chi propone e la casa nominata."
                   }
                 }
               }

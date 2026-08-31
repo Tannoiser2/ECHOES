@@ -732,7 +732,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### sotto osservazione
 
-`watched` · categoria **STATE** · sta su entity · lo posa: consequence
+`watched` · categoria **STATE** · sta su entity · lo posa: consequence, tension
 
 **Cosa vuol dire.** Qualcuno le ha messo gli occhi addosso, e non e' un modo di dire.
 
@@ -804,7 +804,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: la reliquia
 
-`discovery:relic` · categoria **MEMORY** · sta su entity · lo posa: confluence_template, consequence, echo_card
+`discovery:relic` · categoria **MEMORY** · sta su entity · lo posa: confluence_template, consequence, echo_card, tension
 
 **Cosa vuol dire.** Hanno trovato la reliquia.
 
@@ -1038,7 +1038,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la fama
 
-`renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence, echo_card
+`renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** Di questa casa si parla, e la fama pesa nelle stanze.
 
@@ -1074,7 +1074,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la corona
 
-`crowned` · categoria **ENTITY** · sta su entity · lo posa: entity
+`crowned` · categoria **ENTITY** · sta su entity · lo posa: entity, tension
 
 **Cosa vuol dire.** Portano la corona, e si sa di chi e'.
 

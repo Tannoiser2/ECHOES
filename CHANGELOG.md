@@ -5,6 +5,66 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.332 — Una casella dice cosa fa, su chi, e dove (D-366) — chiude ISSUES 89
+
+Le otto caselle che mancavano al Consiglio sono scritte. Ma misurando per
+scriverle è saltata fuori la riga più grossa, che nessun documento guardava:
+**venticinque Effetti su quarantasei avevano il verbo giusto e nessun posto dove
+puntarlo** — 104 applicazioni, più di quelle che mancavano di verbo.
+
+Non era contenuto che mancava: era un campo.
+
+| campo | vocabolario | quando manca |
+|---|---|---|
+| `dove` | `FOCUS` · `ADJACENT` · `CAPITAL` · `RIVAL_SEAT` · `REGION_WITH` · `QUESTION` | dove si discute |
+| `chi` | `PROPONENT` · `RIVAL` · `HOUSE_WITH` · `NOBODY` | chi propone |
+
+Facoltativi tutti e due, e i valori di riposo sono come il Consiglio ha sempre
+funzionato: nessuna delle sessanta carte di prima cambia di un millimetro.
+
+**Le otto caselle**: POSA UN SEGNO SU UNA CASATA (44 applicazioni), MUOVI UN
+RAPPORTO (11), UNA PRESENZA ENTRA O SE NE VA (10), UNA PIETRA SALE O SCENDE (9),
+IL MONDO DIMENTICA (3), UNA DOMANDA VELATA SI SCOPRE (2), UNA CASATA LASCIA IL
+TAVOLO (1), CHIUDI LA STRADA (1). Sei stanno in tutte e due le liste: con `chi`
+la stessa casella cambia segno secondo dove punta la pedina.
+
+| `docs/MISURA_CASELLE.md` | prima | dopo |
+|---|---|---|
+| Effetti che una casella sa dire | 5 su 46 | **44 su 46** |
+| applicazioni coperte | 151 su 336 | **333 su 336** |
+| verbi che mancano | 16 | **0** |
+| posti che la casella non sa dire | 25 | **2** |
+
+Le due che restano sono dichiarate e non sono caselle da scrivere: `$conditioner`
+è un bersaglio che al Consiglio non esiste, e un `SET_GLOBAL_TAG` puntato su una
+Regione è un difetto dei dati (ISSUES 117).
+
+**E sono su carte vere**: diciotto voci nuove su cinque carte, ognuna trascritta
+da quello che il Consiglio di quella domanda già faceva. In cento saghe: POSA UN
+SEGNO SU UNA CASATA 45 offerte e 12 acquisti, MUOVI UN RAPPORTO 8 e 2, UNA
+PRESENZA SE NE VA 7 e 2. **Quattro non si sono viste mai** — le due della Pietra,
+la strada chiusa, la casa che lascia il tavolo: mordono solo dove la loro
+condizione tiene, e le condizioni sono strette apposta. Il numero si scrive
+perché è peggiore di quello che si sperava (ISSUES 117).
+
+**Tre cancelli nuovi**: lo schema e il motore devono nominare le stesse caselle
+(il lato motore letto da `MISURA_CASELLE.md`, che una sonda genera chiamandole);
+un posto senza il suo parametro; un segno addosso a una casa che non è di ambito
+ENTITY. Difetti piantati 34 → **40**. E una guardia vecchia che adesso chiede la
+cosa giusta: due pedine fanno «la stessa cosa» se hanno lo stesso verbo **e lo
+stesso bersaglio**.
+
+| su 100 anni, tavolo uniforme | prima | dopo |
+|---|---|---|
+| esiti SUCC netti | 158 | 156 |
+| esiti DECI | 141 | 143 |
+| Verità scritte | 163 | **165** |
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Il tavolo misto non si muove di una riga.
+
+---
+
 ## 0.1.331 — La terra decide cosa ci si costruisce (D-365) — chiude ISSUES 116
 
 La struttura fisica mette **sulla tessera** gli spazi dove si costruisce. La

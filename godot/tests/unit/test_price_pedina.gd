@@ -166,6 +166,36 @@ func _make_every_casella_live() -> void:
 		if not session.world.has("theme_heat"):
 			session.world["theme_heat"] = {}
 		(session.world["theme_heat"] as Dictionary)[theme_id] = 3
+	# **E le caselle di D-366**, che guardano cose che prima nessuna casella
+	# guardava: chi porta cosa addosso, chi sta dove, il filo fra due case, il
+	# grado di una Pietra. Una carta con quelle caselle in un mondo che non le
+	# regge offre meno di quello che stampa, ed e' giusto — ma allora non e'
+	# piu' il tavolo su cui si misura l'economia.
+	if proponent != "":
+		((session.world["entities"][proponent] as Dictionary)["tags"] as Array).erase("renowned")
+	if rival != "":
+		# Il rivale sta **qui** e non **accanto**: cosi' UNA PRESENZA SE NE VA
+		# ha una pedina da togliere e UNA PRESENZA ENTRA ha dove posarla.
+		(session.world["entities"][rival] as Dictionary)["presence"] = [region_id]
+		# E il filo con lui non e' gia' nemico, o MUOVI UN RAPPORTO non muove.
+		for key in [
+			"%s|%s" % [proponent, rival], "%s|%s" % [rival, proponent],
+		]:
+			if (session.world["relations"] as Dictionary).has(str(key)):
+				((session.world["relations"] as Dictionary)[str(key)] as Dictionary)["level"] = "NEUTRAL"
+	# Una Foresta cresciuta, cosi' UNA PIETRA SCENDE ha un grado da scendere.
+	_stand_a_forest(region, 2)
+
+
+## Una Foresta in piedi al grado voluto, senza toccare le altre Pietre.
+func _stand_a_forest(region: Dictionary, grade: int) -> void:
+	for structure in (region["structures"] as Array):
+		if str((structure as Dictionary).get("structure_type", "")) == "STR_FOREST":
+			(structure as Dictionary)["grade"] = grade
+			return
+	(region["structures"] as Array).append({
+		"structure_type": "STR_FOREST", "grade": grade, "owner": null,
+	})
 
 
 func _others(proponent: String) -> Array:
@@ -356,10 +386,16 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 	# **Sette da D-343**: ALZA LA DOMANDA e' entrata nel vocabolario. Il numero
 	# si legge dal vocabolario che esegue, non si riscrive qui: una casella
 	# nuova domani non deve far fallire questa prova per il motivo sbagliato.
+	# Il numero si legge dalla **carta**, non si riscrive qui: una casella
+	# nuova domani non deve far fallire questa prova per il motivo sbagliato.
+	# Fino a D-366 si leggeva dal vocabolario, e i due numeri erano lo stesso
+	# perche' ogni carta portava una voce per verbo; adesso il vocabolario ha
+	# piu' verbi di quante pedine stiano su una carta, e quello che questa prova
+	# pretende e' che **tutto quello che la carta stampa morda**.
 	assert_eq(
 		(session.confluence.price_menu()["cost"] as Array).size(),
-		CouncilEconomy.COST_VERBS.size(),
-		"tutti i costi del vocabolario mordono"
+		((data().tensions[TENSION]["physical"]["costs"]) as Array).size(),
+		"tutti i costi stampati sulla carta mordono"
 	)
 
 	var tags: Array = region["tags"] as Array
@@ -384,6 +420,26 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 		region["control"] = null
 	else:
 		region["control"] = rival
+	# E le caselle di D-366 spente una per una, con lo stesso metro: si spegne
+	# quello che guardano, non la casella.
+	if rival != "":
+		# Il rivale sta gia' anche accanto: UNA PRESENZA ENTRA non ha dove
+		# entrare. E il filo con lui e' gia' nemico: MUOVI UN RAPPORTO non muove.
+		var next_door: Array = (session.world.get("adjacency", {}) as Dictionary).get(
+			region_id, []
+		) as Array
+		var camped: Array = [region_id]
+		if not next_door.is_empty():
+			camped.append(str(next_door[0]))
+		(session.world["entities"][rival] as Dictionary)["presence"] = camped
+		for key in [
+			"%s|%s" % [str(session.confluence.effect_context().get("proponent", "")), rival],
+			"%s|%s" % [rival, str(session.confluence.effect_context().get("proponent", ""))],
+		]:
+			if (session.world["relations"] as Dictionary).has(str(key)):
+				((session.world["relations"] as Dictionary)[str(key)] as Dictionary)["level"] = "ENEMY"
+	# E la Foresta al grado minimo: UNA PIETRA SCENDE non ha dove scendere.
+	_stand_a_forest(region, 1)
 
 	assert_eq(
 		(session.confluence.price_menu()["cost"] as Array).size(), 1,

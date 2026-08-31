@@ -63,6 +63,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Carestia."
+          },
+          {
+            "id": "B_MARK",
+            "verb": "MARK_HOUSE",
+            "text": "Chi propone esce dal Consiglio con la fama.",
+            "tag": "renowned",
+            "chi": "PROPONENT"
+          },
+          {
+            "id": "B_MOVE_OUT",
+            "verb": "MOVE_OUT",
+            "text": "Il rivale toglie la sua pedina dal luogo.",
+            "chi": "RIVAL"
           }
         ],
         "costs": [
@@ -102,6 +115,26 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Carestia."
+          },
+          {
+            "id": "C_MOVE_IN",
+            "verb": "MOVE_IN",
+            "text": "Il rivale posa una pedina in una Regione confinante.",
+            "chi": "RIVAL",
+            "dove": "ADJACENT"
+          },
+          {
+            "id": "C_BIND",
+            "verb": "BIND_HOUSES",
+            "text": "Il filo con il rivale scende a nemico.",
+            "chi": "RIVAL",
+            "level": "ENEMY"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "La Foresta del luogo scende di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "failure": [
@@ -328,6 +361,17 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Risveglio."
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Il Sito dormiente del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
+          },
+          {
+            "id": "B_UNVEIL",
+            "verb": "UNVEIL_QUESTION",
+            "text": "La domanda in discussione si gira a faccia in su."
           }
         ],
         "costs": [
@@ -367,6 +411,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Risveglio."
+          },
+          {
+            "id": "C_FORGET",
+            "verb": "FORGET",
+            "text": "Il mondo dimentica: le Miniere erano state sigillate.",
+            "tag": "mine_sealed"
+          },
+          {
+            "id": "C_LEAVE",
+            "verb": "LEAVE_TABLE",
+            "text": "La casa che porta #dormiente lascia il tavolo.",
+            "chi": "HOUSE_WITH",
+            "who_tag": "sleeping"
           }
         ],
         "failure": [
@@ -590,6 +647,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Successione."
+          },
+          {
+            "id": "B_UNMARK",
+            "verb": "UNMARK_HOUSE",
+            "text": "Al rivale si toglie la corona.",
+            "tag": "crowned",
+            "chi": "RIVAL"
+          },
+          {
+            "id": "B_FORGET",
+            "verb": "FORGET",
+            "text": "Il mondo dimentica: la corona era stata divisa.",
+            "tag": "crown_divided"
           }
         ],
         "costs": [
@@ -629,6 +699,20 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Successione."
+          },
+          {
+            "id": "C_MOVE_OUT",
+            "verb": "MOVE_OUT",
+            "text": "Chi propone toglie la sua pedina dalla capitale.",
+            "chi": "PROPONENT",
+            "dove": "CAPITAL"
+          },
+          {
+            "id": "C_MARK",
+            "verb": "MARK_HOUSE",
+            "text": "Chi propone resta sotto osservazione.",
+            "tag": "watched",
+            "chi": "PROPONENT"
           }
         ],
         "failure": [
@@ -894,6 +978,20 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+          },
+          {
+            "id": "B_MOVE_IN",
+            "verb": "MOVE_IN",
+            "text": "Chi propone posa una pedina in una Regione confinante.",
+            "chi": "PROPONENT",
+            "dove": "ADJACENT"
+          },
+          {
+            "id": "B_BIND",
+            "verb": "BIND_HOUSES",
+            "text": "Il filo con il rivale sale ad alleato.",
+            "chi": "RIVAL",
+            "level": "ALLY"
           }
         ],
         "costs": [
@@ -933,6 +1031,22 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra una Regione con #selvaggio e una con #pascolo.",
+            "dove": "REGION_WITH",
+            "place_tag": "wild",
+            "verso": "REGION_WITH",
+            "verso_tag": "nomad_range"
+          },
+          {
+            "id": "C_UNMARK",
+            "verb": "UNMARK_HOUSE",
+            "text": "Chi propone perde la fama.",
+            "tag": "renowned",
+            "chi": "PROPONENT"
           }
         ],
         "failure": [
@@ -1995,6 +2109,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Reliquia."
+          },
+          {
+            "id": "B_MARK",
+            "verb": "MARK_HOUSE",
+            "text": "Chi propone porta addosso: scoperta: la reliquia.",
+            "tag": "discovery:relic",
+            "chi": "PROPONENT"
           }
         ],
         "costs": [
@@ -2034,6 +2155,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Reliquia."
+          },
+          {
+            "id": "C_UNVEIL",
+            "verb": "UNVEIL_QUESTION",
+            "text": "La Reliquia si gira a faccia in su, per tutti.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_MOVE_IN",
+            "verb": "MOVE_IN",
+            "text": "Il rivale posa una pedina nel luogo.",
+            "chi": "RIVAL"
           }
         ],
         "failure": [

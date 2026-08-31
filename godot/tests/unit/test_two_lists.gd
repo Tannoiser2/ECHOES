@@ -49,7 +49,11 @@ func test_every_card_carries_two_real_lists() -> void:
 						"benefits" if str(pair[0]) == "benefits" else "costs").is_empty(),
 					"«%s» porta i parametri che il suo verbo chiede" % [str(entry["id"])]
 				)
-				carried[str(entry["verb"])] = true
+				# **La firma di una casella e' il verbo col suo bersaglio**
+				# (D-366): la stessa casella puntata su due posti diversi — qui
+				# e la capitale — o su due case diverse e' una scelta vera, e il
+				# tavolo la vede guardando dov'e' posata la pedina.
+				carried[_signature(entry)] = true
 				if str(pair[0]) == "costs":
 					costs_seen[str(entry["verb"])] = true
 				elif str(pair[0]) == "benefits":
@@ -78,14 +82,30 @@ func test_the_council_offers_what_the_card_says() -> void:
 		var written: Array = []
 		for voice in (face["costs"] as Array):
 			written.append(str((voice as Dictionary)["id"]))
+		# **Nell'ordine della carta, e solo le caselle vive** (D-306): il menu
+		# e' la lista stampata meno quelle che qui e adesso non farebbero
+		# niente. Fino a D-366 le sette caselle di allora mordevano sempre in
+		# questo scenario, e la prova poteva pretendere le due liste identiche;
+		# adesso una carta puo' offrire «la Foresta scende di 1 grado» dove
+		# nessuna Foresta sta in piedi, e quella pedina non si posa.
+		var offered: Array = session.confluence.price_menu()["cost"] as Array
+		var expected: Array = []
+		for voice_id in written:
+			if offered.has(str(voice_id)):
+				expected.append(str(voice_id))
 		assert_eq(
-			session.confluence.price_menu()["cost"], written,
-			"il Consiglio su «%s» offre i costi della sua carta" % [str(tension_id)]
+			offered, expected,
+			"il Consiglio su «%s» offre i costi della sua carta, nel suo ordine"
+			% [str(tension_id)]
+		)
+		assert_true(
+			offered.size() >= 7,
+			"e su «%s» ne offre abbastanza da comprarci qualcosa" % [str(tension_id)]
 		)
 		# E la voce si legge con le parole della carta.
 		assert_eq(
-			session.confluence.price_voice_text("costs", str(written[0])),
-			str((face["costs"] as Array)[0]["text"]),
+			session.confluence.price_voice_text("costs", str(offered[0])),
+			str(_voice_by_id(face["costs"] as Array, str(offered[0])).get("text", "")),
 			"e le legge com'e' scritto"
 		)
 		# Si chiude la questione a mano: la prova apre e guarda, non gioca.
@@ -206,3 +226,23 @@ func test_a_question_at_zero_is_not_offered() -> void:
 		),
 		"una domanda che non e al tavolo non si abbassa"
 	)
+
+
+## Quello che una casella fa davvero, in una riga: il verbo, il posto e la casa.
+## Due voci con la stessa firma sono la stessa pedina scritta due volte.
+static func _signature(voice: Dictionary) -> String:
+	var parts: PackedStringArray = PackedStringArray()
+	for field in [
+		"verb", "dove", "place_tag", "question", "verso", "verso_tag",
+		"chi", "who_tag", "tag", "structure", "level",
+	]:
+		parts.append(str(voice.get(field, "")))
+	return "|".join(parts)
+
+
+## La voce di una lista, cercata per id.
+static func _voice_by_id(voices: Array, voice_id: String) -> Dictionary:
+	for voice in voices:
+		if str((voice as Dictionary).get("id", "")) == voice_id:
+			return voice as Dictionary
+	return {}

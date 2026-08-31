@@ -10,6 +10,169 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-366 — Una casella dice cosa fa, su chi, e dove
+
+**implemented** (0.1.332) · chiude [ISSUES 89](ISSUES.md#89) · richiesta del
+committente: *«fai le caselle del Consiglio»*.
+
+### Le otto caselle che mancavano, e la cosa che ne mancava di più
+
+Il conto di [D-342](DECISIONS.md#d-342) diceva che al Consiglio restavano da
+scrivere **otto caselle**. Erano quelle, e sono scritte. Ma la misura diceva
+anche un'altra riga, e quella riga era la più grossa delle due:
+
+| | distinti | applicazioni |
+|---|---|---|
+| una casella di allora lo sapeva dire | 5 | 151 |
+| **verbo giusto, posto che la casella non sapeva dire** | **25** | **104** |
+| verbo che mancava | 16 | 81 |
+
+Venticinque Effetti su quarantasei avevano **il verbo giusto e nessun posto
+dove puntarlo**. Non era contenuto che mancava: era un campo. Ogni casella del
+vocabolario agiva sul luogo di cui si stava discutendo e per conto di chi
+proponeva, e basta — mentre le Conseguenze d'autore, accanto, nominavano
+liberamente una Regione confinante, la capitale, la sede del rivale, una
+Regione col segno, una domanda per nome.
+
+### La decisione
+
+**Una casella risponde a tre domande, non a una.** *Cosa fa* è il verbo, e
+c'era. *Su chi* è il campo `chi`. *Dove* è il campo `dove`.
+
+| campo | vocabolario | quando manca |
+|---|---|---|
+| `dove` | `FOCUS` · `ADJACENT` · `CAPITAL` · `RIVAL_SEAT` · `REGION_WITH` (col segno) · `QUESTION` (per nome) | `FOCUS` — dove si discute |
+| `chi` | `PROPONENT` · `RIVAL` · `HOUSE_WITH` (col segno) · `NOBODY` | `PROPONENT` — chi propone |
+
+I due campi sono **facoltativi**, e i loro valori di riposo sono esattamente
+come il Consiglio ha sempre funzionato: nessuna delle sessanta carte di prima
+cambia di un millimetro. E nessuna chiave nuova nel contesto — `region_focus`,
+`adjacent`, `capital`, `rival_seat`, `tension` il Consiglio li calcolava già:
+mancava solo chi li chiedesse.
+
+Una casella che agisce su una **casa** o sul **mondo** accetta un `dove` solo,
+`FOCUS`: il suo bersaglio lo dice `chi`, e due campi che dicono la stessa cosa
+sono due modi di sbagliarla.
+
+### Le otto caselle
+
+Dalla più usata alla più rara, e nessuna è un'invenzione: ognuna è il nome di
+quello che una Conseguenza d'autore già faceva senza che il tavolo lo potesse
+posare con una pedina.
+
+| casella | verbo | Effetto | applicazioni che copre |
+|---|---|---|---|
+| POSA UN SEGNO SU UNA CASATA | `MARK_HOUSE` / `UNMARK_HOUSE` | `SET_ENTITY_TAG`, `REMOVE_ENTITY_TAG` | 44 |
+| MUOVI UN RAPPORTO | `BIND_HOUSES` | `SET_RELATION` | 11 |
+| UNA PRESENZA ENTRA O SE NE VA | `MOVE_IN` / `MOVE_OUT` | `ADD_PRESENCE`, `REMOVE_PRESENCE` | 10 |
+| UNA PIETRA SALE O SCENDE | `RAISE_STONE` / `LOWER_STONE` | `SET_STRUCTURE_GRADE` | 9 |
+| IL MONDO DIMENTICA | `FORGET` | `REMOVE_GLOBAL_TAG` | 3 |
+| UNA DOMANDA VELATA SI SCOPRE | `UNVEIL_QUESTION` | `SET_TENSION_VISIBILITY` | 2 |
+| UNA CASATA LASCIA IL TAVOLO | `LEAVE_TABLE` | `SET_ENTITY_ACTIVE` | 1 |
+| CHIUDI LA STRADA | `SEAL_ROAD` | `CLOSE_PASSAGE` | 1 |
+
+**Sei caselle stanno in tutte e due le liste**, e non è una svista. Con `chi`
+la stessa casella cambia segno secondo dove punta la pedina: «al rivale si
+toglie la corona» è un beneficio, «chi propone resta sotto osservazione» è un
+prezzo — stesso verbo, casa diversa. Quello che decide non è il verbo, è il
+bersaglio, ed è esattamente quello che il tavolo vede guardando dov'è posata la
+pedina.
+
+### La misura
+
+`docs/MISURA_CASELLE.md`, rigenerato chiamando le caselle e non ricopiandole:
+
+| | prima | dopo |
+|---|---|---|
+| Effetti che una casella sa dire | 5 su 46 | **44 su 46** |
+| applicazioni coperte | 151 su 336 | **333 su 336** |
+| verbi che mancano | 16 | **0** |
+| posti che la casella non sa dire | 25 | **2** |
+
+**Le due che restano, dichiarate.** `SET_ENTITY_TAG` su `$conditioner` (2
+applicazioni): «chi ha posto la condizione» esiste solo dentro il contesto di
+una clausola, e nel momento in cui una pedina si posa su una casella non c'è
+nessuna condizione posta — non è una casella che manca, è un bersaglio che al
+Consiglio non esiste. E `SET_GLOBAL_TAG` con bersaglio `$adjacent` (1): quel
+verbo scrive nel mondo qualunque bersaglio gli si dia, quindi il bersaglio lì
+non vuol dire niente — è un difetto dei dati, non del vocabolario, ed è a
+verbale in [ISSUES 117](ISSUES.md#117).
+
+### Le caselle nuove sono su carte vere, non solo nel vocabolario
+
+Una casella che nessuna carta può posare è contenuto che esiste nei dati e non
+esiste al tavolo — la lezione di [D-035](DECISIONS.md#d-035). Le diciotto voci
+nuove stanno su cinque carte, e ognuna è **trascritta da quello che il Consiglio
+di quella domanda già faceva**: la fama a chi propone sta sulla Carestia perché
+è la Carestia che la scrive; la corona tolta al rivale sta sulla Successione;
+la strada chiusa fra #selvaggio e #pascolo sta su Le Vie Interrotte.
+
+Misurato in cento saghe con `run_boxes_probe.gd`, offerte e comprate:
+
+| casella | offerta | comprata |
+|---|---|---|
+| POSA UN SEGNO SU UNA CASATA | 45 | 12 |
+| MUOVI UN RAPPORTO | 8 | 2 |
+| UNA PRESENZA SE NE VA | 7 | 2 |
+| UNA PRESENZA ENTRA | 6 | 0 |
+| UNA DOMANDA VELATA SI SCOPRE | 5 | 0 |
+| IL MONDO DIMENTICA | 2 | 1 |
+| TOGLI UN SEGNO A UNA CASATA | 1 | 0 |
+
+**E quattro non si sono viste mai**: UNA PIETRA SALE, UNA PIETRA SCENDE, CHIUDI
+LA STRADA, UNA CASATA LASCIA IL TAVOLO. Non sono rotte — mordono solo dove la
+loro condizione tiene, e le loro condizioni sono strette apposta: una Pietra
+già in piedi con un grado ancora libero, due tessere col segno giusto una
+accanto all'altra, una casa che porta #dormiente. Il numero si scrive perché è
+peggiore di quello che si sperava, e la scelta di dove metterle è del
+committente: [ISSUES 117](ISSUES.md#117).
+
+### Tre cancelli nuovi
+
+1. **Lo schema e il motore nominano le stesse caselle.** Due liste in due file:
+   l'enum di `schema/tension.schema.json` e le tabelle di `CouncilEconomy`. Se
+   si scostano il danno è **silenzioso in tutti e due i versi** — un verbo che
+   sta solo nello schema passa la validazione e poi non produce nessun Effetto,
+   quindi la casella non viene mai offerta e il contenuto muore senza un
+   errore. Il lato motore si legge da `docs/MISURA_CASELLE.md`, che una sonda
+   genera **chiamando** le caselle e un cancello tiene aggiornato: è un ponte,
+   non una terza copia — stesso mestiere del censimento che legge
+   `SCHELETRO_CARTE.md` invece di ricontare le facce.
+2. **Un posto senza il suo parametro.** «In una Regione col segno» senza il
+   segno è un'icona vuota, e il motore ricadrebbe *in silenzio* sul posto di
+   cui si discute. Stessa guardia per «la casa che porta il segno» e per una
+   domanda chiamata per nome che non esiste.
+3. **Il segno addosso a una casa è di ambito ENTITY**, come IL MONDO RICORDA
+   vuole un segno di ambito GLOBAL. Uno di ambito REGION posato su una casa ci
+   finisce davvero, e nessuna regola lo va a leggere lì.
+
+Difetti piantati **34 → 40**.
+
+### E una guardia vecchia che adesso chiede la cosa giusta
+
+«Due pedine che fanno la stessa cosa» non è più «due pedine con lo stesso
+verbo»: la stessa casella puntata su due posti diversi — qui e la capitale — o
+su due case diverse è una scelta vera, e il tavolo la vede. La firma di una
+casella è il verbo **col suo bersaglio e i suoi parametri**.
+
+### Il costo, misurato
+
+`--runs=100 --seed=7000`, contro lo stesso comando su `main` nello stesso
+giorno. **Il vincolo tiene: 0 seggi bloccati su 8, tavolo misto e uniforme.**
+
+| tavolo uniforme | prima | dopo |
+|---|---|---|
+| esiti SUCC netti | 158 | 156 |
+| esiti DECI | 141 | 143 |
+| Verità scritte | 163 | **165** |
+| Verità diverse | 137 | **139** |
+
+Il tavolo misto non si muove di una riga. Due proposte su uniforme passano da
+netta a decisa, ed è il prezzo di due Verità in più, di cui due diverse: le
+caselle nuove sono anche cose nuove che il mondo ricorda.
+
+---
+
 ## D-365 — La terra decide cosa ci si costruisce, e un posto pieno blocca
 
 **implemented** (0.1.331) · chiude [ISSUES 116](ISSUES.md#116) · scelta del

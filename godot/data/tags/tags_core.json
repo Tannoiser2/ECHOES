@@ -611,7 +611,8 @@
         "ENTITY"
       ],
       "written_by": [
-        "entity"
+        "entity",
+        "tension"
       ],
       "read_by": [
         "confluence_template",
@@ -819,7 +820,8 @@
       "written_by": [
         "confluence_template",
         "consequence",
-        "echo_card"
+        "echo_card",
+        "tension"
       ],
       "read_by": [
         "destiny",
@@ -2360,7 +2362,8 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card"
+        "echo_card",
+        "tension"
       ],
       "read_by": [
         "asset_physical",
@@ -3158,7 +3161,8 @@
         "ENTITY"
       ],
       "written_by": [
-        "consequence"
+        "consequence",
+        "tension"
       ],
       "read_by": [],
       "note": "marchio di memoria (D-278): chi ha imposto la guardia se lo porta addosso, e si legge sulla carta del casato — il motore non lo interroga"

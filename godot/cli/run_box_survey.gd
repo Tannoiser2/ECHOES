@@ -101,13 +101,24 @@ func _initialize() -> void:
 	lines.append("")
 	lines.append("## Il vocabolario che esegue")
 	lines.append("")
-	lines.append("Letto da `CouncilEconomy` chiamandolo, non ricopiato.")
+	lines.append("Letto da `CouncilEconomy` chiamandolo, non ricopiato: ogni casella")
+	lines.append("e' stata girata una volta per ogni posto che accetta, e la colonna")
+	lines.append("«dove sa puntare» e' **cosa e' uscito puntato**, non un elenco a mano.")
 	lines.append("")
-	lines.append("| casella | Effetti che produce |")
-	lines.append("|---|---|")
+	lines.append("| casella | in quale lista | Effetti che produce | dove sa puntare |")
+	lines.append("|---|---|---|---|")
 	for verb in spoken:
-		lines.append("| **%s** | %s |" % [
-			str(verb), ", ".join(PackedStringArray(spoken[verb] as Array)),
+		var box: Dictionary = spoken[verb] as Dictionary
+		var liste: Array = []
+		if CouncilEconomy.BENEFIT_VERBS.has(str(verb)):
+			liste.append("benefici")
+		if CouncilEconomy.COST_VERBS.has(str(verb)):
+			liste.append("costi")
+		lines.append("| **%s** — %s | %s | %s | %s |" % [
+			str(verb), str(CouncilEconomy.entry(str(verb)).get("label", "")),
+			" e ".join(PackedStringArray(liste)),
+			", ".join(PackedStringArray(box["types"] as Array)),
+			"`%s`" % "`, `".join(PackedStringArray(box["places"] as Array)),
 		])
 	lines.append("")
 	var total_d: int = order.size()
@@ -155,6 +166,8 @@ func _initialize() -> void:
 			str(box), "`, `".join(PackedStringArray(row[0] as Array)),
 			int(row[1]), int(row[2]),
 		])
+	if ranked.is_empty():
+		lines.append("| *nessuna* | | 0 | 0 |")
 	lines.append("")
 
 	for pair in [
@@ -166,6 +179,8 @@ func _initialize() -> void:
 		lines.append("")
 		lines.append("| Effetto | dove | usi | come si direbbe |")
 		lines.append("|---|---|---|---|")
+		if (groups[str(pair[0])] as Array).is_empty():
+			lines.append("| *nessuno* | | | |")
 		for key in groups[str(pair[0])]:
 			var effect: Dictionary = seen[key]
 			var where: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
@@ -197,57 +212,171 @@ static func _count(effect: Dictionary, seen: Dictionary, uses: Dictionary, order
 	uses[key] = int(uses.get(key, 0)) + 1
 
 
-## Cosa esce davvero da ogni casella, chiedendoglielo.
+## **Cosa esce davvero da ogni casella, e dove sa puntare** — chiedendoglielo.
+##
+## Da D-366 una casella non ha piu' un solo bersaglio: `dove` e `chi` dicono su
+## quale Regione, quale domanda e quale casa la pedina parla. La sonda gira ogni
+## casella **una volta per ogni posto che accetta**, con un contesto fatto di
+## nomi finti che si riconoscono — `$adjacent`, `$capital`, `TEN_PROVA` — e
+## guarda **su cosa esce puntato**. Cosi' l'elenco dei posti non e' una tabella
+## copiata accanto a una che esegue: e' la stessa che esegue.
 static func _what_the_boxes_emit() -> Dictionary:
 	# **Il contesto finto deve avere tutto quello che una casella guarda.** La
 	# prima versione non passava `tension`, e le due caselle che muovono una
 	# domanda (D-343) uscivano vuote: il documento diceva che nessuna casella sa
 	# muovere una domanda mentre due lo facevano. Uno zero e' quasi sempre la
 	# sonda cieca, e qui lo era.
+	#
+	# I valori sono i **nomi dei buchi**, non nomi veri: quello che esce e'
+	# leggibile a occhio, ed e' lo stesso vocabolario con cui i dati scrivono i
+	# loro bersagli. Un bersaglio che esce «$adjacent» e uno che nei dati e'
+	# scritto «$adjacent» sono lo stesso posto, e il confronto e' esatto.
 	var context: Dictionary = {
-		"region_focus": "REG_PROVA", "proponent": "ENT_UNO", "rival": "ENT_DUE",
-		"tension": "TEN_PROVA",
+		"region_focus": "$region_focus", "proponent": "$proponent",
+		"rival": "$rival", "tension": "$tension",
+		"adjacent": "$adjacent", "capital": "$capital", "rival_seat": "$rival_seat",
 	}
+	# Un mondo dove ogni posto esiste: la Regione col segno, la casa col segno,
+	# la domanda chiamata per nome, la Pietra da alzare, i fili fra le case. Una
+	# casella che non trova il suo bersaglio non produce niente, e la sonda
+	# leggerebbe zero senza che nessuna casella sia muta.
+	# **Il segno che sceglie la Regione lo porta una sola tessera.** Se lo
+	# portassero tutte, «una Regione col segno» tornerebbe la prima dell'ordine
+	# — che e' quella di cui si discute — e la sonda direbbe che nessuna casella
+	# sa puntare altrove mentre tutte lo sanno fare. E' la stessa trappola dello
+	# zero cieco, con un valore diverso da zero.
+	var region: Dictionary = {
+		"tags": ["condition:cut_off"],
+		"structures": [{"structure_type": "STR_GRANARY", "grade": 1, "owner": null}],
+		"control": null,
+	}
+	var segnata: Dictionary = region.duplicate(true)
+	(segnata["tags"] as Array).append("PROVA")
 	var world: Dictionary = {
-		"regions": {"REG_PROVA": {"tags": ["condition:cut_off"]}},
-		"tensions": {"TEN_PROVA": {"current_value": 3}},
+		"regions": {
+			"$region_focus": region.duplicate(true),
+			"$adjacent": region.duplicate(true),
+			"$capital": region.duplicate(true),
+			"$rival_seat": region.duplicate(true),
+			"$region_with:PROVA": segnata,
+		},
+		"tensions": {
+			"$tension": {"current_value": 3, "visibility": "VEILED"},
+			"TEN_PROVA": {"current_value": 3, "visibility": "VEILED"},
+		},
+		"entities": {
+			"$proponent": {"tags": [], "presence": [], "active": true},
+			"$rival": {"tags": [], "presence": ["$region_focus"], "active": true},
+			"$entity_with:PROVA": {"tags": ["PROVA"], "presence": [], "active": true},
+		},
+		"turn_order": ["$proponent", "$rival", "$entity_with:PROVA"],
+		"relations": {
+			"$proponent|$rival": {"level": "NEUTRAL", "tags": []},
+			"$proponent|$entity_with:PROVA": {"level": "NEUTRAL", "tags": []},
+		},
+		"adjacency": {
+			"$region_focus": ["$adjacent", "$capital", "$rival_seat", "$region_with:PROVA"],
+			"$adjacent": ["$region_focus"],
+			"$capital": ["$region_focus"],
+			"$rival_seat": ["$region_focus"],
+			"$region_with:PROVA": ["$region_focus"],
+		},
+		"global_tags": ["memory:prova"],
 	}
+	# **E un secondo tavolo, senza Pietre.** COSTRUISCI PIETRA fa due cose
+	# diverse secondo cosa c'e' gia' (D-305): alza la Pietra che manca, oppure
+	# passa di mano quella che c'e'. Girata su un tavolo solo, la sonda ne
+	# vedeva una e dichiarava che nessuna casella sa alzare una Pietra — con
+	# quattro Effetti veri messi fra «i verbi che mancano». Quello che una
+	# casella sa fare e' l'unione di quello che fa sui tavoli possibili.
+	var spoglio: Dictionary = world.duplicate(true)
+	for region_id in (spoglio["regions"] as Dictionary):
+		((spoglio["regions"] as Dictionary)[region_id] as Dictionary)["structures"] = []
 	var out: Dictionary = {}
 	for pair in [[CouncilEconomy.BENEFIT_VERBS, "benefits"], [CouncilEconomy.COST_VERBS, "costs"]]:
 		var table: Dictionary = pair[0]
 		for verb in table:
-			var voice: Dictionary = {
-				"id": "V", "verb": str(verb), "text": "",
-				"tag": "condition:rationed", "structure": "STR_GRANARY",
-			}
-			var types: Array = []
-			for effect_v in CouncilEconomy.effects_for(
-				voice, str(pair[1]), context, world, "THM_POTERE", {}
-			):
-				var kind: String = str((effect_v as Dictionary)["type"])
-				if not types.has(kind):
-					types.append(kind)
-			if types.is_empty():
+			var box: Dictionary = {"types": [], "places": []}
+			for tavolo in [world, spoglio]:
+				_turn_the_box(str(verb), str(pair[1]), context, tavolo as Dictionary, box)
+			if (box["types"] as Array).is_empty():
 				# Una casella che con un contesto pieno non produce niente e'
 				# una casella muta, o una sonda che non le ha dato quello che
 				# guarda. In tutti e due i casi si dichiara, non si salta.
 				printerr("la casella «%s» non produce alcun Effetto: sonda cieca o casella muta" % str(verb))
 				continue
-			out[str(verb)] = types
+			(box["places"] as Array).sort()
+			out[str(verb)] = box
+	return out
+
+
+## Una casella girata su tutti i posti e tutte le case che accetta, su un tavolo
+## dato. Quello che esce si somma a quello che era gia' uscito.
+static func _turn_the_box(
+	verb: String, kind: String, context: Dictionary, world: Dictionary, box: Dictionary
+) -> void:
+	for dove in CouncilEconomy.places_for(verb):
+		for chi in CouncilEconomy.HOUSES:
+			var voice: Dictionary = {
+				"id": "V", "verb": verb, "text": "",
+				"tag": "memory:prova", "structure": "STR_GRANARY",
+				"level": "ALLY", "dove": str(dove), "chi": str(chi),
+				"place_tag": "PROVA", "who_tag": "PROVA", "question": "TEN_PROVA",
+				# L'altro capo della strada, che deve essere un posto diverso da
+				# questo o la casella non taglia niente.
+				"verso": "FOCUS" if str(dove) != "FOCUS" else "ADJACENT",
+				"verso_tag": "PROVA",
+			}
+			for effect_v in CouncilEconomy.effects_for(
+				voice, kind, context, world, "THM_POTERE", {}
+			):
+				var made: String = str((effect_v as Dictionary)["type"])
+				if not (box["types"] as Array).has(made):
+					(box["types"] as Array).append(made)
+				var where: String = _family(str(
+					((effect_v as Dictionary).get("target", {}) as Dictionary).get("id", "")
+				))
+				if not (box["places"] as Array).has(where):
+					(box["places"] as Array).append(where)
+
+
+## **Un posto, ridotto al suo genere.** «$region_with:granary» e
+## «$region_with:trade» sono la stessa casella con un segno diverso stampato
+## sopra, e vanno contati insieme; lo stesso per una domanda chiamata per nome.
+## Tutti i modi in cui i dati dicono «qui» diventano `$region_focus`.
+static func _family(id: String) -> String:
+	if QUI.has(id):
+		return "$region_focus"
+	for prefix in ["$region_with:", "$entity_with:"]:
+		if id.begins_with(prefix):
+			return prefix
+	if id.begins_with("TEN_"):
+		return "TEN_"
+	if id.contains("|"):
+		return "|"
+	return id
+
+
+## I posti su cui **qualche** casella sa puntare questo genere di Effetto.
+static func _places_of(kind: String, spoken: Dictionary) -> Array:
+	var out: Array = []
+	for verb in spoken:
+		var box: Dictionary = spoken[verb] as Dictionary
+		if not (box["types"] as Array).has(kind):
+			continue
+		for place in (box["places"] as Array):
+			if not out.has(str(place)):
+				out.append(str(place))
 	return out
 
 
 static func _verdict(effect: Dictionary, spoken: Dictionary) -> String:
 	var kind: String = str(effect["type"])
-	var where: String = str((effect.get("target", {}) as Dictionary).get("id", ""))
-	var known: bool = false
-	for verb in spoken:
-		if (spoken[verb] as Array).has(kind):
-			known = true
-			break
-	if not known:
+	var where: String = _family(str((effect.get("target", {}) as Dictionary).get("id", "")))
+	var places: Array = _places_of(kind, spoken)
+	if places.is_empty():
 		return "3"
-	return "0" if QUI.has(where) else "2"
+	return "0" if places.has(where) else "2"
 
 
 static func _how(effect: Dictionary, data: RefCounted) -> String:
