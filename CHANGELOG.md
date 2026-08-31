@@ -5,6 +5,143 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.331 — La terra decide cosa ci si costruisce (D-365) — chiude ISSUES 116
+
+La struttura fisica mette **sulla tessera** gli spazi dove si costruisce. La
+tessera diceva dove vanno le pedine e non dove vanno le Pietre.
+
+E la causa vera non l'aveva decisa nessuno: **lo schema delle Pietre ammetteva
+sei biomi su dieci.** COAST, MARSH, ISLAND e FOREST non si potevano nemmeno
+scrivere, e quattro tessere risultavano «dove non si costruisce niente».
+
+| | |
+|---|---|
+| `build_slots` sulla tessera | legati al bioma: 3 / 2 / 1 |
+| i biomi | tutti e dieci, e **un elenco solo** |
+| il motore | non alza sul bioma sbagliato ne' dove non c'e' posto |
+| la faccia | «foresta · 3 pedine · 2 Pietre · CI STANNO presidio, insediamento…» |
+
+Larghi dove ha senso: cinque «no» su sessanta caselle, e ognuno dice qualcosa —
+il grano marcisce nell'umido, chi si sposta non archivia, l'acqua non si porta
+in salita.
+
+| su 100 anni | prima | dopo |
+|---|---|---|
+| Pietre alzate | 519 | 520 |
+| tessere che sforano i posti | **4** | **0** |
+| Pietre in piedi dove non potrebbero | — | **0** |
+
+L'ultima riga non passa dal registro: guarda il tavolo. Il registro dice ancora
+sei tentativi rifiutati — sono tentativi, e il motore li ha respinti.
+
+**Due cancelli nuovi**: il «cantiere murato» (una tessera con spazi dove nessuna
+Pietra puo' stare), difetti piantati 33 → **34**; e la guardia che tiene uguali
+i due elenchi di biomi, che morde nel verso in cui il difetto era invisibile.
+
+---
+
+## 0.1.330 — Il censimento conta le facce che si leggono (D-364)
+
+«84 facce fisiche mancanti» non era vero: il censimento contava i blocchi
+scritti a mano e chiamava mancante tutto il resto. Tre mazzi su sei hanno una
+faccia **ricavata dai dati** (D-344), e non e' un abbozzo — e' una garanzia, che
+scrivendola a mano si perderebbe.
+
+Adesso le facce si contano dalle facce: `SCHELETRO_CARTE.md` le ricava dalle
+facce vere, e il censimento legge quel documento. **275 facce stampate, nessun
+pezzo senza.**
+
+E il buco vero, trovato cercando quello finto: la tessera non dichiara gli
+spazi dove si costruisce — ISSUES 116.
+
+---
+
+## 0.1.329 — Su una faccia non si stampa un nome interno (D-363)
+
+Cercando le 48 facce che mancavano agli Echi ho scoperto che **non mancavano**:
+si generano dai dati per una decisione presa apposta (D-344), perche' la carta
+non possa dire una cosa e il motore farne un'altra. Erano pero' incompiute.
+
+| | prima | dopo |
+|---|---|---|
+| facce che stampavano `region with:granary` | **19** su 48 | **0** |
+| segni detti col proprio identificativo | **13** | **0** |
+
+> scrive «L'Ordine Rimesso in Piedi» · Nel mondo: **l'amnistia e' stata concessa**
+>
+> Il Debito sale di 1, o la domanda che il tavolo ha aperto · **un luogo con
+> commercio**: e' pieno di debiti
+
+Nessuno se n'era accorto **perche'** la faccia si genera: la si guarda una volta
+e poi ci si fida. `test_no_face_prints_an_internal_name` rende quella fiducia
+meritata — 665 prove, 84717 asserzioni.
+
+---
+
+## 0.1.328 — Le 48 Risonanze dicono di quanto scaldano (D-362)
+
+Chiude ISSUES 113, aperta in 0.1.323 guardando il grafo del flusso, e ISSUES 107.
+
+Ogni Risonanza porta un'aggravante: se il bersaglio ha un certo segno scalda di
+piu', e a volte gli posa addosso un gettone. **Quarantotto carte su quarantotto
+non lo dicevano.** Adesso lo dicono tutte, in una riga costruita dai campi che
+il motore legge — quindi non puo' dire una cosa e farne un'altra.
+
+| | prima | dopo |
+|---|---|---|
+| Risonanze con un'aggravante | 48 | 48 |
+| **che non la dicono** | **48** | **0** |
+| difetti piantati nella guardia | 32 | **33** |
+
+**Controllo 22**: se una Risonanza dichiara `if_target_tag` o `extra_tag`, il
+nome stampato di quel segno deve comparire nel testo. Non la bellezza della
+frase — quella e' d'autore — ma che il segno sia nominato.
+
+### Tre errori che il cancello mi ha fatto correggere
+
+- **La portata cambia la frase.** `_carries` guarda anche la scheda di chi cala
+  la carta: un segno di casata funziona, ma la faccia deve dire di chi e' —
+  «se **porti** #fama», non «se il luogo…».
+- **Il nome stampato, non una parafrasi.** Avevo scritto «un debito e' stato
+  chiamato» dove il dizionario stampa «debito chiamato». Chi cerca il segno sul
+  tavolo non lo trova, se la carta lo chiama in un terzo modo.
+- **Una Cicatrice si dice Cicatrice**: su *L'Esodo* il gettone in piu' e'
+  `scar:emptied`, e un dischetto rotondo non e' un gettone qualunque.
+
+### E l'Eco non sceglie un bersaglio
+
+Scelta del committente: un'Azione e' una **mossa**, un Eco e' un **fatto che
+decidi di far accadere**. La scelta vera e' un'altra, e sta sulla stessa carta:
+la spendo per una delle sue due Azioni, o per il suo Eco?
+
+---
+
+## 0.1.328 — La Risonanza dice di quanto scalda (D-362)
+
+Chiude ISSUES 113, che era il difetto piu' diffuso mai misurato qui: **48 carte
+su 48** scaldavano di piu' di quanto la faccia dicesse.
+
+Adesso ogni Risonanza porta la sua aggravante scritta, col nome stampato del
+segno e il calore **totale** — non l'incremento, che al tavolo nessuno somma.
+
+> Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e
+> nessuna versione e' la tua. **Se una domanda e' rimasta aperta: Potere +3.**
+
+La forma segue l'ambito del segno: `se il luogo e'…` per una Regione, `se
+porti…` per un segno di casata, la memoria detta com'e' scritta per il mondo. E
+dove il segno extra e' una Cicatrice, la frase lo dice: un dischetto non e' un
+gettone.
+
+**Il cancello** (controllo 22 di `validate_physical.py`) chiede che il nome
+stampato del segno compaia nel testo. Non giudica la frase — quella e' d'autore
+— ma il segno dev'esserci. Difetti piantati nel `--self-test`: 32 → **33**.
+
+Il cancello ha anche bocciato la mia prima stesura, che scriveva «un debito e'
+stato chiamato» dove il dizionario stampa «debito chiamato». Aveva ragione: chi
+cerca quel segno sul tavolo non lo trova, se la carta lo chiama in un terzo modo.
+
+---
+
 ## 0.1.327 — Le chiavi del payload le decide il tipo dell'Effetto (D-361)
 
 Chiude ISSUES 115, aperta ieri quando una carta che ho scritto io diceva il

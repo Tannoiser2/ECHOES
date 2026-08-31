@@ -14,7 +14,11 @@
         "STEPPE",
         "MOUNTAIN",
         "UNDERGROUND",
-        "ROAD"
+        "ROAD",
+        "FOREST",
+        "COAST",
+        "MARSH",
+        "ISLAND"
       ],
       "grades": [
         {
@@ -52,7 +56,13 @@
         "CITY",
         "VALLEY",
         "STEPPE",
-        "ROAD"
+        "MOUNTAIN",
+        "UNDERGROUND",
+        "ROAD",
+        "FOREST",
+        "COAST",
+        "MARSH",
+        "ISLAND"
       ],
       "grades": [
         {
@@ -90,7 +100,12 @@
         "CITY",
         "VALLEY",
         "STEPPE",
-        "ROAD"
+        "MOUNTAIN",
+        "UNDERGROUND",
+        "ROAD",
+        "FOREST",
+        "COAST",
+        "ISLAND"
       ],
       "grades": [
         {
@@ -119,10 +134,13 @@
       "owned": true,
       "description": "L'acqua portata dove non arrivava. E' la sola opera che cambia cosa cresce.",
       "biomes": [
+        "CITY",
         "VALLEY",
         "STEPPE",
-        "CITY",
-        "ROAD"
+        "ROAD",
+        "FOREST",
+        "COAST",
+        "MARSH"
       ],
       "grades": [
         {
@@ -151,10 +169,16 @@
       "owned": true,
       "description": "Una sbarra e un uomo che conta. Non ferma nessuno: fa pagare tutti.",
       "biomes": [
-        "ROAD",
         "CITY",
         "VALLEY",
-        "STEPPE"
+        "STEPPE",
+        "MOUNTAIN",
+        "UNDERGROUND",
+        "ROAD",
+        "FOREST",
+        "COAST",
+        "MARSH",
+        "ISLAND"
       ],
       "grades": [
         {
@@ -183,11 +207,14 @@
       "owned": true,
       "description": "Il posto dove si tiene quello che e' stato scritto. Non difende niente e non nutre nessuno: decide **cosa il mondo potra' ancora rileggere**, che e' un potere lento e non se ne accorge nessuno finche' non serve.",
       "biomes": [
-        "UNDERGROUND",
         "CITY",
-        "ROAD",
+        "VALLEY",
         "MOUNTAIN",
-        "VALLEY"
+        "UNDERGROUND",
+        "ROAD",
+        "FOREST",
+        "COAST",
+        "ISLAND"
       ],
       "grades": [
         {

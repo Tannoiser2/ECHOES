@@ -25,7 +25,7 @@ import re
 import sys
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "godot" / "data"
@@ -58,6 +58,46 @@ SCHERMO = {
     "profile": "Colonna: **COSA RESTERA' DI TE**",
     "tag": "Mappa e colonna, ognuno con la sua parola italiana",
 }
+
+
+
+# **Le facce si contano dalle facce, non dai blocchi scritti a mano.**
+#
+# `SCHELETRO_CARTE.md` le ricava chiamando `CardFace.every()`, cioe' dalle facce
+# vere che finiscono sul foglio di stampa. Leggerlo qui invece di indovinare e'
+# la stessa disciplina di MISURA_CASELLE, che il vocabolario del Consiglio lo
+# chiama invece di ricopiarlo. Tutt'e due i documenti hanno il loro `--check`,
+# quindi se uno si sposta l'altro va rosso.
+SCHELETRO = REPO / "docs" / "SCHELETRO_CARTE.md"
+
+MAZZI = [
+    ("asset", "Carte Asset", "asset", "d'autore, piu' le righe ricavate"),
+    ("tension", "Carte Tensione (le Domande)", "tension", "d'autore"),
+    ("council", "Schede Consiglio", None, "ricavata dalla Tensione"),
+    ("destiny", "Carte Destino", "destiny", "d'autore"),
+    ("echo", "Echi (stampati sulla carta Asset)", None, "ricavata dai dati (D-344)"),
+    ("entity", "Carte Casata", None, "ricavata dai dati"),
+    ("region", "Tessere Regione", None, "ricavata dai dati"),
+]
+
+
+def facce_stampate() -> List[Tuple[str, str, str, str]]:
+    testo = SCHELETRO.read_text(encoding="utf-8") if SCHELETRO.exists() else ""
+    righe: List[Tuple[str, str, str, str]] = []
+    for chiave, nome, collezione, come in MAZZI:
+        sezione = testo.split("## Il mazzo `%s`" % chiave)
+        quante = "—"
+        if len(sezione) > 1:
+            trovato = re.search(r"(\d+) facce", sezione[1])
+            if trovato:
+                quante = "**%s**" % trovato.group(1)
+        autore = "—"
+        if collezione:
+            voci = items(collezione)
+            scritte = sum(1 for v in voci if v.get("physical"))
+            autore = "%d su %d" % (scritte, len(voci))
+        righe.append((nome, quante, autore, come))
+    return righe
 
 
 def fustella() -> Dict[str, List[str]]:
@@ -283,25 +323,31 @@ def survey() -> str:
     add("")
     add("Quattro cose diverse, in ordine di quanto pesano.")
     add("")
-    add("### a. Le facce fisiche che non sono scritte")
+    add("### a. Le facce: quante si leggono, e come sono fatte")
     add("")
-    add("Una **faccia fisica** e' il testo d'autore stampato sul cartoncino: il")
-    add("bersaglio a segni, le due Azioni, la Risonanza, le liste del prezzo. Le")
-    add("carte che ce l'hanno le controlla il validatore; le altre stampano un")
-    add("testo che il motore **ricava** dai dati digitali, e al tavolo si legge")
-    add("come una scheda tecnica, non come una carta.")
+    add("Fino alla 0.1.329 questa voce diceva **«84 facce mancanti»**, e non era")
+    add("vero: contava i blocchi `physical` **scritti a mano** e chiamava")
+    add("«mancante» tutto il resto. Ma una faccia si stampa lo stesso, e in tre")
+    add("mazzi su sei **si ricava dai dati** ([D-344](DECISIONS.md#d-344)) — non")
+    add("per pigrizia, ma perche' una faccia generata non puo' dire una cosa")
+    add("mentre il motore ne fa un'altra. Scriverle a mano toglierebbe quella")
+    add("garanzia, che e' la stessa che [D-362](DECISIONS.md#d-362) ha appena")
+    add("dovuto rimettere a mano su 48 Risonanze.")
     add("")
-    add("| componente | faccia scritta | manca |")
-    add("|---|---|---|")
-    add("| Carte Asset | 48 su 48 | — |")
-    add("| Carte Tensione | %d su %d | — |" % (
-        sum(1 for t in tensions if t.get("physical")), len(tensions)))
-    add("| Carte Destino | %d su %d | — |" % (
-        sum(1 for d in destinies if d.get("physical")), len(destinies)))
-    add("| Echi (sulla faccia della carta Asset) | 0 su %d | **%d** |" % (
-        len(echoes), len(echoes)))
-    add("| **Carte Casata** | 0 su %d | **%d** |" % (vite, vite))
-    add("| **Tessere Regione** | 0 su %d | **%d** |" % (len(regions), len(regions)))
+    add("Il conto delle facce viene da [SCHELETRO_CARTE.md](SCHELETRO_CARTE.md),")
+    add("che le legge dalle facce vere; la colonna «d'autore» da questi dati.")
+    add("")
+    add("| componente | facce stampate | di cui col testo d'autore | com'e' fatta |")
+    add("|---|---|---|---|")
+    for nome, quante, autore, come in facce_stampate():
+        add("| %s | %s | %s | %s |" % (nome, quante, autore, come))
+    add("")
+    add("**Nessun pezzo esce senza faccia.** Quello che manca sulla tessera non e'")
+    add("il testo: sono **gli spazi dove si costruisce**. La tessera dichiara")
+    add("`presence_slots` — dove vanno le pedine — e i segni stampati, ma nessuna")
+    add("delle dieci dice quanti spazi-Pietra ha ne' quali. I 27 segni con posto")
+    add("`TILE_SLOT` esistono nel dizionario e vivono nei dati delle strutture,")
+    add("non sul cartone che dovrebbe ospitarli.")
     add("")
     add("### b. L'arte")
     add("")

@@ -6029,7 +6029,7 @@ essere quella che nessuno compra.
 
 ---
 
-### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere
+### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
 
 `regole` · `direzione` · aperta in 0.1.310
 
@@ -6045,8 +6045,22 @@ netta, e con lei una domanda che nessuno aveva posto.
 
 Una carta Eco si cala e succede. Il posto lo decide `card_bindings`, che prende
 la Regione a fuoco della domanda che la carta nomina; le due Azioni non ci sono;
-la Risonanza nemmeno. **L'unica scelta e' quando calarla**, e con quale delle
-due che hai in mano.
+la Risonanza nemmeno. **L'unica scelta e' quando calarla.**
+
+#### Chiusa: [D-362](DECISIONS.md#d-362) — **no, e va bene cosi'**
+
+Scelta del committente: *«l'eco non ha bisogno di scegliere un bersaglio se non
+serve»*. Un'Azione e' una **mossa** — scegli dove e come — mentre un Eco e' un
+**fatto che decidi di far accadere**, e un fatto non si punta col dito.
+
+E la scelta c'e' lo stesso, solo che sta un gradino piu' su. Da
+[D-359](DECISIONS.md#d-359) l'Eco e' il terzo blocco della carta Asset, accanto
+alle sue due Azioni: la domanda che il giocatore si fa e' **«questa carta la
+spendo per un'Azione, o per il suo Eco?»**. Le condizioni piu' strette sono il
+prezzo di quella potenza, e sono stampate sulla faccia.
+
+Nota: la tabella qui sopra diceva «con quale delle due che hai in mano» — la
+mano del Narratore non esiste piu' da D-359, e la riga e' stata corretta.
 
 #### Perche' e' una domanda e non un difetto
 
@@ -6292,7 +6306,7 @@ catene delle ere.
 
 ---
 
-### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice
+### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328 — CHIUSA in 0.1.328
 
 `regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
 
@@ -6534,6 +6548,49 @@ Otto casi piantati nel `--self-test`, fra cui il difetto vero.
 E accendendolo il cancello ha trovato subito **30 `optional` decorativi**, su
 tipi dove la tolleranza e' gia' incondizionata e la parola non decide niente.
 Tolti.
+
+---
+
+### 116. La tessera non dice dove si costruisce — CHIUSA in 0.1.331
+
+`grammatica-fisica` · `da-decidere` · aperta in 0.1.330 ([D-364](DECISIONS.md#d-364))
+
+> **La struttura fisica, come l'ha dettata il committente:** *«Sulla tessera
+> degli spazi che possono cambiare e dove costruire cose, città, granai, ponti,
+> fortezze, castelli ecc.»*
+
+Quegli spazi **non esistono sul cartone**. Una tessera dichiara:
+
+| | |
+|---|---|
+| `presence_slots` | dove vanno le pedine — 4 su Eredan |
+| `tags` | i segni stampati — `capitale`, `dominio: la sopravvivenza`… |
+| `asset_sources` | da che mazzi si pesca standoci |
+
+E basta. **Nessuna delle dieci dice quanti spazi-Pietra ha, né quali.**
+
+Eppure la categoria esiste: `table_place: TILE_SLOT` raccoglie **27 segni** — le
+Pietre e i gradi che le degradano — ed è definita nel dizionario come *«uno
+spazio sulla tessera dove si posa una Pietra»*. Quello spazio è dichiarato nel
+vocabolario e non è dichiarato sulla tessera che dovrebbe ospitarlo.
+
+Oggi il gioco funziona lo stesso perché il motore tiene le strutture in una
+lista sulla Regione, senza limite di posti: si costruisce dove il bersaglio
+della carta arriva. Al tavolo però nessuno sa **dove** appoggiare il pezzo, né
+se ce n'è ancora posto.
+
+#### Le domande che vengono prima, e sono del committente
+
+1. **Quanti spazi per tessera?** Uno fisso, o legato al bioma?
+2. **Il bioma vincola cosa ci si costruisce?** Un porto non fa un granaio; una
+   montagna non fa un pascolo. Oggi nessun vincolo esiste: `BUILD_STRUCTURE`
+   guarda il bersaglio della carta, non la tessera.
+3. **Uno spazio pieno blocca?** Se sì diventa una risorsa contesa — ed è la
+   prima cosa in questo gioco per cui valga la pena litigare stando fermi.
+
+**Fatto quando** una tessera dichiara i suoi spazi, la faccia li stampa, e
+`BUILD_STRUCTURE` rifiuta una Pietra dove un posto non c'è — con la guardia che
+morde su un difetto piantato.
 
 ---
 

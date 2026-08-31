@@ -19,6 +19,8 @@ extends RefCounted
 ## e la console dicevano «Valle Verde: condition:lean», che e' esattamente il
 ## difetto che il committente ha trovato giocando — le frasi sono belle e non si
 ## capiscono. Quello che manca a un tag e' un verbo.
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
+
 const TAGS: Dictionary = {
 	# Come sta una Regione, adesso. Sbiadisce sui salti lunghi.
 	"condition:starving": "si muore di fame",
@@ -82,18 +84,27 @@ const TAGS_GONE: Dictionary = {
 
 
 ## Il segno che sparisce, detto a voce.
-static func tag_gone(tag: String) -> String:
+static func tag_gone(tag: String, data = null) -> String:
 	if TAGS_GONE.has(tag):
 		return str(TAGS_GONE[tag])
-	return "non piu %s" % tag_words(tag)
+	return "non piu %s" % tag_words(tag, data)
 
 
 ## Un tag detto a voce. I prefissi che il gioco usa come famiglie hanno una
 ## forma loro; il resto si legge come una frase invece che come un
 ## identificativo — `debt_called` e' «il debito chiamato», non `debt_called`.
-static func tag_words(tag: String) -> String:
+static func tag_words(tag: String, data = null) -> String:
 	if TAGS.has(tag):
 		return str(TAGS[tag])
+	# **Il nome stampato, se il dizionario ce l'ha** (D-363). Senza questo passo
+	# tredici segni finivano sulla faccia col proprio identificativo — «Nel
+	# mondo: amnesty granted» — che al tavolo non si puo' cercare: il gettone
+	# porta scritto «l'amnistia e' stata concessa». La mappa qui sopra resta per
+	# le forme che il dizionario non sa dire da solo.
+	if data != null:
+		var detto: String = SignLabels.label(tag, data)
+		if detto != "" and detto != tag:
+			return detto
 	if tag.begins_with("discovery:"):
 		return "una Scoperta (%s)" % _plain(tag.substr(10))
 	if tag.begins_with("settlement:"):
@@ -130,14 +141,14 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 				"aperta a tutti" if str(payload.get("visibility", "")) == "OPEN" else "velata",
 			]
 		"SET_REGION_TAG":
-			return "%s: %s" % [_region(target, data), tag_words(str(payload.get("tag", "")))]
+			return "%s: %s" % [_region(target, data), tag_words(str(payload.get("tag", "")), data)]
 		"REMOVE_REGION_TAG":
-			return "%s: %s" % [_region(target, data), tag_gone(str(payload.get("tag", "")))]
+			return "%s: %s" % [_region(target, data), tag_gone(str(payload.get("tag", "")), data)]
 		"SET_GLOBAL_TAG":
 			var tag: String = str(payload.get("tag", ""))
-			return "Nel mondo: %s" % tag_words(tag)
+			return "Nel mondo: %s" % tag_words(tag, data)
 		"REMOVE_GLOBAL_TAG":
-			return "Nel mondo: %s" % tag_gone(str(payload.get("tag", "")))
+			return "Nel mondo: %s" % tag_gone(str(payload.get("tag", "")), data)
 		"BUILD_STRUCTURE":
 			return "%s: %s" % [
 				_region(target, data),
@@ -156,9 +167,9 @@ static func say(effect: Dictionary, data: RefCounted) -> String:
 				_region(target, data), _structure_words(payload, data, ""),
 			]
 		"SET_ENTITY_TAG":
-			return "%s: %s" % [_name(target, data), tag_words(str(payload.get("tag", "")))]
+			return "%s: %s" % [_name(target, data), tag_words(str(payload.get("tag", "")), data)]
 		"REMOVE_ENTITY_TAG":
-			return "%s: %s" % [_name(target, data), tag_gone(str(payload.get("tag", "")))]
+			return "%s: %s" % [_name(target, data), tag_gone(str(payload.get("tag", "")), data)]
 		"ADD_PRESENCE":
 			return "%s mette una presenza in %s" % [
 				_name(target, data), _region(str(payload.get("region_id", "")), data),
@@ -223,13 +234,30 @@ const SLOTS: Dictionary = {
 	"$the_region": "la Regione della domanda",
 	"$capital": "la capitale",
 	"$rival_seat": "la terra di un rivale",
+	# La questione che il tavolo ha davanti (D-359): `$tension` risolve alla
+	# domanda d'autore se e' aperta, e altrimenti a una che c'e'. Senza questa
+	# riga finiva stampato com'e' scritto, cioe' col dollaro.
+	"$tension": "la domanda che il tavolo ha aperto",
 }
 
 
-static func _slot(value: String) -> String:
+## **Un selettore non si stampa** (D-363). La scorciatoia di prima toglieva il
+## `$` e metteva il resto sulla carta: `$region_with:granary` diventava «region
+## with:granary», un nome interno su un pezzo che un giocatore legge. Erano
+## **19 facce di Eco su 48**.
+##
+## I due selettori a segni si dicono come li dice gia' `AssetText`: al tavolo si
+## guardano le tessere col segno e si sceglie fra quelle. Quello che resta senza
+## una forma sua non si stampa affatto — meglio una riga in meno che una riga
+## che nessuno puo' eseguire.
+static func _slot(value: String, data = null) -> String:
 	if SLOTS.has(value):
 		return str(SLOTS[value])
-	return "" if not value.begins_with("$") else value.substr(1).replace("_", " ")
+	if value.begins_with("$region_with:"):
+		return "un luogo con %s" % SignLabels.label(value.substr(13), data)
+	if value.begins_with("$entity_with:"):
+		return "la casa che porta %s" % SignLabels.label(value.substr(13), data)
+	return ""
 
 
 ## Il nome del grado di una struttura, non il suo identificativo. Senza grado
@@ -251,7 +279,7 @@ static func _tension(tension_id: String, data: RefCounted) -> String:
 	var tension: Variant = data.tensions.get(tension_id)
 	if tension != null:
 		return str(tension["title"])
-	var slot: String = _slot(tension_id)
+	var slot: String = _slot(tension_id, data)
 	return slot if slot != "" else tension_id
 
 
@@ -266,7 +294,7 @@ static func _region(region_id: String, data: RefCounted) -> String:
 	var region: Variant = data.regions.get(region_id)
 	if region != null:
 		return str(region["name"])
-	var slot: String = _slot(region_id)
+	var slot: String = _slot(region_id, data)
 	return slot if slot != "" else region_id
 
 
@@ -274,7 +302,7 @@ static func _name(entity_id: String, data: RefCounted) -> String:
 	var entity: Variant = data.entities.get(entity_id)
 	if entity != null:
 		return str(entity["name"])
-	var slot: String = _slot(entity_id)
+	var slot: String = _slot(entity_id, data)
 	return slot if slot != "" else entity_id
 
 

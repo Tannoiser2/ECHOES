@@ -409,6 +409,32 @@ func _build_structure(target: Dictionary, payload: Dictionary) -> Variant:
 	if _structure_at(region, type_id) >= 0:
 		return {"noop": true}
 
+	# **La terra decide cosa ci si costruisce** (D-365, ISSUES 116). Ogni Pietra
+	# dichiara i suoi biomi da sempre; **nessuno li leggeva**. Adesso un Granaio
+	# in una palude non si alza — e non fallisce rumorosamente: e' un no-op,
+	# la stessa convenzione della Pietra gia' presente qui sopra. Una frase
+	# d'autore che nomina la terra sbagliata non e' un errore di dati, e' una
+	# frase che non aveva niente da dire in quel posto.
+	var definizione: Dictionary = definition as Dictionary
+	var biome: String = str((data.regions[str(target.get("id", ""))] as Dictionary)["biome"])
+	if not (definizione.get("biomes", []) as Array).has(biome):
+		return {"noop": true}
+
+	# **E un posto pieno blocca** (D-365). La tessera dichiara `build_slots`:
+	# quanti spazi ha per le Pietre. Le Pietre della terra — bosco, sorgente,
+	# passo, sito antico, tutte `owned: false` — non occupano un posto, perche'
+	# sono la tessera e non ci si costruiscono sopra.
+	if bool(definizione["owned"]):
+		var occupati: int = 0
+		for esistente in (region["structures"] as Array):
+			var tipo: Variant = data.structure_types.get(
+				str((esistente as Dictionary).get("structure_type", ""))
+			)
+			if tipo != null and bool((tipo as Dictionary)["owned"]):
+				occupati += 1
+		if occupati >= int((data.regions[str(target.get("id", ""))] as Dictionary)["build_slots"]):
+			return {"noop": true}
+
 	var grade: int = clampi(
 		int(payload.get("grade", 1)), 1, (definition["grades"] as Array).size()
 	)

@@ -43,7 +43,7 @@ la rarita'.
 A. **Proibire.** Abbassa quella questione di 2. Nessuno puo' influenzarla fino a fine Atto.
 B. **Scomunicare.** Alzala di 1 e metti #tradimento_detto sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori.
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori. Se la fede ha avuto un posto: Fede +3.
 
 > Se il bersaglio porta gia' `faith_established`: Fede scalda di 3 invece che di 2.
 
@@ -90,7 +90,7 @@ no border. Not gory, not horror.
 A. **Scrivere il nome.** Rivendica il luogo e metti #erede_nominato sul mondo.
 B. **Scrivere la regola.** Metti #successione_per_legge sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Un atto di successione e' la promessa che qualcuno si alzera' — e l'annuncio a tutti gli altri che non saranno loro.
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Un atto di successione e' la promessa che qualcuno si alzera' — e l'annuncio a tutti gli altri che non saranno loro. Se la corona e' stata divisa: Potere +3.
 
 > Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
 
@@ -137,7 +137,7 @@ no border. Not gory, not horror.
 A. **Rivendicare per diritto.** Rivendica il luogo.
 B. **Cedere il diritto.** Un'altra casa prende la rivendicazione al posto tuo e sale di 2 gradini nel rapporto con te.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Ogni volta che il diritto viene detto ad alta voce, qualcuno conta chi non l'ha detto.
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Ogni volta che il diritto viene detto ad alta voce, qualcuno conta chi non l'ha detto. Se la corona e' stata divisa: Potere +3.
 
 > Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
 
@@ -185,7 +185,7 @@ no border. Not gory, not horror.
 A. **Mandarlo a giudicare.** Sposta una tua presenza li' e togli #conteso dal luogo.
 B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona.
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona. Se la Carta e' stata scritta: Potere +2.
 
 > Se il bersaglio porta gia' `charter_written`: Potere scalda di 2 invece che di 1.
 
@@ -233,7 +233,7 @@ no border. Not gory, not horror.
 A. **Contare le teste.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
 B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa.
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.
 
 > Se il bersaglio porta gia' `nomad_range`: Potere scalda di 2 invece che di 1, e lascia `condition:unrest`.
 
@@ -280,7 +280,7 @@ no border. Not gory, not horror.
 A. **Rivendicare.** Rivendica il luogo: al prossimo Consiglio apre la sua Domanda, e parli per primo.
 B. **Proibire.** Nessuno puo' giocare carte Forza su quel luogo fino a fine Atto.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere.
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un editto e' una promessa che qualcuno dovra' mantenere o rompere. Se una domanda e' rimasta aperta: Potere +2.
 
 > Se il bersaglio porta gia' `question_unresolved`: Potere scalda di 2 invece che di 1.
 
@@ -328,7 +328,7 @@ no border. Not gory, not horror.
 A. **Investirla.** Sale di 2 gradini nel rapporto con te e prende #fama.
 B. **Farsi investire.** Sali di 1 gradino verso di lei e prendi #fama.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto. Se porti #fama: Fede +2.
 
 > Se il bersaglio porta gia' `renowned`: Fede scalda di 2 invece che di 1.
 
@@ -376,7 +376,7 @@ no border. Not gory, not horror.
 A. **Sigillare in basso.** Abbassa quella questione di 1.
 B. **Sigillare in alto.** Alza quella questione di 1.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso.
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso. Se la Carta non e' stata scritta: Potere +2.
 
 > Se il bersaglio porta gia' `no_charter`: Potere scalda di 2 invece che di 1.
 
@@ -425,7 +425,7 @@ no border. Not gory, not horror.
 A. **Rompere adesso.** Alza quella questione di 2, metti #giuramento_rotto sul mondo e scendi di 2 gradini con chi aveva il patto.
 B. **Minacciare di rompere.** Alza quella questione di 1. Chi aveva il patto ti da' 1 carta a scelta perche' tu non lo faccia.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque.
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque. Se il giuramento e' stato rotto: Fede +3.
 
 > Se il bersaglio porta gia' `oath_broken`: Fede scalda di 3 invece che di 2.
 
@@ -472,7 +472,7 @@ no border. Not gory, not horror.
 A. **Mostrare l'ostaggio.** Abbassa quella questione di 2.
 B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo.
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo. Se il tradimento e' stato detto ad alta voce: Fede +3.
 
 > Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 3 invece che di 2.
 
@@ -520,7 +520,7 @@ no border. Not gory, not horror.
 A. **Promettere.** Salite tutti e due di 2 gradini. Da adesso ogni Consiglio in cui vi opponete costa 1 carta a testa.
 B. **Rimandare.** Salite di 1 gradino e pesca 1 Legami.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza.
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza. Se porti #fama: Fede +3.
 
 > Se il bersaglio porta gia' `renowned`: Fede scalda di 3 invece che di 2.
 
@@ -567,7 +567,7 @@ no border. Not gory, not horror.
 A. **Cercare il legame.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
 B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno.
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Potere +2.
 
 > Se il bersaglio porta gia' `heir_named`: Potere scalda di 2 invece che di 1.
 
@@ -614,7 +614,7 @@ no border. Not gory, not horror.
 A. **Chiedere il favore.** Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo.
 B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.
 
 > Se il bersaglio porta gia' `parley_held`: Fede scalda di 2 invece che di 1.
 
@@ -662,7 +662,7 @@ no border. Not gory, not horror.
 A. **Entrare come ospite.** Sposta una tua presenza li', anche se il luogo e' di un altro.
 B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Fede +2.
 
 > Se il bersaglio porta gia' `escort_sworn`: Fede scalda di 2 invece che di 1.
 
@@ -709,7 +709,7 @@ no border. Not gory, not horror.
 A. **Giurare insieme.** Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe.
 B. **Farsi giurare.** Lei sale di 1 gradino verso di te, tu no. Prendi 1 sua carta a scelta.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis. Se porti #fama: Fede +2.
 
 > Se il bersaglio porta gia' `renowned`: Fede scalda di 2 invece che di 1.
 
@@ -757,7 +757,7 @@ no border. Not gory, not horror.
 A. **Esigere.** Metti #debito_chiamato su di lei: ti da' 1 carta adesso, oppure scende di 1 gradino nel rapporto con te.
 B. **Rimettere.** Metti #debito_rimesso e sali di 2 gradini nel rapporto con lei.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente. Se il debito e' stato chiamato: Fede +2.
 
 > Se il bersaglio porta gia' `debt_called`: Fede scalda di 2 invece che di 1.
 
@@ -806,7 +806,7 @@ no border. Not gory, not horror.
 A. **Bruciare la porta.** Rivendica il luogo e metti 1 Cicatrice.
 B. **Mostrare la fiaccola.** Metti #malcontento su quel luogo e su un luogo confinante.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua.
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua. Se una domanda e' rimasta aperta: Potere +3.
 
 > Se il bersaglio porta gia' `question_unresolved`: Potere scalda di 3 invece che di 2.
 
@@ -853,7 +853,7 @@ no border. Not gory, not horror.
 A. **Richiamarli sotto le armi.** Sposta due tue presenze in quel luogo, anche da lontano.
 B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita'.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole.
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Potere +3.
 
 > Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
 
@@ -901,7 +901,7 @@ no border. Not gory, not horror.
 A. **Stringere l'assedio.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e parli per primo.
 B. **Affamare e aspettare.** Metti #fame sul luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Sopravvivenza +3.
 
 > Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 3 invece che di 2.
 
@@ -948,7 +948,7 @@ no border. Not gory, not horror.
 A. **Prendere il posto.** Sposta una tua presenza li'.
 B. **Spogliare il posto.** Metti #saccheggiato sul luogo e prendi 1 carta a caso dalla mano di chi lo controlla.
 
-**RISONANZA (avviene sempre)** — Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata.
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata. Se il luogo e' #saccheggiato: Terra +3, e ci resta #malcontento.
 
 > Se il bersaglio porta gia' `condition:plundered`: Terra scalda di 3 invece che di 2, e lascia `condition:unrest`.
 
@@ -996,7 +996,7 @@ no border. Not gory, not horror.
 A. **Guardare chi arriva.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
 B. **Far sapere che si guarda.** Metti #conteso sul luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato.
+**RISONANZA (avviene sempre)** — Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.
 
 > Se il bersaglio porta gia' `nomad_range`: Terra scalda di 2 invece che di 1, e lascia `condition:unrest`.
 
@@ -1043,7 +1043,7 @@ no border. Not gory, not horror.
 A. **Chiamare la leva.** Sposta una tua presenza da quel luogo a un luogo confinante.
 B. **Tenerli a casa.** La presenza resta. Metti #razionato sul luogo: nessuno puo' requisirgli il grano fino a fine Atto.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce. Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.
 
 > Se il bersaglio porta gia' `condition:lean`: Sopravvivenza scalda di 2 invece che di 1, e lascia `condition:starving`.
 
@@ -1091,7 +1091,7 @@ no border. Not gory, not horror.
 A. **Prestarli.** Sali di 1 gradino nel rapporto con lei.
 B. **Toglierli di mezzo.** Scendi di 1 gradino con lei e pesca 1 Ricchezza.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro. Se il debito e' stato chiamato: Vie +2.
 
 > Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
 
@@ -1139,7 +1139,7 @@ no border. Not gory, not horror.
 A. **Sbarrare la strada.** Metti #tagliato_fuori sul luogo. Finche' c'e', muovere una presenza dentro o fuori costa 1 carta in piu'.
 B. **Farsi pagare il passaggio.** Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano. Se il pedaggio si divide: Vie +2.
 
 > Se il bersaglio porta gia' `toll_shared`: Vie scalda di 2 invece che di 1.
 
@@ -1188,7 +1188,7 @@ no border. Not gory, not horror.
 A. **Aprire la vena.** Togli #sigillato dal luogo e aggiungi una tua presenza.
 B. **Misurare senza toccare.** Metti #cristallo_misurato sul luogo e pesca 1 Sapere.
 
-**RISONANZA (avviene sempre)** — Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda.
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda. Se il Cristallo e' stato sfruttato: Antico +3, e ci resta #sfruttato.
 
 > Se il bersaglio porta gia' `crystal_exploited`: Antico scalda di 3 invece che di 1, e lascia `condition:exploited`.
 
@@ -1235,7 +1235,7 @@ no border. Not gory, not horror.
 A. **Aprire la busta.** Rivendica il luogo e metti #tradimento_detto sul mondo.
 B. **Tenerla sigillata.** Rivendica il luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista.
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista. Se una domanda e' rimasta aperta: Potere +3.
 
 > Se il bersaglio porta gia' `question_unresolved`: Potere scalda di 3 invece che di 2.
 
@@ -1282,7 +1282,7 @@ no border. Not gory, not horror.
 A. **Mostrare la prova.** Scopri una questione velata e metti #sapere_condiviso sul mondo.
 B. **Tenere la prova.** Scopri la questione e pesca 1 Sapere.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.
 
 > Se il bersaglio porta gia' `knowledge_shared`: Fede scalda di 2 invece che di 1.
 
@@ -1330,7 +1330,7 @@ no border. Not gory, not horror.
 A. **Farlo parlare.** Alza quella questione di 2 e metti #tradimento_detto sul mondo.
 B. **Farlo tacere.** Abbassa quella questione di 2.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere.
+**RISONANZA (avviene sempre)** — Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere. Se il tradimento e' stato detto ad alta voce: Fede +3.
 
 > Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 3 invece che di 2.
 
@@ -1377,7 +1377,7 @@ no border. Not gory, not horror.
 A. **Cercare indietro.** Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
 B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Vie +2.
 
 > Se il bersaglio porta gia' `ledger_public`: Vie scalda di 2 invece che di 1.
 
@@ -1425,7 +1425,7 @@ no border. Not gory, not horror.
 A. **Aprire il registro.** Metti #registro_pubblico sul mondo e sali di 1 gradino con lei.
 B. **Chiudere il registro.** Scendi di 1 gradino con lei e metti #debito_chiamato sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Un registro non e' un elenco di numeri: e' un elenco di persone, in ordine di quanto devono.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Un registro non e' un elenco di numeri: e' un elenco di persone, in ordine di quanto devono. Se i conti sono pubblici: Vie +2.
 
 > Se il bersaglio porta gia' `ledger_public`: Vie scalda di 2 invece che di 1.
 
@@ -1473,7 +1473,7 @@ no border. Not gory, not horror.
 A. **Trovare il passaggio.** Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini.
 B. **Tenere la mappa per se'.** Metti #registro_del_commercio: al prossimo Consiglio vale +1.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Vie +2.
 
 > Se il bersaglio porta gia' `trade`: Vie scalda di 2 invece che di 1.
 
@@ -1520,7 +1520,7 @@ no border. Not gory, not horror.
 A. **Ascoltare la voce.** Scopri una questione velata che tocca il luogo.
 B. **Mettere in giro la voce.** Metti #malcontento sul luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Fede +2.
 
 > Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 2 invece che di 1.
 
@@ -1569,7 +1569,7 @@ no border. Not gory, not horror.
 A. **Andarsene tutti.** Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito.
 B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.
 
-**RISONANZA (avviene sempre)** — Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto.
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto. Se i Nahr si sono fermati: Terra +3, e ci resta la Cicatrice «lo sgombero».
 
 > Se il bersaglio porta gia' `nahr_settled`: Terra scalda di 3 invece che di 2, e lascia `scar:emptied`.
 
@@ -1616,7 +1616,7 @@ no border. Not gory, not horror.
 A. **Fermare tutto.** Alza quella questione di 2.
 B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano.
+**RISONANZA (avviene sempre)** — Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano. Se il pedaggio si divide: Vie +3.
 
 > Se il bersaglio porta gia' `toll_shared`: Vie scalda di 3 invece che di 2.
 
@@ -1664,7 +1664,7 @@ no border. Not gory, not horror.
 A. **Chiamare tutti.** Alza quella questione di 2.
 B. **Chiamare solo i tuoi.** Alza quella questione di 1 e pesca 1 Popolo.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso. Se una domanda e' rimasta aperta: Sopravvivenza +3.
 
 > Se il bersaglio porta gia' `question_unresolved`: Sopravvivenza scalda di 3 invece che di 2.
 
@@ -1711,7 +1711,7 @@ no border. Not gory, not horror.
 A. **Prendere la parola.** Rivendica il luogo: al prossimo Consiglio parli per primo.
 B. **Darla a un altro.** Un'altra casa parla per prima al prossimo Consiglio e sale di 2 gradini nel rapporto con te.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare.
+**RISONANZA (avviene sempre)** — Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare. Se la richiesta e' stata ascoltata: Potere +2.
 
 > Se il bersaglio porta gia' `petition_heard`: Potere scalda di 2 invece che di 1.
 
@@ -1758,7 +1758,7 @@ no border. Not gory, not horror.
 A. **Portare la folla sotto le finestre.** Alza quella questione di 1.
 B. **Mandare la folla a casa.** Abbassa quella questione di 1.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto. Se il grano e' stato requisito: Sopravvivenza +2.
 
 > Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
 
@@ -1806,7 +1806,7 @@ no border. Not gory, not horror.
 A. **Ascoltarli.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
 B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso.
+**RISONANZA (avviene sempre)** — Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Fede +2.
 
 > Se il bersaglio porta gia' `faith_established`: Fede scalda di 2 invece che di 1.
 
@@ -1854,7 +1854,7 @@ no border. Not gory, not horror.
 A. **Portare le braccia.** Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda.
 B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di 1 gradino nel rapporto con lei.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Sopravvivenza +2.
 
 > Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
 
@@ -1901,7 +1901,7 @@ no border. Not gory, not horror.
 A. **Marciare verso il grano.** Sposta una tua presenza in un luogo con #granaio, anche se non confina.
 B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ovunque sia.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa. Se sul luogo c'e' #fame: Sopravvivenza +2, e ci resta #malcontento.
 
 > Se il bersaglio porta gia' `condition:starving`: Sopravvivenza scalda di 2 invece che di 1, e lascia `condition:unrest`.
 
@@ -1950,7 +1950,7 @@ no border. Not gory, not horror.
 A. **Prendere la terra in garanzia.** Scendi di 1 gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu.
 B. **Rimettere l'ipoteca.** Sali di 2 gradini con lei e metti #debito_rimesso sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente.
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente. Se il debito e' stato chiamato: Terra +3.
 
 > Se il bersaglio porta gia' `debt_called`: Terra scalda di 3 invece che di 2.
 
@@ -1997,7 +1997,7 @@ no border. Not gory, not horror.
 A. **Aprire il tesoro.** Sposta due tue presenze in quel luogo.
 B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto.
+**RISONANZA (avviene sempre)** — Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.
 
 > Se il bersaglio porta gia' `crown_dispossessed`: Potere scalda di 3 invece che di 2.
 
@@ -2044,7 +2044,7 @@ no border. Not gory, not horror.
 A. **Farla arrivare.** Sposta una tua presenza li' e togli #tagliato_fuori dal luogo.
 B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'. Se il debito e' stato chiamato: Vie +2.
 
 > Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
 
@@ -2092,7 +2092,7 @@ no border. Not gory, not horror.
 A. **Dare le chiavi.** Sale di 2 gradini nel rapporto con te.
 B. **Tenere le chiavi.** Scendi di 1 gradino con lei e metti #grano_requisito sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta. Se il grano e' stato requisito: Sopravvivenza +3.
 
 > Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 3 invece che di 2.
 
@@ -2140,7 +2140,7 @@ no border. Not gory, not horror.
 A. **Aprire credito.** Sale di 2 gradini nel rapporto con te e metti #indebitata sul mondo.
 B. **Comprare il suo debito.** Scendi di 1 gradino con lei e pesca 2 Ricchezza.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo. Se il debito e' stato chiamato: Vie +2.
 
 > Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
 
@@ -2187,7 +2187,7 @@ no border. Not gory, not horror.
 A. **Aprire i granai.** Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda.
 B. **Chiudere i granai.** Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato.
+**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato. Se il grano e' stato requisito: Sopravvivenza +2.
 
 > Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
 
@@ -2235,7 +2235,7 @@ no border. Not gory, not horror.
 A. **Vendere il sale.** Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
 B. **Salare le riserve.** Togli #magro dal luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.
 
 > Se il bersaglio porta gia' `toll_shared`: Vie scalda di 2 invece che di 1.
 
@@ -2283,7 +2283,7 @@ no border. Not gory, not horror.
 A. **Alzare la sbarra.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.
 B. **Dividere l'incasso.** Metti #pedaggio_diviso sul luogo e sali di 1 gradino nel rapporto con chi lo controlla.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto.
+**RISONANZA (avviene sempre)** — Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto. Se il debito e' stato chiamato: Vie +2.
 
 > Se il bersaglio porta gia' `debt_called`: Vie scalda di 2 invece che di 1.
 
@@ -2320,7 +2320,7 @@ una funzione di Propp, e alcune convocano un Consiglio.
 |---|---|
 | famiglia | resolution |
 | funzione | liberation |
-| cosa fa | scrive «L'Ordine Rimesso in Piedi» · Nel mondo: amnesty granted |
+| cosa fa | scrive «L'Ordine Rimesso in Piedi» · Nel mondo: l'amnistia e' stata concessa |
 | id | `ECH_AMNESTY` |
 
 > Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.
@@ -2347,7 +2347,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | betrayal |
 | convoca un Consiglio | su La Carestia |
-| cosa fa | Nel mondo: betrayal spoken · La Carestia sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Carestia |
+| cosa fa | Nel mondo: il tradimento e' stato detto ad alta voce · La Carestia sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Carestia |
 | id | `ECH_BETRAYAL` |
 
 > Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.
@@ -2374,7 +2374,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | request |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · un luogo con commercio: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_CALL_OF_ACCOUNTS` |
 
 > La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
@@ -2452,7 +2452,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | discovery |
-| cosa fa | Il Risveglio adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: crystal measured · chi la cala: una Scoperta (the measure) |
+| cosa fa | Il Risveglio adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: il Cristallo e' stato misurato · chi la cala: scoperta: la misura |
 | id | `ECH_DISCOVERY` |
 
 > Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.
@@ -2479,7 +2479,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su La Successione |
-| cosa fa | La Successione sale di 2, o la domanda che il tavolo ha aperto · region with:capital: e' conteso · apre subito un Consiglio su La Successione |
+| cosa fa | La Successione sale di 2, o la domanda che il tavolo ha aperto · un luogo con capitale: e' conteso · apre subito un Consiglio su La Successione |
 | id | `ECH_EMPTY_THRONE` |
 
 > Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.
@@ -2557,7 +2557,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | prohibition |
-| cosa fa | La Carestia sale di 2, o la domanda che il tavolo ha aperto · region with:granary: monta il malcontento |
+| cosa fa | La Carestia sale di 2, o la domanda che il tavolo ha aperto · un luogo con granaio: monta il malcontento |
 | id | `ECH_HANDS_DOWN` |
 
 > Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
@@ -2583,7 +2583,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · region with:granary: il raccolto non basta · region with:granary: granaio va giu |
+| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · un luogo con granaio: il raccolto non basta · un luogo con granaio: granaio va giu |
 | id | `ECH_LACK` |
 
 > Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
@@ -2637,7 +2637,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · un luogo con commercio: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_LEGEND_CALLED_DAY` |
 
 > La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
@@ -2663,7 +2663,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | return |
-| cosa fa | La Successione scende di 1, o la domanda che il tavolo ha aperto · region with:capital: il malcontento si e' spento |
+| cosa fa | La Successione scende di 1, o la domanda che il tavolo ha aperto · un luogo con capitale: il malcontento si e' spento |
 | id | `ECH_LEGEND_GOOD_YEAR` |
 
 > Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
@@ -2689,7 +2689,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | loss |
-| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: e' in lutto · un rivale lascia region with:nomad range |
+| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · un luogo con pascolo: e' in lutto · un rivale lascia un luogo con pascolo |
 | id | `ECH_LOSS` |
 
 > Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
@@ -2767,7 +2767,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | temptation |
-| cosa fa | tension sale di 1 · la Regione della domanda: e' pieno di debiti · chi la cala mette una presenza in la Regione della domanda |
+| cosa fa | la domanda che il tavolo ha aperto sale di 1 · la Regione della domanda: e' pieno di debiti · chi la cala mette una presenza in la Regione della domanda |
 | id | `ECH_OFFER` |
 
 > Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.
@@ -2793,7 +2793,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | omen |
-| cosa fa | Il Risveglio sale di 1, o la domanda che il tavolo ha aperto · chi la cala: una Scoperta (the omen) |
+| cosa fa | Il Risveglio sale di 1, o la domanda che il tavolo ha aperto · chi la cala: scoperta: il presagio |
 | id | `ECH_OMEN` |
 
 > Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.
@@ -2819,7 +2819,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | encounter |
-| cosa fa | Nel mondo: parley held · tension scende di 1 |
+| cosa fa | Nel mondo: ci si e' parlato · la domanda che il tavolo ha aperto scende di 1 |
 | id | `ECH_PARLEY` |
 
 > Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.
@@ -2846,7 +2846,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | request |
 | convoca un Consiglio | su La Carestia |
-| cosa fa | tension sale di 1 · Nel mondo: petition heard · apre subito un Consiglio su La Carestia |
+| cosa fa | la domanda che il tavolo ha aperto sale di 1 · Nel mondo: la richiesta e' stata ascoltata · apre subito un Consiglio su La Carestia |
 | id | `ECH_PETITION` |
 
 > Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.
@@ -2898,7 +2898,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | reconciliation |
-| cosa fa | La Carestia scende di 1, o la domanda che il tavolo ha aperto · Il Risveglio scende di 1, o la domanda che il tavolo ha aperto · region with:capital: il malcontento si e' spento |
+| cosa fa | La Carestia scende di 1, o la domanda che il tavolo ha aperto · Il Risveglio scende di 1, o la domanda che il tavolo ha aperto · un luogo con capitale: il malcontento si e' spento |
 | id | `ECH_RECONCILIATION` |
 
 > Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.
@@ -2977,7 +2977,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | prohibition |
-| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · region with:trade: resta tagliato fuori |
+| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · un luogo con commercio: resta tagliato fuori |
 | id | `ECH_ROAD_CLOSED` |
 
 > Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
@@ -3003,7 +3003,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | sacrifice |
-| cosa fa | La Carestia scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: someone paid · chi la cala: renowned |
+| cosa fa | La Carestia scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: qualcuno ha pagato · chi la cala: la fama |
 | id | `ECH_SACRIFICE` |
 
 > Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.
@@ -3055,7 +3055,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · region with:granary: il raccolto non basta · region with:granary: canale va giu |
+| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · un luogo con granaio: il raccolto non basta · un luogo con granaio: canale va giu |
 | id | `ECH_SILT` |
 
 > Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
@@ -3081,7 +3081,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | transformation |
-| cosa fa | I Senza Città sale di 1, o la domanda che il tavolo ha aperto · Nel mondo: burden shared |
+| cosa fa | I Senza Città sale di 1, o la domanda che il tavolo ha aperto · Nel mondo: il peso e' stato diviso |
 | id | `ECH_THE_CALLED_UP` |
 
 > La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
@@ -3107,7 +3107,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | threat |
-| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · region with:trade: resta tagliato fuori |
+| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · un luogo con commercio: resta tagliato fuori |
 | id | `ECH_THE_CLOSED_ROAD` |
 
 > Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
@@ -3133,7 +3133,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | discovery |
-| cosa fa | La Reliquia sale di 1, o la domanda che il tavolo ha aperto · La Reliquia adesso e aperta a tutti, o la domanda che il tavolo ha aperto · chi la cala: una Scoperta (relic) |
+| cosa fa | La Reliquia sale di 1, o la domanda che il tavolo ha aperto · La Reliquia adesso e aperta a tutti, o la domanda che il tavolo ha aperto · chi la cala: scoperta: la reliquia |
 | id | `ECH_THE_COPY` |
 
 > Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.
@@ -3159,7 +3159,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | threat |
-| cosa fa | La Reliquia sale di 2, o la domanda che il tavolo ha aperto · region with:mine: monta il malcontento · un rivale lascia region with:mine |
+| cosa fa | La Reliquia sale di 2, o la domanda che il tavolo ha aperto · un luogo con miniera: monta il malcontento · un rivale lascia un luogo con miniera |
 | id | `ECH_THE_CRACK` |
 
 > Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.
@@ -3185,7 +3185,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | gift |
-| cosa fa | L'Acqua Ferma scende di 2, o la domanda che il tavolo ha aperto · region with:granary: vi sorge canale · Nel mondo: water moves |
+| cosa fa | L'Acqua Ferma scende di 2, o la domanda che il tavolo ha aperto · un luogo con granaio: vi sorge canale · Nel mondo: l'acqua ha cambiato strada |
 | id | `ECH_THE_DUG_SEASON` |
 
 > Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
@@ -3211,7 +3211,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: si e' svuotato · region with:nomad range non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
+| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · un luogo con pascolo: si e' svuotato · un luogo con pascolo non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
 | id | `ECH_THE_FIRES_OUTSIDE` |
 
 > Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
@@ -3237,7 +3237,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | gift |
-| cosa fa | Il Debito scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: debt forgiven |
+| cosa fa | Il Debito scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: il debito e' stato perdonato |
 | id | `ECH_THE_FORGIVEN_DEBT` |
 
 > Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
@@ -3289,7 +3289,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | encounter |
-| cosa fa | Le Vie Interrotte scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: burden shared |
+| cosa fa | Le Vie Interrotte scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: il peso e' stato diviso |
 | id | `ECH_THE_MET_ROAD` |
 
 > Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
@@ -3315,7 +3315,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | punishment |
-| cosa fa | Il Debito scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: account settled |
+| cosa fa | Il Debito scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: il conto e' stato saldato |
 | id | `ECH_THE_OLD_ACCOUNT` |
 
 > Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
@@ -3341,7 +3341,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | revelation |
-| cosa fa | La Successione adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: knowledge shared |
+| cosa fa | La Successione adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: quello che si e' saputo lo sanno tutti |
 | id | `ECH_THE_ONE_WHO_SAW` |
 
 > Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
@@ -3367,7 +3367,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | temptation |
-| cosa fa | Le Vie Interrotte sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti |
+| cosa fa | Le Vie Interrotte sale di 1, o la domanda che il tavolo ha aperto · un luogo con commercio: e' pieno di debiti |
 | id | `ECH_THE_PRICE_OF_SALT` |
 
 > Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
@@ -3393,7 +3393,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | return |
-| cosa fa | La Cenere che Sale scende di 1, o la domanda che il tavolo ha aperto · La Reliquia sale di 1, o la domanda che il tavolo ha aperto · chi la cala mette una presenza in region with:mine |
+| cosa fa | La Cenere che Sale scende di 1, o la domanda che il tavolo ha aperto · La Reliquia sale di 1, o la domanda che il tavolo ha aperto · chi la cala mette una presenza in un luogo con miniera |
 | id | `ECH_THE_QUIET_SHAFT` |
 
 > La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.
@@ -3419,7 +3419,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | transformation |
-| cosa fa | L'Acqua Ferma sale di 2, o la domanda che il tavolo ha aperto · Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:granary: si muore di fame |
+| cosa fa | L'Acqua Ferma sale di 2, o la domanda che il tavolo ha aperto · Il Debito sale di 1, o la domanda che il tavolo ha aperto · un luogo con granaio: si muore di fame |
 | id | `ECH_THE_SHORT_YEAR` |
 
 > Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
@@ -3445,7 +3445,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | I Pozzi Bassi sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: si e' svuotato |
+| cosa fa | I Pozzi Bassi sale di 1, o la domanda che il tavolo ha aperto · un luogo con pascolo: si e' svuotato |
 | id | `ECH_THE_WALKING_YEAR` |
 
 > Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
@@ -3472,7 +3472,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | violation |
 | convoca un Consiglio | su La Carta |
-| cosa fa | La Carta sale di 2, o la domanda che il tavolo ha aperto · region with:capital: e' conteso · apre subito un Consiglio su La Carta |
+| cosa fa | La Carta sale di 2, o la domanda che il tavolo ha aperto · un luogo con capitale: e' conteso · apre subito un Consiglio su La Carta |
 | id | `ECH_TWO_VERDICTS` |
 
 > Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.
@@ -3551,7 +3551,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | liberation |
-| cosa fa | La Carta scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: charter temporary · chi la cala: renowned |
+| cosa fa | La Carta scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: la Carta vale per un tempo solo · chi la cala: la fama |
 | id | `ECH_WRITTEN_DOWN` |
 
 > Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.

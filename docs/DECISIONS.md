@@ -10,6 +10,315 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-365 — La terra decide cosa ci si costruisce, e un posto pieno blocca
+
+**implemented** (0.1.331) · chiude [ISSUES 116](ISSUES.md#116) · scelta del
+committente: *«legato al bioma, che vincola cosa costruire e lo spazio pieno
+blocca»*, poi *«ogni bioma puo' avere piu' pietre dove possibile»*.
+
+### Quello che mancava sulla tessera
+
+La struttura fisica dettata dal committente mette **sulla tessera** gli spazi
+dove si costruisce. La tessera diceva dove vanno le **pedine**
+(`presence_slots`) e non diceva dove vanno le **Pietre**: al tavolo nessuno
+sapeva dove appoggiare il pezzo, ne' se ci fosse ancora posto.
+
+### E la causa vera, che non aveva deciso nessuno
+
+Le Pietre dichiaravano gia' i loro `biomes` — **e nessuno li leggeva**. Ma il
+motivo per cui erano incompleti non era distrazione: **lo schema ammetteva sei
+biomi su dieci.** `COAST`, `MARSH`, `ISLAND` e `FOREST` non si potevano nemmeno
+scrivere.
+
+Quattro tessere su dieci — Porto Cinerino, la Palude dei Canali, l'Isola Muta e
+il Bosco dei Confini — risultavano «dove non si costruisce niente», e non era
+una scelta di gioco: era **uno schema piu' stretto del mondo**. Misurato prima
+di toccare niente: 48 costruzioni su 100 partite sarebbero diventate illegali,
+fra cui un presidio nel bosco e un canale nella palude.
+
+### Cosa c'e' adesso
+
+| | |
+|---|---|
+| `build_slots` sulla tessera | legati al bioma: 3 per capitale, valle e strada; 1 per palude e isola |
+| i biomi | tutti e dieci scrivibili, e **un solo elenco**: quello della tessera |
+| il motore | `BUILD_STRUCTURE` non alza niente sul bioma sbagliato ne' dove non c'e' piu' posto |
+| la faccia | *«foresta · 3 pedine · 2 Pietre · CI STANNO presidio, insediamento…»* |
+
+I rifiuti sono **no-op, non errori**: la stessa convenzione che c'era gia' per
+una Pietra gia' presente. Una frase d'autore che nomina la terra sbagliata non
+e' un errore di dati — e' una frase che in quel posto non aveva niente da dire.
+
+### Larghi dove ha senso, e cinque «no» che vogliono dire qualcosa
+
+Su sessanta caselle (sei Pietre costruibili per dieci biomi) restano cinque no:
+
+| | |
+|---|---|
+| granaio in palude | il grano marcisce nell'umido |
+| archivio in palude | e la carta non regge l'umido |
+| archivio nella steppa | chi si sposta non archivia |
+| canale in montagna, sott'acqua, sull'isola | l'acqua non si porta in salita, ne' oltre il mare |
+
+Ogni bioma tiene almeno quattro Pietre su sei.
+
+### La misura, e il modo in cui e' stata fatta
+
+| su 100 anni | prima | dopo |
+|---|---|---|
+| Pietre costruibili alzate | 519 | 521 |
+| tessere che sforano i posti | **4** | **0** |
+| Pietre in piedi su un bioma che non le ammette | — | **0** |
+
+L'ultima riga e' quella di cui fidarsi: **non passa dal registro degli Effetti,
+guarda il tavolo a fine partita.** Il registro dice ancora nove tentativi
+rifiutati — sono tentativi, e il motore li ha respinti. Contare i tentativi e
+chiamarli costruzioni sarebbe stato l'ottavo sbaglio di questo tipo nel
+progetto.
+
+### Il cancello (controllo 23)
+
+Una tessera con degli spazi dove **nessuna** Pietra puo' stare e' un **cantiere
+murato**: il cartone dice «due spazi» e non c'e' niente da metterci. E' il
+difetto che c'era davvero, e adesso e' rosso. Piantato nel `--self-test`: i
+difetti passano da 33 a **34**.
+
+E una guardia in piu' in `validate_data.py`: i due elenchi di biomi — quello
+della tessera e quello della Pietra — devono coincidere. Morde nel verso in cui
+il difetto era invisibile: **un bioma che la tessera conosce e la Pietra no**,
+che e' esattamente com'era `FOREST` fino a oggi.
+
+---
+
+## D-364 — Il censimento conta le facce che si leggono, non quelle battute a mano
+
+**implemented** (0.1.330) · scelta del committente, dopo la misura: *«1»*.
+
+### La domanda era sbagliata
+
+`COMPONENTI.md` diceva **«84 facce fisiche mancanti»**: 48 Echi, 26 Casate, 10
+tessere. Sembrava una voce del lavoro da fare, ed e' stata trattata come tale —
+il committente l'aveva messa in coda dopo ISSUES 113.
+
+Non mancava niente. Il censimento contava i blocchi `physical` **scritti a
+mano** e chiamava «mancante» tutto il resto; ma una faccia si stampa lo stesso,
+e in tre mazzi su sei si **ricava dai dati** ([D-344](#d-344)). Le facce
+generate non sono abbozzi:
+
+> **Re Aldric** — sovrano · vuole il potere
+> SA FARE  acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1
+> VUOI LASCIARE  la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito
+> SE NON CE LA FAI  dopo 150 anni con meno di 1 di questi segni: La Repubblica della Valle
+
+E scriverle a mano sarebbe stato **un passo indietro**: si perderebbe la
+garanzia che D-344 ha messo apposta — *«che la carta non possa dire una cosa e
+il motore farne un'altra»* — cioe' esattamente quello che
+[D-362](#d-362) ha dovuto rimettere a mano su 48 Risonanze poche ore prima.
+
+### Come si conta adesso
+
+Le facce si contano **dalle facce**: `SCHELETRO_CARTE.md` le ricava chiamando
+`CardFace.every()`, e il censimento legge quel documento invece di indovinare.
+E' la stessa disciplina di `MISURA_CASELLE`, che il vocabolario del Consiglio lo
+chiama invece di ricopiarlo. Tutt'e due i documenti hanno il loro `--check`,
+quindi se uno si sposta l'altro va rosso.
+
+La tabella dice adesso tre cose invece di una: **quante facce si stampano**
+(275, nessun pezzo senza), **quante portano testo d'autore**, e **com'e' fatta**
+ognuna.
+
+### E il buco vero, trovato cercando quello finto
+
+La tessera non dichiara **gli spazi dove si costruisce**, che la struttura
+fisica dettata dal committente mette sulla tessera. I 27 segni con posto
+`TILE_SLOT` esistono nel dizionario e vivono nei dati delle strutture, non sul
+cartone che dovrebbe ospitarli — [ISSUES 116](ISSUES.md#116).
+
+---
+
+## D-363 — Su una faccia non si stampa un nome interno
+
+**implemented** (0.1.329) · trovato lavorando su [ISSUES 113](ISSUES.md#113).
+
+### Le 48 facce degli Echi non mancavano
+
+`COMPONENTI.md` le contava **0 su 48**, e sembrava una voce del lavoro da fare.
+Non lo era: la faccia di un Eco **si genera dai dati** ([D-344](#d-344)), e non
+per pigrizia — *«in modo che la carta non possa dire una cosa e il motore farne
+un'altra»*. Scriverne 48 a mano avrebbe sostituito una faccia garantita coerente
+con del testo che puo' divergere: cioe' avrebbe rimesso dentro la classe di
+difetto che [D-362](#d-362) aveva appena chiuso.
+
+Il censimento le conta a zero perche' cerca un blocco `physical` scritto; non e'
+una bugia del censimento, e' una domanda mal posta. Quello che va contato e' se
+la faccia **si legge**, non se e' battuta a mano.
+
+### Quello che era rotto davvero
+
+| | prima | dopo |
+|---|---|---|
+| facce che stampavano `region with:granary` | **19** su 48 | **0** |
+| segni detti col proprio identificativo | **13** | **0** |
+
+Due cause, tutt'e due scorciatoie:
+
+- `EffectText._slot` non conosceva i selettori a segni e faceva l'unica cosa che
+  sapeva: toglieva il dollaro e stampava il resto. `$region_with:granary`
+  diventava «region with:granary», su una carta che un giocatore legge.
+  `AssetText._place` lo sapeva gia' dire — le due strade non si parlavano.
+- `tag_words` aveva una mappa sua, incompleta, e per il resto faceva
+  `replace("_", " ")`: «Nel mondo: amnesty granted», quando il gettone sul tavolo
+  porta scritto «l'amnistia e' stata concessa».
+
+Adesso i selettori si dicono come li dice `AssetText`, e ogni segno passa da
+`SignLabels`, cioe' dal nome che sta stampato sul pezzo. Un selettore che non ha
+una forma sua **non si stampa affatto**: meglio una riga in meno che una riga
+che nessuno puo' eseguire.
+
+### Perche' non se n'era accorto nessuno
+
+Perche' la faccia si genera. La si guarda una volta, si vede che funziona, e poi
+ci si fida — ed e' giusto fidarsi, ma la fiducia va meritata da una prova, non
+dall'abitudine. `test_no_face_prints_an_internal_name` cerca il dollaro, i due
+selettori, e **ogni identificativo di segno detto com'e' scritto nel dato**: 665
+prove, 84717 asserzioni.
+
+---
+
+## D-362 — La Risonanza dice di quanto scalda, e l'Eco non sceglie un bersaglio
+
+**implemented** (0.1.328) · chiude [ISSUES 113](ISSUES.md#113) e
+[ISSUES 107](ISSUES.md#107) · scelta del committente: *«fai la 113, l'eco non
+ha bisogno di scegliere un bersaglio se non serve»*.
+
+### Le 48 Risonanze mute
+
+[0.1.323](../CHANGELOG.md) l'aveva misurato guardando il grafo del flusso:
+
+```
+carte con Risonanza          : 48
+  con un'aggravante nel motore : 48
+  che NON la dicono in faccia  : 48
+```
+
+*Le Porte Bruciate* stampava «Scalda Potere +2» e ne dava **3** quando sul bordo
+della mappa c'era una domanda rimasta aperta. Non era un caso isolato: era il
+**cento per cento** del pezzo che CLAUDE.md chiama obbligatorio. Un giocatore
+che sceglie dove giocare una carta sceglieva, senza saperlo, anche quanto scalda.
+
+Adesso ogni faccia lo dice, in una riga che si legge sul cartoncino:
+
+> Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene
+> la falce. **Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.**
+
+La frase si costruisce dai campi che il motore legge — condizione, calore
+totale, gettone in piu' — quindi **non puo' dire una cosa e farne un'altra**, ed
+e' la stessa regola di `asset_text.gd` e `echo_text.gd`.
+
+Tre cose che la scrittura ha dovuto rispettare, e ognuna e' un errore che ho
+fatto prima di correggerlo:
+
+- **La portata del segno cambia la frase.** `_carries` guarda, in quest'ordine:
+  la Regione bersaglio, le sue Cicatrici, la casa bersaglio, **la scheda di chi
+  cala la carta**, e infine il mondo. Un segno di casata quindi funziona, ma la
+  faccia deve dire *di chi* e': «se **porti** #fama», non «se il luogo…».
+- **Il nome stampato, non una parafrasi.** La prima stesura scriveva «un debito
+  e' stato chiamato» dove il dizionario stampa «debito chiamato». Il cancello
+  nuovo l'ha rifiutata, e aveva ragione: un giocatore cerca sul tavolo il segno
+  che la carta nomina, e se la carta lo chiama in un terzo modo non lo trova.
+- **Una Cicatrice si dice Cicatrice.** Su *L'Esodo* il gettone in piu' e'
+  `scar:emptied`: la faccia stampa «e ci resta la Cicatrice «lo sgombero»»,
+  perche' un dischetto rotondo non e' un gettone qualunque (D-357).
+
+### Il cancello che lo tiene
+
+Controllo 22 di `validate_physical.py`: se una Risonanza dichiara
+`if_target_tag` o `extra_tag`, il **nome stampato** di quel segno — titolo o
+alias dichiarato — deve comparire nel testo. Non si controlla la bellezza della
+frase, che e' d'autore: si controlla che il segno sia nominato.
+
+La guardia si vede mordere: la pianta «Risonanza che non dice di quanto scalda»
+porta i difetti piantati da 32 a **33**.
+
+### E l'Eco non sceglie un bersaglio
+
+[ISSUES 107](ISSUES.md#107) chiedeva se l'Eco dovesse avere una scelta come le
+due Azioni della carta su cui adesso e' stampato. **No**, per volere del
+committente: *«l'eco non ha bisogno di scegliere un bersaglio se non serve»*.
+
+E' coerente con cos'e' un Eco: un'Azione e' una **mossa** — scegli dove e come —
+mentre un Eco e' un **fatto che decidi di far accadere**. Il posto lo trova da
+solo (`card_bindings` prende la Regione a fuoco della questione), e la scelta
+vera e' un'altra: *questa carta la spendo per una delle sue Azioni, o per il suo
+Eco?* Quella scelta c'e', ed e' sulla stessa carta.
+
+La tabella dell'issue andava anche corretta: parlava ancora di «quale delle due
+che hai in mano», e la mano del Narratore non esiste piu' da [D-359](#d-359).
+
+---
+
+## D-362 — La Risonanza dice di quanto scalda
+
+**implemented** (0.1.328) · chiude [ISSUES 113](ISSUES.md#113) · scelta del
+committente: *«fai la 113»*.
+
+### Il difetto, misurato
+
+```
+carte con Risonanza fisica     : 48
+  con un'aggravante nel motore : 48
+  che la faccia NON diceva     : 48
+```
+
+Ogni Risonanza porta un `if_target_tag` con `extra_heat`: se il bersaglio porta
+quel segno, la carta scalda **di piu'**, e sette volte su 48 gli posa addosso
+anche un gettone in piu'. **Nessuna delle quarantotto lo scriveva.** *Le Porte
+Bruciate* stampava «Scalda Potere +2» e ne dava 3.
+
+Un giocatore che sceglie dove giocare una carta stava scegliendo, senza saperlo,
+anche quanto scalda e cosa lascia per terra. Era il difetto piu' diffuso che il
+progetto avesse misurato — il **100%** — e stava sul pezzo che CLAUDE.md chiama
+obbligatorio.
+
+### Cosa c'e' adesso sulla faccia
+
+Una seconda frase, dopo quella d'autore, che dice la condizione col **nome
+stampato del segno** e il calore **totale**, non l'incremento:
+
+> Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene
+> la falce. **Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.**
+
+> Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e
+> nessuna versione e' la tua. **Se una domanda e' rimasta aperta: Potere +3.**
+
+La forma della frase segue **l'ambito del segno**, perche' al tavolo si guarda
+in tre posti diversi: `se il luogo e'…` per una Regione, `se porti…` per un
+segno di casata (`_carries` guarda anche la scheda di chi cala la carta), e la
+memoria detta com'e' scritta per il mondo. Dove il segno extra e' una
+**Cicatrice** la frase lo dice: *«e ci resta la Cicatrice «lo sgombero»»* — un
+dischetto non e' un gettone.
+
+### Il nome stampato, non una parafrasi
+
+La prima stesura scriveva «un debito **e' stato** chiamato» dove il dizionario
+stampa «debito chiamato». Il cancello nuovo l'ha rifiutata, e aveva ragione: un
+giocatore cerca sul tavolo il segno che la carta nomina, e se la carta lo chiama
+in un terzo modo non lo trova. Adesso ogni frase contiene il titolo o un alias
+gia' dichiarato.
+
+### Il cancello (controllo 22)
+
+`validate_physical.py` chiede a ogni Risonanza con un'aggravante che il **nome
+stampato** del segno compaia nel testo — titolo, alias, o la forma a
+#cancelletto per i segni di una parola. Non giudica la frase, che e' d'autore:
+controlla che il segno sia nominato.
+
+E si vede mordere: la pianta *«Risonanza che non dice di quanto scalda»* toglie
+il nome dal testo di una carta vera, e la guardia va rossa. I difetti piantati
+passano da 32 a **33**.
+
+---
+
 ## D-361 — Le chiavi del payload le decide il tipo dell'Effetto
 
 **implemented** (0.1.327) · chiude [ISSUES 115](ISSUES.md#115) · scelta del

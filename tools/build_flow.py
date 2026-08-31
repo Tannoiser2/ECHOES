@@ -115,9 +115,20 @@ for th in load("themes/*.json"):
 POSA = {"SET_REGION_TAG", "SET_ENTITY_TAG", "SET_GLOBAL_TAG"}
 TOGLIE = {"REMOVE_REGION_TAG", "REMOVE_ENTITY_TAG", "REMOVE_GLOBAL_TAG"}
 
-def effetti(o, src, why):
+def effetti(o, src, why, focus=""):
+    """`focus` e' la questione d'autore dell'hook che sta intorno (D-359).
+
+    Dopo la fusione un Eco non nomina piu' la Tensione nel bersaglio: punta a
+    `$tension`, che al tavolo risolve alla questione dichiarata se e' aperta e
+    altrimenti a una che c'e'. Nel disegno `$tension` non e' niente — sarebbe un
+    nodo che nessuno puo' cliccare — quindi la freccia si tira verso la
+    questione che la carta **dice** di riguardare, che sta in
+    `bindings.focus_tension`. E' la stessa scelta che fa il testo stampato
+    sulla carta, per la stessa ragione: un identificativo non si stampa.
+    """
     if isinstance(o, dict):
         k = o.get("type"); p = o.get("payload") or {}
+        focus = str((o.get("bindings") or {}).get("focus_tension", "")) or focus
         dove, letto = dove_finisce(o.get("target"))
         if letto: edge(src, letto, "legge", "per trovare dove posare")
         if k in POSA and p.get("tag"):   edge(src, p["tag"], "posa", why, dove)
@@ -142,10 +153,13 @@ def effetti(o, src, why):
         if k == "RAZE_STRUCTURE" and p.get("structure_type"):
             edge(src, p["structure_type"], "abbatte", why, dove)
         if k == "ADJUST_TENSION":
-            edge(src, str((o.get("target") or {}).get("id", "")), "muove", why)
-        for v in o.values(): effetti(v, src, why)
+            bersaglio = str((o.get("target") or {}).get("id", ""))
+            if bersaglio.startswith("$"):
+                bersaglio, why = focus, why + " (o la domanda che il tavolo ha aperto)"
+            edge(src, bersaglio, "muove", why)
+        for v in o.values(): effetti(v, src, why, focus)
     elif isinstance(o, list):
-        for v in o: effetti(v, src, why)
+        for v in o: effetti(v, src, why, focus)
 
 # ---------- CARTE ----------
 for a in load("assets/*.json"):
@@ -185,6 +199,47 @@ for pat, kind, why in (("echoes/*.json", "eco", "effetto dell'Eco"),
         node(c["id"], kind, t=c.get("title", "") or str(c.get("text", ""))[:70],
              d=c.get("description", ""))
         effetti(c, c["id"], why)
+
+# **Quali segni accendono un Eco** (D-359). Prima l'eleggibilita' nominava una
+# Tensione e non si disegnava: una carta era muta finche' l'anno non pescava la
+# domanda giusta, e nel grafo non si vedeva perche'. Adesso l'Eco si accende sui
+# segni del mondo, quindi la condizione **e' una lettura** e va disegnata come
+# tutte le altre — cosi' scegliendo un segno si vede anche quali Echi risveglia.
+for c in load("echoes/*.json"):
+    def accende(o, owner):
+        if isinstance(o, dict):
+            tg = o.get("tag")
+            ty = str(o.get("type", ""))
+            if tg and isinstance(tg, str):
+                edge(owner, tg, "teme" if ty == "state_tag_absent" else "legge",
+                     "l'Eco si accende con questo segno: %s" % (o.get("label") or ty))
+            if ty == "echo_function_played" and o.get("function"):
+                # L'ordine di Propp (D-030, D-358): non un segno sul tavolo ma la
+                # pila degli Echi gia' calati, che si guarda scoperta.
+                fid = "funzione:%s" % str(o["function"])
+                node(fid, "funzione", t=str(o["function"]).lower().replace("_", " "))
+                edge(owner, fid, "legge",
+                     "prima dev'essere successo qualcosa di questo genere")
+            for v in o.values(): accende(v, owner)
+        elif isinstance(o, list):
+            for v in o: accende(v, owner)
+    accende(c.get("eligibility"), c["id"])
+    # E chi la riempie, quella pila: calare un Eco mette sul tavolo la sua
+    # funzione, scoperta. Senza questa freccia le condizioni di Propp sarebbero
+    # letture che nessuno soddisfa mai — vere nei dati, invisibili nel disegno.
+    if c.get("function_id"):
+        fid = "funzione:%s" % str(c["function_id"])
+        node(fid, "funzione", t=str(c["function_id"]).lower().replace("_", " "))
+        edge(c["id"], fid, "posa", "calato, mette la sua funzione sulla pila scoperta",
+             "sulla pila degli Echi calati")
+
+# **La carta porta il suo Eco** (D-359). E' l'arco che racconta la decisione: non
+# c'e' piu' un mazzo del Narratore, l'Eco e' il terzo blocco stampato sulla carta
+# Asset. Senza questa freccia il disegno mostrerebbe ancora due mazzi separati.
+for a in load("assets/*.json"):
+    if a.get("echo_id"):
+        edge(a["id"], a["echo_id"], "porta",
+             "l'Eco stampato su questa carta: la sua versione potenziata")
 
 # ---------- TENSIONI ----------
 for t in load("tensions/*.json"):
