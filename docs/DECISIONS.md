@@ -10,6 +10,57 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-355 — Una clausola non e' un lettore
+
+**implemented** · 0.1.319 · chiude [ISSUES 102](ISSUES.md)
+
+La terza riparazione, l'ultima delle tre. `MISURA_SEGNI` chiudeva con una lista
+intitolata *«lavoro del motore che al tavolo non conta niente»*: i segni che il
+mondo scrive spesso e che **nessuna clausola nomina**. Il difetto stava nella
+parola *clausola*: le colonne «temuto» e «voluto» leggono solo i passi di
+Destini e Obiettivi. Una **regola del segno**, la **faccia di una carta**, un
+**Consiglio** o una **Tensione** che guardano quel segno non comparivano da
+nessuna parte.
+
+**Il documento sbagliava su sedici righe su venti.** Diceva muti venti segni;
+muti davvero ne sono **quattro** — `burden_shared`, `spoke_and_lost`,
+`someone_paid`, `took_by_hand` — e sono esattamente i quattro che
+`REGISTRO_SEGNI` dichiara muti con la loro ragione scritta accanto. Gli altri
+sedici avevano un lettore, e uno di loro era `condition:guarded`, che da
+[D-353](#d-353) **vieta di tramare**: il documento lo chiamava muto due ore dopo
+che gli avevamo messo un dente.
+
+### Da dove arrivano i lettori, e perche' non da un censimento nuovo
+
+Dal campo `read_by` del dizionario. Non e' una dichiarazione sulla parola: il
+**controllo 4 di `validate_physical`** la tiene onesta nei due versi — una mano
+dichiarata che il censimento non vede e' rossa, e una mano vista che il
+dizionario non dichiara pure.
+
+Scrivere qui un secondo censimento sarebbe stato il modo piu' diretto per
+guadagnare la quinta cecita' di questa settimana: la sonda delle Pietre non
+vedeva `BUILD_STRUCTURE`, quella delle Cicatrici non vedeva `ADD_SCAR`, e la
+lettura statica del grafo non vedeva `godot/data/tag_rules/` — tre censimenti
+scritti da capo, tre punti ciechi. **Appoggiarsi a una lista che un cancello
+gia' sorveglia costa zero cecita' nuove.**
+
+### La guardia
+
+`letture()` e' la funzione pura che decide, e la prova la interroga su un
+difetto piantato per verso. Adesso ne ha due in piu': un segno con un lettore e
+zero clausole **esce** dai muti, e un segno voluto e mai scritto **resta**
+murato anche se qualcuno lo legge — perche' un lettore non lo scrive al posto
+del mondo. Provato togliendo la riparazione: rossa.
+
+### Cosa resta storto, e va detto
+
+La colonna nuova dice **chi** legge, non **quante volte** quella lettura cambia
+qualcosa. `entity_strategic_profile` che guarda un segno e una regola che vieta
+un'azione compaiono uguali, e non lo sono. Per distinguerli servirebbe misurare
+quante volte ogni regola si accende in partita, e quello non c'e'.
+
+---
+
 ## D-354 — Il flusso del tavolo si disegna, e si rigenera da solo
 
 **implemented** · 0.1.318 · voluto dal committente

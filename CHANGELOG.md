@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.319 — Una clausola non è un lettore (D-355)
+
+L'ultima delle tre riparazioni di [ISSUES 102](docs/ISSUES.md), che **si chiude**.
+
+`MISURA_SEGNI` chiudeva con la lista dei segni «che nessuna clausola nomina». Il
+difetto era nella parola *clausola*: quelle colonne leggono solo i passi di
+Destini e Obiettivi, e una regola del segno, la faccia di una carta, un Consiglio
+o una Tensione non comparivano da nessuna parte.
+
+**Il documento sbagliava su sedici righe su venti.** Diceva muti venti segni;
+muti davvero ne sono **quattro** — e sono esattamente i quattro che
+`REGISTRO_SEGNI` dichiara con la loro ragione. Fra i sedici sbagliati c'era
+`condition:guarded`, che da D-353 **vieta di tramare**: il documento lo chiamava
+muto due ore dopo che gli avevamo messo un dente.
+
+Colonna nuova, **«chi altro lo legge»**, presa dal `read_by` del dizionario — che
+il controllo 4 di `validate_physical` tiene onesto nei due versi. Appoggiarsi a
+una lista già sorvegliata invece di scrivere un terzo censimento: i tre scritti
+da capo questa settimana hanno prodotto tre punti ciechi.
+
+Due prove nuove sulla funzione pura `letture()`: un segno con un lettore e zero
+clausole **esce** dai muti, e un segno voluto e mai scritto **resta** murato
+anche se qualcuno lo legge. Provate togliendo la riparazione: rosse.
+
+664 test verdi.
+
+---
+
 ## 0.1.318 — Il flusso del tavolo si disegna, e si rigenera da solo (D-354)
 
 Voluto dal committente: *«quando evidenzio una carta, un tag, una locazione o
