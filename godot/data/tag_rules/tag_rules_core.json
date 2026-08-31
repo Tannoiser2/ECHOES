@@ -686,6 +686,18 @@
       "bias": "BONUS",
       "active": true,
       "note": "D-165: la sorgente viva fa pescare gente migliore a chi ci sta. Quando cala o si secca il segno cambia e la regola smette di valere: **niente penalita' nuove**, solo un dono che finisce."
+    },
+    {
+      "id": "TGR_GUARDED_NO_SCHEME",
+      "title": "Sotto gli occhi della guardia non si trama",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:guarded"
+      },
+      "kind": "ACTION_GATE",
+      "template": "SCHEME",
+      "active": true,
+      "note": "Il primo dente di #sorvegliata (D-353). Il segno lo posa il prezzo di una proposta che passa (D-278) — 35 volte in 100 anni — e per due versioni non lo interrogava nessuna regola: il registro lo dichiarava «candidato numero uno a mordere». Adesso morde nel verso della sua parola: dove qualcuno guarda, chi ha presenza li' non ordisce. Si cura come si cura una condizione, e la guardia non e' per sempre."
     }
   ]
 }

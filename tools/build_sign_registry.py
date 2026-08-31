@@ -80,7 +80,6 @@ MUTI_NOTI: Dict[str, str] = {
     "spoke_and_lost": "ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278)",
     "took_by_hand": "si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278)",
     "watched": "sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278)",
-    "condition:guarded": "la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278)",
 }
 
 

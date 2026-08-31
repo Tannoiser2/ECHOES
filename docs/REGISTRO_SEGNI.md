@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**102 segni scritti sul mondo: 89 li legge qualcosa, 13 no.**
+**102 segni scritti sul mondo: 90 li legge qualcosa, 12 no.**
 
 **E 1 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -35,7 +35,7 @@ nessuno legge**, contati posto per posto.
 |---|---|---|---|---|
 | **stampato sulla tessera** | 15 | 0 | — | la natura del luogo: montagna, capitale, pascolo. Non cambia mai. |
 | **uno spazio sulla tessera** | 27 | 5 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
-| **un gettone accanto alla tessera** | 14 | 14 | **1** | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
+| **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Non tornano nella riserva. |
 | **sulla scheda della casa** | 59 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
 | **un gettone sul bordo della mappa** | 52 | 48 | **7** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
@@ -54,7 +54,6 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 |---|---|---|---|
 | `account_settled` | un gettone sul bordo della mappa | Conseguenza | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
 | `burden_shared` | un gettone sul bordo della mappa | Conseguenza | il peso diviso non alleggerisce niente — 2 volte in 100 anni |
-| `condition:guarded` | un gettone accanto alla tessera | Conseguenza | la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278) |
 | `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
 | `hard_bargain` | sulla scheda della casa | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
 | `list_witnessed` | un gettone sul bordo della mappa | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
@@ -98,6 +97,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:exploited` | Conseguenza, Risonanza | — | Destino, la Regione di cui si discute, obiettivo, pesca delle domande |
+| `condition:guarded` | Conseguenza | — | regola del segno |
 | `condition:indebted` | Conseguenza, carta Asset, carta Echo | Conseguenza | la Regione di cui si discute, pesca delle domande |
 | `condition:lean` | Conseguenza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute |
 | `condition:mourning` | Conseguenza, carta Echo | Azione stampata, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |

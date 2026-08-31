@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.317 — Sotto gli occhi della guardia non si trama (D-353)
+
+Primo passo della potatura chiesta dal committente. `condition:guarded` — posato
+**36 volte in 100 anni** dal prezzo di una proposta che passa, e letto da nessuna
+regola — adesso morde: `TGR_GUARDED_NO_SCHEME` vieta **TRAMARE** a chi ha
+presenza in una Regione sorvegliata. Stessa forma del divieto di D-117: dove
+qualcuno guarda, non si ordisce.
+
+**I muti del registro passano da 13 a 12.**
+
+| | prima | dopo |
+|---|---|---|
+| seggi bloccati (misto / uniforme) | 0/8 · 0/8 | **0/8 · 0/8** |
+| Consigli media, misto | 3.43 | 3.43 |
+| Consigli media, uniforme | 3.48 | **3.46** |
+| segni che non arrivano mai | 67 su 180 | **66 su 180** |
+
+Il costo è **due centesimi di Consiglio sul tavolo uniforme**, ed è scritto: un
+divieto in più è una strada in meno.
+
+E una cosa storta che resta: `MISURA_SEGNI` scrive ancora «nessuno lo guarda»
+accanto a `condition:guarded`, e adesso è falso — è la terza riparazione di
+ISSUES 102, ancora aperta.
+
+---
+
 ## 0.1.316 — La sonda del tavolo, e la memoria del mondo trova il suo posto (D-351, D-352)
 
 **La misura che mancava.** `MISURA_SEGNI` guarda 66 segni su 204. ISSUES 102

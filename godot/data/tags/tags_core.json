@@ -353,9 +353,10 @@
         "tension"
       ],
       "read_by": [
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "tag_rule"
       ],
-      "note": "il prezzo di una proposta che passa (D-278): al tavolo si legge sulla tessera — nessuna clausola del motore lo interroga ancora"
+      "note": "il prezzo di una proposta che passa (D-278): al tavolo si legge sulla tessera, e da D-353 morde — sotto gli occhi della guardia non si trama"
     },
     {
       "id": "condition:indebted",

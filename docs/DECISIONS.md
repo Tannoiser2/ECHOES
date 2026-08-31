@@ -10,6 +10,48 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-353 — Sotto gli occhi della guardia non si trama
+
+**implemented** · 0.1.317 · voluto dal committente («la potatura — fai leggere…»)
+
+`condition:guarded` lo posa il prezzo di una proposta che passa (D-278), **36
+volte in 100 anni**, e per due versioni non lo interrogava nessuna regola. Il
+registro dei segni lo dichiarava con la ragione scritta accanto — *«candidato
+numero uno a mordere in Fase B»* — che nella disciplina di casa vuol dire: e'
+noto, e' contato, e prima o poi qualcuno lo fa mordere.
+
+Adesso morde, e nel verso della sua parola. `TGR_GUARDED_NO_SCHEME`: **chi ha
+presenza in una Regione sorvegliata non trama.** Un `ACTION_GATE` su `SCHEME`,
+la stessa forma di `TGR_STARVING_NO_FORGE` (D-117) — dove qualcuno guarda, non
+si ordisce; e la guardia si cura come si cura una condizione, non e' per sempre.
+
+**I muti del registro passano da 13 a 12.**
+
+### Il prezzo, misurato
+
+| | prima | dopo |
+|---|---|---|
+| seggi bloccati, tavolo misto | 0 su 8 | **0 su 8** |
+| seggi bloccati, tavolo uniforme | 0 su 8 | **0 su 8** |
+| Consigli media, misto | 3.43 | 3.43 |
+| Consigli media, uniforme | 3.48 | **3.46** |
+| segni che non arrivano mai sul tavolo | 67 su 180 | **66 su 180** |
+
+Il vincolo tiene. Il costo e' **due centesimi di Consiglio sul tavolo uniforme**,
+ed e' scritto qui invece che taciuto: un divieto in piu' e' una strada in meno, e
+qualche anno il Consiglio non si accende.
+
+### Una cosa che resta storta, e va detta
+
+`MISURA_SEGNI` continua a scrivere *«nessuno lo guarda»* accanto a
+`condition:guarded`, e adesso e' falso: lo guarda una regola del segno. Non e' un
+errore nuovo — e' la **terza riparazione di ISSUES 102**, quella rimasta aperta:
+le colonne «temuto» e «voluto» contano solo le clausole di Destini e Obiettivi, e
+una regola del segno non la vedono. Finche' non e' fatta, quel documento dira'
+muto un segno che morde.
+
+---
+
 ## D-352 — La sonda del tavolo: tutti i segni, posto per posto
 
 **implemented** · 0.1.316 · chiude due riparazioni su tre di [ISSUES 102](ISSUES.md)
