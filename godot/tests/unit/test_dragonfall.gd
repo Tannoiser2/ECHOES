@@ -43,10 +43,16 @@ func test_the_hunt_needs_the_revelation_first() -> void:
 		"senza Rivelazione la caccia non e' sul tavolo"
 	)
 	session.confluence.current = {}
-	session.applier.apply(Effect.make(
-		"SET_GLOBAL_TAG", "world", "WORLD",
-		{"tag": "function:REVELATION"}, Effect.source("test", "TEST", "", 1, 1, 0)
-	))
+	# La Rivelazione si fa succedere **calando la carta che la porta** (D-358):
+	# la porta della caccia non e' piu' un segno nascosto sul mondo, e' una carta
+	# scoperta sul tavolo.
+	var rivelazione: String = ""
+	for card in session.data.echo_cards.values():
+		if str(card.get("function_id", "")) == "REVELATION":
+			rivelazione = str(card["id"])
+			break
+	assert_ne(rivelazione, "", "esiste una carta che porta la Rivelazione")
+	(session.world["echo_played"] as Array).append(rivelazione)
 	session.confluence.open("TEN_AWAKENING", {"kind": "THRESHOLD"})
 	session.confluence.set_question("Q_AWAKENING_MOUNTAIN")
 	assert_true(

@@ -2039,6 +2039,7 @@ const CONDITION_TYPES := [
 	"structure_count",
 	"leads_in",
 	"scar_count",
+	"echo_function_played",
 	"any_of",
 	"some_of",
 ]

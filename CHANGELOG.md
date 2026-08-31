@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.322 — Via la grammatica di Propp dal mondo, e una Cicatrice si può togliere (D-357, D-358)
+
+Due ordini del committente: *«ELIMINA ogni cosa che vive solo nell'app»* e
+*«togliere una cicatrice è raro ma può accadere»*.
+
+### La grammatica di Propp non si nasconde più (D-358)
+
+Giocare una carta Eco scriveva sul mondo un segno `function:ATTACK`,
+`function:BETRAYAL`, uno dei ventiquattro. Quel segno **decideva chi poteva
+uscire l'anno dopo**, e `effect_text.gd` lo **nascondeva apposta** con una
+costante che si chiamava `HIDDEN_TAG_PREFIX`. Una regola che cambia il gioco e
+che al tavolo non si può vedere.
+
+La regola resta — *«ci si riconcilia dopo qualunque rottura»* è Propp, non si
+tocca. Cambia dove si legge: **le carte Eco calate stanno scoperte sul tavolo**,
+e ognuna porta la sua funzione stampata.
+
+| | prima | dopo |
+|---|---|---|
+| voci del dizionario | 204 | **180** |
+| clausole `state_tag_present: function:X` | 27 | **0** |
+| seggi bloccati (misto / uniforme) | 0/8 · 0/8 | **0/8 · 0/8** |
+| test | 664 | **664, verdi** |
+
+**Un errore preso in tempo:** la prima stesura leggeva `echo_deck.drawn`, che
+comprende le carte ancora **in mano**. Avrebbe risposto «c'è stato un tradimento»
+perché qualcuno ha la carta in mano, allargando la grammatica in silenzio.
+Serviva `echo_played`, le carte **calate**.
+
+E `test_visible_handover` — *«l'era nuova nasce dal solo tavolo visibile: niente
+stato nascosto nell'eredità»* — ha morso subito, per la ragione giusta.
+
+### Una Cicatrice si può togliere, di rado (D-357)
+
+D-350 aveva scritto che il dischetto **non torna nella riserva**, e la sonda ne
+aveva fatto una bandierina contro `scar:unanswered`. **Sbagliate tutt'e due:**
+quella rimozione è progettata da D-112, ed è la cura rara del Magistrato.
+
+La differenza fra un gettone di zona e una Cicatrice non è «per sempre contro
+temporaneo»: è **quanto costa levarla**. Corretta in tre posti.
+
+### Cosa resta app-only (ISSUES 113)
+
+Il Magistrato toglie `scar:unanswered` con un effetto digitale, e la sua faccia
+fisica quella Cicatrice non la nomina. `on_commit_effects` e `physical.actions`
+sono due liste separate, e **nessun cancello controlla che dicano la stessa
+cosa**. Va misurato prima di tagliare.
+
+---
+
 ## 0.1.321 — Il grafo non mostrava nessuna Cicatrice (D-354)
 
 Trovato dal committente, guardando il disegno di una Conseguenza e chiedendo di

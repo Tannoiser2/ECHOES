@@ -6292,6 +6292,48 @@ catene delle ere.
 
 ---
 
+### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice
+
+`regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
+
+> **Richiesta del committente:** *«io non capisco perche' ancora ci sono cose che
+> vivono solo nell'app e altre che sono sul gioco fisico. ELIMINA ogni cosa che
+> vive solo nell'app».*
+
+[D-358](DECISIONS.md#d-358) ne ha tolta **una**: la grammatica di Propp, che
+viveva in ventiquattro segni nascosti sul mondo. Ne resta una famiglia intera, e
+prima di tagliarla va contata.
+
+Il caso che l'ha fatta vedere: **il Magistrato** (`AST_AUTHORITY_MAGISTRATE`).
+I suoi `on_commit_effects` tolgono `scar:unanswered` dal luogo — «il Magistrato
+chiude la cicatrice del consiglio che non decise» (D-112). La sua **faccia
+fisica** ha due Azioni, e nessuna delle due nomina quella Cicatrice: tolgono
+`#conteso` e `#malcontento`.
+
+Cioe': nell'app quella carta cura una Cicatrice **undici volte su cento
+partite**, e al tavolo quella cura non e' scritta da nessuna parte. Un giocatore
+che legge la carta non puo' saperlo.
+
+**Non e' un caso isolato per costruzione**: `on_commit_effects` (la grammatica
+digitale) e `physical.actions` (quella fisica) sono due liste separate, e
+**nessun cancello controlla che dicano la stessa cosa**. Il validatore controlla
+che una carta non nomini segni inesistenti, non che le due facce combacino.
+
+#### Cosa serve prima di decidere
+
+Una misura, per ogni carta con una faccia fisica: **quali effetti digitali non
+hanno una riga corrispondente sulla faccia**. Il numero puo' essere due o
+quaranta, e la cura cambia di conseguenza:
+
+- se sono pochi, si scrivono le righe mancanti sulle facce;
+- se sono tanti, il difetto e' che le due liste si scrivono a mano due volte, e
+  serve un cancello che le confronti.
+
+**Fatto quando** ogni effetto digitale di una carta ha una riga sulla sua faccia,
+oppure una ragione scritta per cui non ce l'ha — e un cancello lo tiene.
+
+---
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda

@@ -36,12 +36,12 @@ nessuno legge**, contati posto per posto.
 | **stampato sulla tessera** | 15 | 0 | — | la natura del luogo: montagna, capitale, pascolo. Non cambia mai. |
 | **uno spazio sulla tessera** | 27 | 5 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
 | **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
-| **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Non tornano nella riserva. |
+| **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
 | **sulla scheda della casa** | 59 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
 | **un gettone sul bordo della mappa** | 52 | 48 | **7** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
-| **il tavolo non lo mostra** | 24 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
+| **il tavolo non lo mostra** | 0 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
-Ogni segno ha un posto. **180 stanno sul tavolo**, 24 sono contabilita'.
+Ogni segno ha un posto. **180 stanno sul tavolo**, 0 sono contabilita'.
 
 ---
 

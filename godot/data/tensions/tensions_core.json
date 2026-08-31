@@ -495,9 +495,8 @@
             "text": "Si scenda con ferro e fuoco: cio' che dorme sotto $the_region non si svegli mai piu'.",
             "eligibility": [
               {
-                "type": "state_tag_present",
-                "scope": "GLOBAL",
-                "tag": "function:REVELATION",
+                "type": "echo_function_played",
+                "function": "REVELATION",
                 "label": "Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare"
               }
             ],

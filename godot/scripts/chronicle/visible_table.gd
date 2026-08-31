@@ -48,6 +48,9 @@ static func read(world: Dictionary) -> Dictionary:
 		"global_tags": (world.get("global_tags", []) as Array).duplicate(true),
 		"scars": (world.get("scars", []) as Array).duplicate(true),
 		"echo_log": (world.get("echo_log", []) as Array).duplicate(true),
+		# Le carte Eco calate stanno scoperte sul tavolo: sono visibili per
+		# definizione, e l'era dopo le eredita (D-358).
+		"echo_played": (world.get("echo_played", []) as Array).duplicate(true),
 		"truth_log": (world.get("truth_log", []) as Array).duplicate(true),
 		"relations": (world.get("relations", {}) as Dictionary).duplicate(true),
 		"regions": {},

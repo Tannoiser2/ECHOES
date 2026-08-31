@@ -7,9 +7,9 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 204 |
-| di cui qualcuno scrive | 200 |
-| orfani in tutto | 92 |
+| segni nel dizionario | 180 |
+| di cui qualcuno scrive | 176 |
+| orfani in tutto | 68 |
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -33,7 +33,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **81 su 92 portano gia' la loro
+Non tutti gli orfani sono un difetto: **57 su 68 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -55,7 +55,7 @@ la matrice deve prendere per primi.
 | `trade` | FUNCTION | tessera |
 | `wild` | PLACE | tessera |
 
-### Orfani dichiarati: 81
+### Orfani dichiarati: 57
 
 | segno | la ragione che porta scritta |
 |---|---|
@@ -77,30 +77,6 @@ la matrice deve prendere per primi.
 | `dragon_slain` | memoria del mondo: narrata (D-103), ereditata |
 | `forest` | tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stamp |
 | `free_cities` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
-| `function:ATTACK` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:BETRAYAL` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:CONQUEST` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:DISCOVERY` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:ENCOUNTER` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:GIFT` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:LACK` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:LIBERATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:LOSS` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:OMEN` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:PROHIBITION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:PUNISHMENT` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:RECONCILIATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:REQUEST` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:RETURN` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:REVELATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:SACRIFICE` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:SEPARATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:SUCCESSION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:TEMPTATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:THREAT` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:TRANSFORMATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e nessuna carta  |
-| `function:USURPATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
-| `function:VIOLATION` | la funzione stampata sulla carta Echo appena giocata: resta sul mondo come memoria di cosa e' successo, e la vista la na |
 | `granary` | vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entra |
 | `guild` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `harbor` | vocazione della tessera nuova di PZ-2 (D-265): dove il mare concede e fa pagare |

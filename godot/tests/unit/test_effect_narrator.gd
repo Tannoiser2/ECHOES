@@ -81,11 +81,19 @@ func test_noops_and_bookkeeping_stay_silent() -> void:
 	assert_true(first != "", "il primo segno parla")
 	var again: String = _narrated("SET_GLOBAL_TAG", "world", "WORLD", {"tag": "gt_once"})
 	assert_eq(again, "", "il segno ripetuto tace")
-	# Propp's function markers are grammar, not history (D-030).
-	var propp: String = _narrated(
+	# La contabilita' di Propp non si tace piu': **non esiste piu'** (D-358).
+	# Questa riga chiedeva al verbale di stare zitto su un segno che il motore
+	# scriveva e la vista nascondeva. Adesso la grammatica di Propp si legge
+	# dalle carte calate sul tavolo, e un segno che il verbale deve nascondere
+	# non c'e'. Quello che resta da provare e' che **non ne torni uno**.
+	var nascosto: String = _narrated(
 		"SET_GLOBAL_TAG", "world", "WORLD", {"tag": "function:separation"}
 	)
-	assert_eq(propp, "", "la contabilità di Propp non finisce a verbale")
+	assert_true(
+		nascosto != "",
+		"nessun segno e' piu' muto per convenzione: se torna un `function:` sul"
+		+ " mondo, il verbale lo dice invece di ingoiarlo"
+	)
 
 
 func test_a_full_chronicle_names_consequences_never_ids() -> void:

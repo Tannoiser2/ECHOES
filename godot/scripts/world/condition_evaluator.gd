@@ -55,6 +55,17 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 					if met >= needed:
 						return true
 			return false
+		"echo_function_played":
+			# «E' gia' successa una cosa di questo genere?» — e la risposta sta
+			# sul tavolo, non in un segno nascosto (D-358).
+			#
+			# Prima questa domanda si faceva con `state_tag_present` su un
+			# `function:` che il motore scriveva sul mondo giocando la carta, e
+			# che `effect_text` nascondeva apposta al giocatore. Cambiava chi
+			# poteva uscire l'anno dopo, e al tavolo non si vedeva: viveva solo
+			# nell'app. Adesso si guarda **la pila delle carte Eco gia' giocate**,
+			# che e' scoperta e porta la funzione stampata su ognuna.
+			return _echo_function_on_the_table(str(condition.get("function", "")))
 		"structure_count":
 			# Quante strutture, con i filtri che la clausola dichiara: tipo,
 			# famiglia, grado minimo, Regione, e `anyone` per contare anche
@@ -311,6 +322,22 @@ func _promise_state(condition: Dictionary, context: Dictionary) -> String:
 
 ## Conditions may reference the running Confluence through $proponent, $tension
 ## and friends, the same way Consequence effect specs do.
+## La funzione di una carta Eco gia' calata. Si legge dalla pila delle carte
+## **calate**, scoperte sul tavolo, e ognuna porta la sua funzione stampata.
+## Non da `echo_deck.drawn`: quella e' la pila uscita dal mazzo e comprende le
+## carte ancora in mano — una carta in mano non e' successa.
+func _echo_function_on_the_table(function_id: String) -> bool:
+	if function_id == "":
+		return false
+	for card_id in (world.get("echo_played", []) as Array):
+		var card: Variant = data.echo_cards.get(str(card_id))
+		if card == null:
+			continue
+		if str((card as Dictionary).get("function_id", "")) == function_id:
+			return true
+	return false
+
+
 func _resolve(value: String, context: Dictionary) -> String:
 	if value.begins_with("$") and context.has(value.substr(1)):
 		return str(context[value.substr(1)])
