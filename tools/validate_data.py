@@ -1131,6 +1131,44 @@ def check_condition_vocabularies_agree(
 
 
 
+def check_biome_vocabularies_agree(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """I biomi sono scritti due volte: che dicano la stessa cosa (ISSUES 116).
+
+    La tessera dichiara il suo `biome`, la Pietra dichiara su quali `biomes` puo'
+    stare, e ognuno dei due schemi porta la propria lista. **Erano diverse**: la
+    tessera ne conosceva dieci, la Pietra sei. COAST, MARSH, ISLAND e FOREST non
+    si potevano nemmeno scrivere su una Pietra, e quattro tessere su dieci
+    risultavano «dove non si costruisce niente» — non per una scelta di gioco,
+    ma perche' lo schema era piu' stretto del mondo.
+
+    Un `$ref` fra i due file sarebbe la cosa giusta, e `gen_gd_schema.py` non lo
+    sa ancora risolvere: finche' e' cosi', due copie e questa guardia.
+    """
+    import json as _json
+
+    tessera = SCHEMA_DIR / "region.schema.json"
+    pietra = SCHEMA_DIR / "structure_type.schema.json"
+    if not tessera.exists() or not pietra.exists():
+        return
+    a = _json.loads(tessera.read_text(encoding="utf-8"))
+    b = _json.loads(pietra.read_text(encoding="utf-8"))
+    dei_luoghi = a["$defs"]["region"]["properties"]["biome"].get("enum", [])
+    delle_pietre = b["$defs"]["structure_type"]["properties"]["biomes"]["items"].get("enum", [])
+    if sorted(dei_luoghi) != sorted(delle_pietre):
+        mancanti = sorted(set(dei_luoghi) - set(delle_pietre))
+        inventati = sorted(set(delle_pietre) - set(dei_luoghi))
+        report.fail(
+            "schema",
+            "i biomi non coincidono fra la tessera e la Pietra: "
+            "una Pietra non puo' nominare %s, e nomina %s che nessuna tessera e'"
+            % (mancanti or "—", inventati or "—"),
+        )
+
+
 def check_every_region_can_call_the_council(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1770,6 +1808,7 @@ def main() -> int:
         check_a_drawn_question_can_be_narrated(documents, origins, report)
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)
+        check_biome_vocabularies_agree(documents, origins, report)
         check_objective_scales_are_sane(documents, origins, report)
         check_a_saga_plays_one_game(documents, origins, report)
         check_the_gate_and_the_thresholds_do_not_overlap(documents, origins, report)

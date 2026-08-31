@@ -38,7 +38,8 @@
         "asset_sources",
         "tags",
         "presence_slots",
-        "art_prompt_key"
+        "art_prompt_key",
+        "build_slots"
       ],
       "additionalProperties": false,
       "properties": {
@@ -104,6 +105,11 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 6
+        },
+        "build_slots": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Gli spazi dove si posa una Pietra, stampati sulla tessera (D-365, ISSUES 116). E' il pezzo che mancava alla struttura fisica dettata dal committente: la tessera diceva dove vanno le **pedine** (`presence_slots`) e non dove vanno le **Pietre**. Il numero e' legato al bioma - una capitale, una valle e una strada ne tengono tre; una palude e un'isola uno - e un posto pieno **blocca**: `BUILD_STRUCTURE` non alza niente dove non c'e' piu' spazio. Le Pietre della terra (`owned: false` - bosco, sorgente, passo, sito antico) non occupano un posto: sono la tessera, non ci si costruiscono sopra."
         },
         "control": {
           "type": [

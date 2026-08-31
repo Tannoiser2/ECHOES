@@ -77,10 +77,14 @@
               "STEPPE",
               "MOUNTAIN",
               "UNDERGROUND",
-              "ROAD"
+              "ROAD",
+              "FOREST",
+              "COAST",
+              "MARSH",
+              "ISLAND"
             ]
           },
-          "description": "Dove puo' stare. Omesso, ovunque: una foresta non nasce in una citta' e un passo esiste solo in montagna."
+          "description": "Su che terra questa Pietra puo' stare, e **il motore lo fa rispettare** (D-365, ISSUES 116): `BUILD_STRUCTURE` su un bioma che non e' in questa lista non alza niente. Prima era un dato che nessuno leggeva.\n\nI valori sono **gli stessi della tessera**, per riferimento e non ricopiati: l'elenco qui portava sei biomi su dieci, e COAST, MARSH, ISLAND e FOREST non si potevano nemmeno scrivere. Non era una scelta di gioco - era uno schema piu' stretto del mondo, e quattro tessere su dieci risultavano «dove non si costruisce niente» senza che nessuno l'avesse deciso."
         },
         "grades": {
           "type": "array",

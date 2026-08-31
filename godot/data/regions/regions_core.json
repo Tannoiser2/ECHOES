@@ -23,6 +23,7 @@
         "domain:RESOURCE"
       ],
       "presence_slots": 4,
+      "build_slots": 3,
       "control": "ENT_ALDRIC",
       "description": "La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.",
       "art_prompt_key": "region.eredan",
@@ -59,6 +60,7 @@
         "domain:RESOURCE"
       ],
       "presence_slots": 4,
+      "build_slots": 3,
       "control": null,
       "description": "Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve.",
       "art_prompt_key": "region.valle_verde",
@@ -93,6 +95,7 @@
         "domain:TERRITORY"
       ],
       "presence_slots": 4,
+      "build_slots": 2,
       "control": "ENT_NAHR",
       "description": "Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando.",
       "art_prompt_key": "region.terre_nahr",
@@ -126,6 +129,7 @@
         "crystal_site"
       ],
       "presence_slots": 3,
+      "build_slots": 2,
       "control": "ENT_VAERAX",
       "private_information": "Sotto la cresta orientale il respiro della montagna è caldo anche d'inverno.",
       "description": "Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.",
@@ -160,6 +164,7 @@
         "mine"
       ],
       "presence_slots": 4,
+      "build_slots": 2,
       "control": null,
       "private_information": "Il Cristallo Rosso non riflette la luce delle torce: la restituisce più tardi.",
       "description": "Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.",
@@ -197,6 +202,7 @@
         "domain:RESOURCE"
       ],
       "presence_slots": 4,
+      "build_slots": 3,
       "control": null,
       "description": "Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri.",
       "art_prompt_key": "region.strada_mercanti",
@@ -230,6 +236,7 @@
         "harbor"
       ],
       "presence_slots": 4,
+      "build_slots": 2,
       "control": null,
       "private_information": "Le maree portano dentro piu' di quanto i registri del molo dichiarino.",
       "description": "Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.",
@@ -263,6 +270,7 @@
         "marsh"
       ],
       "presence_slots": 3,
+      "build_slots": 1,
       "control": null,
       "private_information": "Sotto il fango i canali vecchi tengono ancora: chi sa leggerli attraversa in un giorno.",
       "description": "Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.",
@@ -294,6 +302,7 @@
         "island"
       ],
       "presence_slots": 2,
+      "build_slots": 1,
       "control": null,
       "private_information": "Nessun uccello nidifica sull'isola. I pescatori lo sanno e non ne parlano.",
       "description": "Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.",
@@ -326,6 +335,7 @@
         "forest"
       ],
       "presence_slots": 3,
+      "build_slots": 2,
       "control": null,
       "private_information": "I segni sugli alberi non sono di cacciatori. Sono piu' vecchi dei sentieri.",
       "description": "Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.",

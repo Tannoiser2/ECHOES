@@ -993,6 +993,7 @@ const DEFS := {
 			"tags",
 			"presence_slots",
 			"art_prompt_key",
+			"build_slots",
 		],
 		"additional_properties": false,
 		"properties": {
@@ -1057,6 +1058,10 @@ const DEFS := {
 				"type": "int",
 				"min": 1,
 				"max": 6,
+			},
+			"build_slots": {
+				"type": "int",
+				"min": 0,
 			},
 			"control": {
 				"type": "String",
@@ -1235,6 +1240,10 @@ const DEFS := {
 						"MOUNTAIN",
 						"UNDERGROUND",
 						"ROAD",
+						"FOREST",
+						"COAST",
+						"MARSH",
+						"ISLAND",
 					],
 				},
 			},

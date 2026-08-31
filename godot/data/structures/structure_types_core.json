@@ -14,7 +14,11 @@
         "STEPPE",
         "MOUNTAIN",
         "UNDERGROUND",
-        "ROAD"
+        "ROAD",
+        "COAST",
+        "FOREST",
+        "ISLAND",
+        "MARSH"
       ],
       "grades": [
         {
@@ -122,7 +126,8 @@
         "VALLEY",
         "STEPPE",
         "CITY",
-        "ROAD"
+        "ROAD",
+        "MARSH"
       ],
       "grades": [
         {
@@ -154,7 +159,10 @@
         "ROAD",
         "CITY",
         "VALLEY",
-        "STEPPE"
+        "STEPPE",
+        "COAST",
+        "MOUNTAIN",
+        "UNDERGROUND"
       ],
       "grades": [
         {
