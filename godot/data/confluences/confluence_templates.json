@@ -105,6 +105,21 @@
             "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
             "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
           }
+        },
+        {
+          "id": "P_SEAL_MINE_FOR_FIELDS",
+          "question_id": "Q_FAMINE_GRAIN",
+          "text": "Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_MINE_SEALED"
+          ],
+          "echo_summary": "Le gallerie sotto la montagna furono sigillate, e la Carestia restò l'unico nemico della terra.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Le gallerie sotto la montagna furono sigillate senza voti dissidenti, e ogni uomo tornò ai campi.",
+            "FAILURE": "Si volle sigillare le gallerie, e i picchi restarono come la montagna li aveva tagliati.",
+            "SUCCESS_WITH_COST": "Le gallerie furono sigillate, e ogni uomo tornò ai campi: di febbre portata dalla montagna, due non ritornarono."
+          }
         }
       ],
       "condition_clauses": [
