@@ -2320,7 +2320,7 @@ una funzione di Propp, e alcune convocano un Consiglio.
 |---|---|
 | famiglia | resolution |
 | funzione | liberation |
-| cosa fa | scrive «L'Ordine Rimesso in Piedi» · Nel mondo: amnesty granted |
+| cosa fa | scrive «L'Ordine Rimesso in Piedi» · Nel mondo: l'amnistia e' stata concessa |
 | id | `ECH_AMNESTY` |
 
 > Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.
@@ -2347,7 +2347,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | betrayal |
 | convoca un Consiglio | su La Carestia |
-| cosa fa | Nel mondo: betrayal spoken · La Carestia sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Carestia |
+| cosa fa | Nel mondo: il tradimento e' stato detto ad alta voce · La Carestia sale di 1, o la domanda che il tavolo ha aperto · apre subito un Consiglio su La Carestia |
 | id | `ECH_BETRAYAL` |
 
 > Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.
@@ -2374,7 +2374,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | request |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · un luogo con commercio: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_CALL_OF_ACCOUNTS` |
 
 > La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
@@ -2452,7 +2452,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | discovery |
-| cosa fa | Il Risveglio adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: crystal measured · chi la cala: una Scoperta (the measure) |
+| cosa fa | Il Risveglio adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: il Cristallo e' stato misurato · chi la cala: scoperta: la misura |
 | id | `ECH_DISCOVERY` |
 
 > Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.
@@ -2479,7 +2479,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su La Successione |
-| cosa fa | La Successione sale di 2, o la domanda che il tavolo ha aperto · region with:capital: e' conteso · apre subito un Consiglio su La Successione |
+| cosa fa | La Successione sale di 2, o la domanda che il tavolo ha aperto · un luogo con capitale: e' conteso · apre subito un Consiglio su La Successione |
 | id | `ECH_EMPTY_THRONE` |
 
 > Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.
@@ -2557,7 +2557,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | prohibition |
-| cosa fa | La Carestia sale di 2, o la domanda che il tavolo ha aperto · region with:granary: monta il malcontento |
+| cosa fa | La Carestia sale di 2, o la domanda che il tavolo ha aperto · un luogo con granaio: monta il malcontento |
 | id | `ECH_HANDS_DOWN` |
 
 > Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
@@ -2583,7 +2583,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · region with:granary: il raccolto non basta · region with:granary: granaio va giu |
+| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · un luogo con granaio: il raccolto non basta · un luogo con granaio: granaio va giu |
 | id | `ECH_LACK` |
 
 > Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
@@ -2637,7 +2637,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | threat |
 | convoca un Consiglio | su Il Debito |
-| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti · apre subito un Consiglio su Il Debito |
+| cosa fa | Il Debito sale di 1, o la domanda che il tavolo ha aperto · un luogo con commercio: e' pieno di debiti · apre subito un Consiglio su Il Debito |
 | id | `ECH_LEGEND_CALLED_DAY` |
 
 > La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
@@ -2663,7 +2663,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | return |
-| cosa fa | La Successione scende di 1, o la domanda che il tavolo ha aperto · region with:capital: il malcontento si e' spento |
+| cosa fa | La Successione scende di 1, o la domanda che il tavolo ha aperto · un luogo con capitale: il malcontento si e' spento |
 | id | `ECH_LEGEND_GOOD_YEAR` |
 
 > Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
@@ -2689,7 +2689,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | loss |
-| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: e' in lutto · un rivale lascia region with:nomad range |
+| cosa fa | La Carestia sale di 1, o la domanda che il tavolo ha aperto · un luogo con pascolo: e' in lutto · un rivale lascia un luogo con pascolo |
 | id | `ECH_LOSS` |
 
 > Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
@@ -2767,7 +2767,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | temptation |
-| cosa fa | tension sale di 1 · la Regione della domanda: e' pieno di debiti · chi la cala mette una presenza in la Regione della domanda |
+| cosa fa | la domanda che il tavolo ha aperto sale di 1 · la Regione della domanda: e' pieno di debiti · chi la cala mette una presenza in la Regione della domanda |
 | id | `ECH_OFFER` |
 
 > Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.
@@ -2793,7 +2793,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | omen |
-| cosa fa | Il Risveglio sale di 1, o la domanda che il tavolo ha aperto · chi la cala: una Scoperta (the omen) |
+| cosa fa | Il Risveglio sale di 1, o la domanda che il tavolo ha aperto · chi la cala: scoperta: il presagio |
 | id | `ECH_OMEN` |
 
 > Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.
@@ -2819,7 +2819,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | encounter |
-| cosa fa | Nel mondo: parley held · tension scende di 1 |
+| cosa fa | Nel mondo: ci si e' parlato · la domanda che il tavolo ha aperto scende di 1 |
 | id | `ECH_PARLEY` |
 
 > Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.
@@ -2846,7 +2846,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | pressure |
 | funzione | request |
 | convoca un Consiglio | su La Carestia |
-| cosa fa | tension sale di 1 · Nel mondo: petition heard · apre subito un Consiglio su La Carestia |
+| cosa fa | la domanda che il tavolo ha aperto sale di 1 · Nel mondo: la richiesta e' stata ascoltata · apre subito un Consiglio su La Carestia |
 | id | `ECH_PETITION` |
 
 > Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.
@@ -2898,7 +2898,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | reconciliation |
-| cosa fa | La Carestia scende di 1, o la domanda che il tavolo ha aperto · Il Risveglio scende di 1, o la domanda che il tavolo ha aperto · region with:capital: il malcontento si e' spento |
+| cosa fa | La Carestia scende di 1, o la domanda che il tavolo ha aperto · Il Risveglio scende di 1, o la domanda che il tavolo ha aperto · un luogo con capitale: il malcontento si e' spento |
 | id | `ECH_RECONCILIATION` |
 
 > Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.
@@ -2977,7 +2977,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | prohibition |
-| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · region with:trade: resta tagliato fuori |
+| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · un luogo con commercio: resta tagliato fuori |
 | id | `ECH_ROAD_CLOSED` |
 
 > Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
@@ -3003,7 +3003,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | sacrifice |
-| cosa fa | La Carestia scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: someone paid · chi la cala: renowned |
+| cosa fa | La Carestia scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: qualcuno ha pagato · chi la cala: la fama |
 | id | `ECH_SACRIFICE` |
 
 > Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.
@@ -3055,7 +3055,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | lack |
-| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · region with:granary: il raccolto non basta · region with:granary: canale va giu |
+| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · un luogo con granaio: il raccolto non basta · un luogo con granaio: canale va giu |
 | id | `ECH_SILT` |
 
 > Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
@@ -3081,7 +3081,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | transformation |
-| cosa fa | I Senza Città sale di 1, o la domanda che il tavolo ha aperto · Nel mondo: burden shared |
+| cosa fa | I Senza Città sale di 1, o la domanda che il tavolo ha aperto · Nel mondo: il peso e' stato diviso |
 | id | `ECH_THE_CALLED_UP` |
 
 > La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
@@ -3107,7 +3107,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | threat |
-| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · region with:trade: resta tagliato fuori |
+| cosa fa | Le Vie Interrotte sale di 2, o la domanda che il tavolo ha aperto · un luogo con commercio: resta tagliato fuori |
 | id | `ECH_THE_CLOSED_ROAD` |
 
 > Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
@@ -3133,7 +3133,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | discovery |
-| cosa fa | La Reliquia sale di 1, o la domanda che il tavolo ha aperto · La Reliquia adesso e aperta a tutti, o la domanda che il tavolo ha aperto · chi la cala: una Scoperta (relic) |
+| cosa fa | La Reliquia sale di 1, o la domanda che il tavolo ha aperto · La Reliquia adesso e aperta a tutti, o la domanda che il tavolo ha aperto · chi la cala: scoperta: la reliquia |
 | id | `ECH_THE_COPY` |
 
 > Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.
@@ -3159,7 +3159,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | threat |
-| cosa fa | La Reliquia sale di 2, o la domanda che il tavolo ha aperto · region with:mine: monta il malcontento · un rivale lascia region with:mine |
+| cosa fa | La Reliquia sale di 2, o la domanda che il tavolo ha aperto · un luogo con miniera: monta il malcontento · un rivale lascia un luogo con miniera |
 | id | `ECH_THE_CRACK` |
 
 > Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.
@@ -3185,7 +3185,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | gift |
-| cosa fa | L'Acqua Ferma scende di 2, o la domanda che il tavolo ha aperto · region with:granary: vi sorge canale · Nel mondo: water moves |
+| cosa fa | L'Acqua Ferma scende di 2, o la domanda che il tavolo ha aperto · un luogo con granaio: vi sorge canale · Nel mondo: l'acqua ha cambiato strada |
 | id | `ECH_THE_DUG_SEASON` |
 
 > Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
@@ -3211,7 +3211,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: si e' svuotato · region with:nomad range non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
+| cosa fa | L'Acqua Ferma sale di 1, o la domanda che il tavolo ha aperto · un luogo con pascolo: si e' svuotato · un luogo con pascolo non e piu di nessuno · la Regione della domanda: adesso e selva maledetta |
 | id | `ECH_THE_FIRES_OUTSIDE` |
 
 > Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
@@ -3237,7 +3237,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | gift |
-| cosa fa | Il Debito scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: debt forgiven |
+| cosa fa | Il Debito scende di 2, o la domanda che il tavolo ha aperto · Nel mondo: il debito e' stato perdonato |
 | id | `ECH_THE_FORGIVEN_DEBT` |
 
 > Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
@@ -3289,7 +3289,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | encounter |
-| cosa fa | Le Vie Interrotte scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: burden shared |
+| cosa fa | Le Vie Interrotte scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: il peso e' stato diviso |
 | id | `ECH_THE_MET_ROAD` |
 
 > Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
@@ -3315,7 +3315,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | punishment |
-| cosa fa | Il Debito scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: account settled |
+| cosa fa | Il Debito scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: il conto e' stato saldato |
 | id | `ECH_THE_OLD_ACCOUNT` |
 
 > Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
@@ -3341,7 +3341,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | revelation |
-| cosa fa | La Successione adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: knowledge shared |
+| cosa fa | La Successione adesso e aperta a tutti, o la domanda che il tavolo ha aperto · Nel mondo: quello che si e' saputo lo sanno tutti |
 | id | `ECH_THE_ONE_WHO_SAW` |
 
 > Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
@@ -3367,7 +3367,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | pressure |
 | funzione | temptation |
-| cosa fa | Le Vie Interrotte sale di 1, o la domanda che il tavolo ha aperto · region with:trade: e' pieno di debiti |
+| cosa fa | Le Vie Interrotte sale di 1, o la domanda che il tavolo ha aperto · un luogo con commercio: e' pieno di debiti |
 | id | `ECH_THE_PRICE_OF_SALT` |
 
 > Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
@@ -3393,7 +3393,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | return |
-| cosa fa | La Cenere che Sale scende di 1, o la domanda che il tavolo ha aperto · La Reliquia sale di 1, o la domanda che il tavolo ha aperto · chi la cala mette una presenza in region with:mine |
+| cosa fa | La Cenere che Sale scende di 1, o la domanda che il tavolo ha aperto · La Reliquia sale di 1, o la domanda che il tavolo ha aperto · chi la cala mette una presenza in un luogo con miniera |
 | id | `ECH_THE_QUIET_SHAFT` |
 
 > La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.
@@ -3419,7 +3419,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | turn |
 | funzione | transformation |
-| cosa fa | L'Acqua Ferma sale di 2, o la domanda che il tavolo ha aperto · Il Debito sale di 1, o la domanda che il tavolo ha aperto · region with:granary: si muore di fame |
+| cosa fa | L'Acqua Ferma sale di 2, o la domanda che il tavolo ha aperto · Il Debito sale di 1, o la domanda che il tavolo ha aperto · un luogo con granaio: si muore di fame |
 | id | `ECH_THE_SHORT_YEAR` |
 
 > Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
@@ -3445,7 +3445,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | rupture |
 | funzione | separation |
-| cosa fa | I Pozzi Bassi sale di 1, o la domanda che il tavolo ha aperto · region with:nomad range: si e' svuotato |
+| cosa fa | I Pozzi Bassi sale di 1, o la domanda che il tavolo ha aperto · un luogo con pascolo: si e' svuotato |
 | id | `ECH_THE_WALKING_YEAR` |
 
 > Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
@@ -3472,7 +3472,7 @@ letters, no numerals, no frame, no border. Not gory.
 | famiglia | rupture |
 | funzione | violation |
 | convoca un Consiglio | su La Carta |
-| cosa fa | La Carta sale di 2, o la domanda che il tavolo ha aperto · region with:capital: e' conteso · apre subito un Consiglio su La Carta |
+| cosa fa | La Carta sale di 2, o la domanda che il tavolo ha aperto · un luogo con capitale: e' conteso · apre subito un Consiglio su La Carta |
 | id | `ECH_TWO_VERDICTS` |
 
 > Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.
@@ -3551,7 +3551,7 @@ letters, no numerals, no frame, no border. Not gory.
 |---|---|
 | famiglia | resolution |
 | funzione | liberation |
-| cosa fa | La Carta scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: charter temporary · chi la cala: renowned |
+| cosa fa | La Carta scende di 1, o la domanda che il tavolo ha aperto · Nel mondo: la Carta vale per un tempo solo · chi la cala: la fama |
 | id | `ECH_WRITTEN_DOWN` |
 
 > Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.

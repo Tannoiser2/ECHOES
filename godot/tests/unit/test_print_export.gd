@@ -765,6 +765,38 @@ func test_no_face_prints_its_prose() -> void:
 ## La prova non guarda un elenco di intestazioni buone, che invecchierebbe:
 ## chiede che **ogni riga cominci con parole tutte maiuscole**, o con il numero
 ## di un'Azione, o col punto di una casella. E' la forma, non il vocabolario.
+## **Su una faccia non si stampa un nome interno** (D-363).
+##
+## Il difetto era su 19 facce di Eco su 48: `$region_with:granary` finiva sulla
+## carta come «region with:granary», e tredici segni ci finivano col proprio
+## identificativo — «Nel mondo: amnesty granted» — quando il gettone sul tavolo
+## porta scritto «l\'amnistia e\' stata concessa».
+##
+## Nessuno se n\'era accorto perche\' la faccia si **genera** (D-344), e una
+## faccia generata la si guarda una volta e poi ci si fida. Questa prova e\' il
+## motivo per cui fidarsi: cerca il dollaro, i due selettori a segni, e ogni
+## identificativo di segno detto com\'e\' scritto nel dato.
+func test_no_face_prints_an_internal_name() -> void:
+	var loaded: RefCounted = data()
+	var grezzi: Array = []
+	for tag_id in loaded.tags:
+		var detto: String = str(tag_id).replace("_", " ").replace(":", " ")
+		if detto.split(" ").size() > 1:
+			grezzi.append(detto)
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		var whole: String = " ".join(PackedStringArray(card.get("notes", []) as Array))
+		whole += " " + " ".join(PackedStringArray(card.get("body", []) as Array))
+		assert_false(whole.contains("$"),
+			"%s stampa un selettore col dollaro: %s" % [str(card["id"]), whole])
+		for perso in ["region with:", "entity with:"]:
+			assert_false(whole.contains(perso),
+				"%s stampa il selettore «%s»" % [str(card["id"]), perso])
+		for grezzo in grezzi:
+			assert_false(whole.contains(grezzo),
+				"%s dice un segno col suo identificativo: «%s»" % [str(card["id"]), grezzo])
+
+
 func test_every_mechanical_line_has_a_headword() -> void:
 	var mute: Array = []
 	var guardate: int = 0
