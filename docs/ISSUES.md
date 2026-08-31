@@ -6306,7 +6306,7 @@ catene delle ere.
 
 ---
 
-### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328
+### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328 — CHIUSA in 0.1.328
 
 `regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
 

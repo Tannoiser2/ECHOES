@@ -43,6 +43,32 @@ la spendo per una delle sue due Azioni, o per il suo Eco?
 
 ---
 
+## 0.1.328 — La Risonanza dice di quanto scalda (D-362)
+
+Chiude ISSUES 113, che era il difetto piu' diffuso mai misurato qui: **48 carte
+su 48** scaldavano di piu' di quanto la faccia dicesse.
+
+Adesso ogni Risonanza porta la sua aggravante scritta, col nome stampato del
+segno e il calore **totale** — non l'incremento, che al tavolo nessuno somma.
+
+> Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e
+> nessuna versione e' la tua. **Se una domanda e' rimasta aperta: Potere +3.**
+
+La forma segue l'ambito del segno: `se il luogo e'…` per una Regione, `se
+porti…` per un segno di casata, la memoria detta com'e' scritta per il mondo. E
+dove il segno extra e' una Cicatrice, la frase lo dice: un dischetto non e' un
+gettone.
+
+**Il cancello** (controllo 22 di `validate_physical.py`) chiede che il nome
+stampato del segno compaia nel testo. Non giudica la frase — quella e' d'autore
+— ma il segno dev'esserci. Difetti piantati nel `--self-test`: 32 → **33**.
+
+Il cancello ha anche bocciato la mia prima stesura, che scriveva «un debito e'
+stato chiamato» dove il dizionario stampa «debito chiamato». Aveva ragione: chi
+cerca quel segno sul tavolo non lo trova, se la carta lo chiama in un terzo modo.
+
+---
+
 ## 0.1.327 — Le chiavi del payload le decide il tipo dell'Effetto (D-361)
 
 Chiude ISSUES 115, aperta ieri quando una carta che ho scritto io diceva il

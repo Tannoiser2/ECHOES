@@ -82,6 +82,68 @@ che hai in mano», e la mano del Narratore non esiste piu' da [D-359](#d-359).
 
 ---
 
+## D-362 — La Risonanza dice di quanto scalda
+
+**implemented** (0.1.328) · chiude [ISSUES 113](ISSUES.md#113) · scelta del
+committente: *«fai la 113»*.
+
+### Il difetto, misurato
+
+```
+carte con Risonanza fisica     : 48
+  con un'aggravante nel motore : 48
+  che la faccia NON diceva     : 48
+```
+
+Ogni Risonanza porta un `if_target_tag` con `extra_heat`: se il bersaglio porta
+quel segno, la carta scalda **di piu'**, e sette volte su 48 gli posa addosso
+anche un gettone in piu'. **Nessuna delle quarantotto lo scriveva.** *Le Porte
+Bruciate* stampava «Scalda Potere +2» e ne dava 3.
+
+Un giocatore che sceglie dove giocare una carta stava scegliendo, senza saperlo,
+anche quanto scalda e cosa lascia per terra. Era il difetto piu' diffuso che il
+progetto avesse misurato — il **100%** — e stava sul pezzo che CLAUDE.md chiama
+obbligatorio.
+
+### Cosa c'e' adesso sulla faccia
+
+Una seconda frase, dopo quella d'autore, che dice la condizione col **nome
+stampato del segno** e il calore **totale**, non l'incremento:
+
+> Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene
+> la falce. **Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.**
+
+> Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e
+> nessuna versione e' la tua. **Se una domanda e' rimasta aperta: Potere +3.**
+
+La forma della frase segue **l'ambito del segno**, perche' al tavolo si guarda
+in tre posti diversi: `se il luogo e'…` per una Regione, `se porti…` per un
+segno di casata (`_carries` guarda anche la scheda di chi cala la carta), e la
+memoria detta com'e' scritta per il mondo. Dove il segno extra e' una
+**Cicatrice** la frase lo dice: *«e ci resta la Cicatrice «lo sgombero»»* — un
+dischetto non e' un gettone.
+
+### Il nome stampato, non una parafrasi
+
+La prima stesura scriveva «un debito **e' stato** chiamato» dove il dizionario
+stampa «debito chiamato». Il cancello nuovo l'ha rifiutata, e aveva ragione: un
+giocatore cerca sul tavolo il segno che la carta nomina, e se la carta lo chiama
+in un terzo modo non lo trova. Adesso ogni frase contiene il titolo o un alias
+gia' dichiarato.
+
+### Il cancello (controllo 22)
+
+`validate_physical.py` chiede a ogni Risonanza con un'aggravante che il **nome
+stampato** del segno compaia nel testo — titolo, alias, o la forma a
+#cancelletto per i segni di una parola. Non giudica la frase, che e' d'autore:
+controlla che il segno sia nominato.
+
+E si vede mordere: la pianta *«Risonanza che non dice di quanto scalda»* toglie
+il nome dal testo di una carta vera, e la guardia va rossa. I difetti piantati
+passano da 32 a **33**.
+
+---
+
 ## D-361 — Le chiavi del payload le decide il tipo dell'Effetto
 
 **implemented** (0.1.327) · chiude [ISSUES 115](ISSUES.md#115) · scelta del
