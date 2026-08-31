@@ -36,10 +36,21 @@ si ordisce; e la guardia si cura come si cura una condizione, non e' per sempre.
 | Consigli media, misto | 3.43 | 3.43 |
 | Consigli media, uniforme | 3.48 | **3.46** |
 | segni che non arrivano mai sul tavolo | 67 su 180 | **66 su 180** |
+| vite che non si siedono mai | 7 | **6** |
+| trasformazioni sedute | 208 | 197 |
 
-Il vincolo tiene. Il costo e' **due centesimi di Consiglio sul tavolo uniforme**,
-ed e' scritto qui invece che taciuto: un divieto in piu' e' una strada in meno, e
-qualche anno il Consiglio non si accende.
+Il vincolo tiene. Il costo e' **due centesimi di Consiglio sul tavolo uniforme** e
+**undici trasformazioni in meno**, ed e' scritto qui invece che taciuto: un
+divieto in piu' e' una strada in meno, e qualche anno il Consiglio non si accende.
+
+E una cosa e' migliorata, che non era lo scopo: **una vita in meno resta senza
+sedersi**. «Il Banco Nero» (`ENT_SALE`, si apre su `debt_called`) in cento
+partite non si era mai aperto, e adesso si apre una volta. Un divieto sposta le
+strade, e qualcuna di quelle strade porta dove prima non passava nessuno.
+
+*Trovato dalla CI, non da me:* avevo rigenerato MISURA_SEGNI, MISURA_TAVOLO e
+COMPONENTI, e dimenticato MISURA_VITE — che gira su Godot e dipende dal gioco
+come le altre. Il cancello ha morso.
 
 ### Una cosa che resta storta, e va detta
 

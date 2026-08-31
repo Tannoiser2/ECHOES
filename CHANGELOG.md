@@ -21,9 +21,15 @@ qualcuno guarda, non si ordisce.
 | Consigli media, misto | 3.43 | 3.43 |
 | Consigli media, uniforme | 3.48 | **3.46** |
 | segni che non arrivano mai | 67 su 180 | **66 su 180** |
+| vite che non si siedono mai | 7 | **6** |
+| trasformazioni sedute | 208 | 197 |
 
-Il costo è **due centesimi di Consiglio sul tavolo uniforme**, ed è scritto: un
-divieto in più è una strada in meno.
+Il costo è **due centesimi di Consiglio** e **undici trasformazioni in meno**, ed
+è scritto: un divieto in più è una strada in meno.
+
+E una cosa migliora, che non era lo scopo: **«Il Banco Nero» si siede**. In cento
+partite non si era mai aperto; adesso una volta sì. Un divieto sposta le strade,
+e qualcuna porta dove prima non passava nessuno.
 
 E una cosa storta che resta: `MISURA_SEGNI` scrive ancora «nessuno lo guarda»
 accanto a `condition:guarded`, e adesso è falso — è la terza riparazione di
