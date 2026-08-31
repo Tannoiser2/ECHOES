@@ -10,6 +10,142 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-347 — Il prompt di una carta dice la scena, non il nome
+
+**implemented** — 0.1.312
+
+### La richiesta
+
+> *«Rigenera anche i vari cataloghi delle carte, e anche il prompt che descrive
+> ogni carta: non quello generico — che e' valido per tutta la grafica del gioco
+> e determina lo stile — ma la descrizione della situazione della carta.»*
+
+E col messaggio, lo stile: un blocco di una decina di righe, *painterly
+concept-art*, che vale per tutto.
+
+### Ottantasette carte mandavano a chi disegna il proprio titolo
+
+Il brief d'arte componeva il MASTER PROMPT con `{SOGGETTO}`, e il soggetto lo
+prendeva dalla **prima riga del corpo stampato** della carta. Funzionava finche'
+il corpo era il racconto. Poi **D-340 ha tolto il racconto dalla faccia**, e nel
+commento che lo faceva ha scritto:
+
+> *«Il racconto esce dalla faccia e resta nel dato: lo legge il brief d'arte, che
+> e' il posto dove serve.»*
+
+Il brief non lo leggeva. Leggeva la **faccia**, che quel giorno era rimasta
+senza. Da allora, **48 carte Asset e 39 carte Eco** — 87 su 146 chiavi d'arte —
+uscivano cosi':
+
+```
+Historical dark-fantasy painting, single evocative scene depicting Censimento.
+Painterly oil technique, visible brushwork, muted earth palette ...
+```
+
+Il nome della carta dentro un paragrafo di stile. Nient'altro. **Le tessere
+Regione no**, perche' il loro prompt ha un secondo segnaposto che pesca dal
+bioma: e' l'unico mazzo che si leggeva, ed e' il motivo per cui il difetto non
+si notava sfogliando.
+
+**Il cancello del brief e' rimasto verde tutto il tempo**, e non poteva fare
+altro: confronta il documento committato con quello che il codice produce, e il
+codice produceva lo stesso niente dalle due parti. *Un cancello che confronta due
+copie della stessa cosa non si accorge mai che la cosa e' vuota.* Nona volta.
+
+### Le quattro cose stanno in quattro posti
+
+| | cos'e' | dove sta adesso |
+|---|---|---|
+| **lo stile** | *come* si dipinge | `ART_BIBLE.md`, sezione `LO STILE`, **una volta** |
+| **la tavolozza** | *con quali colori* | «Direzione visiva» e le tabelle di variazione |
+| **l'inquadratura** | *cosa c'e' nel riquadro* | i sei MASTER PROMPT |
+| **la situazione** | *cosa sta succedendo in questa carta* | nel dato, una riga per carta |
+
+Prima erano due, e male: lo stile stava **dentro** ognuno dei sei MASTER PROMPT,
+quindi il brief lo ricopiava **146 volte**; e la situazione non stava da nessuna
+parte.
+
+Adesso il brief stampa lo stile **in cima, una volta**: si manda quello, poi la
+scheda della carta. Il segnaposto `{SITUAZIONE}` lo riempie il dato — la
+`description` d'autore per Eco, Destini, Casate e Regioni, `rules_text` per gli
+Asset — **e non il titolo: un titolo e' un'etichetta, e un'etichetta non si
+dipinge.**
+
+### E `rules_text` faceva ancora due mestieri
+
+**35 carte Asset su 48** aprivano la loro riga d'autore con una regola:
+*«+1 sul fronte Oppose»*, *«Si scarta sempre, e la Tensione in gioco sale di
+1»*, *«Forza 3»*. Era giusto finche' quella riga era **l'unico testo della
+carta**; da D-340 la regola sta sulla faccia, riga per riga, e da oggi quella
+riga e' la scena che si manda a chi disegna. **Un `+1` in cima a un prompt e'
+una riga che non si dipinge.**
+
+Le regole sono state tolte da tutte e 48, **tenendo le parole dell'autore**:
+ognuna era gia' stampata sulla faccia — la riga `IMPEGNI` porta *«+1 sul suo
+tema · si scarta se la impegni · costa: …»* — quindi non si e' perso niente.
+
+> *«+1 quando Autorita' e' rilevante per la Tensione. Una lista di nomi e' la
+> forma piu' semplice del potere — e la lista chiarisce: la Regione della
+> domanda smette di essere contesa.»*
+
+diventa
+
+> *«Una lista di nomi e' la forma piu' semplice del potere, e la lista chiarisce
+> chi sta dove.»*
+
+### E per strada: 33 facce col cancelletto incollato a una frase
+
+Rigenerando i cataloghi si leggeva, su **33 facce di 266**:
+
+> `SEMPRE  Fede +2 · se il bersaglio ha #il giuramento e' stato rotto: +1 ancora`
+
+D-344 aveva scritto la regola — **il cancelletto solo su una parola sola**,
+perche' un nome lungo cucito col cancelletto torna a somigliare a un id — e
+l'aveva messa in `_sign`. `_hash`, che e' la funzione con cui la Risonanza
+stampa il segno che teme, **lo rimetteva a forza**:
+
+```gdscript
+return word if word.begins_with("#") else "#%s" % word
+```
+
+Una regola che vale in un posto e non nell'altro non e' una regola. `_hash`
+adesso si fida di `_sign`.
+
+### Cosa sorveglia cosa, adesso
+
+Cinque guardie nuove, tutte partite dai dati e tutte provate su un difetto
+piantato — quattro dei cinque difetti piantati sono **quelli veri**, rimessi
+com'erano:
+
+1. ogni chiave d'arte in uso ha, nel dato, la riga che dice cosa succede;
+2. e quella riga arriva **dentro** il prompt composto (dato pieno e segnaposto
+   mai sostituito darebbero la stessa carta muta);
+3. lo stile non torna dentro i sei MASTER PROMPT;
+4. nessuna faccia incolla un cancelletto a un nome di piu' parole — presa dai
+   **nomi stampati dei segni**, non da un elenco di frasi vietate, cosi' un segno
+   nuovo dal nome lungo e' coperto il giorno che entra;
+5. nessuna scena porta un numero col segno: `+1` o `-2` e' sempre una regola e
+   non e' mai un quadro. E' una regola sola, e non invecchia.
+
+### Il conto
+
+| su 100 semi | prima | dopo |
+|---|---|---|
+| **seggi bloccati su un solo livello** | **0 su 8** | **0 su 8** |
+| Verita (misto) | 159 / 143 | 159 / 143 |
+| Verita (uniforme) | 149 / 125 | 149 / 125 |
+
+Suite da 657 a **662 prove**. Il brief passa da 146 copie dello stile a una, e
+guadagna 146 righe di scena.
+
+**Quello che resta fuori** e' il MASTER PROMPT 6, quello dei segnalini da 15 mm:
+e' un pittogramma monocromo a due tratti, non un'illustrazione, e lo stile
+pittorico non lo riguarda. Il suo testo pero' e' **ricopiato** dentro
+`tools/token_catalogue.py` invece di essere letto dalla ART_BIBLE come gli altri
+cinque: e' la terza copia di un testo che deve restare uno, ed e' **ISSUES 109**.
+
+---
+
 ## D-346 — Due difetti opposti stavano in una lista sola, sotto il titolo di uno dei due
 
 **implemented** — 0.1.311

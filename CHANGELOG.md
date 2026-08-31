@@ -5,6 +5,77 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.312 — Il prompt di una carta dice la scena, non il nome (D-347)
+
+Il committente: *«rigenera anche i vari cataloghi delle carte, e anche il prompt
+che descrive ogni carta: non quello generico — valido per tutta la grafica del
+gioco, determina lo stile — ma la descrizione della situazione della carta»*, e
+col messaggio lo stile, *painterly concept-art*, che vale per tutto.
+
+### 87 carte mandavano a chi disegna il proprio titolo
+
+Il brief prendeva il soggetto dalla **prima riga del corpo stampato**. D-340 ha
+tolto il racconto dalla faccia scrivendo, nel commento che lo faceva, che *«il
+racconto resta nel dato: lo legge il brief d'arte»* — e il brief leggeva la
+faccia, che era rimasta senza. Da allora **48 Asset e 39 Eco** su 146 chiavi
+uscivano col nome della carta dentro un paragrafo di stile.
+
+Il cancello del brief e' rimasto verde: confronta il documento con quello che il
+codice produce, e il codice produceva lo stesso niente dalle due parti. **Un
+cancello che confronta due copie della stessa cosa non si accorge mai che la
+cosa e' vuota.** Nona volta.
+
+### Quattro cose, quattro posti
+
+| | dove sta |
+|---|---|
+| **lo stile** — come si dipinge | `ART_BIBLE.md`, `LO STILE`, una volta sola |
+| **la tavolozza** — con quali colori | «Direzione visiva» e le tabelle di variazione |
+| **l'inquadratura** — cosa c'e' nel riquadro | i sei MASTER PROMPT |
+| **la situazione** — cosa succede in questa carta | nel dato, una riga per carta |
+
+Il brief stampa lo stile **in cima, una volta** invece di 146, e ogni carta porta
+la sua scena.
+
+### E `rules_text` faceva ancora due mestieri
+
+**35 Asset su 48** aprivano la riga d'autore con una regola — `+1 sul fronte
+Oppose`, `Si scarta sempre`, `Forza 3` — che da D-340 sta gia' sulla faccia,
+riga per riga. Tolte da tutte e 48 **tenendo le parole dell'autore**: la riga
+`IMPEGNI` le porta tutte, quindi non si e' perso niente.
+
+### E per strada: 33 facce col cancelletto su una frase
+
+`SEMPRE Fede +2 · se il bersaglio ha #il giuramento e' stato rotto`. D-344 aveva
+messo la regola in `_sign` — cancelletto solo su una parola sola — e `_hash` lo
+rimetteva a forza. Una regola che vale in un posto e non nell'altro non e' una
+regola.
+
+### Cambiato
+
+- `docs/ART_BIBLE.md`: la sezione `LO STILE`, e i sei MASTER PROMPT che adesso
+  dicono **inquadratura** e chiedono `{SITUAZIONE}`.
+- `scripts/core/art_bible.gd`: legge lo stile, e la scena la prende **dal dato**
+  della carta e non dalla faccia stampata.
+- `data/assets/assets_core.json`: 48 scene, senza le regole che stanno sulla
+  faccia.
+- `scripts/core/asset_text.gd`: `_hash` si fida di `_sign`.
+- Cinque guardie nuove in `test_print_export.gd`, quattro provate rimettendo
+  **il difetto vero** com'era.
+- Rigenerati: `BRIEF_ARTE`, `CATALOGO_CARTE`, `REVISIONE_TESTI`.
+
+### Il conto
+
+| su 100 semi | prima | dopo |
+|---|---|---|
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Suite da 657 a **662 prove**. Fuori resta il MASTER PROMPT 6 dei segnalini —
+pittogrammi monocromi, lo stile pittorico non li riguarda — il cui testo e'
+pero' **ricopiato** in `tools/token_catalogue.py`: **ISSUES 109**.
+
+---
+
 ## 0.1.311 — Punti regalati e porte murate: due difetti opposti, due liste (D-346)
 
 Il committente: *«Mergia, rigenera il grafo dei #tag e vai avanti.»*

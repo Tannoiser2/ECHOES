@@ -394,7 +394,10 @@ func _prompt(lines: Array, face: Dictionary, data: RefCounted, bible: RefCounted
 	if face.is_empty() or not bible.available():
 		return
 	var said: String = bible.prompt_for(
-		face, bible._subject(face), bible._accent_key(face, data)
+		face,
+		bible._subject(face),
+		bible._situation(face, data).strip_edges(),
+		bible._accent_key(face, data),
 	)
 	if said == "":
 		return

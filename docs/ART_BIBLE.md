@@ -41,19 +41,58 @@ candele. Nessun neon, nessun bagliore magico generico.
 
 ---
 
+## LO STILE — uno solo, per tutta la grafica del gioco
+
+Dato dal committente in 0.1.312. **Sta scritto qui una volta**, e il brief
+d'arte lo stampa una volta: prima si incolla questo, poi la scheda della carta.
+Fino alla 0.1.311 ogni voce del brief se lo ricopiava dentro — 146 copie dello
+stesso paragrafo, e la scena della carta non c'era da nessuna parte.
+
+```
+Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.
+
+The image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.
+
+Use a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.
+
+Figures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.
+
+Overall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.
+
+Not photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.
+```
+
+**Le tre cose non si confondono**, ed e' il motivo per cui stanno in tre posti:
+
+| | cos'e' | dove sta |
+|---|---|---|
+| **lo stile** | *come* si dipinge | qui sopra, una volta, uguale per tutto |
+| **la tavolozza** | *con quali colori* — terre bruciate, e un accento per famiglia | «Direzione visiva» e le tabelle di variazione |
+| **l'inquadratura** | *cosa c'e' nel riquadro* — scena o ritratto, dove sta lo spazio per il testo, il formato | i sei MASTER PROMPT qui sotto |
+| **la situazione** | *cosa sta succedendo in questa carta* | nel dato, scritta d'autore, una per carta |
+
+I MASTER PROMPT qui sotto non ripetono lo stile: dicono **inquadratura** e
+chiedono la **situazione**. Il segnaposto `{SITUAZIONE}` lo riempie il dato
+della carta — `rules_text` per un Asset, la `description` per tutti gli altri —
+e non il suo titolo: **un titolo e' un'etichetta, e un'etichetta non si
+dipinge.**
+
+---
+
 ## MASTER PROMPT 1 — Asset card
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting {SOGGETTO}.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-{ACCENTO} accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: {SOGGETTO}.
+What is happening: {SITUAZIONE}
+Dominant accent: {ACCENTO}, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 **Variation key per famiglia** — sostituisci `{ACCENTO}` e usa i soggetti come
@@ -76,13 +115,14 @@ Chiavi in uso: vedi la colonna `art_prompt_key` di
 ## MASTER PROMPT 2 — Echo card
 
 ```
-Historical dark-fantasy painting of a narrative moment: {SOGGETTO}. Painterly oil
-technique, muted earth palette, {ACCENTO} accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: {SOGGETTO}.
+What is happening: {SITUAZIONE}
+Dominant accent: {ACCENTO}, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 **Variation key per famiglia drammatica:**
@@ -101,13 +141,16 @@ Chiavi in uso: `echo.<famiglia>.<funzione>`.
 ## MASTER PROMPT 3 — Region tile
 
 ```
-Top-down three-quarter painted map tile of {REGIONE}: {DESCRIZIONE}. Historical
-dark-fantasy cartography crossed with painted landscape, muted earth palette,
-{ACCENTO} accent. Readable terrain silhouette from above, clear edges that can
-tile against neighbouring regions. Composition: the centre is deliberately calm
-and uncluttered so overlay tokens (control, presence, condition, scar) sit legibly
-on top; detail concentrates at the borders. Square framing. No text, no letters,
-no numerals, no map labels, no compass rose, no frame. Boardgame map tile art.
+ECHOES — Region tile. Top-down three-quarter painted map tile of {REGIONE}:
+{DESCRIZIONE}.
+What this land is right now: {SITUAZIONE}
+Dominant accent: {ACCENTO}, over the game's muted earth palette. Cartography
+crossed with painted landscape. Readable terrain silhouette from above, clear
+edges that can tile against neighbouring regions. Composition: the centre is
+deliberately calm and uncluttered so overlay tokens (control, presence,
+condition, scar) sit legibly on top; detail concentrates at the borders. Square
+framing. No text, no letters, no numerals, no map labels, no compass rose, no
+frame.
 ```
 
 **Variation key per biome:**
@@ -130,16 +173,18 @@ Chiavi in uso: `region.<nome>`.
 ## MASTER PROMPT 4 — House card
 
 ```
-Historical dark-fantasy portrait of {SOGGETTO}. Painterly oil technique, visible
-brushwork, muted earth palette with a single {ACCENTO} accent. One subject, close,
-facing the viewer: this framing is what separates a House card from an Asset card,
-where a single centred figure looking out is forbidden. {DESCRIZIONE}. Low side
-lighting, shallow depth of field; the background says where they come from without
-telling a story of its own. Grounded medieval-adjacent world, no invented heraldry,
-no glowing magic. Composition: head and shoulders in the upper two thirds; the
-lower third is a calm, low-detail area reserved for a text overlay. Vertical card
-framing, 2:3. No text, no letters, no numerals, no logos, no frame, no border.
-Not gory, not horror. Museum-quality illustration, boardgame card art.
+ECHOES — House card. Portrait of {SOGGETTO}.
+Who this is: {SITUAZIONE}
+Dominant accent: {ACCENTO}, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+{DESCRIZIONE}. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
 ```
 
 **Variation key per archetipo:**
@@ -173,16 +218,17 @@ mostrare.
 ## MASTER PROMPT 5 — Destiny card
 
 ```
-Historical dark-fantasy emblematic scene of {SOGGETTO}. Painterly oil technique,
-visible brushwork, muted earth palette with a single {ACCENTO} accent. No faces:
-a Destiny card shows the thing wanted, not the one who wants it — an object, a
+ECHOES — Destiny card. Emblematic scene of {SOGGETTO}.
+What is wanted: {SITUAZIONE}
+Dominant accent: {ACCENTO}, over the game's muted earth palette. No faces: a
+Destiny card shows the thing wanted, not the one who wants it — an object, a
 place, a threshold, composed like a votive image. {DESCRIZIONE}. Seen close and
 slightly from below, the way an ambition is seen; one strong light source, deep
 quiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,
 no glowing magic. Composition: subject in the upper two thirds; the lower third
 is a calm, low-detail area reserved for a text overlay. Vertical card framing,
 2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,
-not horror. Museum-quality illustration, boardgame card art.
+not horror.
 ```
 
 **Variation key per archetipo** (di chi la desidera — gli accenti sono quelli

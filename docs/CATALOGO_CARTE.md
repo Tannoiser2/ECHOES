@@ -32,7 +32,7 @@ la rarita'.
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_AUTHORITY_INTERDICT` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.
+> Vietare una cosa a tutti alza la posta per tutti.
 
 **Temi:** Potere · Fede
 
@@ -52,16 +52,17 @@ B. **Scomunicare.** Alzala di 1 e metti #tradimento_detto sul mondo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Interdetto.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Interdetto.
+What is happening: Vietare una cosa a tutti alza la posta per tutti.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -78,7 +79,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rivale entra dove si discute |
 | id | `AST_AUTHORITY_SUCCESSION_ACT` |
 
-> Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
+> Nominare un erede fa arrivare tutti quelli che non sono stati nominati.
 
 **Temi:** Potere
 
@@ -98,16 +99,17 @@ B. **Scrivere la regola.** Metti #successione_per_legge sul mondo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Atto di Successione.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Atto di Successione.
+What is happening: Nominare un erede fa arrivare tutti quelli che non sono stati nominati.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -124,7 +126,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute diventa #contesa |
 | id | `AST_AUTHORITY_CROWN_RIGHT` |
 
-> Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
+> Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.
 
 **Temi:** Potere
 
@@ -144,16 +146,17 @@ B. **Cedere il diritto.** Un'altra casa prende la rivendicazione al posto tuo e 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Corona.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Diritto di Corona.
+What is happening: Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -171,7 +174,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' la domanda sul muro |
 | id | `AST_AUTHORITY_MAGISTRATE` |
 
-> +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
+> Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.
 
 **Temi:** Potere · Vie
 
@@ -191,16 +194,17 @@ B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Magistrato.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Magistrato.
+What is happening: Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -218,7 +222,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' #contesa |
 | id | `AST_AUTHORITY_CENSUS` |
 
-> +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
+> Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.
 
 **Temi:** Potere · Vie
 
@@ -238,16 +242,17 @@ B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Censimento.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Censimento.
+What is happening: Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -264,7 +269,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' #inquieta |
 | id | `AST_AUTHORITY_EDICT` |
 
-> Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
+> Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.
 
 **Temi:** Potere
 
@@ -284,16 +289,17 @@ B. **Proibire.** Nessuno puo' giocare carte Forza su quel luogo fino a fine Atto
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Editto.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Editto.
+What is happening: Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -311,7 +317,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il mondo registra: l'erede nominato |
 | id | `AST_AUTHORITY_INVESTITURE` |
 
-> +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
+> Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.
 
 **Temi:** Potere · Fede
 
@@ -331,16 +337,17 @@ B. **Farsi investire.** Sali di 1 gradino verso di lei e prendi #fama.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Investitura.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Investitura.
+What is happening: Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -358,7 +365,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco scende |
 | id | `AST_AUTHORITY_SEAL` |
 
-> +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
+> Il sigillo che manca ferma più cose del sigillo che c'è.
 
 **Temi:** Potere
 
@@ -378,16 +385,17 @@ B. **Sigillare in alto.** Alza quella questione di 1.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sigillo.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-oro spento accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Sigillo.
+What is happening: Il sigillo che manca ferma più cose del sigillo che c'è.
+Dominant accent: oro spento, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -406,7 +414,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_BONDS_BROKEN_PACT` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
+> Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
 
 **Temi:** Fede · Potere
 
@@ -426,16 +434,17 @@ B. **Minacciare di rompere.** Alza quella questione di 1. Chi aveva il patto ti 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Patto Rotto.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Patto Rotto.
+What is happening: Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -452,7 +461,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rivale entra dove si discute |
 | id | `AST_BONDS_HOSTAGE` |
 
-> Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
+> Chi consegna un figlio compra una parola, e la paga a casa propria.
 
 **Temi:** Potere · Fede
 
@@ -472,16 +481,17 @@ B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivolev
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Ostaggio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Ostaggio.
+What is happening: Chi consegna un figlio compra una parola, e la paga a casa propria.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -499,7 +509,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_BETROTHAL` |
 
-> +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
+> Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.
 
 **Temi:** Fede · Potere
 
@@ -519,16 +529,17 @@ B. **Rimandare.** Salite di 1 gradino e pesca 1 Legami.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Promessa di Nozze.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Promessa di Nozze.
+What is happening: Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -545,7 +556,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_BLOOD_TIE` |
 
-> Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
+> Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
 
 **Temi:** Fede · Potere
 
@@ -565,16 +576,17 @@ B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Legame di Sangue.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Legame di Sangue.
+What is happening: Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -591,7 +603,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_FAVOR` |
 
-> Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
+> Piccolo, ricordato con precisione, e restituito al momento giusto.
 
 **Temi:** Fede · Vie
 
@@ -611,16 +623,17 @@ B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: le
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Favore.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Favore.
+What is happening: Piccolo, ricordato con precisione, e restituito al momento giusto.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -638,7 +651,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | chi gioca perde: cacciata da dove si discuteva |
 | id | `AST_BONDS_GUEST_RIGHT` |
 
-> +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
+> Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
 
 **Temi:** Fede · Terra
 
@@ -658,16 +671,17 @@ B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un tuo luogo e s
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Diritto di Ospitalità.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Diritto di Ospitalità.
+What is happening: Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -684,7 +698,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_BONDS_OATH` |
 
-> Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
+> Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
 
 **Temi:** Fede · Potere
 
@@ -704,16 +718,17 @@ B. **Farsi giurare.** Lei sale di 1 gradino verso di te, tu no. Prendi 1 sua car
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Giuramento.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Giuramento.
+What is happening: Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -731,7 +746,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | nella sede del rivale diventa #indebitata |
 | id | `AST_BONDS_OLD_DEBT` |
 
-> +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
+> Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.
 
 **Temi:** Vie · Fede
 
@@ -751,16 +766,17 @@ B. **Rimettere.** Metti #debito_rimesso e sali di 2 gradini nel rapporto con lei
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Debito Vecchio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-porpora tenue accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Debito Vecchio.
+What is happening: Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.
+Dominant accent: porpora tenue, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -779,7 +795,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | chi gioca se ne va dove si discute |
 | id | `AST_FORCE_BURNED_GATE` |
 
-> Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
+> Chi apre una porta così non resta lì a difenderla.
 
 **Temi:** Potere · Terra
 
@@ -799,16 +815,17 @@ B. **Mostrare la fiaccola.** Metti #malcontento su quel luogo e su un luogo conf
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Le Porte Bruciate.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Le Porte Bruciate.
+What is happening: Chi apre una porta così non resta lì a difenderla.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -825,7 +842,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_FORCE_OLD_ARMY` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
+> Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
 
 **Temi:** Potere
 
@@ -845,16 +862,17 @@ B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Vecchio Esercito.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Il Vecchio Esercito.
+What is happening: Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -872,7 +890,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | La Carestia sale, viene giu' Presidio dove si discute |
 | id | `AST_FORCE_SIEGE` |
 
-> +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
+> Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.
 
 **Temi:** Potere · Sopravvivenza
 
@@ -892,16 +910,17 @@ B. **Affamare e aspettare.** Metti #fame sul luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Assedio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Assedio.
+What is happening: Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -918,7 +937,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_FORCE_WARBAND` |
 
-> Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.
+> Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.
 
 **Temi:** Potere · Terra
 
@@ -938,16 +957,17 @@ B. **Spogliare il posto.** Metti #saccheggiato sul luogo e prendi 1 carta a caso
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Banda Armata.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Banda Armata.
+What is happening: Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -965,7 +985,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | Le Vie Interrotte sale |
 | id | `AST_FORCE_BORDER_WATCH` |
 
-> +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
+> Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.
 
 **Temi:** Terra · Potere
 
@@ -985,16 +1005,17 @@ B. **Far sapere che si guarda.** Metti #conteso sul luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Guardia di Confine.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Guardia di Confine.
+What is happening: Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1011,7 +1032,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | La Carestia sale |
 | id | `AST_FORCE_LEVY` |
 
-> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
+> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.
 
 **Temi:** Potere · Sopravvivenza
 
@@ -1031,16 +1052,17 @@ B. **Tenerli a casa.** La presenza resta. Metti #razionato sul luogo: nessuno pu
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Leva Contadina.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Leva Contadina.
+What is happening: Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1058,7 +1080,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute diventa #inquieta |
 | id | `AST_FORCE_MERCENARIES` |
 
-> +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
+> Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.
 
 **Temi:** Potere · Vie
 
@@ -1078,16 +1100,17 @@ B. **Toglierli di mezzo.** Scendi di 1 gradino con lei e pesca 1 Ricchezza.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mercenari.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Mercenari.
+What is happening: Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1105,7 +1128,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute diventa tagliata fuori |
 | id | `AST_FORCE_ROADBLOCK` |
 
-> +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
+> Fermare un carro costa sempre meno che farlo partire.
 
 **Temi:** Vie · Potere
 
@@ -1125,16 +1148,17 @@ B. **Farsi pagare il passaggio.** Pesca 1 Ricchezza. Il luogo resta aperto a tut
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Posto di Blocco.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-rosso ossido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Posto di Blocco.
+What is happening: Fermare un carro costa sempre meno che farlo partire.
+Dominant accent: rosso ossido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1153,7 +1177,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco si apre a tutti |
 | id | `AST_KNOWLEDGE_RED_CRYSTAL` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
+> Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.
 
 **Temi:** Antico · Fede
 
@@ -1173,16 +1197,17 @@ B. **Misurare senza toccare.** Metti #cristallo_misurato sul luogo e pesca 1 Sap
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Cristallo Rosso.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Il Cristallo Rosso.
+What is happening: Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1199,7 +1224,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_KNOWLEDGE_SEALED_TESTIMONY` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
+> Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
 
 **Temi:** Potere · Fede
 
@@ -1219,16 +1244,17 @@ B. **Tenerla sigillata.** Rivendica il luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Deposizione Sigillata.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Deposizione Sigillata.
+What is happening: Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1245,7 +1271,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco si apre a tutti |
 | id | `AST_KNOWLEDGE_PROOF` |
 
-> Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
+> Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.
 
 **Temi:** Fede · Potere
 
@@ -1265,16 +1291,17 @@ B. **Tenere la prova.** Scopri la questione e pesca 1 Sapere.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Prova.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Prova.
+What is happening: Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1292,7 +1319,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | nella sede del rivale diventa #inquieta |
 | id | `AST_KNOWLEDGE_WITNESS` |
 
-> +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
+> Un testimone si spende una volta sola, e la deposizione agita la casa accusata.
 
 **Temi:** Fede · Potere
 
@@ -1312,16 +1339,17 @@ B. **Farlo tacere.** Abbassa quella questione di 2.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Testimone.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Testimone.
+What is happening: Un testimone si spende una volta sola, e la deposizione agita la casa accusata.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1338,7 +1366,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | si alza Archivio dove si discute |
 | id | `AST_KNOWLEDGE_ARCHIVE` |
 
-> Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
+> Le carte non si consumano: si consuma chi le sa leggere.
 
 **Temi:** Vie · Fede
 
@@ -1358,16 +1386,17 @@ B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Archivio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Archivio.
+What is happening: Le carte non si consumano: si consuma chi le sa leggere.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1385,7 +1414,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il mondo registra: i conti sono pubblici |
 | id | `AST_KNOWLEDGE_LEDGER` |
 
-> +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
+> Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.
 
 **Temi:** Vie
 
@@ -1405,16 +1434,17 @@ B. **Chiudere il registro.** Scendi di 1 gradino con lei e metti #debito_chiamat
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Registro.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Registro.
+What is happening: Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1432,7 +1462,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' il ponte rotto |
 | id | `AST_KNOWLEDGE_OLD_MAP` |
 
-> +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
+> I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.
 
 **Temi:** Vie · Terra
 
@@ -1452,16 +1482,17 @@ B. **Tenere la mappa per se'.** Metti #registro_del_commercio: al prossimo Consi
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mappa Vecchia.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Mappa Vecchia.
+What is happening: I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1478,7 +1509,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco si apre a tutti |
 | id | `AST_KNOWLEDGE_RUMOR` |
 
-> Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
+> Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.
 
 **Temi:** Fede · Potere
 
@@ -1498,16 +1529,17 @@ B. **Mettere in giro la voce.** Metti #malcontento sul luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Voce di Corridoio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-verde-azzurro pallido accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Voce di Corridoio.
+What is happening: Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1526,7 +1558,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | chi gioca se ne va dove si discute |
 | id | `AST_PEOPLE_EXODUS` |
 
-> Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
+> Chi parte non torna al tavolo.
 
 **Temi:** Terra · Sopravvivenza
 
@@ -1546,16 +1578,17 @@ B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi e metti
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Esodo.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Esodo.
+What is happening: Chi parte non torna al tavolo.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1572,7 +1605,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_PEOPLE_STILL_HANDS` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+> Un paese che si ferma non si rimette in moto dove l'avevi lasciato.
 
 **Temi:** Sopravvivenza · Vie
 
@@ -1592,16 +1625,17 @@ B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia Ferme.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Braccia Ferme.
+What is happening: Un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1619,7 +1653,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_PEOPLE_MOBILIZATION` |
 
-> +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
+> È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.
 
 **Temi:** Sopravvivenza · Terra
 
@@ -1639,16 +1673,17 @@ B. **Chiamare solo i tuoi.** Alza quella questione di 1 e pesca 1 Popolo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Mobilitazione.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Mobilitazione.
+What is happening: È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1665,7 +1700,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rapporto fra chi gioca e il rivale cambia |
 | id | `AST_PEOPLE_SPOKESMAN` |
 
-> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
+> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.
 
 **Temi:** Potere · Fede
 
@@ -1685,16 +1720,17 @@ B. **Darla a un altro.** Un'altra casa parla per prima al prossimo Consiglio e s
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Portavoce.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Portavoce.
+What is happening: Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1711,7 +1747,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | nella capitale diventa #inquieta |
 | id | `AST_PEOPLE_CROWD` |
 
-> Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
+> Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.
 
 **Temi:** Sopravvivenza · Potere
 
@@ -1731,16 +1767,17 @@ B. **Mandare la folla a casa.** Abbassa quella questione di 1.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Folla.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Folla.
+What is happening: Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1758,7 +1795,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' in lutto |
 | id | `AST_PEOPLE_ELDERS` |
 
-> +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
+> Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.
 
 **Temi:** Fede · Sopravvivenza
 
@@ -1778,16 +1815,17 @@ B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Consiglio degli Anziani.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Consiglio degli Anziani.
+What is happening: Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1805,7 +1843,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' #affamata |
 | id | `AST_PEOPLE_HARVEST_HANDS` |
 
-> +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+> Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.
 
 **Temi:** Sopravvivenza
 
@@ -1825,16 +1863,17 @@ B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Braccia per il Raccolto.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Braccia per il Raccolto.
+What is happening: Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1851,7 +1890,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' #razionata |
 | id | `AST_PEOPLE_MARCH` |
 
-> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
+> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.
 
 **Temi:** Sopravvivenza · Terra
 
@@ -1871,16 +1910,17 @@ B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ov
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Marcia.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-terracotta accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Marcia.
+What is happening: Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.
+Dominant accent: terracotta, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1899,7 +1939,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il rivale entra dove si discute |
 | id | `AST_WEALTH_LAND_MORTGAGE` |
 
-> Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
+> Impegnare una terra fa arrivare chi la vuole.
 
 **Temi:** Terra · Vie
 
@@ -1919,16 +1959,17 @@ B. **Rimettere l'ipoteca.** Sali di 2 gradini con lei e metti #debito_rimesso su
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Ipoteca sulle Terre.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Ipoteca sulle Terre.
+What is happening: Impegnare una terra fa arrivare chi la vuole.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1945,7 +1986,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | la domanda in gioco sale |
 | id | `AST_WEALTH_TREASURY` |
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.
+> Aprire il tesoro dice a tutti quanto vale davvero la questione.
 
 **Temi:** Potere · Vie
 
@@ -1965,16 +2006,17 @@ B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Il Tesoro.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Il Tesoro.
+What is happening: Aprire il tesoro dice a tutti quanto vale davvero la questione.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -1991,7 +2033,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' tagliata fuori |
 | id | `AST_WEALTH_CARAVAN` |
 
-> Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
+> Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.
 
 **Temi:** Vie
 
@@ -2011,16 +2053,17 @@ B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Carovana.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Carovana.
+What is happening: Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -2038,7 +2081,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute diventa #razionata |
 | id | `AST_WEALTH_GRANARY_KEYS` |
 
-> +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
+> Non possiedi il grano: possiedi la serratura, e la serratura raziona.
 
 **Temi:** Sopravvivenza · Potere
 
@@ -2058,16 +2101,17 @@ B. **Tenere le chiavi.** Scendi di 1 gradino con lei e metti #grano_requisito su
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Chiavi del Granaio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Chiavi del Granaio.
+What is happening: Non possiedi il grano: possiedi la serratura, e la serratura raziona.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -2085,7 +2129,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | il mondo registra: il debito e' stato chiamato |
 | id | `AST_WEALTH_CREDIT` |
 
-> +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
+> Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.
 
 **Temi:** Vie · Potere
 
@@ -2105,16 +2149,17 @@ B. **Comprare il suo debito.** Scendi di 1 gradino con lei e pesca 2 Ricchezza.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Credito.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Credito.
+What is happening: Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -2131,7 +2176,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | La Carestia scende |
 | id | `AST_WEALTH_GRAIN` |
 
-> Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
+> Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.
 
 **Temi:** Sopravvivenza
 
@@ -2151,16 +2196,17 @@ B. **Chiudere i granai.** Metti #razionato sul luogo e alza di 1 la questione So
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Riserva di Grano.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Riserva di Grano.
+What is happening: Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -2178,7 +2224,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | dove si discute non e' piu' #magra |
 | id | `AST_WEALTH_SALT` |
 
-> +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+> Non nutre nessuno: senza, quello che nutre non arriva.
 
 **Temi:** Vie · Sopravvivenza
 
@@ -2198,16 +2244,17 @@ B. **Salare le riserve.** Togli #magro dal luogo.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Sale.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Sale.
+What is happening: Non nutre nessuno: senza, quello che nutre non arriva.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -2225,7 +2272,7 @@ no border. Not gory, not horror. Museum-quality illustration, boardgame card art
 | cosa lascia | si alza Pedaggio dove si discute |
 | id | `AST_WEALTH_TOLL` |
 
-> +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
+> Una corda tesa fra due pali, e il diritto di non alzarla.
 
 **Temi:** Vie · Potere
 
@@ -2245,16 +2292,17 @@ B. **Dividere l'incasso.** Metti #pedaggio_diviso sul luogo e sali di 1 gradino 
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting, single evocative scene depicting Pedaggio.
-Painterly oil technique, visible brushwork, muted earth palette with a single
-ambra accent. Low side lighting, late afternoon or candlelit interior.
+ECHOES — Asset card. Single evocative scene: Pedaggio.
+What is happening: Una corda tesa fra due pali, e il diritto di non alzarla.
+Dominant accent: ambra, over the game's muted earth palette. Low side
+lighting, late afternoon or candlelit interior.
 Grounded medieval-adjacent world, no heraldry invented, no glowing magic.
 A scene, not a portrait: figures may show their faces, but never a single centred
 figure looking at the viewer - that framing belongs to the House cards.
 Composition: subject occupies the upper two thirds; the lower third is a calm,
 low-detail area (ground, mist, cloth, stone) reserved for a text overlay.
 Vertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,
-no border. Not gory, not horror. Museum-quality illustration, boardgame card art.
+no border. Not gory, not horror.
 ```
 
 </details>
@@ -2280,13 +2328,14 @@ una funzione di Propp, e alcune convocano un Consiglio.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Amnistia. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Amnistia.
+What is happening: Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2306,13 +2355,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Tradimento. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Tradimento.
+What is happening: Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2332,13 +2382,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Chiamata. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Chiamata.
+What is happening: La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2357,13 +2408,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Carovana Perduta. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Carovana Perduta.
+What is happening: Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2382,13 +2434,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Chi Siede. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Chi Siede.
+What is happening: Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2407,13 +2460,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Scoperta. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Scoperta.
+What is happening: Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2433,13 +2487,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Sedia Vuota. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Sedia Vuota.
+What is happening: Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2458,13 +2513,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Partenza. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Partenza.
+What is happening: Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2483,13 +2539,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Annata Buona. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Annata Buona.
+What is happening: Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2508,13 +2565,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Mancanza. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Mancanza.
+What is happening: Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2534,13 +2592,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Giuramento che Nessuno Sciolse. Painterly oil
-technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Il Giuramento che Nessuno Sciolse.
+What is happening: Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.
+Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2560,13 +2619,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Giorno che la Gilda Chiese Tutto. Painterly oil
-technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Il Giorno che la Gilda Chiese Tutto.
+What is happening: La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
+Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2585,13 +2645,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Ballata dell'Anno Buono. Painterly oil
-technique, muted earth palette, l'accento della sua famiglia accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Ballata dell'Anno Buono.
+What is happening: Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
+Dominant accent: l'accento della sua famiglia, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2610,13 +2671,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Perdita. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Perdita.
+What is happening: Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2635,13 +2697,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Parola Data. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Parola Data.
+What is happening: La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2660,13 +2723,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Giuramento Prestato. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Giuramento Prestato.
+What is happening: Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2685,13 +2749,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Offerta. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: L'Offerta.
+What is happening: Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2710,13 +2775,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Presagio. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Presagio.
+What is happening: Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2735,13 +2801,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Incontro. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: L'Incontro.
+What is happening: Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2761,13 +2828,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Supplica. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Supplica.
+What is happening: Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2786,13 +2854,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Conto. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Il Conto.
+What is happening: Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2811,13 +2880,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Riconciliazione. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Riconciliazione.
+What is happening: Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2837,13 +2907,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Rivelazione. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Rivelazione.
+What is happening: Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2862,13 +2933,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Vie Riaperte. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Vie Riaperte.
+What is happening: Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2887,13 +2959,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Strada Chiusa. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Strada Chiusa.
+What is happening: Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2912,13 +2985,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Sacrificio. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Sacrificio.
+What is happening: Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2937,13 +3011,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Presa. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Presa.
+What is happening: Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2962,13 +3037,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Interramento. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Interramento.
+What is happening: Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -2987,13 +3063,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Copia. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Copia.
+What is happening: Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3012,13 +3089,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Crepa. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Crepa.
+What is happening: Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3037,13 +3115,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Stagione Scavata. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Stagione Scavata.
+What is happening: Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3062,13 +3141,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: I Fuochi Fuori. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: I Fuochi Fuori.
+What is happening: Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3087,13 +3167,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Tavolo Lungo. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Il Tavolo Lungo.
+What is happening: Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3112,13 +3193,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Il Pozzo Zitto. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Il Pozzo Zitto.
+What is happening: La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3137,13 +3219,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: L'Anno Corto. Painterly oil
-technique, muted earth palette, bianco freddo accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: L'Anno Corto.
+What is happening: Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
+Dominant accent: bianco freddo, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3163,13 +3246,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Due Sentenze. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Due Sentenze.
+What is happening: Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3189,13 +3273,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Usurpazione. Painterly oil
-technique, muted earth palette, rosso scuro accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Usurpazione.
+What is happening: Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.
+Dominant accent: rosso scuro, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3214,13 +3299,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: La Veglia Spostata. Painterly oil
-technique, muted earth palette, grigio-ocra accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: La Veglia Spostata.
+What is happening: L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane.
+Dominant accent: grigio-ocra, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>
@@ -3239,13 +3325,14 @@ no frame, no border. Not gory. Boardgame card art.
 <details><summary>Prompt per l'immagine</summary>
 
 ```
-Historical dark-fantasy painting of a narrative moment: Messo per Iscritto. Painterly oil
-technique, muted earth palette, oro caldo basso accent. The image shows a turning point,
-not an action climax: the instant before or the instant after. Human scale, few
-figures, strong silhouette reading at small size. Composition: negative space
-along the top edge reserved for a title overlay; the focal event sits at the
-lower-left third. Vertical card framing, 2:3. No text, no letters, no numerals,
-no frame, no border. Not gory. Boardgame card art.
+ECHOES — Echo card. A narrative moment: Messo per Iscritto.
+What is happening: Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.
+Dominant accent: oro caldo basso, over the game's muted earth palette.
+The image shows a turning point, not an action climax: the instant before or the
+instant after. Human scale, few figures, strong silhouette reading at small size.
+Composition: negative space along the top edge reserved for a title overlay; the
+focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
+letters, no numerals, no frame, no border. Not gory.
 ```
 
 </details>

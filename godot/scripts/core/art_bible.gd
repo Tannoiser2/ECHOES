@@ -27,6 +27,15 @@ const PROMPT_FOR: Dictionary = {"asset": 1, "echo": 2, "region": 3, "entity": 4,
 ## una chiave di variazione con dentro la parola «accento».
 const HEADERS: Array = ["FAMIGLIA", "BIOME", "ARCHETIPO"]
 
+## Il posto dello stile, che non e' un MASTER PROMPT: i sei sono numerati da 1, e
+## `0` gia' vuol dire «non siamo dentro nessuna sezione».
+const STYLE: int = -1
+
+## Lo stile, uno per tutta la grafica del gioco (0.1.312). Sta nella ART_BIBLE
+## sotto `## LO STILE` e il brief lo stampa **una volta**: fino alla 0.1.311 ogni
+## MASTER PROMPT se lo portava dentro, e 146 voci del brief erano 146 copie dello
+## stesso paragrafo con dentro un titolo diverso.
+var _style: String = ""
 var _prompts: Dictionary = {}
 ## Accenti e guide **per MASTER PROMPT**, non in un unico mucchio: `PEOPLE` e' sia
 ## una famiglia di Asset sia un archetipo di Casata, e con un dizionario solo il
@@ -39,6 +48,11 @@ var _path: String = ""
 
 func available() -> bool:
 	return not _prompts.is_empty()
+
+
+## Lo stile del gioco, uno. Vuoto se la ART_BIBLE non e' stata letta.
+func style() -> String:
+	return _style
 
 
 func read(path: String) -> bool:
@@ -56,6 +70,9 @@ func read(path: String) -> bool:
 	var block: Array = []
 	for raw in lines:
 		var line: String = str(raw)
+		if line.begins_with("## LO STILE"):
+			current = STYLE
+			continue
 		if line.begins_with("## MASTER PROMPT"):
 			current = int(line.split("—")[0].split("PROMPT")[1].strip_edges())
 			continue
@@ -63,8 +80,13 @@ func read(path: String) -> bool:
 			continue
 		if line.begins_with("```"):
 			in_block = not in_block
-			if not in_block and not block.is_empty() and not _prompts.has(current):
-				_prompts[current] = "\n".join(PackedStringArray(block)).strip_edges()
+			if not in_block and not block.is_empty():
+				var text_of_block: String = "\n".join(PackedStringArray(block)).strip_edges()
+				if current == STYLE:
+					if _style == "":
+						_style = text_of_block
+				elif not _prompts.has(current):
+					_prompts[current] = text_of_block
 				block = []
 			continue
 		if in_block:
@@ -90,12 +112,15 @@ func read(path: String) -> bool:
 
 ## Il prompt composto per una faccia, pronto da mandare. Vuoto se il mazzo non
 ## ha un MASTER PROMPT o se la ART_BIBLE non e' stata letta.
-func prompt_for(face: Dictionary, subject: String, accent_key: String) -> String:
+func prompt_for(
+	face: Dictionary, subject: String, situation: String, accent_key: String
+) -> String:
 	var which: int = int(PROMPT_FOR.get(str(face["deck"]), 0))
 	if which == 0 or not _prompts.has(which):
 		return ""
 	var text: String = str(_prompts[which])
 	text = text.replace("{SOGGETTO}", subject)
+	text = text.replace("{SITUAZIONE}", situation if situation != "" else subject)
 	text = text.replace("{REGIONE}", str(face["title"]))
 	var guides: Dictionary = _guides.get(which, {})
 	var accents: Dictionary = _accents.get(which, {})
@@ -110,8 +135,13 @@ func brief(data: RefCounted) -> String:
 	var lines: Array = [
 		"# ECHOES — brief d'arte",
 		"",
-		"Ogni `art_prompt_key` in uso nei dati, con il MASTER PROMPT di",
-		"`docs/ART_BIBLE.md` gia' composto col soggetto che i dati conoscono.",
+		"Ogni `art_prompt_key` in uso nei dati, con **la scena di quella carta** e",
+		"l'inquadratura del suo mazzo.",
+		"",
+		"**Lo stile si incolla una volta, non 146.** Sta qui sotto, e vale per tutta",
+		"la grafica del gioco: si manda quello, e poi la scheda della carta. Fino",
+		"alla 0.1.311 ogni voce se lo ricopiava dentro, e la scena della carta non",
+		"c'era: il prompt di un Asset era il suo titolo dentro un paragrafo di stile.",
 		"",
 		"**Generato da `cli/run_export.gd`: non si modifica a mano.** Ne esce una",
 		"copia in `out/export/` a ogni `tools/run_export.sh`, e quella committata in",
@@ -119,8 +149,15 @@ func brief(data: RefCounted) -> String:
 		"",
 	]
 	if not available():
-		lines.append("> **ART_BIBLE non letta** (`%s`). Sotto restano le chiavi e i" % _path)
-		lines.append("> soggetti; i prompt sono nel documento.")
+		lines.append("> **ART_BIBLE non letta** (`%s`). Sotto restano le chiavi e le" % _path)
+		lines.append("> scene; lo stile e i prompt sono nel documento.")
+		lines.append("")
+	if _style != "":
+		lines.append("## Lo stile — una volta, per tutto")
+		lines.append("")
+		lines.append("```")
+		lines.append(_style)
+		lines.append("```")
 		lines.append("")
 
 	for deck in ["asset", "echo", "region", "entity", "destiny"]:
@@ -142,9 +179,11 @@ func brief(data: RefCounted) -> String:
 			lines.append("### `%s` — %s" % [key, str(item["title"])])
 			lines.append("")
 			var subject: String = _subject(item)
+			var situation: String = _situation(item, data).strip_edges()
 			lines.append("- **soggetto**: %s" % subject)
+			lines.append("- **scena**: %s" % (situation if situation != "" else "—"))
 			lines.append("- **id**: `%s`" % str(item["id"]))
-			var prompt: String = prompt_for(item, subject, _accent_key(item, data))
+			var prompt: String = prompt_for(item, subject, situation, _accent_key(item, data))
 			if prompt != "":
 				lines.append("")
 				lines.append("```")
@@ -168,13 +207,57 @@ func keys_without_prompt(data: RefCounted) -> Array:
 	return out
 
 
+## Il soggetto e' il **nome** della carta, e basta. Fino alla 0.1.311 provava a
+## essere anche la scena, prendendo la prima riga del corpo stampato — e quando
+## D-340 ha tolto il racconto dalla faccia, quella riga e' diventata vuota su
+## **48 Asset e 39 Echo**: 87 carte il cui prompt d'arte era il titolo dentro un
+## paragrafo di stile. La scena adesso e' `_situation`, e viene dal dato.
 func _subject(face: Dictionary) -> String:
-	var body: Array = face["body"]
-	# Senza il punto finale: il prompt ne mette uno suo, e «una pretesa.. Painterly
-	# oil technique» e' il genere di dettaglio che si nota solo dopo averne letti
-	# quarantotto.
-	var said: String = str(body[0]).strip_edges().trim_suffix(".") if not body.is_empty() else ""
-	return "%s — %s" % [str(face["title"]), said] if said != "" else str(face["title"])
+	return str(face["title"])
+
+
+## **La scena che la carta racconta**, scritta dal suo autore e ferma nel dato.
+##
+## D-340 diceva, togliendo il racconto dalla faccia: *«Il racconto esce dalla
+## faccia e resta nel dato: lo legge il brief d'arte, che e' il posto dove
+## serve.»* Il brief non lo leggeva — leggeva la faccia, che adesso non ce
+## l'aveva piu'. Il cancello restava verde perche' confronta il brief con quello
+## che il codice produce, e il codice produceva lo stesso niente dalle due parti.
+func _situation(face: Dictionary, data: RefCounted) -> String:
+	var deck: String = str(face["deck"])
+	var id: String = str(face["id"])
+	match deck:
+		"asset":
+			return str((data.assets[id] as Dictionary).get("rules_text", ""))
+		"echo":
+			return str((data.echo_cards[id] as Dictionary).get("description", ""))
+		"region":
+			return str((data.regions[id] as Dictionary).get("description", ""))
+		"destiny":
+			return str((data.destinies[id] as Dictionary).get("description", ""))
+		"entity":
+			# Il mazzo delle Casate e' fatto di **vite**, non di case: la scena e'
+			# quella dell'incarnazione che siede, non quella della casata.
+			if data.entities.has(id):
+				return str((data.entities[id] as Dictionary).get("description", ""))
+			var found: Dictionary = CardFace.life_of(id, data)
+			if not found.is_empty():
+				return str((found["life"] as Dictionary).get("description", ""))
+	return ""
+
+
+## Ogni chiave d'arte in uso che **non porta una scena**. La guardia del difetto
+## che questa versione ha corretto: una carta il cui prompt e' il suo nome.
+func keys_without_situation(data: RefCounted) -> Array:
+	var out: Array = []
+	for deck in CardFace.DECKS + CardFace.TILES:
+		for face in CardFace.deck_of(str(deck), data):
+			var item: Dictionary = face
+			if str(item["art_prompt_key"]) == "":
+				continue
+			if _situation(item, data).strip_edges() == "":
+				out.append(str(item["art_prompt_key"]))
+	return out
 
 
 ## Quale riga della variation key vale per questa faccia: la famiglia per un

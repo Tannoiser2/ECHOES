@@ -6250,7 +6250,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_CENSUS`**
 > Censimento
 
-> +1 quando Autorità è rilevante per la Tensione. Una lista di nomi è la forma più semplice del potere — e la lista chiarisce: la Regione della domanda smette di essere contesa.
+> Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.
 
 
 **`AST_AUTHORITY_CENSUS, bersaglio`**
@@ -6276,7 +6276,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_CROWN_RIGHT`**
 > Diritto di Corona
 
-> Si scarta sempre: un diritto invocato due volte non è più un diritto, è una pretesa — e la pretesa divide: la Regione della domanda resta contesa.
+> Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.
 
 
 **`AST_AUTHORITY_CROWN_RIGHT, bersaglio`**
@@ -6302,7 +6302,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_EDICT`**
 > Editto
 
-> Una riga scritta bene vale quanto chi la fa rispettare — e dove si discute, la legge calma la piazza: l'inquietudine si cancella.
+> Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.
 
 
 **`AST_AUTHORITY_EDICT, bersaglio`**
@@ -6328,7 +6328,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_INTERDICT`**
 > Interdetto
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: vietare una cosa a tutti alza la posta per tutti.
+> Vietare una cosa a tutti alza la posta per tutti.
 
 
 **`AST_AUTHORITY_INTERDICT, bersaglio`**
@@ -6354,7 +6354,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_INVESTITURE`**
 > Investitura
 
-> +1 sempre, su qualsiasi fronte. Si scarta sempre: si concede una volta sola, e tutti se ne ricordano — perché la nomina scrive un nome nella linea: il mondo ricorda l'erede nominato.
+> Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.
 
 
 **`AST_AUTHORITY_INVESTITURE, bersaglio`**
@@ -6380,7 +6380,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_MAGISTRATE`**
 > Magistrato
 
-> +2 sul fronte Oppose. Se la proposta passa lo stesso resta in mano: un giudice che ha avuto ragione serve ancora — e il giudice risponde: la domanda rimasta scritta sul muro si cancella.
+> Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.
 
 
 **`AST_AUTHORITY_MAGISTRATE, bersaglio`**
@@ -6406,7 +6406,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_SEAL`**
 > Sigillo
 
-> +1 sul fronte Oppose. Il sigillo che manca ferma più cose del sigillo che c'è — e quello impegnato raffredda la questione: la Tensione in gioco scende di 1.
+> Il sigillo che manca ferma più cose del sigillo che c'è.
 
 
 **`AST_AUTHORITY_SEAL, bersaglio`**
@@ -6432,7 +6432,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_AUTHORITY_SUCCESSION_ACT`**
 > Atto di Successione
 
-> Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: nominare un erede fa arrivare tutti quelli che non sono stati nominati.
+> Nominare un erede fa arrivare tutti quelli che non sono stati nominati.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT, bersaglio`**
@@ -6458,7 +6458,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_BETROTHAL`**
 > Promessa di Nozze
 
-> +2 sul fronte Oppose: una promessa serve più a impedire un'alleanza che a farne una. Si scarta sempre — e resta scritta: fra le due case nasce un patto, e i patti si giudicano.
+> Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.
 
 
 **`AST_BONDS_BETROTHAL, bersaglio`**
@@ -6484,7 +6484,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_BLOOD_TIE`**
 > Legame di Sangue
 
-> Non è un accordo: e una cosa che c'era prima dell'accordo, e che nessuno ha firmato. Impegnata, scrive il vincolo di sangue sulla coppia: da lì in poi, quella relazione non scende sotto il neutrale.
+> Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
 
 
 **`AST_BONDS_BLOOD_TIE, bersaglio`**
@@ -6510,7 +6510,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_BROKEN_PACT`**
 > Patto Rotto
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
+> Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
 
 
 **`AST_BONDS_BROKEN_PACT, bersaglio`**
@@ -6536,7 +6536,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_FAVOR`**
 > Favore
 
-> Piccolo, ricordato con precisione — e restituito al momento giusto: fra chi lo impegna e il rivale, una vendetta si spegne.
+> Piccolo, ricordato con precisione, e restituito al momento giusto.
 
 
 **`AST_BONDS_FAVOR, bersaglio`**
@@ -6562,7 +6562,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_GUEST_RIGHT`**
 > Diritto di Ospitalità
 
-> +1 quando Legami è rilevante per la Tensione. Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo — e chi lo impegna torna ospite: la cacciata dalla Regione della domanda si cancella.
+> Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
 
 
 **`AST_BONDS_GUEST_RIGHT, bersaglio`**
@@ -6588,7 +6588,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_HOSTAGE`**
 > Ostaggio
 
-> Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: chi consegna un figlio compra una parola, e la paga a casa propria.
+> Chi consegna un figlio compra una parola, e la paga a casa propria.
 
 
 **`AST_BONDS_HOSTAGE, bersaglio`**
@@ -6614,7 +6614,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_OATH`**
 > Giuramento
 
-> Non si scarta mai. Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza — e un giuramento rifatto scioglie quello spezzato: fra chi lo impegna e il rivale, il tradimento si cancella.
+> Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
 
 
 **`AST_BONDS_OATH, bersaglio`**
@@ -6640,7 +6640,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_BONDS_OLD_DEBT`**
 > Debito Vecchio
 
-> +1 sul fronte Oppose. Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso — e da adesso è pubblico: la sede del debitore resta segnata come indebitata.
+> Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.
 
 
 **`AST_BONDS_OLD_DEBT, bersaglio`**
@@ -6666,7 +6666,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_BORDER_WATCH`**
 > Guardia di Confine
 
-> +1 quando Forza è rilevante per la Tensione. Contano i carri che passano, e sanno quali contare — e ogni conta ferma la strada: Le Vie Interrotte salgono di 1.
+> Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.
 
 
 **`AST_FORCE_BORDER_WATCH, bersaglio`**
@@ -6692,7 +6692,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_BURNED_GATE`**
 > Le Porte Bruciate
 
-> Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi apre una porta così non resta li a difenderla.
+> Chi apre una porta così non resta lì a difenderla.
 
 
 **`AST_FORCE_BURNED_GATE, bersaglio`**
@@ -6718,7 +6718,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_LEVY`**
 > Leva Contadina
 
-> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli: la Carestia sale di 1.
+> Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.
 
 
 **`AST_FORCE_LEVY, bersaglio`**
@@ -6744,7 +6744,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_MERCENARIES`**
 > Mercenari
 
-> +1 sempre, su qualsiasi fronte: fuori tema vale quanto in tema. Dove passano, però, resta l'inquietudine.
+> Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.
 
 
 **`AST_FORCE_MERCENARIES, bersaglio`**
@@ -6770,7 +6770,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_OLD_ARMY`**
 > Il Vecchio Esercito
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
+> Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
 
 
 **`AST_FORCE_OLD_ARMY, bersaglio`**
@@ -6796,7 +6796,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_ROADBLOCK`**
 > Posto di Blocco
 
-> +1 sul fronte Oppose. Fermare un carro costa sempre meno che farlo partire — e la Regione della domanda resta tagliata fuori dal mondo.
+> Fermare un carro costa sempre meno che farlo partire.
 
 
 **`AST_FORCE_ROADBLOCK, bersaglio`**
@@ -6822,7 +6822,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_SIEGE`**
 > Assedio
 
-> +2 sul fronte Oppose. Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno: la Carestia sale di 1, e il presidio della Regione della domanda viene giu'.
+> Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.
 
 
 **`AST_FORCE_SIEGE, bersaglio`**
@@ -6848,7 +6848,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_FORCE_WARBAND`**
 > Banda Armata
 
-> Si scarta sempre, e la Tensione in gioco sale di 1: la paura non si spegne insieme alla questione.
+> Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.
 
 
 **`AST_FORCE_WARBAND, bersaglio`**
@@ -6874,7 +6874,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_ARCHIVE`**
 > Archivio
 
-> Se la proposta passa resta in mano. Le carte non si consumano: si consuma chi le sa leggere — e quello che si e' letto resta: sulla Regione della domanda si apre un archivio suo.
+> Le carte non si consumano: si consuma chi le sa leggere.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, bersaglio`**
@@ -6900,7 +6900,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_LEDGER`**
 > Registro
 
-> +1 sul fronte Oppose. Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore — e da quel momento i conti sono di tutti: il registro è pubblico.
+> Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.
 
 
 **`AST_KNOWLEDGE_LEDGER, bersaglio`**
@@ -6926,7 +6926,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_OLD_MAP`**
 > Mappa Vecchia
 
-> +1 quando Sapere è rilevante per la Tensione. I confini sono sbagliati; le strade no — e una strada giusta ricuce il ponte rotto sulla Regione della domanda.
+> I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.
 
 
 **`AST_KNOWLEDGE_OLD_MAP, bersaglio`**
@@ -6952,7 +6952,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_PROOF`**
 > Prova
 
-> Se la proposta passa, resta in mano: una prova dimostrata non si consuma — e dimostra: la questione in gioco si apre a tutti i presenti.
+> Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.
 
 
 **`AST_KNOWLEDGE_PROOF, bersaglio`**
@@ -6978,7 +6978,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_RED_CRYSTAL`**
 > Il Cristallo Rosso
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco diventa aperta a tutti: mostrarlo chiude ogni dubbio e apre la domanda a chiunque fosse nella stanza.
+> Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.
 
 
 **`AST_KNOWLEDGE_RED_CRYSTAL, bersaglio`**
@@ -7004,7 +7004,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_RUMOR`**
 > Voce di Corridoio
 
-> Non è vera. Non è ancora falsa — e finché gira, la questione in gioco torna velata: i numeri si nascondono dietro le voci.
+> Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.
 
 
 **`AST_KNOWLEDGE_RUMOR, bersaglio`**
@@ -7030,7 +7030,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_SEALED_TESTIMONY`**
 > Deposizione Sigillata
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
+> Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY, bersaglio`**
@@ -7056,7 +7056,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_KNOWLEDGE_WITNESS`**
 > Testimone
 
-> +2 sul fronte Oppose. Si scarta sempre: un testimone si spende una volta sola — e la deposizione agita la casa accusata: la sua sede resta inquieta.
+> Un testimone si spende una volta sola, e la deposizione agita la casa accusata.
 
 
 **`AST_KNOWLEDGE_WITNESS, bersaglio`**
@@ -7082,7 +7082,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_CROWD`**
 > Folla
 
-> Nessuno l'ha convocata. È arrivata lo stesso — in capitale: e la capitale resta inquieta.
+> Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.
 
 
 **`AST_PEOPLE_CROWD, bersaglio`**
@@ -7108,7 +7108,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_ELDERS`**
 > Consiglio degli Anziani
 
-> +1 sul fronte Oppose. Parlano piano, dicono di no, e vengono ripetuti per tre villaggi — e sanno accompagnare: il lutto della Regione della domanda si elabora.
+> Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.
 
 
 **`AST_PEOPLE_ELDERS, bersaglio`**
@@ -7134,7 +7134,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_EXODUS`**
 > Esodo
 
-> Forza 3. Si scarta sempre, e chi la gioca perde la propria presenza nella Regione di cui si discute: chi parte non torna al tavolo.
+> Chi parte non torna al tavolo.
 
 
 **`AST_PEOPLE_EXODUS, bersaglio`**
@@ -7160,7 +7160,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_HARVEST_HANDS`**
 > Braccia per il Raccolto
 
-> +1 quando Gente è rilevante per la Tensione. Non sono un esercito: ma senza di loro non si mangia — e dove arrivano, la fame della Regione della domanda si spegne.
+> Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.
 
 
 **`AST_PEOPLE_HARVEST_HANDS, bersaglio`**
@@ -7186,7 +7186,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_MARCH`**
 > Marcia
 
-> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati — e le razioni imposte sulla Regione della domanda si rompono.
+> Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.
 
 
 **`AST_PEOPLE_MARCH, bersaglio`**
@@ -7212,7 +7212,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_MOBILIZATION`**
 > Mobilitazione
 
-> +2 sul fronte Oppose: è più facile fermare qualcosa in molti che costruirla. Si scarta sempre — e la piazza resta calda: la Tensione in gioco sale di 1.
+> È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.
 
 
 **`AST_PEOPLE_MOBILIZATION, bersaglio`**
@@ -7238,7 +7238,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_SPOKESMAN`**
 > Portavoce
 
-> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro — la parola detta è una promessa fra le due case.
+> Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.
 
 
 **`AST_PEOPLE_SPOKESMAN, bersaglio`**
@@ -7264,7 +7264,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_PEOPLE_STILL_HANDS`**
 > Braccia Ferme
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: un paese che si ferma non si rimette in moto dove l'avevi lasciato.
+> Un paese che si ferma non si rimette in moto dove l'avevi lasciato.
 
 
 **`AST_PEOPLE_STILL_HANDS, bersaglio`**
@@ -7290,7 +7290,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_CARAVAN`**
 > Carovana
 
-> Si scarta sempre: una carovana spesa è una carovana partita — e una carovana che parte riapre la via: la Regione tagliata fuori si ricollega.
+> Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.
 
 
 **`AST_WEALTH_CARAVAN, bersaglio`**
@@ -7316,7 +7316,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_CREDIT`**
 > Credito
 
-> +1 sempre, su qualsiasi fronte. Vale nel momento in cui lo chiedi, e non un minuto dopo — perché chiederlo chiama tutti i debiti: il mondo ricorda che il debito fu chiamato.
+> Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.
 
 
 **`AST_WEALTH_CREDIT, bersaglio`**
@@ -7342,7 +7342,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_GRAIN`**
 > Riserva di Grano
 
-> Conta più di un titolo, per il tempo in cui dura — e dura quanto basta: la Carestia scende di 1.
+> Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.
 
 
 **`AST_WEALTH_GRAIN, bersaglio`**
@@ -7368,7 +7368,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_GRANARY_KEYS`**
 > Chiavi del Granaio
 
-> +2 sul fronte Oppose. Non possiedi il grano: possiedi la serratura — e la serratura raziona: sulla Regione della domanda resta il segno della razione.
+> Non possiedi il grano: possiedi la serratura, e la serratura raziona.
 
 
 **`AST_WEALTH_GRANARY_KEYS, bersaglio`**
@@ -7394,7 +7394,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_LAND_MORTGAGE`**
 > Ipoteca sulle Terre
 
-> Forza 3. Si scarta sempre, e chi ti sta di fronte guadagna una presenza nella Regione di cui si discute: impegnare una terra fa arrivare chi la vuole.
+> Impegnare una terra fa arrivare chi la vuole.
 
 
 **`AST_WEALTH_LAND_MORTGAGE, bersaglio`**
@@ -7420,7 +7420,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_SALT`**
 > Sale
 
-> +1 quando Ricchezza è rilevante per la Tensione. Non nutre nessuno: senza, quello che nutre non arriva — e dove arriva, la magra si supera.
+> Non nutre nessuno: senza, quello che nutre non arriva.
 
 
 **`AST_WEALTH_SALT, bersaglio`**
@@ -7446,7 +7446,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_TOLL`**
 > Pedaggio
 
-> +1 sul fronte Oppose. Una corda tesa fra due pali, e il diritto di non alzarla — e il diritto si scrive: sulla Regione della domanda resta il pedaggio.
+> Una corda tesa fra due pali, e il diritto di non alzarla.
 
 
 **`AST_WEALTH_TOLL, bersaglio`**
@@ -7472,7 +7472,7 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 **`AST_WEALTH_TREASURY`**
 > Il Tesoro
 
-> Forza 3. Si scarta sempre, e la Tensione in gioco sale di 1: aprire il tesoro dice a tutti quanto vale davvero la questione.
+> Aprire il tesoro dice a tutti quanto vale davvero la questione.
 
 
 **`AST_WEALTH_TREASURY, bersaglio`**

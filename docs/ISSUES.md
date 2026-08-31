@@ -6104,6 +6104,36 @@ proposta che non passa spegne un ramo intero.**
 esce almeno una volta su 100 partite.
 
 
+### 109. Il MASTER PROMPT 6 e' ricopiato in Python invece che letto
+
+`strumenti` · aperta in 0.1.312 ([D-347](DECISIONS.md#d-347))
+
+Cinque MASTER PROMPT su sei li **legge** `art_bible.gd` da `docs/ART_BIBLE.md`,
+e la ragione sta scritta nel suo commento: *«copiarli qui avrebbe creato la
+seconda copia di un testo che deve restare uno, ed e' esattamente l'errore che
+questo progetto ha gia' commesso due volte»*.
+
+Il sesto — il pittogramma del segnalino da 15 mm — sta **ricopiato dentro**
+`tools/token_catalogue.py`, nella costante `PROMPT`, insieme alle due varianti
+del contorno in `BORDO`. Nessun cancello confronta le due copie: si puo'
+cambiare il documento e il catalogo continua a stampare l'altro testo, per
+sempre e in silenzio.
+
+Non ha ancora fatto danni perche' il prompt 6 non si tocca da 0.1.260. E' pero'
+la stessa forma dei difetti che questo progetto trova da nove versioni: **due
+verita' per la stessa cosa, e nessuna che sorvegli l'altra.**
+
+#### Le due strade
+
+1. **Python legge la ART_BIBLE**, come fa `art_bible.gd`: un parser piccolo per
+   un blocco solo, ed e' finita.
+2. **Un cancello che confronta le due copie**, se leggere costa piu' del
+   confronto: piu' economico, ma tiene in piedi la duplicazione.
+
+**Fatto quando** cambiare il MASTER PROMPT 6 nel documento cambia il catalogo,
+oppure fa fallire un cancello.
+
+
 Ogni voce qui sopra è già un'issue: il titolo dopo il numero, le etichette e la
 milestone dalla riga sotto, il resto come corpo. Chi le apre segna il numero
 GitHub accanto al titolo, così questo documento resta l'indice e non una seconda
