@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2259 testi in lettura.
+possono spostare nella frase, non togliere. 2264 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -5317,6 +5317,26 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 
 **`P_LAND_TO_WORKERS, esito SUCCESS_WITH_COST`**
 > La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso.
+
+
+**`P_SEAL_MINE_FOR_FIELDS`**
+> Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito`**
+> Le gallerie sotto la montagna furono sigillate, e la Carestia restò l'unico nemico della terra.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito DECISIVE_SUCCESS`**
+> Le gallerie sotto la montagna furono sigillate senza voti dissidenti, e ogni uomo tornò ai campi.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito FAILURE`**
+> Si volle sigillare le gallerie, e i picchi restarono come la montagna li aveva tagliati.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito SUCCESS_WITH_COST`**
+> Le gallerie furono sigillate, e ogni uomo tornò ai campi: di febbre portata dalla montagna, due non ritornarono.
 
 
 **`Q_RELIC_KEEP`**
