@@ -154,8 +154,12 @@ def survey() -> str:
 
     righe = [
         # (nome, quanti, copie, formato, faccia fisica, chiave schermo)
-        ("Carte **Asset**", len(assets), copie_asset, "CARD", len(assets), "asset"),
-        ("Carte **Echo**", len(echoes), len(echoes), "CARD", 0, "echo"),
+        # **Non c'e' piu' un mazzo Echo** (D-359). I 48 Echi non sono 48 carte:
+        # sono il terzo blocco stampato sulle 48 carte Asset, uno per carta. Il
+        # censimento non li conta come pezzi, perche' nella scatola non c'e'
+        # niente in piu' da tagliare — c'e' piu' testo sulla stessa carta.
+        ("Carte **Asset** (ognuna col suo Eco)", len(assets), copie_asset,
+         "CARD", len(assets), "asset"),
         ("Carte **Tensione** (le Domande)", len(tensions), len(tensions), "MINI",
          sum(1 for t in tensions if t.get("physical")), "tension"),
         # **La scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione. La
@@ -294,7 +298,8 @@ def survey() -> str:
         sum(1 for t in tensions if t.get("physical")), len(tensions)))
     add("| Carte Destino | %d su %d | — |" % (
         sum(1 for d in destinies if d.get("physical")), len(destinies)))
-    add("| **Carte Echo** | 0 su %d | **%d** |" % (len(echoes), len(echoes)))
+    add("| Echi (sulla faccia della carta Asset) | 0 su %d | **%d** |" % (
+        len(echoes), len(echoes)))
     add("| **Carte Casata** | 0 su %d | **%d** |" % (vite, vite))
     add("| **Tessere Regione** | 0 su %d | **%d** |" % (len(regions), len(regions)))
     add("")

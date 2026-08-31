@@ -68,37 +68,43 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | AST_WEALTH_SALT | Sale | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.salt` |
 | AST_WEALTH_TOLL | Pedaggio | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.toll` |
 
-## Echo cards (39)
+## Echo cards (48)
 | id | titolo | famiglia drammatica | funzione | art_prompt_key |
 |---|---|---|---|---|
-| ECH_LEGEND_BROKEN_OATH | Il Giuramento che Nessuno Sciolse | MEMORIA | BETRAYAL | `echo.memoria.the_broken_oath` |
-| ECH_LEGEND_CALLED_DAY | Il Giorno che la Gilda Chiese Tutto | MEMORIA | THREAT | `echo.memoria.the_called_day` |
-| ECH_LEGEND_GOOD_YEAR | La Ballata dell'Anno Buono | MEMORIA | RETURN | `echo.memoria.the_good_year` |
 | ECH_CALL_OF_ACCOUNTS | La Chiamata | PRESSURE | REQUEST | `echo.pressure.call_of_accounts` |
 | ECH_EMPTY_THRONE | Sedia Vuota | PRESSURE | THREAT | `echo.pressure.threat` |
+| ECH_HANDS_DOWN | Le Mani Ferme | PRESSURE | PROHIBITION | `echo.pressure.hands_down` |
 | ECH_LACK | Mancanza | PRESSURE | LACK | `echo.pressure.lack` |
+| ECH_LEGEND_CALLED_DAY | Il Giorno che la Gilda Chiese Tutto | PRESSURE | THREAT | `echo.memoria.the_called_day` |
 | ECH_OFFER | L'Offerta | PRESSURE | TEMPTATION | `echo.pressure.temptation` |
 | ECH_OMEN | Presagio | PRESSURE | OMEN | `echo.pressure.omen` |
 | ECH_PETITION | La Supplica | PRESSURE | REQUEST | `echo.pressure.request` |
 | ECH_ROAD_CLOSED | Strada Chiusa | PRESSURE | PROHIBITION | `echo.pressure.prohibition` |
 | ECH_SILT | Interramento | PRESSURE | LACK | `echo.pressure.silt` |
+| ECH_THE_PRICE_OF_SALT | Il Prezzo del Sale | PRESSURE | TEMPTATION | `echo.pressure.the_price_of_salt` |
 | ECH_VIGIL_MOVED | La Veglia Spostata | PRESSURE | OMEN | `echo.pressure.vigil_moved` |
 | ECH_AMNESTY | Amnistia | RESOLUTION | LIBERATION | `echo.resolution.liberation` |
 | ECH_CROWNING | Chi Siede | RESOLUTION | SUCCESSION | `echo.resolution.succession` |
+| ECH_LEGEND_GOOD_YEAR | La Ballata dell'Anno Buono | RESOLUTION | RETURN | `echo.memoria.the_good_year` |
 | ECH_RECKONING | Il Conto | RESOLUTION | PUNISHMENT | `echo.resolution.punishment` |
 | ECH_RECONCILIATION | Riconciliazione | RESOLUTION | RECONCILIATION | `echo.resolution.reconciliation` |
 | ECH_ROADS_OPEN | Vie Riaperte | RESOLUTION | RETURN | `echo.resolution.return` |
 | ECH_SACRIFICE | Sacrificio | RESOLUTION | SACRIFICE | `echo.resolution.sacrifice` |
 | ECH_THE_DUG_SEASON | La Stagione Scavata | RESOLUTION | GIFT | `echo.resolution.the_dug_season` |
+| ECH_THE_FORGIVEN_DEBT | Il Debito Rimesso | RESOLUTION | GIFT | `echo.resolution.the_forgiven_debt` |
 | ECH_THE_LONG_TABLE | Il Tavolo Lungo | RESOLUTION | RECONCILIATION | `echo.resolution.the_long_table` |
+| ECH_THE_OLD_ACCOUNT | Il Conto Vecchio | RESOLUTION | PUNISHMENT | `echo.resolution.the_old_account` |
 | ECH_WRITTEN_DOWN | Messo per Iscritto | RESOLUTION | LIBERATION | `echo.resolution.written_down` |
 | ECH_BETRAYAL | Tradimento | RUPTURE | BETRAYAL | `echo.rupture.betrayal` |
 | ECH_CARAVAN_LOST | Carovana Perduta | RUPTURE | ATTACK | `echo.rupture.attack` |
 | ECH_EXODUS | La Partenza | RUPTURE | SEPARATION | `echo.rupture.separation` |
+| ECH_LEGEND_BROKEN_OATH | Il Giuramento che Nessuno Sciolse | RUPTURE | BETRAYAL | `echo.memoria.the_broken_oath` |
 | ECH_LOSS | Perdita | RUPTURE | LOSS | `echo.rupture.loss` |
 | ECH_OATH_BROKEN | La Parola Data | RUPTURE | VIOLATION | `echo.rupture.violation` |
+| ECH_THE_CLOSED_ROAD | La Strada Chiusa a Chiave | RUPTURE | THREAT | `echo.rupture.the_closed_road` |
 | ECH_THE_CRACK | La Crepa | RUPTURE | THREAT | `echo.rupture.the_crack` |
 | ECH_THE_FIRES_OUTSIDE | I Fuochi Fuori | RUPTURE | SEPARATION | `echo.rupture.the_fires_outside` |
+| ECH_THE_WALKING_YEAR | L'Anno a Piedi | RUPTURE | SEPARATION | `echo.rupture.the_walking_year` |
 | ECH_TWO_VERDICTS | Due Sentenze | RUPTURE | VIOLATION | `echo.rupture.two_verdicts` |
 | ECH_USURPATION | Usurpazione | RUPTURE | USURPATION | `echo.rupture.usurpation` |
 | ECH_DISCOVERY | Scoperta | TURN | DISCOVERY | `echo.turn.discovery` |
@@ -107,7 +113,10 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | ECH_PARLEY | L'Incontro | TURN | ENCOUNTER | `echo.turn.encounter` |
 | ECH_REVELATION | Rivelazione | TURN | REVELATION | `echo.turn.revelation` |
 | ECH_SEIZURE | La Presa | TURN | CONQUEST | `echo.turn.conquest` |
+| ECH_THE_CALLED_UP | I Chiamati | TURN | TRANSFORMATION | `echo.turn.the_called_up` |
 | ECH_THE_COPY | La Copia | TURN | DISCOVERY | `echo.turn.the_copy` |
+| ECH_THE_MET_ROAD | L'Incontro sulla Strada | TURN | ENCOUNTER | `echo.turn.the_met_road` |
+| ECH_THE_ONE_WHO_SAW | Quello che c'Era | TURN | REVELATION | `echo.turn.the_one_who_saw` |
 | ECH_THE_QUIET_SHAFT | Il Pozzo Zitto | TURN | RETURN | `echo.turn.the_quiet_shaft` |
 | ECH_THE_SHORT_YEAR | L'Anno Corto | TURN | TRANSFORMATION | `echo.turn.the_short_year` |
 

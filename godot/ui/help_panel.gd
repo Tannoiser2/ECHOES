@@ -421,25 +421,21 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	out.append("")
 
 	if data != null and data.echo_cards.size() > 0:
-		out.append(SECTION % "LE CARTE ECHO")
+		out.append(SECTION % "L'ECO DELLE CARTE")
 		out.append(
-			"Alla fine di ogni Atto ne esce una, e non la pesca nessuno di voi: una per "
-			+ "ogni [b]funzione di Propp[/b] — mancanza, presagio, tradimento, scoperta, "
-			+ "ritorno. Muovono il mondo da sole, e due di loro convocano un Consiglio "
-			+ "sul posto."
-		)
-		# The count used to be `data.echo_cards.size()`, which was right while there
-		# was one saga and became the total across all of them. A year's deck holds
-		# the cards that could matter to *its* questions, and nothing else (D-049).
-		out.append(
-			"Il mazzo di quest'anno ne tiene %d: una carta che parla di una domanda "
-			% _deck_size(data, chronicle_id)
-			+ "che quest'anno non si sta facendo non viene distribuita."
+			"Ogni carta Asset porta stampato un terzo blocco: il suo [b]Eco[/b], la "
+			+ "versione potenziata della carta. Non c'e' un mazzo a parte da cui "
+			+ "pescarlo — ce l'hai gia' in mano, sotto le due Azioni normali."
 		)
 		out.append(
-			"L'Atto in cui esce decide che tipo puo essere: il primo solo [b]pressione[/b], "
-			+ "l'ultimo soprattutto [b]risoluzione[/b]. La forma di una storia sta nel "
-			+ "mazzo, non nella testa di chi la racconta."
+			"Calarlo costa la carta [b]piu' un'altra scartata[/b], e si puo' fare solo "
+			+ "se il mondo porta i segni che quell'Eco nomina: e' scritto sulla faccia, "
+			+ "e si controlla guardando il tavolo."
+		)
+		out.append(
+			"L'Atto decide che tipo di Eco puo' parlare: il primo solo [b]pressione[/b], "
+			+ "l'ultimo soprattutto [b]risoluzione[/b]. La forma di una storia sta nelle "
+			+ "carte, non nella testa di chi la racconta."
 		)
 		out.append("")
 
@@ -532,34 +528,6 @@ func _sorted(keys: Array) -> Array:
 	out.sort()
 	return out
 
-
-## How many Echo cards this Chronicle's deck actually holds. Mirrors the rule in
-## `WorldStateFactory._build_echo_deck`: a card whose eligibility names a Tension
-## the Chronicle is not asking about can never be drawn.
-func _deck_size(data: RefCounted, chronicle_id: String) -> int:
-	var chronicle: Variant = data.chronicles.get(chronicle_id)
-	if chronicle == null:
-		return data.echo_cards.size()
-	var asked: Dictionary = {}
-	for tension_id in chronicle.get("tensions", []):
-		asked[str(tension_id)] = true
-	for tension_id in (chronicle.get("tension_pool", {}) as Dictionary).get("candidates", []):
-		asked[str(tension_id)] = true
-
-	var total: int = 0
-	for card in data.echo_cards.values():
-		var out_of_year: bool = false
-		for condition in card["eligibility"]:
-			if str((condition as Dictionary).get("type", "")) != "tension_limit":
-				continue
-			var tension_id: String = str((condition as Dictionary).get("tension_id", ""))
-			if tension_id.begins_with("$"):
-				continue
-			if not asked.has(tension_id):
-				out_of_year = true
-		if not out_of_year:
-			total += 1
-	return total
 
 ## I mestieri delle famiglie, **contati dalle carte** e non elencati a mano.
 ##

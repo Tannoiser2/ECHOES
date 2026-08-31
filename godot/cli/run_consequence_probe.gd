@@ -219,7 +219,7 @@ func _initialize() -> void:
 				# due e' la diagnosi: una carta che nessuno pesca e' un problema
 				# di mazzo, una che tutti pescano e nessuno cala e' un problema
 				# di **ragione per giocarla**.
-				for card_id in (session.world["echo_deck"]["drawn"] as Array):
+				for card_id in (session.world["echo_played"] as Array):
 					drawn[str(card_id)] = int(drawn.get(str(card_id), 0)) + 1
 				for record in (session.chronicle.confluence_results as Array):
 					councils += 1

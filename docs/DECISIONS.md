@@ -10,6 +10,116 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-359 — Via il mazzo del Narratore: l'Eco e' la versione potenziata della carta
+
+**implemented** (0.1.325) · chiude [ISSUES 114](ISSUES.md) · scelta del
+committente: *«fai la 1 e la 3, via mazzo separato, le carte di Propp si
+"fondono" con le carte asset, diciamo che sono una versione "potenziata"»*.
+
+### Il difetto
+
+ISSUES 114 l'aveva misurato: **le carte del Narratore arrivavano sul tavolo lo
+0,4 di una volta per partita**, 63 partite su 100 senza nessuna calata, 27 carte
+su 39 mai uscite, e `ECH_SACRIFICE` da sola faceva 24 delle 40 calate.
+
+La causa non era il mazzo: erano **25 carte su 39 che chiedevano una Tensione
+nominata**. Dopo [D-318](#d-318) l'anno pesca quattro questioni su sessanta, e
+una carta che chiedeva `TEN_FAMINE` era eleggibile in una partita su sette.
+
+E l'eleggibilita' nominava la Tensione **perche' l'effetto la nomina**: senza
+quella guardia un `ADJUST_TENSION` su una questione fuori dal tavolo fallisce.
+Non era una svista, era un nodo.
+
+### Le due strade, tenute insieme
+
+**Strada 1 — l'Eco si accende a segni, non col nome della questione.** Ogni
+`tension_limit` nell'eleggibilita' e' sparito, e al suo posto sta un segno che
+il mondo scrive davvero, scelto sulla misura di [MISURA_SEGNI](MISURA_SEGNI.md):
+*«da qualche parte una terra e' contesa»*, *«un debito e' stato chiamato»*. E'
+la stessa correzione che [D-274](#d-274) fece per il bersaglio delle carte.
+
+Il nodo si scioglie con una cosa che c'era gia': `card_bindings` espone
+**`$tension`**, che risolve alla questione dichiarata se e' al tavolo e
+altrimenti a una che c'e'. Ogni bersaglio che nominava una Tensione adesso e'
+`$tension` con la questione d'autore in `bindings.focus_tension`. La carta parla
+sempre: della carestia se la carestia e' aperta, di quello che il tavolo ha
+davanti se non lo e'.
+
+**Strada 3 — non c'e' piu' un mazzo.** L'Eco e' il **terzo blocco stampato sulla
+carta Asset**, sotto le due Azioni: la sua versione potenziata. Si cala al posto
+di un'Azione normale, e costa **la carta piu' un'altra scartata** — il prezzo
+della parola di [D-118](#d-118) resta, ma adesso e' un prezzo che si vede.
+
+Spariscono: il mazzo (`echo_deck`), la mano del Narratore (`echo_hand`), il
+sacchetto pesato (`_draw_from_bag`), la distribuzione a inizio Atto
+(`_deal_narrator_hands`) e lo SCHEME che sbirciava il mazzo — non c'e' piu'
+niente da sbirciare.
+
+### Cosa **non** e' cambiato, e valeva la pena non cambiarlo
+
+Al primo passaggio avevo cancellato anche le dieci clausole
+`echo_function_played` — la grammatica di Propp che [D-358](#d-358) aveva appena
+messo sul tavolo scoperto. Sbagliato: **quella non e' una lotteria.** Non
+dipende dal sorteggio dell'anno ma da cosa il tavolo ha gia' calato, ed e'
+l'ordine di Propp che CLAUDE.md dichiara intoccabile — *«ci si riconcilia dopo
+qualunque rottura»*. Se l'e' presa una prova che c'era gia'
+(`test_a_card_that_presupposes_something_waits_for_it`), e il passaggio e' stato
+rifatto chirurgico: **si toglie solo `tension_limit`**, e il segno entra soltanto
+dove la lotteria era l'unica guardia.
+
+| | prima | dopo |
+|---|---|---|
+| clausole `tension_limit` sugli Echi | 25 | **0** |
+| clausole `echo_function_played` (Propp) | 10 | **10** |
+| Echi che leggono una leggenda (D-076) | 3 | **3** |
+| Echi senza nessuna guardia, per famiglia | 1+ | **1+** |
+
+MEMORIA non c'e' piu' come famiglia (scelta del committente): le tre carte che
+leggevano una leggenda sono diventate Echi come gli altri, e la leggenda e'
+rimasta nella loro eleggibilita' — in `any_of` con un'alternativa raggiungibile,
+perche' i tre segni `legend:*` **non arrivano mai al tavolo** e da soli quelle
+carte restavano ferme comunque.
+
+### L'Atto: da sacchetto a cancello
+
+`act_echo_pools` resta, e cambia mestiere. Era il sacchetto pesato da cui usciva
+una carta; adesso dice **quali famiglie si possono calare in quell'Atto**. La
+forma in tre atti regge — il primo solo pressione, l'ultimo soprattutto
+risoluzione — ma adesso e' una regola che un giocatore puo' leggere sulla carta
+invece di una probabilita' dentro un sacchetto.
+
+### Nove Echi nuovi
+
+39 Echi scritti, 48 carte Asset: [scelta del committente](ISSUES.md) di coprirle
+tutte. I nove nuovi stanno su `AST_PEOPLE_MOBILIZATION`, `AST_PEOPLE_MARCH`,
+`AST_PEOPLE_STILL_HANDS`, `AST_KNOWLEDGE_WITNESS`, `AST_WEALTH_SALT`,
+`AST_WEALTH_TOLL`, `AST_WEALTH_CARAVAN`, `AST_WEALTH_CREDIT` e
+`AST_BONDS_OLD_DEBT`. Le famiglie drammatiche tornano **12 e 12 e 12 e 12**.
+
+### Due segni muti in meno
+
+Sceglere i segni sulla misura ha un effetto che vale la pena dichiarare: due dei
+quattro segni che [MISURA_SEGNI](MISURA_SEGNI.md) chiamava *«lavoro del motore
+che al tavolo non conta»* adesso qualcuno li guarda — `burden_shared` (scritto
+48 volte, letto da nessuno) e `someone_paid` (27). Gli altri due,
+`spoke_and_lost` e `took_by_hand`, sono di **casata**, e l'eleggibilita' di un
+Eco si giudica senza sapere chi la sta calando: quelli restano muti, e restano
+scritti qui.
+
+### La scatola cala di cinque fogli
+
+| | prima | dopo |
+|---|---|---|
+| mazzi da stampare | 7 | **6** |
+| fogli A4 di carte e tessere | 54 | **49** |
+| pezzi con una faccia fisica mancante | 75 | **36** |
+
+Le 39 carte Echo senza faccia sparivano da [ISSUES 113](ISSUES.md) non perche'
+qualcuno le abbia scritte, ma perche' **non sono piu' carte**: sono un blocco
+sulla faccia di una carta che la faccia ce l'ha.
+
+---
+
 ## D-358 — Via la grammatica di Propp dal mondo: sta sulle carte calate
 
 **implemented** · 0.1.322 · voluto dal committente

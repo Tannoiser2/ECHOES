@@ -194,7 +194,7 @@ func _initialize() -> void:
 			)
 			var report: Dictionary = await session.run(table)
 
-			for card_id in session.world["echo_deck"]["drawn"]:
+			for card_id in session.world["echo_played"]:
 				if memoria_cards.has(str(card_id)):
 					memory_read[str(card_id)] = int(memory_read.get(str(card_id), 0)) + 1
 			for result in report["confluences"]:

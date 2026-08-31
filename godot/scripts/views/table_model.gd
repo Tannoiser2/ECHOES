@@ -99,22 +99,14 @@ static func build(session: RefCounted) -> Dictionary:
 		})
 
 	# Le carte che il mondo ha calato: la faccia in tavola.
-	# `drawn` e' tutto cio' che il mazzo ha lasciato: comprese le carte che
-	# stanno ANCORA IN MANO ai seggi (`_deal_narrator_hands` pesca da li'). La
-	# vetrina non ha viewer — e' pubblica per costruzione — quindi mostrarla
-	# tale e quale svelava a tutto il tavolo la mano del Narratore di ognuno
-	# (D-144). Calata e' una carta uscita dal mazzo e non piu' in nessuna mano:
-	# oggi una carta lascia la mano solo per essere calata
-	# (`action_resolver._play_echo`), e se un domani ci fosse un altro modo di
-	# perderla, e' qui che va detto.
-	var still_held: Array = []
-	for entity_id in world["entities"]:
-		still_held.append_array(
-			(world["entities"][str(entity_id)] as Dictionary).get("echo_hand", [])
-		)
-	for card_id in world["echo_deck"]["drawn"]:
-		if still_held.has(card_id):
-			continue
+	# Prima si ricavava per sottrazione — le uscite dal mazzo meno quelle
+	# ancora in mano — perche' il mazzo era l'unica cosa che sapesse chi aveva
+	# cosa, e mostrarlo tale e quale svelava a tutto il tavolo la mano del
+	# Narratore di ognuno (D-144). Adesso non c'e' piu' ne' mazzo ne' mano
+	# (D-359): `echo_played` e' la pila di quelli che qualcuno ha calato
+	# davvero, e la vetrina la copia. Un Eco che nessuno ha calato non ci puo'
+	# finire per costruzione, non per attenzione.
+	for card_id in world.get("echo_played", []):
 		var card: Variant = data.echo_cards.get(str(card_id))
 		if card != null:
 			(out["echoes_played"] as Array).append({

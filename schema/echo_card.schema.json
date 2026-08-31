@@ -35,8 +35,8 @@
         "title": { "type": "string", "minLength": 1 },
         "dramatic_family": {
           "type": "string",
-          "enum": ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION", "MEMORIA"],
-          "description": "MEMORIA e la famiglia delle carte che leggono una leggenda (D-076): per costruzione condizionale, e sta solo nei mazzi delle Chronicle che la elencano in un act_echo_pool - cioe le ere che una memoria possono averla."
+          "enum": ["PRESSURE", "RUPTURE", "TURN", "RESOLUTION"],
+          "description": "La forma in tre atti, e adesso e' l'unica cosa che la famiglia fa (D-359). Non c'e' piu' un sacchetto che pesca per famiglia: la famiglia dice **in quale Atto l'Eco di questa carta si puo' calare**, letta da `act_echo_pools` della Chronicle. MEMORIA non c'e' piu' (scelta del committente): le tre carte che leggevano una leggenda sono diventate Echi come gli altri, e la leggenda e' rimasta nella loro eleggibilita' - il contenuto che D-076 misurava si legge ancora, ma non ha piu' bisogno di una famiglia sua."
         },
         "function_id": {
           "type": "string",
@@ -71,7 +71,7 @@
         "eligibility": {
           "type": "array",
           "items": { "$ref": "destiny.schema.json#/$defs/condition" },
-          "description": "All conditions must hold for the card to be legally drawn. Empty array = always eligible."
+          "description": "Tutte le condizioni devono reggere perche' l'Eco si possa calare. Vuoto = sempre acceso.\n\n**Qui non si nomina una Tensione** (D-359, strada 1 del committente): un Eco si accende sui **segni** che il mondo porta, non sull'identificatore della questione dell'anno. Era la lotteria che teneva il mazzo fermo - una carta che chiedeva `TEN_FAMINE` era eleggibile in una partita su sette, perche' dopo D-318 l'anno pesca quattro questioni su sessanta. `tools/validate_physical.py` rifiuta un `tension_limit` in questa lista."
         },
         "effect_hooks": {
           "type": "array",

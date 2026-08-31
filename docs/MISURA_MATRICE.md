@@ -210,7 +210,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `charter_for_all` | **si'** | no | clausola di Consiglio, faccia della Tensione |
 | vuole | `water_moves` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
-| vuole | `debt_forgiven` | **si'** | **si'** | Conseguenza, faccia della Tensione |
+| vuole | `debt_forgiven` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `crowned` | no | no | casato |
 | teme | `no_charter` | no | no | Conseguenza |
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo, faccia della Tensione |
@@ -224,7 +224,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `discovery:crystal` | no | **si'** | Conseguenza |
-| vuole | `knowledge_shared` | **si'** | **si'** | clausola di Consiglio, faccia della Tensione |
+| vuole | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
 | vuole | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
 | vuole | `structure:archive` | **si'** | no | Pietra |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
@@ -255,10 +255,10 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
-| vuole | `account_settled` | **si'** | no | Conseguenza, faccia della Tensione |
+| vuole | `account_settled` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
 | vuole | `structure:tollgate` | **si'** | no | Pietra |
 | vuole | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
-| teme | `debt_forgiven` | **si'** | **si'** | Conseguenza, faccia della Tensione |
+| teme | `debt_forgiven` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | teme | `crown_divided` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `oath_broken` | no | **si'** | Conseguenza |
@@ -276,7 +276,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `crystal_exploited` | **si'** | **si'** | Conseguenza, faccia della Tensione |
 | teme | `discovery:crystal` | no | **si'** | Conseguenza |
 | teme | `condition:exploited` | **si'** | no | Conseguenza, Risonanza, faccia della Tensione |
-| teme | `knowledge_shared` | **si'** | **si'** | clausola di Consiglio, faccia della Tensione |
+| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
 | teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo, faccia della Tensione |
 
 ### ENT_VETRO
@@ -289,7 +289,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `faith_established` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `relic_buried` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
-| teme | `knowledge_shared` | **si'** | **si'** | clausola di Consiglio, faccia della Tensione |
+| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
 | teme | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
 | teme | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
@@ -345,7 +345,7 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `condition:cut_off` | VAERAX | LIBERE, NAHR, SALE | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crown_divided` | NAHR | ALDRIC, SALE | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `discovery:crystal` | CENERE, LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
-| `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, clausola di Consiglio, faccia della Tensione |
+| `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, carta Echo, clausola di Consiglio, faccia della Tensione |
 | `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
 | `mine_sealed` | VAERAX | CENERE, LYRA | — | Conseguenza, faccia della Tensione, fatto che dura |
 | `structure:sealed` | VAERAX, VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
@@ -354,7 +354,7 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `crystal_exploited` | CENERE | VAERAX | **si'** | Azione stampata, Conseguenza, faccia della Tensione |
 | `crystal_measured` | LYRA | VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
 | `debt_called` | SALE | LIBERE | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione |
-| `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza, faccia della Tensione |
+| `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza, carta Echo, faccia della Tensione |
 | `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
 | `rumour_running` | VAERAX | VETRO | — | Conseguenza |

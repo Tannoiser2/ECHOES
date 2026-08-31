@@ -206,16 +206,20 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	var service: RefCounted = session.service
 
-	# ISSUES 23 (D-118): le carte del Narratore in mano, quelle che la storia
-	# accetta adesso. Il prezzo (una carta Asset) lo sceglie il resolver.
-	for card_id in session.world["entities"][entity_id].get("echo_hand", []):
-		var request: Dictionary = {"echo_card_id": str(card_id)}
+	# D-359: l'Eco e' il terzo blocco della carta Asset che hai in mano - la sua
+	# versione potenziata. Si offre accanto alle Azioni normali della stessa
+	# carta, cosi' la scelta si vede: la stessa carta, o la sua parola.
+	for asset_id in service.hand(entity_id):
+		var request: Dictionary = {"asset_card_id": str(asset_id)}
 		if session.actions.can_execute(entity_id, "PLAY_ECHO", request):
+			var echo_id: String = str(
+				(session.data.assets[str(asset_id)] as Dictionary)["echo_id"]
+			)
 			# Il titolo da solo non dice niente: che tono ha e cosa fa stanno
 			# accanto, come per le carte Asset (EchoText).
 			out.append({
 				"label": EchoText.label(
-					session.data.echo_cards[str(card_id)] as Dictionary, session.data
+					session.data.echo_cards[echo_id] as Dictionary, session.data
 				),
 				"template": "PLAY_ECHO", "params": request,
 			})

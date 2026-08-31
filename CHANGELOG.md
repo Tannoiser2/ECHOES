@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.325 — Via il mazzo del Narratore: l'Eco e' la versione potenziata della carta (D-359)
+
+Ordine del committente, dopo la misura della 0.1.324: *«fai la 1 e la 3, via
+mazzo separato, le carte di Propp si "fondono" con le carte asset, diciamo che
+sono una versione "potenziata"»*.
+
+### Cosa cambia sul tavolo
+
+Non c'e' piu' un mazzo del Narratore, ne' una mano separata, ne' un sacchetto
+che pesca a inizio Atto. **Ogni carta Asset porta il suo Eco stampato sotto le
+due Azioni**: la sua versione potenziata. Si cala al posto di un'Azione normale,
+costa **la carta piu' un'altra scartata**, e si accende solo se il mondo porta i
+segni che quell'Eco nomina.
+
+| | prima | dopo |
+|---|---|---|
+| mazzi da stampare | 7 | **6** |
+| fogli A4 di carte e tessere | 54 | **49** |
+| Echi scritti | 39 | **48**, uno per carta |
+| clausole `tension_limit` sugli Echi | 25 | **0** |
+| pezzi senza una faccia fisica | 75 | **36** |
+
+### Perche' erano fermi
+
+25 Echi su 39 chiedevano una **Tensione nominata**, e dopo D-318 l'anno pesca
+quattro questioni su sessanta. L'eleggibilita' la nominava perche' **l'effetto**
+la nomina: un `ADJUST_TENSION` su una questione fuori dal tavolo fallisce.
+
+Il nodo si scioglie con `$tension`, che c'era gia': risolve alla questione
+d'autore se e' aperta, e altrimenti a una che c'e'. La carta parla sempre.
+
+### Quello che non si e' toccato, e per poco non lo toccavo
+
+Al primo passaggio avevo cancellato anche le dieci clausole
+`echo_function_played` — la grammatica di Propp che D-358 aveva appena messo
+sul tavolo scoperto. Quella non e' una lotteria: dipende da cosa il tavolo ha
+calato, non dal sorteggio dell'anno. Se n'e' accorta una prova che c'era gia',
+e il passaggio e' stato rifatto **chirurgico**: si toglie solo `tension_limit`.
+Dieci clausole di Propp prima, dieci dopo.
+
+### Due segni muti in meno
+
+`burden_shared` (48 scritture, nessun lettore) e `someone_paid` (27) adesso
+accendono un Eco. `spoke_and_lost` e `took_by_hand` restano muti: sono di
+casata, e l'eleggibilita' di un Eco si giudica senza sapere chi lo cala.
+
+---
+
 ## 0.1.324 — Il mazzo del Narratore arriva sul tavolo 0,4 volte per partita (ISSUES 114)
 
 Una sonda nuova, nessuna regola toccata: prima di scrivere le 39 facce che

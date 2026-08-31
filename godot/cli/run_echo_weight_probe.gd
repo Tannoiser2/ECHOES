@@ -7,13 +7,14 @@ extends SceneTree
 ## Tre domande del committente, in quest'ordine, perche' la seconda e la terza
 ## non hanno senso se la prima risponde «quasi mai»:
 ##
-##   1. **quando vengono calate?** — quante ne distribuisce l'Atto, quante ne
-##      arrivano sul tavolo, quante restano in mano quando la partita finisce;
+##   1. **quando vengono calate?** — quante volte una carta viene giocata per
+##      il suo Eco invece che per un'Azione normale (D-359: non c'e' piu' un
+##      mazzo da distribuire, l'Eco e' il terzo blocco della carta Asset);
 ##   2. **quanto cambiano il mondo?** — quanti Effetti porta una calata, al
 ##      netto di quello che il giocatore paga, contro un'azione con una carta
 ##      Asset e contro un Consiglio approvato;
-##   3. **servono a qualcosa?** — quali carte non escono mai, e per quale dei
-##      quattro rifiuti quelle rimaste in mano non si potevano calare.
+##   3. **servono a qualcosa?** — quali Echi non escono mai, e per quale dei
+##      cinque rifiuti quelli rimasti in mano non si potevano calare.
 ##
 ## Il tavolo e' quello del cancello: cento anni pescati di CHR_00, quattro
 ## caratteri mescolati fra i seggi, semi da 7000. Cosi' i numeri stanno
@@ -67,6 +68,7 @@ func _initialize() -> void:
 	var refusals: Dictionary = {}
 	var hand_at_end: int = 0
 	var hands_counted: int = 0
+	var distinct_played: int = 0
 
 	for index in range(runs):
 		var seed_value: int = first_seed + index
@@ -79,7 +81,6 @@ func _initialize() -> void:
 		var report: Dictionary = await session.run(table)
 		var world: Dictionary = session.world
 
-		dealt += (world["echo_deck"]["drawn"] as Array).size()
 		played_by_pile += (world["echo_played"] as Array).size()
 
 		# Un'azione non e' un Effetto: tutti gli Effetti di una stessa azione
@@ -117,6 +118,13 @@ func _initialize() -> void:
 					seen_councils[key] = true
 				effects_council += 1
 		played += seen_plays.size()
+		# `echo_played` e' un insieme: lo stesso Eco calato due volte in un anno
+		# — le carte hanno piu' copie in scatola — ci compare una volta sola.
+		# Il confronto onesto e' fra carte **distinte**, non fra calate.
+		var distinct_here: Dictionary = {}
+		for card_id in world["echo_played"]:
+			distinct_here[str(card_id)] = true
+		distinct_played += distinct_here.size()
 		plays_card += seen_card_plays.size()
 		councils += seen_councils.size()
 		if seen_plays.size() > 0:
@@ -131,16 +139,17 @@ func _initialize() -> void:
 		# quante volte ha morso.
 		for entity_id in seats:
 			var entity: Dictionary = world["entities"][str(entity_id)]
-			var hand: Array = entity.get("echo_hand", []) as Array
+			var hand: Array = entity["hand"] as Array
 			left_in_hand += hand.size()
-			hand_at_end += (entity["hand"] as Array).size()
+			hand_at_end += hand.size()
 			hands_counted += 1
-			for card_id in hand:
+			for asset_id in hand:
 				var why: String = session.actions.check(
-					str(entity_id), "PLAY_ECHO", {"echo_card_id": str(card_id)}
+					str(entity_id), "PLAY_ECHO", {"asset_card_id": str(asset_id)}
 				)
 				var bucket: String = _bucket(why)
 				refusals[bucket] = int(refusals.get(bucket, 0)) + 1
+				dealt += 1
 		session.dispose()
 
 	for card_id in data.echo_cards:
@@ -154,27 +163,28 @@ func _initialize() -> void:
 	print("")
 	print("PROVA CHE LA SONDA VEDE")
 	print("  calate contate dal registro degli Effetti   %d" % played)
-	print("  carte distinte nella pila `echo_played`     %d" % played_by_pile)
+	print("  Echi distinti, dal registro                 %d" % distinct_played)
+	print("  Echi distinti nella pila `echo_played`      %d" % played_by_pile)
 	if played == 0:
 		print("  ** ZERO: la sonda e' cieca, oppure nessuno cala mai. Non credere al resto. **")
-	elif played != played_by_pile:
+	elif distinct_played != played_by_pile:
 		print("  ** le due strade non combaciano: una carta calata due volte, o una firma persa. **")
 	else:
 		print("  le due strade combaciano.")
 
 	print("")
 	print("1. QUANDO VENGONO CALATE")
-	print("  carte distribuite in mano       %6.2f per partita  (%d in tutto)" % [
-		float(dealt) / float(runs), dealt
-	])
-	print("  carte calate sul tavolo         %6.2f per partita  (%d in tutto)" % [
+	print("  Echi calati sul tavolo          %6.2f per partita  (%d in tutto)" % [
 		float(played) / float(runs), played
 	])
-	if dealt > 0:
-		print("  quota delle distribuite che si cala   %5.1f%%" % [
-			100.0 * float(played) / float(dealt)
+	print("  carte giocate in tutto          %6.2f per partita  (%d in tutto)" % [
+		float(played + plays_card) / float(runs), played + plays_card
+	])
+	if played + plays_card > 0:
+		print("  quota delle giocate che e' un Eco    %5.1f%%" % [
+			100.0 * float(played) / float(played + plays_card)
 		])
-	print("  restano in mano a fine partita  %6.2f per partita  (%d in tutto)" % [
+	print("  carte in mano a fine partita    %6.2f per partita  (%d in tutto)" % [
 		float(left_in_hand) / float(runs), left_in_hand
 	])
 	print("  partite con almeno una calata   %d su %d" % [runs_with_one, runs])
@@ -208,24 +218,24 @@ func _initialize() -> void:
 
 	print("")
 	print("3. SERVONO A QUALCOSA")
-	print("  carte scritte                    %d" % data.echo_cards.size())
-	print("  carte uscite almeno una volta    %d" % by_card.size())
-	print("  carte che non escono mai         %d" % (data.echo_cards.size() - by_card.size()))
+	print("  Echi scritti                     %d" % data.echo_cards.size())
+	print("  Echi usciti almeno una volta     %d" % by_card.size())
+	print("  Echi che non escono mai          %d" % (data.echo_cards.size() - by_card.size()))
 	print("  carte che prescrivono un Consiglio  %d su %d scritte" % [
 		forced_cards, data.echo_cards.size()
 	])
-	print("  mano di carte Asset a fine partita  %.2f (il prezzo e' 1)" % [
+	print("  mano di carte Asset a fine partita  %.2f (l'Eco ne costa 2)" % [
 		(float(hand_at_end) / float(hands_counted)) if hands_counted > 0 else 0.0
 	])
 	print("")
-	print("  Perche' le rimaste in mano non si potevano calare (fotografia di fine partita)")
+	print("  Perche' l'Eco delle carte in mano non si poteva calare (fotografia di fine partita)")
 	var buckets: Array = refusals.keys()
 	buckets.sort()
 	for bucket in buckets:
 		print("    %-34s %d" % [str(bucket), int(refusals[bucket])])
 
 	print("")
-	print("  Le carte, una per una (su %d partite)" % runs)
+	print("  Gli Echi, uno per uno (su %d partite)" % runs)
 	var card_ids: Array = data.echo_cards.keys()
 	card_ids.sort()
 	for card_id in card_ids:
@@ -243,14 +253,18 @@ func _initialize() -> void:
 func _bucket(why: String) -> String:
 	if why == "":
 		return "si poteva calare, non l'hanno voluta"
-	if why.contains("la storia non e pronta"):
-		return "la storia non e' pronta (eleggibilita')"
-	if why.contains("costa una carta Asset"):
-		return "mano vuota: non c'e' con cosa pagarla"
+	if why.contains("il mondo non porta i segni"):
+		return "il mondo non porta i segni (eleggibilita')"
+	if why.contains("la mano non basta"):
+		return "la mano non basta per pagarlo"
 	if why.contains("Consiglio prescritto"):
 		return "un Consiglio e' gia' prescritto"
 	if why.contains("non e nella mano"):
 		return "non e' in mano"
+	if why.contains("non si cala in questo Atto"):
+		return "l'Atto non lo permette (famiglia)"
+	if why.contains("non porta un Eco"):
+		return "la carta non porta un Eco"
 	return why
 
 

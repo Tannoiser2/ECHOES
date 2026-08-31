@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2259 testi in lettura.
+possono spostare nella frase, non togliere. 2277 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -6065,6 +6065,12 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 > Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.
 
 
+**`ECH_HANDS_DOWN`**
+> Le Mani Ferme
+
+> Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
+
+
 **`ECH_LACK`**
 > Mancanza
 
@@ -6179,6 +6185,18 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 > Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
 
 
+**`ECH_THE_CALLED_UP`**
+> I Chiamati
+
+> La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
+
+
+**`ECH_THE_CLOSED_ROAD`**
+> La Strada Chiusa a Chiave
+
+> Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
+
+
 **`ECH_THE_COPY`**
 > La Copia
 
@@ -6203,10 +6221,40 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 > Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
 
 
+**`ECH_THE_FORGIVEN_DEBT`**
+> Il Debito Rimesso
+
+> Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
+
+
 **`ECH_THE_LONG_TABLE`**
 > Il Tavolo Lungo
 
 > Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.
+
+
+**`ECH_THE_MET_ROAD`**
+> L'Incontro sulla Strada
+
+> Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
+
+
+**`ECH_THE_OLD_ACCOUNT`**
+> Il Conto Vecchio
+
+> Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
+
+
+**`ECH_THE_ONE_WHO_SAW`**
+> Quello che c'Era
+
+> Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
+
+
+**`ECH_THE_PRICE_OF_SALT`**
+> Il Prezzo del Sale
+
+> Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
 
 
 **`ECH_THE_QUIET_SHAFT`**
@@ -6219,6 +6267,12 @@ possono spostare nella frase, non togliere. 2259 testi in lettura.
 > L'Anno Corto
 
 > Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
+
+
+**`ECH_THE_WALKING_YEAR`**
+> L'Anno a Piedi
+
+> Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
 
 
 **`ECH_TWO_VERDICTS`**

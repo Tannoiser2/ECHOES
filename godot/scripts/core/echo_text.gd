@@ -1,5 +1,5 @@
 extends RefCounted
-## Cosa fa una carta del Narratore, in due righe, prima di calarla.
+## Cosa fa l'Eco di una carta, in due righe, prima di calarlo.
 ##
 ## Le carte Asset lo dicono da 0.1.x: accanto a ogni opzione di impegno c'e'
 ## quanto vale qui e cosa costa al mondo (`asset_text.gd`, D-042). Le carte del
@@ -20,7 +20,6 @@ const FAMILIES: Dictionary = {
 	"RUPTURE": "rompe",
 	"TURN": "svolta",
 	"RESOLUTION": "chiude",
-	"MEMORIA": "ricorda",
 }
 
 
@@ -38,7 +37,23 @@ static func effect_lines(card: Dictionary, data: RefCounted) -> Array:
 				else "scrive una Conseguenza"
 			)
 			continue
-		var said: String = EffectText.say(entry.get("effect", {}) as Dictionary, data)
+		var spec: Dictionary = entry.get("effect", {}) as Dictionary
+		# **La questione d'autore, detta per nome** (D-359). Il bersaglio e'
+		# `$tension`, che al tavolo risolve alla questione dichiarata se e'
+		# aperta e altrimenti a quella che c'e': un identificativo, qui, non si
+		# puo' stampare. Ma la carta sa di cosa parla — sta in
+		# `bindings.focus_tension` — e dirlo per nome, con la riserva, e' piu'
+		# onesto che dire «una Tensione».
+		var focus: String = str((entry.get("bindings", {}) as Dictionary).get("focus_tension", ""))
+		var said: String = ""
+		if focus != "" and str((spec.get("target", {}) as Dictionary).get("id", "")) == "$tension":
+			var named: Dictionary = spec.duplicate(true)
+			(named["target"] as Dictionary)["id"] = focus
+			said = EffectText.say(named, data)
+			if said != "":
+				said += ", o la domanda che il tavolo ha aperto"
+		else:
+			said = EffectText.say(spec, data)
 		if said != "" and not out.has(said):
 			out.append(said)
 	var forced: Variant = card.get("forces_confluence_on", null)
@@ -63,7 +78,7 @@ static func note(card: Dictionary, data: RefCounted) -> String:
 static func label(card: Dictionary, data: RefCounted) -> String:
 	var family: String = str(card.get("dramatic_family", ""))
 	var tone: String = str(FAMILIES.get(family, family.to_lower()))
-	return "Cala la carta del Narratore: %s — %s\n%s" % [
+	return "Cala l'Eco di questa carta: %s — %s\n%s" % [
 		str(card["title"]), tone, note(card, data),
 	]
 

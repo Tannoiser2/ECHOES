@@ -6366,7 +6366,7 @@ oppure una ragione scritta per cui non ce l'ha — e un cancello lo tiene.
 
 ---
 
-### 114. Le carte del Narratore si calano il 2,6% delle volte
+### 114. Le carte del Narratore si calano il 2,6% delle volte — CHIUSA in 0.1.325
 
 `regole` · `da-decidere` · aperta in 0.1.324
 
