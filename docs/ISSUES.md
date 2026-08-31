@@ -6308,7 +6308,7 @@ partite, o non e' piu' nel catalogo.
 
 ---
 
-### 112. Due segni della catena delle ere non stanno nel dizionario
+### 112. Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
 
 `dati` · `piccola` · aperta in 0.1.320 ([D-356](DECISIONS.md#d-356))
 
@@ -6329,6 +6329,28 @@ percorso lascia aperto.**
 
 **Fatto quando** i due sono nel dizionario, e il censimento guarda anche le
 catene delle ere.
+
+> ### Chiusa in 0.1.335 ([D-369](DECISIONS.md#d-369))
+>
+> Le due voci ci sono, e il censimento raschia le catene delle ere: una Cronaca
+> **scrive** ogni anello e **legge** ogni anello — non «ogni anello oltre il
+> primo», che è quello che la prima stesura diceva e che la guardia ha bocciato
+> avendo ragione lei.
+>
+> Il varco ha portato a galla una mano sbagliata che nessuno cercava:
+> `mountain_forgotten` diceva `written_by: ["tension"]`, e la catena lo posa
+> eccome.
+>
+> E lo stesso buco c'era nel disegno: le due voci nuove comparivano in
+> `flusso.html` come **pezzi senza una freccia**. Adesso la catena delle ere è un
+> pezzo del grafo — legge la condizione, teme il segno di guardia, posa i suoi
+> tre anelli e li rilegge per sapere a che punto è.
+>
+> **E la misura adesso lo dice a voce alta**: `seal_kept`, `seal_kept_twice` e
+> `mountain_forgotten` *non arrivano mai* sul tavolo. Non è un difetto nuovo, è
+> la [108](#108) che diventa visibile — la catena parte da `mine_sealed`, che in
+> cento partite nessuno scrive. Prima quel buco era coperto da due segni fuori
+> catalogo; adesso è una riga in un documento sorvegliato.
 
 ---
 

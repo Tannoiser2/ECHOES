@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-369 — Il tempo è una penna, e il censimento non la vedeva
+
+**implemented** (0.1.335) · chiude [ISSUES 112](ISSUES.md#112)
+
+### Due segni di cui non si sapeva quello che si sa di tutti gli altri
+
+`seal_kept` e `seal_kept_twice` sono il secondo e il terzo anello della catena
+delle ere `TLY_SEAL`, quella che da `mine_sealed` porta a `mountain_forgotten`.
+Il mondo li scriveva, `sign_labels.gd` li stampava, avevano perfino la scheda
+del disegno — **e non erano voci del dizionario dei segni.** Di loro non si
+sapeva che categoria fossero, in che posto del tavolo stessero, chi li posasse e
+chi li leggesse.
+
+E il controllo 1 di `validate_physical` — *ogni segno toccato è nel dizionario*
+— non li vedeva: li nomina la catena delle ere dentro il dato di Cronaca, e
+**quel percorso il censimento non lo raschiava.** `_scava` cerca Effect
+compilati; un anello è una stringa dentro una lista.
+
+### La cura è il varco, non le due voci
+
+Le due voci si aggiungono in un minuto. Quello che chiude la questione è il
+percorso: il censimento adesso raschia le catene delle ere, e una Cronaca
+**scrive** ogni anello e **legge** ogni anello.
+
+Non «ogni anello oltre il primo», che è quello che la prima stesura diceva:
+`WorldStateFactory` scorre tutta la catena cercando l'anello più avanti che il
+mondo già porta — è così che sa a che punto è il conto — e poi riposa tutti
+quelli fino al prossimo. **La guardia ha bocciato la prima stesura, e aveva
+ragione lei**: dichiarava una mano che il censimento non vedeva.
+
+E ha trovato una cosa che nessuno cercava: `mountain_forgotten` diceva
+`written_by: ["tension"]`, e la catena lo posa eccome.
+
+### E il disegno aveva lo stesso buco, dall'altra parte
+
+Aggiunte le due voci, comparivano in `docs/flusso.html` come **pezzi senza una
+freccia**: mostrati, e senza nessuno che dicesse chi ce li mette — che è
+esattamente la domanda a cui quella pagina serve a rispondere. Adesso la catena
+delle ere è un pezzo del grafo: legge il segno della condizione, teme quello di
+guardia, posa i suoi tre anelli e li rilegge per sapere a che punto è.
+
+| | prima | dopo |
+|---|---|---|
+| voci del dizionario | 180 | **182** |
+| pezzi del disegno | 577 | **580** |
+| difetti piantati | 40 | **41** |
+
+### Quello che la misura adesso dice a voce alta
+
+Con le due voci dentro, `docs/MISURA_TAVOLO.md` le conta come tutte le altre — e
+dice che **non arrivano mai**, insieme a `mountain_forgotten`. Non è un difetto
+nuovo: è [ISSUES 108](ISSUES.md#108) che diventa visibile. La catena parte da
+`mine_sealed`, che in cento partite nessuno scrive, quindi il primo anello non si
+aggancia mai e la Leggenda della Montagna non si siede al tavolo. Prima quel
+buco era coperto da due segni fuori catalogo; adesso è una riga in un documento
+sorvegliato.
+
+### Il costo
+
+Nessuno sul gioco: non cambia una riga sotto `godot/`, quindi il playtest a 100
+semi non è stato rilanciato.
+
+---
+
 ## D-368 — Il disegno conosce le caselle, e non butta via un pezzo in silenzio
 
 **implemented** (0.1.334) · richiesta del committente: *«dobbiamo rifare anche

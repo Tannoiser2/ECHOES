@@ -377,6 +377,32 @@ for t in load("tensions/*.json"):
                      "%s «%s»: %s" % (nome, it.get("verb", ""), it.get("text", "")[:80]),
                      "la muove chiamandola per nome")
 
+# ---------- LA CATENA DELLE ERE ----------
+#
+# **Il tempo e' una penna** (D-133, ISSUES 112). A ogni successione, se il segno
+# della condizione sta sui fatti del mondo e quello di guardia no, il conto posa
+# il prossimo anello della catena; se la condizione cade, tutta la catena
+# sparisce e il conto riparte.
+#
+# Il disegno non la conosceva. `seal_kept` e `seal_kept_twice` finivano nel
+# grafo come **pezzi senza una freccia**: mostrati, e senza nessuno che dicesse
+# chi ce li mette — che e' esattamente la domanda a cui questa pagina serve a
+# rispondere. Ed e' lo stesso varco che il censimento dei segni lasciava aperto.
+for cr in load("chronicle_*/*.json"):
+    for conto in cr.get("era_tallies", []) or []:
+        cid = str(conto["id"])
+        node(cid, "catena", t="il conto delle ere", d="a ogni successione avanza di un anello, se la condizione tiene")
+        edge(cid, str(conto["if_tag"]), "legge", "il conto avanza solo se il mondo porta questo segno")
+        if conto.get("if_not_tag"):
+            edge(cid, str(conto["if_not_tag"]), "teme",
+                 "se il mondo porta questo segno la catena sparisce e il conto riparte")
+        for indice, anello in enumerate(conto.get("chain", []) or []):
+            edge(cid, str(anello), "posa", "anello %d della catena" % (indice + 1),
+                 "un gettone sul bordo della mappa")
+            # E li rilegge tutti, per sapere a che punto e': e' il conto stesso
+            # che si guarda indietro.
+            edge(cid, str(anello), "legge", "per sapere a che anello e' arrivato")
+
 # ---------- DESTINI ----------
 for d in load("destinies/*.json"):
     ph = d.get("physical") or {}

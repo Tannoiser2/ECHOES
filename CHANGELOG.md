@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.335 — Il tempo è una penna (D-369) — chiude ISSUES 112
+
+`seal_kept` e `seal_kept_twice` sono due anelli della catena delle ere: il mondo
+li scriveva, l'app li stampava, avevano la scheda del disegno — e **non erano
+voci del dizionario**. Il controllo *ogni segno toccato è nel dizionario* non li
+vedeva, perché li nomina la catena dentro il dato di Cronaca e quel percorso il
+censimento non lo raschiava.
+
+Le due voci si aggiungono in un minuto; quello che chiude la questione è il
+varco. Adesso una Cronaca **scrive** ogni anello e **legge** ogni anello — non
+«ogni anello oltre il primo», che è quello che la prima stesura diceva e che la
+guardia ha bocciato avendo ragione lei: `WorldStateFactory` scorre tutta la
+catena per sapere a che punto è il conto.
+
+Ha portato a galla una mano sbagliata che nessuno cercava: `mountain_forgotten`
+diceva `written_by: ["tension"]`, e la catena lo posa eccome.
+
+**E il disegno aveva lo stesso buco dall'altra parte**: le due voci comparivano
+come pezzi senza una freccia. Adesso la catena delle ere è un pezzo del grafo.
+
+| | prima | dopo |
+|---|---|---|
+| voci del dizionario | 180 | **182** |
+| pezzi del disegno | 577 | **580** |
+| difetti piantati | 40 | **41** |
+
+**E la misura lo dice a voce alta**: i tre anelli *non arrivano mai* sul tavolo.
+Non è un difetto nuovo — è ISSUES 108 che diventa visibile: la catena parte da
+`mine_sealed`, che in cento partite nessuno scrive. Prima quel buco era coperto
+da due segni fuori catalogo.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`.
+
+---
+
 ## 0.1.334 — Il disegno conosce le caselle (D-368)
 
 Il grafo scriveva **«sul luogo della domanda»** su ogni freccia che usciva da

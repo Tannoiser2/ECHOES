@@ -7,8 +7,8 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 180 |
-| di cui qualcuno scrive | 176 |
+| segni nel dizionario | 182 |
+| di cui qualcuno scrive | 178 |
 | orfani in tutto | 68 |
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |

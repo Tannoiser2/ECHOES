@@ -2,7 +2,7 @@
 
 <!-- FILE GENERATO — si rifa' con `tools/run_table_survey.sh`. -->
 
-Ogni segno che sul tavolo ha un pezzo di cartone — i **180** con un posto
+Ogni segno che sul tavolo ha un pezzo di cartone — i **182** con un posto
 dichiarato (D-350) — e se in cento partite ci arriva davvero.
 
 La sonda dei segni ne guardava 66: le memorie del mondo e le condizioni dei
@@ -196,7 +196,7 @@ chi sei adesso, e la vita che stai vivendo.
 
 quello che il mondo ricorda (ISSUES 110).
 
-**52 segni: 35 arrivano sul tavolo, 17 non ci arrivano mai.**
+**54 segni: 35 arrivano sul tavolo, 19 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
@@ -242,6 +242,8 @@ quello che il mondo ricorda (ISSUES 110).
 | `relic_shown` | 0 | 5 | 0 | 5 |  |
 | `return_promised` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `rumour_running` | 0 | 33 | 0 | 23 |  |
+| `seal_kept` | 0 | 0 | 0 | 0 | **non arriva mai** |
+| `seal_kept_twice` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `someone_paid` | 0 | 6 | 0 | 6 |  |
 | `study_supervised` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `succession_by_law` | 0 | 6 | 0 | 6 |  |
@@ -256,7 +258,7 @@ quello che il mondo ricorda (ISSUES 110).
 ## I segni che non arrivano mai
 
 Hanno un posto sul tavolo, e in cento partite non ci si posano mai.
-Sono **59 su 180**.
+Sono **61 su 182**.
 
 | segno | dove starebbe |
 |---|---|
@@ -311,6 +313,8 @@ Sono **59 su 180**.
 | `relic_recorded` | un gettone sul bordo della mappa |
 | `return_promised` | un gettone sul bordo della mappa |
 | `scar:dragonfall` | un dischetto rotondo |
+| `seal_kept` | un gettone sul bordo della mappa |
+| `seal_kept_twice` | un gettone sul bordo della mappa |
 | `settlement:$proponent` | uno spazio sulla tessera |
 | `settlement:city` | uno spazio sulla tessera |
 | `structure:palace` | uno spazio sulla tessera |

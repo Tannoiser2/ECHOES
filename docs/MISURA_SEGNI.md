@@ -56,7 +56,7 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `ledger_public` | 158 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `echo_card` |  |
 | `list_witnessed` | 1 | 0 | 0 | — |  |
 | `mine_sealed` | 0 | 3 | 3 | `chronicle`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` | **mai scritto** |
-| `mountain_forgotten` | 0 | 0 | 1 | `destiny`, `entity`, `tag_rule`, `destiny_physical`, `entity_strategic_profile` | **mai scritto** |
+| `mountain_forgotten` | 0 | 0 | 1 | `chronicle`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule` | **mai scritto** |
 | `nahr_settled` | 7 | 0 | 2 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
 | `no_charter` | 1 | 1 | 0 | `asset_physical`, `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `oath_broken` | 2 | 1 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule` |  |
