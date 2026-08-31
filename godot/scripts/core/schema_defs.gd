@@ -1720,6 +1720,7 @@ const DEFS := {
 				"enum": [
 					"REGIONI",
 					"CASE",
+					"MONDO",
 					"PEDINE",
 				],
 			},

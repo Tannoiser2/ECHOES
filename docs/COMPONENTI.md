@@ -17,8 +17,8 @@ cosa manca perche' l'app dica **tutto** quello che dice il tavolo.
 | Carte **Casata** (una per vita) | 26 | 26 | 70x120 mm | **nessuna** | 7 |
 | Tessere **Regione** | 10 | 10 | 80x80 mm | **nessuna** | 2 |
 
-**54 fogli A4 di carte e tessere**, piu' tre fogli-fustella (i segni
-delle Regioni, i segni delle case, la traccia dei valori).
+**54 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
+delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 
 ## 2. I segnalini che si posano
 
@@ -26,16 +26,18 @@ Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
 meta' del gioco che si tocca. **Non sono i 183 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
-**posa** su una Regione o accanto a una casa.
+**posa**: su una Regione, accanto a una casa, o sul bordo della mappa
+dove sta quello che il mondo ricorda (D-351).
 
 | fustella | tipi diversi | pezzi da tagliare |
 |---|---|---|
 | **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | 34 | 52 |
 | **Segni delle case** — fama, scoperte, promesse | 33 | 39 |
+| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 51 | 51 |
 | Presenza e controllo | 2 | 12 per casa |
 | Rombi del Calore | 1 | uno per Tema, piu' due di scorta |
 
-**67 tipi diversi, 91 pezzi** piu' le pedine dei seggi.
+**118 tipi diversi, 142 pezzi** piu' le pedine dei seggi.
 
 Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
 questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca

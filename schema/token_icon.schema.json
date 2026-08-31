@@ -49,9 +49,10 @@
           "enum": [
             "REGIONI",
             "CASE",
+            "MONDO",
             "PEDINE"
           ],
-          "description": "Su quale foglio-fustella sta: i segni che si posano sulla mappa, quelli che stanno accanto al tarocco della casata, o i pezzi che non sono segni."
+          "description": "Su quale foglio-fustella sta: i segni che si posano sulla mappa, quelli che stanno accanto al tarocco della casata, quelli che vanno sul bordo della mappa perche' sono del mondo e non di un luogo (D-351), o i pezzi che non sono segni."
         },
         "rappresenta": {
           "type": "string",

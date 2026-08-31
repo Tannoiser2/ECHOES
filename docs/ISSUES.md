@@ -6165,7 +6165,7 @@ verita' per la stessa cosa, e nessuna che sorvegli l'altra.**
 **Fatto quando** cambiare il MASTER PROMPT 6 nel documento cambia il catalogo,
 oppure fa fallire un cancello.
 
-### 110. Dove si posa quello che il mondo ricorda — deciso in 0.1.316
+### 110. ✅ Dove si posa quello che il mondo ricorda — chiusa in 0.1.320
 
 `componenti` · `grammatica-fisica` · aperta in 0.1.315 ([D-350](DECISIONS.md#d-350)) · **decisa in 0.1.316** ([D-351](DECISIONS.md#d-351))
 
@@ -6181,6 +6181,11 @@ oppure fa fallire un cancello.
 > E prima di tagliare la fustella conviene guardare
 > [MISURA_TAVOLO](MISURA_TAVOLO.md): di quei 52, **20 non si posano mai** in
 > cento partite. Venti gettoni che resterebbero nella scatola.
+>
+> **Fatta in 0.1.320** ([D-356](DECISIONS.md#d-356)): cinquanta schede nuove piu'
+> `heir_named` spostato sul foglio giusto. I tre `legend:` non ne hanno una loro
+> — sono lo stesso gettone girato. Il censimento della scatola adesso li conta:
+> **da 67 tipi a 118, da 91 pezzi a 142**, e un foglio-fustella in piu'.
 
 Dando a ogni segno il suo posto sul tavolo, cinque posti su sei si sono riempiti
 da soli — la tessera, lo spazio della Pietra, il gettone di zona, il dischetto
@@ -6260,6 +6265,30 @@ gioco.
 
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non e' piu' nel catalogo.
+
+---
+
+### 112. Due segni della catena delle ere non stanno nel dizionario
+
+`dati` · `piccola` · aperta in 0.1.320 ([D-356](DECISIONS.md#d-356))
+
+`seal_kept` e `seal_kept_twice` sono il secondo e il terzo anello della catena
+`TLY_SEAL`, quella che da `mine_sealed` porta a `mountain_forgotten`. Il mondo li
+scrive, `sign_labels.gd` li stampa, e da 0.1.320 hanno la loro scheda del
+disegno — **ma non sono voci del dizionario dei segni.**
+
+Vuol dire che di loro non si sa quello che si sa di tutti gli altri: che
+categoria sono, in che posto del tavolo stanno, chi li posa e chi li legge. E il
+controllo 1 di `validate_physical` — *«ogni segno toccato e' nel dizionario»* —
+non li vede, perche' li nomina la catena delle ere dentro il dato di Chronicle, e
+quel percorso il censimento non lo raschia.
+
+Sono due, e la cura e' due voci con `table_place: WORLD_MEMORY`. La parte da
+guardare e' l'altra: **quanti altri segni entrano dal cancello che questo
+percorso lascia aperto.**
+
+**Fatto quando** i due sono nel dizionario, e il censimento guarda anche le
+catene delle ere.
 
 ---
 

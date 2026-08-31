@@ -75,7 +75,11 @@ def fustella() -> Dict[str, List[str]]:
     """
     testo = LABELS.read_text(encoding="utf-8")
     out: Dict[str, List[str]] = {}
-    for nome in ("REGION_WORDS", "ENTITY_WORDS"):
+    # `WORLD_WORDS` e' entrato col foglio nuovo (D-351). Finche' la memoria del
+    # mondo non aveva un posto sul tavolo era giusto lasciarla fuori dal conto:
+    # non si posava da nessuna parte. Adesso e' un gettone sul bordo della
+    # mappa, e un censimento della scatola che non lo conta e' sbagliato.
+    for nome in ("REGION_WORDS", "ENTITY_WORDS", "WORLD_WORDS"):
         blocco = testo.split("const %s: Dictionary = {" % nome, 1)[1].split("\n}", 1)[0]
         out[nome] = re.findall(r'"([^"]+)":\s*"', blocco)
     return out
@@ -171,6 +175,7 @@ def survey() -> str:
     segni = fustella()
     mappa = segni["REGION_WORDS"]
     case = segni["ENTITY_WORDS"]
+    mondo = segni["WORLD_WORDS"]
     condizioni_f = [t for t in mappa if t.startswith("condition:")]
     pietre_f = [t for t in mappa if t.startswith(("structure:", "settlement:"))]
     cicatrici_f = [t for t in mappa if t.startswith("scar:")]
@@ -181,6 +186,11 @@ def survey() -> str:
     # I segni delle case, piu' quattro «cacciata» e due «giuramento spezzato»,
     # che possono toccare piu' case insieme.
     pezzi_case = len(case) + 6
+    # Un fatto del mondo o e' successo o non e' successo: copia singola. La
+    # forma postuma (`legend:`) non e' un gettone in piu' — e' lo stesso,
+    # girato — quindi non si taglia due volte.
+    mondo_da_tagliare = [t for t in mondo if not t.startswith("legend:")]
+    pezzi_mondo = len(mondo_da_tagliare)
 
     out: List[str] = []
     add = out.append
@@ -206,8 +216,8 @@ def survey() -> str:
             pagine,
         ))
     add("")
-    add("**%d fogli A4 di carte e tessere**, piu' tre fogli-fustella (i segni" % fogli_totali)
-    add("delle Regioni, i segni delle case, la traccia dei valori).")
+    add("**%d fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni" % fogli_totali)
+    add("delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).")
     add("")
     add("## 2. I segnalini che si posano")
     add("")
@@ -215,7 +225,8 @@ def survey() -> str:
     add("meta' del gioco che si tocca. **Non sono i 183 segni del dizionario**:")
     add("quelli comprendono memorie, funzioni del motore, leggende e domini")
     add("stampati sulle tessere. Un segnalino si taglia solo per quello che si")
-    add("**posa** su una Regione o accanto a una casa.")
+    add("**posa**: su una Regione, accanto a una casa, o sul bordo della mappa")
+    add("dove sta quello che il mondo ricorda (D-351).")
     add("")
     add("| fustella | tipi diversi | pezzi da tagliare |")
     add("|---|---|---|")
@@ -223,11 +234,14 @@ def survey() -> str:
         len(mappa), pezzi_mappa))
     add("| **Segni delle case** — fama, scoperte, promesse | %d | %d |" % (
         len(case), pezzi_case))
+    add("| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | %d | %d |" % (
+        len(mondo_da_tagliare), pezzi_mondo))
     add("| Presenza e controllo | 2 | 12 per casa |")
     add("| Rombi del Calore | 1 | uno per Tema, piu' due di scorta |")
     add("")
     add("**%d tipi diversi, %d pezzi** piu' le pedine dei seggi." % (
-        len(mappa) + len(case), pezzi_mappa + pezzi_case))
+        len(mappa) + len(case) + len(mondo_da_tagliare),
+        pezzi_mappa + pezzi_case + pezzi_mondo))
     add("")
     add("Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice")
     add("questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca")

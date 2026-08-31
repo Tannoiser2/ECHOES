@@ -1036,24 +1036,6 @@ one object or one gesture, seen from the side or from straight above.
 Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 
-### l'erede nominato
-
-`heir_named` · categoria **MEMORY** · sta su entity, global · lo posa: asset, asset_physical, consequence
-
-**Cosa vuol dire.** L'erede ha un nome, e il nome e' stato detto davanti a qualcuno.
-
-**Cosa si vede.** una mano di adulto sopra una mano piccola
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: una mano di adulto sopra una mano piccola.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
 ### la fama
 
 `renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence, echo_card
@@ -1245,6 +1227,928 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
 Subject: sette torri di altezza diversa, in fila.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+## I segni che stanno sul bordo della mappa
+
+Quello che il mondo ricorda (D-351). Non stanno su una tessera e non stanno su una casa: un fatto del mondo non e' di nessuno dei due, e sul bordo si vede da ogni posto al tavolo senza girare un foglio. La **forma postuma** di un fatto — `legend:`, quando il passaggio di Chronicle lo promuove a racconto — non ha un gettone suo: e' lo stesso, girato.
+
+### l'erede e' stato nominato
+
+`heir_named` · categoria **MEMORY** · sta su entity, global · lo posa: asset, asset_physical, consequence
+
+**Cosa vuol dire.** L'erede ha un nome, e il nome e' stato detto davanti a qualcuno.
+
+**Cosa si vede.** una mano di adulto sopra una mano piccola
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una mano di adulto sopra una mano piccola.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il conto e' stato saldato
+
+`account_settled` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** Il debito e' chiuso: nessuno deve piu' niente a nessuno.
+
+**Cosa si vede.** due meta' di un bastoncino di conto, spezzate e rimesse una accanto all'altra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: due meta' di un bastoncino di conto, spezzate e rimesse una accanto all'altra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### l'amnistia e' stata concessa
+
+`amnesty_granted` · categoria **MEMORY** · sta su global · lo posa: confluence_template, echo_card
+
+**Cosa vuol dire.** Quello che era stato fatto non si conta piu': si riparte da zero.
+
+**Cosa si vede.** un ceppo di ferro aperto, con la catena che pende vuota
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un ceppo di ferro aperto, con la catena che pende vuota.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il tradimento e' stato detto ad alta voce
+
+`betrayal_spoken` · categoria **MEMORY** · sta su global · lo posa: asset_physical, echo_card
+
+**Cosa vuol dire.** Non e' piu' un sospetto: qualcuno lo ha detto davanti a tutti.
+
+**Cosa si vede.** una bocca aperta di profilo, e una crepa che parte da li'
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una bocca aperta di profilo, e una crepa che parte da li'.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il peso e' stato diviso
+
+`burden_shared` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Il carico non e' di uno solo: se lo portano in piu' d'uno.
+
+**Cosa si vede.** un giogo a due posti, coi due incavi consumati uguali
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un giogo a due posti, coi due incavi consumati uguali.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la Carta vale per tutti
+
+`charter_for_all` · categoria **MEMORY** · sta su global · lo posa: confluence_template, tension
+
+**Cosa vuol dire.** La legge scritta vale per chiunque, senza eccezioni comprate.
+
+**Cosa si vede.** un sigillo pendente da un nastro, largo quanto il rotolo che chiude
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un sigillo pendente da un nastro, largo quanto il rotolo che chiude.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la Carta vale per un tempo solo
+
+`charter_temporary` · categoria **MEMORY** · sta su global · lo posa: confluence_template, echo_card
+
+**Cosa vuol dire.** Vale adesso e non per sempre: qualcuno ci ha messo una scadenza.
+
+**Cosa si vede.** una clessidra posata di traverso sopra un rotolo chiuso
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una clessidra posata di traverso sopra un rotolo chiuso.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la Carta e' stata scritta
+
+`charter_written` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** C'e' una legge scritta, e da adesso si mostra invece di ricordarla.
+
+**Cosa si vede.** un rotolo aperto a meta', con la piega ancora alzata
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un rotolo aperto a meta', con la piega ancora alzata.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la corona e' stata spogliata
+
+`crown_dispossessed` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Chi portava la corona non ha piu' le terre che la reggevano.
+
+**Cosa si vede.** una corona rovesciata, appoggiata su un fianco
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una corona rovesciata, appoggiata su un fianco.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la corona e' stata divisa
+
+`crown_divided` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** Piu' d'uno la rivendica, e nessuno la porta intera.
+
+**Cosa si vede.** un cerchio spezzato in due archi che non combaciano
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un cerchio spezzato in due archi che non combaciano.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il Cristallo e' stato sfruttato
+
+`crystal_exploited` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
+
+**Cosa vuol dire.** Si e' scavato, e il Cristallo e' uscito dalla montagna.
+
+**Cosa si vede.** una vena di cristallo tagliata di netto da un colpo di piccone
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una vena di cristallo tagliata di netto da un colpo di piccone.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il Cristallo e' stato misurato
+
+`crystal_measured` · categoria **MEMORY** · sta su global · lo posa: asset_physical, echo_card, tension
+
+**Cosa vuol dire.** Qualcuno lo ha pesato e contato invece di temerlo.
+
+**Cosa si vede.** una scheggia di cristallo su un piatto di bilancia
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una scheggia di cristallo su un piatto di bilancia.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il debito e' stato chiamato
+
+`debt_called` · categoria **MEMORY** · sta su global · lo posa: asset, asset_physical, consequence, tension
+
+**Cosa vuol dire.** Chi doveva avere ha chiesto indietro, e adesso si paga.
+
+**Cosa si vede.** una mano tesa aperta, il palmo in su, ferma
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una mano tesa aperta, il palmo in su, ferma.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il debito e' stato perdonato
+
+`debt_forgiven` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
+
+**Cosa vuol dire.** Chi doveva avere ha lasciato perdere, e il conto si chiude.
+
+**Cosa si vede.** una mano che apre le dita e lascia andare una corda
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una mano che apre le dita e lascia andare una corda.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il debito e' stato dilazionato
+
+`debt_staggered` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** Non si paga tutto adesso: il conto e' stato spezzato in piu' volte.
+
+**Cosa si vede.** una corda tesa con tre nodi alla stessa distanza
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una corda tesa con tre nodi alla stessa distanza.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la discesa e' stata fatta davanti a testimoni
+
+`descent_witnessed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** Qualcuno e' sceso sotto la pietra, e non lo ha fatto di nascosto.
+
+**Cosa si vede.** una scala calata dentro un'apertura nel terreno, vista da sopra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una scala calata dentro un'apertura nel terreno, vista da sopra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la distribuzione e' stata contata
+
+`distribution_audited` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** Qualcuno ha controllato chi ha ricevuto quanto.
+
+**Cosa si vede.** una fila di tacche incise sul bordo di una tavola
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una fila di tacche incise sul bordo di una tavola.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il drago e' stato abbattuto
+
+`dragon_slain` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** La cosa che dormiva sotto la pietra e' morta, e il mondo lo ha saputo.
+
+**Cosa si vede.** un cranio lungo con le corna, mezzo interrato
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un cranio lungo con le corna, mezzo interrato.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la fede ha avuto un posto
+
+`faith_established` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** Un culto ha smesso di essere una voce e ha avuto un tetto.
+
+**Cosa si vede.** una fiamma dentro una nicchia di pietra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una fiamma dentro una nicchia di pietra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il grano e' stato requisito
+
+`grain_requisitioned` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence
+
+**Cosa vuol dire.** Il grano e' stato preso a chi lo aveva, per ordine di qualcuno.
+
+**Cosa si vede.** un sacco aperto con una mano che ci affonda dentro
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un sacco aperto con una mano che ci affonda dentro.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### quello che si e' saputo lo sanno tutti
+
+`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, confluence_template, tension
+
+**Cosa vuol dire.** Quello che sapeva uno lo sanno tutti, e non si vende piu'.
+
+**Cosa si vede.** una candela che ne accende un'altra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una candela che ne accende un'altra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### i conti sono pubblici
+
+`ledger_public` · categoria **MEMORY** · sta su global · lo posa: asset, asset_physical, confluence_template, consequence, tension
+
+**Cosa vuol dire.** I conti si possono guardare: non sono piu' di chi li tiene.
+
+**Cosa si vede.** un libro aperto su un leggio, e nessuno che lo tiene
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un libro aperto su un leggio, e nessuno che lo tiene.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la lista e' stata letta davanti a testimoni
+
+`list_witnessed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** I nomi sono stati detti ad alta voce, e c'era gente ad ascoltare.
+
+**Cosa si vede.** un rotolo srotolato fino a terra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un rotolo srotolato fino a terra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### le Miniere sono state sigillate
+
+`mine_sealed` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** L'imbocco e' chiuso: quello che c'e' sotto ci resta.
+
+**Cosa si vede.** un'apertura nella roccia tappata da conci squadrati
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un'apertura nella roccia tappata da conci squadrati.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la montagna e' diventata racconto
+
+`mountain_forgotten` · categoria **MEMORY** · sta su global · lo posa: tension
+
+**Cosa vuol dire.** Nessuno ci va piu': e' rimasta solo nelle storie.
+
+**Cosa si vede.** un profilo di montagna tracciato con una linea che si interrompe
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un profilo di montagna tracciato con una linea che si interrompe.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### i Nahr si sono fermati
+
+`nahr_settled` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** Chi camminava ha smesso: adesso ha un posto e ci resta.
+
+**Cosa si vede.** un palo da tenda piantato a fondo, senza telo
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un palo da tenda piantato a fondo, senza telo.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la Carta non e' stata scritta
+
+`no_charter` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Si e' deciso di non scriverla: la parola resta parola.
+
+**Cosa si vede.** un rotolo ancora chiuso e legato, col nastro intatto
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un rotolo ancora chiuso e legato, col nastro intatto.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il giuramento e' stato rotto
+
+`oath_broken` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence
+
+**Cosa vuol dire.** Qualcuno ha dato la parola e non l'ha tenuta, e si sa chi.
+
+**Cosa si vede.** un anello spezzato, i due capi piegati in fuori
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un anello spezzato, i due capi piegati in fuori.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### l'ordine e' stato ristabilito
+
+`order_restored` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** La rivolta e' finita: chi comandava comanda di nuovo.
+
+**Cosa si vede.** una bilancia tornata in piano, i due piatti alla stessa altezza
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una bilancia tornata in piano, i due piatti alla stessa altezza.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### ci si e' parlato
+
+`parley_held` · categoria **MEMORY** · sta su global · lo posa: echo_card
+
+**Cosa vuol dire.** Prima di decidere si sono seduti e si sono parlati.
+
+**Cosa si vede.** due sgabelli uno di fronte all'altro, vuoti
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: due sgabelli uno di fronte all'altro, vuoti.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la richiesta e' stata ascoltata
+
+`petition_heard` · categoria **MEMORY** · sta su global · lo posa: echo_card
+
+**Cosa vuol dire.** Chi ha chiesto e' stato ascoltato, che poi gli sia stato dato o no.
+
+**Cosa si vede.** una porta socchiusa vista di lato, con la fessura larga
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una porta socchiusa vista di lato, con la fessura larga.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### si e' pagato in vite
+
+`price_in_lives` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Quella decisione e' passata al prezzo di chi non c'e' piu'.
+
+**Cosa si vede.** una fila di sassi allineati sul terreno
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una fila di sassi allineati sul terreno.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### una domanda e' rimasta aperta
+
+`question_unresolved` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Il Consiglio non ha deciso, e la cosa resta li'.
+
+**Cosa si vede.** un cerchio interrotto, coi due capi che non si toccano
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un cerchio interrotto, coi due capi che non si toccano.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### una quota e' garantita
+
+`quota_guaranteed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** A qualcuno spetta una parte fissa, qualunque cosa succeda.
+
+**Cosa si vede.** una misura di legno rasa, col bastone di livello posato sopra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una misura di legno rasa, col bastone di livello posato sopra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la reliquia e' stata sepolta
+
+`relic_buried` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+
+**Cosa vuol dire.** E' stata rimessa sotto terra, e si e' deciso di lasciarla li'.
+
+**Cosa si vede.** un cofanetto chiuso, mezzo coperto di terra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un cofanetto chiuso, mezzo coperto di terra.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la reliquia e' a registro
+
+`relic_recorded` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** Esiste, ed e' scritto dove sta e di chi e'.
+
+**Cosa si vede.** un cofanetto chiuso con un sigillo che pende dalla serratura
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un cofanetto chiuso con un sigillo che pende dalla serratura.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la reliquia e' stata mostrata
+
+`relic_shown` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** E' stata tirata fuori e fatta vedere: adesso tutti sanno che c'e'.
+
+**Cosa si vede.** due mani che sollevano un cofanetto aperto
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: due mani che sollevano un cofanetto aperto.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il ritorno e' stato promesso
+
+`return_promised` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** Qualcuno ha giurato che tornera', e il mondo se lo segna.
+
+**Cosa si vede.** una soglia di pietra con un solco consumato al centro
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una soglia di pietra con un solco consumato al centro.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la voce corre
+
+`rumour_running` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Se ne parla dappertutto, e nessuno sa piu' chi l'ha detto per primo.
+
+**Cosa si vede.** tre linee ondulate che partono da un punto e si allargano
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: tre linee ondulate che partono da un punto e si allargano.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### qualcuno ha pagato
+
+`someone_paid` · categoria **MEMORY** · sta su global · lo posa: echo_card
+
+**Cosa vuol dire.** Quella decisione e' costata a qualcuno, e non a chi l'ha presa.
+
+**Cosa si vede.** una scodella vuota rovesciata
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una scodella vuota rovesciata.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### lo studio e' sotto sorveglianza
+
+`study_supervised` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Si puo' studiare, ma non da soli: c'e' chi guarda.
+
+**Cosa si vede.** una lente posata su un tavolo, e un'ombra che la copre a meta'
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una lente posata su un tavolo, e un'ombra che la copre a meta'.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la successione e' passata per legge
+
+`succession_by_law` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
+
+**Cosa vuol dire.** Chi viene dopo lo dice la regola scritta, non la forza.
+
+**Cosa si vede.** un seggio vuoto con un rotolo appoggiato sul sedile
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un seggio vuoto con un rotolo appoggiato sul sedile.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la successione e' stata risolta
+
+`succession_settled` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Si sa chi viene dopo, e nessuno lo contesta piu'.
+
+**Cosa si vede.** un seggio visto di lato, con un manto piegato sul bracciolo
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un seggio visto di lato, con un manto piegato sul bracciolo.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la successione ha avuto testimoni
+
+`succession_witnessed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** Il passaggio e' avvenuto davanti a gente che puo' ridirlo.
+
+**Cosa si vede.** due mani che si passano un bastone, viste di lato
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: due mani che si passano un bastone, viste di lato.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il pedaggio si divide
+
+`toll_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, confluence_template
+
+**Cosa vuol dire.** Chi passa paga, e l'incasso non e' di uno solo.
+
+**Cosa si vede.** una cassetta con due fessure sul coperchio
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una cassetta con due fessure sul coperchio.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### la Valle e' stata chiusa
+
+`valley_sealed` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Il passaggio e' stato sbarrato: da li' non si passa piu'.
+
+**Cosa si vede.** una gola stretta fra due pareti, chiusa da una trave di traverso
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una gola stretta fra due pareti, chiusa da una trave di traverso.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### l'acqua ha cambiato strada
+
+`water_moves` · categoria **MEMORY** · sta su global · lo posa: consequence, echo_card, tension
+
+**Cosa vuol dire.** Il corso e' stato spostato, e chi ne viveva adesso e' a secco.
+
+**Cosa si vede.** un solco d'acqua che si divide, e un ramo lasciato asciutto
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un solco d'acqua che si divide, e un ramo lasciato asciutto.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### l'acqua ha un prezzo
+
+`water_priced` · categoria **MEMORY** · sta su global · lo posa: consequence
+
+**Cosa vuol dire.** Bere non e' piu' gratis: qualcuno decide quanto costa.
+
+**Cosa si vede.** un secchio appeso a una catena chiusa da un lucchetto
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un secchio appeso a una catena chiusa da un lucchetto.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### l'acqua si divide
+
+`water_shared` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+
+**Cosa vuol dire.** La sorgente e' di piu' d'uno, e la parte e' stabilita.
+
+**Cosa si vede.** un canale che si apre in due bracci uguali
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un canale che si apre in due bracci uguali.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il sigillo ha tenuto
+
+`seal_kept`
+
+**Cosa vuol dire.** E' passata un'era e le gallerie sono ancora chiuse.
+
+**Cosa si vede.** un chiavistello di pietra ancora al suo posto, sotto la polvere
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: un chiavistello di pietra ancora al suo posto, sotto la polvere.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
+### il sigillo ha tenuto due volte
+
+`seal_kept_twice`
+
+**Cosa vuol dire.** Due ere, e nessuno ha riaperto: la montagna sta diventando racconto.
+
+**Cosa si vede.** due tacche incise una sotto l'altra su un architrave di pietra
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: due tacche incise una sotto l'altra su un architrave di pietra.
 Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
 Two or three strokes at most, closed silhouette, thick enough to survive at
 16 px and at a photocopy. Centred, generous margin, no perspective, no scene:

@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-356 — I cinquantuno gettoni del bordo hanno una faccia
+
+**implemented** · 0.1.320 · chiude [ISSUES 110](ISSUES.md)
+
+[D-351](#d-351) ha dato un posto alla memoria del mondo — il bordo della mappa —
+e ha lasciato scritto cosa mancava: **51 schede del disegno su 52**, che sono
+l'unica parte del catalogo delle pedine scritta a mano. Adesso ci sono.
+
+**Cinquanta schede nuove**, una per segno, ognuna con cosa vuol dire al tavolo e
+cosa ci va disegnato. Piu' `heir_named`, che la scheda ce l'aveva ma sul foglio
+sbagliato: era fra i segni delle case, ed e' memoria del mondo.
+
+### La forma postuma non e' un gettone in piu'
+
+Tre segni — `legend:debt_called`, `legend:oath_broken`, `legend:order_restored`
+— non hanno una parola stampata, e sembrava un buco. Non lo e': il dizionario
+dice che sono *«la forma postuma di un fatto: il passaggio di Chronicle promuove
+a racconto quello che il mondo non tiene piu' per vero»*, e tutt'e tre hanno il
+loro fatto base gia' nella lista.
+
+Sul tavolo e' **lo stesso gettone, girato**. Il fatto da una parte, il racconto
+dall'altra. Non si tagliano tre pezzi in piu' per dire che una cosa e' diventata
+una storia: si gira quello che c'e' gia'.
+
+### Due segni che non stanno nel dizionario
+
+`seal_kept` e `seal_kept_twice` sono gli anelli della catena delle ere che porta
+a `mountain_forgotten`: hanno la parola stampata, il mondo li scrive, e **non
+sono voci del dizionario**. Le loro schede le ho scritte — sono gettoni veri —
+ma il buco resta, ed e' [ISSUES 112](ISSUES.md).
+
+### Il costo, e non e' piccolo
+
+Il censimento della scatola non li contava: `components_survey` leggeva solo i
+segni delle Regioni e delle case, e finche' la memoria del mondo non aveva un
+posto era giusto cosi'. Adesso li conta, e il numero cambia parecchio:
+
+| | prima | dopo |
+|---|---|---|
+| tipi di segnalino | 67 | **118** |
+| pezzi da tagliare | 91 | **142** |
+| fogli-fustella | 3 | **4** |
+
+**Cinquantuno tipi in piu' in una scatola sola.** Il committente aveva gia'
+reagito una volta a un numero di questo genere — *«183 segnalini sono tanti,
+forse troppi»* — e quella volta il numero era sbagliato. Questo no.
+
+E [MISURA_TAVOLO](MISURA_TAVOLO.md) dice la cosa che pesa di piu': di quei
+cinquantuno, **diciannove non si posano mai** in cento partite. Sarebbero
+diciannove fustelle tagliate per gettoni che nessuno tocca. Non le tolgo io:
+e' contenuto, e prima di togliere un gettone conviene chiedersi se il difetto e'
+il gettone o il fatto che nessuno lo scrive.
+
+---
+
 ## D-355 — Una clausola non e' un lettore
 
 **implemented** · 0.1.319 · chiude [ISSUES 102](ISSUES.md)

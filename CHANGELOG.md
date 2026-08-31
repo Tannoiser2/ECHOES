@@ -5,6 +5,42 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.320 — I cinquantuno gettoni del bordo hanno una faccia (D-356)
+
+Chiude [ISSUES 110](docs/ISSUES.md). D-351 aveva dato un posto alla memoria del
+mondo e lasciato scritto cosa mancava: **51 schede del disegno su 52**, l'unica
+parte del catalogo delle pedine che si scrive a mano.
+
+**Cinquanta schede nuove**, più `heir_named` spostato dal foglio delle case a
+quello del mondo, dove doveva stare.
+
+**La forma postuma non è un gettone in più.** I tre `legend:` non hanno una
+parola stampata, e sembrava un buco: non lo è. Sono «la forma postuma di un
+fatto», e tutt'e tre hanno il loro fatto base già nella lista. Sul tavolo è **lo
+stesso gettone, girato** — il fatto da una parte, il racconto dall'altra.
+
+**Il costo, ed è grosso.** `components_survey` non li contava, perché leggeva
+solo i segni delle Regioni e delle case:
+
+| | prima | dopo |
+|---|---|---|
+| tipi di segnalino | 67 | **118** |
+| pezzi da tagliare | 91 | **142** |
+| fogli-fustella | 3 | **4** |
+
+E `MISURA_TAVOLO` dice la cosa che pesa: di quei 51, **19 non si posano mai** in
+cento partite. Diciannove fustelle per gettoni che nessuno tocca. Non le tolgo:
+prima conviene chiedersi se il difetto è il gettone o il fatto che nessuno lo
+scrive.
+
+Nuova [ISSUES 112](docs/ISSUES.md): `seal_kept` e `seal_kept_twice` hanno la
+parola e ora la scheda, ma **non sono voci del dizionario** — li nomina la catena
+delle ere, e quel percorso il censimento non lo raschia.
+
+664 test verdi.
+
+---
+
 ## 0.1.319 — Una clausola non è un lettore (D-355)
 
 L'ultima delle tre riparazioni di [ISSUES 102](docs/ISSUES.md), che **si chiude**.
