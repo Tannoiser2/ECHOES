@@ -404,11 +404,19 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 			tags.append(tag)
 	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
 	(session.world["theme_heat"] as Dictionary)[theme_id] = 6
-	# E la domanda in cima alla sua traccia: ALZA LA DOMANDA non ha piu' dove
-	# andare, come SCALDA TEMA col Calore al tetto.
-	(session.world["tensions"][TENSION] as Dictionary)["current_value"] = int(
-		(data().tensions[TENSION] as Dictionary)["threshold"]
-	)
+	# E **tutte** le domande in cima alla loro traccia: ALZA LA DOMANDA non ha
+	# piu' dove andare, come SCALDA TEMA col Calore al tetto.
+	#
+	# Tutte e non solo quella in discussione: da D-366 una casella puo' chiamare
+	# per nome un'altra domanda — la carta della Carestia alza quella legata — e
+	# spegnere la sola domanda a fuoco lascerebbe viva la casella gemella.
+	# Spegnere tutta la pista e' anche piu' robusto: una carta che domani
+	# chiamasse una terza domanda non farebbe fallire questa prova per la
+	# ragione sbagliata.
+	for asked in session.world["tensions"]:
+		(session.world["tensions"][str(asked)] as Dictionary)["current_value"] = int(
+			(data().tensions[str(asked)] as Dictionary)["threshold"]
+		)
 	# CEDI CONTROLLO cede al rivale: se il luogo e' gia' suo non toglie niente,
 	# e se la questione non ha un rivale cede alla terra — allora non morde su
 	# un luogo che gia' non e' di nessuno.

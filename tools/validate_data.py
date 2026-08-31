@@ -1696,6 +1696,16 @@ def self_test_token_budget() -> int:
         ({"type": "CREATE_ECHO", "target": {"kind": "echo", "id": "ECH_X"},
           "payload": {"qualunque": "cosa", "una": "riga di storia"}}, 0,
          "il registro degli Echi tiene qualunque chiave: passa"),
+        # **Un fatto del mondo si posa sul mondo** (D-370). Il motore scrive in
+        # `global_tags` qualunque bersaglio gli si dia, quindi un bersaglio
+        # sbagliato non rompe niente e non lo vede nessuno: mente e basta, a chi
+        # legge il dato e a ogni misura che lo conta. Trovato una volta su 68.
+        ({"type": "SET_GLOBAL_TAG", "target": {"kind": "world", "id": "$adjacent"},
+          "payload": {"tag": "valley_sealed"}}, 1,
+         "un fatto del mondo puntato su una Regione: morde"),
+        ({"type": "SET_GLOBAL_TAG", "target": {"kind": "world", "id": "WORLD"},
+          "payload": {"tag": "valley_sealed"}}, 0,
+         "lo stesso fatto, puntato sul mondo: passa"),
     ):
         found = list(validator.iter_errors(spec))
         ok = (len(found) > 0) == (expected > 0)

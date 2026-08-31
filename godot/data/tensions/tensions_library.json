@@ -62,6 +62,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Recinti."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "costs": [
@@ -101,6 +108,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Recinti."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -294,6 +314,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Terra Stanca."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "costs": [
@@ -333,6 +360,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Terra Stanca."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "failure": [
@@ -525,6 +559,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Braccianti."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "costs": [
@@ -564,6 +605,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Braccianti."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "failure": [
@@ -737,6 +785,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di L'Acqua Alta."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "costs": [
@@ -776,6 +831,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di L'Acqua Alta."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "failure": [
@@ -961,6 +1023,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Disboscamento."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Foresta del luogo sale di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "costs": [
@@ -1000,6 +1075,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Disboscamento."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Foresta del luogo scende di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "failure": [
@@ -1160,6 +1248,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Pietre di Confine."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -1199,6 +1300,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Pietre di Confine."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -1351,6 +1471,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Pascolo Conteso."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Insediamento del luogo sale di 1 grado.",
+            "structure": "STR_SETTLEMENT"
           }
         ],
         "costs": [
@@ -1390,6 +1523,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Pascolo Conteso."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Insediamento del luogo scende di 1 grado.",
+            "structure": "STR_SETTLEMENT"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -1561,6 +1713,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Campi di Sale."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "costs": [
@@ -1600,6 +1759,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Campi di Sale."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
           }
         ],
         "failure": [
@@ -1762,6 +1928,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Catasto."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -1801,6 +1980,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Catasto."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Senza Città.",
+            "dove": "QUESTION",
+            "question": "TEN_NAMELESS"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -1965,6 +2163,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Pellegrini."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "costs": [
@@ -2004,6 +2209,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Pellegrini."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "failure": [
@@ -2177,6 +2389,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Parola Storta."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -2216,6 +2441,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Parola Storta."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -2379,6 +2623,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Voti Non Sciolti."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "costs": [
@@ -2418,6 +2669,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Voti Non Sciolti."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "failure": [
@@ -2541,6 +2799,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Campane Mute."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -2580,6 +2851,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Campane Mute."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -2750,6 +3040,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Santuario dell'Isola."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -2789,6 +3092,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Santuario dell'Isola."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -2924,6 +3240,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Decima."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "costs": [
@@ -2963,6 +3286,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Decima."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "failure": [
@@ -3124,6 +3454,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Sepolti Senza Nome."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "costs": [
@@ -3163,6 +3500,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Sepolti Senza Nome."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
           }
         ],
         "failure": [
@@ -3304,6 +3648,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Profezia Contata."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -3343,6 +3700,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Profezia Contata."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -3478,6 +3848,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Diritto d'Asilo."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -3517,6 +3900,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Diritto d'Asilo."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -3669,6 +4071,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Reggenza."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -3708,6 +4123,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Reggenza."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -3846,6 +4280,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Gli Ostaggi di Corte."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -3885,6 +4332,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Gli Ostaggi di Corte."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -4035,6 +4501,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Leva."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "costs": [
@@ -4074,6 +4547,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Leva."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "failure": [
@@ -4212,6 +4692,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Sigilli Falsi."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "costs": [
@@ -4251,6 +4738,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Sigilli Falsi."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "failure": [
@@ -4403,6 +4897,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Marche di Confine."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Foresta del luogo sale di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "costs": [
@@ -4442,6 +4949,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Marche di Confine."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Foresta del luogo scende di 1 grado.",
+            "structure": "STR_FOREST"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -4599,6 +5125,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Seggi del Consiglio."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -4638,6 +5177,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Seggi del Consiglio."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -4788,6 +5346,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Vecchia Guardia."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -4827,6 +5398,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Vecchia Guardia."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -4965,6 +5555,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Tributo."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "costs": [
@@ -5004,6 +5601,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Tributo."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "failure": [
@@ -5156,6 +5760,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Gli Echi nel Fondo."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -5195,6 +5812,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Gli Echi nel Fondo."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -5329,6 +5959,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Vie di Prima."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "costs": [
@@ -5368,6 +6005,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Vie di Prima."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "failure": [
@@ -5505,6 +6149,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Dormienti."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "costs": [
@@ -5544,6 +6195,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Dormienti."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "failure": [
@@ -5666,6 +6324,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Silenzio dell'Isola."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -5705,6 +6376,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Silenzio dell'Isola."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -5840,6 +6524,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Dissotterrato."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -5879,6 +6576,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Dissotterrato."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -6015,6 +6725,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Nomi Vecchi."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "costs": [
@@ -6054,6 +6771,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Nomi Vecchi."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "failure": [
@@ -6176,6 +6900,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Pietre di Guardia."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Foresta del luogo sale di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "costs": [
@@ -6215,6 +6952,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Pietre di Guardia."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Foresta del luogo scende di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "failure": [
@@ -6351,6 +7101,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di L'Acqua Fonda."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "costs": [
@@ -6390,6 +7147,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di L'Acqua Fonda."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "failure": [
@@ -6527,6 +7291,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di L'Inverno Lungo."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "costs": [
@@ -6566,6 +7337,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di L'Inverno Lungo."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "failure": [
@@ -6710,6 +7488,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Febbre delle Paludi."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "costs": [
@@ -6749,6 +7534,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Febbre delle Paludi."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "failure": [
@@ -6899,6 +7691,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Reti Vuote."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "costs": [
@@ -6938,6 +7737,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Reti Vuote."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "failure": [
@@ -7088,6 +7894,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Chi Arriva da Fuori."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "costs": [
@@ -7127,6 +7940,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Chi Arriva da Fuori."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "failure": [
@@ -7265,6 +8085,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Lupi al Limitare."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Foresta del luogo sale di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "costs": [
@@ -7304,6 +8137,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Lupi al Limitare."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Foresta del luogo scende di 1 grado.",
+            "structure": "STR_FOREST"
           }
         ],
         "failure": [
@@ -7456,6 +8302,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Grano Guasto."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "costs": [
@@ -7495,6 +8348,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Grano Guasto."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "failure": [
@@ -7645,6 +8505,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Cordone."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "costs": [
@@ -7684,6 +8551,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Cordone."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
           }
         ],
         "failure": [
@@ -7836,6 +8710,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Traghetto."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "costs": [
@@ -7875,6 +8756,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Traghetto."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "failure": [
@@ -8030,6 +8918,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Pedaggi Neri."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "costs": [
@@ -8069,6 +8964,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Pedaggi Neri."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "failure": [
@@ -8224,6 +9126,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Pesi e le Misure."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "costs": [
@@ -8263,6 +9172,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Pesi e le Misure."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "failure": [
@@ -8413,6 +9329,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Le Staffette."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -8452,6 +9381,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Le Staffette."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -8590,6 +9538,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Canali Interrati."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "costs": [
@@ -8629,6 +9584,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Canali Interrati."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "failure": [
@@ -8782,6 +9744,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Guerra delle Gilde."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "costs": [
@@ -8821,6 +9790,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Guerra delle Gilde."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "failure": [
@@ -8973,6 +9949,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Contrabbando."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "costs": [
@@ -9012,6 +9995,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Contrabbando."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
           }
         ],
         "failure": [

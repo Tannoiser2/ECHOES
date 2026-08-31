@@ -98,7 +98,7 @@
           "type": "SET_GLOBAL_TAG",
           "target": {
             "kind": "world",
-            "id": "$adjacent"
+            "id": "WORLD"
           },
           "payload": {
             "tag": "valley_sealed"

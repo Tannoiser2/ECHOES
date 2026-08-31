@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.336 — Le caselle sulle sessanta carte (D-370)
+
+D-366 ha dato al Consiglio ventiquattro caselle e cinque carte su sessanta le
+usavano. **Ma un menu uguale su tutte le carte è il difetto che D-278 ha
+corretto**, quindi la regola non è «aggiungi le caselle»: è **ricava le caselle
+da quello che ogni carta ha già di suo**. 188 voci nuove, nessuna scritta a mano.
+
+Il pezzo che vale di più: `linked_tensions` sta su tutte e sessanta le carte e lo
+legge **una cosa sola**, l'azione INFLUENZARE. Il Consiglio non lo sapeva
+toccare. Con `dove: QUESTION` ogni carta può muovere la domanda che ha legato a
+sé, e sono quindici insiemi di legami diversi.
+
+UNA PIETRA SALE/SCENDE va sulle carte che costruiscono una Pietra a **tre gradi
+distinti**: non su Granaio, Canale, Pedaggio e Archivio, che hanno due gradi
+collo stesso segno — una Pietra che sale senza che sulla tessera cambi niente è
+una casella che non si vede. CHIUDI LA STRADA sulle quindici carte di TERRITORIO.
+
+| in cento saghe | offerta prima | offerta adesso | comprata |
+|---|---|---|---|
+| UNA PIETRA SALE | **0** | **131** | 10 |
+| CHIUDI LA STRADA | **0** | **9** | 0 |
+| UNA PIETRA SCENDE | **0** | **1** | 0 |
+
+**Ventitré caselle su ventiquattro sono offerte almeno una volta.**
+
+**Le due cose che restano, scritte.** UNA CASATA LASCIA IL TAVOLO resta a zero:
+vuole Vaerax al tavolo mentre si discute della sola carta che la offre, e la
+congiunzione non capita — allargarla è una decisione di chi progetta, non una
+misura. E ABBASSA LA DOMANDA fa **720 offerte e 3 acquisti**: il difetto che
+D-343 aveva già dichiarato, che le carte nuove hanno raddoppiato.
+
+**E un bersaglio che mentiva**, trovato passando: `CNS_SEALED_VALLEY` scriveva un
+fatto del mondo con bersaglio `$adjacent`, uno su 68. Il motore lo eseguiva lo
+stesso ignorando il bersaglio, quindi non lo vedeva nessuno. Adesso lo schema non
+lo lascia tornare.
+
+| su 100 anni, tavolo misto | prima | dopo |
+|---|---|---|
+| esiti FAIL | 107 | **110** |
+| esiti SUCC netti | 110 | **107** |
+| Verità scritte | 150 | **153** |
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Tre proposte in più cadono, e tre Verità in più si scrivono. Il tavolo uniforme
+non si muove. Un menu più largo rende più facile comprare qualcosa che gli
+avversari possono far pagare caro.
+
+---
+
 ## 0.1.335 — Il tempo è una penna (D-369) — chiude ISSUES 112
 
 `seal_kept` e `seal_kept_twice` sono due anelli della catena delle ere: il mondo

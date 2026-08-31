@@ -45,10 +45,10 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 
 | | distinti | applicazioni |
 |---|---|---|
-| **una casella di oggi lo sa dire** | 44 | 333 |
-| **verbo giusto, posto che la casella non sa dire** | 2 | 3 |
+| **una casella di oggi lo sa dire** | 44 | 334 |
+| **verbo giusto, posto che la casella non sa dire** | 1 | 2 |
 | **verbo che manca** | 0 | 0 |
-| | **46** | **336** |
+| | **45** | **336** |
 
 ## Le caselle che mancano
 
@@ -66,7 +66,6 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 
 | Effetto | dove | usi | come si direbbe |
 |---|---|---|---|
-| `SET_GLOBAL_TAG` | `$adjacent` | 1 | il mondo registra: la Valle e' stata chiusa |
 | `SET_ENTITY_TAG` | `$conditioner` | 2 | chi ha posto la condizione porta addosso: scoperta: il registro condiviso |
 
 ## Quello che una casella gia' dice
@@ -75,7 +74,7 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 |---|---|---|---|
 | `BUILD_STRUCTURE` | `$region_with:granary` | 4 | si alza Granaio in una Regione con #granaio |
 | `ADJUST_TENSION` | `TEN_ROADS` | 20 | Le Vie Interrotte sale |
-| `SET_GLOBAL_TAG` | *dove si discute* | 70 | il mondo registra: il grano e' stato requisito |
+| `SET_GLOBAL_TAG` | *dove si discute* | 71 | il mondo registra: il grano e' stato requisito |
 | `REMOVE_PRESENCE` | `$rival` | 4 | il rivale se ne va dove si discute |
 | `SET_REGION_TAG` | *dove si discute* | 33 | dove si discute diventa #requisita |
 | `SET_STRUCTURE_GRADE` | *dove si discute* | 8 | Foresta dove si discute va al grado 2 |

@@ -10,6 +10,125 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-370 — Le caselle sulle sessanta carte, ricavate da quello che ogni carta ha già
+
+**implemented** (0.1.336) · chiude in parte [ISSUES 117](ISSUES.md#117)
+
+### Il pericolo del passaggio, che viene prima di tutto
+
+[D-366](#d-366) ha dato al Consiglio ventiquattro caselle. Cinque carte su
+sessanta le usavano. Il resto portava le sette di sempre, tutte puntate sul
+posto in discussione.
+
+**Ma un menu uguale su tutte le carte è il difetto che
+[D-278](#d-278) ha corretto**: *«52 carte su 60 condividevano quattro menu
+generici»*. Aggiungere le stesse caselle nuove a tutte e sessanta sarebbe stato
+scrivere quel difetto una seconda volta, con parole nuove.
+
+Quindi la regola non è «aggiungi le caselle»: è **ricava le caselle da quello
+che ogni carta ha già di suo**. Ogni carta porta il suo, e i suoi sono diversi:
+
+| campo | valori distinti su 60 |
+|---|---|
+| `focus_region_tags` | 40 |
+| `linked_tensions` | 15 |
+| la Pietra del suo COSTRUISCI PIETRA | 8 |
+
+### La domanda legata: dato che esisteva e non esisteva al tavolo
+
+`linked_tensions` sta su **tutte e sessanta** le carte, e lo legge **una cosa
+sola**: l'azione INFLUENZARE, che quando abbassa una domanda sposta la pressione
+sulla legata più bassa. **Il Consiglio non lo sapeva toccare** — le sue due
+caselle della domanda muovono solo quella in discussione.
+
+Con `dove: QUESTION` diventa una scelta del tavolo, e ogni carta punta altrove.
+Sessanta benefici e sessanta costi, ognuno col nome della domanda che quella
+carta ha legato a sé.
+
+### Le altre due, dove hanno senso e non dove capita
+
+**UNA PIETRA SALE / SCENDE** va sulle carte che costruiscono una Pietra a
+**tre gradi distinti** — Presidio, Insediamento, Foresta, Sito antico, Sorgente.
+Non sulle altre: Granaio, Canale, Pedaggio e Archivio hanno due gradi che
+portano lo stesso segno, e una Pietra che sale senza che sulla tessera cambi
+niente è una casella che non si vede. 26 e 27 carte.
+
+**CHIUDI LA STRADA** va sulle quindici carte di TERRITORIO: è lì che una frana,
+un blocco o un ponte tagliato sono la posta. Il motore rifiuta da solo la
+chiusura che isolerebbe una Regione.
+
+**188 voci nuove**, nessuna scritta a mano: ognuna ricavata dal dato della sua
+carta.
+
+### La misura
+
+| `docs/MISURA_CASELLE.md` | prima di D-366 | dopo D-366 | adesso |
+|---|---|---|---|
+| Effetti che una casella sa dire | 5 su 46 | 44 su 46 | **44 su 46** |
+| applicazioni coperte | 151 | 333 | **334** |
+| posti che la casella non sa dire | 25 | 2 | **1** |
+
+E al tavolo, cento saghe con `run_boxes_probe.gd` — che è la misura che conta,
+perché *una casella che nessuno compra è, per il gioco, identica a una che non
+esiste* (D-343):
+
+| casella | offerta prima | offerta adesso | comprata |
+|---|---|---|---|
+| UNA PIETRA SALE | **0** | **131** | 10 |
+| CHIUDI LA STRADA | **0** | **9** | 0 |
+| UNA PIETRA SCENDE | **0** | **1** | 0 |
+| ABBASSA LA DOMANDA | 360 | **720** | 3 |
+
+**Ventitré caselle su ventiquattro sono adesso offerte almeno una volta.**
+
+### Le due cose che restano, scritte
+
+**UNA CASATA LASCIA IL TAVOLO: zero, e resta zero.** Vuole una casa che porti
+`#dormiente` — che è Vaerax, e solo Vaerax — mentre si discute della sola carta
+che offre quella casella. In cento saghe la congiunzione non capita. Non è
+rotta: è la cosa più drastica del gioco, vale **una** applicazione in tutto il
+corpo scritto, e allargarla vorrebbe dire spargere per il tavolo la casella che
+toglie un giocatore. Quella è una decisione di chi progetta, non una misura.
+
+**ABBASSA LA DOMANDA: 720 offerte, 3 acquisti.** È il difetto che
+[D-343](#d-343) aveva già misurato e dichiarato — la policy preferisce le
+caselle che cambiano la mappa — e le carte nuove l'hanno **raddoppiato**. Vale
+1 in `intrinsic_value`, come RAFFREDDA TEMA. Alzare quel numero è equilibrio, e
+l'equilibrio si misura prima di scriverlo: resta aperto in
+[ISSUES 117](ISSUES.md#117).
+
+### E un bersaglio che mentiva, trovato passando
+
+`CNS_SEALED_VALLEY` scriveva un fatto del mondo con bersaglio `$adjacent`: uno
+su 68. Il motore scrive in `global_tags` **qualunque** bersaglio gli si dia,
+quindi non rompeva niente e non lo vedeva nessuno — mentiva a chi legge il dato
+e a ogni misura che lo conta. Corretto, e adesso lo schema non lo lascia
+tornare: `SET_GLOBAL_TAG` e `REMOVE_GLOBAL_TAG` vogliono `WORLD`. Difetto
+piantato in più.
+
+**E `$conditioner` non è un difetto**, come questa voce aveva scritto: quei due
+Effetti vivono dentro le **clausole**, dove `conditioner` è legato eccome. Sono
+una cosa che le caselle non sanno dire e le clausole sì, ed è giusto così.
+
+### Il costo, misurato
+
+`--runs=100 --seed=7000`, contro `main` nello stesso giro. **0 seggi bloccati su
+8, tavolo misto e uniforme.**
+
+| tavolo misto | prima | dopo |
+|---|---|---|
+| esiti FAIL | 107 | **110** |
+| esiti SUCC netti | 110 | **107** |
+| Verità scritte | 150 | **153** |
+| Verità diverse | 135 | **137** |
+
+Tre proposte in più cadono sul tavolo misto, e tre Verità in più si scrivono. Il
+tavolo uniforme non si muove. Il prezzo è dichiarato: il menu è più largo, e un
+menu più largo rende più facile comprare qualcosa che gli avversari possono far
+pagare caro.
+
+---
+
 ## D-369 — Il tempo è una penna, e il censimento non la vedeva
 
 **implemented** (0.1.335) · chiude [ISSUES 112](ISSUES.md#112)

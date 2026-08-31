@@ -76,6 +76,13 @@
             "verb": "MOVE_OUT",
             "text": "Il rivale toglie la sua pedina dal luogo.",
             "chi": "RIVAL"
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "costs": [
@@ -135,6 +142,13 @@
             "verb": "LOWER_STONE",
             "text": "La Foresta del luogo scende di 1 grado.",
             "structure": "STR_FOREST"
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
+            "dove": "QUESTION",
+            "question": "TEN_AWAKENING"
           }
         ],
         "failure": [
@@ -372,6 +386,13 @@
             "id": "B_UNVEIL",
             "verb": "UNVEIL_QUESTION",
             "text": "La domanda in discussione si gira a faccia in su."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
           }
         ],
         "costs": [
@@ -424,6 +445,19 @@
             "text": "La casa che porta #dormiente lascia il tavolo.",
             "chi": "HOUSE_WITH",
             "who_tag": "sleeping"
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Successione.",
+            "dove": "QUESTION",
+            "question": "TEN_SUCCESSION"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -660,6 +694,19 @@
             "verb": "FORGET",
             "text": "Il mondo dimentica: la corona era stata divisa.",
             "tag": "crown_divided"
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -713,6 +760,25 @@
             "text": "Chi propone resta sotto osservazione.",
             "tag": "watched",
             "chi": "PROPONENT"
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
+            "dove": "QUESTION",
+            "question": "TEN_ROADS"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -992,6 +1058,13 @@
             "text": "Il filo con il rivale sale ad alleato.",
             "chi": "RIVAL",
             "level": "ALLY"
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di I Pozzi Bassi.",
+            "dove": "QUESTION",
+            "question": "TEN_THIRST"
           }
         ],
         "costs": [
@@ -1047,6 +1120,13 @@
             "text": "Chi propone perde la fama.",
             "tag": "renowned",
             "chi": "PROPONENT"
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di I Pozzi Bassi.",
+            "dove": "QUESTION",
+            "question": "TEN_THIRST"
           }
         ],
         "failure": [
@@ -1243,6 +1323,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Febbre Bassa."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Insediamento del luogo sale di 1 grado.",
+            "structure": "STR_SETTLEMENT"
           }
         ],
         "costs": [
@@ -1282,6 +1375,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Febbre Bassa."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
+            "dove": "QUESTION",
+            "question": "TEN_FAMINE"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Insediamento del luogo scende di 1 grado.",
+            "structure": "STR_SETTLEMENT"
           }
         ],
         "failure": [
@@ -1448,6 +1554,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Pozzi Bassi."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Febbre Bassa.",
+            "dove": "QUESTION",
+            "question": "TEN_PLAGUE"
           }
         ],
         "costs": [
@@ -1487,6 +1600,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Pozzi Bassi."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Febbre Bassa.",
+            "dove": "QUESTION",
+            "question": "TEN_PLAGUE"
           }
         ],
         "failure": [
@@ -1648,6 +1768,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Debito.",
+            "dove": "QUESTION",
+            "question": "TEN_DEBT"
           }
         ],
         "costs": [
@@ -1687,6 +1814,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Debito.",
+            "dove": "QUESTION",
+            "question": "TEN_DEBT"
           }
         ],
         "failure": [
@@ -1861,6 +1995,13 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Debito."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di L'Acqua Ferma.",
+            "dove": "QUESTION",
+            "question": "TEN_WATER"
           }
         ],
         "costs": [
@@ -1900,6 +2041,13 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di Il Debito."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di L'Acqua Ferma.",
+            "dove": "QUESTION",
+            "question": "TEN_WATER"
           }
         ],
         "failure": [
@@ -2116,6 +2264,19 @@
             "text": "Chi propone porta addosso: scoperta: la reliquia.",
             "tag": "discovery:relic",
             "chi": "PROPONENT"
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Cenere che Sale.",
+            "dove": "QUESTION",
+            "question": "TEN_ASH"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -2168,6 +2329,19 @@
             "verb": "MOVE_IN",
             "text": "Il rivale posa una pedina nel luogo.",
             "chi": "RIVAL"
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Cenere che Sale.",
+            "dove": "QUESTION",
+            "question": "TEN_ASH"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -2369,6 +2543,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Carta."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di Il Debito.",
+            "dove": "QUESTION",
+            "question": "TEN_DEBT"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Presidio del luogo sale di 1 grado.",
+            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -2408,6 +2595,25 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Carta."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di Il Debito.",
+            "dove": "QUESTION",
+            "question": "TEN_DEBT"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Presidio del luogo scende di 1 grado.",
+            "structure": "STR_KEEP"
+          },
+          {
+            "id": "C_SEAL",
+            "verb": "SEAL_ROAD",
+            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
+            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -2591,6 +2797,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di I Senza Città."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di L'Acqua Ferma.",
+            "dove": "QUESTION",
+            "question": "TEN_WATER"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Insediamento del luogo sale di 1 grado.",
+            "structure": "STR_SETTLEMENT"
           }
         ],
         "costs": [
@@ -2630,6 +2849,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di I Senza Città."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di L'Acqua Ferma.",
+            "dove": "QUESTION",
+            "question": "TEN_WATER"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Insediamento del luogo scende di 1 grado.",
+            "structure": "STR_SETTLEMENT"
           }
         ],
         "failure": [
@@ -2823,6 +3055,19 @@
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
+          },
+          {
+            "id": "B_COOL_LINKED",
+            "verb": "COOL_QUESTION",
+            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "B_RAISE",
+            "verb": "RAISE_STONE",
+            "text": "Sito antico del luogo sale di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -2862,6 +3107,19 @@
             "id": "C_HEAT_QUESTION",
             "verb": "HEAT_QUESTION",
             "text": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
+          },
+          {
+            "id": "C_HEAT_LINKED",
+            "verb": "HEAT_QUESTION",
+            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
+            "dove": "QUESTION",
+            "question": "TEN_RELIC"
+          },
+          {
+            "id": "C_LOWER",
+            "verb": "LOWER_STONE",
+            "text": "Sito antico del luogo scende di 1 grado.",
+            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [

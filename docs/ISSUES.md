@@ -6650,7 +6650,7 @@ verità.
 
 ---
 
-### 117. Le caselle nuove ci sono, e cinque carte su sessanta le offrono
+### 117. Le caselle nuove ci sono, e cinque carte su sessanta le offrono — quasi chiusa in 0.1.336
 
 `contenuto` · `da-misurare` · aperta in 0.1.332
 
@@ -6696,3 +6696,42 @@ niente, e va tolto o il verbo va cambiato.
 Il conto di `docs/MISURA_CASELLE.md` a 46 su 46, ogni casella del vocabolario
 offerta almeno una volta in cento saghe, e i due Effetti del punto (c) risolti
 nei dati.
+
+> ### Quasi chiusa in 0.1.336 ([D-370](DECISIONS.md#d-370))
+>
+> **(a) fatta, e non come questa voce la immaginava.** Non «scrivi le caselle
+> per 55 carte», che avrebbe rifatto il difetto di [D-278](DECISIONS.md#d-278)
+> con parole nuove — un menu uguale su tutte — ma **ricava le caselle da quello
+> che ogni carta ha già di suo**. 188 voci, nessuna scritta a mano.
+>
+> Il pezzo che vale di più: `linked_tensions` sta su tutte e sessanta le carte e
+> lo legge **una cosa sola**, l'azione INFLUENZARE. Il Consiglio non lo sapeva
+> toccare. Con `dove: QUESTION` ogni carta può muovere la domanda che ha legato
+> a sé — ed è diversa carta per carta.
+>
+> **(b) fatta a ventitré caselle su ventiquattro.** UNA PIETRA SALE va da 0 a
+> **131** offerte e 10 acquisti; CHIUDI LA STRADA da 0 a 9; UNA PIETRA SCENDE da
+> 0 a 1.
+>
+> **(c) uno era un difetto e uno no.** `CNS_SEALED_VALLEY` puntava un fatto del
+> mondo su `$adjacent` — corretto, e adesso lo schema non lo lascia tornare. Ma
+> `$conditioner` **non è un difetto**: quei due Effetti vivono dentro le
+> clausole, dove `conditioner` è legato eccome. Sono una cosa che le caselle non
+> sanno dire e le clausole sì.
+>
+> ### Quello che resta aperto, e sono due decisioni
+>
+> **UNA CASATA LASCIA IL TAVOLO: zero offerte in cento saghe, e resta zero.**
+> Vuole una casa che porti `#dormiente` — Vaerax, e solo Vaerax — mentre si
+> discute della sola carta che offre quella casella. La congiunzione non capita.
+> Non è rotta: è la cosa più drastica del gioco e vale **una** applicazione in
+> tutto il corpo scritto. Allargarla vuol dire spargere per il tavolo la casella
+> che toglie un giocatore, e quella è una decisione di chi progetta.
+>
+> **ABBASSA LA DOMANDA: 720 offerte, 3 acquisti.** È il difetto che
+> [D-343](DECISIONS.md#d-343) aveva già misurato — la policy preferisce le
+> caselle che cambiano la mappa — e le carte nuove l'hanno **raddoppiato**. Vale
+> 1 in `intrinsic_value`, come RAFFREDDA TEMA. Alzare quel numero è equilibrio, e
+> l'equilibrio si misura prima di scriverlo.
+>
+> **Fatto quando** quelle due sono decise.
