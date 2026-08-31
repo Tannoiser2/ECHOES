@@ -96,15 +96,22 @@ tutte. I nove nuovi stanno su `AST_PEOPLE_MOBILIZATION`, `AST_PEOPLE_MARCH`,
 `AST_WEALTH_TOLL`, `AST_WEALTH_CARAVAN`, `AST_WEALTH_CREDIT` e
 `AST_BONDS_OLD_DEBT`. Le famiglie drammatiche tornano **12 e 12 e 12 e 12**.
 
-### Due segni muti in meno
+### Un segno muto in meno — **uno**, non due
 
-Sceglere i segni sulla misura ha un effetto che vale la pena dichiarare: due dei
-quattro segni che [MISURA_SEGNI](MISURA_SEGNI.md) chiamava *«lavoro del motore
-che al tavolo non conta»* adesso qualcuno li guarda — `burden_shared` (scritto
-48 volte, letto da nessuno) e `someone_paid` (27). Gli altri due,
-`spoke_and_lost` e `took_by_hand`, sono di **casata**, e l'eleggibilita' di un
-Eco si giudica senza sapere chi la sta calando: quelli restano muti, e restano
-scritti qui.
+Scegliere i segni sulla misura ha un effetto che vale la pena dichiarare:
+`burden_shared` (scritto 48 volte in cento partite, letto da nessuno) adesso
+accende due Echi, e la lista dei muti dichiarati scende da 12 a **11**.
+
+**Avevo scritto due, ed era sbagliato.** `someone_paid` doveva essere il secondo,
+ma la carta a cui l'avevo dato — `ECH_RECKONING` — aveva gia' una clausola di
+Propp, e la regola chirurgica di sopra (il segno entra *solo* dove la lotteria
+era l'unica guardia) giustamente non gliel'ha aggiunto. Il cancello del registro
+dei segni l'ha detto contando: 11 muti, non 10.
+
+Gli altri tre restano, e la ragione e' strutturale per due di loro:
+`spoke_and_lost` e `took_by_hand` sono di **casata**, e l'eleggibilita' di un Eco
+si giudica senza sapere chi lo sta calando — un Eco non puo' leggere un segno che
+sta su una scheda.
 
 ### La scatola cala di cinque fogli
 

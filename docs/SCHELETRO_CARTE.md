@@ -9,7 +9,7 @@ che entra. Il numero accanto e' su quante facce del mazzo quel blocco c'e'.
 | mazzo | formato | facce | pezzi |
 |---|---|---|---|
 | **asset** | 63x88 — la carta da gioco che sta in mano | 48 | 132 |
-| **echo** | 63x88 — la carta da gioco che sta in mano | 39 | 39 |
+| **echo** | 63x88 — la carta da gioco che sta in mano | 48 | 48 |
 | **tension** | 44x68 — la mini che sta accanto a una traccia | 60 | 60 |
 | **council** | 70x120 — il tarocco che resta in vista | 60 | 60 |
 | **destiny** | 70x120 — il tarocco che resta in vista | 23 | 23 |
@@ -56,16 +56,16 @@ La carta del Narratore, una funzione di Propp: **tu scegli solo quando**.
 Dove cade e cosa lascia lo decide il mondo, non chi la gioca.
 Due a testa a inizio Atto, dal sacchetto dell'Atto. Costa 1 Occasione.
 
-**Lo scheletro** — 63x88 — la carta da gioco che sta in mano, 39 facce, 39 pezzi:
+**Lo scheletro** — 63x88 — la carta da gioco che sta in mano, 48 facce, 48 pezzi:
 
 | blocco | su quante facce |
 |---|---|
-| il titolo | 39 su 39 |
-| il sottotitolo | 39 su 39 |
-| l'illustrazione | 39 su 39 |
-| **QUANDO ESCE** | 34 su 39 |
-| **IL MONDO** | 39 su 39 |
-| **CONVOCA IL CONSIGLIO** | 9 su 39 |
+| il titolo | 48 su 48 |
+| il sottotitolo | 48 su 48 |
+| l'illustrazione | 48 su 48 |
+| **QUANDO ESCE** | 43 su 48 |
+| **IL MONDO** | 48 su 48 |
+| **CONVOCA IL CONSIGLIO** | 9 su 48 |
 
 **Una carta vera**, come esce dal foglio di stampa:
 

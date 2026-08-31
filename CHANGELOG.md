@@ -45,11 +45,14 @@ calato, non dal sorteggio dell'anno. Se n'e' accorta una prova che c'era gia',
 e il passaggio e' stato rifatto **chirurgico**: si toglie solo `tension_limit`.
 Dieci clausole di Propp prima, dieci dopo.
 
-### Due segni muti in meno
+### Un segno muto in meno
 
-`burden_shared` (48 scritture, nessun lettore) e `someone_paid` (27) adesso
-accendono un Eco. `spoke_and_lost` e `took_by_hand` restano muti: sono di
-casata, e l'eleggibilita' di un Eco si giudica senza sapere chi lo cala.
+`burden_shared` (48 scritture, nessun lettore) adesso accende due Echi: i muti
+dichiarati scendono da 12 a **11**.
+
+Ne avevo annunciati due. Il secondo, `someone_paid`, non c'e': la sua carta
+aveva gia' una clausola di Propp, e la regola chirurgica non le aggiunge un
+segno. L'ha contato il cancello del registro, non io.
 
 ---
 
