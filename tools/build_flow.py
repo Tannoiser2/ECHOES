@@ -253,9 +253,21 @@ def main() -> int:
         print("OK  il flusso disegnato e' quello dei dati: %d pezzi, %d legami."
               % (len(N), len(E)))
         return 0
+    cambiato = (not PAGINA.exists()) or PAGINA.read_text(encoding="utf-8") != pagina
     PAGINA.write_text(pagina, encoding="utf-8")
     print("scritto %s — %d pezzi, %d legami, %d KB"
           % (PAGINA.relative_to(REPO), len(N), len(E), len(pagina) // 1024))
+    if cambiato:
+        # Il file nel repo lo sorveglia il cancello; la copia pubblicata no.
+        # Chi guarda il link non ha modo di sapere che sta leggendo il disegno
+        # di ieri, percio' lo strumento lo dice ad alta voce invece di lasciarlo
+        # scoprire a chi si fida.
+        print()
+        print("  IL DISEGNO E' CAMBIATO.")
+        print("  Il file qui e' aggiornato e il cancello lo tiene tale, ma la copia")
+        print("  pubblicata come Artifact NON si aggiorna da sola: chi apre il link")
+        print("  vede ancora il disegno di prima finche' non la si ripubblica su")
+        print("  quello stesso indirizzo.")
     for k, n in sorted(Counter(x["k"] for x in N.values()).items(), key=lambda x: -x[1]):
         print("   %-12s %3d" % (k, n))
     return 0

@@ -46,12 +46,22 @@ scorre in un verso solo:
 Il disegno sta in `tools/flow_template.html`, i dati escono da `godot/data`, e si
 incontrano solo dentro `build_flow.py`. Niente e' scritto a mano due volte.
 
-### Il cancello
+### Il cancello, e cosa il cancello **non** copre
 
 `--check` va rosso se il disegno non e' piu' quello che i dati dicono. Provato
 piantando una regola del segno finta: rosso, e verde di nuovo togliendola. Senza
 questo, il grafo sarebbe una fotografia che invecchia — che e' esattamente il
 difetto per cui il committente ha chiesto che «si rigeneri sempre».
+
+**Ma il cancello sorveglia il file, non la copia pubblicata.** L'Artifact
+all'indirizzo stabile e' una copia: quando i dati cambiano, il file qui si
+rigenera e la CI lo pretende, mentre la pagina pubblicata resta quella di prima
+finche' qualcuno non la ripubblica su quello stesso indirizzo. Chi apre il link
+non ha modo di accorgersene.
+
+Percio' lo strumento **lo dice ad alta voce** quando il disegno e' cambiato,
+invece di lasciarlo scoprire a chi si fida del link. E' il minimo onesto: la
+ripubblicazione resta un gesto a mano, e questo lo scrive invece di nasconderlo.
 
 ### Quattro difetti trovati disegnandolo, e vale la pena scriverli
 
