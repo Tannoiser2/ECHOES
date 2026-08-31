@@ -5,6 +5,204 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.318 — Il flusso del tavolo si disegna, e si rigenera da solo (D-354)
+
+Voluto dal committente: *«quando evidenzio una carta, un tag, una locazione o
+qualunque altra cosa, mi deve far vedere l'albero delle connessioni […] più
+grafico con frecce e meno tabelle»*, e *«il grafo deve sempre rigenerarsi»*.
+
+`tools/build_flow.py` → **`docs/flusso.html`**. Si sceglie un pezzo e si vede
+**a sinistra chi ce lo mette, a destra chi lo legge e cosa ne segue**, disegnato
+con le frecce. Uno, due o tre passi; ogni pezzo si mette al centro con un tocco;
+si filtra per tipo di legame e per tipo di pezzo.
+
+**543 pezzi, 1582 legami.** Tre tipi di nodo nuovi: i **luoghi** (le dieci
+tessere coi segni stampati e le adiacenze), le **azioni**, le **Pietre** coi loro
+gradi.
+
+**Il verso della lettura è rovesciato apposta.** Il dato dice «questa carta legge
+#granaio»; il tavolo chiede «#granaio chi lo legge, e quelli cosa fanno». Girato
+l'arco, la catena scorre in un verso solo: *una carta **posa** un segno · il
+segno è **letto da** una regola · la regola **vieta** un'azione.*
+
+**Nuovo cancello** `python3 tools/build_flow.py --check`, in CI: va rosso se il
+disegno non è più quello che i dati dicono. Provato piantando una regola finta.
+
+Il disegno sta in `tools/flow_template.html` e i dati in `godot/data`: si
+incontrano solo nel generatore, come il MASTER PROMPT di D-349.
+
+---
+
+## 0.1.317 — Sotto gli occhi della guardia non si trama (D-353)
+
+Primo passo della potatura chiesta dal committente. `condition:guarded` — posato
+**36 volte in 100 anni** dal prezzo di una proposta che passa, e letto da nessuna
+regola — adesso morde: `TGR_GUARDED_NO_SCHEME` vieta **TRAMARE** a chi ha
+presenza in una Regione sorvegliata. Stessa forma del divieto di D-117: dove
+qualcuno guarda, non si ordisce.
+
+**I muti del registro passano da 13 a 12.**
+
+| | prima | dopo |
+|---|---|---|
+| seggi bloccati (misto / uniforme) | 0/8 · 0/8 | **0/8 · 0/8** |
+| Consigli media, misto | 3.43 | 3.43 |
+| Consigli media, uniforme | 3.48 | **3.46** |
+| segni che non arrivano mai | 67 su 180 | **66 su 180** |
+| vite che non si siedono mai | 7 | **6** |
+| trasformazioni sedute | 208 | 197 |
+
+Il costo è **due centesimi di Consiglio** e **undici trasformazioni in meno**, ed
+è scritto: un divieto in più è una strada in meno.
+
+E una cosa migliora, che non era lo scopo: **«Il Banco Nero» si siede**. In cento
+partite non si era mai aperto; adesso una volta sì. Un divieto sposta le strade,
+e qualcuna porta dove prima non passava nessuno.
+
+E una cosa storta che resta: `MISURA_SEGNI` scrive ancora «nessuno lo guarda»
+accanto a `condition:guarded`, e adesso è falso — è la terza riparazione di
+ISSUES 102, ancora aperta.
+
+---
+
+## 0.1.316 — La sonda del tavolo, e la memoria del mondo trova il suo posto (D-351, D-352)
+
+**La misura che mancava.** `MISURA_SEGNI` guarda 66 segni su 204. ISSUES 102
+l'aveva scritto con un numero che non lascia scampo: *214 Pietre alzate, e nel
+conto dei segni ne risultavano sette.*
+
+`cli/run_table_marks_probe.gd` guarda **tutti e 180** i segni che hanno un posto
+sul tavolo, e li conta **posto per posto**. Nuovo documento
+[MISURA_TAVOLO.md](docs/MISURA_TAVOLO.md), nuovo cancello
+`tools/run_table_survey.sh --check`, in CI.
+
+**La prova d'accettazione di ISSUES 102 e' superata:** 1062 Pietre alzate in 100
+partite, 1195 segni di Pietra contati — le 1062 piu' 133 cambi di grado. Prima
+erano **sette**.
+
+### Cosa dice la prima misura
+
+**113 segni su 180 arrivano sul tavolo. 67 non ci arrivano mai.**
+
+| posto | arrivano | non arrivano |
+|---|---|---|
+| stampato sulla tessera | 15 | **0** |
+| un gettone accanto alla tessera | 13 | 1 |
+| un dischetto rotondo | 10 | 3 |
+| uno spazio sulla tessera | 17 | 10 |
+| un gettone sul bordo della mappa | 32 | 20 |
+| sulla scheda della casa | 26 | 33 |
+
+### Due cecità pagate scrivendola
+
+- **Le Pietre non passano dal registro degli Effetti** (`_apply_grade_tag` scrive
+  dritto su `region["tags"]`): la sonda guarda `BUILD_STRUCTURE` e i cambi di
+  grado, e ricava il segno dal grado come fa il motore.
+- **Le Cicatrici hanno un blocco loro.** La prima stesura diceva *«12 Cicatrici
+  su 13 non arrivano mai»*, ed era falso: non guardava `ADD_SCAR`. Ne arrivano
+  **10 su 13**. È il secondo strumento di questo progetto a cadere sullo stesso
+  inciampo, e il commento che lo avvisava era già scritto.
+
+Perché non ce ne sia una terza, la sonda porta una colonna che **non passa dal
+registro**: *a fine partita*. Se un segno è sul tavolo quando si finisce, ci è
+arrivato — comunque ci sia arrivato.
+
+### La memoria del mondo si posa sul bordo della mappa (D-351)
+
+Scelta del committente per [ISSUES 110](docs/ISSUES.md): i 52 segni che il mondo
+ricorda sono **gettoni sul bordo della mappa**. Un fatto del mondo è del mondo,
+non di un luogo né di una casa.
+
+Il costo, misurato prima: 49 su 52 hanno già la parola stampata; **51 su 52 non
+hanno la scheda del disegno**, ed è la parte che si scrive a mano. Resta da fare,
+ed è scritto in ISSUES 110. E di quei 52 gettoni, **20 non si posano mai** in
+cento partite: conviene saperlo prima di tagliare la fustella.
+
+### E la potatura non è quello che sembrava (ISSUES 111)
+
+Le 10 Pietre che non si alzano mai sono **due difetti diversi**, non uno:
+
+- **sei hanno già chi le scrive**, e la Conseguenza non viene mai scelta —
+  `CNS_MINE_SEALED` scrive sia `mine_sealed` sia `place:open_site`, ed è lo
+  stesso difetto di ISSUES 108 contato in un altro posto;
+- **tre non hanno nessuno**: `structure:palace`, `settlement:city` (nessun
+  effetto tocca `STR_SETTLEMENT`, a nessun grado) e `structure:road` (ISSUES 101).
+
+Nessuna regola cambiata in questa versione: 662 test verdi, **0 seggi bloccati
+su 8**.
+
+---
+
+## 0.1.315 — Ogni segno dice in che punto del tavolo lo prendi in mano (D-350)
+
+Voluto dal committente: *«ogni tessera ha tag che la descrivono e non può
+cambiare; sulla tessera degli spazi dove costruire; fuori dalla tessera token
+che indicano lo stato, a parte i token rotondi che rappresentano le cicatrici;
+sulle schede delle entità altre zone».*
+
+**`table_place` su tutte e 204 le voci del dizionario.** `scope` diceva a chi
+appartiene un segno, `category` che cosa è: mancava **dove lo prendi in mano**,
+e senza quello non si sa cosa stampare. `condition:emptied` e `scar:emptied`
+vivono tutt'e due su una Regione, ma uno è un gettone che torna nella riserva e
+l'altro un dischetto che resta.
+
+| posto | segni | di cui scritti sul mondo | muti |
+|---|---|---|---|
+| stampato sulla tessera | 15 | 0 | — |
+| uno spazio sulla tessera (Pietre e loro gradi) | 27 | 5 | 1 |
+| gettone accanto alla tessera | 14 | 14 | 1 |
+| dischetto rotondo (Cicatrici) | 13 | 12 | — |
+| sulla scheda della casa | 59 | 23 | 4 |
+| memoria del mondo — **posto da decidere** | 52 | 48 | 7 |
+| il tavolo non lo mostra | 24 | 0 | — |
+
+**180 segni stanno sul tavolo, 24 sono contabilità.**
+
+Due cose trovate assegnando i posti, e nessuna era scritta:
+
+- **I gradi di una Pietra sono lo stesso spazio.** `place:forest` →
+  `place:thinned_wood` → `place:cursed_wood` sono i tre gradi di `STR_FOREST`:
+  un bosco che si assottiglia è la stessa Pietra a un grado diverso, non un
+  gettone che si aggiunge.
+- **La memoria del mondo non ha un posto** — 52 segni, un quarto del dizionario,
+  che non stanno né sulla tessera né sulla scheda. Nuova [ISSUES 110](docs/ISSUES.md).
+
+**La guardia** (controllo 21 di `validate_physical.py`) morde su quattro difetti
+piantati: un segno senza posto, una Cicatrice messa fra i gettoni che si
+tolgono, un grado di Pietra spacciato per gettone, un segno della scheda messo
+sulla tessera. La guardia sale da 28 a **32 difetti piantati**.
+
+Il registro dei segni guadagna la sezione **«Il tavolo: dove sta ogni segno»**,
+e la tabella dei muti dice in che posto sta ognuno.
+
+**Nessuna regola cambiata, nessun segno tolto o aggiunto:** è un'etichetta su
+quello che c'era. 662 test verdi, **0 seggi bloccati su 8** su tutti e due i
+tavoli, Consigli 3.48 di media (uniforme) — identico a prima.
+
+---
+
+## 0.1.314 — Il MASTER PROMPT esce da ART_BIBLE anche per Python (D-349)
+
+`tools/token_catalogue.py` legge il MASTER PROMPT 6 e le sue varianti di
+contorno da `docs/ART_BIBLE.md`, invece di tenerne una seconda copia scritta a
+mano. Cambiare il documento adesso cambia il catalogo. Chiude
+[ISSUES 109](docs/ISSUES.md).
+
+*Il codice era entrato senza i suoi verbali, contro la terza regola di casa:
+questa riga e D-349 arrivano in ritardo, col commit di D-350.*
+
+---
+
+## 0.1.313 — Vaerax ha una seconda via per sigillare la miniera (D-348, ritirata in 0.1.315)
+
+Aggiunta proposta `P_SEAL_MINE_FOR_FIELDS` al Consiglio del Grano. Il segno
+`mine_sealed` arriva ora da due caselle diverse — il Risveglio (raro) e la
+Carestia (comune). Su 100 anni, il segno esce **3 volte** anziché 0.
+
+Apre la strada a ISSUES 108: bilanciamento di Vaerax e Lyra.
+
+---
+
 ## 0.1.312 — Il prompt di una carta dice la scena, non il nome (D-347)
 
 Il committente: *«rigenera anche i vari cataloghi delle carte, e anche il prompt

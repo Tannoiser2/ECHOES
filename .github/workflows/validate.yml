@@ -66,6 +66,9 @@ jobs:
       - name: Drift check - registro dei segni
         run: python3 tools/build_sign_registry.py --check
 
+      - name: Drift check - il flusso disegnato
+        run: python3 tools/build_flow.py --check
+
       # Le tre misure che vengono prima della matrice: segni orfani, obiettivi
       # che non si possono puntare col dito, Tensioni che non incontrano nessun
       # Destino. Il cancello era dichiarato in CLAUDE.md dalla 0.1.249 e **non
@@ -169,6 +172,9 @@ jobs:
 
       - name: Drift check - la misura dei segni
         run: GODOT=~/godot/godot tools/run_marks_survey.sh --check
+
+      - name: Drift check - la misura del tavolo
+        run: GODOT=~/godot/godot tools/run_table_survey.sh --check
 
       - name: Ogni anno arriva in fondo, e lo stesso seme da' lo stesso salvataggio
         run: GODOT=~/godot/godot tools/run_sims.sh

@@ -20,7 +20,7 @@
     "tag": {
       "type": "object",
       "description": "Una voce del dizionario dei segni (PZ-0). Prima di questo dato i tag non esistevano come collezione: si deducevano raschiando gli effetti, e il validatore indovinava l'ambito di ognuno. Qui ogni segno che il gioco tocca dichiara cos'e', dove vive, chi lo scrive e chi lo legge - e tools/validate_physical.py controlla che la dichiarazione combaci con quello che i dati fanno davvero. Fuori dal dizionario restano solo i livelli di rapporto (ENEMY..PACT): sono gradini di una scala, non segni sul tavolo.",
-      "required": ["id", "title", "category", "scope", "written_by", "read_by"],
+      "required": ["id", "title", "category", "table_place", "scope", "written_by", "read_by"],
       "additionalProperties": false,
       "properties": {
         "id": {
@@ -37,6 +37,12 @@
           "type": "string",
           "enum": ["PLACE", "FUNCTION", "STATE", "MEMORY", "ENTITY"],
           "description": "Le cinque categorie della roadmap. PLACE: un tratto del luogo, stampato o lasciato da una rovina. FUNCTION: cosa un luogo o una carta sa fare (strutture, insediamenti, funzioni degli Echo). STATE: una condizione reversibile, di Regione o di casa. MEMORY: un fatto che il mondo ricorda - fatti nudi, cicatrici, scoperte, leggende. ENTITY: chi sei - etichette di famiglia, vite, stati d'identita'."
+        },
+        "table_place": {
+          "type": "string",
+          "enum": ["TILE_PRINTED", "TILE_SLOT", "ZONE_TOKEN", "SCAR_TOKEN",
+                   "HOUSE_SHEET", "WORLD_MEMORY", "NONE"],
+          "description": "Il posto fisico dove il segno sta, sul tavolo (D-350). `scope` dice a chi appartiene un segno; questo dice **dove lo prendi in mano**, e sono due cose diverse: `condition:emptied` e `scar:emptied` vivono tutt'e due su una Regione, ma uno e' un gettone che si toglie e l'altro un dischetto che resta. TILE_PRINTED: stampato sulla tessera, non cambia mai - montagna, capitale, pascolo. TILE_SLOT: uno spazio sulla tessera dove si posa una Pietra, compresi i gradi che degradano (place:forest, place:thinned_wood, place:cursed_wood sono tre stati dello stesso spazio). ZONE_TOKEN: un gettone accanto alla tessera, che si mette e si toglie - affamata, chiusa, in rivolta. SCAR_TOKEN: il dischetto rotondo delle Cicatrici, che non torna nella riserva. HOUSE_SHEET: sulla scheda della casa - incoronato, dormiente, decaduto, e la vita che sta vivendo. WORLD_MEMORY: quello che il mondo ricorda - un gettone sul **bordo della mappa** (D-351), dove sta il mondo e non un luogo: non e' ne' sulla tessera ne' sulla scheda, perche' non e' di nessuno dei due. NONE: contabilita' che il motore usa e il tavolo non mostra - nessuna fustella la taglia."
         },
         "scope": {
           "type": "array",

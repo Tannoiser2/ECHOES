@@ -1253,6 +1253,7 @@ const DEFS := {
 			"id",
 			"title",
 			"category",
+			"table_place",
 			"scope",
 			"written_by",
 			"read_by",
@@ -1275,6 +1276,18 @@ const DEFS := {
 					"STATE",
 					"MEMORY",
 					"ENTITY",
+				],
+			},
+			"table_place": {
+				"type": "String",
+				"enum": [
+					"TILE_PRINTED",
+					"TILE_SLOT",
+					"ZONE_TOKEN",
+					"SCAR_TOKEN",
+					"HOUSE_SHEET",
+					"WORLD_MEMORY",
+					"NONE",
 				],
 			},
 			"scope": {

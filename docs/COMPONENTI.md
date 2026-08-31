@@ -52,7 +52,7 @@ simboli, si impara quello che si vede.
 | Obiettivi | 17 | i tre coperti che si pescano a inizio saga |
 | Conseguenze | 64 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
-| Regole dei segni | 52 | cosa un segno fa da solo |
+| Regole dei segni | 53 | cosa un segno fa da solo |
 | Azioni | 6 | i verbi del turno |
 | Chronicle | 1 | gli anni giocabili |
 

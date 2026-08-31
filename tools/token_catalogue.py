@@ -29,9 +29,11 @@ REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "godot" / "data"
 LABELS = REPO / "godot" / "scripts" / "core" / "sign_labels.gd"
 ICONS = DATA / "token_icons" / "token_icons.json"
+ART_BIBLE = REPO / "docs" / "ART_BIBLE.md"
 DOC = REPO / "docs" / "CATALOGO_PEDINE.md"
 
-PROMPT = (
+# Default values in case ART_BIBLE is not available
+_PROMPT_DEFAULT = (
     "Single monochrome pictogram for a 15 mm cardboard token, ECHOES.\n"
     "Subject: %s.\n"
     "Solid black on bone white, no greys, no gradient, no colour, no text, no frame.\n"
@@ -41,11 +43,58 @@ PROMPT = (
     "Medieval woodcut sensibility, not modern flat-icon geometry.%s"
 )
 
-## La variante che il contorno deve dire prima della parola (MASTER PROMPT 6).
-BORDO = {
+_BORDO_DEFAULT = {
     "condition:": "\nDashed outline: this is a thing happening, and it can end.",
     "scar:": "\nThe drawing carries a break — one line that splits it. Permanent.",
 }
+
+
+def art_bible_prompts() -> tuple[str, dict]:
+    """Legge MASTER PROMPT 6 e le sue varianti da ART_BIBLE.md.
+
+    Returns:
+        (prompt, bordo) dove prompt è il MASTER PROMPT 6 e bordo è il dict
+        delle varianti di contorno. Se il file non esiste, torna i defaults.
+    """
+    if not ART_BIBLE.exists():
+        return _PROMPT_DEFAULT, _BORDO_DEFAULT
+
+    text = ART_BIBLE.read_text(encoding="utf-8")
+    prompt = _PROMPT_DEFAULT
+    bordo = _BORDO_DEFAULT.copy()
+
+    # Leggi MASTER PROMPT 6
+    if "## MASTER PROMPT 6" in text:
+        # Trova il blocco tra ``` dopo MASTER PROMPT 6
+        parts = text.split("## MASTER PROMPT 6", 1)
+        if len(parts) > 1:
+            section = parts[1]
+            if "```" in section:
+                code_start = section.index("```") + 3
+                code_end = section.index("```", code_start)
+                prompt = section[code_start:code_end].strip()
+                # Converti placeholders markdown a placeholder Python
+                prompt = prompt.replace("{soggetto}", "%s")
+                prompt = prompt.replace("{variante}", "%s")
+
+    # Leggi le varianti di contorno
+    if "### Varianti di contorno" in text:
+        parts = text.split("### Varianti di contorno", 1)
+        if len(parts) > 1:
+            section = parts[1]
+            if "```" in section:
+                code_start = section.index("```") + 3
+                code_end = section.index("```", code_start)
+                variants_text = section[code_start:code_end].strip()
+                # Parsa le linee come "condition: ..." o "scar: ..."
+                for line in variants_text.split("\n"):
+                    if ":" in line:
+                        key, value = line.split(":", 1)
+                        key = key.strip() + ":"
+                        value = "\n" + value.strip()
+                        bordo[key] = value
+
+    return prompt, bordo
 
 
 def parole() -> Dict[str, Dict[str, str]]:
@@ -71,6 +120,7 @@ def schede() -> List[dict]:
 
 
 def catalogo() -> str:
+    prompt, bordo = art_bible_prompts()
     parole_di = parole()
     voci = dizionario()
     carte = {str(s["tag"]): s for s in schede()}
@@ -145,11 +195,11 @@ def catalogo() -> str:
             add("**Cosa si vede.** %s" % str(scheda["soggetto"]))
             add("")
             variante = ""
-            for prefisso, clausola in BORDO.items():
+            for prefisso, clausola in bordo.items():
                 if tag.startswith(prefisso):
                     variante = clausola
             add("```")
-            add(PROMPT % (str(scheda["soggetto"]), variante))
+            add(prompt % (str(scheda["soggetto"]), variante))
             add("```")
             add("")
     return "\n".join(out) + "\n"

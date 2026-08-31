@@ -80,7 +80,6 @@ MUTI_NOTI: Dict[str, str] = {
     "spoke_and_lost": "ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278)",
     "took_by_hand": "si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278)",
     "watched": "sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278)",
-    "condition:guarded": "la tessera sorvegliata: si vede sul tavolo, e nessuna regola la interroga ancora — candidato numero uno a mordere in Fase B (D-278)",
 }
 
 
@@ -451,6 +450,65 @@ def impossibili(signs: Dict[str, Dict[str, Set[str]]]) -> List[str]:
     )
 
 
+POSTI: List[tuple] = [
+    ("TILE_PRINTED", "stampato sulla tessera",
+     "la natura del luogo: montagna, capitale, pascolo. Non cambia mai."),
+    ("TILE_SLOT", "uno spazio sulla tessera",
+     "dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta."),
+    ("ZONE_TOKEN", "un gettone accanto alla tessera",
+     "lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie."),
+    ("SCAR_TOKEN", "un dischetto rotondo",
+     "le Cicatrici. Non tornano nella riserva."),
+    ("HOUSE_SHEET", "sulla scheda della casa",
+     "chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo."),
+    ("WORLD_MEMORY", "un gettone sul bordo della mappa",
+     "quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351)."),
+    ("NONE", "il tavolo non lo mostra",
+     "contabilita' che il motore usa e nessuna fustella taglia."),
+]
+
+
+def posti() -> Dict[str, str]:
+    """Il posto fisico dichiarato da ogni voce del dizionario (D-350)."""
+    return {str(v["id"]): str(v.get("table_place", "?")) for v in items("tag")}
+
+
+def sezione_del_tavolo(signs: Dict[str, Dict[str, Set[str]]], dove: Dict[str, str]) -> List[str]:
+    """Quanti segni per ogni posto del tavolo, e quanti di quelli sono muti.
+
+    E' la domanda del committente detta coi numeri: *«non devono essere 200 con
+    alcuni che non vengono mai posati o letti».* Il conto per posto dice dove
+    la scatola pesa troppo, e dove pesa a vuoto.
+    """
+    lines = ["## Il tavolo: dove sta ogni segno", "",
+             "Ogni segno del dizionario nel posto fisico dove lo prendi in mano.",
+             "L'ultima colonna e' quella che conta: **segni che qualcosa scrive e",
+             "nessuno legge**, contati posto per posto.", "",
+             "| posto | segni | scritti sul mondo | di cui muti | cos'e' |",
+             "|---|---|---|---|---|"]
+    for chiave, nome, spiega in POSTI:
+        del_posto = [t for t, p in dove.items() if p == chiave]
+        scritti = [t for t in del_posto
+                   if t in signs and (signs[t]["scrive"] or signs[t]["cancella"])]
+        muti = [t for t in scritti if not signs[t]["legge"]]
+        lines.append("| **%s** | %d | %d | %s | %s |" % (
+            nome, len(del_posto), len(scritti),
+            ("**%d**" % len(muti)) if muti else "—", spiega))
+    senza = sorted(t for t, p in dove.items() if p == "?")
+    lines.append("")
+    if senza:
+        lines.append("> **%d segni senza un posto dichiarato:** %s"
+                     % (len(senza), ", ".join("`%s`" % t for t in senza)))
+    else:
+        fisici = sum(1 for p in dove.values() if p != "NONE")
+        lines.append("Ogni segno ha un posto. **%d stanno sul tavolo**, %d sono contabilita'."
+                     % (fisici, len(dove) - fisici))
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    return lines
+
+
 def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
     written = {t: r for t, r in signs.items() if r["scrive"] or r["cancella"]}
     mute = sorted(t for t, r in written.items() if not r["legge"])
@@ -466,6 +524,8 @@ def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
     lines.append("")
     lines.append("---")
     lines.append("")
+    dove = posti()
+    lines.extend(sezione_del_tavolo(signs, dove))
     lines.append("## I segni muti")
     lines.append("")
     if not mute:
@@ -474,12 +534,13 @@ def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
         lines.append("Scritti da qualcosa, letti da niente. Ognuno e' una carta o una")
         lines.append("Conseguenza che promette un cambiamento che il gioco non registra.")
         lines.append("")
-        lines.append("| segno | chi lo scrive | perche' e' ancora qui |")
-        lines.append("|---|---|---|")
+        lines.append("| segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |")
+        lines.append("|---|---|---|---|")
         for tag in mute:
             who = sorted(signs[tag]["scrive"] | signs[tag]["cancella"])
-            lines.append("| `%s` | %s | %s |" % (
-                tag, ", ".join(who), MUTI_NOTI.get(tag, "**non dichiarato**")
+            nome = next((n for k, n, _ in POSTI if k == dove.get(tag)), "—")
+            lines.append("| `%s` | %s | %s | %s |" % (
+                tag, nome, ", ".join(who), MUTI_NOTI.get(tag, "**non dichiarato**")
             ))
     lines.append("")
     lines.append("---")

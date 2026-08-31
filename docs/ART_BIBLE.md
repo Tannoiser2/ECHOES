@@ -270,7 +270,7 @@ Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
 Two or three strokes at most, closed silhouette, thick enough to survive at
 16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
 one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
+Medieval woodcut sensibility, not modern flat-icon geometry.{variante}
 ```
 
 Tre varianti, e la differenza si deve **vedere prima della parola**:
@@ -281,6 +281,15 @@ Tre varianti, e la differenza si deve **vedere prima della parola**:
   spezza il disegno, non un simbolo diverso. La mappa non la dimentica.
 - **Pietra, insediamento, segno di casa**: contorno pieno. E' una cosa che
   c'e'.
+
+### Varianti di contorno
+
+Alla base del prompt principale, si aggiungono queste varianti per i casi specifici:
+
+```
+condition: Dashed outline: this is a thing happening, and it can end.
+scar: The drawing carries a break — one line that splits it. Permanent.
+```
 
 **Il vincolo di collisione**, che ha gia' respinto tre soggetti in fase di
 scrittura: `abbandonata`, `svuotata` e `lo sgombero` raccontano tre cose

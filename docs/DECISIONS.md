@@ -10,6 +10,350 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-354 — Il flusso del tavolo si disegna, e si rigenera da solo
+
+**implemented** · 0.1.318 · voluto dal committente
+
+> «Quando evidenzio una carta, un tag, una locazione o qualunque altra cosa, mi
+> deve far vedere l'albero delle connessioni: chi mette quel tag, chi lo legge
+> oppure quali azioni accende, e quella azione quali tag mette e dove li mette.
+> […] Il grafo deve sempre rigenerarsi, ma lo vorrei piu' grafico con frecce e
+> meno tabelle.»
+
+`tools/build_flow.py` legge `godot/data` e disegna `docs/flusso.html`: si sceglie
+un pezzo — carta, segno, luogo, azione, Pietra, casa, Tema, Eco, Conseguenza,
+proposta, Tensione, Destino, regola del segno — e si vede **a sinistra chi ce lo
+mette, a destra chi lo legge e cosa ne segue**, con le frecce nel verso del
+gioco. Uno, due o tre passi; ogni pezzo si mette al centro con un tocco.
+
+**543 pezzi, 1582 legami**, e tre tipi di nodo che il grafo di prima non aveva —
+i **luoghi** (le dieci tessere, coi segni stampati e le adiacenze), le **azioni**
+(le sei), e le **Pietre** (coi gradi, perche' un segno di Pietra lo porta il
+grado e non la Pietra).
+
+### Il verso della lettura e' rovesciato apposta
+
+Il dato dice *«questa carta legge #granaio»*, quindi il lettore sta **prima** del
+segno. Ma la domanda del tavolo e' *«#granaio chi lo legge, e quelli cosa
+fanno»*, e con l'arco in quel verso la catena si spezzava a meta'. Girandolo,
+scorre in un verso solo:
+
+> una carta **posa** un segno · il segno e' **letto da** una regola · la regola
+> **vieta** un'azione
+
+### Una sorgente sola, come D-349
+
+Il disegno sta in `tools/flow_template.html`, i dati escono da `godot/data`, e si
+incontrano solo dentro `build_flow.py`. Niente e' scritto a mano due volte.
+
+### Il cancello, e cosa il cancello **non** copre
+
+`--check` va rosso se il disegno non e' piu' quello che i dati dicono. Provato
+piantando una regola del segno finta: rosso, e verde di nuovo togliendola. Senza
+questo, il grafo sarebbe una fotografia che invecchia — che e' esattamente il
+difetto per cui il committente ha chiesto che «si rigeneri sempre».
+
+**Ma il cancello sorveglia il file, non la copia pubblicata.** L'Artifact
+all'indirizzo stabile e' una copia: quando i dati cambiano, il file qui si
+rigenera e la CI lo pretende, mentre la pagina pubblicata resta quella di prima
+finche' qualcuno non la ripubblica su quello stesso indirizzo. Chi apre il link
+non ha modo di accorgersene.
+
+Percio' lo strumento **lo dice ad alta voce** quando il disegno e' cambiato,
+invece di lasciarlo scoprire a chi si fida del link. E' il minimo onesto: la
+ripubblicazione resta un gesto a mano, e questo lo scrive invece di nasconderlo.
+
+### Quattro difetti trovati disegnandolo, e vale la pena scriverli
+
+1. **Le etichette a meta' della freccia finivano sopra i riquadri.** Spostate nel
+   corridoio accanto all'altro pezzo: una per riga.
+2. **Poi si impilavano all'imbocco del centro**, perche' li' tutte le frecce
+   convergono alla stessa altezza. Per questo stanno accanto **all'altro** pezzo,
+   non al centro.
+3. **Un pezzo che ricompare piu' in la' prendeva il livello sbagliato** — la
+   mappa teneva l'ultimo invece del piu' vicino, e il pezzo al centro finiva a
+   livello 3: le frecce si attaccavano al posto sbagliato e le scritte sparivano.
+4. **Incastrare anche l'altezza rimpiccioliva tutto** finche' venticinque pezzi
+   in colonna non si leggevano piu'. Si inquadra sulla larghezza, e una colonna
+   lunga si scorre.
+
+---
+
+## D-353 — Sotto gli occhi della guardia non si trama
+
+**implemented** · 0.1.317 · voluto dal committente («la potatura — fai leggere…»)
+
+`condition:guarded` lo posa il prezzo di una proposta che passa (D-278), **36
+volte in 100 anni**, e per due versioni non lo interrogava nessuna regola. Il
+registro dei segni lo dichiarava con la ragione scritta accanto — *«candidato
+numero uno a mordere in Fase B»* — che nella disciplina di casa vuol dire: e'
+noto, e' contato, e prima o poi qualcuno lo fa mordere.
+
+Adesso morde, e nel verso della sua parola. `TGR_GUARDED_NO_SCHEME`: **chi ha
+presenza in una Regione sorvegliata non trama.** Un `ACTION_GATE` su `SCHEME`,
+la stessa forma di `TGR_STARVING_NO_FORGE` (D-117) — dove qualcuno guarda, non
+si ordisce; e la guardia si cura come si cura una condizione, non e' per sempre.
+
+**I muti del registro passano da 13 a 12.**
+
+### Il prezzo, misurato
+
+| | prima | dopo |
+|---|---|---|
+| seggi bloccati, tavolo misto | 0 su 8 | **0 su 8** |
+| seggi bloccati, tavolo uniforme | 0 su 8 | **0 su 8** |
+| Consigli media, misto | 3.43 | 3.43 |
+| Consigli media, uniforme | 3.48 | **3.46** |
+| segni che non arrivano mai sul tavolo | 67 su 180 | **66 su 180** |
+| vite che non si siedono mai | 7 | **6** |
+| trasformazioni sedute | 208 | 197 |
+
+Il vincolo tiene. Il costo e' **due centesimi di Consiglio sul tavolo uniforme** e
+**undici trasformazioni in meno**, ed e' scritto qui invece che taciuto: un
+divieto in piu' e' una strada in meno, e qualche anno il Consiglio non si accende.
+
+E una cosa e' migliorata, che non era lo scopo: **una vita in meno resta senza
+sedersi**. «Il Banco Nero» (`ENT_SALE`, si apre su `debt_called`) in cento
+partite non si era mai aperto, e adesso si apre una volta. Un divieto sposta le
+strade, e qualcuna di quelle strade porta dove prima non passava nessuno.
+
+*Trovato dalla CI, non da me:* avevo rigenerato MISURA_SEGNI, MISURA_TAVOLO e
+COMPONENTI, e dimenticato MISURA_VITE — che gira su Godot e dipende dal gioco
+come le altre. Il cancello ha morso.
+
+### Una cosa che resta storta, e va detta
+
+`MISURA_SEGNI` continua a scrivere *«nessuno lo guarda»* accanto a
+`condition:guarded`, e adesso e' falso: lo guarda una regola del segno. Non e' un
+errore nuovo — e' la **terza riparazione di ISSUES 102**, quella rimasta aperta:
+le colonne «temuto» e «voluto» contano solo le clausole di Destini e Obiettivi, e
+una regola del segno non la vedono. Finche' non e' fatta, quel documento dira'
+muto un segno che morde.
+
+---
+
+## D-352 — La sonda del tavolo: tutti i segni, posto per posto
+
+**implemented** · 0.1.316 · chiude due riparazioni su tre di [ISSUES 102](ISSUES.md)
+
+`MISURA_SEGNI` guarda **66 segni su 204**: le memorie del mondo e le condizioni
+dei luoghi. ISSUES 102 lo aveva gia' scritto, e con un numero che non lascia
+scampo: **214 Pietre alzate, e nel conto dei segni ne risultavano sette.** Non
+un'approssimazione, cecita'.
+
+`cli/run_table_marks_probe.gd` guarda **tutti e 180** i segni che hanno un posto
+sul tavolo (D-350), e li riporta **posto per posto**, perche' un gettone di
+condizione che esce trenta volte e una Cicatrice che non esce mai sono due
+difetti diversi.
+
+**La prova d'accettazione di ISSUES 102 e' superata**: *«il conto dei segni di
+Pietra combacia con le Pietre alzate»*. La sonda delle Pietre conta **1062**
+Pietre alzate in 100 partite; questa conta **1195** segni di Pietra posati, cioe'
+le 1062 piu' **133 cambi di grado**, che un segno lo posano anche loro. Prima
+erano sette.
+
+### Due cecita' pagate mentre la si scriveva
+
+- **Le Pietre non passano dal registro degli Effetti.** `_apply_grade_tag`
+  scrive il segno dritto dentro `region["tags"]`. La sonda le vede perche'
+  guarda `BUILD_STRUCTURE` e i cambi di grado, e ricava il segno dal grado come
+  fa il motore.
+- **Le Cicatrici hanno un blocco loro.** La prima stesura di questa sonda diceva
+  che **12 Cicatrici su 13 non arrivano mai sul tavolo**, ed era falso: non
+  guardava `ADD_SCAR`. Il commento di `validate_physical._scava` lo aveva gia'
+  scritto — *«la prima stesura di questa sonda non la vedeva»* — e questa e' la
+  seconda volta che lo stesso inciampo costa lo stesso difetto. Corrette: ne
+  arrivano **10 su 13**.
+
+Per non pagarne una terza, la sonda porta una colonna che **non passa dal
+registro**: *a fine partita*, cioe' in quante partite quel segno e' sul tavolo
+quando si finisce. Se un segno e' li', ci e' arrivato — comunque ci sia
+arrivato, e qualunque cosa la sonda non sappia leggere.
+
+### Cosa dice la prima misura
+
+**113 segni su 180 arrivano sul tavolo. 67 non ci arrivano mai.**
+
+| posto | arrivano | non arrivano |
+|---|---|---|
+| stampato sulla tessera | 15 | **0** |
+| un gettone accanto alla tessera | 13 | 1 |
+| un dischetto rotondo | 10 | 3 |
+| uno spazio sulla tessera | 17 | 10 |
+| un gettone sul bordo della mappa | 32 | 20 |
+| sulla scheda della casa | 26 | 33 |
+
+I due posti che funzionano sono quelli che il committente aveva gia' messo a
+posto: la tessera (15 su 15) e i gettoni di condizione (13 su 14).
+
+**Resta aperta la terza riparazione di ISSUES 102**: separare «clausole» da
+«lettori». Questa sonda misura *chi arriva sul tavolo*, non *chi lo guarda*.
+
+---
+
+## D-351 — La memoria del mondo si posa sul bordo della mappa
+
+**implemented** · 0.1.316 · voluto dal committente · chiude [ISSUES 110](ISSUES.md)
+
+> «110 — gettoni sul bordo della mappa (il mondo)»
+
+Dando un posto a ogni segno (D-350), cinque posti su sei si erano riempiti da
+soli. Il sesto — **52 segni**, un quarto del dizionario, il gruppo piu' scritto
+di tutti — non stava ne' sulla tessera ne' sulla scheda: `debt_forgiven`,
+`betrayal_spoken`, `heir_named`. Le tre strade erano un registro della Cronaca,
+gettoni sul bordo, o il fatto lasciato sulla carta che lo ha creato.
+
+**Scelta la seconda.** Un fatto del mondo e' del mondo: non e' di un luogo, e non
+e' di una casa. Sul bordo della mappa sta dove sta il mondo, e si vede da ogni
+posto al tavolo senza che nessuno debba girare un foglio.
+
+**Il costo, misurato prima di deciderlo:** 49 dei 52 hanno **gia'** la parola
+stampata in `sign_labels.gd` — la parte che di solito costa. Manca la scheda del
+disegno: **51 su 52** non ce l'hanno, ed e' l'unica parte che si scrive a mano.
+Quello resta da fare, ed e' scritto in ISSUES 110 invece che nascosto qui.
+
+E la sonda del tavolo (D-352) dice quanti di quei 52 arrivano davvero: **32 su
+52**. Venti gettoni della memoria del mondo non si posano mai in cento partite —
+prima di tagliarne 52, conviene sapere che venti resterebbero nella scatola.
+
+---
+
+## D-350 — Ogni segno dice in che punto del tavolo lo prendi in mano
+
+**implemented** · 0.1.315 · voluto dal committente
+
+> «Ogni tessera ha tag che la descrivono, e non può cambiare, montagna, foresta,
+> capitale, deserto. Sulla tessera degli spazi che possono cambiare e dove
+> costruire cose. Fuori dalla tessera si posizionano token che indicano lo stato
+> di quella zona che può temporaneamente cambiare, a parte dei token (rotondi)
+> che rappresentano le cicatrici del mondo che non possono cambiare. Sulle schede
+> delle entità altre zone dove posizionare tag o cicatrici che ne determinano lo
+> stato.»
+
+Il dizionario diceva gia' **a chi** appartiene un segno (`scope`) e **che cosa
+e'** (`category`). Non diceva la cosa che serve a chi taglia la fustella:
+**dove lo prendi in mano**. Sono domande diverse, e si vede sul caso che le
+separa: `condition:emptied` e `scar:emptied` vivono tutt'e due su una Regione e
+sono tutt'e due MEMORY o STATE, ma uno e' un gettone che torna nella riserva e
+l'altro un dischetto che resta li' per sempre.
+
+Da qui, `table_place` su ogni voce, con sette valori:
+
+| valore | sul tavolo | quanti |
+|---|---|---|
+| `TILE_PRINTED` | stampato sulla tessera, non cambia mai | 15 |
+| `TILE_SLOT` | uno spazio sulla tessera dove si posa una Pietra | 27 |
+| `ZONE_TOKEN` | un gettone accanto alla tessera, si mette e si toglie | 14 |
+| `SCAR_TOKEN` | un dischetto rotondo, non torna nella riserva | 13 |
+| `HOUSE_SHEET` | sulla scheda della casa | 59 |
+| `WORLD_MEMORY` | quello che il mondo ricorda — **posto da decidere** | 52 |
+| `NONE` | contabilita' che nessuna fustella taglia | 24 |
+
+**180 segni stanno sul tavolo, 24 sono contabilita'.**
+
+Due cose che l'assegnazione ha trovato e che nessuno aveva scritto:
+
+- **I gradi di una Pietra sono lo stesso spazio.** `place:forest`,
+  `place:thinned_wood` e `place:cursed_wood` sono i tre gradi di `STR_FOREST`:
+  un bosco che si assottiglia e diventa selva maledetta non e' un gettone di
+  stato, e' **la stessa Pietra a un grado diverso**. Sul tavolo e' un segnalino
+  che si sostituisce nello stesso spazio, non uno che si aggiunge.
+- **La memoria del mondo non ha un posto.** Cinquantadue segni — un quarto del
+  dizionario — non stanno ne' sulla tessera ne' sulla scheda. Oggi il valore
+  `WORLD_MEMORY` dice *che* esistono e non *dove* si posano: e' la voce aperta
+  [ISSUES 110](ISSUES.md#110-dove-si-posa-quello-che-il-mondo-ricorda).
+
+**La guardia** (controllo 21 di `validate_physical.py`) tiene il campo dal
+marcire, perche' un campo che nessuno controlla si sporca come si sporcava
+l'ambito prima di PZ-0. Morde su quattro difetti piantati: un segno senza posto,
+una Cicatrice messa fra i gettoni che si tolgono, un grado di Pietra spacciato
+per gettone, un segno della scheda messo sulla tessera.
+
+**Quello che questa decisione NON fa.** Non toglie e non aggiunge nessun segno,
+non tocca nessuna regola, e non cambia una riga di gioco: e' un'etichetta su
+quello che c'era gia'. La potatura del dizionario — se `scar:changed_hands`, che
+26 fonti scrivono e nessuno legge, vada tolto o finalmente letto — resta da
+decidere segno per segno, e la decide il committente.
+
+---
+
+## D-349 — Il MASTER PROMPT esce da ART_BIBLE anche per Python
+
+**implemented** · 0.1.314 · [ISSUES 109](ISSUES.md)
+
+Il MASTER PROMPT 6 stava scritto due volte: in `docs/ART_BIBLE.md`, dove lo
+legge chi disegna, e a mano dentro `tools/token_catalogue.py`, dove lo usa il
+catalogo delle pedine. Due copie della stessa frase divergono: e' D-259 detto su
+un altro contenuto.
+
+Adesso `token_catalogue.py` legge il prompt e le sue varianti di contorno da
+ART_BIBLE, come fa GDScript. Se il committente cambia il prompt, lo cambia in un
+posto solo.
+
+*Verbale scritto in ritardo:* il codice e' entrato in 0.1.314 senza la sua riga
+qui e senza il CHANGELOG, contro la terza regola di casa. La riga arriva col
+commit di D-350.
+
+---
+
+## D-348 — Vaerax ha una seconda via per sigillare la miniera
+
+**ritirata in 0.1.315** — provata, misurata, e tolta perche' rompeva un test
+
+> **Come e' finita.** La proposta funzionava per quello che doveva fare — il
+> segno usciva 3 volte su 100 anni contro 0 — ma faceva cadere
+> `test_claim_policy.test_the_natural_proponent_does_not_claim`: la via nuova
+> apre a Vaerax una rivendicazione su SURVIVAL, e la casa rivendica un dominio
+> che come proponente naturale gia' le spetta altrove. **Tolta** in attesa di
+> capire il legame fra le proposte di una casella e la politica di
+> rivendicazione. [ISSUES 108](ISSUES.md) resta aperta.
+>
+> Quello che segue e' il verbale della prova, tenuto perche' i numeri valgono:
+> la strada funziona, il prezzo e' altrove.
+
+### Il problema: una porta murata a tutti e tre i passi
+
+La catena di `mine_sealed` era fragile: dipendeva da una sola proposta
+(`P_SEAL_MINE`) in una sola casella del Consiglio (`CNF_AWAKENING_01`), che
+arrivava raramente (1 su 100 anni) e quando arrivava perdeva ai voti.
+
+**Soluzione**: aggiungere una **seconda penna** che posa il segno via un'altra
+casella — il Consiglio del Grano (`CNF_FAMINE_01`), dove la decisione di
+sigillare le gallerie ha senso narrativo e logistico.
+
+### La nuova proposta
+
+**`P_SEAL_MINE_FOR_FIELDS`** — "Si sigillino le gallerie sotto la montagna:
+ogni uomo valido resti nei campi, e il Cristallo resti addormentato."
+
+- Domanda: `Q_FAMINE_GRAIN` (la stessa di `P_OPEN_VALLEY`)
+- Conseguenza: `CNS_MINE_SEALED`
+- Nessuna eligibility — è sempre disponibile come `P_OPEN_VALLEY`
+- Ripple: non ha, perché la casella la gestisce già
+
+### I numeri
+
+| | |
+|---|---|
+| `mine_sealed` scritto (prima) | 0 volte in 100 anni |
+| `mine_sealed` scritto (dopo) | **3 volte** in 100 anni |
+| Consigli (media, misto) | 3.43 → **3.45** (+0.02) |
+| Consigli (media, uniforme) | 3.48 → **3.49** (+0.01) |
+| Seggi bloccati (misto) | 0 su 8 → **0 su 8** ✓ |
+| Seggi bloccati (uniforme) | 0 su 8 → **0 su 8** ✓ |
+
+Il segno arriva via tre diverse **Domande di fine Atto** (una per ciascun Tema
+caldo), perché le Tensioni del Grano (`TEN_FAMINE`) si accendono più spesso
+del Risveglio (`TEN_AWAKENING`).
+
+### Cosa resta d'autore
+
+Aprire le porte di Vaerax è bilanciamento, non struttura. **Questa modifica
+apre la strada** (D-346 la diagnostica), **ISSUES 108** elenca le tre scelte**.
+La decisione di quale applicare viene dal committente.
+
+---
+
 ## D-347 — Il prompt di una carta dice la scena, non il nome
 
 **implemented** — 0.1.312
