@@ -578,9 +578,13 @@ static func _house_promise(entity: Dictionary, data: RefCounted) -> Array:
 static func _region(region: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("region", str(region["id"]), "TILE")
 	face["title"] = str(region["name"])
-	face["subtitle"] = "%s · %d posti" % [
+	# **Due conti diversi, e la tessera li diceva a meta'** (D-365, ISSUES 116).
+	# «posti» erano solo quelli delle pedine; dove si posa una Pietra non lo
+	# diceva nessuno, ed e' il pezzo che la struttura fisica mette sulla tessera.
+	face["subtitle"] = "%s · %d pedine · %d Pietre" % [
 		str(BIOMES.get(str(region["biome"]), str(region["biome"]).to_lower())),
 		int(region["presence_slots"]),
+		int(region["build_slots"]),
 	]
 	# **I segni della tessera** (D-344). Una carta Azione si gioca «su un luogo
 	# con #granaio»: senza i segni stampati sulla tessera quel bersaglio non si
@@ -596,6 +600,20 @@ static func _region(region: Dictionary, data: RefCounted) -> Dictionary:
 	if not segni.is_empty():
 		face["notes"].append("SEGNI  %s" % " · ".join(PackedStringArray(segni)))
 	# Le famiglie in italiano (D-339): la tessera diceva «fonti: authority, force».
+	# E **quali** Pietre ci stanno: senza questa riga un giocatore sa che ha due
+	# spazi e non sa cosa metterci. La lista si ricava dai biomi che ogni Pietra
+	# dichiara, cioe' dalla stessa regola che il motore fa rispettare.
+	var ci_stanno: Array = []
+	var tipi: Array = data.structure_types.keys()
+	tipi.sort()
+	for type_id in tipi:
+		var tipo: Dictionary = data.structure_types[str(type_id)]
+		if not bool(tipo["owned"]):
+			continue
+		if (tipo["biomes"] as Array).has(str(region["biome"])):
+			ci_stanno.append(str(tipo["name"]).to_lower())
+	if not ci_stanno.is_empty():
+		face["notes"].append("CI STANNO  %s" % " · ".join(PackedStringArray(ci_stanno)))
 	face["notes"].append("FONTI  %s" % ", ".join(PackedStringArray(
 		(region.get("asset_sources", []) as Array).map(
 			func(f: Variant) -> String: return SignLabels.family(str(f))

@@ -45,6 +45,7 @@ func _initialize() -> void:
 	var oltre_i_posti: int = 0
 	var oltre_dettaglio: Dictionary = {}
 	var terra: int = 0
+	var in_piedi_dove_non_puo: int = 0
 
 	for index in range(runs):
 		var seed_value: int = first_seed + index
@@ -72,6 +73,14 @@ func _initialize() -> void:
 				if not bool((tipo as Dictionary).get("owned", false)):
 					continue
 				tenute += 1
+			for s2 in (region.get("structures", []) as Array):
+				var t2: Variant = data.structure_types.get(
+					str((s2 as Dictionary).get("structure_type", ""))
+				)
+				if t2 == null:
+					continue
+				if not ((t2 as Dictionary).get("biomes", []) as Array).has(bioma):
+					in_piedi_dove_non_puo += 1
 			var posti: int = int(POSTI.get(bioma, 2))
 			if tenute > posti:
 				oltre_i_posti += 1
@@ -127,6 +136,11 @@ func _initialize() -> void:
 	keys.sort()
 	for k in keys:
 		print("     %-34s %d" % [str(k), int(rifiutate_dettaglio[k])])
+
+	print("")
+	print("2b. E QUANTE NE STANNO DAVVERO IN PIEDI DOVE NON POTREBBERO")
+	print("   (questa non passa dal registro: guarda il tavolo a fine partita)")
+	print("   %d" % in_piedi_dove_non_puo)
 
 	print("")
 	print("3. QUANTE VOLTE UNA TESSERA SFORA I SUOI POSTI")
