@@ -10,6 +10,86 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-365 — La terra decide cosa ci si costruisce, e un posto pieno blocca
+
+**implemented** (0.1.331) · chiude [ISSUES 116](ISSUES.md#116) · scelta del
+committente: *«legato al bioma, che vincola cosa costruire e lo spazio pieno
+blocca»*, poi *«ogni bioma puo' avere piu' pietre dove possibile»*.
+
+### Quello che mancava sulla tessera
+
+La struttura fisica dettata dal committente mette **sulla tessera** gli spazi
+dove si costruisce. La tessera diceva dove vanno le **pedine**
+(`presence_slots`) e non diceva dove vanno le **Pietre**: al tavolo nessuno
+sapeva dove appoggiare il pezzo, ne' se ci fosse ancora posto.
+
+### E la causa vera, che non aveva deciso nessuno
+
+Le Pietre dichiaravano gia' i loro `biomes` — **e nessuno li leggeva**. Ma il
+motivo per cui erano incompleti non era distrazione: **lo schema ammetteva sei
+biomi su dieci.** `COAST`, `MARSH`, `ISLAND` e `FOREST` non si potevano nemmeno
+scrivere.
+
+Quattro tessere su dieci — Porto Cinerino, la Palude dei Canali, l'Isola Muta e
+il Bosco dei Confini — risultavano «dove non si costruisce niente», e non era
+una scelta di gioco: era **uno schema piu' stretto del mondo**. Misurato prima
+di toccare niente: 48 costruzioni su 100 partite sarebbero diventate illegali,
+fra cui un presidio nel bosco e un canale nella palude.
+
+### Cosa c'e' adesso
+
+| | |
+|---|---|
+| `build_slots` sulla tessera | legati al bioma: 3 per capitale, valle e strada; 1 per palude e isola |
+| i biomi | tutti e dieci scrivibili, e **un solo elenco**: quello della tessera |
+| il motore | `BUILD_STRUCTURE` non alza niente sul bioma sbagliato ne' dove non c'e' piu' posto |
+| la faccia | *«foresta · 3 pedine · 2 Pietre · CI STANNO presidio, insediamento…»* |
+
+I rifiuti sono **no-op, non errori**: la stessa convenzione che c'era gia' per
+una Pietra gia' presente. Una frase d'autore che nomina la terra sbagliata non
+e' un errore di dati — e' una frase che in quel posto non aveva niente da dire.
+
+### Larghi dove ha senso, e cinque «no» che vogliono dire qualcosa
+
+Su sessanta caselle (sei Pietre costruibili per dieci biomi) restano cinque no:
+
+| | |
+|---|---|
+| granaio in palude | il grano marcisce nell'umido |
+| archivio in palude | e la carta non regge l'umido |
+| archivio nella steppa | chi si sposta non archivia |
+| canale in montagna, sott'acqua, sull'isola | l'acqua non si porta in salita, ne' oltre il mare |
+
+Ogni bioma tiene almeno quattro Pietre su sei.
+
+### La misura, e il modo in cui e' stata fatta
+
+| su 100 anni | prima | dopo |
+|---|---|---|
+| Pietre costruibili alzate | 519 | 521 |
+| tessere che sforano i posti | **4** | **0** |
+| Pietre in piedi su un bioma che non le ammette | — | **0** |
+
+L'ultima riga e' quella di cui fidarsi: **non passa dal registro degli Effetti,
+guarda il tavolo a fine partita.** Il registro dice ancora nove tentativi
+rifiutati — sono tentativi, e il motore li ha respinti. Contare i tentativi e
+chiamarli costruzioni sarebbe stato l'ottavo sbaglio di questo tipo nel
+progetto.
+
+### Il cancello (controllo 23)
+
+Una tessera con degli spazi dove **nessuna** Pietra puo' stare e' un **cantiere
+murato**: il cartone dice «due spazi» e non c'e' niente da metterci. E' il
+difetto che c'era davvero, e adesso e' rosso. Piantato nel `--self-test`: i
+difetti passano da 33 a **34**.
+
+E una guardia in piu' in `validate_data.py`: i due elenchi di biomi — quello
+della tessera e quello della Pietra — devono coincidere. Morde nel verso in cui
+il difetto era invisibile: **un bioma che la tessera conosce e la Pietra no**,
+che e' esattamente com'era `FOREST` fino a oggi.
+
+---
+
 ## D-364 — Il censimento conta le facce che si leggono, non quelle battute a mano
 
 **implemented** (0.1.330) · scelta del committente, dopo la misura: *«1»*.

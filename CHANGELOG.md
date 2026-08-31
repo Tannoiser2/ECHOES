@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.331 — La terra decide cosa ci si costruisce (D-365) — chiude ISSUES 116
+
+La struttura fisica mette **sulla tessera** gli spazi dove si costruisce. La
+tessera diceva dove vanno le pedine e non dove vanno le Pietre.
+
+E la causa vera non l'aveva decisa nessuno: **lo schema delle Pietre ammetteva
+sei biomi su dieci.** COAST, MARSH, ISLAND e FOREST non si potevano nemmeno
+scrivere, e quattro tessere risultavano «dove non si costruisce niente».
+
+| | |
+|---|---|
+| `build_slots` sulla tessera | legati al bioma: 3 / 2 / 1 |
+| i biomi | tutti e dieci, e **un elenco solo** |
+| il motore | non alza sul bioma sbagliato ne' dove non c'e' posto |
+| la faccia | «foresta · 3 pedine · 2 Pietre · CI STANNO presidio, insediamento…» |
+
+Larghi dove ha senso: cinque «no» su sessanta caselle, e ognuno dice qualcosa —
+il grano marcisce nell'umido, chi si sposta non archivia, l'acqua non si porta
+in salita.
+
+| su 100 anni | prima | dopo |
+|---|---|---|
+| Pietre alzate | 519 | 520 |
+| tessere che sforano i posti | **4** | **0** |
+| Pietre in piedi dove non potrebbero | — | **0** |
+
+L'ultima riga non passa dal registro: guarda il tavolo. Il registro dice ancora
+sei tentativi rifiutati — sono tentativi, e il motore li ha respinti.
+
+**Due cancelli nuovi**: il «cantiere murato» (una tessera con spazi dove nessuna
+Pietra puo' stare), difetti piantati 33 → **34**; e la guardia che tiene uguali
+i due elenchi di biomi, che morde nel verso in cui il difetto era invisibile.
+
+---
+
 ## 0.1.330 — Il censimento conta le facce che si leggono (D-364)
 
 «84 facce fisiche mancanti» non era vero: il censimento contava i blocchi

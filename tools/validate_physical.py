@@ -1017,6 +1017,31 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                         "vive su %s, e l'ambito dichiarato e' %s"
                         % (tag, posto, ambito_atteso, "/".join(sorted(dichiarato))))
 
+    # 23. su ogni tessera si puo' costruire qualcosa (ISSUES 116, D-365)
+    #
+    # La tessera dichiara `build_slots` e la Pietra i suoi `biomes`, e da D-365
+    # il motore li fa rispettare tutt'e due. Una tessera con dei posti dove
+    # **nessuna** Pietra puo' stare e' un cantiere murato: il cartone dice «due
+    # spazi» e non c'e' niente da metterci.
+    #
+    # E' il difetto che c'era davvero, e non l'aveva deciso nessuno: lo schema
+    # delle Pietre ammetteva sei biomi su dieci, e COAST, MARSH, ISLAND e FOREST
+    # non si potevano nemmeno scrivere. Quattro tessere su dieci.
+    costruibili = [p for p in documenti.get("structure_type", []) if p.get("owned")]
+    for tessera in documenti.get("region", []):
+        bioma = str(tessera.get("biome", ""))
+        posti = int(tessera.get("build_slots", 0))
+        ci_stanno = [p for p in costruibili if bioma in (p.get("biomes") or [])]
+        if posti > 0 and not ci_stanno:
+            guai.append(
+                "cantiere murato su «%s»: la tessera dichiara %d spazi per le "
+                "Pietre e nessuna Pietra puo' stare su un bioma %s"
+                % (tessera["id"], posti, bioma))
+        if posti == 0 and ci_stanno:
+            guai.append(
+                "tessera senza spazi su «%s»: %d Pietre potrebbero starci e non "
+                "c'e' dove posarle" % (tessera["id"], len(ci_stanno)))
+
     # 22. la Risonanza dice l'aggravante che il motore applica (ISSUES 113)
     #
     # Ogni Risonanza porta un `if_target_tag` con `extra_heat`: se il bersaglio
@@ -1311,6 +1336,18 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         voce = next(v for v in prova["tag"] if v.get("written_by"))
         voce["written_by"] = list(voce["written_by"]) + ["destiny_physical"]
 
+    def cantiere_murato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Una tessera con degli spazi dove nessuna Pietra puo' stare.
+
+        E' il caso vero di ISSUES 116: lo schema ammetteva sei biomi su dieci, e
+        quattro tessere risultavano cantieri murati senza che nessuno l'avesse
+        deciso. Qui il difetto si pianta togliendo quel bioma a tutte le Pietre.
+        """
+        bioma = str(prova["region"][0]["biome"])
+        for pietra in prova["structure_type"]:
+            if pietra.get("owned") and bioma in (pietra.get("biomes") or []):
+                pietra["biomes"] = [b for b in pietra["biomes"] if b != bioma]
+
     def risonanza_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         """La Risonanza smette di dire l'aggravante che il motore applica.
 
@@ -1358,6 +1395,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "mani non dichiarate su «%s»" % bersaglio),
         pianta("nome cambiato sotto un #cancelletto stampato", cancelletto_orfano,
                "cancelletto senza voce: «#fame»"),
+        pianta("tessera con spazi dove nessuna Pietra puo' stare", cantiere_murato,
+               "cantiere murato su"),
         pianta("Risonanza che non dice di quanto scalda", risonanza_muta,
                "Risonanza muta su"),
         pianta("tessera spogliata dei suoi segni", tessera_spogliata,

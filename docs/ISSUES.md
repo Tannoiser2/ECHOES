@@ -6551,7 +6551,7 @@ Tolti.
 
 ---
 
-### 116. La tessera non dice dove si costruisce
+### 116. La tessera non dice dove si costruisce — CHIUSA in 0.1.331
 
 `grammatica-fisica` · `da-decidere` · aperta in 0.1.330 ([D-364](DECISIONS.md#d-364))
 
