@@ -2028,13 +2028,11 @@ func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -
 func _play_narrator(entity_id: String, session: RefCounted) -> Dictionary:
 	if session.service.hand_size(entity_id) < COMFORTABLE_HAND:
 		return {}
-	var act: int = int(session.world["act"])
-	for effect in session.world["effect_log"]:
-		var src: Dictionary = effect.get("source", {})
-		if str(src.get("id", "")) == "ACT_PLAY_ECHO" \
-				and str(src.get("actor", "")) == entity_id \
-				and int(src.get("act", 0)) == act:
-			return {}
+	# **Via il tetto di una calata per Atto** (D-360, scelta del committente).
+	# Serviva quando l'Eco arrivava da un mazzo del Narratore e calarne due di
+	# fila voleva dire raccontare la storia da soli. Adesso l'Eco e' un'opzione
+	# della carta che si ha in mano, come le sue due Azioni: chi ne cala due in
+	# un Atto ha speso due carte per farlo, e quello e' gia' il freno.
 	# Non basta che la storia accetti la carta: deve servire a chi la cala.
 	# Senza questo filtro le sedie calavano qualunque cosa fosse eleggibile e
 	# Kessa restava piantata al Minimo (46/50): le carte altrui le scaldavano

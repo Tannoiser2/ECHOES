@@ -16,8 +16,8 @@ sono una versione "potenziata"»*.
 Non c'e' piu' un mazzo del Narratore, ne' una mano separata, ne' un sacchetto
 che pesca a inizio Atto. **Ogni carta Asset porta il suo Eco stampato sotto le
 due Azioni**: la sua versione potenziata. Si cala al posto di un'Azione normale,
-costa **la carta piu' un'altra scartata**, e si accende solo se il mondo porta i
-segni che quell'Eco nomina.
+costa **la carta**, come giocarla per una delle sue Azioni, e si accende solo se
+il mondo porta i segni che quell'Eco nomina.
 
 | | prima | dopo |
 |---|---|---|

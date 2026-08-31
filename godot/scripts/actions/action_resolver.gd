@@ -474,8 +474,14 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 ##      sacchetto e adesso fa questo cancello;
 ##   3. i segni che l'Eco nomina stanno sul tavolo (D-030 letto a segni, non
 ##      piu' col nome della questione dell'anno: strada 1 del committente);
-##   4. c'e' una seconda carta con cui pagare la parola (D-118) - la potenziata
-##      costa la carta **piu'** un'altra scartata.
+##
+## **Non costa piu' della carta stessa** (D-360, scelta del committente: *«l'eco
+## non deve costare due carte, e' una opzione come le azioni, solo che ha
+## condizioni piu' stringenti»*). Il prezzo della parola di D-118 nasceva quando
+## l'Eco arrivava da un mazzo a parte e la carta Asset era il pedaggio per farlo
+## parlare; adesso l'Eco **e' la carta**, e farsi pagare due volte lo stesso
+## pezzo non e' una regola, e' un attrito. Quello che lo distingue da un'Azione
+## normale sono le tre guardie qui sopra, non il conto.
 func _check_play_echo(entity_id: String, params: Dictionary) -> String:
 	var asset_id: String = str(params.get("asset_card_id", ""))
 	if not service.hand(entity_id).has(asset_id):
@@ -489,8 +495,6 @@ func _check_play_echo(entity_id: String, params: Dictionary) -> String:
 		return "'%s' non porta un Eco" % asset_id
 	if not _families_open_by(int(world["act"])).has(str((card as Dictionary)["dramatic_family"])):
 		return "l'Eco di '%s' non si cala in questo Atto" % asset_id
-	if service.hand_size(entity_id) < 2:
-		return "l'Eco costa la carta piu un'altra scartata, e la mano non basta"
 	if not _eligibility.all_hold((card as Dictionary).get("eligibility", []), {}):
 		return "il mondo non porta i segni di '%s'" % str((card as Dictionary)["title"])
 	if (card as Dictionary).get("forces_confluence_on", null) != null \
@@ -503,16 +507,9 @@ func _play_echo(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 	var asset_id: String = str(params.get("asset_card_id", ""))
 	var card_id: String = str((data.assets[asset_id] as Dictionary)["echo_id"])
 	var effects: Array = []
-	# La carta calata se ne va per prima: e' lei che parla, non un pezzo di un
-	# mazzo a parte. Poi il prezzo della parola (D-118), che nella versione
-	# potenziata resta - una seconda carta, la piu' debole se nessuno sceglie.
+	# La carta se ne va, e basta quello (D-360): e' lei che parla, ed e' lei il
+	# prezzo. Come giocare una carta per una delle sue due Azioni normali.
 	effects.append_array(_discard(entity_id, asset_id, source))
-	var price: String = str(params.get("discard_asset_id", ""))
-	if not service.hand(entity_id).has(price):
-		price = _worst_of(service.hand(entity_id))
-	if price != "":
-		effects.append_array(_discard(entity_id, price, source))
-		log.bullet("%s paga la parola: scarta %s." % [_name(entity_id), _title(price)])
 	var applied: Array = play_card.call(entity_id, card_id, source)
 	effects.append_array(applied)
 	return _ok("PLAY_ECHO", effects, {"echo_card_id": card_id, "asset_card_id": asset_id})

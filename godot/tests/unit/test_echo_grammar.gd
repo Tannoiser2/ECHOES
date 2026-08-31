@@ -64,11 +64,11 @@ func test_playing_a_card_records_its_function() -> void:
 		str(session.world["global_tags"]).contains("function:"),
 		"senza scriverne niente sul mondo: quel segno non esiste piu' (D-358)"
 	)
-	# La parola si paga (D-118), e nella versione potenziata costa **due** carte:
-	# quella che parla e un'altra scartata.
+	# **L'Eco costa la carta, e basta** (D-360): e' un'opzione della carta come
+	# le sue due Azioni, non un pedaggio da pagare con una seconda.
 	assert_eq(
-		session.service.hand_size("ENT_ALDRIC"), before - 2,
-		"l'Eco costa la carta piu' un'altra scartata"
+		session.service.hand_size("ENT_ALDRIC"), before - 1,
+		"l'Eco costa la carta che parla, e nient'altro"
 	)
 	assert_false(
 		(session.world["entities"]["ENT_ALDRIC"]["hand"] as Array).has(asset_id),

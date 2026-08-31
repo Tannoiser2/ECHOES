@@ -10,6 +10,37 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-360 — L'Eco costa la carta, e nient'altro
+
+**implemented** (0.1.326) · scelta del committente: *«l'eco non deve costare due
+carte, e' una opzione come le azioni, solo che ha condizioni piu' stringenti»*.
+
+### Le due leve, tirate tutte e due
+
+[D-359](#d-359) aveva lasciato in piedi due freni, misurati e dichiarati come
+tarature da decidere. Il committente le ha decise tutte e due.
+
+**1. Il prezzo: due carte, adesso una.** Il prezzo della parola di
+[D-118](#d-118) nasceva quando l'Eco stava in un mazzo separato: la carta Asset
+scartata era il pedaggio per far parlare una carta che non era tua. Da D-359
+l'Eco **e' la carta**, e farsi pagare due volte lo stesso pezzo non e' una
+regola, e' un attrito. Adesso calare l'Eco costa la carta, esattamente come
+giocarla per una delle sue due Azioni.
+
+Quello che distingue l'Eco da un'Azione non e' il conto, sono **le condizioni**:
+l'Atto deve ammettere la sua famiglia, e il mondo deve portare i segni che
+l'Eco nomina. Il resto e' uguale, e va bene che sia uguale — una scelta si
+capisce quando le alternative si pagano nella stessa moneta.
+
+**2. Via il tetto di una calata per Atto per seggio.** Stava nel decisore, non
+sulla carta: serviva quando l'Eco veniva da un mazzo e calarne due di fila
+significava raccontarsi la storia da soli. Adesso chi ne cala due in un Atto ha
+speso due carte per farlo, e quello e' gia' il freno. Un limite che non e'
+stampato su nessun pezzo non e' una regola del gioco: e' un'abitudine dell'app,
+ed erano quelle che il committente ha chiesto di togliere.
+
+---
+
 ## D-359 — Via il mazzo del Narratore: l'Eco e' la versione potenziata della carta
 
 **implemented** (0.1.325) · chiude [ISSUES 114](ISSUES.md) · scelta del
@@ -47,8 +78,8 @@ davanti se non lo e'.
 
 **Strada 3 — non c'e' piu' un mazzo.** L'Eco e' il **terzo blocco stampato sulla
 carta Asset**, sotto le due Azioni: la sua versione potenziata. Si cala al posto
-di un'Azione normale, e costa **la carta piu' un'altra scartata** — il prezzo
-della parola di [D-118](#d-118) resta, ma adesso e' un prezzo che si vede.
+di un'Azione normale, e costa **la carta**, come giocarla per una delle sue due
+Azioni ([D-360](#d-360) ha tolto la seconda carta che la prima stesura chiedeva).
 
 Spariscono: il mazzo (`echo_deck`), la mano del Narratore (`echo_hand`), il
 sacchetto pesato (`_draw_from_bag`), la distribuzione a inizio Atto

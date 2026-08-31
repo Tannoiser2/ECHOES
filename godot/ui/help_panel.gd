@@ -428,9 +428,9 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 			+ "pescarlo — ce l'hai gia' in mano, sotto le due Azioni normali."
 		)
 		out.append(
-			"Calarlo costa la carta [b]piu' un'altra scartata[/b], e si puo' fare solo "
-			+ "se il mondo porta i segni che quell'Eco nomina: e' scritto sulla faccia, "
-			+ "e si controlla guardando il tavolo."
+			"Calarlo costa [b]la carta[/b], come giocarla per una delle sue Azioni. "
+			+ "Quello che cambia sono le condizioni: si puo' fare solo se il mondo porta "
+			+ "i segni che quell'Eco nomina, ed e' scritto sulla faccia."
 		)
 		out.append(
 			"L'Atto decide che tipo di Eco puo' parlare: il primo solo [b]pressione[/b], "

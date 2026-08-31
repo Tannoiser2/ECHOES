@@ -224,7 +224,7 @@ func _initialize() -> void:
 	print("  carte che prescrivono un Consiglio  %d su %d scritte" % [
 		forced_cards, data.echo_cards.size()
 	])
-	print("  mano di carte Asset a fine partita  %.2f (l'Eco ne costa 2)" % [
+	print("  mano di carte Asset a fine partita  %.2f (l'Eco costa la carta) " % [
 		(float(hand_at_end) / float(hands_counted)) if hands_counted > 0 else 0.0
 	])
 	print("")
