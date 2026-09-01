@@ -186,6 +186,11 @@ jobs:
       - name: Drift check - la misura del tavolo
         run: GODOT=~/godot/godot tools/run_table_survey.sh --check
 
+      # La pagina dell'app (ISSUES 65): fino a 0.1.346 nessuna sonda la toccava,
+      # e ogni giro costava il pomeriggio di una persona con l'app in mano.
+      - name: Drift check - la misura della pagina
+        run: GODOT=~/godot/godot tools/run_page_survey.sh --check
+
       # Lo scheletro delle carte (D-333): cosa porta ogni faccia, ricavato dalle
       # facce vere. Se una faccia smette di stampare un blocco, il documento che
       # si manda a chi disegna lo dice ancora.

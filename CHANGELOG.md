@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.346 — La pagina si misura, così la prossima passata non costa un pomeriggio (D-379)
+
+ISSUES 65 porta una frase sola del committente — *«tutta la pagina dell'app va
+rivista»* — e accanto la ragione per cui è ferma da trentacinque versioni:
+**nessuna sonda tocca questa pagina**, quindi ogni giro costa il pomeriggio di
+una persona con l'app in mano, ed è successo tre volte di fila.
+
+Scritta la sonda: `cli/run_page_survey.gd` → `docs/MISURA_PAGINA.md`, cancello in
+CI. Ventisei cancelli invece di venticinque.
+
+| | |
+|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** |
+| **parole tecniche sotto gli occhi** | **1** |
+| larghezza chiesta in fila, senza la mappa | **788 px** su un tablet da 768 |
+
+**E quello che la sonda non vede lo scrive.** Il testo ricco headless non si
+legge — `text` e `get_parsed_text()` tornano tutti e due zero, provato — quindi
+il documento conta i blocchi e dichiara di non saperli leggere. Due pannelli
+(la mappa e i mazzetti dei Temi) **dipingono invece di costruire nodi**: questa
+sonda non li vede, e nemmeno un lettore di schermo. La cornice resta fuori
+perché nomina un autoload che una sonda a riga di comando non ha, quindi
+7 bersagli è un pavimento, non un totale.
+
+Presa in pieno la trappola di casa: il primo giro contava **118 nodi**, cioè
+pannelli quasi vuoti che sembravano puliti — `_ready()` non arriva a un nodo
+seduto prima che il ciclo parta. E il riconoscitore delle parole tecniche ne
+trovava undici, dieci delle quali erano italiano con i due punti dentro: adesso
+un segno **si chiede al dizionario** invece di indovinarlo.
+
+**Non ripara nessuno dei venti difetti che ha contato**, ed è deliberato: la 65
+dice *«fatto quando c'è una decisione scritta su quale delle tre riviste si sta
+facendo»*, e quella è del committente. Adesso ce l'ha davanti con dei numeri.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
 ## 0.1.345 — Gli ultimi tre Temi, e la sonda che leggeva ancora la vecchia casa (D-378)
 
 **Ventotto carte su sessanta aprivano il dibattito di un'altra.** Tredici carte

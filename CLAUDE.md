@@ -63,6 +63,7 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `bash tools/run_box_survey.sh --check` | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |
 | `bash tools/run_marks_survey.sh --check` | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
 | `bash tools/run_table_survey.sh --check` | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
+| `bash tools/run_page_survey.sh --check` | `docs/MISURA_PAGINA.md`: **cosa la pagina dell'app dice e con quale dito** — i testi che vivono solo nel suggerimento del mouse, i bersagli piu' stretti di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in confronto a un tablet |
 | `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
 | `python3 tools/gates_survey.py --check` | **che questa tabella e la CI siano lo stesso giro**: un cancello promesso e non girato non si lamenta, e uno girato e non promesso manda in rosso chi segue il documento |
 | `python3 tools/gates_survey.py --self-test` | che la guardia dei cancelli morda, nei due versi |

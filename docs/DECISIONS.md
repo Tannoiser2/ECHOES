@@ -10,6 +10,96 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-379 — La pagina si misura, così la prossima passata non costa un pomeriggio
+
+**implemented** (0.1.346) · fronte 6 dei sei aperti dal committente
+
+### La voce che non poteva muoversi, e diceva perché
+
+[ISSUES 65](ISSUES.md#65) porta una frase sola del committente — *«tutta la
+pagina dell'app va rivista»* — e accanto la ragione per cui è ferma da
+trentacinque versioni:
+
+> *«Da misurare, e non c'è ancora modo: nessuna delle sonde tocca questa pagina.
+> Finché una persona con l'app in mano resta l'unico strumento, ogni giro costa
+> un suo pomeriggio — ed è successo tre volte di fila.»*
+
+Ed è il buco di [D-224](#d-224) visto dal suo lato peggiore: **il cancello resta
+verde qualunque cosa succeda alla GUI**, perché gioca con `PolicyDecider`, che
+non ha mani.
+
+Scritta la sonda: `cli/run_page_survey.gd` → `docs/MISURA_PAGINA.md`, cancello
+in CI, ventiseiesimo del giro.
+
+**Non decide quale delle tre riviste fare.** Quella è una scelta d'autore e
+resta nella 65, parola per parola. Questa misura le quattro cose che i **sei
+difetti trovati su un tablet** ([D-239](#d-239) → [D-244](#d-244)) avevano in
+comune, così che la prossima passata si giudichi con dei numeri.
+
+| | |
+|---|---|
+| pannelli guardati | 7 |
+| **testi che vivono solo nel suggerimento del mouse** | **13** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** |
+| **parole tecniche sotto gli occhi** | **1** |
+| larghezza chiesta in fila, senza la mappa | **788 px** su un tablet da 768 |
+
+I tredici testi sono la stessa famiglia che [D-242](#d-242) aveva riparato a
+pezzi: *«la strategia dichiarata di questa casa»*, la ragione di ogni segno che
+una casa vuole o teme, il testo delle due carte Eco in mano. Col dito non c'è
+nessun «sopra» da cui farli uscire, quindi per metà dei giocatori **non
+esistono**. I sette bersagli sono i posti dove si lascia cadere una carta
+([D-231](#d-231)): alti **19 e 29 px**, contro i 44 che [D-243](#d-243) aveva
+già stabilito per le carte in mano.
+
+### Quello che la sonda **non** vede, e lo scrive
+
+Una misura che tace i propri limiti è peggio di nessuna misura — è la regola di
+casa sugli zeri, e qui ne sono usciti tre.
+
+- **Il testo ricco non si legge headless.** Un `RichTextLabel` riempito con
+  `append_text` tiene le parole in un albero che senza un vero server di
+  caratteri resta vuoto: provato, `text` e `get_parsed_text()` tornano **tutti e
+  due zero**. Sono la pagina d'aiuto e parte del tabellone. Contarli come
+  «nessuna parola» sarebbe stata la bugia peggiore — una sonda cieca che sembra
+  pulita — quindi il documento conta i **blocchi** e dichiara di non saperli
+  leggere.
+- **Due pannelli dipingono invece di costruire nodi**: la mappa e i mazzetti dei
+  Temi. Una scritta dipinta non ha una misura minima, non ha un suggerimento e
+  non è un bersaglio: **questa sonda non la vede, e nemmeno un lettore di
+  schermo**. È un fatto da avere in mano *prima* di scegliere quale rivista
+  fare, non un difetto da riparare qui.
+- **La cornice resta fuori.** `ui/game_screen.gd` — dove stanno i bottoni degli
+  strumenti e il menu — nomina l'autoload `SaveManager`, e una sonda lanciata
+  con `--script` non ha autoload: il file non compila. Quindi **7 bersagli è un
+  pavimento, non un totale**, e chiuderlo è il primo lavoro che la misura si
+  porta dietro.
+
+### E la trappola di casa, presa in pieno
+
+Il primo giro contava **118 nodi**: pannelli quasi vuoti che sembravano puliti.
+`_ready()` non arriva a un nodo seduto sotto `root` mentre il ciclo principale
+non è ancora partito, e tre pannelli su sette costruiscono tutto lì dentro. La
+sonda adesso **costruisce a un giro e guarda al giro dopo**.
+
+E il riconoscitore delle parole tecniche, alla prima stesura, ne trovava
+**undici**: dieci erano italiano con i due punti dentro — *«quello che la tua
+casa si porta addosso: fama»*. Adesso un segno **si chiede al dizionario**
+invece di indovinarlo con una regola sulla punteggiatura, e ne resta **una**,
+vera: `== CONFLUENCE CNF_ANY_TERRITORY#1 ==` nel verbale del tavolo.
+
+### Il costo
+
+Nessuno: non è stato toccato né il motore né un dato. Cancello **0 seggi
+bloccati su 8**, i cancelli passano da 25 a **26**.
+
+**Quello che questa decisione non fa**, ed è deliberato: non ripara nessuno dei
+venti difetti che ha appena contato. La 65 dice *«fatto quando c'è una decisione
+scritta su quale delle tre riviste si sta facendo, e la pagina la segue»*, e
+quella decisione è del committente. Adesso ce l'ha davanti con dei numeri.
+
+---
+
 ## D-378 — Gli ultimi tre Temi, e la sonda che leggeva ancora la vecchia casa
 
 **implemented** (0.1.345) · fronte 5 dei sei aperti dal committente

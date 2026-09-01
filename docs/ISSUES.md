@@ -4950,9 +4950,31 @@ letture, e non sono la stessa cosa:
    fra un tavolo e un pannello di controllo, ed è quella che il committente
    nomina da sempre.
 
-**Da misurare, e non c'è ancora modo**: nessuna delle sonde tocca questa pagina.
-Finché una persona con l'app in mano resta l'unico strumento, ogni giro costa un
-suo pomeriggio — ed è successo tre volte di fila.
+**Da misurare, e non c'era modo**: nessuna delle sonde toccava questa pagina.
+Finché una persona con l'app in mano restava l'unico strumento, ogni giro
+costava un suo pomeriggio — ed era successo tre volte di fila.
+
+✅ **Lo strumento c'è, da 0.1.346** ([D-379](DECISIONS.md#d-379)):
+[`MISURA_PAGINA.md`](MISURA_PAGINA.md), generata da `cli/run_page_survey.gd` e
+sorvegliata da un cancello. Misura le quattro cose che i sei difetti del tablet
+avevano in comune:
+
+| | |
+|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** |
+| parole tecniche sotto gli occhi | 1 |
+| larghezza chiesta in fila, senza la mappa | **788 px** su un tablet da 768 |
+
+E dichiara i tre posti dove non arriva: il **testo ricco** headless non si legge
+(provato: zero da tutte e due le strade), due pannelli **dipingono invece di
+costruire nodi** — la mappa e i mazzetti dei Temi, che quindi né questa sonda né
+un lettore di schermo vedono — e la **cornice** coi bottoni degli strumenti
+resta fuori perché nomina un autoload.
+
+**La decisione resta questa voce.** La sonda non ripara niente e non sceglie
+quale delle tre riviste si fa: ha solo tolto di mezzo la ragione per cui non si
+poteva cominciare.
 
 **Fatto quando** c'è una decisione scritta su *quale* delle tre riviste si sta
 facendo, e la pagina la segue.
