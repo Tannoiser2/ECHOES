@@ -298,9 +298,19 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     # calati — un'etichetta su un pezzo di cartone, non un gettone da posare.
 
     # La Vita e' stampata sulla scheda della casata: sceglierla in setup la posa.
+    #
+    # **Ma solo dalla seconda in poi** (D-376). Il motore posa `life:<id>`
+    # quando una vita **oltre la prima** si siede (`GameSession`, D-109: *«ogni
+    # vita oltre la prima porta il suo segno»*); la fondatrice non ne porta —
+    # si riconosce dal fatto che non ne ha nessuno.
+    #
+    # Questo scavo le dichiarava tutte, fondatrice compresa, e cosi' **otto voci
+    # morte passavano la guardia dei segni**: otto gettoni sulla scheda di casa
+    # che nessuno scrive, nessuno legge e nessuno potra' mai posare. Una guardia
+    # che modella il motore piu' generoso di com'e' non protegge, assolve.
     for casata in documenti.get("entity", []):
-        for vita in casata.get("incarnations", []) or []:
-            if isinstance(vita, dict) and vita.get("id"):
+        for indice, vita in enumerate(casata.get("incarnations", []) or []):
+            if indice > 0 and isinstance(vita, dict) and vita.get("id"):
                 yield "entity", "scrive", "life:%s" % str(vita["id"])
 
     # Il passaggio di Chronicle promuove a leggenda il fatto che non dura: e'
@@ -1457,6 +1467,19 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         cronaca = prova["chronicle"][0]
         cronaca["era_tallies"][0]["chain"].append("anello_seminato_apposta")
 
+    def vita_fondatrice_col_segno(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Un segno `life:` per la vita fondatrice (D-376): il motore non lo
+        # scrive — la fondatrice si riconosce dal fatto che non ne porta
+        # nessuno — quindi e' un gettone sulla scheda di casa che nessuno
+        # potra' mai posare.
+        casata = next(c for c in prova["entity"] if c.get("incarnations"))
+        prima = casata["incarnations"][0]["id"]
+        prova["tag"].append({
+            "id": "life:%s" % prima, "title": "vita: la prima",
+            "category": "ENTITY", "scope": ["ENTITY"], "table_place": "HOUSE_SHEET",
+            "written_by": ["entity"], "read_by": [], "note": "difetto piantato",
+        })
+
     def lista_monca(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una lista con una voce sola: non e' un menu, e' un destino.
         carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
@@ -1648,6 +1671,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         pianta("anello della catena delle ere fuori dal dizionario",
                anello_fuori_dal_dizionario,
                "segno fuori dal dizionario: «anello_seminato_apposta»"),
+        pianta("segno di vita per la fondatrice, che nessuno posa",
+               vita_fondatrice_col_segno, "voce morta nel dizionario"),
         pianta("lista di costi con una voce sola", lista_monca,
                "lista di costi troppo corta"),
         pianta("una Pietra che non esiste sotto una pedina", pedina_muta,

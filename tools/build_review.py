@@ -149,10 +149,17 @@ def main() -> int:
     review.line()
     review.line("*(La proposta è la frase votata; sotto, come l'esito viene raccontato.)*")
     review.line()
-    for template in templates:
-        for question in template.get("questions", []):
+    # **Le domande e le proposte stanno sulla carta** (D-310, chiuso in D-378).
+    # Fino a 0.1.344 questa sezione leggeva i **template**, ed era il terzo
+    # posto in cui una sonda guardava ancora la vecchia casa: al tavolo si
+    # legge quello che c'e' stampato sulla Tensione, e il motore fa lo stesso
+    # (`_council_base_for`: «le Domande e le Proposte le mette la carta»).
+    # Il documento prometteva *ogni* testo leggibile e ne saltava 314.
+    for tension in tensions:
+        council = tension.get("council") or {}
+        for question in council.get("questions", []) or []:
             review.entry(str(question["id"]), question.get("text"))
-        for proposition in template.get("propositions", []):
+        for proposition in council.get("propositions", []) or []:
             review.entry(str(proposition["id"]), proposition.get("text"))
             if proposition.get("echo_summary"):
                 review.entry(
@@ -160,6 +167,15 @@ def main() -> int:
                 )
             for outcome, text in sorted(proposition.get("echo_summaries", {}).items()):
                 review.entry("%s, esito %s" % (proposition["id"], outcome), text)
+
+    # E le **clausole**: la controproposta che un avversario attacca a una
+    # proposta prima del voto. Vengono dal template — quello e' il pezzo che
+    # il template continua a dare (D-310) — e nessuna sezione le leggeva.
+    review.line("### Le clausole — quello che si aggiunge prima del voto")
+    review.line()
+    for template in templates:
+        for clause in template.get("condition_clauses", []) or []:
+            review.entry(str(clause["id"]), clause.get("text"))
 
     review.line("## 6. Le Conseguenze — quello che una decisione lascia")
     review.line()

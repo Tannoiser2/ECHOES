@@ -22,7 +22,7 @@ delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 183 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 174 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa
@@ -33,15 +33,15 @@ dove sta quello che il mondo ricorda (D-351).
 | **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | 34 | 52 |
 | **Segni delle case** — fama, scoperte, promesse | 33 | 39 |
 | **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 51 | 51 |
-| Presenza e controllo | 2 | 12 per casa |
-| Rombi del Calore | 1 | uno per Tema, piu' due di scorta |
+| Presenza e controllo | 2 | 5 per casa |
+| Rombi del Calore | 1 | uno per ognuno dei 6 Temi, piu' due di scorta |
 
 **118 tipi diversi, 142 pezzi** piu' le pedine dei seggi.
 
 Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
 questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca
-gli anni e conta. Il numero conta piu' del totale — nessuno impara 34
-simboli, si impara quello che si vede.
+gli anni e conta. Quel numero conta piu' del totale: nessuno impara
+centodiciotto simboli, si impara quello che si vede.
 
 ## 3. Quello che non si stampa ma tiene in piedi il gioco
 
@@ -51,7 +51,7 @@ simboli, si impara quello che si vede.
 | Profili strategici | 8 su 8 | cosa ogni casa vuole lasciare nel mondo |
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
 | Obiettivi | 17 | i tre coperti che si pescano a inizio saga |
-| Conseguenze | 64 | cosa una proposta scrive sul mondo se passa |
+| Conseguenze | 65 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
 | Regole dei segni | 53 | cosa un segno fa da solo |
 | Azioni | 6 | i verbi del turno |
@@ -96,18 +96,23 @@ che le legge dalle facce vere; la colonna «d'autore» da questi dati.
 | Carte Casata | **26** | — | ricavata dai dati |
 | Tessere Regione | **10** | — | ricavata dai dati |
 
-**Nessun pezzo esce senza faccia.** Quello che manca sulla tessera non e'
-il testo: sono **gli spazi dove si costruisce**. La tessera dichiara
-`presence_slots` — dove vanno le pedine — e i segni stampati, ma nessuna
-delle dieci dice quanti spazi-Pietra ha ne' quali. I 27 segni con posto
-`TILE_SLOT` esistono nel dizionario e vivono nei dati delle strutture,
-non sul cartone che dovrebbe ospitarli.
+**Nessun pezzo esce senza faccia**, e da [D-365](DECISIONS.md#d-365) la
+tessera dice anche **dove si costruisce**: 10 tessere su 10 dichiarano i
+loro spazi-Pietra, **21 in tutto**, e il bioma decide che cosa ci sta —
+6 Pietre che una casa alza, 4 che sono la terra stessa. I 27 segni con
+posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 
 ### b. L'arte
 
 **144 soggetti su 155 sono ancora segnaposto.** E' il pezzo piu' grosso
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
+
+**E la catena e' aperta, provata da un capo all'altro** (D-375): un file
+posato in `godot/art/<chiave con le barre>.png` entra da solo nel
+censimento, nell'app **e nel foglio di stampa**, che lo incorpora nel
+riquadro al posto del segnaposto. Non c'e' niente da sbloccare prima di
+cominciare, e le illustrazioni si possono consegnare **una alla volta**.
 
 ### c. Le regole che il tavolo esegue e lo schermo non spiega ancora
 

@@ -5,6 +5,364 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.347 — Il disegno del flusso conosceva tutto tranne la cosa centrale (D-380)
+
+Parola del committente: *«clicco su una carta e mi dà tutto quello che fa»*.
+
+`flusso.html` mostrava le carte, i segni, le Pietre, i Destini, le caselle — e
+**dodici proposte**, quelle dei template, che dal 0.1.345 il motore non legge più
+per nessuna carta. Delle **120 domande** e delle **194 proposte** che stanno sulle
+carte, niente. Terza volta che una sonda guarda ancora la casa vecchia, dopo il
+catalogo dei Consigli (0.1.273) e la revisione dei testi (0.1.345).
+
+Adesso la catena si percorre col dito: **una carta apre una domanda, la domanda ha
+le sue risposte, una risposta porta una Conseguenza, la Conseguenza posa un
+segno** — e il segno, girato, dice chi altro lo guarda.
+
+| pezzo nuovo | quanti |
+|---|---|
+| Domande | 120 |
+| Proposte (dalle carte) | 194 |
+| Vite delle case | 26 |
+| Clausole | 21 |
+| Obiettivi | 17 |
+| Consigli | 12 |
+| Profili strategici | 8 |
+
+**573 → 959 pezzi, 3118 → 4033 legami.**
+
+Le vite hanno chiuso un buco che si vedeva senza saperlo leggere: `twice_uprooted`
+era un segno che nessuna freccia toccava. Lo legge la successione.
+
+**Due cose che il disegno diceva male.** Il riquadro porta ventidue lettere, e
+*«La montagna fuma di n…»* non è una domanda: adesso c'è **la scheda del pezzo
+scelto**, con la frase intera e quello che quel pezzo dichiara. E i rami hanno un
+ordine — prima la catena del Consiglio, poi quello che resta al mondo, poi il
+minuto — perché col tetto di nove per sorgente restavano fuori proprio le domande.
+
+**Il ponte, invece della copia:** quale Consiglio serve quale carta lo scrive
+**chi la regola la esegue** — `run_council_catalogue.gd`, in fondo al catalogo — e
+`build_flow` lo legge, con una guardia che ferma il disegno se il ponte sparisce.
+
+**E quindici pezzi restano senza nemmeno una freccia**, ognuno una cosa vera:
+dodici Obiettivi su diciassette si vincono contando e non nominano nessun pezzo
+del tavolo (lo stesso difetto che D-377 ha misurato sui Destini), due segni che
+nessuno posa né legge, e `ACT_ACQUIRE`, l'unica Azione che nessuna carta nomina.
+
+Costo: nessuno, né motore né dati. La pagina passa da 538 a 732 KB, provata con
+Chromium. Cancello: **0 seggi bloccati su 8**. 26 cancelli verdi.
+
+---
+
+## 0.1.346 — La pagina si misura, così la prossima passata non costa un pomeriggio (D-379)
+
+ISSUES 65 porta una frase sola del committente — *«tutta la pagina dell'app va
+rivista»* — e accanto la ragione per cui è ferma da trentacinque versioni:
+**nessuna sonda tocca questa pagina**, quindi ogni giro costa il pomeriggio di
+una persona con l'app in mano, ed è successo tre volte di fila.
+
+Scritta la sonda: `cli/run_page_survey.gd` → `docs/MISURA_PAGINA.md`, cancello in
+CI. Ventisei cancelli invece di venticinque.
+
+| | |
+|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** |
+| **parole tecniche sotto gli occhi** | **1** |
+| larghezza chiesta in fila, senza la mappa | **788 px** su un tablet da 768 |
+
+**E quello che la sonda non vede lo scrive.** Il testo ricco headless non si
+legge — `text` e `get_parsed_text()` tornano tutti e due zero, provato — quindi
+il documento conta i blocchi e dichiara di non saperli leggere. Due pannelli
+(la mappa e i mazzetti dei Temi) **dipingono invece di costruire nodi**: questa
+sonda non li vede, e nemmeno un lettore di schermo. La cornice resta fuori
+perché nomina un autoload che una sonda a riga di comando non ha, quindi
+7 bersagli è un pavimento, non un totale.
+
+Presa in pieno la trappola di casa: il primo giro contava **118 nodi**, cioè
+pannelli quasi vuoti che sembravano puliti — `_ready()` non arriva a un nodo
+seduto prima che il ciclo parta. E il riconoscitore delle parole tecniche ne
+trovava undici, dieci delle quali erano italiano con i due punti dentro: adesso
+un segno **si chiede al dizionario** invece di indovinarlo.
+
+**Non ripara nessuno dei venti difetti che ha contato**, ed è deliberato: la 65
+dice *«fatto quando c'è una decisione scritta su quale delle tre riviste si sta
+facendo»*, e quella è del committente. Adesso ce l'ha davanti con dei numeri.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
+## 0.1.345 — Gli ultimi tre Temi, e la sonda che leggeva ancora la vecchia casa (D-378)
+
+**Ventotto carte su sessanta aprivano il dibattito di un'altra.** Tredici carte
+del dominio ANTICO chiedevano tutte *«Chi tiene d'occhio quello che c'è
+$in_region?»*: al tavolo si leggeva la stessa riga tre volte.
+
+Il lavoro era fermo *«in attesa della parola del committente»* su ISSUES 89 —
+che è **chiusa da 0.1.332**. L'attesa era finita e nessuno l'aveva notato.
+
+Scritti i tre Temi che mancavano, uno per volta: **Antico** (9 carte, 18 domande,
+27 proposte), **Fede** (9 / 18 / 27), **Terra** (10 / 20 / 30). **28 → 19 → 10 →
+0 carte in prestito**, e i 194 testi delle proposte sono 194 testi diversi.
+
+**E la terza sonda che guardava ancora i template.** `REVISIONE_TESTI.md`
+promette *«ogni testo che un giocatore può leggere»* e la sua sezione 5 leggeva
+i template: **saltava 314 testi** — tutte le domande e tutte le proposte vere —
+e ne mostrava 194 che ormai nessuno legge. Il cancello non se ne accorgeva
+perché confronta il documento col generatore, non il generatore con la realtà.
+Adesso legge le carte, e stampa anche le **clausole**, che nessuna sezione
+mostrava.
+
+**Il costo, misurato:** i Consigli cadono molto meno — FAILURE da **108 a 37**
+sul tavolo uniforme, da **25 a 14** sul misto. Ogni carta offre tre strade sue,
+e il tavolo ne trova una che gli va bene. Un Consiglio che quasi non cade ha
+meno posta: aperta come **ISSUES 119**.
+
+Il primo effetto collaterale è stato chiuso subito: meno fallimenti, meno
+`rumour_running` — che lo scriveva solo il sacchetto dei fallimenti ANTICO — e
+si riapriva una porta murata che D-372 aveva appena chiuso. Scritta
+**`CNS_WORD_GOES_ROUND`**: il Consiglio decide di non decidere, e la voce corre
+lo stesso.
+
+| | prima | dopo |
+|---|---|---|
+| carte con una domanda in prestito | 28 su 60 | **0 su 60** |
+| testi di proposta distinti | 122 su 186 | **194 su 194** |
+| testi in `REVISIONE_TESTI.md` | 2486 | **2898** |
+| punti regalati / porte murate | 2 / 1 | **1 / 1** |
+| vite che non si siedono mai | 2 | **1** |
+| trasformazioni sedute in 12 saghe | 223 | **233** |
+| segni che non arrivano mai sul tavolo | 50 | **52** |
+| Consigli caduti (uniforme / misto) | 108 / 25 | **37 / 14** |
+
+Guadagno non in programma: **La Leggenda della Montagna si siede**.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 25 cancelli verdi.
+
+---
+
+## 0.1.344 — Un `#granaio` si indica col dito, ma nessuna Tensione lo scrive (D-377)
+
+`MISURA_MATRICE.md` contava **31 livelli di Destino su 69** che «si reggono solo
+sul contare». Quattordici non lo erano.
+
+Due erano clausole che il dito lo si punta eccome — il segnalino sulla traccia di
+una domanda è **la cosa più indicabile del gioco**. Dodici chiedevano un
+**bersaglio a segni**: *«una pedina dove c'è il #granaio»*, la grammatica fisica
+del gioco (D-274). La misura guardava `tag` e non `any_tag`, così *«il trono
+regge»* — una pedina dove c'è la **#capitale** — risultava un totale a mente.
+
+E un numero solo faceva due mestieri: al punto 2 la domanda è *«si capisce dove
+guardare?»* e un `#granaio` basta; al punto 5 è *«una Tensione può parlarne?»* e
+un `#granaio` non serve, perché nessuna Tensione lo scrive. Adesso sono **due
+numeri**, e la frase del punto 5 non cambia: era giusta col numero giusto per
+caso.
+
+Dei 17 che restano, **undici sono il `minimum`** — la soglia sotto la quale la
+casa non c'è più, dove il conto è la cosa giusta. Gli altri **sei sono vittoria o
+trionfo, e stanno tutti su Destini condivisi**: un obiettivo che deve valere per
+tutti non può nominare il segno di nessuno. Scelta di disegno, non difetto: sta
+al committente.
+
+Chiuso a mano un caso solo: **`DST_SHARED_LORE` non guardava niente**
+(`observes: []`, unico su 23). Adesso guarda `crystal_site`, `mine_sealed`,
+`knowledge_shared`, `rumour_running`. `observes` non entra in nessuna condizione
+di vittoria: costo di equilibrio zero per costruzione.
+
+| | prima | dopo |
+|---|---|---|
+| livelli «solo conteggi» | 31 | **17** |
+| di cui vittoria o trionfo | 9 | **6** |
+| livelli che non nominano nessun segno | *non misurato* | **31** |
+| Destini che non guardano niente | 1 | **0** |
+
+Cancello: **0 seggi bloccati su 8**, tavolo misto e uniforme. 25 cancelli verdi.
+
+---
+
+## 0.1.343 — Uno zero che una sonda non può evitare non è una misura (D-376)
+
+`MISURA_TAVOLO.md` contava **58** segni che non arrivano mai sul tavolo.
+Guardati per famiglia, due erano **intere**: `life:` 26 su 26, `legend:` 3 su 3.
+E una famiglia dove non arriva niente non è contenuto raro: è una penna.
+
+La sonda fa `setup` + `run` — **un anno, una partita**. Il passaggio fra un'era e
+l'altra non avviene mai, e quei segni il motore li scrive **solo lì**.
+**Ventuno dei 58 non potevano arrivare per costruzione**, e stavano accanto a un
+segno che davvero nessuno posa, sotto la stessa parola.
+
+Adesso li chiama **fuori portata** e dice dove si misurano — e l'elenco è
+ricavato dalle incarnazioni delle Case e dal prefisso nel dizionario, non
+scritto a mano (lezione di D-373).
+
+**E otto gettoni che nessuno potrà mai posare.** Le vite fondatrici avevano un
+segno `life:` nel dizionario, con posto e cartone, e il motore non lo scrive —
+la fondatrice si riconosce dal *non* averlo. La guardia non li vedeva perché
+dichiarava che una Casa scrive il segno di *ogni* incarnazione: **una guardia
+che modella il motore più generoso di com'è non protegge, assolve.** Allineata,
+ha nominato tutte e otto le voci morte.
+
+| | prima | dopo |
+|---|---|---|
+| segni che «non arrivano mai» | **58** | **29** |
+| di quelli, fuori portata | — | **21** |
+| voci del dizionario | 182 | **174** |
+| difetti piantati | 41 | **42** |
+
+I ventinove che restano sono difetti veri, e sono già divisi per causa.
+
+Nessun costo: **0 seggi bloccati su 8** e le Verità non si muovono di una riga.
+
+---
+
+## 0.1.342 — L'arte non è bloccata da niente (D-375)
+
+Le illustrazioni non le disegna chi scrive il codice — 144 soggetti su 155 sono
+segnaposto. Ma una domanda vicina si poteva chiudere, e vale prima di
+commissionare: **se domani arrivano 144 file, il gioco li prende?**
+
+Provato posando un PNG vero al posto di un segnaposto e guardando ogni punto
+della catena: il censimento passa da 11 a 12, l'app lo carica, e **il foglio di
+stampa lo incorpora** — `asset_01.svg` e `asset_06.svg` portano quattro
+`<image>` ciascuno col disegno dentro.
+
+**Non c'è niente da sbloccare**, e le illustrazioni si possono consegnare **una
+alla volta**: la scatola si stampa a ogni stadio.
+
+**E una lettura sbagliata, corretta guardando.** Il README dell'export dice
+«l'arte è segnaposto», e se ne era concluso che il foglio ignorasse i file
+consegnati. Falso: quella riga descrive lo stato di oggi, non il comportamento.
+È D-373 al contrario — là una prosa diceva il falso sui dati, qui una prosa vera
+sui dati è stata letta come falsa sul codice. **In tutti e due i casi la cura è
+guardare, non leggere.**
+
+Nessun costo: non cambia una riga sotto `godot/`.
+
+---
+
+## 0.1.341 — La porta del tempo dice quando si cambia pelle, non quale (D-374)
+
+Sette vite scritte su diciotto non si sedevano **mai** in dodici saghe.
+Sembrava contenuto raro. **Quattro erano murate per costruzione**, e la prova è
+che una di loro aspetta `debt_called`, un fatto che il mondo scrive **232 volte
+su cento partite**.
+
+La causa è la porta del tempo di D-290: il motore la consulta **prima** della
+linea esaurita, e salta gli indici di mezzo senza guardarli. Le quattro vite
+murate stanno esattamente lì, davanti a una vita con quella porta — che si apre
+a 150 anni mentre la linea si esaurisce a 393-565.
+
+**La cura è una regola già scritta**: D-109, *«fra più vite candidate sceglie la
+storia giocata»*. La porta del tempo dice *quando* si cambia pelle; i segni
+dicono *quale*.
+
+| in dodici saghe | prima | dopo |
+|---|---|---|
+| **vite mai sedute** | **7** | **2** |
+| trasformazioni | 210 | **223** |
+| Il Banco Nero | 0 | **9 / 8** |
+| I Forni Riaccesi | 0 | **9 / 6** |
+
+**Il prezzo, dichiarato:** La Compagnia del Sale scende da 9/8 a 1/1 — è il
+posto ceduto al Banco Nero. La Compagnia entrava perché il tempo passava, il
+Banco entra perché il debito è stato chiamato.
+
+**E un'ipotesi bocciata da una prova esistente**, tenuta a verbale: far valere
+`legend:<fatto>` come il fatto nudo sembrava ovvio, e distruggeva la
+distinzione fra un fatto vivo e uno sbiadito su cui la Leggenda della Montagna
+si siede al posto del corpo. Tolta.
+
+Le due che restano sono entrambe di Vaerax e bloccate per costruzione: una entra
+`ON_DEATH` dietro una casa che non muore, l'altra aspetta il terzo anello della
+catena delle ere. Da decidere, non da riparare.
+
+Playtest identico a D-372 riga per riga — il playtest gioca anni singoli e le
+successioni non scattano. **0 seggi bloccati su 8.**
+
+---
+
+## 0.1.340 — Un numero battuto a mano si fa certificare fresco mentre mente (D-373)
+
+`COMPONENTI.md` diceva *«nessuna delle dieci tessere dice quanti spazi-Pietra ha
+né quali»*. Vero quando fu scritto, falso da **sei versioni**: D-365 ha messo
+`build_slots` su tutte e dieci. Il cancello non ha detto niente, e ha ragione
+lui: controlla che il file combaci col generatore, non che il generatore dica la
+verità.
+
+**Non era una, erano tre**, cercate col metodo invece che a occhio:
+
+| diceva | i dati dicono |
+|---|---|
+| «i **183** segni del dizionario» | **182** |
+| «Presenza e controllo — **12** per casa» | la Cronaca ne dichiara **5** |
+| «nessuna delle dieci dice quanti spazi-Pietra ha» | tutte e dieci, **21 spazi** |
+
+La seconda è la peggiore: `COMPONENTI.md` è il documento che si manda a chi
+stampa, e quella riga faceva tagliare **più del doppio** delle pedine di presenza.
+
+Le tre frasi adesso si **ricavano**. La prova che è la strada giusta era già nel
+file, due righe sotto: il paragrafo dell'arte non è mai invecchiato perché è
+sempre stato un conto.
+
+**E una guardia**: prima di generare, lo strumento legge la propria prosa e
+pretende che ogni cifra arrivi da un conto. Le eccezioni si dichiarano una per
+una con la ragione per cui non invecchiano. Provata piantando il difetto.
+
+E una cifra che questo censimento non può ricalcolare — quella di un'altra sonda
+— non è stata inventata: è stata tolta, lasciando la frase a dire la cosa vera.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`.
+
+---
+
+## 0.1.339 — Il blocco di D-348 non c'era più (D-372)
+
+D-348 aveva scritto la seconda penna di `mine_sealed`, l'aveva misurata (3
+scritture su 100 anni contro 0) e l'aveva **ritirata** perché faceva cadere
+`test_claim_policy`. Da allora la voce aspettava di capire perché.
+
+Rimessa la proposta identica, e prima di ragionarci sopra **riprodotto il
+guasto** — che è la prima cosa da fare e l'unica che dice la verità. **Il test
+non cade più**, e nemmeno nessun altro.
+
+Ventitré versioni separano D-348 da qui, e in mezzo la politica di
+rivendicazione è cambiata: fra le altre D-191, che ha aggiunto la presa di
+parola in un colpo, cioè proprio il ramo che decide se una domanda si prenota o
+si strappa. Il blocco era reale allora ed è stato sciolto da un'altra parte,
+senza che nessuno se ne accorgesse.
+
+| su 100 partite | prima | dopo |
+|---|---|---|
+| `mine_sealed` scritto | **0** | **3** |
+| punti regalati (temuti e mai scritti) | 5 | **3** |
+| porte murate (voluti e mai scritti) | 4 | **1** |
+
+**Le tre porte murate di Vaerax si aprono** — `DST_VAERAX · VITTORIA`,
+`DST_VAERAX_LEGEND · VITTORIA`, `DST_VAERAX_LEGEND · TRIONFO` — e i tre punti
+regalati a Lyra smettono di essere gratis.
+
+**Resta chiuso** `DST_VAERAX_LEGEND · SOGLIA`: chiede il terzo anello della
+catena delle ere, che vuole tre successioni di fila col sigillo intatto. Con tre
+partite su cento, la catena non parte.
+
+| su 100 anni, tavolo misto | prima | dopo |
+|---|---|---|
+| esiti FAIL | 110 | **108** |
+| Verità scritte | 153 | **154** |
+| **Verità diverse** | 137 | **139** |
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Una strada in più che il tavolo può prendere è una storia in più che il mondo
+può raccontare. Sul tavolo uniforme il movimento è opposto e della stessa
+taglia, e si dichiara.
+
+**La lezione:** una strada ritirata va **riprovata**, non archiviata. Il costo di
+riprovare era un comando; quello di non riprovare sono state sei clausole morte
+su tre Destini per ventitré versioni.
+
+---
+
 ## 0.1.338 — Perché tre segni non si scrivono mai (D-371)
 
 `mine_sealed` è mai scritto in cento partite, ed è insieme **tre punti regalati**

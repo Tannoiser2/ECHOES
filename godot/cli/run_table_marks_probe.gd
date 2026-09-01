@@ -183,7 +183,10 @@ func _initialize() -> void:
 			at_end[seen] = int(at_end.get(seen, 0)) + 1
 		session.dispose()
 
-	_report(runs, mixed, place_of, at_setup, at_end, placed, removed, out_path)
+	_report(
+		runs, mixed, place_of, at_setup, at_end, placed, removed, out_path,
+		_beyond_the_year(data, place_of)
+	)
 
 
 ## I segni che stanno sul tavolo adesso, guardati dove stanno davvero: sulle
@@ -207,9 +210,36 @@ func _on_the_table(world: Dictionary, place_of: Dictionary) -> Array:
 	return seen.keys()
 
 
+## **I segni che questa sonda non puo' vedere, ricavati** (D-376).
+##
+## Gioca un anno per partita: il passaggio di consegne fra un'era e l'altra non
+## avviene mai. Due famiglie si scrivono **solo li'**:
+##
+## - `life:<id>` — lo posa il seggio quando una vita oltre la prima si siede
+##   (`GameSession`, D-109). Uno per incarnazione scritta, e si ricava dalle
+##   Case: non si ricopia una lista.
+## - `legend:<fatto>` — lo posa la sbiadita di un salto lungo su un fatto che la
+##   Cronaca non dichiara duraturo (`WorldStateFactory`).
+##
+## Quelle si misurano in `MISURA_VITE.md`, che le saghe le gioca.
+static func _beyond_the_year(data: RefCounted, place_of: Dictionary) -> Dictionary:
+	var out: Dictionary = {}
+	for entity_id in data.entities:
+		var lives: Array = (data.entities[str(entity_id)] as Dictionary).get(
+			"incarnations", []
+		) as Array
+		for index in range(1, lives.size()):
+			out["life:%s" % str((lives[index] as Dictionary)["id"])] = true
+	for tag in place_of:
+		if str(tag).begins_with("legend:"):
+			out[str(tag)] = true
+	return out
+
+
 func _report(
 	runs: int, mixed: bool, place_of: Dictionary, at_setup: Dictionary,
-	at_end: Dictionary, placed: Dictionary, removed: Dictionary, out_path: String
+	at_end: Dictionary, placed: Dictionary, removed: Dictionary, out_path: String,
+	beyond_the_year: Dictionary
 ) -> void:
 	var lines: Array = []
 	lines.append("# ECHOES — quali segni arrivano sul tavolo, posto per posto")
@@ -230,6 +260,13 @@ func _report(
 	lines.append("L'ultima colonna e' quella di cui fidarsi: non passa dal registro degli")
 	lines.append("Effetti, guarda il tavolo. Le prime tre dipendono da quali Effetti questa")
 	lines.append("sonda sa leggere, e in questo progetto quella e' la strada di sette difetti.")
+	lines.append("")
+	lines.append("**E %d segni sono fuori dalla portata di questa misura** (D-376): questa" % beyond_the_year.size())
+	lines.append("sonda gioca **un anno per partita**, e loro il motore li scrive solo al")
+	lines.append("passaggio di consegne fra un'era e l'altra — la vita che si siede, il fatto")
+	lines.append("che sbiadisce in leggenda. Chiamarli «non arriva mai» accanto a un segno")
+	lines.append("che davvero nessuno posa metterebbe due difetti diversi sotto la stessa")
+	lines.append("parola. Quelli li misura [MISURA_VITE.md](MISURA_VITE.md), che gioca le saghe.")
 	lines.append("")
 	lines.append("Misura: `cli/run_table_marks_probe.gd`, %d partite, tavolo %s, semi da 7000."
 		% [runs, "misto" if mixed else "uniforme"])
@@ -270,7 +307,18 @@ func _report(
 			var end_count: int = int(at_end.get(tag, 0))
 			var note: String = ""
 			if open_count == 0 and put_count == 0 and end_count == 0:
-				note = "**non arriva mai**"
+				# **Uno zero che questa sonda non puo' evitare non e' una
+				# misura** (D-376). Questa gioca `setup` + `run`: **un anno,
+				# una partita**. I segni che il motore scrive solo al passaggio
+				# di consegne fra un'era e l'altra — la vita che si siede, il
+				# fatto che sbiadisce in leggenda — qui non possono arrivare
+				# **per costruzione**, e chiamarli «non arriva mai» accanto a
+				# un segno che davvero nessuno posa mette due cose diverse
+				# sotto la stessa parola.
+				note = (
+					"*fuori portata: si scrive al salto d'era*"
+					if beyond_the_year.has(tag) else "**non arriva mai**"
+				)
 			elif key == "SCAR_TOKEN" and put_count > 0 and cut_count > put_count:
 				note = "**tolta piu' volte di quante si posa**"
 			elif open_count == runs and put_count == 0:

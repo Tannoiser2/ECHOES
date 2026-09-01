@@ -266,7 +266,7 @@ def survey() -> str:
     add("## 2. I segnalini che si posano")
     add("")
     add("Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la")
-    add("meta' del gioco che si tocca. **Non sono i 183 segni del dizionario**:")
+    add("meta' del gioco che si tocca. **Non sono i %d segni del dizionario**:" % len(tags))
     add("quelli comprendono memorie, funzioni del motore, leggende e domini")
     add("stampati sulle tessere. Un segnalino si taglia solo per quello che si")
     add("**posa**: su una Regione, accanto a una casa, o sul bordo della mappa")
@@ -280,8 +280,14 @@ def survey() -> str:
         len(case), pezzi_case))
     add("| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | %d | %d |" % (
         len(mondo_da_tagliare), pezzi_mondo))
-    add("| Presenza e controllo | 2 | 12 per casa |")
-    add("| Rombi del Calore | 1 | uno per Tema, piu' due di scorta |")
+    # Quante pedine di presenza ha una casa lo dichiara la Cronaca, e diceva
+    # **12** mentre il gioco ne dava 5 (D-373): un numero che si manda a chi
+    # stampa, sbagliato di sette pezzi per casa.
+    per_casa = max(
+        (int(c.get("presence_tokens", 0)) for c in chronicles), default=0
+    )
+    add("| Presenza e controllo | 2 | %d per casa |" % per_casa)
+    add("| Rombi del Calore | 1 | uno per ognuno dei %d Temi, piu' due di scorta |" % len(themes))
     add("")
     add("**%d tipi diversi, %d pezzi** piu' le pedine dei seggi." % (
         len(mappa) + len(case) + len(mondo_da_tagliare),
@@ -289,8 +295,11 @@ def survey() -> str:
     add("")
     add("Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice")
     add("questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca")
-    add("gli anni e conta. Il numero conta piu' del totale — nessuno impara 34")
-    add("simboli, si impara quello che si vede.")
+    # Quel numero lo sa solo la sonda, e questo censimento non lo puo'
+    # ricalcolare: si nomina la sonda invece di ricopiarne un valore che
+    # invecchia in silenzio.
+    add("gli anni e conta. Quel numero conta piu' del totale: nessuno impara")
+    add("centodiciotto simboli, si impara quello che si vede.")
     add("")
 
     add("## 3. Quello che non si stampa ma tiene in piedi il gioco")
@@ -342,12 +351,34 @@ def survey() -> str:
     for nome, quante, autore, come in facce_stampate():
         add("| %s | %s | %s | %s |" % (nome, quante, autore, come))
     add("")
-    add("**Nessun pezzo esce senza faccia.** Quello che manca sulla tessera non e'")
-    add("il testo: sono **gli spazi dove si costruisce**. La tessera dichiara")
-    add("`presence_slots` — dove vanno le pedine — e i segni stampati, ma nessuna")
-    add("delle dieci dice quanti spazi-Pietra ha ne' quali. I 27 segni con posto")
-    add("`TILE_SLOT` esistono nel dizionario e vivono nei dati delle strutture,")
-    add("non sul cartone che dovrebbe ospitarli.")
+    # **Questo paragrafo si ricava, non si scrive** (D-373).
+    #
+    # Fino alla 0.1.339 era prosa a mano e diceva: «nessuna delle dieci dice
+    # quanti spazi-Pietra ha ne' quali». Era vero quando fu scritto e ha smesso
+    # di esserlo con [D-365](DECISIONS.md#d-365), che ha messo `build_slots` su
+    # ogni tessera — e nessuno se n'e' accorto, perche' il cancello di questo
+    # documento controlla che il file combaci col generatore, non che il
+    # generatore dica la verita'. Una frase scritta a mano dentro uno strumento
+    # generato **si fa certificare fresca mentre mente**.
+    #
+    # Il paragrafo dell'arte, due righe piu' sotto, non e' mai invecchiato: e'
+    # sempre stato un conto. Questo adesso lo e' anche lui.
+    con_spazi = [r for r in regions if int(r.get("build_slots", 0)) > 0]
+    spazi = sum(int(r.get("build_slots", 0)) for r in regions)
+    # `owned` divide le Pietre in due cose diverse che il cartone tratta uguale:
+    # quelle che una casa alza e se le intesta, e quelle che **sono la terra** —
+    # un bosco, una sorgente, un passo. Contarle insieme direbbe un numero vero
+    # e una cosa falsa.
+    alzate = [s for s in structures if s.get("biomes") and s.get("owned")]
+    terra = [s for s in structures if s.get("biomes") and not s.get("owned")]
+    posti_tessera = sum(1 for t in tags if str(t.get("table_place", "")) == "TILE_SLOT")
+    add("**Nessun pezzo esce senza faccia**, e da [D-365](DECISIONS.md#d-365) la")
+    add("tessera dice anche **dove si costruisce**: %d tessere su %d dichiarano i" % (
+        len(con_spazi), len(regions)))
+    add("loro spazi-Pietra, **%d in tutto**, e il bioma decide che cosa ci sta —" % spazi)
+    add("%d Pietre che una casa alza, %d che sono la terra stessa. I %d segni con" % (
+        len(alzate), len(terra), posti_tessera))
+    add("posto `TILE_SLOT` hanno finalmente il cartone che li ospita.")
     add("")
     add("### b. L'arte")
     add("")
@@ -355,6 +386,12 @@ def survey() -> str:
         len(arte) - arte_fatta, len(arte)))
     add("in quantita' e il piu' facile da parallelizzare: i prompt sono gia'")
     add("scritti e la scatola si stampa e si gioca anche cosi'.")
+    add("")
+    add("**E la catena e' aperta, provata da un capo all'altro** (D-375): un file")
+    add("posato in `godot/art/<chiave con le barre>.png` entra da solo nel")
+    add("censimento, nell'app **e nel foglio di stampa**, che lo incorpora nel")
+    add("riquadro al posto del segnaposto. Non c'e' niente da sbloccare prima di")
+    add("cominciare, e le illustrazioni si possono consegnare **una alla volta**.")
     add("")
     add("### c. Le regole che il tavolo esegue e lo schermo non spiega ancora")
     add("")
@@ -387,7 +424,61 @@ def survey() -> str:
     return "\n".join(out) + "\n"
 
 
+# **Un numero scritto a mano dentro uno strumento generato si fa certificare
+# fresco mentre mente** (D-373). Il cancello di questo documento controlla che
+# il file combaci col generatore, **non** che il generatore dica la verita': una
+# frase con dentro una cifra battuta a mano passa il cancello per sempre.
+#
+# Ne sono state trovate tre in un colpo — «183 segni» quando erano 182, «12
+# pedine di presenza per casa» quando la Cronaca ne dichiara 5 (un errore che
+# si sarebbe mandato a chi stampa), e «nessuna delle dieci tessere dice quanti
+# spazi-Pietra ha» sei versioni dopo che tutte lo dicevano.
+#
+# Questa guardia non capisce l'italiano: guarda le righe di prosa dello
+# strumento e chiede che una cifra ci arrivi da un conto (`%d`) e non dalla
+# tastiera. Le eccezioni sono dichiarate una per una, con la ragione.
+NUMERI_A_MANO_AMMESSI = (
+    "15 mm",              # la misura del cartone: la decide la fustella, non i dati
+    "0.1.329",            # una data: dice quando una frase era vera, e resta vera
+    "D-3", "D-2", "ISSUES",  # rimandi a verbali e voci, non conti
+    "punti 8, 9 e 10",    # il piano del committente, citato
+    "centodiciotto",      # scritto in lettere apposta: vedi sopra
+    "2 copie",            # quante se ne tagliano per tipo: regola di fustella
+    "48 Risonanze",       # quante ne rimise a mano D-362: storia, non conto vivo
+)
+
+
+def numeri_battuti_a_mano() -> list:
+    """Le righe di prosa di questo strumento che portano una cifra non contata."""
+    import re as _re
+    fuori = []
+    for numero, riga in enumerate(open(__file__, encoding="utf-8"), 1):
+        trovato = _re.search(r'add\(\s*"([^"]*)"\s*\)\s*$', riga.rstrip())
+        if not trovato:
+            continue          # non e' prosa chiusa: o e' un conto, o e' altro
+        testo = trovato.group(1)
+        if not _re.search(r"(?<![%\w])\b(?:[2-9]|[1-9]\d+)\b", testo):
+            continue
+        if any(ammesso in testo for ammesso in NUMERI_A_MANO_AMMESSI):
+            continue
+        if testo.lstrip().startswith("#") or testo.lstrip().startswith("|"):
+            continue          # titoli e intestazioni di tabella
+        fuori.append((numero, testo.strip()))
+    return fuori
+
+
 def main() -> int:
+    # **Prima del documento, lo strumento.** Un numero battuto a mano qui dentro
+    # passerebbe il cancello per sempre, perche' il cancello confronta il file
+    # col generatore e non il generatore coi dati.
+    a_mano = numeri_battuti_a_mano()
+    if a_mano:
+        print("FAIL  numeri battuti a mano nella prosa di %s:" % __file__)
+        for numero, testo in a_mano:
+            print("      riga %d: %s" % (numero, testo))
+        print("      un numero si conta dai dati (`%d`), o si dichiara in")
+        print("      NUMERI_A_MANO_AMMESSI con la ragione per cui non invecchia.")
+        return 1
     text = survey()
     if "--check" in sys.argv:
         if not DOC.exists() or DOC.read_text(encoding="utf-8") != text:

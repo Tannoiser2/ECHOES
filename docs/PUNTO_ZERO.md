@@ -3,6 +3,24 @@
 **Versione 0.1.294** · `main` a `c0c83f9` · riscritto dopo un giro completo dei
 cancelli, con le sonde rifatte sul codice di oggi.
 
+> ### Questa è una fotografia della 0.1.294, e alcune cose si sono mosse
+>
+> Il documento non è stato rimisurato da allora, e **i numeri qui sotto vanno
+> letti con la data addosso**. Quelli che so cambiati, alla 0.1.346:
+>
+> | | qui sotto | oggi |
+> |---|---|---|
+> | cancelli | 19 | **26** |
+> | segni nel dizionario / di cui qualcuno scrive | 182 / 149 | **174 / 170** ([D-376](DECISIONS.md#d-376)) |
+> | carte che aprono una domanda in prestito | 28 | **0** ([D-378](DECISIONS.md#d-378)) |
+> | livelli di Destino che si reggono solo sul contare | 31 | **17** ([D-377](DECISIONS.md#d-377)) |
+> | vite scritte che non si siedono mai | 7 | **1** ([D-374](DECISIONS.md#d-374), [D-378](DECISIONS.md#d-378)) |
+>
+> **I documenti generati non hanno questo problema**: sono rifatti da un
+> cancello a ogni giro, e sono la fonte da guardare quando un numero qui e uno
+> lì non tornano. Rimisurare questo per intero è una cosa da fare, e non è stata
+> fatta.
+
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
 voce qui sotto non ti torna, quella è la prima cosa da cambiare.

@@ -4250,15 +4250,25 @@ volta in questo progetto che uno zero era la sonda.**
    **Vie** ([D-312](DECISIONS.md#d-312)): 7 carte, 14 domande e 21 proposte.
    **35 → 28.**
 
-   **Fermo qui in attesa della parola del committente**: la voce
+   ✅ **Chiuso in 0.1.345** ([D-378](DECISIONS.md#d-378)). Il lavoro era
+   **fermo in attesa della parola del committente**: la voce
    [89](#89-la-proposta-non-si-risolve-col-dito-642-effetti-che-nessuna-carta-stampa)
-   dice che questa strada rende le carte diverse da **leggere** e non
-   risolvibili **col dito**, e mette tre strade davanti. Gli ultimi tre Temi —
-   Antico, Fede, Terra — si scrivono dopo quella scelta, non prima. Nello stesso
-   passo sono cadute due sonde che guardavano ancora i template invece delle
-   carte — il catalogo dei Consigli (12 schede per 60 carte) e il denominatore
-   di *«quanto contenuto d'autore il tavolo vede»*. Restano quattro Temi —
-   Vie, Antico, Fede, Terra — un Tema per volta.
+   metteva in dubbio la grammatica in cui quelle proposte sono scritte, e gli
+   ultimi tre Temi dovevano aspettare quella scelta. **La 89 è chiusa da
+   0.1.332**: le otto caselle sono scritte, il `dove` e il `chi` ci sono
+   ([D-366](DECISIONS.md#d-366)), la grammatica non si butta. L'attesa era
+   finita e nessuno l'aveva notato.
+
+   Scritti gli ultimi tre Temi, uno per volta: **Antico** (9 carte, 18 domande,
+   27 proposte) **28 → 19**, **Fede** (9 / 18 / 27) **19 → 10**, **Terra**
+   (10 / 20 / 30) **10 → 0**. Ogni carta ha due domande sue e tre proposte sue,
+   e i **194 testi delle proposte sono 194 testi diversi**.
+
+   Nello stesso passo sono cadute due sonde che guardavano ancora i template
+   invece delle carte — il catalogo dei Consigli (12 schede per 60 carte) e il
+   denominatore di *«quanto contenuto d'autore il tavolo vede»*. **La terza è
+   caduta in 0.1.345**: `REVISIONE_TESTI.md` leggeva i template e saltava 314
+   testi veri.
 3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
    perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
    dal gioco — ed e' la modifica che vale la parola del committente, non la mia.
@@ -4940,9 +4950,31 @@ letture, e non sono la stessa cosa:
    fra un tavolo e un pannello di controllo, ed è quella che il committente
    nomina da sempre.
 
-**Da misurare, e non c'è ancora modo**: nessuna delle sonde tocca questa pagina.
-Finché una persona con l'app in mano resta l'unico strumento, ogni giro costa un
-suo pomeriggio — ed è successo tre volte di fila.
+**Da misurare, e non c'era modo**: nessuna delle sonde toccava questa pagina.
+Finché una persona con l'app in mano restava l'unico strumento, ogni giro
+costava un suo pomeriggio — ed era successo tre volte di fila.
+
+✅ **Lo strumento c'è, da 0.1.346** ([D-379](DECISIONS.md#d-379)):
+[`MISURA_PAGINA.md`](MISURA_PAGINA.md), generata da `cli/run_page_survey.gd` e
+sorvegliata da un cancello. Misura le quattro cose che i sei difetti del tablet
+avevano in comune:
+
+| | |
+|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** |
+| parole tecniche sotto gli occhi | 1 |
+| larghezza chiesta in fila, senza la mappa | **788 px** su un tablet da 768 |
+
+E dichiara i tre posti dove non arriva: il **testo ricco** headless non si legge
+(provato: zero da tutte e due le strade), due pannelli **dipingono invece di
+costruire nodi** — la mappa e i mazzetti dei Temi, che quindi né questa sonda né
+un lettore di schermo vedono — e la **cornice** coi bottoni degli strumenti
+resta fuori perché nomina un autoload.
+
+**La decisione resta questa voce.** La sonda non ripara niente e non sceglie
+quale delle tre riviste si fa: ha solo tolto di mezzo la ragione per cui non si
+poteva cominciare.
 
 **Fatto quando** c'è una decisione scritta su *quale* delle tre riviste si sta
 facendo, e la pagina la segue.
@@ -6120,7 +6152,7 @@ si calavano quando si voleva.
 **Fatto quando** il committente sceglie, e la scelta e' misurata sui 100 semi.
 
 
-### 108. Vaerax ha un Destino murato a tutti e tre i passi — diagnosi rifatta in 0.1.338
+### 108. Vaerax ha un Destino murato a tutti e tre i passi — quasi chiusa in 0.1.339
 
 `regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 provata e ritirata in 0.1.315** ([D-348](DECISIONS.md#d-348))
 
@@ -6222,6 +6254,45 @@ esce almeno una volta su 100 partite.
 > generico cambia quale dominio una casa rivendica, e sotto quella cura
 > `mine_sealed` esce almeno una volta su 100 partite. La stessa cura vale per
 > `study_supervised` e `valley_sealed`, che hanno la stessa forma.
+
+> ### Quasi chiusa in 0.1.339 ([D-372](DECISIONS.md#d-372)) — il blocco non c'era più
+>
+> Rimessa la proposta di [D-348](DECISIONS.md#d-348), identica. Prima di
+> ragionarci sopra si è **riprodotto il guasto**, che è l'unica cosa che dice la
+> verità: **il test non cade più**, e nemmeno nessun altro.
+>
+> Ventitré versioni separano D-348 da qui, e in mezzo la politica di
+> rivendicazione è cambiata — fra le altre
+> [D-191](DECISIONS.md#d-191), che ha aggiunto la presa di parola in un colpo,
+> cioè proprio il ramo che decide se una domanda si prenota o si strappa. Il
+> blocco era reale allora ed è stato sciolto da un'altra parte, senza che
+> nessuno se ne accorgesse.
+>
+> | su 100 partite | prima | dopo |
+> |---|---|---|
+> | `mine_sealed` scritto | **0** | **3** |
+> | punti regalati | 5 | **3** |
+> | porte murate | 4 | **1** |
+>
+> **Le tre porte murate di Vaerax si aprono**, e i tre punti regalati a Lyra
+> smettono di essere gratis.
+>
+> ### Cosa resta
+>
+> **`DST_VAERAX_LEGEND · SOGLIA`**, che chiede `mountain_forgotten`: è il terzo
+> anello della catena delle ere, e vuole `mine_sealed` sul mondo a tre
+> successioni di fila senza che il Cristallo venga messo a rendere. Con tre
+> partite su cento che sigillano, la catena non parte — `seal_kept` e
+> `seal_kept_twice` restano a zero.
+>
+> **`study_supervised` e `valley_sealed`**, che hanno la stessa forma e la
+> stessa cura: una seconda penna. Non fatte qui perché ognuna è una proposta
+> d'autore, e una proposta d'autore è contenuto.
+>
+> **La lezione, che vale oltre questa voce:** una strada ritirata va
+> **riprovata**, non archiviata. Il costo di riprovare era un comando; quello di
+> non riprovare sono state sei clausole morte su tre Destini per ventitré
+> versioni.
 
 
 ### 109. ✅ Il MASTER PROMPT 6 e' ricopiato in Python invece che letto — fatta in 0.1.314
@@ -6828,3 +6899,165 @@ nei dati.
 > l'equilibrio si misura prima di scriverlo.
 >
 > **Fatto quando** quelle due sono decise.
+
+---
+
+### 118. Sei livelli di vittoria sono un'addizione, e stanno tutti sui Destini di nessuno
+
+`contenuto` · `decisione-del-committente` · aperta in 0.1.344
+([D-377](DECISIONS.md#d-377) · [le misure](MISURA_MATRICE.md))
+
+`MISURA_MATRICE.md` diceva **31 livelli su 69** che «si reggono solo sul
+contare». Misurati meglio ([D-377](DECISIONS.md#d-377)) sono **17**: gli altri
+quattordici si indicano col dito eccome — o puntano il segnalino di una
+domanda, o chiedono un **bersaglio a segni** stampato sulla tessera
+(*«una pedina dove c'è il #granaio»*).
+
+Degli **17**, **undici sono il `minimum`**: la soglia sotto la quale la casa non
+c'è più. Lì il conto è la cosa giusta, e restano.
+
+**I sei che restano sono vittoria o trionfo** — quello per cui una casa viene
+ricordata — e sono **tutti e sei su Destini condivisi** (`entity_id: $self`):
+
+| Destino | livello | come si legge |
+|---|---|---|
+| `DST_SHARED_LAND` | victory | La terra risponde, e non importa come |
+| `DST_SHARED_LAND` | triumph | La mappa parla la tua lingua |
+| `DST_SHARED_QUIET` | victory | La quiete si vede |
+| `DST_SHARED_LORE` | victory | E un posto dove custodirla |
+| `DST_SHARED_LORE` | triumph | Quello che sai lo sanno da te |
+| `DST_SHARED_HAND` | victory | Le riserve che diventano forma |
+
+**Non è un difetto trovato per caso: è scritto nelle loro descrizioni.**
+`DST_SHARED_LAND` dice di sé *«un'ambizione semplice e spietata — contare le
+Regioni, e contarle tue»*. Un obiettivo che qualunque casa può prendere non può
+nominare il segno di nessuno, e gli resta il numero.
+
+#### La decisione
+
+Se debbano restare aritmetici è una scelta di disegno, e sta al committente.
+Se la vorrà cambiare, la casa ha già la sua strada in uso: il trionfo di
+`DST_SHARED_QUIET` e quello di `DST_SHARED_HAND` chiudono con
+`condition:contested` — **un segno del mondo che non appartiene a nessuna
+casa**, quindi resta condivisibile. Gli stessi sei livelli potrebbero chiuderne
+uno ciascuno.
+
+Il costo da misurare prima di scriverlo: una clausola in più su una vittoria la
+rende **più difficile**, e il cancello dei cento semi vuole **0 seggi bloccati
+su 8**.
+
+**Fatto quando** il committente dice se quei sei restano un'addizione o
+nominano un segno.
+
+---
+
+### 119. Il Consiglio non cade quasi più: FAILURE da 108 a 37
+
+`regole` · `da-decidere` · aperta in 0.1.345
+([D-378](DECISIONS.md#d-378))
+
+Scritti gli ultimi tre Temi ([D-378](DECISIONS.md#d-378)), ogni carta offre tre
+proposte **sue** invece delle due generiche del suo dominio. Il tavolo ne trova
+molto più spesso una che gli va bene, e i Consigli passano:
+
+| esiti su 100 partite | prima | dopo |
+|---|---|---|
+| tavolo uniforme — FAILURE | 108 | **37** |
+| tavolo misto — FAILURE | 25 | **14** |
+
+**È l'effetto che il lavoro cercava, ed è anche un prezzo.** Con due sole
+proposte su tredici carte, chi proponeva raramente trovava qualcosa che il
+tavolo volesse: i Consigli cadevano per povertà di offerta, non per conflitto.
+Ma un Consiglio che quasi non cade è un Consiglio **con meno posta**, e tutto
+quello che vive nella banda del fallimento gira un terzo delle volte di prima:
+le sette Conseguenze `CNS_FAILURE_*`, il marchio `spoke_and_lost` di chi ha
+proposto e ha perso — che adesso **non arriva mai** sul tavolo in cento partite
+— e la parte della carta Tensione che dice *«se cade»*.
+
+Un effetto collaterale è già chiuso: `rumour_running`, scritto solo dal
+sacchetto dei fallimenti del dominio ANTICO, era sceso a zero e riapriva una
+porta murata che [D-372](DECISIONS.md#d-372) aveva appena chiuso. Adesso lo
+scrive anche una proposta che passa (`CNS_WORD_GOES_ROUND`). Ma la banda resta
+magra.
+
+#### Le tre strade, e la scelta è del committente
+
+- **(a) Va bene così.** Un Consiglio deve decidere; cadeva perché l'offerta era
+  povera, e adesso non lo è più. La banda del fallimento resta per i casi veri.
+- **(b) Il fallimento si compra.** Con l'economia delle caselle
+  ([D-280](DECISIONS.md#d-280), ISSUES 72) il prezzo lo pagano gli avversari:
+  una proposta cade quando **nessuno vuole pagarla**, non quando nessuno la
+  vuole. È la strada che il gioco sta già costruendo, e questa misura è il
+  numero da riguardare quando l'economia sarà in piedi.
+- **(c) Si alza la soglia.** Equilibrio puro, e l'equilibrio si misura prima di
+  scriverlo: il cancello vuole **0 seggi bloccati su 8**.
+
+**Fatto quando** il committente sceglie, o quando l'economia delle caselle è in
+piedi e questa misura si rifà con lei.
+
+---
+
+### 120. Dodici Obiettivi su diciassette si vincono contando, e non nominano niente
+
+`contenuto` · `da-decidere` · aperta in 0.1.347
+([D-380](DECISIONS.md#d-380) · [il flusso](flusso.html))
+
+Messi gli Obiettivi nel disegno del flusso ([D-380](DECISIONS.md#d-380)), dodici
+su diciassette sono usciti **senza nemmeno una freccia**: nessun segno nominato,
+nessuna Pietra contata, niente su cui puntare il dito.
+
+| | |
+|---|---|
+| Obiettivi | 17 |
+| **che non toccano nessun pezzo del tavolo** | **12** |
+| clausole di Obiettivo che nominano un segno | 4 |
+
+Sono `OBJ_A_HIGH_HOUSE`, `OBJ_A_LEARNED_HOUSE`, `OBJ_A_STONE`, `OBJ_BOUND_HOUSE`,
+`OBJ_FULL_HANDS`, `OBJ_MOST_STONE`, `OBJ_QUIET_WORLD`, `OBJ_SOMETHING_MUST_BREAK`,
+`OBJ_THE_LONGEST_REACH`, `OBJ_THE_WIDEST_SPREAD`, `OBJ_TWO_LANDS`,
+`OBJ_WRITTEN_THINGS`.
+
+**È lo stesso difetto che [D-377](DECISIONS.md#d-377) ha misurato sui Destini**,
+in un posto dove nessuno l'aveva ancora guardato — e con la stessa attenuante:
+un obiettivo che si tiene in mano deve valere per chiunque lo peschi, quindi non
+può nominare il segno di nessuno. Ma un obiettivo è **cinque punti**, e cinque
+punti che nessuna Tensione può aiutare né minacciare non entrano nella partita
+che il tavolo sta giocando: si contano a fine anno e basta.
+
+#### Cosa si può fare, e la scelta è del committente
+
+- **(a) Restano conti.** Sono la moneta piccola del punteggio, e va bene così.
+- **(b) Ognuno chiude con un segno.** La casa ha già la strada: quattro
+  Obiettivi su diciassette nominano `renowned`, `question_unresolved`,
+  `condition:exploited`, `condition:emptied`. Costo da misurare: una clausola
+  in più rende l'obiettivo **più difficile**, e il cancello vuole 0 seggi
+  bloccati su 8.
+- **(c) Metà e metà**, tenendo i conti puri come obiettivi facili e dando un
+  segno a quelli che valgono di più.
+
+**Fatto quando** il committente dice se quei dodici restano un'addizione.
+
+---
+
+### 121. Due segni e un'Azione che nessuno tocca
+
+`contenuto` · `debito` · aperta in 0.1.347 ([D-380](DECISIONS.md#d-380))
+
+Il disegno del flusso, completato in [D-380](DECISIONS.md#d-380), lascia tre
+pezzi **senza nemmeno una freccia** oltre agli Obiettivi della
+[120](#120):
+
+| pezzo | cosa manca |
+|---|---|
+| `uprooted` | nessuno lo posa e nessuno lo legge — mentre `twice_uprooted`, il suo seguito, apre la porta della Diaspora di Nahr |
+| `scar:burned_records` | una Cicatrice che nessuna Conseguenza incide e nessuna clausola nomina |
+| `ACT_ACQUIRE` | l'unica delle sei Azioni che nessuna carta e nessuna regola del segno nomina |
+
+I primi due li vedrebbe anche il censimento dei segni; il terzo no, ed è il più
+strano: **Acquisire è un'Azione della plancia** che nessuna carta modifica,
+concede o vieta. O è giusto — è l'azione base, quella che si fa senza carte — e
+allora va scritto; o è un buco, e allora ci vuole almeno una regola del segno che
+la tocchi.
+
+**Fatto quando** i due segni hanno una penna o escono dal dizionario, e
+`ACT_ACQUIRE` ha una riga che dice perché nessuno la nomina.

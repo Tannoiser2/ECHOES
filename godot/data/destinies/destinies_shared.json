@@ -373,7 +373,12 @@
         "themes": [
           "THM_ANTICO"
         ],
-        "observes": [],
+        "observes": [
+          "crystal_site",
+          "mine_sealed",
+          "knowledge_shared",
+          "rumour_running"
+        ],
         "reads": {
           "minimum": "Una scoperta all'attivo: sei sceso a guardare.",
           "victory": "Due scoperte, e una pietra dove il sapere sta.",
