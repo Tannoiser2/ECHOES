@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-394 — La passata di verità: sei voci erano già chiuse, e una era rossa
+
+**implemented in 0.1.362.** Nessuna riga di regola: solo la prima verde della
+lista, rileggere ogni voce aperta contro i numeri di oggi invece che contro
+quelli con cui è nata. Ha tolto **sei voci su cinquantuno**, e una aspettava una
+parola del committente.
+
+Il precedente è [D-391](#d-391): ISSUES 68 era rimasta aperta cento versioni
+dopo essere stata curata, perché nessuno aveva più riletto la condizione che si
+era scritta sopra. Non era un caso isolato.
+
+### Due che parlavano di contenuto cancellato
+
+`CHR_01` e `CHR_03` — gli anni d'autore — sono stati cancellati in
+[D-317](#d-317)/[D-318](#d-318), e da allora la scatola contiene **un anno solo**.
+
+- **[66](ISSUES.md#66)** — *«la seconda saga non si raggiunge più»*. La sua
+  condizione scritta era *«o CHR_03 si raggiunge, o è stato tolto perché non
+  serviva»*: **è stato tolto**, quarantaquattro versioni fa. Era una **rossa**,
+  in attesa di una decisione che non serviva più.
+- **[46](ISSUES.md#46)** — *«nella saga del Sale vince sempre la stessa casa, 12
+  su 12»*. La saga del Sale è `CHR_03`. Chiusa perché il suo oggetto non è più
+  nella scatola: non perché sia stata curata, ed è una differenza che va scritta.
+
+### Tre che erano state curate e nessuno l'aveva verificato
+
+- **[52](ISSUES.md#52)** — *«Lyra non ha mai trionfato in centoventi anni»*, con
+  37 NONE. Oggi Lyra è il **seggio migliore del tavolo uniforme**: 3 NONE (il
+  minimo del tavolo), 23 Vittorie, 3 Trionfi su cento anni. E la condizione che
+  si era scritta — *«nessun seggio a zero Trionfi»* — **non si può giudicare a
+  questo passo**, e va detto: i Trionfi sono 5 su 400 seggi-anno a tavolo misto.
+  Con un seggio che ne aspetta mezzo, uno zero non distingue una casa debole da
+  una fortunata. Quello che sorveglia la cosa è il vincolo del cancello.
+- **[45](ISSUES.md#45)** — *«la linea dei Fuochi arriva al secondo gradino la
+  metà delle volte»*. Kessa dei Fuochi sta nella banda su tutt'e due i tavoli
+  (14/19/24/0 e 8/24/24/1), e Le Custodi della Cenere — che la voce dava per la
+  vita più debole al 22% — sono oggi la **seconda vita più seduta** delle
+  diciotto.
+- **[83](ISSUES.md#83)** — *«nessuna casa sotto un salto su quattro»*. Il numero
+  sta in [MISURA_VITE.md](MISURA_VITE.md), che è nei cancelli: la peggiore è
+  ENT_CENERE a **1 ogni 4,7**, e le altre sette sopra. La sorveglianza continua
+  da sola.
+
+### Una che una misura sbagliata teneva viva
+
+**[48](ISSUES.md#48)** — *«la Strada dei Mercanti è una Regione morta»*. È la
+**seconda Regione più abitata** della mappa: 1,07 → 2,23 presenze.
+
+E qui c'era anche un difetto di misura, corretto: `run_move_probe` divideva le
+presenze per **gli anni giocati** invece che per **gli anni in cui la tessera è
+stata pescata**. Con sei tessere su dieci, i quaranta anni in cui una Regione non
+è sul tavolo entravano nella media come zeri, e facevano sembrare deserta una
+tessera che quando c'è è piena — un terzo di errore su ogni riga. Adesso la sonda
+stampa anche **quante volte è stata pescata**, e la media è su quelle.
+
+Il residuo è dichiarato: la Regione più vuota è ora l'**Isola Muta** a mezza
+pedina, e non è un difetto ma la regola — da [D-393](#d-393) è l'unica tessera
+con due lati chiusi, cioè un'isola con due approdi.
+
+### Cosa insegna, oltre alle sei
+
+Il conto delle voci aperte passa da **51 a 45**, e le decisioni che aspettano il
+committente da 11 a 10. Nessuna riga di gioco è cambiata: erano tutte e sei già
+vere, alcune da centinaia di versioni. **Una lista che non si rilegge cresce
+anche quando il gioco migliora**, ed è per questo che la rilettura è la prima
+riga della lista e non l'ultima.
+
+---
+
 ## D-393 — I varchi si allargano: la densità della griglia torna, la regola resta
 
 **implemented in 0.1.360.** Parola del committente, il giorno dopo D-390:

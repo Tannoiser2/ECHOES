@@ -1545,10 +1545,26 @@ quattro Tensioni, ed e' la seconda volta che succede per lo stesso motivo
 
 Costo dichiarato: **FAIL 191 → 203**.
 
-### 45. La linea dei Fuochi: metà chiusa, e quello che resta
+### 45. ✅ La linea dei Fuochi — CHIUSA in 0.1.362: sta nella banda delle altre
 
 `contenuto` · `bilanciamento` · **metà chiusa in 0.1.145** · nata da
-[D-176](DECISIONS.md#d-176) → [D-177](DECISIONS.md#d-177)
+[D-176](DECISIONS.md#d-176) → [D-177](DECISIONS.md#d-177) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La condizione era: «la linea dei Fuochi sta nella stessa banda delle altre
+> in ogni sua incarnazione».** Ci sta, su tutt'e due i tavoli del cancello,
+> cento anni:
+>
+> | Kessa dei Fuochi | NONE | MINIMO | VITTORIA | TRIONFO |
+> |---|---|---|---|---|
+> | tavolo misto | 14 | 19 | 24 | 0 |
+> | tavolo uniforme | 8 | 24 | 24 | 1 |
+>
+> E la vita che la voce dava per la piu' debole — **Le Custodi della Cenere**,
+> allora al 22% — oggi e' la **seconda vita piu' seduta** delle diciotto: 12
+> volte su tavolo uniforme e 12 su misto, in dodici saghe
+> ([MISURA_VITE.md](MISURA_VITE.md)). Il residuo scritto qui sotto era misurato
+> sulla **saga del Sale**, cancellata in [D-318](DECISIONS.md#d-318).
 
 **La metà chiusa.** La voce diceva che la linea della Cenere/Fuochi arriva al
 secondo gradino la metà delle volte delle altre, in ogni sua incarnazione. La
@@ -1590,9 +1606,17 @@ verbale:
 **Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
 sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
 
-### 46. La campagna del Sale ha un vincitore già scritto ([#69](https://github.com/Tannoiser2/ECHOES/issues/69))
+### 46. ✅ La campagna del Sale ha un vincitore già scritto — CHIUSA in 0.1.362: la campagna non c'e' piu'
 
-`contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) · **aperta in 0.1.148**
+`contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) ·
+**aperta in 0.1.148** · **chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La saga del Sale e' `CHR_03`, cancellato in
+> [D-318](DECISIONS.md#d-318).** Il difetto misurato qui — *«SALE 12 su 12»* —
+> era su un anno che non esiste piu'. Sull'anno che esiste il cancello misura
+> **0 seggi bloccati su un solo livello su 8**, sui due tavoli, a ogni
+> decisione. Chiusa perche' il suo oggetto non e' piu' nella scatola, non
+> perche' sia stata curata.
 
 Il contatore di saga ha reso visibile una cosa che c'era già e che nessuno poteva
 vedere finché ogni anno stava in piedi da solo:
@@ -1827,9 +1851,34 @@ contro 4,90 del gioco di prima.
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
 l'ultimo seggio **non cresce** di atto in atto.
 
-### 48. La Strada dei Mercanti è una Regione morta
+### 48. ✅ La Strada dei Mercanti è una Regione morta — CHIUSA in 0.1.362: e' la seconda piu' viva
 
-`regole` · `contenuto` · **misurata in 0.1.154** ([D-186](DECISIONS.md#d-186))
+`regole` · `contenuto` · **misurata in 0.1.154** ([D-186](DECISIONS.md#d-186)) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La Strada dei Mercanti non e' piu' morta: e' la seconda Regione piu'
+> abitata della mappa.** Cento anni, tavolo misto, `cli/run_move_probe.gd`,
+> media **sugli anni in cui la tessera e' pescata** — che e' il taglio che
+> mancava alla misura di prima, e che da solo cambiava i numeri di un terzo:
+>
+> | Regione | pescata | apertura → fine |
+> |---|---|---|
+> | Eredan | 51 | 2,12 → **2,53** |
+> | **Strada dei Mercanti** | 60 | 1,07 → **2,23** |
+> | Valle Verde | 59 | 1,66 → 2,19 |
+> | Miniere Antiche | 53 | 2,06 → 2,09 |
+> | Terre Nahr | 63 | 0,68 → 1,51 |
+> | Porto Cinerino | 75 | 0,12 → 1,37 |
+> | Montagne Rosse | 64 | 1,08 → 1,30 |
+> | Bosco dei Confini | 63 | 0,17 → 0,94 |
+> | Palude dei Canali | 56 | 0,07 → 0,84 |
+> | **L'Isola Muta** | 56 | 0,18 → **0,50** |
+>
+> **Il residuo, e va scritto**: la Regione piu' vuota adesso e' l'**Isola Muta**
+> a mezza pedina, e non e' un difetto ma la regola — da
+> [D-393](DECISIONS.md#d-393) e' l'unica tessera con due lati chiusi, cioe'
+> un'isola con due approdi. Se il committente vuole che ci si viva, le serve un
+> terzo varco: e' una riga di dato, e non apre una voce nuova.
 
 Misurando dove finiscono le pedine per scegliere la mappa nuova, è saltato fuori
 un numero che nessuno aveva mai guardato:
@@ -2458,9 +2507,29 @@ questa voce sposta il numero verso il basso.
 
 ---
 
-### 52. Lyra non ha mai trionfato in centoventi anni
+### 52. ✅ Lyra non ha mai trionfato in centoventi anni — CHIUSA in 0.1.362
 
-`bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata dal resoconto della saga 812
+`bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata dal resoconto della
+saga 812 · **chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **Lyra oggi e' il seggio migliore del tavolo uniforme.** Cento anni, il
+> cancello:
+>
+> | Lyra | NONE | MINIMO | VITTORIA | TRIONFO |
+> |---|---|---|---|---|
+> | allora (120 seggi-anno, linea del Grano) | **37** | — | — | **0** |
+> | tavolo misto, oggi | 12 | 14 | 22 | 0 |
+> | tavolo uniforme, oggi | **3** (il minimo del tavolo) | 19 | 23 | **3** |
+>
+> Il difetto che la voce nominava — *una casa che non arriva mai in cima mentre
+> le altre ci arrivano* — non c'e' piu'.
+>
+> **E la condizione scritta («nessun seggio a zero Trionfi») non si puo'
+> giudicare a questo passo**, e va detto invece di far finta: i Trionfi sono
+> **5 su 400 seggi-anno** a tavolo misto e 10 su 400 a uniforme. Con un seggio
+> che ne aspetta mezzo, uno zero non distingue una casa debole da una fortunata.
+> Quello che sorveglia la cosa e' il vincolo del cancello — **0 seggi bloccati
+> su un solo livello su 8** — e quello si misura a ogni decisione.
 
 Il resoconto narrativo di una saga intera ha regalato un numero che nessuna
 sonda chiedeva. Su **120 seggi-anno** (12 saghe da 10 Chronicle, linea del
@@ -4185,9 +4254,28 @@ leggende. Continua in [ISSUES 124](#124).
 
 ---
 
-### 83. La porta spalancata: una gamba che nessuno riesce mai a tenere
+### 83. ✅ La porta spalancata — CHIUSA in 0.1.362: nessuna casa sotto un salto su quattro
 
-`regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298))
+`regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298)) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La condizione era: «nessuna casa sta sotto 1 su 4, e la cosa si e'
+> verificata su un numero e non a occhio».** Il numero c'e', ed e' in un
+> documento che sta nei cancelli — [MISURA_VITE.md](MISURA_VITE.md), dodici
+> saghe da otto anni sui due tavoli, 168 salti d'era:
+>
+> | casa | mutazioni | ogni quanti salti |
+> |---|---|---|
+> | ENT_CENERE | 36 | 1 ogni **4,7** |
+> | ENT_NAHR | 33 | 1 ogni 5,1 |
+> | ENT_VETRO | 31 | 1 ogni 5,4 |
+> | ENT_ALDRIC · ENT_LIBERE | 30 | 1 ogni 5,6 |
+> | ENT_LYRA | 24 | 1 ogni 7,0 |
+> | ENT_SALE | 21 | 1 ogni 8,0 |
+> | ENT_VAERAX | 20 | 1 ogni 8,4 |
+>
+> **La peggiore e' a 4,7 — sopra il limite**, e la sorveglianza continua da
+> sola: se una scende sotto, il cancello delle vite va rosso.
 
 La cura di ISSUES 81 ha un rovescio da sorvegliare. Se una porta fatta di sole
 memorie non si apre **mai**, una porta con una gamba impossibile si apre
@@ -5046,9 +5134,18 @@ nell'apertura dell'anno; se non compare, è prima.
 
 ---
 
-### 66. La seconda saga non si raggiunge più
+### 66. ✅ La seconda saga non si raggiunge più — CHIUSA in 0.1.362: e' stata tolta
 
-`contenuto` · `da-decidere` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245))
+`contenuto` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245)) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La condizione era: «o CHR_03 si raggiunge, o e' stato tolto perche' non
+> serviva». E' stato tolto.** Gli anni d'autore sono stati cancellati in
+> [D-317](DECISIONS.md#d-317)/[D-318](DECISIONS.md#d-318): la scatola contiene
+> **un anno solo, CHR_00**, e chiedere al motore un `CHR_03` risponde
+> `Chronicle sconosciuta`. La voce e' rimasta aperta — e per un pezzo perfino
+> **rossa, in attesa di una parola del committente** — quarantaquattro versioni
+> dopo che la sua condizione era soddisfatta.
 
 Il menu non chiede più da dove cominciare: si apre l'app e si gioca il primo
 anno. Il prezzo è che **CHR_03 — anno 1640, le altre quattro case — non si apre

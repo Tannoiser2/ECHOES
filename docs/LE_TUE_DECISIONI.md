@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **80** |
-| aperte | **51** |
-| di cui **aspettano una tua decisione** | **11** |
-| di cui sono mie da fare | **40** |
+| chiuse | **86** |
+| aperte | **45** |
+| di cui **aspettano una tua decisione** | **10** |
+| di cui sono mie da fare | **35** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,21 +42,21 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 4 |
+| 0.1.350–0.1.374 | 6 | 9 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
 <!-- CONTO: fine -->
 
-*(Le undici voci che aspettano te sono **dieci decisioni**: la
-[122](ISSUES.md#122) e la [125](ISSUES.md#125) sono la stessa domanda. Le quaranta
-mie stanno tutte dentro le otto gialle e le quattro verdi qui sotto, o nella
-sezione «fuori dalla lista» in fondo — **nessuna voce aperta è senza casa**, e
-questo si può ricontare.)*
+*(Le voci che aspettano te sono **nove decisioni**: la
+[122](ISSUES.md#122) e la [125](ISSUES.md#125) sono la stessa domanda. Le altre
+sono mie, e stanno tutte dentro le otto gialle e le quattro verdi qui sotto, o
+nella sezione «fuori dalla lista» in fondo — **nessuna voce aperta è senza
+casa**, e questo lo tiene un cancello.)*
 
 ---
 
-# 🔴 Le dieci rosse — tue, una parola ciascuna
+# 🔴 Le nove rosse — tue, una parola ciascuna
 
 In ordine di quanto cambiano la partita. Sotto ognuna: la domanda in una riga, il
 numero che la motiva, cosa farei io.
@@ -123,16 +123,7 @@ che una leggenda possa portare.
 > cambia. La metto rossa solo perché è **cosa vogliono quelle due case**, e
 > questo lo decidi tu.
 
-### R6. [66](ISSUES.md#66) — la seconda saga
-
-`CHR_03` è contenuto scritto, validato e giocabile che **nessuno può aprire**.
-
-> **Farei: toglierla**, e dirlo ad alta voce — venti Destini e quattro case in
-> meno nella scatola. Una saga sola, fatta bene, batte due di cui una
-> irraggiungibile. **Chiude anche [46](ISSUES.md#46)** — nella saga del Sale
-> vince sempre la stessa casa, 12 volte su 12, con qualunque scala di punteggio.
-
-### R7. [64](ISSUES.md#64) — una saga ricambia metà tavolo
+### R6. [64](ISSUES.md#64) — una saga ricambia metà tavolo
 
 Fra un anno e l'altro di una saga **metà dei seggi cambia casa**, e nessuno ha
 mai deciso che dovesse. O è la cosa giusta — le case passano, il mondo resta — o
@@ -142,7 +133,7 @@ mai deciso che dovesse. O è la cosa giusta — le case passano, il mondo resta 
 > cambiano il mondo, il Consiglio decide cosa il mondo ricorderà*. Ma va scritto
 > sulla scatola, non lasciato succedere.
 
-### R8. [127](ISSUES.md#127) — la tessera si gira, e l'arte si gira con lei
+### R7. [127](ISSUES.md#127) — la tessera si gira, e l'arte si gira con lei
 
 Da D-390 una tessera si posa **ruotata**, perché i varchi combacino. Un
 disegno ha un alto e un basso.
@@ -153,7 +144,7 @@ disegno ha un alto e un basso.
 > gira mai. Va deciso **prima** di commissionare i disegni, ed è per questo che
 > è qui.
 
-### R9. [69](ISSUES.md#69) — come è fatta una carta Azione
+### R8. [69](ISSUES.md#69) — come è fatta una carta Azione
 
 La faccia fisica adesso si stampa per intero — DOVE, le due Azioni col loro nome,
 SEMPRE, AL CONSIGLIO. Ma su 48 carte **46 stampano il corpo rimpicciolito** (la
@@ -168,7 +159,7 @@ male.
 Va decisa **prima** dell'arte (V4), come R8: si disegna per un formato, non per
 due.
 
-### R10. [100](ISSUES.md#100) — le caselle «SI ACCENDE QUANDO»
+### R9. [100](ISSUES.md#100) — le caselle «SI ACCENDE QUANDO»
 
 Le 46 facce che dicono quando una Tensione si scalda sono ancora **derivate**:
 le calcola il motore invece di leggerle dalla carta. Al tavolo fisico quella
@@ -214,14 +205,16 @@ segni hanno ancora due nomi.
 **Fatto quando** ogni segno o è nominato da almeno una clausola, o è dichiarato
 colore con la sua riga, o è cancellato. Nessun terzo caso.
 
-### G4. Nessuna casa è condannata — [52](ISSUES.md#52), [45](ISSUES.md#45), [83](ISSUES.md#83), [108](ISSUES.md#108)
+### G4. L'ultima casa murata — [108](ISSUES.md#108)
 
-Lyra **non ha mai trionfato in centoventi anni** e ha 37 NONE; la linea dei
-Fuochi arriva al secondo gradino la metà delle volte; Vaerax ha un Destino murato
-a tutti e tre i passi; e dal lato opposto c'è una porta che si apre sempre.
+Tre delle quattro voci di questo gruppo si sono chiuse in 0.1.362: Lyra è il
+seggio migliore del tavolo uniforme, la linea dei Fuochi sta nella banda, e
+nessuna casa muta più spesso di un salto su 4,7. **Resta Vaerax**, con un Destino
+murato a tutti e tre i passi: la strada provata in 0.1.315 faceva cadere una
+prova del RIVENDICARE ed è stata ritirata.
 
-**Fatto quando** ogni casa trionfa almeno una volta e nessuna sfonda, sui
-centoventi seggi-anno del cancello.
+**Fatto quando** `mine_sealed` esce almeno una volta su cento partite, senza far
+cadere `test_claim_policy`.
 
 ### G5. La saga arriva in fondo — [67](ISSUES.md#67)
 
@@ -249,12 +242,13 @@ applicazioni su 90.
 
 **Fatto quando** gli acquisti a vuoto sono sotto il 5% e la pedina porta il nome.
 
-### G8. La mappa non ha una Regione morta — [48](ISSUES.md#48), [37](ISSUES.md#37)
+### G8. Il RIVENDICARE che muore in mano — [37](ISSUES.md#37)
 
-La Strada dei Mercanti prende una frazione delle pedine delle altre. E `ACT_CLAIM`
+La metà mappa di questo gruppo si è chiusa in 0.1.362: la Strada dei Mercanti è
+la **seconda Regione più abitata** (1,07 → 2,23 presenze). Resta `ACT_CLAIM`, che
 muore in mano tre volte su quattro.
 
-**Fatto quando** nessuna Regione sta sotto la metà della media delle pedine viste.
+**Fatto quando** le rivendicazioni morte scendono sotto una su tre.
 
 ---
 
@@ -311,8 +305,12 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 
 ## Come finisce
 
-Dieci rosse, otto gialle, quattro verdi. **Ventidue righe, e ognuna ha una fine
-scritta.** Quando sono finite, il giro è finito: si gioca, e quello che la
+Nove rosse, otto gialle, quattro verdi. **Ventuno righe, e ognuna ha una fine
+scritta.**
+
+**E in 0.1.362 ne sono cadute sei senza che tu dovessi rispondere** — una era
+rossa. Erano già vere e nessuno le aveva rilette: è la verde V1, e ha fatto
+esattamente quello che prometteva. Quando sono finite, il giro è finito: si gioca, e quello che la
 partita dice diventa la lista dopo — che sarà tua, non mia.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia

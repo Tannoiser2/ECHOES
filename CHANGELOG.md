@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.362 — La passata di verità: sei voci erano già chiuse, e una era rossa (D-394)
+
+La prima verde della lista, e ha fatto quello che prometteva: **rileggere ogni
+voce aperta contro i numeri di oggi** invece che contro quelli con cui è nata.
+Sei voci su cinquantuno cadono, e **una era rossa** — cioè aspettava una parola
+del committente che non serviva più.
+
+| voce | perché cade |
+|---|---|
+| [66](docs/ISSUES.md#66) 🔴 | *«o CHR_03 si raggiunge, o è stato tolto»*: **è stato tolto** in D-318, quarantaquattro versioni fa |
+| [46](docs/ISSUES.md#46) | la saga del Sale è `CHR_03`, cancellata: il difetto era su un anno che non esiste |
+| [52](docs/ISSUES.md#52) | Lyra è il **seggio migliore** del tavolo uniforme: 3 NONE, 23 Vittorie, 3 Trionfi |
+| [45](docs/ISSUES.md#45) | Kessa dei Fuochi sta nella banda su tutt'e due i tavoli, e Le Custodi della Cenere sono la **seconda vita più seduta** |
+| [83](docs/ISSUES.md#83) | la casa che muta più spesso è a **1 salto su 4,7**, sopra il limite |
+| [48](docs/ISSUES.md#48) | la Strada dei Mercanti è la **seconda Regione più abitata**: 1,07 → 2,23 presenze |
+
+**E un difetto di misura corretto strada facendo**: `run_move_probe` divideva le
+presenze per gli anni giocati invece che per gli anni in cui la tessera è
+**pescata**. Con sei tessere su dieci, i quaranta anni in cui una Regione non è
+sul tavolo entravano nella media come zeri — un terzo di errore su ogni riga.
+
+Voci aperte: **51 → 45**. Decisioni che aspettano il committente: **11 → 10**.
+Nessuna riga di gioco è cambiata: erano già tutte e sei vere.
+
+---
+
 ## 0.1.361 — La lista che finisce, e una guardia perché finisca
 
 Parola del committente:
