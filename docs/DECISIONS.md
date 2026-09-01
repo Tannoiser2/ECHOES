@@ -10,6 +10,73 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-376 — Uno zero che una sonda non può evitare non è una misura
+
+**implemented** (0.1.343) · fronte 2 dei sei aperti dal committente
+
+### Cinquantotto segni che «non arrivano mai», e più di metà non erano quello
+
+`MISURA_TAVOLO.md` contava **58** segni con un pezzo di cartone che in cento
+partite non arrivano mai sul tavolo. Guardati per famiglia invece che a occhio,
+due famiglie erano **intere**: `life:` 26 su 26, `legend:` 3 su 3. E una
+famiglia dove non arriva *niente* non è mai un contenuto raro: è una penna.
+
+Guardata la sonda: `run_table_marks_probe.gd` fa `setup` + `run` — **un anno,
+una partita**. Il passaggio di consegne fra un'era e l'altra non avviene mai. E
+il motore scrive `life:<id>` **solo** quando una vita si siede, e
+`legend:<fatto>` **solo** quando un fatto sbiadisce al salto.
+
+**Ventuno di quei 58 non potevano arrivare per costruzione.** Il documento li
+metteva accanto a un segno che davvero nessuno posa, sotto la stessa parola — e
+il suo stesso cappello dice *«l'ultima colonna è quella di cui fidarsi»*.
+
+Adesso li chiama **fuori portata**, e dice dove si misurano: `MISURA_VITE.md`,
+che le saghe le gioca. L'elenco è **ricavato** — le vite dalle incarnazioni
+delle Case, le leggende dal prefisso nel dizionario — non una lista a mano
+(lezione di [D-373](#d-373)).
+
+### E otto gettoni che nessuno potrà mai posare
+
+Restavano fuori otto `life:INC_*_01`: le vite **fondatrici**. Il motore posa il
+segno solo per le vite oltre la prima ([D-109](#d-109): *«ogni vita oltre la
+prima porta il suo segno»*) — la fondatrice si riconosce dal fatto che non ne
+porta nessuno.
+
+Erano nel dizionario, con un posto sulla scheda di casa e un gettone da
+tagliare, e **la guardia dei segni non li vedeva**: `_tocchi_espliciti`
+dichiarava che una Casa scrive `life:<id>` per *ogni* incarnazione, fondatrice
+compresa.
+
+> **Una guardia che modella il motore più generoso di com'è non protegge:
+> assolve.**
+
+Allineato lo scavo al motore, la guardia ha nominato tutte e otto le voci morte.
+Tolte, coi loro gettoni.
+
+| | prima | dopo |
+|---|---|---|
+| segni che «non arrivano mai» | **58** | **29** |
+| di quelli, fuori dalla portata della sonda | — | **21** |
+| voci del dizionario | 182 | **174** |
+| gettoni da tagliare | — | **8 in meno** |
+| difetti piantati | 41 | **42** |
+
+### I ventinove che restano sono difetti veri
+
+E si dividono già: tre gradi di Pietra ([ISSUES 111](ISSUES.md#111)), i tre
+anelli della catena delle ere ([D-372](#d-372)), `study_supervised` e
+`valley_sealed` (stessa forma, [ISSUES 108](ISSUES.md#108)), `structure:road`
+([ISSUES 101](ISSUES.md#101)), due id dinamici che non escono mai in forma nuda
+— e il resto sono memorie d'autore che nessuna Conseguenza scelta scrive.
+
+### Il costo
+
+Nessuno: **0 seggi bloccati su 8**, misto e uniforme, e le Verità non si muovono
+di una riga. Le asserzioni della suite scendono da 88.377 a 86.177 — sono i
+controlli sugli otto segni tolti, che non esistono più.
+
+---
+
 ## D-375 — L'arte non è bloccata da niente: la catena è aperta, provata da un capo all'altro
 
 **implemented** (0.1.342) · fronte 1 dei sei aperti dal committente

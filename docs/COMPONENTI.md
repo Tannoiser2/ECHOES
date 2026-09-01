@@ -22,7 +22,7 @@ delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 182 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 174 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa

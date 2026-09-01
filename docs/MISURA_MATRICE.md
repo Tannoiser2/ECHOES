@@ -7,9 +7,9 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 182 |
-| di cui qualcuno scrive | 178 |
-| orfani in tutto | 68 |
+| segni nel dizionario | 174 |
+| di cui qualcuno scrive | 170 |
+| orfani in tutto | 60 |
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -33,7 +33,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **57 su 68 portano gia' la loro
+Non tutti gli orfani sono un difetto: **49 su 60 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -55,7 +55,7 @@ la matrice deve prendere per primi.
 | `trade` | FUNCTION | tessera |
 | `wild` | PLACE | tessera |
 
-### Orfani dichiarati: 57
+### Orfani dichiarati: 49
 
 | segno | la ragione che porta scritta |
 |---|---|
@@ -86,14 +86,6 @@ la matrice deve prendere per primi.
 | `legend:debt_called` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
 | `legend:oath_broken` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
 | `legend:order_restored` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
-| `life:INC_ALDRIC_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_CENERE_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_LIBERE_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_LYRA_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_NAHR_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_SALE_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_VAERAX_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
-| `life:INC_VETRO_01` | la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regol |
 | `list_witnessed` | memoria del mondo: narrata (D-103), ereditata |
 | `marsh` | tessera nuova di PZ-2 (D-265): acqua ferma, canali vecchi, febbri |
 | `migrating` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |

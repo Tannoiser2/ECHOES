@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.343 — Uno zero che una sonda non può evitare non è una misura (D-376)
+
+`MISURA_TAVOLO.md` contava **58** segni che non arrivano mai sul tavolo.
+Guardati per famiglia, due erano **intere**: `life:` 26 su 26, `legend:` 3 su 3.
+E una famiglia dove non arriva niente non è contenuto raro: è una penna.
+
+La sonda fa `setup` + `run` — **un anno, una partita**. Il passaggio fra un'era e
+l'altra non avviene mai, e quei segni il motore li scrive **solo lì**.
+**Ventuno dei 58 non potevano arrivare per costruzione**, e stavano accanto a un
+segno che davvero nessuno posa, sotto la stessa parola.
+
+Adesso li chiama **fuori portata** e dice dove si misurano — e l'elenco è
+ricavato dalle incarnazioni delle Case e dal prefisso nel dizionario, non
+scritto a mano (lezione di D-373).
+
+**E otto gettoni che nessuno potrà mai posare.** Le vite fondatrici avevano un
+segno `life:` nel dizionario, con posto e cartone, e il motore non lo scrive —
+la fondatrice si riconosce dal *non* averlo. La guardia non li vedeva perché
+dichiarava che una Casa scrive il segno di *ogni* incarnazione: **una guardia
+che modella il motore più generoso di com'è non protegge, assolve.** Allineata,
+ha nominato tutte e otto le voci morte.
+
+| | prima | dopo |
+|---|---|---|
+| segni che «non arrivano mai» | **58** | **29** |
+| di quelli, fuori portata | — | **21** |
+| voci del dizionario | 182 | **174** |
+| difetti piantati | 41 | **42** |
+
+I ventinove che restano sono difetti veri, e sono già divisi per causa.
+
+Nessun costo: **0 seggi bloccati su 8** e le Verità non si muovono di una riga.
+
+---
+
 ## 0.1.342 — L'arte non è bloccata da niente (D-375)
 
 Le illustrazioni non le disegna chi scrive il codice — 144 soggetti su 155 sono

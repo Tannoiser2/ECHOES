@@ -2,7 +2,7 @@
 
 <!-- FILE GENERATO — si rifa' con `tools/run_table_survey.sh`. -->
 
-Ogni segno che sul tavolo ha un pezzo di cartone — i **182** con un posto
+Ogni segno che sul tavolo ha un pezzo di cartone — i **174** con un posto
 dichiarato (D-350) — e se in cento partite ci arriva davvero.
 
 La sonda dei segni ne guardava 66: le memorie del mondo e le condizioni dei
@@ -16,6 +16,13 @@ esce trenta volte e una Cicatrice che non esce mai sono due difetti diversi.
 L'ultima colonna e' quella di cui fidarsi: non passa dal registro degli
 Effetti, guarda il tavolo. Le prime tre dipendono da quali Effetti questa
 sonda sa leggere, e in questo progetto quella e' la strada di sette difetti.
+
+**E 21 segni sono fuori dalla portata di questa misura** (D-376): questa
+sonda gioca **un anno per partita**, e loro il motore li scrive solo al
+passaggio di consegne fra un'era e l'altra — la vita che si siede, il fatto
+che sbiadisce in leggenda. Chiamarli «non arriva mai» accanto a un segno
+che davvero nessuno posa metterebbe due difetti diversi sotto la stessa
+parola. Quelli li misura [MISURA_VITE.md](MISURA_VITE.md), che gioca le saghe.
 
 Misura: `cli/run_table_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 
@@ -128,7 +135,7 @@ le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 
 chi sei adesso, e la vita che stai vivendo.
 
-**59 segni: 27 arrivano sul tavolo, 32 non ci arrivano mai.**
+**51 segni: 27 arrivano sul tavolo, 24 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
@@ -154,32 +161,24 @@ chi sei adesso, e la vita che stai vivendo.
 | `free_cities` | 48 | 0 | 0 | 48 |  |
 | `guild` | 46 | 0 | 0 | 46 |  |
 | `hard_bargain` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_ALDRIC_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_ALDRIC_02` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_ALDRIC_REGENCY` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_ALDRIC_RESTORED` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_CENERE_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_CENERE_02` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_CENERE_FURNACES` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_LIBERE_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_LIBERE_HEGEMONY` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_LIBERE_LEAGUE` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_LYRA_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_LYRA_02` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_LYRA_ACADEMY` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_NAHR_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_NAHR_DIASPORA` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_NAHR_KINGDOM` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_SALE_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_SALE_02` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_SALE_BANK` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VAERAX_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VAERAX_CULT` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VAERAX_LEGEND` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VAERAX_RISEN` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VETRO_01` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VETRO_02` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `life:INC_VETRO_INQUISITION` | 0 | 0 | 0 | 0 | **non arriva mai** |
+| `life:INC_ALDRIC_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_ALDRIC_REGENCY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_ALDRIC_RESTORED` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_CENERE_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_CENERE_FURNACES` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_LIBERE_HEGEMONY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_LIBERE_LEAGUE` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_LYRA_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_LYRA_ACADEMY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_NAHR_DIASPORA` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_NAHR_KINGDOM` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_SALE_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_SALE_BANK` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_VAERAX_CULT` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_VAERAX_LEGEND` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_VAERAX_RISEN` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_VETRO_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_VETRO_INQUISITION` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `migrating` | 54 | 0 | 0 | 54 |  |
 | `order` | 48 | 0 | 0 | 48 |  |
 | `renowned` | 0 | 151 | 0 | 74 |  |
@@ -222,9 +221,9 @@ quello che il mondo ricorda (ISSUES 110).
 | `heir_named` | 0 | 87 | 0 | 47 |  |
 | `knowledge_shared` | 0 | 135 | 0 | 65 |  |
 | `ledger_public` | 0 | 158 | 0 | 79 |  |
-| `legend:debt_called` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `legend:oath_broken` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `legend:order_restored` | 0 | 0 | 0 | 0 | **non arriva mai** |
+| `legend:debt_called` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `legend:oath_broken` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `legend:order_restored` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `list_witnessed` | 0 | 1 | 0 | 1 |  |
 | `mine_sealed` | 0 | 3 | 0 | 3 |  |
 | `mountain_forgotten` | 0 | 0 | 0 | 0 | **non arriva mai** |
@@ -258,7 +257,7 @@ quello che il mondo ricorda (ISSUES 110).
 ## I segni che non arrivano mai
 
 Hanno un posto sul tavolo, e in cento partite non ci si posano mai.
-Sono **58 su 182**.
+Sono **50 su 174**.
 
 | segno | dove starebbe |
 |---|---|
@@ -274,30 +273,22 @@ Sono **58 su 182**.
 | `legend:debt_called` | un gettone sul bordo della mappa |
 | `legend:oath_broken` | un gettone sul bordo della mappa |
 | `legend:order_restored` | un gettone sul bordo della mappa |
-| `life:INC_ALDRIC_01` | sulla scheda della casa |
 | `life:INC_ALDRIC_02` | sulla scheda della casa |
 | `life:INC_ALDRIC_REGENCY` | sulla scheda della casa |
 | `life:INC_ALDRIC_RESTORED` | sulla scheda della casa |
-| `life:INC_CENERE_01` | sulla scheda della casa |
 | `life:INC_CENERE_02` | sulla scheda della casa |
 | `life:INC_CENERE_FURNACES` | sulla scheda della casa |
-| `life:INC_LIBERE_01` | sulla scheda della casa |
 | `life:INC_LIBERE_HEGEMONY` | sulla scheda della casa |
 | `life:INC_LIBERE_LEAGUE` | sulla scheda della casa |
-| `life:INC_LYRA_01` | sulla scheda della casa |
 | `life:INC_LYRA_02` | sulla scheda della casa |
 | `life:INC_LYRA_ACADEMY` | sulla scheda della casa |
-| `life:INC_NAHR_01` | sulla scheda della casa |
 | `life:INC_NAHR_DIASPORA` | sulla scheda della casa |
 | `life:INC_NAHR_KINGDOM` | sulla scheda della casa |
-| `life:INC_SALE_01` | sulla scheda della casa |
 | `life:INC_SALE_02` | sulla scheda della casa |
 | `life:INC_SALE_BANK` | sulla scheda della casa |
-| `life:INC_VAERAX_01` | sulla scheda della casa |
 | `life:INC_VAERAX_CULT` | sulla scheda della casa |
 | `life:INC_VAERAX_LEGEND` | sulla scheda della casa |
 | `life:INC_VAERAX_RISEN` | sulla scheda della casa |
-| `life:INC_VETRO_01` | sulla scheda della casa |
 | `life:INC_VETRO_02` | sulla scheda della casa |
 | `life:INC_VETRO_INQUISITION` | sulla scheda della casa |
 | `mountain_forgotten` | un gettone sul bordo della mappa |

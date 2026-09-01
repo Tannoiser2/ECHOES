@@ -1424,20 +1424,6 @@
       "note": "la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero (D-334)"
     },
     {
-      "id": "life:INC_ALDRIC_01",
-      "title": "vita: Re Aldric",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
-    },
-    {
       "id": "life:INC_ALDRIC_02",
       "title": "vita: La Repubblica della Valle",
       "category": "ENTITY",
@@ -1486,20 +1472,6 @@
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
-      "id": "life:INC_CENERE_01",
-      "title": "vita: Kessa dei Fuochi",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
-    },
-    {
       "id": "life:INC_CENERE_02",
       "title": "vita: Le Custodi della Cenere",
       "category": "ENTITY",
@@ -1530,20 +1502,6 @@
         "tag_rule"
       ],
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
-    },
-    {
-      "id": "life:INC_LIBERE_01",
-      "title": "vita: Le Città Libere",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
     },
     {
       "id": "life:INC_LIBERE_HEGEMONY",
@@ -1578,20 +1536,6 @@
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
-      "id": "life:INC_LYRA_01",
-      "title": "vita: Lyra",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
-    },
-    {
       "id": "life:INC_LYRA_02",
       "title": "vita: Il Culto della Misura",
       "category": "ENTITY",
@@ -1622,20 +1566,6 @@
         "tag_rule"
       ],
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
-    },
-    {
-      "id": "life:INC_NAHR_01",
-      "title": "vita: Popolo Nahr",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
     },
     {
       "id": "life:INC_NAHR_DIASPORA",
@@ -1670,20 +1600,6 @@
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
-      "id": "life:INC_SALE_01",
-      "title": "vita: Maestra Ilve",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
-    },
-    {
       "id": "life:INC_SALE_02",
       "title": "vita: La Compagnia del Sale",
       "category": "ENTITY",
@@ -1714,20 +1630,6 @@
         "tag_rule"
       ],
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
-    },
-    {
-      "id": "life:INC_VAERAX_01",
-      "title": "vita: Vaerax",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
     },
     {
       "id": "life:INC_VAERAX_CULT",
@@ -1776,20 +1678,6 @@
         "tag_rule"
       ],
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
-    },
-    {
-      "id": "life:INC_VETRO_01",
-      "title": "vita: Priore Anselmo",
-      "category": "ENTITY",
-      "table_place": "HOUSE_SHEET",
-      "scope": [
-        "ENTITY"
-      ],
-      "written_by": [
-        "entity"
-      ],
-      "read_by": [],
-      "note": "la vita che la casa comincia: sta stampata sulla scheda e si posa in allestimento. Le vite successive le legge una regola del segno; la prima no, perche' e' il punto di partenza e non una svolta"
     },
     {
       "id": "life:INC_VETRO_02",
