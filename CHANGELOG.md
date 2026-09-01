@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.360 — I varchi si allargano: torna la densità della griglia (D-393)
+
+Parola del committente, il giorno dopo D-390:
+
+> *«Sì a questo punto aggiungi qualche lato per tornare ai 7 della griglia
+> precedente.»*
+
+**Da ventisei lati aperti a trentotto.** Nove tessere su dieci sono croci;
+l'Isola Muta resta un angolo — due approdi e due lati di mare, che è l'unico
+posto dove il gioco racconta un lato chiuso.
+
+### La curva, prima di scegliere
+
+| lati aperti su 40 | confini per mappa |
+|---|---|
+| 26 (D-390) | 5,30 |
+| 31 | 5,95 |
+| 35 | 6,21 |
+| **38 (oggi)** | **6,80** |
+| 40 | 7,00 |
+
+**Il 7 esatto costa i quaranta lati** — con la regola dei varchi ci si torna solo
+se nessun lato è chiuso, e allora `edges` non distingue più niente. Ma la curva è
+piatta in cima: fra 38 e 40 ci sono **0,20 confini per mappa**, meno del 3%.
+
+### Dove siamo, sulle 151.200 pose enumerate
+
+| | griglia (D-275) | varchi 26 | **varchi 38** |
+|---|---|---|---|
+| confini per mappa | 7 | 5,30 | **6,80** |
+| tessere con un vicino solo | — | 46,2% | **6,7%** |
+| il padrone passa di mano, in un anno | 3,57 | 3,48 | **3,87** |
+| Regioni con più di una casa a fine anno | 3,62 su 6 | 3,24 | **3,57** |
+| Regioni con un padrone a fine anno | 5,29 su 6 | 5,01 | **5,20** |
+| pose che lasciano una tessera isolata | — | **0 su 151.200** | **0 su 151.200** |
+
+**La lotta per la terra non è tornata al livello della griglia: l'ha superata** —
+3,87 passaggi di mano per anno contro 3,57 (+8,4%).
+
+### Una strada provata e non tenuta
+
+Un secondo criterio nella posa — *«a parità di varchi combacianti gira la tessera
+coi varchi liberi verso il vuoto»* — non costava nessun lato. Misurato: **5,08
+contro 5,08**, vicoli ciechi da 52,1% a 52,5%. La densità la fanno i lati, non
+l'astuzia della posa.
+
+---
+
 ## 0.1.359 — Quello che il tavolo non vede si divide in tre (D-392)
 
 [ISSUES 88](docs/ISSUES.md#88) chiedeva un taglio: *«se sono le carte non

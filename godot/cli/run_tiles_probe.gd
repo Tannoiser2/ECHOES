@@ -36,6 +36,11 @@ func _initialize() -> void:
 		var text: String = str(arg)
 		if text.begins_with("--out="):
 			options["out"] = text.substr(6)
+		# Solo per tarare i varchi: si guardano le prime N pescate invece di
+		# tutte e 210, cosi' una prova costa venti secondi invece di quattro
+		# minuti. Il documento committato si fa **senza** questa opzione.
+		if text.begins_with("--pescate="):
+			options["pescate"] = int(text.substr(10))
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
 		for error in data.errors:
@@ -63,6 +68,9 @@ func _initialize() -> void:
 	_say("  %d tessere nel parco, %d pescate." % [pool.size(), quante])
 	var combinazioni: Array = _combinations(pool, quante)
 	_say("  Pescate possibili: %d" % combinazioni.size())
+	if int(options.get("pescate", 0)) > 0:
+		combinazioni = combinazioni.slice(0, int(options["pescate"]))
+		_say("  ATTENZIONE: taratura, solo le prime %d" % combinazioni.size())
 
 	var pose: int = 0
 	var incomplete: int = 0

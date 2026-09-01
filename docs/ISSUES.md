@@ -7701,12 +7701,20 @@ committente decide che la prenotazione esce dal gioco.
 
 ### 127. La tessera si gira, e l'arte si gira con lei
 
-`arte` · `da-decidere` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390))
+`arte` · `da-decidere` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390)) ·
+**la scelta è diventata più facile in 0.1.360** ([D-393](DECISIONS.md#d-393))
 
 La regola dei varchi ([D-390](DECISIONS.md#d-390)) si posa **girando la
 tessera**: si prova il quarto di giro finché un varco combacia con quello della
 tessera accanto. È la cosa che rende la promessa — *«nessuna tessera isolata»* —
-vera per costruzione: **0 mappe non connesse su 200**.
+vera per costruzione: **0 pose non connesse su 151.200**, enumerate.
+
+> **Aggiornamento 0.1.360.** Allargati i varchi a trentotto lati su quaranta
+> (D-393), la **strada 2 costa quasi niente**: nove tessere su dieci sono croci
+> e si disegnano con la strada che tocca tutti e quattro i bordi, senza nessun
+> gettone sopra. Il gettone «passo franato» servirebbe **su una tessera sola**,
+> l'Isola Muta, e su due lati. Se scegli la 2, l'arte non gira mai e il costo è
+> un segnalino che si posa una volta a partita, quando l'Isola esce.
 
 Ma una tessera girata di novanta gradi ha **l'illustrazione girata**. Per un
 dipinto dall'alto è normale — è quello che fa mezzo scaffale di giochi di

@@ -58,7 +58,8 @@
       "edges": [
         "N",
         "E",
-        "S"
+        "S",
+        "O"
       ],
       "asset_sources": [
         "PEOPLE",
@@ -99,6 +100,7 @@
       "edges": [
         "N",
         "E",
+        "S",
         "O"
       ],
       "asset_sources": [
@@ -136,7 +138,9 @@
         "REG_BOSCO_CONFINI"
       ],
       "edges": [
+        "N",
         "E",
+        "S",
         "O"
       ],
       "asset_sources": [
@@ -175,7 +179,9 @@
       ],
       "edges": [
         "N",
-        "E"
+        "E",
+        "S",
+        "O"
       ],
       "asset_sources": [
         "KNOWLEDGE",
@@ -259,6 +265,7 @@
       "edges": [
         "N",
         "E",
+        "S",
         "O"
       ],
       "asset_sources": [
@@ -297,7 +304,9 @@
       ],
       "edges": [
         "N",
-        "E"
+        "E",
+        "S",
+        "O"
       ],
       "asset_sources": [
         "PEOPLE",
@@ -333,6 +342,7 @@
         "REG_PORTO_CINERINO"
       ],
       "edges": [
+        "N",
         "O"
       ],
       "asset_sources": [
@@ -369,7 +379,9 @@
         "REG_MONTAGNE_ROSSE"
       ],
       "edges": [
+        "N",
         "E",
+        "S",
         "O"
       ],
       "asset_sources": [

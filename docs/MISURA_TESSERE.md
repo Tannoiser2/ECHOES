@@ -19,6 +19,6 @@ un campione; qui ci sono **tutte** le pose che il gioco puo' produrre.
   pescate che si rompono in almeno un ordine  0 su 210
 
   E com'e' fatta la mappa, su tutte le pose:
-    confini per mappa      5.30
-    tessere con un vicino solo  46.2%
+    confini per mappa      6.80
+    tessere con un vicino solo  6.7%
 ```

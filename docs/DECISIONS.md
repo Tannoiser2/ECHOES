@@ -10,6 +10,81 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-393 — I varchi si allargano: la densità della griglia torna, la regola resta
+
+**implemented in 0.1.360.** Parola del committente, il giorno dopo D-390:
+
+> *«Sì a questo punto aggiungi qualche lato per tornare ai 7 della griglia
+> precedente.»*
+
+### Quanto costava un lato chiuso
+
+Prima di aggiungerne qualcuno a caso, la curva — misurata girando la posa del
+motore su un campione fisso di pescate, e poi per intero:
+
+| lati aperti su 40 | confini per mappa |
+|---|---|
+| 26 (D-390) | 5,30 |
+| 31 | 5,95 |
+| 35 | 6,21 |
+| **38 (oggi)** | **6,80** |
+| 39 | 6,83 |
+| 40 | **7,00** |
+
+Due cose si leggono qui, e vanno dette tutt'e due.
+
+**La prima: il 7 esatto costa i quaranta lati.** La griglia dava 7 perché *ogni*
+accostamento era un confine; con la regola dei varchi il 7 torna solo se nessun
+lato è chiuso — e allora `edges` non distingue più una tessera dall'altra.
+
+**La seconda: la curva è quasi piatta in cima.** Fra 38 e 40 lati ci sono
+**0,20 confini per mappa** — meno del 3%. Quindi la densità della griglia si
+riprende quasi tutta lasciando chiuso qualcosa, e ho lasciato chiuso l'unico
+posto dove il gioco lo racconta: **l'Isola Muta**, che resta un angolo — due
+approdi e due lati di mare. Tutte le altre nove sono croci.
+
+Ho anche provato una strada che non costava lati: **un secondo criterio nella
+posa**, «a parità di varchi combacianti gira la tessera coi varchi liberi verso
+il vuoto». Misurata, non tenuta: **5,08 contro 5,08**, e i vicoli ciechi da
+52,1% a 52,5%. La densità la fanno i lati, non l'astuzia della posa — ed è un
+numero che ho preferito misurare invece di crederci.
+
+### Dove siamo, sulle 151.200 pose
+
+| | griglia (D-275) | varchi 26 (D-390) | **varchi 38 (D-393)** |
+|---|---|---|---|
+| lati aperti su 40 | 40 | 26 | **38** |
+| confini per mappa | 7 | 5,30 | **6,80** |
+| tessere con un vicino solo | — | 46,2% | **6,7%** |
+| il padrone passa di mano, in un anno | 3,57 volte | 3,48 | **3,87** |
+| Regioni con più di una casa a fine anno | 3,62 su 6 | 3,24 | **3,57** |
+| Regioni con un padrone a fine anno | 5,29 su 6 | 5,01 | **5,20** |
+
+**La promessa tiene, e per costruzione**: sulle **151.200 pose** enumerate,
+**0** lasciano fuori una tessera e **0** lasciano una tessera isolata — come con
+ventisei lati, perché la posa non è cambiata: si entra solo attraverso un varco.
+
+E la lotta per la terra non è tornata al livello della griglia: **l'ha
+superata.** 3,87 passaggi di mano per anno contro i 3,57 della griglia (+8,4%),
+con lo stesso numero di Regioni sotto padrone. Le tessere si toccano quasi come
+prima, ma **con quale lato** adesso è una scelta della posa, e le mappe non sono
+più tutte la stessa griglia.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8**, tavolo misto e uniforme.
+Suite 680 prove / 101 suite / 86.584 asserzioni.
+
+### Cosa resta della regola
+
+Nove tessere su dieci sono croci, quindi oggi `edges` divide poco. Non è una
+regola svuotata: è una regola **tarata larga**, e il posto dove si stringe
+esiste già — se una tessera nuova deve essere un passo di montagna, il vocabolario
+e il disegno ce l'hanno. Quello che il tavolo continua a vedere è la faccia con
+`VARCHI`, il prompt d'arte che dice a chi disegna dove la strada tocca il bordo,
+e [ISSUES 127](ISSUES.md#127), che resta aperta: la tessera si posa girata, e
+l'arte si gira con lei.
+
+---
+
 ## D-392 — Quello che il tavolo non vede si divide in tre, e solo il terzo è un difetto
 
 **implemented in 0.1.359.** `cli/run_who_writes_probe.gd` sa dire *dove* finisce
@@ -267,6 +342,11 @@ E il costo, che e' il punto della regola e va scritto:
 le montagne hanno due passi, le montagne hanno due passi. Quasi meta' delle
 tessere e' un vicolo cieco — la mappa tende alla catena piu' che alla griglia.
 La lotta per la terra si muove poco: −2,5% sui passaggi di mano.
+
+> **Questa taratura e' stata rifatta dal committente il giorno dopo**
+> ([D-393](#d-393)): *«aggiungi qualche lato per tornare ai 7 della griglia
+> precedente»*. I numeri qui sopra restano scritti perche' sono quelli dei
+> **ventisei** lati aperti; quelli di oggi sono trentotto, e stanno in D-393.
 
 **Cancello: 0 seggi bloccati su un solo livello su 8, tavolo misto e uniforme.**
 Suite 680 prove / 101 suite / 86.562 asserzioni.
