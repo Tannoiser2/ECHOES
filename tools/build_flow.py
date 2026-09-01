@@ -602,12 +602,31 @@ for tpl in load("confluences/*.json"):
             edge(tpl["id"], str(cns), verso, perche)
 
 # Le domande e le proposte stanno sulla carta (D-310).
+#
+# **E la Scheda Consiglio e' un pezzo, non un'etichetta.** Fino a qui il disegno
+# aveva dodici nodi «Consiglio» — i **template d'autore** — e la scatola ne ha
+# **sessanta**: una scheda per carta Tensione, con le sue due Domande e le sue
+# tre Proposte (D-378). Le Domande pendevano dalla carta e la scheda non
+# esisteva, quindi chi contava i Consigli nel grafo ne trovava dodici e chi li
+# contava nella scatola sessanta. Adesso la scheda c'e', e la catena si legge
+# per intero: **carta Tensione -> Scheda Consiglio -> Domanda -> Proposta ->
+# Conseguenza**, e la scheda si tiene col template per le clausole e i sacchetti.
 for t in load("tensions/*.json"):
+    council = t.get("council") or {}
+    scheda = "scheda:%s" % str(t["id"])
+    node(scheda, "scheda",
+         t="Consiglio — %s" % str(t.get("title", t["id"])),
+         d=("La scheda che si gira accanto alla carta quando la domanda arriva ai voti:"
+            " %d domande e %d proposte stampate."
+            % (len(council.get("questions", []) or []),
+               len(council.get("propositions", []) or []))),
+         posto="TILE_PRINTED")
+    edge(t["id"], scheda, "accompagna",
+         "la scheda che si gira accanto alla carta quando si va ai voti")
     consiglio = SERVITA_DA.get(str(t["id"]), "")
     if consiglio:
-        edge(t["id"], consiglio, "si_tiene_con",
+        edge(scheda, consiglio, "si_tiene_con",
              "le clausole e i sacchetti li mette il Consiglio; le domande le mette la carta")
-    council = t.get("council") or {}
     risposte = defaultdict(list)
     for prop in council.get("propositions", []) or []:
         risposte[str(prop.get("question_id", ""))].append(prop)
@@ -616,7 +635,7 @@ for t in load("tensions/*.json"):
         if not qid:
             continue
         node(qid, "domanda", t=str(q.get("text", ""))[:70], d=str(q.get("text", "")))
-        edge(t["id"], qid, "apre", "la domanda che questa carta mette ai voti")
+        edge(scheda, qid, "apre", "la domanda che questa carta mette ai voti")
         # Una domanda che si apre solo a certe condizioni **legge** il tavolo.
         letture(q.get("eligibility"), qid, "la domanda si apre solo se")
         for prop in risposte.get(qid, []):

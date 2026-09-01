@@ -5,6 +5,35 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.356 — Nel grafo c'erano dodici Consigli, e nella scatola sono sessanta
+
+Domanda del committente: *«perché nel grafo ci sono solo 12 carte del
+Consiglio?»*. Perché il disegno chiamava «Consiglio» i **dodici template
+d'autore** — le clausole e i tre sacchetti — e la **Scheda Consiglio**, che nella
+scatola è una per carta Tensione, **non era un pezzo**: le sue due Domande e le
+sue tre Proposte pendevano direttamente dalla carta.
+
+Quindi chi contava i Consigli nel grafo ne trovava **dodici** e chi li contava in
+`COMPONENTI.md` ne trovava **sessanta**, e i due numeri non si potevano
+riconciliare guardando il disegno.
+
+Adesso la scheda c'è, e la catena si legge per intero:
+
+> **carta Tensione → Scheda Consiglio → Domanda → Proposta → Conseguenza**
+
+e la scheda **si tiene col template** per quello che il template continua a dare:
+le clausole che un avversario attacca prima del voto, e i tre sacchetti.
+
+| | prima | dopo |
+|---|---|---|
+| pezzi | 964 | **1.024** |
+| legami | 4.262 | **4.322** |
+| nodi «Scheda Consiglio» | — | **60** |
+
+Nessun dato è cambiato: è il disegno che non nominava un pezzo che esiste.
+
+---
+
 ## 0.1.355 — Il RIVENDICARE non spreca il diritto: spreca la prenotazione (D-389)
 
 **Chiusa [ISSUES 53](docs/ISSUES.md#53)**, la voce che diceva *«RIVENDICARE può
