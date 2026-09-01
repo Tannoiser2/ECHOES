@@ -23,6 +23,15 @@ from collections import Counter, defaultdict
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "godot" / "data"
 
+# **La regola della cacciata si prende in prestito, non si ricopia.**
+# Chi toglie una presenza lascia addosso i segni della cacciata, e quale pezzo
+# lo faccia lo sa gia' `validate_physical`: e' il riscontro con cui il
+# dizionario dichiara le proprie penne. Riscriverla qui vorrebbe dire due
+# regole che divergono in silenzio — la trappola che questo progetto ha pagato
+# cinque volte.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from validate_physical import _toglie_presenza  # noqa: E402
+
 def load(pat):
     out = []
     for f in sorted(glob.glob(str(DATA / pat))):
@@ -150,6 +159,32 @@ def clausole(o, owner):
             clausole(v, owner)
 
 
+# ---------- I SEGNI DELLA CACCIATA ----------
+#
+# **Togliere una presenza scrive tre segni**, e il disegno ne mostrava zero:
+# `uprooted` era un pezzo che nessuna freccia toccava, come se nessuno lo
+# posasse. Lo posa chiunque cacci una casa da una Regione (D-130) — e lo
+# **rilegge**, perche' la seconda cacciata nello stesso anno vale il doppio ed
+# e' quella che la successione guarda per far nascere una vita senza centro.
+#
+# Non e' una regola scritta qui: e' `validate_physical._toglie_presenza`,
+# la stessa con cui il dizionario dichiara le proprie penne.
+def segni_della_cacciata(pezzi, perche):
+    for pezzo in pezzi:
+        if not _toglie_presenza(pezzo):
+            continue
+        pid = str(pezzo.get("id", ""))
+        if not pid:
+            continue
+        edge(pid, "uprooted", "posa", "%s: la casa cacciata se lo porta addosso" % perche,
+             "sulla scheda della casa")
+        edge(pid, "twice_uprooted", "posa",
+             "%s: la seconda cacciata nello stesso anno" % perche,
+             "sulla scheda della casa")
+        edge(pid, "uprooted", "legge",
+             "per sapere se e' la prima cacciata o la seconda")
+
+
 def letture(o, src, why):
     """I segni che una condizione nomina: leggerli e' quello che fa la clausola.
 
@@ -210,6 +245,16 @@ for s in load("structures/*.json"):
             tags.append(g["tag"])
             edge(s["id"], g["tag"], "porta", "grado %d: %s" % (i, g.get("name", "")))
     GRADI[s["id"]] = tags
+    # **Una Pietra che va in rovina lascia una Cicatrice**, e il disegno non lo
+    # sapeva: `scar:burned_records` — quello che resta dell'Archivio bruciato —
+    # era un pezzo che nessuna freccia toccava, come se nessuno lo posasse. Lo
+    # posa la rovina, e sta scritto qui accanto da sempre.
+    rovina = s.get("ruin") or {}
+    if rovina.get("scar"):
+        edge(s["id"], str(rovina["scar"]), "rovina",
+             "%s: %s" % (rovina.get("name", "in rovina"),
+                         str(rovina.get("description", ""))[:80]),
+             "un dischetto sulla tessera")
 
 # ---------- CASE, E LE VITE CHE SI SIEDONO AL LORO POSTO ----------
 #
@@ -249,6 +294,15 @@ for e in load("entities/*.json"):
                     % (vita.get("also_enters") or {}).get("after_years", "?"))
         if vita.get("destiny_id"):
             edge(vid, str(vita["destiny_id"]), "porta", "il Destino che questa vita si porta")
+        # **Quanto vale ogni Azione per questa vita.** E' il numero stampato
+        # sulla carta della casa, e nel disegno non c'era: `ACT_ACQUIRE` era
+        # l'unica delle sei Azioni che nessuna freccia toccava — non perche'
+        # nessuno la usi, ma perche' chi le da' un valore sono le ventisei vite,
+        # e le vite non erano disegnate.
+        for verbo, quanto in (vita.get("action_values") or {}).items():
+            if TPL.get(str(verbo)):
+                edge(vid, TPL[str(verbo)], "vale",
+                     "per questa vita vale %s" % quanto)
 
 # ---------- TEMI ----------
 for th in load("themes/*.json"):
@@ -285,6 +339,7 @@ for a in load("assets/*.json"):
     if res.get("extra_tag"):     edge(a["id"], res["extra_tag"], "posa", "segno extra della Risonanza")
     for th in (ph.get("council_use") or {}).get("bonus_if_theme", []) or []:
         edge(a["id"], th, "guarda_tema", "vale di piu' se il Tema e' caldo")
+segni_della_cacciata(load("assets/*.json"), "chi caccia")
 
 # ---------- ECHI E CONSEGUENZE ----------
 for pat, kind, why in (("echoes/*.json", "eco", "effetto dell'Eco"),
@@ -293,6 +348,7 @@ for pat, kind, why in (("echoes/*.json", "eco", "effetto dell'Eco"),
         node(c["id"], kind, t=c.get("title", "") or str(c.get("text", ""))[:70],
              d=c.get("description", ""))
         effetti(c, c["id"], why)
+    segni_della_cacciata(load(pat), "chi caccia")
 
 # **Quali segni accendono un Eco** (D-359). Prima l'eleggibilita' nominava una
 # Tensione e non si disegnava: una carta era muta finche' l'anno non pescava la
@@ -715,8 +771,34 @@ def disegna() -> str:
     return testo.replace("__FLOW__", dati)
 
 
+# **La copia da pubblicare non e' lo stesso file.** Un Artifact incarta quello
+# che gli si da' dentro un `<body>` suo: consegnargli un documento intero — con
+# il suo `<!doctype>` e il suo `<head>` — funziona per tolleranza del browser,
+# non per costruzione. Qui si toglie l'involucro e si tiene il contenuto, cosi'
+# la pagina pubblicata e' quella del repo senza un secondo documento dentro.
+INVOLUCRO = ["<!doctype html>", "</head>", "</body>", "</html>"]
+
+
+def per_l_artifact(pagina: str) -> str:
+    fuori = pagina
+    for pezzo in INVOLUCRO:
+        fuori = fuori.replace(pezzo, "")
+    for apertura in ('<html lang="it"><head>', "<html><head>", "<body>"):
+        fuori = fuori.replace(apertura, "")
+    if "<!doctype" in fuori.lower() or "<html" in fuori.lower():
+        raise SystemExit("l'involucro non e' venuto via: il template e' cambiato")
+    return fuori.strip() + "\n"
+
+
 def main() -> int:
     pagina = disegna()
+    for arg in sys.argv[1:]:
+        if arg.startswith("--artifact="):
+            destinazione = Path(arg.split("=", 1)[1])
+            destinazione.write_text(per_l_artifact(pagina), encoding="utf-8")
+            print("copia per l'Artifact: %s (%d KB)"
+                  % (destinazione, len(destinazione.read_text(encoding="utf-8")) // 1024))
+            return 0
     if "--check" in sys.argv:
         if not PAGINA.exists() or PAGINA.read_text(encoding="utf-8") != pagina:
             print("FAIL  docs/flusso.html non e' piu' quello che i dati disegnano:")

@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.348 — I tre pezzi «che nessuno tocca» erano tre buchi del disegno (D-381)
+
+D-380 aveva lasciato quindici pezzi senza nemmeno una freccia e li aveva messi in
+due voci: dodici Obiettivi che si vincono contando (vera) e **tre pezzi che
+«nessuno tocca»** (ISSUES 121). Quella voce era sbagliata.
+
+| pezzo | diceva | i dati dicono |
+|---|---|---|
+| `uprooted` | nessuno lo posa | lo posa **chiunque tolga una presenza**: undici pezzi (D-130) |
+| `scar:burned_records` | Cicatrice che nessuno incide | la lascia **l'Archivio in rovina**, e ogni Pietra ha la sua |
+| `ACT_ACQUIRE` | Azione che nessuno nomina | le danno un valore **tutte e ventisei le vite** |
+
+Il disegno non le vedeva perché sono tre regole che nel dato **non sono un
+effetto**: la conseguenza di un gesto, una faccia della Pietra (`ruin`), un numero
+sulla carta della casa (`action_values`). La regola della cacciata non è stata
+ricopiata: si **importa** da `validate_physical`, dov'era già scritta.
+
+**Legami 4033 → 4232. Pezzi senza una freccia: 15 → 12**, e i dodici che restano
+sono gli Obiettivi della 120 — quelli sì, contenuto.
+
+La lezione: un disegno appena finito è la cosa di cui ci si fida di più e ci si
+dovrebbe fidare di meno. Quindici pezzi isolati sembravano quindici scoperte;
+erano tre regole mancanti e dodici scoperte vere.
+
+**E la copia da pubblicare la fa lo strumento.** Un Artifact incarta quello che
+gli si dà dentro un `<body>` suo: fin qui gli si consegnava il file intero, col
+suo `<!doctype>` e il suo `<head>`, e funzionava **per tolleranza del browser,
+non per costruzione**. `build_flow.py --artifact=PATH` toglie l'involucro e
+lascia il contenuto — con una guardia che si ferma se l'involucro non viene via,
+perché una pagina pubblicata a metà non se ne accorgerebbe nessuno.
+
+Costo: nessuno. Cancello **0 seggi bloccati su 8**. 26 cancelli verdi.
+
+---
+
 ## 0.1.347 — Il disegno del flusso conosceva tutto tranne la cosa centrale (D-380)
 
 Parola del committente: *«clicco su una carta e mi dà tutto quello che fa»*.

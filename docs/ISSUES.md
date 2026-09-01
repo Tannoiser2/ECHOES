@@ -7039,7 +7039,30 @@ che il tavolo sta giocando: si contano a fine anno e basta.
 
 ---
 
-### 121. Due segni e un'Azione che nessuno tocca
+### 121. ✅ Due segni e un'Azione che nessuno tocca — CHIUSA in 0.1.348: non era vero
+
+`contenuto` · `debito` · aperta in 0.1.347 ([D-380](DECISIONS.md#d-380)) ·
+**chiusa da [D-381](DECISIONS.md#d-381)**
+
+**Questa voce era sbagliata, e si è chiusa guardando i dati invece del disegno.**
+Nessuno dei tre era un debito di contenuto: erano **tre buchi del disegno**, e
+tutti e tre sono chiusi.
+
+| pezzo | diceva questa voce | cosa dicono i dati |
+|---|---|---|
+| `uprooted` | nessuno lo posa e nessuno lo legge | lo posa **chiunque tolga una presenza** — undici pezzi fra carte, Conseguenze ed Echi (D-130) — e lo rilegge per sapere se è la prima cacciata o la seconda |
+| `scar:burned_records` | Cicatrice che nessuna Conseguenza incide | la lascia **l'Archivio che va in rovina**, e ogni Pietra ha la sua: dieci su dieci |
+| `ACT_ACQUIRE` | l'unica Azione che nessuno nomina | le danno un valore **tutte e ventisei le vite** delle case |
+
+Il disegno non le vedeva perché sono tre regole che nel dato **non sono un
+effetto**: sono conseguenze di un gesto (togliere una presenza), una faccia della
+Pietra (`ruin`), un numero sulla carta della casa (`action_values`).
+
+**Legami 4033 → 4232. Pezzi senza nemmeno una freccia: 15 → 12**, e i dodici che
+restano sono gli Obiettivi della [120](#120) — quelli sì, contenuto.
+
+<details>
+<summary>La voce come era scritta</summary>
 
 `contenuto` · `debito` · aperta in 0.1.347 ([D-380](DECISIONS.md#d-380))
 
@@ -7061,3 +7084,5 @@ la tocchi.
 
 **Fatto quando** i due segni hanno una penna o escono dal dizionario, e
 `ACT_ACQUIRE` ha una riga che dice perché nessuno la nomina.
+
+</details>
