@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.341 — La porta del tempo dice quando si cambia pelle, non quale (D-374)
+
+Sette vite scritte su diciotto non si sedevano **mai** in dodici saghe.
+Sembrava contenuto raro. **Quattro erano murate per costruzione**, e la prova è
+che una di loro aspetta `debt_called`, un fatto che il mondo scrive **232 volte
+su cento partite**.
+
+La causa è la porta del tempo di D-290: il motore la consulta **prima** della
+linea esaurita, e salta gli indici di mezzo senza guardarli. Le quattro vite
+murate stanno esattamente lì, davanti a una vita con quella porta — che si apre
+a 150 anni mentre la linea si esaurisce a 393-565.
+
+**La cura è una regola già scritta**: D-109, *«fra più vite candidate sceglie la
+storia giocata»*. La porta del tempo dice *quando* si cambia pelle; i segni
+dicono *quale*.
+
+| in dodici saghe | prima | dopo |
+|---|---|---|
+| **vite mai sedute** | **7** | **2** |
+| trasformazioni | 210 | **223** |
+| Il Banco Nero | 0 | **9 / 8** |
+| I Forni Riaccesi | 0 | **9 / 6** |
+
+**Il prezzo, dichiarato:** La Compagnia del Sale scende da 9/8 a 1/1 — è il
+posto ceduto al Banco Nero. La Compagnia entrava perché il tempo passava, il
+Banco entra perché il debito è stato chiamato.
+
+**E un'ipotesi bocciata da una prova esistente**, tenuta a verbale: far valere
+`legend:<fatto>` come il fatto nudo sembrava ovvio, e distruggeva la
+distinzione fra un fatto vivo e uno sbiadito su cui la Leggenda della Montagna
+si siede al posto del corpo. Tolta.
+
+Le due che restano sono entrambe di Vaerax e bloccate per costruzione: una entra
+`ON_DEATH` dietro una casa che non muore, l'altra aspetta il terzo anello della
+catena delle ere. Da decidere, non da riparare.
+
+Playtest identico a D-372 riga per riga — il playtest gioca anni singoli e le
+successioni non scattano. **0 seggi bloccati su 8.**
+
+---
+
 ## 0.1.340 — Un numero battuto a mano si fa certificare fresco mentre mente (D-373)
 
 `COMPONENTI.md` diceva *«nessuna delle dieci tessere dice quanti spazi-Pietra ha

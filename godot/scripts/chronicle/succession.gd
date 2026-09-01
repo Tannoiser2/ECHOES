@@ -286,7 +286,43 @@ static func _timed_life(
 		# stesso perche' le altre reggono.
 		for clause in (door.get("unless", []) as Array):
 			if not _still_holds(clause as Dictionary, data, entity_id, previous, before):
-				return index
+				# **La porta del tempo dice *quando* si cambia pelle, non
+				# *quale*** (D-374). Se fra la vita di adesso e questa ce n'e'
+				# una che aspetta un segno, e quel segno il mondo ce l'ha, e'
+				# lei che si siede: e' la regola di [D-109] — *fra piu' vite
+				# candidate sceglie la storia giocata* — e qui non veniva
+				# applicata.
+				#
+				# Misurato: quattro vite su diciotto non si sono sedute **mai**
+				# in dodici saghe, e sono esattamente le quattro che stanno
+				# davanti a una vita con la porta del tempo. Quella porta si
+				# apre a 150 anni; la linea si esaurisce a 393-565. Arrivava
+				# sempre prima e saltava l'indice di mezzo, quindi il segno non
+				# veniva nemmeno guardato — anche quando era sul tavolo, come
+				# `debt_called`, che il mondo scrive 232 volte su 100 partite.
+				var called: int = _life_called_by_a_sign(
+					incarnations, incarnation, index, previous, before
+				)
+				return called if called >= 0 else index
+	return -1
+
+
+## La prima vita fra due indici che aspetta un segno, e il segno c'e'.
+static func _life_called_by_a_sign(
+	incarnations: Array, incarnation: int, before_index: int,
+	previous: Dictionary, before: Dictionary
+) -> int:
+	for index in range(incarnation + 1, before_index):
+		var life: Dictionary = incarnations[index] as Dictionary
+		if str(life.get("entry", "")) != "ON_TAG":
+			continue
+		# Lo stesso sbarramento di `_next_life`: un segno puo' vietare la
+		# nascita, e vale anche quando a chiamare e' la porta del tempo.
+		var forbidden: String = str(life.get("entry_forbidden_tag", ""))
+		if forbidden != "" and _sign_anywhere(forbidden, previous, before):
+			continue
+		if _sign_anywhere(str(life.get("entry_tag", "")), previous, before):
+			return index
 	return -1
 
 

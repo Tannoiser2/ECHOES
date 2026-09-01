@@ -10,6 +10,85 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-374 — La porta del tempo dice *quando* si cambia pelle, non *quale*
+
+**implemented** (0.1.341) · fronte 4 dei sei aperti dal committente
+
+### Sette vite su diciotto non si sedevano mai
+
+`MISURA_VITE.md` contava **sette** vite scritte che in dodici saghe non si erano
+mai sedute. Sembrava contenuto raro. Non lo era: **quattro erano murate per
+costruzione**, e la prova è che una di loro — Il Banco Nero — aspetta
+`debt_called`, un fatto che il mondo scrive **232 volte su cento partite**.
+
+### Dove stava, dopo tre ipotesi cadute
+
+1. *«Il segno non viene mai scritto.»* Falso per cinque su sei: `debt_called`
+   232, `scar:open_wound` 9, `grain_requisitioned` 7, `succession_by_law` 6,
+   `relic_shown` 5. Solo `mountain_forgotten` è a zero.
+2. *«La porta ON_TAG vale solo per chi non muore, e questi stanno dietro un
+   fondatore MORTAL.»* Vero, ma non è il blocco: per un MORTAL il segno sceglie
+   la vita **quando la linea si esaurisce**, e `_next_life` lo implementa —
+   scorre gli indici in ordine e prende l'ON_TAG prima del LINE_EXHAUSTED.
+3. *«Il segno sbiadisce in `legend:` e la porta cerca il nome nudo.»* Scritta,
+   provata — e **bocciata da una prova esistente**. `test_incarnations` pretende
+   che `legend:crystal_exploited` valga *«il Cristallo non è più un fatto
+   vivo»*, ed è la riga su cui la Leggenda della Montagna si siede al posto del
+   corpo. Trattare vivo e sbiadito come la stessa cosa distruggeva una
+   distinzione d'autore. **Tolta.**
+
+La causa vera è la **porta del tempo** di [D-290](#d-290). Quella decisione ha
+dato alle vite un `also_enters: {after_years: 150}`, perché *«un re non può
+tenere due città per otto secoli e restare lo stesso re»*. Ma il motore la
+consulta **prima** della linea esaurita, e `_timed_life` restituisce la prima
+vita con quella porta — **saltando gli indici di mezzo senza guardarli**.
+
+Tutte e quattro le vite murate stanno esattamente lì: davanti a una vita con la
+porta del tempo. Quella si apre a **150 anni**; la linea si esaurisce a
+**393–565**. Arrivava sempre prima, e il segno non veniva nemmeno guardato.
+
+### La cura, che è una regola già scritta
+
+**La porta del tempo dice *quando* si cambia pelle; i segni dicono *quale*.** È
+[D-109](#d-109) alla lettera — *«fra più vite candidate sceglie la storia
+giocata»* — che lì non veniva applicata. Quando la porta del tempo si apre, si
+guarda prima se fra la vita di adesso e quella si trova una vita che aspetta un
+segno, e il segno il mondo ce l'ha.
+
+### La misura
+
+| in dodici saghe, due tavoli | prima | dopo |
+|---|---|---|
+| **vite che non si sono mai sedute** | **7** | **2** |
+| trasformazioni sedute | 210 | **223** |
+| Il Banco Nero | 0 / 0 | **9 / 8** |
+| I Forni Riaccesi | 0 / 0 | **9 / 6** |
+| L'Accademia delle Misure | 0 / 0 | **3 / 2** |
+| La Reggenza del Granaio | 0 / 0 | **0 / 4** |
+| L'Inquisizione del Vetro | 0 / 0 | **1 / 0** |
+
+**Il prezzo, dichiarato:** `La Compagnia del Sale` scende da 9/8 a **1/1**. È il
+posto che ha ceduto al Banco Nero, ed è la cosa giusta — la Compagnia entrava
+perché il tempo passava, il Banco entra perché **il debito è stato chiamato**.
+Una vita presa per un fatto vale più di una vita presa per scadenza.
+
+### Le due che restano, e sono la stessa casa
+
+`Il Culto della Montagna` entra `ON_DEATH` e sta dietro un Vaerax **ETERNAL**:
+non muore, quindi quella porta non si apre mai. `La Leggenda della Montagna`
+aspetta `mountain_forgotten`, che è il terzo anello della catena delle ere —
+[D-372](#d-372) l'ha appena avvicinato e non raggiunto. Tutt'e due sono da
+decidere, non da riparare.
+
+### Il costo
+
+`--runs=100 --seed=7000`: **identico a D-372, riga per riga**, e non è una
+sorpresa — il playtest gioca anni singoli e le successioni non scattano. È la
+misura delle vite quella che si muove, ed è quella che si guarda per questo
+pezzo. **0 seggi bloccati su 8**, misto e uniforme.
+
+---
+
 ## D-373 — Un numero battuto a mano dentro uno strumento generato si fa certificare fresco mentre mente
 
 **implemented** (0.1.340)
