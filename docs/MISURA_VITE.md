@@ -16,7 +16,7 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **1** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 224 |
+| trasformazioni sedute | 219 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 30 / 82 / 56 |
 
 ## Le vite, una per una
@@ -24,18 +24,18 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
 | 15 | 14 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 458 |
-| 12 | 12 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 491 |
+| 12 | 11 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 491 |
 | 12 | 10 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 458 |
 | 10 | 11 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 402 |
 | 10 | 8 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 465 |
-| 7 | 9 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 411 |
-| 8 | 8 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 444 |
+| 7 | 10 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 411 |
 | 8 | 7 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 374 |
-| 5 | 9 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 756 |
+| 5 | 8 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 672 |
+| 8 | 5 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 444 |
 | 6 | 6 | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | 260 |
 | 7 | 4 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 684 |
 | 4 | 4 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 545 |
-| 3 | 3 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 639 |
+| 2 | 3 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 639 |
 | 1 | 3 | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | 324 |
 | 1 | 2 | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | 670 |
 | 1 | 2 | La Leggenda della Montagna | ENT_VAERAX | ON_TAG | `mountain_forgotten` | 666 |
@@ -50,11 +50,11 @@ Il conto e' mutazioni su 168 salti giocati.
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
 | ENT_ALDRIC | 30 | 1 ogni 5.6 |
-| ENT_CENERE | 36 | 1 ogni 4.7 |
+| ENT_CENERE | 35 | 1 ogni 4.8 |
 | ENT_LIBERE | 30 | 1 ogni 5.6 |
 | ENT_LYRA | 24 | 1 ogni 7.0 |
 | ENT_NAHR | 33 | 1 ogni 5.1 |
-| ENT_SALE | 21 | 1 ogni 8.0 |
-| ENT_VAERAX | 19 | 1 ogni 8.8 |
+| ENT_SALE | 20 | 1 ogni 8.4 |
+| ENT_VAERAX | 16 | 1 ogni 10.5 |
 | ENT_VETRO | 31 | 1 ogni 5.4 |
 

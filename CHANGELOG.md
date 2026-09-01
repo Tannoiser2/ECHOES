@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.365 — Due proposte che portano allo stesso mondo non sono due strade (D-397)
+
+Chiude [ISSUES 104](docs/ISSUES.md#104). Tre proposte su quarantanove applicavano
+la stessa catena di Effetti di un'altra sulla stessa scheda: al voto sembravano
+due strade ed erano una sola, e **la prosa lo nascondeva**.
+
+Adesso sono tre strade diverse, e ognuna è andata a prendersi una **Conseguenza
+orfana** — di quelle che nessuna proposta elencava:
+
+| la gemella | cosa le è stato dato |
+|---|---|
+| `P_LAND_TO_WORKERS` | `CNS_COST_EMPTIED` — ridistribuire la terra caccia chi la teneva |
+| `P_WATER_COMMON` | `CNS_COST_DEBT` — l'acqua di tutti la paga qualcun altro |
+| `P_DRAW_LOTS` | `CNS_FAILURE_CONTESTED` — la sorte scrive la regola e non mette d'accordo nessuno |
+
+Sono aggiunte, non sostituzioni. **Le Conseguenze orfane passano da quattro a
+una**, e quelle che non escono mai da 12 a 11: un pezzo della
+[56](docs/ISSUES.md#56) chiuso senza toccarla.
+
+**E la guardia c'è**: dentro un Consiglio due proposte non possono avere la
+stessa catena di Effetti — la regola esisteva per le due liste della carta
+Tensione e non era mai stata portata sui Consigli. È la 43ª di
+`validate_physical.py`, col difetto **fabbricato** invece che cercato.
+
+Cancello 0/8 sui due tavoli, suite verde. Voci aperte: **38 → 37**.
+
+---
+
 ## 0.1.364 — Le quattro voci più vecchie erano curate da centosettanta versioni (D-396)
 
 Seconda passata della verde V1, sulle voci di milestone 0.2 — le più vecchie

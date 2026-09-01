@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **93** |
-| aperte | **38** |
+| chiuse | **94** |
+| aperte | **37** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **28** |
+| di cui sono mie da fare | **27** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 15 |
+| 0.1.350–0.1.374 | 6 | 16 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -185,12 +185,13 @@ regole fa.
 si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida
 lo schermo dall'inizio alla fine di un Consiglio.
 
-### G2. Le cinquantadue voci mute del Consiglio — [88](ISSUES.md#88), [104](ISSUES.md#104), [56](ISSUES.md#56), [60](ISSUES.md#60)
+### G2. Le voci mute del Consiglio — [88](ISSUES.md#88), [56](ISSUES.md#56), [60](ISSUES.md#60)
 
-**13 domande e 39 proposte** arrivano in discussione e non vengono scelte mai;
-3 proposte fanno la stessa identica cosa di un'altra sulla stessa scheda; 3
-Conseguenze su 52 non escono mai; una domanda su dodici apre metà delle volte
-delle altre.
+La [104](ISSUES.md#104) si è chiusa in 0.1.365: le tre proposte gemelle sono
+diventate tre strade diverse, e una guardia lo tiene. Restano **13 domande e 39
+proposte** che arrivano in discussione e non vengono scelte mai, **11 Conseguenze
+su 65** che non escono mai, e due domande su trenta che non aprono nessun
+Consiglio in cento anni.
 
 **Fatto quando** ogni voce o viene scelta almeno una volta in cento anni, **o
 esce dalla scatola**. Le tolgo, non le riscrivo tre volte.

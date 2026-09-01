@@ -6409,9 +6409,38 @@ lo tiene una prova che pianta un blocco nuovo e la vede cadere.
 
 ---
 
-### 104. Tre proposte su quarantanove fanno la stessa identica cosa
+### 104. ✅ Tre proposte su quarantanove fanno la stessa identica cosa — CHIUSA in 0.1.365
 
 `contenuto` · `consigli` · aperta in 0.1.306
+
+> **La condizione era: «due proposte della stessa scheda non hanno mai la stessa
+> catena di effetti, e lo tiene una prova che pianta un doppione».** Tutt'e due
+> le meta' sono fatte.
+>
+> **Le tre gemelle sono diventate tre strade diverse**, e la differenza non e'
+> una parola: e' un Effetto in piu' che il mondo vede. E ognuna e' andata a
+> prendersi una **Conseguenza orfana** — una di quelle che nessuna proposta
+> elencava e che quindi non uscivano mai:
+>
+> | Consiglio | la gemella | cosa le e' stato dato | perche' |
+> |---|---|---|---|
+> | La Carestia | `P_LAND_TO_WORKERS` | `CNS_COST_EMPTIED` — *«Chi puo', se ne va»* | ridistribuire la terra caccia chi la teneva: una presenza se ne va davvero |
+> | L'Acqua | `P_WATER_COMMON` | `CNS_COST_DEBT` — *«Il Debito Contratto»* | dichiarare l'acqua di tutti vuol dire che qualcun altro paga il canale |
+> | La Carta | `P_DRAW_LOTS` | `CNS_FAILURE_CONTESTED` — *«Resta Conteso»* | tirare a sorte scrive la regola e non mette d'accordo nessuno |
+>
+> **E le Conseguenze orfane passano da quattro a una** (resta
+> `CNS_VALLEY_DRAINED`), e quelle che non escono mai da 12 a 11: un pezzo della
+> [56](#56) chiuso senza toccarla.
+>
+> **La guardia c'e', ed e' la 43esima di `validate_physical.py`**: dentro un
+> Consiglio, due proposte non possono applicare la stessa catena di Effetti. La
+> regola esisteva per le due liste della carta Tensione — *«due pedine che fanno
+> la stessa cosa non sono una scelta»* — e non era mai stata portata sui
+> Consigli. Il difetto piantato **si fabbrica** invece di cercarne uno gia'
+> rotto: copia la catena della prima proposta sulla seconda.
+>
+> **Cancello: 0 seggi bloccati su 8** sui due tavoli, dopo il cambio.
+
 
 Misurate le 49 proposte dei 12 Consigli contro la **catena di effetti** che
 applicano davvero — non contro la frase: **tre ripetono una proposta gia'

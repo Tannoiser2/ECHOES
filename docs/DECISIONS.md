@@ -10,6 +10,54 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-397 — Due proposte che portano allo stesso mondo non sono due strade
+
+**implemented in 0.1.365.** Chiude [ISSUES 104](ISSUES.md#104), e la sua
+condizione chiedeva tutt'e due le metà: *«due proposte della stessa scheda non
+hanno mai la stessa catena di effetti, e lo tiene una prova che pianta un
+doppione»*.
+
+### Le tre gemelle diventano tre strade
+
+Il difetto era misurato contro **la catena di Effetti**, non contro la frase: su
+La Carestia, *«apra la Regione a chi giunge da levante»* e *«la terra appartenga
+a chi la lavora»* applicavano le stesse due Conseguenze. **La prosa lo
+nascondeva.**
+
+La differenza aggiunta non è una parola: è un Effetto in più che il mondo vede.
+E ognuna è andata a prendersi una **Conseguenza orfana** — di quelle che nessuna
+proposta elencava e che quindi non potevano uscire:
+
+| Consiglio | la gemella | cosa le è stato dato | perché |
+|---|---|---|---|
+| La Carestia | `P_LAND_TO_WORKERS` | `CNS_COST_EMPTIED` — *«Chi può, se ne va»* | ridistribuire la terra caccia chi la teneva: una presenza se ne va davvero |
+| L'Acqua | `P_WATER_COMMON` | `CNS_COST_DEBT` — *«Il Debito Contratto»* | dichiarare l'acqua di tutti vuol dire che qualcun altro paga il canale |
+| La Carta | `P_DRAW_LOTS` | `CNS_FAILURE_CONTESTED` — *«Resta Conteso»* | tirare a sorte scrive la regola e non mette d'accordo nessuno |
+
+Sono **aggiunte, non sostituzioni**: nessuna proposta perde quello che dava, e
+`nahr_settled` — che una vita della Diaspora legge — resta dov'era.
+
+**E un pezzo della [56](ISSUES.md#56) si chiude senza toccarla**: le Conseguenze
+orfane passano da **quattro a una** (resta `CNS_VALLEY_DRAINED`), e quelle che
+non escono mai da **12 a 11**.
+
+### La guardia, e perché il difetto si fabbrica
+
+La regola esisteva già per le due liste della carta Tensione — *«due pedine che
+fanno la stessa cosa non sono una scelta»*, D-280/D-366 — e **non era mai stata
+portata sui Consigli**. Adesso `validate_physical.py` la applica dentro ogni
+template: due proposte non possono avere la stessa catena di Effetti.
+
+Il difetto piantato **si fabbrica** invece di cercarne uno già rotto — copia la
+catena della prima proposta sulla seconda — perché una prova che cerca una
+condizione fra i dati spediti smette di provare in silenzio il giorno che quella
+condizione sparisce. È la 43ª guardia del validatore.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8**, misto e uniforme, dopo il
+cambio. Suite 680 prove.
+
+---
+
 ## D-396 — Le quattro voci più vecchie erano curate da centosettanta versioni
 
 **implemented in 0.1.364.** Seconda passata della verde V1, sulle voci di
