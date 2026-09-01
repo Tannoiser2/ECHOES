@@ -3153,6 +3153,15 @@ un incidente. Una casa che campa sul confine irrisolto la renderebbe una mossa.
 tavolo non conta*. **Fatto quando** nessun segno scritto piu' di dieci volte in
 cento anni ha zero clausole addosso.
 
+> **Avanzamento in 0.1.354.** Il metro dice che ne restano **due**:
+> `watched` (17 scritture) e `price_in_lives` (14). Erano venticinque.
+>
+> E [D-388](DECISIONS.md#d-388) ha corretto la misura gemella, quella delle
+> memorie **temute**: la strada 2 di questa voce — *«le clausole mai scritte si
+> ri-mirano»* — riguarda **sei segni**, non le cinque di allora né i venti che
+> una sonda cieca faceva sembrare: `valley_sealed`, `crystal_exploited`,
+> `failed_proposal`, `no_charter`, `relic_buried`, `relic_shown`.
+
 **Avanzamento.** La strada 1 e' fatta per i quattro segni piu' grossi
 ([D-325](DECISIONS.md#d-325)): orfani **25 -> 21**, coppie che si contendono una
 memoria **4.5% -> 7.0%**, clausole gia' vere all'apertura **54.0% -> 53.1%**.
@@ -3473,6 +3482,48 @@ Destini temono**. Un Consiglio caduto scrive `condition:abandoned`,
 **passata** puo' scrivere. Quindi il taglio (b) non basta neanche lui dal lato
 del mondo: o i Destini temono cose che il mondo produce da solo, o quelle cose
 diventano piu' facili da produrre. E' la voce da aprire dopo.
+
+### Rimisurata in 0.1.354, e mezza diagnosi era di una sonda cieca ([D-388](DECISIONS.md#d-388))
+
+**Il paragrafo qui sopra si reggeva su un numero sbagliato.** La sonda chiedeva
+se una memoria temuta fosse comparsa **lì dove la clausola la teme**, e il posto
+lo leggeva alla lettera: `region_id`. Ma una clausola del pool **non può nominare
+una Regione** — dice `$any`, o punta un bersaglio a segni. Quindi ogni clausola
+di Regione risultava «mai toccata», sempre.
+
+Il segno che l'ha smascherata è proprio quello citato sopra:
+**`condition:contested`, che il mondo scrive 452 volte in cento partite, usciva
+`0 / 60 <-- MAI`.**
+
+| | diceva | dice |
+|---|---|---|
+| memorie temute che qualcuno ha provato a scrivere | 7,7% | **24,6%** |
+| `condition:contested` | 0 / 60 | **58 / 2** |
+| `condition:unrest` | 0 / 74 | **42 / 32** |
+
+**Quindi la frase *«i segni che un fallimento lascia non sono i segni che i
+Destini temono»* è metà falsa**: `condition:contested` e `condition:cut_off`,
+che un Consiglio caduto scrive, i Destini li temono **e li vedono comparire**.
+Quello che resta vero è l'altra metà, e adesso è un elenco corto: **sei segni**
+che una clausola teme e che nessuno ha mai scritto in cento partite —
+`valley_sealed` (0/29), `crystal_exploited` (0/34), `failed_proposal` (0/39),
+`no_charter` (0/17), `relic_buried` (0/12), `relic_shown` (0/11). Tutte memorie
+globali, tutte punti che nessuno può rompere: è la **strada 2 di
+[ISSUES 96](#96)**, e sono carte stampate, quindi la scelta è del committente.
+
+**E la voce intera, rimisurata sul gioco di oggi:**
+
+| | D-321 (0.1.283) | oggi (0.1.354) |
+|---|---|---|
+| clausole già vere all'apertura | 54,3% | **47,6%** |
+| clausole contese | 21,4% | **24,1%** |
+
+Tutti e due nella direzione che questa voce chiede. La ragione si legge nella
+riga per tipo: `did_this_year` ([D-386](DECISIONS.md#d-386)) porta **152
+clausole** che nessuno contende ma che **nessuno trova già fatte** — un
+obiettivo che chiede un gesto non è contendibile, ma non è nemmeno dotazione.
+
+`state_tag_absent` resta il blocco più grosso, con **492 clausole mai contese**.
 
 ---
 

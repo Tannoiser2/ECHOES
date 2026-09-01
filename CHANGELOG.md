@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.354 — La sonda che diceva 92,3% guardava dalla parte sbagliata (D-388)
+
+Rimisurando la superficie contesa sul codice di oggi, una riga non tornava:
+
+```
+condition:contested         0 /   60   <-- MAI
+```
+
+**Il mondo lo scrive 452 volte in cento partite.** Uno zero su una cosa che
+succede quattro volte a partita non è un difetto del gioco: è la sonda che
+guarda dalla parte sbagliata — la trappola che questo progetto ha già pagato
+cinque volte.
+
+`run_contest_probe` chiedeva se una memoria temuta fosse comparsa **lì dove la
+clausola la teme**, e il posto lo leggeva alla lettera: `region_id`. Ma una
+clausola del pool **non può nominare una Regione** — la pesca chiunque, e dice
+`$any` o punta un bersaglio a segni. Quindi **ogni clausola di Regione risultava
+«mai toccata», sempre, per costruzione.**
+
+| | diceva | dice |
+|---|---|---|
+| memorie temute che qualcuno ha provato a scrivere | **7,7%** | **24,6%** |
+| `condition:contested` | 0 / 60 **MAI** | **58 / 2** |
+| `condition:unrest` | 0 / 74 **MAI** | **42 / 32** |
+| `condition:cut_off` | 0 / 14 **MAI** | 8 / 6 |
+
+**Cosa resta vero, e adesso è un elenco corto e onesto:** sei segni che una
+clausola teme e che in cento partite nessuno ha mai scritto — `valley_sealed`,
+`crystal_exploited`, `failed_proposal`, `no_charter`, `relic_buried`,
+`relic_shown`. Tutte memorie globali, tutti punti che nessuno può rompere. È la
+strada 2 di ISSUES 96, e sono carte stampate: la scelta è del committente.
+
+**E il resto della misura, rifatto sul gioco di oggi:**
+
+| | D-321 (0.1.283) | oggi |
+|---|---|---|
+| clausole già vere all'apertura | 54,3% | **47,6%** |
+| clausole contese | 21,4% | **24,1%** |
+
+Tutti e due nella direzione che ISSUES 91 chiede, e la ragione si legge:
+`did_this_year` porta **152 clausole** che nessuno contende ma che nessuno trova
+già fatte — un obiettivo che chiede un gesto non è contendibile, ma non è
+nemmeno dotazione.
+
+**Nessuna regola è cambiata**: è una sonda, non il gioco. Suite 679/101/86.480
+verde.
+
+---
+
 ## 0.1.353 — Quattro decisioni del committente: l'Eredità, il gesto, la moneta
 
 Quattro voci che erano **sue e non mie** sono state decise, e sono scritte.

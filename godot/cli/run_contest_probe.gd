@@ -370,16 +370,8 @@ func _initialize() -> void:
 				var c2: Dictionary = clause as Dictionary
 				# La memoria temuta: qualcuno ha provato a scriverla **li'**?
 				if str(c2.get("type", "")) == "state_tag_absent":
-					var scope2: String = str(c2.get("scope", "GLOBAL"))
-					var spot: String = "WORLD"
-					if scope2 == "REGION":
-						spot = str(c2.get("region_id", ""))
-					elif scope2 == "ENTITY":
-						spot = str(c2.get("entity_id", "$self"))
-						if spot == "$self":
-							spot = str(entity_id)
 					var mark: String = str(c2.get("tag", ""))
-					if written.has("%s|%s" % [spot, mark]):
+					if _someone_wrote_it_there(c2, str(entity_id), session, written):
 						threatened += 1
 						hit[mark] = int(hit.get(mark, 0)) + 1
 					else:
@@ -576,6 +568,69 @@ static func _contested(session: RefCounted) -> int:
 
 ## Le clausole che un Destino chiede, appiattite: `some_of` porta con se' le sue
 ## strade, e una strada e' una clausola come le altre.
+## **Dove una clausola teme quel segno**, e se qualcuno ce l'ha scritto.
+##
+## **Questa funzione esiste per un difetto che la sonda aveva addosso da
+## D-314.** Il posto lo leggeva alla lettera: `region_id`. Ma una clausola del
+## pool non nomina una Regione — non puo', la pesca chiunque: dice `$any`,
+## `$rival`, o un **bersaglio a segni** (D-327). Confrontare la stringa `$any`
+## con le chiavi vere del registro non trova mai niente, quindi **ogni clausola
+## di Regione risultava "mai toccata"**, e il totale diceva 92,3%.
+##
+## Il segno che l'ha smascherata: `condition:contested`, che il mondo scrive
+## **452 volte in cento partite**, usciva `0 / 60 <-- MAI`. Uno zero su una cosa
+## che succede due volte per partita non e' un difetto del gioco: e' la sonda
+## che guarda dalla parte sbagliata — la trappola che questo progetto ha pagato
+## cinque volte.
+##
+## Adesso il posto si risolve come lo risolve il motore: `$any` e un bersaglio
+## a segni guardano **tutte le terre che la clausola potrebbe guardare**, e
+## basta che il segno sia comparso in una.
+func _someone_wrote_it_there(
+	clause: Dictionary, entity_id: String, session: RefCounted, written: Dictionary
+) -> bool:
+	var mark: String = str(clause.get("tag", ""))
+	if mark == "":
+		return false
+	match str(clause.get("scope", "GLOBAL")):
+		"ENTITY":
+			var who: String = str(clause.get("entity_id", "$self"))
+			if who == "$self":
+				who = entity_id
+			if who == "$any" or who == "$rival":
+				for other in session.world["entities"]:
+					if written.has("%s|%s" % [str(other), mark]):
+						return true
+				return false
+			return written.has("%s|%s" % [who, mark])
+		"REGION":
+			var named: String = str(clause.get("region_id", ""))
+			var any_tag: Array = clause.get("any_tag", []) as Array
+			# Una Regione per nome: la sola forma che si puo' confrontare
+			# direttamente — e nel pool non si usa (D-315).
+			if named != "" and not named.begins_with("$"):
+				return written.has("%s|%s" % [named, mark])
+			# `$any`, `$rival`, o un bersaglio a segni: tutte le terre che la
+			# clausola potrebbe guardare. Col bersaglio a segni si guardano solo
+			# quelle che portano uno dei segni chiesti, come fa il valutatore.
+			for region_id in session.world["regions"]:
+				if not any_tag.is_empty():
+					var tags: Array = (
+						session.world["regions"][str(region_id)] as Dictionary
+					).get("tags", []) as Array
+					var porta: bool = false
+					for wanted in any_tag:
+						if tags.has(str(wanted)):
+							porta = true
+							break
+					if not porta:
+						continue
+				if written.has("%s|%s" % [str(region_id), mark]):
+					return true
+			return false
+	return written.has("WORLD|%s" % mark)
+
+
 func _clauses(node: Variant, out: Array) -> void:
 	if node is Dictionary:
 		var d: Dictionary = node as Dictionary
