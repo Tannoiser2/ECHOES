@@ -191,7 +191,7 @@ E le misure che prima non c'erano:
 | vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 18** |
 | testi che un giocatore può leggere (`REVISIONE_TESTI`) | **2.898** |
 | pezzi e legami del flusso disegnato (`flusso.html`) | **959 / 4.232** |
-| testi che vivono solo nel suggerimento del mouse (`MISURA_PAGINA`) | **13** |
+| testi che vivono solo nel suggerimento del mouse (`MISURA_PAGINA`) | **2** |
 
 ---
 
@@ -236,10 +236,12 @@ Queste non le prendo io. Sono le porte chiuse.
    perché contano: perché chiedono cose che si **perdono** agendo. La cura è un
    tipo di clausola che legge il verbale invece del tavolo, e cambia come si
    scrive un obiettivo.
-4. **[ISSUES 65](ISSUES.md#65) — «tutta la pagina dell'app va rivista».** Tre
-   revisioni diverse si nascondono in quella frase: la leggibilità,
-   l'impaginazione, o *l'idea di cosa si guarda*. Da 0.1.346 lo **strumento per
-   misurarle c'è** ([D-379](DECISIONS.md#d-379)); la scelta no.
+4. **[ISSUES 65](ISSUES.md#65) — la seconda e la terza rivista della pagina.**
+   La prima, la leggibilità, è fatta ([D-384](DECISIONS.md#d-384)): i testi nel
+   suggerimento del mouse da 13 a 2, i bersagli sotto il dito da 7 a 0. Restano
+   **l'impaginazione** — 788 px in fila su un tablet da 768 — e **l'idea di cosa
+   si guarda**: la mappa dipinge invece di costruire nodi, e nessun lettore di
+   schermo la vede.
 5. **ISSUES 84 — l'Eredità è misurabile e quasi inerte**: tre strade scritte,
    nessuna scelta.
 6. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura

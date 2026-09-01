@@ -19,12 +19,12 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 7 |
-| nodi in tutto | 176 |
-| testi sotto gli occhi | 111 |
+| nodi in tutto | 185 |
+| testi sotto gli occhi | 109 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
-| **testi che vivono solo nel suggerimento del mouse** | **13** |
+| **testi che vivono solo nel suggerimento del mouse** | **2** |
 | bersagli che si toccano | 7 |
-| **piu' stretti di un dito (44 px)** | **7** |
+| **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **1** |
 
@@ -50,17 +50,6 @@ nessuna scritta accanto ripete.
 
 | pannello | dove | cosa direbbe |
 |---|---|---|
-| colonna di stato | IL TUO DESTINO | La casa che giochi, e quello per cui e' venuta al tavolo. |
-| colonna di stato | COSA RESTERA' DI TE | La strategia dichiarata di questa casa: i segni che vuole vedere nel mondo a fine partita, |
-| colonna di stato | vuoi  le Miniere sono state sigillate | Chiuse le gallerie, la cosa che dorme continua a dormire. |
-| colonna di stato | vuoi  il sigillo | Il sigillo e' una pietra: dura piu' di un divieto detto. |
-| colonna di stato | vuoi  la montagna e' diventata racconto | Il divieto migliore e' quello che nessuno ricorda di aver ricevuto. |
-| colonna di stato | vuoi  Sito dormiente  ·  c'e' | Che il posto resti quello che e': un letto, non un giacimento. |
-| colonna di stato | temi  il Cristallo e' stato sfruttato | Sfruttato, il cristallo non e' piu' un segreto: e' un'economia, e le economie non si ferma |
-| colonna di stato | temi  scoperta: il cristallo | Ogni scoperta e' un dito che indica dove scavare. |
-| colonna di stato | temi  sfruttata | Una terra sfruttata chiama gente, e la gente scava piu' a fondo. |
-| colonna di stato | temi  quello che si e' saputo lo sanno t | Un sapere condiviso non si richiude: si puo' solo dimenticare, e ci vogliono ere. |
-| colonna di stato | temi  inquieta | La rivolta scava dove la legge non lascerebbe scavare. |
 | la mano | PanelContainer | L'ECO - La Parola Data La cosa che era stata proibita viene fatta, e viene fatta da chi l' |
 | la mano | PanelContainer | L'ECO - Presagio Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare |
 
@@ -69,15 +58,7 @@ nessuna scritta accanto ripete.
 Sotto i 44 px un dito comincia a sbagliare, ed e' la stessa misura che
 [D-243](DECISIONS.md#d-243) ha gia' usato per le carte in mano.
 
-| pannello | bersaglio | chiede |
-|---|---|---|
-| colonna di stato | posto: TEN_OLD_CHANNELS | 164 × 29 |
-| colonna di stato | posto: TEN_OLD_GUARD | 191 × 29 |
-| colonna di stato | posto: TEN_ROADS | 121 × 29 |
-| colonna di stato | posto: TEN_SANCTUARY | 168 × 29 |
-| colonna di stato | posto: ENT_CENERE | 146 × 19 |
-| colonna di stato | posto: ENT_LYRA | 76 × 19 |
-| colonna di stato | posto: ENT_SALE | 125 × 19 |
+Nessuno fra quelli che dichiarano una misura.
 
 **E 0 bersagli non dichiarano niente.** Non vuol dire che siano
 piccoli: vuol dire che la loro misura la decide la disposizione, e
@@ -103,7 +84,7 @@ colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».
 
 | pannello | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|
-| colonna di stato | 84 | 191 | 1311 |
+| colonna di stato | 93 | 191 | 1751 |
 | mappa | 1 | *disegna: non lo dichiara* | |
 | il Consiglio | 52 | 218 | 1264 |
 | il tavolo | 23 | 0 | 0 |

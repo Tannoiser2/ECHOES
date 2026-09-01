@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.352 — La prima delle tre riviste: quello che si legge col dito (D-384)
+
+Delle tre riviste che si nascondono in *«tutta la pagina va rivista»*
+(ISSUES 65), fatta **la prima** — quella che la voce stessa dichiara finibile, e
+che da D-379 ha un metro.
+
+| | prima | dopo |
+|---|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** | **2** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** | **0** |
+
+Spostate sotto gli occhi: le **nove ragioni** di un segno voluto o temuto, la
+**descrizione della vita** che ti aspetta alla porta del tempo, e il **nome
+dell'Eco** sulla carta in mano — *«forza 2 · eco: La Parola Data»*. Tolti due
+suggerimenti che ripetevano una nota già stampata.
+
+I sette posti dove si lascia cadere una carta chiedevano 19 e 29 pixel: adesso 44,
+la stessa misura che D-243 aveva già stabilito per le carte in mano. **È il
+bersaglio a crescere, non il testo.**
+
+I due che restano sono il testo intero dei due Echi in mano: stamparlo vuol dire
+allungare la carta, e quella è la **seconda** rivista. L'impaginazione e l'idea
+di cosa si guarda restano scelte del committente.
+
+Cancello: **0 seggi bloccati su 8**. 26 cancelli verdi, suite verde.
+
+---
+
 ## 0.1.351 — I sei livelli di vittoria nominano un segno, e una guardia si è allargata (D-383)
 
 D-377 aveva misurato **sei livelli di vittoria o trionfo** che si reggono solo

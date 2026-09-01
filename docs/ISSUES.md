@@ -4976,6 +4976,29 @@ resta fuori perché nomina un autoload.
 quale delle tre riviste si fa: ha solo tolto di mezzo la ragione per cui non si
 poteva cominciare.
 
+### ✅ La prima delle tre e' fatta, in 0.1.352 ([D-384](DECISIONS.md#d-384))
+
+La **passata di leggibilita'** — quella che questa voce dichiara finibile — e'
+finita, e si misura:
+
+| | prima | dopo |
+|---|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** | **2** |
+| **bersagli piu' stretti di un dito (44 px)** | **7 su 7** | **0** |
+
+I due che restano sono il testo intero dei due Echi in mano: il **nome** adesso
+e' stampato sul piede della carta, il resto no, perche' stamparlo vuol dire
+allungare la carta — e quella e' la seconda rivista.
+
+**Restano aperte la seconda e la terza, e sono scelte:**
+
+- **l'impaginazione**: i pannelli che dichiarano una misura chiedono **788 px in
+  fila** su un tablet da 768, e la mappa non e' nemmeno nel conto. *«Forse su un
+  tablet la pagina e' una alla volta.»*
+- **l'idea di cosa si guarda**: la mappa e i mazzetti dei Temi **dipingono
+  invece di costruire nodi** — ne' la sonda ne' un lettore di schermo li vedono.
+  Riscriverli e' una scelta su cosa la pagina *e'*, non una riparazione.
+
 **Fatto quando** c'è una decisione scritta su *quale* delle tre riviste si sta
 facendo, e la pagina la segue.
 

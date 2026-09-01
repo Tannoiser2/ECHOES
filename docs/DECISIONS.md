@@ -10,6 +10,64 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-384 — La prima delle tre riviste: quello che si legge col dito
+
+**implemented** (0.1.352) · fa la **prima** delle tre riviste di [ISSUES 65](ISSUES.md#65) e lascia le altre due
+
+### Quale delle tre, e perché questa
+
+La voce 65 dice che in *«tutta la pagina va rivista»* si nascondono tre riviste
+diverse, e che sono la scelta del committente. Ne faccio **una sola**, la prima,
+perché è quella che la voce stessa dichiara finibile — *«è quello che i sei fix
+hanno fatto a pezzi, e si può finire»* — e perché da [D-379](#d-379) ha un metro:
+
+| | prima | dopo |
+|---|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** | **2** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** | **0** |
+
+Le altre due — **l'impaginazione** (i 788 px in fila su un tablet da 768) e
+**l'idea di cosa si guarda** (un tavolo o un cruscotto) — restano dove stavano,
+perché sono scelte, non riparazioni.
+
+### Le quattro cose spostate
+
+- **La ragione di un segno voluto o temuto.** Nove frasi d'autore — *«la corona
+  che passa per legge è l'unica cosa che rende il trono più vecchio di chi ci
+  siede»* — vivevano nel suggerimento del mouse. Adesso stanno sotto la riga che
+  spiegano, in corpo minore.
+- **La descrizione della vita che ti aspetta.** La porta del tempo dice *«dopo
+  cento anni diventi La Reggenza del Granaio»*, e chi sia la Reggenza lo diceva
+  solo il mouse.
+- **Le due intestazioni** — IL TUO DESTINO, COSA RESTERÀ DI TE — avevano un
+  suggerimento che ripeteva la nota già stampata sotto. Tolto: due testi in meno,
+  zero informazione persa.
+- **Il nome dell'Eco sulla carta in mano.** Una carta con una seconda faccia deve
+  dirlo **sulla faccia**: adesso il piede porta *«forza 2 · eco: La Parola
+  Data»*. Il testo intero dell'Eco resta nel suggerimento, ed è uno dei **due che
+  restano** — stamparlo per esteso vuol dire allungare la carta, e quella è la
+  seconda rivista.
+
+### E i sette bersagli
+
+I posti dove si lascia cadere una carta ([D-231](#d-231)) — una domanda sulla
+traccia, una casa nella colonna dei rapporti — chiedevano **19 e 29 pixel**. Col
+mouse si prendono, col dito no, ed è la stessa misura che [D-243](#d-243) aveva
+già stabilito per le carte in mano. Adesso ne chiedono 44: **è il bersaglio a
+crescere, non il testo.**
+
+### Il costo
+
+Nessuno misurabile: né motore né dati. La colonna è più lunga di undici righe —
+scorreva già — e il cancello resta **0 seggi bloccati su 8**. 26 cancelli verdi,
+suite verde.
+
+**Quello che questa decisione non fa**, ed è deliberato: non tocca la mappa e i
+mazzetti dei Temi, che **dipingono invece di costruire nodi** e che quindi né la
+sonda né un lettore di schermo vedono. Riscriverli in nodi è la terza rivista.
+
+---
+
 ## D-383 — I sei livelli di vittoria nominano un segno, e una guardia si è allargata
 
 **implemented** (0.1.351) · chiude [ISSUES 118](ISSUES.md#118)

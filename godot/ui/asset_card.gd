@@ -93,6 +93,19 @@ func _ready() -> void:
 
 ## `relevant` is the list of families the open question listens to; empty means
 ## no Council, and then a card shows its printed strength instead of its value.
+## Il nome dell'Eco stampato sotto la forza (D-384): una carta con una seconda
+## faccia lo deve dire **sulla faccia**, non nel suggerimento del mouse. Si
+## chiama dopo `render`, che riscrive il piede.
+var _echo_said: String = ""
+
+
+func note_echo(title: String) -> void:
+	if _footer == null or title == "" or _echo_said == title:
+		return
+	_echo_said = title
+	_footer.text = "%s · eco: %s" % [_footer.text, title]
+
+
 func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefCounted) -> void:
 	asset = p_asset
 	_data = data
@@ -172,6 +185,7 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefC
 	# asked of the resolver rather than recomputed here, so a card with a bonus
 	# cannot show a number the resolution will not give it.
 	_footer.text = "forza %d" % int(asset["strength"])
+	_echo_said = ""
 	if council_open:
 		_footer.text = "vale %d" % AssetText.value_on(asset, relevant)
 		var bonus: String = AssetText.modifier_note(asset)
