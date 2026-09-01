@@ -81,19 +81,30 @@ salvataggio ritrova gli stessi varchi.
 
 ### La misura
 
-**Duecento mappe pescate, semi da 7000:**
+**E la promessa non si campiona: si enumera** (richiesta del committente:
+*«devi calcolare dopo aver deciso i varchi tutte le possibili combinazioni e
+capire quante combinazioni rendono tessere isolate»*).
 
-| | |
+Le combinazioni vere sono **C(10,6) = 210 pescate x 6! = 720 ordini =
+151.200 pose**, e `cli/run_tiles_probe.gd` le fa **tutte** — chiamando la posa
+del motore, non una sua copia. E' il ventisettesimo cancello, e sta in CI:
+
+| tutte le pose che il gioco puo' produrre | |
 |---|---|
-| mappe **non connesse** | **0 su 200** |
-| mappe con meno di sei tessere | **0 su 200** |
+| pose enumerate | **151.200** |
+| pose che **lasciano fuori una tessera** | **0** |
+| pose che **lasciano una tessera isolata** | **0** |
+| pescate che si rompono in almeno un ordine | **0 su 210** |
+
+Duecento semi dicevano zero e zero; centocinquantunmiladuecento pose dicono la
+stessa cosa, e questa non e' piu' una statistica — e' l'elenco completo.
 
 E il costo, che e' il punto della regola e va scritto:
 
 | | griglia (D-275) | varchi (D-390) |
 |---|---|---|
-| confini per mappa | **7** | **5,34** |
-| tessere con un vicino solo | — | **44,3%** |
+| confini per mappa | **7** | **5,30** |
+| tessere con un vicino solo | — | **46,2%** |
 | il padrone passa di mano, in un anno | 3,57 volte | **3,48** |
 | Regioni con piu' di una casa a fine anno | 3,62 su 6 | **3,24** |
 | Regioni con un padrone a fine anno | 5,29 su 6 | **5,01** |

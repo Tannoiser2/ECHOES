@@ -180,6 +180,11 @@ jobs:
       - name: Drift check - la misura delle vite
         run: GODOT=~/godot/godot tools/run_lives_survey.sh --check
 
+      # **La promessa non si campiona: si enumera** (D-390). 210 pescate per
+      # 720 ordini fanno 151.200 pose, e questo cancello le fa tutte.
+      - name: Drift check - tutte le pose delle tessere
+        run: GODOT=~/godot/godot tools/run_tiles_probe.sh --check
+
       - name: Drift check - la misura dei segni
         run: GODOT=~/godot/godot tools/run_marks_survey.sh --check
 

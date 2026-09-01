@@ -34,19 +34,23 @@ girandola finché il lato che si tocca porta un varco su tutte e due**, e fra le
 pose possibili si sceglie quella che fa combaciare più varchi.
 
 **La promessa viene per costruzione**: una tessera entra solo attaccandosi
-attraverso un varco.
+attraverso un varco. E non si campiona — **si enumera**, come il committente ha
+chiesto: 210 pescate per 720 ordini fanno **151.200 pose**, e la sonda le fa
+tutte chiamando la posa del motore. È il **ventisettesimo cancello**.
 
-| duecento mappe pescate | |
+| tutte le pose che il gioco può produrre | |
 |---|---|
-| mappe **non connesse** | **0 su 200** |
-| mappe con meno di sei tessere | **0 su 200** |
+| pose enumerate | **151.200** |
+| pose che **lasciano fuori una tessera** | **0** |
+| pose che **lasciano una tessera isolata** | **0** |
+| pescate che si rompono in almeno un ordine | **0 su 210** |
 
 ### Il costo, scritto
 
 | | griglia | varchi |
 |---|---|---|
-| confini per mappa | **7** | **5,34** |
-| tessere con un vicino solo | — | **44,3%** |
+| confini per mappa | **7** | **5,30** |
+| tessere con un vicino solo | — | **46,2%** |
 | il padrone passa di mano, in un anno | 3,57 | **3,48** |
 | Regioni con più di una casa a fine anno | 3,62 su 6 | **3,24** |
 
