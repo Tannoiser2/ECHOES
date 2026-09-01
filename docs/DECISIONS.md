@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-373 — Un numero battuto a mano dentro uno strumento generato si fa certificare fresco mentre mente
+
+**implemented** (0.1.340)
+
+### Come si è visto
+
+Chiesto *«cosa manca ora»*, si è risposto coi documenti sorvegliati invece che a
+memoria — ed è saltata fuori una riga di `COMPONENTI.md` che diceva: *«nessuna
+delle dieci tessere dice quanti spazi-Pietra ha né quali»*. Era vero quando fu
+scritta, e ha smesso di esserlo con [D-365](#d-365), che ha messo `build_slots`
+su tutte e dieci **sei versioni fa**.
+
+Il cancello di quel documento non ha detto niente, e ha ragione lui: controlla
+che **il file combaci col generatore**, non che il generatore dica la verità. Una
+frase con dentro una cifra battuta a mano passa quel cancello per sempre.
+
+### Non era una, erano tre
+
+Cercate col metodo invece che a occhio — le righe di prosa dello strumento che
+portano una cifra non arrivata da un conto:
+
+| diceva | i dati dicono | quanto pesa |
+|---|---|---|
+| «i **183** segni del dizionario» | **182** | un numero sbagliato in un censimento |
+| «Presenza e controllo — **12** per casa» | la Cronaca ne dichiara **5** | **è un'istruzione per chi stampa**: sette pedine per casa di troppo |
+| «nessuna delle dieci dice quanti spazi-Pietra ha» | tutte e dieci, **21 spazi** | una cosa fatta, dichiarata mancante |
+
+La seconda è la peggiore: `COMPONENTI.md` è il documento che si manda a chi
+stampa la scatola, e quella riga faceva tagliare più del doppio delle pedine di
+presenza.
+
+### La cura, e perché è quella
+
+Le tre frasi si **ricavano**, non si scrivono: `len(tags)`, il `presence_tokens`
+della Cronaca, il conto delle tessere con `build_slots`. La prova che è la strada
+giusta era già nello stesso file, due righe più sotto: **il paragrafo dell'arte
+non è mai invecchiato**, perché è sempre stato un conto — `len(arte) -
+arte_fatta`.
+
+E una **guardia**, perché la prossima frase la scriverà qualcun altro: prima di
+generare il documento, lo strumento legge la propria prosa e pretende che ogni
+cifra arrivi da un `%d`. Le eccezioni si dichiarano una per una con la ragione
+per cui non invecchiano — la misura del cartone in millimetri, una data, un
+rimando a un verbale, un numero storico come le *«48 Risonanze»* che
+[D-362](#d-362) rimise a mano.
+
+Provata piantando il difetto: una riga di prosa con dentro un numero, e il
+cancello esce 1 nominando la riga.
+
+### Quello che non si è finto di sapere
+
+Una frase diceva *«nessuno impara 34 simboli»*, e quel 34 lo misura un'altra
+sonda (`run_punchboard_probe`) che questo censimento non può rieseguire. Non si è
+inventato un conto: si è tolta la cifra e si è lasciata la frase a dire la cosa
+vera — *nessuno impara centodiciotto simboli, si impara quello che si vede* — col
+totale che il documento sa contare.
+
+### Il costo
+
+Nessuno sul gioco: non cambia una riga sotto `godot/`, quindi il playtest a 100
+semi non è stato rilanciato.
+
+---
+
 ## D-372 — Il blocco di D-348 non c'era più: riprovato, e la porta si apre
 
 **implemented** (0.1.339) · chiude la parte grossa di [ISSUES 108](ISSUES.md#108)

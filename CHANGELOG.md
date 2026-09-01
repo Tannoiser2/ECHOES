@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.340 — Un numero battuto a mano si fa certificare fresco mentre mente (D-373)
+
+`COMPONENTI.md` diceva *«nessuna delle dieci tessere dice quanti spazi-Pietra ha
+né quali»*. Vero quando fu scritto, falso da **sei versioni**: D-365 ha messo
+`build_slots` su tutte e dieci. Il cancello non ha detto niente, e ha ragione
+lui: controlla che il file combaci col generatore, non che il generatore dica la
+verità.
+
+**Non era una, erano tre**, cercate col metodo invece che a occhio:
+
+| diceva | i dati dicono |
+|---|---|
+| «i **183** segni del dizionario» | **182** |
+| «Presenza e controllo — **12** per casa» | la Cronaca ne dichiara **5** |
+| «nessuna delle dieci dice quanti spazi-Pietra ha» | tutte e dieci, **21 spazi** |
+
+La seconda è la peggiore: `COMPONENTI.md` è il documento che si manda a chi
+stampa, e quella riga faceva tagliare **più del doppio** delle pedine di presenza.
+
+Le tre frasi adesso si **ricavano**. La prova che è la strada giusta era già nel
+file, due righe sotto: il paragrafo dell'arte non è mai invecchiato perché è
+sempre stato un conto.
+
+**E una guardia**: prima di generare, lo strumento legge la propria prosa e
+pretende che ogni cifra arrivi da un conto. Le eccezioni si dichiarano una per
+una con la ragione per cui non invecchiano. Provata piantando il difetto.
+
+E una cifra che questo censimento non può ricalcolare — quella di un'altra sonda
+— non è stata inventata: è stata tolta, lasciando la frase a dire la cosa vera.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`.
+
+---
+
 ## 0.1.339 — Il blocco di D-348 non c'era più (D-372)
 
 D-348 aveva scritto la seconda penna di `mine_sealed`, l'aveva misurata (3
