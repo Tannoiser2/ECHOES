@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.355 — Il RIVENDICARE non spreca il diritto: spreca la prenotazione (D-389)
+
+**Chiusa [ISSUES 53](docs/ISSUES.md#53)**, la voce che diceva *«RIVENDICARE può
+forzare un Consiglio che poi non si apre»*. D-261 aveva cambiato la regola e
+lasciato scritto che le **43 aperture rifiutate** andavano rimisurate sotto
+quella nuova. Rimisurate, su 100 partite:
+
+| il diritto del RIVENDICARE, dove va a finire | |
+|---|---|
+| apre un secondo dibattito | 15 |
+| speso in controproposta | 59 |
+| **si spegne senza trovare niente** | **0** |
+
+Zero, e i tre numeri chiudono il conto: 15 + 59 + 0 = 74, esattamente i Consigli
+strappati.
+
+### E per strada, un conto sbagliato da sempre
+
+La stessa sonda dichiarava **12** Consigli strappati, e i tre numeri qui sopra ne
+chiedevano **74**. Contava gli Effetti `CONSUME_CLAIM` — ma D-191 dice che
+**senza prenotazione non c'è niente da consumare**: chi strappa un Consiglio su
+una domanda già matura lo fa in una mossa sola, e quel FORCE non emetteva nessun
+Effetto da contare.
+
+**E questo corregge una frase di [D-387](docs/DECISIONS.md#d-387)**, scritta
+ieri: *«131 diritti su 140 morivano senza essere usati»*. Quello che muore non è
+il diritto — è la **prenotazione**.
+
+| su 100 partite | |
+|---|---|
+| prenotazioni aperte | 285 |
+| **prenotazioni mai spese** | **273** |
+| Consigli strappati senza averne bisogno | 62 su 74 |
+
+Il RIVENDICARE **rende**, 74 volte su cento partite. Quello che quasi non serve
+mai è la sua **prima metà**: il cervello prenota 285 volte e spende 12. Aperta
+[ISSUES 126](docs/ISSUES.md#126), con due letture — è il cervello, o è la regola.
+
+**Nessuna regola è cambiata**: sono due righe di una sonda.
+
+---
+
 ## 0.1.354 — La sonda che diceva 92,3% guardava dalla parte sbagliata (D-388)
 
 Rimisurando la superficie contesa sul codice di oggi, una riga non tornava:

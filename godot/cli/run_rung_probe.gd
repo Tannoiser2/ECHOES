@@ -59,6 +59,22 @@ func _initialize() -> void:
 	var claim_cards_held: Dictionary = {}   # seggio -> quante volte ne ha tenuta una
 	var claim_seats: Dictionary = {}        # seggio -> quante partite giocate
 	var claims_forced: int = 0    # ACT_CLAIM in FORCE: il Consiglio strappato
+	# **Il diritto che si spegne senza un dibattito** (ISSUES 53, da rimisurare
+	# sotto la regola di D-261). Prima di quella regola il diritto inseguiva la
+	# questione nominata, e se quella non si apriva l'azione non faceva niente:
+	# **43 aperture rifiutate su cento anni**. Adesso apre il secondo mazzetto
+	# piu' alto e la questione nominata e' solo il ripiego — quindi il numero
+	# va rifatto, e questa riga lo rifa'.
+	var rights_spent: int = 0     # diritti che hanno aperto un secondo dibattito
+	var rights_lost: int = 0      # diritti che non hanno trovato niente da aprire
+	var rights_traded: int = 0    # diritti spesi in controproposta (D-268)
+	# **E il conto dei forzati era sbagliato.** `claims_forced` contava gli
+	# Effetti `CONSUME_CLAIM`, ma D-191 dice che **senza prenotazione non c'e'
+	# niente da consumare**: chi forza un Consiglio su una domanda gia' matura
+	# non emette nessun CONSUME_CLAIM, e quel FORCE non veniva contato. Quindi
+	# «rivendicazioni morte senza essere usate» era gonfiato. Adesso i forzati
+	# si contano dal verbale, che li nomina tutti.
+	var forced_councils: int = 0
 	var granted: Dictionary = {}  # Chronicle -> quante volte una casella e' passata di mano
 	var cleared: Dictionary = {}  # Chronicle -> quante volte una casella e' rimasta a nessuno
 	var owned_regions: int = 0    # caselle con un padrone, sommate su tutte le partite
@@ -92,6 +108,16 @@ func _initialize() -> void:
 			row[0] = int(row[0]) + int(session.service.control_count(str(entity_id)))
 			per_seat[str(entity_id)] = row
 		var report: Dictionary = await session.run(decider)
+		for line in session.log.lines:
+			var riga: String = str(line)
+			if riga.contains("forza una Confluence su"):
+				forced_councils += 1
+			if riga.contains("IL SECONDO CONSIGLIO DELL'ATTO"):
+				rights_spent += 1
+			elif riga.contains("non trova una questione aperta: il diritto si spegne"):
+				rights_lost += 1
+			elif riga.contains("si e' speso in controproposta"):
+				rights_traded += 1
 		var mine_this_year: Dictionary = {}
 		for result in report["confluences"]:
 			var who: String = str((result as Dictionary)["proponent"])
@@ -284,8 +310,21 @@ func _initialize() -> void:
 		])
 	print("  La catena per prendere una Regione, su %d partite:" % runs)
 	print("    Rivendicazioni aperte (ACT_CLAIM CREATE):  %d" % claims_made)
-	print("    Consigli strappati    (ACT_CLAIM FORCE):   %d" % claims_forced)
-	print("    Rivendicazioni morte senza essere usate:   %d" % (claims_made - claims_forced))
+	print("    Consigli strappati    (ACT_CLAIM FORCE):   %d" % forced_councils)
+	print("      di cui spendevano una prenotazione:      %d" % claims_forced)
+	print("")
+	print("  Il diritto del RIVENDICARE, dove va a finire (ISSUES 53):")
+	print("    apre un secondo dibattito                  %d" % rights_spent)
+	print("    speso in controproposta                    %d" % rights_traded)
+	print("    **si spegne senza trovare niente**         %d" % rights_lost)
+	# **La riga che diceva la cosa sbagliata.** «Morte senza essere usate»
+	# suonava come «il RIVENDICARE non serve»: non e' cosi'. Chi strappa un
+	# Consiglio quasi sempre **non ha bisogno** della prenotazione, perche' la
+	# domanda e' gia' matura (D-191). Quello che si spreca non e' il diritto:
+	# e' la **prenotazione**, cioe' la prima meta' dell'azione.
+	print("    Prenotazioni mai spese (la domanda era gia' matura): %d su %d" % [
+		maxi(0, claims_made - claims_forced), claims_made,
+	])
 	var claim_cards: int = 0
 	var claim_families: Dictionary = {}
 	for asset_id in data.assets:

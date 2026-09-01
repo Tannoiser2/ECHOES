@@ -5837,7 +5837,7 @@ pochi modi di andare da qualche parte, e quelli che offre escono di rado**.
 
 ---
 
-### 53. RIVENDICARE può forzare un Consiglio che poi non si apre
+### 53. ✅ RIVENDICARE può forzare un Consiglio che poi non si apre — CHIUSA in 0.1.355 ([D-389](DECISIONS.md#d-389))
 
 `regole` · `difetto` · **misurata in 0.1.183** ([D-214](DECISIONS.md#d-214)) ·
 **cura in 0.1.223** ([D-261](DECISIONS.md#d-261))
@@ -5881,6 +5881,26 @@ idonei. La chiusura d'Atto l'ha isolato.
 
 **Fatto quando** nessuna apertura viene rifiutata su 100 anni, o quando un
 rifiuto non costa niente a chi l'ha chiesto.
+
+### Rimisurata e chiusa in 0.1.355 ([D-389](DECISIONS.md#d-389))
+
+[D-261](DECISIONS.md#d-261) aveva cambiato la regola e lasciato scritto che le
+43 aperture rifiutate andavano rimisurate sotto quella nuova. Rimisurate, su 100
+partite:
+
+| il diritto del RIVENDICARE, dove va a finire | |
+|---|---|
+| apre un secondo dibattito | 15 |
+| speso in controproposta | 59 |
+| **si spegne senza trovare niente** | **0** |
+
+**Zero**, e i tre numeri chiudono il conto: 15 + 59 + 0 = 74, esattamente i
+Consigli strappati. Il «fatto quando» è soddisfatto.
+
+**E per strada la sonda ha confessato un conto sbagliato**: dichiarava 12
+Consigli strappati contro i 74 che questi numeri chiedevano, perché contava gli
+Effetti `CONSUME_CLAIM` — e chi strappa un Consiglio su una domanda già matura
+non ne emette nessuno (D-191). Continua in [ISSUES 126](#126).
 
 ---
 
@@ -7544,3 +7564,44 @@ la casella che vale di più, come prima.
 
 **Fatto quando** il committente sceglie, e la sonda delle caselle mostra i
 benefici per Consiglio muoversi nella direzione scelta.
+
+---
+
+### 126. Si prenota 285 volte e si spende 12: la prima metà del RIVENDICARE
+
+`regole` · `da-decidere` · aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
+
+Chiudendo [ISSUES 53](#53) è uscito un numero che nessuno aveva mai guardato
+dalla parte giusta.
+
+| su 100 partite | |
+|---|---|
+| prenotazioni aperte (`ACT_CLAIM` in CREATE) | **285** |
+| **prenotazioni mai spese** | **273** |
+| Consigli strappati | 74 |
+| di cui usavano una prenotazione | **12** |
+
+**Il RIVENDICARE rende**: settantaquattro volte su cento partite porta al tavolo
+una seconda domanda o una controproposta. Quello che quasi non serve mai è la
+sua **prima metà**.
+
+[D-191](DECISIONS.md#d-191) ha scritto la prenotazione per un caso preciso —
+*«la domanda che non è ancora matura e che ci si vuole accaparrare prima che lo
+diventi»* — e ha reso il caso opposto una mossa sola: su una domanda già matura,
+prendere la parola non costa una prenotazione. Il cervello prenota **285 volte**
+e la spende **12**: le altre 273 volte ha speso un'Azione e una carta AUTORITÀ
+per un diritto che poi non gli serviva.
+
+**Due letture, e sono diverse:**
+
+- **è il cervello.** La policy prenota per abitudine invece che sulle domande
+  ancora basse. Allora è taratura di `policy_decider`, ed è mia: si misura con
+  `run_rung_probe`, e il numero da far scendere è 273.
+- **è la regola.** Se prenotare conviene solo su una domanda che non è ancora
+  matura, e il tavolo non arriva quasi mai in quella situazione, la prenotazione
+  è **cartone che non si usa**: due Azioni per una cosa che se ne prende una.
+  Allora la scelta è del committente, e la strada è togliere il CREATE e
+  lasciare solo il FORCE — un'Azione, un Consiglio.
+
+**Fatto quando** le prenotazioni mai spese scendono sotto un terzo, oppure il
+committente decide che la prenotazione esce dal gioco.
