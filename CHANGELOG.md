@@ -37,9 +37,12 @@ stringere un legame.
 | obiettivi che rendono uguale o meglio **stando fermi** | 6 | **3** |
 |---|---|---|
 
-Curati `BOUND_HOUSE` (da −19% a +8%), `THE_LONGEST_REACH` (−10% → +3%),
-`THE_WIDEST_SPREAD` (+0% → +7%). **Peggiorati e scritti**: `A_STONE` da −7% a
-**−14%**, `MOST_STONE` da +0% a −2%.
+Curati `BOUND_HOUSE` (da −19% a **+12%**), `THE_LONGEST_REACH` (−10% → **+4%**),
+`THE_WIDEST_SPREAD` (+0% → **+7%**). **Peggiorati e scritti**: `MOST_STONE` da
++0% a **−7%** e `A_WORK` da −3% a **−6%**.
+
+E il numero che conta di più: **quanto rende giocare da +160,7% a +267,8%**, con
+i Destini che si avverano da fermi da due a **uno**.
 
 I tre che restano hanno una causa sola, misurata: **nessuna Azione della plancia
 alza una Pietra** — una in cento partite — e le Pietre le alza il Consiglio, che

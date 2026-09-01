@@ -216,6 +216,13 @@ nascosto: `A_STONE` e' passato da −7% a **−14%**, e `MOST_STONE` da +0% a �
 Sono i due che dipendono di piu' dalla Pietra, e peggiorano per la stessa
 ragione per cui gli altri quattro migliorano.
 
+**Rimisurato dopo [D-387](#d-387)**, perche' i gettoni cambiano quante Pietre un
+Consiglio alza: i tre restano tre, ma non sono piu' gli stessi numeri —
+`MOST_STONE` **−7%**, `A_WORK` **−6%**, `A_STONE` **−3%**. E quello che conta di
+piu' e' salito: **quanto rende giocare, in tutto, da +160,7% a +267,8%**, e i
+Destini che si avverano da fermi da due a **uno**. I numeri di riferimento sono
+questi, e stanno in [PUNTO_ZERO](PUNTO_ZERO.md#2-i-due-numeri-di-pz-01).
+
 **Cosa non e' cambiato:** il cancello. 0 seggi bloccati su un solo livello su 8,
 tavolo misto e uniforme.
 
