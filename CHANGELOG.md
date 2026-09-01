@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.359 — Quello che il tavolo non vede si divide in tre (D-392)
+
+[ISSUES 88](docs/ISSUES.md#88) chiedeva un taglio: *«se sono le carte non
+pescate è rigiocabilità; se sono le domande di carte che sono state girate, è il
+difetto vecchio»*. Adesso `cli/run_who_writes_probe.gd` lo fa, guardando il
+mazzetto prima e dopo — e i pezzi sono **tre**, non due.
+
+| cento anni, CHR_00 | domande | proposte |
+|---|---|---|
+| scritte | 120 | 194 |
+| **usate** | **99 (83%)** | **126 (65%)** |
+| 1. mai pescate | 0 | 0 |
+| 2. pescate, mai in discussione | 8 (7%) | 29 (15%) |
+| **3. in discussione, mai scelte** | **13 (11%)** | **39 (20%)** |
+
+La riga 2 è aritmetica: 312 Consigli in cento anni, e ognuno apre **una domanda
+sola**. Solo la riga 3 è un difetto.
+
+**Un taglio ha cambiato la risposta, ed è scritto.** Alla prima misura le
+proposte mute erano 66 (34%). Sbagliato: una proposta si vota **dentro** la sua
+domanda, e se la domanda non è mai stata posta la proposta non è stata scartata.
+Passate quelle 30 alla riga 2, la cifra vera è 39 (20%). Tutte e 194 le proposte
+portano un `question_id` che esiste — verificato, 0 vuoti e 0 pendenti.
+
+E il titolo della voce non regge più: il *«poco più di un terzo»* era misurato su
+`CHR_01`, cancellato con gli altri anni d'autore.
+
+**La voce resta aperta a 20,1%**, con le **13 domande** e le **39 proposte**
+scritte per nome, più le quattro Tensioni che in cento anni non arrivano mai a un
+Consiglio (`TEN_ENCLOSURE`, `TEN_FLOOD`, `TEN_PASTURE`, `TEN_WEIGHTS`). Un
+difetto si lavora per nome, non per percentuale.
+
+---
+
 ## 0.1.358 — La voce più grossa si chiude, e il conto delle voci si misura (D-391)
 
 Nessuna riga di motore. Solo due misure, e tutt'e due dicono che i numeri scritti

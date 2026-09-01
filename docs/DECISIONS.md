@@ -10,6 +10,66 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-392 — Quello che il tavolo non vede si divide in tre, e solo il terzo è un difetto
+
+**implemented in 0.1.359.** `cli/run_who_writes_probe.gd` sa dire *dove* finisce
+il contenuto che il tavolo non raggiunge. [ISSUES 88](ISSUES.md#88) chiedeva
+esattamente questo.
+
+### La domanda della voce
+
+*«Se sono le carte non pescate è rigiocabilità; se sono le domande di carte che
+**sono** state girate, è il difetto vecchio di [D-035](#d-035) con un vestito
+nuovo. La sonda oggi non le distingue.»*
+
+Adesso le distingue, e i pezzi sono **tre**, non due:
+
+1. **mai pescata** — la Tensione è rimasta nel mazzetto coperto. È
+   rigiocabilità, ed è quello che una scatola da sessanta carte deve fare.
+2. **pescata, mai in discussione** — la carta si è girata, ma la sua Tensione
+   non è mai stata la più calda a fine Atto. È **aritmetica**: 312 Consigli in
+   cento anni, e ognuno apre una domanda sola.
+3. **in discussione, mai scelta** — la Tensione è arrivata al Consiglio, la
+   domanda si è aperta, e quella voce non è stata presa lo stesso. **Solo
+   questo è un difetto.**
+
+Il taglio si fa guardando il mazzetto **prima e dopo**: quello che manca alla
+fine è stato girato. Non è una copia della regola — è la stessa lista, letta due
+volte.
+
+### Il taglio che ha cambiato la risposta
+
+Alla prima misura le proposte «in discussione, mai scelte» erano **66 su 194
+(34%)**. Sbagliato: **una proposta si vota dentro la sua domanda**, e se la
+domanda non è mai stata posta la proposta non è stata scartata — non è proprio
+arrivata sul tavolo. Passando quelle 30 alla riga 2, la cifra vera è **36 (19%)**
+su quaranta anni e **39 (20%)** su cento. Tutte e 194 le proposte portano un
+`question_id` che esiste (verificato: 0 vuoti, 0 pendenti), quindi il passaggio è
+una regola, non una comodità.
+
+### La misura, cento anni, CHR_00, semi da 7000
+
+| | domande | proposte |
+|---|---|---|
+| scritte | 120 | 194 |
+| **usate** | **99 (83%)** | **126 (65%)** |
+| 1. mai pescate | 0 | 0 |
+| 2. pescate, mai in discussione | 8 (7%) | 29 (15%) |
+| **3. in discussione, mai scelte** | **13 (11%)** | **39 (20%)** |
+
+E il titolo della voce non regge più: *«il tavolo vede poco più di un terzo»*
+era il 37% e il 36% su `CHR_01`. Su cento anni dell'anno che esiste il tavolo
+vede l'**83%** delle domande e il **65%** delle proposte.
+
+**La condizione della voce — «la seconda cifra sotto un quinto» — è soddisfatta
+per le domande (11%) e sta esattamente sul filo per le proposte (20,1%).** Non
+la chiudo: la scrivo com'è, con l'elenco delle 13 e delle 39, perché un difetto
+si lavora per nome e non per percentuale. Quattro Tensioni non arrivano mai a un
+Consiglio in cento anni: `TEN_ENCLOSURE`, `TEN_FLOOD`, `TEN_PASTURE`,
+`TEN_WEIGHTS`.
+
+---
+
 ## D-391 — ISSUES 68 si chiude sulla condizione che si era scritta da sola
 
 **implemented in 0.1.358.** Nessuna riga di motore: solo la misura, e la

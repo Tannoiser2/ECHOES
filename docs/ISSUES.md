@@ -3886,10 +3886,58 @@ mappa.
 
 ---
 
-### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto
+### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto — **cinquantadue voci mute, per nome**
 
 `contenuto` · `misura` · **aperta in 0.1.273**
-([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`)
+([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`) · **il taglio
+chiesto e' fatto in 0.1.359** ([D-392](DECISIONS.md#d-392))
+
+> **Il titolo non regge piu'.** Il 37% e il 36% erano su `CHR_01`, cancellato
+> con gli altri anni d'autore. Su cento anni dell'anno che esiste, il tavolo
+> vede l'**83%** delle domande (99 su 120) e il **65%** delle proposte (126 su
+> 194).
+
+**La voce chiedeva un taglio, e adesso c'e'** — in tre pezzi, non due:
+
+| cento anni, CHR_00, semi da 7000 | domande | proposte | cos'e' |
+|---|---|---|---|
+| 1. mai pescate | **0** | **0** | rigiocabilita' |
+| 2. pescate, mai in discussione | 8 (7%) | 29 (15%) | aritmetica: 312 Consigli, uno apre una domanda sola |
+| **3. in discussione, mai scelte** | **13 (11%)** | **39 (20%)** | **il difetto di [D-035](DECISIONS.md#d-035)** |
+
+`godot --headless --path godot --script res://cli/run_who_writes_probe.gd -- --runs=100 --seed=7000`
+
+**La condizione — «la seconda cifra sotto un quinto» — e' soddisfatta per le
+domande e sta sul filo per le proposte.** Non chiudo su 20,1%: un difetto si
+lavora per nome, e i nomi adesso ci sono.
+
+**Le tredici domande che si aprono e nessuno sceglie:** `Q_AWAKENING_MOUNTAIN`,
+`Q_BAD_GRAIN_BLAME`, `Q_BELLS_WHO`, `Q_CANALS_ARMS`, `Q_EMPTY_NETS_BOATS`,
+`Q_FALLOW_LEAN`, `Q_HOSTAGES_WHO`, `Q_PLAGUE_DOORS`, `Q_QUARANTINE_OUT`,
+`Q_REFUGEES_COST`, `Q_STONES_WHO`, `Q_WINTER_WOOD`, `Q_WOLVES_FLOCK`.
+
+**Le trentanove proposte che stanno nella domanda aperta e non si votano mai:**
+`P_ASH_REGISTERS`, `P_BAD_GRAIN_BURN`, `P_BELLS_ORDER`, `P_BURIALS_GROUND`,
+`P_CALL_IT_IN`, `P_CHANNELS_FORBID`, `P_COUNCIL_SEATS_WIDEN`, `P_ECHOES_MEASURE`,
+`P_EMPTY_NETS_TURNS`, `P_HEIR_AS_STORY`, `P_HOSTAGES_TRADE`, `P_LET_IT_ROT`,
+`P_LEVY_QUOTA`, `P_MARSH_FEVER_SHARE`, `P_NAMELESS_MOVE`, `P_OLD_PAGE`,
+`P_ONE_CROWN`, `P_OPEN_VALLEY`, `P_QUARANTINE_HOLD`, `P_REFUSE_CHARTER`,
+`P_REGISTER_CROWN`, `P_REOPEN_THE_MINE`, `P_REQUISITION`, `P_RETAKE_QUESTION`,
+`P_SALT_COUNCIL`, `P_SEALS_ONE_HAND`, `P_SEAL_BORDERS`, `P_SHRINE_ANOINT`,
+`P_SMUGGLING_AMNESTY`, `P_STONES_WALK`, `P_TAKE_SEAT`, `P_THIRST_FREE`,
+`P_TITHE_OPEN`, `P_TOLLS_CUT`, `P_TRIBUTE_HALF`, `P_UNEARTHED_BACK`,
+`P_WARDS_RITE`, `P_WATCH_THE_ROCK`, `P_WOLVES_TOWERS`.
+
+**E quattro Tensioni non arrivano mai a un Consiglio in cento anni**:
+`TEN_ENCLOSURE`, `TEN_FLOOD`, `TEN_PASTURE`, `TEN_WEIGHTS`. Sono girate — il
+mazzetto le mostra — e non diventano mai la piu' calda.
+
+**Fatto quando** la riga 3 sta sotto un quinto per tutt'e due, e la prima
+domanda da farsi sulle 39 e' quella di [ISSUES 108](#108) e
+[ISSUES 104](#104): **offerte e non scelte, o mai offerte?** La sonda oggi non
+lo dice ancora, ed e' il prossimo passo di questa voce — non una voce nuova.
+
+**Il testo originale:**
 
 Il numero non e' nuovo: e' **appena diventato onesto**. La sonda contava il
 denominatore sui dodici template, e diceva *«36 proposte votate su 49 scritte»*
@@ -3921,6 +3969,9 @@ girate, e' la seconda. La sonda oggi non le distingue.
 
 **Fatto quando** la misura separa "non pescata" da "pescata e mai aperta", e la
 seconda cifra sta sotto un quinto.
+
+*(La separazione e' fatta in 0.1.359, e ha trovato che i pezzi erano tre. Le
+cifre stanno in testa alla voce.)*
 
 ---
 

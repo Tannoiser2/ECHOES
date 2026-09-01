@@ -55,6 +55,15 @@ func _initialize() -> void:
 	var councils: int = 0
 	var questions_asked: Dictionary = {}
 	var propositions_voted: Dictionary = {}
+	# **La differenza che ISSUES 88 chiede**: una Tensione che il tavolo non ha
+	# mai girato tiene la sua domanda nel mazzetto coperto, e non e' un difetto —
+	# e' rigiocabilita'. Una che il tavolo **ha girato** e la cui domanda non si
+	# apre mai e' il difetto vecchio di D-035 con un vestito nuovo. Si distinguono
+	# guardando il mazzetto prima e dopo: quello che manca alla fine e' stato
+	# girato.
+	var flipped: Dictionary = {}
+	var hosted: Dictionary = {}
+	var reshuffled: int = 0
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -64,12 +73,29 @@ func _initialize() -> void:
 			printerr("setup fallito al seme %d: %s" % [seed_value, session.last_error])
 			quit(3)
 			return
+		# Il mazzetto com'e' stato distribuito, prima che qualcuno lo tocchi.
+		var dealt: Dictionary = {}
+		for theme_id in (session.world.get("theme_decks", {}) as Dictionary):
+			dealt[str(theme_id)] = ((session.world["theme_decks"][str(theme_id)]) as Array).duplicate()
 		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
 		councils += int(session.world["confluence_count"])
+		for theme_id in dealt:
+			var before: Array = dealt[str(theme_id)] as Array
+			var after: Array = (session.world.get("theme_decks", {}) as Dictionary).get(str(theme_id), []) as Array
+			for tension_id in before:
+				if not after.has(tension_id):
+					flipped[str(tension_id)] = true
+			# Se alla fine nel mazzetto c'e' una carta che all'inizio non
+			# c'era, i mazzetti sono stati rimontati e questo conto non vale:
+			# meglio dirlo che dare un numero falso.
+			for tension_id in after:
+				if not before.has(tension_id):
+					reshuffled += 1
 		for result in (report.get("confluences", []) as Array):
 			var record: Dictionary = result as Dictionary
 			questions_asked[str(record.get("question_id", ""))] = true
 			propositions_voted[str(record.get("proposition_id", ""))] = true
+			hosted[str(record.get("tension_id", ""))] = true
 		# Le righe narrate stanno **sotto** la testata del loro blocco: si
 		# cammina il registro in ordine e si tiene a mente chi sta parlando.
 		var speaking: String = ""
@@ -107,14 +133,22 @@ func _initialize() -> void:
 	# che una misura ferma era la sonda.**
 	var written_questions: Dictionary = {}
 	var written_propositions: Dictionary = {}
+	var proposition_question: Dictionary = {}
 	for tension_id in data.tensions:
 		var template: Dictionary = data.confluence_template_for(str(tension_id))
 		if template.is_empty():
 			continue
 		for question in (template.get("questions", []) as Array):
-			written_questions[str((question as Dictionary)["id"])] = true
+			written_questions[str((question as Dictionary)["id"])] = str(tension_id)
 		for proposition in (template.get("propositions", []) as Array):
-			written_propositions[str((proposition as Dictionary)["id"])] = true
+			written_propositions[str((proposition as Dictionary)["id"])] = str(tension_id)
+			# Una proposta si vota **dentro** la sua domanda: se la domanda non
+			# e' mai stata posta, la proposta non e' stata scartata — non e'
+			# proprio arrivata sul tavolo. Senza questo passaggio il conto
+			# chiamerebbe difetto l'aritmetica del Consiglio.
+			proposition_question[str((proposition as Dictionary)["id"])] = str(
+				(proposition as Dictionary).get("question_id", "")
+			)
 
 	print("")
 	print("== CHI SCRIVE NEL MONDO - %d anni di %s, semi da %d ==" % [runs, chronicle_id, first_seed])
@@ -148,7 +182,85 @@ func _initialize() -> void:
 	print("    proposte votate   %d su %d scritte" % [
 		propositions_voted.size(), written_propositions.size()
 	])
+	print("")
+	print("  == E DOVE FINISCE QUELLO CHE NON VEDE == (ISSUES 88)")
+	print("")
+	print("    Tensioni girate            %d su %d scritte" % [flipped.size(), data.tensions.size()])
+	print("    Tensioni arrivate a un Consiglio  %d" % hosted.size())
+	var never_debated_tensions: Array = []
+	for tension_id in data.tensions:
+		if not hosted.has(str(tension_id)):
+			never_debated_tensions.append(str(tension_id))
+	never_debated_tensions.sort()
+	if not never_debated_tensions.is_empty():
+		print("      mai in discussione: %s" % ", ".join(never_debated_tensions))
+	if reshuffled > 0:
+		print("    ATTENZIONE: i mazzetti sono stati rimontati %d volte, il conto sotto non vale" % reshuffled)
+	_split("domande", written_questions, questions_asked, flipped, hosted, {}, {})
+	_split(
+		"proposte", written_propositions, propositions_voted, flipped, hosted,
+		proposition_question, questions_asked
+	)
+	print("")
+	print("    La prima riga e' rigiocabilita': carte che il mazzetto non ha girato.")
+	print("    La seconda e' aritmetica: %d Consigli in %d anni, e ognuno apre" % [councils, runs])
+	print("      una domanda sola — il mazzetto gira piu' di quanto il tavolo discuta.")
+	print("    **La terza e' il difetto di D-035**: la Tensione e' arrivata al")
+	print("      Consiglio, e quella voce non e' stata scelta lo stesso.")
 	quit(0)
+
+
+## Quello che non si e' visto, diviso in tre. La prima e' rigiocabilita', la
+## seconda e' l'aritmetica dei Consigli, e **solo la terza e' un difetto**.
+static func _split(
+	what: String, written: Dictionary, used: Dictionary,
+	flipped: Dictionary, hosted: Dictionary,
+	via: Dictionary, via_used: Dictionary
+) -> void:
+	var never_drawn: int = 0
+	var never_debated: int = 0
+	var debated_never_chosen: int = 0
+	var used_unseen: int = 0
+	var silent: Array = []
+	for id in written:
+		var owner: String = str(written[str(id)])
+		var seen: bool = flipped.has(owner) or hosted.has(owner)
+		if used.has(str(id)):
+			if not seen:
+				used_unseen += 1
+			continue
+		# La porta stretta: per una proposta la domanda dev'essere stata posta.
+		var debated: bool = hosted.has(owner)
+		if debated and not via.is_empty():
+			debated = via_used.has(str(via.get(str(id), "")))
+		if debated:
+			debated_never_chosen += 1
+			silent.append(str(id))
+		elif seen:
+			never_debated += 1
+		else:
+			never_drawn += 1
+	var total: int = maxi(1, written.size())
+	print("")
+	print("    %s: %d scritte, %d usate" % [what, written.size(), used.size()])
+	print("      1. mai pescate                    %4d  (%.0f%%)" % [
+		never_drawn, 100.0 * float(never_drawn) / float(total)
+	])
+	print("      2. pescate, mai in discussione    %4d  (%.0f%%)" % [
+		never_debated, 100.0 * float(never_debated) / float(total)
+	])
+	print("      3. in discussione, mai scelte     %4d  (%.0f%%)" % [
+		debated_never_chosen, 100.0 * float(debated_never_chosen) / float(total)
+	])
+	if used_unseen > 0:
+		print("      usate senza essere girate %d  (una Tensione dell'apertura)" % used_unseen)
+	# **Il numero da solo non si puo' lavorare**: per togliere una voce muta
+	# bisogna sapere quale. Il difetto vero e' un elenco, non una percentuale.
+	if not silent.is_empty():
+		silent.sort()
+		print("      le mute:")
+		for id in silent:
+			print("        %s" % str(id))
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:
