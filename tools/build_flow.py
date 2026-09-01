@@ -771,8 +771,34 @@ def disegna() -> str:
     return testo.replace("__FLOW__", dati)
 
 
+# **La copia da pubblicare non e' lo stesso file.** Un Artifact incarta quello
+# che gli si da' dentro un `<body>` suo: consegnargli un documento intero — con
+# il suo `<!doctype>` e il suo `<head>` — funziona per tolleranza del browser,
+# non per costruzione. Qui si toglie l'involucro e si tiene il contenuto, cosi'
+# la pagina pubblicata e' quella del repo senza un secondo documento dentro.
+INVOLUCRO = ["<!doctype html>", "</head>", "</body>", "</html>"]
+
+
+def per_l_artifact(pagina: str) -> str:
+    fuori = pagina
+    for pezzo in INVOLUCRO:
+        fuori = fuori.replace(pezzo, "")
+    for apertura in ('<html lang="it"><head>', "<html><head>", "<body>"):
+        fuori = fuori.replace(apertura, "")
+    if "<!doctype" in fuori.lower() or "<html" in fuori.lower():
+        raise SystemExit("l'involucro non e' venuto via: il template e' cambiato")
+    return fuori.strip() + "\n"
+
+
 def main() -> int:
     pagina = disegna()
+    for arg in sys.argv[1:]:
+        if arg.startswith("--artifact="):
+            destinazione = Path(arg.split("=", 1)[1])
+            destinazione.write_text(per_l_artifact(pagina), encoding="utf-8")
+            print("copia per l'Artifact: %s (%d KB)"
+                  % (destinazione, len(destinazione.read_text(encoding="utf-8")) // 1024))
+            return 0
     if "--check" in sys.argv:
         if not PAGINA.exists() or PAGINA.read_text(encoding="utf-8") != pagina:
             print("FAIL  docs/flusso.html non e' piu' quello che i dati disegnano:")

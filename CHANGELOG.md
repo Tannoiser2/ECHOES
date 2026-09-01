@@ -29,6 +29,13 @@ La lezione: un disegno appena finito è la cosa di cui ci si fida di più e ci s
 dovrebbe fidare di meno. Quindici pezzi isolati sembravano quindici scoperte;
 erano tre regole mancanti e dodici scoperte vere.
 
+**E la copia da pubblicare la fa lo strumento.** Un Artifact incarta quello che
+gli si dà dentro un `<body>` suo: fin qui gli si consegnava il file intero, col
+suo `<!doctype>` e il suo `<head>`, e funzionava **per tolleranza del browser,
+non per costruzione**. `build_flow.py --artifact=PATH` toglie l'involucro e
+lascia il contenuto — con una guardia che si ferma se l'involucro non viene via,
+perché una pagina pubblicata a metà non se ne accorgerebbe nessuno.
+
 Costo: nessuno. Cancello **0 seggi bloccati su 8**. 26 cancelli verdi.
 
 ---
