@@ -10,6 +10,74 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-389 — Il RIVENDICARE non spreca il diritto: spreca la prenotazione
+
+**implemented in 0.1.355** — chiude
+[ISSUES 53](ISSUES.md#53-rivendicare-può-forzare-un-consiglio-che-poi-non-si-apre)
+· corregge una frase di [D-387](#d-387)
+
+### ISSUES 53, rimisurata e chiusa
+
+[D-261](#d-261) aveva cambiato la regola — il diritto guadagnato col RIVENDICARE
+non insegue piu' la questione nominata, apre **il secondo mazzetto piu' alto** e
+la questione nominata resta solo come ripiego — e aveva lasciato scritto che le
+**43 aperture rifiutate su cento anni** andavano rimisurate sotto la regola nuova
+prima di chiudere la voce. Rimisurate:
+
+| il diritto del RIVENDICARE, su 100 partite | |
+|---|---|
+| apre un secondo dibattito | 15 |
+| speso in controproposta ([D-268](#d-268)) | 59 |
+| **si spegne senza trovare niente** | **0** |
+
+**Zero**, e i tre numeri chiudono il conto: 15 + 59 + 0 = 74, che sono
+esattamente i Consigli strappati. Il «fatto quando» della voce — *«nessuna
+apertura viene rifiutata su 100 anni»* — e' soddisfatto, e la voce si chiude
+senza scrivere nessuna regola nuova: l'ha chiusa D-261, e questa e' la misura
+che mancava.
+
+### E per strada, un conto che era sbagliato da sempre
+
+La stessa sonda dichiarava **«Consigli strappati (ACT_CLAIM FORCE): 12»**, e i
+tre numeri qui sopra ne chiedevano 74. Il conto era `CONSUME_CLAIM`, cioe' gli
+Effetti — ma [D-191](#d-191) dice che **senza prenotazione non c'e' niente da
+consumare**: chi strappa un Consiglio su una domanda **gia' matura** lo fa in
+una mossa sola, e quel FORCE non emetteva nessun Effetto da contare.
+
+| su 100 partite | diceva | dice |
+|---|---|---|
+| Consigli strappati | 12 | **74** |
+| di cui spendevano una prenotazione | — | 12 |
+
+**E questo cambia cosa vuol dire il numero che [D-387](#d-387) ha citato.** Li'
+avevo scritto *«131 diritti su 140 morivano senza essere usati — il verbo piu'
+caro del turno rendeva quasi niente»*. La frase e' sbagliata, e la riga della
+sonda che l'ha suggerita anche: quello che muore non e' il **diritto**, e'
+la **prenotazione**.
+
+| su 100 partite | |
+|---|---|
+| prenotazioni aperte (`ACT_CLAIM` in CREATE) | 285 |
+| **prenotazioni mai spese** | **273 su 285** |
+| Consigli strappati senza averne bisogno | 62 su 74 |
+
+Il RIVENDICARE **rende**: settantaquattro volte su cento partite porta al tavolo
+una seconda domanda o una controproposta. Quello che quasi non serve mai e' la
+sua **prima meta'** — la prenotazione, che D-191 ha scritto per il caso vero
+*«la domanda che non e' ancora matura e che ci si vuole accaparrare prima che lo
+diventi»*. Il cervello prenota **285 volte** e usa la prenotazione **12**: le
+altre volte forza su una domanda che era gia' matura, dove prenotare non serviva
+a niente. E' [ISSUES 126](ISSUES.md#126), aperta qui.
+
+**Il gettone di D-387 resta giusto e resta dove sta**: si prende giocando una
+carta dalla faccia RIVENDICARE, e quella faccia si gioca eccome. Cambia solo la
+ragione scritta nel verbale.
+
+**Nessuna regola e' cambiata**: sono due righe di una sonda. Suite e cancello non
+si muovono.
+
+---
+
 ## D-388 — La sonda che diceva 92,3% guardava dalla parte sbagliata
 
 **implemented in 0.1.354** — corregge la misura su cui si reggono
@@ -139,9 +207,16 @@ si spende in Consiglio:
 punto: il prezzo non e' piu' dovuto, e' **comprato** da chi lo vuole.
 
 **E RIVENDICARE rende due volte.** Misurato su cinquanta partite prima di questa
-decisione: **131 diritti su 140 morivano senza essere usati** — il verbo piu'
-caro del turno apriva una porta che quasi nessuno attraversava. Adesso la stessa
-Azione lascia anche una moneta, e il diritto resta.
+decisione: **131 prenotazioni su 140 morivano senza essere spese**. Adesso la
+stessa Azione lascia anche una moneta, e il diritto resta.
+
+> **Corretta in 0.1.355** ([D-389](#d-389)). La frase qui sopra diceva *«131
+> diritti su 140 morivano senza essere usati — il verbo piu' caro del turno
+> apriva una porta che quasi nessuno attraversava»*, e la riga della sonda da
+> cui veniva contava male: quello che muore e' la **prenotazione**, non il
+> diritto. Il RIVENDICARE strappa un Consiglio **74 volte su cento partite**;
+> e' la sua prima meta' che quasi non serve mai (ISSUES 126). La ragione per
+> dare il gettone alla faccia RIVENDICARE non cambia — cambia la frase.
 
 ### La misura
 

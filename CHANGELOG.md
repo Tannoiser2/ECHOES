@@ -5,6 +5,100 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.356 — Nel grafo c'erano dodici Consigli, e nella scatola sono sessanta
+
+### E la risposta a «non si arriva mai al punto di chiudere?»
+
+**No, non con questo metodo**, e i numeri lo dicono: 126 voci, 66 chiuse, 60
+aperte — e per fascia di venticinque versioni ne apro sistematicamente più di
+quante ne chiudo (12/5, 12/7, 12/3, 7/0). Non è disordine: la regola di casa è
+*misura prima di scrivere*, e ogni misura trova qualcosa. È il metodo che ha
+tenuto il gioco onesto, e **non ha una fine sua**.
+
+**La lista non è il traguardo.** PZ-01 ha tre criteri, due sono misurati e
+tengono — «meno della metà dei turni sono passa» (46,4%) e «0 seggi bloccati su
+8». Il terzo — *«dopo una partita si guarda la mappa e si capisce cosa è
+successo»* — **non lo può dire nessuna sonda**. Si chiude giocando.
+
+Scritto [`docs/LE_TUE_DECISIONI.md`](docs/LE_TUE_DECISIONI.md): le **quattordici**
+voci che aspettano il committente, una riga a testa, il numero che le motiva e la
+mia raccomandazione — così si chiudono in mezz'ora invece che una alla volta.
+
+**E da qui non apro più voci nuove**: quello che una misura trova diventa una
+riga sotto la voce che l'ha trovato, non una voce nuova con tre strade.
+
+*(Corretta anche la contabilità: due voci dicevano CHIUSA nel titolo senza il
+segno, e risultavano aperte — 62 → 60.)*
+
+Domanda del committente: *«perché nel grafo ci sono solo 12 carte del
+Consiglio?»*. Perché il disegno chiamava «Consiglio» i **dodici template
+d'autore** — le clausole e i tre sacchetti — e la **Scheda Consiglio**, che nella
+scatola è una per carta Tensione, **non era un pezzo**: le sue due Domande e le
+sue tre Proposte pendevano direttamente dalla carta.
+
+Quindi chi contava i Consigli nel grafo ne trovava **dodici** e chi li contava in
+`COMPONENTI.md` ne trovava **sessanta**, e i due numeri non si potevano
+riconciliare guardando il disegno.
+
+Adesso la scheda c'è, e la catena si legge per intero:
+
+> **carta Tensione → Scheda Consiglio → Domanda → Proposta → Conseguenza**
+
+e la scheda **si tiene col template** per quello che il template continua a dare:
+le clausole che un avversario attacca prima del voto, e i tre sacchetti.
+
+| | prima | dopo |
+|---|---|---|
+| pezzi | 964 | **1.024** |
+| legami | 4.262 | **4.322** |
+| nodi «Scheda Consiglio» | — | **60** |
+
+Nessun dato è cambiato: è il disegno che non nominava un pezzo che esiste.
+
+---
+
+## 0.1.355 — Il RIVENDICARE non spreca il diritto: spreca la prenotazione (D-389)
+
+**Chiusa [ISSUES 53](docs/ISSUES.md#53)**, la voce che diceva *«RIVENDICARE può
+forzare un Consiglio che poi non si apre»*. D-261 aveva cambiato la regola e
+lasciato scritto che le **43 aperture rifiutate** andavano rimisurate sotto
+quella nuova. Rimisurate, su 100 partite:
+
+| il diritto del RIVENDICARE, dove va a finire | |
+|---|---|
+| apre un secondo dibattito | 15 |
+| speso in controproposta | 59 |
+| **si spegne senza trovare niente** | **0** |
+
+Zero, e i tre numeri chiudono il conto: 15 + 59 + 0 = 74, esattamente i Consigli
+strappati.
+
+### E per strada, un conto sbagliato da sempre
+
+La stessa sonda dichiarava **12** Consigli strappati, e i tre numeri qui sopra ne
+chiedevano **74**. Contava gli Effetti `CONSUME_CLAIM` — ma D-191 dice che
+**senza prenotazione non c'è niente da consumare**: chi strappa un Consiglio su
+una domanda già matura lo fa in una mossa sola, e quel FORCE non emetteva nessun
+Effetto da contare.
+
+**E questo corregge una frase di [D-387](docs/DECISIONS.md#d-387)**, scritta
+ieri: *«131 diritti su 140 morivano senza essere usati»*. Quello che muore non è
+il diritto — è la **prenotazione**.
+
+| su 100 partite | |
+|---|---|
+| prenotazioni aperte | 285 |
+| **prenotazioni mai spese** | **273** |
+| Consigli strappati senza averne bisogno | 62 su 74 |
+
+Il RIVENDICARE **rende**, 74 volte su cento partite. Quello che quasi non serve
+mai è la sua **prima metà**: il cervello prenota 285 volte e spende 12. Aperta
+[ISSUES 126](docs/ISSUES.md#126), con due letture — è il cervello, o è la regola.
+
+**Nessuna regola è cambiata**: sono due righe di una sonda.
+
+---
+
 ## 0.1.354 — La sonda che diceva 92,3% guardava dalla parte sbagliata (D-388)
 
 Rimisurando la superficie contesa sul codice di oggi, una riga non tornava:

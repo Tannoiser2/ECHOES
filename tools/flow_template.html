@@ -194,7 +194,7 @@ const KINDS = {carta:"Carta", tag:"Segno", luogo:"Luogo", azione:"Azione", pietr
   tensione:"Tensione", destino:"Destino", regola:"Regola", funzione:"Funzione",
   casella:"Casella", catena:"Catena delle ere", domanda:"Domanda", clausola:"Clausola",
   consiglio:"Consiglio", obiettivo:"Obiettivo", profilo:"Profilo", vita:"Vita",
-  gesto:"Gesto", moneta:"Moneta"};
+  gesto:"Gesto", moneta:"Moneta", scheda:"Scheda Consiglio"};
 const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["letto da","--legge"],
   esegue:["esegue","--ink"], vieta:["vieta","--vieta"], scalda:["scalda","--scalda"],
   raccoglie:["raccoglie","--tema"], osservato_da:["osservato da","--legge"],
@@ -209,7 +209,8 @@ const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["l
   se_cade:["se cade","--vieta"], se_stravince:["se stravince","--posa"],
   vuole:["vuole","--posa"], nega:["nega a","--vieta"], conta:["conta","--pietra"],
   diventa:["diventa","--tema"], rovina:["in rovina lascia","--vieta"],
-  vale:["vale","--pietra"], chiede:["chiede","--tema"]};
+  vale:["vale","--pietra"], chiede:["chiede","--tema"],
+  accompagna:["accompagna","--tema"]};
 const POSTI = {TILE_PRINTED:"stampato sulla tessera", TILE_SLOT:"uno spazio sulla tessera",
   ZONE_TOKEN:"un gettone accanto alla tessera", SCAR_TOKEN:"un dischetto rotondo",
   HOUSE_SHEET:"sulla scheda della casa", WORLD_MEMORY:"un gettone sul bordo della mappa",
