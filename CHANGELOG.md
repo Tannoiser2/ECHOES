@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.364 — Le quattro voci più vecchie erano curate da centosettanta versioni (D-396)
+
+Seconda passata della verde V1, sulle voci di milestone 0.2 — le più vecchie
+della lista. **Quattro su cinque erano già chiuse.**
+
+Tre le ha curate [D-220](docs/DECISIONS.md#d-220) in 0.1.189, aggiungendo
+`hand_refill.per_control`: tenere una Regione dà una carta **e alza il tetto sulla
+mano**. Il commento nel codice cita ISSUES 3 parola per parola.
+
+| cento semi | ISSUES 1–2–3 | D-220 | **oggi** |
+|---|---|---|---|
+| Regioni con più di una casa, a fine anno | 2,60 su 6 | 2,66 | **3,57** |
+| il padrone cambia mano | 2,32 volte l'anno | 2,42 | **3,87** |
+| Regioni con un padrone | 4,65 su 6 | 4,73 | **5,20** |
+
+La quarta — [40](docs/ISSUES.md#40) — era **decisa in 0.1.142** e non chiedeva
+altro: duecentoventi versioni aperta dopo la sua decisione.
+
+Resta un pezzo della [4](docs/ISSUES.md#4): *«gli obiettivi contesi sono almeno
+un terzo del mazzo»*, che è la stessa domanda della rossa R4.
+
+Voci aperte: **42 → 38**. In tre passate della verde V1: **51 → 38**.
+
+---
+
 ## 0.1.363 — Il circuito dei segni si chiude, e due restano colore per scelta (D-395)
 
 La gialla G3 della lista — *«ogni segno ha un lettore, o esce»* — chiude tre voci

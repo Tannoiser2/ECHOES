@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **89** |
-| aperte | **42** |
+| chiuse | **93** |
+| aperte | **38** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **32** |
+| di cui sono mie da fare | **28** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 12 |
+| 0.1.350–0.1.374 | 6 | 15 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -268,11 +268,17 @@ quelle che sono già vere.
 versioni fa. **È la prima cosa che faccio**, perché probabilmente accorcia il
 resto della lista.
 
-### V2. Le vecchie voci [1](ISSUES.md#1), [2](ISSUES.md#2), [3](ISSUES.md#3), [4](ISSUES.md#4) e [40](ISSUES.md#40)
+### V2. ✔ Le vecchie voci 1, 2, 3, [4](ISSUES.md#4) e 40 — quattro chiuse in 0.1.364
 
-Cinque voci del bilanciamento di 0.1.2x, scritte su un gioco che non c'è più
-(l'`hand_refill` di allora, i gradini di allora). O sono ancora vere sui numeri
-di oggi e rientrano in una gialla, o si chiudono come storia.
+Erano cinque voci del bilanciamento di 0.1.2x, scritte su un gioco che non c'è
+più. **Quattro erano già curate:** `hand_refill.per_control` ([D-220](DECISIONS.md#d-220))
+ha fatto pagare il possesso (1 e 3), le Regioni contese sono passate da 2,60 a
+**3,57 su 6** e i passaggi di mano da 2,32 a **3,87** (2), e il grado alto era
+deciso «materia di saga» da 0.1.142 (40).
+
+**Resta la [4](ISSUES.md#4)**, e solo per un pezzo: *«gli obiettivi contesi sono
+almeno un terzo del mazzo»*. È la stessa domanda della rossa **R4** — obiettivi
+che nominano invece di contare — e si chiude con lei.
 
 ### V3. [105](ISSUES.md#105) — le sezioni di `REVISIONE_TESTI` scritte a mano
 

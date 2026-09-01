@@ -10,6 +10,58 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-396 — Le quattro voci più vecchie erano curate da centosettanta versioni
+
+**implemented in 0.1.364.** Seconda passata della verde V1, sulle voci di
+milestone 0.2 — le più vecchie della lista, scritte fra la 0.1.2x e la 0.1.14x.
+Quattro su cinque erano già chiuse e nessuno l'aveva verificato.
+
+### Tre le ha curate una decisione sola, e lo diceva
+
+**[D-220](#d-220)** (0.1.189) rispondeva al committente — *«costruire porta
+vantaggi, avere maggioranza dà vantaggi, spostarsi conviene quindi»* — e ha
+aggiunto `hand_refill.per_control`: tenere una Regione dà una carta **e alza di
+uno il tetto sulla mano**. Il commento nel codice cita [ISSUES 3](ISSUES.md#3)
+parola per parola.
+
+- **[3](ISSUES.md#3)** — *«tenere non paga più che stare»*: `per_control: 1` è
+  nel dato di CHR_00 e `_refill_hands` lo applica.
+- **[1](ISSUES.md#1)** — *«oltre tre pedine una presenza in più vale zero»*: era
+  peggio di così, e D-220 l'ha misurato meglio della voce — con quattro pedine si
+  pescava 3,30 e con cinque 3,12, **invertito**. Dopo la cura, 3,52 con quattro.
+- **[2](ISSUES.md#2)** — *«la maggioranza non è una lotta»*: la condizione che
+  questa voce e la [4](ISSUES.md#4) si erano scritte è soddisfatta con margine.
+
+| cento semi | ISSUES 1–2–3 | D-220 | **oggi** |
+|---|---|---|---|
+| Regioni con più di una casa, a fine anno | 2,60 su 6 | 2,66 | **3,57** |
+| il padrone cambia mano | 2,32 volte l'anno | 2,42 | **3,87** |
+| Regioni con un padrone | 4,65 su 6 | 4,73 | **5,20** |
+
+E il merito non è di una decisione sola: `per_control`, il padrone che **si
+conta** invece di scriversi ([D-158](#d-158)) e i varchi delle tessere
+([D-393](#d-393)) hanno spinto tutti nello stesso verso. D-220 dichiarava
+onestamente un effetto piccolo — *«2,32 → 2,42, non basta a rendere la mappa
+contesa»* — e aveva ragione: da sola non bastava.
+
+### La quarta era decisa e basta
+
+**[40](ISSUES.md#40)** — *«il grado non si muove dentro l'anno»* — chiedeva di
+scegliere fra due strade, e la scelta è stata fatta in **0.1.142**: il grado alto
+resta materia di saga, e una clausola sul grado 2 o 3 si scrive solo nei Destini
+di una Chronicle successiva. La regola che ne segue è scritta nella voce e i dati
+la seguono. **Duecentoventi versioni aperta dopo la sua decisione.**
+
+### Cosa resta della [4](ISSUES.md#4)
+
+Un pezzo solo della sua condizione: *«gli obiettivi contesi sono almeno un terzo
+del mazzo»*. È la stessa domanda della rossa **R4** — Obiettivi che nominano
+invece di contare — e si chiude con lei, non da sola.
+
+Voci aperte **42 → 38**.
+
+---
+
 ## D-395 — Il circuito dei segni si chiude, e due restano colore per scelta
 
 **implemented in 0.1.363.** La gialla G3 della lista — *«ogni segno ha un

@@ -1432,9 +1432,16 @@ una misura viene respinta da **un solo seggio** e per **una sola partita**, la
 domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
 assorbire qualcosa?».
 
-### 40. Il grado non si muove dentro l'anno — **deciso: è materia di saga**
+### 40. ✅ Il grado non si muove dentro l'anno — CHIUSA in 0.1.364: era decisa da duecento versioni
 
 `regola` · **decisa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
+
+**chiusa in 0.1.364** ([D-396](DECISIONS.md#d-396))
+
+> **La voce chiedeva di scegliere fra due strade, e la scelta e' stata fatta in
+> 0.1.142**: il grado alto resta materia di saga. La regola che ne segue e'
+> scritta qui sotto, e i dati la seguono. Non c'era altro da fare, e la voce e'
+> rimasta aperta **duecentoventi versioni dopo la sua decisione**.
 
 `_settle_structures` gira **dopo** la valutazione del Destino, quindi in una
 Chronicle sola il grado non sale quasi mai: grado 2 nel 15% degli anni per
@@ -5798,7 +5805,24 @@ Il ciclo che il committente descrive — **presenza → carte → azioni → pi�
 più carte** — esiste nel dato ma è tagliato. `run_contest_probe` lo misura per la
 prima volta, su 100 partite a tavolo misto.
 
-### 1. Spostarsi costa e non rende
+### 1. ✅ Spostarsi costa e non rende — CHIUSA in 0.1.364: la quarta pedina paga, da D-220
+
+> **La voce diceva: «oltre tre pedine, una presenza in piu' vale zero», e «chi
+> si espande a cinque finisce con meno carte di chi resta a quattro».** Era vero,
+> e [D-220](DECISIONS.md#d-220) l'ha misurato meglio di questa voce: con quattro
+> pedine si pescava **3,30** carte e con cinque **3,12** — non piatto,
+> **invertito**.
+>
+> La cura e' la stessa della [3](#3): `hand_refill.per_control`. La quarta pedina
+> non paga di piu' per il tetto della pesca — quello resta a 6 — ma paga se
+> **prende una Regione**, perche' il possesso da' una carta **e alza il tetto
+> sulla mano**. Con quattro pedine si pesca **3,52** invece di 3,30, e la curva
+> non e' piu' invertita.
+>
+> Oggi il segnale sulla mappa e' molto piu' forte di allora: il padrone passa di
+> mano **3,87** volte l'anno contro 2,32.
+>
+> **Il testo originale:**
 
 Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4.
 
@@ -5813,7 +5837,26 @@ Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4
 [D-211](DECISIONS.md#d-211) non paga niente. Chi si espande a cinque finisce con
 **meno** carte di chi resta a quattro, perché ha speso i MUOVERE per arrivarci.
 
-### 2. La maggioranza non è una lotta
+### 2. ✅ La maggioranza non è una lotta — CHIUSA in 0.1.364: 3,57 Regioni contese su 6
+
+> **La condizione che questa voce e la [4](#4) si erano scritte** — *«le Regioni
+> contese sono piu' di tre su sei a fine anno, e il padrone cambia mano piu' di
+> quanto non cambi oggi»* — **e' soddisfatta, e con margine.** Cento semi,
+> `cli/run_contest_probe.gd`:
+>
+> | | allora | **oggi** |
+> |---|---|---|
+> | Regioni con dentro piu' di una casa, a fine anno | 2,60 su 6 | **3,57 su 6** |
+> | il padrone cambia mano | 2,32 volte l'anno | **3,87** |
+> | Regioni con un padrone a fine anno | 4,65 su 6 | **5,20** |
+>
+> Le Regioni con una casa sola dentro sono passate da tre e mezzo a **due e
+> mezzo**: la maggioranza e' una lotta piu' spesso che una proprieta'. E non e'
+> merito di una decisione sola — `per_control` ([D-220](DECISIONS.md#d-220)), il
+> padrone che si conta invece di scriversi ([D-158](DECISIONS.md#d-158)) e i
+> varchi ([D-393](DECISIONS.md#d-393)) hanno spinto tutti nello stesso verso.
+>
+> **Il testo originale:**
 
 | su 6 Regioni | |
 |---|---|
@@ -5824,7 +5867,25 @@ Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4
 **Tre Regioni e mezzo su sei hanno una casa sola dentro**: non sono maggioranze,
 sono proprietà. E il tavolo non si stringe in nove round.
 
-### 3. Tenere non paga più che stare
+### 3. ✅ Tenere non paga più che stare — CHIUSA in 0.1.364: `per_control` c'e' da D-220
+
+> **Curata in 0.1.189 da [D-220](DECISIONS.md#d-220), e mai chiusa.**
+> `hand_refill` di CHR_00 oggi porta **`per_control: 1`**: tenere una Regione da'
+> una carta in piu' **e alza di uno il tetto sulla mano** — che e' la meta' che
+> conta, perche' senza quello chiunque converge alla stessa mano piena e il
+> possesso non si vedrebbe. Il codice sta in `_refill_hands`, e il commento cita
+> questa voce parola per parola.
+>
+> **E il numero si e' mosso ancora dopo.** D-220 dichiarava un effetto piccolo;
+> oggi, cento semi:
+>
+> | | ISSUES 3 | D-220 | **oggi** |
+> |---|---|---|---|
+> | il padrone passa di mano | 2,32 | 2,42 | **3,87** |
+> | Regioni contese a fine anno | 2,60 su 6 | 2,66 | **3,57** |
+> | Regioni con un padrone | 4,65 su 6 | 4,73 | **5,20** |
+>
+> **Il testo originale:**
 
 Una struttura pesa nel conteggio del controllo e **basta**. `hand_refill` conta le
 **presenze**, non il possesso: il controllo di una Regione non dà carte, non dà
