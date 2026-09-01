@@ -205,7 +205,7 @@ adesso conta da dove arriva ogni gesto firmato.
 | muovere un legame da un'Azione | 814 | 0 |
 
 **Nessuna Azione della plancia alza una Pietra**: in cento partite ne e' salita
-**una** cosi'. Le Pietre le alza il Consiglio — e il Consiglio e' **piu'
+**una** cosi' — e rimisurando dopo [D-387](#d-387), **zero**. Le Pietre le alza il Consiglio — e il Consiglio e' **piu'
 generoso con un tavolo che tace**, perche' le sue proposte non le contesta
 nessuno. Finche' e' cosi', nessun obiettivo di Pietra puo' premiare il giocare,
 per quanto bene sia scritto: e' [ISSUES 123](ISSUES.md#123), aperta qui, ed e'

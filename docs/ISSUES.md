@@ -4020,7 +4020,7 @@ oppure la riga si toglie dalla carta.
 
 ---
 
-### 84. L'Eredita' e' misurabile, e quasi inerte
+### 84. ✅ L'Eredita' e' misurabile, e quasi inerte — CHIUSA in 0.1.353 ([D-385](DECISIONS.md#d-385))
 
 `regole` · `da-decidere` · **aperta in 0.1.262** ([D-299](DECISIONS.md#d-299))
 
@@ -7362,21 +7362,24 @@ gesto firmato** in cento partite:
 
 | gesto e sorgente | tavolo che gioca | tavolo di pietra |
 |---|---|---|
-| alzare una Pietra **da un'Azione** | **1** | 0 |
-| alzare una Pietra da un Consiglio | 165 | **199** |
-| posare una presenza da un'Azione | 837 | 0 |
-| muovere un legame da un'Azione | 814 | 0 |
-| prendere una terra da un'Azione | 5 | 0 |
+| alzare una Pietra **da un'Azione** | **0** | 0 |
+| alzare una Pietra da un Consiglio | 136 | **199** |
+| alzare una Pietra dal sistema (fine anno) | 129 | 48 |
+| posare una presenza da un'Azione | 847 | 0 |
+| muovere un legame da un'Azione | 801 | 0 |
+| prendere una terra da un'Azione | **2** | 0 |
 
 Due cose, e sono due difetti diversi:
 
 1. **Le Pietre non si alzano col turno.** Delle sei Azioni della plancia —
    ACQUISIRE, MUOVERE, INFLUENZARE, FORGIARE, TRAMARE, RIVENDICARE — nessuna
-   costruisce. In cento partite una sola Pietra è salita per mano di un'Azione,
-   e viene dagli `on_commit_effects` di una carta. Chi vuole costruire **deve
-   passare dal Consiglio**, cioè deve convincere il tavolo.
+   costruisce. In cento partite **nessuna** Pietra è salita per mano di
+   un'Azione. Chi vuole costruire **deve passare dal Consiglio**, cioè deve
+   convincere il tavolo. E la stessa cosa vale quasi per la terra: **due**
+   passaggi di controllo su 276 vengono da un'Azione, tutti gli altri da un
+   Consiglio.
 2. **Il Consiglio è più generoso con chi tace.** 199 Pietre a un tavolo che
-   passa a ogni turno, 165 a uno che gioca: le proposte di un tavolo silenzioso
+   passa a ogni turno, 136 a uno che gioca: le proposte di un tavolo silenzioso
    non le contesta nessuno. È [ISSUES 119](#119) vista dall'altra parte — un
    Consiglio che quasi non cade regala a chi non fa niente.
 
