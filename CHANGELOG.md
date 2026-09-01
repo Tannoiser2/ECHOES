@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.349 — Il Punto Zero rimisurato, e due tavoli che erano scambiati
+
+`PUNTO_ZERO.md` è il primo documento che `CLAUDE.md` dice di leggere, ed era
+**fermo alla 0.1.294** — cinquantaquattro versioni — con una banda in cima che
+elencava i numeri che sapevo cambiati. Una fotografia con una didascalia non è
+una misura.
+
+Rifatto per intero, con le sonde rilanciate oggi: `run_pass_probe`,
+`run_asking_probe`, `run_resonance_probe`, il cancello dei cento semi, e i
+documenti generati che un cancello tiene freschi.
+
+| | diceva | oggi |
+|---|---|---|
+| suite | 634 prove / 35.900 asserzioni | **665 / 86.347** |
+| cancelli | 19 | **26** |
+| turni «passa» | 47,3% | **46,7%** |
+| quanto rende giocare | +183,1% | **+168,0%** |
+| Destini che si avverano da fermi | 3 su 19 | **2 su 23** |
+| segni nel dizionario / che qualcuno scrive | 182 / 149 | **174 / 170** |
+| carte con una domanda in prestito | 28 | **0** |
+| Effetti che una casella sa dire | *«il motore non esegue»* | **44 su 46, 334 applicazioni su 336** |
+| da stampare | 39 fogli A4, 67 tipi di segnalino | **49 fogli, 118 tipi** |
+
+E sei misure che nella versione vecchia non esistevano: i segni che non arrivano
+mai sul tavolo, i punti regalati e le porte murate, le vite che non si siedono,
+i testi in revisione, i pezzi del flusso disegnato, e la pagina dell'app.
+
+**La voce più grossa del progetto non c'è più.** Quel foglio diceva *«il motore
+non esegue la risoluzione della proposta: 642 Effetti d'autore che nessuna carta
+stampa»*. ISSUES 89 è chiusa da 0.1.332.
+
+### E una correzione: i due tavoli erano scambiati
+
+D-378, la sua riga qui e ISSUES 119 dicevano *«FAILURE da 108 a 37 sul tavolo
+uniforme, da 25 a 14 sul misto»*. È il contrario: **la sonda stampa il misto per
+primo**, e li avevo letti al rovescio. I numeri sono quelli, le etichette no.
+Corrette in tutti e tre i posti.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
 ## 0.1.348 — I tre pezzi «che nessuno tocca» erano tre buchi del disegno (D-381)
 
 D-380 aveva lasciato quindici pezzi senza nemmeno una freccia e li aveva messi in
@@ -150,7 +192,8 @@ Adesso legge le carte, e stampa anche le **clausole**, che nessuna sezione
 mostrava.
 
 **Il costo, misurato:** i Consigli cadono molto meno — FAILURE da **108 a 37**
-sul tavolo uniforme, da **25 a 14** sul misto. Ogni carta offre tre strade sue,
+sul tavolo misto, da **25 a 14** sull'uniforme (le etichette erano scambiate:
+corrette in 0.1.349). Ogni carta offre tre strade sue,
 e il tavolo ne trova una che gli va bene. Un Consiglio che quasi non cade ha
 meno posta: aperta come **ISSUES 119**.
 
@@ -169,7 +212,7 @@ lo stesso.
 | vite che non si siedono mai | 2 | **1** |
 | trasformazioni sedute in 12 saghe | 223 | **233** |
 | segni che non arrivano mai sul tavolo | 50 | **52** |
-| Consigli caduti (uniforme / misto) | 108 / 25 | **37 / 14** |
+| Consigli caduti (misto / uniforme) | 108 / 25 | **37 / 14** |
 
 Guadagno non in programma: **La Leggenda della Montagna si siede**.
 

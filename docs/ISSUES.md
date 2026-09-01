@@ -6962,8 +6962,11 @@ molto più spesso una che gli va bene, e i Consigli passano:
 
 | esiti su 100 partite | prima | dopo |
 |---|---|---|
-| tavolo uniforme — FAILURE | 108 | **37** |
-| tavolo misto — FAILURE | 25 | **14** |
+| tavolo misto — FAILURE | 108 | **37** |
+| tavolo uniforme — FAILURE | 25 | **14** |
+
+*(In 0.1.347 questa tabella aveva i due tavoli scambiati: la sonda stampa il
+misto per primo. I numeri sono quelli, le etichette no — corretto in 0.1.349.)*
 
 **È l'effetto che il lavoro cercava, ed è anche un prezzo.** Con due sole
 proposte su tredici carte, chi proponeva raramente trovava qualcosa che il

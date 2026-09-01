@@ -306,13 +306,18 @@ leggibili che nessuna sezione mostrava.
 Cambiare le proposte cambia quello che il tavolo vota, e si vede.
 
 **Il prezzo:** i Consigli **cadono molto meno**. Su cento partite, tavolo
-uniforme, gli esiti FAILURE vanno da **108 a 37**; sul misto da **25 a 14**. La
+misto, gli esiti FAILURE vanno da **108 a 37**; sull'uniforme da **25 a 14**. La
 ragione è quella che il lavoro voleva: con due sole proposte generiche su
 tredici carte, chi proponeva raramente trovava qualcosa che il tavolo volesse;
 adesso ogni carta offre tre strade sue. Ma un Consiglio che quasi non cade è un
 Consiglio con meno posta, e le Conseguenze `CNS_FAILURE_*` girano un terzo
 delle volte di prima. **Aperta come [ISSUES 119](ISSUES.md#119)**: è una
 questione di disegno, non di dati.
+
+> **Correzione (0.1.349).** Questo paragrafo e la tabella qui sotto dicevano
+> *«tavolo uniforme»* dove i numeri sono del **misto**, e viceversa: la sonda
+> stampa il misto per primo, e li avevo letti al contrario. I numeri sono
+> quelli, le etichette erano scambiate.
 
 **Il primo effetto collaterale, chiuso subito.** Meno fallimenti vuol dire meno
 `rumour_running`, che lo scriveva **solo** il sacchetto dei fallimenti del
@@ -334,7 +339,7 @@ fiction la chiedeva già (La Parola Storta, I Nomi Vecchi).
 | **vite che non si siedono mai** | 2 | **1** |
 | trasformazioni sedute in 12 saghe | 223 | **233** |
 | segni che non arrivano mai sul tavolo | 50 | **52** |
-| **Consigli caduti** (100 partite, uniforme / misto) | 108 / 25 | **37 / 14** |
+| **Consigli caduti** (100 partite, misto / uniforme) | 108 / 25 | **37 / 14** |
 
 Due numeri in più vanno letti come costi e sono scritti come tali: i segni che
 non arrivano mai salgono di due — tre ne guadagnano il tavolo
