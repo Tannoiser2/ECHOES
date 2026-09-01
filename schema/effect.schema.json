@@ -25,6 +25,8 @@
         "TRANSFER_ASSET",
         "CREATE_CLAIM",
         "CONSUME_CLAIM",
+        "GRANT_CLAIM_TOKEN",
+        "SPEND_CLAIM_TOKEN",
         "ADD_SCAR",
         "REMOVE_SCAR",
         "SET_ENTITY_TAG",

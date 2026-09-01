@@ -13,6 +13,7 @@ extends SceneTree
 ##
 ## Deterministic: same seed, same saga, down to the sentences.
 
+const ChronicleController := preload("res://scripts/chronicle/chronicle_controller.gd")
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
@@ -173,7 +174,7 @@ func _initialize() -> void:
 			"truths": new_truths,
 			"scars": new_scars,
 			"destinies": destinies,
-			"standing": _standing(world),
+			"standing": _standing(world, data),
 			"played": int(world.get("chronicles_played", index + 1)),
 			"decides_after": int(
 				(data.chronicles[chronicle_id if index == 0 else later_id].get(
@@ -209,14 +210,20 @@ func _initialize() -> void:
 
 ## La classifica della campagna (D-180), se la Chronicle la tiene. Ordinata, e
 ## col nome corrente del seggio: in una saga lunga chi siede cambia, il conto no.
-func _standing(world: Dictionary) -> Array:
+func _standing(world: Dictionary, data: RefCounted) -> Array:
 	var rows: Array = []
 	for entity_id in world["turn_order"]:
 		var seat: Dictionary = (world["entities"] as Dictionary)[str(entity_id)] as Dictionary
 		if not seat.has("saga_score"):
 			continue
-		rows.append([int(seat["saga_score"]), str(seat["name"])])
-	rows.sort_custom(func(a, b): return int(a[0]) > int(b[0]))
+		# **L'Eredita'** (D-385) e' un bonus sopra i gradini, non un gradino:
+		# sta a fianco del totale e non dentro, cosi' chi legge la classifica
+		# vede quanto viene dagli anni e quanto dalle leggende.
+		rows.append([
+			int(seat["saga_score"]), str(seat["name"]),
+			ChronicleController.legacy_points(world, data, str(entity_id)),
+		])
+	rows.sort_custom(func(a, b): return int(a[0]) + int(a[2]) > int(b[0]) + int(b[2]))
 	return rows
 
 
@@ -338,7 +345,13 @@ func _print_saga(saga: Array) -> void:
 		if not (year["standing"] as Array).is_empty():
 			var board: Array = []
 			for row in year["standing"]:
-				board.append("%s %d" % [str((row as Array)[1]), int((row as Array)[0])])
+				var bonus: int = int((row as Array)[2])
+				board.append("%s %d%s" % [
+					str((row as Array)[1]), int((row as Array)[0]) + bonus,
+					"" if bonus == 0 else " (%d+%d di Eredita')" % [
+						int((row as Array)[0]), bonus
+					],
+				])
 			var needed: int = int(year["decides_after"])
 			var played: int = int(year["played"])
 			var verdict: String = ""

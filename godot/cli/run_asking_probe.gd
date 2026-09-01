@@ -92,11 +92,23 @@ func _initialize() -> void:
 	_report(
 		played["objectives"], still["objectives"], data, runs, chronicle_id, mixed
 	)
+	_report_gestures(played["gestures"], still["gestures"])
 	_report_destinies(played["destinies"], still["destinies"], data)
 	quit(0)
 
 
 const LEVEL_SCORE: Dictionary = {"NONE": 0, "MINIMUM": 1, "VICTORY": 2, "TRIUMPH": 3}
+
+## I tipi di Effetto che i gesti di `did_this_year` sanno riconoscere (D-386),
+## col nome del gesto. Serve solo a stampare la riga: chi decide se una riga del
+## verbale e' un gesto e' `ConditionEvaluator`, non questa mappa.
+const GESTI: Dictionary = {
+	"BUILD_STRUCTURE": "alzare una Pietra",
+	"SET_STRUCTURE_GRADE": "alzare una Pietra",
+	"SET_CONTROL": "prendere una terra",
+	"ADD_PRESENCE": "posare una presenza",
+	"SET_RELATION": "muovere un legame",
+}
 
 
 ## Un giro di anni. Torna {objectives: obiettivo -> [pescati, regalati,
@@ -109,6 +121,7 @@ func _play(
 ) -> Dictionary:
 	var tally: Dictionary = {}
 	var fates: Dictionary = {}
+	var gestures: Dictionary = {}
 	for run in range(runs):
 		var seed_value: int = first_seed + run
 		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
@@ -135,6 +148,19 @@ func _play(
 			quit(3)
 			return {}
 		var at_dusk: Dictionary = _standing(session)
+		# **Chi fa i gesti** (D-386). Gli obiettivi nuovi chiedono un gesto
+		# invece di uno stato; qui si conta **da dove arriva la firma**, perche'
+		# un tavolo che passa a ogni turno parla lo stesso in Consiglio — e un
+		# gesto firmato da una proposta non e' un gesto fatto col turno.
+		for entry in (session.world["effect_log"] as Array):
+			var kind: String = str(((entry as Dictionary).get("source", {}) as Dictionary).get("kind", ""))
+			if str(((entry as Dictionary).get("source", {}) as Dictionary).get("actor", "")) == "":
+				continue
+			var verb: String = str((entry as Dictionary).get("type", ""))
+			if not GESTI.has(verb):
+				continue
+			var key: String = "%s da %s" % [str(GESTI[verb]), kind]
+			gestures[key] = int(gestures.get(key, 0)) + 1
 
 		for key in at_dawn:
 			var objective_id: String = str((key as Array)[1])
@@ -164,7 +190,7 @@ func _play(
 			fate[1] = int(fate[1]) + int(LEVEL_SCORE.get(level, 0))
 			fates[destiny_id] = fate
 		session.dispose()
-	return {"objectives": tally, "destinies": fates}
+	return {"objectives": tally, "destinies": fates, "gestures": gestures}
 
 
 ## Ogni coppia (seggio, obiettivo pescato) e se la sua clausola vale adesso.
@@ -263,6 +289,27 @@ func _report(
 ## PZ-7 (D-270): per ogni Destino, il livello medio dell'anno (NONE 0 ...
 ## TRIUMPH 3) col tavolo vero e col tavolo di pietra. Il criterio della
 ## roadmap e' secco: **giocare deve rendere piu' che stare fermi, per ognuno**.
+## **Da dove arriva un gesto**, sul tavolo vero e su quello di pietra.
+##
+## E' la riga che spiega perche' un obiettivo che chiede un gesto puo' restare
+## avverabile stando fermi: **un tavolo che passa a ogni turno parla lo stesso
+## in Consiglio**, e gli Effetti di una proposta portano la firma di chi l'ha
+## portata. Passare non e' non fare niente: e' non fare niente **col turno**.
+func _report_gestures(played: Dictionary, still: Dictionary) -> void:
+	print("")
+	print("  Da dove arriva un gesto firmato (D-386):")
+	print("    %-44s %8s %8s" % ["gesto e sorgente", "giocando", "fermi"])
+	var keys: Array = played.keys()
+	for key in still:
+		if not keys.has(key):
+			keys.append(key)
+	keys.sort()
+	for key in keys:
+		print("    %-44s %8d %8d" % [
+			str(key), int(played.get(key, 0)), int(still.get(key, 0))
+		])
+
+
 func _report_destinies(played: Dictionary, still: Dictionary, data: RefCounted) -> void:
 	print("")
 	print("== I DESTINI: GIOCARE RENDE? (PZ-7) ==")

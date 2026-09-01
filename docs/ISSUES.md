@@ -4048,8 +4048,25 @@ del Vetro. Cioe' premia la durata con un altro nome.
 3. **cambiare i profili** perche' i desideri siano cose che il mondo sa dare e
    togliere, e allora tutte e tre le versioni tornano vive.
 
-**Fatto quando** il committente ha scelto, e la sonda mostra il numero muoversi
-nella direzione scelta.
+### ✅ Chiusa in 0.1.353: scelta la seconda strada ([D-385](DECISIONS.md#d-385))
+
+Il committente ha scelto: **«a fine saga, +3 per ogni leggenda che porta il tuo
+nome»**. Scritta, e misurata su 24 saghe da 8 anni sui due tavoli.
+
+| | |
+|---|---|
+| saghe in cui l'Eredità **ribalta il vincitore** | **10 su 24** |
+| accordo con chi ha più Trionfi, senza Eredità | 3 su 24 |
+| accordo con chi ha più Trionfi, con Eredità | 3 su 24 |
+
+**Morde** — molto più della variante misurata in D-299 (1 su 24), perché quella
+pagava +3 a salto se *una qualsiasi* leggenda c'era, e questa paga +3 **per
+leggenda**. E non migliora l'accordo coi Trionfi: è un secondo punteggio, non
+una correzione del primo, che è quello che il documento chiede.
+
+**Il costo dichiarato: due case su otto prendono zero, sempre.** Non perché
+giocano male — perché i segni che vogliono lasciare non possono diventare
+leggende. Continua in [ISSUES 124](#124).
 
 ---
 
@@ -7010,52 +7027,90 @@ Destini condivisi su quattro pagano **meglio** chi gioca di chi sta fermo.
 
 ---
 
-### 119. Il Consiglio non cade quasi più: FAILURE da 108 a 37
+### 119. Il Consiglio non cade quasi più, e cosa si perde quando non cade
 
 `regole` · `da-decidere` · aperta in 0.1.345
-([D-378](DECISIONS.md#d-378))
+([D-378](DECISIONS.md#d-378) · rimisurata e riscritta in 0.1.353)
 
-Scritti gli ultimi tre Temi ([D-378](DECISIONS.md#d-378)), ogni carta offre tre
-proposte **sue** invece delle due generiche del suo dominio. Il tavolo ne trova
-molto più spesso una che gli va bene, e i Consigli passano:
+*Riscritta con gli esempi che il committente ha chiesto: la voce di prima
+diceva un numero e tre strade, e non diceva **cosa si vede al tavolo**.*
 
-| esiti su 100 partite | prima | dopo |
-|---|---|---|
-| tavolo misto — FAILURE | 108 | **37** |
-| tavolo uniforme — FAILURE | 25 | **14** |
+#### Il numero, e da dove viene
 
-*(In 0.1.347 questa tabella aveva i due tavoli scambiati: la sonda stampa il
-misto per primo. I numeri sono quelli, le etichette no — corretto in 0.1.349.)*
+Fino a [D-378](DECISIONS.md#d-378), cinquantadue carte Tensione su sessanta
+condividevano **due sole proposte generiche** per dominio. Chi proponeva
+raramente trovava qualcosa che il tavolo volesse, e i Consigli cadevano — ma per
+**povertà di offerta**, non per conflitto. Scritte le proposte carta per carta,
+il tavolo trova molto più spesso una proposta che gli va bene:
 
-**È l'effetto che il lavoro cercava, ed è anche un prezzo.** Con due sole
-proposte su tredici carte, chi proponeva raramente trovava qualcosa che il
-tavolo volesse: i Consigli cadevano per povertà di offerta, non per conflitto.
-Ma un Consiglio che quasi non cade è un Consiglio **con meno posta**, e tutto
-quello che vive nella banda del fallimento gira un terzo delle volte di prima:
-le sette Conseguenze `CNS_FAILURE_*`, il marchio `spoke_and_lost` di chi ha
-proposto e ha perso — che adesso **non arriva mai** sul tavolo in cento partite
-— e la parte della carta Tensione che dice *«se cade»*.
+| esiti su 100 partite | prima di D-378 | dopo | oggi (0.1.353) |
+|---|---|---|---|
+| tavolo misto — FAILURE | 108 | 37 | **29** |
+| tavolo uniforme — FAILURE | 25 | 14 | **15** |
 
-Un effetto collaterale è già chiuso: `rumour_running`, scritto solo dal
-sacchetto dei fallimenti del dominio ANTICO, era sceso a zero e riapriva una
-porta murata che [D-372](DECISIONS.md#d-372) aveva appena chiuso. Adesso lo
-scrive anche una proposta che passa (`CNS_WORD_GOES_ROUND`). Ma la banda resta
-magra.
+Un Consiglio su undici cade, sul tavolo misto. Prima ne cadeva quasi uno su tre.
 
-#### Le tre strade, e la scelta è del committente
+#### Cosa succede al tavolo, in concreto
 
-- **(a) Va bene così.** Un Consiglio deve decidere; cadeva perché l'offerta era
-  povera, e adesso non lo è più. La banda del fallimento resta per i casi veri.
-- **(b) Il fallimento si compra.** Con l'economia delle caselle
-  ([D-280](DECISIONS.md#d-280), ISSUES 72) il prezzo lo pagano gli avversari:
-  una proposta cade quando **nessuno vuole pagarla**, non quando nessuno la
-  vuole. È la strada che il gioco sta già costruendo, e questa misura è il
-  numero da riguardare quando l'economia sarà in piedi.
-- **(c) Si alza la soglia.** Equilibrio puro, e l'equilibrio si misura prima di
-  scriverlo: il cancello vuole **0 seggi bloccati su 8**.
+**Un Consiglio che passa.** La Carestia è salita, si apre la Confluenza. Aldric
+propone *«Il grano della Valle sia requisito in nome del trono»*. Posa la sua
+pedina gratis su **Costruisci 1 Pietra: Granaio**. Nahr si oppone e spende un
+gettone per posare **Cedi il controllo del luogo**. Il dado esce, il margine
+tiene: la proposta passa. Sulla mappa arriva un Granaio, e la Valle Verde cambia
+padrone. **Tutti hanno deciso qualcosa, e la mappa lo mostra.**
 
-**Fatto quando** il committente sceglie, o quando l'economia delle caselle è in
-piedi e questa misura si rifà con lei.
+**Un Consiglio che cade.** Stessa carta, ma il fronte avverso è più pesante e il
+margine non tiene. Adesso succedono tre cose, e **nessuna delle tre è sulla
+mappa**:
+
+1. scatta la lista *«se cade»* **stampata sulla carta** — sulla Carestia:
+   *«al luogo si aggiunge #fame»* e *«il Tema di questa domanda si scalda di 1»*;
+2. il sacchetto dei fallimenti del dominio pesca una delle sette Conseguenze
+   `CNS_FAILURE_*` — voci come *«la voce corre»*, che scrivono una memoria nel
+   mondo invece di una Pietra;
+3. Aldric si porta addosso **`spoke_and_lost`**: ha parlato e ha perso, e il
+   segno resta sulla sua scheda.
+
+**Ecco cosa vuol dire «meno posta».** Non che il gioco sia più facile: che
+**quel terzo di storie non succede più**. In cento partite `spoke_and_lost` si
+posa oggi **8 volte** — su 8 case e 300 Consigli. Un segno che il tavolo vede
+una volta ogni dodici partite non è una minaccia: è una curiosità.
+
+#### Le tre strade, con un esempio ciascuna
+
+**(a) Va bene così.** *Un Consiglio deve decidere.* Cadeva perché l'offerta era
+povera, e adesso non lo è più; la banda del fallimento resta per i casi veri —
+quando il tavolo è davvero spaccato. Al tavolo si vede così: **quasi ogni
+Consiglio lascia un segno sulla mappa**, e la tensione sta in *quale* proposta
+passa, non nel se.
+*Costo:* sette Conseguenze e un segno delle case restano contenuto che quasi
+nessuno legge. *Non costa niente da fare.*
+
+**(b) Il fallimento si compra** — ed è la strada che
+[D-387](DECISIONS.md#d-387) ha appena reso possibile. Adesso un avversario
+spende un gettone per **posare un costo**; la stessa moneta potrebbe comprare
+**opposizione**: un gettone speso contro la proposta pesa nel margine.
+Al tavolo: *«questa non deve passare»*, e paghi per fermarla — invece di
+sperare nel dado. Una proposta cadrebbe quando **qualcuno l'ha voluta far
+cadere**, non quando i numeri non tornano.
+*Costo:* è una regola nuova sopra una appena scritta, e i gettoni oggi sono
+pochi ([ISSUES 125](#125)). Va misurata: il cancello vuole 0 seggi bloccati su
+8.
+
+**(c) Si alza la soglia.** Il margine che serve per passare sale di uno. È
+equilibrio puro: non cambia niente di quello che si fa al tavolo, cambia
+quanto spesso funziona. Al tavolo non si vede una regola nuova — si vede che
+proporre da soli non basta più, e che serve **un alleato in più** o **una carta
+impegnata in più**.
+*Costo:* nessuna storia nuova, e il rischio di riportare i Consigli a cadere per
+aritmetica invece che per conflitto — cioè il difetto che D-378 ha appena tolto.
+Si misura in mezz'ora, ed è reversibile.
+
+**La mia lettura, se serve:** (a) e (b) non si escludono. (a) è vera oggi, (b) è
+la forma piena verso cui l'economia sta andando, e (c) è la sola che rischia di
+disfare D-378.
+
+**Fatto quando** il committente sceglie.
 
 ---
 
@@ -7143,6 +7198,35 @@ chiedere un gesto o uno stato.
 avvera da fermi (0,84 giocando contro 1,04), e nessun segno lo ribalta — chiede
 che le questioni restino basse, e un tavolo che non fa niente le tiene basse per
 definizione. E' lo stesso difetto, con la stessa cura.
+
+### La cura è scritta, e ha curato quattro obiettivi su sei (0.1.353, [D-386](DECISIONS.md#d-386))
+
+Il committente ha detto *«fai la cura proposta»*, ed è fatta: `did_this_year`,
+una clausola che legge **il verbale dell'anno** invece dello stato del tavolo, e
+quattro gesti — alzare una Pietra, prendere una terra, posare una presenza,
+stringere un legame.
+
+| obiettivo | prima (giocando / fermi) | dopo |
+|---|---|---|
+| `BOUND_HOUSE` | 6 / 20 → −19% | 6 / 0 → **+8%** |
+| `THE_LONGEST_REACH` | 3 / 10 → −10% | 2 / 0 → **+3%** |
+| `THE_WIDEST_SPREAD` | 4 / 4 → +0% | 4 / 0 → **+7%** |
+| `A_WORK` | 14 / 16 → −3% | 13 / 13 → +0% |
+| `MOST_STONE` | 12 / 12 → +0% | 6 / 7 → **−2%** |
+| `A_STONE` | 15 / 20 → −7% | 5 / 15 → **−14%** |
+
+**Sei → tre**, e i tre che restano sono tutti e tre di Pietra, con una causa
+sola e misurata: **nessuna Azione della plancia alza una Pietra** — una sola in
+cento partite — e le Pietre le alza il Consiglio, che è **più generoso con un
+tavolo che tace** (199 contro 165). È [ISSUES 123](#123), aperta lì.
+
+**Resta aperta questa voce**, per la domanda che la cura ha lasciato sul tavolo:
+`did_this_year` **non ha un segnalino**. A fine anno «l'hai alzata quest'anno?»
+si risponde ricordando, o guardando l'app. Il candidato più economico è già
+nella scatola — **la pila delle carte giocate, scoperta davanti a ciascuno**,
+che è dove `echo_function_played` già guarda — ma renderebbe il gesto una
+proprietà della carta invece che del mondo. **Fatto quando** il committente dice
+come il tavolo si ricorda di un gesto.
 
 ---
 
@@ -7238,5 +7322,171 @@ può comprare.
   compra, gli altri scelgono in che moneta paga. Lì il valore intrinseco conta
   meno, perché la scelta non è più solo sua.
 
-**Fatto quando** il committente sceglie, o quando l'economia piena di D-280 è in
-piedi e questa misura si rifà con lei.
+### ✅ Chiusa a metà in 0.1.353: il committente ha dettato la regola ([D-387](DECISIONS.md#d-387))
+
+> *«Chi propone sceglie GRATIS un Beneficio mettendo un token su uno dei
+> benefici della carta, gli altri giocatori possono astenersi oppure mettere un
+> token su un costo… Anche il proponente può spendere segnalini rivendicare per
+> aggiungere benefici.»*
+
+È la strada **(c)**, e più della (c): il prezzo non lo fanno solo gli avversari
+— lo **comprano**, spendendo una moneta che si guadagna giocando una carta
+Asset dalla sua faccia RIVENDICARE.
+
+| | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,71 | **1,40** |
+| **costi posati dagli avversari, per Consiglio** | **0,09** | **0,68** |
+| costi posati in 100 partite | 34 | **217** |
+
+**La metà chiusa:** il proponente adesso spende qualcosa di suo, e gli avversari
+scelgono davvero il prezzo — prima ne sceglievano 34 su 364 Consigli, tutto il
+resto lo prendeva il mondo dall'alto della lista.
+
+**La metà che resta, ed è il difetto originale di questa voce:** *le caselle
+vive per Consiglio non sono salite, sono scese* — da 1,71 a 1,40. Con 2,8 carte
+RIVENDICARE giocate per partita, i gettoni bastano per circa **un acquisto in
+più per partita**, non per Consiglio. Continua in [ISSUES 125](#125): quanto
+deve essere abbondante la moneta.
+
+---
+
+### 123. Nessuna Azione della plancia alza una Pietra, e il Consiglio paga meglio chi tace
+
+`regole` · `da-decidere` · aperta in 0.1.353 ([D-386](DECISIONS.md#d-386))
+
+Scritta la clausola del gesto ([D-386](DECISIONS.md#d-386)), sei obiettivi su
+diciassette che rendevano uguale o meglio stando fermi sono diventati tre — e i
+tre che restano hanno **una causa sola, misurata contando da dove arriva ogni
+gesto firmato** in cento partite:
+
+| gesto e sorgente | tavolo che gioca | tavolo di pietra |
+|---|---|---|
+| alzare una Pietra **da un'Azione** | **1** | 0 |
+| alzare una Pietra da un Consiglio | 165 | **199** |
+| posare una presenza da un'Azione | 837 | 0 |
+| muovere un legame da un'Azione | 814 | 0 |
+| prendere una terra da un'Azione | 5 | 0 |
+
+Due cose, e sono due difetti diversi:
+
+1. **Le Pietre non si alzano col turno.** Delle sei Azioni della plancia —
+   ACQUISIRE, MUOVERE, INFLUENZARE, FORGIARE, TRAMARE, RIVENDICARE — nessuna
+   costruisce. In cento partite una sola Pietra è salita per mano di un'Azione,
+   e viene dagli `on_commit_effects` di una carta. Chi vuole costruire **deve
+   passare dal Consiglio**, cioè deve convincere il tavolo.
+2. **Il Consiglio è più generoso con chi tace.** 199 Pietre a un tavolo che
+   passa a ogni turno, 165 a uno che gioca: le proposte di un tavolo silenzioso
+   non le contesta nessuno. È [ISSUES 119](#119) vista dall'altra parte — un
+   Consiglio che quasi non cade regala a chi non fa niente.
+
+Insieme vogliono dire: **finché è così, nessun obiettivo di Pietra può premiare
+il giocare**, per quanto bene sia scritto. `A_STONE`, `A_WORK` e `MOST_STONE`
+restano i tre che rendono uguale o meglio da fermi.
+
+**Le strade, e la scelta è del committente:**
+
+- **(a) Un'Azione che costruisce.** ACQUISIRE è l'unica delle sei che nessuna
+  carta modifica ([D-381](DECISIONS.md#d-381)): potrebbe diventare *«prendi una
+  carta, oppure alza una Pietra dove hai presenza»*. Costo: cambia la plancia,
+  che è il pezzo più stampato del gioco.
+- **(b) Le Pietre restano una cosa che si decide insieme**, e allora gli
+  obiettivi di Pietra non devono chiedere un gesto — devono chiedere **una
+  proposta tua passata**, che è un gesto anche quello e passa dal Consiglio.
+  Costo: un quinto gesto nel vocabolario.
+- **(c) Si sistema prima [ISSUES 119](#119)**, e questo si rimisura: se un
+  Consiglio contestato cade più spesso, il tavolo di pietra smette di essere
+  premiato.
+
+**Fatto quando** il committente sceglie, o quando 119 è chiusa e questa misura
+si rifà con lei.
+
+---
+
+### 124. Due case su otto non possono prendere l'Eredità, mai
+
+`contenuto` · `da-decidere` · aperta in 0.1.353 ([D-385](DECISIONS.md#d-385))
+
+Scritta l'Eredità — *+3 per ogni leggenda che porta il tuo nome* — la sonda dice
+quanto rende, casa per casa, su 24 saghe:
+
+| casa | Eredità media per saga |
+|---|---|
+| Le Libere Città | **8,00** |
+| La Compagnia del Sale | 4,38 |
+| Lyra | 4,25 |
+| Re Aldric · Il Vetro | 3,00 |
+| Le Custodi della Cenere | 2,75 |
+| **La Diaspora di Nahr · Vaerax** | **0,00** |
+
+Non è come giocano: è **cosa hanno dichiarato di voler lasciare**. La sonda lo
+mostra desiderio per desiderio, e i due modi di prendere zero sono diversi:
+
+- **un segno di Regione non diventa mai leggenda.** `settlement:village`,
+  `nomad_range`, `structure:sealed`, `place:sleeping_site`, `structure:archive`,
+  `structure:granary`, `structure:road`, `structure:tollgate` — otto desideri su
+  trentadue: zero fatti globali, zero leggende. Solo un fatto del mondo
+  sbiadisce in `legend:` ([D-075](DECISIONS.md#d-075)).
+- **un fatto murato non diventa mai leggenda.** `ledger_public` è vero a fine
+  saga **24 volte su 24** e leggenda **zero**; `nahr_settled` 12 e zero;
+  `crown_divided` 10 e zero; `mine_sealed` 7 e zero. Sono gli `enduring_facts`
+  della Chronicle: cose che il mondo tiene per vere per sempre. E **una cosa che
+  *è ancora* non è una cosa di cui *si racconta ancora*** — il che, letto come
+  regola, è giusto.
+
+**Le strade:**
+
+- **(a) È giusto così**, e le due case hanno bisogno di un'altra moneta: è
+  [ISSUES 76](#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono)
+  un'altra volta.
+- **(b) Si cambiano i desideri** di Nahr e Vaerax perché almeno due su quattro
+  siano fatti globali che possono sbiadire. Costo: cambia **chi sono** quelle
+  due case, che è contenuto d'autore.
+- **(c) L'Eredità paga anche il fatto murato**, a metà (+1 invece di +3). Costo:
+  è premiare la durata con un altro nome, cioè esattamente quello che
+  [D-299](DECISIONS.md#d-299) ha scartato.
+
+**Fatto quando** il committente sceglie.
+
+---
+
+### 125. La moneta del Consiglio è troppo poca perché una proposta sia una mossa
+
+`regole` · `da-decidere` · aperta in 0.1.353 ([D-387](DECISIONS.md#d-387))
+
+Scritti i gettoni di rivendicazione, l'economia del Consiglio funziona come il
+committente l'ha dettata — ma **le caselle vive per Consiglio sono scese**, non
+salite, ed è il difetto che [ISSUES 122](#122) voleva togliere.
+
+| | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,71 | **1,40** |
+| costi posati dagli avversari, per Consiglio | 0,09 | **0,68** |
+| COSTRUISCI PIETRA, comprata | 143 | 89 |
+| POSA UN SEGNO SU UNA CASATA | 6 | **3** |
+| UNA PIETRA SALE | 2 | **0** |
+
+Il conto è semplice: **RIVENDICARE si gioca 2,8 volte per partita**, e i
+Consigli in una partita sono **tre**. Quindi i gettoni bastano per circa un
+acquisto in più *per partita*, non per Consiglio — e quello che si compra resta
+la casella che vale di più, come prima.
+
+**Le strade, e sono tutte misurabili in mezz'ora:**
+
+- **(a) Più carte con la faccia RIVENDICARE.** Oggi sono nove su quarantotto.
+  Portarle a quindici raddoppia quasi la moneta senza toccare nessuna regola.
+- **(b) Anche l'Azione della plancia dà il gettone**, non solo la carta. Oggi
+  lo dà solo la carta, perché è quello che il committente ha scritto; RIVENDICARE
+  come Azione apre un diritto che in cinquanta partite moriva inutilizzato 131
+  volte su 140.
+- **(c) Il gettone si guadagna perdendo.** Chi si oppone e la proposta passa
+  lo stesso prende un gettone per il Consiglio dopo: la sconfitta diventa
+  moneta, e la banda del fallimento smette di essere vuota — che è anche una
+  risposta a [ISSUES 119](#119).
+- **(d) Va bene così**, e un Consiglio decide **una cosa sola**: allora le
+  ventitré caselle che restano sono il ventaglio da cui quella cosa cambia da
+  carta a carta, e la misura giusta è *quante caselle diverse un tavolo vede in
+  una campagna* — oggi **16 su 32** in cento partite.
+
+**Fatto quando** il committente sceglie, e la sonda delle caselle mostra i
+benefici per Consiglio muoversi nella direzione scelta.

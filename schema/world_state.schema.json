@@ -486,6 +486,11 @@
             "pattern": "^OBJ_[A-Z0-9_]+$"
           },
           "description": "Gli obiettivi **nascosti** pescati all'apertura (D-198). Il palese non sta qui: e' il Destino giurato, letto al gradino che la Chronicle dichiara in `objectives.public_from`, quindi non c'e' una seconda verita' da tenere allineata. Vuoto, e non letto mai, se la Chronicle non dichiara `objectives`."
+        },
+        "claim_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "I gettoni RIVENDICARE (D-387, ISSUES 122): la moneta con cui il proponente compra i benefici oltre il primo e con cui un avversario posa un costo. Se ne prende uno giocando una carta Asset dalla sua faccia RIVENDICARE. Assente in un salvataggio vecchio: vale zero."
         }
       }
     },

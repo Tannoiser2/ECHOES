@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2900 testi in lettura.
+possono spostare nella frase, non togliere. 2968 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -10595,7 +10595,179 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 > C'è una Carta scritta · E nessuno l'ha rifiutata · E il mondo porta il segno di quel giorno: una teca aperta non si richiude
 
 
-## 10. Le Azioni — la plancia, stampata una volta
+## 10. Gli Obiettivi — i tre coperti che si pescano a inizio saga
+
+**`OBJ_A_GARRISON`**
+> Il Muro che Tiene
+
+> C'è chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo è del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso.
+
+> Un presidio suo tiene la terra
+
+> Almeno un presidio suo · Controllo di almeno 2 Regioni
+
+
+**`OBJ_A_HIGH_HOUSE`**
+> Pietra sopra Pietra
+
+> Alzare qualcosa è facile: alzarlo due volte, no. Chi porta una casa al secondo grado ha speso un anno per farlo.
+
+> Una sua pietra è salita di grado
+
+> Almeno una struttura sua di grado 2 o più
+
+
+**`OBJ_A_LEARNED_HOUSE`**
+> Le Cose che si Sanno
+
+> Sapere non si vede sul tavolo e non si conta in Regioni. Ma alla fine dell'anno, chi ha guardato più a fondo ha guardato più a fondo.
+
+> Ha imparato almeno due cose che il mondo sa indicare
+
+> Almeno due scoperte
+
+
+**`OBJ_A_STONE`**
+> Qualcosa che Resta in Piedi
+
+> Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: quello che conta non è quante ne hai, è che quest'anno ne sia salita una.
+
+> Ha alzato una pietra quest'anno, e ne restano due in piedi
+
+> Almeno due strutture sue in piedi · Una pietra alzata da lei quest'anno
+
+
+**`OBJ_A_WORK`**
+> L'Opera che Porta il Nome
+
+> Non un presidio, non un insediamento: un'opera. E non una che era già lì quando l'anno è cominciato — una che quest'anno è salita, e tutti sanno di chi è.
+
+> Ha alzato quest'anno un'opera che porta il suo nome
+
+> Almeno un'opera sua · Un'opera alzata da lei quest'anno
+
+
+**`OBJ_BOUND_HOUSE`**
+> Le Corde che Tengono
+
+> Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va **fatta**, e quest'anno: un legame ereditato non è una mano tesa, è un'abitudine.
+
+> Ha stretto un legame quest'anno, e chiude l'anno alleata
+
+> Almeno una carta Legami in mano · Alleata o legata con almeno un'altra casa · Un legame stretto da lei quest'anno
+
+
+**`OBJ_FULL_HANDS`**
+> Le Mani Piene
+
+> Finire l'anno con qualcosa ancora da giocare. Non è prudenza: è avere sempre avuto una carta più degli altri — e se tutti tengono tutto, non la tiene nessuno.
+
+> Chiude l'anno con almeno cinque carte in mano
+
+> Più carte in mano di ogni altra casa
+
+
+**`OBJ_MOST_STONE`**
+> Più Pietra di Tutti
+
+> Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**, e lo fa **quest'anno**. Arrivare primi senza aver alzato niente è essere rimasti primi, che è un'altra cosa.
+
+> Più cose in piedi di chiunque altro, e una alzata quest'anno
+
+> Più strutture sue in piedi di ogni altra casa · E almeno una alzata da lei quest'anno
+
+
+**`OBJ_NO_OPEN_QUESTION`**
+> Nessuna Domanda Lasciata Aperta
+
+> Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso, e non gli importa chi li ha chiusi — ma chiuderli costa, e chi arriva a fine anno con la mano ancora piena non ha pagato niente.
+
+> L'anno si chiude senza questioni aperte
+
+> Nessuna questione lasciata aperta · Non più di 5 carte in mano a fine anno
+
+
+**`OBJ_QUIET_WORLD`**
+> Un Mondo che si Può Ancora Usare
+
+> Il mondo si porta addosso quello che gli fai. Questo obiettivo chiede un anno che non lasci più di due cicatrici — ma non lo dà a chi non ha toccato niente: chi non guarda il mondo non lo tiene pulito, si limita a non esserci.
+
+> Il mondo esce dall'anno con non più di due segni
+
+> Non più di due cicatrici sulla mappa · Almeno una scoperta sua
+
+
+**`OBJ_SOMETHING_MUST_BREAK`**
+> Qualcosa Deve Rompersi
+
+> Un anno in cui non succede niente è un anno che nessuno racconta. Questo obiettivo non chiede di vincere una questione: chiede che due arrivino al punto in cui il tavolo deve guardarle in faccia — e le questioni non salgono da sole, le alza qualcuno.
+
+> Almeno due questioni portate a 4 o più
+
+> Almeno due questioni arrivate a 4 o più
+
+
+**`OBJ_THE_LONGEST_REACH`**
+> La Mano Più Lunga
+
+> Non «due Regioni»: **più di chiunque altro**, e non per eredità. Il numero che serve non lo decidi tu, lo decide chi ti sta davanti; la terra in più, quella devi essertela presa.
+
+> Tiene più Regioni di chiunque altro, e una l'ha presa quest'anno
+
+> Più Regioni di ogni altra casa · E una terra passata a lei quest'anno
+
+
+**`OBJ_THE_NAME`**
+> Il Nome che Pesa
+
+> Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.
+
+> Il suo nome porta il segno della fama
+
+> La casa porta il segno della fama
+
+
+**`OBJ_THE_USEFUL_RUIN`**
+> Quello che si Prende
+
+> Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.
+
+> Una terra altrui è stata spolpata o svuotata
+
+> Sfruttata o svuotata, in una terra che non è sua
+
+
+**`OBJ_THE_WIDEST_SPREAD`**
+> La Gente più Sparsa
+
+> Essere in più posti degli altri non è tenere: è **esserci**, e l'esserci si paga in pedine che quest'anno sono uscite dalla riserva. Chi non ne ha mossa nessuna non si è sparso: era già sparso.
+
+> Più pedine sul tavolo di chiunque altro, e una posata quest'anno
+
+> Più pedine di ogni altra casa · E una presenza posata da lei quest'anno
+
+
+**`OBJ_TWO_LANDS`**
+> Due Terre, una Voce
+
+> Non basta esserci: bisogna che due posti rispondano quando chiami. È l'ambizione più semplice del tavolo, e la più difficile da nascondere.
+
+> Due Regioni rispondono al suo nome
+
+> Controllo di almeno 2 Regioni
+
+
+**`OBJ_WRITTEN_THINGS`**
+> Le Cose Scritte
+
+> Non basta quello che tieni in mano: conta che tu sia andato a cercarlo. Chiudere l'anno con due carte di Sapere e almeno una cosa scoperta è una scelta, perché ognuna delle due era anche un'azione che non hai fatto.
+
+> Chiude l'anno con due carte di Sapere in mano
+
+> Almeno 2 carte Sapere in mano · Almeno una scoperta sua
+
+
+## 11. Le Azioni — la plancia, stampata una volta
 
 **`ACT_ACQUIRE`**
 > Acquisire

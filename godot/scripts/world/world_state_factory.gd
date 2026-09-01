@@ -115,6 +115,12 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"tags": (definition["tags"] as Array).duplicate(),
 			"active": bool(definition["active"]),
 			"ao_remaining": 0,
+			# **I gettoni di rivendicazione** (D-387, ISSUES 122): la moneta del
+			# Consiglio. Si comincia a mani vuote — se ne prende uno giocando
+			# una carta Asset dalla sua faccia RIVENDICARE, e si spendono nel
+			# Consiglio: il proponente per comprare un beneficio oltre il primo,
+			# un avversario per posare un costo.
+			"claim_tokens": 0,
 			# Il punteggio della campagna (D-180). Resta a zero e non si legge
 			# mai, se la Chronicle non dichiara `saga_scoring`: e' un contatore,
 			# come `confluence_count`, ed e' fra le eccezioni dichiarate

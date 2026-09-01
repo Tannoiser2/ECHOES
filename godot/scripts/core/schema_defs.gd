@@ -699,6 +699,8 @@ const DEFS := {
 					"TRANSFER_ASSET",
 					"CREATE_CLAIM",
 					"CONSUME_CLAIM",
+					"GRANT_CLAIM_TOKEN",
+					"SPEND_CLAIM_TOKEN",
 					"ADD_SCAR",
 					"REMOVE_SCAR",
 					"SET_ENTITY_TAG",
@@ -745,6 +747,8 @@ const DEFS := {
 					"TRANSFER_ASSET",
 					"CREATE_CLAIM",
 					"CONSUME_CLAIM",
+					"GRANT_CLAIM_TOKEN",
+					"SPEND_CLAIM_TOKEN",
 					"ADD_SCAR",
 					"REMOVE_SCAR",
 					"SET_ENTITY_TAG",
@@ -1996,6 +2000,8 @@ const EFFECT_TYPES := [
 	"TRANSFER_ASSET",
 	"CREATE_CLAIM",
 	"CONSUME_CLAIM",
+	"GRANT_CLAIM_TOKEN",
+	"SPEND_CLAIM_TOKEN",
 	"ADD_SCAR",
 	"REMOVE_SCAR",
 	"SET_ENTITY_TAG",
@@ -2050,8 +2056,17 @@ const CONDITION_TYPES := [
 	"leads_in",
 	"scar_count",
 	"echo_function_played",
+	"did_this_year",
 	"any_of",
 	"some_of",
+]
+
+## I gesti che `did_this_year` cerca nel verbale dell'anno (D-386).
+const GESTURES := [
+	"RAISE_STONE",
+	"SPREAD",
+	"TAKE_GROUND",
+	"TIGHTEN_BOND",
 ]
 
 const ASSET_FAMILIES := [

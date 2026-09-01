@@ -194,8 +194,27 @@ const RELATION_LEVELS: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 ## quello che al tavolo era gia' — misurato, si posava 17 volte in 40 anni
 ## **come prezzo**, e mai come moneta d'acquisto: il quarto beneficio valeva
 ## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
-static func costs_due(benefits: int) -> int:
-	return maxi(0, mini(benefits - 1, MAX_COSTS))
+static func tokens_due(benefits: int) -> int:
+	return maxi(0, benefits - 1)
+
+
+## **Quanti benefici puo' comprare chi ha quei gettoni** (D-387, ISSUES 122).
+##
+## Il primo e' gratis; ogni altro vuole **un gettone di rivendicazione** —
+## preso giocando una carta Asset dalla sua faccia RIVENDICARE. Il tetto resta
+## tre, che sono le pedine che stanno sulla carta.
+##
+## **Perche' e' cambiata la moneta.** Fino a D-386 il secondo beneficio si
+## pagava con un costo, e il costo lo sceglievano gli avversari: sembrava
+## un'economia, ma il proponente non spendeva niente di suo — quindi prendeva
+## sempre e solo **quello che valeva di piu'**, e le altre ventitre' caselle
+## esistevano per quando la prima non si poteva comprare (ISSUES 122, misurato
+## su cento saghe in quattro mosse consecutive). Adesso il secondo beneficio
+## costa una cosa che il proponente **ha dovuto guadagnarsi un turno prima**, e
+## il costo non e' piu' il suo prezzo: e' quello che gli avversari decidono di
+## fargli pagare, spendendo a loro volta.
+static func benefits_affordable(tokens: int) -> int:
+	return mini(MAX_BENEFITS, 1 + maxi(0, tokens))
 
 
 # --- dove e su chi ---------------------------------------------------------

@@ -35,8 +35,9 @@ dove sta quello che il mondo ricorda (D-351).
 | **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 51 | 51 |
 | Presenza e controllo | 2 | 5 per casa |
 | Rombi del Calore | 1 | uno per ognuno dei 6 Temi, piu' due di scorta |
+| **Gettoni RIVENDICARE** — la moneta del Consiglio | 1 | 12 |
 
-**118 tipi diversi, 142 pezzi** piu' le pedine dei seggi.
+**119 tipi diversi, 154 pezzi** piu' le pedine dei seggi.
 
 Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
 questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca

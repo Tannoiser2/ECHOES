@@ -180,6 +180,9 @@ def render(schemas: Dict[str, Dict[str, Any]]) -> str:
     target_kinds = effect_schema["$defs"]["target"]["properties"]["kind"]["enum"]
     source_kinds = effect_schema["$defs"]["source"]["properties"]["kind"]["enum"]
     condition_types = schemas["destiny"]["$defs"]["condition"]["properties"]["type"]["enum"]
+    # I gesti di `did_this_year` (D-386): il vocabolario chiuso di quello che
+    # una clausola puo' cercare nel verbale dell'anno.
+    gestures = schemas["destiny"]["$defs"]["condition"]["properties"]["gesture"]["enum"]
     asset_families = schemas["asset"]["$defs"]["asset"]["properties"]["family"]["enum"]
     relation_levels = (
         schemas["world_state"]["$defs"]["relation_state"]["properties"]["level"]["enum"]
@@ -210,6 +213,9 @@ def render(schemas: Dict[str, Dict[str, Any]]) -> str:
         f"const EFFECT_SOURCE_KINDS := {gd_value(list(source_kinds), 0)}",
         "",
         f"const CONDITION_TYPES := {gd_value(list(condition_types), 0)}",
+        "",
+        "## I gesti che `did_this_year` cerca nel verbale dell'anno (D-386).",
+        f"const GESTURES := {gd_value(list(gestures), 0)}",
         "",
         f"const ASSET_FAMILIES := {gd_value(list(asset_families), 0)}",
         "",

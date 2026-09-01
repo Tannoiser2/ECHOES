@@ -84,9 +84,9 @@ colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».
 
 | pannello | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|
-| colonna di stato | 93 | 191 | 1751 |
+| colonna di stato | 93 | 191 | 1771 |
 | mappa | 1 | *disegna: non lo dichiara* | |
-| il Consiglio | 52 | 218 | 1264 |
+| il Consiglio | 52 | 218 | 1283 |
 | il tavolo | 23 | 0 | 0 |
 | i mazzi dei Temi | 1 | *disegna: non lo dichiara* | |
 | la pagina d'aiuto | 2 | 37 | 28 |

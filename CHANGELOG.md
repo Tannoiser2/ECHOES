@@ -5,6 +5,104 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.353 — Quattro decisioni del committente: l'Eredità, il gesto, la moneta
+
+Quattro voci che erano **sue e non mie** sono state decise, e sono scritte.
+
+### L'Eredità: +3 per ogni leggenda che porta il tuo nome ([D-385](docs/DECISIONS.md#d-385))
+
+Chiude [ISSUES 84](docs/ISSUES.md#84). Una leggenda porta il tuo nome quando
+racconta uno dei segni che la tua casa aveva dichiarato di voler lasciare. Non
+la scrive nessun giocatore: la fabbrica il **tempo**, al salto d'era.
+
+| su 24 saghe | |
+|---|---|
+| saghe in cui l'Eredità **ribalta il vincitore** | **10 su 24** |
+| accordo con chi ha più Trionfi, con e senza | 3 su 24 → 3 su 24 |
+
+**Il costo dichiarato: due case su otto prendono zero, sempre** — Nahr e Vaerax.
+Non giocano male: i segni che vogliono lasciare sono muri e insediamenti, e un
+segno di Regione non diventa mai leggenda; oppure sono `enduring_facts`, e un
+fatto che il mondo tiene per vero per sempre non è una cosa di cui *si racconta*.
+Aperta [ISSUES 124](docs/ISSUES.md#124).
+
+### Il tempo del verbo: una clausola che legge il verbale ([D-386](docs/DECISIONS.md#d-386))
+
+Chiude la parte fattibile di [ISSUES 120](docs/ISSUES.md#120). `did_this_year`
+è la prima clausola del vocabolario che non guarda **come sta il tavolo** ma
+**cos'è successo**: legge il registro degli Effetti dell'anno e cerca uno di
+quattro gesti — alzare una Pietra, prendere una terra, posare una presenza,
+stringere un legame.
+
+| obiettivi che rendono uguale o meglio **stando fermi** | 6 | **3** |
+|---|---|---|
+
+Curati `BOUND_HOUSE` (da −19% a +8%), `THE_LONGEST_REACH` (−10% → +3%),
+`THE_WIDEST_SPREAD` (+0% → +7%). **Peggiorati e scritti**: `A_STONE` da −7% a
+**−14%**, `MOST_STONE` da +0% a −2%.
+
+I tre che restano hanno una causa sola, misurata: **nessuna Azione della plancia
+alza una Pietra** — una in cento partite — e le Pietre le alza il Consiglio, che
+è **più generoso con un tavolo che tace** (199 contro 165). Aperta
+[ISSUES 123](docs/ISSUES.md#123).
+
+### I gettoni di rivendicazione ([D-387](docs/DECISIONS.md#d-387))
+
+Chiude a metà [ISSUES 122](docs/ISSUES.md#122), con la regola dettata dal
+committente. Il proponente posa **un beneficio gratis**; ogni altro costa **un
+gettone RIVENDICARE**, che si guadagna giocando una carta Asset dalla sua faccia
+RIVENDICARE. Gli altri si astengono, o spendono un gettone per **posare un
+costo**. Se nessuno spende, la proposta passa senza prezzo.
+
+| su 100 partite | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,71 | **1,40** |
+| **costi posati dagli avversari, per Consiglio** | **0,09** | **0,68** |
+| costi posati in tutto | 34 | **217** |
+
+Prima, in 364 Consigli gli avversari sceglievano **34 prezzi**: tutto il resto lo
+riempiva il mondo dall'alto della lista, e la frase di D-280 — *«gli avversari
+scelgono in che moneta paga»* — nei fatti non succedeva.
+
+**Il costo dichiarato:** le caselle vive per Consiglio non sono salite, sono
+**scese**. Con 2,8 carte RIVENDICARE giocate per partita i gettoni bastano per
+circa un acquisto in più *per partita*, non per Consiglio. Aperta
+[ISSUES 125](docs/ISSUES.md#125).
+
+E RIVENDICARE adesso rende due volte: prima, **131 diritti su 140 morivano senza
+essere usati** in cinquanta partite.
+
+### ISSUES 119 riscritta con gli esempi
+
+Su richiesta del committente: cosa si vede al tavolo quando un Consiglio passa e
+quando cade, cosa vive nella banda del fallimento — `spoke_and_lost` si posa
+**8 volte in cento partite** — e le tre strade con un esempio ciascuna.
+
+### Il grafo: un elenco invece di un nome da indovinare
+
+Su richiesta del committente. Il bottone **elenco** apre tutti i **964 pezzi**
+raccolti per genere — 48 carte, 60 Tensioni, 194 proposte, 174 segni… — con un
+filtro che restringe. Prima l'unico modo di arrivare a una carta era scriverne
+il nome.
+
+Nel disegno entrano anche i quattro **gesti** e la **moneta** del Consiglio:
+964 pezzi, 4.262 legami; pezzi senza nemmeno una freccia **12 → 7**.
+
+### E per strada
+
+- **Gli obiettivi non erano in `REVISIONE_TESTI.md`**: diciassette carte che si
+  tengono in mano tutto l'anno, in un documento che promette *ogni testo che un
+  giocatore può leggere*. 2.898 → **2.968 testi**.
+- **Un segnalino in più nella scatola**: 118 tipi → **119**, 142 pezzi → **154**.
+- Due EffectType nuovi, `GRANT_CLAIM_TOKEN` e `SPEND_CLAIM_TOKEN`, l'uno
+  l'inverso dell'altro.
+
+**Cancello:** 0 seggi bloccati su un solo livello su 8, tavolo misto e uniforme.
+Suite **679 prove / 101 suite / 86.480 asserzioni** verdi, ventisei cancelli
+verdi.
+
+---
+
 ## 0.1.352 — La prima delle tre riviste: quello che si legge col dito (D-384)
 
 Delle tre riviste che si nascondono in *«tutta la pagina va rivista»*

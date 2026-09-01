@@ -46,6 +46,26 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-of
   border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);max-height:320px;
   overflow-y:auto;display:none}
 .hits.on{display:block}
+/* L'elenco di tutto: si sceglie da una lista invece di indovinare un nome
+   (richiesta del committente). Sta sopra il disegno, e si chiude toccando
+   fuori o con Esc. */
+.elenco{position:absolute;inset:0;z-index:30;background:var(--card);display:none;
+  flex-direction:column}
+.elenco.on{display:flex}
+.elenco-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 16px;
+  border-bottom:1px solid var(--rule);flex:none}
+.elenco-top input{flex:1 1 220px;max-width:340px}
+.elenco-body{overflow-y:auto;padding:6px 16px 24px;flex:1 1 auto}
+.elenco h3{font-family:var(--f-display);font-size:13px;margin:14px 0 5px;
+  position:sticky;top:0;background:var(--card);padding:4px 0 3px;
+  border-bottom:1px solid var(--rule-soft);display:flex;gap:8px;align-items:baseline}
+.elenco h3 span{font-size:10px;color:var(--ash);font-weight:400}
+.elenco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2px}
+.voce{font:inherit;font-size:12.5px;text-align:left;padding:5px 7px;border:0;border-radius:2px;
+  background:none;color:var(--ink);cursor:pointer;display:block;min-height:30px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.voce:hover{background:var(--rule-soft)}
+.voce code{font-family:var(--f-mono);font-size:9.5px;color:var(--ash);margin-left:5px}
 .hit{width:100%;font:inherit;font-size:12.5px;text-align:left;padding:6px 9px;border:0;
   background:none;color:var(--ink);cursor:pointer;display:flex;gap:7px;align-items:baseline}
 .hit:hover{background:var(--rule-soft)}
@@ -120,6 +140,7 @@ svg#flow.drag{cursor:grabbing}
     <button class="btn" data-depth="1">1</button>
     <button class="btn" data-depth="2">2</button>
     <button class="btn" data-depth="3">3</button>
+    <button class="btn" id="elenco-toggle">elenco</button>
     <button class="btn" id="side-toggle">filtri</button>
   </div>
 </div>
@@ -128,6 +149,14 @@ svg#flow.drag{cursor:grabbing}
 
 <div class="wrap">
   <div class="stage">
+    <div class="elenco" id="elenco">
+      <div class="elenco-top">
+        <strong>Tutti i pezzi del gioco</strong>
+        <input type="search" id="eq" placeholder="restringi l'elenco…" autocomplete="off">
+        <button class="btn" id="elenco-close">chiudi</button>
+      </div>
+      <div class="elenco-body" id="elenco-body"></div>
+    </div>
     <svg id="flow"></svg>
     <div class="tip" id="tip"></div>
     <div class="bar">
@@ -164,7 +193,8 @@ const KINDS = {carta:"Carta", tag:"Segno", luogo:"Luogo", azione:"Azione", pietr
   casa:"Casa", tema:"Tema", eco:"Eco", conseguenza:"Conseguenza", proposta:"Proposta",
   tensione:"Tensione", destino:"Destino", regola:"Regola", funzione:"Funzione",
   casella:"Casella", catena:"Catena delle ere", domanda:"Domanda", clausola:"Clausola",
-  consiglio:"Consiglio", obiettivo:"Obiettivo", profilo:"Profilo", vita:"Vita"};
+  consiglio:"Consiglio", obiettivo:"Obiettivo", profilo:"Profilo", vita:"Vita",
+  gesto:"Gesto", moneta:"Moneta"};
 const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["letto da","--legge"],
   esegue:["esegue","--ink"], vieta:["vieta","--vieta"], scalda:["scalda","--scalda"],
   raccoglie:["raccoglie","--tema"], osservato_da:["osservato da","--legge"],
@@ -179,7 +209,7 @@ const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["l
   se_cade:["se cade","--vieta"], se_stravince:["se stravince","--posa"],
   vuole:["vuole","--posa"], nega:["nega a","--vieta"], conta:["conta","--pietra"],
   diventa:["diventa","--tema"], rovina:["in rovina lascia","--vieta"],
-  vale:["vale","--pietra"]};
+  vale:["vale","--pietra"], chiede:["chiede","--tema"]};
 const POSTI = {TILE_PRINTED:"stampato sulla tessera", TILE_SLOT:"uno spazio sulla tessera",
   ZONE_TOKEN:"un gettone accanto alla tessera", SCAR_TOKEN:"un dischetto rotondo",
   HOUSE_SHEET:"sulla scheda della casa", WORLD_MEMORY:"un gettone sul bordo della mappa",
@@ -476,6 +506,58 @@ document.getElementById("back").onclick = () => {
   const p = st.hist.pop(); if (p) { st.sel = p; st.open.clear(); vb = null; disegna(); } };
 document.getElementById("side-toggle").onclick = () =>
   document.getElementById("side").classList.toggle("on");
+
+/* **L'elenco di tutto** (richiesta del committente): senza, l'unico modo di
+   arrivare a una carta era scriverne il nome — e i nomi delle sessanta carte
+   Tensione non li sa a memoria nessuno. Qui si sceglie da una lista, raccolta
+   per genere e nell'ordine in cui il gioco li nomina. */
+const elenco = document.getElementById("elenco");
+const elencoBody = document.getElementById("elenco-body");
+const eq = document.getElementById("eq");
+
+function disegnaElenco() {
+  const s = eq.value.trim().toLowerCase();
+  const per = new Map();
+  for (const n of G.nodes) {
+    if (s && !n.id.toLowerCase().includes(s) && !(n.t || "").toLowerCase().includes(s)) continue;
+    if (!per.has(n.k)) per.set(n.k, []);
+    per.get(n.k).push(n);
+  }
+  const generi = [...per.keys()].sort((a, b) =>
+    (KINDS[a] || a).localeCompare(KINDS[b] || b, "it"));
+  let html = "";
+  if (!generi.length) html = `<p class="legend">Niente con questo nome.</p>`;
+  for (const k of generi) {
+    const lista = per.get(k).sort((a, b) =>
+      (a.t || a.id).localeCompare(b.t || b.id, "it"));
+    html += `<h3>${KINDS[k] || k} <span>${lista.length}</span></h3><div class="elenco-grid">`;
+    for (const n of lista)
+      html += `<button type="button" class="voce" data-id="${esc(n.id)}"` +
+        ` title="${esc(n.t || n.id)}">${esc(n.t || n.id)}` +
+        `${n.t && n.t !== n.id ? `<code>${esc(n.id)}</code>` : ""}</button>`;
+    html += `</div>`;
+  }
+  elencoBody.innerHTML = html;
+}
+
+function apriElenco(aperto) {
+  elenco.classList.toggle("on", aperto);
+  document.getElementById("elenco-toggle").setAttribute("aria-pressed", aperto ? "true" : "false");
+  if (aperto) { disegnaElenco(); eq.focus(); }
+}
+document.getElementById("elenco-toggle").onclick = () =>
+  apriElenco(!elenco.classList.contains("on"));
+document.getElementById("elenco-close").onclick = () => apriElenco(false);
+eq.addEventListener("input", disegnaElenco);
+elencoBody.addEventListener("click", e => {
+  const b = e.target.closest(".voce");
+  if (!b) return;
+  apriElenco(false);
+  vaiA(b.dataset.id);
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && elenco.classList.contains("on")) apriElenco(false);
+});
 
 /* ricerca */
 const q = document.getElementById("q"), hits = document.getElementById("hits");

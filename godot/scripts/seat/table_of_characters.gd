@@ -197,6 +197,11 @@ class Table extends RefCounted:
 	) -> Array:
 		return await _who(entity_id).choose_costs(entity_id, context, menu, due, session)
 
+	func choose_cost_token(
+		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+	) -> String:
+		return await _who(entity_id).choose_cost_token(entity_id, context, menu, session)
+
 	func choose_counterclaim(
 		entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
 	) -> Dictionary:

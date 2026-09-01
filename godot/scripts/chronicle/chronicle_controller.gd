@@ -14,6 +14,7 @@ const Effect := preload("res://scripts/core/effect.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 signal phase_changed(act: int, round: int, phase: String)
 signal confluence_resolved(result: Dictionary)
@@ -616,15 +617,36 @@ func run_confluence(
 	# Se non sceglie, il mondo prende dall'alto della lista: una carta muta non
 	# esce senza prezzo. Se la controproposta si e' presa la pedina, il fronte
 	# avverso non sceglie.
-	var opposer: String = controller.first_opposer()
-	var due: int = controller.costs_due()
-	if counterclaimed != "price" and opposer != "" and due > 0 \
-			and decider.has_method("choose_costs"):
-		var menu: Array = controller.price_menu()["cost"] as Array
-		if menu.size() > due:
-			var chosen: Array = await decider.choose_costs(opposer, context, menu, due, session)
-			if not chosen.is_empty() and not controller.place_costs(opposer, chosen):
-				log.bullet("Prezzo rifiutato (%s): decide il mondo." % controller.last_error)
+	# **Ogni avversario decide se pagare per far pagare** (D-387, ISSUES 122):
+	# spende un gettone di rivendicazione e posa una pedina su un costo, oppure
+	# si astiene. Nessuno spende, nessun prezzo — e la proposta passa gratis,
+	# che e' la cosa che l'aritmetica di D-280 non permetteva.
+	if counterclaimed != "price" and decider.has_method("choose_cost_token"):
+		for entity_id in controller.stance_order():
+			if str(entity_id) == str(context["proponent"]):
+				continue
+			if controller.claim_tokens(str(entity_id)) <= 0:
+				continue
+			if controller.costs_placed() >= CouncilEconomy.MAX_COSTS:
+				break
+			# **Il menu si accorcia** man mano che le pedine si posano: una
+			# pedina per voce, e chi arriva dopo sceglie fra quelle libere.
+			# Senza questa riga il secondo avversario chiedeva la stessa
+			# casella del primo — la piu' dolorosa per il proponente e' sempre
+			# la stessa — e il Consiglio lo rifiutava come scelta illegale.
+			var menu: Array = []
+			for voice_id in (controller.price_menu()["cost"] as Array):
+				if not controller.priced_costs().has(str(voice_id)):
+					menu.append(str(voice_id))
+			if menu.is_empty():
+				break
+			var picked: String = await decider.choose_cost_token(
+				str(entity_id), context, menu, session
+			)
+			if picked != "" and not controller.place_cost(str(entity_id), picked):
+				log.bullet("Prezzo rifiutato (%s): %s si astiene." % [
+					controller.last_error, _name(str(entity_id))
+				])
 				illegal_actions += 1
 
 	for entity_id in world["turn_order"]:
@@ -1155,9 +1177,28 @@ func _score_the_saga(results: Dictionary, log: RefCounted) -> void:
 			played, "anno giocato" if played == 1 else "anni giocati", needed,
 		])
 		return
-	var leaders: Array = []
+	# **L'Eredita'** (D-385): a saga decisa, e non prima, i gradini si sommano
+	# alle leggende che portano il nome di ciascuna casa.
+	var final_standing: Array = []
+	var said_legacy: bool = false
 	for row in standing:
-		if int((row as Array)[0]) == int((standing[0] as Array)[0]):
+		var seat_id: String = str((row as Array)[2])
+		var bonus: int = legacy_points(world, data, seat_id)
+		if bonus > 0:
+			if not said_legacy:
+				log.bullet("L'Eredita' (%d per leggenda):" % LEGACY_PER_LEGEND)
+				said_legacy = true
+			log.bullet("  %s: +%d — %s" % [
+				str((row as Array)[3]), bonus,
+				", ".join(PackedStringArray(legends_named_after(world, data, seat_id))),
+			])
+		final_standing.append([
+			int((row as Array)[0]) + bonus, bonus, seat_id, str((row as Array)[3]),
+		])
+	final_standing.sort_custom(func(a, b): return int(a[0]) > int(b[0]))
+	var leaders: Array = []
+	for row in final_standing:
+		if int((row as Array)[0]) == int((final_standing[0] as Array)[0]):
 			leaders.append(str((row as Array)[3]))
 	if leaders.size() > 1:
 		log.bullet("Dopo %d anni la campagna e' in parita' fra %s: si va avanti." % [
@@ -1165,8 +1206,53 @@ func _score_the_saga(results: Dictionary, log: RefCounted) -> void:
 		])
 	else:
 		log.bullet("Dopo %d anni la campagna la vince %s, con %d punti." % [
-			played, str((standing[0] as Array)[3]), int((standing[0] as Array)[0]),
+			played, str((final_standing[0] as Array)[3]),
+			int((final_standing[0] as Array)[0]),
 		])
+
+
+## **L'Eredita'** (D-385 — ISSUES 84, la seconda delle tre strade di D-299,
+## scelta dal committente): *«a fine saga, +3 per ogni leggenda che porta il tuo
+## nome»*.
+##
+## Una leggenda porta il nome di una casa quando racconta uno dei segni che
+## quella casa aveva dichiarato di voler lasciare — i `wants` del suo profilo
+## strategico. Le leggende non le scrive nessun giocatore: le fabbrica **il
+## tempo**, al salto d'era, trasformando in `legend:<fatto>` i fatti che
+## sbiadiscono (D-075). E' la frase del committente — *«il mondo parla ancora la
+## lingua che quell'Entita' voleva lasciare?»* — letta su un dato che esiste
+## gia', senza inventarne uno.
+##
+## **Perche' e' un bonus e non un gradino**, e per questo si conta a parte
+## invece di finire dentro `saga_score`: la soglia che decide la campagna apre
+## la porta e non la chiude (D-181), quindi una saga puo' continuare oltre.
+## Sommarlo al totale lo pagherebbe una seconda volta l'anno dopo, e una terza
+## quello dopo ancora — cioe' premierebbe la durata, che e' esattamente quello
+## che il committente ha scritto di non volere (D-299).
+const LEGACY_PER_LEGEND: int = 3
+
+
+## Quanto vale l'Eredita' di una casa, a fine saga.
+static func legacy_points(world_state: Dictionary, data_set: RefCounted, entity_id: String) -> int:
+	return legends_named_after(world_state, data_set, entity_id).size() * LEGACY_PER_LEGEND
+
+
+## Le leggende che portano il nome di una casa, per nome. Solo i fatti globali:
+## `legend:` lo scrive **solo** la sbiadita del salto d'era, e lo scrive li'.
+static func legends_named_after(
+	world_state: Dictionary, data_set: RefCounted, entity_id: String
+) -> Array:
+	var profile: Variant = (data_set.entity_profiles as Dictionary).get(entity_id)
+	if profile == null:
+		return []
+	var facts: Array = world_state.get("global_tags", [])
+	var found: Array = []
+	for voice in ((profile as Dictionary).get("wants", []) as Array):
+		var tag: String = str((voice as Dictionary).get("tag", ""))
+		if tag != "" and facts.has("legend:%s" % tag) and not found.has(tag):
+			found.append(tag)
+	found.sort()
+	return found
 
 
 ## Il grado che si muove con l'esito (D-159), §7.3 della seduta sulla terra.

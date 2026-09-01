@@ -200,17 +200,22 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 		return
 
 	var bought: Array = council.get("benefits", []) as Array
-	var due: int = CouncilEconomy.costs_due(bought.size())
-	var pedina: Dictionary = council.get("price_pedina", {}) as Dictionary
-	var paid: Array = pedina.get("costs", []) as Array
+	# **La moneta si vede** (D-387): quanti gettoni ha speso chi propone, e
+	# quante pedine di costo gli avversari hanno pagato per posare.
+	var spent: int = CouncilEconomy.tokens_due(bought.size())
+	var paid: Array = []
+	var placed_by: Dictionary = {}
+	for posata in (council.get("cost_pedine", []) as Array):
+		paid.append(str((posata as Dictionary)["cost"]))
+		placed_by[str((posata as Dictionary)["cost"])] = str((posata as Dictionary)["by"])
 
 	_face.add_child(_face_heading(
 		"COSA SI COMPRA — %s" % (
-			"un beneficio e' gratis, ogni altro costa un costo"
+			"il primo beneficio e' gratis, ogni altro costa un gettone RIVENDICARE"
 			if bought.is_empty() else
-			"%d comprat%s, prezzo: %d cost%s" % [
+			"%d comprat%s con %d gettone%s" % [
 				bought.size(), "o" if bought.size() == 1 else "i",
-				due, "o" if due == 1 else "i",
+				spent, "" if spent == 1 else "i",
 			]
 		)
 	))
@@ -241,7 +246,7 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 			continue
 		_face.add_child(_face_voice(text, taken, "#6fa88a"))
 
-	_face.add_child(_face_heading(_price_heading(session, council, due, pedina)))
+	_face.add_child(_face_heading(_price_heading(session, placed_by)))
 	for voice in (face.get("costs", []) as Array):
 		var cost_id: String = str((voice as Dictionary)["id"])
 		var chosen: bool = paid.has(cost_id)
@@ -260,19 +265,19 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 			_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), false, "#8a8172"))
 
 
-## Chi paga, e quanto. Le tre situazioni sono tre frasi diverse, perche' al
-## tavolo sono tre cose diverse: non si paga niente, il fronte avverso ha
-## scelto, oppure ha taciuto e il prezzo lo prende il mondo dall'alto della
-## lista (D-267).
-func _price_heading(
-	session: RefCounted, council: Dictionary, due: int, pedina: Dictionary
-) -> String:
-	if due <= 0:
-		return "IN CHE MONETA — niente da pagare: il primo beneficio e' gratis"
-	var who: String = str(pedina.get("by", ""))
-	if who == "":
-		return "IN CHE MONETA — %d da pagare, il fronte avverso non ha ancora posato la pedina" % due
-	return "IN CHE MONETA — %d, e la sceglie %s" % [due, session.service.name_of(who)]
+## Chi ha pagato per far pagare (D-387). Due situazioni, e sono due cose
+## diverse al tavolo: **nessuno ha speso un gettone**, e allora la proposta
+## passa gratis — cosa che l'aritmetica di D-280 non permetteva — oppure
+## qualcuno l'ha speso, e allora si vede chi e su cosa.
+func _price_heading(session: RefCounted, placed_by: Dictionary) -> String:
+	if placed_by.is_empty():
+		return "IL PREZZO — nessuno ha speso un gettone: la proposta passa gratis"
+	var names: PackedStringArray = PackedStringArray()
+	for cost_id in placed_by:
+		names.append(session.service.name_of(str(placed_by[cost_id])))
+	return "IL PREZZO — lo fa pagare %s, con un gettone di rivendicazione" % [
+		" e ".join(names)
+	]
 
 
 func _face_heading(text: String) -> Label:

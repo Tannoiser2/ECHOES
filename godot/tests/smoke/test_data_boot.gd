@@ -405,7 +405,7 @@ func test_generated_schema_covers_every_collection() -> void:
 			SchemaDefs.DEFS.has(str(schema_id)),
 			"schema_defs.gd definisce '%s'" % schema_id
 		)
-	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 29, "l'enum EffectType chiuso ha 29 voci")
+	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 31, "l'enum EffectType chiuso ha 31 voci")
 
 
 ## Every Echo-card hook has to compile to at least one Effect. A card whose

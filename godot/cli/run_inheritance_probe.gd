@@ -32,6 +32,7 @@ const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const ChronicleController := preload("res://scripts/chronicle/chronicle_controller.gd")
 
 ## La scala dei gradini, per il confronto: e' la B di D-181, quella che nella
 ## sonda delle ere somigliava di piu' ai Trionfi.
@@ -65,6 +66,12 @@ func _initialize() -> void:
 	# ancora di quella cosa un secolo dopo», che e' la frase del committente
 	# tradotta in un dato che esiste gia'.
 	var solo_leggende: bool = variante == "leggende"
+	# **E la regola, una volta scritta** (D-385, ISSUES 84). Le tre di sopra
+	# erano proposte; questa e' quello che il motore adesso fa davvero: a fine
+	# saga, +3 per ogni leggenda che porta il tuo nome. Non classifica i salti —
+	# guarda il mondo alla fine e chiama la stessa funzione del motore, cosi' la
+	# sonda non puo' misurare una regola diversa da quella giocata.
+	var regola_scritta: bool = variante == "scritta"
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
@@ -89,6 +96,12 @@ func _initialize() -> void:
 	var saghe_contate: int = 0
 	var punti_per_casa: Dictionary = {}
 	var salti_per_casa: Dictionary = {}
+	# **Quale desiderio diventa leggenda, e quale mai** (D-385). E' la
+	# diagnosi della regola scritta: una casa prende zero non perche' ha
+	# giocato male, ma perche' i segni che vuole lasciare non sono fatti
+	# globali — e solo un fatto globale sbiadisce in `legend:`.
+	var leggende_per_segno: Dictionary = {}
+	var fatti_per_segno: Dictionary = {}
 
 	for tavolo in ["uniforme", "misto"]:
 		for saga_index in range(sagas):
@@ -106,7 +119,7 @@ func _initialize() -> void:
 				var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
 				session.setup(chronicle_id, seats, seed_value)
 				session.inherit_from(previous, previous_results)
-				if index > 0:
+				if index > 0 and not regola_scritta:
 					for entity_id in session.handover():
 						var esito: String = _classify(
 							data, str(entity_id), previous,
@@ -138,6 +151,38 @@ func _initialize() -> void:
 					presenze[str(entity_id)] = int(presenze.get(str(entity_id), 0)) + 1
 					if level == "TRIUMPH":
 						trionfi[str(entity_id)] = int(trionfi.get(str(entity_id), 0)) + 1
+			if regola_scritta:
+				for entity_id in gradini:
+					var quanto: int = ChronicleController.legacy_points(
+						previous, data, str(entity_id)
+					)
+					eredita[str(entity_id)] = quanto
+					var profile: Variant = (data.entity_profiles as Dictionary).get(str(entity_id))
+					if profile != null:
+						for voice in ((profile as Dictionary).get("wants", []) as Array):
+							var want: String = str((voice as Dictionary).get("tag", ""))
+							if want == "":
+								continue
+							var facts: Array = previous.get("global_tags", [])
+							if facts.has("legend:%s" % want):
+								leggende_per_segno[want] = int(
+									leggende_per_segno.get(want, 0)
+								) + 1
+							if facts.has(want):
+								fatti_per_segno[want] = int(fatti_per_segno.get(want, 0)) + 1
+							if not leggende_per_segno.has(want):
+								leggende_per_segno[want] = 0
+							if not fatti_per_segno.has(want):
+								fatti_per_segno[want] = 0
+					punti_per_casa[str(entity_id)] = int(
+						punti_per_casa.get(str(entity_id), 0)
+					) + quanto
+					salti_per_casa[str(entity_id)] = int(
+						salti_per_casa.get(str(entity_id), 0)
+					) + 1
+					esiti["leggende: %d" % (quanto / ChronicleController.LEGACY_PER_LEGEND)] = int(
+						esiti.get("leggende: %d" % (quanto / ChronicleController.LEGACY_PER_LEGEND), 0)
+					) + 1
 			saghe_contate += 1
 			var chi_eredita: String = _best(eredita)
 			var chi_gradini: String = _best(gradini)
@@ -171,19 +216,27 @@ func _initialize() -> void:
 		sagas, chronicles,
 		(" - VARIANTE: solo quello che si poteva perdere" if solo_perdibili
 			else (" - VARIANTE: la leggenda, cioe' quello che il tempo racconta ancora"
-				if solo_leggende else ""))
+				if solo_leggende else (" - LA REGOLA SCRITTA: +%d per ogni leggenda che porta il tuo nome"
+					% ChronicleController.LEGACY_PER_LEGEND if regola_scritta else "")))
 	])
 	print("")
-	print("  Come si e' chiuso ogni salto d'era:")
+	print("  Come si e' chiuso ogni salto d'era:" if not regola_scritta
+		else "  Quante leggende portavano il nome di una casa, a fine saga:")
 	var ordine: Array = ["radicata", "fedele", "sopravvissuta", "distorta", "svanita"]
+	if regola_scritta:
+		ordine = esiti.keys()
+		ordine.sort()
 	var totale: int = 0
 	for esito in ordine:
 		totale += int(esiti.get(esito, 0))
 	for esito in ordine:
 		var quante: int = int(esiti.get(esito, 0))
 		print("    %-14s +%d   %5d   %4.1f%%" % [
-			esito, int(BONUS[esito]), quante,
-			100.0 * float(quante) / float(maxi(1, totale))
+			esito,
+			int(BONUS.get(esito, 0)) if not regola_scritta else int(
+				str(esito).split(" ")[-1]
+			) * ChronicleController.LEGACY_PER_LEGEND,
+			quante, 100.0 * float(quante) / float(maxi(1, totale))
 		])
 	print("")
 	print("  Il vincitore dell'Eredita' e' anche...")
@@ -202,9 +255,22 @@ func _initialize() -> void:
 		ribaltate, saghe_contate
 	])
 	print("")
-	print("  Eredita' media per salto d'era, casa per casa")
+	print("  Eredita' media per salto d'era, casa per casa" if not regola_scritta
+		else "  Eredita' media per saga, casa per casa")
 	print("  (il vincolo del committente: una casa immortale non deve prendere")
 	print("   punti solo perche' dura)")
+	if regola_scritta:
+		print("")
+		print("  Desiderio per desiderio, su %d saghe: quante volte il segno era" % saghe_contate)
+		print("  un fatto a fine saga, e quante volte era diventato leggenda.")
+		var segni: Array = leggende_per_segno.keys()
+		segni.sort()
+		for segno in segni:
+			print("    %-24s fatto %2d   leggenda %2d" % [
+				str(segno), int(fatti_per_segno.get(segno, 0)),
+				int(leggende_per_segno[segno]),
+			])
+		print("")
 	var case: Array = punti_per_casa.keys()
 	case.sort()
 	for entity_id in case:

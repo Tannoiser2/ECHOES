@@ -54,6 +54,7 @@
             "leads_in",
             "scar_count",
             "echo_function_played",
+            "did_this_year",
             "any_of",
             "some_of"
           ]
@@ -96,6 +97,16 @@
           "type": "string",
           "pattern": "^[A-Z_]+$",
           "description": "La funzione di una carta Eco, per `echo_function_played` (D-358): «e' gia' stata calata una carta di questo genere?». Si guarda la pila degli Echi scoperti sul tavolo, non un segno del mondo — prima la stessa domanda si faceva con `state_tag_present` su un `function:` che il motore scriveva e la vista nascondeva, e cambiava chi poteva uscire l'anno dopo senza che al tavolo si vedesse."
+        },
+        "gesture": {
+          "type": "string",
+          "enum": [
+            "RAISE_STONE",
+            "SPREAD",
+            "TAKE_GROUND",
+            "TIGHTEN_BOND"
+          ],
+          "description": "Il gesto che `did_this_year` cerca nel verbale dell'anno (D-386): non «cos'hai», ma «cos'hai fatto». Vocabolario chiuso, come i verbi delle caselle del Consiglio — ALZARE una Pietra, PRENDERE una terra, POSARE una presenza nuova, STRINGERE un legame. Il verbale e' il registro degli Effetti, che ricomincia a ogni anno: quello che il tempo si e' portato via non conta piu'."
         },
         "scope": {
           "type": "string",

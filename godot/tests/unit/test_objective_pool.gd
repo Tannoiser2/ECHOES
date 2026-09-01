@@ -25,6 +25,9 @@ const KNOWN: Array = [
 	"entity_alive", "relation_state", "tension_limit", "discovery_count",
 	"region_presence", "promise_kept", "promise_broken", "structure_count",
 	"scar_count", "any_of", "some_of", "leads_in", "tension_count",
+	# **Il gesto** (D-386): l'unico predicato del vocabolario che non guarda
+	# come sta il tavolo ma cosa e' successo quest'anno.
+	"did_this_year",
 ]
 
 

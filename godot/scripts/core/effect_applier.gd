@@ -210,6 +210,10 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _create_claim(payload)
 		"CONSUME_CLAIM":
 			return _consume_claim(payload)
+		"GRANT_CLAIM_TOKEN":
+			return _move_claim_tokens(target, 1)
+		"SPEND_CLAIM_TOKEN":
+			return _move_claim_tokens(target, -1)
 		"ADD_SCAR":
 			return _add_scar(payload)
 		"REMOVE_SCAR":
@@ -297,6 +301,20 @@ func _set_tension_visibility(target: Dictionary, payload: Dictionary) -> Variant
 	if before == visibility:
 		return {"visibility": before, "noop": true}
 	return {"visibility": before}
+
+
+## **Il gettone della rivendicazione** (D-387, ISSUES 122): uno alla volta, e
+## mai sotto zero. Spendere quello che non si ha e' un errore, non un no-op: al
+## tavolo la pedina o ce l'hai o non ce l'hai.
+func _move_claim_tokens(target: Dictionary, delta: int) -> Variant:
+	var entity: Variant = world["entities"].get(str(target.get("id", "")))
+	if entity == null:
+		return _fail("unknown entity '%s'" % target.get("id", ""))
+	var before: int = int((entity as Dictionary).get("claim_tokens", 0))
+	if before + delta < 0:
+		return _fail("'%s' non ha gettoni di rivendicazione da spendere" % target.get("id", ""))
+	(entity as Dictionary)["claim_tokens"] = before + delta
+	return {}
 
 
 func _add_presence(target: Dictionary, payload: Dictionary) -> Variant:

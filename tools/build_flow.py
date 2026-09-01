@@ -148,6 +148,13 @@ def clausole(o, owner):
         for scelto in o.get("any_tag", []) or []:
             edge(owner, str(scelto), "osserva",
                  "bersaglio a segni: %s" % (o.get("label") or ty))
+        # **Il gesto** (D-386): la clausola che non guarda come sta il tavolo ma
+        # cos'e' successo. Senza questa riga i sei obiettivi riscritti
+        # resterebbero senza freccia esattamente come prima, e il disegno
+        # direbbe che non chiedono niente.
+        if ty == "did_this_year" and o.get("gesture"):
+            edge(owner, "gesto:%s" % str(o["gesture"]), "chiede",
+                 str(o.get("label") or "un gesto fatto quest'anno"))
         if o.get("structure_family"):
             for pietra in FAMIGLIE.get(str(o["structure_family"]), []):
                 edge(owner, pietra, "conta",
@@ -669,6 +676,43 @@ for d in load("destinies/*.json"):
 for ob in load("objectives/*.json"):
     node(ob["id"], "obiettivo", t=ob.get("title", ob["id"]), d=ob.get("description", ""))
     clausole(ob, ob["id"])
+
+# ---------- LA MONETA DEL CONSIGLIO ----------
+#
+# Il gettone di rivendicazione (D-387, ISSUES 122). Prima di questa decisione
+# RIVENDICARE faceva una cosa sola — aprire un diritto — e nel disegno il filo
+# fra l'Azione e il Consiglio non c'era: si vedeva l'Azione, si vedeva il
+# Consiglio, e in mezzo niente.
+MONETA = "moneta:RIVENDICARE"
+node(MONETA, "moneta", t="gettone RIVENDICARE",
+     d="La moneta del Consiglio: il primo beneficio e' gratis, ogni altro costa"
+       " un gettone; un avversario ne spende uno per posare un costo. Se ne"
+       " prende uno giocando una carta Asset dalla sua faccia RIVENDICARE.",
+     posto="HOUSE_SHEET")
+edge("ACT_CLAIM", MONETA, "concede", "giocare la carta dalla faccia RIVENDICARE lascia un gettone")
+for tpl in load("confluences/*.json"):
+    edge(MONETA, tpl["id"], "si_contratta",
+         "si spende qui: un beneficio in piu' per il proponente, un costo per gli avversari")
+
+# ---------- I GESTI: quello che si e' fatto, non quello che si ha ----------
+#
+# Il vocabolario chiuso di `did_this_year` (D-386). I nomi arrivano dallo
+# schema, non da questa lista: se qualcuno ne aggiunge uno e non lo descrive
+# qui, il grafo lo disegna lo stesso con la sua descrizione vuota, e si vede.
+GESTI_DETTI = {
+    "RAISE_STONE": "una Pietra alzata da te quest'anno — da zero o di un grado",
+    "TAKE_GROUND": "una terra passata sotto di te quest'anno",
+    "SPREAD": "una presenza posata da te quest'anno",
+    "TIGHTEN_BOND": "un legame stretto da te quest'anno — solo verso l'alto",
+}
+_gesti_schema = json.loads(
+    (REPO / "schema" / "objective.schema.json").read_text(encoding="utf-8")
+)["$defs"]["condition"]["properties"]["gesture"]["enum"]
+for gesto in _gesti_schema:
+    node("gesto:%s" % gesto, "gesto", t=gesto,
+         d=GESTI_DETTI.get(gesto, "")
+           + "  Firmato dalla casa, e non dal sistema: quello che fa il"
+             " calendario non e' un gesto.")
 
 # ---------- I PROFILI STRATEGICI: cosa una casa vuole lasciare ----------
 #

@@ -21,6 +21,7 @@ extends SceneTree
 ## zero su tutti i costi — cioe' esattamente lo zero cieco che in questo
 ## progetto e' successo quattro volte.
 
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
@@ -80,6 +81,16 @@ class Spy extends RefCounted:
 		_taken(voci, picked)
 		return picked
 
+	## Il gettone del costo (D-387): un avversario alla volta, uno per pedina.
+	func choose_cost_token(
+		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+	) -> String:
+		var voci: Array = _cost_voices(session, menu)
+		_note(voci, "offerto")
+		var picked: String = await inner.choose_cost_token(entity_id, context, menu, session)
+		_taken(voci, [] if picked == "" else [picked])
+		return picked
+
 	func _cost_voices(session: RefCounted, menu: Array) -> Array:
 		var faccia: Dictionary = session.confluence.card_face()
 		var out: Array = []
@@ -126,6 +137,9 @@ func _initialize() -> void:
 	if not data.load_from("res://data"):
 		quit(3)
 		return
+	var consigli: int = 0
+	var diverse_per_anno: Array = []
+	var diverse_finora: int = 0
 	for run in range(runs):
 		var seed_value: int = 7000 + run
 		var seats: Array = GameSession.seats_for(data, "CHR_00", seed_value)
@@ -140,11 +154,40 @@ func _initialize() -> void:
 			seats, RngService.new(seed_value * 31 + 7), session.log
 		)
 		await session.run(Spy.new(brain, offered, bought))
+		consigli += int(session.world.get("confluence_count", 0))
+		# **Quante caselle diverse in un anno** (ISSUES 122, la misura che la
+		# voce chiedeva): non «chi compra questa casella», ma quante ne vede
+		# **un tavolo** in una partita. Una sola per anno vuol dire che le altre
+		# ventitre' esistono per quando la prima non si puo' comprare.
+		diverse_per_anno.append((bought.keys() as Array).size() - diverse_finora)
+		diverse_finora = (bought.keys() as Array).size()
+		session.dispose()
 	print("%-18s %8s %8s" % ["casella", "offerta", "comprata"])
 	var verbs: Array = offered.keys()
 	verbs.sort()
+	var totale_benefici: int = 0
+	var totale_costi: int = 0
 	for verb in verbs:
-		print("%-18s %8d %8d" % [
-			str(verb), int(offered[verb]), int(bought.get(verb, 0)),
+		var quante: int = int(bought.get(verb, 0))
+		var e_beneficio: bool = CouncilEconomy.BENEFIT_VERBS.has(str(verb))
+		if e_beneficio:
+			totale_benefici += quante
+		else:
+			totale_costi += quante
+		print("%-18s %8d %8d   %s" % [
+			str(verb), int(offered[verb]), quante,
+			"beneficio" if e_beneficio else "costo",
 		])
+	print("")
+	print("  Consigli aperti in %d partite: %d" % [runs, consigli])
+	print("  Benefici comprati:  %4d   (%.2f per Consiglio)" % [
+		totale_benefici, float(totale_benefici) / float(maxi(1, consigli))
+	])
+	print("  Costi posati:       %4d   (%.2f per Consiglio)" % [
+		totale_costi, float(totale_costi) / float(maxi(1, consigli))
+	])
+	print("  Caselle diverse comprate in tutto: %d su %d del vocabolario" % [
+		(bought.keys() as Array).size(),
+		CouncilEconomy.BENEFIT_VERBS.size() + CouncilEconomy.COST_VERBS.size(),
+	])
 	quit(0)
