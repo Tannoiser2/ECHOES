@@ -10370,7 +10370,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 **`DST_SHARED_HAND, victory`**
 > Le riserve che diventano forma
 
-> Cinque carte in mano · E una cosa costruita
+> Cinque carte in mano · E una cosa costruita · E sulla mappa c'e' una terra contesa: le riserve servono a decidere, non a guardare
 
 
 **`DST_SHARED_HAND, triumph`**
@@ -10394,13 +10394,13 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 **`DST_SHARED_LAND, victory`**
 > La terra risponde, e non importa come
 
-> Due Regioni che rispondono, o due cose che stanno in piedi
+> Due Regioni che rispondono, o due cose che stanno in piedi · E da qualche parte un villaggio ci sta sopra
 
 
 **`DST_SHARED_LAND, triumph`**
 > La mappa parla la tua lingua
 
-> Controllo di almeno 3 Regioni · E l'anno lo dice: tre posti non si prendono in silenzio
+> Controllo di almeno 3 Regioni · E l'anno lo dice: tre posti non si prendono in silenzio · E un posto e' rimasto vuoto: tanta terra non si prende senza che qualcuno se ne vada
 
 
 **`DST_SHARED_LORE`**
@@ -10418,13 +10418,13 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 **`DST_SHARED_LORE, victory`**
 > E un posto dove custodirla
 
-> Due scoperte all'attivo · E una pietra dove il sapere sta
+> Due scoperte all'attivo · E una pietra dove il sapere sta · E la pietra dove il sapere sta e' un Archivio
 
 
 **`DST_SHARED_LORE, triumph`**
 > Quello che sai lo sanno da te
 
-> Tre scoperte all'attivo
+> Tre scoperte all'attivo · E quello che hai capito lo sa anche il tavolo
 
 
 **`DST_SHARED_QUIET`**
@@ -10442,7 +10442,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 **`DST_SHARED_QUIET, victory`**
 > La quiete si vede
 
-> Quattro questioni tenute basse · E non più di due segni nuovi sul mondo
+> Quattro questioni tenute basse · E non più di due segni nuovi sul mondo · E il disordine si e' chiuso mentre eri in sala
 
 
 **`DST_SHARED_QUIET, triumph`**

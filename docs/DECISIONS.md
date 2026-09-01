@@ -10,6 +10,92 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-383 — I sei livelli di vittoria nominano un segno, e una guardia si è allargata
+
+**implemented** (0.1.351) · chiude [ISSUES 118](ISSUES.md#118)
+
+### Sei livelli che erano un'addizione
+
+[D-377](#d-377) aveva misurato che **sei livelli di vittoria o trionfo** si
+reggono solo sul contare, e che stanno **tutti sui Destini condivisi** — quelli
+che qualunque casa può prendere. Un obiettivo che vale per tutti non può nominare
+il segno di *nessuno*, e gli resta il numero.
+
+Ma un segno **del mondo** non è di nessuno, ed è la strada che la casa aveva già
+in uso: `DST_SHARED_QUIET` e `DST_SHARED_HAND` chiudono il loro trionfo con
+`condition:contested`. Sei clausole, una per livello, ognuna con un segno che
+**quel Destino dichiara già di osservare**, nella direzione che si può
+raggiungere:
+
+| livello | + la clausola |
+|---|---|
+| `DST_SHARED_LAND` · vittoria | *«e da qualche parte un villaggio ci sta sopra»* (`settlement:village`) |
+| `DST_SHARED_LAND` · trionfo | *«e un posto è rimasto vuoto: tanta terra non si prende senza che qualcuno se ne vada»* (`condition:abandoned`) |
+| `DST_SHARED_QUIET` · vittoria | *«e il disordine si è chiuso mentre eri in sala»* (`order_restored`) |
+| `DST_SHARED_LORE` · vittoria | *«e la pietra dove il sapere sta è un Archivio»* (`structure:archive`) |
+| `DST_SHARED_LORE` · trionfo | *«e quello che hai capito lo sa anche il tavolo»* (`knowledge_shared`) |
+| `DST_SHARED_HAND` · vittoria | *«e sulla mappa c'è una terra contesa: le riserve servono a decidere, non a guardare»* (`condition:contested`) |
+
+Ogni segno è stato scelto **contro la misura, non a naso**: tutti e sei sono
+scritti dal mondo su cento partite — 458 volte `condition:contested`, 145
+`knowledge_shared`, 131 `order_restored`, 43 `structure:archive`, 42
+`settlement:village`, 13 `condition:abandoned`. Costruire una porta murata
+mentre se ne chiude un'altra sarebbe stato il modo più stupido di sbagliare.
+
+| | prima | dopo |
+|---|---|---|
+| livelli che si reggono solo sul contare | 17 su 69 | **11 su 69** |
+| **di cui vittoria o trionfo** | **6** | **0** |
+
+Gli undici che restano sono **tutti il `minimum`**: la soglia sotto la quale la
+casa non c'è più, dove il conto è la cosa giusta.
+
+### E la guardia che modellava il motore meno generoso di com'è
+
+Tre delle sei clausole hanno fatto cadere `test_no_destiny_asks_for_a_tag_nothing_can_write`,
+che dichiarava `settlement:village`, `structure:archive` e `knowledge_shared`
+**non scrivibili da niente**. Sono scritti 42, 43 e 145 volte su cento partite.
+
+La lista delle penne di quella prova era cresciuta una alla volta e si era
+fermata prima di due bocche che il tavolo usa eccome:
+
+- **le caselle della carta Tensione** ([D-280](#d-280)): IL MONDO RICORDA posa un
+  segno globale — `knowledge_shared` esce da tre caselle;
+- **i gradi delle Pietre**: una Pietra alzata posa il segno del suo grado, ed è
+  così che nascono `settlement:village` e `structure:archive`.
+
+**Una guardia che modella il motore meno generoso di com'è non protegge da
+niente: vieta una clausola vera.** È [D-376](#d-376) visto dall'altra faccia — lì
+la guardia era più generosa e assolveva otto gettoni morti; qui era più avara e
+avrebbe vietato tre clausole buone. Allargata, e **provata piantando un difetto**:
+un Destino che chiede un segno inventato, e la prova lo nomina.
+
+### Il costo
+
+| | prima | dopo |
+|---|---|---|
+| obiettivi avverati giocando | 453 su 1.200 | **438** |
+| quanto rende giocare | +168,0% | **+160,7%** |
+| `SHARED_LORE`, giocando / da fermi | 1,48 / 0,26 | 1,17 / 0,26 |
+| `SHARED_LAND`, giocando / da fermi | 1,33 / 0,44 | **1,44 / 0,33** |
+| `SHARED_HAND`, giocando / da fermi | 1,09 / 0,41 | **1,14 / 0,41** |
+
+Le vittorie sono più difficili, e si vede: quindici obiettivi in meno avverati su
+milleduecento, e il vantaggio di giocare scende di sette punti. In cambio, tre
+Destini su quattro pagano **meglio** chi gioca di chi sta fermo.
+
+**`SHARED_QUIET` no, e resta l'unico caso**: 0,84 giocando contro 1,04 da fermi.
+La clausola l'ha avvicinato — il divario era 1,33 volte, adesso è 1,24 — ma non
+lo ribalta, e non lo ribalterebbe nessun segno: **«La Quiete Tenuta» chiede che
+le questioni restino basse, e un tavolo che non fa niente le tiene basse per
+definizione.** O è la battuta e resta, o quel Destino deve chiedere un *gesto* di
+quiete invece di uno stato. È l'unica cosa che questa decisione lascia aperta,
+ed è scritta nella [ISSUES 120](ISSUES.md#120).
+
+Cancello **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
 ## D-382 — Un Tema con una carta sola, e due caselle che nessuno comprava
 
 **implemented** (0.1.350) · chiude la parte misurabile di [ISSUES 117](ISSUES.md#117)

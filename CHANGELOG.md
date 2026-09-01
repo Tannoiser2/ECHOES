@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.351 — I sei livelli di vittoria nominano un segno, e una guardia si è allargata (D-383)
+
+D-377 aveva misurato **sei livelli di vittoria o trionfo** che si reggono solo
+sul contare, tutti sui Destini condivisi. Un segno **del mondo** non è di
+nessuno, ed è la strada che la casa aveva già in uso: sei clausole, una per
+livello, ognuna con un segno che quel Destino **dichiara già di osservare**.
+
+| | prima | dopo |
+|---|---|---|
+| livelli che si reggono solo sul contare | 17 su 69 | **11 su 69** |
+| **di cui vittoria o trionfo** | **6** | **0** |
+
+Gli undici che restano sono tutti il `minimum`, dove il conto è la cosa giusta.
+Ogni segno scelto contro la misura: tutti e sei sono scritti dal mondo su cento
+partite, da 458 volte (`condition:contested`) a 13 (`condition:abandoned`).
+
+**E una guardia che modellava il motore meno generoso di com'è.** Tre clausole
+hanno fatto cadere `test_no_destiny_asks_for_a_tag_nothing_can_write`, che
+dichiarava `settlement:village`, `structure:archive` e `knowledge_shared` non
+scrivibili da niente: sono scritti 42, 43 e 145 volte. Alla lista delle penne
+mancavano **le caselle della carta Tensione** e **i gradi delle Pietre**. È D-376
+visto dall'altra faccia — lì la guardia assolveva, qui avrebbe vietato una
+clausola vera. Allargata e provata piantando un difetto.
+
+**Costi:** gli obiettivi avverati scendono da 453 a 438 su 1.200, e il vantaggio
+di giocare da +168,0% a +160,7%. In cambio tre Destini condivisi su quattro
+pagano meglio chi gioca. `SHARED_QUIET` resta l'unico che si avvera da fermi, e
+non lo ribalterebbe nessun segno: chiede che le questioni restino basse, e un
+tavolo che non fa niente le tiene basse per definizione.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
 ## 0.1.350 — Un Tema con una carta sola, e due caselle che nessuno comprava (D-382)
 
 **L'Antico riceveva 32 Risonanze su 3.725, lo 0,9%**, ed era in cima al Punto

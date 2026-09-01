@@ -13,9 +13,9 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
-| **livelli che si reggono solo su conteggi** | **17** |
-| di cui vittoria o trionfo (il minimo e' una soglia di sopravvivenza) | 6 |
-| livelli che non nominano nessun segno del mondo | 31 |
+| **livelli che si reggono solo su conteggi** | **11** |
+| di cui vittoria o trionfo (il minimo e' una soglia di sopravvivenza) | 0 |
+| livelli che non nominano nessun segno del mondo | 25 |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **0** |
 | **carte che aprono ancora una domanda in prestito** | **0** |
@@ -123,24 +123,18 @@ facendo un totale a mente, e al tavolo non lo si mostra col dito.
 Tensione possa parlare di quel livello, e allora un `#granaio` non
 aiuta: si indica benissimo, ma nessuna Tensione lo scrive. Qui la
 domanda e' se un giocatore capisca dove guardare, e il segno stampato
-sulla tessera basta. I due numeri sono 17 e 31.
+sulla tessera basta. I due numeri sono 11 e 25.
 
 **Clausole impossibili: 0**
 
-**Livelli che si reggono solo su conteggi: 17 su 69**
+**Livelli che si reggono solo su conteggi: 11 su 69**
 
 Di questi, **11 sono il minimo** — una clausola sola, la soglia sotto
 la quale la casa non c'e' piu': *«il trono regge»*, *«il popolo
 sopravvive»*. Li' il conto e' la cosa giusta, e nessuna Tensione deve
 nominarli per minacciarli: chi ti toglie l'ultima Regione te li toglie.
-**Gli altri 6 sono vittoria o trionfo** — cioe' quello per cui una
+**Gli altri 0 sono vittoria o trionfo** — cioe' quello per cui una
 casa viene ricordata — e quelli si riducono a un'addizione.
-
-E stanno **tutti e 6 su Destini condivisi** (`entity_id: $self`):
-quelli che qualunque casa puo' prendere. Non e' una coincidenza —
-un obiettivo che deve valere per tutti non puo' nominare il segno
-di nessuno, e gli resta il numero. Se debba restare cosi' e' una
-scelta di disegno, non un difetto da chiudere in silenzio.
 
 | Destino | livello | clausole | come si legge |
 |---|---|---|---|
@@ -151,16 +145,10 @@ scelta di disegno, non un difetto da chiudere in silenzio.
 | DST_LIBERE_WATER | minimum | 1 | Un'opera alzata |
 | DST_SHARED_RENOWN | minimum | 1 | Un posto che risponde al tuo nome |
 | DST_SHARED_LAND | minimum | 1 | Un posto che risponde |
-| DST_SHARED_LAND | victory | 2 | La terra risponde, e non importa come |
-| DST_SHARED_LAND | triumph | 2 | La mappa parla la tua lingua |
 | DST_SHARED_ACCOUNTS | minimum | 1 | Due conti tenuti sotto controllo |
 | DST_SHARED_QUIET | minimum | 1 | Tre questioni tenute giù |
-| DST_SHARED_QUIET | victory | 2 | La quiete si vede |
 | DST_SHARED_LORE | minimum | 1 | Una cosa vista |
-| DST_SHARED_LORE | victory | 2 | E un posto dove custodirla |
-| DST_SHARED_LORE | triumph | 1 | Quello che sai lo sanno da te |
 | DST_SHARED_HAND | minimum | 1 | Le mani non vuote |
-| DST_SHARED_HAND | victory | 2 | Le riserve che diventano forma |
 
 ## 4. Quanto di quello che una casa vuole, il tavolo sa darlo
 
@@ -375,7 +363,7 @@ piu' un buco di dichiarazioni: e' la superficie. Un incrocio
 richiede che **lo stesso segno** sia nominato da una casa come
 voluto e da un'altra come temuto, e ogni casa ne nomina otto o
 nove; il resto di quello che i Destini chiedono non nomina nessun
-segno — 31 livelli su 69, conteggi e bersagli a segni stampati —
+segno — 25 livelli su 69, conteggi e bersagli a segni stampati —
 e litiga con tutti allo stesso modo.
 Le coppie ancora mute si chiudono in due modi: **una faccia di
 Tensione** che metta uno di quei segni sul tavolo dove le due case

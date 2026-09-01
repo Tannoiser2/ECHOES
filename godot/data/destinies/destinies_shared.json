@@ -128,6 +128,13 @@
                 "label": "O due strutture sue"
               }
             ]
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "REGION",
+            "region_id": "$any",
+            "tag": "settlement:village",
+            "label": "E da qualche parte un villaggio ci sta sopra"
           }
         ]
       },
@@ -144,6 +151,13 @@
             "type": "scar_count",
             "min": 2,
             "label": "E l'anno lo dice: tre posti non si prendono in silenzio"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "REGION",
+            "region_id": "$any",
+            "tag": "condition:abandoned",
+            "label": "E un posto e' rimasto vuoto: tanta terra non si prende senza che qualcuno se ne vada"
           }
         ]
       },
@@ -283,6 +297,12 @@
             "type": "scar_count",
             "max": 2,
             "label": "E non più di due segni nuovi sul mondo"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "order_restored",
+            "label": "E il disordine si e' chiuso mentre eri in sala"
           }
         ]
       },
@@ -315,7 +335,8 @@
           "THM_SOPRAVVIVENZA"
         ],
         "observes": [
-          "condition:contested"
+          "condition:contested",
+          "order_restored"
         ],
         "reads": {
           "minimum": "Tre questioni del mondo tenute sotto il punto di rottura.",
@@ -354,6 +375,13 @@
             "entity_id": "$self",
             "min": 1,
             "label": "E una pietra dove il sapere sta"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "REGION",
+            "region_id": "$any",
+            "tag": "structure:archive",
+            "label": "E la pietra dove il sapere sta e' un Archivio"
           }
         ]
       },
@@ -365,6 +393,12 @@
             "entity_id": "$self",
             "min": 3,
             "label": "Tre scoperte all'attivo"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "GLOBAL",
+            "tag": "knowledge_shared",
+            "label": "E quello che hai capito lo sa anche il tavolo"
           }
         ]
       },
@@ -377,7 +411,8 @@
           "crystal_site",
           "mine_sealed",
           "knowledge_shared",
-          "rumour_running"
+          "rumour_running",
+          "structure:archive"
         ],
         "reads": {
           "minimum": "Una scoperta all'attivo: sei sceso a guardare.",
@@ -414,6 +449,13 @@
             "entity_id": "$self",
             "min": 1,
             "label": "E una cosa costruita"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "REGION",
+            "region_id": "$any",
+            "tag": "condition:contested",
+            "label": "E sulla mappa c'e' una terra contesa: le riserve servono a decidere, non a guardare"
           }
         ]
       },

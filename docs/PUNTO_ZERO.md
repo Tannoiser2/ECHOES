@@ -76,10 +76,9 @@ tavolo vero, una col **tavolo di pietra** che non spende mai un'Occasione.
 
 | | |
 |---|---|
-| obiettivi avverati giocando | **453 su 1.200** (37,8%) |
-| avverati dal tavolo di pietra | 169 |
-| **quanto rende giocare** | **+168,0%** |
-| di quelli avverati, già veri all'apertura | 62 — **13,7%** |
+| obiettivi avverati giocando | **438 su 1.200** (36,5%) |
+| avverati dal tavolo di pietra | 168 |
+| **quanto rende giocare** | **+160,7%** |
 
 Era **−1,1%** prima di D-255. La regola di casa della ROADMAP §1.4 — *nessun
 traguardo vero all'apertura, nessuno che si avveri stando fermi* — regge, con
@@ -180,7 +179,7 @@ E le tre misure che vengono prima della matrice (`MISURA_MATRICE.md`):
 | clausole impossibili | **0** |
 | Tensioni che nessun Destino incontra | **0** |
 | **carte che aprono ancora una domanda in prestito** | **0** |
-| livelli di Destino che non si indicano in nessun modo | **17 su 69**, di cui 6 vittoria o trionfo |
+| livelli di Destino che non si indicano in nessun modo | **11 su 69**, tutti il `minimum` |
 | coppie di case che hanno qualcosa per cui litigare | **13 su 28** |
 
 E le misure che prima non c'erano:
@@ -232,19 +231,18 @@ Queste non le prendo io. Sono le porte chiuse.
    proposte carta per carta, i FAILURE passano da **108 a 37** sul tavolo misto.
    È l'effetto cercato ed è anche un prezzo: tutto quello che vive nella banda
    del fallimento gira un terzo delle volte di prima. Tre strade nella voce.
-3. **[ISSUES 118](ISSUES.md#118) — sei livelli di vittoria sono un'addizione**,
-   e stanno tutti sui Destini condivisi: un obiettivo che vale per tutti non può
-   nominare il segno di nessuno.
-4. **[ISSUES 120](ISSUES.md#120) — dodici Obiettivi su diciassette** si vincono
-   contando e non nominano nessun pezzo del tavolo. Lo stesso difetto, in un
-   posto dove nessuno aveva guardato.
-5. **[ISSUES 65](ISSUES.md#65) — «tutta la pagina dell'app va rivista».** Tre
+3. **[ISSUES 120](ISSUES.md#120) — un obiettivo chiede di avere o di fare?**
+   Sei obiettivi su diciassette rendono uguale o meglio **stando fermi**, e non
+   perché contano: perché chiedono cose che si **perdono** agendo. La cura è un
+   tipo di clausola che legge il verbale invece del tavolo, e cambia come si
+   scrive un obiettivo.
+4. **[ISSUES 65](ISSUES.md#65) — «tutta la pagina dell'app va rivista».** Tre
    revisioni diverse si nascondono in quella frase: la leggibilità,
    l'impaginazione, o *l'idea di cosa si guarda*. Da 0.1.346 lo **strumento per
    misurarle c'è** ([D-379](DECISIONS.md#d-379)); la scelta no.
-6. **ISSUES 84 — l'Eredità è misurabile e quasi inerte**: tre strade scritte,
+5. **ISSUES 84 — l'Eredità è misurabile e quasi inerte**: tre strade scritte,
    nessuna scelta.
-7. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura
+6. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura
    quello che la pagina *chiede*; quello che una persona *vede*, no.
 
 ---

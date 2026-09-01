@@ -6923,7 +6923,7 @@ nei dati.
 
 ---
 
-### 118. Sei livelli di vittoria sono un'addizione, e stanno tutti sui Destini di nessuno
+### 118. ✅ Sei livelli di vittoria sono un'addizione — chiusa in 0.1.351
 
 `contenuto` · `decisione-del-committente` · aperta in 0.1.344
 ([D-377](DECISIONS.md#d-377) · [le misure](MISURA_MATRICE.md))
@@ -6969,6 +6969,21 @@ su 8**.
 
 **Fatto quando** il committente dice se quei sei restano un'addizione o
 nominano un segno.
+
+### ✅ Nominano un segno, da 0.1.351 ([D-383](DECISIONS.md#d-383))
+
+Sei clausole, una per livello, ognuna con un segno che **quel Destino dichiara
+gia' di osservare** e che il mondo **scrive davvero** — da 458 volte su cento
+partite (`condition:contested`) a 13 (`condition:abandoned`). Costruire una porta
+murata mentre se ne chiude un'altra sarebbe stato il modo piu' stupido di
+sbagliare.
+
+**Livelli che si reggono solo sul contare: 17 → 11, e quelli di vittoria o
+trionfo da 6 a 0.** Gli undici che restano sono tutti il `minimum`.
+
+Costo: gli obiettivi avverati scendono da 453 a 438 su 1.200 e il vantaggio di
+giocare da +168,0% a +160,7% — le vittorie sono piu' difficili. In cambio tre
+Destini condivisi su quattro pagano **meglio** chi gioca di chi sta fermo.
 
 ---
 
@@ -7060,6 +7075,51 @@ che il tavolo sta giocando: si contano a fine anno e basta.
   segno a quelli che valgono di più.
 
 **Fatto quando** il committente dice se quei dodici restano un'addizione.
+
+### Rimisurata in 0.1.351, e la domanda era mal posta ([D-383](DECISIONS.md#d-383))
+
+**I dodici del disegno non sono i tredici della misura.** Col metro di
+[D-377](DECISIONS.md#d-377) — non nomina un segno, non si indica, si conta —
+sono **13 su 17**; nel grafo erano dodici perche' `OBJ_BOUND_HOUSE` si indica
+(guarda il filo fra due case) e `OBJ_A_GARRISON` e `OBJ_A_WORK` puntano una
+famiglia di Pietre. Due liste diverse, tutte e due vere, e la voce ne dichiarava
+una sola.
+
+**Ma il difetto vero non e' il conto: e' il tempo del verbo.** Sei obiettivi su
+diciassette rendono **uguale o meglio stando fermi**, e sono quasi gli stessi:
+
+| obiettivo | giocando | da fermi |
+|---|---|---|
+| `A_WORK` | 9 | 16 |
+| `BOUND_HOUSE` | 13 | 20 |
+| `MOST_STONE` | 9 | 12 |
+| `THE_LONGEST_REACH` | 7 | 10 |
+| `A_STONE` | 19 | 20 |
+| `THE_WIDEST_SPREAD` | 4 | 4 |
+
+Guardati insieme dicono una cosa sola: **chiedono di avere, non di fare.** Due
+Pietre in piedi, piu' Regioni di tutti, piu' pedine di tutti, un legame in mano —
+sono tutte cose che si **perdono** agendo e che un tavolo di pietra, che non
+agisce mai, non perde. Il conto non c'entra: `SOMETHING_MUST_BREAK` conta anche
+lui, e rende **+100%** giocando, perche' chiede che qualcosa *succeda*.
+
+#### La cura, e perche' non l'ho scritta
+
+Un obiettivo dovrebbe chiedere quello che si e' **fatto quest'anno**, non quello
+che si **ha** a fine anno. Oggi nessuna clausola sa dirlo: le diciotto forme che
+il motore valuta guardano tutte lo **stato**, non il registro degli Effetti.
+Serve un tipo di clausola nuovo — *«una Pietra alzata da te quest'anno»*,
+*«un legame stretto quest'anno»* — che legge il verbale invece del tavolo.
+
+E' motore, schema, `schema_defs.gd` rigenerato, valutatore e prove: non e' una
+riga, ed e' una scelta che cambia **come si scrive un obiettivo**, non solo
+questi sei. **Fatto quando** il committente dice se gli obiettivi devono
+chiedere un gesto o uno stato.
+
+**E lo stesso vale per un Destino:** `DST_SHARED_QUIET` e' l'unico che ancora si
+avvera da fermi (0,84 giocando contro 1,04), e nessun segno lo ribalta — chiede
+che le questioni restino basse, e un tavolo che non fa niente le tiene basse per
+definizione. E' lo stesso difetto, con la stessa cura.
 
 ---
 
