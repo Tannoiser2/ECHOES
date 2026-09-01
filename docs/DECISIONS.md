@@ -10,6 +10,63 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-381 — I tre pezzi «che nessuno tocca» erano tre buchi del disegno
+
+**implemented** (0.1.348) · corregge la [ISSUES 121](ISSUES.md#121), aperta un'ora prima
+
+### Una voce aperta sulla fiducia, e chiusa sulla misura
+
+[D-380](#d-380) ha lasciato **quindici pezzi senza nemmeno una freccia** e li ha
+messi in due voci: dodici Obiettivi che si vincono contando ([120](ISSUES.md#120),
+vera) e tre pezzi che «nessuno tocca» ([121](ISSUES.md#121)). La 121 diceva che
+`uprooted`, `scar:burned_records` e `ACT_ACQUIRE` erano **debiti di contenuto**.
+
+**Erano tre buchi del disegno, e tutti e tre sono chiusi.** L'ho scoperto
+guardando i dati invece di fidarmi del disegno appena fatto — che è la regola di
+casa sugli zeri, applicata al proprio lavoro.
+
+| pezzo | cosa credevo | cosa dicono i dati |
+|---|---|---|
+| `uprooted` | nessuno lo posa | lo posa **chiunque tolga una presenza**: undici pezzi fra carte, Conseguenze ed Echi (D-130) |
+| `scar:burned_records` | Cicatrice che nessuno incide | la lascia **l'Archivio che va in rovina** — e ogni Pietra ne ha una, dieci su dieci |
+| `ACT_ACQUIRE` | Azione che nessuno nomina | le danno un valore **tutte e ventisei le vite** delle case |
+
+**Legami 4033 → 4232. Pezzi senza una freccia: 15 → 12**, e i dodici che restano
+sono gli Obiettivi della [120](ISSUES.md#120) — quelli sì, contenuto.
+
+### Perché il disegno non li vedeva
+
+Tre regole che nel dato **non sono un effetto**: sono conseguenze di un gesto.
+
+- **La cacciata.** `REMOVE_PRESENCE` non porta con sé i segni che lascia; il
+  motore li aggiunge dopo, e il primo vale una volta, il secondo nello stesso
+  anno vale il doppio. `validate_physical` quella regola ce l'ha già scritta, ed
+  è il riscontro con cui il dizionario dichiara le proprie penne: qui si
+  **importa**, non si ricopia. Due regole uguali in due file divergono in
+  silenzio, ed è la trappola che questo progetto ha pagato cinque volte.
+- **La rovina.** Il blocco `ruin` di una Pietra dice il nome, la Cicatrice e cosa
+  resta. Non è un `Effect`: è una faccia della Pietra, e nessuna sonda la
+  guardava.
+- **I valori delle Azioni.** Stanno su `action_values` di ogni incarnazione — il
+  numero stampato sulla carta della casa. `ACT_ACQUIRE` non era senza frecce
+  perché nessuno la usa: perché **chi le dà un valore sono le vite**, e le vite
+  le ha disegnate [D-380](#d-380) un'ora fa senza collegarle alle Azioni.
+
+### La lezione, che è quella di sempre da un lato nuovo
+
+Un disegno appena finito è la cosa di cui **ci si fida di più e si dovrebbe
+fidare di meno**. Quindici pezzi isolati sembravano quindici scoperte; erano tre
+regole che il disegno non conosceva e dodici scoperte vere. Il rapporto è uno a
+cinque, e l'unico modo per saperlo era rileggere i dati uno per uno invece di
+guardare il quadro.
+
+### Il costo
+
+Nessuno: né motore né dati di gioco. Cancello **0 seggi bloccati su 8**, 26
+cancelli verdi.
+
+---
+
 ## D-380 — Il disegno del flusso conosceva tutto tranne la cosa centrale
 
 **implemented** (0.1.347) · parola del committente: *«clicco su una carta e mi dà tutto quello che fa»*
