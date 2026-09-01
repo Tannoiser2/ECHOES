@@ -110,7 +110,7 @@ Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.
 |---|---|
 | il titolo | 60 su 60 |
 | il sottotitolo | 60 su 60 |
-| una riga di testo libero | 107 su 60 |
+| una riga di testo libero | 120 su 60 |
 | **SI OTTIENE** | 60 su 60 |
 | una casella, una per riga | 1170 su 60 |
 | **SI PAGA** | 60 su 60 |
@@ -120,7 +120,8 @@ Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.
 
 > **La Cenere che Sale**
 > il Consiglio che questa domanda apre
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
+> E le bocche aperte sul fianco, si murano?
 > SI OTTIENE
 > · Riapri l'accesso: il luogo torna raggiungibile.
 > · Il luogo torna raggiungibile.

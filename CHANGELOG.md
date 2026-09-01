@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.345 — Gli ultimi tre Temi, e la sonda che leggeva ancora la vecchia casa (D-378)
+
+**Ventotto carte su sessanta aprivano il dibattito di un'altra.** Tredici carte
+del dominio ANTICO chiedevano tutte *«Chi tiene d'occhio quello che c'è
+$in_region?»*: al tavolo si leggeva la stessa riga tre volte.
+
+Il lavoro era fermo *«in attesa della parola del committente»* su ISSUES 89 —
+che è **chiusa da 0.1.332**. L'attesa era finita e nessuno l'aveva notato.
+
+Scritti i tre Temi che mancavano, uno per volta: **Antico** (9 carte, 18 domande,
+27 proposte), **Fede** (9 / 18 / 27), **Terra** (10 / 20 / 30). **28 → 19 → 10 →
+0 carte in prestito**, e i 194 testi delle proposte sono 194 testi diversi.
+
+**E la terza sonda che guardava ancora i template.** `REVISIONE_TESTI.md`
+promette *«ogni testo che un giocatore può leggere»* e la sua sezione 5 leggeva
+i template: **saltava 314 testi** — tutte le domande e tutte le proposte vere —
+e ne mostrava 194 che ormai nessuno legge. Il cancello non se ne accorgeva
+perché confronta il documento col generatore, non il generatore con la realtà.
+Adesso legge le carte, e stampa anche le **clausole**, che nessuna sezione
+mostrava.
+
+**Il costo, misurato:** i Consigli cadono molto meno — FAILURE da **108 a 37**
+sul tavolo uniforme, da **25 a 14** sul misto. Ogni carta offre tre strade sue,
+e il tavolo ne trova una che gli va bene. Un Consiglio che quasi non cade ha
+meno posta: aperta come **ISSUES 119**.
+
+Il primo effetto collaterale è stato chiuso subito: meno fallimenti, meno
+`rumour_running` — che lo scriveva solo il sacchetto dei fallimenti ANTICO — e
+si riapriva una porta murata che D-372 aveva appena chiuso. Scritta
+**`CNS_WORD_GOES_ROUND`**: il Consiglio decide di non decidere, e la voce corre
+lo stesso.
+
+| | prima | dopo |
+|---|---|---|
+| carte con una domanda in prestito | 28 su 60 | **0 su 60** |
+| testi di proposta distinti | 122 su 186 | **194 su 194** |
+| testi in `REVISIONE_TESTI.md` | 2486 | **2898** |
+| punti regalati / porte murate | 2 / 1 | **1 / 1** |
+| vite che non si siedono mai | 2 | **1** |
+| trasformazioni sedute in 12 saghe | 223 | **233** |
+| segni che non arrivano mai sul tavolo | 50 | **52** |
+| Consigli caduti (uniforme / misto) | 108 / 25 | **37 / 14** |
+
+Guadagno non in programma: **La Leggenda della Montagna si siede**.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 25 cancelli verdi.
+
+---
+
 ## 0.1.344 — Un `#granaio` si indica col dito, ma nessuna Tensione lo scrive (D-377)
 
 `MISURA_MATRICE.md` contava **31 livelli di Destino su 69** che «si reggono solo

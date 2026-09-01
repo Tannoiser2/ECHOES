@@ -51,7 +51,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Profili strategici | 8 su 8 | cosa ogni casa vuole lasciare nel mondo |
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
 | Obiettivi | 17 | i tre coperti che si pescano a inizio saga |
-| Conseguenze | 64 | cosa una proposta scrive sul mondo se passa |
+| Conseguenze | 65 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
 | Regole dei segni | 53 | cosa un segno fa da solo |
 | Azioni | 6 | i verbi del turno |

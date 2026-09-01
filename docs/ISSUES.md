@@ -4250,15 +4250,25 @@ volta in questo progetto che uno zero era la sonda.**
    **Vie** ([D-312](DECISIONS.md#d-312)): 7 carte, 14 domande e 21 proposte.
    **35 → 28.**
 
-   **Fermo qui in attesa della parola del committente**: la voce
+   ✅ **Chiuso in 0.1.345** ([D-378](DECISIONS.md#d-378)). Il lavoro era
+   **fermo in attesa della parola del committente**: la voce
    [89](#89-la-proposta-non-si-risolve-col-dito-642-effetti-che-nessuna-carta-stampa)
-   dice che questa strada rende le carte diverse da **leggere** e non
-   risolvibili **col dito**, e mette tre strade davanti. Gli ultimi tre Temi —
-   Antico, Fede, Terra — si scrivono dopo quella scelta, non prima. Nello stesso
-   passo sono cadute due sonde che guardavano ancora i template invece delle
-   carte — il catalogo dei Consigli (12 schede per 60 carte) e il denominatore
-   di *«quanto contenuto d'autore il tavolo vede»*. Restano quattro Temi —
-   Vie, Antico, Fede, Terra — un Tema per volta.
+   metteva in dubbio la grammatica in cui quelle proposte sono scritte, e gli
+   ultimi tre Temi dovevano aspettare quella scelta. **La 89 è chiusa da
+   0.1.332**: le otto caselle sono scritte, il `dove` e il `chi` ci sono
+   ([D-366](DECISIONS.md#d-366)), la grammatica non si butta. L'attesa era
+   finita e nessuno l'aveva notato.
+
+   Scritti gli ultimi tre Temi, uno per volta: **Antico** (9 carte, 18 domande,
+   27 proposte) **28 → 19**, **Fede** (9 / 18 / 27) **19 → 10**, **Terra**
+   (10 / 20 / 30) **10 → 0**. Ogni carta ha due domande sue e tre proposte sue,
+   e i **194 testi delle proposte sono 194 testi diversi**.
+
+   Nello stesso passo sono cadute due sonde che guardavano ancora i template
+   invece delle carte — il catalogo dei Consigli (12 schede per 60 carte) e il
+   denominatore di *«quanto contenuto d'autore il tavolo vede»*. **La terza è
+   caduta in 0.1.345**: `REVISIONE_TESTI.md` leggeva i template e saltava 314
+   testi veri.
 3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
    perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
    dal gioco — ed e' la modifica che vale la parola del committente, non la mia.
@@ -6916,3 +6926,49 @@ su 8**.
 
 **Fatto quando** il committente dice se quei sei restano un'addizione o
 nominano un segno.
+
+---
+
+### 119. Il Consiglio non cade quasi più: FAILURE da 108 a 37
+
+`regole` · `da-decidere` · aperta in 0.1.345
+([D-378](DECISIONS.md#d-378))
+
+Scritti gli ultimi tre Temi ([D-378](DECISIONS.md#d-378)), ogni carta offre tre
+proposte **sue** invece delle due generiche del suo dominio. Il tavolo ne trova
+molto più spesso una che gli va bene, e i Consigli passano:
+
+| esiti su 100 partite | prima | dopo |
+|---|---|---|
+| tavolo uniforme — FAILURE | 108 | **37** |
+| tavolo misto — FAILURE | 25 | **14** |
+
+**È l'effetto che il lavoro cercava, ed è anche un prezzo.** Con due sole
+proposte su tredici carte, chi proponeva raramente trovava qualcosa che il
+tavolo volesse: i Consigli cadevano per povertà di offerta, non per conflitto.
+Ma un Consiglio che quasi non cade è un Consiglio **con meno posta**, e tutto
+quello che vive nella banda del fallimento gira un terzo delle volte di prima:
+le sette Conseguenze `CNS_FAILURE_*`, il marchio `spoke_and_lost` di chi ha
+proposto e ha perso — che adesso **non arriva mai** sul tavolo in cento partite
+— e la parte della carta Tensione che dice *«se cade»*.
+
+Un effetto collaterale è già chiuso: `rumour_running`, scritto solo dal
+sacchetto dei fallimenti del dominio ANTICO, era sceso a zero e riapriva una
+porta murata che [D-372](DECISIONS.md#d-372) aveva appena chiuso. Adesso lo
+scrive anche una proposta che passa (`CNS_WORD_GOES_ROUND`). Ma la banda resta
+magra.
+
+#### Le tre strade, e la scelta è del committente
+
+- **(a) Va bene così.** Un Consiglio deve decidere; cadeva perché l'offerta era
+  povera, e adesso non lo è più. La banda del fallimento resta per i casi veri.
+- **(b) Il fallimento si compra.** Con l'economia delle caselle
+  ([D-280](DECISIONS.md#d-280), ISSUES 72) il prezzo lo pagano gli avversari:
+  una proposta cade quando **nessuno vuole pagarla**, non quando nessuno la
+  vuole. È la strada che il gioco sta già costruendo, e questa misura è il
+  numero da riguardare quando l'economia sarà in piedi.
+- **(c) Si alza la soglia.** Equilibrio puro, e l'equilibrio si misura prima di
+  scriverlo: il cancello vuole **0 seggi bloccati su 8**.
+
+**Fatto quando** il committente sceglie, o quando l'economia delle caselle è in
+piedi e questa misura si rifà con lei.

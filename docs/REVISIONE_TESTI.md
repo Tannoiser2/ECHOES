@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2486 testi in lettura.
+possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -5731,164 +5731,40 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 
 *(La proposta è la frase votata; sotto, come l'esito viene raccontato.)*
 
-**`Q_ANY_ANCIENT_WATCH`**
-> Chi tiene d'occhio quello che c'è $in_region?
+**`Q_ASH_WATCH`**
+> La montagna fuma di nuovo $in_region: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
 
 
-**`P_ANY_WATCH`**
-> Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+**`Q_ASH_MOUTHS`**
+> E le bocche aperte sul fianco, si murano?
 
 
-**`P_ANY_WATCH, esito`**
-> Si mise una veglia $in_region, e da allora si seppe sempre con un giorno di anticipo.
+**`P_ASH_TOWERS`**
+> Due torri sul fianco e un turno che nessuno salta. Non fermerà niente: si saprà un giorno prima.
 
 
-**`P_ANY_IGNORE`**
-> Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+**`P_ASH_TOWERS, esito`**
+> Si mise una veglia sulla montagna $in_region, e da allora si seppe sempre con un giorno d'anticipo.
 
 
-**`P_ANY_IGNORE, esito`**
-> Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero.
+**`P_ASH_TOWERS, esito FAILURE`**
+> $proponent volle le torri, e la montagna continuò a fumare senza che nessuno la guardasse.
 
 
-**`Q_ANY_WHO_PAYS`**
-> $in_region, chi paga il prezzo di quello che rende?
+**`P_ASH_REGISTERS`**
+> I registri dell'Ordine dicono di no, e i registri li ha scritti qualcuno. Chi vuole vegliare paghi le sue guardie.
 
 
-**`Q_ANY_WHO_KEEPS`**
-> Chi tiene i conti di quello che passa $in_region — e chi li legge?
+**`P_ASH_REGISTERS, esito`**
+> Si stabilì che la montagna avesse sempre fumato, e per un anno intero fu vero.
 
 
-**`P_ANY_PRICE`**
-> Si metta un prezzo, e $proponent lo riscuota: quello che passa, paga.
+**`P_ASH_SEAL`**
+> Si murano, e chi ci lavorava lavori altrove: quello che sale non deve trovare la strada già fatta.
 
 
-**`P_ANY_PRICE, esito`**
-> $proponent mise il prezzo su quello che passava, e il prezzo resto' anche quando lui non c'era.
-
-
-**`P_ANY_PRICE, esito FAILURE`**
-> $proponent volle mettere il prezzo, e il prezzo lo pago' lui.
-
-
-**`P_ANY_OPEN_LEDGER`**
-> Si aprano i registri: che ognuno veda quanto rende, e a chi.
-
-
-**`P_ANY_OPEN_LEDGER, esito`**
-> I registri furono aperti, e piu' d'uno avrebbe preferito di no.
-
-
-**`P_ANY_SPREAD_COST`**
-> Il costo si divide in parti uguali, e nessuno ne esce bene.
-
-
-**`P_ANY_SPREAD_COST, esito`**
-> Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare.
-
-
-**`Q_ANY_WHO_DECIDES`**
-> $in_region, chi decide a chi non ne tocca?
-
-
-**`Q_ANY_WHO_STAYS`**
-> Chi ha ancora motivo di restare $in_region?
-
-
-**`P_ANY_RATION`**
-> Si conti quello che c'è, e $proponent decida chi ne ha diritto.
-
-
-**`P_ANY_RATION, esito`**
-> $proponent fece la lista di chi aveva diritto $in_region, e nessuno la dimenticò.
-
-
-**`P_ANY_RATION, esito DECISIVE_SUCCESS`**
-> $proponent fece la lista di chi aveva diritto $in_region, e nessuno chiese di vederla due volte.
-
-
-**`P_ANY_RATION, esito FAILURE`**
-> $proponent volle fare la lista di chi aveva diritto $in_region, e la lista non fu mai letta.
-
-
-**`P_ANY_SHARE`**
-> Si divida in parti uguali, e si accetti che nessuno ne esca bene.
-
-
-**`P_ANY_SHARE, esito`**
-> Il peso $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riuscì a fare.
-
-
-**`P_ANY_LEAVE`**
-> Non si risolve: si va via. $rival resti pure, se ci tiene.
-
-
-**`P_ANY_LEAVE, esito`**
-> $proponent lasciò $the_region a chi voleva restare, e restarono in pochi.
-
-
-**`P_ANY_LEAVE, esito FAILURE`**
-> $proponent volle andarsene da $the_region, e non partì nessuno.
-
-
-**`P_ANY_LEAVE, esito SUCCESS_WITH_COST`**
-> $proponent lasciò $the_region a chi voleva restare, e restarono in pochi - e nessuno dei due gruppi perdonò l'altro.
-
-
-**`P_ANY_AS_STORY`**
-> Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.
-
-
-**`P_ANY_AS_STORY, esito`**
-> Si fece come si racconta che si fece, e per quell'anno bastò.
-
-
-**`P_ANY_AS_STORY, esito FAILURE`**
-> Si volle fare come nella storia, e la storia non tornò.
-
-
-**`Q_ANY_WHO_HOLDS`**
-> $in_region, chi tiene il posto quando la voce si spegne?
-
-
-**`Q_ANY_WHOSE_LAW`**
-> Quale legge vale $in_region: quella scritta, o quella di chi c'e'?
-
-
-**`P_ANY_HOLD`**
-> $proponent lo tiene, e lo dica forte: chi sta li' risponde a lui.
-
-
-**`P_ANY_HOLD, esito`**
-> $proponent prese il posto $of_region, e nessuno oso' contarlo due volte.
-
-
-**`P_ANY_HOLD, esito DECISIVE_SUCCESS`**
-> $proponent prese il posto $of_region, e il conto torno' al primo colpo.
-
-
-**`P_ANY_HOLD, esito FAILURE`**
-> $proponent volle il posto $of_region, e il posto non volle lui.
-
-
-**`P_ANY_SPLIT`**
-> Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
-
-
-**`P_ANY_SPLIT, esito`**
-> L'uso $of_region fu diviso senza dividere il titolo, e resse quanto reggono le cose divise.
-
-
-**`P_ANY_WALK_AWAY`**
-> Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
-
-
-**`P_ANY_WALK_AWAY, esito`**
-> Nessuna legge fu scritta per $the_region, e il posto resto' a chi ci dormiva.
-
-
-**`P_ANY_WALK_AWAY, esito FAILURE`**
-> Nessuno volle scrivere la legge $of_region, e nessuno volle nemmeno andarsene.
+**`P_ASH_SEAL, esito`**
+> Le bocche sul fianco furono murate, e il fumo si cercò un'altra via.
 
 
 **`Q_AWAKENING_CRYSTAL`**
@@ -5935,6 +5811,18 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > Si volle sigillare le gallerie $in_region, e la pietra restò dov'era, con la porta aperta.
 
 
+**`P_REOPEN_THE_MINE`**
+> Si tolga la pietra. Quello che fu murato per non dover decidere, si decide adesso, con le lampade accese.
+
+
+**`P_REOPEN_THE_MINE, esito`**
+> La pietra fu tolta, e quello che dormiva tornò una domanda.
+
+
+**`P_REOPEN_THE_MINE, esito FAILURE`**
+> Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa.
+
+
 **`P_GUARDED_STUDY`**
 > Il Cristallo si studi sotto vincolo, e del limite risponda $rival.
 
@@ -5951,20 +5839,140 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già.
 
 
-**`P_REOPEN_THE_MINE`**
-> Si tolga la pietra. Quello che fu murato per non dover decidere, si decide adesso, con le lampade accese.
-
-
-**`P_REOPEN_THE_MINE, esito`**
-> La pietra fu tolta, e quello che dormiva tornò una domanda.
-
-
-**`P_REOPEN_THE_MINE, esito FAILURE`**
-> Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa.
-
-
 **`P_SLAY_THE_DRAGON`**
 > Si scenda con ferro e fuoco: cio' che dorme sotto $the_region non si svegli mai piu'.
+
+
+**`Q_BAD_GRAIN_SILO`**
+> $in_region, chi apre i sili e guarda dentro?
+
+
+**`Q_BAD_GRAIN_BLAME`**
+> E del raccolto marcito, chi risponde?
+
+
+**`P_BAD_GRAIN_BURN`**
+> Si bruci quello che e' guasto, e $proponent conti quello che resta.
+
+
+**`P_BAD_GRAIN_BURN, esito`**
+> Il grano guasto $of_region bruciò in piazza, e il conto di quello che restava lo tenne $proponent.
+
+
+**`P_BAD_GRAIN_SIEVE`**
+> Si setacci tutto: chi ha fame mangia anche quello che non e' bello.
+
+
+**`P_BAD_GRAIN_SIEVE, esito`**
+> $in_region si setacciò il marcio dal buono, e nessuno chiese di che annata fosse.
+
+
+**`P_BAD_GRAIN_LEDGER`**
+> Si apra il registro dei sili: si vedra' chi ha chiuso male le porte.
+
+
+**`P_BAD_GRAIN_LEDGER, esito`**
+> I registri dei sili $of_region furono aperti, e il nome di chi li chiudeva era scritto in fondo.
+
+
+**`Q_TOLLS_CHAIN`**
+> Chi ha teso la catena sulla strada, e con che diritto?
+
+
+**`Q_TOLLS_CONVOY`**
+> E i carri che passano domani, chi li accompagna?
+
+
+**`P_TOLLS_LEGAL`**
+> Il pedaggio diventi legge, e lo riscuota $proponent invece di chi si nasconde nel bosco.
+
+
+**`P_TOLLS_LEGAL, esito`**
+> Il pedaggio nero divento' pedaggio scritto, e a riscuoterlo era $proponent.
+
+
+**`P_TOLLS_LEGAL, esito FAILURE`**
+> $proponent volle scrivere il pedaggio, e la catena resto' dov'era.
+
+
+**`P_TOLLS_CUT`**
+> Si tolga la catena e la si mostri in piazza, poi si guardi chi la rimette.
+
+
+**`P_TOLLS_CUT, esito`**
+> La catena fu portata in piazza, e per una stagione le carovane ripartirono da sole.
+
+
+**`P_TOLLS_ESCORT`**
+> Una scorta su ogni convoglio, e che risponda col proprio nome di quello che porta.
+
+
+**`P_TOLLS_ESCORT, esito`**
+> Dodici uomini giurarono sui carichi del bosco, e chi rubava dovette sapere a chi rubava.
+
+
+**`Q_STONES_WALK`**
+> Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?
+
+
+**`Q_STONES_WHO`**
+> E chi le ha spostate, si cerca?
+
+
+**`P_STONES_WALK`**
+> Si cammina davanti a testimoni e si giura, pietra per pietra. Chi non viene a camminare rinuncia.
+
+
+**`P_STONES_WALK, esito`**
+> Il confine fu camminato e giurato pietra per pietra, e uno dei due non si presentò.
+
+
+**`P_STONES_REGISTER`**
+> Si riscrive il catasto e valga il registro, non le pietre: le pietre le sposta chi arriva di notte.
+
+
+**`P_STONES_REGISTER, esito`**
+> Si riscrisse il catasto, e da allora il confine stette su una pagina invece che nell'erba.
+
+
+**`P_STONES_DROP`**
+> Non si cerca. Trovarlo costa più della terra che ha preso, e tutti sanno chi è.
+
+
+**`P_STONES_DROP, esito`**
+> Non si cercò nessuno, e a tavola si smise di sedere accanto a qualcuno.
+
+
+**`Q_BURIALS_RITE`**
+> La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?
+
+
+**`Q_BURIALS_WATER`**
+> E l'acqua che li ha scoperti, si rimanda dov'era?
+
+
+**`P_BURIALS_GROUND`**
+> Un campo santo nuovo, consacrato davanti a tutti, e i senza nome ci vanno col rito intero.
+
+
+**`P_BURIALS_GROUND, esito`**
+> Si consacrò un campo per i senza nome, e ci andarono col rito intero anche quelli che nessuno reclamò.
+
+
+**`P_BURIALS_BACK`**
+> Si rimettono sotto dov'erano, e sull'acqua bassa non si scava più.
+
+
+**`P_BURIALS_BACK, esito`**
+> I sepolti tornarono sotto, e sull'acqua bassa non si scavò più per una generazione.
+
+
+**`P_BURIALS_CANAL`**
+> Si scavi il canale e l'acqua torni alta: quello che la palude tiene, lo tenga.
+
+
+**`P_BURIALS_CANAL, esito`**
+> Si scavò il canale e l'acqua tornò alta, e la palude si riprese quello che aveva mostrato.
 
 
 **`Q_CHARTER_WRITE`**
@@ -6011,6 +6019,102 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > Si stabilì di tirare a sorte, e la cosa strana è che tenne.
 
 
+**`Q_CLEARING_LIMIT`**
+> Il bosco arretra di un campo all'anno $in_region: si mette un limite al taglio?
+
+
+**`Q_CLEARING_KILNS`**
+> E le fornaci, si fermano una stagione?
+
+
+**`P_CLEARING_LIMIT`**
+> Un limite scritto e un guardaboschi pagato dal Consiglio: si taglia quanto ricresce, e non un carro di più.
+
+
+**`P_CLEARING_LIMIT, esito`**
+> Il taglio ebbe un limite scritto e un guardaboschi, e il bosco arretrò di mezzo campo invece che di uno.
+
+
+**`P_CLEARING_CUT`**
+> Si taglia finché rende. Legna, carbone, terra nuova: il bosco è un raccolto che si fa una volta sola, e questa è la volta.
+
+
+**`P_CLEARING_CUT, esito`**
+> Si tagliò finché rendeva, e la terra nuova rese due anni.
+
+
+**`P_CLEARING_STOP`**
+> Ferme per una stagione, e chi compra carbone lo compri altrove: il bosco non si accorge delle nostre stagioni, i conti sì.
+
+
+**`P_CLEARING_STOP, esito`**
+> Le fornaci restarono ferme una stagione, e il carbone arrivò da lontano a un prezzo che nessuno dimenticò.
+
+
+**`Q_COUNCIL_SEATS_WHO`**
+> Chi si siede al tavolo, e chi lo decide?
+
+
+**`Q_COUNCIL_SEATS_VETO`**
+> E un veto, quanto vale?
+
+
+**`P_COUNCIL_SEATS_WIDEN`**
+> Si allarghi il tavolo: piu' seggi, e $proponent dice a chi.
+
+
+**`P_COUNCIL_SEATS_WIDEN, esito`**
+> Il tavolo del Consiglio si allargò, e i seggi nuovi li assegnò $proponent.
+
+
+**`P_COUNCIL_SEATS_KEEP`**
+> Il tavolo resta quello: chi non c'era, non c'e'.
+
+
+**`P_COUNCIL_SEATS_KEEP, esito`**
+> Il tavolo del Consiglio restò quello di prima, e chi bussava trovò la porta chiusa.
+
+
+**`P_COUNCIL_SEATS_CHARTER`**
+> Si scriva chi ha diritto di sedere, e valga anche per chi oggi non siede.
+
+
+**`P_COUNCIL_SEATS_CHARTER, esito`**
+> Si scrisse chi aveva diritto di sedere al Consiglio, e la riga valeva anche per chi quel giorno era fuori.
+
+
+**`Q_COURIERS_PAYS`**
+> Chi paga le staffette, e cosa compra davvero?
+
+
+**`Q_COURIERS_SEAL`**
+> E le lettere che arrivano aperte, per le mani di chi sono passate?
+
+
+**`P_COURIERS_SWORN`**
+> Un servizio giurato al Consiglio: dodici staffette che rispondono col proprio nome di ogni lettera.
+
+
+**`P_COURIERS_SWORN, esito`**
+> Dodici staffette giurarono sulle lettere, e per la prima volta si seppe chi le aveva in mano.
+
+
+**`P_COURIERS_MINE`**
+> Le paghi $proponent, e almeno si sappia a chi rispondono.
+
+
+**`P_COURIERS_MINE, esito`**
+> Le staffette passarono a $proponent, e per un po' le notizie arrivarono in orario.
+
+
+**`P_COURIERS_ANSWER`**
+> Chi ha rotto un sigillo lo dica davanti a chi aspettava quella lettera, e paghi.
+
+
+**`P_COURIERS_ANSWER, esito`**
+> I sigilli rotti furono contati davanti a chi li aspettava, e non riparo' niente, ma chiuse.
+
+
 **`Q_DEBT_LEDGER`**
 > Chi tiene il registro, e chi può leggerlo?
 
@@ -6039,6 +6143,18 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > Si volle che il registro restasse a uno solo, e tre città smisero di firmare.
 
 
+**`P_OLD_PAGE`**
+> Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.
+
+
+**`P_OLD_PAGE, esito`**
+> La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.
+
+
+**`P_OLD_PAGE, esito FAILURE`**
+> Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto.
+
+
 **`P_FORGIVE`**
 > Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.
 
@@ -6055,16 +6171,168 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo.
 
 
-**`P_OLD_PAGE`**
-> Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.
+**`Q_DEEP_NETS`**
+> Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?
 
 
-**`P_OLD_PAGE, esito`**
-> La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.
+**`Q_DEEP_LOOK`**
+> E andare a vedere cosa c'è sotto, conviene a qualcuno?
 
 
-**`P_OLD_PAGE, esito FAILURE`**
-> Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto.
+**`P_DEEP_BAN`**
+> Nessuna rete oltre la secca, e chi ci vive mangi d'altro per un anno.
+
+
+**`P_DEEP_BAN, esito`**
+> Si vietò di calare le reti nel fondo, e per un anno si mangiò quello che c'era.
+
+
+**`P_DEEP_CHANNEL`**
+> Si scavi il passaggio dove l'acqua è bassa: l'acqua che si muove non strappa niente.
+
+
+**`P_DEEP_CHANNEL, esito`**
+> Si scavò il passaggio fra l'isola e la palude, e le reti tornarono intere.
+
+
+**`P_DEEP_EXPEDITION`**
+> Due barche, una corda fra loro, e tutto a verbale. Chi scende non decide da solo di scendere ancora.
+
+
+**`P_DEEP_EXPEDITION, esito`**
+> Si scese nel fondo con due barche e una corda, e il verbale finì a metà pagina.
+
+
+**`Q_ECHOES_WHO`**
+> In fondo qualcosa risponde ai colpi $in_region: si scende a vedere chi, o si smette di battere?
+
+
+**`Q_ECHOES_SHIFT`**
+> E il turno lungo, chi lo fa adesso?
+
+
+**`P_ECHOES_MEASURE`**
+> Si scende con regole scritte e due testimoni per turno: quello che risponde si misura, non si racconta.
+
+
+**`P_ECHOES_MEASURE, esito`**
+> Si scese a misurare il fondo $in_region, e il verbale venne più lungo del racconto.
+
+
+**`P_ECHOES_SEAL`**
+> Si mura il fondo e si lavora sopra. Quello che sta sotto stia sotto.
+
+
+**`P_ECHOES_SEAL, esito`**
+> Il fondo fu murato, e il turno lungo smise di esistere.
+
+
+**`P_ECHOES_SEAL, esito FAILURE`**
+> $proponent volle murare il fondo, e il fondo rispose ai colpi anche il giorno dopo.
+
+
+**`P_ECHOES_PAID`**
+> Lo fanno tutte le case a turno e lo paga il Consiglio: nessuno scende due volte di fila.
+
+
+**`P_ECHOES_PAID, esito`**
+> Il turno lungo si fece a turno fra le case, e nessuno scese due volte di fila.
+
+
+**`Q_EMPTY_NETS_WATER`**
+> Chi pesca $in_region, adesso che le reti tornano vuote?
+
+
+**`Q_EMPTY_NETS_BOATS`**
+> E le barche ferme, di chi restano?
+
+
+**`P_EMPTY_NETS_TURNS`**
+> Si peschi a turno, e $proponent tenga il calendario.
+
+
+**`P_EMPTY_NETS_TURNS, esito`**
+> $in_region si pescò a turno, e il calendario lo teneva $proponent.
+
+
+**`P_EMPTY_NETS_STOP`**
+> Si fermi tutto per un anno: il mare si rifa', se lo si lascia stare.
+
+
+**`P_EMPTY_NETS_STOP, esito`**
+> Per un anno nessuno calò le reti $in_region, e fu un anno lungo per tutti.
+
+
+**`P_EMPTY_NETS_LEAVE`**
+> Le barche restino a chi le vuole tirare in secco. Noi andiamo altrove.
+
+
+**`P_EMPTY_NETS_LEAVE, esito`**
+> Le barche $of_region restarono in secco, e chi sapeva remare era già partito.
+
+
+**`Q_ENCLOSURE_POSTS`**
+> I pali sono spuntati di notte $in_region: si tolgono, o si scrive chi li ha piantati?
+
+
+**`Q_ENCLOSURE_USE`**
+> E l'uso della terra, a chi resta?
+
+
+**`P_ENCLOSURE_TITLE`**
+> Un titolo scritto e letto in piazza: chi ha piantato i pali lo dica davanti a tutti, e paghi l'uso a chi lo perde.
+
+
+**`P_ENCLOSURE_TITLE, esito`**
+> I pali ebbero un titolo scritto e letto in piazza, e chi li aveva piantati pagò per la prima volta.
+
+
+**`P_ENCLOSURE_PULL`**
+> Si tolgono. La terra che era di tutti torna di tutti, e chi li rialza li rialza contro il Consiglio.
+
+
+**`P_ENCLOSURE_PULL, esito`**
+> I pali furono divelti, e ricomparvero più lontano dalla strada.
+
+
+**`P_ENCLOSURE_SPLIT`**
+> Si divida l'uso e non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+
+
+**`P_ENCLOSURE_SPLIT, esito`**
+> Si divise l'uso e non il titolo, e a fine anno i conti tornarono per tutti tranne uno.
+
+
+**`Q_FALLOW_REST`**
+> I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?
+
+
+**`Q_FALLOW_LEAN`**
+> E chi non può permetterselo, come semina?
+
+
+**`P_FALLOW_ROTATION`**
+> Una rotazione scritta al Consiglio, uguale per tutti: chi riposa quest'anno semina per primo il prossimo.
+
+
+**`P_FALLOW_ROTATION, esito`**
+> La rotazione fu scritta e rispettata, e al terzo anno il grano tornò alto.
+
+
+**`P_FALLOW_PUSH`**
+> Nessuno riposa. Si semina fitto e si vede: la terra stanca ha reso anche l'anno scorso.
+
+
+**`P_FALLOW_PUSH, esito`**
+> Non riposò nessuno, e il raccolto arrivò: più corto dell'anno prima, più lungo di quello dopo.
+
+
+**`P_FALLOW_GRAIN`**
+> Un granaio comune che presta la semente, e la restituisce chi ha raccolto.
+
+
+**`P_FALLOW_GRAIN, esito`**
+> Il granaio comune prestò la semente, e la restituirono quasi tutti.
 
 
 **`Q_FAMINE_GRAIN`**
@@ -6155,12 +6423,800 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso.
 
 
-**`Q_RELIC_KEEP`**
-> Chi risponde di quello che c'è nella teca?
+**`P_SEAL_MINE_FOR_FIELDS`**
+> Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito`**
+> Le gallerie furono sigillate, e le braccia tornarono ai campi.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito DECISIVE_SUCCESS`**
+> $proponent entrò $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito FAILURE`**
+> $proponent chiese di entrare $in_region e la porta restò dov'era, con la stessa gente davanti.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito SUCCESS_WITH_COST`**
+> $proponent entrò $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perché qualcuno lo chiamasse un accordo.
+
+
+**`Q_FERRY_TARIFF`**
+> La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?
+
+
+**`Q_FERRY_SECOND`**
+> E se una barca sola non basta piu'?
+
+
+**`P_FERRY_WRITTEN`**
+> La tariffa si scriva al Consiglio, e la riscuota $proponent: chi la supera perde la barca.
+
+
+**`P_FERRY_WRITTEN, esito`**
+> La tariffa del traghetto fu scritta, e chi la riscoteva era $proponent.
+
+
+**`P_FERRY_WRITTEN, esito FAILURE`**
+> $proponent volle scrivere la tariffa, e il traghettatore continuo' a farsi pagare in favori.
+
+
+**`P_FERRY_LEDGER`**
+> Ogni traversata si segni su un registro, e il registro stia al molo dove chiunque legge.
+
+
+**`P_FERRY_LEDGER, esito`**
+> Le traversate finirono su un registro al molo, e si scopri' chi non pagava mai.
+
+
+**`P_FERRY_SECOND_BOAT`**
+> Si metta in acqua una seconda barca, e la paghino tutte le case insieme.
+
+
+**`P_FERRY_SECOND_BOAT, esito`**
+> Una seconda barca ando' in acqua a spese di tutti, e l'isola smise di dipendere da un uomo solo.
+
+
+**`Q_FLOOD_DIKES`**
+> La palude è salita di un palmo $in_region: si rifanno gli argini, o si arretra?
+
+
+**`Q_FLOOD_CANALS`**
+> E i canali vecchi, si riaprono?
+
+
+**`P_FLOOD_DIKES`**
+> Si rifanno, e li paga chi ci sta dietro: un argine è di tutti quelli che non si bagnano.
+
+
+**`P_FLOOD_DIKES, esito`**
+> Gli argini furono rifatti a spese di chi ci stava dietro, e tennero l'inverno.
+
+
+**`P_FLOOD_BACK`**
+> Si arretra di un campo e si lascia all'acqua quello che l'acqua vuole. Gli argini vecchi tenevano per abitudine.
+
+
+**`P_FLOOD_BACK, esito`**
+> Si arretrò di un campo, e l'acqua si prese quello e si fermò lì.
+
+
+**`P_FLOOD_CANALS`**
+> Si riaprono e si tengono aperti: l'acqua che ha dove andare non sale.
+
+
+**`P_FLOOD_CANALS, esito`**
+> I canali vecchi furono riaperti, e l'acqua trovò dove andare prima di trovare i campi.
+
+
+**`Q_GUILDS_STREETS`**
+> Le vie sono strette: di chi sono?
+
+
+**`Q_GUILDS_FIRE`**
+> E del magazzino bruciato, chi risponde?
+
+
+**`P_GUILDS_SPLIT`**
+> Si dividano i mercati con confini scritti, e ogni gilda stia dalla sua parte.
+
+
+**`P_GUILDS_SPLIT, esito`**
+> I mercati furono divisi con confini scritti, e le due gilde smisero di incontrarsi per strada.
+
+
+**`P_GUILDS_ONE`**
+> Una gilda sola, e la tessera la dia $proponent.
+
+
+**`P_GUILDS_ONE, esito`**
+> Le due gilde divennero una sola, con la tessera in mano a $proponent, e per un po' funziono' meglio.
+
+
+**`P_GUILDS_PAY`**
+> Chi ha acceso paghi davanti a chi ha perso il magazzino, e si chiuda qui.
+
+
+**`P_GUILDS_PAY, esito`**
+> Il conto del magazzino fu pagato davanti a tutti, e nessuno si dichiaro' soddisfatto.
+
+
+**`Q_HERESY_PREACH`**
+> Si predica una parola nuova $in_region: si stabilisce cosa si può dire, o si lascia dire?
+
+
+**`Q_HERESY_LISTEN`**
+> E a chi la ascolta, cosa si fa?
+
+
+**`P_HERESY_DISPUTE`**
+> Una disputa pubblica, con un vincitore dichiarato e il verbale affisso al muro.
+
+
+**`P_HERESY_DISPUTE, esito`**
+> Si disputò in pubblico sulla parola nuova, e il verbale restò affisso finché la pioggia non lo tolse.
+
+
+**`P_HERESY_HOUSE`**
+> Una casa riconosciuta per la fede, e fuori da quella casa si predica a proprio rischio.
+
+
+**`P_HERESY_HOUSE, esito`**
+> La fede ebbe una casa riconosciuta, e la parola nuova si spostò fuori dalle mura.
+
+
+**`P_HERESY_HOUSE, esito FAILURE`**
+> $proponent volle una casa per la fede, e la fede resto' dove stava: dappertutto.
+
+
+**`P_HERESY_LEAVE`**
+> Niente. Chi ascolta ascolta: si contano, e l'anno prossimo si vede quanti sono.
+
+
+**`P_HERESY_LEAVE, esito`**
+> Non si fece niente a chi ascoltava, e l'anno dopo erano abbastanza da non poterli più contare.
+
+
+**`Q_HOSTAGES_GUEST`**
+> Gli ospiti di corte, quando possono tornare a casa?
+
+
+**`Q_HOSTAGES_WHO`**
+> E chi risponde di loro?
+
+
+**`P_HOSTAGES_HOLD`**
+> Restano, e rispondono a $proponent: e' lui che li ha in casa.
+
+
+**`P_HOSTAGES_HOLD, esito`**
+> Gli ospiti di corte restarono dov'erano, e a rispondere di loro era $proponent.
+
+
+**`P_HOSTAGES_HOME`**
+> Tornino a casa tutti, e ogni casa si fidi di quello che ha promesso.
+
+
+**`P_HOSTAGES_HOME, esito`**
+> Gli ospiti tornarono a casa, e la fiducia dovette bastare al posto delle catene.
+
+
+**`P_HOSTAGES_TRADE`**
+> Si scambino: ogni casa tenga un figlio di un'altra, e nessuna sia piu' sicura.
+
+
+**`P_HOSTAGES_TRADE, esito`**
+> I figli si scambiarono da una corte all'altra, e nessuna casa dormì meglio.
+
+
+**`Q_SHRINE_KEEP`**
+> Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?
+
+
+**`Q_SHRINE_RITE`**
+> E il rito, si scrive nuovo o si copia il vecchio?
+
+
+**`P_SHRINE_ANOINT`**
+> Lo custodisce chi è stato unto per farlo, e le barche vanno quando lo dice lui.
+
+
+**`P_SHRINE_ANOINT, esito`**
+> L'altare dell'isola ebbe un custode unto, e le barche partirono quando lo diceva lui.
+
+
+**`P_SHRINE_OPEN`**
+> Lo custodiscono tutti: stia aperto, e chi ci arriva trovi qualcuno che gli spieghi cos'è.
+
+
+**`P_SHRINE_OPEN, esito`**
+> L'altare dell'isola restò aperto, e chi ci arrivava tornava sapendo una cosa in più.
+
+
+**`P_SHRINE_NEW`**
+> Se ne scriva uno nuovo per il posto vecchio: quello di prima non lo sa più nessuno, e fingere di saperlo costa più che ammetterlo.
+
+
+**`P_SHRINE_NEW, esito`**
+> Per l'altare vecchio si scrisse un rito nuovo, e nessuno disse ad alta voce che era nuovo.
+
+
+**`Q_SILENCE_LAND`**
+> Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?
+
+
+**`Q_SILENCE_NIGHT`**
+> E a chi ci ha già passato la notte, cosa si chiede?
+
+
+**`P_SILENCE_RITE`**
+> Un presidio con il rito giusto: ci va chi è mandato, e torna riferendo a chi di dovere.
+
+
+**`P_SILENCE_RITE, esito`**
+> Sull'isola si mise un presidio col rito giusto, e chi ci andava tornava parlando piano lo stesso.
+
+
+**`P_SILENCE_BAN`**
+> Divieto di sbarco, e una barca che giri per farlo rispettare.
+
+
+**`P_SILENCE_BAN, esito`**
+> Si vietò di sbarcare sull'isola, e l'isola tacque anche per quelli che non ci andavano.
+
+
+**`P_SILENCE_HEARD`**
+> Si ascoltino uno per volta e a verbale: il silenzio si misura da quanto dura dopo.
+
+
+**`P_SILENCE_HEARD, esito`**
+> Si ascoltarono a verbale quelli tornati dall'isola, e due raccontarono la stessa cosa senza essersi parlati.
+
+
+**`Q_LANDLESS_PACT`**
+> Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?
+
+
+**`Q_LANDLESS_LAND`**
+> E dare terra a chi la lavora, si può?
+
+
+**`P_LANDLESS_PACT`**
+> Un patto scritto al Consiglio: giornate, paga e stagione. Chi lo rompe lo rompe davanti a tutti.
+
+
+**`P_LANDLESS_PACT, esito`**
+> Il patto di lavoro fu scritto al Consiglio, e la prima stagione lo ruppero in due.
+
+
+**`P_LANDLESS_FREE`**
+> Si lascia contrattare. Chi ha fame contratta lo stesso, e più in fretta.
+
+
+**`P_LANDLESS_FREE, esito`**
+> Non si scrisse nessun patto, e le giornate si pagarono come le pagava chi aveva più fretta.
+
+
+**`P_LANDLESS_GRANT`**
+> Si conceda ai margini, a chi la mette a coltura entro l'anno: terra non lavorata non è terra, è una mappa.
+
+
+**`P_LANDLESS_GRANT, esito`**
+> Ai margini fu concessa terra a chi la lavorava, e in un anno il margine si spostò.
+
+
+**`Q_REGISTER_MEASURE`**
+> Il trono vuole un registro delle terre: chi misura?
+
+
+**`Q_REGISTER_REFUSE`**
+> E chi non si fa scrivere?
+
+
+**`P_REGISTER_SWORN`**
+> Misurano le parti insieme e giurano insieme: un catasto che non serve a nessuno in particolare è il solo che regge.
+
+
+**`P_REGISTER_SWORN, esito`**
+> Il catasto fu misurato dalle parti insieme, e nessuna delle due lo disse mai giusto.
+
+
+**`P_REGISTER_CROWN`**
+> Misura chi l'ha chiesto, e paga chi viene misurato.
+
+
+**`P_REGISTER_CROWN, esito`**
+> Misurò chi l'aveva chiesto, e pagarono i misurati: due volte, contando la terra.
+
+
+**`P_REGISTER_REFUSE`**
+> Non si scrive nessuno. Scrivere di chi è la terra è un modo di prendersela, e questo modo lo conosciamo.
+
+
+**`P_REGISTER_REFUSE, esito`**
+> Il registro non si fece, e ogni casa continuò a sapere i propri confini e a dimenticare gli altrui.
+
+
+**`Q_LEVY_ARMS`**
+> $in_region, chi decide quante braccia vanno alle armi?
+
+
+**`Q_LEVY_HARVEST`**
+> E il raccolto che resta indietro, chi lo perde?
+
+
+**`P_LEVY_QUOTA`**
+> Una quota per villaggio, e $proponent tiene la lista.
+
+
+**`P_LEVY_QUOTA, esito`**
+> La leva $of_region si prese una quota per villaggio, e la lista la teneva $proponent.
+
+
+**`P_LEVY_EQUAL`**
+> Ogni casa perda le sue braccia, in parti uguali, e nessuna si tenga i giovani buoni.
+
+
+**`P_LEVY_EQUAL, esito`**
+> La leva $of_region pesò uguale su tutte le case, e il raccolto restò indietro per tutti.
+
+
+**`P_LEVY_PAY`**
+> Chi non vuole andare paghi, e $proponent riscuota.
+
+
+**`P_LEVY_PAY, esito`**
+> Dalla leva $of_region ci si comprava fuori, e il prezzo lo riscuoteva $proponent.
+
+
+**`Q_MARCHES_EDGE`**
+> Ai margini $of_region, a chi si obbedisce davvero?
+
+
+**`Q_MARCHES_TITLE`**
+> E i titoli che si danno da soli, valgono?
+
+
+**`P_MARCHES_GRANT`**
+> Si riconosca il titolo a chi la terra la tiene gia': meglio un alleato che un ribelle.
+
+
+**`P_MARCHES_GRANT, esito`**
+> Il titolo di marca andò a chi la terra la teneva già, e il trono ci guadagnò un alleato e ci perse un pezzo.
+
+
+**`P_MARCHES_RECALL`**
+> Nessun titolo. Si richiamino i capibanda, e chi non torna e' fuori legge.
+
+
+**`P_MARCHES_RECALL, esito`**
+> I capibanda del margine furono dichiarati fuori legge, e il confine si fece piu' lontano.
+
+
+**`P_MARCHES_LEAVE`**
+> Il margine si lasci a se stesso: chi ci vive se lo tenga, coi lupi.
+
+
+**`P_MARCHES_LEAVE, esito`**
+> Il margine $of_region fu lasciato a chi ci viveva, e sulle mappe smise di avere un padrone.
+
+
+**`Q_MARSH_FEVER_WATER`**
+> $in_region, chi manda gli uomini a prosciugare?
+
+
+**`Q_MARSH_FEVER_SICK`**
+> E i malati, chi se li tiene?
+
+
+**`P_MARSH_FEVER_DIG`**
+> Si scavino i canali, e $proponent decida da dove si comincia.
+
+
+**`P_MARSH_FEVER_DIG, esito`**
+> I canali $of_region furono scavati dove disse $proponent, e l'acqua andò dove lui l'aveva mandata.
+
+
+**`P_MARSH_FEVER_SHARE`**
+> Ogni casa ne prenda la sua parte, e nessuno ne esca pulito.
+
+
+**`P_MARSH_FEVER_SHARE, esito`**
+> La febbre $of_region fu divisa fra tutti, come si divide una cosa che nessuno vuole.
+
+
+**`P_MARSH_FEVER_WALL`**
+> Si chiuda la palude e chi ci sta dentro. Chi vuole vegliarli, paghi le guardie.
+
+
+**`P_MARSH_FEVER_WALL, esito`**
+> La palude $of_region fu chiusa con dentro chi ci viveva, e nessuno andò a contarli.
+
+
+**`Q_NAMELESS_RIGHT`**
+> Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare $in_region?
+
+
+**`Q_NAMELESS_COUNT`**
+> E contarli, conviene a qualcuno?
+
+
+**`P_NAMELESS_SETTLE`**
+> Si dia loro un posto dove fermarsi, e lo si scriva: chi ha un posto finisce per avere anche un nome.
+
+
+**`P_NAMELESS_SETTLE, esito`**
+> Ai senza città fu dato un posto dove fermarsi, e in due anni il posto ebbe un nome sulle mappe.
+
+
+**`P_NAMELESS_MOVE`**
+> Non risultano perché non stanno fermi. Li si accompagni oltre il confine, e la terra torni contata.
+
+
+**`P_NAMELESS_MOVE, esito`**
+> I senza città furono accompagnati oltre il confine, e il confine da quella parte smise di essere un confine.
+
+
+**`P_NAMELESS_ROLL`**
+> Si contano e si scrivono, uno per uno. Un registro non dà diritti: rende difficile negarli.
+
+
+**`P_NAMELESS_ROLL, esito`**
+> I senza città furono contati e scritti, e il numero fu più alto di quello che chiunque diceva.
+
+
+**`Q_CHANNELS_MAP`**
+> Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?
+
+
+**`Q_CHANNELS_END`**
+> E dove finiscono, cosa ci si fa?
+
+
+**`P_CHANNELS_MAPPED`**
+> Si faccia la mappa e stia dove chiunque la legge: una strada è pericolosa finché è di uno solo.
+
+
+**`P_CHANNELS_MAPPED, esito`**
+> Le vie di prima finirono su una mappa $in_region, e smisero di essere una voce.
+
+
+**`P_CHANNELS_FORBID`**
+> Nessuno ci cammina finché non si sa dove finiscono. Un divieto, e qualcuno pagato per farlo rispettare.
+
+
+**`P_CHANNELS_FORBID, esito`**
+> Si vietò di percorrere le vie di prima, e per un anno le percorse solo chi non chiede permesso.
+
+
+**`P_CHANNELS_WATER`**
+> Dove passava l'acqua di prima si scavi il canale: le vie vecchie tornino a portare qualcosa.
+
+
+**`P_CHANNELS_WATER, esito`**
+> Si scavò dove l'acqua passava prima, e l'acqua tornò a muoversi.
+
+
+**`Q_OLD_GUARD_INSIGNIA`**
+> Le insegne del vecchio ordine, si portano ancora?
+
+
+**`Q_OLD_GUARD_COMMAND`**
+> E chi comanda i veterani?
+
+
+**`P_OLD_GUARD_KEEP`**
+> Restino in servizio, e giurino a $proponent: chi ha servito sa servire.
+
+
+**`P_OLD_GUARD_KEEP, esito`**
+> I veterani del vecchio ordine giurarono a $proponent, e le insegne restarono sulle spalle.
+
+
+**`P_OLD_GUARD_PENSION`**
+> Si congedino con onore, e il costo lo divida il tavolo.
+
+
+**`P_OLD_GUARD_PENSION, esito`**
+> La vecchia guardia fu congedata con onore, e il conto lo pagarono tutti insieme.
+
+
+**`P_OLD_GUARD_LAW`**
+> Si scriva quale insegna vale e quale no, e sia scritto per tutti.
+
+
+**`P_OLD_GUARD_LAW, esito`**
+> Si mise per iscritto quale insegna valeva, e i vecchi ufficiali la lessero senza commentare.
+
+
+**`Q_NAMES_MEAN`**
+> I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?
+
+
+**`Q_NAMES_USE`**
+> E dirli, si può?
+
+
+**`P_NAMES_DISPUTE`**
+> Una disputa dei dotti, e quello che si capisce resti scritto dove chiunque lo legge.
+
+
+**`P_NAMES_DISPUTE, esito`**
+> I dotti disputarono sui nomi vecchi, e quello che capirono restò scritto.
+
+
+**`P_NAMES_ERASE`**
+> Si cancellano, e si sorveglia chi li riscrive.
+
+
+**`P_NAMES_ERASE, esito`**
+> I nomi vecchi furono cancellati dai muri, e ricomparvero più in alto.
+
+
+**`P_NAMES_LIST`**
+> Si scriva l'elenco di quelli che si possono dire, e valga per tutti allo stesso modo.
+
+
+**`P_NAMES_LIST, esito`**
+> Si scrisse quali nomi si potevano dire, e l'elenco venne più corto di quanto chiunque sperasse.
+
+
+**`Q_PASTURE_CALENDAR`**
+> Due greggi sullo stesso pascolo $in_region: si fa un calendario, o decide l'erba?
+
+
+**`Q_PASTURE_SEASON`**
+> E il margine, si divide?
+
+
+**`P_PASTURE_CALENDAR`**
+> Un calendario dei pascoli deciso al Consiglio: prima l'uno, poi l'altro, e chi sfora paga in capi.
+
+
+**`P_PASTURE_CALENDAR, esito`**
+> Il pascolo ebbe un calendario, e il primo che sforò pagò in capi davanti a tutti.
+
+
+**`P_PASTURE_ONE`**
+> Il pascolo risponda a $proponent, e gli altri ci portino le greggi chiedendo.
+
+
+**`P_PASTURE_ONE, esito`**
+> Il pascolo rispose a $proponent, e le altre greggi ci arrivarono chiedendo.
+
+
+**`P_PASTURE_ONE, esito FAILURE`**
+> $proponent volle il pascolo, e l'erba fini' prima che finisse la discussione.
+
+
+**`P_PASTURE_SPLIT`**
+> Si divide il margine: a ognuno la sua parte, segnata con le pietre e con la gente sopra.
+
+
+**`P_PASTURE_SPLIT, esito`**
+> Il margine fu diviso e segnato, e per una stagione le greggi non si videro.
+
+
+**`Q_PILGRIMS_FEED`**
+> I pellegrini continuano ad arrivare $in_region: si dà loro da mangiare, o si chiude la strada?
+
+
+**`Q_PILGRIMS_YEAR`**
+> E l'anno santo, lo dichiara qualcuno?
+
+
+**`P_PILGRIMS_STAGES`**
+> Un cammino con le tappe scritte e un granaio a ogni tappa, e lo paga chi ci guadagna il passaggio.
+
+
+**`P_PILGRIMS_STAGES, esito`**
+> Il cammino ebbe le sue tappe e i suoi granai, e i villaggi smisero di contare le bocche.
+
+
+**`P_PILGRIMS_CLOSE`**
+> Razione fissa ai villaggi sul cammino, e chi arriva dopo trova le porte chiuse.
+
+
+**`P_PILGRIMS_CLOSE, esito`**
+> Sul cammino si mise una razione fissa, e chi arrivò per ultimo prego' davanti a una porta chiusa.
+
+
+**`P_PILGRIMS_HOLY`**
+> Lo dichiara il Consiglio, con le date scritte: se devono venire tutti, che vengano quando siamo pronti.
+
+
+**`P_PILGRIMS_HOLY, esito`**
+> L'anno santo fu dichiarato con le date scritte, e per una volta si seppe quanti aspettarne.
+
+
+**`Q_PLAGUE_DOORS`**
+> $in_region, chi decide quali porte restano aperte?
+
+
+**`Q_PLAGUE_DEAD`**
+> E chi tiene il conto dei morti?
+
+
+**`P_PLAGUE_QUARTER`**
+> Si chiuda un quartiere alla volta, e $proponent dica quale.
+
+
+**`P_PLAGUE_QUARTER, esito`**
+> $in_region si chiuse un quartiere alla volta, e l'ordine lo dava $proponent.
+
+
+**`P_PLAGUE_OPEN`**
+> Nessuna porta si chiude: la febbre passa, la paura resta.
+
+
+**`P_PLAGUE_OPEN, esito`**
+> $in_region non si chiuse nessuna porta, e la febbre passò casa per casa senza chiedere permesso.
+
+
+**`P_PLAGUE_REGISTER`**
+> Si scriva ogni nome in un registro aperto: che si sappia quanti, e dove.
+
+
+**`P_PLAGUE_REGISTER, esito`**
+> I morti $of_region furono scritti a uno a uno in un registro che chiunque poteva leggere.
+
+
+**`Q_PROPHECY_READ`**
+> Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?
+
+
+**`Q_PROPHECY_AFTER`**
+> E il giorno dopo la data, cosa si fa?
+
+
+**`P_PROPHECY_DISPUTE`**
+> Una disputa pubblica sulla lettura, e il verbale affisso: una data smette di avvicinarsi quando qualcuno la legge ad alta voce.
+
+
+**`P_PROPHECY_DISPUTE, esito`**
+> Si disputò in pubblico sulla lettura, e la data restò dov'era: nel conto di chi la temeva.
+
+
+**`P_PROPHECY_MEASURE`**
+> Si misuri il cristallo con regole scritte: se la data c'è, ci sarà anche per chi non ci crede.
+
+
+**`P_PROPHECY_MEASURE, esito`**
+> Il cristallo fu misurato sotto custodia, e la data non risultò da nessuna parte se non nel racconto.
+
+
+**`P_PROPHECY_PLAN`**
+> Si scriva adesso cosa si fa il giorno dopo, e si firmi adesso: dopo, chi ha avuto ragione non ascolta più nessuno.
+
+
+**`P_PROPHECY_PLAN, esito`**
+> Si scrisse in anticipo cosa fare il giorno dopo la data, e fu la sola parte della profezia che si avverò.
+
+
+**`Q_QUARANTINE_LINE`**
+> Chi traccia il cordone $in_region, e dove passa?
+
+
+**`Q_QUARANTINE_OUT`**
+> E chi resta fuori, dove va?
+
+
+**`P_QUARANTINE_HOLD`**
+> Il cordone lo tiene $proponent, e chi lo attraversa risponde a lui.
+
+
+**`P_QUARANTINE_HOLD, esito`**
+> Il cordone $of_region lo tenne $proponent, e nessuno lo attraversò senza il suo permesso.
+
+
+**`P_QUARANTINE_TOLL`**
+> Si passa pagando: chi ha di che, esce.
+
+
+**`P_QUARANTINE_TOLL, esito`**
+> Dal cordone $of_region si usciva pagando, e chi non aveva di che restò dentro.
+
+
+**`P_QUARANTINE_NONE`**
+> Nessun cordone. Chi vuole andarsene se ne vada, e si porti dietro quello che ha.
+
+
+**`P_QUARANTINE_NONE, esito`**
+> $in_region non si tracciò nessun cordone, e chi poteva partire partì.
+
+
+**`Q_REFUGEES_ROOM`**
+> $in_region, chi decide dove si fermano quelli che arrivano?
+
+
+**`Q_REFUGEES_COST`**
+> E chi paga il pane in piu'?
+
+
+**`P_REFUGEES_SETTLE`**
+> Si dia loro un posto dove piantare le tende, e $proponent dica quale.
+
+
+**`P_REFUGEES_SETTLE, esito`**
+> Chi arrivava da fuori si fermò dove disse $proponent, e da allora quel posto ebbe un nome.
+
+
+**`P_REFUGEES_SHARE`**
+> Il pane in piu' lo mette ogni casa, in parti uguali.
+
+
+**`P_REFUGEES_SHARE, esito`**
+> Il pane per chi arrivava $in_region lo misero tutti, e a nessuno bastò.
+
+
+**`P_REFUGEES_MOVE_ON`**
+> Non qui. Passino, bevano, e domani siano piu' avanti.
+
+
+**`P_REFUGEES_MOVE_ON, esito`**
+> $in_region si lasciò passare chi arrivava, e nessuno chiese dove sarebbe andato a dormire.
+
+
+**`Q_REGENCY_SEAL`**
+> Il sigillo, fino a quando lo tiene il reggente?
+
+
+**`Q_REGENCY_AFTER`**
+> E dopo, a chi torna?
+
+
+**`P_REGENCY_TERM`**
+> Si scriva un termine, e alla scadenza il sigillo si posa sul tavolo.
+
+
+**`P_REGENCY_TERM, esito`**
+> Alla reggenza fu scritto un termine, e la data la sapevano tutti.
+
+
+**`P_REGENCY_KEEP`**
+> $proponent lo tiene finche' serve, e a dire quando serve e' lui.
+
+
+**`P_REGENCY_KEEP, esito`**
+> Il sigillo restò a $proponent, e a dire fino a quando era lui.
+
+
+**`P_REGENCY_SPLIT`**
+> Si divida: due mani sul sigillo, e nessuna che lo alzi da sola.
+
+
+**`P_REGENCY_SPLIT, esito`**
+> Il sigillo passò a due mani insieme, e da allora nessun ordine uscì in fretta.
 
 
 **`Q_RELIC_SHOW`**
 > E chi ha diritto di vederlo?
+
+
+**`Q_RELIC_KEEP`**
+> Chi risponde di quello che c'è nella teca?
+
+
+**`P_SHOW_IT`**
+> Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.
+
+
+**`P_SHOW_IT, esito`**
+> La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.
+
+
+**`P_SHOW_IT, esito DECISIVE_SUCCESS`**
+> La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio.
+
+
+**`P_BURY_IT`**
+> Si muri la cella, e si metta a verbale che è stata murata.
+
+
+**`P_BURY_IT, esito`**
+> La cella fu murata, e messo a verbale che era stata murata.
 
 
 **`P_ANOINT_KEEPER`**
@@ -6193,26 +7249,6 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 
 **`P_WATCH_THE_ROCK, esito FAILURE`**
 > Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno.
-
-
-**`P_SHOW_IT`**
-> Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.
-
-
-**`P_SHOW_IT, esito`**
-> La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.
-
-
-**`P_SHOW_IT, esito DECISIVE_SUCCESS`**
-> La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio.
-
-
-**`P_BURY_IT`**
-> Si muri la cella, e si metta a verbale che è stata murata.
-
-
-**`P_BURY_IT, esito`**
-> La cella fu murata, e messo a verbale che era stata murata.
 
 
 **`Q_ROADS_TOLL`**
@@ -6271,6 +7307,242 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > Si volle che nessuno rispondesse di niente, e qualcuno rispose lo stesso.
 
 
+**`Q_SALT_PRICE`**
+> Le vasche rendono come un raccolto $in_region: chi fissa il prezzo del sale?
+
+
+**`Q_SALT_COUNT`**
+> E le vasche, si contano?
+
+
+**`P_SALT_COUNCIL`**
+> Lo fissa il Consiglio, e vale per l'anno intero: il sale non è un raccolto, è una chiave.
+
+
+**`P_SALT_COUNCIL, esito`**
+> Il prezzo del sale fu fissato per l'anno, e per l'anno nessuno riuscì a spostarlo.
+
+
+**`P_SALT_KEEPER`**
+> Lo fissa chi governa le vasche, e le vasche rispondano a $proponent.
+
+
+**`P_SALT_KEEPER, esito`**
+> Le vasche risposero a $proponent, e il prezzo del sale con loro.
+
+
+**`P_SALT_LEDGER`**
+> Contate e scritte, una per una, col nome di chi le governa accanto.
+
+
+**`P_SALT_LEDGER, esito`**
+> Le vasche furono contate e scritte, e accanto a tre non c'era nessun nome da mettere.
+
+
+**`Q_SANCTUARY_LIMITS`**
+> Un ricercato tiene l'altare $in_region: dove finisce l'asilo?
+
+
+**`Q_SANCTUARY_DOOR`**
+> E gli armati davanti alla porta, chi li manda via?
+
+
+**`P_SANCTUARY_WRITE`**
+> Si scrivano i confini adesso, e valgano anche per il prossimo: una regola comoda si scrive quando è scomoda.
+
+
+**`P_SANCTUARY_WRITE, esito`**
+> I confini dell'asilo furono scritti mentre uno ci stava dentro, e per questo furono onesti.
+
+
+**`P_SANCTUARY_HAND`**
+> Si consegni, e risponda a $proponent: chi tocca l'altare non si tocca finché l'altare è di qualcuno.
+
+
+**`P_SANCTUARY_HAND, esito`**
+> Il ricercato fu consegnato a $proponent, e l'altare da quel giorno ebbe un padrone.
+
+
+**`P_SANCTUARY_HAND, esito FAILURE`**
+> $proponent volle il ricercato, e il ricercato resto' aggrappato all'altare piu' a lungo di lui.
+
+
+**`P_SANCTUARY_GUARD`**
+> Una guardia del Consiglio davanti alla porta, e gli altri tornino a casa: davanti a un tempio si aspetta disarmati.
+
+
+**`P_SANCTUARY_GUARD, esito`**
+> Davanti al tempio restò una guardia sola, e gli armati tornarono a casa senza avere deciso niente.
+
+
+**`Q_SEALS_HAND`**
+> Chi controlla la mano che preme il sigillo?
+
+
+**`Q_SEALS_ORDERS`**
+> E gli ordini gia' partiti, valgono?
+
+
+**`P_SEALS_REGISTER`**
+> Ogni sigillo si registri quando si preme, e il registro sia aperto.
+
+
+**`P_SEALS_REGISTER, esito`**
+> Da allora ogni sigillo si registrava quando si premeva, e il registro lo poteva leggere chiunque.
+
+
+**`P_SEALS_ONE_HAND`**
+> Una mano sola, e sia quella di $proponent.
+
+
+**`P_SEALS_ONE_HAND, esito`**
+> Il sigillo passò in una mano sola, quella di $proponent, e gli ordini smisero di moltiplicarsi.
+
+
+**`P_SEALS_VOID`**
+> Si annulli tutto quello che e' partito quest'anno, e si ricominci.
+
+
+**`P_SEALS_VOID, esito`**
+> Tutti gli ordini dell'anno furono annullati, e per un mese nessuno seppe piu' a chi obbedire.
+
+
+**`Q_BELLS_RING`**
+> Le campane tacciono da tre lune $in_region: si torna a suonarle, e per chi?
+
+
+**`Q_BELLS_WHO`**
+> E chi ha deciso il silenzio, si scopre?
+
+
+**`P_BELLS_ORDER`**
+> Si suonano alle ore di sempre, e chi le suona lo nomina il Consiglio: il silenzio finisce quando è finito, non quando qualcuno si stanca.
+
+
+**`P_BELLS_ORDER, esito`**
+> Le campane tornarono a suonare alle ore di sempre, e la città si accorse di quanto le mancassero.
+
+
+**`P_BELLS_MOURN`**
+> Restino mute finché il lutto non è sciolto col rito: chi le suona prima suona contro tutti.
+
+
+**`P_BELLS_MOURN, esito`**
+> Le campane restarono mute, e il lutto durò quanto decise chi non lo aveva dichiarato.
+
+
+**`P_BELLS_ASK`**
+> Si chieda, e la risposta stia a verbale: un silenzio senza padrone lo eredita il primo che lo rivendica.
+
+
+**`P_BELLS_ASK, esito`**
+> Si chiese chi avesse fermato le campane, e la risposta a verbale non convinse nessuno.
+
+
+**`Q_CANALS_ARMS`**
+> Chi manda le braccia a scavare, e per quante stagioni?
+
+
+**`Q_CANALS_WATER`**
+> E quando l'acqua torna a correre, di chi e'?
+
+
+**`P_CANALS_DIG`**
+> Si scavi, e mandi gli uomini $proponent: il primo tratto riaperto paghera' il secondo.
+
+
+**`P_CANALS_DIG, esito`**
+> Si scavo' per due stagioni, e il fiume ricomincio' ad arrivare dove arrivava prima.
+
+
+**`P_CANALS_DIG, esito FAILURE`**
+> Nessuno mando' le braccia, e la palude si riprese anche il tratto vecchio.
+
+
+**`P_CANALS_SHARE`**
+> Il cantiere si divida in parti uguali, e nessuna casa scavi piu' di quanto le tocca.
+
+
+**`P_CANALS_SHARE, esito`**
+> Il cantiere fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare.
+
+
+**`P_CANALS_PRICE`**
+> Chi ha pagato i lavori riscuota sull'acqua: e' scritto, ed e' giusto.
+
+
+**`P_CANALS_PRICE, esito`**
+> Chi aveva pagato lo scavo riscosse sull'acqua, e la palude ebbe un padrone che non ci aveva mai messo piede.
+
+
+**`Q_SLEEPERS_COUNT`**
+> I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?
+
+
+**`Q_SLEEPERS_WATCH`**
+> E dove si dorme, chi veglia?
+
+
+**`P_SLEEPERS_CENSUS`**
+> Un censimento fatto come si deve: chi racconta, cosa racconta, e da quanto. Il conto resti scritto.
+
+
+**`P_SLEEPERS_CENSUS, esito`**
+> Si contarono i dormienti uno per uno, e il settimo non lo trovò nessuno.
+
+
+**`P_SLEEPERS_STOP`**
+> Si smetta di contarli. Chi tiene il conto tiene sveglio anche il resto.
+
+
+**`P_SLEEPERS_STOP, esito`**
+> Si smise di contare i dormienti, e nelle case si smise anche di nominarli.
+
+
+**`P_SLEEPERS_VIGIL`**
+> Una veglia a turni, pagata da tutti: non per svegliarli — per esserci quando si svegliano.
+
+
+**`P_SLEEPERS_VIGIL, esito`**
+> Si vegliò dove si dorme, e la guardia costò più di quanto costasse dormire.
+
+
+**`Q_SMUGGLING_COVE`**
+> La cala vecchia scarica di notte: si chiude, o si apre?
+
+
+**`Q_SMUGGLING_CUSTOMS`**
+> E i doganieri che guardano il mare sbagliato?
+
+
+**`P_SMUGGLING_AMNESTY`**
+> Si tiri una riga sotto quello che e' passato, e da domani si dichiari tutto.
+
+
+**`P_SMUGGLING_AMNESTY, esito`**
+> Fu tirata una riga sotto i traffici vecchi, e per un anno intero non si parlo' d'altro.
+
+
+**`P_SMUGGLING_TOLL`**
+> Anche la cala paghi il dazio, e lo riscuota $proponent: se non si puo' fermare, si scriva.
+
+
+**`P_SMUGGLING_TOLL, esito`**
+> Anche la cala vecchia ebbe il suo dazio, riscosso da $proponent, e il porto smise di vivere due volte.
+
+
+**`P_SMUGGLING_TOLL, esito FAILURE`**
+> $proponent volle mettere il dazio sulla cala, e la cala continuo' a scaricare di notte.
+
+
+**`P_SMUGGLING_GUARD`**
+> Uomini alla porta, pagati bene e cambiati spesso: la guardia costa meno del dazio perso.
+
+
+**`P_SMUGGLING_GUARD, esito`**
+> Alla cala furono messi uomini di guardia, pagati bene, e da allora si pagarono tutti i giorni.
+
+
 **`Q_SUCCESSION_HEIR`**
 > Chi siede sul trono quando questo si alza?
 
@@ -6315,6 +7587,18 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > La corona fu divisa in due, e $of_region nessuno seppe più dire a chi rispondesse.
 
 
+**`P_ONE_CROWN`**
+> Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.
+
+
+**`P_ONE_CROWN, esito`**
+> I due titoli tornarono uno, e chi perse la conta non lo dimenticò.
+
+
+**`P_ONE_CROWN, esito FAILURE`**
+> Si contò chi teneva cosa, e la conta non tornò a nessuno.
+
+
 **`P_WRITE_THE_LAW`**
 > Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.
 
@@ -6339,18 +7623,6 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivò.
 
 
-**`P_ONE_CROWN`**
-> Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.
-
-
-**`P_ONE_CROWN, esito`**
-> I due titoli tornarono uno, e chi perse la conta non lo dimenticò.
-
-
-**`P_ONE_CROWN, esito FAILURE`**
-> Si contò chi teneva cosa, e la conta non tornò a nessuno.
-
-
 **`P_RETAKE_QUESTION`**
 > Si riprenda la domanda che un consiglio lasciò cadere, e stavolta la risposta si scriva nel registro.
 
@@ -6361,6 +7633,202 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 
 **`P_RETAKE_QUESTION, esito FAILURE`**
 > Si volle riprendere la domanda caduta, e cadde una seconda volta.
+
+
+**`Q_THIRST_WELLS`**
+> $in_region, chi apre i pozzi e a che ora?
+
+
+**`Q_THIRST_PRICE`**
+> E l'acqua, si paga?
+
+
+**`P_THIRST_TURNS`**
+> Un secchio a testa e un turno per ognuno, e $proponent tiene l'ordine.
+
+
+**`P_THIRST_TURNS, esito`**
+> Ai pozzi $of_region si andava a turno, un secchio a testa, e l'ordine lo teneva $proponent.
+
+
+**`P_THIRST_PRICE`**
+> L'acqua ha un prezzo, e $proponent lo riscuote al pozzo.
+
+
+**`P_THIRST_PRICE, esito`**
+> L'acqua $of_region ebbe un prezzo, e lo riscuoteva $proponent al bordo del pozzo.
+
+
+**`P_THIRST_FREE`**
+> L'acqua non si vende. Chi ha sete beve, e i conti si fanno con la pioggia.
+
+
+**`P_THIRST_FREE, esito`**
+> $in_region l'acqua restò senza prezzo, e i pozzi si abbassarono per tutti insieme.
+
+
+**`Q_TITHE_LEDGER`**
+> Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?
+
+
+**`Q_TITHE_LEAN`**
+> E in un anno magro, si paga lo stesso?
+
+
+**`P_TITHE_OPEN`**
+> Si aprano, e li legga chiunque: quello che si perde per strada ha sempre un nome.
+
+
+**`P_TITHE_OPEN, esito`**
+> I registri della decima furono aperti, e quello che si perdeva per strada smise di perdersi.
+
+
+**`P_TITHE_LEAVE`**
+> Si lascia stare. Chi raccoglie per gli dei ha sempre raccolto anche per sé, e il raccolto arriva lo stesso.
+
+
+**`P_TITHE_LEAVE, esito`**
+> Non si aprì nessun registro, e la decima continuò ad arrivare a metà.
+
+
+**`P_TITHE_SUSPEND`**
+> Sospesa per un anno, e si segni che è stata sospesa: un debito con gli dei si scrive come gli altri.
+
+
+**`P_TITHE_SUSPEND, esito`**
+> La decima fu sospesa per un anno, e la sospensione restò scritta dove tutti la leggevano.
+
+
+**`Q_TRIBUTE_FULL`**
+> Il tributo si paga intero, in un anno che ha reso a meta'?
+
+
+**`Q_TRIBUTE_WHAT_FOR`**
+> E in cambio di che cosa, esattamente?
+
+
+**`P_TRIBUTE_FULL`**
+> Intero, e $proponent lo riscuota: la protezione non fa sconti.
+
+
+**`P_TRIBUTE_FULL, esito`**
+> Il tributo si pagò intero, e a riscuoterlo fu $proponent.
+
+
+**`P_TRIBUTE_HALF`**
+> Mezzo tributo per l'anno mezzo. Il resto si rimette, e non si conta piu'.
+
+
+**`P_TRIBUTE_HALF, esito`**
+> Il tributo fu dimezzato come l'annata, e il resto nessuno lo chiese più.
+
+
+**`P_TRIBUTE_LEDGER`**
+> Si scriva cosa si compra col tributo, e chi non protegge non riscuota.
+
+
+**`P_TRIBUTE_LEDGER, esito`**
+> Fu messo per iscritto cosa comprava il tributo, e qualcuno smise di riscuoterlo.
+
+
+**`Q_UNEARTHED_KEEP`**
+> È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?
+
+
+**`Q_UNEARTHED_STUDY`**
+> E studiarlo, con quali regole?
+
+
+**`P_UNEARTHED_SHOWN`**
+> Si mostri al tavolo intero, e poi si decida: quello che si nasconde diventa più grande di quello che è.
+
+
+**`P_UNEARTHED_SHOWN, esito`**
+> Il dissotterrato fu mostrato al Consiglio, e da quel giorno tutti sapevano di cosa si parlava.
+
+
+**`P_UNEARTHED_SHOWN, esito FAILURE`**
+> $proponent volle mostrarlo, e il tavolo vide soltanto che $proponent ce l'aveva in mano.
+
+
+**`P_UNEARTHED_BACK`**
+> Torni sotto dov'era, e si scriva dove. Non tutto quello che si trova va tirato fuori.
+
+
+**`P_UNEARTHED_BACK, esito`**
+> Il dissotterrato tornò sotto, e il posto restò scritto in un registro solo.
+
+
+**`P_UNEARTHED_GUARD`**
+> Regole scritte e una guardia alla porta: chi misura non tocca, chi tocca non misura.
+
+
+**`P_UNEARTHED_GUARD, esito`**
+> Lo studio si fece sotto custodia, e la misura uscì dalla stanza prima dell'oggetto.
+
+
+**`Q_VOWS_RELEASE`**
+> Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?
+
+
+**`Q_VOWS_WHO`**
+> E chi non lo scioglie, si conta?
+
+
+**`P_VOWS_RITE`**
+> Un rito solo, lo stesso giorno per tutti: quello che si è promesso in un anno cattivo si paga in un anno buono.
+
+
+**`P_VOWS_RITE, esito`**
+> I voti furono sciolti tutti nello stesso giorno, e il giorno dopo il paese si sentì più leggero e più povero.
+
+
+**`P_VOWS_LIST`**
+> Si scriva quali voti valgono ancora e quali no, e il resto lo decida chi li ha fatti.
+
+
+**`P_VOWS_LIST, esito`**
+> Si scrisse quali voti valessero ancora, e la lista fu più corta della memoria di chiunque.
+
+
+**`P_VOWS_KEEP`**
+> Si tiene il conto, e chi manca all'appello lo sa il vicino prima del sacerdote.
+
+
+**`P_VOWS_KEEP, esito`**
+> Si tenne il conto di chi non aveva sciolto il voto, e il conto girò di casa in casa.
+
+
+**`Q_WARDS_RAISE`**
+> Una delle pietre incise è a terra: si rialza, e chi la tocca?
+
+
+**`Q_WARDS_MARGIN`**
+> E il margine, chi lo gira?
+
+
+**`P_WARDS_RITE`**
+> Si rialza col rito giusto, e la tocchi chi è stato unto a farlo. Nessun altro.
+
+
+**`P_WARDS_RITE, esito`**
+> La pietra caduta fu rialzata col rito, e chi la toccò era stato unto per quello.
+
+
+**`P_WARDS_LEAVE`**
+> Resti dov'è, e le si metta sopra la terra. Chi l'ha piantata aveva le sue ragioni, e non le sappiamo.
+
+
+**`P_WARDS_LEAVE, esito`**
+> Sulla pietra caduta fu messa la terra, e del margine si smise di parlare.
+
+
+**`P_WARDS_ROUND`**
+> Un giro di guardia a turni contati: le pietre si guardano, non si spostano.
+
+
+**`P_WARDS_ROUND, esito`**
+> Sul margine si fece un giro di guardia, e per un anno non cadde nessuna pietra.
 
 
 **`Q_WATER_CANALS`**
@@ -6397,6 +7865,188 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 
 **`P_WATER_COMMON, esito`**
 > Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò.
+
+
+**`Q_WEIGHTS_ARM`**
+> Di chi e' il braccio con cui si misura?
+
+
+**`Q_WEIGHTS_WATCH`**
+> E chi guarda le bilance quando il mercato e' pieno?
+
+
+**`P_WEIGHTS_ONE`**
+> Un campione solo, firmato da tutte le case, e ogni bilancia si confronti con quello.
+
+
+**`P_WEIGHTS_ONE, esito`**
+> Le case firmarono lo stesso braccio, e il foglio era piu' corto di quanto chiunque si aspettasse.
+
+
+**`P_WEIGHTS_OPEN`**
+> Si aprano i registri dei pesi: che si veda quanto manca, e in quale tasca finisce.
+
+
+**`P_WEIGHTS_OPEN, esito`**
+> I registri dei pesi furono copiati e lasciati al mercato, e la differenza smise di essere invisibile.
+
+
+**`P_WEIGHTS_MOVE`**
+> Si sposti il mercato dove le bilance si possono guardare tutte insieme.
+
+
+**`P_WEIGHTS_MOVE, esito`**
+> Il mercato si sposto' sotto un tetto solo, e chi comandava sulle bilance cambio' con la piazza.
+
+
+**`Q_WINTER_WOOD`**
+> $in_region, chi distribuisce la legna quando gela?
+
+
+**`Q_WINTER_DEBT`**
+> E i debiti dell'inverno, si contano a primavera?
+
+
+**`P_WINTER_RATION`**
+> Legna razionata, e $proponent tiene la lista di chi ne ha diritto.
+
+
+**`P_WINTER_RATION, esito`**
+> La legna $of_region fu razionata, e la lista di chi ne aveva diritto la teneva $proponent.
+
+
+**`P_WINTER_FORGET`**
+> L'inverno non si conta: quello che si e' preso per non morire non e' debito.
+
+
+**`P_WINTER_FORGET, esito`**
+> $in_region i debiti dell'inverno non furono contati, e a primavera nessuno li ricordava uguali.
+
+
+**`P_WINTER_AS_STORY`**
+> Si fa come l'anno del gelo grande: ognuno al suo fuoco, e i conti dopo.
+
+
+**`P_WINTER_AS_STORY, esito`**
+> $in_region si fece come nell'anno del gelo grande, o come si racconta che si fece.
+
+
+**`Q_WOLVES_WATCH`**
+> Chi veglia il limitare $in_region?
+
+
+**`Q_WOLVES_FLOCK`**
+> E le bestie perse, chi le rimette?
+
+
+**`P_WOLVES_TOWERS`**
+> Due torri e un turno di guardia: non fermeranno i lupi, faranno sapere prima.
+
+
+**`P_WOLVES_TOWERS, esito`**
+> Al limitare $of_region si alzarono due torri, e chi vegliava vedeva arrivare il buio prima degli altri.
+
+
+**`P_WOLVES_NOTHING`**
+> Non c'e' niente da vegliare. Chi ha paura, paghi le proprie guardie.
+
+
+**`P_WOLVES_NOTHING, esito`**
+> $in_region nessuno vegliò il limitare, e ognuno contò le proprie bestie da solo.
+
+
+**`P_WOLVES_SHARE`**
+> Le bestie perse si rimettono fra tutti, e nessuno ci guadagna.
+
+
+**`P_WOLVES_SHARE, esito`**
+> Le bestie perse $of_region furono rimesse fra tutti, e il conto non tornò a nessuno.
+
+
+### Le clausole — quello che si aggiunge prima del voto
+
+**`C_ANY_ANCIENT_TELL`**
+> ...purché quello che si vede sia detto anche a $rival.
+
+
+**`C_ANY_PUBLIC_COUNT`**
+> ...purché il conto si faccia in piazza, e $rival possa contare per secondo.
+
+
+**`C_ANY_WITNESS`**
+> ...purché $rival veda la lista con i propri occhi.
+
+
+**`C_ANY_RETURN`**
+> ...purché chi se ne va possa tornare quando torna l'acqua.
+
+
+**`C_ANY_WITNESSED_LINE`**
+> ...purché il confine sia camminato alla presenza di $rival, pietra per pietra.
+
+
+**`C_AWAKENING_WITNESS`**
+> ...purché $rival assista a ogni discesa.
+
+
+**`C_AWAKENING_SHARE`**
+> ...purché ciò che si scopre sia detto a tutti, non a chi paga.
+
+
+**`C_CHARTER_REVIEW`**
+> ...purché fra dieci anni si possa riscriverla.
+
+
+**`C_CHARTER_NAMELESS`**
+> ...purché valga anche per chi non ha una città.
+
+
+**`C_DEBT_YEARS`**
+> ...purché il rientro sia in dieci anni e non in uno.
+
+
+**`C_DEBT_WITNESS`**
+> ...purché a contare sia presente anche $rival.
+
+
+**`C_FAMINE_SHARE`**
+> ...purché una quota fissa resti a $rival.
+
+
+**`C_FAMINE_AUDIT`**
+> ...purché la distribuzione $in_region sia contata davanti a testimoni.
+
+
+**`C_RELIC_RECORD`**
+> ...purché quello che si vede sia scritto lo stesso giorno.
+
+
+**`C_RELIC_WATCH`**
+> ...purché sulla montagna resti una veglia, chiunque la tenga.
+
+
+**`C_ROADS_SHARE`**
+> ...purché una quota resti a chi la strada la percorre e non la possiede.
+
+
+**`C_ROADS_LEDGER`**
+> ...purché ogni carico sia scritto su un registro che chiunque può leggere.
+
+
+**`C_SUCCESSION_WITNESS`**
+> ...purché $rival sia fra i testimoni, e la sua firma valga come le altre.
+
+
+**`C_SUCCESSION_AMNESTY`**
+> ...purché chi ha giurato all'altro non ne paghi il prezzo.
+
+
+**`C_WATER_LAST`**
+> ...purché l'ultima presa sia di chi sta più in basso.
+
+
+**`C_WATER_COUNT`**
+> ...purché le braccia mandate da ciascuno siano contate e scritte.
 
 
 ## 6. Le Conseguenze — quello che una decisione lascia
@@ -6843,6 +8493,12 @@ possono spostare nella frase, non togliere. 2486 testi in lettura.
 > L'Acqua a Prezzo
 
 > Chi ha pagato i lavori riscuote sull'acqua. È legittimo, è scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.
+
+
+**`CNS_WORD_GOES_ROUND`**
+> La Voce Gira Lo Stesso
+
+> Il Consiglio decide di non decidere, e fuori dalla sala qualcuno racconta comunque la sua versione. Non e' una proposta caduta: e' una proposta che lascia correre.
 
 
 ## 7. Le carte Echo — il mondo risponde

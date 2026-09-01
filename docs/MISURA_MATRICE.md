@@ -18,7 +18,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | livelli che non nominano nessun segno del mondo | 31 |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **0** |
-| **carte che aprono ancora una domanda in prestito** | **28** |
+| **carte che aprono ancora una domanda in prestito** | **0** |
 | segni che l'eredita' porta avanti | 49 |
 | profili strategici scritti | 8 |
 | segni che quelle case vogliono o temono | 68 |

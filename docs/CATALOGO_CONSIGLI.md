@@ -19,17 +19,23 @@ riferirsi.
 
 La montagna ha ricominciato a fumare. I vecchi dicono che l'ha sempre fatto; i registri dell'Ordine dicono di no.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Due torri sul fianco e un turno che nessuno salta. Non fermerà niente: si saprà un giorno prima.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
 
 - **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### I registri dell'Ordine dicono di no, e i registri li ha scritti qualcuno. Chi vuole vegliare paghi le sue guardie.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
 
 - **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+
+### Si murano, e chi ci lavorava lavori altrove: quello che sale non deve trovare la strada già fatta.
+
+> E le bocche aperte sul fianco, si murano?
+
+- **Se passa — Le Miniere Sigillate:** in una Regione con #cristallo diventa il sigillo · il mondo registra: le Miniere sono state sigillate · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 2
 
 **Le clausole che si possono attaccare:**
 
@@ -156,23 +162,23 @@ Sul tratto in ombra qualcuno riscuote un pedaggio che nessun Consiglio ha scritt
 
 Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pietre non si muovono da sole.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Si cammina davanti a testimoni e si giura, pietra per pietra. Chi non viene a camminare rinuncia.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
+- **Se passa — Il Conto Saldato:** il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco scende di 2
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Si riscrive il catasto e valga il registro, non le pietre: le pietre le sposta chi arriva di notte.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
 
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
+### Non si cerca. Trovarlo costa più della terra che ha preso, e tutti sanno chi è.
 
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
+> E chi le ha spostate, si cerca?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — La Parola Fredda:** il rapporto fra chi propone e il rivale cambia · chi propone porta addosso: la parola fredda
 
 **Le clausole che si possono attaccare:**
 
@@ -187,17 +193,23 @@ Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pie
 
 La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcuni, vecchissimi.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Un campo santo nuovo, consacrato davanti a tutti, e i senza nome ci vanno col rito intero.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si rimettono sotto dov'erano, e sull'acqua bassa non si scava più.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+
+### Si scavi il canale e l'acqua torni alta: quello che la palude tiene, lo tenga.
+
+> E l'acqua che li ha scoperti, si rimanda dov'era?
+
+- **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 
 **Le clausole che si possono attaccare:**
 
@@ -251,23 +263,23 @@ Otto secoli senza corona hanno funzionato benissimo finché nessuno ha avuto bis
 
 Il bosco rende: legna, carbone, terra nuova. Rende una volta sola.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Un limite scritto e un guardaboschi pagato dal Consiglio: si taglia quanto ricresce, e non un carro di più.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?
 
-- **Se passa — Il Pedaggio Scritto:** in una Regione con #commercio cambia padrone · si alza Pedaggio in una Regione con #commercio · Le Vie Interrotte scende
+- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Si taglia finché rende. Legna, carbone, terra nuova: il bosco è un raccolto che si fa una volta sola, e questa è la volta.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Si Spreme Quello Che C'e':** dove si discute diventa #sfruttata · la domanda in gioco sale
 
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
+### Ferme per una stagione, e chi compra carbone lo compri altrove: il bosco non si accorge delle nostre stagioni, i conti sì.
 
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> E le fornaci, si fermano una stagione?
 
-- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
+- **Se passa — Il Mercato Spostato:** dove si discute diventa il mercato · in una Regione confinante diventa tagliata fuori
 
 **Le clausole che si possono attaccare:**
 
@@ -391,17 +403,23 @@ Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi:
 
 Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e girano largo.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Nessuna rete oltre la secca, e chi ci vive mangi d'altro per un anno.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si scavi il passaggio dove l'acqua è bassa: l'acqua che si muove non strappa niente.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
+
+### Due barche, una corda fra loro, e tutto a verbale. Chi scende non decide da solo di scendere ancora.
+
+> E andare a vedere cosa c'è sotto, conviene a qualcuno?
+
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
 
 **Le clausole che si possono attaccare:**
 
@@ -416,17 +434,23 @@ Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e 
 
 In fondo alle gallerie qualcosa risponde ai colpi. Con un ritardo. Sempre lo stesso.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Si scende con regole scritte e due testimoni per turno: quello che risponde si misura, non si racconta.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si mura il fondo e si lavora sopra. Quello che sta sotto stia sotto.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — Le Miniere Sigillate:** in una Regione con #cristallo diventa il sigillo · il mondo registra: le Miniere sono state sigillate · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 2
+
+### Lo fanno tutte le case a turno e lo paga il Consiglio: nessuno scende due volte di fila.
+
+> E il turno lungo, chi lo fa adesso?
+
+- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
 
 **Le clausole che si possono attaccare:**
 
@@ -474,23 +498,23 @@ Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le ba
 
 I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un padrone.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Un titolo scritto e letto in piazza: chi ha piantato i pali lo dica davanti a tutti, e paghi l'uso a chi lo perde.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Si tolgono. La terra che era di tutti torna di tutti, e chi li rialza li rialza contro il Consiglio.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?
+
+- **Se passa — La Domanda Ripresa:** il mondo dimentica: una domanda e' rimasta aperta · la domanda in gioco sale di 2
+
+### Si divida l'uso e non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+
+> E l'uso della terra, a chi resta?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
-
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -505,30 +529,23 @@ I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un pad
 
 I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli riposare.
 
-### Si conti quello che c'è, e chi propone decida chi ne ha diritto.
+### Una rotazione scritta al Consiglio, uguale per tutti: chi riposa quest'anno semina per primo il prossimo.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?
 
-- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
+- **Se passa — Il Raccolto Torna:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #magra · La Carestia scende di 2
 
-### Si divida in parti uguali, e si accetti che nessuno ne esca bene.
+### Nessuno riposa. Si semina fitto e si vede: la terra stanca ha reso anche l'anno scorso.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Si Spreme Quello Che C'e':** dove si discute diventa #sfruttata · la domanda in gioco sale
 
-### Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.
+### Un granaio comune che presta la semente, e la restituisce chi ha raccolto.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> E chi non può permetterselo, come semina?
 
-- **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
-
-### Non si risolve: si va via. il rivale resti pure, se ci tiene.
-
-> Chi ha ancora motivo di restare nella Regione di cui si discute?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Granaio del Trono:** si alza Granaio in una Regione con #granaio · Le Vie Interrotte sale · il mondo registra: il grano e' stato requisito
 
 **Le clausole che si possono attaccare:**
 
@@ -626,30 +643,23 @@ Un'unica barca collega l'isola. Chi la governa, governa l'isola piu' del suo pad
 
 Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
 
-### Si conti quello che c'è, e chi propone decida chi ne ha diritto.
+### Si rifanno, e li paga chi ci sta dietro: un argine è di tutti quelli che non si bagnano.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
-
-- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
-
-### Si divida in parti uguali, e si accetti che nessuno ne esca bene.
-
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
 
-### Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.
+### Si arretra di un campo e si lascia all'acqua quello che l'acqua vuole. Gli argini vecchi tenevano per abitudine.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
-
-- **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
-
-### Non si risolve: si va via. il rivale resti pure, se ci tiene.
-
-> Chi ha ancora motivo di restare nella Regione di cui si discute?
+> La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?
 
 - **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+
+### Si riaprono e si tengono aperti: l'acqua che ha dove andare non sale.
+
+> E i canali vecchi, si riaprono?
+
+- **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 
 **Le clausole che si possono attaccare:**
 
@@ -697,23 +707,23 @@ Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie so
 
 Qualcuno predica una fede quasi uguale. Il quasi e' il problema.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Una disputa pubblica, con un vincitore dichiarato e il verbale affisso al muro.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Una casa riconosciuta per la fede, e fuori da quella casa si predica a proprio rischio.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
+### Niente. Chi ascolta ascolta: si contano, e l'anno prossimo si vede quanti sono.
 
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
+> E a chi la ascolta, cosa si fa?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — La Voce Gira Lo Stesso:** il mondo registra: la voce corre · la domanda in gioco sale
 
 **Le clausole che si possono attaccare:**
 
@@ -759,17 +769,23 @@ Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.
 
 Sull'isola c'e' un altare piu' vecchio della fede che lo usa. Le barche hanno ripreso ad andarci.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Lo custodisce chi è stato unto per farlo, e le barche vanno quando lo dice lui.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Lo custodiscono tutti: stia aperto, e chi ci arriva trovi qualcuno che gli spieghi cos'è.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — La Teca Aperta:** il mondo registra: la reliquia e' stata mostrata · chi propone porta addosso: scoperta: la reliquia · La Reliquia si apre a tutti
+
+### Se ne scriva uno nuovo per il posto vecchio: quello di prima non lo sa più nessuno, e fingere di saperlo costa più che ammetterlo.
+
+> E il rito, si scrive nuovo o si copia il vecchio?
+
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
 **Le clausole che si possono attaccare:**
 
@@ -784,17 +800,23 @@ Sull'isola c'e' un altare piu' vecchio della fede che lo usa. Le barche hanno ri
 
 Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la notte due volte.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Un presidio con il rito giusto: ci va chi è mandato, e torna riferendo a chi di dovere.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Divieto di sbarco, e una barca che giri per farlo rispettare.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
+
+### Si ascoltino uno per volta e a verbale: il silenzio si misura da quanto dura dopo.
+
+> E a chi ci ha già passato la notte, cosa si chiede?
+
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
 
 **Le clausole che si possono attaccare:**
 
@@ -809,30 +831,23 @@ Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la nott
 
 Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comincia a chiederselo.
 
-### Si conti quello che c'è, e chi propone decida chi ne ha diritto.
+### Un patto scritto al Consiglio: giornate, paga e stagione. Chi lo rompe lo rompe davanti a tutti.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?
 
-- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
-### Si divida in parti uguali, e si accetti che nessuno ne esca bene.
+### Si lascia contrattare. Chi ha fame contratta lo stesso, e più in fretta.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — La Parola Fredda:** il rapporto fra chi propone e il rivale cambia · chi propone porta addosso: la parola fredda
 
-### Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.
+### Si conceda ai margini, a chi la mette a coltura entro l'anno: terra non lavorata non è terra, è una mappa.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> E dare terra a chi la lavora, si può?
 
-- **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
-
-### Non si risolve: si va via. il rivale resti pure, se ci tiene.
-
-> Chi ha ancora motivo di restare nella Regione di cui si discute?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — La Marca Concessa:** nella sede del rivale cambia padrone · nella sede del rivale diventa la marca · si alza Presidio nella sede del rivale
 
 **Le clausole che si possono attaccare:**
 
@@ -849,23 +864,23 @@ Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comin
 
 Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Misurano le parti insieme e giurano insieme: un catasto che non serve a nessuno in particolare è il solo che regge.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Il trono vuole un registro delle terre: chi misura?
+
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
+
+### Misura chi l'ha chiesto, e paga chi viene misurato.
+
+> Il trono vuole un registro delle terre: chi misura?
 
 - **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Non si scrive nessuno. Scrivere di chi è la terra è un modo di prendersela, e questo modo lo conosciamo.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> E chi non si fa scrivere?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
-
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — La Carta Rifiutata:** il mondo registra: la Carta non e' stata scritta · dove si discute diventa #contesa · La Carta sale
 
 **Le clausole che si possono attaccare:**
 
@@ -977,30 +992,23 @@ Dalla palude sale una febbre lenta che non uccide subito. Prima toglie le forze,
 
 Non sono nemici e non sono poveri: sono persone che non risultano da nessuna parte, e ogni anno sono di più.
 
-### Si conti quello che c'è, e chi propone decida chi ne ha diritto.
+### Si dia loro un posto dove fermarsi, e lo si scriva: chi ha un posto finisce per avere anche un nome.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?
 
-- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
+- **Se passa — Chi Lavora Mangia:** dove si discute diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto fra chi propone e il rivale cambia
 
-### Si divida in parti uguali, e si accetti che nessuno ne esca bene.
+### Non risultano perché non stanno fermi. Li si accompagni oltre il confine, e la terra torni contata.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — La Partenza:** chi propone se ne va dove si discute · in una Regione con #pascolo diventa #svuotata · chi propone entra in una Regione confinante
 
-### Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.
+### Si contano e si scrivono, uno per uno. Un registro non dà diritti: rende difficile negarli.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> E contarli, conviene a qualcuno?
 
-- **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
-
-### Non si risolve: si va via. il rivale resti pure, se ci tiene.
-
-> Chi ha ancora motivo di restare nella Regione di cui si discute?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
 
 **Le clausole che si possono attaccare:**
 
@@ -1017,17 +1025,23 @@ Non sono nemici e non sono poveri: sono persone che non risultano da nessuna par
 
 Sotto i sentieri ci sono strade piu' vecchie, dritte come nessuno costruisce piu'. Portano tutte nello stesso posto.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Si faccia la mappa e stia dove chiunque la legge: una strada è pericolosa finché è di uno solo.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Nessuno ci cammina finché non si sa dove finiscono. Un divieto, e qualcuno pagato per farlo rispettare.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
+
+### Dove passava l'acqua di prima si scavi il canale: le vie vecchie tornino a portare qualcosa.
+
+> E dove finiscono, cosa ci si fa?
+
+- **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 
 **Le clausole che si possono attaccare:**
 
@@ -1073,17 +1087,24 @@ Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' co
 
 I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha ripreso a usare il secondo.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Una disputa dei dotti, e quello che si capisce resti scritto dove chiunque lo legge.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si cancellano, e si sorveglia chi li riscrive.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
+- **Se passa — La Voce Gira Lo Stesso:** il mondo registra: la voce corre · la domanda in gioco sale
+
+### Si scriva l'elenco di quelli che si possono dire, e valga per tutti allo stesso modo.
+
+> E dirli, si può?
+
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
 **Le clausole che si possono attaccare:**
 
@@ -1098,23 +1119,23 @@ I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha rip
 
 Le greggi non leggono i confini. I pastori si', e li leggono diversi.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Un calendario dei pascoli deciso al Consiglio: prima l'uno, poi l'altro, e chi sfora paga in capi.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
-
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
-
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
-
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
 
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
+### Il pascolo risponda a chi propone, e gli altri ci portino le greggi chiedendo.
 
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
+> Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
+
+### Si divide il margine: a ognuno la sua parte, segnata con le pietre e con la gente sopra.
+
+> E il margine, si divide?
+
+- **Se passa — La Marca Concessa:** nella sede del rivale cambia padrone · nella sede del rivale diventa la marca · si alza Presidio nella sede del rivale
 
 **Le clausole che si possono attaccare:**
 
@@ -1129,30 +1150,23 @@ Le greggi non leggono i confini. I pastori si', e li leggono diversi.
 
 Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arrivare.
 
-### Si conti quello che c'è, e chi propone decida chi ne ha diritto.
+### Un cammino con le tappe scritte e un granaio a ogni tappa, e lo paga chi ci guadagna il passaggio.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?
 
-- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
+- **Se passa — Il Granaio del Trono:** si alza Granaio in una Regione con #granaio · Le Vie Interrotte sale · il mondo registra: il grano e' stato requisito
 
-### Si divida in parti uguali, e si accetti che nessuno ne esca bene.
+### Razione fissa ai villaggi sul cammino, e chi arriva dopo trova le porte chiuse.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — La Cinghia Stretta:** dove si discute diventa #razionata · la domanda in gioco sale
 
-### Si fa come si racconta che si fece, l'anno buono: ognuno al suo posto, e i conti dopo.
+### Lo dichiara il Consiglio, con le date scritte: se devono venire tutti, che vengano quando siamo pronti.
 
-> Nella Regione di cui si discute, chi decide a chi non ne tocca?
+> E l'anno santo, lo dichiara qualcuno?
 
-- **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
-
-### Non si risolve: si va via. il rivale resti pure, se ci tiene.
-
-> Chi ha ancora motivo di restare nella Regione di cui si discute?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
 **Le clausole che si possono attaccare:**
 
@@ -1202,17 +1216,23 @@ Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 
 Qualcuno ha letto nei cristalli una data. Da allora, tutto quello che succede sembra confermarla.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Una disputa pubblica sulla lettura, e il verbale affisso: una data smette di avvicinarsi quando qualcuno la legge ad alta voce.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si misuri il cristallo con regole scritte: se la data c'è, ci sarà anche per chi non ci crede.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+
+### Si scriva adesso cosa si fa il giorno dopo, e si firmi adesso: dopo, chi ha avuto ragione non ascolta più nessuno.
+
+> E il giorno dopo la data, cosa si fa?
+
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
 **Le clausole che si possono attaccare:**
 
@@ -1412,21 +1432,21 @@ Si vede il prezzo del sale, non chi lo fa salire.
 
 Dove l'acqua si ritira resta il sale, e il sale vale. La terra che lo da' non da' altro.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Lo fissa il Consiglio, e vale per l'anno intero: il sale non è un raccolto, è una chiave.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale?
 
-- **Se passa — Il Pedaggio Scritto:** in una Regione con #commercio cambia padrone · si alza Pedaggio in una Regione con #commercio · Le Vie Interrotte scende
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
+### Lo fissa chi governa le vasche, e le vasche rispondano a chi propone.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
+> Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
+### Contate e scritte, una per una, col nome di chi le governa accanto.
 
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> E le vasche, si contano?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
 
@@ -1443,23 +1463,23 @@ Dove l'acqua si ritira resta il sale, e il sale vale. La terra che lo da' non da
 
 Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggrappato qualcuno di scomodo.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Si scrivano i confini adesso, e valgano anche per il prossimo: una regola comoda si scrive quando è scomoda.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo?
+
+- **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
+
+### Si consegni, e risponda a chi propone: chi tocca l'altare non si tocca finché l'altare è di qualcuno.
+
+> Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo?
 
 - **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Una guardia del Consiglio davanti alla porta, e gli altri tornino a casa: davanti a un tempio si aspetta disarmati.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> E gli armati davanti alla porta, chi li manda via?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
-
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
-
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
 
 **Le clausole che si possono attaccare:**
 
@@ -1505,23 +1525,23 @@ Un sigillo vale quanto la cera se nessuno controlla la mano che lo preme.
 
 Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa romperlo.
 
-### Chi propone lo tiene, e lo dica forte: chi sta li' risponde a lui.
+### Si suonano alle ore di sempre, e chi le suona lo nomina il Consiglio: il silenzio finisce quando è finito, non quando qualcuno si stanca.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi?
 
-- **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
+- **Se passa — L'Ordine Rimesso in Piedi:** dove si discute non e' piu' #inquieta · dove si discute non e' piu' #contesa · La Successione scende
 
-### Si divida l'uso, non il titolo: ognuno il suo pezzo, e i conti a fine anno.
+### Restino mute finché il lutto non è sciolto col rito: chi le suona prima suona contro tutti.
 
-> Nella Regione di cui si discute, chi tiene il posto quando la voce si spegne?
+> Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi?
 
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Il Conto in Vite:** dove si discute diventa in lutto · il mondo registra: si e' pagato in vite
 
-### Nessuna legge: si lascia il posto a chi se lo vuole caricare addosso.
+### Si chieda, e la risposta stia a verbale: un silenzio senza padrone lo eredita il primo che lo rivendica.
 
-> Quale legge vale nella Regione di cui si discute: quella scritta, o quella di chi c'e'?
+> E chi ha deciso il silenzio, si scopre?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
 **Le clausole che si possono attaccare:**
 
@@ -1567,17 +1587,23 @@ Una volta le barche passavano dalla palude. I canali ci sono ancora, sotto: chie
 
 Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si e' gia' svegliato.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Un censimento fatto come si deve: chi racconta, cosa racconta, e da quanto. Il conto resti scritto.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si smetta di contarli. Chi tiene il conto tiene sveglio anche il resto.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — Il Conto in Vite:** dove si discute diventa in lutto · il mondo registra: si e' pagato in vite
+
+### Una veglia a turni, pagata da tutti: non per svegliarli — per esserci quando si svegliano.
+
+> E dove si dorme, chi veglia?
+
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
 
 **Le clausole che si possono attaccare:**
 
@@ -1721,23 +1747,23 @@ Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 
 Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene.
 
-### Si metta un prezzo, e chi propone lo riscuota: quello che passa, paga.
+### Si aprano, e li legga chiunque: quello che si perde per strada ha sempre un nome.
 
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
-
-- **Se passa — Il Pedaggio Scritto:** in una Regione con #commercio cambia padrone · si alza Pedaggio in una Regione con #commercio · Le Vie Interrotte scende
-
-### Il costo si divide in parti uguali, e nessuno ne esce bene.
-
-> Nella Regione di cui si discute, chi paga il prezzo di quello che rende?
-
-- **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-### Si aprano i registri: che ognuno veda quanto rende, e a chi.
-
-> Chi tiene i conti di quello che passa nella Regione di cui si discute — e chi li legge?
+> Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
+
+### Si lascia stare. Chi raccoglie per gli dei ha sempre raccolto anche per sé, e il raccolto arriva lo stesso.
+
+> Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?
+
+- **Se passa — Si Spreme Quello Che C'e':** dove si discute diventa #sfruttata · la domanda in gioco sale
+
+### Sospesa per un anno, e si segni che è stata sospesa: un debito con gli dei si scrive come gli altri.
+
+> E in un anno magro, si paga lo stesso?
+
+- **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
 
 **Le clausole che si possono attaccare:**
 
@@ -1783,17 +1809,23 @@ Il tributo si paga a chi protegge. Quando la protezione non si vede, il tributo 
 
 Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbricarlo.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Si mostri al tavolo intero, e poi si decida: quello che si nasconde diventa più grande di quello che è.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Teca Aperta:** il mondo registra: la reliquia e' stata mostrata · chi propone porta addosso: scoperta: la reliquia · La Reliquia si apre a tutti
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Torni sotto dov'era, e si scriva dove. Non tutto quello che si trova va tirato fuori.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+
+### Regole scritte e una guardia alla porta: chi misura non tocca, chi tocca non misura.
+
+> E studiarlo, con quali regole?
+
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
 
 **Le clausole che si possono attaccare:**
 
@@ -1808,17 +1840,23 @@ Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbrica
 
 Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Un rito solo, lo stesso giorno per tutti: quello che si è promesso in un anno cattivo si paga in un anno buono.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Si scriva quali voti valgono ancora e quali no, e il resto lo decida chi li ha fatti.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
+
+### Si tiene il conto, e chi manca all'appello lo sa il vicino prima del sacerdote.
+
+> E chi non lo scioglie, si conta?
+
+- **Se passa — Il Conto in Vite:** dove si discute diventa in lutto · il mondo registra: si e' pagato in vite
 
 **Le clausole che si possono attaccare:**
 
@@ -1833,17 +1871,23 @@ Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.
 
 Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' caduta.
 
-### Due torri e un turno di guardia. Non impediranno nulla: faranno sapere prima.
+### Si rialza col rito giusto, e la tocchi chi è stato unto a farlo. Nessun altro.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Una delle pietre incise è a terra: si rialza, e chi la tocca?
 
-- **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
+- **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-### Non c'è nulla da guardare. Chi vuole vegliare, paghi le proprie guardie.
+### Resti dov'è, e le si metta sopra la terra. Chi l'ha piantata aveva le sue ragioni, e non le sappiamo.
 
-> Chi tiene d'occhio quello che c'è nella Regione di cui si discute?
+> Una delle pietre incise è a terra: si rialza, e chi la tocca?
 
-- **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+
+### Un giro di guardia a turni contati: le pietre si guardano, non si spostano.
+
+> E il margine, chi lo gira?
+
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
 
 **Le clausole che si possono attaccare:**
 
@@ -1983,4 +2027,4 @@ I lupi hanno smesso di aver paura. Qualcosa nel bosco li ha convinti che di qua 
 
 ---
 
-*60 carte, 186 proposte, 83 clausole.*
+*60 carte, 194 proposte, 83 clausole.*

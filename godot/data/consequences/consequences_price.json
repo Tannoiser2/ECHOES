@@ -344,6 +344,34 @@
           }
         }
       ]
+    },
+    {
+      "id": "CNS_WORD_GOES_ROUND",
+      "title": "La Voce Gira Lo Stesso",
+      "category": "SECRET",
+      "description": "Il Consiglio decide di non decidere, e fuori dalla sala qualcuno racconta comunque la sua versione. Non e' una proposta caduta: e' una proposta che lascia correre.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "rumour_running"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "$tension"
+          },
+          "payload": {
+            "delta": 1
+          }
+        }
+      ]
     }
   ]
 }

@@ -10,6 +10,109 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-378 — Gli ultimi tre Temi, e la sonda che leggeva ancora la vecchia casa
+
+**implemented** (0.1.345) · fronte 5 dei sei aperti dal committente
+
+### Ventotto carte aprivano il dibattito di un'altra
+
+Da [D-310](#d-310) ogni carta Tensione porta il suo Consiglio, e i Temi si
+scrivono uno per volta: Sopravvivenza ([D-310](#d-310)), Potere
+([D-311](#d-311)), Vie ([D-312](#d-312)). Poi il lavoro si è fermato — *«fermo
+qui in attesa della parola del committente»* — perché [ISSUES 89](ISSUES.md#89)
+metteva in dubbio la grammatica in cui quelle proposte erano scritte. **La 89 è
+chiusa da 0.1.332**: le otto caselle sono scritte, il `dove` e il `chi` ci sono
+([D-366](#d-366)), e la grammatica non si butta. L'attesa era finita e nessuno
+l'aveva notato.
+
+Restavano **28 carte su 60** che aprivano una **domanda in prestito**: sette
+testi generici, letti identici su più carte. Tredici carte del dominio ANTICO
+chiedevano tutte *«Chi tiene d'occhio quello che c'è $in_region?»* — I
+Dormienti, Le Pietre di Guardia e L'Acqua Fonda aprivano lo stesso dibattito, e
+al tavolo si leggeva la stessa riga tre volte.
+
+Scritti i tre Temi che mancavano, uno per volta come i primi tre:
+
+| Tema | carte | domande | proposte | in prestito dopo |
+|---|---|---|---|---|
+| **Antico** | 9 | 18 | 27 | 28 → 19 |
+| **Fede** | 9 | 18 | 27 | 19 → 10 |
+| **Terra** | 10 | 20 | 30 | 10 → **0** |
+
+**Zero su sessanta.** Ogni carta ha due domande sue e tre proposte sue, e i
+**194 testi delle proposte sono 194 testi diversi** (erano 122 su 186). Le
+Conseguenze sono quelle che c'erano: una proposta nuova punta a una Conseguenza
+scritta, scelta perché **la sua traccia è quella giusta** — o `$tension`, la
+domanda in discussione, o una delle `linked_tensions` della carta.
+
+### E la terza sonda che guardava ancora i template
+
+`docs/REVISIONE_TESTI.md` promette *«ogni testo che un giocatore può leggere,
+nell'ordine in cui lo incontra»*. La sua sezione 5 leggeva i **template di
+Consiglio**. In 0.1.272 erano cadute due sonde per lo stesso motivo; questa era
+la terza, ed è sopravvissuta perché **il cancello confronta il documento col
+generatore, non il generatore con la realtà** — la stessa trappola di
+[D-373](#d-373).
+
+Al tavolo si legge quello che è stampato sulla carta, e il motore fa lo stesso
+(`_council_base_for`: *«le Domande e le Proposte le mette la carta»*). Il
+documento saltava **314 testi** — tutte le domande e tutte le proposte vere —
+e ne mostrava 194 che ormai nessuno legge. Ora legge le carte, e per la prima
+volta stampa anche le **clausole** (la controproposta che si attacca prima del
+voto): quelle sì vengono ancora dal template, ed erano l'unico blocco di testi
+leggibili che nessuna sezione mostrava.
+
+**2486 → 2898 testi in revisione.**
+
+### Il costo, misurato
+
+Cambiare le proposte cambia quello che il tavolo vota, e si vede.
+
+**Il prezzo:** i Consigli **cadono molto meno**. Su cento partite, tavolo
+uniforme, gli esiti FAILURE vanno da **108 a 37**; sul misto da **25 a 14**. La
+ragione è quella che il lavoro voleva: con due sole proposte generiche su
+tredici carte, chi proponeva raramente trovava qualcosa che il tavolo volesse;
+adesso ogni carta offre tre strade sue. Ma un Consiglio che quasi non cade è un
+Consiglio con meno posta, e le Conseguenze `CNS_FAILURE_*` girano un terzo
+delle volte di prima. **Aperta come [ISSUES 119](ISSUES.md#119)**: è una
+questione di disegno, non di dati.
+
+**Il primo effetto collaterale, chiuso subito.** Meno fallimenti vuol dire meno
+`rumour_running`, che lo scriveva **solo** il sacchetto dei fallimenti del
+dominio ANTICO. Sceso a zero, riapriva una **porta murata** su
+`DST_VAERAX_LEGEND · TRIONFO` e regalava un punto a `DST_VETRO · TRIONFO` —
+cioè il difetto che [D-372](#d-372) aveva appena chiuso. Scritta una
+Conseguenza nuova, **`CNS_WORD_GOES_ROUND`** (*«La Voce Gira Lo Stesso»*): il
+Consiglio decide di non decidere e la voce corre comunque. Non è una proposta
+caduta — è una proposta che **lascia correre**, e sta su due carte dove la
+fiction la chiedeva già (La Parola Storta, I Nomi Vecchi).
+
+| | prima | dopo |
+|---|---|---|
+| carte con una domanda in prestito | 28 su 60 | **0 su 60** |
+| testi di proposta distinti | 122 su 186 | **194 su 194** |
+| testi in `REVISIONE_TESTI.md` | 2486 | **2898** |
+| **punti regalati** (temuti e mai scritti) | 2 | **1** |
+| **porte murate** (voluti e mai scritti) | 1 | **1** |
+| **vite che non si siedono mai** | 2 | **1** |
+| trasformazioni sedute in 12 saghe | 223 | **233** |
+| segni che non arrivano mai sul tavolo | 50 | **52** |
+| **Consigli caduti** (100 partite, uniforme / misto) | 108 / 25 | **37 / 14** |
+
+Due numeri in più vanno letti come costi e sono scritti come tali: i segni che
+non arrivano mai salgono di due — tre ne guadagnano il tavolo
+(`study_supervised`, `discovery:supervised_record`, `price_in_lives`), cinque lo
+perdono, fra cui `spoke_and_lost`, che è il marchio di chi ha proposto e ha
+perso: cade con i fallimenti, e risale se la 119 si decide di risalirli.
+
+Il guadagno che non era in programma: **La Leggenda della Montagna si siede**.
+`relic_shown` e `mountain_forgotten` adesso li scrive anche un Consiglio, e le
+vite che non si siedono mai passano da due a una.
+
+Cancello: **0 seggi bloccati su 8**, tavolo misto e uniforme.
+
+---
+
 ## D-377 — Un `#granaio` si indica col dito, ma nessuna Tensione lo scrive
 
 **implemented** (0.1.344) · fronte 3 dei sei aperti dal committente
