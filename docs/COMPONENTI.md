@@ -108,6 +108,12 @@ posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
 
+**E la catena e' aperta, provata da un capo all'altro** (D-375): un file
+posato in `godot/art/<chiave con le barre>.png` entra da solo nel
+censimento, nell'app **e nel foglio di stampa**, che lo incorpora nel
+riquadro al posto del segnaposto. Non c'e' niente da sbloccare prima di
+cominciare, e le illustrazioni si possono consegnare **una alla volta**.
+
 ### c. Le regole che il tavolo esegue e lo schermo non spiega ancora
 
 | | dove sta scritto |

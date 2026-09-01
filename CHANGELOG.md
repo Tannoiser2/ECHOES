@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.342 — L'arte non è bloccata da niente (D-375)
+
+Le illustrazioni non le disegna chi scrive il codice — 144 soggetti su 155 sono
+segnaposto. Ma una domanda vicina si poteva chiudere, e vale prima di
+commissionare: **se domani arrivano 144 file, il gioco li prende?**
+
+Provato posando un PNG vero al posto di un segnaposto e guardando ogni punto
+della catena: il censimento passa da 11 a 12, l'app lo carica, e **il foglio di
+stampa lo incorpora** — `asset_01.svg` e `asset_06.svg` portano quattro
+`<image>` ciascuno col disegno dentro.
+
+**Non c'è niente da sbloccare**, e le illustrazioni si possono consegnare **una
+alla volta**: la scatola si stampa a ogni stadio.
+
+**E una lettura sbagliata, corretta guardando.** Il README dell'export dice
+«l'arte è segnaposto», e se ne era concluso che il foglio ignorasse i file
+consegnati. Falso: quella riga descrive lo stato di oggi, non il comportamento.
+È D-373 al contrario — là una prosa diceva il falso sui dati, qui una prosa vera
+sui dati è stata letta come falsa sul codice. **In tutti e due i casi la cura è
+guardare, non leggere.**
+
+Nessun costo: non cambia una riga sotto `godot/`.
+
+---
+
 ## 0.1.341 — La porta del tempo dice quando si cambia pelle, non quale (D-374)
 
 Sette vite scritte su diciotto non si sedevano **mai** in dodici saghe.

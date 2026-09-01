@@ -10,6 +10,55 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-375 — L'arte non è bloccata da niente: la catena è aperta, provata da un capo all'altro
+
+**implemented** (0.1.342) · fronte 1 dei sei aperti dal committente
+
+### La domanda che si poteva rispondere
+
+Le illustrazioni non le disegna chi scrive il codice: **144 soggetti su 155 sono
+segnaposto**, ed è il pezzo più grosso della scatola. Ma c'è una domanda vicina a
+cui si può rispondere, e vale prima di commissionare qualsiasi cosa: **se domani
+arrivano 144 file, il gioco li prende?**
+
+### Provata, non dedotta
+
+Posato un PNG vero al posto di un segnaposto — `asset.force.levy`, scelto
+perché era il primo della lista — e guardato cosa succede in ogni punto della
+catena:
+
+| | |
+|---|---|
+| il censimento | 11 → **12** disegnati, e il cancello va rosso come deve |
+| il manifesto | non cambia, ed è giusto: è la lista di **cosa** serve, non dei file |
+| l'app | `ArtLibrary` la carica: mappa, anteprima di stampa, copertina |
+| **il foglio di stampa** | `asset_01.svg` e `asset_06.svg` portano **quattro `<image>` ciascuno** col disegno dentro, al posto del segnaposto |
+
+**Non c'è niente da sbloccare.** Un file posato in
+`godot/art/<chiave con le barre>.png` entra da solo dappertutto, e le
+illustrazioni si possono consegnare **una alla volta** — la scatola si stampa a
+ogni stadio, con l'arte che c'è e i segnaposto per il resto.
+
+### Una lettura sbagliata, corretta guardando
+
+Il README dell'export dice *«l'arte è segnaposto: ogni immagine mostra in chiaro
+la propria chiave»*, e leggendola si era concluso che il foglio di stampa
+**ignorasse** i file consegnati. Falso: quella riga descrive lo stato di oggi —
+144 su 155 mancano — non il comportamento. Il codice lo faceva già
+(`PrintSheet` chiede a `ArtLibrary` e incorpora il PNG in base64), e la prova
+sul foglio vero l'ha mostrato in quattro riquadri.
+
+È la stessa lezione di [D-373](#d-373) al contrario: là una prosa diceva una
+cosa falsa sui dati, qui una prosa vera sui dati è stata letta come una cosa
+falsa sul codice. **In tutti e due i casi la cura è guardare, non leggere.**
+
+### Il costo
+
+Nessuno: non cambia una riga sotto `godot/` — solo una nota nel censimento,
+ricavata come tutto il resto.
+
+---
+
 ## D-374 — La porta del tempo dice *quando* si cambia pelle, non *quale*
 
 **implemented** (0.1.341) · fronte 4 dei sei aperti dal committente
