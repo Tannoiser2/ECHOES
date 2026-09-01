@@ -10,6 +10,81 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-388 — La sonda che diceva 92,3% guardava dalla parte sbagliata
+
+**implemented in 0.1.354** — corregge la misura su cui si reggono
+[ISSUES 91](ISSUES.md#91) e [ISSUES 96](ISSUES.md#96)
+
+Rimisurando la superficie contesa sul codice di oggi, una riga non tornava:
+
+```
+condition:contested         0 /   60   <-- MAI
+```
+
+**`condition:contested` il mondo lo scrive 452 volte in cento partite** — e' il
+segno piu' scritto della scatola dopo `debt_called`. Uno zero su una cosa che
+succede quattro volte a partita non e' un difetto del gioco: e' **la sonda che
+guarda dalla parte sbagliata**. E' la trappola di casa, e questo progetto l'ha
+pagata cinque volte prima di questa.
+
+**Il difetto.** `run_contest_probe` chiede, per ogni clausola che **teme** un
+segno, se qualcuno l'abbia scritto **li' dove quella clausola lo teme**. Il
+posto lo leggeva alla lettera: `clause.region_id`. Ma una clausola del pool
+**non puo' nominare una Regione** — la pesca chiunque, e
+[D-315](#d-315)/[D-327](#d-327) le hanno date le due forme che servono: `$any`,
+e il **bersaglio a segni** (`any_tag`). Confrontare la stringa `"$any"` con le
+chiavi vere del registro non trova mai niente.
+
+Quindi **ogni clausola di Regione risultava «mai toccata»**, sempre, per
+costruzione. Le uniche righe oneste erano le memorie globali.
+
+**La correzione**: il posto si risolve come lo risolve il motore. `$any` e un
+bersaglio a segni guardano **tutte le terre che quella clausola potrebbe
+guardare** — col bersaglio, solo quelle che portano uno dei segni chiesti — e
+basta che il segno sia comparso in una.
+
+| memorie temute che qualcuno ha provato a scrivere | prima | dopo |
+|---|---|---|
+| | **7,7%** (52) | **24,6%** (167) |
+
+E le righe che cambiano di piu' sono esattamente quelle che il difetto rendeva
+cieche:
+
+| segno | diceva | dice |
+|---|---|---|
+| `condition:contested` | 0 / 60 **MAI** | **58 / 2** |
+| `condition:unrest` | 0 / 74 **MAI** | **42 / 32** |
+| `condition:cut_off` | 0 / 14 **MAI** | 8 / 6 |
+| `condition:emptied` | 0 / 25 **MAI** | 4 / 21 |
+| `structure:sealed` | 0 / 27 **MAI** | 2 / 25 |
+| `study_supervised` | 0 / 17 **MAI** | 4 / 17 |
+
+**Cosa resta vero dopo la correzione**, e adesso e' un elenco corto e onesto:
+**sei segni** che una clausola teme e che in cento partite **nessuno ha mai
+scritto** — `valley_sealed` (0/29), `crystal_exploited` (0/34),
+`failed_proposal` (0/39), `no_charter` (0/17), `relic_buried` (0/12),
+`relic_shown` (0/11). Sono tutte memorie globali, e sono punti che nessuno puo'
+rompere. Quelle sono la strada 2 di ISSUES 96, ed e' una scelta del committente
+perche' sono carte stampate.
+
+**E il resto della misura, rifatto sul gioco di oggi** (100 partite, semi da
+7000, CHR_00, tavolo misto):
+
+| | D-321 (0.1.283) | oggi |
+|---|---|---|
+| clausole gia' vere all'apertura | 54,3% | **47,6%** |
+| clausole contese | 21,4% | **24,1%** |
+
+Tutti e due nella direzione giusta, e la ragione si legge nella riga per tipo:
+`did_this_year` porta **152 clausole** che nessuno contende ma che **nessuno
+trova gia' fatte** — un obiettivo che chiede un gesto non e' contendibile, ma
+non e' nemmeno dotazione ([D-386](#d-386)).
+
+**Nessuna regola e' cambiata**: e' una sonda, non il gioco. Il cancello e la
+suite non si muovono.
+
+---
+
 ## D-387 — I gettoni di rivendicazione: la moneta che il Consiglio non aveva
 
 **implemented in 0.1.353** — chiude
