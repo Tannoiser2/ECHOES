@@ -5,6 +5,53 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.339 — Il blocco di D-348 non c'era più (D-372)
+
+D-348 aveva scritto la seconda penna di `mine_sealed`, l'aveva misurata (3
+scritture su 100 anni contro 0) e l'aveva **ritirata** perché faceva cadere
+`test_claim_policy`. Da allora la voce aspettava di capire perché.
+
+Rimessa la proposta identica, e prima di ragionarci sopra **riprodotto il
+guasto** — che è la prima cosa da fare e l'unica che dice la verità. **Il test
+non cade più**, e nemmeno nessun altro.
+
+Ventitré versioni separano D-348 da qui, e in mezzo la politica di
+rivendicazione è cambiata: fra le altre D-191, che ha aggiunto la presa di
+parola in un colpo, cioè proprio il ramo che decide se una domanda si prenota o
+si strappa. Il blocco era reale allora ed è stato sciolto da un'altra parte,
+senza che nessuno se ne accorgesse.
+
+| su 100 partite | prima | dopo |
+|---|---|---|
+| `mine_sealed` scritto | **0** | **3** |
+| punti regalati (temuti e mai scritti) | 5 | **3** |
+| porte murate (voluti e mai scritti) | 4 | **1** |
+
+**Le tre porte murate di Vaerax si aprono** — `DST_VAERAX · VITTORIA`,
+`DST_VAERAX_LEGEND · VITTORIA`, `DST_VAERAX_LEGEND · TRIONFO` — e i tre punti
+regalati a Lyra smettono di essere gratis.
+
+**Resta chiuso** `DST_VAERAX_LEGEND · SOGLIA`: chiede il terzo anello della
+catena delle ere, che vuole tre successioni di fila col sigillo intatto. Con tre
+partite su cento, la catena non parte.
+
+| su 100 anni, tavolo misto | prima | dopo |
+|---|---|---|
+| esiti FAIL | 110 | **108** |
+| Verità scritte | 153 | **154** |
+| **Verità diverse** | 137 | **139** |
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Una strada in più che il tavolo può prendere è una storia in più che il mondo
+può raccontare. Sul tavolo uniforme il movimento è opposto e della stessa
+taglia, e si dichiara.
+
+**La lezione:** una strada ritirata va **riprovata**, non archiviata. Il costo di
+riprovare era un comando; quello di non riprovare sono state sei clausole morte
+su tre Destini per ventitré versioni.
+
+---
+
 ## 0.1.338 — Perché tre segni non si scrivono mai (D-371)
 
 `mine_sealed` è mai scritto in cento partite, ed è insieme **tre punti regalati**

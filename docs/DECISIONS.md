@@ -10,6 +10,84 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-372 — Il blocco di D-348 non c'era più: riprovato, e la porta si apre
+
+**implemented** (0.1.339) · chiude la parte grossa di [ISSUES 108](ISSUES.md#108)
+· riprende [D-348](#d-348)
+
+### Cosa si stava aspettando
+
+[D-348](#d-348) aveva scritto la seconda penna di `mine_sealed` — una proposta
+in più sul Consiglio del Grano, dove sigillare le gallerie per tenere le braccia
+nei campi ha senso — l'aveva misurata (**3 scritture su 100 anni contro 0**) e
+l'aveva **ritirata**, perché faceva cadere
+`test_claim_policy.test_the_natural_proponent_does_not_claim`. Da allora la voce
+aspettava di *«capire perché aggiungere una proposta a una casella cambia quale
+dominio una casa rivendica»*.
+
+### Riprovata: il test passa
+
+Rimessa la proposta identica, e prima di ragionarci sopra si è riprodotto il
+guasto — che è la prima cosa da fare e l'unica che dice la verità. **Il test non
+cade più**, e nemmeno nessun altro: 665 test verdi, 88.377 asserzioni.
+
+Ventitré versioni separano D-348 da qui, e in mezzo la politica di
+rivendicazione è cambiata — fra le altre, [D-191](#d-191) ha aggiunto la presa
+di parola in un colpo (`same_round_when_ready`), che è proprio il ramo che
+decide se una domanda si prenota o si strappa. Il blocco era reale allora, ed è
+stato sciolto da un'altra parte senza che nessuno se ne accorgesse.
+
+**È la ragione per cui una voce ritirata va riprovata, non archiviata**: il costo
+di riprovare era un comando; il costo di non riprovare erano sei clausole morte
+su tre Destini, per ventitré versioni.
+
+### Quello che si apre
+
+| su 100 partite | prima | dopo |
+|---|---|---|
+| `mine_sealed` scritto | **0** | **3** |
+| **punti regalati** (segni temuti e mai scritti) | 5 | **3** |
+| **porte murate** (segni voluti e mai scritti) | 4 | **1** |
+
+Le tre porte murate di Vaerax — `DST_VAERAX · VITTORIA`,
+`DST_VAERAX_LEGEND · VITTORIA`, `DST_VAERAX_LEGEND · TRIONFO` — si aprono. E i
+tre punti regalati a Lyra, che aveva dall'apertura un passo che nessuno poteva
+toglierle, smettono di essere gratis.
+
+### Quello che resta chiuso, e perché
+
+`DST_VAERAX_LEGEND · SOGLIA` chiede `mountain_forgotten`, che è il **terzo
+anello** della catena delle ere: vuole `mine_sealed` sul mondo a tre successioni
+di fila, e senza che nel frattempo il Cristallo venga messo a rendere. Con tre
+partite su cento che sigillano, la catena non parte: `seal_kept` e
+`seal_kept_twice` restano a zero — gli stessi due segni che
+[D-369](#d-369) ha messo nel dizionario due giorni fa, e che adesso si contano
+proprio per poterlo dire.
+
+`study_supervised` e `valley_sealed` restano a zero: hanno la stessa forma
+— vivono solo dentro il Consiglio di una carta — e la stessa cura, che è la
+seconda penna. Non si fanno qui perché ognuna è una proposta d'autore, e una
+proposta d'autore è contenuto.
+
+### Il costo, misurato
+
+`--runs=100 --seed=7000`, contro `main`. **0 seggi bloccati su un solo livello
+su 8**, misto e uniforme.
+
+| tavolo misto | prima | dopo |
+|---|---|---|
+| esiti FAIL | 110 | **108** |
+| esiti DECI | 79 | **81** |
+| Verità scritte | 153 | **154** |
+| **Verità diverse** | 137 | **139** |
+
+Due proposte in meno cadono, e le Verità **diverse** salgono di due: una strada
+in più che il tavolo può prendere è una storia in più che il mondo può
+raccontare. Sul tavolo uniforme il movimento è opposto e della stessa taglia —
+una Verità scritta in meno, una diversa in meno — e si dichiara.
+
+---
+
 ## D-371 — Perché tre segni non si scrivono mai, misurato tre volte prima di crederci
 
 **implemented** (0.1.338) · rifà la diagnosi di [ISSUES 108](ISSUES.md#108)

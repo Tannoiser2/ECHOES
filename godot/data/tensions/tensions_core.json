@@ -287,6 +287,21 @@
               "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
               "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
             }
+          },
+          {
+            "id": "P_SEAL_MINE_FOR_FIELDS",
+            "question_id": "Q_FAMINE_GRAIN",
+            "text": "Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.",
+            "eligibility": [],
+            "success_consequences": [
+              "CNS_MINE_SEALED"
+            ],
+            "echo_summary": "Le gallerie furono sigillate, e le braccia tornarono ai campi.",
+            "echo_summaries": {
+              "DECISIVE_SUCCESS": "$proponent entrò $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.",
+              "FAILURE": "$proponent chiese di entrare $in_region e la porta restò dov'era, con la stessa gente davanti.",
+              "SUCCESS_WITH_COST": "$proponent entrò $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perché qualcuno lo chiamasse un accordo."
+            }
           }
         ]
       },

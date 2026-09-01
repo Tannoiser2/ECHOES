@@ -574,6 +574,12 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 - **Se passa — Chi Lavora Mangia:** dove si discute diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto fra chi propone e il rivale cambia
 - **Se passa — Il Titolo che non Vale più:** dove si discute cambia padrone · il mondo registra: la corona e' stata spogliata
 
+### Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.
+
+> Chi nutre la Regione di cui si discute quando i granai si svuotano?
+
+- **Se passa — Le Miniere Sigillate:** in una Regione con #cristallo diventa il sigillo · il mondo registra: le Miniere sono state sigillate · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 2
+
 **Le clausole che si possono attaccare:**
 
 - ...purché una quota fissa resti a il rivale.
@@ -1977,4 +1983,4 @@ I lupi hanno smesso di aver paura. Qualcosa nel bosco li ha convinti che di qua 
 
 ---
 
-*60 carte, 185 proposte, 83 clausole.*
+*60 carte, 186 proposte, 83 clausole.*

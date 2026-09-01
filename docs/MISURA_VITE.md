@@ -16,7 +16,7 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **7** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 211 |
+| trasformazioni sedute | 210 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 30 / 82 / 56 |
 
 ## Le vite, una per una
@@ -28,7 +28,7 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | 12 | 12 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 454 |
 | 12 | 11 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 393 |
 | 12 | 11 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 402 |
-| 12 | 9 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 331 |
+| 12 | 8 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 331 |
 | 9 | 9 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 458 |
 | 9 | 8 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 517 |
 | 8 | 2 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 732 |
@@ -55,6 +55,6 @@ Il conto e' mutazioni su 168 salti giocati.
 | ENT_LYRA | 24 | 1 ogni 7.0 |
 | ENT_NAHR | 28 | 1 ogni 6.0 |
 | ENT_SALE | 17 | 1 ogni 9.9 |
-| ENT_VAERAX | 21 | 1 ogni 8.0 |
+| ENT_VAERAX | 20 | 1 ogni 8.4 |
 | ENT_VETRO | 30 | 1 ogni 5.6 |
 

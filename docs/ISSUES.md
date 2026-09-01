@@ -6120,7 +6120,7 @@ si calavano quando si voleva.
 **Fatto quando** il committente sceglie, e la scelta e' misurata sui 100 semi.
 
 
-### 108. Vaerax ha un Destino murato a tutti e tre i passi — diagnosi rifatta in 0.1.338
+### 108. Vaerax ha un Destino murato a tutti e tre i passi — quasi chiusa in 0.1.339
 
 `regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 provata e ritirata in 0.1.315** ([D-348](DECISIONS.md#d-348))
 
@@ -6222,6 +6222,45 @@ esce almeno una volta su 100 partite.
 > generico cambia quale dominio una casa rivendica, e sotto quella cura
 > `mine_sealed` esce almeno una volta su 100 partite. La stessa cura vale per
 > `study_supervised` e `valley_sealed`, che hanno la stessa forma.
+
+> ### Quasi chiusa in 0.1.339 ([D-372](DECISIONS.md#d-372)) — il blocco non c'era più
+>
+> Rimessa la proposta di [D-348](DECISIONS.md#d-348), identica. Prima di
+> ragionarci sopra si è **riprodotto il guasto**, che è l'unica cosa che dice la
+> verità: **il test non cade più**, e nemmeno nessun altro.
+>
+> Ventitré versioni separano D-348 da qui, e in mezzo la politica di
+> rivendicazione è cambiata — fra le altre
+> [D-191](DECISIONS.md#d-191), che ha aggiunto la presa di parola in un colpo,
+> cioè proprio il ramo che decide se una domanda si prenota o si strappa. Il
+> blocco era reale allora ed è stato sciolto da un'altra parte, senza che
+> nessuno se ne accorgesse.
+>
+> | su 100 partite | prima | dopo |
+> |---|---|---|
+> | `mine_sealed` scritto | **0** | **3** |
+> | punti regalati | 5 | **3** |
+> | porte murate | 4 | **1** |
+>
+> **Le tre porte murate di Vaerax si aprono**, e i tre punti regalati a Lyra
+> smettono di essere gratis.
+>
+> ### Cosa resta
+>
+> **`DST_VAERAX_LEGEND · SOGLIA`**, che chiede `mountain_forgotten`: è il terzo
+> anello della catena delle ere, e vuole `mine_sealed` sul mondo a tre
+> successioni di fila senza che il Cristallo venga messo a rendere. Con tre
+> partite su cento che sigillano, la catena non parte — `seal_kept` e
+> `seal_kept_twice` restano a zero.
+>
+> **`study_supervised` e `valley_sealed`**, che hanno la stessa forma e la
+> stessa cura: una seconda penna. Non fatte qui perché ognuna è una proposta
+> d'autore, e una proposta d'autore è contenuto.
+>
+> **La lezione, che vale oltre questa voce:** una strada ritirata va
+> **riprovata**, non archiviata. Il costo di riprovare era un comando; quello di
+> non riprovare sono state sei clausole morte su tre Destini per ventitré
+> versioni.
 
 
 ### 109. ✅ Il MASTER PROMPT 6 e' ricopiato in Python invece che letto — fatta in 0.1.314
