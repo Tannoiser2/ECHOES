@@ -1919,14 +1919,16 @@
         "GLOBAL"
       ],
       "written_by": [
+        "chronicle",
         "tension"
       ],
       "read_by": [
+        "chronicle",
         "destiny",
-        "entity",
-        "tag_rule",
         "destiny_physical",
-        "entity_strategic_profile"
+        "entity",
+        "entity_strategic_profile",
+        "tag_rule"
       ],
       "note": "lo posa la catena delle ere TLY_SEAL, al terzo anello — ma la catena parte da `mine_sealed`, che in 100 partite non si scrive nemmeno una volta, quindi il primo anello non si aggancia mai (ISSUES 108). Il Destino DST_VAERAX_LEGEND ci appoggia la SOGLIA."
     },
@@ -2632,6 +2634,38 @@
       ],
       "read_by": [],
       "note": "etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla"
+    },
+    {
+      "id": "seal_kept",
+      "title": "il sigillo ha retto un'era",
+      "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "chronicle"
+      ],
+      "read_by": [
+        "chronicle"
+      ],
+      "note": "primo anello della catena delle ere TLY_SEAL: alla successione, se `mine_sealed` sta sui fatti del mondo e `crystal_exploited` no, il conto lo posa. Lo legge il conto stesso, per sapere che il prossimo anello e' `seal_kept_twice`. Se la condizione cade la catena sparisce e il conto riparte."
+    },
+    {
+      "id": "seal_kept_twice",
+      "title": "il sigillo ha retto due ere",
+      "category": "MEMORY",
+      "table_place": "WORLD_MEMORY",
+      "scope": [
+        "GLOBAL"
+      ],
+      "written_by": [
+        "chronicle"
+      ],
+      "read_by": [
+        "chronicle"
+      ],
+      "note": "secondo anello di TLY_SEAL. Il terzo e ultimo e' `mountain_forgotten`, il segno che fa sedere la Leggenda: due ere col sigillo intatto e la montagna diventa racconto."
     },
     {
       "id": "settlement:$proponent",

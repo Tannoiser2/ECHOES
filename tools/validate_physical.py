@@ -237,6 +237,34 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
                     else:
                         yield "tension", "scrive", tag
 
+    # **La catena delle ere e' una penna** (ISSUES 112, D-369). A ogni
+    # successione, se `if_tag` sta sui fatti del mondo e `if_not_tag` no, la
+    # Cronaca posa il prossimo anello di `chain` — e per sapere a che anello sta
+    # legge quello di prima. Sono scritture e letture come tutte le altre, e
+    # `_scava` non le vedeva: cerca Effect compilati, e un anello e' una stringa
+    # dentro una lista.
+    #
+    # Il varco lasciato aperto si misura: `seal_kept` e `seal_kept_twice` erano
+    # **fuori dal dizionario** e il controllo 1 — *ogni segno toccato e' nel
+    # dizionario* — non li vedeva. Il mondo li scriveva, `sign_labels.gd` li
+    # stampava, avevano perfino la scheda del disegno: di loro non si sapeva
+    # solo quello che si sa di tutti gli altri.
+    for cronaca in documenti.get("chronicle", []):
+        for conto in cronaca.get("era_tallies", []) or []:
+            for verso, campo in (("legge", "if_tag"), ("legge", "if_not_tag")):
+                if str(conto.get(campo, "")):
+                    yield "chronicle", verso, str(conto[campo])
+            for anello in conto.get("chain", []) or []:
+                # **Ogni** anello e' letto e scritto, non solo quelli dopo il
+                # primo. `WorldStateFactory` scorre tutta la catena cercando
+                # l'anello piu' avanti che il mondo gia' porta — e' cosi' che sa
+                # a che punto e' il conto — e poi riposa tutti quelli fino al
+                # prossimo. La prima stesura di questo scavo dichiarava letti i
+                # soli anelli dal secondo in poi, e la guardia l'ha bocciata:
+                # aveva ragione lei.
+                yield "chronicle", "scrive", str(anello)
+                yield "chronicle", "legge", str(anello)
+
     # **Il profilo strategico e' una lettura** (D-288): quello che una casa
     # dichiara di volere o di temere e' un segno che conta, e dichiararlo e'
     # l'unico modo perche' il dizionario non menta. Senza questa riga il file
@@ -1421,6 +1449,14 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                          if v.get("verb") == "BIND_HOUSES")
         voce_filo["level"] = "AMICONI"
 
+    def anello_fuori_dal_dizionario(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Un anello della catena delle ere che il dizionario non conosce
+        # (ISSUES 112). E' il varco da cui `seal_kept` e `seal_kept_twice` erano
+        # entrati: il mondo li scriveva, la scheda del disegno c'era, e di loro
+        # non si sapeva ne' la categoria ne' il posto sul tavolo.
+        cronaca = prova["chronicle"][0]
+        cronaca["era_tallies"][0]["chain"].append("anello_seminato_apposta")
+
     def lista_monca(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una lista con una voce sola: non e' un menu, e' un destino.
         carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
@@ -1609,6 +1645,9 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "un segno su una casata che non e' di una casata"),
         pianta("livello di rapporto che sulla pista non esiste", rapporto_inventato,
                "livello di rapporto inventato"),
+        pianta("anello della catena delle ere fuori dal dizionario",
+               anello_fuori_dal_dizionario,
+               "segno fuori dal dizionario: «anello_seminato_apposta»"),
         pianta("lista di costi con una voce sola", lista_monca,
                "lista di costi troppo corta"),
         pianta("una Pietra che non esiste sotto una pedina", pedina_muta,

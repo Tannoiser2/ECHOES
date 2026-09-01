@@ -5,6 +5,189 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.337 — La Reggia esiste, e due voci vecchie rimisurate
+
+Nessun codice: due voci di `ISSUES.md` che portavano numeri di sei versioni fa,
+rifatte sui documenti sorvegliati invece che a memoria.
+
+**ISSUES 111 diceva «dieci Pietre che non si alzano mai».** Erano sei a D-366 e
+adesso sono **cinque** — e quello che se n'è andato è `structure:palace`, la
+**Reggia**: il terzo grado del Presidio non era mai stato costruito in tutta la
+storia misurata del gioco, era scritto nel catalogo e basta. L'ha alzato la
+casella UNA PIETRA SALE di D-370. Confronto fatto sui due documenti committati,
+non a occhio.
+
+Il conto totale dei segni che non arrivano mai sale da 59 a 60, e **non è un
+peggioramento**: `seal_kept` e `seal_kept_twice` sono entrati nel dizionario con
+D-369, quindi adesso si contano. Non arrivavano nemmeno prima — non li guardava
+nessuno.
+
+E i cinque che restano sono **tre difetti diversi**, non una lista sola: uno è il
+grado di mezzo che una frase d'autore salta, due sono Conseguenze mai scelte
+(ISSUES 108), due sono Pietre che quasi nessuna carta costruisce.
+
+**ISSUES 107** diceva «sedici carte su trentanove senza condizione stampata».
+Sono **cinque su quarantotto**: gli Echi sono 48 da D-359 e D-362 li ha accesi
+sui segni del mondo invece che sulla lotteria del limite di Tensione.
+
+---
+
+## 0.1.336 — Le caselle sulle sessanta carte (D-370)
+
+D-366 ha dato al Consiglio ventiquattro caselle e cinque carte su sessanta le
+usavano. **Ma un menu uguale su tutte le carte è il difetto che D-278 ha
+corretto**, quindi la regola non è «aggiungi le caselle»: è **ricava le caselle
+da quello che ogni carta ha già di suo**. 188 voci nuove, nessuna scritta a mano.
+
+Il pezzo che vale di più: `linked_tensions` sta su tutte e sessanta le carte e lo
+legge **una cosa sola**, l'azione INFLUENZARE. Il Consiglio non lo sapeva
+toccare. Con `dove: QUESTION` ogni carta può muovere la domanda che ha legato a
+sé, e sono quindici insiemi di legami diversi.
+
+UNA PIETRA SALE/SCENDE va sulle carte che costruiscono una Pietra a **tre gradi
+distinti**: non su Granaio, Canale, Pedaggio e Archivio, che hanno due gradi
+collo stesso segno — una Pietra che sale senza che sulla tessera cambi niente è
+una casella che non si vede. CHIUDI LA STRADA sulle quindici carte di TERRITORIO.
+
+| in cento saghe | offerta prima | offerta adesso | comprata |
+|---|---|---|---|
+| UNA PIETRA SALE | **0** | **131** | 10 |
+| CHIUDI LA STRADA | **0** | **9** | 0 |
+| UNA PIETRA SCENDE | **0** | **1** | 0 |
+
+**Ventitré caselle su ventiquattro sono offerte almeno una volta.**
+
+**Le due cose che restano, scritte.** UNA CASATA LASCIA IL TAVOLO resta a zero:
+vuole Vaerax al tavolo mentre si discute della sola carta che la offre, e la
+congiunzione non capita — allargarla è una decisione di chi progetta, non una
+misura. E ABBASSA LA DOMANDA fa **720 offerte e 3 acquisti**: il difetto che
+D-343 aveva già dichiarato, che le carte nuove hanno raddoppiato.
+
+**E un bersaglio che mentiva**, trovato passando: `CNS_SEALED_VALLEY` scriveva un
+fatto del mondo con bersaglio `$adjacent`, uno su 68. Il motore lo eseguiva lo
+stesso ignorando il bersaglio, quindi non lo vedeva nessuno. Adesso lo schema non
+lo lascia tornare.
+
+| su 100 anni, tavolo misto | prima | dopo |
+|---|---|---|
+| esiti FAIL | 107 | **110** |
+| esiti SUCC netti | 110 | **107** |
+| Verità scritte | 150 | **153** |
+| seggi bloccati su un solo livello | **0 su 8** | **0 su 8** |
+
+Tre proposte in più cadono, e tre Verità in più si scrivono. Il tavolo uniforme
+non si muove. Un menu più largo rende più facile comprare qualcosa che gli
+avversari possono far pagare caro.
+
+---
+
+## 0.1.335 — Il tempo è una penna (D-369) — chiude ISSUES 112
+
+`seal_kept` e `seal_kept_twice` sono due anelli della catena delle ere: il mondo
+li scriveva, l'app li stampava, avevano la scheda del disegno — e **non erano
+voci del dizionario**. Il controllo *ogni segno toccato è nel dizionario* non li
+vedeva, perché li nomina la catena dentro il dato di Cronaca e quel percorso il
+censimento non lo raschiava.
+
+Le due voci si aggiungono in un minuto; quello che chiude la questione è il
+varco. Adesso una Cronaca **scrive** ogni anello e **legge** ogni anello — non
+«ogni anello oltre il primo», che è quello che la prima stesura diceva e che la
+guardia ha bocciato avendo ragione lei: `WorldStateFactory` scorre tutta la
+catena per sapere a che punto è il conto.
+
+Ha portato a galla una mano sbagliata che nessuno cercava: `mountain_forgotten`
+diceva `written_by: ["tension"]`, e la catena lo posa eccome.
+
+**E il disegno aveva lo stesso buco dall'altra parte**: le due voci comparivano
+come pezzi senza una freccia. Adesso la catena delle ere è un pezzo del grafo.
+
+| | prima | dopo |
+|---|---|---|
+| voci del dizionario | 180 | **182** |
+| pezzi del disegno | 577 | **580** |
+| difetti piantati | 40 | **41** |
+
+**E la misura lo dice a voce alta**: i tre anelli *non arrivano mai* sul tavolo.
+Non è un difetto nuovo — è ISSUES 108 che diventa visibile: la catena parte da
+`mine_sealed`, che in cento partite nessuno scrive. Prima quel buco era coperto
+da due segni fuori catalogo.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`.
+
+---
+
+## 0.1.334 — Il disegno conosce le caselle (D-368)
+
+Il grafo scriveva **«sul luogo della domanda»** su ogni freccia che usciva da
+una carta Tensione. Fino alla 0.1.332 era vero; da D-366 non lo è più, e un
+disegno che lo scrive ancora mente — che è peggio di un disegno che tace.
+
+E su **cinque caselle su otto taceva del tutto**: le due della presenza, il
+rapporto, la domanda che si scopre, la casa che lascia il tavolo non toccano né
+un segno né una Pietra, quindi non producevano nessuna freccia. Erano invisibili
+nel documento che dovrebbe mostrare il flusso del tavolo.
+
+Adesso **una casella è un pezzo del grafo**: si sceglie come una carta o un
+segno, e si vede chi la offre e dove va a finire. I nomi si leggono da
+`MISURA_CASELLE.md` — lo stesso ponte del controllo 24, non una seconda copia.
+
+| `docs/flusso.html` | prima | dopo |
+|---|---|---|
+| pezzi | 552 | **577** |
+| legami | 1748 | **2742** |
+
+**E due guardie che sono la cosa che resta.** Il template filtra gli archi su
+`VERBS` e i pezzi su `KINDS`: quello che non sta lì dentro finisce nel JSON e
+sparisce dal disegno senza che nessuno lo dica. È successo scrivendo questa
+versione — il verso «chiama» è entrato con le caselle, e tredici archi veri sono
+stati generati e buttati via. Adesso lo strumento legge quelle due tabelle dal
+template e si ferma prima. Più una terza: un `dove` o un `chi` nuovo nello
+schema che nessuno ha imparato a raccontare ferma lo strumento invece di
+scrivere una freccia vuota.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`. La copia pubblicata
+come Artifact va ripubblicata a mano — il cancello sorveglia il file nel
+repository, non il link.
+
+---
+
+## 0.1.333 — I cancelli sono gli stessi da tutte e due le parti (D-367)
+
+La tabella «Il giro dei cancelli» di `CLAUDE.md` e i workflow sono due liste
+scritte a mano nello stesso repository, e non c'era niente che le tenesse
+uguali. In un giorno solo si sono scostate nei due versi: prima il documento ne
+elencava sette e la CI ne girava otto, poi il documento ne elencava ventidue e
+la CI ne girava diciannove.
+
+Il secondo verso fa più male ed è quello che nessuno nota: **un cancello che non
+gira non si lamenta.** E da D-366 uno dei tre mancanti era peggio degli altri —
+`docs/MISURA_CASELLE.md` è il **lato motore** del controllo che tiene uguali
+l'enum delle carte e il vocabolario che esegue: vecchio quel documento, quel
+controllo dà verde per il motivo sbagliato.
+
+**Non i tre passi mancanti e basta**: la guardia che tiene uguali le due liste,
+`tools/gates_survey.py`, messa nel giro dove guarda anche sé stessa.
+
+| | prima | dopo |
+|---|---|---|
+| cancelli in `CLAUDE.md` | 22 | **25** |
+| di quelli, girati dalla CI | 19 | **25** |
+| girati dalla CI e non documentati | 1 | **0** |
+
+Aggiunti alla CI: lo scheletro delle carte, le caselle del Consiglio, il brief
+d'arte. Aggiunto alla tabella: `run_sims.sh`, che la CI girava da sempre e il
+documento non diceva.
+
+E un cancello che era scritto due volte in due modi: il passo dell'export
+controllava il brief con un `diff` a mano invece del `--check-brief` che il
+documento promette. Adesso lancia il comando documentato.
+
+Nessun costo sul gioco: non cambia una riga sotto `godot/`. I 25 cancelli
+girano verdi, presi dalla lista di `CLAUDE.md` **letta a macchina** — contarli a
+occhio è il modo in cui si è sbagliato due volte oggi.
+
+---
+
 ## 0.1.332 — Una casella dice cosa fa, su chi, e dove (D-366) — chiude ISSUES 89
 
 Le otto caselle che mancavano al Consiglio sono scritte. Ma misurando per

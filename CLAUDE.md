@@ -64,6 +64,9 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `bash tools/run_marks_survey.sh --check` | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
 | `bash tools/run_table_survey.sh --check` | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
 | `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
+| `python3 tools/gates_survey.py --check` | **che questa tabella e la CI siano lo stesso giro**: un cancello promesso e non girato non si lamenta, e uno girato e non promesso manda in rosso chi segue il documento |
+| `python3 tools/gates_survey.py --self-test` | che la guardia dei cancelli morda, nei due versi |
+| `bash tools/run_sims.sh` | che ogni anno arrivi in fondo, e che lo stesso seme dia lo stesso salvataggio |
 | `$GODOT --headless --path godot --script res://tests/run_tests.gd` | la suite |
 
 **Se tocchi uno schema, rigenera:** `python3 tools/gen_gd_schema.py`. Saltarlo fa

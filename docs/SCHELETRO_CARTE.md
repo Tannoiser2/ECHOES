@@ -112,7 +112,7 @@ Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.
 | il sottotitolo | 60 su 60 |
 | una riga di testo libero | 107 su 60 |
 | **SI OTTIENE** | 60 su 60 |
-| una casella, una per riga | 981 su 60 |
+| una casella, una per riga | 1169 su 60 |
 | **SI PAGA** | 60 su 60 |
 | **SE CADE** | 60 su 60 |
 
@@ -129,6 +129,8 @@ Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.
 > · Raffredda il Tema di 1 (minimo 0).
 > · Il mondo ricorda: della montagna si e' smesso di parlare.
 > · Sposta di 1 indietro il segnalino di La Cenere che Sale.
+> · Sposta di 1 indietro il segnalino di La Reliquia.
+> · Sito antico del luogo sale di 1 grado.
 > SI PAGA
 > · Il luogo viene murato: quello che sta sotto resta sotto.
 > · Il luogo ottiene #pedaggio.
@@ -137,6 +139,8 @@ Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.
 > · Al luogo si aggiunge #indebitata.
 > · Accetta 1 Cicatrice permanente: la domanda sul muro.
 > · Sposta di 1 avanti il segnalino di La Cenere che Sale.
+> · Sposta di 1 avanti il segnalino di La Reliquia.
+> · Sito antico del luogo scende di 1 grado.
 > SE CADE
 > · Al luogo si aggiunge #malcontento.
 > · Il Tema di questa domanda si scalda di 1.

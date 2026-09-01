@@ -153,14 +153,16 @@ for (const e of G.edges) {
 }
 const KINDS = {carta:"Carta", tag:"Segno", luogo:"Luogo", azione:"Azione", pietra:"Pietra",
   casa:"Casa", tema:"Tema", eco:"Eco", conseguenza:"Conseguenza", proposta:"Proposta",
-  tensione:"Tensione", destino:"Destino", regola:"Regola", funzione:"Funzione"};
+  tensione:"Tensione", destino:"Destino", regola:"Regola", funzione:"Funzione",
+  casella:"Casella", catena:"Catena delle ere"};
 const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["letto da","--legge"],
   esegue:["esegue","--ink"], vieta:["vieta","--vieta"], scalda:["scalda","--scalda"],
   raccoglie:["raccoglie","--tema"], osservato_da:["osservato da","--legge"],
   temuto_da:["temuto da","--vieta"], stampato:["stampato","--pietra"], porta:["porta","--pietra"],
   costruisce:["costruisce","--pietra"], abbatte:["abbatte","--vieta"], muove:["muove","--scalda"],
   pesa:["pesa","--scalda"], concede:["concede","--posa"], sconta:["sconta","--posa"],
-  propaga:["propaga","--posa"], guarda_tema:["guarda","--tema"], confina:["confina","--ash"]};
+  propaga:["propaga","--posa"], guarda_tema:["guarda","--tema"], confina:["confina","--ash"],
+  chiama:["chiama","--scalda"], offre:["offre","--tema"]};
 const POSTI = {TILE_PRINTED:"stampato sulla tessera", TILE_SLOT:"uno spazio sulla tessera",
   ZONE_TOKEN:"un gettone accanto alla tessera", SCAR_TOKEN:"un dischetto rotondo",
   HOUSE_SHEET:"sulla scheda della casa", WORLD_MEMORY:"un gettone sul bordo della mappa",

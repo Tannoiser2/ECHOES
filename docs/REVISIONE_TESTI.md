@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2297 testi in lettura.
+possono spostare nella frase, non togliere. 2485 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -461,6 +461,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Cenere che Sale.
 
 
+**`TEN_ASH, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
+**`TEN_ASH, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_ASH, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -487,6 +495,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_ASH, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Cenere che Sale.
+
+
+**`TEN_ASH, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_ASH, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_ASH, se cade — F_CONDITION`**
@@ -547,6 +563,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > La domanda in discussione si gira a faccia in su.
 
 
+**`TEN_AWAKENING, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
 **`TEN_AWAKENING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -581,6 +601,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_AWAKENING, si paga — C_LEAVE`**
 > La casa che porta #dormiente lascia il tavolo.
+
+
+**`TEN_AWAKENING, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_AWAKENING, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_AWAKENING, se cade — F_CONDITION`**
@@ -629,6 +657,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Grano Guasto.
 
 
+**`TEN_BAD_GRAIN, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
 **`TEN_BAD_GRAIN, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -655,6 +687,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_BAD_GRAIN, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Grano Guasto.
+
+
+**`TEN_BAD_GRAIN, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
 
 
 **`TEN_BAD_GRAIN, se cade — F_CONDITION`**
@@ -703,6 +739,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Pedaggi Neri.
 
 
+**`TEN_BLACK_TOLLS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
 **`TEN_BLACK_TOLLS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -729,6 +769,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_BLACK_TOLLS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Pedaggi Neri.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
 
 
 **`TEN_BLACK_TOLLS, se cade — F_CONDITION`**
@@ -777,6 +821,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Pietre di Confine.
 
 
+**`TEN_BOUNDARY_STONES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_BOUNDARY_STONES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -803,6 +855,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_BOUNDARY_STONES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Pietre di Confine.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_BOUNDARY_STONES, se cade — F_CONDITION`**
@@ -851,6 +915,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Sepolti Senza Nome.
 
 
+**`TEN_BURIALS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
 **`TEN_BURIALS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -877,6 +945,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_BURIALS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Sepolti Senza Nome.
+
+
+**`TEN_BURIALS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
 
 
 **`TEN_BURIALS, se cade — F_CONDITION`**
@@ -925,6 +997,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Carta.
 
 
+**`TEN_CHARTER, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Debito.
+
+
+**`TEN_CHARTER, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_CHARTER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -951,6 +1031,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_CHARTER, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Carta.
+
+
+**`TEN_CHARTER, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Debito.
+
+
+**`TEN_CHARTER, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_CHARTER, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_CHARTER, se cade — F_CONDITION`**
@@ -999,6 +1091,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Disboscamento.
 
 
+**`TEN_CLEARING, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
+**`TEN_CLEARING, si ottiene — B_RAISE`**
+> Foresta del luogo sale di 1 grado.
+
+
 **`TEN_CLEARING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -1025,6 +1125,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_CLEARING, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Disboscamento.
+
+
+**`TEN_CLEARING, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
+
+
+**`TEN_CLEARING, si paga — C_LOWER`**
+> Foresta del luogo scende di 1 grado.
 
 
 **`TEN_CLEARING, se cade — F_CONDITION`**
@@ -1073,6 +1181,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Seggi del Consiglio.
 
 
+**`TEN_COUNCIL_SEATS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_COUNCIL_SEATS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -1099,6 +1215,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_COUNCIL_SEATS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Seggi del Consiglio.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_COUNCIL_SEATS, se cade — F_CONDITION`**
@@ -1147,6 +1275,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Staffette.
 
 
+**`TEN_COURIERS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
+**`TEN_COURIERS, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_COURIERS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -1173,6 +1309,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_COURIERS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Staffette.
+
+
+**`TEN_COURIERS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
+
+
+**`TEN_COURIERS, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_COURIERS, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_COURIERS, se cade — F_CONDITION`**
@@ -1221,6 +1369,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Debito.
 
 
+**`TEN_DEBT, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di L'Acqua Ferma.
+
+
 **`TEN_DEBT, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -1247,6 +1399,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_DEBT, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Debito.
+
+
+**`TEN_DEBT, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di L'Acqua Ferma.
 
 
 **`TEN_DEBT, se cade — F_CONDITION`**
@@ -1295,6 +1451,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di L'Acqua Fonda.
 
 
+**`TEN_DEEP_WATER, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
 **`TEN_DEEP_WATER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1321,6 +1481,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_DEEP_WATER, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di L'Acqua Fonda.
+
+
+**`TEN_DEEP_WATER, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
 
 
 **`TEN_DEEP_WATER, se cade — F_CONDITION`**
@@ -1369,6 +1533,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Gli Echi nel Fondo.
 
 
+**`TEN_ECHOES_BELOW, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_ECHOES_BELOW, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -1395,6 +1567,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_ECHOES_BELOW, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Gli Echi nel Fondo.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_ECHOES_BELOW, se cade — F_CONDITION`**
@@ -1443,6 +1623,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Reti Vuote.
 
 
+**`TEN_EMPTY_NETS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
 **`TEN_EMPTY_NETS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1469,6 +1653,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_EMPTY_NETS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Reti Vuote.
+
+
+**`TEN_EMPTY_NETS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
 
 
 **`TEN_EMPTY_NETS, se cade — F_CONDITION`**
@@ -1517,6 +1705,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Recinti.
 
 
+**`TEN_ENCLOSURE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
 **`TEN_ENCLOSURE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -1543,6 +1735,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_ENCLOSURE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Recinti.
+
+
+**`TEN_ENCLOSURE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
+
+
+**`TEN_ENCLOSURE, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_ENCLOSURE, se cade — F_CONDITION`**
@@ -1591,6 +1791,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Terra Stanca.
 
 
+**`TEN_FALLOW, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
 **`TEN_FALLOW, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1617,6 +1821,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_FALLOW, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Terra Stanca.
+
+
+**`TEN_FALLOW, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
 
 
 **`TEN_FALLOW, se cade — F_CONDITION`**
@@ -1673,6 +1881,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Il rivale toglie la sua pedina dal luogo.
 
 
+**`TEN_FAMINE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
 **`TEN_FAMINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1711,6 +1923,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_FAMINE, si paga — C_LOWER`**
 > La Foresta del luogo scende di 1 grado.
+
+
+**`TEN_FAMINE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
 
 
 **`TEN_FAMINE, se cade — F_CONDITION`**
@@ -1759,6 +1975,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Traghetto.
 
 
+**`TEN_FERRY, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
 **`TEN_FERRY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -1785,6 +2005,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_FERRY, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Traghetto.
+
+
+**`TEN_FERRY, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
 
 
 **`TEN_FERRY, se cade — F_CONDITION`**
@@ -1833,6 +2057,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di L'Acqua Alta.
 
 
+**`TEN_FLOOD, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
 **`TEN_FLOOD, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -1859,6 +2087,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_FLOOD, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di L'Acqua Alta.
+
+
+**`TEN_FLOOD, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
 
 
 **`TEN_FLOOD, se cade — F_CONDITION`**
@@ -1907,6 +2139,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Guerra delle Gilde.
 
 
+**`TEN_GUILD_WAR, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
 **`TEN_GUILD_WAR, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -1933,6 +2169,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_GUILD_WAR, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Guerra delle Gilde.
+
+
+**`TEN_GUILD_WAR, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
 
 
 **`TEN_GUILD_WAR, se cade — F_CONDITION`**
@@ -1981,6 +2221,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Parola Storta.
 
 
+**`TEN_HERESY, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
+**`TEN_HERESY, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_HERESY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2007,6 +2255,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_HERESY, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Parola Storta.
+
+
+**`TEN_HERESY, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_HERESY, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_HERESY, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_HERESY, se cade — F_CONDITION`**
@@ -2055,6 +2315,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Gli Ostaggi di Corte.
 
 
+**`TEN_HOSTAGES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
+**`TEN_HOSTAGES, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_HOSTAGES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2081,6 +2349,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_HOSTAGES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Gli Ostaggi di Corte.
+
+
+**`TEN_HOSTAGES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_HOSTAGES, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_HOSTAGES, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_HOSTAGES, se cade — F_CONDITION`**
@@ -2129,6 +2409,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Santuario dell'Isola.
 
 
+**`TEN_ISLAND_SHRINE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_ISLAND_SHRINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2155,6 +2443,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_ISLAND_SHRINE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Santuario dell'Isola.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_ISLAND_SHRINE, se cade — F_CONDITION`**
@@ -2203,6 +2499,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Silenzio dell'Isola.
 
 
+**`TEN_ISLAND_SILENCE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_ISLAND_SILENCE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2229,6 +2533,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_ISLAND_SILENCE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Silenzio dell'Isola.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_ISLAND_SILENCE, se cade — F_CONDITION`**
@@ -2277,6 +2589,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Braccianti.
 
 
+**`TEN_LANDLESS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
 **`TEN_LANDLESS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -2303,6 +2619,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_LANDLESS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Braccianti.
+
+
+**`TEN_LANDLESS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
 
 
 **`TEN_LANDLESS, se cade — F_CONDITION`**
@@ -2351,6 +2671,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Catasto.
 
 
+**`TEN_LAND_REGISTER, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_LAND_REGISTER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2377,6 +2705,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_LAND_REGISTER, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Catasto.
+
+
+**`TEN_LAND_REGISTER, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
+
+
+**`TEN_LAND_REGISTER, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_LAND_REGISTER, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_LAND_REGISTER, se cade — F_CONDITION`**
@@ -2425,6 +2765,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Leva.
 
 
+**`TEN_LEVY, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
 **`TEN_LEVY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -2451,6 +2795,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_LEVY, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Leva.
+
+
+**`TEN_LEVY, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
 
 
 **`TEN_LEVY, se cade — F_CONDITION`**
@@ -2499,6 +2847,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Marche di Confine.
 
 
+**`TEN_MARCHES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
+**`TEN_MARCHES, si ottiene — B_RAISE`**
+> Foresta del luogo sale di 1 grado.
+
+
 **`TEN_MARCHES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2525,6 +2881,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_MARCHES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Marche di Confine.
+
+
+**`TEN_MARCHES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_MARCHES, si paga — C_LOWER`**
+> Foresta del luogo scende di 1 grado.
+
+
+**`TEN_MARCHES, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_MARCHES, se cade — F_CONDITION`**
@@ -2573,6 +2941,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Febbre delle Paludi.
 
 
+**`TEN_MARSH_FEVER, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
 **`TEN_MARSH_FEVER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -2599,6 +2971,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_MARSH_FEVER, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Febbre delle Paludi.
+
+
+**`TEN_MARSH_FEVER, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
 
 
 **`TEN_MARSH_FEVER, se cade — F_CONDITION`**
@@ -2647,6 +3023,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Senza Città.
 
 
+**`TEN_NAMELESS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di L'Acqua Ferma.
+
+
+**`TEN_NAMELESS, si ottiene — B_RAISE`**
+> Insediamento del luogo sale di 1 grado.
+
+
 **`TEN_NAMELESS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2673,6 +3057,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_NAMELESS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Senza Città.
+
+
+**`TEN_NAMELESS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di L'Acqua Ferma.
+
+
+**`TEN_NAMELESS, si paga — C_LOWER`**
+> Insediamento del luogo scende di 1 grado.
 
 
 **`TEN_NAMELESS, se cade — F_CONDITION`**
@@ -2721,6 +3113,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Vie di Prima.
 
 
+**`TEN_OLD_CHANNELS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
 **`TEN_OLD_CHANNELS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2747,6 +3143,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_OLD_CHANNELS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Vie di Prima.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
 
 
 **`TEN_OLD_CHANNELS, se cade — F_CONDITION`**
@@ -2795,6 +3195,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Vecchia Guardia.
 
 
+**`TEN_OLD_GUARD, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
+**`TEN_OLD_GUARD, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_OLD_GUARD, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2821,6 +3229,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_OLD_GUARD, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Vecchia Guardia.
+
+
+**`TEN_OLD_GUARD, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_OLD_GUARD, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_OLD_GUARD, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_OLD_GUARD, se cade — F_CONDITION`**
@@ -2869,6 +3289,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Nomi Vecchi.
 
 
+**`TEN_OLD_NAMES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
 **`TEN_OLD_NAMES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2895,6 +3319,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_OLD_NAMES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Nomi Vecchi.
+
+
+**`TEN_OLD_NAMES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
 
 
 **`TEN_OLD_NAMES, se cade — F_CONDITION`**
@@ -2943,6 +3371,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Pascolo Conteso.
 
 
+**`TEN_PASTURE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
+**`TEN_PASTURE, si ottiene — B_RAISE`**
+> Insediamento del luogo sale di 1 grado.
+
+
 **`TEN_PASTURE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -2969,6 +3405,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_PASTURE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Pascolo Conteso.
+
+
+**`TEN_PASTURE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
+
+
+**`TEN_PASTURE, si paga — C_LOWER`**
+> Insediamento del luogo scende di 1 grado.
+
+
+**`TEN_PASTURE, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_PASTURE, se cade — F_CONDITION`**
@@ -3017,6 +3465,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Pellegrini.
 
 
+**`TEN_PILGRIMS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
 **`TEN_PILGRIMS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -3043,6 +3495,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_PILGRIMS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Pellegrini.
+
+
+**`TEN_PILGRIMS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
 
 
 **`TEN_PILGRIMS, se cade — F_CONDITION`**
@@ -3095,6 +3551,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Febbre Bassa.
 
 
+**`TEN_PLAGUE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
+**`TEN_PLAGUE, si ottiene — B_RAISE`**
+> Insediamento del luogo sale di 1 grado.
+
+
 **`TEN_PLAGUE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -3121,6 +3585,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_PLAGUE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Febbre Bassa.
+
+
+**`TEN_PLAGUE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
+
+
+**`TEN_PLAGUE, si paga — C_LOWER`**
+> Insediamento del luogo scende di 1 grado.
 
 
 **`TEN_PLAGUE, se cade — F_CONDITION`**
@@ -3169,6 +3641,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Profezia Contata.
 
 
+**`TEN_PROPHECY, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
+**`TEN_PROPHECY, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_PROPHECY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -3195,6 +3675,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_PROPHECY, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Profezia Contata.
+
+
+**`TEN_PROPHECY, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_PROPHECY, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_PROPHECY, se cade — F_CONDITION`**
@@ -3243,6 +3731,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Cordone.
 
 
+**`TEN_QUARANTINE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
 **`TEN_QUARANTINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3269,6 +3761,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_QUARANTINE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Cordone.
+
+
+**`TEN_QUARANTINE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
 
 
 **`TEN_QUARANTINE, se cade — F_CONDITION`**
@@ -3317,6 +3813,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Chi Arriva da Fuori.
 
 
+**`TEN_REFUGEES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
 **`TEN_REFUGEES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -3343,6 +3843,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_REFUGEES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Chi Arriva da Fuori.
+
+
+**`TEN_REFUGEES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
 
 
 **`TEN_REFUGEES, se cade — F_CONDITION`**
@@ -3391,6 +3895,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Reggenza.
 
 
+**`TEN_REGENCY, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
+**`TEN_REGENCY, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_REGENCY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3417,6 +3929,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_REGENCY, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Reggenza.
+
+
+**`TEN_REGENCY, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
+
+
+**`TEN_REGENCY, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_REGENCY, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_REGENCY, se cade — F_CONDITION`**
@@ -3473,6 +3997,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Chi propone porta addosso: scoperta: la reliquia.
 
 
+**`TEN_RELIC, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Cenere che Sale.
+
+
+**`TEN_RELIC, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_RELIC, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3507,6 +4039,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_RELIC, si paga — C_MOVE_IN`**
 > Il rivale posa una pedina nel luogo.
+
+
+**`TEN_RELIC, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Cenere che Sale.
+
+
+**`TEN_RELIC, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_RELIC, se cade — F_CONDITION`**
@@ -3567,6 +4107,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Il filo con il rivale sale ad alleato.
 
 
+**`TEN_ROADS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Pozzi Bassi.
+
+
 **`TEN_ROADS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3601,6 +4145,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_ROADS, si paga — C_UNMARK`**
 > Chi propone perde la fama.
+
+
+**`TEN_ROADS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Pozzi Bassi.
 
 
 **`TEN_ROADS, se cade — F_CONDITION`**
@@ -3649,6 +4197,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Campi di Sale.
 
 
+**`TEN_SALT_FIELDS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di I Senza Città.
+
+
 **`TEN_SALT_FIELDS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -3675,6 +4227,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SALT_FIELDS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Campi di Sale.
+
+
+**`TEN_SALT_FIELDS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di I Senza Città.
 
 
 **`TEN_SALT_FIELDS, se cade — F_CONDITION`**
@@ -3723,6 +4279,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Diritto d'Asilo.
 
 
+**`TEN_SANCTUARY, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
+**`TEN_SANCTUARY, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_SANCTUARY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3749,6 +4313,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SANCTUARY, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Diritto d'Asilo.
+
+
+**`TEN_SANCTUARY, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_SANCTUARY, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_SANCTUARY, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_SANCTUARY, se cade — F_CONDITION`**
@@ -3797,6 +4373,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Sigilli Falsi.
 
 
+**`TEN_SEALS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
 **`TEN_SEALS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3823,6 +4403,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SEALS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Sigilli Falsi.
+
+
+**`TEN_SEALS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
 
 
 **`TEN_SEALS, se cade — F_CONDITION`**
@@ -3871,6 +4455,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Campane Mute.
 
 
+**`TEN_SILENT_BELLS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_SILENT_BELLS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3897,6 +4489,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SILENT_BELLS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Campane Mute.
+
+
+**`TEN_SILENT_BELLS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
+
+
+**`TEN_SILENT_BELLS, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_SILENT_BELLS, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_SILENT_BELLS, se cade — F_CONDITION`**
@@ -3945,6 +4549,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Canali Interrati.
 
 
+**`TEN_SILTED_CANALS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
 **`TEN_SILTED_CANALS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -3971,6 +4579,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SILTED_CANALS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Canali Interrati.
+
+
+**`TEN_SILTED_CANALS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
 
 
 **`TEN_SILTED_CANALS, se cade — F_CONDITION`**
@@ -4019,6 +4631,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Dormienti.
 
 
+**`TEN_SLEEPERS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
 **`TEN_SLEEPERS, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -4045,6 +4661,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SLEEPERS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Dormienti.
+
+
+**`TEN_SLEEPERS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
 
 
 **`TEN_SLEEPERS, se cade — F_CONDITION`**
@@ -4093,6 +4713,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Contrabbando.
 
 
+**`TEN_SMUGGLING, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
 **`TEN_SMUGGLING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4119,6 +4743,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SMUGGLING, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Contrabbando.
+
+
+**`TEN_SMUGGLING, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
 
 
 **`TEN_SMUGGLING, se cade — F_CONDITION`**
@@ -4179,6 +4807,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Il mondo dimentica: la corona era stata divisa.
 
 
+**`TEN_SUCCESSION, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
+**`TEN_SUCCESSION, si ottiene — B_RAISE`**
+> Presidio del luogo sale di 1 grado.
+
+
 **`TEN_SUCCESSION, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4213,6 +4849,18 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_SUCCESSION, si paga — C_MARK`**
 > Chi propone resta sotto osservazione.
+
+
+**`TEN_SUCCESSION, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
+
+
+**`TEN_SUCCESSION, si paga — C_LOWER`**
+> Presidio del luogo scende di 1 grado.
+
+
+**`TEN_SUCCESSION, si paga — C_SEAL`**
+> Si chiude la strada fra il luogo e una Regione confinante.
 
 
 **`TEN_SUCCESSION, se cade — F_CONDITION`**
@@ -4265,6 +4913,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Pozzi Bassi.
 
 
+**`TEN_THIRST, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Febbre Bassa.
+
+
 **`TEN_THIRST, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4291,6 +4943,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_THIRST, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Pozzi Bassi.
+
+
+**`TEN_THIRST, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Febbre Bassa.
 
 
 **`TEN_THIRST, se cade — F_CONDITION`**
@@ -4339,6 +4995,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di La Decima.
 
 
+**`TEN_TITHE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
 **`TEN_TITHE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4365,6 +5025,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_TITHE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di La Decima.
+
+
+**`TEN_TITHE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
 
 
 **`TEN_TITHE, se cade — F_CONDITION`**
@@ -4413,6 +5077,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Tributo.
 
 
+**`TEN_TRIBUTE, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Successione.
+
+
 **`TEN_TRIBUTE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -4439,6 +5107,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_TRIBUTE, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Tributo.
+
+
+**`TEN_TRIBUTE, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Successione.
 
 
 **`TEN_TRIBUTE, se cade — F_CONDITION`**
@@ -4487,6 +5159,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Il Dissotterrato.
 
 
+**`TEN_UNEARTHED, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
+**`TEN_UNEARTHED, si ottiene — B_RAISE`**
+> Sito antico del luogo sale di 1 grado.
+
+
 **`TEN_UNEARTHED, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -4513,6 +5193,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_UNEARTHED, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Il Dissotterrato.
+
+
+**`TEN_UNEARTHED, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
+
+
+**`TEN_UNEARTHED, si paga — C_LOWER`**
+> Sito antico del luogo scende di 1 grado.
 
 
 **`TEN_UNEARTHED, se cade — F_CONDITION`**
@@ -4561,6 +5249,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Voti Non Sciolti.
 
 
+**`TEN_VOWS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Reliquia.
+
+
 **`TEN_VOWS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -4587,6 +5279,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_VOWS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Voti Non Sciolti.
+
+
+**`TEN_VOWS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Reliquia.
 
 
 **`TEN_VOWS, se cade — F_CONDITION`**
@@ -4635,6 +5331,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di Le Pietre di Guardia.
 
 
+**`TEN_WARD_STONES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Risveglio.
+
+
+**`TEN_WARD_STONES, si ottiene — B_RAISE`**
+> Foresta del luogo sale di 1 grado.
+
+
 **`TEN_WARD_STONES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -4661,6 +5365,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_WARD_STONES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di Le Pietre di Guardia.
+
+
+**`TEN_WARD_STONES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Risveglio.
+
+
+**`TEN_WARD_STONES, si paga — C_LOWER`**
+> Foresta del luogo scende di 1 grado.
 
 
 **`TEN_WARD_STONES, se cade — F_CONDITION`**
@@ -4709,6 +5421,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di L'Acqua Ferma.
 
 
+**`TEN_WATER, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Il Debito.
+
+
 **`TEN_WATER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4735,6 +5451,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_WATER, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di L'Acqua Ferma.
+
+
+**`TEN_WATER, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Il Debito.
 
 
 **`TEN_WATER, se cade — F_CONDITION`**
@@ -4783,6 +5503,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Pesi e le Misure.
 
 
+**`TEN_WEIGHTS, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di Le Vie Interrotte.
+
+
 **`TEN_WEIGHTS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4809,6 +5533,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_WEIGHTS, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Pesi e le Misure.
+
+
+**`TEN_WEIGHTS, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di Le Vie Interrotte.
 
 
 **`TEN_WEIGHTS, se cade — F_CONDITION`**
@@ -4857,6 +5585,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di L'Inverno Lungo.
 
 
+**`TEN_WINTER, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
 **`TEN_WINTER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4883,6 +5615,10 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_WINTER, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di L'Inverno Lungo.
+
+
+**`TEN_WINTER, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
 
 
 **`TEN_WINTER, se cade — F_CONDITION`**
@@ -4935,6 +5671,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 > Sposta di 1 indietro il segnalino di I Lupi al Limitare.
 
 
+**`TEN_WOLVES, si ottiene — B_COOL_LINKED`**
+> Sposta di 1 indietro il segnalino di La Carestia.
+
+
+**`TEN_WOLVES, si ottiene — B_RAISE`**
+> Foresta del luogo sale di 1 grado.
+
+
 **`TEN_WOLVES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4961,6 +5705,14 @@ possono spostare nella frase, non togliere. 2297 testi in lettura.
 
 **`TEN_WOLVES, si paga — C_HEAT_QUESTION`**
 > Sposta di 1 avanti il segnalino di I Lupi al Limitare.
+
+
+**`TEN_WOLVES, si paga — C_HEAT_LINKED`**
+> Sposta di 1 avanti il segnalino di La Carestia.
+
+
+**`TEN_WOLVES, si paga — C_LOWER`**
+> Foresta del luogo scende di 1 grado.
 
 
 **`TEN_WOLVES, se cade — F_CONDITION`**

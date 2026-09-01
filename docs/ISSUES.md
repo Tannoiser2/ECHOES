@@ -6096,8 +6096,16 @@ succede adesso, e questo e' gia' un potere.
 
 Ma la domanda di casa — *«questa cosa esisterebbe e sarebbe comprensibile sul
 tavolo fisico?»* — su una carta senza scelta ha una risposta scomoda: **al
-tavolo si cala e si legge cosa e' successo**. Sedici carte su trentanove non
-hanno nemmeno una condizione stampata, quindi si calano quando si vuole.
+tavolo si cala e si legge cosa e' successo**. Quando questa voce fu scritta,
+sedici carte su trentanove non avevano nemmeno una condizione stampata, quindi
+si calavano quando si voleva.
+
+> **Rimisurato in 0.1.336: sono cinque su quarantotto.** Gli Echi sono
+> quarantotto da [D-359](DECISIONS.md#d-359) — uno per carta Asset — e
+> [D-362](DECISIONS.md#d-362) li ha accesi sui segni del mondo invece che sulla
+> lotteria del limite di Tensione. Restano senza nessuna condizione stampata
+> `ECH_CARAVAN_LOST`, `ECH_OFFER`, `ECH_PARLEY`, `ECH_PETITION`,
+> `ECH_SACRIFICE`.
 
 #### Le tre strade, e nessuna e' misurata
 
@@ -6306,9 +6314,49 @@ gioco.
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non e' piu' nel catalogo.
 
+> ### Rimisurata in 0.1.336, e i numeri di questa voce erano vecchi
+>
+> «Dieci Pietre» era il conto della 0.1.316. Misurato adesso con
+> `docs/MISURA_TAVOLO.md` — che guarda il tavolo a fine partita e non il
+> registro degli Effetti — **i gradi di Pietra che non arrivano mai sono
+> cinque**, e uno se n'e' andato stanotte.
+>
+> | | a D-366 | adesso |
+> |---|---|---|
+> | gradi di Pietra che non arrivano mai | 6 | **5** |
+>
+> **`structure:palace` arriva.** La Reggia — il terzo grado del Presidio — non
+> era mai stata costruita in tutta la storia misurata del gioco: era scritta nel
+> catalogo e basta. La casella UNA PIETRA SALE di
+> [D-370](DECISIONS.md#d-370) l'ha alzata. Confronto fatto sui due documenti
+> committati, non a occhio.
+>
+> **E il conto totale dei segni che non arrivano mai sale da 59 a 60**, il che
+> sembra un peggioramento e non lo e': `seal_kept` e `seal_kept_twice` sono
+> entrati nel dizionario con [D-369](DECISIONS.md#d-369), quindi adesso si
+> contano. Non arrivavano nemmeno prima — non li guardava nessuno.
+>
+> ### I cinque che restano, e sono tre difetti diversi
+>
+> | grado | Pietra | perche' non arriva |
+> |---|---|---|
+> | `place:thinned_wood` | Foresta, grado 2 | **il grado di mezzo si salta**: la frase d'autore porta la Foresta dal grado 1 al 3 in un colpo, e il motore toglie il segno vecchio e mette quello nuovo — il segno di mezzo non passa. Non e' un difetto del motore: al tavolo si scambia il gettone, non se ne posa uno intermedio. E' la frase che decide di saltare. |
+> | `place:open_site` | Sito antico, grado 2 | le Conseguenze che li muovono **non vengono mai scelte**: e' la [108](#108), non questa voce |
+> | `place:stripped_site` | Sito antico, grado 3 | idem |
+> | `place:low_spring` | Sorgente, grado 2 | **nessuna carta costruisce la Sorgente**, quindi UNA PIETRA SALE non le arriva: la muovono solo le frasi d'autore, e quelle scendono al grado 3 |
+> | `settlement:city` | Insediamento, grado 3 | il grado 2 arriva 10 volte su cento partite; la Citta' vuole che UNA PIETRA SALE sia comprata proprio li', e le carte che costruiscono l'Insediamento sono **tre** su sessanta |
+>
+> Due delle cinque righe le chiude chi chiude la [108](#108). Le altre tre sono
+> contenuto: quale frase d'autore salta un grado, e su quante carte stanno la
+> Sorgente e l'Insediamento.
+>
+> **`structure:road` resta fuori dal conto**: non e' il grado di una Pietra, e'
+> una Pietra che non esiste — [101](#101). E `settlement:$proponent` non era un
+> difetto e non lo e': porta un id dinamico, e la forma nuda non compare mai.
+
 ---
 
-### 112. Due segni della catena delle ere non stanno nel dizionario
+### 112. Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
 
 `dati` · `piccola` · aperta in 0.1.320 ([D-356](DECISIONS.md#d-356))
 
@@ -6329,6 +6377,28 @@ percorso lascia aperto.**
 
 **Fatto quando** i due sono nel dizionario, e il censimento guarda anche le
 catene delle ere.
+
+> ### Chiusa in 0.1.335 ([D-369](DECISIONS.md#d-369))
+>
+> Le due voci ci sono, e il censimento raschia le catene delle ere: una Cronaca
+> **scrive** ogni anello e **legge** ogni anello — non «ogni anello oltre il
+> primo», che è quello che la prima stesura diceva e che la guardia ha bocciato
+> avendo ragione lei.
+>
+> Il varco ha portato a galla una mano sbagliata che nessuno cercava:
+> `mountain_forgotten` diceva `written_by: ["tension"]`, e la catena lo posa
+> eccome.
+>
+> E lo stesso buco c'era nel disegno: le due voci nuove comparivano in
+> `flusso.html` come **pezzi senza una freccia**. Adesso la catena delle ere è un
+> pezzo del grafo — legge la condizione, teme il segno di guardia, posa i suoi
+> tre anelli e li rilegge per sapere a che punto è.
+>
+> **E la misura adesso lo dice a voce alta**: `seal_kept`, `seal_kept_twice` e
+> `mountain_forgotten` *non arrivano mai* sul tavolo. Non è un difetto nuovo, è
+> la [108](#108) che diventa visibile — la catena parte da `mine_sealed`, che in
+> cento partite nessuno scrive. Prima quel buco era coperto da due segni fuori
+> catalogo; adesso è una riga in un documento sorvegliato.
 
 ---
 
@@ -6628,7 +6698,7 @@ verità.
 
 ---
 
-### 117. Le caselle nuove ci sono, e cinque carte su sessanta le offrono
+### 117. Le caselle nuove ci sono, e cinque carte su sessanta le offrono — quasi chiusa in 0.1.336
 
 `contenuto` · `da-misurare` · aperta in 0.1.332
 
@@ -6674,3 +6744,42 @@ niente, e va tolto o il verbo va cambiato.
 Il conto di `docs/MISURA_CASELLE.md` a 46 su 46, ogni casella del vocabolario
 offerta almeno una volta in cento saghe, e i due Effetti del punto (c) risolti
 nei dati.
+
+> ### Quasi chiusa in 0.1.336 ([D-370](DECISIONS.md#d-370))
+>
+> **(a) fatta, e non come questa voce la immaginava.** Non «scrivi le caselle
+> per 55 carte», che avrebbe rifatto il difetto di [D-278](DECISIONS.md#d-278)
+> con parole nuove — un menu uguale su tutte — ma **ricava le caselle da quello
+> che ogni carta ha già di suo**. 188 voci, nessuna scritta a mano.
+>
+> Il pezzo che vale di più: `linked_tensions` sta su tutte e sessanta le carte e
+> lo legge **una cosa sola**, l'azione INFLUENZARE. Il Consiglio non lo sapeva
+> toccare. Con `dove: QUESTION` ogni carta può muovere la domanda che ha legato
+> a sé — ed è diversa carta per carta.
+>
+> **(b) fatta a ventitré caselle su ventiquattro.** UNA PIETRA SALE va da 0 a
+> **131** offerte e 10 acquisti; CHIUDI LA STRADA da 0 a 9; UNA PIETRA SCENDE da
+> 0 a 1.
+>
+> **(c) uno era un difetto e uno no.** `CNS_SEALED_VALLEY` puntava un fatto del
+> mondo su `$adjacent` — corretto, e adesso lo schema non lo lascia tornare. Ma
+> `$conditioner` **non è un difetto**: quei due Effetti vivono dentro le
+> clausole, dove `conditioner` è legato eccome. Sono una cosa che le caselle non
+> sanno dire e le clausole sì.
+>
+> ### Quello che resta aperto, e sono due decisioni
+>
+> **UNA CASATA LASCIA IL TAVOLO: zero offerte in cento saghe, e resta zero.**
+> Vuole una casa che porti `#dormiente` — Vaerax, e solo Vaerax — mentre si
+> discute della sola carta che offre quella casella. La congiunzione non capita.
+> Non è rotta: è la cosa più drastica del gioco e vale **una** applicazione in
+> tutto il corpo scritto. Allargarla vuol dire spargere per il tavolo la casella
+> che toglie un giocatore, e quella è una decisione di chi progetta.
+>
+> **ABBASSA LA DOMANDA: 720 offerte, 3 acquisti.** È il difetto che
+> [D-343](DECISIONS.md#d-343) aveva già misurato — la policy preferisce le
+> caselle che cambiano la mappa — e le carte nuove l'hanno **raddoppiato**. Vale
+> 1 in `intrinsic_value`, come RAFFREDDA TEMA. Alzare quel numero è equilibrio, e
+> l'equilibrio si misura prima di scriverlo.
+>
+> **Fatto quando** quelle due sono decise.

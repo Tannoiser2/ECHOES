@@ -866,6 +866,36 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SET_GLOBAL_TAG",
+                  "REMOVE_GLOBAL_TAG"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "properties": {
+                  "kind": {
+                    "const": "world"
+                  },
+                  "id": {
+                    "const": "WORLD",
+                    "description": "Un fatto del mondo si posa sul mondo. Il motore scrive in `global_tags` **qualunque** bersaglio gli si dia, quindi un bersaglio diverso non rompe niente e non lo vede nessuno: mente e basta, a chi legge il dato e a ogni misura che lo conta. Trovato una volta su 68 (D-370)."
+                  }
+                }
+              }
+            }
+          }
         }
       ]
     }

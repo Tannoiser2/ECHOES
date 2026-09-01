@@ -1672,7 +1672,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la montagna e' diventata racconto
 
-`mountain_forgotten` · categoria **MEMORY** · sta su global · lo posa: tension
+`mountain_forgotten` · categoria **MEMORY** · sta su global · lo posa: chronicle, tension
 
 **Cosa vuol dire.** Nessuno ci va piu': e' rimasta solo nelle storie.
 
@@ -2122,7 +2122,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il sigillo ha tenuto
 
-`seal_kept`
+`seal_kept` · categoria **MEMORY** · sta su global · lo posa: chronicle
 
 **Cosa vuol dire.** E' passata un'era e le gallerie sono ancora chiuse.
 
@@ -2140,7 +2140,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il sigillo ha tenuto due volte
 
-`seal_kept_twice`
+`seal_kept_twice` · categoria **MEMORY** · sta su global · lo posa: chronicle
 
 **Cosa vuol dire.** Due ere, e nessuno ha riaperto: la montagna sta diventando racconto.
 
