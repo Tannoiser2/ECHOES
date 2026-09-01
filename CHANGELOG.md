@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.347 — Il disegno del flusso conosceva tutto tranne la cosa centrale (D-380)
+
+Parola del committente: *«clicco su una carta e mi dà tutto quello che fa»*.
+
+`flusso.html` mostrava le carte, i segni, le Pietre, i Destini, le caselle — e
+**dodici proposte**, quelle dei template, che dal 0.1.345 il motore non legge più
+per nessuna carta. Delle **120 domande** e delle **194 proposte** che stanno sulle
+carte, niente. Terza volta che una sonda guarda ancora la casa vecchia, dopo il
+catalogo dei Consigli (0.1.273) e la revisione dei testi (0.1.345).
+
+Adesso la catena si percorre col dito: **una carta apre una domanda, la domanda ha
+le sue risposte, una risposta porta una Conseguenza, la Conseguenza posa un
+segno** — e il segno, girato, dice chi altro lo guarda.
+
+| pezzo nuovo | quanti |
+|---|---|
+| Domande | 120 |
+| Proposte (dalle carte) | 194 |
+| Vite delle case | 26 |
+| Clausole | 21 |
+| Obiettivi | 17 |
+| Consigli | 12 |
+| Profili strategici | 8 |
+
+**573 → 959 pezzi, 3118 → 4033 legami.**
+
+Le vite hanno chiuso un buco che si vedeva senza saperlo leggere: `twice_uprooted`
+era un segno che nessuna freccia toccava. Lo legge la successione.
+
+**Due cose che il disegno diceva male.** Il riquadro porta ventidue lettere, e
+*«La montagna fuma di n…»* non è una domanda: adesso c'è **la scheda del pezzo
+scelto**, con la frase intera e quello che quel pezzo dichiara. E i rami hanno un
+ordine — prima la catena del Consiglio, poi quello che resta al mondo, poi il
+minuto — perché col tetto di nove per sorgente restavano fuori proprio le domande.
+
+**Il ponte, invece della copia:** quale Consiglio serve quale carta lo scrive
+**chi la regola la esegue** — `run_council_catalogue.gd`, in fondo al catalogo — e
+`build_flow` lo legge, con una guardia che ferma il disegno se il ponte sparisce.
+
+**E quindici pezzi restano senza nemmeno una freccia**, ognuno una cosa vera:
+dodici Obiettivi su diciassette si vincono contando e non nominano nessun pezzo
+del tavolo (lo stesso difetto che D-377 ha misurato sui Destini), due segni che
+nessuno posa né legge, e `ACT_ACQUIRE`, l'unica Azione che nessuna carta nomina.
+
+Costo: nessuno, né motore né dati. La pagina passa da 538 a 732 KB, provata con
+Chromium. Cancello: **0 seggi bloccati su 8**. 26 cancelli verdi.
+
+---
+
 ## 0.1.346 — La pagina si misura, così la prossima passata non costa un pomeriggio (D-379)
 
 ISSUES 65 porta una frase sola del committente — *«tutta la pagina dell'app va

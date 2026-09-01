@@ -68,49 +68,6 @@ def dove_finisce(target):
     if kind == "region": return "su un luogo", None
     return (kind or "?"), None
 
-# ---------- TAG ----------
-for t in load("tags/*.json"):
-    node(t["id"], "tag", t=t.get("title", ""), cat=t.get("category", ""),
-         posto=t.get("table_place", ""), scope=t.get("scope", []), nota=t.get("note", ""))
-
-# ---------- AZIONI ----------
-TPL = {}
-for a in load("actions/*.json"):
-    node(a["id"], "azione", t=a.get("title", ""), d=a.get("description", ""))
-    TPL[str(a.get("template", ""))] = a["id"]
-
-# ---------- LUOGHI ----------
-for r in load("regions/*.json"):
-    node(r["id"], "luogo", t=r.get("name", ""), d=r.get("description", ""),
-         biome=r.get("biome", ""), posti=r.get("presence_slots", 0))
-    for tg in r.get("tags", []) or []:
-        edge(r["id"], tg, "stampato", "stampato sulla tessera")
-    for vicino in r.get("adjacency", []) or []:
-        edge(r["id"], vicino, "confina", "si passa di qui")
-
-# ---------- PIETRE ----------
-GRADI = {}
-for s in load("structures/*.json"):
-    node(s["id"], "pietra", t=s.get("name", ""), d=s.get("description", ""))
-    tags = []
-    for i, g in enumerate(s.get("grades", []) or [], 1):
-        if g.get("tag"):
-            tags.append(g["tag"])
-            edge(s["id"], g["tag"], "porta", "grado %d: %s" % (i, g.get("name", "")))
-    GRADI[s["id"]] = tags
-
-# ---------- CASE ----------
-for e in load("entities/*.json"):
-    node(e["id"], "casa", t=e.get("name", e.get("title", "")), d=e.get("description", ""))
-    for tg in (e.get("tags") or []) + (e.get("starting_tags") or []):
-        edge(e["id"], tg, "stampato", "sulla scheda della casa")
-
-# ---------- TEMI ----------
-for th in load("themes/*.json"):
-    node(th["id"], "tema", t=th.get("title", ""), d=th.get("covers", ""))
-    for tg in th.get("tags", []) or []:
-        edge(th["id"], tg, "raccoglie", "il Tema raccoglie il segno")
-
 # ---------- effetti: il cuore ----------
 POSA = {"SET_REGION_TAG", "SET_ENTITY_TAG", "SET_GLOBAL_TAG"}
 TOGLIE = {"REMOVE_REGION_TAG", "REMOVE_ENTITY_TAG", "REMOVE_GLOBAL_TAG"}
@@ -161,6 +118,144 @@ def effetti(o, src, why, focus=""):
     elif isinstance(o, list):
         for v in o: effetti(v, src, why, focus)
 
+def clausole(o, owner):
+    """Cosa un passo di Destino o di Obiettivo guarda sul tavolo.
+
+    Tre cose, e la terza mancava: il **segno** che nomina, il segno che
+    **teme**, e — quando invece di un segno conta dei pezzi — le **Pietre**
+    della famiglia che sta contando. Un passo che chiede *«un presidio suo»*
+    parla di un pezzo che sul tavolo c'e'; disegnarlo come un conto astratto
+    lasciava diciassette Obiettivi senza una sola freccia.
+    """
+    if isinstance(o, dict):
+        tg = o.get("tag") or (o.get("params") or {}).get("tag")
+        ty = str(o.get("type", ""))
+        if tg and isinstance(tg, str):
+            edge(owner, tg, "teme" if ty == "state_tag_absent" else "osserva",
+                 "clausola: %s" % ty)
+        # Il bersaglio a segni di una clausola (D-274, D-377): «una pedina dove
+        # c'e' il #granaio» non nomina una Regione, nomina il segno stampato
+        # sulla tessera — ed e' una lettura come tutte le altre.
+        for scelto in o.get("any_tag", []) or []:
+            edge(owner, str(scelto), "osserva",
+                 "bersaglio a segni: %s" % (o.get("label") or ty))
+        if o.get("structure_family"):
+            for pietra in FAMIGLIE.get(str(o["structure_family"]), []):
+                edge(owner, pietra, "conta",
+                     "%s: %s" % (ty, o.get("label") or str(o["structure_family"])))
+        for v in o.values():
+            clausole(v, owner)
+    elif isinstance(o, list):
+        for v in o:
+            clausole(v, owner)
+
+
+def letture(o, src, why):
+    """I segni che una condizione nomina: leggerli e' quello che fa la clausola.
+
+    Un blocco di eleggibilita' — su una domanda, su una proposta — dice quando
+    quella cosa si puo' fare. Nel disegno e' una **lettura**, e girata risponde
+    alla domanda vera del tavolo: *«#malcontento, chi lo guarda e per farci
+    cosa»*.
+    """
+    if isinstance(o, dict):
+        tg = o.get("tag") or (o.get("params") or {}).get("tag")
+        ty = str(o.get("type", ""))
+        if tg and isinstance(tg, str):
+            edge(src, tg, "teme" if ty == "state_tag_absent" else "legge",
+                 "%s: %s" % (why, o.get("label") or ty))
+        # Una condizione puo' nominare una domanda invece di un segno — «questa
+        # questione e' al limite» — e allora e' una carta che ne guarda un'altra.
+        if o.get("tension_id") and not str(o["tension_id"]).startswith("$"):
+            edge(src, str(o["tension_id"]), "legge",
+                 "%s: %s" % (why, o.get("label") or ty))
+        for v in o.values():
+            letture(v, src, why)
+    elif isinstance(o, list):
+        for v in o:
+            letture(v, src, why)
+
+
+# ---------- TAG ----------
+for t in load("tags/*.json"):
+    node(t["id"], "tag", t=t.get("title", ""), cat=t.get("category", ""),
+         posto=t.get("table_place", ""), scope=t.get("scope", []), nota=t.get("note", ""))
+
+# ---------- AZIONI ----------
+TPL = {}
+for a in load("actions/*.json"):
+    node(a["id"], "azione", t=a.get("title", ""), d=a.get("description", ""))
+    TPL[str(a.get("template", ""))] = a["id"]
+
+# ---------- LUOGHI ----------
+for r in load("regions/*.json"):
+    node(r["id"], "luogo", t=r.get("name", ""), d=r.get("description", ""),
+         biome=r.get("biome", ""), posti=r.get("presence_slots", 0))
+    for tg in r.get("tags", []) or []:
+        edge(r["id"], tg, "stampato", "stampato sulla tessera")
+    for vicino in r.get("adjacency", []) or []:
+        edge(r["id"], vicino, "confina", "si passa di qui")
+
+# ---------- PIETRE ----------
+GRADI = {}
+FAMIGLIE = defaultdict(list)
+for s in load("structures/*.json"):
+    node(s["id"], "pietra", t=s.get("name", ""), d=s.get("description", ""),
+         fam=s.get("family", ""))
+    if s.get("family"):
+        FAMIGLIE[str(s["family"])].append(s["id"])
+    tags = []
+    for i, g in enumerate(s.get("grades", []) or [], 1):
+        if g.get("tag"):
+            tags.append(g["tag"])
+            edge(s["id"], g["tag"], "porta", "grado %d: %s" % (i, g.get("name", "")))
+    GRADI[s["id"]] = tags
+
+# ---------- CASE, E LE VITE CHE SI SIEDONO AL LORO POSTO ----------
+#
+# **Una casa ha piu' vite scritte** (D-133): il popolo diventa regno, la scuola
+# diventa culto. Nel disegno non c'erano, e si vedeva dal buco che lasciavano:
+# `twice_uprooted` e `uprooted` — i segni che aprono la porta a due di quelle
+# vite — erano pezzi che nessuna freccia toccava, come se nessuno li leggesse.
+# Li legge la successione, che e' il pezzo che mancava.
+PORTE = {"FOUNDING": "e' la prima: si siede all'apertura",
+         "ON_TAG": "si siede quando il mondo porta il segno",
+         "ON_DEATH": "si siede quando la vita di prima finisce",
+         "LINE_EXHAUSTED": "si siede quando la linea si esaurisce"}
+for e in load("entities/*.json"):
+    node(e["id"], "casa", t=e.get("name", e.get("title", "")), d=e.get("description", ""))
+    for tg in (e.get("tags") or []) + (e.get("starting_tags") or []):
+        edge(e["id"], tg, "stampato", "sulla scheda della casa")
+    for vita in e.get("incarnations", []) or []:
+        vid = str(vita.get("id", ""))
+        if not vid:
+            continue
+        node(vid, "vita", t=vita.get("name", vid), d=vita.get("description", ""),
+             porta=vita.get("entry", ""), dura=vita.get("persistence", ""))
+        edge(e["id"], vid, "diventa",
+             "%s — %s" % (vita.get("name", vid),
+                          PORTE.get(str(vita.get("entry", "")), str(vita.get("entry", "")))))
+        if vita.get("entry_tag"):
+            edge(vid, str(vita["entry_tag"]), "legge",
+                 "la porta di questa vita: si siede quando il mondo porta il segno")
+        if vita.get("entry_forbidden_tag"):
+            edge(vid, str(vita["entry_forbidden_tag"]), "teme",
+                 "con questo segno sul mondo la porta resta chiusa")
+        # La porta del tempo (D-290, D-374): dopo tanti anni si entra lo stesso,
+        # a meno che una clausola tenga ancora.
+        for clausola in ((vita.get("also_enters") or {}).get("unless") or []):
+            letture(clausola, vid,
+                    "la porta del tempo si apre dopo %s anni, a meno che"
+                    % (vita.get("also_enters") or {}).get("after_years", "?"))
+        if vita.get("destiny_id"):
+            edge(vid, str(vita["destiny_id"]), "porta", "il Destino che questa vita si porta")
+
+# ---------- TEMI ----------
+for th in load("themes/*.json"):
+    node(th["id"], "tema", t=th.get("title", ""), d=th.get("covers", ""))
+    for tg in th.get("tags", []) or []:
+        edge(th["id"], tg, "raccoglie", "il Tema raccoglie il segno")
+
 # ---------- CARTE ----------
 for a in load("assets/*.json"):
     ph = a.get("physical") or {}
@@ -191,10 +286,9 @@ for a in load("assets/*.json"):
     for th in (ph.get("council_use") or {}).get("bonus_if_theme", []) or []:
         edge(a["id"], th, "guarda_tema", "vale di piu' se il Tema e' caldo")
 
-# ---------- ECHI, CONSEGUENZE, PROPOSTE ----------
+# ---------- ECHI E CONSEGUENZE ----------
 for pat, kind, why in (("echoes/*.json", "eco", "effetto dell'Eco"),
-                       ("consequences/*.json", "conseguenza", "Conseguenza del Consiglio"),
-                       ("confluences/*.json", "proposta", "proposta del Consiglio")):
+                       ("consequences/*.json", "conseguenza", "Conseguenza del Consiglio")):
     for c in load(pat):
         node(c["id"], kind, t=c.get("title", "") or str(c.get("text", ""))[:70],
              d=c.get("description", ""))
@@ -338,7 +432,8 @@ def racconta_posto(voce):
 
 for t in load("tensions/*.json"):
     ph = t.get("physical") or {}
-    node(t["id"], "tensione", t=t.get("title", ""), dom=t.get("domain", ""))
+    node(t["id"], "tensione", t=t.get("title", ""), dom=t.get("domain", ""),
+         d=t.get("description", ""))
     for buck, nome in (("benefits", "beneficio"), ("costs", "costo"), ("failure", "fallimento")):
         for it in ph.get(buck, []) or []:
             posto = racconta_posto(it)
@@ -377,6 +472,102 @@ for t in load("tensions/*.json"):
                      "%s «%s»: %s" % (nome, it.get("verb", ""), it.get("text", "")[:80]),
                      "la muove chiamandola per nome")
 
+# ---------- IL CONSIGLIO CHE UNA CARTA APRE ----------
+#
+# **La cosa centrale del gioco, e nel disegno non c'era.** Il grafo mostrava le
+# dodici proposte scritte nei template — quelle che dal 0.1.345 **il motore non
+# legge piu' per nessuna carta** — e delle centoventi domande e centonovantaquattro
+# proposte che stanno sulle carte non mostrava niente. E' la stessa trappola che
+# ha morso il catalogo dei Consigli in 0.1.273 e la revisione dei testi in
+# 0.1.345: una sonda che guarda ancora la casa vecchia.
+#
+# Adesso la catena si percorre col dito: **una carta apre una domanda, la
+# domanda ha le sue risposte, una risposta porta una Conseguenza, la Conseguenza
+# posa un segno** — e il segno, girato, dice chi altro lo guarda.
+
+
+def consigli_delle_carte():
+    """Quale Consiglio serve quale carta, letto da `docs/CATALOGO_CONSIGLI.md`.
+
+    La regola sta in `DataSet._council_base_for` — il Consiglio scritto per la
+    carta, altrimenti quello del suo dominio — e da li' vengono le clausole e i
+    sacchetti delle Conseguenze. Python quella regola **non la ricopia**: la
+    scrive chi la esegue, in fondo al catalogo, e qui si legge. E' lo stesso
+    ponte dei nomi delle caselle (D-368).
+    """
+    doc = REPO / "docs" / "CATALOGO_CONSIGLI.md"
+    if not doc.exists():
+        return {}
+    fuori = {}
+    for riga in doc.read_text(encoding="utf-8").splitlines():
+        trovato = re.match(r"CONSIGLIO (\S+) = (\S+)\s*$", riga.strip())
+        if trovato:
+            fuori[trovato.group(1)] = trovato.group(2)
+    return fuori
+
+
+SERVITA_DA = consigli_delle_carte()
+
+# **Un ponte che si rompe non si attraversa in silenzio.** Se il catalogo non
+# porta piu' quel blocco, il disegno perderebbe clausole e sacchetti senza
+# lamentarsi: sessanta carte che smettono di avere un prezzo, e nessuno lo dice.
+if not SERVITA_DA:
+    sys.exit("docs/CATALOGO_CONSIGLI.md non porta piu' il ponte «CONSIGLIO ... = ...»:"
+             " rilancia `tools/run_council_catalogue.sh` prima di disegnare")
+
+# I Consigli come pezzi del tavolo: quello che il template continua a dare
+# quando la carta ha gia' le sue domande — le clausole e i tre sacchetti.
+SACCHETTI = {"cost": ("paga_con", "il prezzo che il tavolo chiede"),
+             "failure": ("se_cade", "quello che resta se la proposta cade"),
+             "decisive_bonus": ("se_stravince", "il di piu' di una vittoria netta")}
+
+for tpl in load("confluences/*.json"):
+    node(tpl["id"], "consiglio", t=tpl.get("title", tpl["id"]), d=tpl.get("description", ""),
+         dom=tpl.get("applies_to_domain", ""))
+    for clausola in tpl.get("condition_clauses", []) or []:
+        cid = str(clausola.get("id", ""))
+        if not cid:
+            continue
+        node(cid, "clausola", t=str(clausola.get("text", ""))[:70],
+             d=str(clausola.get("text", "")))
+        edge(tpl["id"], cid, "si_contratta",
+             "un avversario la attacca alla proposta prima del voto")
+        effetti(clausola, cid, "clausola qualificata")
+    pools = tpl.get("consequence_pools") or {}
+    for sacco, (verso, perche) in SACCHETTI.items():
+        for cns in pools.get(sacco, []) or []:
+            edge(tpl["id"], str(cns), verso, perche)
+
+# Le domande e le proposte stanno sulla carta (D-310).
+for t in load("tensions/*.json"):
+    consiglio = SERVITA_DA.get(str(t["id"]), "")
+    if consiglio:
+        edge(t["id"], consiglio, "si_tiene_con",
+             "le clausole e i sacchetti li mette il Consiglio; le domande le mette la carta")
+    council = t.get("council") or {}
+    risposte = defaultdict(list)
+    for prop in council.get("propositions", []) or []:
+        risposte[str(prop.get("question_id", ""))].append(prop)
+    for q in council.get("questions", []) or []:
+        qid = str(q.get("id", ""))
+        if not qid:
+            continue
+        node(qid, "domanda", t=str(q.get("text", ""))[:70], d=str(q.get("text", "")))
+        edge(t["id"], qid, "apre", "la domanda che questa carta mette ai voti")
+        # Una domanda che si apre solo a certe condizioni **legge** il tavolo.
+        letture(q.get("eligibility"), qid, "la domanda si apre solo se")
+        for prop in risposte.get(qid, []):
+            pid = str(prop.get("id", ""))
+            if not pid:
+                continue
+            node(pid, "proposta", t=str(prop.get("text", ""))[:70],
+                 d=str(prop.get("text", "")))
+            edge(qid, pid, "si_risponde", "una delle risposte stampate sulla carta")
+            letture(prop.get("eligibility"), pid, "si puo' proporre solo se")
+            for cns in prop.get("success_consequences", []) or []:
+                edge(pid, str(cns), "porta", "se passa, questo resta al mondo")
+
+
 # ---------- LA CATENA DELLE ERE ----------
 #
 # **Il tempo e' una penna** (D-133, ISSUES 112). A ogni successione, se il segno
@@ -411,16 +602,43 @@ for d in load("destinies/*.json"):
     for ob in ph.get("observes", []) or []:
         tg = ob if isinstance(ob, str) else (ob.get("tag") or "")
         if tg: edge(d["id"], tg, "osserva", "clausola sulla faccia del Destino")
-    def clausole(o, owner):
-        if isinstance(o, dict):
-            tg = o.get("tag") or (o.get("params") or {}).get("tag")
-            ty = str(o.get("type", ""))
-            if tg and isinstance(tg, str):
-                edge(owner, tg, "teme" if ty == "state_tag_absent" else "osserva", "clausola: %s" % ty)
-            for v in o.values(): clausole(v, owner)
-        elif isinstance(o, list):
-            for v in o: clausole(v, owner)
     clausole(d, d["id"])
+
+# ---------- GLI OBIETTIVI CHE SI TENGONO IN MANO ----------
+#
+# Sono goal quanto un Destino (D-222) e nel disegno non c'erano: cliccando un
+# segno si vedeva chi lo posa e chi lo teme, ma non chi lo **vuole per vincere**
+# tenendolo in mano. E' lo stesso buco che la misura della matrice aveva gia'
+# trovato dal suo lato — 84 segni «orfani» su 148 erano una lista non letta.
+for ob in load("objectives/*.json"):
+    node(ob["id"], "obiettivo", t=ob.get("title", ob["id"]), d=ob.get("description", ""))
+    clausole(ob, ob["id"])
+
+# ---------- I PROFILI STRATEGICI: cosa una casa vuole lasciare ----------
+#
+# La riga dichiarata di ogni casa (D-288): i segni che vuole vedere nel mondo a
+# fine partita, quelli che teme, e i `denies` — un incrocio scritto a mano, «io
+# voglio impedire proprio a te proprio quello».
+for pr in load("design_matrix/*.json"):
+    casa = str(pr.get("entity_id", ""))
+    if not casa:
+        continue
+    pid = "profilo:%s" % casa
+    node(pid, "profilo", t="quello che %s vuole lasciare" % casa,
+         d=pr.get("in_one_line", ""))
+    edge(casa, pid, "porta", "la strategia dichiarata della casa")
+    for voce in pr.get("wants", []) or []:
+        if voce.get("tag"):
+            edge(pid, str(voce["tag"]), "vuole", str(voce.get("why", "")))
+    for voce in pr.get("fears", []) or []:
+        if voce.get("tag"):
+            edge(pid, str(voce["tag"]), "teme", str(voce.get("why", "")))
+    for voce in pr.get("denies", []) or []:
+        if voce.get("tag"):
+            edge(pid, str(voce["tag"]), "nega", str(voce.get("why", "")))
+            if voce.get("to"):
+                edge(pid, str(voce["to"]), "nega",
+                     "vuole impedire proprio a questa casa: %s" % str(voce.get("why", "")))
 
 # ---------- REGOLE DEL SEGNO: il pezzo che accende le azioni ----------
 VERSO = {"ACTION_GATE": ("vieta", "vieta l'azione"),

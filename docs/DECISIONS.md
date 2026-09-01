@@ -10,6 +10,96 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-380 — Il disegno del flusso conosceva tutto tranne la cosa centrale
+
+**implemented** (0.1.347) · parola del committente: *«clicco su una carta e mi dà tutto quello che fa»*
+
+### Il Consiglio non c'era
+
+`docs/flusso.html` mostrava 573 pezzi: le carte, i segni, le Pietre, i Destini,
+le caselle. E mostrava **dodici proposte** — quelle scritte nei template, che dal
+[D-378](#d-378) **il motore non legge più per nessuna carta**. Delle centoventi
+domande e delle centonovantaquattro proposte che stanno sulle carte, niente.
+
+È la stessa trappola che ha morso il catalogo dei Consigli in 0.1.273 e la
+revisione dei testi in 0.1.345: **una sonda che guarda ancora la casa vecchia**.
+Tre volte lo stesso difetto, in tre strumenti diversi, e ogni volta il cancello
+taceva — perché controlla che il file combaci col generatore, non che il
+generatore guardi dove il gioco è andato.
+
+Adesso la catena si percorre col dito:
+
+> **una carta apre una domanda · la domanda ha le sue risposte · una risposta
+> porta una Conseguenza · la Conseguenza posa un segno** — e il segno, girato,
+> dice chi altro lo guarda.
+
+### E i pezzi che nessuno aveva mai disegnato
+
+| pezzo nuovo | quanti | cosa risponde |
+|---|---|---|
+| **Domande** | 120 | cosa questa carta mette ai voti |
+| **Proposte** (dalle carte) | 194 | fra cosa sceglie chi propone, e cosa lascia al mondo |
+| **Vite delle case** | 26 | in cosa una casa può diventare, e con quale segno si apre la porta |
+| **Clausole** | 21 | cosa un avversario attacca alla proposta prima del voto |
+| **Consigli** | 12 | il prezzo, il *se cade*, il di più di una vittoria netta |
+| **Obiettivi** | 17 | chi vuole un segno tenendolo in mano (D-222) |
+| **Profili strategici** | 8 | cosa una casa vuole lasciare, cosa teme, cosa nega a chi |
+
+**573 → 959 pezzi, 3118 → 4033 legami.**
+
+Le vite hanno chiuso un buco che si vedeva senza saperlo leggere: `twice_uprooted`
+era un segno che **nessuna freccia toccava**, come se nessuno lo leggesse. Lo
+legge la successione — la porta della Diaspora di Nahr — che era il pezzo che
+mancava.
+
+### Il ponte, invece della copia
+
+Quale Consiglio serve quale carta lo decide `DataSet._council_base_for`: quello
+scritto per lei, altrimenti quello del suo dominio, e da lì vengono le clausole
+e i sacchetti. Python quella regola **non la ricopia**: la scrive chi la esegue.
+`run_council_catalogue.gd` la stampa in fondo al catalogo, in un blocco che il
+lettore non vede, e `build_flow` la legge — con una guardia che ferma il disegno
+se il ponte non c'è più. È lo stesso ponte dei nomi delle caselle
+([D-368](#d-368)) e del controllo 24 di `validate_physical`.
+
+### Due cose che il disegno diceva male, e adesso no
+
+**Il riquadro porta ventidue lettere.** Per una carta bastano; per una domanda
+no — *«La montagna fuma di n…»* non è una domanda. Il testo intero era già nel
+dato e non lo mostrava nessuno: adesso c'è **la scheda del pezzo scelto**, sopra
+il disegno, con la frase per esteso e quello che quel genere di pezzo dichiara —
+la famiglia di una carta, il dominio di una questione, la porta di una vita.
+
+**E l'ordine dei rami.** Il tetto per sorgente è nove, e una carta Tensione ha
+trentatré rami: senza un ordine restavano fuori proprio la domanda che apre e il
+Consiglio che tiene — la catena che si voleva vedere — mentre passavano nove
+caselle su dodici. Adesso i versi hanno un peso: prima la catena del Consiglio,
+poi quello che resta al mondo, poi il minuto. Non si toglie niente, quello che
+avanza sta sotto *«+ altri»*.
+
+### Quello che il disegno adesso dice, e prima nascondeva
+
+**Quindici pezzi non hanno nemmeno una freccia**, e ognuno è una cosa vera:
+
+- **dodici Obiettivi su diciassette** si vincono contando e non nominano nessun
+  pezzo del tavolo. È lo stesso difetto che [D-377](#d-377) ha misurato sui
+  Destini, in un posto dove nessuno l'aveva ancora guardato;
+- `uprooted` e `scar:burned_records` — due segni che nessuno posa e nessuno
+  legge;
+- `ACT_ACQUIRE` — l'unica Azione che nessuna carta e nessuna regola nomina.
+
+Non li ho toccati: sono contenuto, e il disegno serve a farli vedere.
+
+### Il costo
+
+Nessuno: non è stato toccato né il motore né un dato di gioco. La pagina passa
+da 538 a **732 KB** — si apre in un browser senza fatica, e provata con
+Chromium: la catena si percorre, nessun errore.
+
+Cancello **0 seggi bloccati su 8**, i 26 cancelli verdi.
+
+---
+
 ## D-379 — La pagina si misura, così la prossima passata non costa un pomeriggio
 
 **implemented** (0.1.346) · fronte 6 dei sei aperti dal committente

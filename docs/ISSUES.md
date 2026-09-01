@@ -6994,3 +6994,70 @@ magra.
 
 **Fatto quando** il committente sceglie, o quando l'economia delle caselle è in
 piedi e questa misura si rifà con lei.
+
+---
+
+### 120. Dodici Obiettivi su diciassette si vincono contando, e non nominano niente
+
+`contenuto` · `da-decidere` · aperta in 0.1.347
+([D-380](DECISIONS.md#d-380) · [il flusso](flusso.html))
+
+Messi gli Obiettivi nel disegno del flusso ([D-380](DECISIONS.md#d-380)), dodici
+su diciassette sono usciti **senza nemmeno una freccia**: nessun segno nominato,
+nessuna Pietra contata, niente su cui puntare il dito.
+
+| | |
+|---|---|
+| Obiettivi | 17 |
+| **che non toccano nessun pezzo del tavolo** | **12** |
+| clausole di Obiettivo che nominano un segno | 4 |
+
+Sono `OBJ_A_HIGH_HOUSE`, `OBJ_A_LEARNED_HOUSE`, `OBJ_A_STONE`, `OBJ_BOUND_HOUSE`,
+`OBJ_FULL_HANDS`, `OBJ_MOST_STONE`, `OBJ_QUIET_WORLD`, `OBJ_SOMETHING_MUST_BREAK`,
+`OBJ_THE_LONGEST_REACH`, `OBJ_THE_WIDEST_SPREAD`, `OBJ_TWO_LANDS`,
+`OBJ_WRITTEN_THINGS`.
+
+**È lo stesso difetto che [D-377](DECISIONS.md#d-377) ha misurato sui Destini**,
+in un posto dove nessuno l'aveva ancora guardato — e con la stessa attenuante:
+un obiettivo che si tiene in mano deve valere per chiunque lo peschi, quindi non
+può nominare il segno di nessuno. Ma un obiettivo è **cinque punti**, e cinque
+punti che nessuna Tensione può aiutare né minacciare non entrano nella partita
+che il tavolo sta giocando: si contano a fine anno e basta.
+
+#### Cosa si può fare, e la scelta è del committente
+
+- **(a) Restano conti.** Sono la moneta piccola del punteggio, e va bene così.
+- **(b) Ognuno chiude con un segno.** La casa ha già la strada: quattro
+  Obiettivi su diciassette nominano `renowned`, `question_unresolved`,
+  `condition:exploited`, `condition:emptied`. Costo da misurare: una clausola
+  in più rende l'obiettivo **più difficile**, e il cancello vuole 0 seggi
+  bloccati su 8.
+- **(c) Metà e metà**, tenendo i conti puri come obiettivi facili e dando un
+  segno a quelli che valgono di più.
+
+**Fatto quando** il committente dice se quei dodici restano un'addizione.
+
+---
+
+### 121. Due segni e un'Azione che nessuno tocca
+
+`contenuto` · `debito` · aperta in 0.1.347 ([D-380](DECISIONS.md#d-380))
+
+Il disegno del flusso, completato in [D-380](DECISIONS.md#d-380), lascia tre
+pezzi **senza nemmeno una freccia** oltre agli Obiettivi della
+[120](#120):
+
+| pezzo | cosa manca |
+|---|---|
+| `uprooted` | nessuno lo posa e nessuno lo legge — mentre `twice_uprooted`, il suo seguito, apre la porta della Diaspora di Nahr |
+| `scar:burned_records` | una Cicatrice che nessuna Conseguenza incide e nessuna clausola nomina |
+| `ACT_ACQUIRE` | l'unica delle sei Azioni che nessuna carta e nessuna regola del segno nomina |
+
+I primi due li vedrebbe anche il censimento dei segni; il terzo no, ed è il più
+strano: **Acquisire è un'Azione della plancia** che nessuna carta modifica,
+concede o vieta. O è giusto — è l'azione base, quella che si fa senza carte — e
+allora va scritto; o è un buco, e allora ci vuole almeno una regola del segno che
+la tocchi.
+
+**Fatto quando** i due segni hanno una penna o escono dal dizionario, e
+`ACT_ACQUIRE` ha una riga che dice perché nessuno la nomina.

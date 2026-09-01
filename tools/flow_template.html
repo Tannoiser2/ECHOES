@@ -56,6 +56,13 @@ input:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-of
 .btn{font:inherit;font-size:12px;padding:4px 9px;border-radius:2px;cursor:pointer;
   border:1px solid var(--rule);background:transparent;color:var(--ash);font-weight:500}
 .btn[aria-pressed="true"]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.scheda{flex:none;padding:9px 16px;border-bottom:1px solid var(--rule);background:var(--card);
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.scheda .nome{font-family:var(--f-display);font-size:15px;font-weight:700;letter-spacing:-.01em}
+.scheda .dice{font-size:12.5px;color:var(--ash);flex:1 1 320px;min-width:0;line-height:1.45}
+.scheda code{font-family:var(--f-mono);font-size:10px;color:var(--ash)}
+.scheda .att{font-size:10.5px;color:var(--ash)}
+.scheda .att b{color:var(--ink);font-weight:600}
 .wrap{flex:1;display:grid;grid-template-columns:1fr 216px;min-height:0}
 @media (max-width:860px){.wrap{grid-template-columns:1fr}.side{display:none}.side.on{display:block;
   position:fixed;inset:auto 0 0 0;max-height:56vh;overflow-y:auto;z-index:30;border-top:1px solid var(--rule)}}
@@ -117,6 +124,8 @@ svg#flow.drag{cursor:grabbing}
   </div>
 </div>
 
+<div class="scheda" id="scheda"></div>
+
 <div class="wrap">
   <div class="stage">
     <svg id="flow"></svg>
@@ -154,7 +163,8 @@ for (const e of G.edges) {
 const KINDS = {carta:"Carta", tag:"Segno", luogo:"Luogo", azione:"Azione", pietra:"Pietra",
   casa:"Casa", tema:"Tema", eco:"Eco", conseguenza:"Conseguenza", proposta:"Proposta",
   tensione:"Tensione", destino:"Destino", regola:"Regola", funzione:"Funzione",
-  casella:"Casella", catena:"Catena delle ere"};
+  casella:"Casella", catena:"Catena delle ere", domanda:"Domanda", clausola:"Clausola",
+  consiglio:"Consiglio", obiettivo:"Obiettivo", profilo:"Profilo", vita:"Vita"};
 const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["letto da","--legge"],
   esegue:["esegue","--ink"], vieta:["vieta","--vieta"], scalda:["scalda","--scalda"],
   raccoglie:["raccoglie","--tema"], osservato_da:["osservato da","--legge"],
@@ -162,7 +172,13 @@ const VERBS = {posa:["posa","--posa"], toglie:["toglie","--vieta"], letto_da:["l
   costruisce:["costruisce","--pietra"], abbatte:["abbatte","--vieta"], muove:["muove","--scalda"],
   pesa:["pesa","--scalda"], concede:["concede","--posa"], sconta:["sconta","--posa"],
   propaga:["propaga","--posa"], guarda_tema:["guarda","--tema"], confina:["confina","--ash"],
-  chiama:["chiama","--scalda"], offre:["offre","--tema"]};
+  chiama:["chiama","--scalda"], offre:["offre","--tema"],
+  apre:["apre","--tema"], si_risponde:["si risponde","--posa"],
+  porta:["porta al mondo","--posa"], si_contratta:["si contratta","--legge"],
+  si_tiene_con:["si tiene con","--ash"], paga_con:["paga con","--vieta"],
+  se_cade:["se cade","--vieta"], se_stravince:["se stravince","--posa"],
+  vuole:["vuole","--posa"], nega:["nega a","--vieta"], conta:["conta","--pietra"],
+  diventa:["diventa","--tema"]};
 const POSTI = {TILE_PRINTED:"stampato sulla tessera", TILE_SLOT:"uno spazio sulla tessera",
   ZONE_TOKEN:"un gettone accanto alla tessera", SCAR_TOKEN:"un dischetto rotondo",
   HOUSE_SHEET:"sulla scheda della casa", WORLD_MEMORY:"un gettone sul bordo della mappa",
@@ -184,8 +200,22 @@ function rami(id, dir) {
     if (seen.has(key)) continue;
     seen.add(key); out.push(e);
   }
+  // **Quello che una carta fa non e' tutto ugualmente interessante.** Il tetto
+  // per sorgente e' nove, e una carta Tensione ha trentatre rami: senza un
+  // ordine restavano fuori proprio la domanda che apre e il Consiglio che
+  // tiene, cioe' la catena che si voleva vedere, mentre passavano nove caselle
+  // su dodici. Non si toglie niente — quello che avanza sta sotto «+ altri» —
+  // ma quello che racconta la cosa viene prima.
+  out.sort((a, b) => (ORDINE[a.k] ?? 50) - (ORDINE[b.k] ?? 50));
   return out;
 }
+
+/* Il verso della lettura, in ordine di quanto racconta: prima la catena del
+   Consiglio, poi quello che resta al mondo, poi il minuto. */
+const ORDINE = {apre:1, si_risponde:2, porta:3, si_tiene_con:4, si_contratta:5,
+  paga_con:6, se_cade:7, se_stravince:8, diventa:9, posa:10, toglie:11,
+  costruisce:12, esegue:13, scalda:14, muove:15, chiama:16, vuole:17, teme:18,
+  offre:40, conta:41, stampato:42, confina:43};
 
 /* costruisce le colonne a sinistra e a destra del fuoco */
 function disegna() {
@@ -327,10 +357,41 @@ function disegna() {
     vb = {x: cx - w / 2, y: -h / 2, w, h};
   }
   setVB();
+  scheda();
   document.getElementById("count").textContent =
     `${archi.length} legami · ${Object.values(cols).reduce((s, c) => s + c.length, 0)} pezzi · ${st.depth} passi`;
   aggancia();
 }
+/* **La scheda del pezzo scelto.**
+   Il riquadro sul disegno porta ventidue lettere: per una carta basta, per una
+   domanda o una proposta no — «La montagna fuma di n…» non e' una domanda. Il
+   testo intero lo tiene il dato (`d`), e fino a qui non lo mostrava nessuno.
+   Qui si legge per esteso, insieme a quello che quel genere di pezzo dichiara:
+   la famiglia di una carta, il dominio di una questione, la porta di una vita. */
+const ATT = {fam:"famiglia", copie:"copie nel mazzo", forza:"forza", dom:"dominio",
+  cat:"categoria", posto:"sul tavolo", scope:"vale su", casa:"casa", tipo:"genere",
+  biome:"bioma", posti:"spazi di presenza", porta:"porta", dura:"dura", nota:"perche' esiste"};
+
+function scheda() {
+  const box = document.getElementById("scheda");
+  const n = N.get(st.sel);
+  if (!n) { box.innerHTML = ""; return; }
+  const att = Object.keys(ATT).filter(k => n[k] !== undefined && n[k] !== "" &&
+      !(Array.isArray(n[k]) && !n[k].length))
+    .map(k => `<span class="att">${ATT[k]}: <b>${esc(
+      Array.isArray(n[k]) ? n[k].join(", ") : n[k])}</b></span>`).join(" · ");
+  // Il nome corto di una domanda o di una proposta **e' la sua frase tagliata**:
+  // ripeterla intera due righe sotto sarebbe rumore. Quando il testo lungo
+  // comincia col nome, il nome sparisce e resta la frase.
+  const capo = String(n.t || "").replace(/…$/, "");
+  const stessa = n.d && capo && n.d.startsWith(capo);
+  const nome = stessa ? n.d : (n.t || n.id);
+  const dice = (!stessa && n.d && n.d !== n.t) ? `<span class="dice">${esc(n.d)}</span>` : "";
+  box.innerHTML = `<span class="kt">${KINDS[n.k] || n.k}</span>` +
+    `<span class="nome">${esc(nome)}</span><code>${esc(n.id)}</code>` +
+    dice + (att ? `<span class="dice">${att}</span>` : "");
+}
+
 const esc = s => String(s == null ? "" : s).replace(/[<>&"]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
 const taglia = (s, n) => s.length > n ? s.slice(0, n - 1) + "…" : s;
 

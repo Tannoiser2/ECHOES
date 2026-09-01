@@ -116,6 +116,30 @@ func _initialize() -> void:
 	])
 	lines.append("")
 
+	# **Il ponte per il disegno del flusso.**
+	#
+	# Quale Consiglio serve quale carta lo decide `_council_base_for`: quello
+	# scritto per lei, altrimenti quello del suo dominio, e da li' vengono le
+	# clausole e i sacchetti delle Conseguenze. Il grafo di `flusso.html` ha
+	# bisogno di saperlo, e Python quella regola non la puo' leggere: la
+	# ricopierebbe, ed e' la trappola gia' pagata cinque volte in questo
+	# progetto.
+	#
+	# Quindi la scrive qui **chi la esegue**, una riga per carta, in un blocco
+	# che il lettore non vede e che il cancello sorveglia come tutto il resto.
+	# E' lo stesso ponte con cui `build_flow` legge i nomi delle caselle da
+	# `MISURA_CASELLE.md` (D-368).
+	lines.append("<!-- PONTE — quale Consiglio serve quale carta, letto chiamando")
+	lines.append("     `DataSet.confluence_template_for`. Lo legge tools/build_flow.py. -->")
+	lines.append("<!--")
+	for tension_id in ids:
+		var base: Dictionary = data.confluence_template_for(str(tension_id))
+		if base.is_empty():
+			continue
+		lines.append("CONSIGLIO %s = %s" % [str(tension_id), str(base.get("id", ""))])
+	lines.append("-->")
+	lines.append("")
+
 	var text: String = "\n".join(PackedStringArray(lines))
 	var out: String = str(options.get("out", ""))
 	if out == "":
