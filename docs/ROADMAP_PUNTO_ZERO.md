@@ -4,6 +4,11 @@ Fusione fra la RoadMap del committente e quello che questo progetto ha già
 misurato. Dove le due divergono, la divergenza è scritta con il numero che la
 motiva: **un numero peggiorato e scritto vale più di un numero nascosto**.
 
+> **Le righe in citazione dicono dove sta ogni fase, con la data e il verbale.**
+> Rimesse in pari in **0.1.353**: si erano fermate alla 0.1.235, cioè a
+> centodiciotto versioni fa, e un piano che dichiara «fatto» quello che è stato
+> rifatto tre volte è peggio di un piano senza note.
+
 Il mandato non cambia:
 
 > Non salvare il vecchio sistema con micro-bilanciamenti.
@@ -28,11 +33,12 @@ Su questo non c'è niente da discutere, ed è la maggior parte:
 - i **validatori** impediscono a contenuto muto di entrare;
 - il vecchio gioco resta come banca di nomi, testi ed Entità.
 
-Parte di questo **esiste già e ha un cancello in CI**: 6 Temi come dato, 48 carte
-su 48 con faccia fisica e Risonanza che il motore esegue davvero, 12 Domande
-fisiche legate ai Consigli da cui nascono, 8 Destini su 20 con faccia,
-`tools/validate_physical.py` con sette controlli. Vedi
-[PUNTO_ZERO.md](PUNTO_ZERO.md).
+Parte di questo **esiste già e ha un cancello in CI**, e da 0.1.353 la lista è
+questa: 6 Temi come dato, **48 carte su 48** con faccia fisica e Risonanza che il
+motore esegue davvero, **60 carte Tensione** che portano ognuna le proprie
+Domande e Proposte, **23 Destini su 23** con faccia, e **ventisei cancelli** —
+fra cui `tools/validate_physical.py`, che si vede mordere su 42 difetti
+piantati. Vedi [PUNTO_ZERO.md](PUNTO_ZERO.md).
 
 ---
 
@@ -86,6 +92,16 @@ Quindi PZ-01 non è finita quando la partita gira: **è finita quando meno della
 metà dei turni sono passa**. Il numero va nel criterio di successo, non rimandato
 a PZ-03.
 
+> **Il criterio è soddisfatto da 0.1.247, e regge in 0.1.353**: i turni «passa»
+> sono **46,4%** (3.340 su 7.200), la forma è piatta per Atto — 47,3% / 45,1% /
+> 46,8% — e **zero** di quei passa aveva zero mosse legali (media: 23,0 mosse).
+> La strada: **82,8% → 42,1% → 46,4%**, e l'ultimo numero è sul gioco *pescato*
+> invece che sui due anni d'autore, quindi non è un peggioramento.
+>
+> **Quello che resta non è il permesso: è ancora la ragione.** L'**83,5%** dei
+> passa è *«nessuna mossa gli serviva»*. È [ISSUES 68](ISSUES.md#68), ed è la
+> voce che vale più di tutte le altre insieme.
+
 ### 1.4 Cosa rende meglio agire che stare fermi va deciso *prima*
 
 Corollario del punto sopra, e la lezione più cara di questa sessione. Nel vecchio
@@ -101,6 +117,28 @@ seme, una col tavolo vero e una con un **tavolo di pietra** che non agisce mai.
 
 Regola di casa nuova, da rispettare mentre si scrive: *nessun traguardo può essere
 vero all'apertura dell'anno, e nessuno può avverarsi stando fermi.*
+
+> **Dove sta la regola, in 0.1.353.** Il metro dice **+267,8%**: 423 obiettivi
+> avverati giocando contro 115 dal tavolo di pietra. Era **−1,1%** quando questa
+> riga è stata scritta.
+>
+> | | |
+> |---|---|
+> | obiettivi che rendono uguale o meglio stando fermi | **3 su 17** |
+> | Destini che si avverano da fermi | **1 su 23** |
+>
+> **E il vocabolario ha imparato a chiedere un gesto** ([D-386](DECISIONS.md#d-386),
+> scelta del committente). Il difetto dei sei obiettivi fermi non era il conto —
+> era **il tempo del verbo**: chiedevano di *avere*, e quello che si ha lo si
+> perde agendo. `did_this_year` legge il verbale dell'anno invece del tavolo, con
+> quattro gesti chiusi: alzare una Pietra, prendere una terra, posare una
+> presenza, stringere un legame. **Sei → tre.**
+>
+> I tre che restano sono tutti e tre di Pietra, e la causa è misurata: in cento
+> partite **nessuna Pietra è salita per mano di un'Azione** della plancia, e
+> quelle che alza il Consiglio le alza più spesso per un tavolo che tace (199)
+> che per uno che gioca (136). È [ISSUES 123](ISSUES.md#123), ed è una scelta
+> del committente perché tocca la plancia.
 
 ### 1.5 La mappa non è assente: è incompleta
 
@@ -250,6 +288,26 @@ nessun Consiglio finisce senza lasciare traccia.
 > Tensione mossa, una Conseguenza, il Ripple, e il silenzio ha una regola.
 > Il costo dichiarato in D-268: i Consigli scendono a 3,6 di media, la
 > taratura del «quando tenersi il secondo dibattito» è d'autore.
+>
+> **E poi PZ-5 si è riaperta due volte, perché il «fatto quando» non bastava.**
+>
+> **L'economia, in 0.1.264** ([D-280](DECISIONS.md#d-280)): il Consiglio non è
+> più un menu di frasi d'autore ma un **vocabolario chiuso di caselle** — un
+> beneficio è gratis, il tetto è tre, e le caselle si parametrizzano sulla
+> carta. In 0.1.312 ([D-366](DECISIONS.md#d-366)) ogni casella impara a dire
+> tutte e tre le cose: **cosa fa**, **su chi**, **dove**.
+>
+> **La moneta, in 0.1.353** ([D-387](DECISIONS.md#d-387), regola dettata dal
+> committente): il secondo beneficio costa un **gettone RIVENDICARE**, preso
+> giocando una carta Asset da quella faccia; un avversario ne spende uno per
+> posare un costo, o si astiene. La misura che l'ha resa necessaria: prima, in
+> 364 Consigli, **gli avversari sceglievano 34 prezzi** — 0,09 per Consiglio —
+> e tutto il resto lo riempiva il mondo dall'alto della lista. Cioè la frase di
+> D-267, *«avversari → malus»*, nei fatti non succedeva. Adesso sono **0,68 per
+> Consiglio**.
+>
+> **Costo dichiarato:** i benefici comprati per Consiglio scendono da 1,71 a
+> **1,40** — la moneta è poca, ed è [ISSUES 125](ISSUES.md#125).
 
 ### PZ-6 — Echo, Cicatrici, e il setup della Chronicle dopo
 
@@ -280,6 +338,17 @@ fermi, per ognuno dei dodici.
 > su 22 chiedono di giocare** (pareggia solo NAHR); sull'anno scritto 17 su
 > 22, e la coda — i Destini-custode — è taratura d'autore, coi numeri nel
 > verbale. Lo strumento per chiuderla esiste e fa i nomi.
+>
+> **In 0.1.353 la coda è quasi finita: 22 Destini su 23 chiedono di giocare**,
+> e l'unico che si avvera da fermi è `DST_SHARED_QUIET` — chiede che le
+> questioni restino basse, e un tavolo che non fa niente le tiene basse per
+> definizione. È lo stesso difetto dei tre obiettivi di §1.4, con la stessa
+> cura: una clausola che chieda un gesto.
+>
+> E i **sei livelli di vittoria** che non nominavano nessun segno del mondo sono
+> zero da [D-383](DECISIONS.md#d-383): i livelli che si reggono solo sul contare
+> sono **11 su 69**, e sono tutti `minimum` — cioè soglie di sopravvivenza, non
+> traguardi.
 
 ### PZ-8 — La UI come tavolo
 
@@ -294,6 +363,20 @@ persona vede**. Va guardato su un iPad vero.
 > controproposta) arrivano al giocatore; il pannello del Destino legge le tre
 > righe della carta (D-270). **Resta l'occhio**: il giro su iPad vero è del
 > committente — §5ter non si chiude in headless.
+>
+> **Una misura, in 0.1.348** ([D-379](DECISIONS.md#d-379)): `MISURA_PAGINA.md`
+> è il ventiseiesimo cancello, e dice **cosa la pagina chiede e con quale dito**
+> — i testi che vivono solo nel suggerimento del mouse, i bersagli più stretti
+> di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in
+> confronto a un tablet.
+>
+> **La prima delle tre riviste, in 0.1.352** ([D-384](DECISIONS.md#d-384)):
+> testi solo nel suggerimento del mouse **13 → 2**, bersagli sotto i 44 px
+> **7 su 7 → 0**. È il bersaglio a crescere, non il testo.
+>
+> **Restano l'impaginazione** — 788 px in fila su un tablet da 768 — **e l'idea
+> di cosa si guarda**: la mappa dipinge invece di costruire nodi, e nessun
+> lettore di schermo la vede. Il committente le ha lasciate stare per adesso.
 
 ### PZ-9 — I validatori
 
@@ -312,6 +395,19 @@ apposta, perché una guardia che nessuno ha visto mordere non è una guardia.
 > effetto. Self-test a **undici difetti piantati**, e la guardia si è vista
 > mordere su ognuno — dati spediti puliti su tutti e sei prima ancora di
 > scriverli.
+>
+> **In 0.1.353 i cancelli sono ventisei**, e `validate_physical.py` si vede
+> mordere su **42 difetti piantati**. Fra i guardiani nuovi ce n'è uno che
+> sorveglia i guardiani: `gates_survey.py` confronta la tabella di `CLAUDE.md`
+> con la CI **nei due versi** — un cancello promesso e non girato non si
+> lamenta, e uno girato e non promesso manda in rosso chi segue il documento.
+>
+> **E la lezione che questo passo ha pagato due volte** ([D-376](DECISIONS.md#d-376),
+> [D-383](DECISIONS.md#d-383)): una guardia che **modella il motore diverso da
+> com'è** sbaglia nei due versi. Prima ha lasciato passare otto gettoni che
+> nessuno poteva posare; poi ha dichiarato non scrivibili tre segni che il gioco
+> scrive 42, 43 e 145 volte, perché non sapeva delle caselle della Tensione né
+> dei gradi delle Pietre.
 
 ---
 
@@ -326,13 +422,38 @@ Destini · Echo e Cicatrici · 3 Atti · Consiglio a fine Atto · setup esportab
 
 1. dopo una partita si guarda la mappa e si capisce cosa è successo, cosa resta e
    quali Domande sono probabili dopo;
-2. **meno della metà dei turni sono «passa»** (oggi: 82,8%);
+2. **meno della metà dei turni sono «passa»** (allora: 82,8%);
 3. il playtest su 100 semi tiene **0 seggi bloccati su 8**.
+
+> **Due su tre sono misurati e tengono** (0.1.353): i «passa» sono **46,4%**, e
+> il playtest su 100 semi tiene **0 seggi bloccati su 8 — sui due tavoli**, misto
+> e uniforme. È il vincolo che non si negozia, e ogni decisione lo rifà.
+>
+> **Il primo non lo può dire una sonda**, ed è giusto così: *«si guarda la mappa
+> e si capisce cosa è successo»* è un giudizio del committente su un tavolo vero.
+> Quello che si può misurare intorno c'è: `MISURA_TAVOLO.md` dice quali segni
+> arrivano posto per posto, `flusso.html` disegna chi mette cosa e chi la legge,
+> `REVISIONE_TESTI.md` raccoglie i **2.968 testi** che un giocatore può leggere.
 
 ### PZ-02 — una mini-saga di tre Chronicle
 
 **Fatto quando** la terza sembra figlia delle prime due; gli Echo hanno effetto e
 non solo testo; le Entità si trasformano; le Domande non si ripetono uguali.
+
+> **Tre delle quattro sono misurate** (0.1.353), su 12 saghe da 8 anni sui due
+> tavoli — `run_saga.gd`, `run_inheritance_probe.gd`, `MISURA_VITE.md`:
+>
+> | | |
+> |---|---|
+> | salti d'era giocati | **168** |
+> | **le Entità si trasformano** | **227 trasformazioni sedute** |
+> | vite scritte che non si siedono mai | **1 su 18** |
+> | l'Eredità ribalta il vincitore della saga | **10 saghe su 24** |
+>
+> Gli Echi hanno effetto da [D-355](DECISIONS.md#d-355): ogni carta Asset porta
+> il suo, e si accende a segni. **«La terza sembra figlia delle prime due»**
+> resta un giudizio, come il primo criterio di PZ-01 — ma il materiale c'è, e la
+> saga si legge: `run_saga.gd` scrive un log per Chronicle e la mappa alla fine.
 
 ### PZ-03 — bilanciamento, quantità, durata, UI, print-and-play
 
