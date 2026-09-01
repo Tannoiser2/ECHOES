@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 2485 testi in lettura.
+possono spostare nella frase, non togliere. 2486 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -549,6 +549,10 @@ possono spostare nella frase, non togliere. 2485 testi in lettura.
 
 **`TEN_AWAKENING, si ottiene — B_REMEMBER`**
 > Il mondo ricorda: il Cristallo e' stato messo a rendere.
+
+
+**`TEN_AWAKENING, si ottiene — B_SEAL`**
+> Il mondo ricorda: le Miniere sono state sigillate.
 
 
 **`TEN_AWAKENING, si ottiene — B_COOL_QUESTION`**

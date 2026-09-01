@@ -372,6 +372,12 @@
             "tag": "crystal_exploited"
           },
           {
+            "id": "B_SEAL",
+            "verb": "REMEMBER",
+            "text": "Il mondo ricorda: le Miniere sono state sigillate.",
+            "tag": "mine_sealed"
+          },
+          {
             "id": "B_COOL_QUESTION",
             "verb": "COOL_QUESTION",
             "text": "Sposta di 1 indietro il segnalino di Il Risveglio."

@@ -10,6 +10,94 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-371 — Perché tre segni non si scrivono mai, misurato tre volte prima di crederci
+
+**implemented** (0.1.338) · rifà la diagnosi di [ISSUES 108](ISSUES.md#108)
+
+### La voce diceva due cose, e nessuna delle due regge
+
+[ISSUES 108](ISSUES.md#108) spiegava `mine_sealed` — mai scritto in cento
+partite, e insieme **tre punti regalati** (chi lo teme ce l'ha dall'apertura) e
+**tre porte murate** (chi lo vuole non può averlo) — con una catena:
+`CNS_MINE_SEALED` ← `P_SEAL_MINE` ← `Q_AWAKENING_CRYSTAL` ← `CNF_AWAKENING_01` ←
+`TEN_AWAKENING`, e diceva che il collo di bottiglia stava in cima: *«`TEN_AWAKENING`
+è una delle due Tensioni su 60 che non arrivano mai al tavolo»*.
+
+**Rimisurato: arriva.** Su cento partite tutte e sessanta le domande arrivano al
+tavolo, nessuna esclusa, e il Risveglio ci arriva in **sei** — con un picco di
+17 contro una soglia di 6. Il «mai» era un artefatto di venti partite: con
+quattro domande pescate su una sessantina, uno zero in venti partite è ordinaria
+sfortuna.
+
+### Tre ipotesi provate e cadute, prima di quella giusta
+
+Questo verbale le scrive tutte, perché ognuna sembrava ovvia e sarebbe finita in
+un documento come una spiegazione.
+
+1. **«Manca la casella sulla carta giusta.»** `TEN_AWAKENING` porta
+   `structure:sealed` nel suo fuoco — è la carta la cui domanda *è* la miniera
+   sigillata — e sapeva comprare «il Cristallo è stato messo a rendere» e
+   perfino **dimenticare** che le Miniere erano sigillate, senza saperle
+   sigillare. Aggiunta la casella. **Misurato: `mine_sealed` resta a zero.**
+2. **«Un segno che scrive solo il Consiglio non esce mai.»** Falso, e di molto:
+   i segni solo-Consiglio sono 29, ne restano a zero **3** (10%, mediana 5
+   scritture), e `order_restored` è solo-Consiglio e si scrive **78 volte**.
+3. **«Conta su quante carte sta la casella.»** Falso: `mine_sealed` sta su tre
+   carte e fa zero, `order_restored` su due e fa 78, `question_unresolved` su
+   **nessuna** e fa 77.
+
+### Quella che regge
+
+I segni che si scrivono tanto non vengono dalle caselle: vengono dalle
+**Conseguenze d'autore**, e quello che conta è **in quale template stanno**.
+
+| segno | template **generici** che lo producono | scritture su 100 partite |
+|---|---|---|
+| `order_restored` | **4 su 4** | 78 |
+| `question_unresolved` | 1 | 77 |
+| `rumour_running` | 1 | 33 |
+| `spoke_and_lost` | 1 | 33 |
+| `mine_sealed` | **0** | **0** |
+| `study_supervised` | **0** | **0** |
+| `valley_sealed` | **0** | **0** |
+
+**I tre segni mai scritti sono esattamente i tre che non stanno in nessun
+template generico.** Vivono dentro un Consiglio di carta — `CNF_AWAKENING_01` i
+primi due, `CNF_FAMINE_01` il terzo — e un Consiglio di carta non si apre quasi
+mai: si pescano **quattro** domande su sessanta e si tengono **3,5 Consigli** a
+partita, che vanno al mucchio più caldo. `rumour_running` e `spoke_and_lost`
+sono la prova al contrario: stanno anche loro in `CNF_AWAKENING_01`, ma in più
+in **un** generico, e fanno 33 scritture.
+
+La regola, detta come si direbbe al tavolo: **quello che può succedere solo
+dentro un Consiglio di una carta sola, non succede.**
+
+### Cosa cambia per la voce
+
+Le tre strade che [ISSUES 108](ISSUES.md#108) offriva erano tarate sulla
+diagnosi vecchia. La prima («il Risveglio arrivi più spesso») punta a un
+problema che non c'è. La seconda («`mine_sealed` abbia una seconda penna») **è
+già fatta** — la casella IL MONDO RICORDA lo scrive su tre carte da prima di
+questo verbale, e non basta. Resta viva solo nella forma che
+[D-348](#d-348) aveva già provato e ritirato: portare la Conseguenza in un
+**pool generico**. Quel tentativo faceva cadere `test_claim_policy`, e capire
+perché è il lavoro che chiude davvero la voce.
+
+### Quello che resta scritto sulla carta, e non muove niente
+
+La casella dell'ipotesi 1 resta. Non perché serva oggi — misurato, non cambia
+un numero — ma perché senza di lei il Risveglio poteva **dimenticare** una cosa
+che non sapeva **scrivere**, e quella era una faccia storta introdotta da
+[D-370](#d-370) la notte prima. Quando il Consiglio del Risveglio si aprirà, la
+scelta ci sarà.
+
+### Il costo
+
+Nessuno: `--runs=100 --seed=7000` dà gli stessi numeri di D-370, riga per riga.
+**0 seggi bloccati su 8**, misto e uniforme.
+
+---
+
 ## D-370 — Le caselle sulle sessanta carte, ricavate da quello che ogni carta ha già
 
 **implemented** (0.1.336) · chiude in parte [ISSUES 117](ISSUES.md#117)

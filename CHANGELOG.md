@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.338 — Perché tre segni non si scrivono mai (D-371)
+
+`mine_sealed` è mai scritto in cento partite, ed è insieme **tre punti regalati**
+e **tre porte murate**. ISSUES 108 lo spiegava con due presupposti, e **nessuno
+dei due regge**.
+
+«`TEN_AWAKENING` non arriva mai al tavolo»: **arriva** — su cento partite ci
+arrivano tutte e sessanta le domande, e il Risveglio in sei, con un picco di 17
+contro una soglia di 6. Il «mai» veniva da venti partite.
+
+«Dipende da una proposta sola»: **no** — la casella IL MONDO RICORDA lo scrive
+già su due carte. Aggiunta anche alla terza, quella la cui domanda *è* la
+miniera sigillata e che poteva dimenticarla senza saperla scrivere. Misurato:
+resta a zero.
+
+**Tre ipotesi provate e cadute** prima di quella giusta, e stanno tutte a
+verbale perché ognuna sembrava ovvia: la casella mancante, «un segno che scrive
+solo il Consiglio non esce mai» (falso: 29 segni, 3 a zero, e `order_restored`
+ne fa 78), «conta su quante carte sta» (falso: `question_unresolved` non sta su
+nessuna e ne fa 77).
+
+| segno | template **generici** che lo producono | scritture su 100 partite |
+|---|---|---|
+| `order_restored` | **4 su 4** | 78 |
+| `question_unresolved` | 1 | 77 |
+| `mine_sealed` | **0** | **0** |
+| `study_supervised` | **0** | **0** |
+| `valley_sealed` | **0** | **0** |
+
+**I tre mai scritti sono esattamente i tre che non stanno in nessun template
+generico.** Vivono dentro il Consiglio di una carta sola, e quello non si apre
+quasi mai: quattro domande pescate su sessanta, 3,5 Consigli a partita.
+
+Detta come si direbbe al tavolo: **quello che può succedere solo dentro il
+Consiglio di una carta sola, non succede.**
+
+Nessun costo: il playtest dà gli stessi numeri di D-370, riga per riga.
+
+---
+
 ## 0.1.337 — La Reggia esiste, e due voci vecchie rimisurate
 
 Nessun codice: due voci di `ISSUES.md` che portavano numeri di sei versioni fa,
