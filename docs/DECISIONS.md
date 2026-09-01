@@ -10,6 +10,78 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-395 — Il circuito dei segni si chiude, e due restano colore per scelta
+
+**implemented in 0.1.363.** La gialla G3 della lista — *«ogni segno ha un
+lettore, o esce»* — chiude tre voci su cinque:
+[77](ISSUES.md#77), [96](ISSUES.md#96), [101](ISSUES.md#101).
+
+### 77 — da quindici a zero, e le ragioni non sono un timbro
+
+Gli orfani senza una riga che spieghi perché esistono erano **quindici**, poi
+undici. Adesso [MISURA_MATRICE.md](MISURA_MATRICE.md) dice **zero**: 60 dichiarati
+su 60.
+
+Quasi tutte le undici ragioni dicono la stessa cosa, ed è la cosa vera: **quei
+segni sono bersagli, non premi.** `capitale`, `commercio`, `selvaggio`,
+`cristallo` sono stampati sulla tessera e servono alle carte per dire *dove*;
+`tradimento detto`, `ci si è parlato`, `la richiesta è stata ascoltata` sono
+memorie che una faccia interroga; `requisito` è un ostacolo che si trova. Non
+sono orfani per dimenticanza: nessuno li insegue perché non sono traguardi.
+
+Due portano una ragione **con dentro un difetto**, e sta scritto lì:
+`structure:castle` e `structure:library` sono gradi alti di una scala che si
+insegue col primo grado (92 e 14 arrivi su cento partite), e `structure:palace`
+non arriva mai — che è [ISSUES 111](ISSUES.md#111), non un segno senza ragione.
+
+### 101 — una strada senza penna perde i lettori
+
+Nel catalogo non c'è una Pietra che si chiami strada, e dargliene una voleva dire
+disegnare una Pietra nuova: aprire lavoro, che è quello che questo giro non fa.
+La voce offriva l'altra strada — *«oppure non ha più lettori»* — e si è presa
+quella. Dizionario da 174 a **173** segni:
+
+| chi lo leggeva | cosa è successo |
+|---|---|
+| `AST_WEALTH_TOLL`, fra cinque bersagli | tolto; ne restano quattro, e il testo non dice più «o #strada» |
+| il Tema **Vie**, fra nove segni | tolto; ne restano otto |
+| il profilo delle **Custodi della Cenere**, che la volevano | spostato su `structure:tollgate` |
+
+**L'ultima riga è quella che conta.** La Cenere voleva *«una strada che porta
+fuori il carico»* — una cosa che il mondo non sa costruire, cioè una **porta
+murata** sul suo profilo. Adesso vuole *«una sbarra sulla via che esce dalla
+miniera: il carico passa di lì, e chi tiene la sbarra tiene il mestiere»* — che
+il mondo posa **39 volte in cento partite** e che **anche il Banco del Sale
+vuole**: una casa in più con cui litigare, che è il numero che la matrice
+misura.
+
+### 96 — da venticinque a due, e i due restano colore di proposito
+
+La voce nasceva da `condition:contested`, scritto **531 volte in cento anni**
+senza una clausola addosso, e da altri ventiquattro segni sopra le dieci
+scritture. Oggi [MISURA_SEGNI.md](MISURA_SEGNI.md) ne elenca **due**: `watched`
+(18) e `price_in_lives` (13).
+
+**E quei due non prendono una clausola, di proposito.** Sono i due marchi che
+[D-278](#d-278) ha voluto **non meccanici** — la guardia che una casa si porta
+addosso sulla sua carta, e il conto in vite che si legge al centro del tavolo —
+e ognuno porta già la sua ragione scritta nel dizionario.
+
+Scrivergli addosso due clausole per far scendere un numero a zero sarebbe
+**contenuto che esiste per la misura**, ed è precisamente quello che le regole di
+casa vietano. Il metro con cui si chiude la 77 — *o un lettore, o una ragione
+scritta* — è lo stesso, e questi due la ragione ce l'hanno. Se il committente
+vuole che quei marchi pesino, è **una riga**: un passo di Destino che teme la
+guardia. Non è una voce nuova.
+
+### Il conto
+
+Voci aperte **45 → 42**. Cancello **0 seggi bloccati su 8** sui due tavoli, suite
+680 prove e 86.309 asserzioni (le 275 in meno sono il segno uscito dal
+dizionario).
+
+---
+
 ## D-394 — La passata di verità: sei voci erano già chiuse, e una era rossa
 
 **implemented in 0.1.362.** Nessuna riga di regola: solo la prima verde della

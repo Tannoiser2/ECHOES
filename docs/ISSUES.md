@@ -3172,12 +3172,35 @@ Questa strada rende le righe raggiungibili e contese, non conquistate —
 
 ---
 
-### 96. Il segno piu' scritto del gioco non lo guarda nessuno
+### 96. ✅ Il segno piu' scritto del gioco non lo guarda nessuno — CHIUSA in 0.1.363: da venticinque a due, e i due sono colore dichiarato
 
-`regola` · `contenuto` · `bilanciamento` · **gialla G3 dalla 0.1.361**
-([la lista](LE_TUE_DECISIONI.md)): non aspetta piu' una decisione — o una clausola
-nomina il segno, o il segno e' colore dichiarato, o esce · aperta in 0.1.287
-([D-324](DECISIONS.md#d-324))
+`regola` · `contenuto` · `bilanciamento` · aperta in 0.1.287
+([D-324](DECISIONS.md#d-324)) · **chiusa in 0.1.363**
+([D-395](DECISIONS.md#d-395))
+
+> **Da venticinque a due.** La voce nasceva da `condition:contested`, scritto
+> **531 volte in cento anni** senza una clausola addosso, e da altri ventiquattro
+> segni sopra le dieci scritture. [MISURA_SEGNI.md](MISURA_SEGNI.md), che sta nei
+> cancelli, oggi ne elenca **due**: `watched` (18 scritture) e `price_in_lives`
+> (13).
+>
+> **E quei due non prendono una clausola, di proposito.** Sono i due marchi che
+> [D-278](DECISIONS.md#d-278) ha voluto **non meccanici**, e ognuno porta gia' la
+> sua ragione scritta nel dizionario:
+>
+> - `watched` — *«marchio di memoria: chi ha imposto la guardia se lo porta
+>   addosso, e si legge sulla carta del casato — il motore non lo interroga»*;
+> - `price_in_lives` — *«una decisione passata al prezzo di qualcuno che non c'e'
+>   piu': si legge al centro del tavolo»*.
+>
+> Scrivergli addosso due clausole per far scendere un numero a zero sarebbe
+> contenuto che esiste per la misura, che e' esattamente quello che le regole di
+> casa vietano. Il metro giusto e' quello con cui si chiude la
+> [77](#77) — **o un lettore, o una ragione scritta** — e questi due la ragione
+> ce l'hanno.
+>
+> **Se il committente vuole che quei due marchi pesino**, e' una riga: un passo
+> di Destino che teme la guardia. Non e' una voce nuova, e' questa riga.
 
 Girando la misura dalla parte giusta — non «quanti dei segni che i Destini
 nominano il mondo li scrive», ma **quali segni il mondo scrive** — esce questo:
@@ -4629,9 +4652,29 @@ almeno un Destino vuole.
 
 ---
 
-### 77. Quindici segni muti senza una ragione scritta
+### 77. ✅ Quindici segni muti senza una ragione scritta — CHIUSA in 0.1.363: zero
 
-`contenuto` · `debito` · **aperta in 0.1.249** ([le misure](MISURA_MATRICE.md))
+`contenuto` · `debito` · **aperta in 0.1.249** ([le misure](MISURA_MATRICE.md)) ·
+**chiusa in 0.1.363** ([D-395](DECISIONS.md#d-395))
+
+> **La condizione era: «ognuno dei quindici o trova un lettore, o porta la sua
+> ragione scritta come gli altri 49».** Erano quindici, poi undici. Adesso
+> [MISURA_MATRICE.md](MISURA_MATRICE.md) dice **zero**: gli orfani dichiarati
+> sono 60 su 60.
+>
+> Le undici ragioni non sono un timbro: sono **una frase vera per ognuno**, e
+> quasi tutte dicono la stessa cosa — **quei segni sono bersagli, non premi**.
+> `capitale`, `commercio`, `selvaggio`, `cristallo` sono stampati sulla tessera e
+> servono alle carte per dire **dove**; `tradimento detto`, `ci si e' parlato`,
+> `la richiesta e' stata ascoltata` sono memorie che una faccia interroga per
+> cambiare quello che fa; `requisito` e' un ostacolo che si trova.
+>
+> Due portano invece una ragione **con un difetto dentro**, e sta scritto li':
+> `structure:castle` e `structure:library` sono **gradi alti** di una scala che
+> si insegue col primo grado (arrivano 92 e 14 volte su cento partite), e
+> `structure:palace` **non arriva mai** — che e' un difetto vero, ma e' quello
+> delle Pietre che non si alzano ([ISSUES 111](#111)), non un segno senza
+> ragione.
 
 Su 150 segni scritti, **67 sono orfani** — nessuno li vuole, nessuna Tensione li
 tocca, nessuna regola li usa, l'eredità non li porta avanti. **49 portano già la
@@ -6094,10 +6137,30 @@ non ne emette nessuno (D-191). Continua in [ISSUES 126](#126).
 
 ---
 
-### 101. `structure:road` — una strada che nessuna Pietra costruisce
+### 101. ✅ `structure:road` — CHIUSA in 0.1.363: non ha piu' lettori
 
 `dati` · `grammatica-fisica` · `piccola` · aperta in 0.1.297
-([D-334](DECISIONS.md#d-334))
+([D-334](DECISIONS.md#d-334)) · **chiusa in 0.1.363**
+([D-395](DECISIONS.md#d-395))
+
+> **La condizione era: «`structure:road` ha una penna, oppure non ha piu'
+> lettori».** Non ce l'ha: nel catalogo non c'e' una Pietra che si chiami strada,
+> e dargliene una voleva dire disegnare una Pietra nuova — cioe' aprire lavoro,
+> che e' quello che questo giro non fa.
+>
+> Quindi ha perso i lettori, tutti e tre, e la voce e' uscita dal dizionario
+> (174 → 173 segni):
+>
+> | chi lo leggeva | cosa e' successo |
+> |---|---|
+> | `AST_WEALTH_TOLL`, fra cinque bersagli | tolto: la carta ne ha ancora quattro, e il testo non dice piu' «o #strada» |
+> | il Tema **Vie**, fra nove segni | tolto: ne ha ancora otto |
+> | il profilo delle **Custodi della Cenere**, che la volevano | **spostato su `structure:tollgate`** — *«una sbarra sulla via che esce dalla miniera: il carico passa di li', e chi tiene la sbarra tiene il mestiere»* |
+>
+> L'ultima riga e' quella che conta: la Cenere voleva una cosa che il mondo non
+> sa costruire — una **porta murata**. Adesso vuole una cosa che il mondo posa 39
+> volte in cento partite, e che **anche il Banco del Sale vuole**: una casa in
+> piu' con cui litigare.
 
 Tolta la mano invisibile del motore, trentotto segni su trentotto hanno trovato
 il pezzo di cartone che li posa. **Trentasette.** Il trentottesimo e'

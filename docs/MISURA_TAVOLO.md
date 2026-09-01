@@ -2,7 +2,7 @@
 
 <!-- FILE GENERATO — si rifa' con `tools/run_table_survey.sh`. -->
 
-Ogni segno che sul tavolo ha un pezzo di cartone — i **174** con un posto
+Ogni segno che sul tavolo ha un pezzo di cartone — i **173** con un posto
 dichiarato (D-350) — e se in cento partite ci arriva davvero.
 
 La sonda dei segni ne guardava 66: le memorie del mondo e le condizioni dei
@@ -54,7 +54,7 @@ la natura del luogo. Nessuno lo posa: c'e' gia'.
 
 le Pietre e i gradi che le degradano.
 
-**27 segni: 19 arrivano sul tavolo, 8 non ci arrivano mai.**
+**26 segni: 19 arrivano sul tavolo, 7 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
@@ -81,7 +81,6 @@ le Pietre e i gradi che le degradano.
 | `structure:granary` | 0 | 24 | 0 | 18 |  |
 | `structure:library` | 0 | 14 | 0 | 13 |  |
 | `structure:palace` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `structure:road` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `structure:sealed` | 0 | 13 | 24 | 12 |  |
 | `structure:tollgate` | 0 | 39 | 1 | 30 |  |
 | `structure:watchtower` | 100 | 314 | 58 | 72 |  |
@@ -257,7 +256,7 @@ quello che il mondo ricorda (ISSUES 110).
 ## I segni che non arrivano mai
 
 Hanno un posto sul tavolo, e in cento partite non ci si posano mai.
-Sono **55 su 174**.
+Sono **54 su 173**.
 
 | segno | dove starebbe |
 |---|---|
@@ -310,7 +309,6 @@ Sono **55 su 174**.
 | `settlement:$proponent` | uno spazio sulla tessera |
 | `settlement:city` | uno spazio sulla tessera |
 | `structure:palace` | uno spazio sulla tessera |
-| `structure:road` | uno spazio sulla tessera |
 | `twice_uprooted` | sulla scheda della casa |
 | `valley_sealed` | un gettone sul bordo della mappa |
 | `water_priced` | un gettone sul bordo della mappa |

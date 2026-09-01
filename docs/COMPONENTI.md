@@ -22,7 +22,7 @@ delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 174 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 173 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa
@@ -100,7 +100,7 @@ che le legge dalle facce vere; la colonna «d'autore» da questi dati.
 **Nessun pezzo esce senza faccia**, e da [D-365](DECISIONS.md#d-365) la
 tessera dice anche **dove si costruisce**: 10 tessere su 10 dichiarano i
 loro spazi-Pietra, **21 in tutto**, e il bioma decide che cosa ci sta —
-6 Pietre che una casa alza, 4 che sono la terra stessa. I 27 segni con
+6 Pietre che una casa alza, 4 che sono la terra stessa. I 26 segni con
 posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 
 ### b. L'arte

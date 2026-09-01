@@ -21,7 +21,7 @@ lettori: disegnare non e' mordere.
 
 **102 segni scritti sul mondo: 91 li legge qualcosa, 11 no.**
 
-**E 1 segni li chiede qualcuno senza che niente li scriva.**
+**E 0 segni li chiede qualcuno senza che niente li scriva.**
 
 ---
 
@@ -34,14 +34,14 @@ nessuno legge**, contati posto per posto.
 | posto | segni | scritti sul mondo | di cui muti | cos'e' |
 |---|---|---|---|---|
 | **stampato sulla tessera** | 15 | 0 | — | la natura del luogo: montagna, capitale, pascolo. Non cambia mai. |
-| **uno spazio sulla tessera** | 27 | 5 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
+| **uno spazio sulla tessera** | 26 | 5 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
 | **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
 | **sulla scheda della casa** | 51 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
 | **un gettone sul bordo della mappa** | 54 | 48 | **6** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
 | **il tavolo non lo mostra** | 0 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
-Ogni segno ha un posto. **174 stanno sul tavolo**, 0 sono contabilita'.
+Ogni segno ha un posto. **173 stanno sul tavolo**, 0 sono contabilita'.
 
 ---
 
@@ -68,15 +68,7 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 
 ## I segni che nessuno scrive
 
-Una condizione li nomina, e nessun Effetto li mette sul mondo. Alcuni
-arrivano dall'apertura di una Chronicle o dal mondo ereditato — e allora
-sono legittimi; altri sono clausole che **nessuno puo' soddisfare**.
-
-I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (confluence_controller.gd — la cacciata da una Regione), `function:` (chronicle_controller.gd — la funzione di Propp della carta Echo uscita), `legend:` (world_state_factory.gd — un fatto che sbiadisce diventa leggenda), `life:` (succession.gd — l'incarnazione che siede quest'anno).
-
-| segno | chi lo chiede |
-|---|---|
-| `structure:road` | bersaglio a segni |
+Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 
 ---
 

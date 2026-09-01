@@ -9996,7 +9996,7 @@ possono spostare nella frase, non togliere. 2968 testi in lettura.
 
 
 **`AST_WEALTH_TOLL, bersaglio`**
-> Scegli un luogo con #commercio, #dogana o #strada. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+> Scegli un luogo con #commercio o #dogana. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
 
 
 **`AST_WEALTH_TOLL, azione 1`**

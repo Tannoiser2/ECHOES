@@ -16,7 +16,7 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **1** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 225 |
+| trasformazioni sedute | 224 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 30 / 82 / 56 |
 
 ## Le vite, una per una
@@ -28,8 +28,8 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | 12 | 10 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 458 |
 | 10 | 11 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 402 |
 | 10 | 8 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 465 |
-| 9 | 8 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 424 |
 | 7 | 9 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 411 |
+| 8 | 8 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 444 |
 | 8 | 7 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 374 |
 | 5 | 9 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 756 |
 | 6 | 6 | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | 260 |
@@ -55,6 +55,6 @@ Il conto e' mutazioni su 168 salti giocati.
 | ENT_LYRA | 24 | 1 ogni 7.0 |
 | ENT_NAHR | 33 | 1 ogni 5.1 |
 | ENT_SALE | 21 | 1 ogni 8.0 |
-| ENT_VAERAX | 20 | 1 ogni 8.4 |
+| ENT_VAERAX | 19 | 1 ogni 8.8 |
 | ENT_VETRO | 31 | 1 ogni 5.4 |
 

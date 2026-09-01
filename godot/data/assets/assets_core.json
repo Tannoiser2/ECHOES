@@ -2946,11 +2946,10 @@
           "any_tag": [
             "trade",
             "structure:tollgate",
-            "structure:road",
             "harbor",
             "domain:RESOURCE"
           ],
-          "text": "Scegli un luogo con #commercio, #dogana o #strada. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
+          "text": "Scegli un luogo con #commercio o #dogana. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {

@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **86** |
-| aperte | **45** |
+| chiuse | **89** |
+| aperte | **42** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **35** |
+| di cui sono mie da fare | **32** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 9 |
+| 0.1.350–0.1.374 | 6 | 12 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -195,15 +195,18 @@ delle altre.
 **Fatto quando** ogni voce o viene scelta almeno una volta in cento anni, **o
 esce dalla scatola**. Le tolgo, non le riscrivo tre volte.
 
-### G3. Ogni segno ha un lettore, o esce — [77](ISSUES.md#77), [96](ISSUES.md#96), [101](ISSUES.md#101), [70](ISSUES.md#70), [111](ISSUES.md#111)
+### G3. Ogni segno ha un lettore, o esce — [70](ISSUES.md#70), [111](ISSUES.md#111)
 
-`condition:contested` è scritto **531 volte in cento anni** e non c'è una
-clausola in tutta la scatola che lo nomini; quindici segni non hanno una riga
-che dica perché esistono; `structure:road` non lo costruisce nessuna Pietra; due
-segni hanno ancora due nomi.
+Tre delle cinque si sono chiuse in 0.1.363: **zero** segni senza una ragione
+scritta (erano quindici), `structure:road` è uscito dal dizionario, e i segni
+scritti spesso che nessuna clausola guarda sono passati da **venticinque a due**
+— e quei due sono colore dichiarato da D-278.
 
-**Fatto quando** ogni segno o è nominato da almeno una clausola, o è dichiarato
-colore con la sua riga, o è cancellato. Nessun terzo caso.
+**Restano**: due segni che hanno ancora due nomi (70), e le Pietre che non si
+alzano mai (111), che dipende in parte dalla rossa R1.
+
+**Fatto quando** un segno nuovo si battezza una volta sola, e ogni grado di ogni
+Pietra o si alza almeno una volta in cento partite o non è più nel catalogo.
 
 ### G4. L'ultima casa murata — [108](ISSUES.md#108)
 

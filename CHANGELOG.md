@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.363 — Il circuito dei segni si chiude, e due restano colore per scelta (D-395)
+
+La gialla G3 della lista — *«ogni segno ha un lettore, o esce»* — chiude tre voci
+su cinque.
+
+| voce | com'era | com'è |
+|---|---|---|
+| [77](docs/ISSUES.md#77) | 15 segni senza una ragione scritta | **0** su 60 orfani |
+| [101](docs/ISSUES.md#101) | `structure:road` letto da tre parti e costruito da nessuna | **fuori dal dizionario**: 174 → 173 segni |
+| [96](docs/ISSUES.md#96) | 25 segni scritti spesso e senza clausole | **2**, e sono colore dichiarato da D-278 |
+
+**La riga che conta della 101**: le Custodi della Cenere volevano *«una strada
+che porta fuori il carico»* — una cosa che il mondo non sa costruire, cioè una
+porta murata sul loro profilo. Adesso vogliono la **sbarra sulla via che esce
+dalla miniera**, che il mondo posa 39 volte in cento partite e che anche il Banco
+del Sale vuole: una casa in più con cui litigare.
+
+**E due segni non prendono una clausola, di proposito.** `watched` e
+`price_in_lives` sono i marchi che D-278 ha voluto non meccanici, e portano già
+la loro ragione scritta. Inventargli due clausole per far scendere un numero a
+zero sarebbe contenuto che esiste per la misura.
+
+Voci aperte: **45 → 42**. Cancello 0/8 sui due tavoli, suite verde.
+
+---
+
 ## 0.1.362 — La passata di verità: sei voci erano già chiuse, e una era rossa (D-394)
 
 La prima verde della lista, e ha fatto quello che prometteva: **rileggere ogni
