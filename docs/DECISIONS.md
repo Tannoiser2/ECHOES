@@ -10,6 +10,100 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-391 — ISSUES 68 si chiude sulla condizione che si era scritta da sola
+
+**implemented in 0.1.358.** Nessuna riga di motore: solo la misura, e la
+scoperta che il numero su cui la voce restava aperta era **incomparabile**.
+
+### La condizione, e la misura
+
+ISSUES 68 — *«otto turni su dieci non succede niente»* — si era scritta la
+propria chiusura: **«Fatto quando i «passa» scendono sotto la metà dei turni, e
+il playtest resta 0/8»**. Cento anni, seme 7000, `cli/run_pass_probe.gd`:
+
+| | turni «passa» |
+|---|---|
+| tavolo misto | **47,6%** (3.428 su 7.200) |
+| tavolo uniforme | **47,9%** (3.451 su 7.200) |
+| Atto 1 · 2 · 3 (misto) | 48,0% · 46,7% · 48,1% |
+| cancello | **0 seggi bloccati su 8**, tutti e due i tavoli |
+
+Sotto la metà su tutti e due i tavoli, cancello verde. **La condizione è
+soddisfatta**, e la voce si chiude.
+
+### Il numero che teneva aperta la voce non si poteva confrontare
+
+L'ultima riga della voce diceva *«Oggi sono all'82,8%»*: era ferma a 0.1.217,
+**centoquaranta versioni**. E la strada scritta sotto — *82,1% → 42,1% → oggi* —
+confrontava misure prese **su tavoli diversi**: il 42,1% di [D-285](#d-285) è di
+`--chronicle=CHR_01`, che era il valore di partenza della sonda allora. **CHR_01
+non esiste più**: gli anni d'autore sono stati cancellati in
+[D-317](#d-317)/[D-318](#d-318), e la scatola contiene un gioco solo. Chiedere
+oggi quel numero risponde `Chronicle sconosciuta 'CHR_01'`.
+
+Rimisurato **sull'anno che esiste**, sullo stesso seme, il difetto non si è mai
+mosso:
+
+| versione | misto, CHR_00 |
+|---|---|
+| 0.1.260 | 47,6% |
+| 0.1.290 | 47,3% |
+| 0.1.351 (prima di D-385) | 46,7% |
+| **0.1.357 (oggi)** | **47,6%** |
+
+Meno di un punto in **cento versioni**. Il «peggioramento da 42,1% a 46,4%» che
+il Punto Zero portava scritto non è mai avvenuto: era il confronto fra due
+tavoli diversi. E il costo dichiarato dell'ultimo blocco (D-385…D-390) è
+**+0,9 punti** — misurato, non stimato.
+
+Perché la voce è rimasta aperta un centinaio di versioni dopo essere stata
+curata: **nessuno ha più riletto la condizione che ci si era scritta sopra.**
+Da qui, un numero si scrive **col tavolo su cui è misurato** — è nella seconda
+regola di casa.
+
+### Quello che resta, e di chi è
+
+Il residuo non è di questa voce, ed è grosso:
+
+| causa | quota dei «passa» | dei 7.200 turni |
+|---|---|---|
+| **nessuna mossa gli serviva** | **84,0%** (2.878) | **40,0%** |
+| pesca sbagliata — voleva un verbo, in mano niente | 10,3% (353) | 4,9% |
+| bersaglio sbagliato — aveva il verbo, non lì | 5,3% (181) | 2,5% |
+| mano vuota | 0,5% (16) | 0,2% |
+
+Chi passa ha **22,1 mosse legali** e **4,4 carte** in mano, e **zero volte su
+3.428** passa perché non può muoversi. Non è il mazzo e non è la mappa: è che
+**il gioco non gli dà una ragione**. Quella ragione ha già la sua voce, ed è una
+decisione del committente — [ISSUES 123](ISSUES.md#123): nessuna delle sei
+Azioni della plancia alza una Pietra, e il Consiglio paga meglio chi tace.
+Il 40,0% dei turni è il prezzo di quella decisione, e adesso è scritto lì.
+
+I verbi che il cervello vuole dire e non riesce restano quattro, e il primo è
+sempre lo stesso: **INFLUENZARE 284**, TRAMARE 160, RIVENDICARE 64, FORGIARE 26.
+
+### E il conto delle voci adesso lo fa uno strumento
+
+Chiudendo questa voce è venuto fuori che **non si poteva contare**. Il foglio
+`docs/LE_TUE_DECISIONI.md` — quello che il committente legge per decidere —
+portava *66 chiuse, 60 aperte*, contate a mano. Sbagliate: **tredici voci chiuse
+non avevano il ✅ nel titolo** (35, 41–44, 68, 71, 72, 89, 103, 107, 112, 113,
+115), e una — la 113 — portava il suffisso «— CHIUSA in 0.1.328» scritto due
+volte. Il vero conto è **80 chiuse su 131**, con **51 aperte**.
+
+E cambia la frase che il foglio ci aveva scritto sopra. *«Apro più di quanto
+chiudo, e sistematicamente»* era appoggiata a una fascia — 0.1.325–349 — data a
+**7 aperte e 0 chiuse**. È **7 e 8**: è l'unica fascia in cui si chiude più di
+quanto si apra, ed era stata letta al contrario.
+
+`tools/issues_survey.py` è il **ventottesimo e ventinovesimo cancello**: conta le
+voci, rigenera il blocco del foglio fra due segni, e va rosso se una voce
+dichiara «chiusa in 0.1.x» senza il ✅ — una mezza chiusura («metà chiusa in
+0.1.145») non conta, e le quattro che ci sono restano aperte. Il self-test pianta
+il difetto su una voce vera e verifica che la guardia lo veda.
+
+---
+
 ## D-390 — Il confine e' un varco, non un accostamento
 
 **implemented in 0.1.357** — regola dettata dal committente, e riscrive

@@ -92,6 +92,16 @@ jobs:
       # tabella di CLAUDE.md e' il contratto con chi lavora qui; questi file
       # sono quello che gira davvero. In una giornata sola si sono scostati nei
       # due versi, e nessuno dei due si lamenta da solo.
+      # Il conto delle voci (D-391). Il foglio che il committente legge per
+      # decidere portava numeri contati a mano, ed erano sbagliati: tredici voci
+      # chiuse non avevano il segno nel titolo, quindi nessun conteggio poteva
+      # vederle. Adesso il segno e' la regola e il conto si rigenera.
+      - name: Drift check - il conto delle voci
+        run: python3 tools/issues_survey.py --check
+
+      - name: La guardia delle voci morde
+        run: python3 tools/issues_survey.py --self-test
+
       - name: Il giro dei cancelli di CLAUDE.md e' quello della CI
         run: python3 tools/gates_survey.py --check
 

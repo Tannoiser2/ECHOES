@@ -15,8 +15,15 @@ segna il numero accanto al titolo.
 il progetto ha già tre casi a verbale in cui la modifica ovvia peggiorava le
 cose ([D-051](DECISIONS.md#d-051), [D-055](DECISIONS.md#d-055)).
 
+**Una voce chiusa porta il ✅ nel titolo**, ed è l'unico segno che conta: il
+foglio `LE_TUE_DECISIONI.md` si conta da lì, e `tools/issues_survey.py` va rosso
+se una voce dice «chiusa in 0.1.x» e il titolo non ce l'ha. Non è pedanteria —
+tredici voci chiuse ne erano senza, e il conto che il committente leggeva per
+decidere era sbagliato di tredici ([D-391](DECISIONS.md#d-391)).
+
 Legenda etichette: `regola` · `contenuto` · `arte` · `motore` · `ux` ·
-`strumenti` · `da-misurare` · `decisione` · `debito`
+`strumenti` · `da-misurare` · `decisione` · `debito` · `da-decidere` (quest'ultima
+è quella che mette una voce sul foglio delle decisioni)
 
 **Un nome in corsivo senza collegamento** — *SEDUTA_TERRA*, *AUDIT_DESTINI*,
 *MECCANICA* — è un documento **tolto in 0.1.291**
@@ -901,7 +908,7 @@ anche l'apertura. Questa mezza obiezione è caduta: il metro c'è.
 **Fatto quando** il committente ha risposto alle cinque domande secche e la
 strada scelta è stata percorsa e misurata.
 
-### 35. Le istituzioni **non** governano diversamente dalle persone
+### 35. ✅ Le istituzioni **non** governano diversamente dalle persone
 
 `contenuto` · **chiusa in 0.1.144** · *SAGA_SALE* → [D-176](DECISIONS.md#d-176)
 
@@ -1444,7 +1451,7 @@ di qualsiasi misura: villaggio 812, borgo 813, granaio 814, città 815, castello
 Destini di una Chronicle successiva**, mai in quelli d'apertura. Chi la scrive
 altrove sta scrivendo un muro.
 
-### 41. Il sito antico, una volta aperto, veniva sempre saccheggiato
+### 41. ✅ Il sito antico, una volta aperto, veniva sempre saccheggiato
 
 `contenuto` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
@@ -1471,7 +1478,7 @@ irraggiungibile:
 Un anno su cinque il mondo si ferma sul gradino di mezzo, e «aperto e ancora
 intero» è diventata una clausola scrivibile.
 
-### 42. La seconda saga sembrava più generosa della prima
+### 42. ✅ La seconda saga sembrava più generosa della prima
 
 `bilanciamento` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
@@ -1493,7 +1500,7 @@ in gioco il carico si distribuisce e le due convergono — CHR_01 **19%**, CHR_0
 *Prima di tarare tre manopole, vale la pena guardare se il difetto non sia un
 effetto di quello che si sta già cambiando altrove.*
 
-### 43. Undici Destini su venti non si giocano mai all'apertura
+### 43. ✅ Undici Destini su venti non si giocano mai all'apertura
 
 `contenuto` · `motore` · **chiusa in 0.1.141** · [D-167](DECISIONS.md#d-167) → [D-170](DECISIONS.md#d-170) → [D-173](DECISIONS.md#d-173)
 
@@ -1518,7 +1525,7 @@ ambizioni in piu' al tavolo si oppongono fra loro molto piu' spesso, e il tasso
 di successo passa dal 64% al 56%. Si spegne in una riga (`_deal_destiny`, il
 ripiego sulla lista dell'Entita'), se quaranta Consigli sono troppi.
 
-### 44. La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
+### 44. ✅ La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
 
 `contenuto` · `bilanciamento` · **chiusa in 0.1.137** · [D-168](DECISIONS.md#d-168) → [D-169](DECISIONS.md#d-169)
 
@@ -3550,7 +3557,7 @@ procedurale, far girare al cancello anche una Chronicle a mappa pescata.
 
 ---
 
-### 89. La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa — CHIUSA in 0.1.332
+### 89. ✅ La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa — CHIUSA in 0.1.332
 
 `regole` · `fisico` · **aperta in 0.1.274** ([D-312](DECISIONS.md#d-312)) —
 parola del committente guardando le carte: *«ci dovrebbe essere indicato i tag
@@ -4566,7 +4573,7 @@ schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
 
 ---
 
-### 72. Il cuore del Consiglio: le due liste sulla carta Tensione
+### 72. ✅ Il cuore del Consiglio: le due liste sulla carta Tensione
 
 `regole` · `contenuto` · **aperta in 0.1.240**
 ([D-278](DECISIONS.md#d-278)) · **Fase A chiusa in 0.1.240** · **chiusa in 0.1.308**
@@ -4633,7 +4640,7 @@ stampato niente che il motore non esegua.
 
 ---
 
-### 71. La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
+### 71. ✅ La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
 
 `regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267)) ·
 **chiusa in 0.1.230** ([D-268](DECISIONS.md#d-268))
@@ -4821,11 +4828,32 @@ Risonanza, e il Tema che ne esce è quello scritto sulla carta.
 
 ---
 
-### 68. Otto turni su dieci non succede niente — **quattro su dieci in 0.1.247**
+### 68. ✅ Otto turni su dieci non succede niente — **quattro e mezzo su dieci, e la voce si chiude**
 
 `bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254)) ·
 **prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **cura vera in
-0.1.247** ([D-285](DECISIONS.md#d-285)) · **aperta, ma di un altro ordine**
+0.1.247** ([D-285](DECISIONS.md#d-285)) · **chiusa in 0.1.358**
+([D-391](DECISIONS.md#d-391))
+
+**Chiusa sulla condizione che si era scritta da sola**: *«i «passa» scendono
+sotto la metà dei turni, e il playtest resta 0/8»*. Cento anni, seme 7000:
+**47,6%** a tavolo misto (3.428 su 7.200) e **47,9%** a tavolo uniforme, con
+**0 seggi bloccati su 8** su tutti e due i tavoli.
+
+**Ed era già vera da cento versioni.** L'ultima riga qui sotto diceva *«Oggi
+sono all'82,8%»* ed era ferma a 0.1.217; la strada scritta — *82,1% → 42,1% →
+oggi* — confrontava misure prese su **anni diversi**, perché il 42,1% di D-285 è
+di `CHR_01`, cancellato in D-317/D-318 con gli altri anni d'autore. Rimisurata
+sull'anno che esiste, la curva è piatta: **47,6% in 0.1.260, 47,3% in 0.1.290,
+46,7% prima di D-385, 47,6% oggi**. La voce non è rimasta aperta perché il
+difetto tornava: è rimasta aperta perché **nessuno ha più riletto la sua
+condizione**.
+
+**Quello che resta ha un'altra voce.** L'**84,0%** dei «passa» è ancora
+*«nessuna mossa gli serviva»* — 2.878 turni, il **40,0% di tutti i turni** — e
+chi passa ha 22,1 mosse legali e 4,4 carte in mano. Non è il mazzo (10,3%: pesca
+sbagliata) e non è la mappa (5,3%: bersaglio sbagliato): è la **ragione**, e la
+ragione è una decisione del committente in [ISSUES 123](#123).
 
 **Aggiornamento 0.1.247.** La causa non era il mazzo né le regole: il cervello
 aveva le mosse e non aveva fame. Il ripiego «fai quello che la mano permette»
@@ -4918,6 +4946,10 @@ dove comincia la prossima: **il mazzo**. Il verbo muto è sempre INFLUENZARE.
 
 **Fatto quando** i «passa» scendono sotto la metà dei turni, e il playtest resta
 0/8. Oggi sono all'82,8%: la voce resta **aperta**.
+
+*(Questa riga è quella che nessuno ha più riletto: da 0.1.247 la condizione era
+soddisfatta, e il numero qui sopra era vecchio di trenta versioni. Lasciata
+scritta perché si veda com'è successo.)*
 
 ---
 
@@ -6045,7 +6077,7 @@ perche' non ce l'ha, e il conto dei segni di Pietra combacia con le Pietre alzat
 
 ---
 
-### 103. `REVISIONE_TESTI` non contiene le 841 caselle di costo e beneficio
+### 103. ✅ `REVISIONE_TESTI` non contiene le 841 caselle di costo e beneficio
 
 `strumenti` · `misura` · aperta in 0.1.305 · **chiusa in 0.1.306**
 ([D-341](DECISIONS.md#d-341))
@@ -6198,7 +6230,7 @@ essere quella che nessuno compra.
 
 ---
 
-### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
+### 107. ✅ Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
 
 `regole` · `direzione` · aperta in 0.1.310
 
@@ -6583,7 +6615,7 @@ partite, o non e' piu' nel catalogo.
 
 ---
 
-### 112. Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
+### 112. ✅ Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
 
 `dati` · `piccola` · aperta in 0.1.320 ([D-356](DECISIONS.md#d-356))
 
@@ -6629,7 +6661,7 @@ catene delle ere.
 
 ---
 
-### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328 — CHIUSA in 0.1.328
+### 113. ✅ Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328
 
 `regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
 
@@ -6811,7 +6843,7 @@ per un mazzo che potrebbe non esistere.
 
 ---
 
-### 115. Una chiave sbagliata nel payload di un Effetto non la vede nessuno — CHIUSA in 0.1.327
+### 115. ✅ Una chiave sbagliata nel payload di un Effetto non la vede nessuno — CHIUSA in 0.1.327
 
 `cancelli` · `dati` · aperta in 0.1.325 ([D-359](DECISIONS.md#d-359))
 
@@ -7471,6 +7503,14 @@ restano i tre che rendono uguale o meglio da fermi.
 - **(c) Si sistema prima [ISSUES 119](#119)**, e questo si rimisura: se un
   Consiglio contestato cade più spesso, il tavolo di pietra smette di essere
   premiato.
+
+**Quanto costa, adesso che si sa.** Chiudendo [ISSUES 68](#68) in 0.1.358
+([D-391](DECISIONS.md#d-391)) il residuo è finito qui: l'**84,0%** dei turni
+«passa» — il **40,0% di tutti i turni**, 2.878 su 7.200 — è *«nessuna mossa gli
+serviva»*, e chi passa ha **22,1 mosse legali e 4,4 carte in mano**. Non gli
+manca cosa fare: gli manca il motivo. **Quaranta turni su cento sono il prezzo
+di questa decisione non presa**, ed è il numero più grosso che una scelta del
+committente può muovere oggi.
 
 **Fatto quando** il committente sceglie, o quando 119 è chiusa e questa misura
 si rifà con lei.

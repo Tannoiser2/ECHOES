@@ -1,4 +1,4 @@
-# Le quattordici cose che aspettano te
+# Le quindici cose che aspettano te
 
 Domanda del committente, 0.1.356: *«non si arriva mai al punto di chiudere?»*.
 La risposta onesta è **no, non con questo metodo**, e questo foglio serve a
@@ -6,29 +6,45 @@ cambiarlo.
 
 ## Perché la lista non si chiude da sola
 
+<!-- CONTO: inizio - generato da tools/issues_survey.py -->
+
 | | |
 |---|---|
-| voci in tutto | **126** |
-| chiuse | **66** |
-| aperte | **60** |
-| di cui **aspettano una tua decisione** | **14** |
-| di cui sono mie da fare | **46** |
+| voci scritte | **131** |
+| chiuse | **80** |
+| aperte | **51** |
+| di cui **aspettano una tua decisione** | **15** |
+| di cui sono mie da fare | **36** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
 | versioni | aperte | chiuse |
 |---|---|---|
-| 0.1.250–274 | 12 | 5 |
-| 0.1.275–299 | 12 | 7 |
-| 0.1.300–324 | 12 | 3 |
-| 0.1.325–349 | 7 | 0 |
-| 0.1.350–376 | 6 | 6 |
+| 0.1.250–0.1.274 | 12 | 5 |
+| 0.1.275–0.1.299 | 13 | 7 |
+| 0.1.300–0.1.324 | 12 | 4 |
+| 0.1.325–0.1.349 | 7 | 8 |
+| 0.1.350–0.1.374 | 6 | 4 |
 
-**Apro più di quanto chiudo, e sistematicamente.** Non è disordine: è il metodo.
-La regola di casa è *misura prima di scrivere*, e ogni misura trova qualcosa —
-quindi ogni cosa fatta ne apre una nuova. È il metodo che ha tenuto il gioco
-onesto per trecentocinquanta versioni, e **non ha una fine sua**: si ferma solo
-quando qualcuno decide di smettere di misurare.
+*(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
+
+<!-- CONTO: fine -->
+
+**Questo conto adesso lo fa uno strumento, e la prima volta che l'ha fatto mi ha
+smentito.** Quando questo foglio è nato, in 0.1.356, i numeri qui sopra li avevo
+contati a mano: dicevano *66 chiuse, 60 aperte*, e la fascia 0.1.325–349 a *sette
+aperte e zero chiuse*. Erano sbagliati. **Tredici voci chiuse non portavano il
+segno di spunta nel titolo**, quindi nessun conteggio poteva vederle — e la
+fascia che sembrava la peggiore è in realtà l'unica in cui **si chiude più di
+quanto si apra** (7 e 8). Adesso il segno è la regola, `tools/issues_survey.py`
+lo controlla, e questa tabella si rigenera da sola
+([D-391](DECISIONS.md#d-391)).
+
+**Resta vero che apro più di quanto chiudo, ma non sistematicamente**: due
+fasce su cinque sono in pari o meglio. Non è disordine ed è il metodo — la regola
+di casa è *misura prima di scrivere*, e ogni misura trova qualcosa. Quello che è
+falso è che il metodo non abbia mai chiuso niente: ha chiuso **ottanta voci su
+centotrentuno**.
 
 ## E la lista non è il traguardo
 
@@ -36,7 +52,7 @@ Il traguardo è **PZ-01**, e ha tre criteri. Due sono misurati e tengono:
 
 | | |
 |---|---|
-| meno della metà dei turni sono «passa» | **46,4%** ✓ |
+| meno della metà dei turni sono «passa» | **47,6%** ✓ — [ISSUES 68](ISSUES.md#68) chiusa in 0.1.358 |
 | 0 seggi bloccati su un solo livello su 8 | ✓ sui due tavoli |
 | **«dopo una partita si guarda la mappa e si capisce cosa è successo»** | **?** |
 
@@ -47,7 +63,7 @@ la lista continuerà a crescere perché è l'unica cosa che so fare senza di te.
 
 ---
 
-## Le quattordici, con la mia raccomandazione
+## Le quindici, con la mia raccomandazione
 
 Ordinate per quanto cambiano la partita. Per ognuna: la domanda in una riga, il
 numero che la motiva, e cosa farei io.
@@ -65,6 +81,11 @@ nessuna regola, raddoppia quasi la moneta, e si misura in mezz'ora.
 
 Zero Pietre alzate da un'Azione in cento partite. Le alza solo il Consiglio, e il
 Consiglio è **più generoso con un tavolo che tace** (199 contro 136).
+
+**E adesso si sa quanto costa.** Chiudendo ISSUES 68 in 0.1.358 il residuo è
+finito qui: **quaranta turni su cento** sono un giocatore che ha 22 mosse legali
+e 4 carte in mano e non fa niente, *perché niente gli serve*. Questa è la
+decisione che muove il numero più grosso del gioco.
 
 **Farei (a): ACQUISIRE diventa «pesca una carta, **oppure** alza una Pietra dove
 hai presenza».** È l'unica delle sei Azioni che nessuna carta modifica, quindi è
@@ -164,9 +185,27 @@ CHR_03 è contenuto scritto, validato e giocabile che **nessuno può aprire**.
 **Farei (3): toglierla**, e dirlo ad alta voce — venti Destini e quattro case in
 meno. Una saga sola, fatta bene, batte due di cui una irraggiungibile.
 
-### 14. [65](ISSUES.md#65) — la seconda e terza rivista della pagina
+### 14. [122](ISSUES.md#122) — un Consiglio decide una cosa sola
 
-L'hai già lasciata stare, e sta qui solo perché la lista sia intera.
+Metà l'hai già decisa tu in 0.1.353 (i gettoni). L'altra metà resta: con **un
+solo acquisto gratuito**, il numero di caselle vive per Consiglio è *uno*, e le
+altre ventitré esistono per quando la prima non si può comprare. Ogni casella
+alzata ne spegne un'altra: è la forma dell'economia, non la taratura.
+
+**Farei (a): va bene così**, e si cambia la domanda — non *«chi compra questa
+casella»* ma *«quante caselle diverse si comprano in un anno»*. È la strada che
+non tocca niente, e la (c) — il prezzo lo fanno gli avversari — arriva comunque
+con ISSUES 72.
+
+### 15. [127](ISSUES.md#127) — la tessera si gira, e l'arte si gira con lei
+
+Da [D-390](DECISIONS.md#d-390) una tessera si posa **ruotata**, perché i varchi
+combacino. Il disegno di una Regione, però, ha un alto e un basso.
+
+**Farei (b): l'arte della tessera si disegna senza alto e senso di lettura** —
+vista dall'alto, niente scritte orientate — così la rotazione non si vede. È la
+soluzione che il tavolo fisico usa da sempre. L'alternativa è stampare le
+tessere quadrate con quattro orientamenti equivalenti, che costa in disegno.
 
 ---
 
@@ -176,11 +215,19 @@ Da 0.1.356 **non apro più voci nuove.** Quello che una misura trova lo scrivo
 come una riga sotto la voce che l'ha trovato, non come una voce con tre strade.
 Le voci nuove le apri tu.
 
-E le quarantasei che sono mie le lavoro in quest'ordine, che è quello di quanto
+**E la prima è chiusa.** [ISSUES 68](ISSUES.md#68) — *«otto turni su dieci non
+succede niente»*, la voce più grossa che avessi — si è chiusa in 0.1.358 sulla
+condizione che si era scritta da sola: **47,6%** di «passa» a tavolo misto,
+**47,9%** a tavolo uniforme, cancello 0/8. Era vera da cento versioni e nessuno
+l'aveva riletta ([D-391](DECISIONS.md#d-391)). Quello che resta di quella voce
+— **quaranta turni su cento** in cui un giocatore ha ventidue mosse e non gliene
+serve nessuna — è finito dove sta la sua causa: la numero 2 di questa lista.
+
+E le trentasei che sono mie le lavoro in quest'ordine, che è quello di quanto
 cambiano la partita:
 
-1. **ISSUES 68** — l'83,5% dei «passa» è ancora *«nessuna mossa gli serviva»*;
-2. **ISSUES 126** — la taratura del cervello che prenota per abitudine;
-3. **ISSUES 88** — il tavolo vede poco più di un terzo di quello che è scritto;
+1. **ISSUES 88** — il tavolo vede poco più di un terzo di quello che è scritto;
+2. **ISSUES 69** — la Risonanza è scritta e non succede (la faccia fisica);
+3. **ISSUES 77 e 96** — i segni muti e quelli che nessuno guarda;
 4. **l'arte** — 144 segnaposto su 155, che è la cosa che separa la scatola da una
    partita vera.

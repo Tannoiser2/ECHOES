@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.358 — La voce più grossa si chiude, e il conto delle voci si misura (D-391)
+
+Nessuna riga di motore. Solo due misure, e tutt'e due dicono che i numeri scritti
+erano sbagliati.
+
+### ISSUES 68 si chiude sulla condizione che si era scritta da sola
+
+*«Fatto quando i «passa» scendono sotto la metà dei turni, e il playtest resta
+0/8.»* Cento anni, seme 7000: **47,6%** a tavolo misto (3.428 su 7.200) e
+**47,9%** a tavolo uniforme, **0 seggi bloccati su 8** su tutti e due i tavoli.
+
+**Ed era vera da cento versioni.** L'ultima riga della voce diceva *«oggi sono
+all'82,8%»* ed era ferma a 0.1.217. E la strada scritta sotto — *82,1% → 42,1%
+→ oggi* — **confrontava misure prese su anni diversi**: il 42,1% è di `CHR_01`,
+cancellato con gli altri anni d'autore in D-317/D-318. Chiederlo oggi risponde
+`Chronicle sconosciuta 'CHR_01'`. Rimisurato sull'anno che esiste, il difetto non
+si è mai mosso: **47,6% in 0.1.260, 47,3% in 0.1.290, 46,7% prima di D-385,
+47,6% oggi** — meno di un punto in cento versioni. Costo dichiarato dell'ultimo
+blocco (D-385…D-390): **+0,9 punti**, misurato.
+
+Da qui, seconda regola di casa: **un numero si scrive col tavolo su cui è
+misurato.**
+
+**Quello che resta ha un'altra voce, e adesso ha un prezzo.** L'**84,0%** dei
+«passa» è *«nessuna mossa gli serviva»* — **il 40,0% di tutti i turni**, e chi
+passa ha 22,1 mosse legali e 4,4 carte in mano. È [ISSUES 123](docs/ISSUES.md#123): nessuna delle sei
+Azioni della plancia alza una Pietra. **Quaranta turni su cento sono il prezzo di
+quella decisione non presa**, ed è scritto lì.
+
+### Il conto delle voci non si contava a mano
+
+Chiudendo la 68 è venuto fuori che il foglio delle decisioni portava numeri
+falsi: *66 chiuse, 60 aperte*. **Tredici voci chiuse non avevano il ✅ nel
+titolo** (35, 41–44, 68, 71, 72, 89, 103, 107, 112, 113, 115), quindi nessun
+conteggio poteva vederle; la 113 portava il suffisso «— CHIUSA in 0.1.328»
+scritto due volte. Il conto vero è **80 chiuse su 131, 51 aperte, 15 che
+aspettano il committente**.
+
+E smentisce la frase che ci stava sotto: *«apro più di quanto chiudo, e
+sistematicamente»* si appoggiava a una fascia data a 7 aperte e 0 chiuse. È **7 e
+8** — l'unica fascia in cui si chiude più di quanto si apra.
+
+`tools/issues_survey.py` è il **ventottesimo e ventinovesimo cancello**: rigenera
+il blocco del conto e va rosso se una voce dichiara «chiusa in 0.1.x» senza il
+segno. Una mezza chiusura non conta, e le quattro che ci sono restano aperte.
+
+---
+
 ## 0.1.357 — Il confine è un varco, non un accostamento (D-390)
 
 Regola dettata dal committente, e riscrive D-275.

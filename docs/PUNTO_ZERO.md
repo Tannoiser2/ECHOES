@@ -47,28 +47,32 @@ scollarsi dalla CI senza far rosso.
 Il criterio 2 della milestone — *«meno della metà dei turni sono passa»* — è
 soddisfatto. `cli/run_pass_probe.gd`:
 
-| | |
-|---|---|
-| turni «passa» | **46,4%** (3.340 su 7.200) |
-| per Atto | 47,3% → 45,1% → 46,8% |
-| passa con **zero mosse legali** | **0 su 3.340** (media: 23,0 mosse) |
-| passa con la mano vuota | 5 su 3.340 (media: 4,3 carte) |
+| | tavolo misto | tavolo uniforme |
+|---|---|---|
+| turni «passa» | **47,6%** (3.428 su 7.200) | **47,9%** (3.451) |
+| per Atto | 48,0% → 46,7% → 48,1% | |
+| passa con **zero mosse legali** | **0 su 3.428** (media: 22,1 mosse) | |
+| passa con la mano vuota | 16 su 3.428 (media: 4,4 carte) | |
 
-La strada: **82,8% in 0.1.216 → 42,1% in 0.1.247 → 46,4% oggi**, sul gioco
-pescato invece che sui due anni d'autore. La forma resta piatta per Atto: il
-90,2% dell'Atto 3 è sparito e non è tornato.
+**[ISSUES 68](ISSUES.md#68) si è chiusa qui, in 0.1.358**
+([D-391](DECISIONS.md#d-391)), sulla condizione che si era scritta da sola. E la
+strada che questo documento portava scritta — *82,8% → 42,1% → 46,4%* — era un
+confronto fra anni diversi: il 42,1% è di `CHR_01`, cancellato in D-317/D-318.
+Sull'anno che esiste il difetto non si è mai mosso: **47,6% in 0.1.260, 47,3% in
+0.1.290, 46,7% prima di D-385, 47,6% oggi**. Il 90,2% dell'Atto 3 è sparito in
+0.1.247 e non è tornato.
 
 Le cause di quello che resta, misurate:
 
-| | quota dei «passa» | cura |
-|---|---|---|
-| nessuna mossa gli serviva | **83,5%** | la **ragione** — è tutto quello che rimane |
-| voleva un verbo, in mano niente | 10,1% | il mazzo: come si pesca |
-| aveva il verbo e non poteva usarlo lì | 6,3% | il bersaglio: dove si può |
+| | quota dei «passa» | dei 7.200 turni | cura |
+|---|---|---|---|
+| nessuna mossa gli serviva | **84,0%** | **40,0%** | la **ragione**: è [ISSUES 123](ISSUES.md#123), ed è una decisione |
+| voleva un verbo, in mano niente | 10,3% | 4,9% | il mazzo: come si pesca |
+| aveva il verbo e non poteva usarlo lì | 5,3% | 2,5% | il bersaglio: dove si può |
 
-I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 297**, TRAMARE
-170, RIVENDICARE 57, FORGIARE 22. Di quelle 546 intenzioni, **337 sono pesca
-sbagliata** e 209 bersaglio sbagliato.
+I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 284**, TRAMARE
+160, RIVENDICARE 64, FORGIARE 26. Di quelle 534 intenzioni, **353 sono pesca
+sbagliata** e 181 bersaglio sbagliato.
 
 ### Giocare rende, e di molto
 
@@ -199,15 +203,17 @@ E le misure che prima non c'erano:
 
 ## 5. Le voci aperte che posso chiudere io
 
-62 voci aperte su 125. In ordine di quanto cambiano la partita.
+51 voci aperte su 131, contate da `tools/issues_survey.py`. In ordine di quanto cambiano la partita.
 
 1. **ISSUES 91 — metà dei punti è già vera prima che qualcuno giochi.**
    `state_tag_absent` da solo sono centinaia di clausole mai contese. D-327 ha
    portato la contesa sulla mappa dal 2,8% al 15,5%; la lite sulle **memorie**
    resta.
-2. **ISSUES 68 — la ragione.** Il 46,7% è sotto la soglia, ma l'**85,4%** di
-   quello che resta è ancora *«nessuna mossa gli serviva»*. Il numero da
-   guardare adesso non è il passare: è **quanto rende un turno pieno**.
+2. **ISSUES 123 — la ragione** (ISSUES 68 è chiusa, e questo è il suo residuo).
+   Il 47,6% è sotto la soglia, ma l'**84,0%** di quello che resta è *«nessuna
+   mossa gli serviva»*: **quaranta turni su cento**. Nessuna delle sei Azioni
+   della plancia alza una Pietra, e finché è così nessun obiettivo di Pietra può
+   premiare il giocare. **È una decisione del committente**, non una taratura.
 3. **ISSUES 96 — i segni scritti spesso che nessuna clausola guarda.** Oggi ne
    restano tre sopra le dieci scritture per secolo: `took_by_hand`,
    `price_in_lives`, `watched`.
