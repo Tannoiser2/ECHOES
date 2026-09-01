@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-377 — Un `#granaio` si indica col dito, ma nessuna Tensione lo scrive
+
+**implemented** (0.1.344) · fronte 3 dei sei aperti dal committente
+
+### Trentuno livelli «che si reggono sul contare», e quattordici non lo erano
+
+`MISURA_MATRICE.md` contava **31 livelli di Destino su 69** che «si reggono solo
+su conteggi — si verificano, ma al tavolo non si possono indicare». Il numero
+serviva a due domande diverse, e le stava confondendo.
+
+Il classificatore metteva sotto *conteggio* tutto quello che non fosse
+`state_tag_present` / `state_tag_absent` / `requires_entity_tag`. Due cose ci
+finivano dentro a torto.
+
+**La prima, piccola.** Cinque clausole che il dito lo si punta eccome:
+`tension_limit` — il segnalino sulla traccia di una domanda, *la cosa più
+indicabile del gioco*, sta al centro del tavolo e tutti lo guardano —
+`entity_alive` (c'è ancora il seggio, o no: si indica la sedia), e
+`relation_state`, `promise_kept`, `promise_broken`, che sulla plancia hanno il
+loro livello. **Due livelli** uscivano di lista per questo.
+
+**La seconda, grossa: il bersaglio a segni.** Una clausola con `any_tag` non
+dice il nome di una Regione, dice il segno **stampato sulla tessera**: *«una
+pedina dove c'è il #granaio, o su una terra di #sopravvivenza»*. È la grammatica
+fisica del gioco ([D-274](#d-274)), la stessa che il validatore impone alle
+carte — e la misura la leggeva come un totale a mente, perché guardava `tag` e
+non `any_tag`. **Dodici livelli.** Fra loro *«il trono regge»*, che chiede una
+pedina dove c'è la **#capitale**: il modo più fisico che il gioco abbia di dire
+una cosa.
+
+### Un numero solo per due domande
+
+Il difetto vero era che `only_counts` faceva due mestieri:
+
+- al **punto 2** la domanda è *«un giocatore capisce dove guardare?»*, e lì un
+  `#granaio` basta: è stampato davanti a lui;
+- al **punto 5** la domanda è *«una Tensione può parlarne?»*, e lì un `#granaio`
+  non serve a niente — nessuna Tensione lo scrive, quindi quel livello litiga
+  con tutti allo stesso modo.
+
+Adesso sono **due numeri**: **17** livelli non si indicano in nessun modo, **31**
+non nominano nessun segno del mondo. Il punto 5 usa il secondo, e la sua frase
+non cambia di una virgola: era giusta col numero giusto per caso.
+
+### E i sei che restano stanno tutti sui Destini di nessuno
+
+Dei 17, **undici sono il `minimum`** — una clausola sola, la soglia sotto la
+quale la casa non c'è più: *«il trono regge»*, *«il popolo sopravvive»*. Lì il
+conto è la cosa giusta, e nessuna Tensione deve nominarli per minacciarli: chi
+ti toglie l'ultima Regione te li toglie.
+
+Restano **sei livelli di vittoria o trionfo** — quello per cui una casa viene
+ricordata — e sono **tutti e sei su Destini condivisi** (`entity_id: $self`),
+quelli che qualunque casa può prendere. Non è una coincidenza, ed è scritto
+nelle loro stesse descrizioni: *«un'ambizione semplice e spietata — contare le
+Regioni, e contarle tue»*. Un obiettivo che deve valere per tutti non può
+nominare il segno di nessuno, e gli resta il numero.
+
+**Questo il codice non lo chiude:** è una scelta di disegno, e sta al
+committente. Due strade, se la vorrà cambiare — la casa ne ha già una in uso:
+`DST_SHARED_QUIET` e `DST_SHARED_HAND` chiudono il loro trionfo con
+`condition:contested`, un segno del mondo che non appartiene a nessuna casa.
+
+### La sola cosa chiusa a mano: un Destino che non guardava niente
+
+`DST_SHARED_LORE` aveva `observes: []`. La faccia fisica di un Destino dichiara
+**cosa il suo giocatore tiene d'occhio sul tavolo**, e quella carta non teneva
+d'occhio niente: unico caso su 23. Adesso guarda `crystal_site`, `mine_sealed`,
+`knowledge_shared`, `rumour_running` — dove si scende a vedere, la porta chiusa
+sul sapere, quello che il tavolo sa da te, e la voce che gira. `observes` non
+entra in nessuna condizione di vittoria: **costo di equilibrio zero, per
+costruzione**.
+
+### Il costo
+
+Nessuno misurato in peggio. Il cancello resta **0 seggi bloccati su 8** sui due
+tavoli, i 25 cancelli sono verdi, e i due numeri del punto 2 sono più piccoli
+perché la misura ha smesso di gonfiarli — non perché sia stato aggiustato un
+dato.
+
+| | prima | dopo |
+|---|---|---|
+| livelli «solo conteggi» | 31 | **17** |
+| di cui vittoria o trionfo | 9 | **6** |
+| livelli che non nominano nessun segno | *non misurato* | **31** |
+| Destini che non guardano niente | 1 | **0** |
+
+---
+
 ## D-376 — Uno zero che una sonda non può evitare non è una misura
 
 **implemented** (0.1.343) · fronte 2 dei sei aperti dal committente

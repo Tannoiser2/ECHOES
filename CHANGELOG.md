@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.344 — Un `#granaio` si indica col dito, ma nessuna Tensione lo scrive (D-377)
+
+`MISURA_MATRICE.md` contava **31 livelli di Destino su 69** che «si reggono solo
+sul contare». Quattordici non lo erano.
+
+Due erano clausole che il dito lo si punta eccome — il segnalino sulla traccia di
+una domanda è **la cosa più indicabile del gioco**. Dodici chiedevano un
+**bersaglio a segni**: *«una pedina dove c'è il #granaio»*, la grammatica fisica
+del gioco (D-274). La misura guardava `tag` e non `any_tag`, così *«il trono
+regge»* — una pedina dove c'è la **#capitale** — risultava un totale a mente.
+
+E un numero solo faceva due mestieri: al punto 2 la domanda è *«si capisce dove
+guardare?»* e un `#granaio` basta; al punto 5 è *«una Tensione può parlarne?»* e
+un `#granaio` non serve, perché nessuna Tensione lo scrive. Adesso sono **due
+numeri**, e la frase del punto 5 non cambia: era giusta col numero giusto per
+caso.
+
+Dei 17 che restano, **undici sono il `minimum`** — la soglia sotto la quale la
+casa non c'è più, dove il conto è la cosa giusta. Gli altri **sei sono vittoria o
+trionfo, e stanno tutti su Destini condivisi**: un obiettivo che deve valere per
+tutti non può nominare il segno di nessuno. Scelta di disegno, non difetto: sta
+al committente.
+
+Chiuso a mano un caso solo: **`DST_SHARED_LORE` non guardava niente**
+(`observes: []`, unico su 23). Adesso guarda `crystal_site`, `mine_sealed`,
+`knowledge_shared`, `rumour_running`. `observes` non entra in nessuna condizione
+di vittoria: costo di equilibrio zero per costruzione.
+
+| | prima | dopo |
+|---|---|---|
+| livelli «solo conteggi» | 31 | **17** |
+| di cui vittoria o trionfo | 9 | **6** |
+| livelli che non nominano nessun segno | *non misurato* | **31** |
+| Destini che non guardano niente | 1 | **0** |
+
+Cancello: **0 seggi bloccati su 8**, tavolo misto e uniforme. 25 cancelli verdi.
+
+---
+
 ## 0.1.343 — Uno zero che una sonda non può evitare non è una misura (D-376)
 
 `MISURA_TAVOLO.md` contava **58** segni che non arrivano mai sul tavolo.

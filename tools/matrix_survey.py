@@ -47,12 +47,46 @@ CLOSED_TAG = "condition:cut_off"
 
 # Le clausole che nominano un segno, e quelle che contano e basta.
 NAMES_A_SIGN = {"state_tag_present", "state_tag_absent", "requires_entity_tag"}
+# **Non tutto quello che non e' un segno e' un conto** (D-377). Qui si
+# misurano **due cose diverse**, e per anni erano lo stesso numero:
+#
+# 1. *«si puo' puntare col dito»* — la leggibilita' al tavolo (punto 2);
+# 2. *«una Tensione puo' parlarne»* — se il livello entra nella matrice
+#    narrativa (punto 5).
+#
+# Un livello che chiede una pedina **dove c'e' il #granaio** si indica col
+# dito benissimo — il segno e' stampato sulla tessera — ma nessuna Tensione
+# scrive `granary`, quindi resta fuori dalla matrice. Sono difetti diversi e
+# vanno contati separati.
+#
+# Sotto `COUNTS_ONLY` erano finite cinque clausole che il dito lo si punta
+# eccome:
+#
+# - `tension_limit` — il segnalino sulla traccia di una domanda. E' **la cosa
+#   piu' indicabile del gioco**: sta al centro del tavolo e tutti lo guardano.
+# - `entity_alive` — c'e' ancora il seggio, o no. Si indica la sedia.
+# - `relation_state`, `promise_kept`, `promise_broken` — il filo fra due case,
+#   che sulla plancia ha il suo livello.
+#
+# Contarle come «non indicabili» gonfiava il difetto e nascondeva quelli veri.
+# Restano conti quelli che sono davvero un totale da fare a mente.
 COUNTS_ONLY = {
     "scar_count", "control_count", "structure_count", "region_presence",
-    "entity_alive", "tension_limit", "tension_count", "discovery_count",
-    "asset_threshold", "relation_state", "leads_in", "promise_kept",
-    "promise_broken",
+    "tension_count", "discovery_count", "asset_threshold", "leads_in",
 }
+
+# Si verificano **e** si indicano: non nominano un segno, ma sul tavolo c'e' un
+# pezzo che li dice.
+POINTS_AT_A_PIECE = {
+    "tension_limit", "entity_alive", "relation_state",
+    "promise_kept", "promise_broken",
+}
+
+# E si indica col dito anche **il bersaglio a segni** (D-274): una clausola con
+# `any_tag` non dice il nome di una Regione, dice il segno stampato sulla
+# tessera — *«una pedina dove c'e' il #granaio»*. E' la grammatica fisica del
+# gioco, non un conto a mente: dodici livelli erano contati come illeggibili
+# solo perche' la misura guardava `tag` e non `any_tag`.
 
 
 # Un documento si cerca per quello che **dice di essere**, non per la cartella
@@ -183,8 +217,11 @@ def destiny_signs() -> Tuple[
         for level in ("minimum", "victory", "triumph"):
             named: Set[str] = set()
             counted = 0
+            pointed = 0
             for node in walk((destiny.get(level) or {}).get("conditions")):
                 kind = str(node.get("type", ""))
+                if kind in POINTS_AT_A_PIECE or node.get("any_tag"):
+                    pointed += 1
                 if kind in NAMES_A_SIGN and node.get("tag"):
                     named.add(str(node["tag"]))
                     if kind == "state_tag_absent":
@@ -206,6 +243,7 @@ def destiny_signs() -> Tuple[
                 "label": str((destiny.get(level) or {}).get("label", "")),
                 "named": sorted(named),
                 "counted": counted,
+                "pointed": pointed,
             })
         # La faccia fisica del Destino (D-270) dichiara cosa **guarda** — e
         # guardare non e' volere: `observes` elenca insieme i segni che una
@@ -388,14 +426,23 @@ def survey() -> Tuple[str, Dict[str, int]]:
     # 2. gli obiettivi che non si possono puntare col dito
     impossible: List[Tuple[str, str, str]] = []
     only_counts: List[Dict[str, Any]] = []
+    no_named_sign: List[Dict[str, Any]] = []
     for level in levels:
         for tag in level["named"]:
             if tag not in pens and tag not in dictionary:
                 impossible.append((level["destiny"], level["level"], tag))
             elif tag not in pens:
                 impossible.append((level["destiny"], level["level"], tag))
-        if not level["named"] and level["counted"]:
+        # Un livello si regge «solo su conteggi» se non nomina un segno **e**
+        # non ha nemmeno una clausola che sul tavolo si indica (D-377).
+        if not level["named"] and level["counted"] and not level["pointed"]:
             only_counts.append(level)
+        # E a parte si tiene la lista che serve al punto 5: i livelli che **non
+        # nominano nessun segno del mondo**, indicabili o no. Un `#granaio` si
+        # punta col dito ma nessuna Tensione lo scrive, quindi quel livello
+        # litiga con tutti allo stesso modo lo stesso.
+        if not level["named"]:
+            no_named_sign.append(level)
 
     # 3. le Tensioni senza conflitto
     no_conflict: List[Tuple[str, int, int, int]] = []
@@ -522,6 +569,9 @@ def survey() -> Tuple[str, Dict[str, int]]:
         "livelli": len(levels),
         "impossibili": len(impossible),
         "solo_conteggi": len(only_counts),
+        "solo_conteggi_non_minimo": sum(
+            1 for level in only_counts if level["level"] != "minimum"),
+        "senza_segno_nominato": len(no_named_sign),
         "tensioni": len(tensions),
         "senza_conflitto": len(no_conflict),
         "toccano_un_segno_nominato": named_touch,
@@ -565,6 +615,10 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("| livelli di Destino (minimo/vittoria/trionfo) | %d |" % numbers["livelli"])
     add("| **clausole impossibili** (chiedono un segno che niente scrive) | **%d** |" % numbers["impossibili"])
     add("| **livelli che si reggono solo su conteggi** | **%d** |" % numbers["solo_conteggi"])
+    add("| di cui vittoria o trionfo (il minimo e' una soglia di sopravvivenza) | %d |" % (
+        numbers["solo_conteggi_non_minimo"]))
+    add("| livelli che non nominano nessun segno del mondo | %d |" % (
+        numbers["senza_segno_nominato"]))
     add("| Tensioni | %d |" % numbers["tensioni"])
     add("| **Tensioni che non toccano nessun segno nominato da un Destino** | **%d** |" % numbers["senza_conflitto"])
     add("| **carte che aprono ancora una domanda in prestito** | **%d** |" % (
@@ -617,8 +671,16 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("")
     add("Due difetti diversi. Il primo e' grave: una clausola chiede un segno che")
     add("**niente scrive**, e allora quel livello non si puo' raggiungere. Il")
-    add("secondo e' di leggibilita': un livello che non nomina nessun segno e si")
-    add("regge su conteggi — si verifica, ma al tavolo non si puo' indicare.")
+    add("secondo e' di leggibilita': un livello che non nomina nessun segno, non")
+    add("ha un bersaglio a segni e non ha un pezzo da indicare — si verifica")
+    add("facendo un totale a mente, e al tavolo non lo si mostra col dito.")
+    add("")
+    add("**Non e' lo stesso conto del punto 5.** Li' la domanda e' se una")
+    add("Tensione possa parlare di quel livello, e allora un `#granaio` non")
+    add("aiuta: si indica benissimo, ma nessuna Tensione lo scrive. Qui la")
+    add("domanda e' se un giocatore capisca dove guardare, e il segno stampato")
+    add("sulla tessera basta. I due numeri sono %d e %d." % (
+        len(only_counts), len(no_named_sign)))
     add("")
     add("**Clausole impossibili: %d**" % len(impossible))
     add("")
@@ -631,6 +693,27 @@ def survey() -> Tuple[str, Dict[str, int]]:
     add("**Livelli che si reggono solo su conteggi: %d su %d**" % (
         len(only_counts), len(levels)))
     add("")
+    _minimi = [l for l in only_counts if l["level"] == "minimum"]
+    _alti = [l for l in only_counts if l["level"] != "minimum"]
+    add("Di questi, **%d sono il minimo** — una clausola sola, la soglia sotto" % len(_minimi))
+    add("la quale la casa non c'e' piu': *«il trono regge»*, *«il popolo")
+    add("sopravvive»*. Li' il conto e' la cosa giusta, e nessuna Tensione deve")
+    add("nominarli per minacciarli: chi ti toglie l'ultima Regione te li toglie.")
+    add("**Gli altri %d sono vittoria o trionfo** — cioe' quello per cui una" % len(_alti))
+    add("casa viene ricordata — e quelli si riducono a un'addizione.")
+    add("")
+    _di_nessuno = [l for l in _alti if l["entity"] == "$self"]
+    if _alti and len(_di_nessuno) == len(_alti):
+        add("E stanno **tutti e %d su Destini condivisi** (`entity_id: $self`):" % len(_alti))
+        add("quelli che qualunque casa puo' prendere. Non e' una coincidenza —")
+        add("un obiettivo che deve valere per tutti non puo' nominare il segno")
+        add("di nessuno, e gli resta il numero. Se debba restare cosi' e' una")
+        add("scelta di disegno, non un difetto da chiudere in silenzio.")
+        add("")
+    elif _di_nessuno:
+        add("Di questi, %d stanno su Destini condivisi (`entity_id: $self`)." % (
+            len(_di_nessuno)))
+        add("")
     if only_counts:
         add("| Destino | livello | clausole | come si legge |")
         add("|---|---|---|---|")
@@ -755,8 +838,8 @@ def survey() -> Tuple[str, Dict[str, int]]:
         add("quasi solo fra le case che hanno un profilo**. Le altre — %s —" % (
             ", ".join(senza_profilo)))
         add("entrano solo dove un loro Destino nomina un segno per nome, e i")
-        add("Destini nominano poco: %d livelli su %d si reggono su conteggi." % (
-            len(only_counts), len(levels)))
+        add("Destini nominano poco: %d livelli su %d non nominano nessun segno." % (
+            len(no_named_sign), len(levels)))
         add("Scrivere i profili che mancano (ISSUES 79) e' la leva piu' corta su")
         add("questo numero.")
     else:
@@ -764,9 +847,10 @@ def survey() -> Tuple[str, Dict[str, int]]:
         add("piu' un buco di dichiarazioni: e' la superficie. Un incrocio")
         add("richiede che **lo stesso segno** sia nominato da una casa come")
         add("voluto e da un'altra come temuto, e ogni casa ne nomina otto o")
-        add("nove; il resto di quello che i Destini chiedono sono conteggi —")
-        add("%d livelli su %d — che litigano con tutti allo stesso modo." % (
-            len(only_counts), len(levels)))
+        add("nove; il resto di quello che i Destini chiedono non nomina nessun")
+        add("segno — %d livelli su %d, conteggi e bersagli a segni stampati —" % (
+            len(no_named_sign), len(levels)))
+        add("e litiga con tutti allo stesso modo.")
         add("Le coppie ancora mute si chiudono in due modi: **una faccia di")
         add("Tensione** che metta uno di quei segni sul tavolo dove le due case")
         add("si incontrano, oppure **un `denies`** scritto — che e' un incrocio")

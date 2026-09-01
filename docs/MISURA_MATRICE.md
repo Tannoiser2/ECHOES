@@ -13,7 +13,9 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | **di cui senza una ragione scritta** | **11** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
-| **livelli che si reggono solo su conteggi** | **31** |
+| **livelli che si reggono solo su conteggi** | **17** |
+| di cui vittoria o trionfo (il minimo e' una soglia di sopravvivenza) | 6 |
+| livelli che non nominano nessun segno del mondo | 31 |
 | Tensioni | 60 |
 | **Tensioni che non toccano nessun segno nominato da un Destino** | **0** |
 | **carte che aprono ancora una domanda in prestito** | **28** |
@@ -113,33 +115,39 @@ la matrice deve prendere per primi.
 
 Due difetti diversi. Il primo e' grave: una clausola chiede un segno che
 **niente scrive**, e allora quel livello non si puo' raggiungere. Il
-secondo e' di leggibilita': un livello che non nomina nessun segno e si
-regge su conteggi — si verifica, ma al tavolo non si puo' indicare.
+secondo e' di leggibilita': un livello che non nomina nessun segno, non
+ha un bersaglio a segni e non ha un pezzo da indicare — si verifica
+facendo un totale a mente, e al tavolo non lo si mostra col dito.
+
+**Non e' lo stesso conto del punto 5.** Li' la domanda e' se una
+Tensione possa parlare di quel livello, e allora un `#granaio` non
+aiuta: si indica benissimo, ma nessuna Tensione lo scrive. Qui la
+domanda e' se un giocatore capisca dove guardare, e il segno stampato
+sulla tessera basta. I due numeri sono 17 e 31.
 
 **Clausole impossibili: 0**
 
-**Livelli che si reggono solo su conteggi: 31 su 69**
+**Livelli che si reggono solo su conteggi: 17 su 69**
+
+Di questi, **11 sono il minimo** — una clausola sola, la soglia sotto
+la quale la casa non c'e' piu': *«il trono regge»*, *«il popolo
+sopravvive»*. Li' il conto e' la cosa giusta, e nessuna Tensione deve
+nominarli per minacciarli: chi ti toglie l'ultima Regione te li toglie.
+**Gli altri 6 sono vittoria o trionfo** — cioe' quello per cui una
+casa viene ricordata — e quelli si riducono a un'addizione.
+
+E stanno **tutti e 6 su Destini condivisi** (`entity_id: $self`):
+quelli che qualunque casa puo' prendere. Non e' una coincidenza —
+un obiettivo che deve valere per tutti non puo' nominare il segno
+di nessuno, e gli resta il numero. Se debba restare cosi' e' una
+scelta di disegno, non un difetto da chiudere in silenzio.
 
 | Destino | livello | clausole | come si legge |
 |---|---|---|---|
-| DST_ALDRIC | minimum | 1 | Il trono regge |
-| DST_ALDRIC | victory | 2 | Il regno decide |
-| DST_NAHR | minimum | 1 | Il popolo sopravvive |
 | DST_LYRA | minimum | 1 | Ha capito qualcosa |
-| DST_VAERAX | minimum | 1 | La montagna è ancora sua |
-| DST_ALDRIC_RECORD | minimum | 1 | La casa siede ancora |
 | DST_NAHR_ROOTED | minimum | 1 | Qualcosa che resta, piantato |
-| DST_NAHR_ROOTED | victory | 4 | La terra risponde a chi la lavora |
 | DST_LYRA_TAUGHT | minimum | 1 | Qualcosa è stato insegnato |
-| DST_VAERAX_WATCHED | minimum | 1 | La montagna è ancora sua |
-| DST_SALE | minimum | 1 | La Gilda è ancora al tavolo |
 | DST_SALE_OPEN | minimum | 1 | Una terra risponde alla Gilda |
-| DST_VETRO | minimum | 1 | L'Ordine tiene la sua casa |
-| DST_VETRO_SHOWN | minimum | 1 | L'Ordine tiene la sua casa |
-| DST_CENERE | minimum | 1 | Restano sulla montagna |
-| DST_CENERE_DEEP | minimum | 1 | Non hanno lasciato la montagna |
-| DST_CENERE_DEEP | triumph | 5 | E non devono più niente a nessuno |
-| DST_LIBERE | minimum | 1 | Le città esistono ancora |
 | DST_LIBERE_WATER | minimum | 1 | Un'opera alzata |
 | DST_SHARED_RENOWN | minimum | 1 | Un posto che risponde al tuo nome |
 | DST_SHARED_LAND | minimum | 1 | Un posto che risponde |
@@ -366,8 +374,9 @@ tavolo per otto anni senza incontrarsi mai.
 piu' un buco di dichiarazioni: e' la superficie. Un incrocio
 richiede che **lo stesso segno** sia nominato da una casa come
 voluto e da un'altra come temuto, e ogni casa ne nomina otto o
-nove; il resto di quello che i Destini chiedono sono conteggi —
-31 livelli su 69 — che litigano con tutti allo stesso modo.
+nove; il resto di quello che i Destini chiedono non nomina nessun
+segno — 31 livelli su 69, conteggi e bersagli a segni stampati —
+e litiga con tutti allo stesso modo.
 Le coppie ancora mute si chiudono in due modi: **una faccia di
 Tensione** che metta uno di quei segni sul tavolo dove le due case
 si incontrano, oppure **un `denies`** scritto — che e' un incrocio

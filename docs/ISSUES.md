@@ -6867,3 +6867,52 @@ nei dati.
 > l'equilibrio si misura prima di scriverlo.
 >
 > **Fatto quando** quelle due sono decise.
+
+---
+
+### 118. Sei livelli di vittoria sono un'addizione, e stanno tutti sui Destini di nessuno
+
+`contenuto` · `decisione-del-committente` · aperta in 0.1.344
+([D-377](DECISIONS.md#d-377) · [le misure](MISURA_MATRICE.md))
+
+`MISURA_MATRICE.md` diceva **31 livelli su 69** che «si reggono solo sul
+contare». Misurati meglio ([D-377](DECISIONS.md#d-377)) sono **17**: gli altri
+quattordici si indicano col dito eccome — o puntano il segnalino di una
+domanda, o chiedono un **bersaglio a segni** stampato sulla tessera
+(*«una pedina dove c'è il #granaio»*).
+
+Degli **17**, **undici sono il `minimum`**: la soglia sotto la quale la casa non
+c'è più. Lì il conto è la cosa giusta, e restano.
+
+**I sei che restano sono vittoria o trionfo** — quello per cui una casa viene
+ricordata — e sono **tutti e sei su Destini condivisi** (`entity_id: $self`):
+
+| Destino | livello | come si legge |
+|---|---|---|
+| `DST_SHARED_LAND` | victory | La terra risponde, e non importa come |
+| `DST_SHARED_LAND` | triumph | La mappa parla la tua lingua |
+| `DST_SHARED_QUIET` | victory | La quiete si vede |
+| `DST_SHARED_LORE` | victory | E un posto dove custodirla |
+| `DST_SHARED_LORE` | triumph | Quello che sai lo sanno da te |
+| `DST_SHARED_HAND` | victory | Le riserve che diventano forma |
+
+**Non è un difetto trovato per caso: è scritto nelle loro descrizioni.**
+`DST_SHARED_LAND` dice di sé *«un'ambizione semplice e spietata — contare le
+Regioni, e contarle tue»*. Un obiettivo che qualunque casa può prendere non può
+nominare il segno di nessuno, e gli resta il numero.
+
+#### La decisione
+
+Se debbano restare aritmetici è una scelta di disegno, e sta al committente.
+Se la vorrà cambiare, la casa ha già la sua strada in uso: il trionfo di
+`DST_SHARED_QUIET` e quello di `DST_SHARED_HAND` chiudono con
+`condition:contested` — **un segno del mondo che non appartiene a nessuna
+casa**, quindi resta condivisibile. Gli stessi sei livelli potrebbero chiuderne
+uno ciascuno.
+
+Il costo da misurare prima di scriverlo: una clausola in più su una vittoria la
+rende **più difficile**, e il cancello dei cento semi vuole **0 seggi bloccati
+su 8**.
+
+**Fatto quando** il committente dice se quei sei restano un'addizione o
+nominano un segno.
