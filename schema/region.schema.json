@@ -39,7 +39,8 @@
         "tags",
         "presence_slots",
         "art_prompt_key",
-        "build_slots"
+        "build_slots",
+        "edges"
       ],
       "additionalProperties": false,
       "properties": {
@@ -79,6 +80,22 @@
             "type": "string",
             "pattern": "^REG_[A-Z0-9_]+$"
           }
+        },
+        "edges": {
+          "type": "array",
+          "description": "**I varchi sui lati della tessera** (D-390, parola del committente: *«Eredan ha adiacenze in tutti e quattro i lati, mentre magari le montagne le hanno solo su due; se due lati hanno adiacenze in comune lo spostamento e' permesso»*). Quali dei quattro lati portano un varco, nell'orientamento stampato: N in alto, E a destra, S in basso, O a sinistra. Due tessere accostate si toccano **solo se il lato che combacia e' aperto su tutte e due**. La tessera si posa girandola: la rotazione con cui e' stata posata sta nel mondo (`map_rotations`), non qui. `adjacency` resta la mappa d'autore, e vale solo per le Chronicle che non pescano le tessere.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "N",
+              "E",
+              "S",
+              "O"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true
         },
         "asset_sources": {
           "type": "array",

@@ -12,6 +12,12 @@
         "REG_STRADA_MERCANTI",
         "REG_PORTO_CINERINO"
       ],
+      "edges": [
+        "N",
+        "E",
+        "S",
+        "O"
+      ],
       "asset_sources": [
         "AUTHORITY",
         "FORCE"
@@ -49,6 +55,11 @@
         "REG_PALUDE_CANALI",
         "REG_BOSCO_CONFINI"
       ],
+      "edges": [
+        "N",
+        "E",
+        "S"
+      ],
       "asset_sources": [
         "PEOPLE",
         "WEALTH"
@@ -85,6 +96,11 @@
         "REG_STRADA_MERCANTI",
         "REG_PALUDE_CANALI"
       ],
+      "edges": [
+        "N",
+        "E",
+        "O"
+      ],
       "asset_sources": [
         "AUTHORITY",
         "PEOPLE"
@@ -119,6 +135,10 @@
         "REG_MINIERE_ANTICHE",
         "REG_BOSCO_CONFINI"
       ],
+      "edges": [
+        "E",
+        "O"
+      ],
       "asset_sources": [
         "FORCE",
         "BONDS"
@@ -152,6 +172,10 @@
       "adjacency": [
         "REG_MONTAGNE_ROSSE",
         "REG_STRADA_MERCANTI"
+      ],
+      "edges": [
+        "N",
+        "E"
       ],
       "asset_sources": [
         "KNOWLEDGE",
@@ -191,6 +215,12 @@
         "REG_MINIERE_ANTICHE",
         "REG_PORTO_CINERINO"
       ],
+      "edges": [
+        "N",
+        "E",
+        "S",
+        "O"
+      ],
       "asset_sources": [
         "WEALTH",
         "KNOWLEDGE"
@@ -226,6 +256,11 @@
         "REG_STRADA_MERCANTI",
         "REG_ISOLA_MUTA"
       ],
+      "edges": [
+        "N",
+        "E",
+        "O"
+      ],
       "asset_sources": [
         "WEALTH",
         "BONDS"
@@ -260,6 +295,10 @@
         "REG_VALLE_VERDE",
         "REG_TERRE_NAHR"
       ],
+      "edges": [
+        "N",
+        "E"
+      ],
       "asset_sources": [
         "PEOPLE",
         "KNOWLEDGE"
@@ -293,6 +332,9 @@
       "adjacency": [
         "REG_PORTO_CINERINO"
       ],
+      "edges": [
+        "O"
+      ],
       "asset_sources": [
         "KNOWLEDGE",
         "FORCE"
@@ -325,6 +367,10 @@
       "adjacency": [
         "REG_VALLE_VERDE",
         "REG_MONTAGNE_ROSSE"
+      ],
+      "edges": [
+        "E",
+        "O"
       ],
       "asset_sources": [
         "AUTHORITY",

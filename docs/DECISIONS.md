@@ -10,6 +10,123 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-390 — Il confine e' un varco, non un accostamento
+
+**implemented in 0.1.357** — regola dettata dal committente, e riscrive
+[D-275](#d-275)
+
+> *«Bisogna dare delle adiacenze: per esempio Eredan ha adiacenze in tutti e
+> quattro i lati, mentre magari le montagne le hanno solo su due. Se due lati
+> hanno adiacenze in comune lo spostamento e' permesso. Questo naturalmente
+> deve essere calcolato in modo che ci sia sempre la possibilita' di muoversi
+> in tutte e sei le tessere pescate, e che quindi non ci siano tessere
+> isolate.»*
+
+### Cosa c'era, e perche' non teneva
+
+Due mappe, e se ne giocava una sola.
+
+- **La mappa d'autore**: dieci tessere con un `adjacency` scritto a mano —
+  Eredan confina con la Valle, la Strada e il Porto. Quindici archi, simmetrici.
+- **La mappa pescata** ([D-275](#d-275), ed e' CHR_00, cioe' quella che si
+  gioca): sei tessere su dieci, posate **in griglia** nell'ordine di pesca, e
+  *«ogni lato accostato e' un confine aperto»*.
+
+Cioe' sul tavolo che si gioca **l'`adjacency` scritto sulle tessere non lo
+leggeva nessuno**: i vicini erano chi capitava di fianco. D-275 lo aveva anche
+scritto: *«se un giorno una tessera vorra' un lato chiuso, sara' un segno
+stampato, e sara' un'altra decisione»*. Questa e' quella decisione.
+
+**E c'erano due letture divergenti della stessa parola**, che il committente ha
+trovato facendo la domanda:
+
+| dove | leggeva | cosa produceva |
+|---|---|---|
+| `world_state_service.neighbours_of()` | il grafo **del mondo** | giusto: e' quello che MUOVERE usa |
+| `narrative_text.adjacent_to()` | l'`adjacency` **del dato** | una frase che nominava una Regione che sul tavolo non confinava |
+| `board_sheet._roads()` | l'`adjacency` **del dato** | il foglio della plancia disegnava strade che non c'erano |
+
+Il gioco funzionava e **il racconto mentiva**. Tutti e due adesso leggono il
+tavolo.
+
+### La regola, e come si esegue
+
+**Ogni tessera dichiara i suoi varchi** (`region.edges`): quali dei quattro lati
+si possono attraversare, nell'orientamento stampato. Cinque forme, e si
+riconoscono a colpo d'occhio:
+
+| forma | tessere | |
+|---|---|---|
+| **croce** (4 lati) | Eredan, Strada dei Mercanti | ci si arriva da ogni parte; una strada e' fatta per collegare |
+| **T** (3) | Valle Verde, Terre di Nahr, Porto Cinerino | un lato chiuso: la salita, il nulla, il mare |
+| **corridoio** (2 opposti) | Montagne Rosse, Bosco dei Confini | due passi, e ci si passa |
+| **angolo** (2 adiacenti) | Palude dei Canali, Miniere Antiche | si entra e si gira |
+| **vicolo cieco** (1) | Isola Muta | un approdo solo, ed e' per questo che e' muta |
+
+**Ventisei lati aperti su quaranta.**
+
+**E la posa non e' piu' una griglia: e' una regola che si esegue al tavolo.**
+
+1. la prima tessera si posa e basta;
+2. ogni tessera dopo si posa **accanto a una gia' posata**, girandola finche'
+   **il lato che si tocca porta un varco su tutte e due**;
+3. fra le pose possibili si sceglie quella che fa combaciare **piu' varchi** —
+   che e' quello che fa una persona, e la differenza fra una mappa e una catena.
+
+**Da qui la promessa del committente viene per costruzione**: una tessera entra
+solo attaccandosi a una gia' posata **attraverso un varco**, quindi la mappa e'
+connessa mentre nasce. La rotazione con cui ogni tessera e' stata girata sta nel
+mondo (`map_rotations`), cosi' l'app la disegna come sta sul tavolo e un
+salvataggio ritrova gli stessi varchi.
+
+### La misura
+
+**Duecento mappe pescate, semi da 7000:**
+
+| | |
+|---|---|
+| mappe **non connesse** | **0 su 200** |
+| mappe con meno di sei tessere | **0 su 200** |
+
+E il costo, che e' il punto della regola e va scritto:
+
+| | griglia (D-275) | varchi (D-390) |
+|---|---|---|
+| confini per mappa | **7** | **5,34** |
+| tessere con un vicino solo | — | **44,3%** |
+| il padrone passa di mano, in un anno | 3,57 volte | **3,48** |
+| Regioni con piu' di una casa a fine anno | 3,62 su 6 | **3,24** |
+| Regioni con un padrone a fine anno | 5,29 su 6 | **5,01** |
+
+**La mappa e' piu' stretta di un quarto**, ed e' quello che la regola dice: se
+le montagne hanno due passi, le montagne hanno due passi. Quasi meta' delle
+tessere e' un vicolo cieco — la mappa tende alla catena piu' che alla griglia.
+La lotta per la terra si muove poco: −2,5% sui passaggi di mano.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8, tavolo misto e uniforme.**
+Suite 680 prove / 101 suite / 86.562 asserzioni.
+
+### E il varco si vede, perche' se non si vede non esiste
+
+La regola vive sul tavolo solo se la tessera la mostra. Quindi:
+
+- **la faccia stampata della tessera** porta la riga `VARCHI alto · destra`;
+- **il prompt d'arte** di ogni tessera dice a chi disegna dove la strada deve
+  arrivare al bordo e quali lati sono chiusi dal terreno — *«A visible way in
+  and out reaches the top, right and bottom edges, and the left edge is closed
+  by the terrain itself»*;
+- **il disegno del flusso** porta i varchi come pezzo, con la forma detta a
+  parole.
+
+**Cosa resta da decidere e non ho deciso io**: se il quarto di giro sia
+accettabile per l'arte. Una tessera girata di novanta gradi ha l'illustrazione
+girata, e per un dipinto dall'alto va bene; se non va bene, la strada e' dare a
+ogni tessera **quattro varchi disegnati e alcuni chiusi da un segnalino**,
+oppure rinunciare alla rotazione e accettare che qualche pesca non si posi.
+E' [ISSUES 127](ISSUES.md#127).
+
+---
+
 ## D-389 — Il RIVENDICARE non spreca il diritto: spreca la prenotazione
 
 **implemented in 0.1.355** — chiude

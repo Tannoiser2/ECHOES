@@ -235,8 +235,28 @@ for r in load("regions/*.json"):
          biome=r.get("biome", ""), posti=r.get("presence_slots", 0))
     for tg in r.get("tags", []) or []:
         edge(r["id"], tg, "stampato", "stampato sulla tessera")
-    for vicino in r.get("adjacency", []) or []:
-        edge(r["id"], vicino, "confina", "si passa di qui")
+    # **I varchi, non i confini** (D-390). L'`adjacency` scritto sulla tessera
+    # e' la mappa **d'autore**, e vale solo per le Chronicle che non pescano:
+    # sul tavolo pescato due tessere sono vicine se il lato che si tocca porta
+    # un varco su tutte e due, e quale lato tocchi quale lo decide la posa.
+    # Disegnare qui l'adiacenza d'autore vorrebbe dire disegnare una mappa che
+    # nessuno gioca — il difetto che D-390 ha tolto al foglio della plancia e
+    # al racconto. Quindi il disegno dice **quanti varchi ha la tessera**, che
+    # e' il fatto stampato, e lascia i confini al tavolo che si pesca.
+    lati = r.get("edges", []) or []
+    forma = {4: "una croce: si passa da tutti e quattro i lati",
+             3: "una T: tre lati aperti, uno chiuso",
+             1: "un vicolo cieco: un lato solo"}.get(len(lati))
+    if forma is None and len(lati) == 2:
+        forma = ("un corridoio: si entra da un lato e si esce dall'opposto"
+                 if set(lati) in ({"E", "O"}, {"N", "S"})
+                 else "un angolo: due lati che si toccano")
+    node("varchi:%s" % r["id"], "varco", t="%d varchi — %s" % (len(lati), "/".join(lati)),
+         d=(forma or "") + "  La tessera si posa girandola finche' un varco combacia"
+           " con quello della tessera accanto: e' quello che decide se ci si"
+           " puo' passare.", posto="TILE_PRINTED")
+    edge(r["id"], "varchi:%s" % r["id"], "stampato",
+         "i lati da cui si entra e si esce, stampati sulla tessera")
 
 # ---------- PIETRE ----------
 GRADI = {}

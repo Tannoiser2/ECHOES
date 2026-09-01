@@ -146,7 +146,7 @@ ECHOES — Region tile. Top-down three-quarter painted map tile of {REGIONE}:
 What this land is right now: {SITUAZIONE}
 Dominant accent: {ACCENTO}, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. Composition: the centre is
+edges that can tile against neighbouring regions. {VARCHI} Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
 condition, scar) sit legibly on top; detail concentrates at the borders. Square
 framing. No text, no letters, no numerals, no map labels, no compass rose, no

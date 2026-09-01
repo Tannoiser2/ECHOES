@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.357 — Il confine è un varco, non un accostamento (D-390)
+
+Regola dettata dal committente, e riscrive D-275.
+
+> *«Bisogna dare delle adiacenze: Eredan in tutti e quattro i lati, le montagne
+> magari solo su due. Se due lati hanno adiacenze in comune lo spostamento è
+> permesso. E deve essere calcolato in modo che non ci siano tessere isolate.»*
+
+### Cosa c'era
+
+Due mappe, e se ne giocava una sola: l'`adjacency` scritto a mano sulle dieci
+tessere **non lo leggeva nessuno** sul tavolo pescato, dove i vicini erano chi
+capitava di fianco nella griglia. E due letture divergenti della stessa parola —
+`narrative_text` e `board_sheet` leggevano il grafo **del dato** mentre la
+partita giocava su quello **del mondo**: il gioco funzionava e il racconto
+mentiva. Adesso tutti e due leggono il tavolo.
+
+### La regola
+
+Ogni tessera dichiara i suoi **varchi**: quali dei quattro lati si attraversano.
+Cinque forme — **croce** (Eredan, la Strada), **T** (Valle, Nahr, Porto),
+**corridoio** (Montagne, Bosco), **angolo** (Palude, Miniere), **vicolo cieco**
+(l'Isola Muta). Ventisei lati aperti su quaranta.
+
+E la posa non è più una griglia: **si posa accanto a una tessera già posata,
+girandola finché il lato che si tocca porta un varco su tutte e due**, e fra le
+pose possibili si sceglie quella che fa combaciare più varchi.
+
+**La promessa viene per costruzione**: una tessera entra solo attaccandosi
+attraverso un varco.
+
+| duecento mappe pescate | |
+|---|---|
+| mappe **non connesse** | **0 su 200** |
+| mappe con meno di sei tessere | **0 su 200** |
+
+### Il costo, scritto
+
+| | griglia | varchi |
+|---|---|---|
+| confini per mappa | **7** | **5,34** |
+| tessere con un vicino solo | — | **44,3%** |
+| il padrone passa di mano, in un anno | 3,57 | **3,48** |
+| Regioni con più di una casa a fine anno | 3,62 su 6 | **3,24** |
+
+**La mappa è più stretta di un quarto**, ed è quello che la regola dice. La
+lotta per la terra si muove poco: −2,5% sui passaggi di mano.
+
+### E il varco si vede
+
+La faccia stampata della tessera porta `VARCHI alto · destra`; il prompt d'arte
+dice a chi disegna dove la strada arriva al bordo e quali lati sono chiusi dal
+terreno; il disegno del flusso porta i varchi come pezzo.
+
+Aperta [ISSUES 127](docs/ISSUES.md#127): la tessera si gira, e l'arte si gira
+con lei — tre strade, ed è una scelta d'autore.
+
+**Cancello:** 0 seggi bloccati su un solo livello su 8, misto e uniforme. Suite
+**680 prove / 101 suite / 86.562 asserzioni** verde.
+
+---
+
 ## 0.1.356 — Nel grafo c'erano dodici Consigli, e nella scatola sono sessanta
 
 ### E la risposta a «non si arriva mai al punto di chiudere?»

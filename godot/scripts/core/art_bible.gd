@@ -112,6 +112,49 @@ func read(path: String) -> bool:
 
 ## Il prompt composto per una faccia, pronto da mandare. Vuoto se il mazzo non
 ## ha un MASTER PROMPT o se la ART_BIBLE non e' stata letta.
+## **I varchi sui lati** (D-390), per chi disegna la tessera. Senza questa
+## riga le dieci tessere si illustrano con quattro lati uguali, e la regola —
+## *«se due lati hanno adiacenze in comune lo spostamento e' permesso»* — sul
+## tavolo **non si vede**: si potrebbe leggere solo nell'app, che e' esattamente
+## quello che la direzione di questo progetto vieta.
+const VARCHI_DETTI: Dictionary = {
+	"N": "top", "E": "right", "S": "bottom", "O": "left",
+}
+
+
+static func _passages_line(face: Dictionary) -> String:
+	var sides: Array = face.get("edges", []) as Array
+	if sides.is_empty():
+		return ""
+	var said: PackedStringArray = PackedStringArray()
+	for side in sides:
+		said.append(str(VARCHI_DETTI.get(str(side), str(side))))
+	var closed: PackedStringArray = PackedStringArray()
+	for side in VARCHI_DETTI:
+		if not sides.has(str(side)):
+			closed.append(str(VARCHI_DETTI[str(side)]))
+	if closed.is_empty():
+		return "A visible way in and out reaches all four edges."
+	return (
+		"A visible way in and out reaches the %s edge%s, and the %s edge%s %s closed"
+		+ " by the terrain itself."
+	) % [
+		_listed(said), "" if said.size() == 1 else "s",
+		_listed(closed), "" if closed.size() == 1 else "s",
+		"is" if closed.size() == 1 else "are",
+	]
+
+
+## «top, right and bottom» invece di «top and right and bottom».
+static func _listed(words: PackedStringArray) -> String:
+	if words.size() <= 1:
+		return "" if words.is_empty() else str(words[0])
+	var head: PackedStringArray = PackedStringArray()
+	for i in range(words.size() - 1):
+		head.append(str(words[i]))
+	return "%s and %s" % [", ".join(head), str(words[words.size() - 1])]
+
+
 func prompt_for(
 	face: Dictionary, subject: String, situation: String, accent_key: String
 ) -> String:
@@ -126,6 +169,7 @@ func prompt_for(
 	var accents: Dictionary = _accents.get(which, {})
 	text = text.replace("{DESCRIZIONE}", str(guides.get(accent_key, subject)))
 	text = text.replace("{ACCENTO}", str(accents.get(accent_key, "l'accento della sua famiglia")))
+	text = text.replace("{VARCHI}", _passages_line(face))
 	return text
 
 

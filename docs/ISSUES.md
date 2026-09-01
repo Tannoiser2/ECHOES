@@ -7605,3 +7605,37 @@ per un diritto che poi non gli serviva.
 
 **Fatto quando** le prenotazioni mai spese scendono sotto un terzo, oppure il
 committente decide che la prenotazione esce dal gioco.
+
+---
+
+### 127. La tessera si gira, e l'arte si gira con lei
+
+`arte` · `da-decidere` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390))
+
+La regola dei varchi ([D-390](DECISIONS.md#d-390)) si posa **girando la
+tessera**: si prova il quarto di giro finché un varco combacia con quello della
+tessera accanto. È la cosa che rende la promessa — *«nessuna tessera isolata»* —
+vera per costruzione: **0 mappe non connesse su 200**.
+
+Ma una tessera girata di novanta gradi ha **l'illustrazione girata**. Per un
+dipinto dall'alto è normale — è quello che fa mezzo scaffale di giochi di
+tessere — e il prompt d'arte dice già *«Readable terrain silhouette from above»*
+e *«no compass rose»*, cioè è disegnata apposta per non avere un sopra. Ma è una
+scelta d'autore, e non è mia.
+
+**Le tre strade:**
+
+1. **Va bene così.** La tessera si gira, l'arte è pensata per reggerlo, e la
+   posa resta una regola che una persona esegue in dieci secondi.
+2. **Quattro varchi disegnati, alcuni chiusi da un segnalino.** Ogni tessera si
+   illustra con la strada che arriva a tutti e quattro i bordi, e i lati chiusi
+   si coprono con un gettone «passo franato» quando la tessera entra in gioco.
+   L'arte non gira mai. Costo: un tipo di segnalino in più, e una posa in più
+   da fare a mano.
+3. **Niente rotazione.** La tessera si posa dritta. Costo misurato: senza il
+   giro **la posa non può garantire la connessione** — due corridoi N/S nella
+   stessa riga non si toccheranno mai — e qualche pesca resterebbe con meno di
+   sei tessere sul tavolo.
+
+**Fatto quando** il committente sceglie, e — se non è la (1) — la misura delle
+200 mappe si rifà con la regola nuova.
