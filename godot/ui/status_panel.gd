@@ -430,10 +430,8 @@ func _update_profile(session: RefCounted, viewer_id: String) -> void:
 		add_child(_spacer())
 		_profile_header = Label.new()
 		_profile_header.text = "COSA RESTERA' DI TE"
-		_profile_header.tooltip_text = (
-			"La strategia dichiarata di questa casa: i segni che vuole vedere nel"
-			+ " mondo a fine partita, e quelli che non vuole."
-		)
+		# Nessun suggerimento sull'intestazione: la nota qui sotto dice la
+		# stessa cosa, e la dice a chiunque (D-384).
 		_profile_header.add_theme_font_size_override("font_size", 12)
 		_profile_header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(_profile_header)
@@ -478,8 +476,18 @@ func _update_profile(session: RefCounted, viewer_id: String) -> void:
 			row.add_theme_color_override(
 				"font_color", Color("#e8b563") if here else Color(str((pair as Array)[2]))
 			)
-			row.tooltip_text = str((voice as Dictionary).get("why", ""))
 			_profile.add_child(row)
+			# **La ragione si legge, non si sorvola** (D-242, D-384). Stava nel
+			# suggerimento del mouse: nove frasi d'autore che su un tablet non
+			# esistono. Adesso stanno sotto la riga che spiegano.
+			var perche: String = str((voice as Dictionary).get("why", ""))
+			if perche != "":
+				var motivo := Label.new()
+				motivo.text = perche
+				motivo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				motivo.add_theme_font_size_override("font_size", 10)
+				motivo.add_theme_color_override("font_color", Color("#8a8172"))
+				_profile.add_child(motivo)
 
 	_add_threshold(session, viewer_id, mine as Dictionary)
 
@@ -515,8 +523,15 @@ func _add_threshold(session: RefCounted, viewer_id: String, profile: Dictionary)
 		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		line.add_theme_font_size_override("font_size", 11)
 		line.add_theme_color_override("font_color", Color("#b06b8f"))
-		line.tooltip_text = str(life.get("description", ""))
 		_profile.add_child(line)
+		var che_vita: String = str(life.get("description", ""))
+		if che_vita != "":
+			var racconto := Label.new()
+			racconto.text = che_vita
+			racconto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			racconto.add_theme_font_size_override("font_size", 10)
+			racconto.add_theme_color_override("font_color", Color("#8a8172"))
+			_profile.add_child(racconto)
 		var clock := Label.new()
 		clock.text = "questa casa e' cosi' da %d anni · adesso ne tieni %d" % [
 			int(seat.get("life_years", 0)), held,
@@ -561,7 +576,7 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 		add_child(_spacer())
 		var header := Label.new()
 		header.text = "IL TUO DESTINO"
-		header.tooltip_text = "La casa che giochi, e quello per cui e' venuta al tavolo."
+		# La riga sotto lo dice gia', e la dice anche col dito (D-384).
 		header.add_theme_font_size_override("font_size", 12)
 		header.add_theme_color_override("font_color", Color("#8a8172"))
 		add_child(header)
@@ -730,6 +745,11 @@ func _wrapped(inner: Control, field: String, key: String) -> Control:
 	var slot: PanelContainer = DropSlot.new()
 	slot.field = field
 	slot.key = key
+	# **Alto come un dito** (D-243, misurato dalla sonda della pagina in D-379).
+	# I sette posti dove una carta puo' cadere chiedevano 19 e 29 pixel: col
+	# mouse si prendono, col dito no. La riga dentro resta quella che era — e'
+	# il bersaglio a crescere, non il testo.
+	slot.custom_minimum_size.y = 44
 	# Il posto dove **posare** quello che si tiene in mano vale per ogni riga —
 	# una domanda o una casa — e viene prima della scheda: se stai posando una
 	# carta, non stai leggendo.

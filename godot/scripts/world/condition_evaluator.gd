@@ -148,6 +148,14 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 				return false
 			var region_id: String = _resolve(str(condition.get("region_id", "")), context)
 			return _within(service.presence_count(entity_id, region_id), condition)
+		"did_this_year":
+			# **Il tempo del verbo** (D-386, ISSUES 120). Ogni altra clausola
+			# del vocabolario guarda **come sta il tavolo**; questa guarda
+			# **cos'e' successo**. E' la differenza fra «hai due Pietre» e «una
+			# Pietra l'hai alzata tu quest'anno»: la prima la puo' avere anche
+			# un tavolo che non muove niente — misurato, sei obiettivi su
+			# diciassette rendevano uguale o meglio stando fermi — la seconda no.
+			return _within(_did_this_year(entity_id, condition), condition)
 		"promise_kept":
 			return _promise_state(condition, context) == "KEPT"
 		"promise_broken":
@@ -304,6 +312,101 @@ func _discovery_count(entity_id: String) -> int:
 ## A promise is KEPT while the pair still carries a PROMISE/PACT tag and has not
 ## fallen to open hostility; it is BROKEN when the tag is gone or the relation
 ## has collapsed, or when a VENDETTA has been declared.
+## **Quante volte una casa ha fatto un gesto, quest'anno** (D-386).
+##
+## Il verbale e' il registro degli Effetti, e **ricomincia a ogni anno**: il
+## mondo lo eredita, il registro no. Quindi «quest'anno» non e' un filtro da
+## scrivere — e' la forma del dato.
+##
+## Conta solo quello che porta **la firma della casa**: `source.actor`. Le
+## assegnazioni di apertura e l'eredita' arrivano dal sistema, senza firma, e
+## non contano — che e' la ragione per cui questa clausola separa il fare
+## dall'avere. Contano invece gli Effetti di un Consiglio, che portano la firma
+## del **proponente**: una Pietra alzata dalla proposta che hai portato tu
+## l'hai alzata tu.
+##
+## I gesti sono un vocabolario **chiuso**, come i verbi delle caselle del
+## Consiglio, e per la stessa ragione: ognuno e' un pezzo di codice che sa
+## riconoscere una riga del verbale, e il codice si prova. `SchemaDefs.GESTURES`
+## e' la lista, generata dallo schema.
+func _did_this_year(entity_id: String, condition: Dictionary) -> int:
+	var gesture: String = str(condition.get("gesture", ""))
+	if entity_id == "" or gesture == "":
+		return 0
+	var count: int = 0
+	for entry in (world.get("effect_log", []) as Array):
+		if _is_gesture(entry as Dictionary, gesture, entity_id, condition):
+			count += 1
+	return count
+
+
+## Una riga del verbale e' quel gesto, fatto da quella casa?
+func _is_gesture(
+	entry: Dictionary, gesture: String, entity_id: String, condition: Dictionary
+) -> bool:
+	# Un Effetto che non ha cambiato niente non e' un gesto: il motore lo segna
+	# `noop` nel carico dell'inverso, e qui vale la stessa convenzione che vale
+	# per le caselle del Consiglio — un prezzo che non toglie niente non e' un
+	# prezzo (D-306).
+	if bool((entry.get("inverse_payload", {}) as Dictionary).get("noop", false)):
+		return false
+	var source: Dictionary = entry.get("source", {}) as Dictionary
+	if str(source.get("actor", "")) != entity_id:
+		return false
+	# **Quello che fa il calendario non e' un gesto.** Il sistema firma col
+	# nome di una casa quando il mondo agisce **su** di lei — la Pietra che sale
+	# perche' l'anno e' finito bene, la terra che cambia mano per un contesto,
+	# la pedina tolta da chi si e' allargato troppo. Sono cose che le
+	# succedono, non cose che fa. Misurato: sul tavolo di pietra 48 Pietre su
+	# 247 salivano cosi', e un obiettivo che chiede un gesto le avrebbe contate.
+	if str(source.get("kind", "")) == "system":
+		return false
+	var effect_type: String = str(entry.get("type", ""))
+	var payload: Dictionary = entry.get("payload", {}) as Dictionary
+	var target: Dictionary = entry.get("target", {}) as Dictionary
+	match gesture:
+		"RAISE_STONE":
+			# Alzarla da zero, o alzarla di un grado: sono lo stesso gesto —
+			# «quest'anno quella Pietra e' salita, e l'hai fatta salire tu».
+			# La clausola puo' chiedere **quale** Pietra, con gli stessi due
+			# campi che usa `structure_count`: cosi' «un'opera alzata
+			# quest'anno» si scrive senza un vocabolario nuovo.
+			if effect_type != "BUILD_STRUCTURE" and effect_type != "SET_STRUCTURE_GRADE":
+				return false
+			var raised: String = str(payload.get("structure_type", ""))
+			var wanted_type: String = str(condition.get("structure_type", ""))
+			if wanted_type != "" and raised != wanted_type:
+				return false
+			var wanted_family: String = str(condition.get("structure_family", ""))
+			if wanted_family != "" and not _is_family(raised, wanted_family):
+				return false
+			if effect_type == "BUILD_STRUCTURE":
+				return true
+			var before: int = int(
+				(entry.get("inverse_payload", {}) as Dictionary).get("grade", 0)
+			)
+			return int(payload.get("grade", 0)) > before
+		"TAKE_GROUND":
+			return effect_type == "SET_CONTROL" \
+				and str(payload.get("entity_id", "")) == entity_id
+		"SPREAD":
+			return effect_type == "ADD_PRESENCE" and str(target.get("id", "")) == entity_id
+		"TIGHTEN_BOND":
+			# Solo **verso l'alto**: scendere di un gradino e' un gesto anche
+			# quello, ma non e' stringere. E il legame deve essere tuo — la
+			# chiave di una relazione porta i due nomi.
+			if effect_type != "SET_RELATION":
+				return false
+			if not str(target.get("id", "")).split("|").has(entity_id):
+				return false
+			var was: String = str(
+				(entry.get("inverse_payload", {}) as Dictionary).get("level", "")
+			)
+			var now: String = str(payload.get("level", ""))
+			return RELATION_ORDER.find(now) > RELATION_ORDER.find(was)
+	return false
+
+
 func _promise_state(condition: Dictionary, context: Dictionary) -> String:
 	var a: String = _resolve(str(condition.get("entity_id", "")), context)
 	var b: String = _resolve(str(condition.get("other_entity_id", "")), context)

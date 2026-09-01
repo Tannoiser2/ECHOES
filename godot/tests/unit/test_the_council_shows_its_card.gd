@@ -89,7 +89,7 @@ func test_the_board_draws_both_lists() -> void:
 	_open()
 	var column: String = " · ".join(PackedStringArray(_drawn()))
 	assert_true(column.contains("COSA SI COMPRA"), "la lista dei benefici c'e': %s" % column)
-	assert_true(column.contains("IN CHE MONETA"), "e quella dei costi")
+	assert_true(column.contains("IL PREZZO"), "e quella dei costi")
 	for voice_id in _voices("benefits"):
 		assert_true(
 			column.contains(_text_of("benefits", str(voice_id))),
@@ -107,10 +107,15 @@ func test_the_board_draws_both_lists() -> void:
 func test_what_the_proponent_bought_is_marked() -> void:
 	_open()
 	var benefits: Array = _voices("benefits")
+	# **Il secondo beneficio si paga** (D-387): senza un gettone in mano il
+	# proponente ne posa uno solo, e la prova non proverebbe niente.
+	_give_tokens(str(session.confluence.current["proponent"]), 1)
 	assert_true(session.confluence.set_benefits(benefits.slice(0, 2)), "compra due benefici")
 	var drawn: Array = _drawn()
 	var column: String = " · ".join(PackedStringArray(drawn))
-	assert_true(column.contains("2 comprati, prezzo: 1 costo"), "il conto e' scritto: %s" % column)
+	assert_true(
+		column.contains("2 comprati con 1 gettone"), "il conto e' scritto: %s" % column
+	)
 	var marked: int = 0
 	for line in drawn:
 		if str(line).begins_with("●"):
@@ -127,29 +132,41 @@ func test_what_the_proponent_bought_is_marked() -> void:
 ## schermo dice **che sta aspettando lui**, invece di tacere.
 func test_the_board_says_who_chooses_the_currency() -> void:
 	_open()
-	session.confluence.set_benefits(_voices("benefits").slice(0, 2))
+	session.confluence.set_benefits(_voices("benefits").slice(0, 1))
 	var waiting: String = " · ".join(PackedStringArray(_drawn()))
 	assert_true(
-		waiting.contains("non ha ancora posato la pedina"),
-		"si aspetta il fronte avverso: %s" % waiting
+		waiting.contains("nessuno ha speso un gettone"),
+		"finche' nessuno paga, la proposta passa gratis: %s" % waiting
 	)
 	var proponent: String = str(session.confluence.current["proponent"])
+	var opposer: String = ""
 	for entity_id in session.confluence.stance_order():
 		if str(entity_id) != proponent:
 			session.confluence.declare_stance(str(entity_id), "OPPOSE")
-	var opposer: String = session.confluence.first_opposer()
+			if opposer == "":
+				opposer = str(entity_id)
 	assert_true(opposer != "", "c'e' un fronte avverso")
 	var cost: String = str(_voices("costs")[1])
-	assert_true(session.confluence.place_price(opposer, cost, ""), "posa la pedina")
+	# **Senza gettone non si posa niente** (D-387): e' la riga che rende il
+	# prezzo una scelta pagata invece di un'aritmetica subita.
+	assert_false(
+		session.confluence.place_cost(opposer, cost),
+		"senza gettone la pedina non si posa"
+	)
+	_give_tokens(opposer, 1)
+	assert_true(session.confluence.place_cost(opposer, cost), "col gettone si'")
 	var drawn: Array = _drawn()
 	var column: String = " · ".join(PackedStringArray(drawn))
 	assert_true(
-		column.contains("la sceglie %s" % session.service.name_of(opposer)),
+		column.contains("lo fa pagare %s" % session.service.name_of(opposer)),
 		"e adesso si sa chi l'ha scelta: %s" % column
 	)
 	assert_true(
 		drawn.has("● %s" % _text_of("costs", cost)),
 		"con la pedina sulla voce che ha scelto"
+	)
+	assert_eq(
+		session.confluence.claim_tokens(opposer), 0, "e il gettone e' stato speso"
 	)
 
 
@@ -160,9 +177,20 @@ func test_nothing_bought_nothing_paid() -> void:
 	session.confluence.set_benefits([])
 	var column: String = " · ".join(PackedStringArray(_drawn()))
 	assert_true(
-		column.contains("niente da pagare"),
+		column.contains("nessuno ha speso un gettone"),
 		"lo schermo dice perche' i costi sono spenti: %s" % column
 	)
+
+
+## I gettoni di rivendicazione in mano a una casa, senza passare dal turno:
+## qui si prova la pagina, non da dove arriva la moneta.
+func _give_tokens(entity_id: String, quanti: int) -> void:
+	var effect: GDScript = load("res://scripts/core/effect.gd")
+	for i in range(quanti):
+		session.applier.apply(effect.make(
+			"GRANT_CLAIM_TOKEN", "entity", entity_id, {},
+			effect.source("system", "TEST", "", 1, 1, 0)
+		))
 
 
 ## E cosa succede se cade: e' l'informazione che rende «opponiti» una scelta e

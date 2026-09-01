@@ -555,7 +555,9 @@ func choose_benefits(
 		return fallback.choose_benefits(entity_id, context, menu, session)
 	_speaking_to = entity_id
 	var bought: Array = []
-	var ceiling: int = CouncilEconomy.MAX_BENEFITS
+	# **Il tetto lo dicono i gettoni** (D-387): il primo e' gratis, ogni altro
+	# costa un gettone di rivendicazione.
+	var ceiling: int = session.confluence.benefit_ceiling()
 	while bought.size() < ceiling:
 		var labels: Array = []
 		var ids: Array = []
@@ -568,10 +570,12 @@ func choose_benefits(
 		if ids.is_empty():
 			break
 		labels.append("Basta cosi'")
-		var due: int = CouncilEconomy.costs_due(bought.size() + 1)
 		var picked: int = await _choose(
-			"  %s, cosa ottieni? (ne hai %d; il prossimo costa %d)" % [
-				_name(entity_id, session), bought.size(), due
+			"  %s, cosa ottieni? (ne hai %d; %s)" % [
+				_name(entity_id, session), bought.size(),
+				"il primo e' gratis" if bought.is_empty()
+					else "il prossimo costa un gettone, ne hai %d"
+						% session.confluence.claim_tokens(entity_id),
 			],
 			labels
 		)
@@ -589,6 +593,33 @@ func choose_benefits(
 ## **E gli avversari scelgono in che moneta paga** (D-280): il primo seggio del
 ## fronte avverso posa `due` pedine sui costi stampati. A posizioni dichiarate
 ## e prima degli impegni, che restano segreti (D-267).
+## **E si decide se pagare per far pagare** (D-387): un gettone di
+## rivendicazione posa una pedina su un costo. Chi non ne ha, o non vuole, si
+## astiene — e la proposta passa senza prezzo.
+func choose_cost_token(
+	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+) -> String:
+	if not _is_human(entity_id):
+		return await fallback.choose_cost_token(entity_id, context, menu, session)
+	_speaking_to = entity_id
+	if session.confluence.claim_tokens(entity_id) <= 0 or menu.is_empty():
+		return ""
+	var labels: Array = ["Astieniti: non spendere il gettone"]
+	var ids: Array = []
+	for voice_id in menu:
+		ids.append(str(voice_id))
+		labels.append(str(session.confluence.price_voice_text("costs", str(voice_id))))
+	var picked: int = await _choose(
+		"  %s, hai %d gettone/i: vuoi far pagare la proposta?" % [
+			_name(entity_id, session), session.confluence.claim_tokens(entity_id)
+		],
+		labels
+	)
+	if picked <= 0:
+		return ""
+	return str(ids[picked - 1])
+
+
 func choose_costs(
 	entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
 ) -> Array:
@@ -653,8 +684,10 @@ func choose_counterclaim(
 		# rivendicante decide **quali costi** paghera' chi vince, scavalcando
 		# il primo OPPOSE. Ne sceglie quanti la proposta ne costa.
 		var menu: Array = (offer.get("price", {}) as Dictionary).get("cost", []) as Array
+		# Ne sceglie fino a due, che sono le pedine di costo che stanno sulla
+		# carta (D-387): il diritto pagato col turno le posa senza gettoni.
 		var chosen: Array = await choose_costs(
-			entity_id, context, menu, session.confluence.costs_due(), session
+			entity_id, context, menu, CouncilEconomy.MAX_COSTS, session
 		)
 		return {
 			"mode": "price",

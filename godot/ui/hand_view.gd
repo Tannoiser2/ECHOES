@@ -95,8 +95,15 @@ func render(
 			var refusal: String = session.actions.check(
 				viewer_id, "PLAY_ECHO", {"asset_card_id": str(asset_id)}
 			)
+			# **Che la carta abbia un Eco si legge sulla carta** (D-384). Il
+			# nome dell'Eco stava solo nel suggerimento del mouse: su un tablet
+			# meta' dei giocatori non sapeva che quella carta ha una seconda
+			# faccia. Il suggerimento resta per chi ha un mouse e porta anche il
+			# testo intero; il **nome** adesso e' stampato, e allungare la carta
+			# per farci stare il resto e' un'altra rivista (ISSUES 65).
 			card.tooltip_text = "L'ECO - %s\n%s%s" % [
 				str((echo as Dictionary)["title"]),
 				str((echo as Dictionary)["description"]),
 				"" if refusal == "" else "\n(non si cala: %s)" % refusal,
 			]
+			card.note_echo(str((echo as Dictionary)["title"]))

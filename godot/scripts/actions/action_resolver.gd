@@ -1369,6 +1369,23 @@ func _play_asset_card(
 	log.bullet("%s gioca «%s» per %s." % [
 		_name(entity_id), _title(str(request["asset_id"])), kind
 	])
+	# **Il gettone della rivendicazione** (D-387, ISSUES 122, parola del
+	# committente: *«io intendo l'azione rivendicare sulla carta come la carta
+	# che ti da' i Token da utilizzare proprio in questa occasione»*).
+	#
+	# La faccia RIVENDICARE di una carta faceva una cosa sola: aprire un
+	# diritto. Misurato su cinquanta partite, **131 diritti su 140 morivano
+	# senza essere usati** — il verbo piu' caro del turno rendeva quasi niente.
+	# Adesso ne rende due: il diritto resta, e la carta lascia in mano **una
+	# moneta da spendere in Consiglio**. E' la stessa Azione, con un secondo
+	# uso, e non un'Azione nuova.
+	if kind == "CLAIM":
+		effects.append(applier.apply(Effect.make(
+			"GRANT_CLAIM_TOKEN", "entity", entity_id, {}, source
+		)))
+		log.bullet("%s prende un gettone di rivendicazione, da spendere in Consiglio." % [
+			_name(entity_id)
+		])
 	# **La Risonanza** ([D-257](DECISIONS.md#d-257)): il mondo risponde, e non si
 	# sceglie. E' la regola che il committente ha messo al centro della direzione
 	# fisica — *ogni Azione ha una reazione* — ed e' l'unica riga di questo file

@@ -369,11 +369,44 @@ func price_menu() -> Dictionary:
 	return {"cost": costs, "failure": []}
 
 
-## Quanti costi il fronte avverso deve posare adesso (D-280): uno per ogni
-## beneficio comprato oltre il primo, e basta. Il tetto e' tre e non si sfonda
-## (D-303): non c'e' piu' un quarto beneficio da pagare con una Cicatrice.
-func costs_due() -> int:
-	return CouncilEconomy.costs_due((current.get("benefits", []) as Array).size())
+## **I gettoni di rivendicazione di una casa** (D-387, ISSUES 122): la moneta
+## del Consiglio. Se ne prende uno giocando una carta Asset dalla sua faccia
+## RIVENDICARE, e si spendono qui.
+func claim_tokens(entity_id: String) -> int:
+	return int(
+		((world.get("entities", {}) as Dictionary).get(entity_id, {}) as Dictionary
+		).get("claim_tokens", 0)
+	)
+
+
+## **Quanti benefici il proponente puo' posare, qui e adesso** (D-387): il
+## primo e' gratis, ogni altro vuole un gettone suo — e non piu' di quante
+## caselle vive la carta abbia.
+func benefit_ceiling() -> int:
+	if current.is_empty():
+		return 0
+	return mini(CouncilEconomy.benefits_affordable(_purse()), benefit_menu().size())
+
+
+## **La borsa del proponente, per questo Consiglio**: i gettoni che ha in mano
+## piu' quelli che ha gia' posato su questa carta. Le pedine si rialzano finche'
+## il Consiglio non si chiude, quindi quelle posate sono ancora sue — senza
+## questa riga, comprare due benefici e poi ripensarci per comprarne tre non si
+## potrebbe, e il tetto scenderebbe man mano che si compra.
+func _purse() -> int:
+	return (
+		claim_tokens(str(current["proponent"])) + int(current.get("benefit_tokens_spent", 0))
+	)
+
+
+## Quanti costi sono stati posati sulla carta: uno per ogni avversario che ha
+## speso un gettone. **Non e' piu' un conto** (D-387): fino a D-386 il numero
+## usciva dall'aritmetica — un costo per ogni beneficio oltre il primo — e il
+## fronte avverso lo subiva. Adesso e' una scelta, e si paga.
+func costs_placed() -> int:
+	return (
+		(current.get("cost_pedine", []) as Array) if not current.is_empty() else []
+	).size()
 
 
 ## **I benefici che il proponente puo' comprare: le caselle vive** (D-306).
@@ -414,14 +447,16 @@ func set_benefits(chosen: Array) -> bool:
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "PROPOSITION"]:
 		last_error = "non e' il momento di comprare i benefici"
 		return false
-	# **E non si compra piu' di quanto si possa pagare** (D-306): il primo
-	# beneficio e' gratis, ogni altro vuole un costo che morda. Se sulla carta
-	# ne restano vivi meno di quanti ne servirebbero, il tetto scende.
+	# **E non si compra piu' di quanto si possa pagare** (D-387): il primo
+	# beneficio e' gratis, ogni altro vuole **un gettone di rivendicazione**,
+	# preso un turno prima giocando una carta dalla sua faccia RIVENDICARE.
 	var ceiling: int = mini(
-		CouncilEconomy.MAX_BENEFITS, 1 + (price_menu()["cost"] as Array).size()
+		CouncilEconomy.benefits_affordable(_purse()), CouncilEconomy.MAX_BENEFITS
 	)
 	if chosen.size() > ceiling:
-		last_error = "sulla carta ci stanno %d pedine di beneficio" % ceiling
+		last_error = (
+			"con %d gettoni si posano %d pedine di beneficio" % [_purse(), ceiling]
+		)
 		return false
 	var known: Dictionary = {}
 	for voice in benefit_menu():
@@ -435,14 +470,46 @@ func set_benefits(chosen: Array) -> bool:
 			last_error = "una pedina per voce: «%s» e' gia' posata" % str(voice_id)
 			return false
 		taken[str(voice_id)] = true
+	# **Le pedine si posano adesso**, e i gettoni con loro. Se questa chiamata
+	# ne cambia il numero — succede quando la prima e' stata rifiutata e il
+	# mondo ripiega sul primo beneficio — il conto si aggiusta nei due versi:
+	# quello che non si compra piu' torna in mano.
+	var need: int = CouncilEconomy.tokens_due(chosen.size())
+	var already: int = int(current.get("benefit_tokens_spent", 0))
+	if not _move_tokens(str(current["proponent"]), already - need):
+		return false
+	current["benefit_tokens_spent"] = need
 	current["benefits"] = chosen.duplicate()
 	if not chosen.is_empty():
 		var said: PackedStringArray = PackedStringArray()
 		for voice_id in chosen:
 			said.append(_voice_text("benefits", str(voice_id)))
-		log.bullet("C. %s compra: %s  (prezzo: %d costi)" % [
-			_name(str(current["proponent"])), " · ".join(said), costs_due()
+		log.bullet("C. %s compra: %s  (%s)" % [
+			_name(str(current["proponent"])), " · ".join(said),
+			"il primo e' gratis" if need == 0
+				else "%d gettoni di rivendicazione" % need,
 		])
+	return true
+
+
+## **Il gettone si muove come tutto il resto**: un Effetto con un inverso, cosi'
+## il verbale lo racconta e un annullamento lo rimette dov'era. `delta` positivo
+## lo rende, negativo lo spende. Zero non scrive niente.
+func _move_tokens(entity_id: String, delta: int) -> bool:
+	if delta == 0:
+		return true
+	if delta < 0 and claim_tokens(entity_id) < -delta:
+		last_error = "%s non ha abbastanza gettoni di rivendicazione" % _name(entity_id)
+		return false
+	var source: Dictionary = Effect.source(
+		"confluence", str(current.get("confluence_id", "")), entity_id,
+		int(world["act"]), int(world["round"]), int(world["effect_sequence"])
+	)
+	for i in range(absi(delta)):
+		applier.apply(Effect.make(
+			"GRANT_CLAIM_TOKEN" if delta > 0 else "SPEND_CLAIM_TOKEN",
+			"entity", entity_id, {}, source
+		))
 	return true
 
 
@@ -519,32 +586,56 @@ func place_price(entity_id: String, cost_id: String, failure_id: String) -> bool
 ## impegni (D-267, e la ragione non e' cambiata).
 func place_costs(entity_id: String, chosen: Array) -> bool:
 	last_error = ""
+	for voice_id in chosen:
+		if not place_cost(entity_id, str(voice_id)):
+			return false
+	return true
+
+
+## **Un avversario posa un costo** (D-387, ISSUES 122, parola del committente:
+## *«gli altri giocatori possono astenersi oppure mettere un token su un
+## costo»*).
+##
+## Fino a D-386 il prezzo era un'aritmetica: tanti costi quanti benefici oltre
+## il primo, e a sceglierli era **solo** il primo seggio del fronte avverso.
+## Adesso ogni casa che non propone puo' posarne uno, e per farlo **spende un
+## gettone di rivendicazione**. Chi non ce l'ha, o non vuole, si astiene: e
+## allora la proposta passa senza prezzo, che e' una cosa che prima non poteva
+## succedere.
+##
+## La pedina si posa a posizioni dichiarate e **prima** degli impegni, che
+## restano segreti (D-267, e la ragione non e' cambiata).
+func place_cost(entity_id: String, cost_id: String) -> bool:
+	last_error = ""
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
 		last_error = "non e' il momento di posare il prezzo"
 		return false
-	if entity_id == "" or entity_id != first_opposer():
-		last_error = "il prezzo lo posa il primo seggio del fronte avverso"
+	if entity_id == "" or entity_id == str(current["proponent"]):
+		last_error = "il prezzo lo posa chi non propone"
 		return false
-	var menu: Array = price_menu()["cost"] as Array
-	var taken: Dictionary = {}
-	for voice_id in chosen:
-		if not menu.has(str(voice_id)):
-			last_error = "«%s» non e' un costo di questa carta" % str(voice_id)
-			return false
-		if taken.has(str(voice_id)):
-			last_error = "una pedina per voce: «%s» e' gia' posata" % str(voice_id)
-			return false
-		taken[str(voice_id)] = true
-	var due: int = costs_due()
-	if chosen.size() > due:
-		last_error = "la proposta costa %d, non %d" % [due, chosen.size()]
+	if cost_id == "":
+		return true
+	var pedine: Array = (current.get("cost_pedine", []) as Array)
+	if pedine.size() >= CouncilEconomy.MAX_COSTS:
+		last_error = "sulla carta ci stanno %d pedine di costo" % CouncilEconomy.MAX_COSTS
 		return false
-	current["price_pedina"] = {"by": entity_id, "costs": chosen.duplicate()}
-	if not chosen.is_empty():
-		var said: PackedStringArray = PackedStringArray()
-		for voice_id in chosen:
-			said.append(_price_said("costs", str(voice_id)))
-		log.bullet("D. Il prezzo lo sceglie %s: %s." % [_name(entity_id), " · ".join(said)])
+	for posata in pedine:
+		if str((posata as Dictionary)["cost"]) == cost_id:
+			last_error = "una pedina per voce: «%s» e' gia' posata" % cost_id
+			return false
+		if str((posata as Dictionary)["by"]) == entity_id:
+			last_error = "%s ha gia' posato la sua pedina" % _name(entity_id)
+			return false
+	if not (price_menu()["cost"] as Array).has(cost_id):
+		last_error = "«%s» non e' un costo di questa carta" % cost_id
+		return false
+	if not _move_tokens(entity_id, -1):
+		return false
+	pedine.append({"by": entity_id, "cost": cost_id})
+	current["cost_pedine"] = pedine
+	log.bullet("D. %s spende un gettone e posa il prezzo: %s." % [
+		_name(entity_id), _price_said("costs", cost_id)
+	])
 	return true
 
 
@@ -553,18 +644,16 @@ func place_costs(entity_id: String, chosen: Array) -> bool:
 ## meta'. **Il mondo prende dall'alto della lista** — la prima voce stampata —
 ## perche' una carta che resta muta non deve poter uscire senza prezzo.
 func priced_costs() -> Array:
-	var due: int = costs_due()
-	if due <= 0:
-		return []
-	var chosen: Array = ((current.get("price_pedina", {}) as Dictionary).get(
-		"costs", []
-	) as Array).duplicate()
-	var menu: Array = price_menu()["cost"] as Array
-	for voice_id in menu:
-		if chosen.size() >= due:
-			break
-		if not chosen.has(str(voice_id)):
-			chosen.append(str(voice_id))
+	# **Nessun ripiego** (D-387). Fino a D-386, se il fronte avverso non
+	# sceglieva, il mondo prendeva dall'alto della lista: il prezzo era dovuto,
+	# e qualcuno doveva pagarlo. Adesso il prezzo lo **compra** chi lo vuole,
+	# spendendo un gettone — e una proposta che nessuno vuole far pagare passa
+	# gratis. E' la forma piena di D-280: *il proponente compra, gli avversari
+	# scelgono in che moneta paga*, con la differenza che adesso anche loro
+	# pagano per scegliere.
+	var chosen: Array = []
+	for posata in (current.get("cost_pedine", []) as Array):
+		chosen.append(str((posata as Dictionary)["cost"]))
 	return chosen
 
 
@@ -618,16 +707,29 @@ func place_counterclaim(entity_id: String, mode: String, first: String, second: 
 			# D-280 vuol dire: decide lui **quali costi** paghera' chi vince,
 			# scavalcando il primo OPPOSE. I due parametri restano due perche'
 			# la firma e' quella dei suoi chiamanti; sono due voci di costo.
+			#
+			# **E le posa gratis** (D-387): il gettone di rivendicazione lo
+			# paga chi non ha speso l'Azione, e lui l'ha spesa — il diritto
+			# pagato col turno batte la moneta, come batteva l'ordine delle
+			# dichiarazioni.
 			var menu: Array = price_menu()["cost"] as Array
 			var chosen: Array = []
+			var pedine: Array = (current.get("cost_pedine", []) as Array)
 			for voice_id in [first, second]:
 				if str(voice_id) == "":
 					continue
 				if not menu.has(str(voice_id)):
 					last_error = "«%s» non e' un costo di questa carta" % str(voice_id)
 					return false
+				if pedine.size() + chosen.size() >= CouncilEconomy.MAX_COSTS:
+					last_error = (
+						"sulla carta ci stanno %d pedine di costo" % CouncilEconomy.MAX_COSTS
+					)
+					return false
 				chosen.append(str(voice_id))
-			current["price_pedina"] = {"by": entity_id, "costs": chosen}
+			for voice_id in chosen:
+				pedine.append({"by": entity_id, "cost": str(voice_id)})
+			current["cost_pedine"] = pedine
 			current["counterclaim"] = "price"
 			var said: PackedStringArray = PackedStringArray()
 			for voice_id in chosen:

@@ -58,14 +58,21 @@
     {
       "id": "OBJ_A_STONE",
       "title": "Qualcosa che Resta in Piedi",
-      "description": "Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: un anno che non ne aggiunge nessun'altra è un anno che il mondo dimentica.",
-      "label": "Ha lasciato almeno una pietra sua",
+      "description": "Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: quello che conta non è quante ne hai, è che quest'anno ne sia salita una.",
+      "label": "Ha alzato una pietra quest'anno, e ne restano due in piedi",
       "conditions": [
         {
           "type": "structure_count",
           "entity_id": "$self",
           "min": 2,
           "label": "Almeno due strutture sue in piedi"
+        },
+        {
+          "type": "did_this_year",
+          "entity_id": "$self",
+          "gesture": "RAISE_STONE",
+          "min": 1,
+          "label": "Una pietra alzata da lei quest'anno"
         }
       ],
       "art_prompt_key": "objective.a_stone"
@@ -73,8 +80,8 @@
     {
       "id": "OBJ_A_WORK",
       "title": "L'Opera che Porta il Nome",
-      "description": "Non un presidio, non un insediamento: un'opera. Qualcosa che serve a tutti e che tutti sanno di chi è.",
-      "label": "Un'opera porta il suo nome",
+      "description": "Non un presidio, non un insediamento: un'opera. E non una che era già lì quando l'anno è cominciato — una che quest'anno è salita, e tutti sanno di chi è.",
+      "label": "Ha alzato quest'anno un'opera che porta il suo nome",
       "conditions": [
         {
           "type": "structure_count",
@@ -82,6 +89,14 @@
           "structure_family": "OPERA",
           "min": 1,
           "label": "Almeno un'opera sua"
+        },
+        {
+          "type": "did_this_year",
+          "entity_id": "$self",
+          "gesture": "RAISE_STONE",
+          "structure_family": "OPERA",
+          "min": 1,
+          "label": "Un'opera alzata da lei quest'anno"
         }
       ],
       "art_prompt_key": "objective.a_work"
@@ -89,8 +104,8 @@
     {
       "id": "OBJ_BOUND_HOUSE",
       "title": "Le Corde che Tengono",
-      "description": "Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va fatta, e va fatta con qualcuno che al primo Consiglio poteva ancora dirti di no.",
-      "label": "Chiude l'anno con due Legami in mano",
+      "description": "Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va **fatta**, e quest'anno: un legame ereditato non è una mano tesa, è un'abitudine.",
+      "label": "Ha stretto un legame quest'anno, e chiude l'anno alleata",
       "conditions": [
         {
           "type": "asset_threshold",
@@ -106,6 +121,13 @@
           "level": "ALLY",
           "at_least": true,
           "label": "Alleata o legata con almeno un'altra casa"
+        },
+        {
+          "type": "did_this_year",
+          "entity_id": "$self",
+          "gesture": "TIGHTEN_BOND",
+          "min": 1,
+          "label": "Un legame stretto da lei quest'anno"
         }
       ],
       "art_prompt_key": "objective.bound_house"
@@ -129,8 +151,8 @@
     {
       "id": "OBJ_MOST_STONE",
       "title": "Più Pietra di Tutti",
-      "description": "Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**. Un anno in cui tutti alzano qualcosa non premia nessuno, e uno in cui nessuno alza niente nemmeno.",
-      "label": "Più cose in piedi di chiunque altro",
+      "description": "Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**, e lo fa **quest'anno**. Arrivare primi senza aver alzato niente è essere rimasti primi, che è un'altra cosa.",
+      "label": "Più cose in piedi di chiunque altro, e una alzata quest'anno",
       "conditions": [
         {
           "type": "leads_in",
@@ -138,6 +160,13 @@
           "what": "structures",
           "by": 1,
           "label": "Più strutture sue in piedi di ogni altra casa"
+        },
+        {
+          "type": "did_this_year",
+          "entity_id": "$self",
+          "gesture": "RAISE_STONE",
+          "min": 1,
+          "label": "E almeno una alzata da lei quest'anno"
         }
       ],
       "art_prompt_key": "objective.most_stone"
@@ -200,8 +229,8 @@
     {
       "id": "OBJ_THE_LONGEST_REACH",
       "title": "La Mano Più Lunga",
-      "description": "Non «due Regioni»: **più di chiunque altro**. È l'unico modo di scriverlo che costringe a guardare il tavolo invece della propria scheda — perché il numero che serve non lo decidi tu, lo decide chi ti sta davanti.",
-      "label": "Tiene più Regioni di chiunque altro",
+      "description": "Non «due Regioni»: **più di chiunque altro**, e non per eredità. Il numero che serve non lo decidi tu, lo decide chi ti sta davanti; la terra in più, quella devi essertela presa.",
+      "label": "Tiene più Regioni di chiunque altro, e una l'ha presa quest'anno",
       "conditions": [
         {
           "type": "leads_in",
@@ -209,6 +238,13 @@
           "what": "control",
           "by": 1,
           "label": "Più Regioni di ogni altra casa"
+        },
+        {
+          "type": "did_this_year",
+          "entity_id": "$self",
+          "gesture": "TAKE_GROUND",
+          "min": 1,
+          "label": "E una terra passata a lei quest'anno"
         }
       ],
       "art_prompt_key": "objective.the_longest_reach"
@@ -261,8 +297,8 @@
     {
       "id": "OBJ_THE_WIDEST_SPREAD",
       "title": "La Gente più Sparsa",
-      "description": "Essere in più posti degli altri non è tenere: è **esserci**. Si paga in pedine che non tornano indietro, e si perde nel momento in cui qualcun altro ne posa una in più.",
-      "label": "Più pedine sul tavolo di chiunque altro",
+      "description": "Essere in più posti degli altri non è tenere: è **esserci**, e l'esserci si paga in pedine che quest'anno sono uscite dalla riserva. Chi non ne ha mossa nessuna non si è sparso: era già sparso.",
+      "label": "Più pedine sul tavolo di chiunque altro, e una posata quest'anno",
       "conditions": [
         {
           "type": "leads_in",
@@ -270,6 +306,13 @@
           "what": "presence",
           "by": 1,
           "label": "Più pedine di ogni altra casa"
+        },
+        {
+          "type": "did_this_year",
+          "entity_id": "$self",
+          "gesture": "SPREAD",
+          "min": 1,
+          "label": "E una presenza posata da lei quest'anno"
         }
       ],
       "art_prompt_key": "objective.the_widest_spread"

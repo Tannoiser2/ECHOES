@@ -230,27 +230,39 @@ func test_the_card_offers_benefits_and_costs() -> void:
 	assert_true((face["failure"] as Array).size() >= 1, "e se cade, la carta dice gia' cosa succede")
 
 
-## **L'economia: uno e' gratis, ogni altro si paga.** E' la riga in mezzo alla
-## carta, ed e' quella che rende il Consiglio una decisione invece di un menu.
+## **L'economia: uno e' gratis, ogni altro costa un gettone** (D-387, ISSUES
+## 122). E' la riga in mezzo alla carta, ed e' quella che rende il Consiglio una
+## decisione invece di un menu — con la differenza che adesso la moneta il
+## proponente se l'e' guadagnata un turno prima, giocando una carta Asset dalla
+## sua faccia RIVENDICARE.
 func test_one_benefit_is_free_and_every_other_costs_one() -> void:
-	_open_with_proposition()
+	var context: Dictionary = _open_with_proposition()
+	var proponent: String = str(context["proponent"])
 	var benefits: Array = _benefits()
 	assert_true(session.confluence.set_benefits([]), "si puo' anche non comprare niente")
-	assert_eq(session.confluence.costs_due(), 0, "e allora non si paga")
 	assert_true(session.confluence.set_benefits([str(benefits[0])]), "un beneficio si compra")
-	assert_eq(session.confluence.costs_due(), 0, "il primo e' gratis")
+	assert_eq(session.confluence.claim_tokens(proponent), 0, "il primo e' gratis")
+	assert_false(
+		session.confluence.set_benefits(benefits.slice(0, 2)),
+		"il secondo senza gettoni non si compra"
+	)
+	_give_tokens(proponent, 2)
 	assert_true(session.confluence.set_benefits(benefits.slice(0, 2)), "due benefici")
-	assert_eq(session.confluence.costs_due(), 1, "il secondo costa un costo")
+	assert_eq(session.confluence.claim_tokens(proponent), 1, "il secondo costa un gettone")
 	assert_true(session.confluence.set_benefits(benefits.slice(0, 3)), "tre benefici")
-	assert_eq(session.confluence.costs_due(), 2, "il terzo ne costa un altro")
+	assert_eq(session.confluence.claim_tokens(proponent), 0, "il terzo ne costa un altro")
 	assert_false(
 		session.confluence.set_benefits(benefits.slice(0, 4)),
 		"e il tetto e' tre: sulla carta non ci stanno altre pedine (D-303)"
 	)
 	assert_eq(
-		session.confluence.costs_due(), 2,
+		session.confluence.claim_tokens(proponent), 0,
 		"il rifiuto non tocca quello che era gia' comprato"
 	)
+	# **E quello che non si compra piu' torna in mano**: le pedine si posano e
+	# si tolgono, e la borsa segue.
+	assert_true(session.confluence.set_benefits([str(benefits[0])]), "si torna a uno")
+	assert_eq(session.confluence.claim_tokens(proponent), 2, "e i due gettoni tornano")
 	assert_false(
 		session.confluence.set_benefits([str(benefits[0]), str(benefits[0])]),
 		"una pedina per voce"
@@ -460,15 +472,19 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 		str((live[1] as Dictionary)["id"]),
 		str((live[2] as Dictionary)["id"]),
 	]
+	# **Il tetto lo dicono i gettoni** (D-387), non piu' i costi vivi: quello
+	# che il proponente puo' posare dipende da quello che ha in mano.
+	var proponent: String = str(session.confluence.current["proponent"])
+	_give_tokens(proponent, 1)
 	assert_false(
 		session.confluence.set_benefits(three),
-		"con un costo vivo solo, tre benefici non si comprano: non ci sono due monete"
+		"con un gettone solo, tre benefici non si comprano"
 	)
 	assert_true(
 		session.confluence.set_benefits(three.slice(0, 2)),
 		"due si', perche' il primo e' gratis e il secondo ha la sua moneta"
 	)
-	assert_eq(session.confluence.costs_due(), 1, "e il conto e' un costo")
+	assert_eq(session.confluence.claim_tokens(proponent), 0, "e il gettone e' speso")
 
 
 ## **La carta vince, e la Pietra gia' alzata passa a chi l'ha comprata**
@@ -555,12 +571,13 @@ func test_the_scar_is_a_cost_like_the_others() -> void:
 		(session.confluence.price_menu()["cost"] as Array).has(scar_id),
 		"e il fronte avverso puo' sceglierla come prezzo"
 	)
-	# Due benefici: un costo da pagare, e il fronte avverso sceglie la Cicatrice.
-	session.confluence.set_benefits(_benefits().slice(0, 2))
+	# Un avversario spende il suo gettone e sceglie la Cicatrice (D-387).
+	session.confluence.set_benefits(_benefits().slice(0, 1))
 	var others: Array = _others(str(context["proponent"]))
 	session.confluence.declare_stance(str(others[0]), "OPPOSE")
+	_give_tokens(str(others[0]), 1)
 	assert_true(
-		session.confluence.place_costs(str(others[0]), [scar_id]),
+		session.confluence.place_cost(str(others[0]), scar_id),
 		"la Cicatrice si posa come qualunque altro costo"
 	)
 	assert_true(
@@ -569,43 +586,54 @@ func test_the_scar_is_a_cost_like_the_others() -> void:
 	)
 
 
-## **La pedina spetta al primo OPPOSE nell'ordine delle dichiarazioni**, ed e'
-## un diritto che non si usurpa: non chi sostiene, non il secondo oppositore.
-func test_the_pedina_belongs_to_the_first_opposer() -> void:
+## **La pedina del prezzo la posa chi la paga** (D-387, ISSUES 122). Non e'
+## piu' un diritto del primo OPPOSE: e' una spesa, e la fa chiunque non
+## proponga, **una pedina a testa**, finche' sulla carta c'e' posto.
+func test_the_price_pedina_is_placed_by_whoever_pays_for_it() -> void:
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])
 	var others: Array = _others(proponent)
-	assert_eq(session.confluence.first_opposer(), "", "senza OPPOSE dichiarati non c'e' fronte avverso")
+	session.confluence.set_benefits(_benefits().slice(0, 1))
 
-	session.confluence.declare_stance(str(others[0]), "SUPPORT")
-	session.confluence.declare_stance(str(others[1]), "OPPOSE")
-	session.confluence.declare_stance(str(others[2]), "OPPOSE")
-	assert_eq(
-		session.confluence.first_opposer(), str(others[1]),
-		"il primo OPPOSE nell'ordine delle dichiarazioni parla per il fronte"
-	)
-	# Il proponente ha comprato tre benefici: due costi da pagare.
-	session.confluence.set_benefits(_benefits().slice(0, 3))
-	assert_eq(session.confluence.costs_due(), 2, "tre benefici costano due costi")
 	assert_false(
-		session.confluence.place_costs(str(others[0]), [_a_cost()]),
-		"chi sostiene non sceglie il prezzo"
+		session.confluence.place_cost(str(others[0]), _a_cost()),
+		"senza gettone non si posa niente"
 	)
 	assert_false(
-		session.confluence.place_costs(str(others[2]), [_a_cost()]),
-		"il secondo oppositore non sceglie il prezzo"
+		session.confluence.place_cost(proponent, _a_cost()),
+		"e il proponente non si fa pagare da se'"
 	)
+	_give_tokens(str(others[0]), 2)
+	_give_tokens(str(others[1]), 1)
+	_give_tokens(str(others[2]), 1)
 	assert_false(
-		session.confluence.place_costs(str(others[1]), ["C_INVENTATO"]),
+		session.confluence.place_cost(str(others[0]), "C_INVENTATO"),
 		"una voce fuori dalla carta si rifiuta"
 	)
+	assert_true(
+		session.confluence.place_cost(str(others[0]), _a_cost()),
+		"chi spende il gettone posa la pedina"
+	)
+	assert_eq(session.confluence.claim_tokens(str(others[0])), 1, "e il gettone se ne va")
 	assert_false(
-		session.confluence.place_costs(str(others[1]), _voices("costs").slice(0, 3)),
-		"e non si posano piu' pedine di quante la proposta ne costa"
+		session.confluence.place_cost(str(others[0]), _third_cost()),
+		"una pedina a testa, anche a chi ne ha due"
+	)
+	assert_false(
+		session.confluence.place_cost(str(others[1]), _a_cost()),
+		"e una pedina per voce"
 	)
 	assert_true(
-		session.confluence.place_costs(str(others[1]), [_a_cost(), _third_cost()]),
-		"il primo oppositore sceglie in che moneta si paga"
+		session.confluence.place_cost(str(others[1]), _third_cost()),
+		"un secondo avversario ne posa un'altra"
+	)
+	assert_false(
+		session.confluence.place_cost(str(others[2]), _first_cost()),
+		"e sulla carta ci stanno due pedine di costo, non tre"
+	)
+	assert_eq(
+		session.confluence.claim_tokens(str(others[2])), 1,
+		"a chi non l'ha posata il gettone resta"
 	)
 
 
@@ -641,12 +669,13 @@ func test_on_success_benefits_and_costs_are_applied() -> void:
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])
 	var opposer: String = str(_others(proponent)[0])
+	_give_tokens(proponent, 1)
 	session.confluence.set_benefits(_benefits().slice(0, 2))
 	session.confluence.declare_stance(opposer, "OPPOSE")
-	assert_eq(session.confluence.costs_due(), 1, "due benefici costano un costo")
+	_give_tokens(opposer, 1)
 	assert_true(
-		session.confluence.place_costs(opposer, [_third_cost()]),
-		"il fronte avverso sceglie la moneta"
+		session.confluence.place_cost(opposer, _third_cost()),
+		"un avversario spende il gettone e sceglie la moneta"
 	)
 	_rig(_factor_cancelling_bite(proponent))
 	var result: Dictionary = session.confluence.resolve()
@@ -665,16 +694,32 @@ func test_on_success_benefits_and_costs_are_applied() -> void:
 	)
 
 
-## **Senza scelta decide il mondo**: il prezzo si prende dall'alto della lista,
-## perche' una carta che resta muta non deve poter uscire senza pagare.
-func test_without_a_choice_the_world_takes_from_the_top() -> void:
-	_open_with_proposition()
+## **Senza gettoni non si paga niente** (D-387, ISSUES 122). E' il rovescio
+## esatto della regola di prima, ed e' la ragione della decisione: fino a D-386
+## il prezzo era **dovuto** — tanti costi quanti benefici oltre il primo — e se
+## il fronte avverso taceva lo prendeva il mondo dall'alto della lista. Adesso
+## il prezzo lo **compra** chi lo vuole, e una proposta che nessuno vuole far
+## pagare passa gratis.
+func test_without_a_token_nothing_is_paid() -> void:
+	var context: Dictionary = _open_with_proposition()
+	_give_tokens(str(context["proponent"]), 1)
 	session.confluence.set_benefits(_benefits().slice(0, 2))
-	assert_eq(session.confluence.costs_due(), 1, "un costo da pagare")
 	assert_eq(
-		session.confluence.priced_costs(), [_first_cost()],
-		"e nessuno l'ha scelto: prende il mondo, dall'alto"
+		session.confluence.priced_costs(), [],
+		"nessuno ha speso un gettone: la proposta passa gratis"
 	)
+
+
+## I gettoni in mano a una casa, senza passare dal turno: qui si prova il
+## Consiglio, non da dove arriva la moneta — quella la prova
+## `test_a_claim_card_pays_the_council`.
+func _give_tokens(entity_id: String, quanti: int) -> void:
+	var effect: GDScript = load("res://scripts/core/effect.gd")
+	for i in range(quanti):
+		session.applier.apply(effect.make(
+			"GRANT_CLAIM_TOKEN", "entity", entity_id, {},
+			effect.source("system", "TEST", "", 1, 1, 0)
+		))
 
 
 ## Il testo stampato di una voce, per leggerlo nel verbale.

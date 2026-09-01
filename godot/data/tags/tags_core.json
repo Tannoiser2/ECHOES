@@ -233,7 +233,8 @@
         "destiny_physical",
         "tension",
         "chronicle",
-        "echo_card"
+        "echo_card",
+        "destiny"
       ]
     },
     {
@@ -1339,7 +1340,8 @@
         "destiny_physical",
         "chronicle",
         "entity_strategic_profile",
-        "echo_card"
+        "echo_card",
+        "destiny"
       ]
     },
     {
@@ -2651,7 +2653,8 @@
         "asset_physical",
         "destiny_physical",
         "tag_rule",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "destiny"
       ]
     },
     {
@@ -2711,7 +2714,9 @@
       ],
       "read_by": [
         "asset_physical",
-        "entity_strategic_profile"
+        "entity_strategic_profile",
+        "destiny",
+        "destiny_physical"
       ]
     },
     {

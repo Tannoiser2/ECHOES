@@ -288,10 +288,18 @@ def survey() -> str:
     )
     add("| Presenza e controllo | 2 | %d per casa |" % per_casa)
     add("| Rombi del Calore | 1 | uno per ognuno dei %d Temi, piu' due di scorta |" % len(themes))
+    # **I gettoni di rivendicazione** (D-387, ISSUES 122): la moneta del
+    # Consiglio. Se ne prende uno giocando una carta Asset dalla sua faccia
+    # RIVENDICARE, e se ne spende uno per il secondo beneficio o per posare un
+    # costo. Quanti servono lo dice la carta, non questa riga: al massimo due
+    # pedine di beneficio oltre la prima e due di costo per Consiglio, e i
+    # Consigli in un anno sono uno per Atto.
+    gettoni = max((int(c.get("acts", 3)) for c in chronicles), default=3) * 4
+    add("| **Gettoni RIVENDICARE** — la moneta del Consiglio | 1 | %d |" % gettoni)
     add("")
     add("**%d tipi diversi, %d pezzi** piu' le pedine dei seggi." % (
-        len(mappa) + len(case) + len(mondo_da_tagliare),
-        pezzi_mappa + pezzi_case + pezzi_mondo))
+        len(mappa) + len(case) + len(mondo_da_tagliare) + 1,
+        pezzi_mappa + pezzi_case + pezzi_mondo + gettoni))
     add("")
     add("Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice")
     add("questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca")

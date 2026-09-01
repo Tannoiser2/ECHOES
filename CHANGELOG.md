@@ -5,6 +5,268 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.353 — Quattro decisioni del committente: l'Eredità, il gesto, la moneta
+
+Quattro voci che erano **sue e non mie** sono state decise, e sono scritte.
+
+### L'Eredità: +3 per ogni leggenda che porta il tuo nome ([D-385](docs/DECISIONS.md#d-385))
+
+Chiude [ISSUES 84](docs/ISSUES.md#84). Una leggenda porta il tuo nome quando
+racconta uno dei segni che la tua casa aveva dichiarato di voler lasciare. Non
+la scrive nessun giocatore: la fabbrica il **tempo**, al salto d'era.
+
+| su 24 saghe | |
+|---|---|
+| saghe in cui l'Eredità **ribalta il vincitore** | **10 su 24** |
+| accordo con chi ha più Trionfi, con e senza | 3 su 24 → 3 su 24 |
+
+**Il costo dichiarato: due case su otto prendono zero, sempre** — Nahr e Vaerax.
+Non giocano male: i segni che vogliono lasciare sono muri e insediamenti, e un
+segno di Regione non diventa mai leggenda; oppure sono `enduring_facts`, e un
+fatto che il mondo tiene per vero per sempre non è una cosa di cui *si racconta*.
+Aperta [ISSUES 124](docs/ISSUES.md#124).
+
+### Il tempo del verbo: una clausola che legge il verbale ([D-386](docs/DECISIONS.md#d-386))
+
+Chiude la parte fattibile di [ISSUES 120](docs/ISSUES.md#120). `did_this_year`
+è la prima clausola del vocabolario che non guarda **come sta il tavolo** ma
+**cos'è successo**: legge il registro degli Effetti dell'anno e cerca uno di
+quattro gesti — alzare una Pietra, prendere una terra, posare una presenza,
+stringere un legame.
+
+| obiettivi che rendono uguale o meglio **stando fermi** | 6 | **3** |
+|---|---|---|
+
+Curati `BOUND_HOUSE` (da −19% a **+12%**), `THE_LONGEST_REACH` (−10% → **+4%**),
+`THE_WIDEST_SPREAD` (+0% → **+7%**). **Peggiorati e scritti**: `MOST_STONE` da
++0% a **−7%** e `A_WORK` da −3% a **−6%**.
+
+E il numero che conta di più: **quanto rende giocare da +160,7% a +267,8%**, con
+i Destini che si avverano da fermi da due a **uno**.
+
+I tre che restano hanno una causa sola, misurata: **nessuna Azione della plancia
+alza una Pietra** — una in cento partite — e le Pietre le alza il Consiglio, che
+è **più generoso con un tavolo che tace** (199 contro 165). Aperta
+[ISSUES 123](docs/ISSUES.md#123).
+
+### I gettoni di rivendicazione ([D-387](docs/DECISIONS.md#d-387))
+
+Chiude a metà [ISSUES 122](docs/ISSUES.md#122), con la regola dettata dal
+committente. Il proponente posa **un beneficio gratis**; ogni altro costa **un
+gettone RIVENDICARE**, che si guadagna giocando una carta Asset dalla sua faccia
+RIVENDICARE. Gli altri si astengono, o spendono un gettone per **posare un
+costo**. Se nessuno spende, la proposta passa senza prezzo.
+
+| su 100 partite | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,71 | **1,40** |
+| **costi posati dagli avversari, per Consiglio** | **0,09** | **0,68** |
+| costi posati in tutto | 34 | **217** |
+
+Prima, in 364 Consigli gli avversari sceglievano **34 prezzi**: tutto il resto lo
+riempiva il mondo dall'alto della lista, e la frase di D-280 — *«gli avversari
+scelgono in che moneta paga»* — nei fatti non succedeva.
+
+**Il costo dichiarato:** le caselle vive per Consiglio non sono salite, sono
+**scese**. Con 2,8 carte RIVENDICARE giocate per partita i gettoni bastano per
+circa un acquisto in più *per partita*, non per Consiglio. Aperta
+[ISSUES 125](docs/ISSUES.md#125).
+
+E RIVENDICARE adesso rende due volte: prima, **131 diritti su 140 morivano senza
+essere usati** in cinquanta partite.
+
+### ISSUES 119 riscritta con gli esempi
+
+Su richiesta del committente: cosa si vede al tavolo quando un Consiglio passa e
+quando cade, cosa vive nella banda del fallimento — `spoke_and_lost` si posa
+**8 volte in cento partite** — e le tre strade con un esempio ciascuna.
+
+### Il grafo: un elenco invece di un nome da indovinare
+
+Su richiesta del committente. Il bottone **elenco** apre tutti i **964 pezzi**
+raccolti per genere — 48 carte, 60 Tensioni, 194 proposte, 174 segni… — con un
+filtro che restringe. Prima l'unico modo di arrivare a una carta era scriverne
+il nome.
+
+Nel disegno entrano anche i quattro **gesti** e la **moneta** del Consiglio:
+964 pezzi, 4.262 legami; pezzi senza nemmeno una freccia **12 → 7**.
+
+### E per strada
+
+- **Gli obiettivi non erano in `REVISIONE_TESTI.md`**: diciassette carte che si
+  tengono in mano tutto l'anno, in un documento che promette *ogni testo che un
+  giocatore può leggere*. 2.898 → **2.968 testi**.
+- **Un segnalino in più nella scatola**: 118 tipi → **119**, 142 pezzi → **154**.
+- Due EffectType nuovi, `GRANT_CLAIM_TOKEN` e `SPEND_CLAIM_TOKEN`, l'uno
+  l'inverso dell'altro.
+
+**Cancello:** 0 seggi bloccati su un solo livello su 8, tavolo misto e uniforme.
+Suite **679 prove / 101 suite / 86.480 asserzioni** verdi, ventisei cancelli
+verdi.
+
+---
+
+## 0.1.352 — La prima delle tre riviste: quello che si legge col dito (D-384)
+
+Delle tre riviste che si nascondono in *«tutta la pagina va rivista»*
+(ISSUES 65), fatta **la prima** — quella che la voce stessa dichiara finibile, e
+che da D-379 ha un metro.
+
+| | prima | dopo |
+|---|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** | **2** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** | **0** |
+
+Spostate sotto gli occhi: le **nove ragioni** di un segno voluto o temuto, la
+**descrizione della vita** che ti aspetta alla porta del tempo, e il **nome
+dell'Eco** sulla carta in mano — *«forza 2 · eco: La Parola Data»*. Tolti due
+suggerimenti che ripetevano una nota già stampata.
+
+I sette posti dove si lascia cadere una carta chiedevano 19 e 29 pixel: adesso 44,
+la stessa misura che D-243 aveva già stabilito per le carte in mano. **È il
+bersaglio a crescere, non il testo.**
+
+I due che restano sono il testo intero dei due Echi in mano: stamparlo vuol dire
+allungare la carta, e quella è la **seconda** rivista. L'impaginazione e l'idea
+di cosa si guarda restano scelte del committente.
+
+Cancello: **0 seggi bloccati su 8**. 26 cancelli verdi, suite verde.
+
+---
+
+## 0.1.351 — I sei livelli di vittoria nominano un segno, e una guardia si è allargata (D-383)
+
+D-377 aveva misurato **sei livelli di vittoria o trionfo** che si reggono solo
+sul contare, tutti sui Destini condivisi. Un segno **del mondo** non è di
+nessuno, ed è la strada che la casa aveva già in uso: sei clausole, una per
+livello, ognuna con un segno che quel Destino **dichiara già di osservare**.
+
+| | prima | dopo |
+|---|---|---|
+| livelli che si reggono solo sul contare | 17 su 69 | **11 su 69** |
+| **di cui vittoria o trionfo** | **6** | **0** |
+
+Gli undici che restano sono tutti il `minimum`, dove il conto è la cosa giusta.
+Ogni segno scelto contro la misura: tutti e sei sono scritti dal mondo su cento
+partite, da 458 volte (`condition:contested`) a 13 (`condition:abandoned`).
+
+**E una guardia che modellava il motore meno generoso di com'è.** Tre clausole
+hanno fatto cadere `test_no_destiny_asks_for_a_tag_nothing_can_write`, che
+dichiarava `settlement:village`, `structure:archive` e `knowledge_shared` non
+scrivibili da niente: sono scritti 42, 43 e 145 volte. Alla lista delle penne
+mancavano **le caselle della carta Tensione** e **i gradi delle Pietre**. È D-376
+visto dall'altra faccia — lì la guardia assolveva, qui avrebbe vietato una
+clausola vera. Allargata e provata piantando un difetto.
+
+**Costi:** gli obiettivi avverati scendono da 453 a 438 su 1.200, e il vantaggio
+di giocare da +168,0% a +160,7%. In cambio tre Destini condivisi su quattro
+pagano meglio chi gioca. `SHARED_QUIET` resta l'unico che si avvera da fermi, e
+non lo ribalterebbe nessun segno: chiede che le questioni restino basse, e un
+tavolo che non fa niente le tiene basse per definizione.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
+## 0.1.350 — Un Tema con una carta sola, e due caselle che nessuno comprava (D-382)
+
+**L'Antico riceveva 32 Risonanze su 3.725, lo 0,9%**, ed era in cima al Punto
+Zero da nove versioni. La causa non era sottile: **una carta su 48, una copia
+nel mazzo, un punto di calore** contro le trentasette copie della Fede.
+
+Spostate **otto Risonanze**, scegliendo le carte in cui il Tema nuovo era già
+nella frase d'autore — *«è una cosa che c'era prima dell'accordo»* (Legame di
+Sangue), *«chi ricorda decide cosa c'era prima»* (Consiglio degli Anziani). Il
+testo stampato nomina il Tema, quindi riscriverlo era metà del lavoro.
+
+| dove finisce il Calore | prima | dopo |
+|---|---|---|
+| Fede | 33,7% | 22,9% |
+| **Antico** | **0,9%** | **20,7%** |
+| Terra | 7,0% | **9,9%** |
+
+**E la porta murata si è aperta da sola.** `mountain_forgotten` era l'ultima
+clausola che chiedeva una cosa che il mondo non scrive mai. Con l'Antico che si
+apre, il mondo la scrive: **porte murate 1 → 0**.
+
+### Le due caselle di ISSUES 117
+
+**ABBASSA LA DOMANDA** era offerta 730 volte e comprata **zero**: valeva 1
+contro il 3 di CAMBIA CONTROLLO, e il primo beneficio è gratis. Adesso **legge
+quello su cui agisce** — raffreddare una domanda a terra non vale niente,
+raffreddarne una a un passo dal Consiglio vale quanto alzare una Pietra.
+
+Provata prima a 3: comprata 393 volte su 716, e le altre si svuotavano. **Una
+casella che mangia le altre è sbagliata quanto una che nessuno compra.** Scesa
+a 2 — e allora è crollata RAFFREDDA TEMA, che ha avuto la stessa cura: vale 2 se
+è il Tema **col rombo più avanti**. Poi è caduta una prova, e aveva ragione lei:
+MUOVI UN RAPPORTO, offerto nove volte in cento saghe, non veniva più preso.
+
+| casella | prima | dopo |
+|---|---|---|
+| **ABBASSA LA DOMANDA** | 0 su 730 | **26 su 728** |
+| **RAFFREDDA TEMA** | 22 su 365 | **115 su 364** |
+| MUOVI UN RAPPORTO | 2 su 7 | **6 su 9** |
+
+**UNA CASATA LASCIA IL TAVOLO resta a zero, e la decisione è di lasciarla lì:**
+lo zero è la congiunzione (Vaerax al tavolo *e* quella carta in discussione), non
+la casella. È la cosa più drastica del gioco e vale una applicazione in tutto il
+corpo scritto.
+
+**Costi dichiarati:** UNA PIETRA SALE scende da 14 acquisti a 2; le
+trasformazioni sedute da 233 a 226; i Consigli cadono ancora un po' meno (37 → 28
+sul misto). E i segni che non arrivano mai sul tavolo scendono da 52 a **48**.
+
+**Quello che non si chiude tarando:** il primo beneficio è gratis, quindi viene
+preso solo quello che vale di più, e a parità vince sempre lo stesso. Ogni
+casella alzata ne spegne un'altra. Aperta come **ISSUES 122**.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
+## 0.1.349 — Il Punto Zero rimisurato, e due tavoli che erano scambiati
+
+`PUNTO_ZERO.md` è il primo documento che `CLAUDE.md` dice di leggere, ed era
+**fermo alla 0.1.294** — cinquantaquattro versioni — con una banda in cima che
+elencava i numeri che sapevo cambiati. Una fotografia con una didascalia non è
+una misura.
+
+Rifatto per intero, con le sonde rilanciate oggi: `run_pass_probe`,
+`run_asking_probe`, `run_resonance_probe`, il cancello dei cento semi, e i
+documenti generati che un cancello tiene freschi.
+
+| | diceva | oggi |
+|---|---|---|
+| suite | 634 prove / 35.900 asserzioni | **665 / 86.347** |
+| cancelli | 19 | **26** |
+| turni «passa» | 47,3% | **46,7%** |
+| quanto rende giocare | +183,1% | **+168,0%** |
+| Destini che si avverano da fermi | 3 su 19 | **2 su 23** |
+| segni nel dizionario / che qualcuno scrive | 182 / 149 | **174 / 170** |
+| carte con una domanda in prestito | 28 | **0** |
+| Effetti che una casella sa dire | *«il motore non esegue»* | **44 su 46, 334 applicazioni su 336** |
+| da stampare | 39 fogli A4, 67 tipi di segnalino | **49 fogli, 118 tipi** |
+
+E sei misure che nella versione vecchia non esistevano: i segni che non arrivano
+mai sul tavolo, i punti regalati e le porte murate, le vite che non si siedono,
+i testi in revisione, i pezzi del flusso disegnato, e la pagina dell'app.
+
+**La voce più grossa del progetto non c'è più.** Quel foglio diceva *«il motore
+non esegue la risoluzione della proposta: 642 Effetti d'autore che nessuna carta
+stampa»*. ISSUES 89 è chiusa da 0.1.332.
+
+### E una correzione: i due tavoli erano scambiati
+
+D-378, la sua riga qui e ISSUES 119 dicevano *«FAILURE da 108 a 37 sul tavolo
+uniforme, da 25 a 14 sul misto»*. È il contrario: **la sonda stampa il misto per
+primo**, e li avevo letti al rovescio. I numeri sono quelli, le etichette no.
+Corrette in tutti e tre i posti.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
 ## 0.1.348 — I tre pezzi «che nessuno tocca» erano tre buchi del disegno (D-381)
 
 D-380 aveva lasciato quindici pezzi senza nemmeno una freccia e li aveva messi in
@@ -150,7 +412,8 @@ Adesso legge le carte, e stampa anche le **clausole**, che nessuna sezione
 mostrava.
 
 **Il costo, misurato:** i Consigli cadono molto meno — FAILURE da **108 a 37**
-sul tavolo uniforme, da **25 a 14** sul misto. Ogni carta offre tre strade sue,
+sul tavolo misto, da **25 a 14** sull'uniforme (le etichette erano scambiate:
+corrette in 0.1.349). Ogni carta offre tre strade sue,
 e il tavolo ne trova una che gli va bene. Un Consiglio che quasi non cade ha
 meno posta: aperta come **ISSUES 119**.
 
@@ -169,7 +432,7 @@ lo stesso.
 | vite che non si siedono mai | 2 | **1** |
 | trasformazioni sedute in 12 saghe | 223 | **233** |
 | segni che non arrivano mai sul tavolo | 50 | **52** |
-| Consigli caduti (uniforme / misto) | 108 / 25 | **37 / 14** |
+| Consigli caduti (misto / uniforme) | 108 / 25 | **37 / 14** |
 
 Guadagno non in programma: **La Leggenda della Montagna si siede**.
 

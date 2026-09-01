@@ -164,6 +164,10 @@ static func narrate(effect: Dictionary, data) -> String:
 			]
 		"CONSUME_CLAIM":
 			return "Un diritto si spegne: %s." % str(payload.get("claim_id", ""))
+		"GRANT_CLAIM_TOKEN":
+			return "%s prende un gettone di rivendicazione." % _entity(target_id, data)
+		"SPEND_CLAIM_TOKEN":
+			return "%s spende un gettone di rivendicazione." % _entity(target_id, data)
 		"SET_ENTITY_ACTIVE":
 			if bool(payload.get("active", true)):
 				return "%s torna al tavolo." % _entity(target_id, data)

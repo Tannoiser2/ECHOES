@@ -92,7 +92,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `charter_for_all` | clausola di Consiglio | — | pesca delle domande |
 | `charter_temporary` | carta Echo, clausola di Consiglio | — | pesca delle domande |
 | `charter_written` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
-| `condition:abandoned` | Conseguenza | clausola di Consiglio | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
+| `condition:abandoned` | Conseguenza | clausola di Consiglio | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute |
 | `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, obiettivo, pesca delle domande |
@@ -133,7 +133,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `faith_established` | Conseguenza | — | Risonanza, pesca delle domande |
 | `grain_requisitioned` | Azione stampata, Conseguenza | — | Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo |
-| `knowledge_shared` | Azione stampata, carta Echo, clausola di Consiglio | — | Risonanza, carta Echo, pesca delle domande |
+| `knowledge_shared` | Azione stampata, carta Echo, clausola di Consiglio | — | Destino, Risonanza, carta Echo, pesca delle domande |
 | `ledger_public` | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | — | Destino, Risonanza, carta Echo, fatto che dura |
 | `mine_sealed` | Conseguenza | Conseguenza | Destino, catena delle ere, fatto che dura, pesca delle domande, proposta |
 | `nahr_settled` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura |
@@ -163,7 +163,7 @@ I segni che scrive il **codice** e non i dati non compaiono qui: `evicted:` (con
 | `scar:unanswered` | Conseguenza (cicatrice) | carta Asset | conteggio delle cicatrici (`scar_count`) |
 | `settlement:march` | Conseguenza | — | regola del segno |
 | `settlement:market` | Conseguenza | — | bersaglio a segni, regola del segno |
-| `settlement:village` | Azione stampata | — | bersaglio a segni, regola del segno |
+| `settlement:village` | Azione stampata | — | Destino, bersaglio a segni, regola del segno |
 | `structure:sealed` | Conseguenza | Azione stampata, Conseguenza | Destino, bersaglio a segni, chi **non** siede l'anno prossimo, la Regione di cui si discute |
 | `study_supervised` | Conseguenza | — | Destino, pesca delle domande |
 | `succession_by_law` | Azione stampata, Conseguenza | — | Destino, chi siede l'anno prossimo, fatto che dura |

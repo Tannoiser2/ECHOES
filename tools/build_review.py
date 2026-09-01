@@ -73,6 +73,11 @@ def main() -> int:
     assets = sorted_by_id(load_all("asset"))
     destinies = sorted_by_id(load_all("destiny"))
     actions = sorted_by_id(load_all("action"))
+    # **Gli obiettivi mancavano** (D-386). Diciassette carte che un giocatore
+    # tiene in mano tutto l'anno — titolo, descrizione, e la riga che finisce a
+    # verbale — e questo documento, che promette *ogni testo che un giocatore
+    # puo' leggere*, non ne portava nessuna. Trovato riscrivendone sei.
+    objectives = sorted_by_id(load_all("objective"))
 
     review.line("# ECHOES — I testi, per la revisione")
     review.line()
@@ -237,7 +242,19 @@ def main() -> int:
                 clauses if clauses else None,
             )
 
-    review.line("## 10. Le Azioni — la plancia, stampata una volta")
+    review.line("## 10. Gli Obiettivi — i tre coperti che si pescano a inizio saga")
+    review.line()
+    for objective in objectives:
+        clauses = " · ".join(
+            str(condition.get("label", "")) for condition in objective.get("conditions", [])
+            if condition.get("label")
+        )
+        review.entry(
+            objective["id"], objective.get("title"), objective.get("description"),
+            objective.get("label"), clauses if clauses else None,
+        )
+
+    review.line("## 11. Le Azioni — la plancia, stampata una volta")
     review.line()
     for action in actions:
         review.entry(

@@ -321,6 +321,34 @@ func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
 		for tally in chronicle.get("era_tallies", []):
 			for sign in (tally as Dictionary)["chain"]:
 				writable[str(sign)] = str((tally as Dictionary)["id"])
+	# **E le due bocche che questa guardia non conosceva** (D-383).
+	#
+	# La lista sopra e' cresciuta una penna per volta e si era fermata prima di
+	# due che il tavolo usa eccome:
+	#
+	# - **le caselle della carta Tensione** (D-280): IL MONDO RICORDA posa un
+	#   segno globale, AGGIUNGI CONDIZIONE e CICATRICE ne posano uno sul luogo.
+	#   `knowledge_shared` esce da tre caselle e si scrive **145 volte** su cento
+	#   partite, e questa guardia lo dava per non scrivibile;
+	# - **i gradi delle Pietre**: una Pietra alzata posa il segno del suo grado,
+	#   ed e' cosi' che nascono `settlement:village` e `structure:archive` — 42 e
+	#   43 scritture su cento partite.
+	#
+	# Una guardia che modella il motore **meno generoso di com'e'** non protegge
+	# da niente: vieta una clausola vera. E' lo stesso difetto di D-376 visto
+	# dall'altra faccia.
+	for tension in loaded.tensions.values():
+		var face: Dictionary = (tension as Dictionary).get("physical", {}) as Dictionary
+		for list_name in ["benefits", "costs", "failure"]:
+			for voice in (face.get(list_name, []) as Array):
+				var tag: String = str((voice as Dictionary).get("tag", ""))
+				if tag != "":
+					writable[tag] = str((tension as Dictionary)["id"])
+	for structure in loaded.structure_types.values():
+		for grade in ((structure as Dictionary).get("grades", []) as Array):
+			var tag: String = str((grade as Dictionary).get("tag", ""))
+			if tag != "":
+				writable[tag] = str((structure as Dictionary)["id"])
 	for tag in writable.keys().duplicate():
 		var fact: String = str(tag)
 		if fact.begins_with("legend:") or fact.begins_with("function:"):
@@ -377,7 +405,7 @@ func test_generated_schema_covers_every_collection() -> void:
 			SchemaDefs.DEFS.has(str(schema_id)),
 			"schema_defs.gd definisce '%s'" % schema_id
 		)
-	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 29, "l'enum EffectType chiuso ha 29 voci")
+	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 31, "l'enum EffectType chiuso ha 31 voci")
 
 
 ## Every Echo-card hook has to compile to at least one Effect. A card whose

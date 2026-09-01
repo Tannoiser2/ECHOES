@@ -180,6 +180,18 @@ func test_round_trip_every_reversible_type() -> void:
 		),
 		_make("CONSUME_CLAIM", "claim", "CLM_TEST2", {"claim_id": "CLM_TEST2"})
 	)
+	# **Il gettone della rivendicazione** (D-387): prenderlo si disfa, e
+	# spenderlo pure — ma spenderlo va provato su una casa che ne ha uno, se
+	# no il motore rifiuta per la ragione giusta e il round-trip non prova
+	# niente.
+	_round_trip(
+		"GRANT_CLAIM_TOKEN", _make("GRANT_CLAIM_TOKEN", "entity", "ENT_NAHR", {})
+	)
+	_with_setup(
+		"SPEND_CLAIM_TOKEN",
+		_make("GRANT_CLAIM_TOKEN", "entity", "ENT_NAHR", {}),
+		_make("SPEND_CLAIM_TOKEN", "entity", "ENT_NAHR", {})
+	)
 	_with_setup(
 		"REMOVE_SCAR",
 		_make(
@@ -250,7 +262,8 @@ func test_round_trip_every_reversible_type() -> void:
 		"ADJUST_TENSION", "ADJUST_THEME_HEAT", "SET_TENSION_VISIBILITY", "ADD_PRESENCE", "REMOVE_PRESENCE",
 		"SET_CONTROL", "SET_REGION_TAG", "REMOVE_REGION_TAG", "SET_GLOBAL_TAG",
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
-		"CREATE_CLAIM", "CONSUME_CLAIM", "ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
+		"CREATE_CLAIM", "CONSUME_CLAIM", "GRANT_CLAIM_TOKEN", "SPEND_CLAIM_TOKEN",
+		"ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
 		"REMOVE_ENTITY_TAG", "SET_ENTITY_ACTIVE",
 		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE", "SET_STRUCTURE_OWNER",
 		"CLOSE_PASSAGE", "OPEN_PASSAGE",

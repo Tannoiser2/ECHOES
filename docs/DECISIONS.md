@@ -10,6 +10,591 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-387 — I gettoni di rivendicazione: la moneta che il Consiglio non aveva
+
+**implemented in 0.1.353** — chiude
+[ISSUES 122](ISSUES.md#122-il-primo-beneficio-e-gratis-quindi-ne-esiste-uno-solo)
+· regola dettata dal committente
+
+> *«Chi propone sceglie GRATIS un Beneficio mettendo un token su uno dei
+> benefici della carta, gli altri giocatori possono astenersi oppure mettere un
+> token su un costo, questo si puo' fare se il giocatore ha giocato una carta
+> Asset che gli ha dato come azioni un rivendicare — io intendo l'azione
+> rivendicare sulla carta come la carta che ti da' i Token da utilizzare proprio
+> in questa occasione. Anche il proponente puo' spendere segnalini rivendicare
+> per aggiungere benefici. Se il concilio passa, costi e benefici si applicano,
+> altrimenti si paga il malus indicato sulla carta.»*
+
+### Cosa c'era, e perche' non teneva
+
+[D-280](#d-280) diceva: *un beneficio e' gratis, ogni altro costa un costo, e il
+costo lo scelgono gli avversari.* Sembrava un'economia e non lo era, per una
+ragione sola: **il proponente non spendeva niente di suo.** Il prezzo lo pagava
+il mondo — una condizione in piu' su una tessera — quindi comprare il secondo
+beneficio era gratis *per lui*, e prendeva sempre e solo **quello che valeva di
+piu'**. ISSUES 122 l'aveva misurato in quattro mosse consecutive: ogni casella
+alzata ne spegneva un'altra, perche' le caselle non competevano per essere
+utili, competevano per essere **prime**.
+
+E c'era un secondo difetto, che questa misura ha trovato adesso: **il prezzo non
+lo sceglieva quasi mai nessuno.** In cento partite gli avversari posavano
+**34 pedine di costo** in 364 Consigli — 0,09 per Consiglio. Tutto il resto lo
+riempiva il mondo, prendendo dall'alto della lista, perche' il codice chiedeva
+al fronte avverso solo quando il menu era piu' lungo del dovuto. La frase del
+committente in D-280 — *«gli avversari scelgono in che moneta paga»* — nei fatti
+non succedeva.
+
+### La regola nuova
+
+**Il gettone di rivendicazione** e' una moneta che si guadagna un turno prima e
+si spende in Consiglio:
+
+- si prende **giocando una carta Asset dalla sua faccia RIVENDICARE** (nove
+  carte su quarantotto la portano);
+- il proponente ne spende **uno per ogni beneficio oltre il primo** — il primo
+  resta gratis, il tetto resta tre;
+- ogni altra casa puo' **spendere un gettone per posare una pedina su un costo**,
+  una a testa, al massimo due sulla carta. Chi non ne ha, o non vuole, si
+  astiene;
+- se il Consiglio passa, benefici e costi si applicano; se cade, scatta il malus
+  **stampato** sulla carta, che nessuno sceglie (era gia' cosi' da D-280).
+
+**Niente ripiego del mondo.** Se nessuno spende un gettone, la proposta passa
+**senza prezzo**. E' la cosa che l'aritmetica di prima non permetteva, ed e' il
+punto: il prezzo non e' piu' dovuto, e' **comprato** da chi lo vuole.
+
+**E RIVENDICARE rende due volte.** Misurato su cinquanta partite prima di questa
+decisione: **131 diritti su 140 morivano senza essere usati** — il verbo piu'
+caro del turno apriva una porta che quasi nessuno attraversava. Adesso la stessa
+Azione lascia anche una moneta, e il diritto resta.
+
+### La misura
+
+Cento partite, semi da 7000, tavolo misto (`run_boxes_probe`, che da questa
+decisione stampa anche i totali per Consiglio — la misura che ISSUES 122
+chiedeva):
+
+| | prima | dopo |
+|---|---|---|
+| Consigli aperti in 100 partite | 364 | 319 |
+| **benefici comprati per Consiglio** | **1,71** | **1,40** |
+| **costi posati dagli avversari, per Consiglio** | **0,09** | **0,68** |
+| costi posati in tutto | 34 | **217** |
+| caselle diverse comprate | 17 su 32 | 16 su 32 |
+
+**Il prezzo lo sceglie qualcuno, sette volte piu' spesso di prima.** E il
+proponente compra di meno — 1,40 invece di 1,71 — perche' il secondo beneficio
+adesso costa una cosa che ha dovuto guadagnarsi.
+
+**Il costo dichiarato**, e non e' piccolo: **le caselle da poco si sono
+svuotate.** Con meno acquisti totali, quello che sparisce e' il secondo e il
+terzo, cioe' proprio le caselle che ISSUES 122 voleva far tornare vive.
+
+| casella | comprata prima | dopo |
+|---|---|---|
+| COSTRUISCI PIETRA | 143 | 89 |
+| CAMBIA CONTROLLO | 162 | 125 |
+| RAFFREDDA TEMA | 112 | 80 |
+| IL MONDO RICORDA | 57 | 38 |
+| ABBASSA LA DOMANDA | 27 | 19 |
+| POSA UN SEGNO SU UNA CASATA | 6 | **3** |
+| UNA PIETRA SALE | 2 | **0** |
+
+**Quindi ISSUES 122 e' chiusa a meta', e la meta' che resta e' scritta.** La
+forma dell'economia e' cambiata come il committente l'ha chiesta — la moneta
+esiste, si guadagna, e gli avversari la spendono davvero — ma **il numero di
+caselle vive per Consiglio non e' salito: e' sceso.** La causa e' la stessa di
+prima vista da un'altra parte: con 2,8 carte RIVENDICARE giocate per partita, i
+gettoni bastano per **circa un acquisto in piu' per partita**, non per Consiglio.
+Se si vuole che una proposta sia una **mossa** e non una casella, la moneta va
+resa piu' abbondante — piu' carte con la faccia RIVENDICARE, o un gettone
+dall'Azione della plancia e non solo dalla carta. E' [ISSUES 125](ISSUES.md#125),
+aperta qui, ed e' una scelta del committente perche' cambia quanto e' generoso
+il Consiglio.
+
+**Cancello:** 0 seggi bloccati su un solo livello su 8, tavolo misto e uniforme.
+
+### Cosa e' cambiato nel resto della scatola
+
+- **Due EffectType nuovi**, `GRANT_CLAIM_TOKEN` e `SPEND_CLAIM_TOKEN`, l'uno
+  l'inverso dell'altro: il gettone si muove come tutto il resto, con un verbale
+  e un annullamento. Spendere quello che non si ha e' un errore, non un no-op —
+  al tavolo la pedina o ce l'hai o non ce l'hai.
+- **Un segnalino in piu' nella scatola**: 118 tipi diversi → **119**, 142 pezzi
+  → **154**.
+- **La controproposta del RIVENDICARE** (D-268) posa le sue pedine di costo
+  **senza spendere gettoni**: il diritto pagato col turno batte la moneta, come
+  batteva l'ordine delle dichiarazioni.
+- **La borsa del proponente** comprende le pedine gia' posate su questa carta:
+  finche' il Consiglio non si chiude le pedine si rialzano, e il tetto non
+  scende man mano che si compra.
+- **Il menu dei costi si accorcia** man mano che le pedine si posano. Senza,
+  il secondo avversario chiedeva la stessa casella del primo — la piu' dolorosa
+  per il proponente e' sempre la stessa — e il Consiglio lo rifiutava come
+  scelta illegale. L'ha trovato la suite.
+
+---
+
+## D-386 — Il tempo del verbo: una clausola che legge il verbale
+
+**implemented in 0.1.353** — chiude la parte fattibile di
+[ISSUES 120](ISSUES.md#120-dodici-obiettivi-su-diciassette-si-vincono-contando-e-non-nominano-niente)
+· scelta del committente: *«Fai la cura proposta»*
+
+[D-383](#d-383) aveva rimisurato ISSUES 120 e trovato che la domanda era mal
+posta: il difetto non era il conto, era **il tempo del verbo**. Sei obiettivi su
+diciassette rendevano **uguale o meglio stando fermi**, e tutti e sei chiedevano
+di **avere**, non di **fare**. La cura proposta — e non scritta, perche' cambia
+come si scrive un obiettivo — era un tipo di clausola nuovo. Il committente l'ha
+chiesta.
+
+### `did_this_year`, e i quattro gesti
+
+Le diciotto forme del vocabolario guardano tutte **come sta il tavolo**. Questa
+guarda **cos'e' successo**: legge il registro degli Effetti, che **ricomincia a
+ogni anno** — il mondo si eredita, il verbale no. Quindi «quest'anno» non e' un
+filtro da scrivere: e' la forma del dato.
+
+I gesti sono un vocabolario **chiuso**, come i verbi delle caselle del Consiglio
+(D-280) e per la stessa ragione — ognuno e' codice che riconosce una riga del
+verbale, e il codice si prova. La lista sta nello schema, e `SchemaDefs.GESTURES`
+la genera:
+
+| gesto | cosa cerca nel verbale |
+|---|---|
+| `RAISE_STONE` | una Pietra alzata da zero o salita di grado (accetta `structure_family`/`structure_type`) |
+| `TAKE_GROUND` | una terra passata sotto di te |
+| `SPREAD` | una presenza posata |
+| `TIGHTEN_BOND` | un legame mosso **verso l'alto** |
+
+Tre regole di lettura, e ognuna ha la sua prova:
+
+- **porta la firma della casa** (`source.actor`) — e quindi contano anche gli
+  Effetti di un Consiglio, che portano la firma del **proponente**: una Pietra
+  alzata dalla proposta che hai portato tu l'hai alzata tu;
+- **quello che fa il calendario non e' un gesto**: il sistema firma col nome di
+  una casa quando il mondo agisce **su** di lei — la Pietra che sale perche'
+  l'anno e' finito bene, la pedina tolta a chi si e' allargato troppo. Misurato:
+  sul tavolo di pietra **48 Pietre su 247** salivano cosi';
+- **un Effetto che non ha cambiato niente non e' un gesto** (`noop`), che e' la
+  stessa convenzione dei costi che non mordono (D-306).
+
+### Cosa e' cambiato, e cosa no
+
+I sei obiettivi chiedono adesso il gesto oltre allo stato. Misura su cento anni
+coi soliti semi, tavolo misto, `run_asking_probe`:
+
+| obiettivo | prima (giocando / fermi) | dopo |
+|---|---|---|
+| `BOUND_HOUSE` | 6 / 20 → **−19%** | 6 / 0 → **+8%** |
+| `THE_LONGEST_REACH` | 3 / 10 → **−10%** | 2 / 0 → **+3%** |
+| `THE_WIDEST_SPREAD` | 4 / 4 → **+0%** | 4 / 0 → **+7%** |
+| `A_WORK` | 14 / 16 → **−3%** | 13 / 13 → **+0%** |
+| `MOST_STONE` | 12 / 12 → **+0%** | 6 / 7 → **−2%** |
+| `A_STONE` | 15 / 20 → **−7%** | 5 / 15 → **−14%** |
+
+**Obiettivi che rendono uguale o meglio stando fermi: 6 → 3.** E i tre che
+restano hanno **una causa sola, ed e' misurata**, non e' una storia: la sonda
+adesso conta da dove arriva ogni gesto firmato.
+
+| gesto e sorgente | giocando | fermi |
+|---|---|---|
+| alzare una Pietra **da un'Azione** | **1** | 0 |
+| alzare una Pietra da un Consiglio | 165 | **199** |
+| posare una presenza da un'Azione | 837 | 0 |
+| muovere un legame da un'Azione | 814 | 0 |
+
+**Nessuna Azione della plancia alza una Pietra**: in cento partite ne e' salita
+**una** cosi' — e rimisurando dopo [D-387](#d-387), **zero**. Le Pietre le alza il Consiglio — e il Consiglio e' **piu'
+generoso con un tavolo che tace**, perche' le sue proposte non le contesta
+nessuno. Finche' e' cosi', nessun obiettivo di Pietra puo' premiare il giocare,
+per quanto bene sia scritto: e' [ISSUES 123](ISSUES.md#123), aperta qui, ed e'
+lo stesso difetto di [ISSUES 119](ISSUES.md#119) visto dall'altra parte.
+
+**Il costo dichiarato**, perche' un numero peggiorato e scritto vale piu' di uno
+nascosto: `A_STONE` e' passato da −7% a **−14%**, e `MOST_STONE` da +0% a −2%.
+Sono i due che dipendono di piu' dalla Pietra, e peggiorano per la stessa
+ragione per cui gli altri quattro migliorano.
+
+**Rimisurato dopo [D-387](#d-387)**, perche' i gettoni cambiano quante Pietre un
+Consiglio alza: i tre restano tre, ma non sono piu' gli stessi numeri —
+`MOST_STONE` **−7%**, `A_WORK` **−6%**, `A_STONE` **−3%**. E quello che conta di
+piu' e' salito: **quanto rende giocare, in tutto, da +160,7% a +267,8%**, e i
+Destini che si avverano da fermi da due a **uno**. I numeri di riferimento sono
+questi, e stanno in [PUNTO_ZERO](PUNTO_ZERO.md#2-i-due-numeri-di-pz-01).
+
+**Cosa non e' cambiato:** il cancello. 0 seggi bloccati su un solo livello su 8,
+tavolo misto e uniforme.
+
+**E una cosa che questa decisione ha trovato per strada:** gli **obiettivi non
+erano in `REVISIONE_TESTI.md`** — diciassette carte che un giocatore tiene in
+mano tutto l'anno, in un documento che promette *ogni testo che un giocatore
+puo' leggere*. Adesso ci sono: 2898 → **2968 testi**.
+
+**La domanda fisica**, che viene prima di ogni regola: *questa cosa esisterebbe
+sul tavolo?* Il verbale c'e' — e' quello che il Consiglio scrive e che l'app
+tiene. Ma **il tavolo non ha un segnalino per il gesto**, e a fine anno «l'hai
+alzata quest'anno?» si risponde ricordando. Il candidato piu' economico c'e' gia'
+nella scatola — **la pila delle carte giocate, scoperta davanti a ciascuno**,
+che e' lo stesso posto dove `echo_function_played` gia' guarda — ma renderebbe
+il gesto una proprieta' della carta invece che del mondo. Resta da decidere, e
+sta in ISSUES 120.
+
+---
+
+## D-385 — L'Eredita': +3 per ogni leggenda che porta il tuo nome
+
+**implemented in 0.1.353** — chiude
+[ISSUES 84](ISSUES.md#84-lredita-e-misurabile-e-quasi-inerte) · scelta del
+committente fra le tre strade di [D-299](#d-299)
+
+[D-299](#d-299) aveva misurato tre versioni dell'Eredita' e non ne aveva scritta
+nessuna, salvandone una: *«a fine saga, +3 per ogni leggenda che porta il tuo
+nome»* — l'unica che dice una cosa vera senza inventare un dato. Il committente
+ha scelto quella.
+
+**Come si legge.** Una leggenda porta il nome di una casa quando racconta uno dei
+segni che quella casa aveva dichiarato di voler lasciare — i `wants` del suo
+profilo strategico. Le leggende non le scrive nessun giocatore: le fabbrica **il
+tempo**, al salto d'era, trasformando in `legend:<fatto>` i fatti che sbiadiscono
+(D-075).
+
+**E' un bonus, non un gradino**, e per questo si conta a parte invece di finire
+dentro `saga_score`: la soglia che decide la campagna apre la porta e non la
+chiude (D-181), quindi una saga puo' continuare oltre. Sommarlo al totale lo
+pagherebbe una seconda volta l'anno dopo — cioe' premierebbe la durata, che e'
+esattamente quello che il committente ha scritto di non volere.
+
+**La misura**, 12 saghe da 8 anni sui due tavoli — 24 saghe, `--variante=scritta`:
+
+| | |
+|---|---|
+| saghe in cui l'Eredita' **ribalta il vincitore** | **10 su 24** |
+| vincitore coi soli gradini = chi ha piu' Trionfi | 3 su 24 |
+| vincitore con gradini + Eredita' = chi ha piu' Trionfi | 3 su 24 |
+
+**Morde**, e molto piu' della variante di D-299 (1 su 24): quella pagava +3 a
+salto se *una qualsiasi* leggenda c'era, questa paga +3 **per leggenda** a fine
+saga. E **non migliora l'accordo coi Trionfi**: 3 su 24 prima, 3 su 24 dopo. E'
+un secondo punteggio, non una correzione del primo — che e' quello che il
+documento del committente chiede.
+
+**Il costo dichiarato, ed e' il numero piu' importante di questa voce:**
+
+| casa | Eredita' media per saga |
+|---|---|
+| Le Libere Citta' | **8,00** |
+| La Compagnia del Sale | 4,38 |
+| Lyra | 4,25 |
+| Re Aldric · Il Vetro | 3,00 |
+| Le Custodi della Cenere | 2,75 |
+| **La Diaspora di Nahr · Vaerax** | **0,00** |
+
+**Due case su otto non possono prenderla, mai**, e la ragione non e' che giocano
+male — e' scritta nei dati, e la sonda la mostra desiderio per desiderio:
+
+- **un segno di Regione non diventa mai leggenda.** `settlement:village`,
+  `nomad_range`, `structure:sealed`, `place:sleeping_site`, `structure:archive`,
+  `structure:granary`, `structure:road`, `structure:tollgate`: otto desideri su
+  trentadue, zero fatti e zero leggende. Solo un **fatto globale** sbiadisce.
+- **un fatto murato non diventa mai leggenda.** `ledger_public` e' vero a fine
+  saga **24 volte su 24** e leggenda **zero**; `nahr_settled` 12 e zero;
+  `crown_divided` 10 e zero; `mine_sealed` 7 e zero; `succession_by_law` 4 e
+  zero. Sono gli `enduring_facts` della Chronicle: fatti che il mondo tiene per
+  veri per sempre — e una cosa che *e' ancora* non e' una cosa di cui *si
+  racconta ancora*.
+
+Detto in una riga: **l'Eredita' paga chi ha lasciato memorie, e le due case che
+volevano lasciare muri e insediamenti non hanno una moneta.** E' la terza volta
+che una misura arriva qui: e'
+[ISSUES 76](ISSUES.md#76-il-consiglio-decide-con-una-moneta-che-i-destini-non-spendono),
+un'altra volta. La regola e' scritta come il committente l'ha chiesta; lo
+squilibrio sta nei **profili**, non nella regola, ed e'
+[ISSUES 124](ISSUES.md#124), aperta qui.
+
+**Cancello:** 0 seggi bloccati su 8, misto e uniforme. L'Eredita' non lo tocca —
+si conta solo quando la campagna si decide, e il cancello gioca un anno alla
+volta.
+
+---
+
+## D-384 — La prima delle tre riviste: quello che si legge col dito
+
+**implemented** (0.1.352) · fa la **prima** delle tre riviste di [ISSUES 65](ISSUES.md#65) e lascia le altre due
+
+### Quale delle tre, e perché questa
+
+La voce 65 dice che in *«tutta la pagina va rivista»* si nascondono tre riviste
+diverse, e che sono la scelta del committente. Ne faccio **una sola**, la prima,
+perché è quella che la voce stessa dichiara finibile — *«è quello che i sei fix
+hanno fatto a pezzi, e si può finire»* — e perché da [D-379](#d-379) ha un metro:
+
+| | prima | dopo |
+|---|---|---|
+| **testi che vivono solo nel suggerimento del mouse** | **13** | **2** |
+| **bersagli più stretti di un dito (44 px)** | **7 su 7** | **0** |
+
+Le altre due — **l'impaginazione** (i 788 px in fila su un tablet da 768) e
+**l'idea di cosa si guarda** (un tavolo o un cruscotto) — restano dove stavano,
+perché sono scelte, non riparazioni.
+
+### Le quattro cose spostate
+
+- **La ragione di un segno voluto o temuto.** Nove frasi d'autore — *«la corona
+  che passa per legge è l'unica cosa che rende il trono più vecchio di chi ci
+  siede»* — vivevano nel suggerimento del mouse. Adesso stanno sotto la riga che
+  spiegano, in corpo minore.
+- **La descrizione della vita che ti aspetta.** La porta del tempo dice *«dopo
+  cento anni diventi La Reggenza del Granaio»*, e chi sia la Reggenza lo diceva
+  solo il mouse.
+- **Le due intestazioni** — IL TUO DESTINO, COSA RESTERÀ DI TE — avevano un
+  suggerimento che ripeteva la nota già stampata sotto. Tolto: due testi in meno,
+  zero informazione persa.
+- **Il nome dell'Eco sulla carta in mano.** Una carta con una seconda faccia deve
+  dirlo **sulla faccia**: adesso il piede porta *«forza 2 · eco: La Parola
+  Data»*. Il testo intero dell'Eco resta nel suggerimento, ed è uno dei **due che
+  restano** — stamparlo per esteso vuol dire allungare la carta, e quella è la
+  seconda rivista.
+
+### E i sette bersagli
+
+I posti dove si lascia cadere una carta ([D-231](#d-231)) — una domanda sulla
+traccia, una casa nella colonna dei rapporti — chiedevano **19 e 29 pixel**. Col
+mouse si prendono, col dito no, ed è la stessa misura che [D-243](#d-243) aveva
+già stabilito per le carte in mano. Adesso ne chiedono 44: **è il bersaglio a
+crescere, non il testo.**
+
+### Il costo
+
+Nessuno misurabile: né motore né dati. La colonna è più lunga di undici righe —
+scorreva già — e il cancello resta **0 seggi bloccati su 8**. 26 cancelli verdi,
+suite verde.
+
+**Quello che questa decisione non fa**, ed è deliberato: non tocca la mappa e i
+mazzetti dei Temi, che **dipingono invece di costruire nodi** e che quindi né la
+sonda né un lettore di schermo vedono. Riscriverli in nodi è la terza rivista.
+
+---
+
+## D-383 — I sei livelli di vittoria nominano un segno, e una guardia si è allargata
+
+**implemented** (0.1.351) · chiude [ISSUES 118](ISSUES.md#118)
+
+### Sei livelli che erano un'addizione
+
+[D-377](#d-377) aveva misurato che **sei livelli di vittoria o trionfo** si
+reggono solo sul contare, e che stanno **tutti sui Destini condivisi** — quelli
+che qualunque casa può prendere. Un obiettivo che vale per tutti non può nominare
+il segno di *nessuno*, e gli resta il numero.
+
+Ma un segno **del mondo** non è di nessuno, ed è la strada che la casa aveva già
+in uso: `DST_SHARED_QUIET` e `DST_SHARED_HAND` chiudono il loro trionfo con
+`condition:contested`. Sei clausole, una per livello, ognuna con un segno che
+**quel Destino dichiara già di osservare**, nella direzione che si può
+raggiungere:
+
+| livello | + la clausola |
+|---|---|
+| `DST_SHARED_LAND` · vittoria | *«e da qualche parte un villaggio ci sta sopra»* (`settlement:village`) |
+| `DST_SHARED_LAND` · trionfo | *«e un posto è rimasto vuoto: tanta terra non si prende senza che qualcuno se ne vada»* (`condition:abandoned`) |
+| `DST_SHARED_QUIET` · vittoria | *«e il disordine si è chiuso mentre eri in sala»* (`order_restored`) |
+| `DST_SHARED_LORE` · vittoria | *«e la pietra dove il sapere sta è un Archivio»* (`structure:archive`) |
+| `DST_SHARED_LORE` · trionfo | *«e quello che hai capito lo sa anche il tavolo»* (`knowledge_shared`) |
+| `DST_SHARED_HAND` · vittoria | *«e sulla mappa c'è una terra contesa: le riserve servono a decidere, non a guardare»* (`condition:contested`) |
+
+Ogni segno è stato scelto **contro la misura, non a naso**: tutti e sei sono
+scritti dal mondo su cento partite — 458 volte `condition:contested`, 145
+`knowledge_shared`, 131 `order_restored`, 43 `structure:archive`, 42
+`settlement:village`, 13 `condition:abandoned`. Costruire una porta murata
+mentre se ne chiude un'altra sarebbe stato il modo più stupido di sbagliare.
+
+| | prima | dopo |
+|---|---|---|
+| livelli che si reggono solo sul contare | 17 su 69 | **11 su 69** |
+| **di cui vittoria o trionfo** | **6** | **0** |
+
+Gli undici che restano sono **tutti il `minimum`**: la soglia sotto la quale la
+casa non c'è più, dove il conto è la cosa giusta.
+
+### E la guardia che modellava il motore meno generoso di com'è
+
+Tre delle sei clausole hanno fatto cadere `test_no_destiny_asks_for_a_tag_nothing_can_write`,
+che dichiarava `settlement:village`, `structure:archive` e `knowledge_shared`
+**non scrivibili da niente**. Sono scritti 42, 43 e 145 volte su cento partite.
+
+La lista delle penne di quella prova era cresciuta una alla volta e si era
+fermata prima di due bocche che il tavolo usa eccome:
+
+- **le caselle della carta Tensione** ([D-280](#d-280)): IL MONDO RICORDA posa un
+  segno globale — `knowledge_shared` esce da tre caselle;
+- **i gradi delle Pietre**: una Pietra alzata posa il segno del suo grado, ed è
+  così che nascono `settlement:village` e `structure:archive`.
+
+**Una guardia che modella il motore meno generoso di com'è non protegge da
+niente: vieta una clausola vera.** È [D-376](#d-376) visto dall'altra faccia — lì
+la guardia era più generosa e assolveva otto gettoni morti; qui era più avara e
+avrebbe vietato tre clausole buone. Allargata, e **provata piantando un difetto**:
+un Destino che chiede un segno inventato, e la prova lo nomina.
+
+### Il costo
+
+| | prima | dopo |
+|---|---|---|
+| obiettivi avverati giocando | 453 su 1.200 | **438** |
+| quanto rende giocare | +168,0% | **+160,7%** |
+| `SHARED_LORE`, giocando / da fermi | 1,48 / 0,26 | 1,17 / 0,26 |
+| `SHARED_LAND`, giocando / da fermi | 1,33 / 0,44 | **1,44 / 0,33** |
+| `SHARED_HAND`, giocando / da fermi | 1,09 / 0,41 | **1,14 / 0,41** |
+
+Le vittorie sono più difficili, e si vede: quindici obiettivi in meno avverati su
+milleduecento, e il vantaggio di giocare scende di sette punti. In cambio, tre
+Destini su quattro pagano **meglio** chi gioca di chi sta fermo.
+
+**`SHARED_QUIET` no, e resta l'unico caso**: 0,84 giocando contro 1,04 da fermi.
+La clausola l'ha avvicinato — il divario era 1,33 volte, adesso è 1,24 — ma non
+lo ribalta, e non lo ribalterebbe nessun segno: **«La Quiete Tenuta» chiede che
+le questioni restino basse, e un tavolo che non fa niente le tiene basse per
+definizione.** O è la battuta e resta, o quel Destino deve chiedere un *gesto* di
+quiete invece di uno stato. È l'unica cosa che questa decisione lascia aperta,
+ed è scritta nella [ISSUES 120](ISSUES.md#120).
+
+Cancello **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
+## D-382 — Un Tema con una carta sola, e due caselle che nessuno comprava
+
+**implemented** (0.1.350) · chiude la parte misurabile di [ISSUES 117](ISSUES.md#117)
+
+### L'Antico aveva una carta su quarantotto
+
+Il difetto era in cima al Punto Zero da nove versioni: **l'Antico riceve 32
+Risonanze su 3.725, lo 0,9%**, e un Tema che nessuna carta scalda non apre mai
+la sua Domanda. Prima di ragionarci, la causa:
+
+| Tema | carte | copie nel mazzo | calore per copia |
+|---|---|---|---|
+| Fede | 13 | 37 | 44 |
+| Vie | 10 | 35 | 36 |
+| Sopravvivenza | 8 | 26 | 32 |
+| Potere | 12 | 25 | 32 |
+| Terra | 4 | 8 | 12 |
+| **Antico** | **1** | **1** | **1** |
+
+Non c'era niente di sottile: **una carta, una copia, un punto di calore** contro
+le trentasette della Fede. La quota di Calore osservata seguiva il mazzo quasi
+esattamente. Nessuna regola da cambiare — un mazzo da riequilibrare.
+
+**Otto Risonanze spostate**, scegliendo le carte in cui il Tema nuovo era già
+nella frase d'autore:
+
+| carta | da | a | perché |
+|---|---|---|---|
+| Legame di Sangue | Potere | **Antico** | *«è una cosa che c'era prima dell'accordo»* |
+| Consiglio degli Anziani | Fede | **Antico** | *«chi ricorda decide cosa c'era prima»* |
+| Archivio | Vie | **Antico** | *«conserva la versione che qualcuno ha avuto il tempo di scrivere»* |
+| Mappa Vecchia | Vie | **Antico** | la carta aveva già `ANTICO` fra i suoi Temi di Consiglio |
+| Voce di Corridoio | Fede | **Antico** | *«una verità che non ha ancora deciso di chi essere»* |
+| Il Vecchio Esercito | Potere | **Antico** | richiamare i vecchi reggimenti |
+| Braccia per il Raccolto | Sopravvivenza | **Terra** | le braccia che lavorano la terra |
+| Assedio | Sopravvivenza | **Terra** | tenere un posto perché non sia di altri |
+
+**Il testo stampato della Risonanza nomina il Tema** — *«Scalda Fede +1»* — e
+riscriverlo era la metà del lavoro: una faccia che dice un Tema mentre il motore
+ne scalda un altro è esattamente la divergenza fra le due grammatiche che
+ISSUES 69 teme.
+
+| dove finisce il Calore | prima | dopo |
+|---|---|---|
+| Fede | 33,7% | 22,9% |
+| **Antico** | **0,9%** | **20,7%** |
+| Vie | 23,9% | 16,2% |
+| Potere | 17,0% | 15,6% |
+| Sopravvivenza | 17,4% | 14,6% |
+| **Terra** | 7,0% | **9,9%** |
+
+### E la porta murata si è aperta da sola
+
+Non era in programma. `mountain_forgotten` — il segno che
+`DST_VAERAX_LEGEND · SOGLIA` chiede — era l'ultima **porta murata** rimasta
+dopo [D-372](#d-372) e [D-378](#d-378): una clausola che vuole una cosa che il
+mondo non scrive mai. Con l'Antico che si apre, il mondo la scrive.
+
+**Porte murate: 1 → 0.** *«Tutto quello che un passo chiede, il mondo lo scrive
+almeno una volta.»*
+
+### Le due caselle che nessuno comprava
+
+[ISSUES 117](ISSUES.md#117) ne lasciava due, e le chiamava decisioni.
+
+**ABBASSA LA DOMANDA: offerta 730 volte in cento saghe, comprata zero.** Il
+primo beneficio è gratis, quindi chi propone prende sempre quello che vale di
+più, e questa valeva 1 come RAFFREDDA TEMA contro il 3 di CAMBIA CONTROLLO.
+
+La cura non è un numero più alto: è il numero **giusto**. Raffreddare una
+domanda a terra non vale niente; raffreddarne una a un passo dal Consiglio vale
+quanto alzare una Pietra, perché è esattamente quello che impedisce a qualcun
+altro di prendersi il posto. **La casella adesso legge quello su cui agisce.**
+
+Provata prima a 3 quando la domanda è alta, cioè alla pari con CAMBIA CONTROLLO:
+comprata **393 volte su 716**, e le altre si svuotavano — COSTRUISCI PIETRA da
+141 acquisti a 23, RAFFREDDA TEMA a zero. **Una casella che mangia le altre è
+sbagliata quanto una che nessuno compra.** Scesa a 2.
+
+E allora è toccato a RAFFREDDA TEMA, crollata da 22 a 2: era l'altra casella da
+1. Stessa cura, stessa forma — vale 2 se il Tema è **quello col rombo più
+avanti**, cioè quello su cui si aprirà il prossimo Consiglio. Non un numero di
+soglia inventato: una cosa che al tavolo si vede senza contare.
+
+**E poi è caduta una prova, ed era lei ad avere ragione.**
+`test_alliance_of_convenience` chiede che su cinque anni almeno un legame si
+scaldi. MUOVI UN RAPPORTO è offerto **nove volte in cento saghe**, e con due
+caselle comuni salite a 2 non veniva più preso mai. Alzato a 3: quando il tavolo
+offre un'alleanza, è la cosa più grossa sul piatto — e capita quasi mai.
+
+| casella | prima | dopo |
+|---|---|---|
+| **ABBASSA LA DOMANDA** | 0 su 730 | **26 su 728** |
+| **RAFFREDDA TEMA** | 22 su 365 | **115 su 364** |
+| MUOVI UN RAPPORTO | 2 su 7 | **6 su 9** |
+| CAMBIA CONTROLLO | 164 su 168 | 159 su 164 |
+| COSTRUISCI PIETRA | 141 su 256 | 143 su 255 |
+
+**UNA CASATA LASCIA IL TAVOLO resta a zero offerte, e la decisione è di
+lasciarla lì.** Vuole `TEN_AWAKENING` in discussione **e** Vaerax al tavolo:
+una casa su otto, quattro sedute per anno, una carta su sessanta. Lo zero è la
+congiunzione, non la casella. È la cosa più drastica del gioco e vale **una**
+applicazione in tutto il corpo scritto: spargerla per il tavolo sarebbe un altro
+gioco. Chi vuole vederla giocare non deve toccare la casella — deve far uscire
+più spesso quella carta, e quello è il mazzo.
+
+### Il costo
+
+| | prima | dopo |
+|---|---|---|
+| **porte murate** | 1 | **0** |
+| segni che non arrivano mai sul tavolo | 52 | **48** |
+| lavoro del motore che nessuno legge | 3 | **2** |
+| UNA PIETRA SALE, acquisti | 14 | **2** |
+| trasformazioni sedute in 12 saghe | 233 | **226** |
+| Consigli caduti (misto / uniforme) | 37 / 14 | **28 / 12** |
+
+Due costi, scritti: **UNA PIETRA SALE** scende a due acquisti — è la terza
+casella da 2, e adesso ne ha due più comuni davanti; e i Consigli cadono ancora
+un po' meno, che è la [119](ISSUES.md#119) che continua.
+
+Cancello **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+### Quello che questo giro ha fatto vedere, e non si chiude tarando
+
+Tre caselle spostate, tre effetti a catena, una prova caduta. La ragione è
+strutturale e non sta in nessun numero: **il primo beneficio è gratis, quindi
+viene preso solo quello che vale di più, e a parità vince sempre lo stesso.**
+Ogni casella alzata ne spegne un'altra, e la cura è un'altra economia — non
+un'altra taratura. Aperta come [ISSUES 122](ISSUES.md#122).
+
+---
+
 ## D-381 — I tre pezzi «che nessuno tocca» erano tre buchi del disegno
 
 **implemented** (0.1.348) · corregge la [ISSUES 121](ISSUES.md#121), aperta un'ora prima
@@ -306,13 +891,18 @@ leggibili che nessuna sezione mostrava.
 Cambiare le proposte cambia quello che il tavolo vota, e si vede.
 
 **Il prezzo:** i Consigli **cadono molto meno**. Su cento partite, tavolo
-uniforme, gli esiti FAILURE vanno da **108 a 37**; sul misto da **25 a 14**. La
+misto, gli esiti FAILURE vanno da **108 a 37**; sull'uniforme da **25 a 14**. La
 ragione è quella che il lavoro voleva: con due sole proposte generiche su
 tredici carte, chi proponeva raramente trovava qualcosa che il tavolo volesse;
 adesso ogni carta offre tre strade sue. Ma un Consiglio che quasi non cade è un
 Consiglio con meno posta, e le Conseguenze `CNS_FAILURE_*` girano un terzo
 delle volte di prima. **Aperta come [ISSUES 119](ISSUES.md#119)**: è una
 questione di disegno, non di dati.
+
+> **Correzione (0.1.349).** Questo paragrafo e la tabella qui sotto dicevano
+> *«tavolo uniforme»* dove i numeri sono del **misto**, e viceversa: la sonda
+> stampa il misto per primo, e li avevo letti al contrario. I numeri sono
+> quelli, le etichette erano scambiate.
 
 **Il primo effetto collaterale, chiuso subito.** Meno fallimenti vuol dire meno
 `rumour_running`, che lo scriveva **solo** il sacchetto dei fallimenti del
@@ -334,7 +924,7 @@ fiction la chiedeva già (La Parola Storta, I Nomi Vecchi).
 | **vite che non si siedono mai** | 2 | **1** |
 | trasformazioni sedute in 12 saghe | 223 | **233** |
 | segni che non arrivano mai sul tavolo | 50 | **52** |
-| **Consigli caduti** (100 partite, uniforme / misto) | 108 / 25 | **37 / 14** |
+| **Consigli caduti** (100 partite, misto / uniforme) | 108 / 25 | **37 / 14** |
 
 Due numeri in più vanno letti come costi e sono scritti come tali: i segni che
 non arrivano mai salgono di due — tre ne guadagnano il tavolo

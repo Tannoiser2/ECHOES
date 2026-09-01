@@ -506,9 +506,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_SOPRAVVIVENZA",
+          "theme": "THM_TERRA",
           "heat": 2,
-          "text": "Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Sopravvivenza +3.",
+          "text": "Scalda Terra +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.",
           "if_target_tag": "grain_requisitioned",
           "extra_heat": 1
         },
@@ -588,9 +588,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_POTERE",
+          "theme": "THM_ANTICO",
           "heat": 2,
-          "text": "Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Potere +3.",
+          "text": "Scalda Antico +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Antico +3.",
           "if_target_tag": "crown_divided",
           "extra_heat": 1
         },
@@ -1504,9 +1504,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_FEDE",
+          "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Fede +2.",
+          "text": "Scalda Antico +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.",
           "if_target_tag": "faith_established",
           "extra_heat": 1
         },
@@ -1589,9 +1589,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_SOPRAVVIVENZA",
+          "theme": "THM_TERRA",
           "heat": 1,
-          "text": "Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Sopravvivenza +2.",
+          "text": "Scalda Terra +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Terra +2.",
           "if_target_tag": "grain_requisitioned",
           "extra_heat": 1
         },
@@ -2091,9 +2091,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_FEDE",
+          "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Fede +2.",
+          "text": "Scalda Antico +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.",
           "if_target_tag": "betrayal_spoken",
           "extra_heat": 1
         },
@@ -2179,9 +2179,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_VIE",
+          "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Vie +2.",
+          "text": "Scalda Antico +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.",
           "if_target_tag": "trade",
           "extra_heat": 1
         },
@@ -2436,9 +2436,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_VIE",
+          "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Vie +2.",
+          "text": "Scalda Antico +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.",
           "if_target_tag": "ledger_public",
           "extra_heat": 1
         },
@@ -3870,9 +3870,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_POTERE",
+          "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Potere +2.",
+          "text": "Scalda Antico +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.",
           "if_target_tag": "heir_named",
           "extra_heat": 1
         },

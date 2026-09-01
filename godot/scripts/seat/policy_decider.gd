@@ -1765,13 +1765,15 @@ func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:
 	return {}
 
 
-## **L'economia del Consiglio, giocata dal cervello** (D-280).
+## **L'economia del Consiglio, giocata dal cervello** (D-387).
 ##
-## Comprare non e' gratis: il primo beneficio lo e', ogni altro lo pagano **gli
-## avversari scegliendo il costo**, cioe' scegliendo quello che fa piu' male al
-## proponente. Quindi il conto che il cervello fa e' quello giusto al tavolo:
-## *il beneficio in piu' vale piu' del peggior prezzo che possono farmi pagare?*
-## Se no, si tiene quello che ha.
+## Comprare non e' gratis: il primo beneficio lo e', ogni altro costa **un
+## gettone di rivendicazione** — una moneta che si guadagna un turno prima,
+## giocando una carta Asset dalla sua faccia RIVENDICARE. Quindi il conto e'
+## cambiato, ed e' piu' semplice di prima: *questo beneficio in piu' vale il
+## gettone che mi costa?* Il prezzo che gli avversari sceglieranno non entra
+## piu' nel conto, perche' non e' piu' il prezzo di quello che compro — e'
+## quello che loro decidono di pagare per farmelo pagare.
 func choose_benefits(
 	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
 ) -> Array:
@@ -1790,30 +1792,48 @@ func choose_benefits(
 	ranked.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return int(a["score"]) > int(b["score"])
 	)
-	# Il peggior prezzo che il fronte avverso puo' imporre: e' il metro con cui
-	# si giudica ogni beneficio oltre il primo.
-	var worst_price: int = 0
-	for voice in (session.confluence.card_face().get("costs", []) as Array):
-		worst_price = mini(worst_price, _voice_score(
-			voice as Dictionary, "costs", entity_id, entity_id, goals, session, bindings
-		))
-	# Il tetto e' tre e non si sfonda (D-303): la Cicatrice e' un costo come gli
-	# altri, e il metro per comprare e' uno solo — il peggior prezzo. Prima
-	# c'era una riga in piu' che apriva un quarto beneficio comprato con una
-	# Cicatrice: misurato, valeva 1 e costava 4, e nessun seggio lo prendeva.
+	# **Il tetto lo dicono i gettoni** (D-387): il primo beneficio e' gratis,
+	# e oltre quello si arriva fin dove la borsa arriva. Il tetto di tre resta,
+	# perche' sono le pedine che stanno sulla carta.
+	var ceiling: int = mini(ranked.size(), session.confluence.benefit_ceiling())
 	var bought: Array = [str((ranked[0] as Dictionary)["id"])]
-	for i in range(1, mini(ranked.size(), CouncilEconomy.MAX_BENEFITS)):
+	for i in range(1, ceiling):
 		var entry: Dictionary = ranked[i] as Dictionary
-		# **A parita' si compra.** Il metro e' il peggior prezzo che gli
-		# avversari possono imporre; quando il beneficio in piu' lo pareggia,
-		# la proposta che fa di piu' e' quella che vale la pena fare — ed e'
-		# quello che la carta chiede, con le sue tre caselle. Col confronto
-		# stretto (`<= 0`) il cervello comprava **sempre e solo il primo**, che
-		# e' gratis: 1,01 benefici per Consiglio in 40 anni, economia morta.
-		if int(entry["score"]) + worst_price < 0:
+		# **Un gettone si spende per qualcosa che serve.** Non c'e' piu' un
+		# prezzo da pareggiare: c'e' una moneta da non buttare. Una casella che
+		# non porta niente a chi propone non vale il gettone, e il gettone
+		# aspetta il Consiglio dopo.
+		if int(entry["score"]) <= 0:
 			break
 		bought.append(str(entry["id"]))
 	return bought
+
+
+## **Un avversario decide se pagare per far pagare** (D-387).
+##
+## La domanda non e' piu' *«quale prezzo, fra quelli dovuti»* — non e' piu'
+## dovuto niente. E': *ho un gettone, e c'e' un costo che fa abbastanza male al
+## proponente da valere la spesa?* Se no, ci si astiene, e la proposta passa
+## gratis: e' la cosa che prima non poteva succedere.
+func choose_cost_token(
+	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+) -> String:
+	if menu.is_empty() or session.confluence.claim_tokens(entity_id) <= 0:
+		return ""
+	var chosen: Array = choose_costs(entity_id, context, menu, 1, session)
+	if chosen.is_empty():
+		return ""
+	# Un costo che al proponente non toglie niente non vale un gettone: si
+	# spende per fare male, non per posare una pedina.
+	var proponent: String = str(context.get("proponent", ""))
+	var voice: Dictionary = session.confluence._voice("costs", str(chosen[0]))
+	if voice.is_empty():
+		return ""
+	var score: int = _voice_score(
+		voice, "costs", proponent, proponent, _tag_goals(proponent, session), session,
+		session.confluence.effect_context()
+	)
+	return "" if score >= 0 else str(chosen[0])
 
 
 ## **E il prezzo lo sceglie chi lo subisce**: fra i costi stampati, il fronte
@@ -1863,7 +1883,9 @@ func _voice_score(
 	var effects: Array = CouncilEconomy.effects_for(
 		voice, kind, bindings, session.world, theme_id, {}
 	)
-	var score: int = CouncilEconomy.intrinsic_value(voice, kind, bindings, session.world)
+	var score: int = CouncilEconomy.intrinsic_value(
+		voice, kind, bindings, session.world, theme_id
+	)
 	for effect in effects:
 		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
 		# **E quello che questa casa ha dichiarato di volere lasciare** (D-289):
@@ -1932,20 +1954,18 @@ func choose_counterclaim(
 		if mine - theirs > benefit_gain:
 			benefit_gain = mine - theirs
 			best_benefit = str(voice_id)
-	# **Prendersi la scelta del prezzo** (D-268, riscritta da D-280) vale quanto
-	# la differenza fra il costo che sceglierei io e quello che il mondo
-	# prenderebbe da solo — la prima voce della lista.
+	# **Prendersi la scelta del prezzo** (D-268, riscritta da D-387) vale
+	# adesso quanto il danno che quel costo fa al proponente — tutto intero,
+	# perche' senza la controproposta quel costo non ci sarebbe: il prezzo non
+	# e' piu' dovuto, se lo compra chi lo vuole spendendo un gettone, e questa
+	# e' la strada che lo posa **senza spenderne uno**.
 	var price: Dictionary = offer.get("price", {})
 	var costs: Array = price.get("cost", []) as Array
-	var due: int = session.confluence.costs_due()
-	var mine_costs: Array = choose_costs(entity_id, context, costs, due, session)
+	var mine_costs: Array = choose_costs(entity_id, context, costs, 1, session)
 	var price_gain: int = 0
-	if due > 0 and not mine_costs.is_empty():
+	if not mine_costs.is_empty():
 		var mine_voice: Dictionary = session.confluence._voice("costs", str(mine_costs[0]))
-		var world_voice: Dictionary = session.confluence._voice("costs", str(costs[0]))
-		price_gain = _voice_score(
-			world_voice, "costs", entity_id, proponent, goals, session, bindings
-		) - _voice_score(
+		price_gain = -_voice_score(
 			mine_voice, "costs", entity_id, proponent, goals, session, bindings
 		)
 	if benefit_gain > 0 and benefit_gain >= price_gain:

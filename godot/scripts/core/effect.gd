@@ -33,6 +33,13 @@ const INVERSE_TYPE: Dictionary = {
 	"TRANSFER_ASSET": "TRANSFER_ASSET",
 	"CREATE_CLAIM": "CONSUME_CLAIM",
 	"CONSUME_CLAIM": "CREATE_CLAIM",
+	# **Il gettone della rivendicazione** (D-387, ISSUES 122). Non e' la
+	# rivendicazione di D-268 — quella e' un diritto che apre un Consiglio;
+	# questo e' una **moneta** che si spende dentro il Consiglio: il proponente
+	# ci compra i benefici oltre il primo, un avversario ci posa un costo. Se ne
+	# prende uno giocando una carta Asset dalla sua faccia RIVENDICARE.
+	"GRANT_CLAIM_TOKEN": "SPEND_CLAIM_TOKEN",
+	"SPEND_CLAIM_TOKEN": "GRANT_CLAIM_TOKEN",
 	"ADD_SCAR": "REMOVE_SCAR",
 	"REMOVE_SCAR": "ADD_SCAR",
 	"SET_ENTITY_TAG": "REMOVE_ENTITY_TAG",
