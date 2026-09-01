@@ -1863,7 +1863,9 @@ func _voice_score(
 	var effects: Array = CouncilEconomy.effects_for(
 		voice, kind, bindings, session.world, theme_id, {}
 	)
-	var score: int = CouncilEconomy.intrinsic_value(voice, kind, bindings, session.world)
+	var score: int = CouncilEconomy.intrinsic_value(
+		voice, kind, bindings, session.world, theme_id
+	)
 	for effect in effects:
 		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
 		# **E quello che questa casa ha dichiarato di volere lasciare** (D-289):

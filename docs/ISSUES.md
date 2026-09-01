@@ -6814,7 +6814,7 @@ verità.
 
 ---
 
-### 117. Le caselle nuove ci sono, e cinque carte su sessanta le offrono — quasi chiusa in 0.1.336
+### 117. ✅ Le caselle nuove ci sono, e cinque carte su sessanta le offrono — chiusa in 0.1.350
 
 `contenuto` · `da-misurare` · aperta in 0.1.332
 
@@ -6899,6 +6899,27 @@ nei dati.
 > l'equilibrio si misura prima di scriverlo.
 >
 > **Fatto quando** quelle due sono decise.
+>
+> ### ✅ Decise in 0.1.350 ([D-382](DECISIONS.md#d-382))
+>
+> **ABBASSA LA DOMANDA: alzata, e non di un punto a caso.** Adesso la casella
+> **legge quello su cui agisce** — raffreddare una domanda a terra non vale
+> niente, raffreddarne una a un passo dal Consiglio vale quanto alzare una
+> Pietra. **Da 0 acquisti su 730 a 26 su 728.**
+>
+> Provata prima a 3, alla pari con CAMBIA CONTROLLO: comprata 393 volte su 716
+> e le altre si svuotavano. Una casella che mangia le altre e' sbagliata quanto
+> una che nessuno compra. Stessa cura a RAFFREDDA TEMA, che era crollata a 2
+> acquisti: vale 2 se e' il Tema **col rombo piu' avanti**, e risale a **115**.
+> E MUOVI UN RAPPORTO, offerto nove volte in cento saghe, e' salito a 3 perche'
+> una prova e' caduta a dirlo.
+>
+> **UNA CASATA LASCIA IL TAVOLO: resta dov'e', e questa e' la decisione.** Lo
+> zero e' la congiunzione — Vaerax al tavolo *e* `TEN_AWAKENING` in discussione,
+> una casa su otto per una carta su sessanta — non la casella. E' la cosa piu'
+> drastica del gioco e vale **una** applicazione in tutto il corpo scritto:
+> spargerla sarebbe un altro gioco. Chi la vuole vedere giocare non deve toccare
+> la casella: deve far uscire piu' spesso quella carta, e quello e' il mazzo.
 
 ---
 
@@ -7089,3 +7110,50 @@ la tocchi.
 `ACT_ACQUIRE` ha una riga che dice perché nessuno la nomina.
 
 </details>
+
+---
+
+### 122. Il primo beneficio è gratis, quindi ne esiste uno solo
+
+`regole` · `da-decidere` · aperta in 0.1.350
+([D-382](DECISIONS.md#d-382) · [la misura](MISURA_CASELLE.md))
+
+Curare le due caselle della [117](#117) ha fatto vedere una cosa che nessun
+numero risolve. L'economia di [D-280](DECISIONS.md#d-280) dice: **1 beneficio è
+gratis, ogni altro costa 1 costo**. Al tavolo di cento saghe questo vuol dire
+che chi propone prende **quello che vale di più, e basta** — le altre voci non
+si comprano quasi mai.
+
+Il risultato è che le caselle non competono per essere utili: competono per
+essere **prime**, e a parità vince sempre la stessa.
+
+Si vede in tre mosse consecutive, tutte misurate:
+
+| mossa | effetto voluto | effetto collaterale |
+|---|---|---|
+| ABBASSA LA DOMANDA da 1 a 3 | 0 → 393 acquisti | COSTRUISCI PIETRA 141 → 23, RAFFREDDA TEMA → 0 |
+| scesa a 2 | 127 acquisti, le altre tornano | RAFFREDDA TEMA 22 → 2 |
+| RAFFREDDA TEMA legge il rombo | 2 → 115 | ABBASSA LA DOMANDA 127 → 26, MUOVI UN RAPPORTO → 0 (una prova cade) |
+| MUOVI UN RAPPORTO da 2 a 3 | 0 → 6 | UNA PIETRA SALE 14 → 2 |
+
+**Ogni casella alzata ne spegne un'altra.** Non è un difetto di taratura: è la
+forma dell'economia. Con un solo acquisto gratuito, il numero di caselle vive è
+**uno per Consiglio**, e le altre ventitré esistono per quando la prima non si
+può comprare.
+
+#### Le tre strade, e la scelta è del committente
+
+- **(a) Va bene così.** Un Consiglio decide una cosa sola, e le altre caselle
+  sono il ventaglio fra cui quella cosa cambia da carta a carta. Allora la
+  domanda giusta non è *«chi compra questa casella»* ma *«quante caselle
+  diverse vengono comprate in un anno»*, ed è un'altra misura.
+- **(b) Più di un beneficio gratis.** Due acquisti liberi cambiano il gioco da
+  «prendo il massimo» a «costruisco una mossa», e le caselle da 2 tornano vive.
+  Costo: il Consiglio diventa più generoso, e il cancello va rimisurato.
+- **(c) Il prezzo lo fanno gli avversari.** È la forma piena di
+  [D-280](DECISIONS.md#d-280), ancora da costruire (ISSUES 72): il proponente
+  compra, gli altri scelgono in che moneta paga. Lì il valore intrinseco conta
+  meno, perché la scelta non è più solo sua.
+
+**Fatto quando** il committente sceglie, o quando l'economia piena di D-280 è in
+piedi e questa misura si rifà con lei.

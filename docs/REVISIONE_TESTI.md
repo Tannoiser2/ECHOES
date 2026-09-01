@@ -9050,7 +9050,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_BONDS_BLOOD_TIE, risonanza`**
-> Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Potere +2.
+> Scalda Antico +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.
 
 
 **`AST_BONDS_BROKEN_PACT`**
@@ -9336,7 +9336,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_FORCE_OLD_ARMY, risonanza`**
-> Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Potere +3.
+> Scalda Antico +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Antico +3.
 
 
 **`AST_FORCE_ROADBLOCK`**
@@ -9388,7 +9388,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_FORCE_SIEGE, risonanza`**
-> Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Sopravvivenza +3.
+> Scalda Terra +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.
 
 
 **`AST_FORCE_WARBAND`**
@@ -9440,7 +9440,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, risonanza`**
-> Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Vie +2.
+> Scalda Antico +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.
 
 
 **`AST_KNOWLEDGE_LEDGER`**
@@ -9492,7 +9492,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_KNOWLEDGE_OLD_MAP, risonanza`**
-> Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Vie +2.
+> Scalda Antico +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.
 
 
 **`AST_KNOWLEDGE_PROOF`**
@@ -9570,7 +9570,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_KNOWLEDGE_RUMOR, risonanza`**
-> Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Fede +2.
+> Scalda Antico +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY`**
@@ -9674,7 +9674,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_PEOPLE_ELDERS, risonanza`**
-> Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Fede +2.
+> Scalda Antico +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.
 
 
 **`AST_PEOPLE_EXODUS`**
@@ -9726,7 +9726,7 @@ possono spostare nella frase, non togliere. 2900 testi in lettura.
 
 
 **`AST_PEOPLE_HARVEST_HANDS, risonanza`**
-> Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Sopravvivenza +2.
+> Scalda Terra +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Terra +2.
 
 
 **`AST_PEOPLE_MARCH`**

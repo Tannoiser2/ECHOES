@@ -5,6 +5,63 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.350 — Un Tema con una carta sola, e due caselle che nessuno comprava (D-382)
+
+**L'Antico riceveva 32 Risonanze su 3.725, lo 0,9%**, ed era in cima al Punto
+Zero da nove versioni. La causa non era sottile: **una carta su 48, una copia
+nel mazzo, un punto di calore** contro le trentasette copie della Fede.
+
+Spostate **otto Risonanze**, scegliendo le carte in cui il Tema nuovo era già
+nella frase d'autore — *«è una cosa che c'era prima dell'accordo»* (Legame di
+Sangue), *«chi ricorda decide cosa c'era prima»* (Consiglio degli Anziani). Il
+testo stampato nomina il Tema, quindi riscriverlo era metà del lavoro.
+
+| dove finisce il Calore | prima | dopo |
+|---|---|---|
+| Fede | 33,7% | 22,9% |
+| **Antico** | **0,9%** | **20,7%** |
+| Terra | 7,0% | **9,9%** |
+
+**E la porta murata si è aperta da sola.** `mountain_forgotten` era l'ultima
+clausola che chiedeva una cosa che il mondo non scrive mai. Con l'Antico che si
+apre, il mondo la scrive: **porte murate 1 → 0**.
+
+### Le due caselle di ISSUES 117
+
+**ABBASSA LA DOMANDA** era offerta 730 volte e comprata **zero**: valeva 1
+contro il 3 di CAMBIA CONTROLLO, e il primo beneficio è gratis. Adesso **legge
+quello su cui agisce** — raffreddare una domanda a terra non vale niente,
+raffreddarne una a un passo dal Consiglio vale quanto alzare una Pietra.
+
+Provata prima a 3: comprata 393 volte su 716, e le altre si svuotavano. **Una
+casella che mangia le altre è sbagliata quanto una che nessuno compra.** Scesa
+a 2 — e allora è crollata RAFFREDDA TEMA, che ha avuto la stessa cura: vale 2 se
+è il Tema **col rombo più avanti**. Poi è caduta una prova, e aveva ragione lei:
+MUOVI UN RAPPORTO, offerto nove volte in cento saghe, non veniva più preso.
+
+| casella | prima | dopo |
+|---|---|---|
+| **ABBASSA LA DOMANDA** | 0 su 730 | **26 su 728** |
+| **RAFFREDDA TEMA** | 22 su 365 | **115 su 364** |
+| MUOVI UN RAPPORTO | 2 su 7 | **6 su 9** |
+
+**UNA CASATA LASCIA IL TAVOLO resta a zero, e la decisione è di lasciarla lì:**
+lo zero è la congiunzione (Vaerax al tavolo *e* quella carta in discussione), non
+la casella. È la cosa più drastica del gioco e vale una applicazione in tutto il
+corpo scritto.
+
+**Costi dichiarati:** UNA PIETRA SALE scende da 14 acquisti a 2; le
+trasformazioni sedute da 233 a 226; i Consigli cadono ancora un po' meno (37 → 28
+sul misto). E i segni che non arrivano mai sul tavolo scendono da 52 a **48**.
+
+**Quello che non si chiude tarando:** il primo beneficio è gratis, quindi viene
+preso solo quello che vale di più, e a parità vince sempre lo stesso. Ogni
+casella alzata ne spegne un'altra. Aperta come **ISSUES 122**.
+
+Cancello: **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+---
+
 ## 0.1.349 — Il Punto Zero rimisurato, e due tavoli che erano scambiati
 
 `PUNTO_ZERO.md` è il primo documento che `CLAUDE.md` dice di leggere, ed era

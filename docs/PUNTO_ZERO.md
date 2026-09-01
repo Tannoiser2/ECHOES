@@ -1,7 +1,8 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.349** · `main` a `bf6403e` · rimisurato per intero, con le sonde
-rilanciate sul codice di oggi.
+**Versione 0.1.350** · rimisurato per intero in 0.1.349, con le sonde rilanciate
+sul codice di oggi; la sezione 3 e la 6 aggiornate da
+[D-382](DECISIONS.md#d-382).
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
@@ -27,8 +28,8 @@ scatola.
 | suite | **665 prove / 98 suite / 86.347 asserzioni** verdi |
 | il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme |
 | cancelli | **tutti e ventisei verdi** (vedi `CLAUDE.md`) |
-| Consigli per anno | misto **3-6** (media 3,54) · uniforme **3-6** (media 3,57) |
-| Verità scritte | misto **139**, di cui 112 diverse · uniforme 151, di cui 108 |
+| Consigli per anno | misto **3-6** (media 3,47) · uniforme **3-6** (media 3,52) |
+| Verità scritte | misto **139**, di cui 112 diverse · uniforme 152, di cui 113 |
 
 I cancelli erano diciannove: i sette in più sorvegliano quello che nessuno
 guardava — la pagina dell'app, il tavolo posto per posto, le vite delle case, lo
@@ -133,18 +134,19 @@ difetto del dato.
 
 | la Risonanza, misurata | |
 |---|---|
-| Risonanze in 100 anni | **3.725 — 37,2 per anno** |
-| di quelle, aggravate | **24,8%** |
-| col ponte alla questione in gioco | 2.040 |
+| Risonanze in 100 anni | **3.690 — 36,9 per anno** |
+| di quelle, aggravate | **25,0%** |
+| col ponte alla questione in gioco | 2.105 |
 
 Dove finisce il Calore, ed è qui che si vede il difetto che resta:
 
-| Fede | Vie | Sopravvivenza | Potere | **Terra** | **Antico** |
+| Fede | **Antico** | Vie | Potere | Sopravvivenza | Terra |
 |---|---|---|---|---|---|
-| 33,7% | 23,9% | 17,4% | 17,0% | **7,0%** | **0,9%** |
+| 22,9% | **20,7%** | 16,2% | 15,6% | 14,6% | 9,9% |
 
-**L'Antico non si scalda: 32 Risonanze su 3.725.** Un Tema che nessuna carta
-scalda è un Tema che non apre mai la sua Domanda, ed è fermo da nove versioni.
+**Era 0,9% fino alla 0.1.349**, e la causa non era sottile: l'Antico aveva
+**una carta su 48 e una copia nel mazzo**. Spostate otto Risonanze
+([D-382](DECISIONS.md#d-382)), tutti e sei i Temi si aprono.
 
 ---
 
@@ -185,8 +187,8 @@ E le misure che prima non c'erano:
 
 | | |
 |---|---|
-| segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | 52, più 21 fuori portata |
-| **punti regalati** / **porte murate** (`MISURA_SEGNI`) | **1** / **1** |
+| segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | 48, più 21 fuori portata |
+| **punti regalati** / **porte murate** (`MISURA_SEGNI`) | **1** / **0** |
 | vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 18** |
 | testi che un giocatore può leggere (`REVISIONE_TESTI`) | **2.898** |
 | pezzi e legami del flusso disegnato (`flusso.html`) | **959 / 4.232** |
@@ -223,9 +225,9 @@ E le misure che prima non c'erano:
 
 Queste non le prendo io. Sono le porte chiuse.
 
-1. **L'Antico non si scalda: 32 Risonanze su 3.725.** Le sue Tensioni vivono di
-   Drift e di Consigli, non di carte. O qualche carta lo nomina, o quel Tema non
-   apre mai la sua Domanda.
+1. **[ISSUES 122](ISSUES.md#122) — il primo beneficio è gratis, quindi ne
+   esiste uno solo.** Curare due caselle morte ne ha spente altre due, a
+   catena: non è taratura, è la forma dell'economia. Tre strade nella voce.
 2. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi più.** Scritte le
    proposte carta per carta, i FAILURE passano da **108 a 37** sul tavolo misto.
    È l'effetto cercato ed è anche un prezzo: tutto quello che vive nella banda
@@ -240,12 +242,9 @@ Queste non le prendo io. Sono le porte chiuse.
    revisioni diverse si nascondono in quella frase: la leggibilità,
    l'impaginazione, o *l'idea di cosa si guarda*. Da 0.1.346 lo **strumento per
    misurarle c'è** ([D-379](DECISIONS.md#d-379)); la scelta no.
-6. **[ISSUES 117](ISSUES.md#117) — due caselle.** UNA CASATA LASCIA IL TAVOLO
-   non viene offerta mai (allargarla vuol dire spargere per il tavolo la casella
-   che toglie un giocatore); ABBASSA LA DOMANDA è offerta 720 volte e comprata 3.
-7. **ISSUES 84 — l'Eredità è misurabile e quasi inerte**: tre strade scritte,
+6. **ISSUES 84 — l'Eredità è misurabile e quasi inerte**: tre strade scritte,
    nessuna scelta.
-8. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura
+7. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura
    quello che la pagina *chiede*; quello che una persona *vede*, no.
 
 ---

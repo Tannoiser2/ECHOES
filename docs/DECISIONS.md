@@ -10,6 +10,139 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-382 — Un Tema con una carta sola, e due caselle che nessuno comprava
+
+**implemented** (0.1.350) · chiude la parte misurabile di [ISSUES 117](ISSUES.md#117)
+
+### L'Antico aveva una carta su quarantotto
+
+Il difetto era in cima al Punto Zero da nove versioni: **l'Antico riceve 32
+Risonanze su 3.725, lo 0,9%**, e un Tema che nessuna carta scalda non apre mai
+la sua Domanda. Prima di ragionarci, la causa:
+
+| Tema | carte | copie nel mazzo | calore per copia |
+|---|---|---|---|
+| Fede | 13 | 37 | 44 |
+| Vie | 10 | 35 | 36 |
+| Sopravvivenza | 8 | 26 | 32 |
+| Potere | 12 | 25 | 32 |
+| Terra | 4 | 8 | 12 |
+| **Antico** | **1** | **1** | **1** |
+
+Non c'era niente di sottile: **una carta, una copia, un punto di calore** contro
+le trentasette della Fede. La quota di Calore osservata seguiva il mazzo quasi
+esattamente. Nessuna regola da cambiare — un mazzo da riequilibrare.
+
+**Otto Risonanze spostate**, scegliendo le carte in cui il Tema nuovo era già
+nella frase d'autore:
+
+| carta | da | a | perché |
+|---|---|---|---|
+| Legame di Sangue | Potere | **Antico** | *«è una cosa che c'era prima dell'accordo»* |
+| Consiglio degli Anziani | Fede | **Antico** | *«chi ricorda decide cosa c'era prima»* |
+| Archivio | Vie | **Antico** | *«conserva la versione che qualcuno ha avuto il tempo di scrivere»* |
+| Mappa Vecchia | Vie | **Antico** | la carta aveva già `ANTICO` fra i suoi Temi di Consiglio |
+| Voce di Corridoio | Fede | **Antico** | *«una verità che non ha ancora deciso di chi essere»* |
+| Il Vecchio Esercito | Potere | **Antico** | richiamare i vecchi reggimenti |
+| Braccia per il Raccolto | Sopravvivenza | **Terra** | le braccia che lavorano la terra |
+| Assedio | Sopravvivenza | **Terra** | tenere un posto perché non sia di altri |
+
+**Il testo stampato della Risonanza nomina il Tema** — *«Scalda Fede +1»* — e
+riscriverlo era la metà del lavoro: una faccia che dice un Tema mentre il motore
+ne scalda un altro è esattamente la divergenza fra le due grammatiche che
+ISSUES 69 teme.
+
+| dove finisce il Calore | prima | dopo |
+|---|---|---|
+| Fede | 33,7% | 22,9% |
+| **Antico** | **0,9%** | **20,7%** |
+| Vie | 23,9% | 16,2% |
+| Potere | 17,0% | 15,6% |
+| Sopravvivenza | 17,4% | 14,6% |
+| **Terra** | 7,0% | **9,9%** |
+
+### E la porta murata si è aperta da sola
+
+Non era in programma. `mountain_forgotten` — il segno che
+`DST_VAERAX_LEGEND · SOGLIA` chiede — era l'ultima **porta murata** rimasta
+dopo [D-372](#d-372) e [D-378](#d-378): una clausola che vuole una cosa che il
+mondo non scrive mai. Con l'Antico che si apre, il mondo la scrive.
+
+**Porte murate: 1 → 0.** *«Tutto quello che un passo chiede, il mondo lo scrive
+almeno una volta.»*
+
+### Le due caselle che nessuno comprava
+
+[ISSUES 117](ISSUES.md#117) ne lasciava due, e le chiamava decisioni.
+
+**ABBASSA LA DOMANDA: offerta 730 volte in cento saghe, comprata zero.** Il
+primo beneficio è gratis, quindi chi propone prende sempre quello che vale di
+più, e questa valeva 1 come RAFFREDDA TEMA contro il 3 di CAMBIA CONTROLLO.
+
+La cura non è un numero più alto: è il numero **giusto**. Raffreddare una
+domanda a terra non vale niente; raffreddarne una a un passo dal Consiglio vale
+quanto alzare una Pietra, perché è esattamente quello che impedisce a qualcun
+altro di prendersi il posto. **La casella adesso legge quello su cui agisce.**
+
+Provata prima a 3 quando la domanda è alta, cioè alla pari con CAMBIA CONTROLLO:
+comprata **393 volte su 716**, e le altre si svuotavano — COSTRUISCI PIETRA da
+141 acquisti a 23, RAFFREDDA TEMA a zero. **Una casella che mangia le altre è
+sbagliata quanto una che nessuno compra.** Scesa a 2.
+
+E allora è toccato a RAFFREDDA TEMA, crollata da 22 a 2: era l'altra casella da
+1. Stessa cura, stessa forma — vale 2 se il Tema è **quello col rombo più
+avanti**, cioè quello su cui si aprirà il prossimo Consiglio. Non un numero di
+soglia inventato: una cosa che al tavolo si vede senza contare.
+
+**E poi è caduta una prova, ed era lei ad avere ragione.**
+`test_alliance_of_convenience` chiede che su cinque anni almeno un legame si
+scaldi. MUOVI UN RAPPORTO è offerto **nove volte in cento saghe**, e con due
+caselle comuni salite a 2 non veniva più preso mai. Alzato a 3: quando il tavolo
+offre un'alleanza, è la cosa più grossa sul piatto — e capita quasi mai.
+
+| casella | prima | dopo |
+|---|---|---|
+| **ABBASSA LA DOMANDA** | 0 su 730 | **26 su 728** |
+| **RAFFREDDA TEMA** | 22 su 365 | **115 su 364** |
+| MUOVI UN RAPPORTO | 2 su 7 | **6 su 9** |
+| CAMBIA CONTROLLO | 164 su 168 | 159 su 164 |
+| COSTRUISCI PIETRA | 141 su 256 | 143 su 255 |
+
+**UNA CASATA LASCIA IL TAVOLO resta a zero offerte, e la decisione è di
+lasciarla lì.** Vuole `TEN_AWAKENING` in discussione **e** Vaerax al tavolo:
+una casa su otto, quattro sedute per anno, una carta su sessanta. Lo zero è la
+congiunzione, non la casella. È la cosa più drastica del gioco e vale **una**
+applicazione in tutto il corpo scritto: spargerla per il tavolo sarebbe un altro
+gioco. Chi vuole vederla giocare non deve toccare la casella — deve far uscire
+più spesso quella carta, e quello è il mazzo.
+
+### Il costo
+
+| | prima | dopo |
+|---|---|---|
+| **porte murate** | 1 | **0** |
+| segni che non arrivano mai sul tavolo | 52 | **48** |
+| lavoro del motore che nessuno legge | 3 | **2** |
+| UNA PIETRA SALE, acquisti | 14 | **2** |
+| trasformazioni sedute in 12 saghe | 233 | **226** |
+| Consigli caduti (misto / uniforme) | 37 / 14 | **28 / 12** |
+
+Due costi, scritti: **UNA PIETRA SALE** scende a due acquisti — è la terza
+casella da 2, e adesso ne ha due più comuni davanti; e i Consigli cadono ancora
+un po' meno, che è la [119](ISSUES.md#119) che continua.
+
+Cancello **0 seggi bloccati su 8**, misto e uniforme. 26 cancelli verdi.
+
+### Quello che questo giro ha fatto vedere, e non si chiude tarando
+
+Tre caselle spostate, tre effetti a catena, una prova caduta. La ragione è
+strutturale e non sta in nessun numero: **il primo beneficio è gratis, quindi
+viene preso solo quello che vale di più, e a parità vince sempre lo stesso.**
+Ogni casella alzata ne spegne un'altra, e la cura è un'altra economia — non
+un'altra taratura. Aperta come [ISSUES 122](ISSUES.md#122).
+
+---
+
 ## D-381 — I tre pezzi «che nessuno tocca» erano tre buchi del disegno
 
 **implemented** (0.1.348) · corregge la [ISSUES 121](ISSUES.md#121), aperta un'ora prima

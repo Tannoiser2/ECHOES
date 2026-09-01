@@ -282,6 +282,31 @@ static func house_of(voice: Dictionary, context: Dictionary, world: Dictionary) 
 	return str(context.get("proponent", ""))
 
 
+## Questo Tema e' quello col rombo piu' avanti? E' il Tema su cui si aprira' il
+## prossimo Consiglio, e al tavolo si legge guardando la pista.
+static func _is_hottest(world: Dictionary, theme_id: String) -> bool:
+	if theme_id == "":
+		return false
+	var themes: Dictionary = world.get("theme_heat", {}) as Dictionary
+	if not themes.has(theme_id):
+		return false
+	var mio: int = int(themes[theme_id])
+	if mio <= 0:
+		return false
+	for altro in themes:
+		if int(themes[altro]) > mio:
+			return false
+	return true
+
+
+## Quanto e' alta una domanda adesso. Zero se il tavolo non ce l'ha in gioco.
+static func _question_heat(world: Dictionary, tension_id: String) -> int:
+	var tensions: Dictionary = world.get("tensions", {}) as Dictionary
+	if tension_id == "" or not tensions.has(tension_id):
+		return 0
+	return int((tensions[tension_id] as Dictionary).get("current_value", 0))
+
+
 ## La prima Regione dell'ordine della Cronaca che porta il segno, preferendo una
 ## che non sia gia' quella di cui si discute — cosi' «una Regione col granaio»
 ## non e' un modo lungo di dire «qui». E' la stessa regola di
@@ -832,8 +857,14 @@ static func effects_for(
 ## **E adesso guardano anche `chi`** (D-366): la stessa casella vale il
 ## contrario se la pedina e' posata su di te o sul rivale, ed e' quello che il
 ## tavolo legge in un colpo d'occhio.
+## `theme_id` e' il Tema della carta in discussione: serve solo a RAFFREDDA
+## TEMA, che senza di lui non sa che cosa sta raffreddando. Ha un valore di
+## riposo perche' l'unico chiamante lo calcola gia' due righe sopra, e un
+## chiamante nuovo che lo dimenticasse otterrebbe il vecchio comportamento
+## invece di un errore.
 static func intrinsic_value(
-	voice: Dictionary, kind: String, context: Dictionary, world: Dictionary
+	voice: Dictionary, kind: String, context: Dictionary, world: Dictionary,
+	theme_id: String = ""
 ) -> int:
 	var region_id: String = region_of(voice, context, world)
 	var proponent: String = str(context.get("proponent", ""))
@@ -857,10 +888,44 @@ static func intrinsic_value(
 			return 0
 		"REOPEN":
 			return 2 if tags.has(CLOSED_TAG) else 0
+		# **RAFFREDDA TEMA vale se il Tema e' quello che sta per aprirsi.**
+		#
+		# Stessa forma di ABBASSA LA DOMANDA, e per la stessa ragione: dando un
+		# valore alla domanda e lasciando il Tema a 1, gli acquisti di RAFFREDDA
+		# TEMA sono crollati da 22 a 2 su cento saghe. Non si cura una casella
+		# morta facendone morire un'altra.
+		#
+		# Il rombo piu' avanti e' il Tema su cui si aprira' il prossimo
+		# Consiglio: raffreddare quello e' una cosa, raffreddare un rombo
+		# indietro e' un'altra — e al tavolo si vede senza contare.
 		"COOL_THEME":
-			return 1
+			return 2 if _is_hottest(world, theme_id) else 1
+		# **ABBASSA LA DOMANDA vale quanto e' alta la domanda** (ISSUES 117).
+		#
+		# Con un valore fisso di 1 questa casella era offerta **730 volte in
+		# cento saghe e comprata zero**: il primo beneficio e' gratis, e chi
+		# propone prendeva sempre quello che cambia la mappa. Una casella che
+		# nessuno compra e', per il gioco, identica a una che non esiste.
+		#
+		# Non e' un numero piu' alto: e' il numero **giusto**. Raffreddare una
+		# domanda a terra non vale niente; raffreddarne una a un passo dal
+		# Consiglio vale quanto alzare una Pietra, perche' e' esattamente
+		# quello che impedisce a qualcun altro di prendersi il posto.
+		#
+		# **Provata prima a 3 quando la domanda e' alta**, cioe' alla pari con
+		# CAMBIA CONTROLLO: comprata 393 volte su 716, e le altre caselle si
+		# svuotavano — COSTRUISCI PIETRA da 141 acquisti a 23, RAFFREDDA TEMA a
+		# zero. Una casella che mangia le altre e' sbagliata quanto una che
+		# nessuno compra, e il numero e' sceso a 2.
+		#
+		# La soglia non sta nel mondo — sta nei dati della carta, che qui non
+		# arrivano — ma **53 Tensioni su 60 hanno soglia 6** e partono da 2:
+		# la scala legge il valore, e la cosa e' dichiarata invece che nascosta.
 		"COOL_QUESTION":
-			return 1
+			var quanto: int = _question_heat(world, question_of(voice, context, world))
+			if quanto <= 0:
+				return 0
+			return 2 if quanto >= 4 else 1
 		"HEAT_QUESTION":
 			return -1
 		"YIELD_CONTROL":
@@ -894,10 +959,15 @@ static func intrinsic_value(
 			return 1 if on_me else -1
 		"MOVE_OUT":
 			return -2 if on_me else 2
+		# **Un legame vale piu' di una pedina, perche' capita quasi mai.**
+		# MUOVI UN RAPPORTO e' offerto **nove volte in cento saghe**: dare a
+		# due caselle comuni lo stesso valore lo aveva spento del tutto, e la
+		# prova che chiede *«su cinque anni almeno un legame si scalda»* e'
+		# caduta. Quando il tavolo lo offre, e' la cosa piu' grossa sul piatto.
 		"BIND_HOUSES":
 			match str(voice.get("level", "")):
 				"BOUND", "ALLY":
-					return 2
+					return 3
 				"HOSTILE", "ENEMY":
 					return -2
 			return 0

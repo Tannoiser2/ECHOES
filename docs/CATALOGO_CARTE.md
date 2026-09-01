@@ -567,9 +567,9 @@ no border. Not gory, not horror.
 A. **Cercare il legame.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
 B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Potere +2.
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.
 
-> Se il bersaglio porta gia' `heir_named`: Potere scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `heir_named`: Antico scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 2, +1 se la Domanda e' Fede o Potere.
 
@@ -853,9 +853,9 @@ no border. Not gory, not horror.
 A. **Richiamarli sotto le armi.** Sposta due tue presenze in quel luogo, anche da lontano.
 B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita'.
 
-**RISONANZA (avviene sempre)** — Scalda Potere +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Potere +3.
+**RISONANZA (avviene sempre)** — Scalda Antico +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Antico +3.
 
-> Se il bersaglio porta gia' `crown_divided`: Potere scalda di 3 invece che di 2.
+> Se il bersaglio porta gia' `crown_divided`: Antico scalda di 3 invece che di 2.
 
 **IN CONSIGLIO** — vale 3, +1 se la Domanda e' Potere.
 
@@ -901,9 +901,9 @@ no border. Not gory, not horror.
 A. **Stringere l'assedio.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e parli per primo.
 B. **Affamare e aspettare.** Metti #fame sul luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Sopravvivenza +3.
+**RISONANZA (avviene sempre)** — Scalda Terra +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.
 
-> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 3 invece che di 2.
+> Se il bersaglio porta gia' `grain_requisitioned`: Terra scalda di 3 invece che di 2.
 
 **IN CONSIGLIO** — vale 2, +1 se la Domanda e' Potere o Sopravvivenza.
 
@@ -1377,9 +1377,9 @@ no border. Not gory, not horror.
 A. **Cercare indietro.** Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
 B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Vie +2.
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.
 
-> Se il bersaglio porta gia' `ledger_public`: Vie scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `ledger_public`: Antico scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Fede.
 
@@ -1473,9 +1473,9 @@ no border. Not gory, not horror.
 A. **Trovare il passaggio.** Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini.
 B. **Tenere la mappa per se'.** Metti #registro_del_commercio: al prossimo Consiglio vale +1.
 
-**RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Vie +2.
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.
 
-> Se il bersaglio porta gia' `trade`: Vie scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `trade`: Antico scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 1, +1 se la Domanda e' Vie o Antico.
 
@@ -1520,9 +1520,9 @@ no border. Not gory, not horror.
 A. **Ascoltare la voce.** Scopri una questione velata che tocca il luogo.
 B. **Mettere in giro la voce.** Metti #malcontento sul luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Fede +2.
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.
 
-> Se il bersaglio porta gia' `betrayal_spoken`: Fede scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `betrayal_spoken`: Antico scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Potere.
 
@@ -1806,9 +1806,9 @@ no border. Not gory, not horror.
 A. **Ascoltarli.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
 B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Fede +2.
+**RISONANZA (avviene sempre)** — Scalda Antico +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.
 
-> Se il bersaglio porta gia' `faith_established`: Fede scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `faith_established`: Antico scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Sopravvivenza.
 
@@ -1854,9 +1854,9 @@ no border. Not gory, not horror.
 A. **Portare le braccia.** Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda.
 B. **Prestare le braccia.** Un'altra casa toglie #magro da un suo luogo. Sali di 1 gradino nel rapporto con lei.
 
-**RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Sopravvivenza +2.
+**RISONANZA (avviene sempre)** — Scalda Terra +1. Le braccia che raccolgono qui sono braccia che non arano altrove. Se il grano e' stato requisito: Terra +2.
 
-> Se il bersaglio porta gia' `grain_requisitioned`: Sopravvivenza scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `grain_requisitioned`: Terra scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 1, +1 se la Domanda e' Sopravvivenza.
 
