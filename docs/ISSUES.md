@@ -2931,7 +2931,9 @@ nessun anno.
 
 ### 98. Chiudere il circuito: ogni segno dichiara se pesa o se e' colore
 
-`regola` · `strumenti` · `decisione` · aperta in 0.1.290 · **direzione del
+`regola` · `strumenti` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
+e' un metodo e genera lavoro all'infinito — la sua meta' utile e' la gialla G3,
+che finisce · aperta in 0.1.290 · **direzione del
 committente**:
 
 > «Il prossimo lavoro non e' aggiungere contenuto, ma **chiudere il circuito**.
@@ -3103,7 +3105,9 @@ Questa strada rende le righe raggiungibili e contese, non conquistate —
 
 ### 96. Il segno piu' scritto del gioco non lo guarda nessuno
 
-`regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.287
+`regola` · `contenuto` · `bilanciamento` · **gialla G3 dalla 0.1.361**
+([la lista](LE_TUE_DECISIONI.md)): non aspetta piu' una decisione — o una clausola
+nomina il segno, o il segno e' colore dichiarato, o esce · aperta in 0.1.287
 ([D-324](DECISIONS.md#d-324))
 
 Girando la misura dalla parte giusta — non «quanti dei segni che i Destini
@@ -3409,7 +3413,9 @@ su 60** sull'anno d'autore, **3 su 60** sulla mappa pescata.
 
 ### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse — 52.4% in 0.1.278
 
-`regola` · `bilanciamento` · `decisione` · aperta in 0.1.276
+`regola` · `bilanciamento` · **fuori dalla lista in 0.1.361**
+([la lista](LE_TUE_DECISIONI.md)): la sua cura e' la rossa R4 (gli Obiettivi che
+nominano invece di contare), e si rimisura dopo quella · aperta in 0.1.276
 ([D-314](DECISIONS.md#d-314))
 
 **Misurata**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme concordi:
@@ -4206,7 +4212,9 @@ un numero e non a occhio.
 
 ### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
 
-`contenuto` · `da-decidere` · **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
+`contenuto` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
+e' una potatura di componenti, e si fa quando la scatola si stampa ·
+**aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
 
 Misurato con `cli/run_punchboard_probe.gd`, 40 anni: dei **34 tipi** di
 segnalino disegnati per la mappa, **17 non escono mai o escono meno di un anno
@@ -4758,7 +4766,9 @@ dire una cosa sola sul tavolo.
 
 ### 69. La Risonanza è scritta e non succede
 
-`contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
+`contenuto` · `direzione` · `da-decidere` · **rossa R9 dalla 0.1.361**
+([la lista](LE_TUE_DECISIONI.md)): resta il **formato** della carta, ed e' una
+scelta d'autore che viene prima dell'arte · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
 **cure in 0.1.219** ([D-257](DECISIONS.md#d-257)), **0.1.220**
 ([D-258](DECISIONS.md#d-258)) e **0.1.222** ([D-260](DECISIONS.md#d-260)) ·
 **aperta**
@@ -7660,7 +7670,9 @@ benefici per Consiglio muoversi nella direzione scelta.
 
 ### 126. Si prenota 285 volte e si spende 12: la prima metà del RIVENDICARE
 
-`regole` · `da-decidere` · aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
+`regole` · **gialla G6 dalla 0.1.361** ([la lista](LE_TUE_DECISIONI.md)): la
+regola l'hai gia' dettata, quello che resta e' taratura del cervello ed e' mia ·
+aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
 
 Chiudendo [ISSUES 53](#53) è uscito un numero che nessuno aveva mai guardato
 dalla parte giusta.

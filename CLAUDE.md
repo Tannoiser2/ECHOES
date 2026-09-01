@@ -69,8 +69,8 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `bash tools/run_table_survey.sh --check` | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
 | `bash tools/run_page_survey.sh --check` | `docs/MISURA_PAGINA.md`: **cosa la pagina dell'app dice e con quale dito** — i testi che vivono solo nel suggerimento del mouse, i bersagli piu' stretti di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in confronto a un tablet |
 | `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
-| `python3 tools/issues_survey.py --check` | **che il conto delle voci sia vero**: una voce chiusa porta il ✅ nel titolo, e il foglio delle decisioni si rigenera da li' — i numeri contati a mano erano sbagliati di tredici |
-| `python3 tools/issues_survey.py --self-test` | che la guardia delle voci morda |
+| `python3 tools/issues_survey.py --check` | **che il conto delle voci sia vero e che nessuna resti senza casa**: una voce chiusa porta il ✅ nel titolo, ogni voce aperta e' nominata da [la lista](docs/LE_TUE_DECISIONI.md), e il foglio si rigenera da li' |
+| `python3 tools/issues_survey.py --self-test` | che le due guardie delle voci mordano |
 | `python3 tools/gates_survey.py --check` | **che questa tabella e la CI siano lo stesso giro**: un cancello promesso e non girato non si lamenta, e uno girato e non promesso manda in rosso chi segue il documento |
 | `python3 tools/gates_survey.py --self-test` | che la guardia dei cancelli morda, nei due versi |
 | `bash tools/run_sims.sh` | che ogni anno arrivi in fondo, e che lo stesso seme dia lo stesso salvataggio |

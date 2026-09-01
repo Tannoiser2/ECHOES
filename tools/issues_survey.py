@@ -87,8 +87,18 @@ def read_voices(text: str) -> list[Voice]:
     return voices
 
 
-def complaints(voices: list[Voice]) -> list[str]:
-    """La guardia: una voce dichiarata chiusa deve portare il segno."""
+def complaints(voices: list[Voice], sheet: str = "") -> list[str]:
+    """Le due guardie.
+
+    La prima: una voce dichiarata chiusa deve portare il segno.
+
+    La seconda (0.1.361, parola del committente — *«questo giro deve finire»*):
+    **ogni voce aperta deve avere una casa nella lista**. Una rossa, una gialla,
+    una verde, o la sezione «fuori dalla lista» che dice perche' aspetta. Una
+    voce aperta che la lista non nomina e' esattamente il modo in cui una lista
+    smette di finire: sta li', non e' assegnata a nessuno, e ricompare fra
+    cinquanta versioni.
+    """
     out = []
     for v in voices:
         if v.declared_closed and not v.closed:
@@ -96,6 +106,15 @@ def complaints(voices: list[Voice]) -> list[str]:
                 "la voce %d dice di essere chiusa e non ha il ✅ nel titolo: %s"
                 % (v.number, v.heading.strip()[:70])
             )
+    if sheet:
+        for v in voices:
+            if v.closed:
+                continue
+            if "ISSUES.md#%d)" % v.number not in sheet:
+                out.append(
+                    "la voce %d e' aperta e la lista non la nomina: %s"
+                    % (v.number, v.heading.strip()[:70])
+                )
     return out
 
 
@@ -177,21 +196,32 @@ def main() -> int:
         if not complaints(read_voices(planted)):
             print("FALLITO: la guardia non ha visto una voce chiusa senza segno")
             return 1
-        if complaints(read_voices(text)):
+        sheet_now = SHEET.read_text(encoding="utf-8")
+        # E la seconda: si toglie dalla lista una voce aperta e deve gridare.
+        orphan = [v for v in read_voices(text) if not v.closed][0]
+        thin = sheet_now.replace("ISSUES.md#%d)" % orphan.number, "ISSUES.md#zzz)")
+        if thin == sheet_now:
+            print("FALLITO: il secondo difetto non si e' potuto piantare")
+            return 1
+        if not complaints(read_voices(text), thin):
+            print("FALLITO: la guardia non ha visto una voce aperta fuori dalla lista")
+            return 1
+        if complaints(read_voices(text), sheet_now):
             print("FALLITO: la guardia morde i dati veri")
             return 1
-        print("OK  la guardia delle voci morde")
+        print("OK  le due guardie delle voci mordono")
         return 0
 
+    sheet_now = SHEET.read_text(encoding="utf-8")
     voices = read_voices(text)
-    bad = complaints(voices)
+    bad = complaints(voices, sheet_now)
     if bad:
         print("ATTENZIONE: docs/ISSUES.md non si puo' contare.")
         for line in bad:
             print("  " + line)
         return 1
 
-    sheet = SHEET.read_text(encoding="utf-8")
+    sheet = sheet_now
     wanted = splice(sheet, render(voices))
 
     if args.check:

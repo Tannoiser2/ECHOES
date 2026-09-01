@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.361 — La lista che finisce, e una guardia perché finisca
+
+Parola del committente:
+
+> *«Nessuna però deve portare ad altre issue. Perché qui ne chiudiamo una ma ne
+> apriamo dieci. Questo giro deve finire e dobbiamo arrivare a un punto che sia
+> giocabile.»*
+
+`docs/LE_TUE_DECISIONI.md` non è più un foglio di decisioni: è **la lista che
+finisce**. Ventidue righe — **dieci rosse** (sue, una parola ciascuna), **otto
+gialle** e **quattro verdi** (mie) — e ognuna con una fine scritta, non un
+«migliora X». Tutto quello che non sta fra qui e una partita giocabile è in
+fondo, nella sezione *fuori dalla lista*, con scritto perché.
+
+**E la lista non può perdere pezzi.** `tools/issues_survey.py` ha una seconda
+guardia: **ogni voce aperta dev'essere nominata dalla lista** — una rossa, una
+gialla, una verde, o la sezione che dice perché aspetta. Girata la prima volta ha
+trovato quattro voci senza casa. Una voce aperta che nessuno nomina è esattamente
+il modo in cui una lista smette di finire.
+
+**Cinque voci hanno cambiato colore**, e la ragione è scritta su ognuna: la
+[98](docs/ISSUES.md#98) e la [91](docs/ISSUES.md#91) escono dalle decisioni
+(la prima è un metodo che genera lavoro all'infinito, la seconda ha la sua cura
+dentro un'altra rossa); la [96](docs/ISSUES.md#96), la [126](docs/ISSUES.md#126)
+e la [82](docs/ISSUES.md#82) non aspettano più una parola. La
+[69](docs/ISSUES.md#69) ne diventa una: quello che le resta è il **formato della
+carta**, e va deciso prima dell'arte.
+
+Le decisioni che aspettano il committente passano da 15 a **11 voci, dieci
+domande**.
+
+---
+
 ## 0.1.360 — I varchi si allargano: torna la densità della griglia (D-393)
 
 Parola del committente, il giorno dopo D-390:
