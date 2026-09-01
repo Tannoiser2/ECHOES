@@ -7,6 +7,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ## 0.1.356 — Nel grafo c'erano dodici Consigli, e nella scatola sono sessanta
 
+### E la risposta a «non si arriva mai al punto di chiudere?»
+
+**No, non con questo metodo**, e i numeri lo dicono: 126 voci, 66 chiuse, 60
+aperte — e per fascia di venticinque versioni ne apro sistematicamente più di
+quante ne chiudo (12/5, 12/7, 12/3, 7/0). Non è disordine: la regola di casa è
+*misura prima di scrivere*, e ogni misura trova qualcosa. È il metodo che ha
+tenuto il gioco onesto, e **non ha una fine sua**.
+
+**La lista non è il traguardo.** PZ-01 ha tre criteri, due sono misurati e
+tengono — «meno della metà dei turni sono passa» (46,4%) e «0 seggi bloccati su
+8». Il terzo — *«dopo una partita si guarda la mappa e si capisce cosa è
+successo»* — **non lo può dire nessuna sonda**. Si chiude giocando.
+
+Scritto [`docs/LE_TUE_DECISIONI.md`](docs/LE_TUE_DECISIONI.md): le **quattordici**
+voci che aspettano il committente, una riga a testa, il numero che le motiva e la
+mia raccomandazione — così si chiudono in mezz'ora invece che una alla volta.
+
+**E da qui non apro più voci nuove**: quello che una misura trova diventa una
+riga sotto la voce che l'ha trovato, non una voce nuova con tre strade.
+
+*(Corretta anche la contabilità: due voci dicevano CHIUSA nel titolo senza il
+segno, e risultavano aperte — 62 → 60.)*
+
 Domanda del committente: *«perché nel grafo ci sono solo 12 carte del
 Consiglio?»*. Perché il disegno chiamava «Consiglio» i **dodici template
 d'autore** — le clausole e i tre sacchetti — e la **Scheda Consiglio**, che nella

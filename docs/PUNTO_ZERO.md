@@ -224,6 +224,11 @@ E le misure che prima non c'erano:
 
 ## 6. Le decisioni che sono tue e non mie
 
+**Stanno tutte e quattordici in un foglio solo**, con una riga a testa, il numero
+che le motiva e la mia raccomandazione: [LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md).
+Lì c'è anche la risposta alla domanda *«non si arriva mai al punto di chiudere?»* —
+che è no, non con questo metodo, e perché.
+
 Quattro di queste sono state decise in 0.1.353, e sono scritte. Quello che resta
 è sotto.
 

@@ -6703,7 +6703,7 @@ oppure una ragione scritta per cui non ce l'ha — e un cancello lo tiene.
 
 ---
 
-### 114. Le carte del Narratore si calano il 2,6% delle volte — CHIUSA in 0.1.325
+### 114. ✅ Le carte del Narratore si calano il 2,6% delle volte — CHIUSA in 0.1.325
 
 `regole` · `da-decidere` · aperta in 0.1.324
 
@@ -6874,7 +6874,7 @@ Tolti.
 
 ---
 
-### 116. La tessera non dice dove si costruisce — CHIUSA in 0.1.331
+### 116. ✅ La tessera non dice dove si costruisce — CHIUSA in 0.1.331
 
 `grammatica-fisica` · `da-decidere` · aperta in 0.1.330 ([D-364](DECISIONS.md#d-364))
 
