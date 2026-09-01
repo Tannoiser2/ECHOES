@@ -112,7 +112,7 @@ Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.
 | il sottotitolo | 60 su 60 |
 | una riga di testo libero | 107 su 60 |
 | **SI OTTIENE** | 60 su 60 |
-| una casella, una per riga | 1169 su 60 |
+| una casella, una per riga | 1170 su 60 |
 | **SI PAGA** | 60 su 60 |
 | **SE CADE** | 60 su 60 |
 

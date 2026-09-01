@@ -6120,7 +6120,7 @@ si calavano quando si voleva.
 **Fatto quando** il committente sceglie, e la scelta e' misurata sui 100 semi.
 
 
-### 108. Vaerax ha un Destino murato a tutti e tre i passi
+### 108. Vaerax ha un Destino murato a tutti e tre i passi — diagnosi rifatta in 0.1.338
 
 `regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 provata e ritirata in 0.1.315** ([D-348](DECISIONS.md#d-348))
 
@@ -6177,6 +6177,51 @@ proposta che non passa spegne un ramo intero.**
 
 **Fatto quando** il committente sceglie, e sotto quella scelta `mine_sealed`
 esce almeno una volta su 100 partite.
+
+> ### Diagnosi rifatta in 0.1.338 ([D-371](DECISIONS.md#d-371)) — i due presupposti erano sbagliati
+>
+> **«`TEN_AWAKENING` non arriva mai al tavolo»: arriva.** Su cento partite
+> arrivano **tutte e sessanta** le domande, e il Risveglio ci arriva in sei, con
+> un picco di 17 contro una soglia di 6. Il «mai» veniva da venti partite: con
+> quattro domande pescate su sessanta, uno zero in venti partite è ordinaria
+> sfortuna.
+>
+> **«`mine_sealed` dipende da una proposta sola»: no.** La strada 2 di questa
+> voce — una casella del Consiglio che lo posa — **era già fatta**: `IL MONDO
+> RICORDA` lo scrive su `TEN_ECHOES_BELOW` e `TEN_SLEEPERS`. Aggiunta anche a
+> `TEN_AWAKENING` (che poteva **dimenticarlo** senza saperlo **scrivere**):
+> misurato, resta a zero.
+>
+> ### Quello che regge, provato scartando tre ipotesi
+>
+> | segno | template **generici** che lo producono | scritture su 100 partite |
+> |---|---|---|
+> | `order_restored` | **4 su 4** | 78 |
+> | `question_unresolved` | 1 | 77 |
+> | `rumour_running` | 1 | 33 |
+> | `mine_sealed` | **0** | **0** |
+> | `study_supervised` | **0** | **0** |
+> | `valley_sealed` | **0** | **0** |
+>
+> **I tre segni mai scritti sono esattamente i tre che non stanno in nessun
+> template generico.** Vivono dentro il Consiglio di una carta sola, e un
+> Consiglio di carta non si apre quasi mai: quattro domande pescate su sessanta,
+> 3,5 Consigli a partita, e vanno al mucchio più caldo.
+>
+> Detta come si direbbe al tavolo: **quello che può succedere solo dentro il
+> Consiglio di una carta sola, non succede.**
+>
+> ### Cosa resta da fare, e non è più una scelta fra tre
+>
+> Le strade 1 e 2 sono chiuse: la prima punta a un problema che non c'è, la
+> seconda è fatta e non basta. Resta **portare la Conseguenza in un pool
+> generico** — cioè esattamente quello che [D-348](DECISIONS.md#d-348) aveva
+> provato e ritirato perché faceva cadere `test_claim_policy`.
+>
+> **Fatto quando** si capisce perché aggiungere una proposta a un template
+> generico cambia quale dominio una casa rivendica, e sotto quella cura
+> `mine_sealed` esce almeno una volta su 100 partite. La stessa cura vale per
+> `study_supervised` e `valley_sealed`, che hanno la stessa forma.
 
 
 ### 109. ✅ Il MASTER PROMPT 6 e' ricopiato in Python invece che letto — fatta in 0.1.314
