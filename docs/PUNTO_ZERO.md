@@ -1,8 +1,8 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
 **Versione 0.1.379** · rimisurato per intero in 0.1.349, le sonde rilanciate in
-0.1.353. **La sezione 1 e' stata rimisurata in 0.1.379**; il resto del documento
-porta ancora i numeri del 0.1.353, ed e' detto dove.
+0.1.353. **Le sezioni 1 e 2 sono state rimisurate** in 0.1.379 e 0.1.380; dalla 3 in
+poi il documento porta ancora i numeri del 0.1.353, ed e' detto dove.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
@@ -55,63 +55,79 @@ scollarsi dalla CI senza far rosso.
 
 ## 2. I due numeri di PZ-01
 
-### Il difetto più grosso del progetto resta sotto la soglia
+*Rimisurati in 0.1.380.*
+
+### Il difetto più grosso del progetto resta sotto la soglia — di quattro decimi
 
 Il criterio 2 della milestone — *«meno della metà dei turni sono passa»* — è
-soddisfatto. `cli/run_pass_probe.gd`:
+soddisfatto, e **meno di prima**. `cli/run_pass_probe.gd`, 100 anni, tavolo
+misto:
 
-| | tavolo misto | tavolo uniforme |
+| | oggi | in 0.1.353 |
 |---|---|---|
-| turni «passa» | **47,6%** (3.428 su 7.200) | **47,9%** (3.451) |
-| per Atto | 48,0% → 46,7% → 48,1% | |
-| passa con **zero mosse legali** | **0 su 3.428** (media: 22,1 mosse) | |
-| passa con la mano vuota | 16 su 3.428 (media: 4,4 carte) | |
+| turni «passa» | **49,6%** (3.571 su 7.200) | 47,6% |
+| per Atto | 50,2% → 48,2% → 50,4% | 48,0 → 46,7 → 48,1 |
+| passa con **zero mosse legali** | **0 su 3.571** (media 22,6 mosse) | 0 su 3.428 |
+| passa con la mano vuota | **9** su 3.571 (media 4,5 carte) | 16 |
 
-**[ISSUES 68](ISSUES.md#68) si è chiusa qui, in 0.1.358**
-([D-391](DECISIONS.md#d-391)), sulla condizione che si era scritta da sola. E la
-strada che questo documento portava scritta — *82,8% → 42,1% → 46,4%* — era un
-confronto fra anni diversi: il 42,1% è di `CHR_01`, cancellato in D-317/D-318.
-Sull'anno che esiste il difetto non si è mai mosso: **47,6% in 0.1.260, 47,3% in
-0.1.290, 46,7% prima di D-385, 47,6% oggi**. Il 90,2% dell'Atto 3 è sparito in
-0.1.247 e non è tornato.
+**I due punti in più sono il conto di [D-402](DECISIONS.md#d-402), ed erano
+previsti.** Quel verbale li aveva già scritti: una prenotazione che non si
+spenderà mai non è un turno in cui succede qualcosa, è un'Azione e una carta
+bruciate contate come attività. Contando le prenotazioni morte insieme ai
+«passa», i turni in cui non succede niente **scendono** da 51,4% a 49,7%. Il
+numero che sale è quello onesto.
+
+**Resta il fatto che il margine è di quattro decimi**, e va detto: la prossima
+cosa che sposta i turni può portare questo criterio sopra la metà.
 
 Le cause di quello che resta, misurate:
 
-| | quota dei «passa» | dei 7.200 turni | cura |
-|---|---|---|---|
-| nessuna mossa gli serviva | **84,0%** | **40,0%** | la **ragione**: è [ISSUES 123](ISSUES.md#123), ed è una decisione |
-| voleva un verbo, in mano niente | 10,3% | 4,9% | il mazzo: come si pesca |
-| aveva il verbo e non poteva usarlo lì | 5,3% | 2,5% | il bersaglio: dove si può |
+| | quota dei «passa» | dei 7.200 turni |
+|---|---|---|
+| nessuna mossa gli serviva | **84,5%** | **41,9%** |
+| voleva un verbo, in mano niente | 8,7% | 4,4% |
+| aveva il verbo e non poteva usarlo lì | 6,5% | 3,2% |
 
-I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 284**, TRAMARE
-160, RIVENDICARE 64, FORGIARE 26. Di quelle 534 intenzioni, **353 sono pesca
-sbagliata** e 181 bersaglio sbagliato.
+La prima riga è la **ragione**: è [ISSUES 123](ISSUES.md#123), ed è una
+decisione, non una taratura.
+
+I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 337**, TRAMARE
+172, FORGIARE 24, RIVENDICARE 12. Di quelle 545 intenzioni, **314 sono pesca
+sbagliata** e 231 bersaglio sbagliato.
+
+**E qui c'è la seconda cosa che D-402 ha fatto**: il RIVENDICARE che il cervello
+voleva e non riusciva a dire era **64**, adesso è **12**. Da quando il ripiego sa
+prendere la parola invece di prenotarla soltanto, quel verbo esce quando serve.
+Il verbo in sofferenza adesso è **INFLUENZARE**, ed è lo stesso che
+[ISSUES 59](ISSUES.md#59) trova essere il meno giocato e insieme la moneta più
+votata.
 
 ### Giocare rende, e di molto
 
 `cli/run_asking_probe.gd` gioca ogni anno due volte con lo stesso seme: una col
 tavolo vero, una col **tavolo di pietra** che non spende mai un'Occasione.
 
-| | |
-|---|---|
-| obiettivi avverati giocando | **423 su 1.200** (35,2%) |
-| avverati dal tavolo di pietra | 115 |
-| **quanto rende giocare** | **+267,8%** |
+| | oggi | in 0.1.353 |
+|---|---|---|
+| obiettivi avverati giocando | **425 su 1.200** (35,4%) | 423 (35,2%) |
+| avverati dal tavolo di pietra | **116** | 115 |
+| **quanto rende giocare** | **+266,4%** | +267,8% |
+| di quelli avverati, **già veri all'apertura** | **48** (11,3%) | non misurato allora |
 
 Era **−1,1%** prima di D-255 e **+160,7%** prima di
 [D-386](DECISIONS.md#d-386). La regola di casa della ROADMAP §1.4 — *nessun
-traguardo vero all'apertura, nessuno che si avveri stando fermi* — regge, con
-una coda che si è accorciata:
+traguardo vero all'apertura, nessuno che si avveri stando fermi* — regge, con la
+stessa coda di prima:
 
-- **tre obiettivi su diciassette** rendono uguale o meglio stando fermi —
-  erano sei: `MOST_STONE` (−7%), `A_WORK` (−6%), `A_STONE` (−3%);
-- **un Destino su ventitré** si avvera da fermi — erano due.
+- **tre obiettivi su diciassette** rendono uguale o meglio stando fermi:
+  `MOST_STONE` (−5%), `A_STONE` (−4%), `A_WORK` (±0%);
+- gli altri quattordici rendono da **+3%** a **+100%**.
 
-**I tre che restano sono tutti e tre di Pietra, e la causa è una sola**: in cento
-partite **nessuna Pietra è salita per mano di un'Azione** della plancia, e quelle
-che alza il Consiglio le alza più spesso per un tavolo che tace (199) che per uno
-che gioca (136). È [ISSUES 123](ISSUES.md#123), e finché regge nessun obiettivo
-di Pietra può premiare il giocare, per quanto bene sia scritto.
+**I tre che restano sono tutti e tre di Pietra** — *Più Pietra di Tutti*,
+*Qualcosa che Resta in Piedi*, *L'Opera che Porta il Nome* — **e la causa è una
+sola**: nessuna Pietra sale per mano di un'Azione della plancia. È
+[ISSUES 123](ISSUES.md#123), e finché regge nessun obiettivo di Pietra può
+premiare il giocare, per quanto bene sia scritto.
 
 ---
 

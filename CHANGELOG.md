@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.381 — PZ-01 rimisurato: il criterio regge per quattro decimi
+
+Rimisurata la **sezione 2 di PUNTO_ZERO** — i due numeri di testa del progetto —
+con `run_pass_probe` e `run_asking_probe`, 100 anni, tavolo misto.
+
+### Il difetto più grosso resta sotto la soglia, e meno di prima
+
+| | oggi | in 0.1.353 |
+|---|---|---|
+| turni «passa» | **49,6%** | 47,6% |
+| passa con zero mosse legali | **0 su 3.571** | 0 su 3.428 |
+| passa con la mano vuota | **9** | 16 |
+
+**I due punti in più sono il conto di D-402, ed erano previsti**: quel verbale li
+aveva già scritti. Una prenotazione mai spesa non è un turno in cui succede
+qualcosa — contandole insieme ai «passa», i turni in cui non succede niente
+**scendono** da 51,4% a 49,7%. Il numero che sale è quello onesto.
+
+**E il margine è di quattro decimi**: la prossima cosa che sposta i turni può
+portare questo criterio sopra la metà. Sta scritto.
+
+**Il RIVENDICARE che il cervello voleva e non riusciva a dire era 64: adesso è
+12.** Da quando il ripiego sa prendere la parola invece di prenotarla soltanto,
+quel verbo esce quando serve. Il verbo in sofferenza adesso è **INFLUENZARE**
+(337 intenzioni mute) — lo stesso che ISSUES 59 trova essere il meno giocato e
+insieme la moneta più votata. Due misure diverse, stesso nome.
+
+### Giocare rende ancora
+
+| | oggi | in 0.1.353 |
+|---|---|---|
+| obiettivi avverati giocando | **425 su 1.200** | 423 |
+| dal tavolo di pietra | **116** | 115 |
+| quanto rende giocare | **+266,4%** | +267,8% |
+
+Restano **tre obiettivi su diciassette** che rendono uguale o meglio stando
+fermi, e sono gli stessi tre: tutti di Pietra, tutti per la stessa causa —
+nessuna Pietra sale per mano di un'Azione della plancia (ISSUES 123).
+
+Dalla sezione 3 in poi il documento porta ancora i numeri del 0.1.353, e lo dice.
+
+---
+
 ## 0.1.380 — Un anno intero, e non dice mai un id
 
 Avanza [ISSUES 63](docs/ISSUES.md#63) ([D-409](docs/DECISIONS.md#d-409)).
