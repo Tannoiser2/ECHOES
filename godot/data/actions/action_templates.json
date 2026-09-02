@@ -228,6 +228,26 @@
         }
       ],
       "rules_text": "La Confluence forzata si apre a fine round al posto delle soglie in coda, e il proponente è chi ha forzato."
+    },
+    {
+      "id": "ACT_MARK",
+      "template": "MARK",
+      "title": "Segnare",
+      "ao_cost": 1,
+      "description": "Lascia un segno su un luogo che la tua carta raggiunge: quello stampato sull'Azione che cali. E' l'unico verbo con cui chi gioca cambia un posto senza chiedere niente al tavolo.",
+      "narrative_verbs": [
+        "Segnare",
+        "Marchiare",
+        "Imprimere"
+      ],
+      "params": [
+        {
+          "name": "region_id",
+          "type": "region_id",
+          "required": true
+        }
+      ],
+      "rules_text": "Il segno e' quello stampato sulla faccia dell'Azione. Una faccia senza segni non e' un'Azione: il motore la rifiuta."
     }
   ]
 }

@@ -28,6 +28,7 @@ const ACTIONS: Dictionary = {
 	"FORGE": "FORGIARE — muovi di un passo il rapporto con un'altra casa",
 	"CLAIM": "RIVENDICARE — ti prendi il diritto di aprire il Consiglio",
 	"ACQUIRE": "ACQUISIRE — peschi una carta della famiglia che scegli",
+	"MARK": "SEGNARE — lasci un segno sul luogo che la carta raggiunge",
 }
 
 ## **Una frase che non dice dove non dice niente** (D-336).

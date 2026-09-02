@@ -207,6 +207,7 @@
             "FORGE",
             "SCHEME",
             "CLAIM",
+            "MARK",
             "PLAY_CARD",
             "PASS"
           ],
@@ -248,6 +249,7 @@
             "FORGE",
             "SCHEME",
             "CLAIM",
+            "MARK",
             "PLAY_CARD",
             "PASS"
           ],

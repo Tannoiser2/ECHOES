@@ -37,6 +37,7 @@ const DEFS := {
 					"FORGE",
 					"SCHEME",
 					"CLAIM",
+					"MARK",
 				],
 			},
 			"title": {
@@ -1454,6 +1455,7 @@ const DEFS := {
 					"FORGE",
 					"SCHEME",
 					"CLAIM",
+					"MARK",
 				],
 			},
 			"tension_id": {
@@ -2128,6 +2130,7 @@ const ACTION_TEMPLATES := [
 	"FORGE",
 	"SCHEME",
 	"CLAIM",
+	"MARK",
 ]
 
 const CONSEQUENCE_CATEGORIES := [

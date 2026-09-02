@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4182 testi in lettura.
+possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -15261,6 +15261,14 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > Modifica di +/-1 una Tensione aperta. Serve presenza in una Regione taggata col dominio della Tensione, oppure lo scarto di 1 Asset di una famiglia rilevante.
 
 > Le Tensioni velate non sono influenzabili finché l'Entita non ne conosce il valore (SCHEME).
+
+
+**`ACT_MARK`**
+> Segnare
+
+> Lascia un segno su un luogo che la tua carta raggiunge: quello stampato sull'Azione che cali. E' l'unico verbo con cui chi gioca cambia un posto senza chiedere niente al tavolo.
+
+> Il segno e' quello stampato sulla faccia dell'Azione. Una faccia senza segni non e' un'Azione: il motore la rifiuta.
 
 
 **`ACT_MOVE`**

@@ -46,10 +46,48 @@ class Witness extends RefCounted:
 	## primo, ed e' una forma diversa dal vuoto sparso.
 	var per_act: Dictionary = {}
 
+	## **Quante carte in mano sanno dire qualcosa** (D-422).
+	##
+	## `_legal_moves` qui sotto conta le mosse che **il tavolo** accetterebbe, e
+	## non chiede mai se la mano sappia pronunciarle. Misurato, dice 23,8 mosse
+	## legali per ogni «passa» — un numero che sembra dire *«poteva fare
+	## ventitre' cose e non ne ha fatta nessuna»* e invece non dice niente sulla
+	## mano. Il committente l'ha visto per primo: *«e se non ci fosse proprio la
+	## possibilita' di passare?»*, e la risposta e' che oggi non si puo', perche'
+	## la mano puo' essere muta.
+	##
+	## Questo conta l'altra cosa: delle carte che hai **in mano**, quante hanno
+	## almeno una giocata legale adesso. Una carta che non ne ha nessuna e' una
+	## carta che al tavolo non si puo' calare, e un turno fatto solo di quelle e'
+	## un turno in cui passare non e' una scelta.
+	var hand_cards_seen: int = 0
+	var hand_cards_speaking: int = 0
+	var mute_hands: int = 0          # turni in cui **nessuna** carta sapeva dire
+	var turns_measured: int = 0
+	var mute_card_faces: Dictionary = {}   # asset -> volte che era muta in mano
+	## **E delle mute, quante lo sono per le regole e quante per scelta.** Sono
+	## due difetti con due cure opposte, e confonderli e' il modo in cui si
+	## ripara la cosa sbagliata:
+	##
+	##  - **il tavolo non la prende**: nessun bersaglio legale, per nessuna delle
+	##    due facce. Al tavolo quella carta, adesso, non si puo' proprio calare —
+	##    ed e' una regola da guardare;
+	##  - **il cervello non la vuole**: un bersaglio legale c'e', e il cervello
+	##    non lo propone perche' si farebbe male (INFLUENZARE dalla parte
+	##    sbagliata, FORGIARE in giu'). Non e' un difetto del gioco: e' una
+	##    scelta, e sparisce da sola il giorno che passare non e' permesso.
+	var mute_because_rules: int = 0
+	var mute_because_choice: int = 0
+	var walled_cards: Dictionary = {}   # asset -> volte che il tavolo non la prendeva
+
 	func _init(who: RefCounted) -> void:
 		inner = who
 
 	func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dictionary:
+		# **La mano si guarda prima della scelta**, su ogni turno e non solo su
+		# quelli che passano: e' l'unico modo di sapere se il muto e' la
+		# condizione normale o l'eccezione.
+		_look_at_the_hand(entity_id, session)
 		var chosen: Dictionary = await inner.choose_action(entity_id, ao_index, session)
 		var act: String = str(session.world.get("act", 0))
 		var cell: Array = per_act.get(act, [0, 0])
@@ -90,6 +128,108 @@ class Witness extends RefCounted:
 			cause = "mosse legali, nessuna che gli servisse"
 		why[cause] = int(why.get(cause, 0)) + 1
 		return chosen
+
+	## Delle carte che ha in mano, quante ne sanno dire almeno una, qui e adesso.
+	## Si chiede al cervello vero (`hand_plays`) invece di rifare il conto: una
+	## seconda aritmetica si scosterebbe dalla prima, ed e' il modo in cui una
+	## sonda comincia a misurare se stessa.
+	func _look_at_the_hand(entity_id: String, session: RefCounted) -> void:
+		var hand: Array = session.service.hand(entity_id)
+		if hand.is_empty():
+			return
+		var speaking: Dictionary = {}
+		for play in _brain(entity_id).hand_plays(entity_id, session):
+			var said: String = str(
+				((play as Dictionary)["params"] as Dictionary).get("asset_id", "")
+			)
+			if said != "":
+				speaking[said] = true
+		turns_measured += 1
+		hand_cards_seen += hand.size()
+		hand_cards_speaking += speaking.size()
+		if speaking.is_empty():
+			mute_hands += 1
+		for asset_id in hand:
+			if not speaking.has(str(asset_id)):
+				mute_card_faces[str(asset_id)] = int(
+					mute_card_faces.get(str(asset_id), 0)
+				) + 1
+				if _table_would_take_it(entity_id, str(asset_id), session):
+					mute_because_choice += 1
+				else:
+					mute_because_rules += 1
+					# **E quali sono, per nome.** Il quinto che il tavolo non
+					# prende e' il difetto vero, e ripararlo vuol dire sapere su
+					# quali carte guardare: un numero senza nomi non si ripara.
+					walled_cards[str(asset_id)] = int(
+						walled_cards.get(str(asset_id), 0)
+					) + 1
+
+	## **Il tavolo la prenderebbe?** Si chiede a `can_execute` — le regole vere —
+	## su tutti i bersagli che quel verbo ammette, senza nessuno dei filtri con
+	## cui il cervello si protegge. Se torna vero e la carta era muta, muta l'ha
+	## resa il cervello; se torna falso, l'hanno resa muta le regole.
+	func _table_would_take_it(
+		entity_id: String, asset_id: String, session: RefCounted
+	) -> bool:
+		var card: Variant = session.data.assets.get(asset_id)
+		if card == null:
+			return false
+		var printed: Array = (
+			((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+		)
+		for index in range(printed.size()):
+			var kind: String = str((printed[index] as Dictionary).get("template", ""))
+			var base: Dictionary = {"asset_id": asset_id, "face_action": index}
+			match kind:
+				"MOVE", "ACQUIRE":
+					for region_id in session.world["regions"]:
+						var ask: Dictionary = base.duplicate()
+						ask["region_id"] = str(region_id)
+						if kind == "ACQUIRE":
+							ask["structure_type"] = str(
+								(printed[index] as Dictionary).get("builds", "")
+							)
+						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
+							return true
+				"INFLUENCE":
+					for tension_id in session.world["tensions"]:
+						var ask: Dictionary = base.duplicate()
+						ask["tension_id"] = str(tension_id)
+						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
+							return true
+				"SCHEME":
+					for tension_id in session.world["tensions"]:
+						var ask: Dictionary = base.duplicate()
+						ask["mode"] = "TENSION"
+						ask["tension_id"] = str(tension_id)
+						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
+							return true
+					for region_id in session.world["regions"]:
+						var ask: Dictionary = base.duplicate()
+						ask["mode"] = "REGION"
+						ask["region_id"] = str(region_id)
+						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
+							return true
+				"CLAIM":
+					for tension_id in session.world["tensions"]:
+						var ask: Dictionary = base.duplicate()
+						ask["mode"] = "FORCE"
+						ask["tension_id"] = str(tension_id)
+						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
+							return true
+				"FORGE":
+					for other in session.world["turn_order"]:
+						if str(other) == entity_id:
+							continue
+						for direction in ["UP", "DOWN"]:
+							var ask: Dictionary = base.duplicate()
+							ask["target_entity_id"] = str(other)
+							ask["direction"] = str(direction)
+							ask["consent"] = true
+							if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
+								return true
+		return false
 
 	## Quante carte in mano portano quel verbo. Il mazzo ne ha undici che
 	## influenzano e dieci che muovono: se il cervello voleva influenzare e in
@@ -198,6 +338,14 @@ func _initialize() -> void:
 	var legal: Array = []
 	var hands: Array = []
 	var by_act: Dictionary = {}
+	var seen_cards: int = 0
+	var speaking_cards: int = 0
+	var mute_hands: int = 0
+	var measured: int = 0
+	var mute_faces: Dictionary = {}
+	var mute_rules: int = 0
+	var mute_choice: int = 0
+	var walled: Dictionary = {}
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -233,6 +381,20 @@ func _initialize() -> void:
 			by_act[str(act)] = cell
 		legal.append_array(witness.legal_when_passing)
 		hands.append_array(witness.hand_when_passing)
+		seen_cards += witness.hand_cards_seen
+		speaking_cards += witness.hand_cards_speaking
+		mute_hands += witness.mute_hands
+		measured += witness.turns_measured
+		mute_rules += witness.mute_because_rules
+		mute_choice += witness.mute_because_choice
+		for asset_id in witness.walled_cards:
+			walled[str(asset_id)] = int(walled.get(str(asset_id), 0)) + int(
+				witness.walled_cards[asset_id]
+			)
+		for asset_id in witness.mute_card_faces:
+			mute_faces[str(asset_id)] = int(
+				mute_faces.get(str(asset_id), 0)
+			) + int(witness.mute_card_faces[asset_id])
 		session.dispose()
 
 	var turns: int = passes + acts
@@ -255,6 +417,64 @@ func _initialize() -> void:
 			str(cause), int(why[cause]),
 			100.0 * float(int(why[cause])) / float(maxi(1, passes)),
 		])
+	# **La mano, e se sa dire qualcosa** (D-422). E' l'altra meta' del numero:
+	# `_legal_moves` conta quello che il tavolo accetterebbe, questo conta quello
+	# che la mano sa pronunciare, ed e' la differenza fra «non voleva» e «non
+	# poteva».
+	print("")
+	print("  La mano, su tutti i turni (non solo quelli che passano):")
+	print("    carte guardate            %6d in %d turni (media %.2f)" % [
+		seen_cards, measured, float(seen_cards) / float(maxi(1, measured)),
+	])
+	print("    che sanno dire qualcosa   %6d  %5.1f%%" % [
+		speaking_cards, 100.0 * float(speaking_cards) / float(maxi(1, seen_cards)),
+	])
+	print("    **mute**                  %6d  %5.1f%%" % [
+		seen_cards - speaking_cards,
+		100.0 * float(seen_cards - speaking_cards) / float(maxi(1, seen_cards)),
+	])
+	print("    turni con la mano tutta muta %6d  %5.1f%%  <- qui passare non e' una scelta" % [
+		mute_hands, 100.0 * float(mute_hands) / float(maxi(1, measured)),
+	])
+	var mute_total: int = maxi(1, mute_rules + mute_choice)
+	print("")
+	print("    E delle mute, chi le ha zittite:")
+	print("      il tavolo non le prende   %6d  %5.1f%%  <- le regole" % [
+		mute_rules, 100.0 * float(mute_rules) / float(mute_total),
+	])
+	print("      il cervello non le vuole  %6d  %5.1f%%  <- una scelta, non un difetto" % [
+		mute_choice, 100.0 * float(mute_choice) / float(mute_total),
+	])
+	if not walled.is_empty():
+		var murate: Array = walled.keys()
+		murate.sort_custom(func(a: Variant, b: Variant) -> bool:
+			return int(walled[a]) > int(walled[b])
+		)
+		print("")
+		print("      E il quinto che il tavolo non prende, per nome (%d carte diverse):" % murate.size())
+		for i in range(mini(12, murate.size())):
+			var asset_id: String = str(murate[i])
+			var card: Dictionary = data.assets.get(asset_id, {}) as Dictionary
+			var verbi: Array = []
+			for face in ((card.get("physical", {}) as Dictionary).get("actions", []) as Array):
+				verbi.append(str((face as Dictionary).get("template", "?")))
+			print("        %-26s %6d volte   %s" % [
+				str(card.get("title", asset_id)), int(walled[asset_id]),
+				"/".join(PackedStringArray(verbi)),
+			])
+	if not mute_faces.is_empty():
+		var worst: Array = mute_faces.keys()
+		worst.sort_custom(func(a: Variant, b: Variant) -> bool:
+			return int(mute_faces[a]) > int(mute_faces[b])
+		)
+		print("")
+		print("    Le dieci carte piu' spesso mute in mano:")
+		for i in range(mini(10, worst.size())):
+			var asset_id: String = str(worst[i])
+			print("      %-28s %6d volte" % [
+				str(data.assets.get(asset_id, {}).get("title", asset_id)),
+				int(mute_faces[asset_id]),
+			])
 	if not mute.is_empty():
 		print("")
 		print("  Le intenzioni che la mano non sapeva dire:")

@@ -1154,6 +1154,13 @@ func _targets_for(
 		"MOVE":
 			for region_id in session.world["regions"]:
 				out.append({"region_id": str(region_id)})
+		"MARK":
+			# **SEGNARE arriva dove la carta arriva** (D-423). Qui si propongono
+			# tutti i luoghi e il bersaglio a segni della faccia li filtra dopo,
+			# come per MUOVERE: proporre gia' filtrato vorrebbe dire tenere due
+			# volte la stessa regola, in due posti che si scostano.
+			for region_id in session.world["regions"]:
+				out.append({"region_id": str(region_id)})
 		"INFLUENCE":
 			var delta: int = int(fixed.get("delta", 1))
 			for tension_id in _sorted(goals.keys()):

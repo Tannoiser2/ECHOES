@@ -76,10 +76,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **131** |
+| voci scritte | **132** |
 | chiuse | **105** |
-| aperte | **26** |
-| di cui **aspettano una tua decisione** | **12** |
+| aperte | **27** |
+| di cui **aspettano una tua decisione** | **13** |
 | di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -91,7 +91,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 0 | 5 |
+| 0.1.375–0.1.399 | 1 | 5 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -107,23 +107,23 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **12** | **tu**, con una parola. Dieci stanno sulla strada, due sono fuori |
+| 🔴 | **13** | **tu**, con una parola. Undici stanno sulla strada, due sono fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventisei voci aperte, quattro le posso muovere senza di te.
+**Quattro.** Delle ventisette voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su dodici parole.**
+**il giro non è fermo su di me, è fermo su tredici parole.**
 
 ---
 
-# 🔴 Dodici aspettano te
+# 🔴 Tredici aspettano te
 
 Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
 
-## Le dieci che stanno fra oggi e una partita
+## Le undici che stanno fra oggi e una partita
 
 ### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
 
@@ -234,7 +234,34 @@ dice chiamando la stessa funzione che disegna lo stampabile, ed è un cancello.
 carta che si legge a una mano che si maneggia. Se al tavolo la mano darà
 fastidio più del testo stretto, tornare indietro è **una riga**.
 
-### R7. [65](ISSUES.md#65) — quale delle tre riviste della pagina
+### R7. [128](ISSUES.md#128) — il passare, e le carte che non sanno dire niente
+
+**È tua, e l'hai aperta tu**: *«e se non ci fosse proprio la possibilità di
+passare? O fai le azioni o giochi l'Eco. Non c'è provare.»*
+
+Misurato: togliere il passare così com'è porta i «passa» da 45,2% a **36,1%** —
+non a zero — e costa **il 42% della memoria del mondo** (Verità scritte 135 →
+78). Ma la misura ha trovato la causa vera, e nessuno l'aveva mai presa: delle
+carte che una casa ha **in mano**, il **59,3%** non si può calare, e **un turno
+su quattro la mano è tutta muta** — lì passare non è una scelta.
+
+E le mute sono due difetti opposti:
+
+| delle mute | | |
+|---|---|---|
+| **il cervello non le vuole** | 82,3% | una scelta, non un difetto |
+| **il tavolo non le prende** | 17,7% | le regole |
+
+> **Farei la (1): il cervello accetta di farsi male quando non ha di meglio.**
+> Le sue due prudenze — *INFLUENZARE solo nel verso giusto*, *FORGIARE solo in
+> su* — valgono finché una mossa migliore esiste, e cadono quando non esiste. È
+> una riga, non tocca nessuna regola del tavolo, e da sola dovrebbe recuperare i
+> quattro quinti. Poi si guarda il quinto che resta, che è il difetto vero.
+
+Le tre strade stanno per esteso nella voce. **Non l'ho fatta di mia iniziativa
+perché cambia come si sente il turno**, e quello lo decidi tu.
+
+### R8. [65](ISSUES.md#65) — quale delle tre riviste della pagina
 
 Questa la credevo mia, e non lo è: il suo «fatto quando» chiede *«una decisione
 scritta su **quale** delle tre riviste si sta facendo»*. La passata di
@@ -253,7 +280,7 @@ posso scegliere io.
 Va insieme alla 🔵 [63](ISSUES.md#63) qui sotto: quella la verifichi giocando,
 questa la decidi prima.
 
-### R8. [87](ISSUES.md#87) — le frasi d'autore contro le caselle del prezzo
+### R9. [87](ISSUES.md#87) — le frasi d'autore contro le caselle del prezzo
 
 Fra le Conseguenze spedite, **67 Effetti d'autore fanno esattamente quello che le
 caselle del prezzo fanno**. Il danno ha un numero: **il 24% dei benefici comprati
@@ -268,7 +295,7 @@ portato gli acquisti a vuoto dal 24% al 9%, poi risaliti all'11%.
 **Questa era la voce che avevo messo fra le mie con un criterio inventato.** La
 voce dice tre letture e la scelta è tua, e lo dice due volte.
 
-### R9. [100](ISSUES.md#100) — le caselle «SI ACCENDE QUANDO»
+### R10. [100](ISSUES.md#100) — le caselle «SI ACCENDE QUANDO»
 
 Le 46 facce che dicono quando una Tensione si scalda sono ancora **derivate**:
 le calcola il motore invece di leggerle dalla carta. Al tavolo fisico quella
@@ -278,7 +305,7 @@ riga o è stampata o non esiste.
 > congelano nel dato, e da lì si correggono a mano quelle che suonano male. È
 > una tua parola perché sono **quarantasei frasi che un giocatore legge**.
 
-### R10. [124](ISSUES.md#124) — le due case che non possono vincere l'Eredità
+### R11. [124](ISSUES.md#124) — le due case che non possono vincere l'Eredità
 
 L'Eredità (+3 per ogni leggenda che porta il tuo nome, tua parola in 0.1.353) è
 **strutturalmente zero** per due case su otto: il loro profilo non ha una voce
@@ -288,7 +315,7 @@ che una leggenda possa portare.
 > cambia. La metto rossa solo perché è **cosa vogliono quelle due case**, e
 > questo lo decidi tu.
 
-### R11. [64](ISSUES.md#64) — una saga ricambia metà tavolo
+### R12. [64](ISSUES.md#64) — una saga ricambia metà tavolo
 
 Fra un anno e l'altro di una saga **metà dei seggi cambia casa**, e nessuno ha
 mai deciso che dovesse. O è la cosa giusta — le case passano, il mondo resta — o
@@ -298,7 +325,7 @@ mai deciso che dovesse. O è la cosa giusta — le case passano, il mondo resta 
 > cambiano il mondo, il Consiglio decide cosa il mondo ricorderà*. Ma va scritto
 > sulla scatola, non lasciato succedere.
 
-### R12. [127](ISSUES.md#127) — la tessera si gira, e l'arte si gira con lei
+### R13. [127](ISSUES.md#127) — la tessera si gira, e l'arte si gira con lei
 
 Da D-390 una tessera si posa **ruotata**, perché i varchi combacino. Un
 disegno ha un alto e un basso.
@@ -472,9 +499,9 @@ tessera. Non è nella lista perché non è una voce: è la scatola.
 il quinto degli errori, ed era di forma. Un totale scritto a mano invecchia il
 giorno dopo, e questo era invecchiato di tre righe.
 
-**Quello che resta da dire in una riga:** delle ventisei voci aperte ne posso
+**Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **dodici aspettano
+chiudono dietro una rossa, sei stanno fuori dalla lista, e **tredici aspettano
 una tua parola**.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia

@@ -5,6 +5,120 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.394 — La sonda dei «passa» contava il tavolo e non la mano
+
+Domanda del committente — *«e se non ci fosse proprio la possibilità di passare?
+O fai le azioni o giochi l'Eco. Non c'è provare»* — e la misura ha trovato una
+cosa più grossa della domanda ([D-422](docs/DECISIONS.md#d-422)). **Apre
+[ISSUES 128](docs/ISSUES.md#128).**
+
+### La misura chiesta
+
+Togliere il passare oggi vuol dire togliere la riserva di D-285. Costa: i «passa»
+scendono da 45,2% a **36,1%** — non a zero — e le **Verità scritte da 135 a 78**,
+il 42% in meno. I Consigli si aprono un po' di più e passano molto peggio
+(DECISIVE 105 → 56): con la mano svuotata nessuno ha carte da impegnare.
+
+### E la sonda guardava la cosa sbagliata, da centoquaranta versioni
+
+`run_pass_probe` diceva *«23,8 mosse legali per ogni passa»*, ed è la frase su
+cui questa voce è stata discussa da D-254 in poi. **Non dice quello**: conta le
+mosse che il **tavolo** accetterebbe, e non chiede mai se la **mano** sappia
+pronunciarle. Non è una sonda cieca — è peggio: un numero giusto letto come se
+rispondesse a un'altra domanda.
+
+| 100 partite CHR_00, tavolo misto, seme 7000 | |
+|---|---|
+| carte guardate in mano | 36.678 in 7.181 turni |
+| che sanno dire qualcosa | **40,7%** |
+| **mute** | **59,3%** |
+| **turni con la mano tutta muta** | **23,2%** |
+
+Un turno su quattro, passare non è una scelta.
+
+### E le mute sono due difetti opposti
+
+| delle mute | | |
+|---|---|---|
+| il cervello non le vuole | **82,3%** | una scelta |
+| il tavolo non le prende | **17,7%** | le regole |
+
+Quattro su cinque si potrebbero calare: a rifiutarle sono due prudenze scritte
+nel cervello — *INFLUENZARE solo nel verso giusto*, *FORGIARE solo in su*. Se
+passare non è permesso, quelle prudenze smettono di valere: chi **deve** agire
+gioca la carta che gli costa meno. La regola del committente non chiede una
+regola nuova — chiede che il cervello accetti di farsi un po' male.
+
+Le tre strade, e la raccomandazione, stanno in ISSUES 128. Non l'ho fatta di mia
+iniziativa perché cambia **come si sente il turno**.
+
+### E il quinto che il tavolo non prende ha un nome
+
+Guardato per nome sono **3.219 volte su 37 carte**, e le prime sei valgono due
+terzi. Tutte e sei per la stessa ragione: **sette facce su 96 hanno il nome
+stampato, il testo scritto, i segni che posano — e nessun verbo.** La seconda
+Azione di Assedio, Leva Contadina, Le Porte Bruciate, Atto di Successione, Banda
+Armata, Censimento e Consiglio degli Anziani **non si può giocare mai**, e la
+regola di casa dice l'opposto.
+
+Lo schema non lo chiedeva: su `physical_action` `template` è facoltativo, e per
+questo nessun cancello se n'è accorto in duecento versioni.
+
+E le sette sono la stessa forma: **la loro Azione *è* il segno che lasciano**, e
+nessuno dei sei verbi vuol dire *«lascia un segno e basta»*. È una scelta
+d'autore — dare a ognuna il verbo più vicino, o scrivere un settimo verbo — e sta
+in ISSUES 128.
+
+---
+
+## 0.1.394 — SEGNARE, il settimo verbo: la loro Azione era il segno che lasciano
+
+Parola del committente: **«Segnare»** ([D-423](docs/DECISIONS.md#d-423)). Avanza
+[ISSUES 128](docs/ISSUES.md#128) e [ISSUES 69](docs/ISSUES.md#69).
+
+Sette facce su 96 avevano il nome stampato, il testo scritto, i segni che posano
+— e **nessun verbo**. Erano tutte la stessa forma, ed è la ragione per cui il
+verbo mancava: **la loro Azione è il segno che lasciano**, e nessuno dei sei lo
+diceva. Adesso c'è il verbo che lo dice.
+
+> **SEGNARE** — lascia un segno su un luogo che la tua carta raggiunge.
+
+È l'unico verbo con cui chi gioca cambia un posto **senza chiedere niente al
+tavolo**: fino a qui i segni li posavano solo il Consiglio e le Conseguenze.
+
+| 100 partite CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| turni «passa» | 45,2% | **43,2%** |
+| carte in mano mute | 59,3% | **55,3%** |
+| turni con la mano **tutta** muta | 23,2% | **19,0%** |
+| mute **per le regole** | 17,7% | **12,4%** |
+| **Verità scritte** (misto) | 135 | **149** |
+| DECISIVE (misto) | 105 | 115 |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**E la memoria del mondo è salita, non scesa.** Era la paura giusta da avere — il
+«niente passare» a forza bruta le Verità le portava da 135 a **78** — e qui
+succede il contrario. Dare a chi gioca una scelta in più non è togliergli la
+scelta di non giocare.
+
+**Due guardie nuove**, perché il difetto non torni: `template` è obbligatorio su
+ogni faccia stampata (lo schema non lo chiedeva, ed è per questo che nessun
+cancello se n'era accorto in duecento versioni), e una faccia SEGNARE **senza
+segni** è rifiutata — dal motore a voce alta e dal validatore prima che parta.
+Il suo effetto *sono* i segni.
+
+**Un costo che va detto:** le vite delle case che non si siedono mai tornano da 1
+a **2**. R4 ne aveva guadagnata una e SEGNARE la riperde — un mondo dove chi
+gioca posa segni per conto suo apre porte diverse. Numero piccolo su un difetto
+vecchio ([ISSUES 4](docs/ISSUES.md#4)), ma tacerlo sarebbe peggio.
+
+**Cosa non è stato fatto:** il passare non è stato tolto, ed è ancora il 43,2%.
+Delle carte mute l'87,6% adesso lo è **per scelta del cervello**, non per le
+regole. È la seconda metà della domanda, e aspetta la parola del committente sui
+numeri nuovi.
+
+---
+
 ## 0.1.393 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
 
 Sesta rossa, fatta la raccomandata ([D-421](docs/DECISIONS.md#d-421)). Avanza

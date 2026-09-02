@@ -134,7 +134,8 @@
                 "INFLUENCE",
                 "FORGE",
                 "SCHEME",
-                "CLAIM"
+                "CLAIM",
+                "MARK"
               ],
               "description": "Quale delle azioni del gioco la carta mette in mano. Sono le stesse di §10: il telaio non inventa verbi nuovi, sposta chi li puo' pronunciare."
             },
@@ -189,7 +190,8 @@
       "type": "object",
       "required": [
         "label",
-        "text"
+        "text",
+        "template"
       ],
       "additionalProperties": false,
       "properties": {
@@ -219,7 +221,16 @@
         },
         "template": {
           "type": "string",
-          "description": "Il verbo del motore che questa Azione pronuncia, quando ce n'e' uno: MOVE, INFLUENCE, SCHEME, FORGE, CLAIM, ACQUIRE."
+          "enum": [
+            "ACQUIRE",
+            "MOVE",
+            "INFLUENCE",
+            "FORGE",
+            "SCHEME",
+            "CLAIM",
+            "MARK"
+          ],
+          "description": "Il verbo del motore che questa Azione pronuncia. **Obbligatorio da D-423**: fino a li' era facoltativo, e sette facce su 96 avevano il nome stampato e nessun verbo — la loro seconda Azione non si poteva giocare mai, contro la regola di casa che dice «due Azioni, e due scelte diverse davvero». Quelle sette dicevano tutte la stessa cosa — lasciare un segno su un luogo — e adesso c'e' il verbo che lo dice: MARK."
         },
         "builds": {
           "type": "string",

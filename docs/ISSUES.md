@@ -9037,3 +9037,159 @@ scelta d'autore, e non è mia.
 
 **Fatto quando** il committente sceglie, e — se non è la (1) — la misura delle
 200 mappe si rifà con la regola nuova.
+
+---
+
+### 128. Cinquantanove carte su cento in mano non sanno dire niente
+
+`regole` · `da-decidere` · **aperta in 0.1.394** — domanda del committente:
+
+> *«E se non ci fosse proprio la possibilità di passare? O fai le azioni o giochi
+> l'Eco. Non c'è provare. Puoi misurare come cambierebbe la partita?»*
+
+#### La risposta breve: così com'è, non si può
+
+Togliere il passare oggi vuol dire togliere la riserva di
+[D-285](DECISIONS.md#d-285), e misurato costa moltissimo e non lo toglie:
+
+| 100 partite CHR_00, seme 7000 | oggi | senza riserva |
+|---|---|---|
+| turni «passa» | 45,2% | **36,1%** |
+| **Verità scritte** (misto) | **135** | **78** |
+| DECISIVE (misto) | 105 | **56** |
+| SUCCESS CON COSTO (misto) | 50 | **113** |
+| Consigli per anno (misto) | 3,47 | 3,58 |
+| seggi bloccati | 0 su 8 | 0 su 8 |
+
+I «passa» scendono di nove punti, **non a zero**, e il mondo ricorda il **42% in
+meno**. I Consigli si aprono un po' di più e passano molto peggio: con la mano
+svuotata nessuno ha carte da impegnare.
+
+#### La causa vera, e il numero che nessuno aveva mai preso
+
+`run_pass_probe` diceva *«23,8 mosse legali per ogni passa»*, e sembrava dire
+*«poteva fare ventitré cose e non ne ha fatta nessuna»*. **Non dice quello**:
+conta le mosse che il **tavolo** accetterebbe, e non chiede mai se la **mano**
+sappia pronunciarle. Adesso lo chiede ([D-422](DECISIONS.md#d-422)):
+
+| 100 partite CHR_00, tavolo misto, seme 7000 | |
+|---|---|
+| carte guardate in mano | 36.678 in 7.181 turni (5,11 di media) |
+| che sanno dire qualcosa | 14.912 — **40,7%** |
+| **mute** | 21.766 — **59,3%** |
+| **turni con la mano tutta muta** | 1.669 — **23,2%** |
+
+**Un turno su quattro passare non è una scelta**: nessuna delle carte in mano si
+può calare.
+
+#### E le mute sono due difetti diversi, con due cure opposte
+
+| delle 21.766 mute | | |
+|---|---|---|
+| **il cervello non le vuole** | 14.976 | **82,3%** |
+| **il tavolo non le prende** | 3.219 | **17,7%** |
+
+**Quattro su cinque si potrebbero calare.** Il tavolo le accetterebbe, e a
+rifiutarle è il cervello, per due eccezioni dichiarate nel suo codice:
+INFLUENZARE si offre *«solo nel verso che il Destino vuole»*, FORGIARE *«solo in
+su»*. Non sono regole del gioco: sono prudenza.
+
+**Ed è esattamente il punto della domanda.** Se passare non è permesso, quelle
+due frasi smettono di valere: al tavolo chi *deve* agire gioca la carta che gli
+costa meno, anche quando gli costa. «Non c'è provare» non chiede una regola
+nuova — chiede che il cervello accetti di farsi un po' male, come una persona.
+
+**Il quinto che resta è il difetto vero**: le carte che il tavolo non prende
+affatto, per nessuna delle due facce.
+
+#### E il quinto ha un nome: sette facce su 96 non portano nessun verbo
+
+Guardato per nome, il quinto sono **3.219 volte su 37 carte diverse**, e le prime
+sei valgono da sole **due terzi**:
+
+| carta | volte | le sue due facce |
+|---|---|---|
+| Assedio | 697 | `CLAIM` / **niente** |
+| Leva Contadina | 693 | `MOVE` / **niente** |
+| Le Porte Bruciate | 363 | `CLAIM` / **niente** |
+| Atto di Successione | 131 | `CLAIM` / **niente** |
+| Banda Armata | 88 | `MOVE` / **niente** |
+| Consiglio degli Anziani | 58 | `SCHEME` / **niente** |
+
+**Sette facce su 96 hanno il nome stampato, il testo scritto, i segni che
+posano — e nessun verbo.** La seconda Azione di quelle carte non si può giocare
+mai, e la regola di casa dice l'opposto: *«**due** Azioni, e due scelte diverse
+davvero»*. La settima è «Censimento».
+
+**Lo schema non lo chiede**: su `physical_action` sono obbligatori `label` e
+`text`, e `template` è facoltativo. Per questo nessun cancello se n'è accorto in
+duecento versioni.
+
+**E le sette sono tutte la stessa forma**, che è il motivo per cui il verbo
+manca: la loro Azione **è** il segno che lasciano. *«La presenza resta, metti
+#razionato»*, *«metti #fame sul luogo»*, *«togli #lutto o #malcontento»*. Nessuno
+dei sei verbi vuol dire *«lascia un segno e basta»*: MUOVERE sposta, TRAMARE
+vuole informazioni private, RIVENDICARE apre una Domanda.
+
+#### ✅ Scelto in 0.1.394: **SEGNARE**, il settimo verbo ([D-423](DECISIONS.md#d-423))
+
+Parola del committente: **«Segnare»**. Le sette facce hanno il verbo che dicevano
+già, e lo schema adesso lo pretende su ogni faccia stampata.
+
+> **SEGNARE** — lascia un segno su un luogo che la tua carta raggiunge.
+
+| 100 partite CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| turni «passa» | 45,2% | **43,2%** |
+| carte in mano mute | 59,3% | **55,3%** |
+| turni con la mano **tutta** muta | 23,2% | **19,0%** |
+| mute **per le regole** | 17,7% | **12,4%** |
+| **Verità scritte** (misto) | 135 | **149** |
+| seggi bloccati | 0 su 8 | **0 su 8** |
+
+**E la memoria del mondo è salita, non scesa** — 135 → 149. Era la paura giusta
+da avere: la misura del «niente passare» a forza bruta le Verità le portava a 78.
+Dare a chi gioca **una scelta in più** non è togliergli **la scelta di non
+giocare**.
+
+**Resta la seconda metà**, e aspetta il committente: l'87,6% delle carte mute
+adesso lo è **per scelta del cervello**, non per le regole. Sono due eccezioni
+dichiarate — INFLUENZARE solo nel verso che il Destino vuole, FORGIARE solo in su
+— che al tavolo una persona che *deve* agire non avrebbe.
+
+**Fatto quando** il committente dice se il cervello deve accettare di farsi male
+quando non ha di meglio, **sui numeri di adesso** e non su quelli di prima.
+
+---
+
+*Quello che segue è come la voce si leggeva prima della scelta.*
+
+**Era una scelta d'autore, non una riparazione meccanica**, e andava con le tre
+strade qui sopra:
+
+- **dare a ognuna il verbo più vicino**, allargandone il senso — è quello che il
+  gioco già fa altrove (29 carte su 48 stampano lo stesso verbo due volte, e a
+  distinguere le due metà sono i segni);
+- **oppure un settimo verbo che lascia un segno e basta** — SEGNARE — che è il
+  taglio grosso e vale una decisione sua.
+
+In tutti e due i casi, il giorno dopo `validate_physical` deve rifiutare una
+faccia stampata senza verbo, e `template` diventa obbligatorio nello schema.
+Oggi la guardia non si può accendere: andrebbe rossa su sette carte.
+
+**Fatto quando** il committente sceglie fra le tre strade, e la misura si rifà
+con la regola scelta:
+
+1. **Il cervello accetta di farsi male** quando non ha di meglio: le due
+   eccezioni valgono finché una mossa migliore esiste, e cadono quando non
+   esiste. Non tocca nessuna regola del tavolo, e da sola dovrebbe recuperare i
+   quattro quinti. *Da misurare: quanto scende il «passa» e quanto costa in
+   Verità scritte.*
+2. **Ogni carta ha sempre un bersaglio**: si guarda il quinto che il tavolo non
+   prende e si allarga quello che le facce raggiungono. È il lavoro sui dati, e
+   va misurato carta per carta.
+3. **Passare costa qualcosa** invece di essere vietato — la strada che
+   [D-254](DECISIONS.md#d-254) aveva scartato quando la causa sembrava un'altra.
+
+Le tre non si escludono, e la (1) è la più economica: è una riga nel cervello,
+e senza di lei la (2) ripara un quinto del problema.

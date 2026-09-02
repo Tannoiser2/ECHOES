@@ -17,12 +17,15 @@ const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd"
 const RngService := preload("res://scripts/core/rng_service.gd")
 
 const TEMPLATES: Array = [
-	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "PLAY_ECHO", "PLAY_CARD"
+	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "MARK",
+	"PLAY_ECHO", "PLAY_CARD"
 ]
 
 ## Le sei azioni di §10: quelle che una carta puo' mettere in mano, e quelle che
 ## `actions_from_cards` toglie dal tavolo quando la mano diventa l'unica moneta.
-const CARD_KINDS: Array = ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+const CARD_KINDS: Array = [
+	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "MARK",
+]
 
 var world: Dictionary
 var data: RefCounted
@@ -90,6 +93,8 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 			return _check_scheme(entity_id, params)
 		"CLAIM":
 			return _check_claim(entity_id, params)
+		"MARK":
+			return _check_mark(entity_id, params)
 		"PLAY_ECHO":
 			return _check_play_echo(entity_id, params)
 		"PLAY_CARD":
@@ -447,6 +452,50 @@ func _claim_in_one_move() -> bool:
 ## Quanto deve valere una domanda per essere «matura». §10 dice 3.
 func _claim_ready_at() -> int:
 	return int((_chronicle.get("claim_rules", {}) as Dictionary).get("ready_at", 3))
+
+
+## **SEGNARE** (D-423, ISSUES 128, parola del committente: *«Segnare»*), il
+## settimo verbo.
+##
+## Sette facce su 96 avevano il nome stampato, il testo scritto, i segni che
+## posano — e **nessun verbo**: la seconda Azione di Assedio, Leva Contadina, Le
+## Porte Bruciate, Atto di Successione, Banda Armata, Censimento e Consiglio
+## degli Anziani non si poteva giocare mai. Erano tutte la stessa forma, ed e'
+## la ragione per cui il verbo mancava: **la loro Azione e' il segno che
+## lasciano**. *«La presenza resta, metti #razionato»*, *«metti #fame sul
+## luogo»*, *«togli #lutto o #malcontento»*.
+##
+## Nessuno dei sei diceva quella cosa. MUOVERE sposta, TRAMARE pretende
+## un'informazione coperta, RIVENDICARE apre una Domanda: dare a quelle facce
+## uno di questi avrebbe fatto dire al verbo una cosa che il verbo non fa, ed e'
+## il modo in cui le regole di un gioco da tavolo cominciano a sembrare
+## arbitrarie.
+##
+## **Al tavolo si legge cosi':** *«SEGNARE — lascia un segno su un luogo che la
+## tua carta raggiunge»*. E' l'unico verbo con cui chi gioca cambia un posto
+## **senza chiedere niente al tavolo** — fino a qui i segni li posavano solo il
+## Consiglio e le Conseguenze, cioe' il mondo.
+##
+## Due no, e sono la ragione per cui e' un'Azione e non un timbro:
+##
+##  - **il luogo dev'essere uno che la carta raggiunge** — il bersaglio a segni
+##    di [D-274](../../../docs/DECISIONS.md#d-274), come per MUOVERE;
+##  - **la faccia deve portare almeno un segno**. SEGNARE non ha un effetto suo:
+##    il suo effetto *sono* i segni stampati. Una faccia senza segni sarebbe
+##    un'azione legale che non fa niente e non avvisa, ed e' il difetto che
+##    [D-412](../../../docs/DECISIONS.md#d-412) ha appena tolto ad ACQUISIRE.
+func _check_mark(entity_id: String, params: Dictionary) -> String:
+	var region_id: String = str(params.get("region_id", ""))
+	if region_id == "":
+		return "manca il luogo da segnare"
+	if not (world["regions"] as Dictionary).has(region_id):
+		return "regione sconosciuta '%s'" % region_id
+	# Il conto arriva da `_card_request`, che la faccia ce l'ha. Chiamata a mano
+	# senza carta — che in questa Chronicle non succede, ma il motore non lo da'
+	# per scontato — SEGNARE non ha niente da lasciare.
+	if int(params.get("face_signs", 0)) <= 0:
+		return "quell'Azione non lascia nessun segno"
+	return ""
 
 
 func _check_claim(entity_id: String, params: Dictionary) -> String:
@@ -1046,6 +1095,21 @@ func _act_echo_families(act: int) -> Array:
 
 # --- CLAIM -----------------------------------------------------------------
 
+## **SEGNARE si esegue lasciando che i segni cadano** (D-423).
+##
+## Non c'e' un Effetto suo, ed e' voluto: i segni stampati sulla faccia li posa
+## gia' `_face_signs`, subito dopo, **con la firma `face_action`** — cosi' il
+## verbale distingue quello che ha scritto l'Azione stampata da quello che ha
+## scritto il verbo. Scriverli due volte qui sarebbe scriverli due volte davvero.
+##
+## Quello che questa funzione fa e' dire **si'**, e dirlo nel verbale: un'Azione
+## che passa in silenzio non si distingue da un turno saltato.
+func _mark(entity_id: String, params: Dictionary, _source: Dictionary) -> Dictionary:
+	var region_id: String = str(params.get("region_id", ""))
+	log.bullet("%s segna %s." % [_name(entity_id), _region(region_id)])
+	return _ok("MARK", [], {"region_id": region_id})
+
+
 func _claim(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
 	var mode: String = str(params.get("mode", "CREATE"))
 	var effects: Array = []
@@ -1188,9 +1252,17 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	# fra dieci Pietre, si prende quella. Il parametro arriva da qui e non da chi
 	# gioca, perche' non e' una sua scelta — e' quello che la carta e'.
 	var builds: String = ""
+	# **E quanti segni lascia** (D-423). SEGNARE non ha un effetto suo: il suo
+	# effetto **sono** i segni stampati sulla faccia, che `_face_signs` posa
+	# dopo. Un'Azione legale che non fa niente e non avvisa e' il difetto
+	# peggiore che si possa scrivere (D-412), quindi il conto arriva fin qui e
+	# il controllo la rifiuta quando e' zero.
+	var signs: int = 0
 	if chosen >= 0 and chosen < face_actions.size():
 		kind = str((face_actions[chosen] as Dictionary).get("template", ""))
 		builds = str((face_actions[chosen] as Dictionary).get("builds", ""))
+		for field in ["puts_tag", "clears_tag"]:
+			signs += ((face_actions[chosen] as Dictionary).get(field, []) as Array).size()
 		if kind == "":
 			return {"error": "quell'Azione della carta il motore non la sa ancora eseguire"}
 	if kind == "":
@@ -1213,6 +1285,8 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 		merged["discard_asset_id"] = asset_id
 	if builds != "":
 		merged["structure_type"] = builds
+	if kind == "MARK":
+		merged["face_signs"] = signs
 	return {
 		"kind": kind, "params": merged, "asset_id": asset_id, "face_action": chosen,
 		# **Dove cadono i segni stampati** (D-284). Il verbo puo' non nominare
@@ -1262,6 +1336,8 @@ func _check_play_card(entity_id: String, params: Dictionary) -> String:
 			return _check_scheme(entity_id, request["params"])
 		"CLAIM":
 			return _check_claim(entity_id, request["params"])
+		"MARK":
+			return _check_mark(entity_id, request["params"])
 	return "la carta porta un'azione che non esiste"
 
 
@@ -1287,6 +1363,7 @@ func _check_physical_target(asset_id: String, kind: String, params: Dictionary) 
 	# pesca non punta niente, e infatti non ha `structure_type`.
 	var aims_at_region: bool = (
 		kind == "MOVE"
+		or kind == "MARK"
 		or (kind == "SCHEME" and str(params.get("mode", "")) == "REGION")
 		or (kind == "ACQUIRE" and str(params.get("structure_type", "")) != "")
 	)
@@ -1409,6 +1486,8 @@ func _play_asset_card(
 			outcome = _scheme(entity_id, inner, source)
 		"CLAIM":
 			outcome = _claim(entity_id, inner, source)
+		"MARK":
+			outcome = _mark(entity_id, inner, source)
 		_:
 			return _error("PLAY_CARD", "la carta porta un'azione che non esiste")
 	if not bool(outcome.get("ok", false)):

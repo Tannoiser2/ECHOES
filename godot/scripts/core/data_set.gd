@@ -196,7 +196,7 @@ func _check_references() -> void:
 		for tension_id in declared:
 			if not tensions.has(tension_id):
 				errors.append("%s: unknown tension '%s'" % [chronicle["id"], tension_id])
-	for template in ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]:
+	for template in ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "MARK"]:
 		if not actions.has(template):
 			errors.append("missing action template '%s'" % template)
 
