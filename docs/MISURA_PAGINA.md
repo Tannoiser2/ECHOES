@@ -26,7 +26,7 @@ sta in una colonna sua.
 | bersagli che si toccano | 7 |
 | **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
-| **parole tecniche sotto gli occhi** | **1** |
+| **parole tecniche sotto gli occhi** | **0** |
 
 **Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`
 riempito con `append_text` tiene le parole in un albero che, senza un vero
@@ -70,9 +70,7 @@ Un id, uno slot o un segno crudo arrivato fino allo schermo: `$rival`,
 `REG_VALLE_VERDE`, `condition:unrest`. Il committente lo dice dalla 63 —
 *«carte che spiegano esattamente cosa fanno e non tag o testi tecnici»*.
 
-| pannello | cosa si legge |
-|---|---|
-| il tavolo | `== CONFLUENCE CNF_ANY_TERRITORY#1 - Il Consiglio del Confine ==` |
+Nessuna: tutto quello che si legge e' in italiano da giocatore.
 
 ## 4. Quanto la pagina chiede
 

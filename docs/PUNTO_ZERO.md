@@ -1,8 +1,9 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.379** · rimisurato per intero in 0.1.349, le sonde rilanciate in
-0.1.353. **Le sezioni 1 e 2 sono state rimisurate** in 0.1.379 e 0.1.380; dalla 3 in
-poi il documento porta ancora i numeri del 0.1.353, ed e' detto dove.
+**Versione 0.1.382** · rimisurato per intero in 0.1.349, le sonde rilanciate in
+0.1.353. **Le sezioni 1, 2, 5 e 6 sono state rimisurate** in 0.1.379, 0.1.380 e
+0.1.382; le sezioni 3, 4, 7 e 8 portano ancora i numeri del 0.1.353, ed e' detto
+dove.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
@@ -230,46 +231,43 @@ E le misure che prima non c'erano:
 
 ---
 
-## 5. Le voci aperte che posso chiudere io
+## 5. Le voci aperte che posso chiudere io — **quattro**, rimisurato in 0.1.382
 
-**29** voci aperte su 131, contate da `tools/issues_survey.py` in 0.1.379 (erano
-51 in 0.1.353). L'elenco qui sotto e' quello del 0.1.353 e **non e' piu' vero
-voce per voce**: la lista viva e' [LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md),
-che si rigenera col suo cancello. Qui sotto resta l'ordine di quanto cambiano la
-partita, che vale ancora.
+**29** voci aperte su 131, contate da `tools/issues_survey.py`. L'elenco che
+stava qui era del 0.1.353 e **tre delle sette voci che nominava sono chiuse da un
+pezzo** — la [96](ISSUES.md#96) in 0.1.363, la [88](ISSUES.md#88) in 0.1.372, la
+[53](ISSUES.md#53) in 0.1.355. Delle quattro rimaste, due sono del committente
+([123](ISSUES.md#123) e [100](ISSUES.md#100)) e una e' fuori dalla lista
+([91](ISSUES.md#91)): **di sette righe ne era rimasta vera una**, la
+[56](ISSUES.md#56). Ed e' per questo che adesso non c'e' piu' un elenco qui: **la lista viva e'
+[LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md)**, che si rigenera col suo cancello.
 
-1. **ISSUES 91 — metà dei punti è già vera prima che qualcuno giochi.**
-   `state_tag_absent` da solo sono centinaia di clausole mai contese. D-327 ha
-   portato la contesa sulla mappa dal 2,8% al 15,5%; la lite sulle **memorie**
-   resta.
-2. **ISSUES 123 — la ragione** (ISSUES 68 è chiusa, e questo è il suo residuo).
-   Il 47,6% è sotto la soglia, ma l'**84,0%** di quello che resta è *«nessuna
-   mossa gli serviva»*: **quaranta turni su cento**. Nessuna delle sei Azioni
-   della plancia alza una Pietra, e finché è così nessun obiettivo di Pietra può
-   premiare il giocare. **È una decisione del committente**, non una taratura.
-3. **ISSUES 96 — i segni scritti spesso che nessuna clausola guarda.** Oggi ne
-   restano tre sopra le dieci scritture per secolo: `took_by_hand`,
-   `price_in_lives`, `watched`.
-4. **ISSUES 88 — il tavolo vede poco più di un terzo di quello che è scritto.**
-   Scrivere un Consiglio per carta ha triplicato il contenuto; la finestra è
-   quella.
-5. **ISSUES 100 — le caselle «si accende quando» sono un pavimento derivato.**
-   Quarantasei facce ricavate aspettano una mano d'autore.
-6. **ISSUES 56 — tre Conseguenze non escono mai** (misurate quando erano 52;
-   oggi sono 65).
-7. **ISSUES 53 — RIVENDICARE può forzare un Consiglio che poi non si apre.**
+Quello che va detto qui e' il numero, e non e' quello che sembrava:
+
+| chi la puo' muovere | quante |
+|---|---|
+| il committente, con una parola | **15** |
+| una persona che gioca — [63](ISSUES.md#63), [67](ISSUES.md#67) | 2 |
+| **io, senza aspettare niente** — [56](ISSUES.md#56), [59](ISSUES.md#59), [60](ISSUES.md#60), [106](ISSUES.md#106) | **4** |
+| io, ma dietro una rossa — [111](ISSUES.md#111) e [4](ISSUES.md#4) | 2 |
+| nessuno, finche' non si gioca | 6 |
+
+**Quattro su ventinove.** Il giro non e' fermo sul lavoro: e' fermo su quindici
+parole ([D-411](DECISIONS.md#d-411)).
 
 ---
 
 ## 6. Le decisioni che sono tue e non mie
 
-**Stanno tutte e quattordici in un foglio solo**, con una riga a testa, il numero
+**Stanno tutte e quindici in un foglio solo**, con una riga a testa, il numero
 che le motiva e la mia raccomandazione: [LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md).
-Lì c'è anche la risposta alla domanda *«non si arriva mai al punto di chiudere?»* —
-che è no, non con questo metodo, e perché.
 
-Quattro di queste sono state decise in 0.1.353, e sono scritte. Quello che resta
-è sotto.
+Erano dieci fino a 0.1.381, e non perche' ne siano nate cinque: **cinque voci
+dicevano nel loro «fatto quando» che aspettavano il committente e non avevano il
+cartellino** `da-decidere`, che e' quello che il conto legge. Adesso ce l'hanno
+([D-411](DECISIONS.md#d-411)).
+
+Quattro sono state decise in 0.1.353, e sono scritte.
 
 **Decise e scritte:**
 
@@ -280,31 +278,27 @@ Quattro di queste sono state decise in 0.1.353, e sono scritte. Quello che resta
 | [ISSUES 122](ISSUES.md#122) — la moneta del Consiglio | la regola dettata → [D-387](DECISIONS.md#d-387) |
 | [ISSUES 119](ISSUES.md#119) — i Consigli che non cadono | riscritta con gli esempi, la scelta resta |
 
-**Aperte, e tutte e cinque nate da quelle decisioni o rimaste da lì:**
+**Le quattro che pesano di piu', in ordine:**
 
-1. **[ISSUES 125](ISSUES.md#125) — la moneta è troppo poca.** L'economia dei
-   gettoni funziona, ma i benefici comprati per Consiglio sono **scesi** da 1,71
-   a 1,40: con 2,8 carte RIVENDICARE per partita i gettoni bastano per un
-   acquisto in più *a partita*, non a Consiglio. Quattro strade, tutte
-   misurabili in mezz'ora.
-2. **[ISSUES 123](ISSUES.md#123) — nessuna Azione alza una Pietra**, e il
-   Consiglio paga meglio chi tace (199 Pietre contro 136). È la causa unica dei
-   tre obiettivi che ancora rendono meglio da fermi, ed è
-   [ISSUES 119](ISSUES.md#119) vista dall'altra parte.
-3. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi più.** Un
+1. **[ISSUES 123](ISSUES.md#123) — nessuna Azione alza una Pietra**, e il
+   Consiglio paga meglio chi tace (199 Pietre contro 136). **Quaranta turni su
+   cento** un giocatore ha 22,1 mosse legali, 4,4 carte in mano e nessun motivo:
+   e' il numero piu' grosso che una parola del committente puo' muovere oggi.
+2. **[ISSUES 122](ISSUES.md#122) + [125](ISSUES.md#125) — quanto compra una
+   proposta.** Con un solo beneficio gratis le caselle vive per Consiglio sono
+   **una**, e i benefici comprati sono **scesi** da 1,71 a 1,40.
+3. **[ISSUES 120](ISSUES.md#120) — vincere nominando invece che contando.** E'
+   anche la cura della [91](ISSUES.md#91) (48,4% dei punti gia' veri
+   all'apertura) e la meta' che resta della [4](ISSUES.md#4).
+4. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi piu'.** Un
    Consiglio su undici cade sul tavolo misto; `spoke_and_lost` si posa 8 volte
-   in cento partite. Tre strade, adesso con un esempio ciascuna.
-4. **[ISSUES 124](ISSUES.md#124) — due case su otto non prendono mai
-   l'Eredità.** Nahr e Vaerax: i segni che vogliono lasciare sono muri, e un
-   muro non diventa leggenda. È [ISSUES 76](ISSUES.md#76) un'altra volta.
-5. **[ISSUES 120](ISSUES.md#120) — come il tavolo si ricorda di un gesto.** La
-   clausola c'è; il **segnalino** no. A fine anno «l'hai alzata quest'anno?» si
-   risponde ricordando, o guardando l'app.
-6. **[ISSUES 65](ISSUES.md#65) — la seconda e la terza rivista della pagina.**
-   *Lasciata stare per adesso, per tua parola.* La prima, la leggibilità, è
-   fatta ([D-384](DECISIONS.md#d-384)).
-7. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura
-   quello che la pagina *chiede*; quello che una persona *vede*, no.
+   in cento partite.
+
+Le altre dieci, con la raccomandazione a testa, stanno nella lista.
+
+**E una cosa che non e' una voce**: PZ-8, §5ter — **il giro su un iPad vero**.
+La sonda della pagina misura quello che la pagina *chiede*; quello che una
+persona *vede*, no.
 
 ---
 

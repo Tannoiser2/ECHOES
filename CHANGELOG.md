@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.382 — La lista rimisurata: quattro voci si muovono senza una tua parola
+
+Riscritta `docs/LE_TUE_DECISIONI.md` **non per colore ma per chi la puo' muovere**
+([D-411](docs/DECISIONS.md#d-411)), e riparato l'errore che la faceva sembrare
+piu' corta di quanto sia.
+
+### Il conto seguiva il cartellino, non il testo: dieci → **quindici**
+
+Cinque voci aperte dicono nel loro «fatto quando» che aspettano il committente e
+non avevano il cartellino `da-decidere`: la **80** (*«e' la modifica che vale la
+parola del committente, non la mia»*), la **87** (*«tre letture, e la scelta e'
+del committente»*, e lo dice due volte), la **65**, la **82**, la **36**. Adesso
+ce l'hanno, e il conto generato lo dice da solo.
+
+**E alla 87 avevo dato un criterio che non e' il suo** — *«gli acquisti a vuoto
+sotto il 5%»* — cioe' avevo messo una misura al posto di una parola, e una voce
+del committente nella colonna delle mie.
+
+| | quante | chi la muove |
+|---|---|---|
+| 🔴 | **15** | il committente. Tredici sulla strada, due fuori |
+| 🔵 | **2** | una persona che gioca: la 63 e la 67 non si misurano |
+| 🟡 | **4** | io, senza aspettare niente: 56, 59, 60, 106 |
+| ⚫ | **2** | io, ma dopo una rossa: la 111 dietro R1, la 4 dietro R3 |
+| ⚪ | **6** | nessuno, finche' non si gioca |
+
+**Quattro su ventinove.** Il giro non e' fermo sul lavoro: e' fermo su quindici
+parole.
+
+### E due voci rimisurate, con la strada che finisce dove non si sapeva
+
+- **ISSUES 4** — 100 partite CHR_00 a tavolo misto, seme 7000: **3,40 Regioni
+  contese su 6** e **3,75 passaggi di mano l'anno**, contro i «piu' di tre»
+  chiesti, col playtest **0 su 8** sui due tavoli. Tre righe su quattro sono
+  passate; la quarta e' la 120, ed e' del committente.
+- **ISSUES 91** — le clausole gia' vere all'apertura sono il **48,4%**: sotto la
+  meta' per la prima volta. Ma i tre numeri della voce sono misurati su tavoli
+  diversi e **non stanno in fila come una strada** (D-391).
+
+### E PUNTO_ZERO diceva il falso in sei righe su sette
+
+La sua sezione 5 — *«le voci aperte che posso chiudere io»* — era ferma al
+0.1.353: tre di quelle voci sono chiuse, due sono del committente, una e' fuori
+dalla lista. **Ne era rimasta vera una.** Riscritte le sezioni 5 e 6.
+
+### E il verbale smette di parlare per id
+
+[D-410](docs/DECISIONS.md#d-410) corregge D-409: **la frase era piu' larga della
+misura.** «Un anno intero senza mai un id» guardava solo le domande, non il
+verbale che sullo schermo sta accanto — e li' dentro c'erano **otto righe su
+584**: `presenza: REG_MINIERE_ANTICHE`, `CONFLUENCE CNF_ANY_ANCIENT#3`.
+
+Due righe di codice: il setup stampa i **nomi** delle Regioni, e il Consiglio si
+intesta *«CONSIGLIO 3 — La Successione»* invece che col suo id. La prova adesso
+guarda **domande e verbale insieme**: 584 righe, zero id.
+
+**Costo dichiarato**: `MISURA_PAGINA.md` rigenerato — il pannello del Consiglio
+passa da 52 a 55 nodi e da 1263 a 1670 pixel, perche' la domanda stampata sulla
+carta e' piu' lunga del ripiego. Suite a **691 prove**.
+
+---
+
 ## 0.1.381 — PZ-01 rimisurato: il criterio regge per quattro decimi
 
 Rimisurata la **sezione 2 di PUNTO_ZERO** — i due numeri di testa del progetto —

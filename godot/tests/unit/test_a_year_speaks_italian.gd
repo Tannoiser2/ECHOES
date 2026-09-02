@@ -11,9 +11,14 @@ extends "res://tests/test_case.gd"
 ## le volte in cui il motore parla senza che nessuno controlli come.
 ##
 ## Qui si gioca una Chronicle intera con una persona al tavolo, e si tiene il
-## verbale di **tutto quello che le e' stato messo davanti** — ogni domanda e
-## ogni risposta possibile. Poi si chiede una cosa sola: **c'e' un id, li'
-## dentro?**
+## conto di **tutto quello che le e' passato sotto gli occhi**: ogni domanda,
+## ogni risposta possibile, **e il verbale dell'anno**, che sullo schermo sta
+## accanto alle domande. Poi si chiede una cosa sola: **c'e' un id, li' dentro?**
+##
+## Il verbale c'e' perche' la prima stesura non ce l'aveva, e la frase che ne
+## avevo tratto era piu' larga della misura: le domande erano pulite, il verbale
+## no — otto righe su 584, «presenza: REG_MINIERE_ANTICHE» e «CONFLUENCE
+## CNF_ANY_ANCIENT#3».
 ##
 ## Non e' una prova sullo schermo: e' una prova su **cosa il gioco sa dire**. Lo
 ## schermo puo' disegnarlo bene o male, ma se quello che arriva e' `TEN_FAMINE`
@@ -79,15 +84,25 @@ func test_a_whole_year_never_shows_an_id() -> void:
 		"e a quella persona e' stato chiesto qualcosa di vero: %d domande" % orecchio.domande
 	)
 
+	# **E il verbale conta quanto le domande.** La prima stesura guardava solo
+	# quello che il decider mette davanti, e la frase che ne ho tratto — «un anno
+	# intero senza mai un id» — era **piu' larga della misura**: il verbale sta
+	# sullo schermo accanto alle domande, e una riga che dice «presenza:
+	# REG_MINIERE_ANTICHE» e' un id sotto gli occhi di chi gioca esattamente come
+	# lo sarebbe su un bottone. Erano otto righe su 584.
+	var righe: Array = orecchio.detto.duplicate()
+	for riga in session.log.lines:
+		righe.append(str(riga))
+
 	var colpevoli: Array = []
-	for riga in orecchio.detto:
+	for riga in righe:
 		for id in IDS:
 			if str(riga).contains(str(id)) and not colpevoli.has(str(riga)):
 				colpevoli.append(str(riga))
 	assert_true(
 		colpevoli.is_empty(),
-		"nessuna riga porta un id, su %d righe: %s" % [
-			orecchio.detto.size(),
+		"nessuna riga porta un id, su %d righe (%d domande + %d di verbale): %s" % [
+			righe.size(), orecchio.detto.size(), session.log.lines.size(),
 			" | ".join(PackedStringArray(colpevoli.slice(0, mini(6, colpevoli.size())))),
 		]
 	)
