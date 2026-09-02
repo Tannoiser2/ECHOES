@@ -127,7 +127,10 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 		"round": int(world["round"]),
 	}
 
-	log.section("CONFLUENCE %s - %s" % [current["confluence_id"], str(template["title"])])
+	# **L'intestazione senza l'id** (ISSUES 63): `confluence_id` e'
+	# «CNF_ANY_ANCIENT#3», e finiva in cima al verbale che sta sullo schermo. Il
+	# numero serve — dice quale Consiglio dell'anno e' — l'id no.
+	log.section("CONSIGLIO %d - %s" % [int(current["index"]) + 1, str(template["title"])])
 	log.bullet("A. Trigger: %s su %s" % [str(trigger.get("kind", "THRESHOLD")), _tension_name(tension_id)])
 	log.bullet("B. Domanda: %s" % say(_question_text(template, question_id)))
 	# Chi ha aperto questo Consiglio si fara da parte al prossimo sulla stessa

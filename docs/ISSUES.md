@@ -868,7 +868,7 @@ giocano davvero. ✓
 
 ### 36. Linee sempre diverse: pool di Destini, ruoli, generatore
 
-`contenuto` · `regole` · voluta dal committente · **in seduta** (*SEDUTA_LINEE*)
+`contenuto` · `regole` · `da-decidere` · voluta dal committente · **in seduta** (*SEDUTA_LINEE*)
 
 «Io andrei oltre, farei un sistema che combina e permuta per ottenere linee
 sempre diverse, un randomizzatore di obiettivi, entità e incarnazioni che
@@ -3117,8 +3117,8 @@ nessun anno.
 ### 98. Chiudere il circuito: ogni segno dichiara se pesa o se e' colore
 
 `regola` · `strumenti` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
-e' un metodo e genera lavoro all'infinito — la sua meta' utile e' la gialla G3,
-che finisce · aperta in 0.1.290 · **direzione del
+e' un metodo e genera lavoro all'infinito — la sua meta' utile era il gruppo dei
+segni, e quello e' finito in 0.1.363 · aperta in 0.1.290 · **direzione del
 committente**:
 
 > «Il prossimo lavoro non e' aggiungere contenuto, ma **chiudere il circuito**.
@@ -3619,12 +3619,23 @@ su 60** sull'anno d'autore, **3 su 60** sulla mappa pescata.
 
 ---
 
-### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse — 52.4% in 0.1.278
+### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse — 48,4% in 0.1.382
 
 `regola` · `bilanciamento` · **fuori dalla lista in 0.1.361**
-([la lista](LE_TUE_DECISIONI.md)): la sua cura e' la rossa R4 (gli Obiettivi che
-nominano invece di contare), e si rimisura dopo quella · aperta in 0.1.276
+([la lista](LE_TUE_DECISIONI.md)): la sua cura e' la rossa **R3** (gli Obiettivi
+che nominano invece di contare), e si rimisura dopo quella · aperta in 0.1.276
 ([D-314](DECISIONS.md#d-314))
+
+> **Rimisurata in 0.1.382** — `run_contest_probe.gd`, 100 partite CHR_00 a
+> tavolo misto, seme 7000: le clausole gia' vere all'apertura sono il **48,4%**
+> (1.298 su 2.681), contro il 60,5% di 0.1.276 e il 52,4% di 0.1.278. Scende, e
+> scende da sola. **Sotto la meta' per la prima volta**, e ancora troppo: un
+> punto su due lo consegna il calendario.
+>
+> **Il numero si scrive col tavolo su cui e' misurato** ([D-391](DECISIONS.md#d-391)): i tre
+> non stanno in fila come una strada — quello di 0.1.276 era su 40 tavoli CHR_01
+> ai semi 7000+, questo su 100 CHR_00 a tavolo misto. Sono tre fotografie dello
+> stesso difetto, non una discesa misurata.
 
 **Misurata**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme concordi:
 
@@ -4245,7 +4256,7 @@ cifre stanno in testa alla voce.)*
 
 ### 87. Gli Effetti d'autore che parlano la lingua delle caselle
 
-`contenuto` · `regole` · aperta in 0.1.267 ([D-305](DECISIONS.md#d-305)) ·
+`contenuto` · `regole` · `da-decidere` · aperta in 0.1.267 ([D-305](DECISIONS.md#d-305)) ·
 **taglio A fatto in 0.1.269** ([D-307](DECISIONS.md#d-307)), il resto aperto
 
 > **Fatto (D-307)**: tolte le **9 righe** che consegnavano al proponente il
@@ -4493,7 +4504,7 @@ un numero e non a occhio.
 
 ### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
 
-`contenuto` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
+`contenuto` · `da-decidere` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
 e' una potatura di componenti, e si fa quando la scatola si stampa ·
 **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
 
@@ -4587,7 +4598,7 @@ Resta aperto il rischio speculare, che e' la voce nuova
 
 ### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — **ridotta in 0.1.378 alla sola terza parte: quella che aspetta la tua parola**
 
-`regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
+`regole` · `ux` · `da-decidere` · **aperta in 0.1.253** — parola del committente davanti
 all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
 
 Ha ragione su quello che vede, e la ragione e' piu' precisa della frase: **lo
@@ -5290,7 +5301,7 @@ dire una cosa sola sul tavolo.
 
 ### 69. La Risonanza è scritta e non succede
 
-`contenuto` · `direzione` · `da-decidere` · **rossa R9 dalla 0.1.361**
+`contenuto` · `direzione` · `da-decidere` · **rossa R6 dalla 0.1.382**
 ([la lista](LE_TUE_DECISIONI.md)): resta il **formato** della carta, ed e' una
 scelta d'autore che viene prima dell'arte · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
 **cure in 0.1.219** ([D-257](DECISIONS.md#d-257)), **0.1.220**
@@ -5606,7 +5617,7 @@ che [D-035](DECISIONS.md#d-035) chiama contenuto che non esiste.
 
 ### 65. Tutta la pagina dell'app va rivista
 
-`ux` · voluta dal committente · **aperta in 0.1.211**
+`ux` · `da-decidere` · voluta dal committente · **aperta in 0.1.211**
 
 > «Tutta la pagina dell'app va rivista.»
 
@@ -5761,6 +5772,29 @@ sonda delle ere la applica invece di deciderla per conto proprio.
 La ragione è strutturale, e ogni misura di questo ciclo la conferma dal suo lato:
 **la GUI è stata costruita per far vedere che il motore funziona, non per farci
 giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
+
+> **Avanzamento in 0.1.380** ([D-409](DECISIONS.md#d-409)): **la meta'
+> misurabile del criterio ha la sua prova.**
+>
+> `test_a_year_speaks_italian` gioca **una Chronicle intera** con una persona al
+> tavolo — un orecchio che non decide niente e **scrive tutto quello che gli e'
+> stato messo davanti**, domande e risposte possibili — e poi chiede una cosa
+> sola: *c'e' un id, li' dentro?*
+>
+> **467 righe in un anno. Nessun id.**
+>
+> E la prova morde: ripiantando il difetto che [D-408](DECISIONS.md#d-408) aveva
+> appena riparato, va rossa sulla riga giusta — *«Guardia di Confine — force,
+> vale 1 · costa: TEN_ROADS sale»*.
+>
+> **Ma la voce non si chiude, e non e' una formalita'.** Il criterio dice *«una
+> persona puo' giocare un anno intero»*: le quattro mosse sono chiuse da
+> 0.1.209, la quinta da 0.1.210, e adesso l'anno arriva in fondo senza parlare
+> per id. **Che una persona ci giochi lo verifica una persona**, aprendo l'app —
+> come per [ISSUES 67](#67) («una saga arriva al terzo anno su un tablet») e
+> [ISSUES 65](#65). Chiuderla su una prova sarebbe scambiare quello che so
+> misurare per quello che la voce chiede, e questa voce **e' nata proprio da
+> quello scarto**.
 
 ### Le quattro mosse
 
@@ -6554,6 +6588,27 @@ uniche rimaste, e in quest'ordine:
 
 **Fatto quando** le Regioni contese a fine anno sono più di tre su sei e il
 padrone cambia mano più di tre volte l'anno, col playtest ancora **0/8**.
+
+### Rimisurata in 0.1.382: le tre righe sulla mappa sono passate, la quarta no
+
+`cli/run_contest_probe.gd`, 100 partite CHR_00 a **tavolo misto**, seme 7000 — e
+il playtest degli stessi 100 semi, tavolo misto *e* uniforme:
+
+| criterio scritto in questa voce | chiedeva | oggi | |
+|---|---|---|---|
+| Regioni contese a fine anno | > 3 su 6 | **3,40 su 6** (1,51 all'apertura) | ✅ |
+| il padrone passa di mano | > 3 volte l'anno | **3,75 volte** | ✅ |
+| playtest | 0 su 8 | **0 su 8** su tutt'e due i tavoli | ✅ |
+| obiettivi contesi | ≥ un terzo del mazzo | **3 su 15** | ❌ |
+
+**La voce non si chiude, e la riga che resta non è sua.** Un obiettivo che si
+vince contando non lo si può contendere: la quarta riga è
+[ISSUES 120](#120), ed è del committente. Questa si chiude con quella.
+
+E il numero che la voce inseguiva da 0.1.187 — *«la mappa è ferma»* — non è più
+vero: 2,32 → **3,75** passaggi di mano, 2,46 → **3,40** Regioni contese. Nessuna
+delle quattro mosse scritte qui sopra l'ha fatto da sola; l'hanno fatto il tetto
+delle pedine (D-227) e tutto quello che è venuto dopo.
 
 ---
 
@@ -8502,7 +8557,7 @@ benefici per Consiglio muoversi nella direzione scelta.
 
 ### 126. ✅ Si prenota 285 volte e si spende 12 — CHIUSA in 0.1.370: adesso si prenota 7 volte
 
-`regole` · **gialla G6 dalla 0.1.361** ([la lista](LE_TUE_DECISIONI.md)): la
+`regole` · **gialla dalla 0.1.361** ([la lista](LE_TUE_DECISIONI.md)): la
 regola l'hai gia' dettata, quello che resta e' taratura del cervello ed e' mia ·
 aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
 

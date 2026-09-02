@@ -5,6 +5,182 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.382 — La lista rimisurata: quattro voci si muovono senza una tua parola
+
+Riscritta `docs/LE_TUE_DECISIONI.md` **non per colore ma per chi la puo' muovere**
+([D-411](docs/DECISIONS.md#d-411)), e riparato l'errore che la faceva sembrare
+piu' corta di quanto sia.
+
+### Il conto seguiva il cartellino, non il testo: dieci → **quindici**
+
+Cinque voci aperte dicono nel loro «fatto quando» che aspettano il committente e
+non avevano il cartellino `da-decidere`: la **80** (*«e' la modifica che vale la
+parola del committente, non la mia»*), la **87** (*«tre letture, e la scelta e'
+del committente»*, e lo dice due volte), la **65**, la **82**, la **36**. Adesso
+ce l'hanno, e il conto generato lo dice da solo.
+
+**E alla 87 avevo dato un criterio che non e' il suo** — *«gli acquisti a vuoto
+sotto il 5%»* — cioe' avevo messo una misura al posto di una parola, e una voce
+del committente nella colonna delle mie.
+
+| | quante | chi la muove |
+|---|---|---|
+| 🔴 | **15** | il committente. Tredici sulla strada, due fuori |
+| 🔵 | **2** | una persona che gioca: la 63 e la 67 non si misurano |
+| 🟡 | **4** | io, senza aspettare niente: 56, 59, 60, 106 |
+| ⚫ | **2** | io, ma dopo una rossa: la 111 dietro R1, la 4 dietro R3 |
+| ⚪ | **6** | nessuno, finche' non si gioca |
+
+**Quattro su ventinove.** Il giro non e' fermo sul lavoro: e' fermo su quindici
+parole.
+
+### E due voci rimisurate, con la strada che finisce dove non si sapeva
+
+- **ISSUES 4** — 100 partite CHR_00 a tavolo misto, seme 7000: **3,40 Regioni
+  contese su 6** e **3,75 passaggi di mano l'anno**, contro i «piu' di tre»
+  chiesti, col playtest **0 su 8** sui due tavoli. Tre righe su quattro sono
+  passate; la quarta e' la 120, ed e' del committente.
+- **ISSUES 91** — le clausole gia' vere all'apertura sono il **48,4%**: sotto la
+  meta' per la prima volta. Ma i tre numeri della voce sono misurati su tavoli
+  diversi e **non stanno in fila come una strada** (D-391).
+
+### E PUNTO_ZERO diceva il falso in sei righe su sette
+
+La sua sezione 5 — *«le voci aperte che posso chiudere io»* — era ferma al
+0.1.353: tre di quelle voci sono chiuse, due sono del committente, una e' fuori
+dalla lista. **Ne era rimasta vera una.** Riscritte le sezioni 5 e 6.
+
+### E il verbale smette di parlare per id
+
+[D-410](docs/DECISIONS.md#d-410) corregge D-409: **la frase era piu' larga della
+misura.** «Un anno intero senza mai un id» guardava solo le domande, non il
+verbale che sullo schermo sta accanto — e li' dentro c'erano **otto righe su
+584**: `presenza: REG_MINIERE_ANTICHE`, `CONFLUENCE CNF_ANY_ANCIENT#3`.
+
+Due righe di codice: il setup stampa i **nomi** delle Regioni, e il Consiglio si
+intesta *«CONSIGLIO 3 — La Successione»* invece che col suo id. La prova adesso
+guarda **domande e verbale insieme**: 584 righe, zero id.
+
+**Costo dichiarato**: `MISURA_PAGINA.md` rigenerato — il pannello del Consiglio
+passa da 52 a 55 nodi e da 1263 a 1670 pixel, perche' la domanda stampata sulla
+carta e' piu' lunga del ripiego. Suite a **691 prove**.
+
+---
+
+## 0.1.381 — PZ-01 rimisurato: il criterio regge per quattro decimi
+
+Rimisurata la **sezione 2 di PUNTO_ZERO** — i due numeri di testa del progetto —
+con `run_pass_probe` e `run_asking_probe`, 100 anni, tavolo misto.
+
+### Il difetto più grosso resta sotto la soglia, e meno di prima
+
+| | oggi | in 0.1.353 |
+|---|---|---|
+| turni «passa» | **49,6%** | 47,6% |
+| passa con zero mosse legali | **0 su 3.571** | 0 su 3.428 |
+| passa con la mano vuota | **9** | 16 |
+
+**I due punti in più sono il conto di D-402, ed erano previsti**: quel verbale li
+aveva già scritti. Una prenotazione mai spesa non è un turno in cui succede
+qualcosa — contandole insieme ai «passa», i turni in cui non succede niente
+**scendono** da 51,4% a 49,7%. Il numero che sale è quello onesto.
+
+**E il margine è di quattro decimi**: la prossima cosa che sposta i turni può
+portare questo criterio sopra la metà. Sta scritto.
+
+**Il RIVENDICARE che il cervello voleva e non riusciva a dire era 64: adesso è
+12.** Da quando il ripiego sa prendere la parola invece di prenotarla soltanto,
+quel verbo esce quando serve. Il verbo in sofferenza adesso è **INFLUENZARE**
+(337 intenzioni mute) — lo stesso che ISSUES 59 trova essere il meno giocato e
+insieme la moneta più votata. Due misure diverse, stesso nome.
+
+### Giocare rende ancora
+
+| | oggi | in 0.1.353 |
+|---|---|---|
+| obiettivi avverati giocando | **425 su 1.200** | 423 |
+| dal tavolo di pietra | **116** | 115 |
+| quanto rende giocare | **+266,4%** | +267,8% |
+
+Restano **tre obiettivi su diciassette** che rendono uguale o meglio stando
+fermi, e sono gli stessi tre: tutti di Pietra, tutti per la stessa causa —
+nessuna Pietra sale per mano di un'Azione della plancia (ISSUES 123).
+
+Dalla sezione 3 in poi il documento porta ancora i numeri del 0.1.353, e lo dice.
+
+---
+
+## 0.1.380 — Un anno intero, e non dice mai un id
+
+Avanza [ISSUES 63](docs/ISSUES.md#63) ([D-409](docs/DECISIONS.md#d-409)).
+
+Le prove di ieri guardano **un turno** e **le dieci domande del Consiglio**, uno
+scatto per volta. Fra un passo provato e l'altro ci stanno tutte le volte in cui
+il gioco parla senza che nessuno controlli come.
+
+`test_a_year_speaks_italian` gioca **una Chronicle intera** con una persona al
+tavolo — un orecchio che non decide niente, risponde sempre la prima cosa legale
+e **scrive tutto quello che gli è stato messo davanti**. Poi chiede una cosa
+sola: *c'è un id, lì dentro?*
+
+**467 righe in un anno. Nessun id.**
+
+Non è una prova sullo schermo, ed è apposta: è una prova su **cosa il gioco sa
+dire**. Lo schermo può disegnarlo bene o male, ma se quello che arriva è
+`TEN_FAMINE` non c'è disegno che lo salvi.
+
+### E morde: provato ripiantando il difetto del giorno prima
+
+Un verde al primo colpo, qui, è un motivo per sospettare. Rimesso il difetto che
+D-408 aveva appena riparato, la prova è andata rossa sulla riga giusta — *«Guardia
+di Confine — force, vale 1 · costa: TEN_ROADS sale»* — e poi la riparazione è
+tornata al suo posto. **Settima volta che uno zero in questo progetto poteva
+essere chi guarda**; stavolta gliel'ho chiesto prima di crederci.
+
+### Perché la 63 non si chiude
+
+Il criterio dice *«una persona può giocare un anno intero»*. Le quattro mosse sono
+chiuse da 0.1.209, la quinta da 0.1.210, e adesso l'anno arriva in fondo senza
+parlare per id. **Che una persona ci giochi lo verifica una persona**, come per la
+67 e la 65. Chiuderla su una prova sarebbe scambiare quello che so misurare per
+quello che la voce chiede — e questa voce è nata proprio da quello scarto.
+
+Suite **691 prove**.
+
+---
+
+## 0.1.379 — PUNTO_ZERO diceva di essere fermo a venticinque versioni fa
+
+`docs/PUNTO_ZERO.md` è il primo dei due documenti che CLAUDE.md dice di leggere
+prima di cominciare qualsiasi cosa. Portava i numeri del **0.1.353**, e sono
+passate venticinque versioni.
+
+**Rimisurata la sezione 1** — quella che dice «quello che tiene» — e messa
+accanto a com'era, perché *un numero si scrive col tavolo su cui è misurato*:
+
+| | oggi | in 0.1.353 |
+|---|---|---|
+| suite | **690 prove / 102 suite / 86.390 asserzioni** | 679 / 101 / 86.480 |
+| cancelli | **trentuno** | ventisei |
+| Consigli per anno | misto **3,58** · uniforme **3,49** | 3,15 · 3,23 |
+| Verità scritte | misto **142** (113 diverse) · uniforme **150** (108) | 125 (101) · 130 (95) |
+| voci aperte | **29** su 131 | 51 |
+
+**Il Consiglio si apre di più e il mondo ricorda di più**: mezzo Consiglio in più
+all'anno, e le Verità salgono di un sesto. Viene da D-402.
+
+**E le asserzioni scendono mentre le prove salgono.** Non l'ho attribuito e non
+lo invento: D-405 ha tolto dodici sacchetti morti dai dati, e su dati che non ci
+sono più i validatori asseriscono di meno — ma se sia tutta lì la differenza non
+l'ho misurato, e sta scritto così.
+
+**Il resto del documento porta ancora i numeri del 0.1.353, e adesso lo dice.**
+Il documento stesso avverte che *«una fotografia con una didascalia non è una
+misura»*: per questo la sezione 1 è stata **rimisurata**, non annotata, e le
+altre dichiarano la loro data invece di fingere di essere di oggi.
+
+---
+
 ## 0.1.378 — Il Consiglio si può giocare: dieci domande, dieci prove
 
 Chiude [ISSUES 73](docs/ISSUES.md#73) e avanza [ISSUES 80](docs/ISSUES.md#80)

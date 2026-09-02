@@ -10,6 +10,192 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-411 — La lista si riordina per chi la puo' muovere, e il conto era sbagliato di cinque
+
+**implemented in 0.1.382.** Riscrive [la lista](LE_TUE_DECISIONI.md). Nessuna
+voce aperta o chiusa.
+
+Parola del committente: *«puoi riscrivere LE_TUE_DECISIONI per capire
+effettivamente cosa manca per chiudere? fai una pensata profonda perche' alcune
+cose che hai scritto non erano vere.»*
+
+### Il difetto vero: il conto seguiva il cartellino, non il testo
+
+Il foglio diceva **«dieci aspettano una tua decisione»**, e quel numero lo genera
+`tools/issues_survey.py` contando il cartellino `da-decidere`. Ma **cinque voci
+aperte dicono nel loro «fatto quando» che aspettano il committente**, e il
+cartellino non ce l'avevano:
+
+| voce | quello che il suo testo dice |
+|---|---|
+| [80](ISSUES.md#80) | *«e' la modifica che vale la parola del committente, non la mia»* |
+| [87](ISSUES.md#87) | *«Tre letture, e la scelta e' del committente»* — due volte, per le due meta' aperte |
+| [65](ISSUES.md#65) | *«Fatto quando c'e' una decisione scritta su quale delle tre riviste si sta facendo»* |
+| [82](ISSUES.md#82) | *«Fatto quando il committente ha scelto»* |
+| [36](ISSUES.md#36) | *«Fatto quando il committente ha risposto alle cinque domande secche»* |
+
+**Il cartellino adesso segue il testo**, e il conto generato dice **quindici**
+senza che nessuno lo scriva a mano. Nessun criterio e' stato cambiato: e' il
+cartellino che era in ritardo sul testo.
+
+### E l'errore che valeva gli altri quattro messi insieme
+
+Il gruppo G7 dava alla [87](ISSUES.md#87) un «fatto quando» che **la voce non
+ha**: *«gli acquisti a vuoto sono sotto il 5%»*. Quel numero non sta da nessuna
+parte nella voce — la voce dice tre letture e la scelta e' del committente. Cioe'
+avevo messo **una misura al posto di una parola**, e una voce del committente
+nella colonna delle mie. Il danno non e' la riga sbagliata: e' che **fa sembrare
+la lista piu' corta di quanto sia**.
+
+### Il riordino: non per colore, per chi la muove
+
+| | quante | chi la muove |
+|---|---|---|
+| 🔴 | 15 | il committente, con una parola. Tredici sulla strada, due fuori |
+| 🔵 | 2 | una persona che gioca: [63](ISSUES.md#63) e [67](ISSUES.md#67) non si misurano |
+| 🟡 | 4 | io, senza aspettare niente: [56](ISSUES.md#56), [59](ISSUES.md#59), [60](ISSUES.md#60), [106](ISSUES.md#106) |
+| ⚫ | 2 | io, ma **dopo** una rossa: [111](ISSUES.md#111) e [4](ISSUES.md#4) |
+| ⚪ | 6 | nessuno, finche' non si gioca |
+
+**Quattro.** Delle ventinove voci aperte, quattro si muovono senza una parola del
+committente. E' il numero che la lista di prima non diceva, e viene prima di
+tutti gli altri: **il giro non e' fermo sul lavoro, e' fermo su quindici parole.**
+
+### E due voci rimisurate per strada
+
+- **[ISSUES 4](ISSUES.md#4)** — `run_contest_probe`, 100 partite CHR_00 a tavolo
+  misto, seme 7000: **3,40 Regioni contese su 6** (chiedeva > 3), **3,75
+  passaggi di mano l'anno** (chiedeva > 3), playtest **0 su 8** sui due tavoli.
+  **Tre righe su quattro sono passate.** La quarta — *«obiettivi contesi ≥ un
+  terzo del mazzo»*, oggi 3 su 15 — non e' sua: e' [ISSUES 120](ISSUES.md#120),
+  ed e' del committente. La voce si chiude con quella.
+- **[ISSUES 91](ISSUES.md#91)** — le clausole gia' vere all'apertura sono il
+  **48,4%** (1.298 su 2.681): sotto la meta' per la prima volta, contro il 60,5%
+  di 0.1.276 e il 52,4% di 0.1.278. **Ma i tre numeri non stanno in fila come una
+  strada** ([D-391](#d-391)): il primo e' su 40 tavoli CHR_01, questo su 100
+  CHR_00 a tavolo misto. Sono tre fotografie dello stesso difetto.
+
+### E tre numeri fermi, raddrizzati
+
+- V3 diceva **4.136 testi** in `REVISIONE_TESTI.md`: oggi sono **4.172**;
+- il paragrafo finale diceva *«nove rosse, otto gialle, quattro verdi, ventuno
+  righe»* quando due gialle si erano gia' chiuse e una rossa era stata aggiunta.
+  **Adesso il totale in fondo e' il conto generato**, e non e' piu' scritto a
+  mano da nessuna parte: era il quinto errore, ed era di forma, non di numero;
+- i riferimenti ai gruppi vecchi dentro `ISSUES.md` — *«la rossa R9»*, *«la
+  gialla G3»*, *«la gialla G6»* — puntavano a righe che non esistono piu'.
+
+### E la stessa cosa era vera in PUNTO_ZERO, peggio
+
+La sezione 5 — *«le voci aperte che posso chiudere io»* — elencava sette voci
+del 0.1.353. **Ne era rimasta vera una.** Tre erano chiuse (la 96 in 0.1.363, la
+88 in 0.1.372, la 53 in 0.1.355), due sono del committente (123, 100), una e'
+fuori dalla lista (91). Riscritte le sezioni **5 e 6** sul conto di oggi, e il
+cappello del documento adesso dichiara quali sezioni sono rimisurate e quali no.
+
+---
+
+## D-410 — Il verbale parla la lingua del tavolo, e D-409 misurava meno di quello che diceva
+
+**implemented in 0.1.382.** Corregge [D-409](#d-409). Avanza
+[ISSUES 63](ISSUES.md#63).
+
+### La frase era piu' larga della misura
+
+D-409 diceva **«467 righe in un anno, nessun id»**. Ma la prova guardava solo
+quello che il decider mette davanti a una persona: **il verbale no** — e il
+verbale sta sullo schermo, accanto alle domande. Allargata la prova a guardare
+anche `session.log.lines`, l'anno intero fa **584 righe**, e otto portavano un
+id:
+
+```
+presenza: REG_MINIERE_ANTICHE, REG_TERRE_NAHR
+CONFLUENCE CNF_ANY_ANCIENT#3 - La Successione
+```
+
+**Una riga che dice «presenza: REG_MINIERE_ANTICHE» e' un id sotto gli occhi di
+chi gioca esattamente come lo sarebbe su un bottone.** La prova diceva il vero su
+quello che misurava; la frase che ne avevo tratto diceva di piu'.
+
+### Le due sorgenti, e sono due righe
+
+| dove | cosa faceva | adesso |
+|---|---|---|
+| `chronicle_controller.setup()` | stampava gli id delle Regioni con presenza | `_place_names()` legge `regions.name` — *«le Miniere Antiche»* |
+| `confluence_controller.open()` | intestava il Consiglio col `confluence_id` — `CNF_ANY_ANCIENT#3` | *«CONSIGLIO 3 — La Successione»*: il numero serve, l'id no |
+
+### Adesso la prova guarda tutt'e due, ed e' zero
+
+`test_a_year_speaks_italian` mette in fila **le domande, ogni risposta possibile
+e il verbale**, e cerca i tredici prefissi degli id dei dati. **584 righe, zero
+id.** La prova e' scritta perche' quello zero sia una misura e non una cecita':
+pretende anche che a quella persona siano state fatte **piu' di dieci domande**,
+perche' in questo progetto uno zero e' stato sette volte chi guardava.
+
+**Il conto delle righe si scrive col suo perimetro** ([D-391](#d-391)): 467 erano
+le domande sole, 584 sono le domande piu' il verbale. Non e' cresciuto l'anno,
+e' cresciuto quello che si guarda.
+
+### Costo dichiarato
+
+`docs/MISURA_PAGINA.md` rigenerato: il pannello del Consiglio passa da 52 a 55
+nodi e da 1263 a 1670 pixel, perche' la domanda stampata sulla carta e' piu'
+lunga del ripiego che c'era prima. La suite passa a **691 prove** in 103 suite,
+86.395 asserzioni.
+
+---
+
+## D-409 — Un anno intero, e non dice mai un id
+
+**implemented in 0.1.380.** Avanza [ISSUES 63](ISSUES.md#63).
+
+### La prova che guarda l'anno, non il passo
+
+`test_a_turn_can_be_played` guarda **un turno**; `test_a_council_can_be_played`
+guarda **le dieci domande del Consiglio**, uno scatto per volta. Fra un passo
+provato e l'altro ci stanno tutte le volte in cui il gioco parla senza che
+nessuno controlli come.
+
+`test_a_year_speaks_italian` gioca **una Chronicle intera** con una persona al
+tavolo — un orecchio che non decide niente, risponde sempre la prima cosa legale
+e **scrive tutto quello che gli e' stato messo davanti**: ogni domanda e ogni
+risposta possibile. Poi chiede una cosa sola: **c'e' un id, li' dentro?**
+
+**467 righe in un anno. Nessun id.**
+
+Non e' una prova sullo schermo, ed e' apposta: e' una prova su **cosa il gioco
+sa dire**. Lo schermo puo' disegnarlo bene o male, ma se quello che arriva e'
+`TEN_FAMINE` non c'e' disegno che lo salvi.
+
+### E morde: provato ripiantando il difetto di ieri
+
+Un verde al primo colpo, in questo progetto, e' un motivo per sospettare. Ho
+rimesso il difetto che [D-408](#d-408) aveva appena riparato —
+`AssetText.note(asset)` senza il catalogo — e la prova e' andata rossa sulla riga
+giusta: *«Guardia di Confine — force, vale 1 · costa: TEN_ROADS sale»*. Poi la
+riparazione e' tornata al suo posto.
+
+**Sette volte in questo progetto uno zero era chi guardava.** Questa volta l'ho
+chiesto prima di crederci.
+
+### Perche' ISSUES 63 non si chiude
+
+Il suo criterio dice: *«una persona puo' giocare un anno intero senza che nessuno
+le spieghi cosa fanno i bottoni, perche' non ci sono bottoni da spiegare.»*
+
+Le quattro mosse sono chiuse da 0.1.209, la quinta da 0.1.210, e adesso **la
+meta' misurabile del criterio ha la sua prova**: l'anno arriva in fondo, ogni
+domanda ha delle risposte visibili, e niente parla per id.
+
+**L'altra meta' non la posso verificare io.** *«Una persona puo' giocare»* si
+verifica aprendo l'app e giocando, ed e' la stessa forma di
+[ISSUES 67](ISSUES.md#67) (*«una saga arriva al terzo anno su un tablet»*) e di
+[ISSUES 65](ISSUES.md#65). Chiuderla su una prova sarebbe scambiare **quello che
+so misurare** per **quello che la voce chiede**, e questa voce e' nata proprio da
+uno scarto fra le due cose.
+
+---
+
 ## D-408 — Il Consiglio si puo' giocare: dieci domande, dieci prove, due schermi vecchi
 
 **implemented in 0.1.378.** Chiude [ISSUES 73](ISSUES.md#73) e avanza

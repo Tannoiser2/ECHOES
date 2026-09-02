@@ -151,7 +151,13 @@ func setup() -> void:
 			% [
 				_name(str(entity_id)),
 				session.service.hand_size(str(entity_id)),
-				", ".join(PackedStringArray(session.service.regions_with_presence(str(entity_id)))),
+				# **Col nome del luogo, non col suo id** (ISSUES 63): il verbale sta
+				# sullo schermo accanto alle domande, e una riga che dice
+				# «presenza: REG_MINIERE_ANTICHE» e' un id sotto gli occhi di chi
+				# gioca come lo sarebbe su un bottone.
+				", ".join(PackedStringArray(_place_names(
+					session.service.regions_with_presence(str(entity_id))
+				))),
 			]
 		)
 	for tension_id in world["tensions"]:
@@ -1392,3 +1398,13 @@ func _set_phase(act: int, round_number: int, phase: String) -> void:
 func _name(entity_id: String) -> String:
 	var entity: Variant = data.entities.get(entity_id)
 	return entity_id if entity == null else str(session.service.name_of(entity_id))
+
+
+## I nomi dei luoghi come si leggono al tavolo (ISSUES 63): una Regione che il
+## verbale chiama col suo id e' un id sotto gli occhi di chi gioca.
+func _place_names(region_ids: Array) -> Array:
+	var out: Array = []
+	for region_id in region_ids:
+		var region: Variant = data.regions.get(str(region_id))
+		out.append(str(region_id) if region == null else str((region as Dictionary)["name"]))
+	return out

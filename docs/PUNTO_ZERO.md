@@ -1,9 +1,9 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.353** · rimisurato per intero in 0.1.349; le sonde rilanciate in
-0.1.353 dopo le tre decisioni del committente
-([D-385](DECISIONS.md#d-385), [D-386](DECISIONS.md#d-386),
-[D-387](DECISIONS.md#d-387)).
+**Versione 0.1.382** · rimisurato per intero in 0.1.349, le sonde rilanciate in
+0.1.353. **Le sezioni 1, 2, 5 e 6 sono state rimisurate** in 0.1.379, 0.1.380 e
+0.1.382; le sezioni 3, 4, 7 e 8 portano ancora i numeri del 0.1.353, ed e' detto
+dove.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
@@ -24,15 +24,29 @@ scatola.
 
 ## 1. Quello che tiene
 
-| | |
-|---|---|
-| suite | **679 prove / 101 suite / 86.480 asserzioni** verdi |
-| il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme |
-| cancelli | **tutti e ventisei verdi** (vedi `CLAUDE.md`) |
-| Consigli per anno | misto **3-4** (media 3,15) · uniforme **3-5** (media 3,23) |
-| Verità scritte | misto **125**, di cui 101 diverse · uniforme 130, di cui 95 |
+*Misurato in 0.1.379.*
 
-I cancelli erano diciannove: i sette in più sorvegliano quello che nessuno
+| | | com'era in 0.1.353 |
+|---|---|---|
+| suite | **690 prove / 102 suite / 86.390 asserzioni** verdi | 679 / 101 / 86.480 |
+| il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme | uguale |
+| cancelli | **tutti e trentuno verdi** (vedi `CLAUDE.md`) | ventisei |
+| Consigli per anno | misto **3-5** (media 3,58) · uniforme **3-6** (media 3,49) | 3,15 · 3,23 |
+| Verità scritte | misto **142**, di cui 113 diverse · uniforme **150**, di cui 108 | 125/101 · 130/95 |
+
+**Il Consiglio si apre di più e il mondo ricorda di più**: mezzo Consiglio in
+più all'anno, e le Verità scritte salgono di un sesto. Viene da
+[D-402](DECISIONS.md#d-402), che ha insegnato al ripiego a prendere la parola
+invece di prenotarla soltanto.
+
+**E le asserzioni scendono mentre le prove salgono** — 86.480 → 86.390 con undici
+prove in più. Non l'ho attribuito, e non lo invento: so che
+[D-405](DECISIONS.md#d-405) ha tolto dodici sacchetti morti dai dati, e su dati
+che non ci sono più i validatori asseriscono di meno. Se sia tutta lì la
+differenza, non l'ho misurato.
+
+I cancelli erano diciannove quando questa riga è stata scritta, e i sette in più
+sorvegliavano quello che nessuno
 guardava — la pagina dell'app, il tavolo posto per posto, le vite delle case, lo
 scheletro delle carte, le caselle del Consiglio, i segni del mondo, e
 [la tabella dei cancelli stessa](DECISIONS.md#d-367), che adesso non può
@@ -42,63 +56,79 @@ scollarsi dalla CI senza far rosso.
 
 ## 2. I due numeri di PZ-01
 
-### Il difetto più grosso del progetto resta sotto la soglia
+*Rimisurati in 0.1.380.*
+
+### Il difetto più grosso del progetto resta sotto la soglia — di quattro decimi
 
 Il criterio 2 della milestone — *«meno della metà dei turni sono passa»* — è
-soddisfatto. `cli/run_pass_probe.gd`:
+soddisfatto, e **meno di prima**. `cli/run_pass_probe.gd`, 100 anni, tavolo
+misto:
 
-| | tavolo misto | tavolo uniforme |
+| | oggi | in 0.1.353 |
 |---|---|---|
-| turni «passa» | **47,6%** (3.428 su 7.200) | **47,9%** (3.451) |
-| per Atto | 48,0% → 46,7% → 48,1% | |
-| passa con **zero mosse legali** | **0 su 3.428** (media: 22,1 mosse) | |
-| passa con la mano vuota | 16 su 3.428 (media: 4,4 carte) | |
+| turni «passa» | **49,6%** (3.571 su 7.200) | 47,6% |
+| per Atto | 50,2% → 48,2% → 50,4% | 48,0 → 46,7 → 48,1 |
+| passa con **zero mosse legali** | **0 su 3.571** (media 22,6 mosse) | 0 su 3.428 |
+| passa con la mano vuota | **9** su 3.571 (media 4,5 carte) | 16 |
 
-**[ISSUES 68](ISSUES.md#68) si è chiusa qui, in 0.1.358**
-([D-391](DECISIONS.md#d-391)), sulla condizione che si era scritta da sola. E la
-strada che questo documento portava scritta — *82,8% → 42,1% → 46,4%* — era un
-confronto fra anni diversi: il 42,1% è di `CHR_01`, cancellato in D-317/D-318.
-Sull'anno che esiste il difetto non si è mai mosso: **47,6% in 0.1.260, 47,3% in
-0.1.290, 46,7% prima di D-385, 47,6% oggi**. Il 90,2% dell'Atto 3 è sparito in
-0.1.247 e non è tornato.
+**I due punti in più sono il conto di [D-402](DECISIONS.md#d-402), ed erano
+previsti.** Quel verbale li aveva già scritti: una prenotazione che non si
+spenderà mai non è un turno in cui succede qualcosa, è un'Azione e una carta
+bruciate contate come attività. Contando le prenotazioni morte insieme ai
+«passa», i turni in cui non succede niente **scendono** da 51,4% a 49,7%. Il
+numero che sale è quello onesto.
+
+**Resta il fatto che il margine è di quattro decimi**, e va detto: la prossima
+cosa che sposta i turni può portare questo criterio sopra la metà.
 
 Le cause di quello che resta, misurate:
 
-| | quota dei «passa» | dei 7.200 turni | cura |
-|---|---|---|---|
-| nessuna mossa gli serviva | **84,0%** | **40,0%** | la **ragione**: è [ISSUES 123](ISSUES.md#123), ed è una decisione |
-| voleva un verbo, in mano niente | 10,3% | 4,9% | il mazzo: come si pesca |
-| aveva il verbo e non poteva usarlo lì | 5,3% | 2,5% | il bersaglio: dove si può |
+| | quota dei «passa» | dei 7.200 turni |
+|---|---|---|
+| nessuna mossa gli serviva | **84,5%** | **41,9%** |
+| voleva un verbo, in mano niente | 8,7% | 4,4% |
+| aveva il verbo e non poteva usarlo lì | 6,5% | 3,2% |
 
-I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 284**, TRAMARE
-160, RIVENDICARE 64, FORGIARE 26. Di quelle 534 intenzioni, **353 sono pesca
-sbagliata** e 181 bersaglio sbagliato.
+La prima riga è la **ragione**: è [ISSUES 123](ISSUES.md#123), ed è una
+decisione, non una taratura.
+
+I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 337**, TRAMARE
+172, FORGIARE 24, RIVENDICARE 12. Di quelle 545 intenzioni, **314 sono pesca
+sbagliata** e 231 bersaglio sbagliato.
+
+**E qui c'è la seconda cosa che D-402 ha fatto**: il RIVENDICARE che il cervello
+voleva e non riusciva a dire era **64**, adesso è **12**. Da quando il ripiego sa
+prendere la parola invece di prenotarla soltanto, quel verbo esce quando serve.
+Il verbo in sofferenza adesso è **INFLUENZARE**, ed è lo stesso che
+[ISSUES 59](ISSUES.md#59) trova essere il meno giocato e insieme la moneta più
+votata.
 
 ### Giocare rende, e di molto
 
 `cli/run_asking_probe.gd` gioca ogni anno due volte con lo stesso seme: una col
 tavolo vero, una col **tavolo di pietra** che non spende mai un'Occasione.
 
-| | |
-|---|---|
-| obiettivi avverati giocando | **423 su 1.200** (35,2%) |
-| avverati dal tavolo di pietra | 115 |
-| **quanto rende giocare** | **+267,8%** |
+| | oggi | in 0.1.353 |
+|---|---|---|
+| obiettivi avverati giocando | **425 su 1.200** (35,4%) | 423 (35,2%) |
+| avverati dal tavolo di pietra | **116** | 115 |
+| **quanto rende giocare** | **+266,4%** | +267,8% |
+| di quelli avverati, **già veri all'apertura** | **48** (11,3%) | non misurato allora |
 
 Era **−1,1%** prima di D-255 e **+160,7%** prima di
 [D-386](DECISIONS.md#d-386). La regola di casa della ROADMAP §1.4 — *nessun
-traguardo vero all'apertura, nessuno che si avveri stando fermi* — regge, con
-una coda che si è accorciata:
+traguardo vero all'apertura, nessuno che si avveri stando fermi* — regge, con la
+stessa coda di prima:
 
-- **tre obiettivi su diciassette** rendono uguale o meglio stando fermi —
-  erano sei: `MOST_STONE` (−7%), `A_WORK` (−6%), `A_STONE` (−3%);
-- **un Destino su ventitré** si avvera da fermi — erano due.
+- **tre obiettivi su diciassette** rendono uguale o meglio stando fermi:
+  `MOST_STONE` (−5%), `A_STONE` (−4%), `A_WORK` (±0%);
+- gli altri quattordici rendono da **+3%** a **+100%**.
 
-**I tre che restano sono tutti e tre di Pietra, e la causa è una sola**: in cento
-partite **nessuna Pietra è salita per mano di un'Azione** della plancia, e quelle
-che alza il Consiglio le alza più spesso per un tavolo che tace (199) che per uno
-che gioca (136). È [ISSUES 123](ISSUES.md#123), e finché regge nessun obiettivo
-di Pietra può premiare il giocare, per quanto bene sia scritto.
+**I tre che restano sono tutti e tre di Pietra** — *Più Pietra di Tutti*,
+*Qualcosa che Resta in Piedi*, *L'Opera che Porta il Nome* — **e la causa è una
+sola**: nessuna Pietra sale per mano di un'Azione della plancia. È
+[ISSUES 123](ISSUES.md#123), e finché regge nessun obiettivo di Pietra può
+premiare il giocare, per quanto bene sia scritto.
 
 ---
 
@@ -201,42 +231,43 @@ E le misure che prima non c'erano:
 
 ---
 
-## 5. Le voci aperte che posso chiudere io
+## 5. Le voci aperte che posso chiudere io — **quattro**, rimisurato in 0.1.382
 
-51 voci aperte su 131, contate da `tools/issues_survey.py`. In ordine di quanto cambiano la partita.
+**29** voci aperte su 131, contate da `tools/issues_survey.py`. L'elenco che
+stava qui era del 0.1.353 e **tre delle sette voci che nominava sono chiuse da un
+pezzo** — la [96](ISSUES.md#96) in 0.1.363, la [88](ISSUES.md#88) in 0.1.372, la
+[53](ISSUES.md#53) in 0.1.355. Delle quattro rimaste, due sono del committente
+([123](ISSUES.md#123) e [100](ISSUES.md#100)) e una e' fuori dalla lista
+([91](ISSUES.md#91)): **di sette righe ne era rimasta vera una**, la
+[56](ISSUES.md#56). Ed e' per questo che adesso non c'e' piu' un elenco qui: **la lista viva e'
+[LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md)**, che si rigenera col suo cancello.
 
-1. **ISSUES 91 — metà dei punti è già vera prima che qualcuno giochi.**
-   `state_tag_absent` da solo sono centinaia di clausole mai contese. D-327 ha
-   portato la contesa sulla mappa dal 2,8% al 15,5%; la lite sulle **memorie**
-   resta.
-2. **ISSUES 123 — la ragione** (ISSUES 68 è chiusa, e questo è il suo residuo).
-   Il 47,6% è sotto la soglia, ma l'**84,0%** di quello che resta è *«nessuna
-   mossa gli serviva»*: **quaranta turni su cento**. Nessuna delle sei Azioni
-   della plancia alza una Pietra, e finché è così nessun obiettivo di Pietra può
-   premiare il giocare. **È una decisione del committente**, non una taratura.
-3. **ISSUES 96 — i segni scritti spesso che nessuna clausola guarda.** Oggi ne
-   restano tre sopra le dieci scritture per secolo: `took_by_hand`,
-   `price_in_lives`, `watched`.
-4. **ISSUES 88 — il tavolo vede poco più di un terzo di quello che è scritto.**
-   Scrivere un Consiglio per carta ha triplicato il contenuto; la finestra è
-   quella.
-5. **ISSUES 100 — le caselle «si accende quando» sono un pavimento derivato.**
-   Quarantasei facce ricavate aspettano una mano d'autore.
-6. **ISSUES 56 — tre Conseguenze non escono mai** (misurate quando erano 52;
-   oggi sono 65).
-7. **ISSUES 53 — RIVENDICARE può forzare un Consiglio che poi non si apre.**
+Quello che va detto qui e' il numero, e non e' quello che sembrava:
+
+| chi la puo' muovere | quante |
+|---|---|
+| il committente, con una parola | **15** |
+| una persona che gioca — [63](ISSUES.md#63), [67](ISSUES.md#67) | 2 |
+| **io, senza aspettare niente** — [56](ISSUES.md#56), [59](ISSUES.md#59), [60](ISSUES.md#60), [106](ISSUES.md#106) | **4** |
+| io, ma dietro una rossa — [111](ISSUES.md#111) e [4](ISSUES.md#4) | 2 |
+| nessuno, finche' non si gioca | 6 |
+
+**Quattro su ventinove.** Il giro non e' fermo sul lavoro: e' fermo su quindici
+parole ([D-411](DECISIONS.md#d-411)).
 
 ---
 
 ## 6. Le decisioni che sono tue e non mie
 
-**Stanno tutte e quattordici in un foglio solo**, con una riga a testa, il numero
+**Stanno tutte e quindici in un foglio solo**, con una riga a testa, il numero
 che le motiva e la mia raccomandazione: [LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md).
-Lì c'è anche la risposta alla domanda *«non si arriva mai al punto di chiudere?»* —
-che è no, non con questo metodo, e perché.
 
-Quattro di queste sono state decise in 0.1.353, e sono scritte. Quello che resta
-è sotto.
+Erano dieci fino a 0.1.381, e non perche' ne siano nate cinque: **cinque voci
+dicevano nel loro «fatto quando» che aspettavano il committente e non avevano il
+cartellino** `da-decidere`, che e' quello che il conto legge. Adesso ce l'hanno
+([D-411](DECISIONS.md#d-411)).
+
+Quattro sono state decise in 0.1.353, e sono scritte.
 
 **Decise e scritte:**
 
@@ -247,31 +278,27 @@ Quattro di queste sono state decise in 0.1.353, e sono scritte. Quello che resta
 | [ISSUES 122](ISSUES.md#122) — la moneta del Consiglio | la regola dettata → [D-387](DECISIONS.md#d-387) |
 | [ISSUES 119](ISSUES.md#119) — i Consigli che non cadono | riscritta con gli esempi, la scelta resta |
 
-**Aperte, e tutte e cinque nate da quelle decisioni o rimaste da lì:**
+**Le quattro che pesano di piu', in ordine:**
 
-1. **[ISSUES 125](ISSUES.md#125) — la moneta è troppo poca.** L'economia dei
-   gettoni funziona, ma i benefici comprati per Consiglio sono **scesi** da 1,71
-   a 1,40: con 2,8 carte RIVENDICARE per partita i gettoni bastano per un
-   acquisto in più *a partita*, non a Consiglio. Quattro strade, tutte
-   misurabili in mezz'ora.
-2. **[ISSUES 123](ISSUES.md#123) — nessuna Azione alza una Pietra**, e il
-   Consiglio paga meglio chi tace (199 Pietre contro 136). È la causa unica dei
-   tre obiettivi che ancora rendono meglio da fermi, ed è
-   [ISSUES 119](ISSUES.md#119) vista dall'altra parte.
-3. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi più.** Un
+1. **[ISSUES 123](ISSUES.md#123) — nessuna Azione alza una Pietra**, e il
+   Consiglio paga meglio chi tace (199 Pietre contro 136). **Quaranta turni su
+   cento** un giocatore ha 22,1 mosse legali, 4,4 carte in mano e nessun motivo:
+   e' il numero piu' grosso che una parola del committente puo' muovere oggi.
+2. **[ISSUES 122](ISSUES.md#122) + [125](ISSUES.md#125) — quanto compra una
+   proposta.** Con un solo beneficio gratis le caselle vive per Consiglio sono
+   **una**, e i benefici comprati sono **scesi** da 1,71 a 1,40.
+3. **[ISSUES 120](ISSUES.md#120) — vincere nominando invece che contando.** E'
+   anche la cura della [91](ISSUES.md#91) (48,4% dei punti gia' veri
+   all'apertura) e la meta' che resta della [4](ISSUES.md#4).
+4. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi piu'.** Un
    Consiglio su undici cade sul tavolo misto; `spoke_and_lost` si posa 8 volte
-   in cento partite. Tre strade, adesso con un esempio ciascuna.
-4. **[ISSUES 124](ISSUES.md#124) — due case su otto non prendono mai
-   l'Eredità.** Nahr e Vaerax: i segni che vogliono lasciare sono muri, e un
-   muro non diventa leggenda. È [ISSUES 76](ISSUES.md#76) un'altra volta.
-5. **[ISSUES 120](ISSUES.md#120) — come il tavolo si ricorda di un gesto.** La
-   clausola c'è; il **segnalino** no. A fine anno «l'hai alzata quest'anno?» si
-   risponde ricordando, o guardando l'app.
-6. **[ISSUES 65](ISSUES.md#65) — la seconda e la terza rivista della pagina.**
-   *Lasciata stare per adesso, per tua parola.* La prima, la leggibilità, è
-   fatta ([D-384](DECISIONS.md#d-384)).
-7. **PZ-8, §5ter — il giro su un iPad vero.** La sonda della pagina misura
-   quello che la pagina *chiede*; quello che una persona *vede*, no.
+   in cento partite.
+
+Le altre dieci, con la raccomandazione a testa, stanno nella lista.
+
+**E una cosa che non e' una voce**: PZ-8, §5ter — **il giro su un iPad vero**.
+La sonda della pagina misura quello che la pagina *chiede*; quello che una
+persona *vede*, no.
 
 ---
 
