@@ -2807,9 +2807,48 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
-### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte
+### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte — **rimisurata in 0.1.377: quei tre difetti non ci sono piu', ce n'e' un altro**
 
 `regole` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_card_ledger.gd`)
+
+> **Rimisurata in 0.1.377, e il titolo non regge piu'.** Cento anni, tavolo
+> misto, semi da 7000, 5.161 carte pescate. **Tre dei quattro difetti che questa
+> voce nomina sono spariti**, e il mazzo di allora non esiste piu' (D-359 ha
+> tolto il mazzo del Narratore e messo l'Eco sulla carta Asset).
+>
+> | | allora (0.1.194) | **oggi** |
+> |---|---|---|
+> | FORGE calato | 8,4% | **52,4%** |
+> | SCHEME calato | 9,9% | **75,6%** |
+> | WEALTH calata | 8,7% (contro BONDS 26,7% — 3,1×) | **52,4%** (contro BONDS 61,1% — **1,17×**) |
+> | carte mai calate in cento anni | 4 | **1** |
+>
+> **E il difetto adesso ha un altro nome: INFLUENZARE.** La sonda ha imparato a
+> guardare anche il voto (senza quella colonna un verbo poco calato si legge
+> «morto», e puo' essere il contrario):
+>
+> | verbo | in mano | calata | al voto | % calate | **% che non fa niente** |
+> |---|---|---|---|---|---|
+> | MUOVERE | 927 | 715 | 98 | 77,1% | 12,3% |
+> | TRAMARE | 1.165 | 881 | 129 | 75,6% | 13,3% |
+> | FORGIARE | 1.067 | 559 | 218 | 52,4% | 27,2% |
+> | RIVENDICARE | 831 | 380 | 201 | 45,7% | 30,1% |
+> | **INFLUENZARE** | 1.171 | **217** | **396** | **18,5%** | **47,7%** |
+>
+> **INFLUENZARE e' il verbo meno giocato e la moneta piu' votata**: nessun altro
+> verbo va al Consiglio cosi' spesso. Non e' contenuto morto — e' contenuto che
+> si spende in un altro modo. Ma **quasi meta' delle sue carte non fa ne' l'una
+> ne' l'altra cosa**, ed e' il tasso piu' alto del tavolo.
+>
+> **L'unica carta mai calata e' «Deposizione Sigillata»** — forza 3, RIVENDICARE:
+> 46 volte in mano, **zero** calate, **23 impegnate al voto**. E' esattamente il
+> comportamento che questa voce chiamava sano — *«le carte forti si tengono per
+> il voto»* — quindi prima di chiamarla muta bisogna decidere se il criterio
+> «calata per agire almeno una volta» vale anche per una carta di forza 3.
+>
+> **La voce resta aperta** sul criterio come e' scritto: 18,5% non e' la meta' di
+> 77,1%, e una carta non si cala mai. Ma **non e' piu' la voce che c'e' scritta
+> sotto**: FORGE, SCHEME e WEALTH sono a posto, e chi la riprende parte da qui.
 
 Il committente ha chiesto se le carte «fanno qualcosa» e se azioni ed effetti
 sono ben bilanciati. Il libro mastro delle carte lo misura per la prima volta:
@@ -4651,10 +4690,37 @@ visto da tre parti**.
 
 ---
 
-### 78. Il profilo strategico lo legge la misura, non il gioco
+### 78. ✅ Il profilo strategico lo legge la misura, non il gioco — CHIUSA in 0.1.377: era vera da centoventicinque versioni
 
 `motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288)) ·
 **letta in 0.1.251** ([D-289](DECISIONS.md#d-289))
+
+> **CHIUSA in 0.1.377** ([D-407](DECISIONS.md#d-407)), e **non toccando
+> niente**. La voce diceva: *«si richiude da sola il giorno in cui il macchinario
+> produce le cose che le case dichiarano di volere. Alzare il peso non la chiude,
+> la peggiora.»* Quel giorno e' arrivato — [ISSUES 76](#76) si e' chiusa in
+> 0.1.270 e il Consiglio e' stato rimesso in piedi tre volte — e nessuno era
+> tornato a rileggerla: **centoventicinque versioni**.
+>
+> La stessa misura appaiata di [D-289](DECISIONS.md#d-289), su oggi. Cento anni,
+> stessi semi, solo `PROFILE_WEIGHT` da 3 a 0 e ritornato: il motore e'
+> deterministico, quindi ogni differenza e' **causata dal peso**.
+>
+> | cento anni, semi da 7000 | peso 0 | peso 3 | in 0.1.251 |
+> |---|---|---|---|
+> | segni posati da chi li **voleva** | 75 | **83** | 17 → 17 |
+> | segni posati da chi li **temeva** | 78 | 77 | 17 → 14 |
+> | benefici comprati al Consiglio | 411 | 420 | 246 → 245 |
+> | **di cui un segno che il proponente voleva** | **58** | **92** | 15 → 15 |
+>
+> Al Consiglio il profilo compra **il 59% di benefici voluti in piu'**; sulla
+> mappa otto segni voluti in piu'. La condizione era *«si vede scegliere in base
+> al profilo»*, e adesso si vede. L'altra meta' — la colonna che nomina i segni
+> del profilo — era fatta in 0.1.251.
+>
+> **Il peso non l'ho toccato**: D-289 aveva scritto che alzarlo avrebbe
+> peggiorato le cose, e aveva ragione allora. E' cambiato il mondo intorno al
+> peso, non il peso.
 
 I quattro profili dicono cosa una casa vuole lasciare nel mondo, e per adesso
 li leggono **il validatore** (che li conta fra i lettori dei segni) e **la

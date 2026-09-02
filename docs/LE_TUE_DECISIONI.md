@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **100** |
-| aperte | **31** |
+| chiuse | **101** |
+| aperte | **30** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **21** |
+| di cui sono mie da fare | **20** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -43,7 +43,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 0 | 1 |
+| 0.1.375–0.1.399 | 0 | 2 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -257,18 +257,32 @@ difetto è nello schermo, e nessuna prova lo tocca.
 **Fatto quando** una prova guida la schermata vera per tre anni di saga e ci
 arriva. Va con G1.
 
-### G6. Il cervello gioca il suo profilo — [78](ISSUES.md#78), [59](ISSUES.md#59)
+### G6. Il cervello gioca il suo profilo — ✔ [78](ISSUES.md#78) chiusa; resta [59](ISSUES.md#59)
 
-La [126](ISSUES.md#126) si è chiusa in 0.1.370: le prenotazioni inutili sono
-passate da **273 a 4**, e il ripiego ha imparato a prendere la parola invece di
-solo prenotarla — 74 Consigli strappati diventano 210, e le Verità scritte
-salgono da 132 a 142.
+La [126](ISSUES.md#126) si è chiusa in 0.1.370, e la **[78](ISSUES.md#78) in
+0.1.377 — senza toccare niente.** La voce diceva: *«si richiude da sola il giorno
+in cui il macchinario produce le cose che le case dichiarano di volere. Alzare il
+peso non la chiude, la peggiora.»* Quel giorno era arrivato **centoventicinque
+versioni fa**, e nessuno era tornato a leggerla.
 
-Restano i quattro profili strategici, che dicono cosa una casa vuole lasciare nel
-mondo e **li legge solo il validatore**.
+Misura appaiata, stessi semi, solo il peso del profilo acceso e spento:
 
-**Fatto quando** il cervello sceglie guardando il suo profilo, e si vede quante
-mosse vanno verso un segno voluto.
+| cento anni | peso 0 | peso 3 | nel 2251 |
+|---|---|---|---|
+| segni posati da chi li voleva | 75 | **83** | 17 → 17 |
+| benefici comprati al Consiglio che davano un segno voluto | 58 | **92** | 15 → 15 |
+
+Al Consiglio il profilo compra **il 59% di benefici voluti in più**. Adesso il
+cervello si vede scegliere in base a quello che la casa vuole lasciare.
+
+**Resta la [59](ISSUES.md#59)**, e anche lei è cambiata sotto: FORGIARE e
+TRAMARE non sono più i verbi morti (8,4% e 9,9% → 52,4% e 75,6%), WEALTH non è
+più la famiglia inerte (3,1× → 1,17×), e le carte mai calate sono passate da
+quattro a una. **Il difetto adesso si chiama INFLUENZARE**: il verbo meno giocato
+(18,5%) e la moneta più votata, con quasi metà delle sue carte che non fa niente.
+
+**Fatto quando** nessun verbo si gioca meno della metà del più giocato, e ogni
+carta viene calata per agire almeno una volta in cento anni.
 
 ### G7. Le due grammatiche non si ripetono — [87](ISSUES.md#87), [106](ISSUES.md#106)
 

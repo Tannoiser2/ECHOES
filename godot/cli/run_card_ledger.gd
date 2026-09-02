@@ -153,8 +153,8 @@ func _report(data: RefCounted, held: Dictionary, ledger: Ledger, years: int) -> 
 		fam[0] += hands; fam[1] += plays; fam[2] += votes
 		by_family[str(card["family"])] = fam
 		var kind: String = str((card.get("card_action", {}) as Dictionary).get("kind", "—"))
-		var act: Array = by_action.get(kind, [0, 0]) as Array
-		act[0] += hands; act[1] += plays
+		var act: Array = by_action.get(kind, [0, 0, 0]) as Array
+		act[0] += hands; act[1] += plays; act[2] += votes
 		by_action[kind] = act
 
 	rows.sort_custom(func(a, b): return int(a[6]) + int(a[7]) < int(b[6]) + int(b[7]))
@@ -184,14 +184,22 @@ func _report(data: RefCounted, held: Dictionary, ledger: Ledger, years: int) -> 
 		])
 
 	print("")
-	print("  PER AZIONE            in mano  calata   %% calate")
+	# **La colonna del voto sta anche qui** (ISSUES 59). Senza, un verbo poco
+	# calato si legge «morto», e puo' invece essere il contrario: una carta che
+	# al tavolo vale piu' come voce in Consiglio che come mossa. Sono due cose
+	# diverse, e chiedono due rimedi diversi — la stessa forma della riga 3 di
+	# ISSUES 88. L'ultima colonna e' quella che scioglie il dubbio: **quante
+	# carte di quel verbo non hanno fatto ne' l'una ne' l'altra cosa**.
+	print("  PER AZIONE            in mano  calata  al voto   %% calate  %% mute")
 	var kinds: Array = by_action.keys()
 	kinds.sort()
 	for kind in kinds:
 		var act: Array = by_action[str(kind)] as Array
-		print("    %-18s %6d  %6d    %5.1f%%" % [
-			str(kind), int(act[0]), int(act[1]),
+		var mute: int = maxi(0, int(act[0]) - int(act[1]) - int(act[2]))
+		print("    %-18s %6d  %6d  %7d    %5.1f%%   %5.1f%%" % [
+			str(kind), int(act[0]), int(act[1]), int(act[2]),
 			0.0 if int(act[0]) == 0 else 100.0 * float(act[1]) / float(act[0]),
+			0.0 if int(act[0]) == 0 else 100.0 * float(mute) / float(act[0]),
 		])
 
 	var total_hands: int = 0

@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-407 — Il cervello gioca il suo profilo, e non gliel'ho insegnato io
+
+**implemented in 0.1.377.** Chiude [ISSUES 78](ISSUES.md#78).
+
+### La voce aspettava una cosa che era arrivata da centoventicinque versioni
+
+[D-289](#d-289) aveva dato al cervello il peso del profilo — `PROFILE_WEIGHT =
+3` — e aveva scritto il numero onesto: **non comprava quasi niente**. Segni
+voluti posati **17 → 17**, benefici al Consiglio **15 su 246 → 15 su 245**.
+
+E aveva scritto anche **perche'**, e la ragione non era la bilancia:
+*«il macchinario non produce quasi nulla di quello che i profili nominano,
+quindi non c'e' niente da preferire»*. La voce si dichiarava appesa a
+[ISSUES 76](ISSUES.md#76), e diceva una cosa precisa: **«si richiude da sola il
+giorno in cui il macchinario produce le cose che le case dichiarano di volere.
+Alzare il peso non la chiude, la peggiora.»**
+
+ISSUES 76 **si e' chiusa in 0.1.270**. Poi il Consiglio e' stato rimesso in
+piedi tre volte. Nessuno e' tornato a rileggere questa voce: **centoventicinque
+versioni**.
+
+### La stessa misura appaiata di D-289, su oggi
+
+Cento anni, stessi semi, solo la costante cambiata da 3 a 0 e ritornata — il
+motore e' deterministico, quindi ogni differenza e' **causata dal peso**, non
+dal rumore.
+
+| cento anni, semi da 7000 | peso **0** | peso **3** |
+|---|---|---|
+| segni posati da chi li **voleva** | 75 | **83** |
+| segni posati da chi li **temeva** | 78 | 77 |
+| benefici comprati al Consiglio | 411 | 420 |
+| **di cui un segno che il proponente voleva** | **58** | **92** |
+
+Al Consiglio il profilo compra **+34 benefici su circa 415: il 59% in piu'**.
+Sulla mappa **+8 segni voluti**. Nel 2251 le stesse due righe facevano **zero**
+e **zero**.
+
+**La condizione della voce e' *«una partita giocata dal cervello si vede
+scegliere in base al profilo»*, e adesso si vede.** L'altra meta' — la colonna
+di destra che nomina i segni del profilo — era gia' fatta in 0.1.251.
+
+### Quello che non ho fatto
+
+**Non ho toccato il peso**, e questa e' la parte che conta: D-289 aveva scritto
+che alzarlo avrebbe peggiorato le cose, e aveva ragione allora. La voce si e'
+chiusa perche' e' cambiato **il mondo intorno al peso**, non il peso.
+
+E' la terza volta in due giorni che una voce era gia' vera e nessuno l'aveva
+riletta ([ISSUES 108](ISSUES.md#108) ne stava ferma ventiquattro, questa
+centoventicinque). Vale la pena dirlo come metodo: **prima di lavorare una voce,
+rimisurarla.**
+
+---
+
 ## D-406 — `#granaio`: la macchina smette di essere piu' stretta della parola
 
 **implemented in 0.1.375.** Chiude [ISSUES 70](ISSUES.md#70).

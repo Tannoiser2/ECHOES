@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.377 — Il cervello gioca il suo profilo, e non gliel'ho insegnato io
+
+Chiude [ISSUES 78](docs/ISSUES.md#78) ([D-407](docs/DECISIONS.md#d-407)) e
+rimisura [ISSUES 59](docs/ISSUES.md#59).
+
+### La 78 era vera da centoventicinque versioni
+
+[D-289](docs/DECISIONS.md#d-289) aveva dato al cervello il peso del profilo e
+aveva scritto il numero onesto: **non comprava quasi niente**. E aveva scritto
+anche perché — *«il macchinario non produce quasi nulla di quello che i profili
+nominano»* — dichiarandosi appesa a ISSUES 76 con una frase precisa: **«si
+richiude da sola il giorno in cui il macchinario produce le cose che le case
+dichiarano di volere. Alzare il peso non la chiude, la peggiora.»**
+
+ISSUES 76 si è chiusa **in 0.1.270**. Nessuno è tornato a rileggere questa voce.
+
+Stessa misura appaiata di allora, su oggi — cento anni, stessi semi, solo
+`PROFILE_WEIGHT` da 3 a 0 e ritornato; il motore è deterministico, quindi ogni
+differenza è **causata dal peso**:
+
+| cento anni, semi da 7000 | peso 0 | peso 3 | nel 2251 |
+|---|---|---|---|
+| segni posati da chi li **voleva** | 75 | **83** | 17 → 17 |
+| benefici comprati al Consiglio | 411 | 420 | 246 → 245 |
+| **di cui un segno che il proponente voleva** | **58** | **92** | 15 → 15 |
+
+**Il peso non l'ho toccato.** È cambiato il mondo intorno al peso.
+
+### E la 59 non è più la voce che c'è scritta
+
+| | allora (0.1.194) | oggi |
+|---|---|---|
+| FORGE calato | 8,4% | **52,4%** |
+| SCHEME calato | 9,9% | **75,6%** |
+| WEALTH calata | 8,7% (3,1× da BONDS) | **52,4%** (1,17×) |
+| carte mai calate | 4 | **1** |
+
+Tre difetti su quattro spariti. **Il quarto adesso si chiama INFLUENZARE**: il
+verbo meno giocato (18,5%) e insieme **la moneta più votata** — 396 impegni al
+voto, più di ogni altro verbo. Il libro mastro ha imparato a stampare anche la
+colonna del voto, perché senza quella un verbo poco calato si legge «morto» e può
+essere il contrario. Resta che **il 47,7% delle carte INFLUENZARE non fa niente**,
+il tasso più alto del tavolo. La voce resta aperta sul criterio come è scritto.
+
+Voci aperte **31 → 30**.
+
+---
+
 ## 0.1.376 — Le tre Pietre consumate: anche la seconda causa non regge
 
 Corregge quello che [ISSUES 111](docs/ISSUES.md#111) diceva **ieri e stamattina**.
