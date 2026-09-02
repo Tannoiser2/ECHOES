@@ -183,7 +183,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Mandarlo a giudicare.** Sposta una tua presenza li' e togli #conteso dal luogo.
-B. **Mandarlo a controllare.** Togli #malcontento dal luogo e pesca 1 Sapere.
+B. **Mandarlo a tenere le carte.** Alza un Archivio in un luogo dove hai presenza: dove il magistrato siede, le carte si tengono.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona. Se la Carta e' stata scritta: Potere +2.
 
@@ -565,7 +565,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Cercare il legame.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
-B. **Rivendicare il sangue.** Metti #erede_nominato sul mondo.
+B. **Fermare la famiglia.** Alza un Villaggio in un luogo dove hai presenza: il sangue mette radici dove si ferma.
 
 **RISONANZA (avviene sempre)** — Scalda Antico +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.
 
@@ -660,7 +660,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Entrare come ospite.** Sposta una tua presenza li', anche se il luogo e' di un altro.
-B. **Offrire ospitalita'.** Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.
+B. **Dare loro una casa.** Alza un Villaggio in un luogo dove hai presenza: chi ospita per un inverno ospita per sempre.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Fede +2.
 
@@ -1137,7 +1137,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Sbarrare la strada.** Metti #tagliato_fuori sul luogo. Finche' c'e', muovere una presenza dentro o fuori costa 1 carta in piu'.
-B. **Farsi pagare il passaggio.** Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.
+B. **Mettere la sbarra.** Alza una Dogana in un luogo dove hai presenza: da qui in poi chi passa paga te.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano. Se il pedaggio si divide: Vie +2.
 
@@ -1233,7 +1233,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Aprire la busta.** Rivendica il luogo e metti #tradimento_detto sul mondo.
-B. **Tenerla sigillata.** Rivendica il luogo.
+B. **Metterla agli atti.** Alza un Archivio in un luogo dove hai presenza: la busta resta chiusa, ma adesso si sa dov'e'.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista. Se una domanda e' rimasta aperta: Potere +3.
 
@@ -1280,7 +1280,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Mostrare la prova.** Scopri una questione velata e metti #sapere_condiviso sul mondo.
-B. **Tenere la prova.** Scopri la questione e pesca 1 Sapere.
+B. **Depositare la prova.** Alza un Archivio in un luogo dove hai presenza, e la prova resta li' dove tutti sanno di trovarla.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.
 
@@ -1375,7 +1375,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Cercare indietro.** Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
-B. **Far leggere a tutti.** Metti #registro_pubblico sul mondo.
+B. **Aprire l'archivio.** Alza un Archivio in un luogo dove hai presenza.
 
 **RISONANZA (avviene sempre)** — Scalda Antico +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.
 
@@ -1567,7 +1567,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Andarsene tutti.** Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito.
-B. **Mandare avanti i primi.** Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.
+B. **Mandare avanti i primi.** Alza un Villaggio in un luogo dove hai presenza: i primi arrivati smettono di andarsene.
 
 **RISONANZA (avviene sempre)** — Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto. Se i Nahr si sono fermati: Terra +3, e ci resta la Cicatrice «lo sgombero».
 
@@ -1995,7 +1995,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Aprire il tesoro.** Sposta due tue presenze in quel luogo.
-B. **Chiudere il tesoro.** Pesca 2 Ricchezza e metti #malcontento sul luogo.
+B. **Metterci una guardia.** Alza una Torre di veglia in un luogo dove hai presenza: il tesoro si tiene dove si vede.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.
 
@@ -2042,7 +2042,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Farla arrivare.** Sposta una tua presenza li' e togli #tagliato_fuori dal luogo.
-B. **Dirottarla.** Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.
+B. **Fermare la carovana.** Alza un Villaggio in un luogo dove hai presenza: chi si ferma una volta si ferma.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Una carovana che passa dice a tutti quanto vale passare di li'. Se il debito e' stato chiamato: Vie +2.
 
@@ -2185,7 +2185,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Aprire i granai.** Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda.
-B. **Chiudere i granai.** Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.
+B. **Costruire il granaio.** Alza un Granaio in un luogo dove hai presenza.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Il grano che si tocca e' grano che qualcuno ha contato. Se il grano e' stato requisito: Sopravvivenza +2.
 
@@ -2233,7 +2233,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Vendere il sale.** Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
-B. **Salare le riserve.** Togli #magro dal luogo.
+B. **Salare per l'inverno.** Alza un Granaio in un luogo dove hai presenza: quello che si sala, si tiene.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.
 

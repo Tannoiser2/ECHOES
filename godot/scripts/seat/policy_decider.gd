@@ -1102,7 +1102,16 @@ func hand_plays(entity_id: String, session: RefCounted) -> Array:
 		)
 		for index in range(printed.size()):
 			var kind: String = str((printed[index] as Dictionary).get("template", ""))
-			if kind == "" or kind == "ACQUIRE":
+			if kind == "":
+				continue
+			# **ACQUISIRE si salta solo quando pesca** (D-412). Spendere una
+			# carta per pescarne una e' un pareggio, e per questo il ramo era
+			# muto; una faccia che **alza una Pietra** e' un'altra cosa, ed e'
+			# l'unica Azione della plancia che tocchi la mappa senza chiedere
+			# niente al tavolo.
+			if kind == "ACQUIRE" and str(
+				(printed[index] as Dictionary).get("builds", "")
+			) == "":
 				continue
 			for wanted in _targets_for(entity_id, kind, fixed, goals, session):
 				var params: Dictionary = (wanted as Dictionary).duplicate()
@@ -1133,6 +1142,15 @@ func _targets_for(
 ) -> Array:
 	var out: Array = []
 	match kind:
+		"ACQUIRE":
+			# **Una Pietra si alza dove si sta** (D-412). Non dove si potrebbe
+			# arrivare: dove c'e' gia' una pedina. Le altre due condizioni — la
+			# terra giusta e un posto libero — le chiede `can_execute`, che
+			# legge la stessa `StoneRules` dell'Effetto. Ci si arriva solo da
+			# una faccia che costruisce: quella che pesca l'ha gia' saltata chi
+			# chiama.
+			for region_id in session.service.regions_with_presence(entity_id):
+				out.append({"region_id": str(region_id)})
 		"MOVE":
 			for region_id in session.world["regions"]:
 				out.append({"region_id": str(region_id)})

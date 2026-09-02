@@ -165,7 +165,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 |---|---|---|---|---|
 | vuole | `succession_by_law` | **si'** | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | vuole | `crowned` | no | no | casato |
-| vuole | `structure:granary` | **si'** | no | Pietra |
+| vuole | `structure:granary` | **si'** | **si'** | Pietra |
 | vuole | `order_restored` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `crown_divided` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo, faccia della Tensione |
@@ -182,7 +182,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `crystal_exploited` | **si'** | **si'** | Conseguenza, faccia della Tensione |
 | vuole | `ash` | no | no | casato |
 | vuole | `discovery:crystal` | no | **si'** | Conseguenza |
-| vuole | `structure:tollgate` | **si'** | no | Pietra |
+| vuole | `structure:tollgate` | **si'** | **si'** | Pietra |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
@@ -213,7 +213,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `discovery:crystal` | no | **si'** | Conseguenza |
 | vuole | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
 | vuole | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
-| vuole | `structure:archive` | **si'** | no | Pietra |
+| vuole | `structure:archive` | **si'** | **si'** | Pietra |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `study_supervised` | no | no | Conseguenza |
 | teme | `condition:guarded` | **si'** | no | Conseguenza, faccia della Tensione |
@@ -243,7 +243,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 |---|---|---|---|---|
 | vuole | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
 | vuole | `account_settled` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
-| vuole | `structure:tollgate` | **si'** | no | Pietra |
+| vuole | `structure:tollgate` | **si'** | **si'** | Pietra |
 | vuole | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
 | teme | `debt_forgiven` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo, faccia della Tensione |

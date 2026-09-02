@@ -10,6 +10,109 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-412 — Un'Azione della plancia alza una Pietra, e la causa non era una taratura
+
+**implemented in 0.1.383.** Parola del committente: **«R1 (a)»** su
+[ISSUES 123](ISSUES.md#123). Avanza [ISSUES 111](ISSUES.md#111).
+
+### Quello che la decisione non poteva sapere
+
+La raccomandazione era: *«ACQUISIRE diventa "pesca una carta, oppure alza una
+Pietra dove hai presenza"; e' l'unica delle sei che nessuna carta modifica,
+quindi ha spazio»*. Aveva ragione sullo spazio, e la ragione era piu' larga:
+**ACQUISIRE non era stampata su nessuna delle 96 facce**. Non era un'Azione
+poco usata — era **un'Azione che nessuno poteva giocare**, e il commento del
+cervello lo diceva da chissa' quando: *«nessuna carta porta ACQUISIRE»*.
+
+Quindi cambiare la regola non bastava: **le facce vanno scritte**. Il
+committente ha scelto **dodici**, sulle carte che oggi stampano **due volte lo
+stesso verbo** — cosi' la sostituzione ripara anche la regola di scrittura
+*«due Azioni, e due scelte diverse davvero»*.
+
+### La regola, e sta in un interruttore
+
+`acquire_rules.can_build_stone` sulla Chronicle. Acceso, ACQUISIRE ha due
+strade e chi gioca ne sceglie una: pesca, **oppure alza una Pietra di grado 1
+in una Regione dove ha presenza**. Le tre condizioni della terra — la Pietra ci
+sta, c'e' un posto libero, non c'e' gia' — sono quelle di
+[D-365](#d-365), e adesso stanno in `StoneRules` perche' **se le fanno in due**.
+
+**E le fanno in due modi diversi, apposta.** Dentro l'Effetto la risposta si
+tace: una frase d'autore che nomina la terra sbagliata non e' un errore, e' una
+frase che non aveva niente da dire in quel posto. Dentro l'Azione si **rifiuta a
+voce alta**, perche' un'azione legale che non fa niente e non avvisa e' il
+difetto peggiore che si possa scrivere — ed e' esattamente quello che questa
+voce denunciava.
+
+### Le dodici facce, e ognuna dice quale Pietra
+
+| carta | Pietra | la faccia che se n'e' andata |
+|---|---|---|
+| Posto di Blocco | Dogana | Farsi pagare il passaggio |
+| Magistrato | Archivio | Mandarlo a controllare — **il motore non la sapeva eseguire** |
+| Esodo | Villaggio | Mandare avanti i primi — **la promessa era gia' stampata** |
+| Prova | Archivio | Tenere la prova |
+| Archivio | Archivio | Far leggere a tutti |
+| Deposizione Sigillata | Archivio | Tenerla sigillata |
+| Riserva di Grano | Granaio | Chiudere i granai |
+| Sale | Granaio | Salare le riserve |
+| Carovana | Villaggio | Dirottarla |
+| Il Tesoro | Torre di veglia | Chiudere il tesoro |
+| Diritto di Ospitalita' | Villaggio | Offrire ospitalita' |
+| Legame di Sangue | Villaggio | Rivendicare il sangue |
+
+Due meritano una riga. **Esodo** stampava gia' *«sposta una presenza in un luogo
+qualsiasi e metti li' il tuo insediamento»*, e il motore ne eseguiva solo la
+prima meta': era una promessa rotta, e adesso e' mantenuta. **Magistrato** aveva
+una faccia **senza verbo**, di quelle che il motore scarta: erano undici, adesso
+sono dieci.
+
+**Il Cristallo Rosso era nella lista del committente e ne e' uscito**: tutt'e due
+le sue facce sono **l'unica penna** di un segno del dizionario, e toglierne una
+avrebbe fatto sparire `crystal_measured` e `discovery:crystal`. Al suo posto la
+Deposizione Sigillata. Anche il Pedaggio e' uscito, per la stessa ragione
+(`toll_shared`) e per una seconda: la sua unica faccia sostituibile e' un
+RIVENDICARE, e [ISSUES 125](ISSUES.md#125) ne vuole di piu', non di meno.
+
+### La misura, appaiata: stessi cento semi, l'interruttore spento e acceso
+
+100 partite CHR_00, seme 7000, tavolo misto.
+
+| | spento | acceso |
+|---|---|---|
+| Pietre alzate | 992 | **1.186** |
+| — **da un'Azione di chi gioca** | **0** | **182** |
+| — dal Consiglio o da un'Eco | 136 | 148 |
+| — dall'apertura | 856 | 856 |
+| in piedi a fine anno | 833 | **1.009** |
+| salite di grado | 133 | **168** |
+| turni «passa» | 49,6% (3.571 su 7.200) | **46,0%** (3.313) |
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Tre punti e sei decimi di turni «passa» in meno**, ed e' il primo numero che
+scende su quella riga da quando la si misura. Il criterio di
+[PZ-01](PUNTO_ZERO.md) chiedeva di stare sotto la meta': il margine passa da
+quattro decimi a **quattro punti**.
+
+### E la sonda ha confessato uno zero, come sempre
+
+Il primo conto diceva **zero Pietre da un'Azione** mentre le Pietre in piu'
+erano gia' li'. Cercava la firma `ACT_ACQUIRE`; una Pietra alzata giocando una
+carta arriva firmata **`ACT_PLAY_CARD`**, perche' al tavolo si e' calata una
+carta. **Ottava volta in questo progetto che uno zero e' chi guarda.**
+
+### Costo dichiarato
+
+- **Dodici testi d'autore sono usciti dalla scatola.** Nessuno era l'unica penna
+  di un segno — verificato prima di toccare, e le due carte che lo erano sono
+  state escluse.
+- `test_the_sign_finds_its_place` misurava «Riserva di Grano», la cui seconda
+  faccia adesso costruisce: e' passata a «Marcia», che ha la stessa forma — una
+  faccia che parla a una domanda e lascia il suo segno su un luogo.
+- La suite passa da 691 a **697 prove**.
+
+---
+
 ## D-411 — La lista si riordina per chi la puo' muovere, e il conto era sbagliato di cinque
 
 **implemented in 0.1.382.** Riscrive [la lista](LE_TUE_DECISIONI.md). Nessuna

@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**102 segni scritti sul mondo: 91 li legge qualcosa, 11 no.**
+**106 segni scritti sul mondo: 95 li legge qualcosa, 11 no.**
 
 **E 0 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -34,7 +34,7 @@ nessuno legge**, contati posto per posto.
 | posto | segni | scritti sul mondo | di cui muti | cos'e' |
 |---|---|---|---|---|
 | **stampato sulla tessera** | 15 | 0 | — | la natura del luogo: montagna, capitale, pascolo. Non cambia mai. |
-| **uno spazio sulla tessera** | 26 | 5 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
+| **uno spazio sulla tessera** | 26 | 9 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
 | **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
 | **sulla scheda della casa** | 51 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
@@ -156,7 +156,11 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `settlement:march` | Conseguenza | — | regola del segno |
 | `settlement:market` | Conseguenza | — | bersaglio a segni, regola del segno |
 | `settlement:village` | Azione stampata | — | Destino, bersaglio a segni, regola del segno |
+| `structure:archive` | Azione stampata | — | Destino, bersaglio a segni |
+| `structure:granary` | Azione stampata | — | bersaglio a segni, la Regione di cui si discute, regola del segno |
 | `structure:sealed` | Conseguenza | Azione stampata, Conseguenza | Destino, bersaglio a segni, chi **non** siede l'anno prossimo, la Regione di cui si discute |
+| `structure:tollgate` | Azione stampata | — | bersaglio a segni, la Regione di cui si discute, regola del segno |
+| `structure:watchtower` | Azione stampata | — | bersaglio a segni, regola del segno |
 | `study_supervised` | Conseguenza | — | Destino, pesca delle domande |
 | `succession_by_law` | Azione stampata, Conseguenza | — | Destino, chi siede l'anno prossimo, fatto che dura |
 | `succession_settled` | Conseguenza | — | pesca delle domande |

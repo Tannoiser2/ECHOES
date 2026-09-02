@@ -334,6 +334,9 @@ const DEFS := {
 			"tension_tokens": {
 				"type": "Dictionary",
 			},
+			"acquire_rules": {
+				"type": "Dictionary",
+			},
 			"claim_rules": {
 				"type": "Dictionary",
 			},

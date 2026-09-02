@@ -29,6 +29,7 @@ extends RefCounted
 ## uses `const X := preload(...)` and no `class_name`, and the rule holds here.
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const StoneRules := preload("res://scripts/world/stone_rules.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const EchoText := preload("res://scripts/core/echo_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -232,6 +233,28 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				"template": "ACQUIRE", "params": request,
 			})
 
+	# **La Pietra che si alza** (D-412, ISSUES 123). Una voce per ogni Pietra che
+	# in quel luogo ci sta davvero: al tavolo e' prendere il segnalino e posarlo,
+	# e le tre condizioni della terra le ha gia' chieste `can_execute`. Dove la
+	# regola e' spenta non ne esce nessuna, e la plancia resta quella di prima.
+	for region_id in _sorted(session.service.regions_with_presence(entity_id)):
+		for type_id in StoneRules.raisable(session.data):
+			var raise_it: Dictionary = {
+				"region_id": str(region_id), "structure_type": str(type_id),
+			}
+			if not session.actions.can_execute(entity_id, "ACQUIRE", raise_it):
+				continue
+			out.append({
+				"label": "Alza %s a %s" % [
+					str((session.data.structure_types[str(type_id)] as Dictionary)["name"]),
+					_region(str(region_id), session),
+				],
+				"template": "ACQUIRE", "params": raise_it,
+				# Ha un posto sulla mappa: uno schermo che la disegna la offre
+				# li', non come una riga di testo.
+				"subject": {"region": str(region_id)},
+			})
+
 	for region_id in _sorted(session.world["regions"].keys()):
 		var request: Dictionary = {"region_id": str(region_id)}
 		if session.actions.can_execute(entity_id, "MOVE", request):
@@ -369,6 +392,15 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 			for index in range(printed.size()):
 				var face: Dictionary = printed[index] as Dictionary
 				if str(face.get("template", "")) != template:
+					continue
+				# **Una faccia alza la Pietra che ha stampata** (D-412): senza
+				# questa riga «Costruire il granaio» comparirebbe una volta per
+				# ogni Pietra che in quel luogo ci sta, e sarebbero tre voci
+				# identiche sullo schermo.
+				var builds: String = str(face.get("builds", ""))
+				if builds != "" and str(
+					((offer as Dictionary)["params"] as Dictionary).get("structure_type", "")
+				) != builds:
 					continue
 				var params: Dictionary = (
 					(offer as Dictionary)["params"] as Dictionary

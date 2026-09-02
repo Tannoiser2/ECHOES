@@ -242,9 +242,13 @@
             "template": "INFLUENCE"
           },
           {
-            "label": "Farsi pagare il passaggio",
-            "text": "Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.",
-            "template": "INFLUENCE"
+            "label": "Mettere la sbarra",
+            "text": "Alza una Dogana in un luogo dove hai presenza: da qui in poi chi passa paga te.",
+            "template": "ACQUIRE",
+            "builds": "STR_TOLLGATE",
+            "puts_tag": [
+              "structure:tollgate"
+            ]
           }
         ],
         "resonance": {
@@ -1090,10 +1094,12 @@
             "template": "MOVE"
           },
           {
-            "label": "Mandarlo a controllare",
-            "text": "Togli #malcontento dal luogo e pesca 1 Sapere.",
-            "clears_tag": [
-              "condition:unrest"
+            "label": "Mandarlo a tenere le carte",
+            "text": "Alza un Archivio in un luogo dove hai presenza: dove il magistrato siede, le carte si tengono.",
+            "template": "ACQUIRE",
+            "builds": "STR_ARCHIVE",
+            "puts_tag": [
+              "structure:archive"
             ]
           }
         ],
@@ -1923,11 +1929,12 @@
           },
           {
             "label": "Mandare avanti i primi",
-            "text": "Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.",
+            "text": "Alza un Villaggio in un luogo dove hai presenza: i primi arrivati smettono di andarsene.",
+            "template": "ACQUIRE",
+            "builds": "STR_SETTLEMENT",
             "puts_tag": [
               "settlement:village"
-            ],
-            "template": "MOVE"
+            ]
           }
         ],
         "resonance": {
@@ -2344,12 +2351,13 @@
             "template": "SCHEME"
           },
           {
-            "label": "Tenere la prova",
-            "text": "Scopri la questione e pesca 1 Sapere.",
+            "label": "Depositare la prova",
+            "text": "Alza un Archivio in un luogo dove hai presenza, e la prova resta li' dove tutti sanno di trovarla.",
+            "template": "ACQUIRE",
+            "builds": "STR_ARCHIVE",
             "puts_tag": [
-              "discovery:written_law"
-            ],
-            "template": "SCHEME"
+              "structure:archive"
+            ]
           }
         ],
         "resonance": {
@@ -2433,12 +2441,13 @@
             "template": "SCHEME"
           },
           {
-            "label": "Far leggere a tutti",
-            "text": "Metti #registro_pubblico sul mondo.",
+            "label": "Aprire l'archivio",
+            "text": "Alza un Archivio in un luogo dove hai presenza.",
+            "template": "ACQUIRE",
+            "builds": "STR_ARCHIVE",
             "puts_tag": [
-              "ledger_public"
-            ],
-            "template": "SCHEME"
+              "structure:archive"
+            ]
           }
         ],
         "resonance": {
@@ -2696,12 +2705,13 @@
             "template": "CLAIM"
           },
           {
-            "label": "Tenerla sigillata",
-            "text": "Rivendica il luogo.",
+            "label": "Metterla agli atti",
+            "text": "Alza un Archivio in un luogo dove hai presenza: la busta resta chiusa, ma adesso si sa dov'e'.",
+            "template": "ACQUIRE",
+            "builds": "STR_ARCHIVE",
             "puts_tag": [
-              "condition:contested"
-            ],
-            "template": "CLAIM"
+              "structure:archive"
+            ]
           }
         ],
         "resonance": {
@@ -2785,12 +2795,13 @@
             "template": "INFLUENCE"
           },
           {
-            "label": "Chiudere i granai",
-            "text": "Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.",
+            "label": "Costruire il granaio",
+            "text": "Alza un Granaio in un luogo dove hai presenza.",
+            "template": "ACQUIRE",
+            "builds": "STR_GRANARY",
             "puts_tag": [
-              "condition:rationed"
-            ],
-            "template": "INFLUENCE"
+              "structure:granary"
+            ]
           }
         ],
         "resonance": {
@@ -2877,12 +2888,13 @@
             "template": "SCHEME"
           },
           {
-            "label": "Salare le riserve",
-            "text": "Togli #magro dal luogo.",
-            "clears_tag": [
-              "condition:lean"
-            ],
-            "template": "SCHEME"
+            "label": "Salare per l'inverno",
+            "text": "Alza un Granaio in un luogo dove hai presenza: quello che si sala, si tiene.",
+            "template": "ACQUIRE",
+            "builds": "STR_GRANARY",
+            "puts_tag": [
+              "structure:granary"
+            ]
           }
         ],
         "resonance": {
@@ -3053,9 +3065,13 @@
             "template": "MOVE"
           },
           {
-            "label": "Dirottarla",
-            "text": "Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.",
-            "template": "MOVE"
+            "label": "Fermare la carovana",
+            "text": "Alza un Villaggio in un luogo dove hai presenza: chi si ferma una volta si ferma.",
+            "template": "ACQUIRE",
+            "builds": "STR_SETTLEMENT",
+            "puts_tag": [
+              "settlement:village"
+            ]
           }
         ],
         "resonance": {
@@ -3292,12 +3308,13 @@
             "template": "MOVE"
           },
           {
-            "label": "Chiudere il tesoro",
-            "text": "Pesca 2 Ricchezza e metti #malcontento sul luogo.",
+            "label": "Metterci una guardia",
+            "text": "Alza una Torre di veglia in un luogo dove hai presenza: il tesoro si tiene dove si vede.",
+            "template": "ACQUIRE",
+            "builds": "STR_KEEP",
             "puts_tag": [
-              "condition:unrest"
-            ],
-            "template": "MOVE"
+              "structure:watchtower"
+            ]
           }
         ],
         "resonance": {
@@ -3537,9 +3554,13 @@
             "template": "MOVE"
           },
           {
-            "label": "Offrire ospitalita'",
-            "text": "Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.",
-            "template": "MOVE"
+            "label": "Dare loro una casa",
+            "text": "Alza un Villaggio in un luogo dove hai presenza: chi ospita per un inverno ospita per sempre.",
+            "template": "ACQUIRE",
+            "builds": "STR_SETTLEMENT",
+            "puts_tag": [
+              "settlement:village"
+            ]
           }
         ],
         "resonance": {
@@ -3867,12 +3888,13 @@
             "template": "SCHEME"
           },
           {
-            "label": "Rivendicare il sangue",
-            "text": "Metti #erede_nominato sul mondo.",
+            "label": "Fermare la famiglia",
+            "text": "Alza un Villaggio in un luogo dove hai presenza: il sangue mette radici dove si ferma.",
+            "template": "ACQUIRE",
+            "builds": "STR_SETTLEMENT",
             "puts_tag": [
-              "heir_named"
-            ],
-            "template": "SCHEME"
+              "settlement:village"
+            ]
           }
         ],
         "resonance": {

@@ -8463,6 +8463,38 @@ committente può muovere oggi.
 **Fatto quando** il committente sceglie, o quando 119 è chiusa e questa misura
 si rifà con lei.
 
+### ✅ Scelta in 0.1.383: **R1 (a)**, e la causa non era una taratura
+
+Parola del committente: **«R1 (a)»** — ACQUISIRE alza una Pietra. Scritto in
+[D-412](DECISIONS.md#d-412), e per strada si e' trovato che la voce nominava un
+difetto piu' grosso di quello che sapeva:
+
+> **ACQUISIRE non era stampata su nessuna delle 96 facce.** Non un'Azione poco
+> usata: **un'Azione che nessuno poteva giocare**, e il commento del cervello lo
+> diceva gia' — *«nessuna carta porta ACQUISIRE»*. Cambiare la regola non
+> bastava: dodici facce sono state scritte, sulle carte che stampavano due volte
+> lo stesso verbo.
+
+Misura appaiata, 100 partite CHR_00 a tavolo misto, seme 7000, stessi semi con
+l'interruttore spento e acceso:
+
+| | spento | acceso |
+|---|---|---|
+| Pietre alzate | 992 | **1.186** |
+| — **da un'Azione di chi gioca** | **0** | **182** |
+| in piedi a fine anno | 833 | **1.009** |
+| turni «passa» | 49,6% | **46,0%** |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Il numero che questa voce inseguiva era «quaranta turni su cento», ed e'
+sceso di tre punti e sei decimi.** Non e' finita — l'84,7% dei «passa» resta
+*«nessuna mossa gli serviva»* — ma e' la prima volta che quella riga scende, e
+la causa e' misurata: adesso c'e' una cosa da fare che nessuno ti deve
+concedere.
+
+**Resta aperta**, e su cosa: la voce chiedeva anche che [119](#119) fosse chiusa
+e la misura rifatta con lei. Quella e' ancora del committente.
+
 ---
 
 ### 124. Due case su otto non possono prendere l'Eredità, mai

@@ -2747,6 +2747,7 @@
         "REGION"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [
@@ -2805,6 +2806,7 @@
         "il grande granaio"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [
@@ -2891,6 +2893,7 @@
         "la dogana"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [
@@ -2914,6 +2917,7 @@
         "torre di veglia"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [

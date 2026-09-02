@@ -9,10 +9,11 @@ extends SceneTree
 ## si alza, sale di grado, cade — o se puo' soltanto riempirsi.
 ##
 ## E c'e' una seconda domanda che ISSUES 52 ha reso urgente: **una casa puo'
-## decidere di costruire?** Le pietre entrano in tre modi — l'apertura, una
-## carta impegnata al Consiglio, una Conseguenza — e solo il secondo e' una
-## scelta di chi gioca. Se quel numero e' vicino a zero, ogni obiettivo che
-## chiede una struttura e' deciso dal setup, non dall'anno.
+## decidere di costruire?** Fino a D-412 le pietre entravano in tre modi —
+## l'apertura, una carta impegnata al Consiglio, una Conseguenza — e nessuno dei
+## tre era una scelta libera di chi gioca: bisognava convincere il tavolo.
+## Adesso ce n'e' un quarto, **un'Azione**, e questa sonda lo conta a parte:
+## e' il numero su cui ISSUES 123 si chiude o non si chiude.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -71,8 +72,21 @@ func _initialize() -> void:
 			var id: String = str(source.get("id", ""))
 			match str(effect.get("type", "")):
 				"BUILD_STRUCTURE":
+					# **Tre sorgenti, e dal D-412 sono quattro.** La firma
+					# dell'Effetto dice chi ha alzato la Pietra: `SETUP`
+					# l'apertura, `ACT_ACQUIRE` un'Azione di chi gioca, una
+					# casa la carta impegnata, il resto il Consiglio o un'Eco.
+					# Prima le prime due strade non c'erano tutt'e due, e la
+					# quarta si prendeva il conto di quello che nasceva altrove.
+					# **La firma e' quella dell'Azione giocata, non del verbo
+					# che porta.** Una Pietra alzata da ACQUISIRE arriva
+					# firmata `ACT_PLAY_CARD`, perche' al tavolo si e' calata
+					# una carta: cercare `ACT_ACQUIRE` dava **zero**, ed era la
+					# sonda, non il gioco. Ottava volta in questo progetto.
 					var where: String = "l'apertura"
-					if id != "SETUP":
+					if kind == "action" and id != "SETUP":
+						where = "un'Azione di chi gioca"
+					elif id != "SETUP":
 						where = "una carta impegnata" if kind == "entity" else "il Consiglio o un'Eco"
 					built[where] = int(built.get(where, 0)) + 1
 				"RAZE_STRUCTURE":

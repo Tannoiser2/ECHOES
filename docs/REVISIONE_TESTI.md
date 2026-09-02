@@ -11622,9 +11622,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_AUTHORITY_MAGISTRATE, azione 2`**
-> Mandarlo a controllare
+> Mandarlo a tenere le carte
 
-> Togli #malcontento dal luogo e pesca 1 Sapere.
+> Alza un Archivio in un luogo dove hai presenza: dove il magistrato siede, le carte si tengono.
 
 
 **`AST_AUTHORITY_MAGISTRATE, risonanza`**
@@ -11734,9 +11734,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_BONDS_BLOOD_TIE, azione 2`**
-> Rivendicare il sangue
+> Fermare la famiglia
 
-> Metti #erede_nominato sul mondo.
+> Alza un Villaggio in un luogo dove hai presenza: il sangue mette radici dove si ferma.
 
 
 **`AST_BONDS_BLOOD_TIE, risonanza`**
@@ -11818,9 +11818,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_BONDS_GUEST_RIGHT, azione 2`**
-> Offrire ospitalita'
+> Dare loro una casa
 
-> Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.
+> Alza un Villaggio in un luogo dove hai presenza: chi ospita per un inverno ospita per sempre.
 
 
 **`AST_BONDS_GUEST_RIGHT, risonanza`**
@@ -12070,9 +12070,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_FORCE_ROADBLOCK, azione 2`**
-> Farsi pagare il passaggio
+> Mettere la sbarra
 
-> Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.
+> Alza una Dogana in un luogo dove hai presenza: da qui in poi chi passa paga te.
 
 
 **`AST_FORCE_ROADBLOCK, risonanza`**
@@ -12154,9 +12154,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, azione 2`**
-> Far leggere a tutti
+> Aprire l'archivio
 
-> Metti #registro_pubblico sul mondo.
+> Alza un Archivio in un luogo dove hai presenza.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, risonanza`**
@@ -12238,9 +12238,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_KNOWLEDGE_PROOF, azione 2`**
-> Tenere la prova
+> Depositare la prova
 
-> Scopri la questione e pesca 1 Sapere.
+> Alza un Archivio in un luogo dove hai presenza, e la prova resta li' dove tutti sanno di trovarla.
 
 
 **`AST_KNOWLEDGE_PROOF, risonanza`**
@@ -12322,9 +12322,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY, azione 2`**
-> Tenerla sigillata
+> Metterla agli atti
 
-> Rivendica il luogo.
+> Alza un Archivio in un luogo dove hai presenza: la busta resta chiusa, ma adesso si sa dov'e'.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY, risonanza`**
@@ -12436,7 +12436,7 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`AST_PEOPLE_EXODUS, azione 2`**
 > Mandare avanti i primi
 
-> Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.
+> Alza un Villaggio in un luogo dove hai presenza: i primi arrivati smettono di andarsene.
 
 
 **`AST_PEOPLE_EXODUS, risonanza`**
@@ -12602,9 +12602,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_CARAVAN, azione 2`**
-> Dirottarla
+> Fermare la carovana
 
-> Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.
+> Alza un Villaggio in un luogo dove hai presenza: chi si ferma una volta si ferma.
 
 
 **`AST_WEALTH_CARAVAN, risonanza`**
@@ -12658,9 +12658,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_GRAIN, azione 2`**
-> Chiudere i granai
+> Costruire il granaio
 
-> Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.
+> Alza un Granaio in un luogo dove hai presenza.
 
 
 **`AST_WEALTH_GRAIN, risonanza`**
@@ -12742,9 +12742,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_SALT, azione 2`**
-> Salare le riserve
+> Salare per l'inverno
 
-> Togli #magro dal luogo.
+> Alza un Granaio in un luogo dove hai presenza: quello che si sala, si tiene.
 
 
 **`AST_WEALTH_SALT, risonanza`**
@@ -12798,9 +12798,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_TREASURY, azione 2`**
-> Chiudere il tesoro
+> Metterci una guardia
 
-> Pesca 2 Ricchezza e metti #malcontento sul luogo.
+> Alza una Torre di veglia in un luogo dove hai presenza: il tesoro si tiene dove si vede.
 
 
 **`AST_WEALTH_TREASURY, risonanza`**

@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.383 — R1 (a): un'Azione della plancia alza una Pietra, e sono 182
+
+Parola del committente, **«R1 (a)»**: ACQUISIRE diventa *«pesca una carta,
+oppure alza una Pietra dove hai presenza»* ([D-412](docs/DECISIONS.md#d-412),
+[ISSUES 123](docs/ISSUES.md#123)).
+
+### La causa era piu' grossa di quello che la voce sapeva
+
+**ACQUISIRE non era stampata su nessuna delle 96 facce.** Non un'Azione poco
+usata: un'Azione che nessuno poteva giocare — e il commento del cervello lo
+diceva da chissa' quando, *«nessuna carta porta ACQUISIRE»*. Cambiare la regola
+non bastava: **dodici facce sono state scritte**, sulle carte che stampavano due
+volte lo stesso verbo, cosi' la sostituzione ripara anche *«due Azioni, e due
+scelte diverse davvero»*.
+
+Due meritano una riga. **Esodo** prometteva gia' *«metti li' il tuo
+insediamento»* e il motore ne faceva solo la meta': adesso la promessa e'
+mantenuta. **Magistrato** aveva una faccia senza verbo, di quelle che il motore
+scarta: erano undici, adesso sono dieci.
+
+### La misura, appaiata: stessi cento semi, l'interruttore spento e acceso
+
+| | spento | acceso |
+|---|---|---|
+| Pietre alzate | 992 | **1.186** |
+| — **da un'Azione di chi gioca** | **0** | **182** |
+| in piedi a fine anno | 833 | **1.009** |
+| salite di grado | 133 | **168** |
+| turni «passa» | 49,6% | **46,0%** |
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Tre punti e sei decimi di «passa» in meno**, ed e' la prima volta che quella
+riga scende. Il margine del criterio di PUNTO_ZERO passa da quattro decimi a
+quattro punti.
+
+### La stessa domanda, e due modi di rispondere
+
+Le tre condizioni della terra — la Pietra ci sta, c'e' posto, non c'e' gia' —
+stanno adesso in `StoneRules`, perche' se le fanno in due. Dentro l'Effetto la
+risposta si **tace**: una frase d'autore che nomina la terra sbagliata non e' un
+errore. Dentro l'Azione si **rifiuta a voce alta**, con la ragione: un'azione
+legale che non fa niente e non avvisa e' esattamente il difetto che questa voce
+denunciava.
+
+### E la sonda ha confessato uno zero, l'ottava volta
+
+Il primo conto diceva zero Pietre da un'Azione mentre le Pietre in piu' erano
+gia' li': cercava la firma `ACT_ACQUIRE`, e una Pietra alzata giocando una carta
+arriva firmata `ACT_PLAY_CARD`.
+
+**Costo dichiarato**: dodici testi d'autore sono usciti dalla scatola — nessuno
+era l'unica penna di un segno, e le due carte che lo erano (Cristallo Rosso,
+Pedaggio) sono state escluse e sostituite. Suite da 691 a **698 prove**.
+
+---
+
 ## 0.1.382 — La lista rimisurata: quattro voci si muovono senza una tua parola
 
 Riscritta `docs/LE_TUE_DECISIONI.md` **non per colore ma per chi la puo' muovere**
