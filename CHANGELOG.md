@@ -46,6 +46,16 @@ o poco più — un aneddoto, non un verdetto; l'unica con abbastanza casi è
 **Nessuna Conseguenza resta senza strada**: tutte e 65 hanno almeno un modo di
 uscire. La voce resta aperta — il criterio è zero.
 
+### E una correzione a [ISSUES 111](docs/ISSUES.md#111)
+
+La voce diceva che i tre gradi consumati che restano — `place:dry_spring`,
+`place:thinned_wood`, `place:collapsed_pass` — sono *«quelli che nessuna
+Conseguenza posa ancora»*. **Non è vero**: ognuno ha esattamente una Conseguenza
+che lo posa. Le cause sono **due**, e la seconda non era scritta da nessuna
+parte: `SET_STRUCTURE_GRADE` è `optional`, quindi se in quella Regione la Pietra
+non c'è **è un no-op silenzioso** — e il Passo sta in **una** Regione su dieci,
+la Sorgente in due, la Foresta in tre, su una mappa che ne pesca sei.
+
 ---
 
 ## 0.1.372 — Due sonde imparano a guardare, e due voci si chiudono

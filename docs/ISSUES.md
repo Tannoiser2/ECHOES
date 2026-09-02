@@ -7114,8 +7114,36 @@ riga che dice perche' non gliene serve uno.
 > sera. Nella saga del Regno che si e' seduto la reggia arriva all'anno 818.
 > Vanno misurati con [MISURA_VITE.md](MISURA_VITE.md), non qui.
 >
-> **Restano** `place:dry_spring`, `place:thinned_wood` e `place:collapsed_pass`:
-> i gradi consumati che nessuna Conseguenza posa ancora.
+> **Restano** `place:dry_spring`, `place:thinned_wood` e `place:collapsed_pass`.
+
+> **Correzione in 0.1.373**, e cambia il rimedio. La riga qui sopra diceva *«i
+> gradi consumati che nessuna Conseguenza posa ancora»*: **non e' vero**. Ognuno
+> dei tre ha esattamente **una** Conseguenza che lo posa —
+>
+> | grado | chi lo posa | dove mira |
+> |---|---|---|
+> | `place:thinned_wood` (Foresta, grado 2) | `CNS_VALLEY_CLEARED` | `$region_focus` |
+> | `place:dry_spring` (Sorgente, grado 3) | `CNS_WATER_PRICED` | `$region_focus` |
+> | `place:collapsed_pass` (Passo, grado 2) | `CNS_MINE_ROAD_CUT` | `$region_with:wild` |
+>
+> — e le cause sono **due, non una**:
+>
+> 1. **la Conseguenza non viene scelta** — `CNS_MINE_ROAD_CUT` sta fra le nove di
+>    [ISSUES 56](#56): scelta 1 volta su 8 offerte in duecento anni;
+> 2. **e quando viene scelta, deve trovare la Pietra dov'e'.**
+>    `SET_STRUCTURE_GRADE` e' `optional: true`: se in quella Regione quella
+>    Pietra non c'e', **e' un no-op silenzioso**. E le Pietre stanno in poche
+>    Regioni — il Passo in **una sola** (`REG_MONTAGNE_ROSSE`), la Sorgente in
+>    **due**, la Foresta in **tre** — su una mappa che ne pesca **sei su dieci**.
+>
+> Quindi per vedere un passo franato devono coincidere tre cose: la Regione col
+> Passo pescata, la Conseguenza scelta, e la frase che punta proprio li'. La
+> terza e' quella che si puo' aggiustare senza toccare l'equilibrio: **la strada
+> della miniera si taglia dove c'e' un passo**, non dove il mondo e' selvatico.
+> Non l'ho fatto perche' `$region_with:` vuole un segno **dichiarato** dalle
+> Regioni e i gradi delle Pietre li scrive il gioco a runtime: il validatore
+> direbbe di no, e sistemarlo e' una riga nel validatore piu' una misura. Sta
+> qui, non in una voce nuova.
 
 > **Richiesta del committente:** *«la potatura — fai leggere le 25 fonti e le 7
 > pietre».*
