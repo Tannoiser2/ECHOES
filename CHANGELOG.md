@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.373 — Il sacchetto del prezzo non lo leggeva nessuno
+
+Avanza [ISSUES 56](docs/ISSUES.md#56) ([D-405](docs/DECISIONS.md#d-405)).
+
+Dodici template portavano un `consequence_pools.cost` — *«il prezzo che il
+tavolo chiede»* — e **nessuna riga di codice lo leggeva**: il prezzo lo stampa
+la carta, dal suo menu di caselle (D-280, D-387), e tutte e sessanta le carte ce
+l'hanno. Dei tre sacchetti il Consiglio ne pesca due: `failure` e
+`decisive_bonus`.
+
+**Quarta volta della stessa malattia** (D-398, D-399, D-400): una seconda copia
+della verità che nessuno tiene allineata. Non faceva danno al tavolo — lo faceva
+alle misure.
+
+| `docs/MISURA_CASELLE.md` | prima | dopo |
+|---|---|---|
+| applicazioni contate | 342 | **294** |
+
+*Una su sette era un fantasma*, e `ADJUST_TENSION` **dove si discute** — 31 usi —
+spariva del tutto: nessun Consiglio lo produce da lì. La guardia è lo schema:
+senza `cost` fra le proprietà, e con `additionalProperties: false`, il sacchetto
+non può tornare per distrazione.
+
+**La prova che era davvero morto** non è un ragionamento: il `run_playtest` su
+cento semi, prima e dopo, stampa **la stessa uscita riga per riga**.
+
+### E le Conseguenze che non escono, rimisurate dove possono uscire
+
+| 200 anni | mai uscite |
+|---|---|
+| scollegati (0.1.369) | 11 su 65 |
+| **in saga** (20 × 10 Chronicle) | **9 su 65** |
+
+Due si sono mosse da sole: `CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN` erano «mai
+idonee» e adesso arrivano sulla scheda. Delle nove, sette hanno un tentativo solo
+o poco più — un aneddoto, non un verdetto; l'unica con abbastanza casi è
+`CNS_COST_DEBT`, scelta 9 volte su 9 e mai passata.
+
+**Nessuna Conseguenza resta senza strada**: tutte e 65 hanno almeno un modo di
+uscire. La voce resta aperta — il criterio è zero.
+
+---
+
 ## 0.1.372 — Due sonde imparano a guardare, e due voci si chiudono
 
 Chiude [ISSUES 88](docs/ISSUES.md#88) ([D-403](docs/DECISIONS.md#d-403)) e

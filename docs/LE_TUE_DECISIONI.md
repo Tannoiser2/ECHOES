@@ -199,8 +199,14 @@ chiedono una leggenda o un'era precedente**, e in cento anni scollegati non
 possono nemmeno salire su una scheda. Vanno misurate in saga, o si dà al tavolo
 la colpa di un difetto della misura.
 
-Restano **11 Conseguenze su 65** che non escono mai (56) e le domande che si
-scaldano tre volte e mezzo meno delle altre (60).
+Restano **9 Conseguenze su 65** che non escono mai (56) — erano 11, e il numero è
+sceso perché sono state rimisurate **in saga**, dove possono uscire — e le domande
+che si scaldano tre volte e mezzo meno delle altre (60).
+
+Delle nove, sette hanno **un tentativo solo o poco più**: un aneddoto, non un
+verdetto. L'unica con abbastanza casi è `CNS_COST_DEBT`, la cui proposta è stata
+scelta 9 volte su 9 e non è mai passata. E nessuna Conseguenza è senza strada:
+tutte e 65 hanno un modo di uscire.
 
 **Fatto quando** ogni voce o viene scelta almeno una volta in cento anni, **o
 esce dalla scatola**. Le tolgo, non le riscrivo tre volte.

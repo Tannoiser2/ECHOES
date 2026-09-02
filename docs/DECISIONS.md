@@ -10,6 +10,100 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-405 — Il sacchetto del prezzo non lo leggeva nessuno
+
+**implemented in 0.1.373.** Avanza [ISSUES 56](ISSUES.md#56).
+
+### La quarta volta della stessa malattia
+
+Dodici template portavano un `consequence_pools.cost` — *«il prezzo che il
+tavolo chiede»* — e **nessuna riga di codice lo leggeva**. Il prezzo lo stampa
+la carta, dal suo menu di caselle ([D-280](#d-280), [D-387](#d-387)):
+`price_menu()` chiama `_live_voices("costs")`, che guarda `card_face()["costs"]`
+e basta. Tutte e sessanta le carte hanno le loro caselle: non c'e' nemmeno un
+ripiego che possa cascare sul sacchetto.
+
+Dei tre sacchetti, il Consiglio ne pesca **due**: `failure` quando la proposta
+cade, `decisive_bonus` quando stravince.
+
+E' la stessa forma di [D-398](#d-398), [D-399](#d-399) e [D-400](#d-400): **una
+seconda copia della verita' che nessuno tiene allineata**. Qui la copia morta
+non faceva danno al tavolo — faceva danno alle misure.
+
+### Il danno, misurato
+
+`docs/MISURA_CASELLE.md` conta gli Effetti che un Consiglio puo' produrre e
+chiede se una casella del prezzo saprebbe dirli. Contava anche quelli del
+sacchetto morto:
+
+| | prima | dopo |
+|---|---|---|
+| applicazioni contate | 342 | **294** |
+| Effetti distinti | 46 | 46 |
+
+**Una applicazione su sette era un fantasma.** E `ADJUST_TENSION` *dove si
+discute* — 31 usi — spariva del tutto: nessun Consiglio lo produce da li'.
+
+Anche il disegno del flusso ci tirava frecce `paga_con` verso Conseguenze che
+per quella strada non arrivano.
+
+### La prova che era davvero morto
+
+Non e' un ragionamento sul codice: e' un confronto. Il `run_playtest` su cento
+semi, prima e dopo la rimozione, stampa **la stessa uscita riga per riga** —
+`diff` vuoto. Un sacchetto che il Consiglio pescasse davvero non potrebbe
+sparire senza muovere un carattere.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8**, misto e uniforme. Suite
+680 prove verde.
+
+### Cosa non cambia
+
+Le due Conseguenze che ci stavano dentro — `CNS_COST_DEBT` e `CNS_COST_UNREST`
+— **restano raggiungibili**: la prima da `P_WATER_COMMON`, la seconda da
+`P_ANY_IGNORE` e da quattro carte Tensione. Contate tutte le strade vive
+(proposte dei template, proposte delle carte, sacchetti `failure` e
+`decisive_bonus`, carte Eco), le 65 Conseguenze del catalogo hanno **tutte**
+almeno una strada: **zero irraggiungibili**.
+
+La guardia e' lo schema: `additionalProperties: false` senza `cost` fra le
+proprieta' vuol dire che il sacchetto non puo' tornare per distrazione.
+
+### E le Conseguenze che non escono, rimisurate dove possono uscire
+
+| 200 anni | Conseguenze mai uscite |
+|---|---|
+| scollegati (0.1.369) | 11 su 65 |
+| **in saga (20 x 10 Chronicle)** | **9 su 65** |
+
+Le nove, coi verdetti della sonda:
+
+| Conseguenza | verdetto |
+|---|---|
+| `CNS_COST_DEBT` | la sua proposta e' stata scelta **9 volte su 9** e non e' mai passata |
+| `CNS_DEBT_CALLED` | scelta 1 volta su 7 offerte, non passa |
+| `CNS_MINE_ROAD_CUT` | scelta 1 volta su 8 offerte, non passa |
+| `CNS_LAW_OF_SUCCESSION` | scelta 2 volte su 4, non passa |
+| `CNS_COST_EMPTIED` | scelta 1 volta su 1, non passa |
+| `CNS_CROWN_REUNITED` | **offerta 1 volta**, presa zero |
+| `CNS_DRAGON_SLAIN` | **offerta 1 volta**, presa zero |
+| `CNS_SEALED_VALLEY` | la sua domanda e' stata posta 1 volta e lei esclusa |
+| `CNS_HARVEST_RETURNS` | la sua carta non e' mai uscita dal mazzo |
+
+**Due si sono mosse per conto loro**: `CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN`
+erano *«mai idonee»* e adesso **arrivano sulla scheda** — una volta in duecento
+anni, ma ci arrivano. E' lo stesso fatto che [D-403](#d-403) ha misurato
+dall'altra parte: in saga la leggenda nasce, e con lei le porte che la
+chiedevano.
+
+**Delle nove, sette hanno un solo tentativo o poco piu'**: uno o due casi non
+sono un verdetto, sono un aneddoto. L'unica che ha abbastanza casi per dire
+qualcosa e' `CNS_COST_DEBT`, 9 su 9.
+
+**La voce resta aperta**: il criterio e' zero, e nove non e' zero.
+
+---
+
 ## D-404 — Il RIVENDICARE non muore piu' in mano: cinque carte su 213
 
 **implemented in 0.1.372.** Chiude [ISSUES 37](ISSUES.md#37).

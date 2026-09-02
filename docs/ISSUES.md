@@ -5808,10 +5808,59 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. Tre Conseguenze su cinquantadue non escono mai — erano dieci
+### 56. Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati
 
 `contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
 ([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
+
+> **Avanzamento in 0.1.373** ([D-405](DECISIONS.md#d-405)): **rimisurata dove
+> le Conseguenze possono uscire**, e tolto un sacchetto che non leggeva nessuno.
+>
+> | 200 anni | mai uscite |
+> |---|---|
+> | scollegati (0.1.369) | 11 su 65 |
+> | **in saga (20 x 10 Chronicle)** | **9 su 65** |
+>
+> **Due si sono mosse da sole.** `CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN` erano
+> *«mai idonee»*; adesso **arrivano sulla scheda** — una volta in duecento anni,
+> ma ci arrivano. E' lo stesso fatto che [D-403](DECISIONS.md#d-403) ha visto
+> dall'altra parte: in saga la leggenda nasce, e con lei le porte che la
+> chiedevano.
+>
+> **E delle nove, sette hanno un tentativo solo o poco piu'** — uno o due casi
+> non sono un verdetto, sono un aneddoto. L'unica con abbastanza casi e'
+> `CNS_COST_DEBT`: la sua proposta e' stata scelta **9 volte su 9** e non e' mai
+> passata.
+>
+> | Conseguenza | verdetto |
+> |---|---|
+> | `CNS_COST_DEBT` | scelta 9 volte su 9, non passa mai |
+> | `CNS_DEBT_CALLED` | scelta 1 su 7 offerte, non passa |
+> | `CNS_MINE_ROAD_CUT` | scelta 1 su 8 offerte, non passa |
+> | `CNS_LAW_OF_SUCCESSION` | scelta 2 su 4, non passa |
+> | `CNS_COST_EMPTIED` | scelta 1 su 1, non passa |
+> | `CNS_CROWN_REUNITED` | offerta 1 volta, presa zero |
+> | `CNS_DRAGON_SLAIN` | offerta 1 volta, presa zero |
+> | `CNS_SEALED_VALLEY` | domanda posta 1 volta, lei esclusa |
+> | `CNS_HARVEST_RETURNS` | la sua carta non esce mai dal mazzo |
+>
+> **E il sacchetto del prezzo non lo leggeva nessuno.** Dodici template
+> portavano un `consequence_pools.cost` — *«il prezzo che il tavolo chiede»* —
+> che nessuna riga di codice guardava: il prezzo lo stampa la carta dal suo menu
+> di caselle ([D-280](DECISIONS.md#d-280), [D-387](DECISIONS.md#d-387)), e tutte
+> e sessanta le carte ce l'hanno. Quarta volta della stessa malattia
+> ([D-398](DECISIONS.md#d-398), [D-399](DECISIONS.md#d-399),
+> [D-400](DECISIONS.md#d-400)): **una seconda copia della verita' che nessuno
+> tiene allineata.**
+>
+> Non faceva danno al tavolo: lo faceva alle misure.
+> [MISURA_CASELLE.md](MISURA_CASELLE.md) contava **342** applicazioni e adesso
+> ne conta **294** — *una su sette era un fantasma* — e `ADJUST_TENSION` *dove
+> si discute*, 31 usi, spariva del tutto: nessun Consiglio lo produce da li'.
+>
+> **Nessuna Conseguenza resta senza strada**: contate tutte quelle vive, le 65
+> del catalogo hanno tutte almeno un modo di uscire. Quello che resta non e' una
+> porta murata — e' una porta che il tavolo non attraversa.
 
 > **Avanzamento in 0.1.369** ([D-401](DECISIONS.md#d-401)): **le orfane sono
 > zero**, ed erano quattro. Tre hanno trovato casa in
