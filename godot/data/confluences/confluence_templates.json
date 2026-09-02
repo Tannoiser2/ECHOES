@@ -1229,7 +1229,7 @@
           "CNS_COST_UNREST"
         ],
         "failure": [
-          "CNS_FAILURE_ABANDONED"
+          "CNS_VALLEY_DRAINED"
         ],
         "decisive_bonus": [
           "CNS_DECISIVE_RENOWN"

@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.369 — La quinta sonda cieca: i sacchetti del Consiglio sono una casa (D-401)
+
+`run_consequence_probe` cercava chi elenca una Conseguenza guardando **solo le
+proposte**, e i `consequence_pools` del template — il costo, il fallimento, il
+premio di chi decide — non li guardava. Chiamava **orfana** una Conseguenza che
+il Consiglio pesca **quando la proposta cade**: l'opposto di orfana. Le orfane
+passano da una a **zero**.
+
+E un sacchetto non è una proposta: su una Conseguenza pescata, *«offerta N volte,
+presa zero»* direbbe il falso. Adesso legge *«sta in un sacchetto: esce solo se
+il Consiglio finisce così»*.
+
+**Il fallimento dell'Acqua dice qualcosa di suo.** Portava l'abbandono generico
+che sta già su altri due Consigli; adesso porta *«La Valle che si Vuota»*,
+scritta apposta per lui. È uno **scambio**: la scheda stampa una riga sola sotto
+«se cade», e una prova lo tiene — provata l'aggiunta, è andata rossa.
+
+**E per la prima volta un luogo si consuma**: `place:low_spring` arriva sul
+tavolo, e non era mai arrivato in cento partite. Era uno dei sei gradi di
+[ISSUES 111](docs/ISSUES.md#111) — e la stessa misura chiarisce che due di quei
+sei non sono difetti suoi: la reggia e la città sono **materia di saga**
+(ISSUES 40, 0.1.142), e una sonda che gioca cento anni scollegati non può
+vederle.
+
+Cancello 0/8 sui due tavoli, suite verde.
+
+---
+
 ## 0.1.368 — Un segno si battezza una volta sola (D-400)
 
 Punto 1 di [ISSUES 70](docs/ISSUES.md#70), e **trentunesimo cancello**.

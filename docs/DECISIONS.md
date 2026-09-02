@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-401 — La quinta sonda cieca: i sacchetti del Consiglio sono una casa
+
+**implemented in 0.1.369.** Avanza [ISSUES 56](ISSUES.md#56) e
+[ISSUES 111](ISSUES.md#111).
+
+### Lo zero era la sonda, la quinta volta
+
+`cli/run_consequence_probe.gd` cercava chi elenca una Conseguenza guardando
+**solo le proposte**, e i `consequence_pools` del template — il costo, il
+fallimento, il premio di chi decide — non li guardava. Quindi chiamava
+**«ORFANA: nessuna proposta la elenca»** una Conseguenza che il Consiglio pesca
+**quando la proposta cade**: l'opposto di orfana.
+
+Riparata la sonda, le orfane passano da **una a zero** — e le altre tre avevano
+trovato casa il giorno prima in [D-397](#d-397), ma per un'altra strada.
+
+**E un sacchetto non e' una proposta**, quindi il verdetto va tenuto separato: su
+una Conseguenza del sacchetto, *«offerta N volte, presa zero»* direbbe il falso —
+non si sceglie, capita. Adesso legge *«sta in un sacchetto: esce solo se il
+Consiglio finisce così»*. Senza questa seconda mezza riparazione la sonda avrebbe
+smesso di mentire su una cosa e cominciato a mentire su un'altra.
+
+### E il fallimento dell'Acqua dice qualcosa di suo
+
+`CNF_WATER_03` portava `CNS_FAILURE_ABANDONED` — l'abbandono generico, che sta
+già sul Consiglio della Carestia e su quello della Sopravvivenza. Adesso porta
+**`CNS_VALLEY_DRAINED`**, scritta apposta per lui: *«L'acqua non è arrivata, e i
+campi hanno risposto a modo loro. Chi poteva partire è partito prima del secondo
+inverno»*.
+
+**È uno scambio, non un'aggiunta**, e la ragione è fisica: la scheda del
+Consiglio stampa **una riga sola** sotto «se cade», e una prova lo tiene
+(`test_a_fallen_question_leaves_a_mark`). Provata l'aggiunta, la prova è andata
+rossa — che è esattamente il suo mestiere.
+
+### Per la prima volta un luogo si consuma
+
+`CNS_VALLEY_DRAINED` abbassa di un grado la sorgente della Regione di cui si
+discute. Da qui **`place:low_spring` arriva sul tavolo**, e non era mai arrivato
+in cento partite: era uno dei sei gradi che [ISSUES 111](ISSUES.md#111) elenca.
+
+E la stessa misura chiarisce che **due di quei sei non sono difetti suoi**:
+`structure:palace` è il grado 5 della Torre e `settlement:city` il grado 4
+dell'Insediamento, e [ISSUES 40](ISSUES.md#40) ha deciso in 0.1.142 che il grado
+alto è **materia di saga**. Una sonda che gioca cento anni scollegati non può
+vederli: nella saga del Regno che si è seduto la reggia arriva all'anno 818.
+
+**Dichiarato**: `run_stone_probe` continua a contare **0 discese di grado**,
+perché confronta il campo `value` dei gradi e i tre stati della sorgente lo hanno
+tutti a 0. La discesa c'è — il segno sul tavolo lo prova — e il conto no.
+
+**Cancello 0/8** sui due tavoli, suite 680 prove verde.
+
+---
+
 ## D-400 — Un segno si battezza una volta sola
 
 **implemented in 0.1.368.** Punto 1 di [ISSUES 70](ISSUES.md#70), ed è il

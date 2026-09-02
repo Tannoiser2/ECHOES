@@ -5726,6 +5726,29 @@ ogni vista è disegnata almeno una volta da una prova.
 `contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
 ([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
 
+> **Avanzamento in 0.1.369** ([D-401](DECISIONS.md#d-401)): **le orfane sono
+> zero**, ed erano quattro. Tre hanno trovato casa in
+> [D-397](DECISIONS.md#d-397); la quarta — `CNS_VALLEY_DRAINED` — **non era
+> orfana: era la sonda a non vedere i sacchetti.**
+>
+> `run_consequence_probe` cercava chi elenca una Conseguenza guardando **solo le
+> proposte**, e i `consequence_pools` del template — il costo, il fallimento, il
+> premio di chi decide — non li guardava. Chiamava «orfana» una Conseguenza che
+> il Consiglio pesca **quando la proposta cade**, che e' l'opposto di orfana.
+> Quinta volta in questo progetto che uno zero era la sonda.
+>
+> **E il fallimento dell'Acqua adesso dice qualcosa di suo.** Portava
+> `CNS_FAILURE_ABANDONED`, l'abbandono generico che sta gia' su altri due
+> Consigli; adesso porta *«La Valle che si Vuota — l'acqua non e' arrivata, e i
+> campi hanno risposto a modo loro»*, che e' scritta apposta per lui. La scheda
+> stampa **una riga sola** sotto «se cade» — lo tiene una prova — quindi e' uno
+> scambio, non un'aggiunta.
+>
+> Restano **11 su 65**, e adesso ognuna ha un verdetto che non mente: quattro
+> hanno la domanda che non arriva mai al tavolo, tre sono sempre perdenti, due
+> non sono idonee, una non e' mai scelta, e una sta in un sacchetto che non si e'
+> mai svuotato.
+
 **Il numero di prima era misurato male, e in due modi.** Quattro delle dieci non
 passano da un Consiglio: arrivano da una **carta Echo**, e una Conseguenza
 scattata da una carta non compare in `confluence_results`. E il resto era
@@ -6911,6 +6934,22 @@ riga che dice perche' non gliene serve uno.
 ### 111. Le dieci Pietre che non si alzano mai, e sono due difetti diversi
 
 `regole` · `contenuto` · aperta in 0.1.316 ([D-352](DECISIONS.md#d-352))
+
+> **Avanzamento in 0.1.369** ([D-401](DECISIONS.md#d-401)): **per la prima volta
+> un luogo si consuma.** `place:low_spring` — la sorgente che cala — arriva sul
+> tavolo, e non era mai arrivata: la posa `CNS_VALLEY_DRAINED`, che da oggi e' il
+> fallimento del Consiglio dell'Acqua.
+>
+> **E due dei «non arriva mai» non sono difetti di questa voce**:
+> `structure:palace` e' il **grado 5** della Torre e `settlement:city` il **grado
+> 4** dell'Insediamento, e [ISSUES 40](#40) ha deciso in 0.1.142 che il grado
+> alto e' **materia di saga**. La sonda gioca cento anni **scollegati**: chiedere
+> a un anno solo di arrivare al quinto grado e' come chiedere una reggia in una
+> sera. Nella saga del Regno che si e' seduto la reggia arriva all'anno 818.
+> Vanno misurati con [MISURA_VITE.md](MISURA_VITE.md), non qui.
+>
+> **Restano** `place:dry_spring`, `place:thinned_wood` e `place:collapsed_pass`:
+> i gradi consumati che nessuna Conseguenza posa ancora.
 
 > **Richiesta del committente:** *«la potatura — fai leggere le 25 fonti e le 7
 > pietre».*

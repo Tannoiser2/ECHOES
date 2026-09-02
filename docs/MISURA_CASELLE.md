@@ -45,10 +45,10 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 
 | | distinti | applicazioni |
 |---|---|---|
-| **una casella di oggi lo sa dire** | 44 | 340 |
+| **una casella di oggi lo sa dire** | 45 | 340 |
 | **verbo giusto, posto che la casella non sa dire** | 1 | 2 |
 | **verbo che manca** | 0 | 0 |
-| | **45** | **342** |
+| | **46** | **342** |
 
 ## Le caselle che mancano
 
@@ -74,10 +74,10 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 |---|---|---|---|
 | `BUILD_STRUCTURE` | `$region_with:granary` | 4 | si alza Granaio in una Regione con #granaio |
 | `ADJUST_TENSION` | `TEN_ROADS` | 21 | Le Vie Interrotte sale |
-| `SET_GLOBAL_TAG` | *dove si discute* | 71 | il mondo registra: il grano e' stato requisito |
+| `SET_GLOBAL_TAG` | *dove si discute* | 70 | il mondo registra: il grano e' stato requisito |
 | `REMOVE_PRESENCE` | `$rival` | 4 | il rivale se ne va dove si discute |
-| `SET_REGION_TAG` | *dove si discute* | 35 | dove si discute diventa #requisita |
-| `SET_STRUCTURE_GRADE` | *dove si discute* | 8 | Foresta dove si discute va al grado 2 |
+| `SET_REGION_TAG` | *dove si discute* | 34 | dove si discute diventa #requisita |
+| `SET_STRUCTURE_GRADE` | *dove si discute* | 9 | Foresta dove si discute va al grado 2 |
 | `ADD_PRESENCE` | `$rival` | 2 | il rivale entra in una Regione confinante |
 | `SET_RELATION` | `$proponent|$rival` | 11 | il rapporto fra chi propone e il rivale cambia |
 | `SET_CONTROL` | *dove si discute* | 4 | dove si discute cambia padrone |
@@ -110,6 +110,7 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | `ADJUST_TENSION` | `TEN_CHARTER` | 8 | La Carta sale |
 | `ADJUST_TENSION` | `TEN_DEBT` | 6 | Il Debito scende |
 | `ADJUST_TENSION` | `TEN_WATER` | 3 | L'Acqua Ferma scende di 2 |
+| `SET_REGION_TAG` | `$region_with:granary` | 1 | in una Regione con #granaio diventa #magra |
 | `ADJUST_TENSION` | `TEN_NAMELESS` | 2 | I Senza Città scende |
 | `ADJUST_TENSION` | `TEN_RELIC` | 2 | La Reliquia scende |
 | `SET_REGION_TAG` | `$region_with:mine` | 2 | in una Regione con #miniera diventa #svuotata |

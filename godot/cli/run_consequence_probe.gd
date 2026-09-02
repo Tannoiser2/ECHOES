@@ -117,6 +117,11 @@ func _initialize() -> void:
 
 	# Chi elenca ogni Conseguenza, letto dai dati: una proposta, oppure niente.
 	var listed_by: Dictionary = {}  # consequence_id -> [proposition_id]
+	# **E i sacchetti sono una casa diversa** (D-401): una Conseguenza pescata
+	# dal sacchetto del costo o del fallimento non si sceglie — capita. Il
+	# verdetto che vale per una proposta («offerta tante volte, presa zero») su
+	# di lei direbbe il falso, quindi si tiene separata.
+	var pooled_in: Dictionary = {}  # consequence_id -> ["CNF_X (failure)"]
 	for template_id in data.confluence_templates:
 		var template: Dictionary = data.confluence_templates[str(template_id)] as Dictionary
 		for entry in template.get("propositions", []):
@@ -126,6 +131,18 @@ func _initialize() -> void:
 				if not who.has(str(proposition["id"])):
 					who.append(str(proposition["id"]))
 				listed_by[str(consequence_id)] = who
+		# **E i sacchetti del Consiglio** (D-401). Una Conseguenza puo' avere una
+		# casa che non e' una proposta: il costo, il fallimento, il premio di chi
+		# decide. La sonda non li guardava, e chiamava «orfana» una Conseguenza
+		# che il Consiglio pesca quando la proposta **cade** — che e' l'opposto
+		# di orfana. Quinta volta in questo progetto che uno zero era la sonda.
+		for pool_name in (template.get("consequence_pools", {}) as Dictionary):
+			for consequence_id in (template["consequence_pools"][str(pool_name)] as Array):
+				var pooled: Array = pooled_in.get(str(consequence_id), [])
+				var etichetta: String = "%s (%s)" % [str(template_id), str(pool_name)]
+				if not pooled.has(etichetta):
+					pooled.append(etichetta)
+				pooled_in[str(consequence_id)] = pooled
 
 	# E chi la porta quando non e' una proposta: una carta Echo. Per quelle la
 	# domanda non e' «e' stata scelta», e' «la carta e' mai uscita».
@@ -250,7 +267,14 @@ func _initialize() -> void:
 		var who: Array = listed_by.get(consequence_id, [])
 		var verdict: String = ""
 		var by: String = ""
-		if who.is_empty():
+		var pools: Array = pooled_in.get(consequence_id, [])
+		if who.is_empty() and not pools.is_empty():
+			by = ", ".join(PackedStringArray(pools))
+			verdict = (
+				"STA IN UN SACCHETTO: non si sceglie, capita — esce solo se il "
+				+ "Consiglio finisce cosi'"
+			)
+		elif who.is_empty():
 			var cards: Array = carried_by.get(consequence_id, [])
 			if cards.is_empty():
 				by = "nessuno"
