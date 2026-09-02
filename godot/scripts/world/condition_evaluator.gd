@@ -80,6 +80,18 @@ func holds(condition: Dictionary, context: Dictionary = {}) -> bool:
 			# (`max: 0`) — D-161.
 			return _within(_scars_on_the_map(condition), condition)
 		"control_count":
+			# **Coi segni si contano solo quelle terre** (D-413, la stessa forma
+			# di D-327). «Due Regioni» e' un totale che si fa a mente; «due
+			# terre del dominio del territorio» si guarda sulla mappa, e due
+			# case che lo vogliono devono togliersele a vicenda.
+			if not (condition.get("any_tag", []) as Array).is_empty():
+				var held: int = 0
+				for place in _places_with(condition):
+					if str(
+						(world["regions"][str(place)] as Dictionary).get("control", "")
+					) == entity_id:
+						held += 1
+				return _within(held, condition)
 			return _within(service.control_count(entity_id), condition)
 		"leads_in":
 			# **Piu' di chiunque altro** (D-221).
@@ -494,9 +506,16 @@ func _structures_held(entity_id: String, condition: Dictionary) -> int:
 	var least: int = int(condition.get("grade", 1))
 	var anyone: bool = bool(condition.get("anyone", false))
 	var only_here: String = str(condition.get("region_id", ""))
+	# **E coi segni, solo le Pietre che stanno in quelle terre** (D-413): una
+	# Pietra e' gia' un pezzo che si indica, ma «una Pietra da qualche parte»
+	# resta un conto. «Un presidio nel dominio del territorio» e' un posto.
+	var marked: Array = _places_with(condition)
+	var by_sign: bool = not (condition.get("any_tag", []) as Array).is_empty()
 	var count: int = 0
 	for region_id in world["regions"]:
 		if only_here != "" and str(region_id) != only_here:
+			continue
+		if by_sign and not marked.has(str(region_id)):
 			continue
 		for structure in (world["regions"][region_id] as Dictionary).get("structures", []):
 			var record: Dictionary = structure as Dictionary

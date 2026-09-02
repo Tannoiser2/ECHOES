@@ -12,6 +12,7 @@ const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
+const StoneRules := preload("res://scripts/world/stone_rules.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 
@@ -272,6 +273,13 @@ func _draw_heat(source: Dictionary, outcome: Dictionary) -> void:
 # --- preconditions ---------------------------------------------------------
 
 func _check_acquire(entity_id: String, params: Dictionary) -> String:
+	# **ACQUISIRE ha due strade, e chi gioca ne sceglie una** (D-412, ISSUES 123):
+	# pesca una carta, **oppure** alza una Pietra dove ha presenza. Nominare la
+	# Pietra e' scegliere la seconda: al tavolo e' prendere il segnalino invece
+	# del mazzo, e non c'e' un terzo modo di dirlo.
+	var stone: String = str(params.get("structure_type", ""))
+	if stone != "":
+		return _check_raise(entity_id, params)
 	var family: String = str(params.get("family", ""))
 	if not world["decks"].has(family):
 		return "famiglia sconosciuta '%s'" % family
@@ -279,6 +287,26 @@ func _check_acquire(entity_id: String, params: Dictionary) -> String:
 	if (deck["draw"] as Array).is_empty() and (deck["discard"] as Array).is_empty():
 		return "il mazzo %s e vuoto e non ha scarti" % family
 	return ""
+
+
+## Perche' quella Pietra non si puo' alzare li' adesso, o "" se si puo'.
+##
+## Due domande, e sono di due padroni diversi: **la terra** la risponde
+## `StoneRules`, la stessa che l'Effetto si fa in silenzio; **la presenza** e'
+## dell'azione, ed e' quello che rende la Pietra una cosa che si conquista e non
+## una che si compra. Qui si risponde a voce alta, perche' un'azione legale che
+## non fa niente e non avvisa e' il difetto peggiore che si possa scrivere.
+func _check_raise(entity_id: String, params: Dictionary) -> String:
+	if not bool(
+		(_chronicle.get("acquire_rules", {}) as Dictionary).get("can_build_stone", false)
+	):
+		return "qui ACQUISIRE pesca soltanto"
+	var region_id: String = str(params.get("region_id", ""))
+	if region_id == "":
+		return "manca la Regione dove alzare la Pietra"
+	if service.presence_count(entity_id, region_id) <= 0:
+		return "%s non ha presenza in '%s'" % [entity_id, region_id]
+	return StoneRules.refusal(data, world, region_id, str(params.get("structure_type", "")))
 
 
 func _check_move(entity_id: String, params: Dictionary) -> String:
@@ -518,6 +546,8 @@ func _play_echo(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 # --- ACQUIRE ---------------------------------------------------------------
 
 func _acquire(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
+	if str(params.get("structure_type", "")) != "":
+		return _raise_stone(entity_id, params, source)
 	var family: String = str(params.get("family", ""))
 	# A source Region for that family turns the draw into draw-2-keep-1 (§10).
 	var doubled: bool = _has_source_for(entity_id, family)
@@ -561,6 +591,35 @@ func _acquire(entity_id: String, params: Dictionary, source: Dictionary) -> Dict
 
 	effects.append_array(_enforce_hand_limit(entity_id, params, source))
 	return _ok("ACQUIRE", effects, {"drawn": drawn})
+
+
+## **La Pietra che chi gioca decide di alzare** (D-412, ISSUES 123).
+##
+## Prima di questa riga le Pietre entravano in tre modi — l'apertura, il
+## Consiglio, una Conseguenza — e **nessuno dei tre era una scelta di chi
+## gioca**: 992 alzate in cento partite, 856 dall'apertura e 136 dal Consiglio.
+## Chi voleva costruire doveva convincere il tavolo, e il Consiglio pagava
+## meglio chi taceva.
+##
+## Grado 1, e di chi l'ha alzata: si comincia dalla veglia, non dalla reggia.
+func _raise_stone(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
+	var region_id: String = str(params.get("region_id", ""))
+	var type_id: String = str(params.get("structure_type", ""))
+	var applied: Dictionary = applier.apply(Effect.make(
+		"BUILD_STRUCTURE", "region", region_id,
+		{"structure_type": type_id, "grade": 1, "owner": entity_id}, source
+	))
+	# `check()` ha gia' chiesto alla terra, quindi un vuoto qui vuol dire che il
+	# motore e la sua guardia non sono d'accordo — e allora e' meglio dirlo che
+	# spendere un'Opportunita' per niente.
+	if applied.is_empty() or bool(applied.get("noop", false)):
+		return _error("ACQUIRE", "la Pietra non si e' alzata a '%s'" % region_id)
+	log.bullet("%s alza %s a %s." % [
+		_name(entity_id),
+		str((data.structure_types[type_id] as Dictionary)["name"]),
+		str((data.regions[region_id] as Dictionary)["name"]),
+	])
+	return _ok("ACQUIRE", [applied], {"built": type_id, "region_id": region_id})
 
 
 func _has_source_for(entity_id: String, family: String) -> bool:
@@ -1124,8 +1183,14 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	)
 	var chosen: int = int(params.get("face_action", -1))
 	var kind: String = ""
+	# **La faccia dice anche quale Pietra** (D-412). Un'Azione ACQUISIRE porta
+	# `builds`, e al tavolo e' il segnalino disegnato sulla carta: non si sceglie
+	# fra dieci Pietre, si prende quella. Il parametro arriva da qui e non da chi
+	# gioca, perche' non e' una sua scelta — e' quello che la carta e'.
+	var builds: String = ""
 	if chosen >= 0 and chosen < face_actions.size():
 		kind = str((face_actions[chosen] as Dictionary).get("template", ""))
+		builds = str((face_actions[chosen] as Dictionary).get("builds", ""))
 		if kind == "":
 			return {"error": "quell'Azione della carta il motore non la sa ancora eseguire"}
 	if kind == "":
@@ -1146,6 +1211,8 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	# stessa, e resta vero che una carta spesa non votera' piu'.
 	if not merged.has("discard_asset_id"):
 		merged["discard_asset_id"] = asset_id
+	if builds != "":
+		merged["structure_type"] = builds
 	return {
 		"kind": kind, "params": merged, "asset_id": asset_id, "face_action": chosen,
 		# **Dove cadono i segni stampati** (D-284). Il verbo puo' non nominare
@@ -1215,8 +1282,13 @@ func _check_physical_target(asset_id: String, kind: String, params: Dictionary) 
 	)
 	if str(target.get("scope", "")) != "REGION":
 		return ""
+	# **ACQUISIRE che costruisce arriva a una Regione** come MUOVERE (D-412): la
+	# faccia dice DOVE, e una Pietra si alza dove la carta arriva. ACQUISIRE che
+	# pesca non punta niente, e infatti non ha `structure_type`.
 	var aims_at_region: bool = (
-		kind == "MOVE" or (kind == "SCHEME" and str(params.get("mode", "")) == "REGION")
+		kind == "MOVE"
+		or (kind == "SCHEME" and str(params.get("mode", "")) == "REGION")
+		or (kind == "ACQUIRE" and str(params.get("structure_type", "")) != "")
 	)
 	if not aims_at_region:
 		return ""

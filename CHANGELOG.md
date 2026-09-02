@@ -5,6 +5,249 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.387 — M4: la pedina porta il nome della domanda, e il cervello non lo usa
+
+Due terzi del criterio di [ISSUES 106](docs/ISSUES.md#106)
+([D-416](docs/DECISIONS.md#d-416)): un proponente **può posare la pedina su una
+domanda che nomina**, e **il verbale dice quale**. Il terzo — che la casella
+smetta di essere quella che nessuno compra — non si è mosso, e adesso ha una
+diagnosi invece di un'ipotesi.
+
+**La catena era più corta di quanto la voce temeva**: sei anelli previsti, tre
+bastati, perché `current["benefits"]` ha solo tre lettori. Una pedina arriva come
+un id secco — la domanda in discussione, com'è sempre stato — o come «questa
+voce, su quella domanda», e ogni chiamante di prima continua a funzionare.
+
+**Il numero è rimisurato**: la casella è offerta 700 volte e comprata **22** —
+una su 32, non una su 72 come diceva la voce prima di R1.
+
+### Due tentativi, lo stesso numero al centesimo, e uno annullato
+
+Far scegliere al cervello la domanda **dopo** la casella non cambia quante volte
+la casella si compra — ovvio a guardarlo. Valutare la voce **già posata** avrebbe
+dovuto: stesso numero identico, **e una prova dei legami andata rossa**.
+Annullato: un rimedio che non muove il numero e rompe un'altra prova non è un
+rimedio.
+
+`test_the_token_carries_the_question` dice quale delle due metà è rotta — il
+motore la pedina la sa portare, **il cervello non ne indica nessuna** — ed è
+scritta come **misura dello stato di oggi**: se diventa rossa, qualcuno ha
+insegnato al cervello a scegliere, e allora si rimisura la sonda. Serve a non far
+cercare a nessun altro il difetto dove non è.
+
+Undicesima e dodicesima volta che un numero fermo dice dove guardare — e stavolta
+l'ho chiesto a una prova invece di tentare una terza modifica.
+
+Suite a **703 prove**.
+
+---
+
+## 0.1.386 — M3: un criterio che nessuno può soddisfare non è severo, è rotto
+
+Ritagliato il criterio di [ISSUES 60](docs/ISSUES.md#60)
+([D-415](docs/DECISIONS.md#d-415)).
+
+Chiedeva che nessuna domanda restasse senza Concilio in più di un quarto degli
+anni in cui è in gioco — cioè di stare **sopra il 75%**. Con 3,61 Consigli
+l'anno su sessanta domande, **la più ascoltata del tavolo arriva al 68,2%**:
+nessuna domanda poteva soddisfarlo, nemmeno la migliore possibile.
+
+| 100 partite, tavolo misto | |
+|---|---|
+| domande mute | **1 su 60** — «L'Acqua Ferma» |
+| la più ascoltata | «La Reliquia», 68,2% |
+| la meno, fra quelle che parlano | «I Pesi e le Misure», 11,1% |
+| **scarto** | **6,1×** |
+
+Il criterio nuovo chiede due cose verificabili: **zero domande mute**, e lo
+scarto **sotto 6×**. Il 13,1× di 0.1.377 sta su un altro tavolo — prima di R1 e
+R3 — e i due numeri non si mettono in fila (D-391).
+
+### E la muta aveva una causa, che è un costo di R1
+
+«L'Acqua Ferma» si scaldava su `#magro`, che il mondo scrive **2 volte in cento
+partite**, e sul canale, che **nessuna Pietra si chiama**. E la Risonanza guarda
+**quello che un'Azione ha appena fatto**, non quello che scrive una Conseguenza:
+sostituire una faccia toglie una penna al mondo, e le Risonanze leggono le penne
+delle Azioni. Vale scriverlo perché è generale.
+
+Datale una chiave che un'Azione scrive davvero — **il Granaio alzato**, 182
+volte in cento partite da R1 — il calore arriva: quanto le manca per aprire passa
+da **+3,50 a +2,88**. Non basta ancora, e adesso è il numero da battere.
+
+**La prima riparazione era inefficace, e si è visto da uno zero**: avevo aggiunto
+`#razionato` e `#fame`, che il mondo scrive 27 e 3 volte, e il numero non si è
+mosso di un centesimo — quei segni li posano le Conseguenze, che la Risonanza non
+guarda. Undicesima volta.
+
+---
+
+## 0.1.385 — Due porte murate cadono, e due sonde guardavano il foglio sbagliato
+
+M1 e M2 della lista ([D-414](docs/DECISIONS.md#d-414)).
+
+### ISSUES 56, misurata dove il suo criterio dice
+
+Il criterio dice **200 anni** e il numero della voce era preso su cento anni
+scollegati. Misurata dove va misurata — 20 saghe da 10, 1.018 Consigli — le
+Conseguenze che non escono mai sono **7 su 65**, non nove, e ognuna ha una
+diagnosi: quattro **sempre perdenti**, tre **mai scelte**, e **zero non idonee**
+dove erano due.
+
+`CNS_CROWN_REUNITED` era esclusa 14 volte su 14 e `CNS_DRAGON_SLAIN` 5 su 5 —
+la corona che si ricompone e il drago che muore, due dei nomi grossi del
+catalogo. Non impopolari: **invisibili**. La prima chiedeva un segno che il mondo
+scrive 3 volte in cento partite, la seconda una Rivelazione che **una sola carta
+in tutto il mazzo** porta. Adesso ognuna ha una seconda porta, e tutt'e due sono
+passate a «offerta 2 volte, presa zero».
+
+**Il resto non è di questa voce**: una proposta che nessuno prende è l'economia
+del Consiglio, cioè la [125](docs/ISSUES.md#125), che aspetta il committente.
+
+### E per arrivarci ho sbagliato due volte nello stesso modo
+
+Sta a verbale perché vale più della riparazione. **Nona volta**: la prima chiave
+l'avevo scritta nel file dei template, e da D-378 **le Proposte vengono dalla
+carta Tensione** — il numero non si è mosso di un centesimo, ed è così che si
+riconosce il foglio sbagliato. **Decima volta**: la seconda chiave la puntava su
+una Regione, e **una Scoperta sta sull'entità**; avevo murato una porta mentre
+ne smuravo un'altra.
+
+### ISSUES 59: la sonda contava il verbo di ieri
+
+Il libro mastro stampava una tabella «PER AZIONE» che leggeva il verbo
+**dichiarato** della carta. Da D-283 quello non è più il verbo che si gioca, e da
+D-412 **ACQUISIRE non compariva affatto** pur essendo calata 194 volte in cento
+partite. Adesso stampa due tabelle, e quella vera dice:
+
+| azione calata | volte | quota |
+|---|---|---|
+| SCHEME | 893 | 30,6% |
+| MOVE | 637 | 21,8% |
+| FORGE | 599 | 20,5% |
+| INFLUENCE | 381 | 13,1% |
+| CLAIM | 212 | 7,3% |
+| ACQUIRE | 194 | 6,7% |
+
+Il criterio non è soddisfatto, e **adesso si sa di quanto**: la metà del più
+giocato è 447, tre verbi su sei stanno sotto. Il numero da battere è 381 contro
+893, non un 18,5% preso sulla cosa sbagliata.
+
+Suite a **701 prove**.
+
+---
+
+## 0.1.384 — R3 sì: gli Obiettivi nominano un luogo, e le coppie contese passano da una su sette a una su due
+
+Parola del committente, **«R3 sì»** su [ISSUES 120](docs/ISSUES.md#120)
+([D-413](docs/DECISIONS.md#d-413)).
+
+### Rimisurata prima di lavorarla: erano otto, non dodici
+
+Il **dodici** del titolo è del 0.1.347. `did_this_year` (D-386) ne aveva già
+curati quattro, e **due li ha curati R1 un'ora prima** senza toccarli:
+`A_STONE` da −14% a **+28%**, `A_WORK` da +0% a **+27%**, perché chiedono una
+Pietra e adesso una Pietra si può alzare.
+
+### Lo strumento c'era già, e a due clausole mancava
+
+D-327 aveva insegnato a tre clausole a mirare **per segni**; le due di conteggio
+— quante terre tieni, quante Pietre hai in piedi — erano rimaste fuori. Adesso
+leggono `any_tag` come le altre: è la differenza fra un obiettivo che si
+verifica **facendo un totale a mente** e uno che si verifica **guardando la
+mappa**.
+
+| obiettivo | adesso | giocando, prima → dopo |
+|---|---|---|
+| `TWO_LANDS` | due terre **del dominio del territorio** | +32% → **+11%** |
+| `A_LEARNED_HOUSE` | due cose sapute, **e una guardata da vicino** | +86% → **+59%** |
+| `A_HIGH_HOUSE` | grado 2 **nell'antico o in capitale** | +30% → **+20%** |
+| `A_GARRISON` | un presidio **nel territorio** | +15% → **+9%** |
+| `WRITTEN_THINGS` | **e un piede dove le cose si tengono** | +17% → **+14%** |
+| `FULL_HANDS` | **e una pedina dove si produce** | +8% → **+3%** |
+| `QUIET_WORLD` | le Cicatrici **della sopravvivenza** | +58% → **+65%** |
+| `SOMETHING_MUST_BREAK` | **lasciato com'è**: è l'unico a +100% | +100% |
+
+### Il numero che due voci inseguivano da centonovantasette versioni
+
+| 100 partite, tavolo misto | prima | dopo |
+|---|---|---|
+| coppie di seggi che **si contendono una Regione** | 15,5% | **44,0%** |
+| clausole centrate sulla mappa | 54,2% | **58,9%** |
+| clausole già vere all'apertura ([91](docs/ISSUES.md#91)) | 48,4% | **46,2%** |
+| obiettivi che si reggono **solo su un totale** | 8 su 17 | **1 su 17** |
+
+**Da una coppia su sette a quasi una su due.** Con questo si chiude la quarta e
+ultima riga di [ISSUES 4](docs/ISSUES.md#4), aperta in 0.1.187: gli obiettivi si
+incrociano perché chiedono lo stesso pezzo di mappa.
+
+**Costo dichiarato: sette obiettivi su otto sono più difficili.** Nessuno è
+impossibile — il più raro è `FULL_HANDS` a 7 su 72 — e giocare rende più che
+stare fermi per **sedici su diciassette**; il diciassettesimo è `MOST_STONE` a
+−2%. Cancello **0 su 8**, misto *e* uniforme. Suite a **699 prove**.
+
+**E il validatore ha morso**: la prima stesura di `A_LEARNED_HOUSE` guardava
+miniera e cristallo, che stanno su 2 tessere del parco quando per esserci su
+ogni mappa ne servono 5. La guardia di D-327 l'ha fermata prima della misura.
+
+---
+
+## 0.1.383 — R1 (a): un'Azione della plancia alza una Pietra, e sono 182
+
+Parola del committente, **«R1 (a)»**: ACQUISIRE diventa *«pesca una carta,
+oppure alza una Pietra dove hai presenza»* ([D-412](docs/DECISIONS.md#d-412),
+[ISSUES 123](docs/ISSUES.md#123)).
+
+### La causa era piu' grossa di quello che la voce sapeva
+
+**ACQUISIRE non era stampata su nessuna delle 96 facce.** Non un'Azione poco
+usata: un'Azione che nessuno poteva giocare — e il commento del cervello lo
+diceva da chissa' quando, *«nessuna carta porta ACQUISIRE»*. Cambiare la regola
+non bastava: **dodici facce sono state scritte**, sulle carte che stampavano due
+volte lo stesso verbo, cosi' la sostituzione ripara anche *«due Azioni, e due
+scelte diverse davvero»*.
+
+Due meritano una riga. **Esodo** prometteva gia' *«metti li' il tuo
+insediamento»* e il motore ne faceva solo la meta': adesso la promessa e'
+mantenuta. **Magistrato** aveva una faccia senza verbo, di quelle che il motore
+scarta: erano undici, adesso sono dieci.
+
+### La misura, appaiata: stessi cento semi, l'interruttore spento e acceso
+
+| | spento | acceso |
+|---|---|---|
+| Pietre alzate | 992 | **1.186** |
+| — **da un'Azione di chi gioca** | **0** | **182** |
+| in piedi a fine anno | 833 | **1.009** |
+| salite di grado | 133 | **168** |
+| turni «passa» | 49,6% | **46,0%** |
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Tre punti e sei decimi di «passa» in meno**, ed e' la prima volta che quella
+riga scende. Il margine del criterio di PUNTO_ZERO passa da quattro decimi a
+quattro punti.
+
+### La stessa domanda, e due modi di rispondere
+
+Le tre condizioni della terra — la Pietra ci sta, c'e' posto, non c'e' gia' —
+stanno adesso in `StoneRules`, perche' se le fanno in due. Dentro l'Effetto la
+risposta si **tace**: una frase d'autore che nomina la terra sbagliata non e' un
+errore. Dentro l'Azione si **rifiuta a voce alta**, con la ragione: un'azione
+legale che non fa niente e non avvisa e' esattamente il difetto che questa voce
+denunciava.
+
+### E la sonda ha confessato uno zero, l'ottava volta
+
+Il primo conto diceva zero Pietre da un'Azione mentre le Pietre in piu' erano
+gia' li': cercava la firma `ACT_ACQUIRE`, e una Pietra alzata giocando una carta
+arriva firmata `ACT_PLAY_CARD`.
+
+**Costo dichiarato**: dodici testi d'autore sono usciti dalla scatola — nessuno
+era l'unica penna di un segno, e le due carte che lo erano (Cristallo Rosso,
+Pedaggio) sono state escluse e sostituite. Suite da 691 a **698 prove**.
+
+---
+
 ## 0.1.382 — La lista rimisurata: quattro voci si muovono senza una tua parola
 
 Riscritta `docs/LE_TUE_DECISIONI.md` **non per colore ma per chi la puo' muovere**

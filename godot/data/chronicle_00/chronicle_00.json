@@ -406,6 +406,9 @@
           "REG_VALLE_VERDE"
         ],
         "count": 6
+      },
+      "acquire_rules": {
+        "can_build_stone": true
       }
     }
   ]

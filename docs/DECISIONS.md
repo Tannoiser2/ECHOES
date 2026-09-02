@@ -10,6 +10,392 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-416 — La pedina porta il nome della domanda, e il cervello non lo usa
+
+**implemented in 0.1.387.** Avanza [ISSUES 106](ISSUES.md#106), e ne isola la
+parte che resta.
+
+### Due terzi del criterio sono fatti
+
+Parola del committente sulla casella che muove una domanda: *«la sceglie chi
+propone»*. Il criterio della voce chiede tre cose, e due sono adesso vere:
+
+| | |
+|---|---|
+| un proponente puo' posare la pedina su una domanda che nomina | ✅ |
+| il verbale dice quale | ✅ |
+| la sonda mostra che la casella smette di essere quella che nessuno compra | ❌ |
+
+La voce temeva una catena lunga sei anelli. **Ne sono bastati tre**, perche'
+`current["benefits"]` ha solo tre lettori: una pedina puo' arrivare come un id
+secco — «la domanda di cui si sta discutendo», com'e' sempre stato — o come
+`{id, question}`, e la domanda scelta viaggia dentro la voce fino a
+`question_of`, che la trova senza che l'economia debba conoscere la forma della
+pedina. Ogni chiamante di prima continua a funzionare.
+
+### Il terzo non si muove, e adesso si sa perche'
+
+`run_boxes_probe`, 100 partite: **700 offerte, 22 comprate**. Il numero della
+voce era «una su settantadue», di prima di [D-412](#d-412); oggi e' **una su
+32**, e la casella resta la meno comprata fra quelle molto offerte.
+
+Ho provato due volte a farlo salire, e **la sonda ha dato lo stesso numero al
+centesimo tutt'e due le volte**:
+
+1. far scegliere al cervello la domanda **dopo** aver scelto la casella —
+   ovvio, a guardarlo: se il punteggio guarda la domanda in discussione,
+   scegliere meglio dopo non cambia quante volte la casella si compra;
+2. valutare la voce **gia' posata**, cosi' il punteggio vede la domanda
+   migliore. Stesso numero, e in piu' una prova dei legami andata rossa.
+
+**Il secondo tentativo e' stato annullato.** Un rimedio che non muove il numero
+e rompe un'altra prova non e' un rimedio.
+
+### E la prova dice quale delle due meta' e' rotta
+
+`test_the_token_carries_the_question` guarda in due punti:
+
+- **il motore la pedina la sa portare**: una voce con la domanda indicata muove
+  quella e non quella in discussione;
+- **il cervello, oggi, non ne indica nessuna**: la pedina esce come un id secco.
+
+La seconda e' scritta **come misura, non come promessa**, e asserisce lo stato
+di oggi: se un giorno diventa rossa e' perche' qualcuno ha insegnato al cervello
+a indicare, e allora si gira l'asserzione e si rimisura la sonda. E' il modo di
+non far cercare a nessun altro il difetto dove non e'.
+
+**Undicesima e dodicesima volta** che in questo progetto un numero fermo dice
+dove guardare — e stavolta l'ho chiesto a una prova invece di tentare una terza
+modifica.
+
+---
+
+## D-415 — Un criterio che nessuno puo' soddisfare non e' severo: e' rotto
+
+**implemented in 0.1.386.** Ritaglia [ISSUES 60](ISSUES.md#60). Dichiara un
+costo non previsto di [D-412](#d-412).
+
+### Il criterio chiedeva una cosa che l'aritmetica vieta
+
+*«Nessuna domanda resta senza Concilio in piu' di un quarto degli anni in cui e'
+in gioco»* vuol dire stare sopra il **75%**. Con 3,61 Consigli l'anno su sessanta
+domande, la piu' ascoltata del tavolo arriva al **68,2%**: **nessuna domanda
+puo' soddisfarlo**, nemmeno la migliore possibile.
+
+Rimisurato oggi, `run_question_ledger`, 100 partite CHR_00 a tavolo misto:
+
+| | |
+|---|---|
+| domande mute | **1 su 60** — «L'Acqua Ferma» |
+| la piu' ascoltata | «La Reliquia», 68,2% |
+| la meno, fra quelle che parlano | «I Pesi e le Misure», 11,1% |
+| **scarto** | **6,1×** |
+
+Il nuovo criterio chiede due cose che si possono verificare: **zero domande
+mute**, e **lo scarto sotto 6×**. Il 13,1× di 0.1.377 sta su un altro tavolo —
+prima di R1 e R3 — e i due numeri non si mettono in fila ([D-391](#d-391)).
+
+### E la muta aveva una causa, che e' un costo di D-412
+
+«L'Acqua Ferma» si scaldava su due chiavi: `condition:lean`, che il mondo scrive
+**2 volte in cento partite**, e `structure:canal`, che **nessuna Pietra del
+catalogo si chiama**. Di fatto una sola chiave, rarissima.
+
+**E la Risonanza guarda quello che un'Azione ha appena fatto**, non quello che
+scrive una Conseguenza. Prima di [D-412](#d-412) l'Azione che posava
+`condition:rationed` era «Chiudere i granai» di *Riserva di Grano* — una delle
+dodici facce sostituite. Non era la chiave dell'Acqua Ferma, ma e' lo stesso
+meccanismo, e vale scriverlo: **sostituire una faccia toglie una penna al mondo,
+e le Risonanze leggono le penne delle Azioni.**
+
+Data all'Acqua Ferma una chiave che un'Azione scrive davvero — **il Granaio
+alzato**, 182 volte in cento partite da D-412 — il calore arriva: quanto le manca
+per aprire un Consiglio passa da **+3,50 a +2,88**. Non basta ancora, e resta
+muta: quello e' il numero da battere, e non e' piu' un mistero.
+
+### La prima riparazione era inefficace, e si e' visto da uno zero
+
+Avevo prima aggiunto `condition:rationed` e `condition:starving`, che il mondo
+scrive 27 e 3 volte. **Il numero non si e' mosso di un centesimo**: quei due
+segni li posano le Conseguenze, e la Risonanza non le guarda. Undicesima volta
+che un numero fermo dice dove guardare.
+
+---
+
+## D-414 — Due porte murate, e due sonde che guardavano il foglio sbagliato
+
+**implemented in 0.1.385.** Avanza [ISSUES 56](ISSUES.md#56) e
+[ISSUES 59](ISSUES.md#59).
+
+### ISSUES 56, rimisurata sul perimetro che il suo criterio chiede
+
+Il criterio dice **«200 anni»**, e la voce portava un numero preso su cento anni
+scollegati. Rimisurata dove va misurata — 20 saghe da 10, 1.018 Consigli — le
+Conseguenze che non escono mai sono **7 su 65**, non nove. E adesso ognuna ha
+**una diagnosi**, che e' la cosa che la voce chiedeva da 0.1.196:
+
+| verdetto | quante | cosa vuol dire |
+|---|---|---|
+| **sempre perdente** | 4 | la proposta viene scelta e non passa mai |
+| **mai scelta** | 3 | sale sulla scheda e nessuno la prende |
+| **non idonea** | **0** (erano 2) | non saliva nemmeno sulla scheda |
+
+### Le due porte murate, e cadono tutt'e due
+
+`CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN` — la corona che si ricompone, il drago
+che muore, due dei nomi grossi del catalogo — erano escluse **14 volte su 14** e
+**5 su 5**. Non impopolari: **invisibili**.
+
+| proposta | chiedeva | adesso chiede |
+|---|---|---|
+| `P_ONE_CROWN` | `crown_divided`, che il mondo scrive **3 volte in cento partite** | quello, **oppure** `heir_named`, che ne scrive 40 |
+| `P_SLAY_THE_DRAGON` | una Rivelazione giocata, e **una sola carta in tutto il mazzo** la porta | quella, **oppure** la vena aperta, **oppure** chi propone ha visto il presagio |
+
+Tutt'e due sono passate da *non idonea* a **«offerta 2 volte, presa zero»**. Non
+escono ancora, ma il tavolo le vede — ed e' un difetto diverso, con un rimedio
+diverso: e' l'economia del Consiglio, cioe' [ISSUES 125](ISSUES.md#125), che
+aspetta il committente.
+
+### E per arrivarci ho sbagliato due volte, nello stesso modo
+
+**Nona volta**: la prima riparazione l'ho scritta in
+`confluence_templates.json`, e da [D-378](#d-378) **le Proposte vengono dalla
+carta Tensione**. Il numero non si e' mosso di un centesimo — 14 su 14, identico
+— e un numero che non si muove di un centesimo dopo una modifica e' quasi sempre
+il foglio sbagliato, non una modifica inefficace.
+
+**Decima volta**: la seconda chiave del drago la puntava su una Regione, e **una
+Scoperta sta sull'entita'**. Avevo murato una porta mentre ne smuravo un'altra,
+e il conto e' rimasto 5 su 5 anche allora.
+
+`test_no_proposal_is_walled_shut` adesso tiene aperto quello che e' aperto, e
+guarda in due modi apposta: **i dati** (nessuna proposta chiede un segno senza
+penna) e **il motore** (si posa la chiave e si controlla che la serratura giri).
+La prima meta' da sola si assolverebbe: un segno «scritto da qualcuno» puo'
+comunque essere letto nel posto sbagliato, ed e' esattamente l'errore di sopra.
+
+### ISSUES 59: la sonda dei verbi contava il verbo di ieri
+
+Il libro mastro delle carte stampava una tabella **«PER AZIONE»** che leggeva
+`card_action.kind` — il verbo **dichiarato** della carta. Da
+[D-283](#d-283) quello non e' piu' il verbo che si gioca: una carta stampa due
+Azioni e chi cala sceglie. Il criterio di ISSUES 59 parla di **verbi giocati**,
+quindi era misurato sulla cosa sbagliata — e da [D-412](#d-412) ACQUISIRE non
+compariva affatto, pur essendo calata 194 volte in cento partite.
+
+Adesso il libro mastro stampa **due** tabelle, e si leggono insieme:
+
+| azione calata | volte | quota |
+|---|---|---|
+| SCHEME | 893 | 30,6% |
+| MOVE | 637 | 21,8% |
+| FORGE | 599 | 20,5% |
+| INFLUENCE | 381 | 13,1% |
+| CLAIM | 212 | 7,3% |
+| **ACQUIRE** | **194** | **6,7%** |
+
+**Il criterio non e' soddisfatto, e adesso si sa di quanto**: «nessun verbo si
+gioca meno della meta' del piu' giocato» vuol dire almeno 447, e tre verbi su
+sei stanno sotto. Il numero da battere non e' piu' un 18,5% preso sul verbo
+dichiarato: e' **381 contro 893**.
+
+E la seconda meta' del criterio e' quasi vera: **una carta su 48 non viene mai
+calata** — Patto Rotto.
+
+---
+
+## D-413 — Gli Obiettivi nominano un luogo, e da otto ne resta uno
+
+**implemented in 0.1.384.** Parola del committente: **«R3 si'»** su
+[ISSUES 120](ISSUES.md#120). Chiude anche la meta' che restava della
+[ISSUES 4](ISSUES.md#4) e rimisura la [ISSUES 91](ISSUES.md#91).
+
+### Rimisurata prima di lavorarla, ed erano otto, non dodici
+
+La voce diceva **dodici**, ed era il numero del 0.1.347. Da allora
+[D-386](#d-386) ha scritto `did_this_year` e ne ha curati quattro: col metro
+della voce — *non nomina un segno, non si indica, si conta* — oggi sono **otto
+su diciassette**.
+
+E ne erano **dieci** fino a un'ora fa: [D-412](#d-412) ne ha curati altri due
+senza toccarli, perche' `A_STONE` e `A_WORK` chiedono una Pietra e adesso una
+Pietra si puo' alzare.
+
+| | prima di D-412 | dopo D-412 |
+|---|---|---|
+| `A_STONE` | 15 su 74 giocando, 20 fermi → **−14%** | 36 / 15 → **+28%** |
+| `A_WORK` | 13 / 13 → **+0%** | 32 / 13 → **+27%** |
+
+### Lo strumento c'era gia', e a due clausole mancava
+
+[D-327](#d-327) ha insegnato a tre clausole a mirare **per segni** invece che
+per nome — presenza, segno del luogo, Cicatrici — perche' una riga che nomina
+una Regione muore quando quella tessera non esce dalla pesca. **Due clausole di
+conteggio erano rimaste fuori**: quante terre tieni, quante Pietre hai in piedi.
+
+Adesso leggono `any_tag` come le altre. E' la differenza fra un obiettivo che si
+verifica **facendo un totale a mente** e uno che si verifica **guardando la
+mappa**: «due Regioni» contro «due terre del dominio del territorio».
+
+### Gli otto, e cosa nominano adesso
+
+| obiettivo | come si legge adesso |
+|---|---|
+| `TWO_LANDS` | due terre **del dominio del territorio** |
+| `A_GARRISON` | un presidio **nel territorio**, e due terre dietro |
+| `A_HIGH_HOUSE` | una Pietra di grado 2 **nell'antico o in capitale** |
+| `QUIET_WORLD` | non piu' di due Cicatrici **sulle terre della sopravvivenza** |
+| `FULL_HANDS` | le mani piene, **e una pedina dove si produce** |
+| `WRITTEN_THINGS` | due carte di Sapere, **e un piede dove le cose si tengono** |
+| `A_LEARNED_HOUSE` | due cose sapute, **e una guardata da vicino** — miniera, cristallo, isola, bosco, palude |
+| `SOMETHING_MUST_BREAK` | **lasciato com'e'** |
+
+L'ultimo e' una scelta, non una dimenticanza: e' l'unico dei diciassette che
+rende **+100%** giocando, e la voce stessa dice perche' — *«chiede che qualcosa
+succeda»*. Dargli un luogo sarebbe stato metterci un segno addosso per far
+tornare un conto.
+
+**E il validatore ha morso per strada**: la prima stesura di `A_LEARNED_HOUSE`
+guardava miniera e cristallo, che stanno su **2 tessere del parco** quando per
+esserci su ogni mappa pescata ne servono **5**. La guardia di D-327 l'ha
+fermata prima della misura.
+
+### Il costo, misurato e dichiarato
+
+100 partite CHR_00, seme 7000, tavolo misto. Un obiettivo che nomina e' un
+obiettivo **piu' difficile**, e sette su otto lo sono diventati:
+
+| obiettivo | prima (giocando su in mano) | dopo |
+|---|---|---|
+| `TWO_LANDS` | 36 su 73 · +32% | 15 su 73 · **+11%** |
+| `A_LEARNED_HOUSE` | 62 su 70 · +86% | 42 su 70 · **+59%** |
+| `A_HIGH_HOUSE` | 23 su 61 · +30% | 12 su 61 · **+20%** |
+| `A_GARRISON` | 23 su 79 · +15% | 17 su 79 · **+9%** |
+| `WRITTEN_THINGS` | 14 su 63 · +17% | 12 su 63 · **+14%** |
+| `FULL_HANDS` | 11 su 72 · +8% | 7 su 72 · **+3%** |
+| `QUIET_WORLD` | 59 su 72 · +58% | 66 su 72 · **+65%** |
+
+`QUIET_WORLD` e' l'unico che si e' **fatto piu' facile**, ed e' giusto cosi':
+contare le Cicatrici su tutta la mappa era chiedere al singolo di rispondere
+del mondo intero.
+
+**Nessuno e' diventato impossibile** — il piu' raro e' `FULL_HANDS` a 7 su 72 —
+e **giocare rende piu' che stare fermi per sedici obiettivi su diciassette**.
+Il diciassettesimo e' `MOST_STONE`, a **−2%**: era −3%, ed e' l'ultimo rimasto
+dei sei che [D-386](#d-386) contava.
+
+**Il cancello regge: 0 seggi bloccati su 8, tavolo misto *e* uniforme.**
+
+### E il conto della voce
+
+**Obiettivi che si reggono solo su un totale: da 8 a 1.** Quello che resta
+chiede che qualcosa succeda, che e' la cosa che la voce voleva.
+
+---
+
+## D-412 — Un'Azione della plancia alza una Pietra, e la causa non era una taratura
+
+**implemented in 0.1.383.** Parola del committente: **«R1 (a)»** su
+[ISSUES 123](ISSUES.md#123). Avanza [ISSUES 111](ISSUES.md#111).
+
+### Quello che la decisione non poteva sapere
+
+La raccomandazione era: *«ACQUISIRE diventa "pesca una carta, oppure alza una
+Pietra dove hai presenza"; e' l'unica delle sei che nessuna carta modifica,
+quindi ha spazio»*. Aveva ragione sullo spazio, e la ragione era piu' larga:
+**ACQUISIRE non era stampata su nessuna delle 96 facce**. Non era un'Azione
+poco usata — era **un'Azione che nessuno poteva giocare**, e il commento del
+cervello lo diceva da chissa' quando: *«nessuna carta porta ACQUISIRE»*.
+
+Quindi cambiare la regola non bastava: **le facce vanno scritte**. Il
+committente ha scelto **dodici**, sulle carte che oggi stampano **due volte lo
+stesso verbo** — cosi' la sostituzione ripara anche la regola di scrittura
+*«due Azioni, e due scelte diverse davvero»*.
+
+### La regola, e sta in un interruttore
+
+`acquire_rules.can_build_stone` sulla Chronicle. Acceso, ACQUISIRE ha due
+strade e chi gioca ne sceglie una: pesca, **oppure alza una Pietra di grado 1
+in una Regione dove ha presenza**. Le tre condizioni della terra — la Pietra ci
+sta, c'e' un posto libero, non c'e' gia' — sono quelle di
+[D-365](#d-365), e adesso stanno in `StoneRules` perche' **se le fanno in due**.
+
+**E le fanno in due modi diversi, apposta.** Dentro l'Effetto la risposta si
+tace: una frase d'autore che nomina la terra sbagliata non e' un errore, e' una
+frase che non aveva niente da dire in quel posto. Dentro l'Azione si **rifiuta a
+voce alta**, perche' un'azione legale che non fa niente e non avvisa e' il
+difetto peggiore che si possa scrivere — ed e' esattamente quello che questa
+voce denunciava.
+
+### Le dodici facce, e ognuna dice quale Pietra
+
+| carta | Pietra | la faccia che se n'e' andata |
+|---|---|---|
+| Posto di Blocco | Dogana | Farsi pagare il passaggio |
+| Magistrato | Archivio | Mandarlo a controllare — **il motore non la sapeva eseguire** |
+| Esodo | Villaggio | Mandare avanti i primi — **la promessa era gia' stampata** |
+| Prova | Archivio | Tenere la prova |
+| Archivio | Archivio | Far leggere a tutti |
+| Deposizione Sigillata | Archivio | Tenerla sigillata |
+| Riserva di Grano | Granaio | Chiudere i granai |
+| Sale | Granaio | Salare le riserve |
+| Carovana | Villaggio | Dirottarla |
+| Il Tesoro | Torre di veglia | Chiudere il tesoro |
+| Diritto di Ospitalita' | Villaggio | Offrire ospitalita' |
+| Legame di Sangue | Villaggio | Rivendicare il sangue |
+
+Due meritano una riga. **Esodo** stampava gia' *«sposta una presenza in un luogo
+qualsiasi e metti li' il tuo insediamento»*, e il motore ne eseguiva solo la
+prima meta': era una promessa rotta, e adesso e' mantenuta. **Magistrato** aveva
+una faccia **senza verbo**, di quelle che il motore scarta: erano undici, adesso
+sono dieci.
+
+**Il Cristallo Rosso era nella lista del committente e ne e' uscito**: tutt'e due
+le sue facce sono **l'unica penna** di un segno del dizionario, e toglierne una
+avrebbe fatto sparire `crystal_measured` e `discovery:crystal`. Al suo posto la
+Deposizione Sigillata. Anche il Pedaggio e' uscito, per la stessa ragione
+(`toll_shared`) e per una seconda: la sua unica faccia sostituibile e' un
+RIVENDICARE, e [ISSUES 125](ISSUES.md#125) ne vuole di piu', non di meno.
+
+### La misura, appaiata: stessi cento semi, l'interruttore spento e acceso
+
+100 partite CHR_00, seme 7000, tavolo misto.
+
+| | spento | acceso |
+|---|---|---|
+| Pietre alzate | 992 | **1.186** |
+| — **da un'Azione di chi gioca** | **0** | **182** |
+| — dal Consiglio o da un'Eco | 136 | 148 |
+| — dall'apertura | 856 | 856 |
+| in piedi a fine anno | 833 | **1.009** |
+| salite di grado | 133 | **168** |
+| turni «passa» | 49,6% (3.571 su 7.200) | **46,0%** (3.313) |
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Tre punti e sei decimi di turni «passa» in meno**, ed e' il primo numero che
+scende su quella riga da quando la si misura. Il criterio di
+[PZ-01](PUNTO_ZERO.md) chiedeva di stare sotto la meta': il margine passa da
+quattro decimi a **quattro punti**.
+
+### E la sonda ha confessato uno zero, come sempre
+
+Il primo conto diceva **zero Pietre da un'Azione** mentre le Pietre in piu'
+erano gia' li'. Cercava la firma `ACT_ACQUIRE`; una Pietra alzata giocando una
+carta arriva firmata **`ACT_PLAY_CARD`**, perche' al tavolo si e' calata una
+carta. **Ottava volta in questo progetto che uno zero e' chi guarda.**
+
+### Costo dichiarato
+
+- **Dodici testi d'autore sono usciti dalla scatola.** Nessuno era l'unica penna
+  di un segno — verificato prima di toccare, e le due carte che lo erano sono
+  state escluse.
+- `test_the_sign_finds_its_place` misurava «Riserva di Grano», la cui seconda
+  faccia adesso costruisce: e' passata a «Marcia», che ha la stessa forma — una
+  faccia che parla a una domanda e lascia il suo segno su un luogo.
+- La suite passa da 691 a **697 prove**.
+
+---
+
 ## D-411 — La lista si riordina per chi la puo' muovere, e il conto era sbagliato di cinque
 
 **implemented in 0.1.382.** Riscrive [la lista](LE_TUE_DECISIONI.md). Nessuna

@@ -465,14 +465,25 @@ func set_benefits(chosen: Array) -> bool:
 	for voice in benefit_menu():
 		known[str((voice as Dictionary)["id"])] = true
 	var taken: Dictionary = {}
-	for voice_id in chosen:
-		if not known.has(str(voice_id)):
-			last_error = "«%s» non e' un beneficio di questa carta" % str(voice_id)
+	for entry in chosen:
+		var voice_id: String = _voice_id_of(entry)
+		if not known.has(voice_id):
+			last_error = "«%s» non e' un beneficio di questa carta" % voice_id
 			return false
-		if taken.has(str(voice_id)):
-			last_error = "una pedina per voce: «%s» e' gia' posata" % str(voice_id)
+		if taken.has(voice_id):
+			last_error = "una pedina per voce: «%s» e' gia' posata" % voice_id
 			return false
-		taken[str(voice_id)] = true
+		# **La pedina porta con se' il nome della domanda** (D-416, ISSUES 106).
+		# Parola del committente sulla casella che muove una domanda: *«la
+		# sceglie chi propone»*. Una pedina si posa su **due** cose — la voce e
+		# il segnalino che indica — e la voce puo' arrivare come un id secco,
+		# che vuol dire «la domanda di cui si sta discutendo», o come «questa
+		# voce, su quella domanda».
+		var asked: String = _question_asked_of(entry)
+		if asked != "" and not (world["tensions"] as Dictionary).has(asked):
+			last_error = "«%s» non e' una domanda in tavola" % asked
+			return false
+		taken[voice_id] = true
 	# **Le pedine si posano adesso**, e i gettoni con loro. Se questa chiamata
 	# ne cambia il numero — succede quando la prima e' stata rifiutata e il
 	# mondo ripiega sul primo beneficio — il conto si aggiusta nei due versi:
@@ -485,14 +496,37 @@ func set_benefits(chosen: Array) -> bool:
 	current["benefits"] = chosen.duplicate()
 	if not chosen.is_empty():
 		var said: PackedStringArray = PackedStringArray()
-		for voice_id in chosen:
-			said.append(_voice_text("benefits", str(voice_id)))
+		for entry in chosen:
+			var line: String = _voice_text("benefits", _voice_id_of(entry))
+			# **E il verbale dice quale**, che e' meta' del criterio della voce:
+			# una pedina posata su una domanda che non e' quella in discussione
+			# e' un gesto che al tavolo si vede, e a verbale deve leggersi.
+			var asked: String = _question_asked_of(entry)
+			if asked != "":
+				line += " — su %s" % _tension_name(asked)
+			said.append(line)
 		log.bullet("C. %s compra: %s  (%s)" % [
 			_name(str(current["proponent"])), " · ".join(said),
 			"il primo e' gratis" if need == 0
 				else "%d gettoni di rivendicazione" % need,
 		])
 	return true
+
+
+## L'id della voce, comunque la pedina sia stata posata: un id secco, oppure
+## «questa voce, su quella domanda».
+static func _voice_id_of(entry: Variant) -> String:
+	if entry is Dictionary:
+		return str((entry as Dictionary).get("id", ""))
+	return str(entry)
+
+
+## La domanda che chi propone ha indicato col dito, o "" se non ne ha indicata
+## nessuna — e allora vale quella di cui si sta discutendo, com'e' sempre stato.
+static func _question_asked_of(entry: Variant) -> String:
+	if entry is Dictionary:
+		return str((entry as Dictionary).get("question", ""))
+	return ""
 
 
 ## **Il gettone si muove come tutto il resto**: un Effetto con un inverso, cosi'
@@ -1363,8 +1397,15 @@ func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> voi
 	var context: Dictionary = effect_context()
 	var spent: Array = []
 	if ConfluenceResolution.is_success(outcome):
-		for voice_id in (current.get("benefits", []) as Array):
-			spent.append(["benefits", _voice("benefits", str(voice_id))])
+		for entry in (current.get("benefits", []) as Array):
+			var voice: Dictionary = _voice("benefits", _voice_id_of(entry)).duplicate()
+			# La domanda scelta viaggia dentro la voce, cosi' `question_of` la
+			# trova senza che l'economia debba conoscere la forma della pedina.
+			var asked: String = _question_asked_of(entry)
+			if asked != "":
+				voice["dove"] = "QUESTION"
+				voice["question"] = asked
+			spent.append(["benefits", voice])
 		for voice_id in priced_costs():
 			spent.append(["costs", _voice("costs", str(voice_id))])
 	else:

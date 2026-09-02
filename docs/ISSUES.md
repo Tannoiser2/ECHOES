@@ -2910,6 +2910,34 @@ dire tarare due verbi contro un'economia che sta per cambiare.
 famiglia e' calata meno della meta' della piu' calata, e ogni carta viene calata
 per agire almeno una volta su cento anni — col playtest ancora **0/8**.
 
+### Rimisurata in 0.1.385, e la sonda contava il verbo di ieri ([D-414](DECISIONS.md#d-414))
+
+Il libro mastro stampava una tabella **«PER AZIONE»** che leggeva
+`card_action.kind` — il verbo **dichiarato** della carta. Da
+[D-283](DECISIONS.md#d-283) quello non è più il verbo che si gioca: una carta
+stampa due Azioni e chi cala sceglie. Il criterio di questa voce parla di **verbi
+giocati**, quindi era misurato sulla cosa sbagliata — e da
+[D-412](DECISIONS.md#d-412) ACQUISIRE non compariva affatto, pur essendo calata
+194 volte in cento partite.
+
+Adesso il libro mastro stampa due tabelle. Quella vera:
+
+| azione calata | volte | quota |
+|---|---|---|
+| SCHEME | 893 | 30,6% |
+| MOVE | 637 | 21,8% |
+| FORGE | 599 | 20,5% |
+| INFLUENCE | 381 | 13,1% |
+| CLAIM | 212 | 7,3% |
+| **ACQUIRE** | **194** | **6,7%** |
+
+**Il criterio non è soddisfatto, e adesso si sa di quanto**: la metà del più
+giocato è 447, e tre verbi su sei stanno sotto. Il numero da battere non è più
+un 18,5% preso sul verbo dichiarato — è **381 contro 893**.
+
+La seconda metà del criterio è quasi vera: **una carta su 48 non viene mai
+calata**, Patto Rotto.
+
 ---
 
 ### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
@@ -2992,6 +3020,40 @@ voce 59.
 **Fatto quando** nessuna domanda apre meno della meta' dei Concili della piu'
 ascoltata, e nessuna resta senza Concilio in piu' di un quarto degli anni in cui
 e' in gioco.
+
+### Ritagliato in 0.1.386, sui numeri di oggi ([D-415](DECISIONS.md#d-415))
+
+**Il criterio qui sopra non e' raggiungibile per aritmetica**, e la voce lo
+diceva gia': con 3,61 Consigli l'anno su sessanta domande, **la piu' ascoltata
+del tavolo arriva al 68,2%** — nessuna puo' stare sopra il 75% che quel «piu' di
+un quarto» chiede. Un criterio che nessuno puo' soddisfare non e' severo: e'
+rotto.
+
+Rimisurato, 100 partite CHR_00 a tavolo misto, seme 7000, `run_question_ledger`:
+
+| | |
+|---|---|
+| domande mute (pescate, e mai un Consiglio) | **1 su 60** — «L'Acqua Ferma» |
+| la piu' ascoltata | «La Reliquia», **68,2%** degli anni in cui e' in gioco |
+| la meno, fra quelle che parlano | «I Pesi e le Misure», **11,1%** |
+| **lo scarto** | **6,1×** |
+
+Lo scarto era **13,1×** in 0.1.377 — misurato con lo stesso libro mastro, ma
+prima di R1 e R3, e i due numeri stanno su due tavoli diversi ([D-391](DECISIONS.md#d-391)):
+si leggono come due fotografie, non come una discesa.
+
+**E la muta ha una diagnosi.** «L'Acqua Ferma» si scaldava su `#magro` e sul
+canale: il primo il mondo lo scrive **2 volte in cento partite**, il secondo mai
+— nessuna Pietra si chiama canale. E la Risonanza guarda **quello che un'Azione
+ha appena fatto**, non quello che scrive una Conseguenza, quindi le due chiavi
+erano di fatto una sola, rarissima. Datale una chiave che un'Azione scrive
+davvero — **il Granaio alzato**, 182 volte in cento partite da
+[D-412](DECISIONS.md#d-412) — il calore arriva: **quanto le manca per aprire
+passa da +3,50 a +2,88**. Non basta ancora, e questo e' il numero da battere.
+
+**Fatto quando** nessuna domanda pescata resta senza un Consiglio in cento
+partite (oggi: una), e lo scarto fra la piu' e la meno ascoltata sta sotto
+**6×** (oggi 6,1×).
 
 ---
 
@@ -3631,6 +3693,12 @@ che nominano invece di contare), e si rimisura dopo quella · aperta in 0.1.276
 > (1.298 su 2.681), contro il 60,5% di 0.1.276 e il 52,4% di 0.1.278. Scende, e
 > scende da sola. **Sotto la meta' per la prima volta**, e ancora troppo: un
 > punto su due lo consegna il calendario.
+>
+> **E in 0.1.384, dopo la cura** ([D-413](DECISIONS.md#d-413)): **46,2%**
+> (1.389 su 3.005). La cura era questa voce a dirla — *«la sua cura e' la
+> R3»* — e ha mosso di due punti quello che le apparteneva. Il resto non e' suo:
+> le clausole che restano vere all'apertura sono quelle di soglia, e quelle
+> devono esserlo.
 >
 > **Il numero si scrive col tavolo su cui e' misurato** ([D-391](DECISIONS.md#d-391)): i tre
 > non stanno in fila come una strada — quello di 0.1.276 era su 40 tavoli CHR_01
@@ -6255,6 +6323,36 @@ o è stata tolta perché non serviva.
 
 </details>
 
+### Rimisurata in 0.1.385 sul perimetro giusto, e le due porte murate sono cadute ([D-414](DECISIONS.md#d-414))
+
+Il criterio dice **200 anni**, e il numero della voce era preso su cento anni
+scollegati. Misurata dove va misurata — 20 saghe da 10, 1.018 Consigli — sono
+**7 su 65**, non nove. E ognuna ha una diagnosi:
+
+| verdetto | quante | cosa vuol dire |
+|---|---|---|
+| **sempre perdente** | 4 | la proposta viene scelta e non passa mai |
+| **mai scelta** | 3 | sale sulla scheda e nessuno la prende |
+| **non idonea** | **0** (erano 2) | non saliva nemmeno sulla scheda |
+
+`CNS_CROWN_REUNITED` era esclusa **14 volte su 14**, `CNS_DRAGON_SLAIN` **5 su
+5**: non impopolari, invisibili. La prima chiedeva `crown_divided`, che il mondo
+scrive 3 volte in cento partite; la seconda una Rivelazione, che **una sola
+carta in tutto il mazzo** porta. Adesso ognuna ha una seconda porta, e tutt'e due
+sono passate a **«offerta 2 volte, presa zero»**.
+
+**Il resto non è di questa voce**: una proposta che sale sulla scheda e nessuno
+prende, o che viene presa e non passa, è l'economia del Consiglio — cioè la
+[125](#125), che aspetta il committente. Questa voce ha finito quello che poteva
+fare da sola: **nessuna Conseguenza è più murata.**
+
+**E per arrivarci ho sbagliato due volte nello stesso modo**, e sta a verbale
+perché vale più della riparazione: la prima chiave l'avevo scritta nel file dei
+template, e **le Proposte vengono dalla carta Tensione** (D-378) — il numero non
+si è mosso di un centesimo; la seconda la puntava su una Regione, e **una
+Scoperta sta sull'entità**. Nona e decima volta che un numero fermo era chi
+guardava.
+
 ---
 
 ### 55. ✅ Il ciclo del gioco è rotto in tre punti — chiusa in 0.1.198 per tre quarti
@@ -6604,6 +6702,23 @@ il playtest degli stessi 100 semi, tavolo misto *e* uniforme:
 **La voce non si chiude, e la riga che resta non è sua.** Un obiettivo che si
 vince contando non lo si può contendere: la quarta riga è
 [ISSUES 120](#120), ed è del committente. Questa si chiude con quella.
+
+### ✅ E quella è arrivata: chiusa in 0.1.384 ([D-413](DECISIONS.md#d-413))
+
+Il committente ha detto **«R3 sì»**, gli Obiettivi nominano un luogo, e la
+quarta riga si è mossa più di tutte. Stessa sonda, stessi 100 semi, tavolo
+misto:
+
+| | prima di D-413 | dopo |
+|---|---|---|
+| coppie di seggi che **si contendono una Regione** | 15,5% (93) | **44,0% (264)** |
+| coppie che si contendono una Cicatrice | 26,2% | 26,3% |
+| clausole centrate sulla mappa | 54,2% | **58,9%** |
+
+**Da una coppia su sette a quasi una su due.** Era il numero che questa voce
+inseguiva da 0.1.187 — *«gli obiettivi non si incrociano: uno su dodici»* — e
+adesso si incrociano perché chiedono **lo stesso pezzo di mappa**: due terre del
+dominio del territorio non le possono tenere due case.
 
 E il numero che la voce inseguiva da 0.1.187 — *«la mappa è ferma»* — non è più
 vero: 2,32 → **3,75** passaggi di mano, 2,46 → **3,40** Regioni contese. Nessuna
@@ -7087,6 +7202,35 @@ scelta libera e' anche la cosa che potrebbe renderla viva.
 **Fatto quando** un proponente puo' posare la pedina su una domanda che nomina,
 il verbale dice quale, e la sonda delle caselle mostra se la casella smette di
 essere quella che nessuno compra.
+
+### Due terzi fatti in 0.1.387, e il terzo isolato ([D-416](DECISIONS.md#d-416))
+
+| | |
+|---|---|
+| un proponente puo' posare la pedina su una domanda che nomina | ✅ |
+| il verbale dice quale | ✅ |
+| la casella smette di essere quella che nessuno compra | ❌ |
+
+**La catena era piu' corta di quanto questa voce temeva**: sei anelli previsti,
+tre bastati, perche' `current["benefits"]` ha solo tre lettori. Una pedina arriva
+come un id secco — la domanda in discussione, com'e' sempre stato — o come
+«questa voce, su quella domanda», e ogni chiamante di prima continua a
+funzionare.
+
+**Il numero e' rimisurato**: la casella e' offerta 700 volte e comprata **22** —
+una su 32, non una su 72 come diceva questa voce prima di
+[D-412](DECISIONS.md#d-412).
+
+**E il terzo pezzo ha una diagnosi, non un'ipotesi.** Due tentativi di far
+scegliere al cervello la domanda migliore hanno lasciato la sonda **identica al
+centesimo**, e il secondo ha rotto una prova dei legami: annullato. La prova
+`test_the_token_carries_the_question` dice quale delle due metà è rotta — il
+motore la pedina la sa portare, **il cervello non ne indica nessuna** — ed è
+scritta come misura dello stato di oggi: se diventa rossa, qualcuno ha insegnato
+al cervello a scegliere, e allora si rimisura la sonda.
+
+**Resta aperta su quello**, ed è equilibrio: un cervello che sceglie quale
+domanda alzare o abbassare cambia il gioco, e va misurato sui 100 semi.
 
 
 ---
@@ -8279,6 +8423,43 @@ che è dove `echo_function_played` già guarda — ma renderebbe il gesto una
 proprietà della carta invece che del mondo. **Fatto quando** il committente dice
 come il tavolo si ricorda di un gesto.
 
+### ✅ «R3 sì» in 0.1.384: gli Obiettivi nominano un luogo, e da otto ne resta uno
+
+Parola del committente, scritta in [D-413](DECISIONS.md#d-413). E rimisurata
+prima di lavorarla, come vuole la casa: **erano otto, non dodici** — il numero
+del titolo è del 0.1.347, e `did_this_year` ne aveva già curati quattro. **E ne
+erano dieci un'ora prima**: [D-412](DECISIONS.md#d-412) ne ha curati altri due
+senza toccarli, perché `A_STONE` e `A_WORK` chiedono una Pietra e adesso una
+Pietra si può alzare.
+
+Lo strumento c'era già e a due clausole mancava: [D-327](DECISIONS.md#d-327)
+aveva insegnato a tre clausole a mirare **per segni**, e le due di conteggio —
+quante terre tieni, quante Pietre hai in piedi — erano rimaste fuori. Adesso
+leggono `any_tag` come le altre.
+
+| obiettivo | come si legge adesso | giocando, prima → dopo |
+|---|---|---|
+| `TWO_LANDS` | due terre **del dominio del territorio** | +32% → **+11%** |
+| `A_LEARNED_HOUSE` | due cose sapute, **e una guardata da vicino** | +86% → **+59%** |
+| `A_HIGH_HOUSE` | una Pietra di grado 2 **nell'antico o in capitale** | +30% → **+20%** |
+| `A_GARRISON` | un presidio **nel territorio** | +15% → **+9%** |
+| `WRITTEN_THINGS` | **e un piede dove le cose si tengono** | +17% → **+14%** |
+| `FULL_HANDS` | **e una pedina dove si produce** | +8% → **+3%** |
+| `QUIET_WORLD` | le Cicatrici **sulle terre della sopravvivenza** | +58% → **+65%** |
+| `SOMETHING_MUST_BREAK` | **lasciato com'è** | +100% |
+
+**Il costo è dichiarato: sette obiettivi su otto sono più difficili.** Nessuno è
+diventato impossibile — il più raro è `FULL_HANDS` a 7 su 72 — e **giocare rende
+più che stare fermi per sedici su diciassette**. Il diciassettesimo è
+`MOST_STONE` a −2%, l'ultimo dei sei di D-386. Cancello: **0 su 8**, misto *e*
+uniforme.
+
+**Obiettivi che si reggono solo su un totale: da 8 a 1.** Quello che resta
+chiede che qualcosa succeda, ed è la cosa che questa voce voleva.
+
+**Resta aperto il segnalino di `did_this_year`**, che è la domanda qui sopra e
+non l'ha toccata nessuno.
+
 ---
 
 ### 121. ✅ Due segni e un'Azione che nessuno tocca — CHIUSA in 0.1.348: non era vero
@@ -8462,6 +8643,38 @@ committente può muovere oggi.
 
 **Fatto quando** il committente sceglie, o quando 119 è chiusa e questa misura
 si rifà con lei.
+
+### ✅ Scelta in 0.1.383: **R1 (a)**, e la causa non era una taratura
+
+Parola del committente: **«R1 (a)»** — ACQUISIRE alza una Pietra. Scritto in
+[D-412](DECISIONS.md#d-412), e per strada si e' trovato che la voce nominava un
+difetto piu' grosso di quello che sapeva:
+
+> **ACQUISIRE non era stampata su nessuna delle 96 facce.** Non un'Azione poco
+> usata: **un'Azione che nessuno poteva giocare**, e il commento del cervello lo
+> diceva gia' — *«nessuna carta porta ACQUISIRE»*. Cambiare la regola non
+> bastava: dodici facce sono state scritte, sulle carte che stampavano due volte
+> lo stesso verbo.
+
+Misura appaiata, 100 partite CHR_00 a tavolo misto, seme 7000, stessi semi con
+l'interruttore spento e acceso:
+
+| | spento | acceso |
+|---|---|---|
+| Pietre alzate | 992 | **1.186** |
+| — **da un'Azione di chi gioca** | **0** | **182** |
+| in piedi a fine anno | 833 | **1.009** |
+| turni «passa» | 49,6% | **46,0%** |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Il numero che questa voce inseguiva era «quaranta turni su cento», ed e'
+sceso di tre punti e sei decimi.** Non e' finita — l'84,7% dei «passa» resta
+*«nessuna mossa gli serviva»* — ma e' la prima volta che quella riga scende, e
+la causa e' misurata: adesso c'e' una cosa da fare che nessuno ti deve
+concedere.
+
+**Resta aperta**, e su cosa: la voce chiedeva anche che [119](#119) fosse chiusa
+e la misura rifatta con lei. Quella e' ancora del committente.
 
 ---
 

@@ -656,11 +656,13 @@
       "read_by": [
         "asset_physical",
         "chronicle",
+        "confluence_template",
         "destiny",
         "destiny_physical",
+        "echo_card",
         "entity",
         "entity_strategic_profile",
-        "echo_card"
+        "tension"
       ]
     },
     {
@@ -951,8 +953,10 @@
         "echo_card"
       ],
       "read_by": [
+        "confluence_template",
         "destiny",
-        "objective"
+        "objective",
+        "tension"
       ],
       "note": "una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — per questo il censimento la vede orfana pur avendo chi la scrive e chi la conta"
     },
@@ -1322,7 +1326,9 @@
       ],
       "read_by": [
         "asset_physical",
-        "entity"
+        "confluence_template",
+        "entity",
+        "tension"
       ],
       "note": "vive sia sulla casa (entry_tag della successione) sia sul mondo (fatto ricordato)"
     },
@@ -2747,6 +2753,7 @@
         "REGION"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [
@@ -2805,6 +2812,7 @@
         "il grande granaio"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [
@@ -2891,6 +2899,7 @@
         "la dogana"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [
@@ -2914,6 +2923,7 @@
         "torre di veglia"
       ],
       "written_by": [
+        "asset_physical",
         "structure_type"
       ],
       "read_by": [

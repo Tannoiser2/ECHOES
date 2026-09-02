@@ -219,7 +219,12 @@
         },
         "template": {
           "type": "string",
-          "description": "Il verbo del motore che questa Azione pronuncia, quando ce n'e' uno: MOVE, INFLUENCE, SCHEME, FORGE, CLAIM."
+          "description": "Il verbo del motore che questa Azione pronuncia, quando ce n'e' uno: MOVE, INFLUENCE, SCHEME, FORGE, CLAIM, ACQUIRE."
+        },
+        "builds": {
+          "type": "string",
+          "pattern": "^STR_[A-Z_]+$",
+          "description": "La Pietra che questa Azione alza (D-412). Solo su un'Azione ACQUIRE: la faccia dice **quale** Pietra, cosi' al tavolo non si sceglie fra dieci segnalini ma si prende quello stampato sulla carta. Si alza di grado 1, di chi l'ha alzata, in una Regione dove ha presenza e dove il bersaglio a segni della carta arriva."
         }
       }
     },

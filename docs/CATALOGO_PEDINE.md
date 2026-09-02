@@ -584,7 +584,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il granaio
 
-`structure:granary` · categoria **FUNCTION** · sta su region · lo posa: structure_type
+`structure:granary` · categoria **FUNCTION** · sta su region · lo posa: asset_physical, structure_type
 
 **Cosa vuol dire.** Il pane e' messo da parte: questa terra puo' aspettare l'inverno.
 
@@ -620,7 +620,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il pedaggio
 
-`structure:tollgate` · categoria **FUNCTION** · sta su region · lo posa: structure_type
+`structure:tollgate` · categoria **FUNCTION** · sta su region · lo posa: asset_physical, structure_type
 
 **Cosa vuol dire.** Chi passa paga, e qualcuno tiene il conto.
 
@@ -638,7 +638,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la torre di veglia
 
-`structure:watchtower` · categoria **FUNCTION** · sta su region · lo posa: structure_type
+`structure:watchtower` · categoria **FUNCTION** · sta su region · lo posa: asset_physical, structure_type
 
 **Cosa vuol dire.** Si vede lontano: qui non si arriva di sorpresa.
 

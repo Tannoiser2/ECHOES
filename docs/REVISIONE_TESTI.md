@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4172 testi in lettura.
+possono spostare nella frase, non togliere. 4182 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -6790,7 +6790,7 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`TEN_WATER, si accende quando — ?`**
-> una carta posa #magro o #il_canale
+> Quando qualcuno alzo' un granaio, scavo' un canale, o la magra arrivo'.
 
 
 **`TEN_WATER, si accende quando — ?`**
@@ -7324,7 +7324,19 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_SLAY_THE_DRAGON, si puo' proporre se 1`**
+> Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 2`**
 > Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 3`**
+> Oppure qualcuno ha aperto la vena, e sa cosa c'e' sotto
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 4`**
+> Oppure chi propone ha gia' visto il presagio
 
 
 **`Q_BAD_GRAIN_SILO`**
@@ -9116,7 +9128,15 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_ONE_CROWN, si puo' proporre se 1`**
-> La corona è divisa da un'altra era
+> La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
+
+
+**`P_ONE_CROWN, si puo' proporre se 2`**
+> La corona e' divisa da un'altra era
+
+
+**`P_ONE_CROWN, si puo' proporre se 3`**
+> Qualcuno ha gia' fatto il nome di un erede
 
 
 **`P_ONE_CROWN, esito`**
@@ -9888,7 +9908,19 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_SLAY_THE_DRAGON, si puo' proporre se 1`**
+> Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 2`**
 > Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 3`**
+> Oppure qualcuno ha aperto la vena, e sa cosa c'e' sotto
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 4`**
+> Oppure chi propone ha gia' visto il presagio
 
 
 **`CNF_CHARTER_03`**
@@ -10360,7 +10392,15 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_ONE_CROWN, si puo' proporre se 1`**
-> La corona è divisa da un'altra era
+> La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
+
+
+**`P_ONE_CROWN, si puo' proporre se 2`**
+> La corona e' divisa da un'altra era
+
+
+**`P_ONE_CROWN, si puo' proporre se 3`**
+> Qualcuno ha gia' fatto il nome di un erede
 
 
 **`P_ONE_CROWN, esito`**
@@ -11622,9 +11662,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_AUTHORITY_MAGISTRATE, azione 2`**
-> Mandarlo a controllare
+> Mandarlo a tenere le carte
 
-> Togli #malcontento dal luogo e pesca 1 Sapere.
+> Alza un Archivio in un luogo dove hai presenza: dove il magistrato siede, le carte si tengono.
 
 
 **`AST_AUTHORITY_MAGISTRATE, risonanza`**
@@ -11734,9 +11774,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_BONDS_BLOOD_TIE, azione 2`**
-> Rivendicare il sangue
+> Fermare la famiglia
 
-> Metti #erede_nominato sul mondo.
+> Alza un Villaggio in un luogo dove hai presenza: il sangue mette radici dove si ferma.
 
 
 **`AST_BONDS_BLOOD_TIE, risonanza`**
@@ -11818,9 +11858,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_BONDS_GUEST_RIGHT, azione 2`**
-> Offrire ospitalita'
+> Dare loro una casa
 
-> Un'altra casa mette una presenza in un tuo luogo e sale di 2 gradini nel rapporto con te.
+> Alza un Villaggio in un luogo dove hai presenza: chi ospita per un inverno ospita per sempre.
 
 
 **`AST_BONDS_GUEST_RIGHT, risonanza`**
@@ -12070,9 +12110,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_FORCE_ROADBLOCK, azione 2`**
-> Farsi pagare il passaggio
+> Mettere la sbarra
 
-> Pesca 1 Ricchezza. Il luogo resta aperto a tutti, te compreso.
+> Alza una Dogana in un luogo dove hai presenza: da qui in poi chi passa paga te.
 
 
 **`AST_FORCE_ROADBLOCK, risonanza`**
@@ -12154,9 +12194,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, azione 2`**
-> Far leggere a tutti
+> Aprire l'archivio
 
-> Metti #registro_pubblico sul mondo.
+> Alza un Archivio in un luogo dove hai presenza.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, risonanza`**
@@ -12238,9 +12278,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_KNOWLEDGE_PROOF, azione 2`**
-> Tenere la prova
+> Depositare la prova
 
-> Scopri la questione e pesca 1 Sapere.
+> Alza un Archivio in un luogo dove hai presenza, e la prova resta li' dove tutti sanno di trovarla.
 
 
 **`AST_KNOWLEDGE_PROOF, risonanza`**
@@ -12322,9 +12362,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY, azione 2`**
-> Tenerla sigillata
+> Metterla agli atti
 
-> Rivendica il luogo.
+> Alza un Archivio in un luogo dove hai presenza: la busta resta chiusa, ma adesso si sa dov'e'.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY, risonanza`**
@@ -12436,7 +12476,7 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`AST_PEOPLE_EXODUS, azione 2`**
 > Mandare avanti i primi
 
-> Sposta una presenza in un luogo qualsiasi e metti li' il tuo insediamento.
+> Alza un Villaggio in un luogo dove hai presenza: i primi arrivati smettono di andarsene.
 
 
 **`AST_PEOPLE_EXODUS, risonanza`**
@@ -12602,9 +12642,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_CARAVAN, azione 2`**
-> Dirottarla
+> Fermare la carovana
 
-> Sposta la presenza in un altro luogo con #commercio e pesca 1 Ricchezza.
+> Alza un Villaggio in un luogo dove hai presenza: chi si ferma una volta si ferma.
 
 
 **`AST_WEALTH_CARAVAN, risonanza`**
@@ -12658,9 +12698,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_GRAIN, azione 2`**
-> Chiudere i granai
+> Costruire il granaio
 
-> Metti #razionato sul luogo e alza di 1 la questione Sopravvivenza piu' calda.
+> Alza un Granaio in un luogo dove hai presenza.
 
 
 **`AST_WEALTH_GRAIN, risonanza`**
@@ -12742,9 +12782,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_SALT, azione 2`**
-> Salare le riserve
+> Salare per l'inverno
 
-> Togli #magro dal luogo.
+> Alza un Granaio in un luogo dove hai presenza: quello che si sala, si tiene.
 
 
 **`AST_WEALTH_SALT, risonanza`**
@@ -12798,9 +12838,9 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`AST_WEALTH_TREASURY, azione 2`**
-> Chiudere il tesoro
+> Metterci una guardia
 
-> Pesca 2 Ricchezza e metti #malcontento sul luogo.
+> Alza una Torre di veglia in un luogo dove hai presenza: il tesoro si tiene dove si vede.
 
 
 **`AST_WEALTH_TREASURY, risonanza`**
@@ -13642,31 +13682,31 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_A_GARRISON`**
 > Il Muro che Tiene
 
-> C'è chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo è del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso.
+> C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.
 
-> Un presidio suo tiene la terra
+> Un presidio suo tiene una terra del territorio
 
-> Almeno un presidio suo · Controllo di almeno 2 Regioni
+> Almeno un presidio suo nel dominio del territorio · Controllo di almeno 2 Regioni
 
 
 **`OBJ_A_HIGH_HOUSE`**
 > Pietra sopra Pietra
 
-> Alzare qualcosa è facile: alzarlo due volte, no. Chi porta una casa al secondo grado ha speso un anno per farlo.
+> Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.
 
-> Una sua pietra è salita di grado
+> Una sua pietra e' salita di grado dove si guarda
 
-> Almeno una struttura sua di grado 2 o più
+> Una sua pietra di grado 2 nell'antico o in capitale
 
 
 **`OBJ_A_LEARNED_HOUSE`**
 > Le Cose che si Sanno
 
-> Sapere non si vede sul tavolo e non si conta in Regioni. Ma alla fine dell'anno, chi ha guardato più a fondo ha guardato più a fondo.
+> Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.
 
-> Ha imparato almeno due cose che il mondo sa indicare
+> Ha imparato due cose, e una l'ha guardata da vicino
 
-> Almeno due scoperte
+> Almeno due scoperte · Una sua pedina dove il mondo e' ancora da guardare
 
 
 **`OBJ_A_STONE`**
@@ -13702,11 +13742,11 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_FULL_HANDS`**
 > Le Mani Piene
 
-> Finire l'anno con qualcosa ancora da giocare. Non è prudenza: è avere sempre avuto una carta più degli altri — e se tutti tengono tutto, non la tiene nessuno.
+> Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.
 
-> Chiude l'anno con almeno cinque carte in mano
+> Chiude l'anno con le mani piene, e sta dove si produce
 
-> Più carte in mano di ogni altra casa
+> Più carte in mano di ogni altra casa · Una sua pedina in una terra del dominio delle risorse
 
 
 **`OBJ_MOST_STONE`**
@@ -13732,11 +13772,11 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_QUIET_WORLD`**
 > Un Mondo che si Può Ancora Usare
 
-> Il mondo si porta addosso quello che gli fai. Questo obiettivo chiede un anno che non lasci più di due cicatrici — ma non lo dà a chi non ha toccato niente: chi non guarda il mondo non lo tiene pulito, si limita a non esserci.
+> Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.
 
-> Il mondo esce dall'anno con non più di due segni
+> Le terre dove si vive escono dall'anno quasi intere
 
-> Non più di due cicatrici sulla mappa · Almeno una scoperta sua
+> Non piu' di due Cicatrici sulle terre della sopravvivenza · Almeno una scoperta sua
 
 
 **`OBJ_SOMETHING_MUST_BREAK`**
@@ -13792,21 +13832,21 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_TWO_LANDS`**
 > Due Terre, una Voce
 
-> Non basta esserci: bisogna che due posti rispondano quando chiami. È l'ambizione più semplice del tavolo, e la più difficile da nascondere.
+> Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.
 
-> Due Regioni rispondono al suo nome
+> Due terre del territorio rispondono al suo nome
 
-> Controllo di almeno 2 Regioni
+> Controllo di 2 terre del dominio del territorio
 
 
 **`OBJ_WRITTEN_THINGS`**
 > Le Cose Scritte
 
-> Non basta quello che tieni in mano: conta che tu sia andato a cercarlo. Chiudere l'anno con due carte di Sapere e almeno una cosa scoperta è una scelta, perché ognuna delle due era anche un'azione che non hai fatto.
+> Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.
 
-> Chiude l'anno con due carte di Sapere in mano
+> Due carte di Sapere in mano, e un piede dove le cose si tengono
 
-> Almeno 2 carte Sapere in mano · Almeno una scoperta sua
+> Almeno 2 carte Sapere in mano · Almeno una scoperta sua · Una sua pedina in una terra del dominio dell'antico
 
 
 ## 11. Le Pietre — quello che si costruisce, grado per grado

@@ -16,18 +16,24 @@ extends "res://tests/test_case.gd"
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 
 const SEAT: String = "ENT_ALDRIC"
-const CARD: String = "AST_WEALTH_GRAIN"
-## «Chiudere i granai», la seconda meta' della carta vera: lascia #razionato.
-const MARK: String = "condition:rationed"
+## **La carta e' cambiata sotto la prova** (D-412): «Riserva di Grano» stampava
+## due INFLUENZARE, e la seconda adesso alza un Granaio. Serviva un'altra carta
+## con la stessa forma — una faccia che parla a una **domanda** e lascia il suo
+## segno su un **luogo** — ed e' «Marcia», che marcia sulla capitale.
+const CARD: String = "AST_PEOPLE_MARCH"
+## «Marciare sulla capitale», la seconda meta' della carta vera: lascia
+## #malcontento.
+const MARK: String = "condition:unrest"
 
 
 func before_each() -> void:
 	new_session()
 
 
-## La carta della scatola, in mano al seggio. Nessun attrezzo di scena: «Il
-## Grano» stampa due INFLUENZARE — aprire i granai e chiuderli — e tutte e due
-## lasciano un segno su un luogo, che e' il caso che questa decisione risolve.
+## La carta della scatola, in mano al seggio. Nessun attrezzo di scena:
+## «Marcia» stampa MUOVERE e INFLUENZARE, e la seconda parla a una domanda
+## lasciando #malcontento su un luogo — che e' il caso che questa decisione
+## risolve.
 func _armed() -> void:
 	var hand: Array = session.world["entities"][SEAT]["hand"] as Array
 	if not hand.has(CARD):

@@ -12,6 +12,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
+const StoneRules := preload("res://scripts/world/stone_rules.gd")
 
 signal effect_applied(effect: Dictionary)
 
@@ -424,34 +425,18 @@ func _build_structure(target: Dictionary, payload: Dictionary) -> Variant:
 	var definition: Variant = data.structure_types.get(type_id)
 	if definition == null:
 		return _fail("unknown structure type '%s'" % type_id)
-	if _structure_at(region, type_id) >= 0:
-		return {"noop": true}
-
-	# **La terra decide cosa ci si costruisce** (D-365, ISSUES 116). Ogni Pietra
-	# dichiara i suoi biomi da sempre; **nessuno li leggeva**. Adesso un Granaio
-	# in una palude non si alza — e non fallisce rumorosamente: e' un no-op,
-	# la stessa convenzione della Pietra gia' presente qui sopra. Una frase
+	# **Le tre condizioni della terra** (D-365, ISSUES 116) stanno in
+	# `StoneRules`, perche' da D-412 se le fa anche ACQUISIRE — e la stessa
+	# domanda non si scrive due volte. Qui la risposta si tace: una frase
 	# d'autore che nomina la terra sbagliata non e' un errore di dati, e' una
-	# frase che non aveva niente da dire in quel posto.
+	# frase che non aveva niente da dire in quel posto. Le Pietre della terra
+	# passano lo stesso, perche' l'apertura le posa e non occupano un posto.
 	var definizione: Dictionary = definition as Dictionary
-	var biome: String = str((data.regions[str(target.get("id", ""))] as Dictionary)["biome"])
-	if not (definizione.get("biomes", []) as Array).has(biome):
-		return {"noop": true}
-
-	# **E un posto pieno blocca** (D-365). La tessera dichiara `build_slots`:
-	# quanti spazi ha per le Pietre. Le Pietre della terra — bosco, sorgente,
-	# passo, sito antico, tutte `owned: false` — non occupano un posto, perche'
-	# sono la tessera e non ci si costruiscono sopra.
 	if bool(definizione["owned"]):
-		var occupati: int = 0
-		for esistente in (region["structures"] as Array):
-			var tipo: Variant = data.structure_types.get(
-				str((esistente as Dictionary).get("structure_type", ""))
-			)
-			if tipo != null and bool((tipo as Dictionary)["owned"]):
-				occupati += 1
-		if occupati >= int((data.regions[str(target.get("id", ""))] as Dictionary)["build_slots"]):
+		if StoneRules.refusal(data, world, str(target.get("id", "")), type_id) != "":
 			return {"noop": true}
+	elif _structure_at(region, type_id) >= 0:
+		return {"noop": true}
 
 	var grade: int = clampi(
 		int(payload.get("grade", 1)), 1, (definition["grades"] as Array).size()

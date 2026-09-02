@@ -5,15 +5,18 @@
     {
       "id": "OBJ_A_GARRISON",
       "title": "Il Muro che Tiene",
-      "description": "C'è chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo è del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso.",
-      "label": "Un presidio suo tiene la terra",
+      "description": "C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.",
+      "label": "Un presidio suo tiene una terra del territorio",
       "conditions": [
         {
           "type": "structure_count",
           "entity_id": "$self",
           "structure_family": "PRESIDIO",
           "min": 1,
-          "label": "Almeno un presidio suo"
+          "label": "Almeno un presidio suo nel dominio del territorio",
+          "any_tag": [
+            "domain:TERRITORY"
+          ]
         },
         {
           "type": "control_count",
@@ -27,15 +30,19 @@
     {
       "id": "OBJ_A_HIGH_HOUSE",
       "title": "Pietra sopra Pietra",
-      "description": "Alzare qualcosa è facile: alzarlo due volte, no. Chi porta una casa al secondo grado ha speso un anno per farlo.",
-      "label": "Una sua pietra è salita di grado",
+      "description": "Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.",
+      "label": "Una sua pietra e' salita di grado dove si guarda",
       "conditions": [
         {
           "type": "structure_count",
           "entity_id": "$self",
           "grade": 2,
           "min": 1,
-          "label": "Almeno una struttura sua di grado 2 o più"
+          "label": "Una sua pietra di grado 2 nell'antico o in capitale",
+          "any_tag": [
+            "domain:ANCIENT",
+            "capital"
+          ]
         }
       ],
       "art_prompt_key": "objective.a_high_house"
@@ -43,14 +50,27 @@
     {
       "id": "OBJ_A_LEARNED_HOUSE",
       "title": "Le Cose che si Sanno",
-      "description": "Sapere non si vede sul tavolo e non si conta in Regioni. Ma alla fine dell'anno, chi ha guardato più a fondo ha guardato più a fondo.",
-      "label": "Ha imparato almeno due cose che il mondo sa indicare",
+      "description": "Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.",
+      "label": "Ha imparato due cose, e una l'ha guardata da vicino",
       "conditions": [
         {
           "type": "discovery_count",
           "entity_id": "$self",
           "min": 2,
           "label": "Almeno due scoperte"
+        },
+        {
+          "type": "region_presence",
+          "entity_id": "$self",
+          "min": 1,
+          "any_tag": [
+            "crystal_site",
+            "mine",
+            "island",
+            "forest",
+            "marsh"
+          ],
+          "label": "Una sua pedina dove il mondo e' ancora da guardare"
         }
       ],
       "art_prompt_key": "objective.a_learned_house"
@@ -135,8 +155,8 @@
     {
       "id": "OBJ_FULL_HANDS",
       "title": "Le Mani Piene",
-      "description": "Finire l'anno con qualcosa ancora da giocare. Non è prudenza: è avere sempre avuto una carta più degli altri — e se tutti tengono tutto, non la tiene nessuno.",
-      "label": "Chiude l'anno con almeno cinque carte in mano",
+      "description": "Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.",
+      "label": "Chiude l'anno con le mani piene, e sta dove si produce",
       "conditions": [
         {
           "type": "leads_in",
@@ -144,6 +164,15 @@
           "what": "hand",
           "by": 1,
           "label": "Più carte in mano di ogni altra casa"
+        },
+        {
+          "type": "region_presence",
+          "entity_id": "$self",
+          "min": 1,
+          "any_tag": [
+            "domain:RESOURCE"
+          ],
+          "label": "Una sua pedina in una terra del dominio delle risorse"
         }
       ],
       "art_prompt_key": "objective.full_hands"
@@ -195,13 +224,16 @@
     {
       "id": "OBJ_QUIET_WORLD",
       "title": "Un Mondo che si Può Ancora Usare",
-      "description": "Il mondo si porta addosso quello che gli fai. Questo obiettivo chiede un anno che non lasci più di due cicatrici — ma non lo dà a chi non ha toccato niente: chi non guarda il mondo non lo tiene pulito, si limita a non esserci.",
-      "label": "Il mondo esce dall'anno con non più di due segni",
+      "description": "Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.",
+      "label": "Le terre dove si vive escono dall'anno quasi intere",
       "conditions": [
         {
           "type": "scar_count",
           "max": 2,
-          "label": "Non più di due cicatrici sulla mappa"
+          "label": "Non piu' di due Cicatrici sulle terre della sopravvivenza",
+          "any_tag": [
+            "domain:SURVIVAL"
+          ]
         },
         {
           "type": "discovery_count",
@@ -320,14 +352,17 @@
     {
       "id": "OBJ_TWO_LANDS",
       "title": "Due Terre, una Voce",
-      "description": "Non basta esserci: bisogna che due posti rispondano quando chiami. È l'ambizione più semplice del tavolo, e la più difficile da nascondere.",
-      "label": "Due Regioni rispondono al suo nome",
+      "description": "Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.",
+      "label": "Due terre del territorio rispondono al suo nome",
       "conditions": [
         {
           "type": "control_count",
           "entity_id": "$self",
           "min": 2,
-          "label": "Controllo di almeno 2 Regioni"
+          "label": "Controllo di 2 terre del dominio del territorio",
+          "any_tag": [
+            "domain:TERRITORY"
+          ]
         }
       ],
       "art_prompt_key": "objective.two_lands"
@@ -335,8 +370,8 @@
     {
       "id": "OBJ_WRITTEN_THINGS",
       "title": "Le Cose Scritte",
-      "description": "Non basta quello che tieni in mano: conta che tu sia andato a cercarlo. Chiudere l'anno con due carte di Sapere e almeno una cosa scoperta è una scelta, perché ognuna delle due era anche un'azione che non hai fatto.",
-      "label": "Chiude l'anno con due carte di Sapere in mano",
+      "description": "Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.",
+      "label": "Due carte di Sapere in mano, e un piede dove le cose si tengono",
       "conditions": [
         {
           "type": "asset_threshold",
@@ -350,6 +385,15 @@
           "entity_id": "$self",
           "min": 1,
           "label": "Almeno una scoperta sua"
+        },
+        {
+          "type": "region_presence",
+          "entity_id": "$self",
+          "min": 1,
+          "any_tag": [
+            "domain:ANCIENT"
+          ],
+          "label": "Una sua pedina in una terra del dominio dell'antico"
         }
       ],
       "art_prompt_key": "objective.written_things"
