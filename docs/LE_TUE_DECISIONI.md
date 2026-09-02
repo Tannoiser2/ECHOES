@@ -218,8 +218,27 @@ scritta (erano quindici), `structure:road` è uscito dal dizionario, e i segni
 scritti spesso che nessuna clausola guarda sono passati da **venticinque a due**
 — e quei due sono colore dichiarato da D-278.
 
-**Restano**: due segni che hanno ancora due nomi (70), e le Pietre che non si
-alzano mai (111), che dipende in parte dalla rossa R1.
+**Restano**: `#granaio` (70), e le Pietre che non si alzano mai (111), che
+dipende in parte dalla rossa R1.
+
+**E la 70 adesso è misurata, e ti chiede una parola.** Non sono «due segni che
+al tavolo non si distinguono»: sono **diciassette facce su diciotto** che
+stampano `#granaio` e accettano solo la **vocazione** della terra, e **una**
+(`AST_WEALTH_GRAIN`) che accetta anche la **Pietra** costruita. La scorciatoia
+— togliere il segno di troppo da quell'unica carta — l'ho provata e non regge:
+dodici carte Tensione hanno la casella «Costruisci 1 Pietra nel luogo: Granaio»,
+e quel luogo la vocazione può non averla, quindi si perderebbero posti veri.
+
+Restano due strade, e nessuna è una riga:
+
+1. **`#granaio` vuol dire «vocazione o Pietra» dappertutto.** È la lettura
+   naturale al tavolo, ma allarga i bersagli di otto Asset e **tocca le clausole
+   di vittoria di tre Destini**: è equilibrio, da misurare sui 100 semi.
+2. **Due parole diverse**, una per la vocazione e una per la Pietra. Non allarga
+   niente, ma riscrive il testo stampato di diciotto facce.
+
+La prima cambia chi vince, la seconda cambia cosa c'è scritto sulle carte: **la
+scelta è tua**, e appena la dici la faccio.
 
 **Fatto quando** un segno nuovo si battezza una volta sola, e ogni grado di ogni
 Pietra o si alza almeno una volta in cento partite o non è più nel catalogo.

@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.374 — `#granaio`: non due segni indistinguibili, ma una faccia su diciotto
+
+Misura [ISSUES 70](docs/ISSUES.md#70), punto 3 — l'ultimo del suo «fatto quando».
+
+La voce diceva *«due segni, una parola: al tavolo non si distinguono»*. Contate
+le facce che stampano `#granaio` e guardato cosa accetta la macchina dietro
+ognuna:
+
+| facce che stampano `#granaio` | cosa accettano |
+|---|---|
+| **17** (8 Asset, 3 Destini, 6 Tensioni) | solo la **vocazione** `granary` |
+| **1** (`AST_WEALTH_GRAIN`) | vocazione **e** Pietra |
+
+Non è una parola ambigua fra due segni: è **una faccia su diciotto che vuol dire
+una cosa più larga delle altre diciassette**. La Pietra `structure:granary` non è
+il bersaglio stampato di nessuna carta.
+
+**E la scorciatoia non c'è.** Sembrava bastasse togliere il segno di troppo da
+quell'unica carta, perché il Granaio si alza solo dove la vocazione c'è già
+(`CNS_ROYAL_GRANARY` mira a `$region_with:granary`). Non è vero: **dodici carte
+Tensione** hanno la casella «Costruisci 1 Pietra nel luogo: Granaio», e quel
+luogo la vocazione può non averla.
+
+Restano due strade, tutt'e due larghe — una allarga i bersagli di otto Asset e
+tocca le clausole di vittoria di tre Destini, l'altra riscrive il testo stampato
+di diciotto facce. Sono nella [lista](docs/LE_TUE_DECISIONI.md): la scelta è del
+committente.
+
+Solo documenti: nessuna riga di gioco cambia.
+
+---
+
 ## 0.1.373 — Il sacchetto del prezzo non lo leggeva nessuno
 
 Avanza [ISSUES 56](docs/ISSUES.md#56) ([D-405](docs/DECISIONS.md#d-405)).

@@ -4952,6 +4952,45 @@ significato delle Azioni già fatte.
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
 
+> **Il punto 3 e' misurato in 0.1.373**, e non e' quello che la voce diceva.
+>
+> La voce dice *«due segni, una parola: la vocazione `granary` e la pietra
+> `structure:granary` si stampano entrambe #granaio. Al tavolo non si
+> distinguono»*. Contate le facce che stampano davvero `#granaio` e guardato
+> **cosa accetta la macchina** dietro ognuna:
+>
+> | facce che stampano `#granaio` | cosa accettano |
+> |---|---|
+> | **17** (8 Asset, 3 Destini, 6 Tensioni) | **solo la vocazione** `granary` |
+> | **1** (`AST_WEALTH_GRAIN`) | vocazione **e** Pietra |
+>
+> Quindi la parola non e' ambigua fra due segni su diciotto facce: **e' una
+> faccia su diciotto che vuol dire una cosa piu' larga delle altre diciassette.**
+> La Pietra `structure:granary`, di suo, non e' il bersaglio stampato di nessuna
+> carta: la leggono una regola dei segni, un profilo strategico e quell'unico
+> Asset.
+>
+> **E la scorciatoia non c'e'.** Sembrava che bastasse togliere il segno di
+> troppo da `AST_WEALTH_GRAIN`, perche' il Granaio si alza solo dove la
+> vocazione c'e' gia' — `CNS_ROYAL_GRANARY` mira a `$region_with:granary`. **Non
+> e' vero**: dodici carte Tensione hanno la casella *«Costruisci 1 Pietra nel
+> luogo: Granaio»*, e «nel luogo» e' la Regione di cui si discute, che la
+> vocazione puo' non averla. Togliere quel segno perderebbe luoghi veri.
+>
+> **Restano due strade, e tutt'e due sono larghe:**
+>
+> 1. **`#granaio` vuol dire «vocazione o Pietra» dappertutto** — si aggiunge
+>    `structure:granary` alle altre diciassette. E' la lettura naturale al
+>    tavolo (*un posto con un granaio*), ma allarga i bersagli di otto Asset e
+>    **tocca le clausole di vittoria di tre Destini**: e' equilibrio, e va
+>    misurato sui 100 semi.
+> 2. **Due parole diverse** — la vocazione e la Pietra si stampano con nomi
+>    distinti. Non allarga niente, ma riscrive il testo stampato di diciotto
+>    facce.
+>
+> Nessuna delle due e' una riga, e nessuna delle due la prendo da solo: la
+> prima cambia chi vince, la seconda cambia cosa c'e' scritto sulle carte.
+
 > **Avanzamento in 0.1.368** ([D-400](DECISIONS.md#d-400)): **anche il punto 1
 > e' chiuso.** Il dizionario dichiara adesso `title_spoken` — *«la forma con cui
 > l'app dice questo segno dentro una frase, quando non e' quella stampata sul
