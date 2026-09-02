@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.366 — Il documento dei testi si controlla dalla parte dei dati (D-398)
+
+Chiude [ISSUES 105](docs/ISSUES.md#105), ed è il **trentesimo cancello**.
+
+Il cancello confrontava `REVISIONE_TESTI.md` con quello che **il generatore**
+produce, non il generatore con quello che **il gioco stampa**: un blocco nuovo
+restava fuori in silenzio, ed era già successo due volte. Adesso si parte dai
+dati — ogni frase o è nel documento, o è **dichiarata** come cosa che nessuno
+legge.
+
+**Girata la prima volta ne mancavano 1.730**, in 58 strade. Il documento passa da
+**3.111 a 4.136 testi**: la riga d'apertura di ogni Tensione, cosa la scalda e
+cosa la raffredda, le caselle SI ACCENDE QUANDO, il nome stampato di ogni segno,
+le clausole annidate dei Destini, la faccia fisica del Destino, **PRENDI** su
+tutte e 48 le carte, le Pietre coi loro gradi, i Temi.
+
+E **746 stringhe sono dichiarate come cose che nessuno legge**, ognuna con la sua
+riga: note agli implementatori, la matrice del disegno, i prompt d'arte, la
+grammatica dei nomi.
+
+**Il buco che resta è scritto**: il controllo guarda i diciassette tipi di
+documento che conosce; uno nuovo va aggiunto a mano.
+
+Voci aperte: **37 → 36**.
+
+---
+
 ## 0.1.365 — Due proposte che portano allo stesso mondo non sono due strade (D-397)
 
 Chiude [ISSUES 104](docs/ISSUES.md#104). Tre proposte su quarantanove applicavano

@@ -10,6 +10,66 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-398 — Il documento dei testi si controlla dalla parte dei dati
+
+**implemented in 0.1.366.** Chiude [ISSUES 105](ISSUES.md#105), ed è il
+trentesimo cancello.
+
+### Il controllo andava dalla parte sbagliata
+
+`build_review.py` confrontava `docs/REVISIONE_TESTI.md` con quello che **il
+generatore** produce, non il generatore con quello che **il gioco stampa**. Un
+blocco nuovo restava fuori in silenzio, ed è successo due volte: le 288 stringhe
+della faccia fisica delle carte Asset ([D-340](#d-340)) e le 841 caselle delle
+Tensioni ([D-341](#d-341)), aggiunte a mano tutte e due dopo essersene accorti
+per caso.
+
+**Adesso si parte dai dati.** Si guarda ogni stringa che somigli a una frase —
+uno spazio e almeno quattordici lettere, così gli id e i segni restano fuori da
+soli — e si pretende che **o stia nel documento, o che la sua strada sia
+dichiarata** con la ragione scritta. Un blocco nuovo che nessuno dichiara fa
+fallire il cancello: si è costretti a decidere se si legge o no.
+
+### Girata la prima volta, ne mancavano 1.730
+
+In 58 strade diverse. Il documento passa da **3.111 a 4.136 testi**:
+
+| cosa mancava | quante |
+|---|---|
+| la riga d'apertura di ogni Tensione, letta ad alta voce | 60 |
+| cosa scalda e cosa raffredda una questione | 239 |
+| le caselle **SI ACCENDE QUANDO** | 66 |
+| il nome stampato di ogni segno, con le sue forme divergenti | 109 |
+| le clausole annidate dei Destini e degli Obiettivi | 88 |
+| la faccia fisica del Destino — le tre righe del tarocco | 69 |
+| **PRENDI**, su tutte e 48 le carte Asset | 48 |
+| le Pietre: nome, descrizione, gradi e rovina | 52 |
+| le schede del Consiglio che il template porta ancora | ~200 |
+| i Temi, le regole dei segni, il segreto di una Regione | 63 |
+
+Che le carte le stampassero davvero non è un'opinione: lo dice
+[SCHELETRO_CARTE.md](SCHELETRO_CARTE.md), che ricava i blocchi **dalle facce
+vere** — `PRENDI` è su 48 facce su 48, `QUANDO ESCE` su 43 su 48.
+
+### E 746 stringhe sono dichiarate come cose che nessuno legge
+
+Ognuna con la sua riga: le note d'autore agli implementatori, la matrice del
+disegno (`wants/why`, `in_one_line`), il prompt di chi disegna un gettone, e la
+grammatica con cui il motore compone i nomi. **Nessuna terza via**: o si legge,
+o si dichiara.
+
+### Il buco che resta, e va scritto
+
+Il controllo guarda i **diciassette tipi di documento** che conosce. Se ne arriva
+uno nuovo e nessuno lo aggiunge a `DOCUMENTI`, quel documento non è guardato. È
+lo stesso genere di buco che questa decisione chiude, un piano più in su, e non
+so chiuderlo senza un elenco dei tipi che si generi da solo.
+
+Il difetto piantato **si fabbrica**: aggiunge un campo di prosa a una Regione e
+pretende il rosso.
+
+---
+
 ## D-397 — Due proposte che portano allo stesso mondo non sono due strade
 
 **implemented in 0.1.365.** Chiude [ISSUES 104](ISSUES.md#104), e la sua

@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **94** |
-| aperte | **37** |
+| chiuse | **95** |
+| aperte | **36** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **27** |
+| di cui sono mie da fare | **26** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 16 |
+| 0.1.350–0.1.374 | 6 | 17 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -281,11 +281,12 @@ deciso «materia di saga» da 0.1.142 (40).
 almeno un terzo del mazzo»*. È la stessa domanda della rossa **R4** — obiettivi
 che nominano invece di contare — e si chiude con lei.
 
-### V3. [105](ISSUES.md#105) — le sezioni di `REVISIONE_TESTI` scritte a mano
+### V3. ✔ [105](ISSUES.md#105) — `REVISIONE_TESTI` completo — chiusa in 0.1.366
 
 Il documento che dice *«ogni testo che un giocatore può leggere»* ne mancava
-**1.128** senza andare rosso, perché le sezioni si aggiungono a mano. Si genera
-dai dati, come tutti gli altri.
+**1.730** senza andare rosso. Adesso il controllo va dall'altra parte: ogni frase
+dei dati o è nel documento, o è **dichiarata** come cosa che nessuno legge. Da
+3.111 a **4.136 testi**, e 746 dichiarate.
 
 ### V4. L'arte: 144 segnaposto su 155
 

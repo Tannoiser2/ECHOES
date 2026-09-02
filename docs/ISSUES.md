@@ -6470,9 +6470,46 @@ di effetti, e lo tiene una prova che pianta un doppione.
 
 ---
 
-### 105. Le sezioni di `REVISIONE_TESTI` si aggiungono a mano
+### 105. ✅ Le sezioni di `REVISIONE_TESTI` si aggiungono a mano — CHIUSA in 0.1.366
 
 `strumenti` · `misura` · aperta in 0.1.306
+
+> **La condizione era: «una prova parte dai dati e chiede che ogni testo
+> compaia nel documento; e la prova pianta un blocco nuovo e la vede cadere».**
+> Tutt'e due le meta' sono fatte, e il controllo va **dall'altra parte**.
+>
+> Adesso `build_review.py` guarda **ogni stringa dei dati che somigli a una
+> frase** — uno spazio e almeno quattordici lettere, cosi' gli id e i segni
+> restano fuori da soli — e pretende che o stia nel documento, o che la sua
+> strada sia dichiarata con la ragione scritta. **Un blocco nuovo che nessuno
+> dichiara fa fallire il cancello**, che e' il verso giusto: si e' costretti a
+> decidere se si legge o no.
+>
+> **Girata la prima volta ne mancavano 1.730 in 58 strade.** Il documento
+> passa da **3.111 a 4.136 testi**, e queste sono le sezioni che non c'erano:
+>
+> | cosa mancava | quante |
+> |---|---|
+> | la riga d'apertura di ogni Tensione, letta ad alta voce | 60 |
+> | cosa scalda e cosa raffredda una questione | 239 |
+> | le caselle **SI ACCENDE QUANDO** | 66 |
+> | il nome stampato di ogni segno, con le sue forme divergenti | 109 |
+> | le clausole annidate dei Destini e degli Obiettivi | 88 |
+> | la faccia fisica del Destino — le tre righe che il tarocco stampa | 69 |
+> | **PRENDI**, su tutte e 48 le carte Asset | 48 |
+> | le Pietre: nome, descrizione, i gradi e la rovina | 52 |
+> | le schede del Consiglio che il template porta ancora | ~200 |
+> | i Temi, le regole dei segni, il segreto di una Regione | 63 |
+>
+> **E 746 stringhe sono dichiarate come cose che nessuno legge**, ognuna con la
+> sua riga: le note d'autore agli implementatori, la matrice del disegno, il
+> prompt di chi disegna un gettone, e la grammatica con cui il motore compone i
+> nomi. Nessuna terza via.
+>
+> **Il buco che resta, dichiarato**: il controllo guarda i diciassette tipi di
+> documento che conosce. Se ne arriva uno nuovo e nessuno lo aggiunge a
+> `DOCUMENTI`, quel documento non e' guardato.
+
 
 `build_review.py` compone il documento **sezione per sezione, scritte a mano**.
 Ha funzionato finche' i blocchi di testo erano quelli del 2024; poi sono

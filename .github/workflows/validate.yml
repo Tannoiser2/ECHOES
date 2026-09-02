@@ -82,6 +82,12 @@ jobs:
       - name: Drift check - i testi in lettura
         run: python3 tools/build_review.py --check
 
+      # E che non ne manchi nessuno (ISSUES 105): il cancello confrontava il
+      # documento col generatore, non il generatore col gioco — un blocco nuovo
+      # restava fuori in silenzio, ed e' successo due volte.
+      - name: La guardia dei testi morde
+        run: python3 tools/build_review.py --self-test
+
       # Un blocco finito dopo un `return` non e' un errore per GDScript: e'
       # silenzio. Il bottone «Si comincia» della stanza e' vissuto una versione
       # intera dietro un return, e nessun test poteva vederlo (D-140).
