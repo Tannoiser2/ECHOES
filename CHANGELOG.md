@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.389 — La lista dice tredici, e le tre decise portano il segno
+
+Nessun codice. Il committente ha chiesto *«mancano solo le 15 questioni aperte
+mie?»*, e la risposta era no: **sono tredici**. Il conto generato in fondo a
+[la lista](docs/LE_TUE_DECISIONI.md) lo diceva già — 27 aperte, 13 con il
+cartellino — ma **il testo intorno era rimasto a stamattina**, prima che
+[122](docs/ISSUES.md#122) e [125](docs/ISSUES.md#125) si chiudessero.
+
+Un documento che si genera a metà mente nella metà scritta a mano. Allineato:
+
+- il titolo, la tabella dei colori e le due righe di chiusura dicono **tredici**,
+  e **undici** stanno sulla strada;
+- **R1 e R3 portano il ✔**, come R2: la parola è arrivata in 0.1.383 e 0.1.384,
+  e sotto ognuna sta scritto **cosa della voce resta aperto** — per 123 se la
+  Pietra alzata da un'Azione debba costare, per 120 i cinque Obiettivi che
+  restano un'addizione.
+
+**E il ritmo, che è la seconda domanda:** nella fascia 0.1.375–0.1.399 le voci
+aperte sono **zero** e le chiuse **quattro**. La regola scritta in 0.1.382 —
+*«niente di quello che faccio qui apre una voce nuova: una misura che trova
+qualcosa diventa una riga sotto la voce che l'ha trovata»* — sta tenendo.
+
+---
+
 ## 0.1.388 — R2: due acquisti liberi, e il quindici l'ha corretto la misura
 
 Parola del committente — *«R2: due acquisti liberi, RIVENDICARE a 15»*, e poi

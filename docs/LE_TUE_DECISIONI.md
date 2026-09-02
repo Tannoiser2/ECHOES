@@ -107,38 +107,37 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **15** | **tu**, con una parola. Tredici stanno sulla strada, due sono fuori |
+| 🔴 | **13** | **tu**, con una parola. Undici stanno sulla strada, due sono fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventinove voci aperte, quattro le posso muovere senza di te.
+**Quattro.** Delle ventisette voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su quindici parole.**
+**il giro non è fermo su di me, è fermo su tredici parole.**
 
 ---
 
-# 🔴 Quindici aspettano te
+# 🔴 Tredici aspettano te
 
 Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
 
-## Le tredici che stanno fra oggi e una partita
+## Le undici che stanno fra oggi e una partita
 
-### R1. [123](ISSUES.md#123) — un'Azione che costruisce?
+### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
 
-**Quaranta turni su cento** un giocatore ha ventidue mosse legali, quattro carte
-in mano, e *non gliene serve nessuna*. La causa è misurata: **nessuna** delle sei
-Azioni della plancia alza una Pietra, in cento partite. Chi vuole costruire deve
-convincere il tavolo — e il Consiglio è più generoso con **chi tace** (199 Pietre
-a un tavolo che passa sempre, 136 a uno che gioca).
+Parola tua: **«R1 (a)»** ([D-412](DECISIONS.md#d-412)). ACQUISIRE alza una Pietra
+dove hai presenza, e **dodici facce** la portano stampata, ognuna col nome della
+Pietra che alza: al tavolo si prende il segnalino disegnato sulla carta.
 
-> **Farei (a): ACQUISIRE diventa «pesca una carta, *oppure* alza una Pietra dove
-> hai presenza».** È l'unica delle sei che nessuna carta modifica, quindi ha
-> spazio. Cambia la plancia, ed è per questo che è tua.
+Da **zero** Pietre alzate da un'Azione in cento partite a **190**. I «passa» da
+49,6% a 46,1%. E la causa non era una taratura: **ACQUISIRE non era stampata su
+nessuna delle 96 facce**.
 
-**Sblocca la [111](ISSUES.md#111)** — le Pietre che non si alzano mai — e metà
-della [59](ISSUES.md#59).
+**Resta aperta una riga della voce**, e aspetta ancora te: se la Pietra alzata da
+un'Azione debba costare qualcosa oltre la carta. La misuro insieme alla
+[119](ISSUES.md#119) — sono la stessa domanda vista da due parti.
 
 ### ✔ R2. [122](ISSUES.md#122) + [125](ISSUES.md#125) — chiuse in 0.1.388
 
@@ -160,19 +159,19 @@ undici: il 92% del guadagno senza toccare né i turni né la memoria.
 148 a **211** ([111](ISSUES.md#111)), e il terzo pezzo della
 [106](ISSUES.md#106) — la casella si compra perché adesso c'è la moneta.
 
-### R3. [120](ISSUES.md#120) — vincere nominando, non contando
+### ✔ R3. [120](ISSUES.md#120) — decisa in 0.1.384: **sì**, e da otto ne resta uno
 
-**Dodici Obiettivi su diciassette si vincono contando** — tre pedine, due
-Regioni, quattro Pietre — e non nominano niente del mondo.
+Parola tua: **«R3 sì»** ([D-413](DECISIONS.md#d-413)). Sette Obiettivi riscritti
+sui segni della mappa: non *«due Regioni»* ma *«la Regione dove sta il Bosco»*.
 
-> **Farei: i dodici si riscrivono su un segno o un luogo** — *«la Regione dove
-> hai posato la Cicatrice»*, *«il Tema che hai raffreddato»*. Un obiettivo che
-> nomina qualcosa lo si può contendere; un conto no.
+Gli obiettivi che si reggevano **solo su un totale** da **otto su diciassette** a
+**uno**. E le coppie che si contendono una Regione da 15,5% a **44,0%**: quasi
+una su due, dove prima era una su sette. Questo è il numero che dice che
+l'obiettivo adesso si può togliere all'avversario.
 
-**È la riga che ne chiude altre due**: la [91](ISSUES.md#91) — il **48,4%** dei
-punti già vero all'apertura, rimisurato oggi su 100 partite a tavolo misto — e la
-metà che resta della [4](ISSUES.md#4). Questa e R1 insieme sono il gioco: **una ragione per agire, e
-qualcosa che si può togliere all'avversario.**
+**Resta aperta una riga della voce**: i cinque che restano un'addizione pura sono
+gli unici che una casa senza mappa può ancora vincere, e toglierli è una scelta
+sul gioco, non una misura. Aspetta te.
 
 ### R4. [119](ISSUES.md#119) — come cade un Consiglio
 
@@ -454,9 +453,9 @@ tessera. Non è nella lista perché non è una voce: è la scatola.
 il quinto degli errori, ed era di forma. Un totale scritto a mano invecchia il
 giorno dopo, e questo era invecchiato di tre righe.
 
-**Quello che resta da dire in una riga:** delle ventinove voci aperte ne posso
+**Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **quindici aspettano
+chiudono dietro una rossa, sei stanno fuori dalla lista, e **tredici aspettano
 una tua parola**.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia
