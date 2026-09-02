@@ -5762,6 +5762,29 @@ La ragione è strutturale, e ogni misura di questo ciclo la conferma dal suo lat
 **la GUI è stata costruita per far vedere che il motore funziona, non per farci
 giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
 
+> **Avanzamento in 0.1.380** ([D-409](DECISIONS.md#d-409)): **la meta'
+> misurabile del criterio ha la sua prova.**
+>
+> `test_a_year_speaks_italian` gioca **una Chronicle intera** con una persona al
+> tavolo — un orecchio che non decide niente e **scrive tutto quello che gli e'
+> stato messo davanti**, domande e risposte possibili — e poi chiede una cosa
+> sola: *c'e' un id, li' dentro?*
+>
+> **467 righe in un anno. Nessun id.**
+>
+> E la prova morde: ripiantando il difetto che [D-408](DECISIONS.md#d-408) aveva
+> appena riparato, va rossa sulla riga giusta — *«Guardia di Confine — force,
+> vale 1 · costa: TEN_ROADS sale»*.
+>
+> **Ma la voce non si chiude, e non e' una formalita'.** Il criterio dice *«una
+> persona puo' giocare un anno intero»*: le quattro mosse sono chiuse da
+> 0.1.209, la quinta da 0.1.210, e adesso l'anno arriva in fondo senza parlare
+> per id. **Che una persona ci giochi lo verifica una persona**, aprendo l'app —
+> come per [ISSUES 67](#67) («una saga arriva al terzo anno su un tablet») e
+> [ISSUES 65](#65). Chiuderla su una prova sarebbe scambiare quello che so
+> misurare per quello che la voce chiede, e questa voce **e' nata proprio da
+> quello scarto**.
+
 ### Le quattro mosse
 
 1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo

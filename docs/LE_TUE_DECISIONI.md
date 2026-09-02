@@ -221,6 +221,20 @@ voce resta solo la terza parte, che è tua: la trovi fra le rosse, R10.
 — una passata di leggibilità (fatta), un'altra disposizione, o un'altra idea di
 cosa si guarda.
 
+**E in 0.1.380 «senza leggere un id» è provato.** Una prova gioca un anno intero
+con una persona al tavolo, scrive **tutto** quello che le è stato messo davanti —
+467 righe fra domande e risposte possibili — e non ci trova **un id**. Ho
+verificato che morda ripiantando il difetto riparato il giorno prima.
+
+**Quindi di questo gruppo restano due cose, e sono tutt'e due tue:**
+
+1. **aprire l'app e giocarci un anno** — è il criterio della [63](ISSUES.md#63) e
+   della [67](ISSUES.md#67), e non lo posso verificare io: *«una persona può
+   giocare»* si verifica giocando;
+2. **dire quale delle tre letture vuoi per la [65](ISSUES.md#65)** — una passata
+   di leggibilità (fatta), un'altra disposizione, o un'altra idea di cosa si
+   guarda.
+
 **Fatto quando** si gioca un anno intero dall'app senza leggere un id: carte che
 si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida lo
 schermo dall'inizio alla fine di un Consiglio.

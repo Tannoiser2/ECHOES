@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.380 — Un anno intero, e non dice mai un id
+
+Avanza [ISSUES 63](docs/ISSUES.md#63) ([D-409](docs/DECISIONS.md#d-409)).
+
+Le prove di ieri guardano **un turno** e **le dieci domande del Consiglio**, uno
+scatto per volta. Fra un passo provato e l'altro ci stanno tutte le volte in cui
+il gioco parla senza che nessuno controlli come.
+
+`test_a_year_speaks_italian` gioca **una Chronicle intera** con una persona al
+tavolo — un orecchio che non decide niente, risponde sempre la prima cosa legale
+e **scrive tutto quello che gli è stato messo davanti**. Poi chiede una cosa
+sola: *c'è un id, lì dentro?*
+
+**467 righe in un anno. Nessun id.**
+
+Non è una prova sullo schermo, ed è apposta: è una prova su **cosa il gioco sa
+dire**. Lo schermo può disegnarlo bene o male, ma se quello che arriva è
+`TEN_FAMINE` non c'è disegno che lo salvi.
+
+### E morde: provato ripiantando il difetto del giorno prima
+
+Un verde al primo colpo, qui, è un motivo per sospettare. Rimesso il difetto che
+D-408 aveva appena riparato, la prova è andata rossa sulla riga giusta — *«Guardia
+di Confine — force, vale 1 · costa: TEN_ROADS sale»* — e poi la riparazione è
+tornata al suo posto. **Settima volta che uno zero in questo progetto poteva
+essere chi guarda**; stavolta gliel'ho chiesto prima di crederci.
+
+### Perché la 63 non si chiude
+
+Il criterio dice *«una persona può giocare un anno intero»*. Le quattro mosse sono
+chiuse da 0.1.209, la quinta da 0.1.210, e adesso l'anno arriva in fondo senza
+parlare per id. **Che una persona ci giochi lo verifica una persona**, come per la
+67 e la 65. Chiuderla su una prova sarebbe scambiare quello che so misurare per
+quello che la voce chiede — e questa voce è nata proprio da quello scarto.
+
+Suite **691 prove**.
+
+---
+
 ## 0.1.379 — PUNTO_ZERO diceva di essere fermo a venticinque versioni fa
 
 `docs/PUNTO_ZERO.md` è il primo dei due documenti che CLAUDE.md dice di leggere

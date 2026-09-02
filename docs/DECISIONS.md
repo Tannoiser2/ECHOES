@@ -10,6 +10,57 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-409 — Un anno intero, e non dice mai un id
+
+**implemented in 0.1.380.** Avanza [ISSUES 63](ISSUES.md#63).
+
+### La prova che guarda l'anno, non il passo
+
+`test_a_turn_can_be_played` guarda **un turno**; `test_a_council_can_be_played`
+guarda **le dieci domande del Consiglio**, uno scatto per volta. Fra un passo
+provato e l'altro ci stanno tutte le volte in cui il gioco parla senza che
+nessuno controlli come.
+
+`test_a_year_speaks_italian` gioca **una Chronicle intera** con una persona al
+tavolo — un orecchio che non decide niente, risponde sempre la prima cosa legale
+e **scrive tutto quello che gli e' stato messo davanti**: ogni domanda e ogni
+risposta possibile. Poi chiede una cosa sola: **c'e' un id, li' dentro?**
+
+**467 righe in un anno. Nessun id.**
+
+Non e' una prova sullo schermo, ed e' apposta: e' una prova su **cosa il gioco
+sa dire**. Lo schermo puo' disegnarlo bene o male, ma se quello che arriva e'
+`TEN_FAMINE` non c'e' disegno che lo salvi.
+
+### E morde: provato ripiantando il difetto di ieri
+
+Un verde al primo colpo, in questo progetto, e' un motivo per sospettare. Ho
+rimesso il difetto che [D-408](#d-408) aveva appena riparato —
+`AssetText.note(asset)` senza il catalogo — e la prova e' andata rossa sulla riga
+giusta: *«Guardia di Confine — force, vale 1 · costa: TEN_ROADS sale»*. Poi la
+riparazione e' tornata al suo posto.
+
+**Sette volte in questo progetto uno zero era chi guardava.** Questa volta l'ho
+chiesto prima di crederci.
+
+### Perche' ISSUES 63 non si chiude
+
+Il suo criterio dice: *«una persona puo' giocare un anno intero senza che nessuno
+le spieghi cosa fanno i bottoni, perche' non ci sono bottoni da spiegare.»*
+
+Le quattro mosse sono chiuse da 0.1.209, la quinta da 0.1.210, e adesso **la
+meta' misurabile del criterio ha la sua prova**: l'anno arriva in fondo, ogni
+domanda ha delle risposte visibili, e niente parla per id.
+
+**L'altra meta' non la posso verificare io.** *«Una persona puo' giocare»* si
+verifica aprendo l'app e giocando, ed e' la stessa forma di
+[ISSUES 67](ISSUES.md#67) (*«una saga arriva al terzo anno su un tablet»*) e di
+[ISSUES 65](ISSUES.md#65). Chiuderla su una prova sarebbe scambiare **quello che
+so misurare** per **quello che la voce chiede**, e questa voce e' nata proprio da
+uno scarto fra le due cose.
+
+---
+
 ## D-408 — Il Consiglio si puo' giocare: dieci domande, dieci prove, due schermi vecchi
 
 **implemented in 0.1.378.** Chiude [ISSUES 73](ISSUES.md#73) e avanza
