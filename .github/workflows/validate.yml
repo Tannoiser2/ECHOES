@@ -121,6 +121,12 @@ jobs:
       - name: La guardia dei cancelli morde
         run: python3 tools/gates_survey.py --self-test
 
+      # Il giro in un comando solo (D-418) legge la tabella di CLAUDE.md, costo
+      # compreso. Se perdesse un cancello per strada darebbe verde piu' in
+      # fretta, ed e' esattamente il modo in cui una pulizia diventa un buco.
+      - name: La guardia del giro in un comando morde
+        run: python3 tools/gates.py --self-test
+
   godot:
     name: Test headless
     runs-on: ubuntu-latest

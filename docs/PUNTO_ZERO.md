@@ -30,7 +30,7 @@ scatola.
 |---|---|---|
 | suite | **690 prove / 102 suite / 86.390 asserzioni** verdi | 679 / 101 / 86.480 |
 | il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme | uguale |
-| cancelli | **tutti e trentuno verdi** (vedi `CLAUDE.md`) | ventisei |
+| cancelli | **tutti e trentadue verdi** (vedi `CLAUDE.md`) | ventisei |
 | Consigli per anno | misto **3-5** (media 3,58) · uniforme **3-6** (media 3,49) | 3,15 · 3,23 |
 | Verità scritte | misto **142**, di cui 113 diverse · uniforme **150**, di cui 108 | 125/101 · 130/95 |
 
@@ -51,6 +51,13 @@ guardava — la pagina dell'app, il tavolo posto per posto, le vite delle case, 
 scheletro delle carte, le caselle del Consiglio, i segni del mondo, e
 [la tabella dei cancelli stessa](DECISIONS.md#d-367), che adesso non può
 scollarsi dalla CI senza far rosso.
+
+**E da 0.1.390 si sa quanto costano**, che nessuno aveva mai misurato:
+ventisette dei trentadue costano **ventitré secondi tutti insieme**, e le cinque
+sonde lunghe 881. Si girano con un comando solo,
+[`tools/gates.py`](../tools/gates.py), in due corsie —
+[D-418](DECISIONS.md#d-418). Nessun cancello è stato tolto: quello che è stato
+tolto è il doverli ricordare a memoria.
 
 ---
 

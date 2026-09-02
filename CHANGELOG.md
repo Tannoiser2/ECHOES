@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.390 — Trentadue cancelli in un comando: la pulizia era il conto, non il taglio
+
+Parola del committente — *«31 cancelli e 100 semi sono troppi, bisognerebbe fare
+una pulizia»* ([D-418](docs/DECISIONS.md#d-418)).
+
+### Prima di tagliare li ho cronometrati, ed erano il sospettato sbagliato
+
+| | quanti | costo misurato |
+|---|---|---|
+| i cancelli sotto i dieci secondi | **27** | **23 s in tutto** |
+| le sonde lunghe | **5** | 881 s |
+
+I diciannove cancelli di Python costano **6,5 secondi tutti insieme**. Il tempo
+sta in cinque sonde: `run_tiles_probe` 328 s, `run_lives_survey` 186 s, la suite
+160 s, `run_table_survey` 105 s, `run_marks_survey` 102 s.
+
+**E due durate scritte a mano nella tabella erano sbagliate tutt'e due**:
+*«due minuti»* per le vite (sono 186 s) e *«quattro minuti»* per le tessere (sono
+328 s). Adesso il costo è una colonna misurata, e le parentesi non ci sono più.
+
+### Quindi: nessun cancello tolto, tre comandi invece di trentadue
+
+`tools/gates.py`, che legge i cancelli **dalla tabella di CLAUDE.md** — costo
+compreso, e non c'è una seconda lista:
+
+- **senza argomenti** — i 27 veloci, 23 s: dopo ogni modifica;
+- **`--lenti`** — le 5 sonde lunghe: una volta, prima della PR;
+- **`--rigenera`** — rifà i documenti generati invece di controllarli. È il rosso
+  che costava più tempo di tutti: un documento vecchio, non un difetto.
+
+Con la sua guardia in CI: **un giro che perde un cancello per strada dà verde più
+in fretta**, ed è il modo in cui una pulizia diventa un buco.
+
+### E i trenta semi mentre si lavora
+
+Il cancello resta **100 semi, 0 seggi bloccati su 8, misto e uniforme**. Mentre
+si lavora ne bastano 30: **50 s invece di 163**. E un numero preso su 30 semi
+**non si scrive nei verbali** — è [D-391](docs/DECISIONS.md#d-391) applicata al
+numero dei semi.
+
+### Una tredicesima sonda cieca, mentre scrivevo questo
+
+La vedetta che aspettava la CI ha annunciato «CI FINITA» dopo trenta secondi: la
+richiesta non arrivava a destinazione, e *«nessun controllo in corso»* e *«nessun
+controllo»* per lei erano la stessa frase. Quinta della giornata.
+
+---
+
 ## 0.1.389 — La lista dice tredici, e le tre decise portano il segno
 
 Nessun codice. Il committente ha chiesto *«mancano solo le 15 questioni aperte
