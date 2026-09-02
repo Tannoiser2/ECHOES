@@ -77,9 +77,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **104** |
-| aperte | **27** |
-| di cui **aspettano una tua decisione** | **13** |
+| chiuse | **105** |
+| aperte | **26** |
+| di cui **aspettano una tua decisione** | **12** |
 | di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -91,7 +91,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 0 | 4 |
+| 0.1.375–0.1.399 | 0 | 5 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -107,23 +107,23 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **13** | **tu**, con una parola. Undici stanno sulla strada, due sono fuori |
+| 🔴 | **12** | **tu**, con una parola. Dieci stanno sulla strada, due sono fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventisette voci aperte, quattro le posso muovere senza di te.
+**Quattro.** Delle ventisei voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su tredici parole.**
+**il giro non è fermo su di me, è fermo su dodici parole.**
 
 ---
 
-# 🔴 Tredici aspettano te
+# 🔴 Dodici aspettano te
 
 Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
 
-## Le undici che stanno fra oggi e una partita
+## Le dieci che stanno fra oggi e una partita
 
 ### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
 
@@ -199,21 +199,18 @@ partite*. I gettoni sono pochi e adesso hanno due usi in concorrenza. **Il
 gettone contro deve pesare 1 o 2?** Oppure le facce RIVENDICARE devono diventare
 più di undici?
 
-### R5. [80](ISSUES.md#80) — chi decide un Consiglio: il dado o l'economia
+### ✔ R5. [80](ISSUES.md#80) — decisa in 0.1.392: **il dado resta com'è**
 
-Delle tre parti della voce, due sono chiuse: le Domande e le Proposte vengono
-dalla carta (0.1.345), e la plancia mostra l'economia — comprato, prezzo, pedina,
-controproposta — con una prova che lo tiene (0.1.378).
+Era l'unica rossa su cui non avevo una raccomandazione, e la parola è arrivata:
+**il dado resta al centro** ([D-420](DECISIONS.md#d-420)). La sequenza A-K resta
+intera, il World Factor resta nel margine, e l'economia le sta **accanto per
+scelta**, non per lavoro non finito. **La voce si chiude** — le altre due parti
+erano già fatte.
 
-Resta questa. Oggi un Consiglio lo decidono **i voti, le carte impegnate in
-segreto e un d6**; l'economia di D-280 — il proponente compra, gli avversari
-scelgono in che moneta paga — sta **accanto**, non al posto. La mappa e i segni
-entrano dopo, quando il risultato è già deciso.
-
-> **Non ho una raccomandazione da darti su questa**, ed è l'unica. La voce dice
-> *«è la modifica che vale la parola del committente, non la mia»*, e ci sto: se
-> una proposta passa perché chi la fa può pagare quello che il tavolo chiede,
-> **il dado esce dal gioco**. È il cuore del Consiglio.
+E la scelta il tavolo la sostiene: fra 0.1.353 e 0.1.391 l'economia ha smesso di
+essere un contorno senza togliere di mezzo il dado — due acquisti liberi, il
+gettone che compra il prezzo, e adesso quello che compra l'opposizione, che
+**entra nel margine** insieme al dado invece che dopo.
 
 ### R6. [69](ISSUES.md#69) — come è fatta una carta Azione
 
@@ -467,9 +464,9 @@ tessera. Non è nella lista perché non è una voce: è la scatola.
 il quinto degli errori, ed era di forma. Un totale scritto a mano invecchia il
 giorno dopo, e questo era invecchiato di tre righe.
 
-**Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
+**Quello che resta da dire in una riga:** delle ventisei voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **tredici aspettano
+chiudono dietro una rossa, sei stanno fuori dalla lista, e **dodici aspettano
 una tua parola**.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia

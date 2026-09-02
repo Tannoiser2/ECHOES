@@ -4664,7 +4664,7 @@ Resta aperto il rischio speculare, che e' la voce nuova
 
 ---
 
-### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — **ridotta in 0.1.378 alla sola terza parte: quella che aspetta la tua parola**
+### 80. ✅ Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — CHIUSA in 0.1.392: il dado resta, e l'economia gli sta accanto per scelta
 
 `regole` · `ux` · `da-decidere` · **aperta in 0.1.253** — parola del committente davanti
 all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
@@ -4795,9 +4795,27 @@ volta in questo progetto che uno zero era la sonda.**
    denominatore di *«quanto contenuto d'autore il tavolo vede»*. **La terza è
    caduta in 0.1.345**: `REVISIONE_TESTI.md` leggeva i template e saltava 314
    testi veri.
-3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
-   perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
-   dal gioco — ed e' la modifica che vale la parola del committente, non la mia.
+3. ✅ **Chi decide** — **scelto in 0.1.392: il dado resta com'e'**
+   ([D-420](DECISIONS.md#d-420)).
+
+   La domanda era: se una proposta passa perche' chi la fa puo' pagare quello
+   che il tavolo chiede, **il dado esce dal gioco**. Parola del committente:
+   **no**. La sequenza A-K resta intera, il World Factor resta nel margine, e
+   l'economia di [D-280](DECISIONS.md#d-280) le sta **accanto per scelta**, non
+   per lavoro non finito.
+
+   **Ed e' una scelta che il tavolo sostiene**, non un rinvio: fra 0.1.353 e
+   0.1.391 l'economia ha smesso di essere un contorno senza che il dado si
+   togliesse di mezzo — due acquisti liberi ([D-417](DECISIONS.md#d-417)), il
+   gettone che compra il prezzo ([D-387](DECISIONS.md#d-387)) e adesso quello
+   che compra l'opposizione ([D-419](DECISIONS.md#d-419)), che **entra nel
+   margine** insieme al dado invece che dopo.
+
+   Quello che resta vero e non e' un difetto: il caso pesa. Un World Factor a
+   -2 puo' ancora affondare una proposta pagata bene. Se un giorno al tavolo
+   dara' fastidio, si riapre — e' `confluence_rules`, ed e' un numero.
+
+**Fatto quando** era: il committente sceglie. Ha scelto, e la voce si chiude.
 
 ---
 

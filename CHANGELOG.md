@@ -5,6 +5,31 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.392 — Il dado resta al centro, e l'economia gli sta accanto per scelta
+
+Quinta rossa, e l'unica su cui non avevo una raccomandazione da dare. Domanda
+posta, parola arrivata: **il dado resta com'è** ([D-420](docs/DECISIONS.md#d-420)).
+**Chiude [ISSUES 80](docs/ISSUES.md#80)**, aperta in 0.1.253.
+
+Non si fa il taglio grosso: la sequenza A-K resta intera, il World Factor resta
+nel margine, e l'economia di D-280 le sta **accanto per scelta**, non per lavoro
+non finito. Una voce aperta da centoquaranta versioni stava lì perché nessuno
+aveva detto *«va bene così»*.
+
+**Ed è una scelta che il tavolo sostiene, non un rinvio.** Prima di D-419
+l'economia entrava *dopo* il risultato: si comprava e si pagava, ma a decidere
+erano voti, carte e dado. Adesso un gettone speso contro sta **dentro la stessa
+somma** del World Factor.
+
+**Quello che resta vero, e va scritto:** il caso pesa. Un World Factor a -2 può
+ancora affondare una proposta pagata bene, e al tavolo si vedrà come *«avevo
+pagato tutto e il mondo ha detto di no»*. Si riapre quando darà fastidio: è un
+numero, non una struttura.
+
+Voci aperte **27 → 26**, quelle che aspettano il committente **13 → 12**.
+
+---
+
 ## 0.1.391 — Il fallimento si compra: lo stesso gettone, due usi che si escludono
 
 Quarta rossa, e il committente ha detto *«passa alla prossima rossa»* senza

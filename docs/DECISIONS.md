@@ -10,6 +10,60 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-420 — Il dado resta al centro, e l'economia gli sta accanto per scelta
+
+**implemented in 0.1.392.** Chiude [ISSUES 80](ISSUES.md#80), la quinta rossa —
+l'unica su cui non avevo una raccomandazione da dare.
+
+> Domanda posta al committente: *«oggi un Consiglio lo decidono i voti, le carte
+> impegnate in segreto e un d6, e l'economia di [D-280](#d-280) gli sta accanto
+> invece che al posto. Il dado deve restare al centro?»*
+>
+> **Risposta: il dado resta com'e'.**
+
+### Cosa si e' deciso di non fare
+
+La terza parte di ISSUES 80 chiedeva il taglio grosso: **se una proposta passa
+perche' chi la fa puo' pagare quello che il tavolo chiede, il World Factor esce
+dal margine**. La sequenza A-K sarebbe stata riscritta, e con lei ogni numero
+misurato da centocinquanta versioni.
+
+Non si fa. La sequenza resta intera, il dado resta nel margine, e
+l'economia le sta **accanto per scelta**, non per lavoro non finito. E' la
+differenza che questa decisione scrive: una voce aperta da 0.1.253 stava li'
+perche' nessuno aveva detto *«va bene cosi'»*.
+
+### Ed e' una scelta che il tavolo sostiene, non un rinvio
+
+Fra 0.1.353 e 0.1.391 l'economia ha smesso di essere un contorno **senza che il
+dado si togliesse di mezzo**:
+
+| | |
+|---|---|
+| [D-387](#d-387) | il gettone compra il **prezzo**, e il fronte avverso sceglie la moneta |
+| [D-417](#d-417) | **due acquisti liberi**: le caselle vive per Consiglio da una a due e mezzo |
+| [D-419](#d-419) | il gettone compra l'**opposizione**, e **pesa nel margine** insieme al dado |
+
+L'ultima riga e' quella che rende onesta questa decisione. Prima di D-419
+l'economia entrava **dopo** il risultato: si comprava e si pagava, ma chi
+decideva erano i voti, le carte e il dado. Adesso un gettone speso contro sta
+**dentro la stessa somma** del World Factor. L'economia non ha preso il posto
+del dado: gli si e' seduta di fianco, che e' la cosa che il committente ha
+scelto.
+
+### Quello che resta vero, e non e' un difetto
+
+**Il caso pesa.** Un World Factor a -2 puo' ancora affondare una proposta pagata
+bene, e chi propone non ha modo di comprarne l'assicurazione. E' la faccia
+scomoda della scelta, e va scritta: al tavolo si vedra' come *«avevo pagato
+tutto e il mondo ha detto di no»*.
+
+Se un giorno dara' fastidio si riapre, e costa poco: il dado vive in
+`confluence_rules` e nella tabella del World Factor. E' un numero, non una
+struttura — ed e' esattamente per questo che tenerlo non blocca niente.
+
+---
+
 ## D-419 — Il fallimento si compra: lo stesso gettone, due usi che si escludono
 
 **implemented in 0.1.391.** Avanza [ISSUES 119](ISSUES.md#119), la quarta rossa.
