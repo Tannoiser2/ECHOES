@@ -5,6 +5,63 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.391 — Il fallimento si compra: lo stesso gettone, due usi che si escludono
+
+Quarta rossa, e il committente ha detto *«passa alla prossima rossa»* senza
+rispondere: vale la regola della lista — *«se non rispondi, faccio quella
+raccomandata e lo scrivo»*. La raccomandata era **(b)**
+([D-419](docs/DECISIONS.md#d-419)). Avanza [ISSUES 119](docs/ISSUES.md#119).
+
+### La regola
+
+Il gettone di rivendicazione ha **due usi, e sono uno la rinuncia dell'altro**:
+posato su un costo dice *«passi, ma paghi»*; speso **contro** dice *«questa non
+deve passare»*, e pesa 1 nel margine. Una pedina a testa, in chiaro, prima degli
+impegni. Non la compra chi ha dichiarato SUPPORT o CONDITION, né chi propone.
+
+### La misura, e il numero grosso non è quello che guardavo
+
+| 100 partite CHR_00, seme 7000 | spenta | **peso 1** | peso 2 |
+|---|---|---|---|
+| tavolo misto — FAILURE | 33 | **39** | 55 |
+| tavolo misto — DECISIVE | 127 | **105** | 89 |
+| tavolo uniforme — FAILURE | 8 | **10** | 21 |
+| tavolo uniforme — DECISIVE | 141 | **123** | 110 |
+| `spoke_and_lost` (100 partite miste) | 6 | **8** | — |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 |
+
+Le proposte che cadono salgono di un quinto; quelle che passano **in scioltezza**
+scendono di un sesto. Il gettone contro raramente affonda una proposta: molto più
+spesso la **ridimensiona**. Al tavolo: *«non l'ho fermata, ma non è passata come
+voleva lui»*.
+
+**Costo dichiarato:** la voce non si chiude. Il segno di chi ha parlato e perso
+resta a una volta ogni dodici partite, ed è la frase che aveva aperto ISSUES 119.
+La causa è misurata e non è la regola: i gettoni sono pochi, e adesso hanno due
+usi in concorrenza. Resta al committente una riga: **peso 1 o 2**, o più facce
+RIVENDICARE.
+
+### E la prima stesura non si poteva giocare
+
+Chiedeva di aver già dichiarato OPPOSE: in dodici saghe la richiesta è arrivata
+**cinque volte** e si è vista rifiutare **cinque volte**. I 30 semi davano un
+numero fermo, e per una volta lo zero **non era la sonda cieca**: era la regola.
+Il verbale lo diceva a voce alta — *«non ha dichiarato di opporsi»* — ed è la
+prima volta che il difetto si trova leggendo la riga che il gioco stesso ha
+scritto, invece di strumentare una sonda.
+
+### E ha mosso una voce che non stavo guardando
+
+Le **vite delle case** che non si siedono mai al tavolo passano da **2 a 1**
+(`docs/MISURA_VITE.md`, dodici saghe sui due tavoli). Non l'avevo cercato, e la
+ragione e' la stessa: un Consiglio che si ridimensiona invece di passare in
+scioltezza lascia il mondo in stati che prima non capitavano, e una vita in piu'
+trova la sua porta.
+
+Suite da 703 a **709**.
+
+---
+
 ## 0.1.390 — Trentadue cancelli in un comando: la pulizia era il conto, non il taglio
 
 Parola del committente — *«31 cancelli e 100 semi sono troppi, bisognerebbe fare

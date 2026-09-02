@@ -10,6 +10,99 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-419 — Il fallimento si compra: lo stesso gettone, due usi che si escludono
+
+**implemented in 0.1.391.** Avanza [ISSUES 119](ISSUES.md#119), la quarta rossa.
+
+Il committente ha detto *«passa alla prossima rossa»* senza rispondere alla
+domanda. Vale la regola scritta in [la lista](LE_TUE_DECISIONI.md): *«se non
+rispondi, faccio quella raccomandata e lo scrivo — una decisione non presa e'
+piu' cara di una decisione sbagliata, perche' il gioco resta fermo»*. La
+raccomandata era **(b)**, e (a) resta vera sotto: non si escludono.
+
+### Il difetto
+
+Un Consiglio cadeva quando **i numeri non tornavano**. Nessuno lo faceva cadere.
+Il segno di chi ha parlato e perso si posava **6 volte in cento partite**, su
+otto case e trecento Consigli: una minaccia che si vede una volta ogni dodici
+partite non e' una minaccia, ed e' meta' della ragione per cui il tavolo che
+tace veniva premiato — l'altra meta' era [D-412](#d-412).
+
+### La regola
+
+Il gettone di rivendicazione di [D-387](#d-387) ha **due usi, e sono uno la
+rinuncia dell'altro**:
+
+- posato su un **costo** dice *«passi, ma paghi»*;
+- speso **contro** dice *«questa non deve passare»*, e pesa 1 nel margine.
+
+Una pedina a testa, in chiaro, prima degli impegni. Non la compra chi ha
+dichiarato SUPPORT o CONDITION — *«sono a favore, a una condizione»* sta dalla
+parte della proposta — e non la compra chi propone.
+
+**E entra nel margine anche su zero carte impegnate**, che e' la differenza con
+tutti gli altri pesi del Consiglio ([D-125](#d-125), [D-154](#d-154)): quelli
+sono gratis, e un +1 dal nulla sarebbe un voto regalato; **questo e' comprato**,
+e un gettone speso contro e' un gettone che non compra un costo. Chi paga ha
+diritto di pesare.
+
+### La misura, e il numero che si e' mosso non e' quello che guardavo
+
+| 100 partite CHR_00, seme 7000 | spenta | **peso 1** | peso 2 |
+|---|---|---|---|
+| tavolo misto — FAILURE | 33 | **39** | 55 |
+| tavolo misto — DECISIVE | 127 | **105** | 89 |
+| tavolo uniforme — FAILURE | 8 | **10** | 21 |
+| tavolo uniforme — DECISIVE | 141 | **123** | 110 |
+| `spoke_and_lost` (sonda dei segni, 100 partite miste) | 6 | **8** | — |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 |
+
+Le proposte che cadono salgono di un quinto. Ma quelle che passano **in
+scioltezza** scendono di un sesto, ed e' il numero grosso: il gettone contro
+raramente affonda una proposta, molto piu' spesso la **ridimensiona** — un
+DECISIVE che diventa SUCCESS, un SUCCESS che diventa SUCCESS WITH COST. Al
+tavolo: *«non l'ho fermata, ma non e' passata come voleva lui»*.
+
+**E il costo dichiarato:** la voce non si chiude. Il segno di chi ha parlato e
+perso resta a **una volta ogni dodici partite**, ed e' la frase che aveva aperto
+ISSUES 119. La causa e' misurata e non e' la regola: i gettoni sono pochi —
+undici facce RIVENDICARE ([D-417](#d-417)) — e adesso hanno due usi in
+concorrenza. Resta al committente una riga: **peso 1 o 2**, oppure piu' facce.
+
+**E il peso 2 e' misurato, non stimato.** Sul tavolo misto porta i FAILURE da 33
+a **55**, ma sull'uniforme da 8 a **21** — quasi il triplo. Il cancello tiene
+sui due tavoli, quindi non e' un no tecnico; e' che sull'uniforme si torna
+vicino al difetto che [D-378](#d-378) ha appena tolto, **i Consigli che cadono
+per aritmetica invece che per conflitto**. Per questo la raccomandata resta
+**1**: e' un numero nei dati, e cambiarlo e' una parola.
+
+### E ha mosso una voce che non stavo guardando
+
+Le **vite delle case** che non si siedono mai al tavolo passano da **2 a 1**
+(`docs/MISURA_VITE.md`, dodici saghe sui due tavoli). Non l'avevo cercato, e la
+ragione e' la stessa: un Consiglio che si ridimensiona invece di passare in
+scioltezza lascia il mondo in stati che prima non capitavano, e una vita in piu'
+trova la sua porta.
+
+### E la prima stesura non si poteva giocare
+
+Chiedeva di aver **gia' dichiarato OPPOSE**. In dodici saghe la richiesta e'
+arrivata **cinque volte** e si e' vista rifiutare **cinque volte**: chi aveva il
+gettone quasi mai aveva anche impegnato carte contro. I 30 semi dicevano FAILURE
+14 contro 14 — un numero fermo — e per una volta lo zero **non era la sonda
+cieca**: era la regola. Il verbale lo diceva a voce alta, *«non ha dichiarato di
+opporsi»*, ed e' la prima volta in questo progetto che il difetto si e' trovato
+leggendo la riga che il gioco stesso aveva scritto invece di strumentare una
+sonda.
+
+Comprare opposizione **e'** opporsi: al tavolo pagare per far cadere una
+proposta e' la presa di posizione, e chiedere di averla gia' presa era una porta
+murata sopra una regola nuova. Una regola che non si puo' mai giocare e' la
+stessa cosa di una regola che non c'e' — ed e' esattamente il difetto che
+[D-412](#d-412) aveva trovato su ACQUISIRE due decisioni fa.
+
+---
+
 ## D-418 — Trentadue cancelli in un comando: la pulizia era il conto, non il taglio
 
 **implemented in 0.1.390.** Parola del committente, 0.1.389:

@@ -1864,6 +1864,62 @@ func choose_benefits(
 	return bought
 
 
+## **E decide, prima, se pagare per far cadere** (D-419, ISSUES 119).
+##
+## Lo stesso gettone ha due usi, e sono uno la rinuncia dell'altro: su un costo
+## dice *«passi, ma paghi»*, contro dice *«questa non deve passare»*. Il
+## cervello sceglie il secondo quando **la proposta gli fa piu' male di quanto
+## un costo gliene possa togliere**, e quando il gettone puo' davvero cambiare
+## l'esito.
+##
+## Il metro e' quello di sempre, e non ce n'e' uno nuovo: quanto vale al
+## proponente quello che sta comprando. Se i benefici che ha posato gli valgono
+## piu' del costo piu' doloroso che gli si puo' mettere addosso, farlo pagare
+## non serve: bisogna fermarlo.
+func choose_opposition_token(
+	entity_id: String, context: Dictionary, session: RefCounted
+) -> bool:
+	if session.confluence.opposition_weight() <= 0:
+		return false
+	if session.confluence.claim_tokens(entity_id) <= 0:
+		return false
+	var proponent: String = str(context.get("proponent", ""))
+	if proponent == "" or proponent == entity_id:
+		return false
+	# Chi ha dichiarato di stare dalla parte della proposta non paga per farla
+	# cadere: il motore lo rifiuterebbe, e una richiesta che si sa rifiutata e'
+	# un'azione illegale in piu' nel verbale.
+	if session.confluence.stance_of(entity_id) in ["SUPPORT", "CONDITION"]:
+		return false
+
+	# Quanto guadagna il proponente da quello che ha gia' posato: e' il danno
+	# che si sta cercando di evitare.
+	var goals: Dictionary = _tag_goals(proponent, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var guadagno: int = 0
+	for voice in (session.confluence.placed_benefit_voices() as Array):
+		guadagno += _voice_score(
+			voice, "benefits", proponent, proponent, goals, session, bindings
+		)
+	if guadagno <= 0:
+		return false
+
+	# E quanto potrei togliergli col gettone speso sull'altro fronte: il costo
+	# piu' doloroso ancora libero. Se fermarla vale meno che farla pagare, si
+	# posa il costo — e lo fa `choose_cost_token`, dopo.
+	var peggiore: int = 0
+	for voice_id in (session.confluence.price_menu()["cost"] as Array):
+		if session.confluence.priced_costs().has(str(voice_id)):
+			continue
+		var costo: Dictionary = session.confluence._voice("costs", str(voice_id))
+		if costo.is_empty():
+			continue
+		peggiore = mini(peggiore, _voice_score(
+			costo, "costs", proponent, proponent, goals, session, bindings
+		))
+	return guadagno > -peggiore
+
+
 ## **Un avversario decide se pagare per far pagare** (D-387).
 ##
 ## La domanda non e' piu' *«quale prezzo, fra quelli dovuti»* — non e' piu'

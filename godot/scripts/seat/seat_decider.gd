@@ -666,6 +666,31 @@ func choose_cost_token(
 	return str(ids[picked - 1])
 
 
+## **E si decide se pagare per far cadere** (D-419, ISSUES 119). Lo stesso
+## gettone: su un costo dice *«passi, ma paghi»*, contro dice *«questa non deve
+## passare»*. Chi risponde di si' qui non posa nessun costo — e' la stessa
+## moneta, e la scelta e' la meta' del suo valore.
+func choose_opposition_token(
+	entity_id: String, context: Dictionary, session: RefCounted
+) -> bool:
+	if not _is_human(entity_id):
+		return await fallback.choose_opposition_token(entity_id, context, session)
+	_speaking_to = entity_id
+	if session.confluence.opposition_weight() <= 0:
+		return false
+	if session.confluence.claim_tokens(entity_id) <= 0:
+		return false
+	var picked: int = await _choose(
+		"  %s, hai %d gettone/i: spenderne uno **contro** la proposta (%d al margine)?" % [
+			_name(entity_id, session),
+			session.confluence.claim_tokens(entity_id),
+			-session.confluence.opposition_weight(),
+		],
+		["No: tienilo per il prezzo", "Si': questa non deve passare"]
+	)
+	return picked == 1
+
+
 func choose_costs(
 	entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
 ) -> Array:

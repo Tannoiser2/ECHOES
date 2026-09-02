@@ -412,6 +412,109 @@ func costs_placed() -> int:
 	).size()
 
 
+## **Le voci dei benefici che il proponente ha posato**, gia' aperte.
+##
+## `claimable_benefits()` da' le pedine — che da [D-416](../../../docs/DECISIONS.md#d-416)
+## possono portare anche il nome di una domanda; questa da' le **voci**, che e'
+## quello che serve a chi deve pesare cosa il proponente sta comprando. Senza,
+## chi legge dovrebbe conoscere la forma della pedina, e sarebbe una seconda
+## tabella da tenere allineata.
+func placed_benefit_voices() -> Array:
+	var out: Array = []
+	for entry in claimable_benefits():
+		var voice: Dictionary = _voice("benefits", _voice_id_of(entry))
+		if not voice.is_empty():
+			out.append(voice)
+	return out
+
+
+## Cosa ha dichiarato un seggio in questo Consiglio, o "ABSTAIN" se non ha
+## dichiarato niente. Il proponente sostiene sempre la sua proposta.
+func stance_of(entity_id: String) -> String:
+	if current.is_empty():
+		return "ABSTAIN"
+	if entity_id == str(current["proponent"]):
+		return "SUPPORT"
+	return str(
+		(current["stances"] as Dictionary).get(entity_id, {}).get("stance", "ABSTAIN")
+	)
+
+
+## **Quanto pesa un gettone speso contro** (D-419, ISSUES 119): zero se questa
+## Chronicle non compra opposizione, e allora il gettone compra solo costi —
+## il comportamento fino alla 0.1.390.
+func opposition_weight() -> int:
+	return int(
+		(_chronicle.get("confluence_rules", {}) as Dictionary).get("opposition_token_weight", 0)
+	)
+
+
+## Quante pedine di opposizione stanno sulla carta: una per ogni avversario che
+## ha speso il gettone per far cadere la proposta invece che per farla pagare.
+func opposition_placed() -> int:
+	return (
+		(current.get("oppose_pedine", []) as Array) if not current.is_empty() else []
+	).size()
+
+
+## **Un avversario compra opposizione** (D-419, ISSUES 119, la strada (b) della
+## voce: *«il fallimento si compra»*).
+##
+## Fino a qui un Consiglio cadeva quando i numeri non tornavano: in cento
+## partite il segno di chi ha parlato e perso si posava **8 volte**, su otto
+## case e trecento Consigli. Una minaccia che si vede una volta ogni dodici
+## partite non e' una minaccia, ed e' la ragione per cui il tavolo che tace
+## veniva premiato.
+##
+## Adesso lo stesso gettone di [D-387](../../../docs/DECISIONS.md#d-387) ha
+## **due usi, e sono uno la rinuncia dell'altro**: posarlo su un costo dice
+## *«passi, ma paghi»*; spenderlo contro dice *«questa non deve passare»*. E'
+## la scelta che rende il fronte avverso una posizione invece che un'attesa.
+##
+## **Comprare opposizione e' opporsi**, e non chiede di averlo gia' dichiarato:
+## al tavolo pagare per far cadere una proposta *e'* la presa di posizione, e
+## la pedina si posa in chiaro come tutte le altre. Chiederla solo a chi ha
+## gia' detto OPPOSE l'avrebbe resa quasi impossibile — misurato: in dodici
+## saghe la richiesta arrivava **cinque volte** e veniva rifiutata **cinque
+## volte**, perche' chi aveva il gettone quasi mai aveva anche impegnato carte
+## contro. Una regola che non si puo' mai giocare e' la stessa cosa di una
+## regola che non c'e'.
+##
+## Quello che resta vietato e' l'incoerenza: chi ha dichiarato SUPPORT o
+## CONDITION sta dalla parte della proposta — *«sono a favore, a una
+## condizione»* — e non puo' pagare per farla cadere.
+func buy_opposition(entity_id: String) -> bool:
+	last_error = ""
+	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
+		last_error = "non e' il momento di comprare opposizione"
+		return false
+	if opposition_weight() <= 0:
+		last_error = "in questa Chronicle il gettone non compra opposizione"
+		return false
+	if entity_id == "" or entity_id == str(current["proponent"]):
+		last_error = "chi propone non si oppone alla sua proposta"
+		return false
+	var stance: String = str(
+		(current["stances"] as Dictionary).get(entity_id, {}).get("stance", "ABSTAIN")
+	)
+	if stance == "SUPPORT" or stance == "CONDITION":
+		last_error = "%s sta dalla parte della proposta" % _name(entity_id)
+		return false
+	var pedine: Array = (current.get("oppose_pedine", []) as Array)
+	for posata in pedine:
+		if str(posata) == entity_id:
+			last_error = "%s ha gia' comprato opposizione" % _name(entity_id)
+			return false
+	if not _move_tokens(entity_id, -1):
+		return false
+	pedine.append(entity_id)
+	current["oppose_pedine"] = pedine
+	log.bullet("D. %s spende un gettone contro la proposta (%+d al margine)." % [
+		_name(entity_id), -opposition_weight()
+	])
+	return true
+
+
 ## **I benefici che il proponente puo' comprare: le caselle vive** (D-306).
 ##
 ## Le voci stampate sulla carta, meno quelle che qui e adesso non farebbero
@@ -961,7 +1064,8 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		factor,
 		threshold,
 		support_bonus,
-		oppose_bonus
+		oppose_bonus,
+		opposition_placed() * opposition_weight()
 	)
 	_log_commitments()
 	log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
@@ -983,12 +1087,19 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			" C=%d" % int(result["condition_total"]) if bool(result["condition_qualified"])
 			else " C=%d non qualificata" % int(result["condition_total"])
 		)
+	# L'opposizione comprata entra nella riga che si legge per controllare
+	# l'aritmetica (D-419): un margine che scende di due senza che si veda
+	# perche' e' esattamente il modo in cui una regola nuova diventa magia.
+	var bought: String = ""
+	if int(result.get("bought_opposition", 0)) > 0:
+		bought = " G=%d" % int(result["bought_opposition"])
 	log.bullet(
-		"G. S=%d%s O=%d W=%+d -> M=%d -> %s"
+		"G. S=%d%s O=%d%s W=%+d -> M=%d -> %s"
 		% [
 			int(result["support_total"]),
 			condition,
 			int(result["oppose_total"]),
+			bought,
 			factor,
 			int(result["margin"]),
 			str(result["outcome"]),

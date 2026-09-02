@@ -173,17 +173,31 @@ l'obiettivo adesso si può togliere all'avversario.
 gli unici che una casa senza mappa può ancora vincere, e toglierli è una scelta
 sul gioco, non una misura. Aspetta te.
 
-### R4. [119](ISSUES.md#119) — come cade un Consiglio
+### ✔ R4. [119](ISSUES.md#119) — fatta la raccomandata in 0.1.391: **(b)**
 
-**Un Consiglio su undici cade.** Il segno di chi ha parlato e perso si posa
-**8 volte in cento partite**: una minaccia che si vede una volta ogni dodici
-partite non è una minaccia, ed è la ragione per cui il tavolo silenzioso viene
-premiato (R1).
+Hai detto *«passa alla prossima rossa»* senza rispondere, e vale la regola qui
+sopra: **faccio quella raccomandata e lo scrivo** ([D-419](DECISIONS.md#d-419)).
 
-> **Farei (b): il fallimento si compra.** Un gettone speso *contro* la proposta
-> pesa nel margine. Al tavolo: *«questa non deve passare»*, e paghi per fermarla,
-> invece di sperare nel dado. Va dopo R2, perché ha bisogno che i gettoni ci
-> siano.
+Il gettone di rivendicazione adesso ha **due usi che si escludono**: su un costo
+dice *«passi, ma paghi»*, speso contro dice *«questa non deve passare»* e pesa 1
+nel margine.
+
+**Il numero grosso non è quello che guardavo.** Le proposte che cadono salgono di
+un quinto (33 → 39 sul tavolo misto), ma quelle che passano **in scioltezza**
+scendono di un sesto (127 → 105). Il gettone contro raramente affonda una
+proposta: molto più spesso la **ridimensiona**.
+
+**Il peso 2 l'ho misurato, non stimato:** porta i FAILURE del tavolo misto da 39
+a **55**, ma quelli dell'uniforme da 10 a **21** — quasi il triplo dello stato
+spento. Il cancello tiene sui due tavoli, ma sull'uniforme si torna vicino al
+difetto che D-378 aveva appena tolto: i Consigli che cadono per aritmetica
+invece che per conflitto. Per questo ho lasciato **1**.
+
+**Resta una riga, e aspetta te:** il segno di chi ha parlato e perso è passato da
+6 a 8 su cento partite — un terzo in più, e ancora *una volta ogni dodici
+partite*. I gettoni sono pochi e adesso hanno due usi in concorrenza. **Il
+gettone contro deve pesare 1 o 2?** Oppure le facce RIVENDICARE devono diventare
+più di undici?
 
 ### R5. [80](ISSUES.md#80) — chi decide un Consiglio: il dado o l'economia
 

@@ -8320,7 +8320,54 @@ Si misura in mezz'ora, ed è reversibile.
 la forma piena verso cui l'economia sta andando, e (c) è la sola che rischia di
 disfare D-378.
 
-**Fatto quando** il committente sceglie.
+**Scelto in 0.1.391: (b), il fallimento si compra** ([D-419](DECISIONS.md#d-419)).
+
+Il committente ha detto *«passa alla prossima rossa»* senza rispondere alla
+domanda, e vale la regola scritta in
+[la lista](LE_TUE_DECISIONI.md): *«se non rispondi, faccio quella raccomandata e
+lo scrivo»*. La raccomandata era (b), e (a) resta vera sotto: nessuna delle due
+esclude l'altra.
+
+**La regola:** lo stesso gettone di [D-387](DECISIONS.md#d-387) ha due usi, e
+sono uno la rinuncia dell'altro. Posato su un costo dice *«passi, ma paghi»*;
+speso **contro** dice *«questa non deve passare»*, e pesa 1 nel margine. Una
+pedina a testa. Non lo puo' comprare chi ha dichiarato SUPPORT o CONDITION: sta
+dalla parte della proposta.
+
+| 100 partite CHR_00, seme 7000 | spenta | **peso 1** | peso 2 |
+|---|---|---|---|
+| tavolo misto — FAILURE | 33 | **39** | 55 |
+| tavolo misto — DECISIVE | 127 | **105** | 89 |
+| tavolo uniforme — FAILURE | 8 | **10** | 21 |
+| tavolo uniforme — DECISIVE | 141 | **123** | 110 |
+| `spoke_and_lost` scritto (sonda dei segni, 100 partite miste) | 6 | **8** | — |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 |
+
+**Il numero che si e' mosso di piu' non e' quello che la voce guardava.** Le
+proposte che cadono salgono di un quinto; quelle che passano **in scioltezza**
+scendono di un sesto. Cioe' il gettone contro raramente affonda una proposta, e
+molto piu' spesso la **ridimensiona** — un DECISIVE che diventa un SUCCESS, o un
+SUCCESS che diventa un SUCCESS WITH COST. Al tavolo si legge cosi': *«non l'ho
+fermata, ma non e' passata come voleva lui»*.
+
+#### Quello che resta aperto, ed e' una riga sola
+
+**Il segno di chi ha parlato e perso e' passato da 6 a 8 su cento partite.** E'
+un terzo in piu', ed e' ancora **una volta ogni dodici partite**: la frase che
+ha aperto questa voce — *«una minaccia che si vede una volta ogni dodici partite
+non e' una minaccia»* — resta vera.
+
+La causa e' misurata e non e' la regola: **i gettoni sono pochi**. Con undici
+facce RIVENDICARE ([D-417](DECISIONS.md#d-417)) una casa ne vede pochi per anno,
+e adesso ne ha **due usi in concorrenza**. Alzare il peso da 1 a 2 spinge molto
+di piu' — misurato nella tabella qui sopra: FAILURE da 39 a **55** sul misto, ma
+da 10 a **21** sull'uniforme, quasi il triplo dello stato spento. Il cancello
+tiene sui due tavoli, quindi non e' un no tecnico; e' che sull'uniforme si torna
+vicino al difetto che [D-378](DECISIONS.md#d-378) ha appena tolto: **i Consigli
+che cadono per aritmetica invece che per conflitto**.
+
+**Fatto quando** il committente dice se il gettone contro deve pesare **1 o 2**,
+oppure se le facce RIVENDICARE devono diventare piu' di undici.
 
 ### ✅ Scelto in 0.1.388: **due acquisti liberi** ([D-417](DECISIONS.md#d-417))
 
