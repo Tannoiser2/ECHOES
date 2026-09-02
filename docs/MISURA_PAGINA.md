@@ -19,8 +19,8 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 7 |
-| nodi in tutto | 185 |
-| testi sotto gli occhi | 109 |
+| nodi in tutto | 188 |
+| testi sotto gli occhi | 114 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
 | bersagli che si toccano | 7 |
@@ -86,7 +86,7 @@ colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».
 |---|---|---|---|
 | colonna di stato | 93 | 191 | 1771 |
 | mappa | 1 | *disegna: non lo dichiara* | |
-| il Consiglio | 52 | 218 | 1263 |
+| il Consiglio | 55 | 218 | 1670 |
 | il tavolo | 23 | 0 | 0 |
 | i mazzi dei Temi | 1 | *disegna: non lo dichiara* | |
 | la pagina d'aiuto | 2 | 37 | 28 |

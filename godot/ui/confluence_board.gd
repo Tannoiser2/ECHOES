@@ -160,7 +160,12 @@ func render_closed(session: RefCounted, council: Dictionary) -> void:
 
 func _paint_council(session: RefCounted, council: Dictionary) -> void:
 	_ensure_built()
-	var template: Dictionary = session.data.confluence_templates[str(council["template_id"])]
+	# **La scheda della carta, non il template grezzo** (D-310, D-378): la
+	# plancia disegnava la Domanda e la Proposta di ripiego del template,
+	# non quelle stampate sulla carta Tensione che sta in tavola.
+	var template: Dictionary = session.data.confluence_template_for(
+		str(council["tension_id"])
+	)
 	_card.texture = CardArt.texture_for("tension", str(council["tension_id"]), session.data)
 	_header.text = "%s — %s propone" % [
 		str(session.data.tensions[str(council["tension_id"])]["title"]),

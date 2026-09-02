@@ -4614,6 +4614,22 @@ La sequenza A-K della specifica v0.2 e' ancora intera, e l'economia di
 e' ancora: voti + carte impegnate in segreto + **un d6**. La mappa e i segni
 entrano solo dopo, quando il risultato e' gia' deciso.
 
+> **Un pezzo dello schermo vecchio e' caduto in 0.1.378**
+> ([D-408](DECISIONS.md#d-408)), e non e' quello che questa voce indicava.
+>
+> La plancia leggeva `data.confluence_templates[...]` — il dizionario **crudo**,
+> che tiene ancora le Domande e le Proposte di ripiego — invece della scheda
+> della carta ([D-310](DECISIONS.md#d-310), [D-378](DECISIONS.md#d-378)). Quindi
+> «la Domanda» e «la Proposta» che disegnava **non erano quelle stampate sulla
+> carta in tavola**: erano quelle del template d'autore. Lo stesso valeva per la
+> riga *«se passa»* offerta a chi propone, che spariva del tutto.
+>
+> Non e' il taglio grosso che questa voce chiede — restano i benefici, il
+> prezzo, la pedina e la controproposta, che la plancia non mostra. Ma la meta'
+> vecchia era **piu' vecchia di cosi'**: non disegnava neanche la carta giusta.
+> Trovato da `test_a_council_can_be_played`, la prova nuova di
+> [ISSUES 73](#73).
+
 Lo schermo, dal canto suo, disegna solo la meta' vecchia: la carta della
 Tensione, la Domanda, la Proposta, le pose (sostieni/opponiti/astieniti/a
 condizione) e le Conseguenze. **Dei benefici comprati, del prezzo, della pedina
@@ -4947,6 +4963,26 @@ passare** no del tutto: la suite prova la mano (`test_drag_and_drop`) riempiendo
 il carico a mano, e provava lo schermo (`test_the_page_can_be_read_by_a_finger`)
 senza mai aprire una domanda. Fra i due pezzi, ognuno verde, ci stava un turno
 che non si poteva giocare.
+
+> **Avanzamento in 0.1.378** ([D-408](DECISIONS.md#d-408)): **il giro del
+> Consiglio adesso ha la sua prova**, e ha trovato due schermi vecchi al primo
+> giro.
+>
+> `test_a_council_can_be_played` fa quattro domande — la proposta, la posizione,
+> i benefici comprati, gli impegni — partendo dal decider e finendo su quello che
+> si tocca. Ogni passo chiede che ci sia qualcosa da premere e che **nessuna riga
+> parli per id**.
+>
+> 1. **Tre lettori leggevano il template grezzo** invece della scheda della
+>    carta: la plancia disegnava la Domanda e la Proposta **di ripiego**, e a chi
+>    proponeva spariva la riga **«se passa»** — cioe' proprio quello che
+>    [D-233](DECISIONS.md#d-233) aveva messo li' perche' e' la decisione centrale
+>    del gioco.
+> 2. **Una riga parlava per id**: al passo degli impegni la carta diceva *«costa:
+>    TEN_FAMINE scende»* invece di *«La Carestia scende»*.
+>
+> **Restano scoperti** la scelta del Destino e la fine della Chronicle. La voce
+> non si chiude finche' non hanno anche loro la loro prova.
 
 `test_a_turn_can_be_played` chiude il caso della **fase delle azioni**. Restano
 scoperti allo stesso modo: il giro del **Consiglio** visto da una persona (la

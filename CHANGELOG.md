@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.378 — Il Consiglio si può giocare, e la prova ha trovato due schermi vecchi
+
+Avanza [ISSUES 73](docs/ISSUES.md#73) e [ISSUES 80](docs/ISSUES.md#80)
+([D-408](docs/DECISIONS.md#d-408)).
+
+La 73 diceva dove stava il buco, per nome: *«resta scoperto il giro del Consiglio
+visto da una persona — la proposta, i benefici comprati, il prezzo scelto, gli
+impegni. Ognuno può essere morto senza che un cancello se ne accorga.»*
+
+`test_a_council_can_be_played` chiude quel giro con **quattro prove** che partono
+dal decider e finiscono su quello che si tocca. Ogni passo chiede due cose: che
+ci sia qualcosa da premere, e che **nessuna riga parli per id**.
+
+### Le ha trovate subito, e sono due
+
+**1. Tre lettori leggevano il template grezzo** invece della scheda della carta.
+Da D-310 e D-378 le Domande e le Proposte stanno **sulla carta Tensione**, e
+`confluence_templates[...]` tiene ancora quelle di ripiego:
+
+| chi | cosa ne veniva |
+|---|---|
+| la plancia del Consiglio | disegnava **la Domanda e la Proposta di ripiego**, non quelle della carta in tavola |
+| chi propone | spariva la riga **«se passa»** — la frase sì, cosa lascia al mondo no |
+| chi vota | idem |
+
+La seconda riga è quella che pesa: D-233 l'aveva messa lì perché **è la decisione
+centrale del gioco**.
+
+**2. Una riga parlava per id**: agli impegni la carta diceva *«costa: TEN_FAMINE
+scende»* invece di *«La Carestia scende»*. Una parola —
+`AssetText.note(asset, session.data)`.
+
+### E la sesta sonda cieca era la prova stessa
+
+La prima stesura guardava la colonna e trovava **zero** su tutt'e quattro i
+passi. Sembrava lo schermo muto; era la prova: quando un Consiglio è aperto le
+scelte vanno **sulla plancia**, accanto alla domanda a cui rispondono. Sesta
+volta in questo progetto che uno zero era chi guardava.
+
+Suite **684 prove** (erano 680), cancello **0 su 8** sui due tavoli.
+
+---
+
 ## 0.1.377 — Il cervello gioca il suo profilo, e non gliel'ho insegnato io
 
 Chiude [ISSUES 78](docs/ISSUES.md#78) ([D-407](docs/DECISIONS.md#d-407)) e
