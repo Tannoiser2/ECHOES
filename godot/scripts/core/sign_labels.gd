@@ -8,6 +8,8 @@ extends RefCounted
 ## garantisce che ogni segno scritto nei dati abbia qui la sua parola — un
 ## segno senza nome è un bug, non un'atmosfera.
 
+# --- GENERATO da tools/gen_sign_labels.py — non si corregge qui ---
+
 ## I segni che si posano su una Regione.
 const REGION_WORDS: Dictionary = {
 	"condition:abandoned": "abbandonata",
@@ -15,6 +17,7 @@ const REGION_WORDS: Dictionary = {
 	"condition:cut_off": "tagliata fuori",
 	"condition:emptied": "svuotata",
 	"condition:exploited": "sfruttata",
+	"condition:guarded": "sorvegliata",
 	"condition:indebted": "indebitata",
 	"condition:lean": "magra",
 	"condition:mourning": "in lutto",
@@ -23,13 +26,9 @@ const REGION_WORDS: Dictionary = {
 	"condition:requisitioned": "requisita",
 	"condition:starving": "affamata",
 	"condition:unrest": "inquieta",
-	"condition:guarded": "sorvegliata",
 	"scar:abandoned": "l'abbandono",
 	"scar:broken_bridge": "il ponte rotto",
 	"scar:broken_word": "la parola rotta",
-	# La cicatrice che l'Archivio lascia bruciando. La posa la **rovina di una
-	# pietra**, non un Effetto, ed e' la ragione per cui e' rimasta senza parola:
-	# il censimento di D-107 guardava gli Effetti (D-249).
 	"scar:burned_records": "i registri bruciati",
 	"scar:changed_hands": "passata di mano",
 	"scar:divided_seal": "il sigillo diviso",
@@ -49,117 +48,99 @@ const REGION_WORDS: Dictionary = {
 	"structure:watchtower": "la torre di veglia",
 }
 
-## I segni che una casa porta con sé.
+## I segni che una casa si porta addosso.
 const ENTITY_WORDS: Dictionary = {
+	"ancient": "antica",
 	"anointed": "la custodia riconosciuta",
-	# I marchi che la pedina del prezzo lascia addosso (D-278).
-	"hard_bargain": "la parola fredda",
-	"spoke_and_lost": "la proposta caduta in Consiglio",
-	"took_by_hand": "si e' servito da solo",
-	"watched": "sotto osservazione",
+	"ash": "la cenere",
 	"ash_watch": "la veglia della cenere",
+	"crowned": "la corona",
 	"discovery:crystal": "scoperta: il cristallo",
 	"discovery:legend": "scoperta: la leggenda",
 	"discovery:relic": "scoperta: la reliquia",
-	# Quattro scoperte uscivano col proprio suffisso in mezzo alla frase —
-	# «scoperta: trade_ledger». Il ripiego per prefisso le faceva passare per
-	# note (`known()` diceva si'), e nessuna prova poteva vedere la differenza
-	# fra una parola e un id vestito da parola (D-236).
 	"discovery:shared_record": "scoperta: il registro condiviso",
-	"discovery:the_measure": "scoperta: la misura",
-	"discovery:the_omen": "scoperta: il presagio",
-	"discovery:trade_ledger": "scoperta: il registro dei traffici",
 	"discovery:supervised_record": "scoperta: lo studio custodito",
 	"discovery:the_charter": "scoperta: la carta",
 	"discovery:the_ledger": "scoperta: il registro",
+	"discovery:the_measure": "scoperta: la misura",
+	"discovery:the_omen": "scoperta: il presagio",
+	"discovery:trade_ledger": "scoperta: il registro dei traffici",
 	"discovery:written_law": "scoperta: la legge scritta",
 	"escort_sworn": "la scorta giurata",
-	"uprooted": "sradicato",
-	"twice_uprooted": "due volte sradicato",
 	"failed_proposal": "la proposta caduta",
-	"heir_named": "l'erede nominato",
-	"renowned": "la fama",
-	"water_rights": "i diritti d'acqua",
-	"crowned": "la corona",
-	"migrating": "in cammino",
-	"scholar": "il sapere",
-	"ancient": "antica",
-	"sleeping": "dormiente",
-	"guild": "la gilda",
-	"order": "l'ordine",
-	"ash": "la cenere",
 	"free_cities": "le città libere",
+	"guild": "la gilda",
+	"hard_bargain": "la parola fredda",
+	"heir_named": "l'erede e' stato nominato",
+	"migrating": "in cammino",
+	"order": "l'ordine",
+	"renowned": "la fama",
+	"scholar": "il sapere",
+	"sleeping": "dormiente",
+	"spoke_and_lost": "la proposta caduta in Consiglio",
+	"took_by_hand": "si e' servito da solo",
+	"twice_uprooted": "due volte sradicato",
+	"uprooted": "sradicato",
+	"watched": "sotto osservazione",
+	"water_rights": "i diritti d'acqua",
 }
 
-
-## I domini delle Tensioni, in italiano: un Claim rivendica un dominio, e sul
-## pannello si legge la parola, non l'enum (ISSUES 22, l'inventario dell'app).
-## **I fatti del mondo** — quelli globali, che non stanno su una Regione ne' su
-## una casa ma sulla Cronaca, e che l'anno dopo richiamano le domande (D-079).
-##
-## Mancavano, e si vedeva sulle carte: «Registro» e «Credito» dicevano al
-## giocatore «un segno cade sul mondo» invece di «il mondo registra: i conti
-## sono pubblici». Trenta fatti, e ognuno e' una cosa successa — quindi si
-## dicono al **passato**, che e' come li legge chi apre la Cronaca l'anno dopo.
+## Le memorie del mondo, al centro del tavolo.
 const WORLD_WORDS: Dictionary = {
 	"account_settled": "il conto e' stato saldato",
-	# Quello che il prezzo di un Consiglio lascia al centro del tavolo (D-278).
-	"price_in_lives": "si e' pagato in vite",
-	"rumour_running": "la voce corre",
-	# **I quattordici che la clausola scrive** (D-236). Erano senza parola, e
-	# fino a ieri non si vedevano: una clausola qualificata applicava i suoi
-	# effetti e basta. Da quando la scheda di una domanda si legge sullo schermo
-	# **prima** del Consiglio, quella riga e' esattamente il pezzo su cui si
-	# decide se attaccare una condizione, e diceva «un segno cade sul mondo».
 	"amnesty_granted": "l'amnistia e' stata concessa",
 	"betrayal_spoken": "il tradimento e' stato detto ad alta voce",
-	"crystal_measured": "il Cristallo e' stato misurato",
-	"parley_held": "ci si e' parlato",
-	"petition_heard": "la richiesta e' stata ascoltata",
-	"someone_paid": "qualcuno ha pagato",
+	"burden_shared": "il peso e' stato diviso",
 	"charter_for_all": "la Carta vale per tutti",
 	"charter_temporary": "la Carta vale per un tempo solo",
-	"debt_staggered": "il debito e' stato dilazionato",
-	"descent_witnessed": "la discesa e' stata fatta davanti a testimoni",
-	"distribution_audited": "la distribuzione e' stata contata",
-	"knowledge_shared": "quello che si e' saputo lo sanno tutti",
-	"list_witnessed": "la lista e' stata letta davanti a testimoni",
-	"quota_guaranteed": "una quota e' garantita",
-	"relic_recorded": "la reliquia e' a registro",
-	"return_promised": "il ritorno e' stato promesso",
-	"succession_witnessed": "la successione ha avuto testimoni",
-	"toll_shared": "il pedaggio si divide",
-	"water_shared": "l'acqua si divide",
-	"burden_shared": "il peso e' stato diviso",
 	"charter_written": "la Carta e' stata scritta",
 	"crown_dispossessed": "la corona e' stata spogliata",
 	"crown_divided": "la corona e' stata divisa",
 	"crystal_exploited": "il Cristallo e' stato sfruttato",
+	"crystal_measured": "il Cristallo e' stato misurato",
 	"debt_called": "il debito e' stato chiamato",
 	"debt_forgiven": "il debito e' stato perdonato",
+	"debt_staggered": "il debito e' stato dilazionato",
+	"descent_witnessed": "la discesa e' stata fatta davanti a testimoni",
+	"distribution_audited": "la distribuzione e' stata contata",
 	"dragon_slain": "il drago e' stato abbattuto",
 	"faith_established": "la fede ha avuto un posto",
 	"grain_requisitioned": "il grano e' stato requisito",
 	"heir_named": "l'erede e' stato nominato",
+	"knowledge_shared": "quello che si e' saputo lo sanno tutti",
 	"ledger_public": "i conti sono pubblici",
+	"list_witnessed": "la lista e' stata letta davanti a testimoni",
 	"mine_sealed": "le Miniere sono state sigillate",
 	"mountain_forgotten": "la montagna e' diventata racconto",
 	"nahr_settled": "i Nahr si sono fermati",
 	"no_charter": "la Carta non e' stata scritta",
 	"oath_broken": "il giuramento e' stato rotto",
 	"order_restored": "l'ordine e' stato ristabilito",
+	"parley_held": "ci si e' parlato",
+	"petition_heard": "la richiesta e' stata ascoltata",
+	"price_in_lives": "si e' pagato in vite",
 	"question_unresolved": "una domanda e' rimasta aperta",
+	"quota_guaranteed": "una quota e' garantita",
 	"relic_buried": "la reliquia e' stata sepolta",
+	"relic_recorded": "la reliquia e' a registro",
 	"relic_shown": "la reliquia e' stata mostrata",
+	"return_promised": "il ritorno e' stato promesso",
+	"rumour_running": "la voce corre",
 	"seal_kept": "il sigillo ha tenuto",
 	"seal_kept_twice": "il sigillo ha tenuto due volte",
+	"someone_paid": "qualcuno ha pagato",
 	"study_supervised": "lo studio e' sotto sorveglianza",
 	"succession_by_law": "la successione e' passata per legge",
 	"succession_settled": "la successione e' stata risolta",
+	"succession_witnessed": "la successione ha avuto testimoni",
+	"toll_shared": "il pedaggio si divide",
 	"valley_sealed": "la Valle e' stata chiusa",
 	"water_moves": "l'acqua ha cambiato strada",
 	"water_priced": "l'acqua ha un prezzo",
+	"water_shared": "l'acqua si divide",
 }
+
+# --- fine del blocco generato ---
 
 const DOMAIN_WORDS: Dictionary = {
 	"SURVIVAL": "la sopravvivenza",

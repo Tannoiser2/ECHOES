@@ -314,7 +314,7 @@ no border. Not gory, not horror.
 | dopo il voto | si scarta sempre |
 | se la cali | FORGIARE — muovi di un passo il rapporto con un'altra casa |
 | al Consiglio | +1 sempre |
-| cosa lascia | il mondo registra: l'erede nominato |
+| cosa lascia | il mondo registra: l'erede e' stato nominato |
 | id | `AST_AUTHORITY_INVESTITURE` |
 
 > Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.

@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.368 — Un segno si battezza una volta sola (D-400)
+
+Punto 1 di [ISSUES 70](docs/ISSUES.md#70), e **trentunesimo cancello**.
+`sign_labels.gd` si presentava come *«l'unico posto dove un tag diventa una
+parola»* per l'app; il dizionario lo è per il gettone stampato. Due unici posti,
+cioè due — con **37 parole diverse su 118**.
+
+E le 37 non erano un errore: il gettone stampa «contes**o**», l'app dice «la
+Regione è contes**a**». Generare il file dal solo `title` avrebbe **rotto
+l'italiano dell'app**.
+
+Quindi il dizionario dichiara tutt'e due le forme — campo nuovo `title_spoken`,
+opzionale — e `tools/gen_sign_labels.py` monta il file da lì. **Quali segni hanno
+una parola non è una lista a parte**: sono quelli con un gettone di cartone, e le
+due liste combaciavano già su 117 su 117.
+
+**La sola parola cambiata è il difetto della voce**: `heir_named` ne aveva due
+nello stesso file — «l'erede nominato» sulla scheda e «l'erede è stato nominato»
+al centro del tavolo. Adesso ne ha una.
+
+E **la guardia dei testi scritta ieri ha morso oggi**, su un campo che ieri non
+esisteva: `title_spoken` è prosa nuova, e D-398 ha preteso che entrasse nel
+documento o fosse dichiarata. Ci entra.
+
+Cancello 0/8 sui due tavoli, suite verde.
+
+---
+
 ## 0.1.367 — La ragione di un segno muto la tiene il dizionario (D-399)
 
 Punto 2 di [ISSUES 70](docs/ISSUES.md#70). `build_sign_registry.py` teneva

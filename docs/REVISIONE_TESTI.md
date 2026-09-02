@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4136 testi in lettura.
+possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -14121,7 +14121,9 @@ possono spostare nella frase, non togliere. 4136 testi in lettura.
 
 ## 13. I segni — il nome stampato sul gettone
 
-*(Il nome con cui un segno si chiama al tavolo. Le forme fra
+*(Il nome con cui un segno si chiama al tavolo: quello stampato sul
+gettone e, quando e' diverso, quello che l'app dice dentro una frase.
+Le forme fra
 parentesi sono i modi in cui la stessa cosa e' stata detta altrove,
 e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
@@ -14154,6 +14156,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > il tradimento e' stato detto ad alta voce
 
+> il tradimento e' stato detto ad alta voce
+
 
 **`burden_shared`**
 > il peso e' stato diviso
@@ -14180,9 +14184,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > abbandonata
 
+> abbandonata
+
 
 **`condition:contested`**
 > conteso
+
+> contesa
 
 > contesa
 
@@ -14192,15 +14200,21 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > tagliata fuori
 
+> tagliata fuori
+
 
 **`condition:emptied`**
 > svuotato
 
 > svuotata
 
+> svuotata
+
 
 **`condition:exploited`**
 > sfruttato
+
+> sfruttata
 
 > sfruttata
 
@@ -14220,9 +14234,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > magra
 
+> magra
+
 
 **`condition:mourning`**
 > lutto
+
+> in lutto
 
 > in lutto
 
@@ -14232,9 +14250,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > depredata
 
+> depredata
+
 
 **`condition:rationed`**
 > razionato
+
+> razionata
 
 > razionata
 
@@ -14244,15 +14266,21 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > requisita
 
+> requisita
+
 
 **`condition:starving`**
 > fame
 
 > affamata
 
+> affamata
+
 
 **`condition:unrest`**
 > malcontento
+
+> inquieta
 
 > inquieta
 
@@ -14278,6 +14306,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > il Cristallo e' stato misurato
 
+> il Cristallo e' stato misurato
+
 
 **`crystal_site`**
 > cristallo
@@ -14290,9 +14320,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > il debito e' stato chiamato
 
+> il debito e' stato chiamato
+
 
 **`debt_forgiven`**
 > debito rimesso
+
+> il debito e' stato perdonato
 
 > il debito e' stato perdonato
 
@@ -14388,6 +14422,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > la scorta giurata
 
+> la scorta giurata
+
 
 **`evicted:$region_focus`**
 > cacciata dalla Regione in questione
@@ -14402,6 +14438,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > la fede ha avuto un posto
 
+> la fede ha avuto un posto
+
 
 **`forest`**
 > bosco
@@ -14413,6 +14451,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`grain_requisitioned`**
 > grano requisito
+
+> il grano e' stato requisito
 
 > il grano e' stato requisito
 
@@ -14438,6 +14478,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > l'erede e' stato nominato
 
+> l'erede e' stato nominato
+
 
 **`island`**
 > isola
@@ -14448,9 +14490,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > quello che si e' saputo lo sanno tutti
 
+> quello che si e' saputo lo sanno tutti
+
 
 **`ledger_public`**
 > registro pubblico
+
+> i conti sono pubblici
 
 > i conti sono pubblici
 
@@ -14580,6 +14626,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > il giuramento e' stato rotto
 
+> il giuramento e' stato rotto
+
 
 **`order`**
 > l'ordine
@@ -14646,6 +14694,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > si e' pagato in vite
 
+> si e' pagato in vite
+
 
 **`question_unresolved`**
 > una domanda e' rimasta aperta
@@ -14669,6 +14719,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`renowned`**
 > fama
+
+> la fama
 
 > la fama
 
@@ -14697,6 +14749,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`scar:burned_records`**
 > l'Archivio bruciato
+
+> i registri bruciati
 
 
 **`scar:changed_hands`**
@@ -14742,9 +14796,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 **`seal_kept`**
 > il sigillo ha retto un'era
 
+> il sigillo ha tenuto
+
 
 **`seal_kept_twice`**
 > il sigillo ha retto due ere
+
+> il sigillo ha tenuto due volte
 
 
 **`settlement:$proponent`**
@@ -14761,6 +14819,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`settlement:market`**
 > mercato
+
+> il mercato
 
 > il mercato
 
@@ -14783,6 +14843,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`spoke_and_lost`**
 > ha parlato e ha perso
+
+> la proposta caduta in Consiglio
 
 
 **`structure:archive`**
@@ -14818,9 +14880,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > il sigillo
 
+> il sigillo
+
 
 **`structure:tollgate`**
 > pedaggio
+
+> il pedaggio
 
 > dogana · il pedaggio · la dogana
 
@@ -14836,9 +14902,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > lo studio e' sotto sorveglianza
 
+> lo studio e' sotto sorveglianza
+
 
 **`succession_by_law`**
 > successione per legge
+
+> la successione e' passata per legge
 
 > la successione e' passata per legge
 
@@ -14856,9 +14926,13 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > il pedaggio si divide
 
+> il pedaggio si divide
+
 
 **`took_by_hand`**
 > si e' servito
+
+> si e' servito da solo
 
 
 **`trade`**

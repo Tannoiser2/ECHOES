@@ -438,13 +438,19 @@ def main() -> int:
 
     review.line("## 13. I segni — il nome stampato sul gettone")
     review.line()
-    review.line("*(Il nome con cui un segno si chiama al tavolo. Le forme fra")
+    review.line("*(Il nome con cui un segno si chiama al tavolo: quello stampato sul")
+    review.line("gettone e, quando e' diverso, quello che l'app dice dentro una frase.")
+    review.line("Le forme fra")
     review.line("parentesi sono i modi in cui la stessa cosa e' stata detta altrove,")
     review.line("e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*")
     review.line()
     for sign in sorted_by_id(load_all("tag")):
         review.entry(
             sign["id"], sign.get("title"),
+            # La forma con cui l'app lo dice dentro una frase, quando non e'
+            # quella stampata sul gettone (D-400): «conteso» sul cartone,
+            # «contesa» nella riga che parla della Regione.
+            sign.get("title_spoken"),
             " · ".join(sign.get("aliases", []) or []) or None,
         )
 
