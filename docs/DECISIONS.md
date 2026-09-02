@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-414 — Due porte murate, e due sonde che guardavano il foglio sbagliato
+
+**implemented in 0.1.385.** Avanza [ISSUES 56](ISSUES.md#56) e
+[ISSUES 59](ISSUES.md#59).
+
+### ISSUES 56, rimisurata sul perimetro che il suo criterio chiede
+
+Il criterio dice **«200 anni»**, e la voce portava un numero preso su cento anni
+scollegati. Rimisurata dove va misurata — 20 saghe da 10, 1.018 Consigli — le
+Conseguenze che non escono mai sono **7 su 65**, non nove. E adesso ognuna ha
+**una diagnosi**, che e' la cosa che la voce chiedeva da 0.1.196:
+
+| verdetto | quante | cosa vuol dire |
+|---|---|---|
+| **sempre perdente** | 4 | la proposta viene scelta e non passa mai |
+| **mai scelta** | 3 | sale sulla scheda e nessuno la prende |
+| **non idonea** | **0** (erano 2) | non saliva nemmeno sulla scheda |
+
+### Le due porte murate, e cadono tutt'e due
+
+`CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN` — la corona che si ricompone, il drago
+che muore, due dei nomi grossi del catalogo — erano escluse **14 volte su 14** e
+**5 su 5**. Non impopolari: **invisibili**.
+
+| proposta | chiedeva | adesso chiede |
+|---|---|---|
+| `P_ONE_CROWN` | `crown_divided`, che il mondo scrive **3 volte in cento partite** | quello, **oppure** `heir_named`, che ne scrive 40 |
+| `P_SLAY_THE_DRAGON` | una Rivelazione giocata, e **una sola carta in tutto il mazzo** la porta | quella, **oppure** la vena aperta, **oppure** chi propone ha visto il presagio |
+
+Tutt'e due sono passate da *non idonea* a **«offerta 2 volte, presa zero»**. Non
+escono ancora, ma il tavolo le vede — ed e' un difetto diverso, con un rimedio
+diverso: e' l'economia del Consiglio, cioe' [ISSUES 125](ISSUES.md#125), che
+aspetta il committente.
+
+### E per arrivarci ho sbagliato due volte, nello stesso modo
+
+**Nona volta**: la prima riparazione l'ho scritta in
+`confluence_templates.json`, e da [D-378](#d-378) **le Proposte vengono dalla
+carta Tensione**. Il numero non si e' mosso di un centesimo — 14 su 14, identico
+— e un numero che non si muove di un centesimo dopo una modifica e' quasi sempre
+il foglio sbagliato, non una modifica inefficace.
+
+**Decima volta**: la seconda chiave del drago la puntava su una Regione, e **una
+Scoperta sta sull'entita'**. Avevo murato una porta mentre ne smuravo un'altra,
+e il conto e' rimasto 5 su 5 anche allora.
+
+`test_no_proposal_is_walled_shut` adesso tiene aperto quello che e' aperto, e
+guarda in due modi apposta: **i dati** (nessuna proposta chiede un segno senza
+penna) e **il motore** (si posa la chiave e si controlla che la serratura giri).
+La prima meta' da sola si assolverebbe: un segno «scritto da qualcuno» puo'
+comunque essere letto nel posto sbagliato, ed e' esattamente l'errore di sopra.
+
+### ISSUES 59: la sonda dei verbi contava il verbo di ieri
+
+Il libro mastro delle carte stampava una tabella **«PER AZIONE»** che leggeva
+`card_action.kind` — il verbo **dichiarato** della carta. Da
+[D-283](#d-283) quello non e' piu' il verbo che si gioca: una carta stampa due
+Azioni e chi cala sceglie. Il criterio di ISSUES 59 parla di **verbi giocati**,
+quindi era misurato sulla cosa sbagliata — e da [D-412](#d-412) ACQUISIRE non
+compariva affatto, pur essendo calata 194 volte in cento partite.
+
+Adesso il libro mastro stampa **due** tabelle, e si leggono insieme:
+
+| azione calata | volte | quota |
+|---|---|---|
+| SCHEME | 893 | 30,6% |
+| MOVE | 637 | 21,8% |
+| FORGE | 599 | 20,5% |
+| INFLUENCE | 381 | 13,1% |
+| CLAIM | 212 | 7,3% |
+| **ACQUIRE** | **194** | **6,7%** |
+
+**Il criterio non e' soddisfatto, e adesso si sa di quanto**: «nessun verbo si
+gioca meno della meta' del piu' giocato» vuol dire almeno 447, e tre verbi su
+sei stanno sotto. Il numero da battere non e' piu' un 18,5% preso sul verbo
+dichiarato: e' **381 contro 893**.
+
+E la seconda meta' del criterio e' quasi vera: **una carta su 48 non viene mai
+calata** — Patto Rotto.
+
+---
+
 ## D-413 — Gli Obiettivi nominano un luogo, e da otto ne resta uno
 
 **implemented in 0.1.384.** Parola del committente: **«R3 si'»** su

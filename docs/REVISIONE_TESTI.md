@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4172 testi in lettura.
+possono spostare nella frase, non togliere. 4182 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7324,7 +7324,19 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_SLAY_THE_DRAGON, si puo' proporre se 1`**
+> Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 2`**
 > Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 3`**
+> Oppure qualcuno ha aperto la vena, e sa cosa c'e' sotto
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 4`**
+> Oppure chi propone ha gia' visto il presagio
 
 
 **`Q_BAD_GRAIN_SILO`**
@@ -9116,7 +9128,15 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_ONE_CROWN, si puo' proporre se 1`**
-> La corona è divisa da un'altra era
+> La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
+
+
+**`P_ONE_CROWN, si puo' proporre se 2`**
+> La corona e' divisa da un'altra era
+
+
+**`P_ONE_CROWN, si puo' proporre se 3`**
+> Qualcuno ha gia' fatto il nome di un erede
 
 
 **`P_ONE_CROWN, esito`**
@@ -9888,7 +9908,19 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_SLAY_THE_DRAGON, si puo' proporre se 1`**
+> Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 2`**
 > Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 3`**
+> Oppure qualcuno ha aperto la vena, e sa cosa c'e' sotto
+
+
+**`P_SLAY_THE_DRAGON, si puo' proporre se 4`**
+> Oppure chi propone ha gia' visto il presagio
 
 
 **`CNF_CHARTER_03`**
@@ -10360,7 +10392,15 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 
 
 **`P_ONE_CROWN, si puo' proporre se 1`**
-> La corona è divisa da un'altra era
+> La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
+
+
+**`P_ONE_CROWN, si puo' proporre se 2`**
+> La corona e' divisa da un'altra era
+
+
+**`P_ONE_CROWN, si puo' proporre se 3`**
+> Qualcuno ha gia' fatto il nome di un erede
 
 
 **`P_ONE_CROWN, esito`**

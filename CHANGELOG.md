@@ -5,6 +5,61 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.385 — Due porte murate cadono, e due sonde guardavano il foglio sbagliato
+
+M1 e M2 della lista ([D-414](docs/DECISIONS.md#d-414)).
+
+### ISSUES 56, misurata dove il suo criterio dice
+
+Il criterio dice **200 anni** e il numero della voce era preso su cento anni
+scollegati. Misurata dove va misurata — 20 saghe da 10, 1.018 Consigli — le
+Conseguenze che non escono mai sono **7 su 65**, non nove, e ognuna ha una
+diagnosi: quattro **sempre perdenti**, tre **mai scelte**, e **zero non idonee**
+dove erano due.
+
+`CNS_CROWN_REUNITED` era esclusa 14 volte su 14 e `CNS_DRAGON_SLAIN` 5 su 5 —
+la corona che si ricompone e il drago che muore, due dei nomi grossi del
+catalogo. Non impopolari: **invisibili**. La prima chiedeva un segno che il mondo
+scrive 3 volte in cento partite, la seconda una Rivelazione che **una sola carta
+in tutto il mazzo** porta. Adesso ognuna ha una seconda porta, e tutt'e due sono
+passate a «offerta 2 volte, presa zero».
+
+**Il resto non è di questa voce**: una proposta che nessuno prende è l'economia
+del Consiglio, cioè la [125](docs/ISSUES.md#125), che aspetta il committente.
+
+### E per arrivarci ho sbagliato due volte nello stesso modo
+
+Sta a verbale perché vale più della riparazione. **Nona volta**: la prima chiave
+l'avevo scritta nel file dei template, e da D-378 **le Proposte vengono dalla
+carta Tensione** — il numero non si è mosso di un centesimo, ed è così che si
+riconosce il foglio sbagliato. **Decima volta**: la seconda chiave la puntava su
+una Regione, e **una Scoperta sta sull'entità**; avevo murato una porta mentre
+ne smuravo un'altra.
+
+### ISSUES 59: la sonda contava il verbo di ieri
+
+Il libro mastro stampava una tabella «PER AZIONE» che leggeva il verbo
+**dichiarato** della carta. Da D-283 quello non è più il verbo che si gioca, e da
+D-412 **ACQUISIRE non compariva affatto** pur essendo calata 194 volte in cento
+partite. Adesso stampa due tabelle, e quella vera dice:
+
+| azione calata | volte | quota |
+|---|---|---|
+| SCHEME | 893 | 30,6% |
+| MOVE | 637 | 21,8% |
+| FORGE | 599 | 20,5% |
+| INFLUENCE | 381 | 13,1% |
+| CLAIM | 212 | 7,3% |
+| ACQUIRE | 194 | 6,7% |
+
+Il criterio non è soddisfatto, e **adesso si sa di quanto**: la metà del più
+giocato è 447, tre verbi su sei stanno sotto. Il numero da battere è 381 contro
+893, non un 18,5% preso sulla cosa sbagliata.
+
+Suite a **701 prove**.
+
+---
+
 ## 0.1.384 — R3 sì: gli Obiettivi nominano un luogo, e le coppie contese passano da una su sette a una su due
 
 Parola del committente, **«R3 sì»** su [ISSUES 120](docs/ISSUES.md#120)

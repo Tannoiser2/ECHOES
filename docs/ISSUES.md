@@ -2910,6 +2910,34 @@ dire tarare due verbi contro un'economia che sta per cambiare.
 famiglia e' calata meno della meta' della piu' calata, e ogni carta viene calata
 per agire almeno una volta su cento anni — col playtest ancora **0/8**.
 
+### Rimisurata in 0.1.385, e la sonda contava il verbo di ieri ([D-414](DECISIONS.md#d-414))
+
+Il libro mastro stampava una tabella **«PER AZIONE»** che leggeva
+`card_action.kind` — il verbo **dichiarato** della carta. Da
+[D-283](DECISIONS.md#d-283) quello non è più il verbo che si gioca: una carta
+stampa due Azioni e chi cala sceglie. Il criterio di questa voce parla di **verbi
+giocati**, quindi era misurato sulla cosa sbagliata — e da
+[D-412](DECISIONS.md#d-412) ACQUISIRE non compariva affatto, pur essendo calata
+194 volte in cento partite.
+
+Adesso il libro mastro stampa due tabelle. Quella vera:
+
+| azione calata | volte | quota |
+|---|---|---|
+| SCHEME | 893 | 30,6% |
+| MOVE | 637 | 21,8% |
+| FORGE | 599 | 20,5% |
+| INFLUENCE | 381 | 13,1% |
+| CLAIM | 212 | 7,3% |
+| **ACQUIRE** | **194** | **6,7%** |
+
+**Il criterio non è soddisfatto, e adesso si sa di quanto**: la metà del più
+giocato è 447, e tre verbi su sei stanno sotto. Il numero da battere non è più
+un 18,5% preso sul verbo dichiarato — è **381 contro 893**.
+
+La seconda metà del criterio è quasi vera: **una carta su 48 non viene mai
+calata**, Patto Rotto.
+
 ---
 
 ### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
@@ -6260,6 +6288,36 @@ sempre perdente. Sono tre difetti diversi con tre rimedi diversi.
 o è stata tolta perché non serviva.
 
 </details>
+
+### Rimisurata in 0.1.385 sul perimetro giusto, e le due porte murate sono cadute ([D-414](DECISIONS.md#d-414))
+
+Il criterio dice **200 anni**, e il numero della voce era preso su cento anni
+scollegati. Misurata dove va misurata — 20 saghe da 10, 1.018 Consigli — sono
+**7 su 65**, non nove. E ognuna ha una diagnosi:
+
+| verdetto | quante | cosa vuol dire |
+|---|---|---|
+| **sempre perdente** | 4 | la proposta viene scelta e non passa mai |
+| **mai scelta** | 3 | sale sulla scheda e nessuno la prende |
+| **non idonea** | **0** (erano 2) | non saliva nemmeno sulla scheda |
+
+`CNS_CROWN_REUNITED` era esclusa **14 volte su 14**, `CNS_DRAGON_SLAIN` **5 su
+5**: non impopolari, invisibili. La prima chiedeva `crown_divided`, che il mondo
+scrive 3 volte in cento partite; la seconda una Rivelazione, che **una sola
+carta in tutto il mazzo** porta. Adesso ognuna ha una seconda porta, e tutt'e due
+sono passate a **«offerta 2 volte, presa zero»**.
+
+**Il resto non è di questa voce**: una proposta che sale sulla scheda e nessuno
+prende, o che viene presa e non passa, è l'economia del Consiglio — cioè la
+[125](#125), che aspetta il committente. Questa voce ha finito quello che poteva
+fare da sola: **nessuna Conseguenza è più murata.**
+
+**E per arrivarci ho sbagliato due volte nello stesso modo**, e sta a verbale
+perché vale più della riparazione: la prima chiave l'avevo scritta nel file dei
+template, e **le Proposte vengono dalla carta Tensione** (D-378) — il numero non
+si è mosso di un centesimo; la seconda la puntava su una Regione, e **una
+Scoperta sta sull'entità**. Nona e decima volta che un numero fermo era chi
+guardava.
 
 ---
 

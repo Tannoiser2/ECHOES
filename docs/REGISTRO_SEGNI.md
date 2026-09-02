@@ -101,7 +101,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `crown_dispossessed` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
 | `crown_divided` | Conseguenza | Conseguenza | Destino, Risonanza, fatto che dura, pesca delle domande, proposta |
 | `crowned` | — | Conseguenza | proposta |
-| `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande |
+| `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande, proposta |
 | `crystal_measured` | Azione stampata, carta Echo | — | pesca delle domande |
 | `debt_called` | Azione stampata, Conseguenza, carta Asset | — | Destino, Risonanza, carta Echo, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande, regola del segno |
 | `debt_forgiven` | Azione stampata, Conseguenza, carta Echo | — | Destino |
@@ -115,7 +115,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `discovery:the_charter` | Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:the_ledger` | Azione stampata, Conseguenza, clausola di Consiglio | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:the_measure` | carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd) |
-| `discovery:the_omen` | Azione stampata, carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd) |
+| `discovery:the_omen` | Azione stampata, carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd), proposta |
 | `discovery:trade_ledger` | Azione stampata, clausola di Consiglio | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:written_law` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `distribution_audited` | clausola di Consiglio | — | pesca delle domande |
@@ -124,7 +124,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `failed_proposal` | Conseguenza | — | Destino |
 | `faith_established` | Conseguenza | — | Risonanza, pesca delle domande |
 | `grain_requisitioned` | Azione stampata, Conseguenza | — | Risonanza, chi siede l'anno prossimo, pesca delle domande |
-| `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo |
+| `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo, proposta |
 | `knowledge_shared` | Azione stampata, carta Echo, clausola di Consiglio | — | Destino, Risonanza, carta Echo, pesca delle domande |
 | `ledger_public` | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | — | Destino, Risonanza, carta Echo, fatto che dura |
 | `mine_sealed` | Conseguenza | Conseguenza | Destino, catena delle ere, fatto che dura, pesca delle domande, proposta |

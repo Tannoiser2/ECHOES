@@ -36,6 +36,14 @@ class Ledger extends RefCounted:
 	var inner: RefCounted
 	var played: Dictionary = {}
 	var committed: Dictionary = {}
+	## **Quale Azione stampata e' stata calata**, contata a parte (D-414).
+	## Fino a qui la tabella «per azione» leggeva `card_action.kind` — il verbo
+	## **dichiarato** della carta — e da [D-283](../../docs/DECISIONS.md#d-283)
+	## quello non e' piu' il verbo che si gioca: una carta stampa due Azioni e
+	## chi cala sceglie. La tabella diceva quindi il verbo di ieri, e da D-412
+	## ACQUISIRE non compariva affatto pur essendo giocata 182 volte in cento
+	## partite. Nona volta che una sonda di questo progetto guarda altrove.
+	var by_face: Dictionary = {}
 
 	func _init(p_inner: RefCounted) -> void:
 		inner = p_inner
@@ -43,10 +51,30 @@ class Ledger extends RefCounted:
 	func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dictionary:
 		var request: Dictionary = inner.choose_action(entity_id, ao_index, session)
 		if str(request.get("template", "")) == "PLAY_CARD":
-			var asset_id: String = str((request.get("params", {}) as Dictionary).get("asset_id", ""))
+			var params: Dictionary = request.get("params", {}) as Dictionary
+			var asset_id: String = str(params.get("asset_id", ""))
 			if asset_id != "":
 				played[asset_id] = int(played.get(asset_id, 0)) + 1
+				var verb: String = _face_verb(asset_id, int(params.get("face_action", -1)), session)
+				var seen: Array = by_face.get(verb, [0, 0]) as Array
+				seen[0] += 1
+				by_face[verb] = seen
 		return request
+
+	## Il verbo che quella calata ha davvero pronunciato: quello stampato sulla
+	## faccia scelta, e solo in mancanza d'indice quello dichiarato.
+	func _face_verb(asset_id: String, face: int, session: RefCounted) -> String:
+		var card: Variant = session.data.assets.get(asset_id)
+		if card == null:
+			return "—"
+		var printed: Array = (
+			((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
+		)
+		if face >= 0 and face < printed.size():
+			var verb: String = str((printed[face] as Dictionary).get("template", ""))
+			if verb != "":
+				return verb
+		return str(((card as Dictionary).get("card_action", {}) as Dictionary).get("kind", "—"))
 
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 		var out: Array = inner.choose_commit(entity_id, context, limit, session)
@@ -190,7 +218,7 @@ func _report(data: RefCounted, held: Dictionary, ledger: Ledger, years: int) -> 
 	# diverse, e chiedono due rimedi diversi — la stessa forma della riga 3 di
 	# ISSUES 88. L'ultima colonna e' quella che scioglie il dubbio: **quante
 	# carte di quel verbo non hanno fatto ne' l'una ne' l'altra cosa**.
-	print("  PER AZIONE            in mano  calata  al voto   %% calate  %% mute")
+	print("  PER AZIONE DICHIARATA in mano  calata  al voto   %% calate  %% mute")
 	var kinds: Array = by_action.keys()
 	kinds.sort()
 	for kind in kinds:
@@ -201,6 +229,29 @@ func _report(data: RefCounted, held: Dictionary, ledger: Ledger, years: int) -> 
 			0.0 if int(act[0]) == 0 else 100.0 * float(act[1]) / float(act[0]),
 			0.0 if int(act[0]) == 0 else 100.0 * float(mute) / float(act[0]),
 		])
+
+	# **E il verbo che si e' davvero pronunciato** (D-414). Quella qui sopra e'
+	# la carta com'e' **dichiarata**; questa e' la mano che l'ha calata. Le due
+	# si leggono insieme: se una carta dichiarata INFLUENZARE viene calata quasi
+	# sempre per l'altra Azione stampata, il verbo dichiarato non e' morto — non
+	# e' mai stato vivo, e a essere morta e' la dichiarazione.
+	#
+	# **E' il numero su cui ISSUES 59 si chiude o non si chiude**, perche' il
+	# suo criterio parla di **verbi giocati**.
+	print("")
+	print("  PER AZIONE CALATA          volte   quota")
+	var faces: Array = ledger.by_face.keys()
+	faces.sort()
+	var total_faces: int = 0
+	for verb in faces:
+		total_faces += int((ledger.by_face[str(verb)] as Array)[0])
+	for verb in faces:
+		var seen: int = int((ledger.by_face[str(verb)] as Array)[0])
+		print("    %-22s %6d   %5.1f%%" % [
+			str(verb), seen,
+			0.0 if total_faces == 0 else 100.0 * float(seen) / float(total_faces),
+		])
+	print("  In tutto %d Azioni calate." % total_faces)
 
 	var total_hands: int = 0
 	var total_plays: int = 0

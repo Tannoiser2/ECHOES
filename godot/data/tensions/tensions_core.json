@@ -609,9 +609,29 @@
             "text": "Si scenda con ferro e fuoco: cio' che dorme sotto $the_region non si svegli mai piu'.",
             "eligibility": [
               {
-                "type": "echo_function_played",
-                "function": "REVELATION",
-                "label": "Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare"
+                "type": "any_of",
+                "label": "Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio",
+                "conditions": [
+                  {
+                    "type": "echo_function_played",
+                    "function": "REVELATION",
+                    "label": "Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare"
+                  },
+                  {
+                    "type": "state_tag_present",
+                    "scope": "REGION",
+                    "region_id": "$any",
+                    "tag": "crystal_exploited",
+                    "label": "Oppure qualcuno ha aperto la vena, e sa cosa c'e' sotto"
+                  },
+                  {
+                    "type": "state_tag_present",
+                    "scope": "ENTITY",
+                    "entity_id": "$proponent",
+                    "tag": "discovery:the_omen",
+                    "label": "Oppure chi propone ha gia' visto il presagio"
+                  }
+                ]
               }
             ],
             "success_consequences": [
@@ -914,10 +934,22 @@
             "text": "Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.",
             "eligibility": [
               {
-                "type": "state_tag_present",
-                "scope": "GLOBAL",
-                "tag": "crown_divided",
-                "label": "La corona è divisa da un'altra era"
+                "type": "any_of",
+                "label": "La corona e' divisa da un'altra era, oppure un erede ha gia' un nome",
+                "conditions": [
+                  {
+                    "type": "state_tag_present",
+                    "scope": "GLOBAL",
+                    "tag": "crown_divided",
+                    "label": "La corona e' divisa da un'altra era"
+                  },
+                  {
+                    "type": "state_tag_present",
+                    "scope": "GLOBAL",
+                    "tag": "heir_named",
+                    "label": "Qualcuno ha gia' fatto il nome di un erede"
+                  }
+                ]
               }
             ],
             "success_consequences": [

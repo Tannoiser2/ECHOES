@@ -80,7 +80,7 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 
 > A chi appartiene ciò che dorme sotto la Regione di cui si discute?
 
-- **Si puo' proporre solo se:** Solo cio' che una Rivelazione ha gia' mostrato si puo' cacciare
+- **Si puo' proporre solo se:** Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio
 - **Se passa — Il Drago Abbattuto:** la casa che porta #dormiente esce dal tavolo, o ci rientra · Il Risveglio scende di 6 · il mondo registra: il drago e' stato abbattuto · e resta una Cicatrice: la caduta del drago in una Regione con #selvaggio
 
 **Le clausole che si possono attaccare:**
@@ -1675,7 +1675,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 > Chi siede sul trono quando questo si alza?
 
-- **Si puo' proporre solo se:** La corona è divisa da un'altra era
+- **Si puo' proporre solo se:** La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
 - **Se passa — Un Solo Trono:** il mondo dimentica: la corona e' stata divisa · il rapporto fra chi propone e il rivale cambia · La Successione sale
 - **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
 
