@@ -59,7 +59,19 @@ metteva in fondo. Quattro hanno bisogno di una condizione che la pesca può non
 dare: la **cercano** su tutte le Tensioni in gioco e falliscono se non c'è,
 invece di tornare a mani vuote in silenzio.
 
-Suite **689 prove** (erano 680), cancello **0 su 8** sui due tavoli. Voci aperte
+### E la 80 si riduce alla sola parte che è tua
+
+La voce dice *«dei benefici comprati, del prezzo, della pedina e della
+controproposta [la plancia] non mostra niente»*. Era vero in 0.1.253: **non lo è
+più da un pezzo** — D-291, D-304 e D-387 hanno scritto quel pezzo, e nessuno era
+tornato a verificarlo. Adesso lo tiene una prova, che controlla anche che non ci
+sia un id.
+
+Delle tre parti della 80 ne restava una sola, e il suo testo dice da sé dove va:
+*«è la modifica che vale la parola del committente, non la mia»*. **Spostata fra
+le rosse (R10)** — non è una voce nuova, è una voce che cambia colonna.
+
+Suite **690 prove** (erano 680), cancello **0 su 8** sui due tavoli. Voci aperte
 **30 → 29**.
 
 ---

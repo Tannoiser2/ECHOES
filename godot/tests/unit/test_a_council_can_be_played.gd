@@ -404,3 +404,36 @@ func test_the_claimant_can_pick_the_costs() -> void:
 	_the_step_can_be_answered(screen, "Quali costi paga chi vince?")
 	_finish(screen)
 
+
+## **La plancia mostra quello che il Consiglio fa gia'** — il passo 1 di
+## [ISSUES 80](../../docs/ISSUES.md#80).
+##
+## La voce, scritta in 0.1.253, dice: *«dei benefici comprati, del prezzo, della
+## pedina e della controproposta non mostra niente»*. Era vero allora. D-291,
+## D-304 e D-387 hanno scritto quel pezzo, e da allora nessuno era tornato a
+## verificarlo: questa prova lo tiene, cosi' la riga non torna a marcire.
+func test_the_board_shows_what_was_bought_and_at_what_price() -> void:
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool: return not session.confluence.benefit_menu().is_empty()
+	)
+	assert_false(context.is_empty(), "un Consiglio con delle caselle vive esiste")
+	var comprata: String = str(
+		(session.confluence.benefit_menu()[0] as Dictionary)["id"]
+	)
+	assert_true(session.confluence.set_benefits([comprata]), "il proponente compra la prima")
+
+	var screen: Node = _screen(str(context["proponent"]))
+	var board: Node = screen.get("_board")
+	board.call("render", session, str(context["proponent"]))
+
+	var scritto: String = _text_of(board.get("_face"))
+	assert_true(scritto.contains("COSA SI COMPRA"), "la plancia dice cosa si compra: %s" % scritto)
+	var testo: String = str(session.confluence.call("_voice_text", "benefits", comprata))
+	assert_true(
+		scritto.contains(testo.substr(0, mini(24, testo.length()))),
+		"e nomina la casella comprata «%s»: %s" % [testo, scritto]
+	)
+	for id in IDS:
+		assert_false(scritto.contains(str(id)), "e non parla per id (%s): %s" % [str(id), scritto])
+	_finish(screen)
+

@@ -78,7 +78,20 @@ impegno possibile: **la cercano su tutte le Tensioni in gioco e falliscono se
 non c'e'**, invece di tornare a mani vuote in silenzio. E' la regola di casa
 sulle prove che smettono di provare.
 
-**Suite 689 prove** (erano 680), cancello 0 su 8 sui due tavoli.
+### E il passo 1 di ISSUES 80 era gia' fatto
+
+*«Dei benefici comprati, del prezzo, della pedina e della controproposta non
+mostra niente»* — vero in 0.1.253, falso da [D-291](#d-291), [D-304](#d-304) e
+[D-387](#d-387). `_render_face` disegna «COSA SI COMPRA», le caselle comprate
+con la pedina, i gettoni spesi in cifre, i costi posati e chi li ha posati.
+Nessuno era tornato a verificarlo; adesso lo tiene una prova.
+
+Di quella voce resta **solo il passo 3**, e il passo 3 lo dice da se':
+*«e' la modifica che vale la parola del committente, non la mia»*. La voce e'
+stata spostata fra le rosse — non e' una voce nuova, e' una voce che cambia
+colonna.
+
+**Suite 690 prove** (erano 680), cancello 0 su 8 sui due tavoli.
 
 ---
 

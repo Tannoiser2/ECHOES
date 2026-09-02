@@ -4585,7 +4585,7 @@ Resta aperto il rischio speculare, che e' la voce nuova
 
 ---
 
-### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio
+### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — **ridotta in 0.1.378 alla sola terza parte: quella che aspetta la tua parola**
 
 `regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
 all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
@@ -4613,6 +4613,22 @@ La sequenza A-K della specifica v0.2 e' ancora intera, e l'economia di
 [D-280](DECISIONS.md#d-280) le sta **accanto**, non al posto. Quello che decide
 e' ancora: voti + carte impegnate in segreto + **un d6**. La mappa e i segni
 entrano solo dopo, quando il risultato e' gia' deciso.
+
+> **E il passo 1 e' fatto, e adesso c'e' una prova che lo tiene.** La voce dice
+> *«dei benefici comprati, del prezzo, della pedina e della controproposta non
+> mostra niente»*: era vero in 0.1.253, e **non lo e' piu' da un pezzo**.
+> `_render_face` disegna «COSA SI COMPRA», le caselle comprate con la pedina
+> sopra, i gettoni spesi in cifre, i costi posati e **chi li ha posati**
+> ([D-291](DECISIONS.md#d-291), [D-304](DECISIONS.md#d-304),
+> [D-387](DECISIONS.md#d-387)). Nessuno era tornato a verificarlo per
+> centoventicinque versioni; adesso lo tiene
+> `test_the_board_shows_what_was_bought_and_at_what_price`, che controlla anche
+> che non ci sia un id.
+>
+> **Quindi di questa voce restano solo il passo 3**, e il passo 3 e' scritto qui
+> sotto con le parole giuste: *«e' la modifica che vale la parola del
+> committente, non la mia»*. La voce e' **tua**, non mia: sta nella
+> [lista](LE_TUE_DECISIONI.md) fra le rosse.
 
 > **Un pezzo dello schermo vecchio e' caduto in 0.1.378**
 > ([D-408](DECISIONS.md#d-408)), e non e' quello che questa voce indicava.
