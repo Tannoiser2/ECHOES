@@ -4585,7 +4585,7 @@ Resta aperto il rischio speculare, che e' la voce nuova
 
 ---
 
-### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio
+### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — **ridotta in 0.1.378 alla sola terza parte: quella che aspetta la tua parola**
 
 `regole` · `ux` · **aperta in 0.1.253** — parola del committente davanti
 all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
@@ -4613,6 +4613,38 @@ La sequenza A-K della specifica v0.2 e' ancora intera, e l'economia di
 [D-280](DECISIONS.md#d-280) le sta **accanto**, non al posto. Quello che decide
 e' ancora: voti + carte impegnate in segreto + **un d6**. La mappa e i segni
 entrano solo dopo, quando il risultato e' gia' deciso.
+
+> **E il passo 1 e' fatto, e adesso c'e' una prova che lo tiene.** La voce dice
+> *«dei benefici comprati, del prezzo, della pedina e della controproposta non
+> mostra niente»*: era vero in 0.1.253, e **non lo e' piu' da un pezzo**.
+> `_render_face` disegna «COSA SI COMPRA», le caselle comprate con la pedina
+> sopra, i gettoni spesi in cifre, i costi posati e **chi li ha posati**
+> ([D-291](DECISIONS.md#d-291), [D-304](DECISIONS.md#d-304),
+> [D-387](DECISIONS.md#d-387)). Nessuno era tornato a verificarlo per
+> centoventicinque versioni; adesso lo tiene
+> `test_the_board_shows_what_was_bought_and_at_what_price`, che controlla anche
+> che non ci sia un id.
+>
+> **Quindi di questa voce restano solo il passo 3**, e il passo 3 e' scritto qui
+> sotto con le parole giuste: *«e' la modifica che vale la parola del
+> committente, non la mia»*. La voce e' **tua**, non mia: sta nella
+> [lista](LE_TUE_DECISIONI.md) fra le rosse.
+
+> **Un pezzo dello schermo vecchio e' caduto in 0.1.378**
+> ([D-408](DECISIONS.md#d-408)), e non e' quello che questa voce indicava.
+>
+> La plancia leggeva `data.confluence_templates[...]` — il dizionario **crudo**,
+> che tiene ancora le Domande e le Proposte di ripiego — invece della scheda
+> della carta ([D-310](DECISIONS.md#d-310), [D-378](DECISIONS.md#d-378)). Quindi
+> «la Domanda» e «la Proposta» che disegnava **non erano quelle stampate sulla
+> carta in tavola**: erano quelle del template d'autore. Lo stesso valeva per la
+> riga *«se passa»* offerta a chi propone, che spariva del tutto.
+>
+> Non e' il taglio grosso che questa voce chiede — restano i benefici, il
+> prezzo, la pedina e la controproposta, che la plancia non mostra. Ma la meta'
+> vecchia era **piu' vecchia di cosi'**: non disegnava neanche la carta giusta.
+> Trovato da `test_a_council_can_be_played`, la prova nuova di
+> [ISSUES 73](#73).
 
 Lo schermo, dal canto suo, disegna solo la meta' vecchia: la carta della
 Tensione, la Domanda, la Proposta, le pose (sostieni/opponiti/astieniti/a
@@ -4932,7 +4964,7 @@ domanda propria.
 
 ---
 
-### 73. Nessuna prova lega la domanda a quello che si può toccare
+### 73. ✅ Nessuna prova lega la domanda a quello che si può toccare — CHIUSA in 0.1.378: dieci domande, dieci prove
 
 `ux` · `motore` · `debito` · **aperta e in parte chiusa in 0.1.243**
 ([D-281](DECISIONS.md#d-281))
@@ -4947,6 +4979,54 @@ passare** no del tutto: la suite prova la mano (`test_drag_and_drop`) riempiendo
 il carico a mano, e provava lo schermo (`test_the_page_can_be_read_by_a_finger`)
 senza mai aprire una domanda. Fra i due pezzi, ognuno verde, ci stava un turno
 che non si poteva giocare.
+
+> **CHIUSA in 0.1.378** ([D-408](DECISIONS.md#d-408)): **il giro del
+> Consiglio adesso ha la sua prova**, e ha trovato due schermi vecchi al primo
+> giro.
+>
+> **Il motore chiede a una persona in dieci punti**, contati sul codice
+> (`await decider.` e `decider.has_method` nel `ChronicleController`, piu' la
+> domanda annidata dei costi). Adesso li hanno tutti:
+>
+> | domanda | prova |
+> |---|---|
+> | `choose_action` | `test_a_turn_can_be_played` (0.1.243) |
+> | `choose_question` | `test_a_council_can_be_played` |
+> | `choose_proposition` | idem |
+> | `choose_stance` | idem |
+> | `choose_benefits` | idem |
+> | `choose_counterclaim` | idem |
+> | `choose_costs` (annidata) | idem |
+> | `choose_cost_token` | idem |
+> | `choose_commit` | idem |
+> | `choose_recovery` | idem |
+>
+> **E i due passi che la voce nominava non esistono.** «La scelta del Destino»:
+> il Destino si **pesca** (`_deal_destiny`), non si sceglie — nessuno lo chiede a
+> nessuno. «La fine della Chronicle»: dopo `choose_recovery` il motore non fa
+> piu' domande. Erano veri quando la voce e' stata scritta, in 0.1.243.
+>
+> **E nessuna delle dieci prove passa costruendosi il carico da se'** — la
+> clausola che la voce metteva in fondo. Quattro avevano bisogno di una
+> condizione che la pesca puo' non dare (caselle vive, un prezzo da posare, due
+> carte da salvare, un impegno possibile): **la cercano su tutte le Tensioni in
+> gioco e falliscono se non c'e'**, invece di tornare a mani vuote in silenzio.
+>
+> `test_a_council_can_be_played` fa quattro domande — la proposta, la posizione,
+> i benefici comprati, gli impegni — partendo dal decider e finendo su quello che
+> si tocca. Ogni passo chiede che ci sia qualcosa da premere e che **nessuna riga
+> parli per id**.
+>
+> 1. **Tre lettori leggevano il template grezzo** invece della scheda della
+>    carta: la plancia disegnava la Domanda e la Proposta **di ripiego**, e a chi
+>    proponeva spariva la riga **«se passa»** — cioe' proprio quello che
+>    [D-233](DECISIONS.md#d-233) aveva messo li' perche' e' la decisione centrale
+>    del gioco.
+> 2. **Una riga parlava per id**: al passo degli impegni la carta diceva *«costa:
+>    TEN_FAMINE scende»* invece di *«La Carestia scende»*.
+>
+> **Restano scoperti** la scelta del Destino e la fine della Chronicle. La voce
+> non si chiude finche' non hanno anche loro la loro prova.
 
 `test_a_turn_can_be_played` chiude il caso della **fase delle azioni**. Restano
 scoperti allo stesso modo: il giro del **Consiglio** visto da una persona (la

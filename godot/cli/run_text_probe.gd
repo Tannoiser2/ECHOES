@@ -132,7 +132,12 @@ func _collect(
 	focus_regions: Dictionary
 ) -> void:
 	var controller: RefCounted = session.confluence
-	var template: Dictionary = session.data.confluence_templates[str(context["template_id"])]
+	# La scheda della carta, non il template grezzo (D-310, D-378): misurare
+	# le frasi di ripiego vorrebbe dire misurare testi che il tavolo non
+	# legge.
+	var template: Dictionary = session.data.confluence_template_for(
+		str(context["tension_id"])
+	)
 	if step == "QUESTION":
 		var tension_id: String = str(context["tension_id"])
 		var region_id: String = controller.narrative.focus_region(tension_id)

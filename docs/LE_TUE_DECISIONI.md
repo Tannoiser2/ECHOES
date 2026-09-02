@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **101** |
-| aperte | **30** |
+| chiuse | **102** |
+| aperte | **29** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **20** |
+| di cui sono mie da fare | **19** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,6 +160,25 @@ male.
 Va decisa **prima** dell'arte (V4), come R8: si disegna per un formato, non per
 due.
 
+### R10. [80](ISSUES.md#80) — chi decide un Consiglio: il dado o l'economia
+
+**Non è una voce nuova: è una voce che ho spostato di colonna**, perché il suo
+testo dice da sé dove va — *«è la modifica che vale la parola del committente,
+non la mia»*.
+
+Delle tre parti della 80, due sono chiuse: le Domande e le Proposte vengono dalla
+carta (0.1.345), e la plancia mostra l'economia — comprato, prezzo, pedina,
+controproposta — con una prova che lo tiene (0.1.378).
+
+Resta questa. Oggi un Consiglio lo decidono **i voti, le carte impegnate in
+segreto e un d6**; l'economia di D-280 — il proponente compra, gli avversari
+scelgono in che moneta paga — sta **accanto**, non al posto. La mappa e i segni
+entrano dopo, quando il risultato è già deciso.
+
+**La domanda è una sola:** se una proposta passa perché chi la fa può pagare
+quello che il tavolo chiede, **il dado esce dal gioco**. È il cuore del Consiglio,
+e non lo tocco senza che tu lo dica.
+
 ### R9. [100](ISSUES.md#100) — le caselle «SI ACCENDE QUANDO»
 
 Le 46 facce che dicono quando una Tensione si scalda sono ancora **derivate**:
@@ -176,15 +195,35 @@ riga o è stampata o non esiste.
 
 Non aspettano niente. Le faccio in quest'ordine, e nessuna apre una voce nuova.
 
-### G1. L'app diventa un prototipo giocabile — [63](ISSUES.md#63), [73](ISSUES.md#73), [80](ISSUES.md#80), [65](ISSUES.md#65)
+### G1. L'app diventa un prototipo giocabile — [63](ISSUES.md#63), [65](ISSUES.md#65)
 
-È la più grossa, ed è **quella che decide la parola «giocabile»**. Oggi l'app è
-un'ispezione di stato con dei bottoni; lo schermo del Consiglio è quello di due
-regole fa.
+È la più grossa, ed è **quella che decide la parola «giocabile»**.
+
+**La [73](ISSUES.md#73) si è chiusa in 0.1.378**, ed è il primo pezzo che cade.
+Il motore chiede qualcosa a una persona in **dieci punti**, contati sul codice:
+adesso ognuno ha una prova che parte dal decider e finisce su quello che si
+tocca. E la prova nuova ha trovato **due difetti veri al primo giro**: la plancia
+del Consiglio disegnava la Domanda e la Proposta **di ripiego** invece di quelle
+stampate sulla carta in tavola, e a chi propone spariva la riga «se passa» — cioè
+la ragione per cui si sceglie una proposta invece di un'altra.
+
+I due passi che quella voce nominava — la scelta del Destino, la fine della
+Chronicle — **non esistono**: il Destino si pesca, e dopo l'ultima domanda la
+Chronicle non chiede più niente.
+
+**E la [80](ISSUES.md#80) esce da questo gruppo**: dicevo che la plancia non
+mostrava i benefici comprati, il prezzo e la controproposta. **Li mostra da un
+pezzo** — D-291, D-304, D-387 — e adesso c'è una prova che lo tiene. Di quella
+voce resta solo la terza parte, che è tua: la trovi fra le rosse, R10.
+
+**Resta il grosso**: il drag & drop e le pedine sulla mappa (63); e la
+[65](ISSUES.md#65), che prima di tutto **ti chiede quale delle tre letture vuoi**
+— una passata di leggibilità (fatta), un'altra disposizione, o un'altra idea di
+cosa si guarda.
 
 **Fatto quando** si gioca un anno intero dall'app senza leggere un id: carte che
-si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida
-lo schermo dall'inizio alla fine di un Consiglio.
+si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida lo
+schermo dall'inizio alla fine di un Consiglio.
 
 ### G2. Le voci mute del Consiglio — [56](ISSUES.md#56), [60](ISSUES.md#60)
 

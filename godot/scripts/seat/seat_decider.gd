@@ -483,7 +483,14 @@ func choose_proposition(context: Dictionary, options: Array, session: RefCounted
 	# La riga la scrive `CouncilText`, lo stesso posto che scrive la scheda: con
 	# la voce del Consiglio i buchi li riempie la partita, sulla scheda si
 	# spiegano. Due letture, una sorgente.
-	var template: Dictionary = session.data.confluence_templates[str(context["template_id"])]
+	# **La scheda della carta, non il template grezzo** (D-310, D-378): le
+	# Domande e le Proposte stanno sulla carta Tensione, e quel dizionario
+	# tiene ancora quelle di ripiego. Leggerlo di li' faceva sparire la riga
+	# «se passa» — chi propone vedeva la frase e non cosa lasciava al mondo,
+	# che e' proprio quello che D-233 aveva messo li'.
+	var template: Dictionary = session.data.confluence_template_for(
+		str(context["tension_id"])
+	)
 	var voice: Callable = Callable(session.confluence, "say")
 	var labels: Array = []
 	for proposition in options:
@@ -517,7 +524,14 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	if not _is_human(entity_id):
 		return fallback.choose_stance(entity_id, context, session)
 	_speaking_to = entity_id
-	var template: Dictionary = session.data.confluence_templates[str(context["template_id"])]
+	# **La scheda della carta, non il template grezzo** (D-310, D-378): le
+	# Domande e le Proposte stanno sulla carta Tensione, e quel dizionario
+	# tiene ancora quelle di ripiego. Leggerlo di li' faceva sparire la riga
+	# «se passa» — chi propone vedeva la frase e non cosa lasciava al mondo,
+	# che e' proprio quello che D-233 aveva messo li'.
+	var template: Dictionary = session.data.confluence_template_for(
+		str(context["tension_id"])
+	)
 	var clauses: Array = template["condition_clauses"]
 
 	var labels: Array = ["Sostieni", "Opponiti", "Astieniti"]
@@ -727,7 +741,12 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 			labels.append("%s — %s, vale %d\n%s" % [
 				str(asset["title"]), str(asset["family"]).to_lower(),
 				AssetText.value_on(asset, relevant),
-				AssetText.note(asset),
+				# **Coi dati**, se no il nome della domanda resta l'id: la riga
+				# diceva «costa: TEN_FAMINE scende» invece di «La Carestia
+				# scende», ed e' proprio il difetto che il committente chiama
+				# «tag o testi tecnici» (ISSUES 63). `note()` sa tradurre da
+				# sola: bisogna solo darle il catalogo.
+				AssetText.note(asset, session.data),
 			])
 		if remaining.is_empty():
 			break

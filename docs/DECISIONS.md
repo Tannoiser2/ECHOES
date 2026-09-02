@@ -10,6 +10,91 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-408 — Il Consiglio si puo' giocare: dieci domande, dieci prove, due schermi vecchi
+
+**implemented in 0.1.378.** Chiude [ISSUES 73](ISSUES.md#73) e avanza
+[ISSUES 80](ISSUES.md#80).
+
+### La prova che mancava
+
+[ISSUES 73](ISSUES.md#73) diceva dove stava il buco, per nome: *«restano
+scoperti il giro del Consiglio visto da una persona — la proposta, i benefici
+comprati, il prezzo scelto, gli impegni. Ognuno e' una domanda che passa dallo
+stesso `io`, e ognuno puo' essere morto senza che un cancello se ne accorga.»*
+
+`test_a_council_can_be_played` chiude quel giro con quattro prove, sulla forma
+di `test_a_turn_can_be_played`: si parte **dal decider** — lo stesso che guida
+il terminale — e si finisce **su quello che si puo' toccare**. Ogni passo chiede
+due cose: che ci sia qualcosa da premere, e che **nessuna riga parli per id**.
+
+### Le ha trovate subito, e sono due
+
+**1. Lo schermo leggeva il template grezzo invece della scheda della carta.**
+Da [D-310](#d-310) e [D-378](#d-378) le Domande e le Proposte stanno **sulla
+carta Tensione**; `data.confluence_templates[...]` tiene ancora quelle di
+ripiego, e `confluence_template_for()` e' il posto che fonde le due cose. Tre
+lettori leggevano ancora il dizionario crudo:
+
+| chi | cosa ne veniva |
+|---|---|
+| `confluence_board._paint_council` | la plancia disegnava **la Domanda e la Proposta di ripiego**, non quelle stampate sulla carta in tavola |
+| `seat_decider.choose_proposition` | spariva la riga **«se passa»** — chi propone leggeva la frase e non cosa lasciava al mondo |
+| `seat_decider.choose_stance` | idem, dal lato di chi vota |
+
+La seconda riga e' quella che pesa: [D-233](#d-233) aveva messo *«se passa: …»*
+sotto ogni proposta perche' **e' la decisione centrale del gioco**, e per chi
+gioca con una carta in tavola non c'era piu'.
+
+**2. Una riga parlava per id.** Al passo degli impegni la carta diceva
+*«costa: TEN_FAMINE scende»* invece di *«La Carestia scende»*.
+`AssetText.note()` sa tradurre da sola, ma vuole il catalogo, e `choose_commit`
+non glielo passava. Una parola: `AssetText.note(asset, session.data)`.
+
+### La sesta sonda cieca, e stavolta era la prova
+
+La prima stesura guardava `_buttons` — la colonna — e trovava **zero** su tutt'e
+quattro i passi. Sembrava lo schermo muto; era la prova. `GameScreen.ask()` lo
+dice in una riga: *«se il Consiglio e' aperto, la domanda va al `_board`»*, ed e'
+giusto cosi' — la scelta vive accanto alla domanda a cui risponde.
+
+**Sesta volta in questo progetto che uno zero era chi guardava.** La regola di
+casa ha pagato ancora: non ho creduto allo zero.
+
+### E chiude la voce, perche' i passi sono dieci e sono tutti coperti
+
+Contati sul codice — `await decider.` e `decider.has_method` nel
+`ChronicleController`, piu' `choose_costs` che sta annidata dentro la
+controproposta — **il motore chiede a una persona in dieci punti**. Nove sono
+nuovi di queste prove; il decimo, `choose_action`, ce l'aveva da 0.1.243.
+
+**E i due passi che la voce nominava non esistono piu':** il Destino si
+**pesca** (`_deal_destiny`), non si sceglie, e dopo `choose_recovery` la
+Chronicle non chiede piu' niente. Erano veri quando la voce e' stata scritta.
+
+**Nessuna prova passa costruendosi il carico da se'**, che e' la clausola che
+la voce metteva in fondo. Quattro hanno bisogno di una condizione che la pesca
+puo' non dare — caselle vive, un prezzo da posare, due carte da salvare, un
+impegno possibile: **la cercano su tutte le Tensioni in gioco e falliscono se
+non c'e'**, invece di tornare a mani vuote in silenzio. E' la regola di casa
+sulle prove che smettono di provare.
+
+### E il passo 1 di ISSUES 80 era gia' fatto
+
+*«Dei benefici comprati, del prezzo, della pedina e della controproposta non
+mostra niente»* — vero in 0.1.253, falso da [D-291](#d-291), [D-304](#d-304) e
+[D-387](#d-387). `_render_face` disegna «COSA SI COMPRA», le caselle comprate
+con la pedina, i gettoni spesi in cifre, i costi posati e chi li ha posati.
+Nessuno era tornato a verificarlo; adesso lo tiene una prova.
+
+Di quella voce resta **solo il passo 3**, e il passo 3 lo dice da se':
+*«e' la modifica che vale la parola del committente, non la mia»*. La voce e'
+stata spostata fra le rosse — non e' una voce nuova, e' una voce che cambia
+colonna.
+
+**Suite 690 prove** (erano 680), cancello 0 su 8 sui due tavoli.
+
+---
+
 ## D-407 — Il cervello gioca il suo profilo, e non gliel'ho insegnato io
 
 **implemented in 0.1.377.** Chiude [ISSUES 78](ISSUES.md#78).
