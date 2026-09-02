@@ -7203,6 +7203,35 @@ scelta libera e' anche la cosa che potrebbe renderla viva.
 il verbale dice quale, e la sonda delle caselle mostra se la casella smette di
 essere quella che nessuno compra.
 
+### Due terzi fatti in 0.1.387, e il terzo isolato ([D-416](DECISIONS.md#d-416))
+
+| | |
+|---|---|
+| un proponente puo' posare la pedina su una domanda che nomina | ✅ |
+| il verbale dice quale | ✅ |
+| la casella smette di essere quella che nessuno compra | ❌ |
+
+**La catena era piu' corta di quanto questa voce temeva**: sei anelli previsti,
+tre bastati, perche' `current["benefits"]` ha solo tre lettori. Una pedina arriva
+come un id secco — la domanda in discussione, com'e' sempre stato — o come
+«questa voce, su quella domanda», e ogni chiamante di prima continua a
+funzionare.
+
+**Il numero e' rimisurato**: la casella e' offerta 700 volte e comprata **22** —
+una su 32, non una su 72 come diceva questa voce prima di
+[D-412](DECISIONS.md#d-412).
+
+**E il terzo pezzo ha una diagnosi, non un'ipotesi.** Due tentativi di far
+scegliere al cervello la domanda migliore hanno lasciato la sonda **identica al
+centesimo**, e il secondo ha rotto una prova dei legami: annullato. La prova
+`test_the_token_carries_the_question` dice quale delle due metà è rotta — il
+motore la pedina la sa portare, **il cervello non ne indica nessuna** — ed è
+scritta come misura dello stato di oggi: se diventa rossa, qualcuno ha insegnato
+al cervello a scegliere, e allora si rimisura la sonda.
+
+**Resta aperta su quello**, ed è equilibrio: un cervello che sceglie quale
+domanda alzare o abbassare cambia il gioco, e va misurato sui 100 semi.
+
 
 ---
 

@@ -10,6 +10,66 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-416 — La pedina porta il nome della domanda, e il cervello non lo usa
+
+**implemented in 0.1.387.** Avanza [ISSUES 106](ISSUES.md#106), e ne isola la
+parte che resta.
+
+### Due terzi del criterio sono fatti
+
+Parola del committente sulla casella che muove una domanda: *«la sceglie chi
+propone»*. Il criterio della voce chiede tre cose, e due sono adesso vere:
+
+| | |
+|---|---|
+| un proponente puo' posare la pedina su una domanda che nomina | ✅ |
+| il verbale dice quale | ✅ |
+| la sonda mostra che la casella smette di essere quella che nessuno compra | ❌ |
+
+La voce temeva una catena lunga sei anelli. **Ne sono bastati tre**, perche'
+`current["benefits"]` ha solo tre lettori: una pedina puo' arrivare come un id
+secco — «la domanda di cui si sta discutendo», com'e' sempre stato — o come
+`{id, question}`, e la domanda scelta viaggia dentro la voce fino a
+`question_of`, che la trova senza che l'economia debba conoscere la forma della
+pedina. Ogni chiamante di prima continua a funzionare.
+
+### Il terzo non si muove, e adesso si sa perche'
+
+`run_boxes_probe`, 100 partite: **700 offerte, 22 comprate**. Il numero della
+voce era «una su settantadue», di prima di [D-412](#d-412); oggi e' **una su
+32**, e la casella resta la meno comprata fra quelle molto offerte.
+
+Ho provato due volte a farlo salire, e **la sonda ha dato lo stesso numero al
+centesimo tutt'e due le volte**:
+
+1. far scegliere al cervello la domanda **dopo** aver scelto la casella —
+   ovvio, a guardarlo: se il punteggio guarda la domanda in discussione,
+   scegliere meglio dopo non cambia quante volte la casella si compra;
+2. valutare la voce **gia' posata**, cosi' il punteggio vede la domanda
+   migliore. Stesso numero, e in piu' una prova dei legami andata rossa.
+
+**Il secondo tentativo e' stato annullato.** Un rimedio che non muove il numero
+e rompe un'altra prova non e' un rimedio.
+
+### E la prova dice quale delle due meta' e' rotta
+
+`test_the_token_carries_the_question` guarda in due punti:
+
+- **il motore la pedina la sa portare**: una voce con la domanda indicata muove
+  quella e non quella in discussione;
+- **il cervello, oggi, non ne indica nessuna**: la pedina esce come un id secco.
+
+La seconda e' scritta **come misura, non come promessa**, e asserisce lo stato
+di oggi: se un giorno diventa rossa e' perche' qualcuno ha insegnato al cervello
+a indicare, e allora si gira l'asserzione e si rimisura la sonda. E' il modo di
+non far cercare a nessun altro il difetto dove non e'.
+
+**Undicesima e dodicesima volta** che in questo progetto un numero fermo dice
+dove guardare — e stavolta l'ho chiesto a una prova invece di tentare una terza
+modifica.
+
+---
+
 ## D-415 — Un criterio che nessuno puo' soddisfare non e' severo: e' rotto
 
 **implemented in 0.1.386.** Ritaglia [ISSUES 60](ISSUES.md#60). Dichiara un

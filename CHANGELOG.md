@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.387 — M4: la pedina porta il nome della domanda, e il cervello non lo usa
+
+Due terzi del criterio di [ISSUES 106](docs/ISSUES.md#106)
+([D-416](docs/DECISIONS.md#d-416)): un proponente **può posare la pedina su una
+domanda che nomina**, e **il verbale dice quale**. Il terzo — che la casella
+smetta di essere quella che nessuno compra — non si è mosso, e adesso ha una
+diagnosi invece di un'ipotesi.
+
+**La catena era più corta di quanto la voce temeva**: sei anelli previsti, tre
+bastati, perché `current["benefits"]` ha solo tre lettori. Una pedina arriva come
+un id secco — la domanda in discussione, com'è sempre stato — o come «questa
+voce, su quella domanda», e ogni chiamante di prima continua a funzionare.
+
+**Il numero è rimisurato**: la casella è offerta 700 volte e comprata **22** —
+una su 32, non una su 72 come diceva la voce prima di R1.
+
+### Due tentativi, lo stesso numero al centesimo, e uno annullato
+
+Far scegliere al cervello la domanda **dopo** la casella non cambia quante volte
+la casella si compra — ovvio a guardarlo. Valutare la voce **già posata** avrebbe
+dovuto: stesso numero identico, **e una prova dei legami andata rossa**.
+Annullato: un rimedio che non muove il numero e rompe un'altra prova non è un
+rimedio.
+
+`test_the_token_carries_the_question` dice quale delle due metà è rotta — il
+motore la pedina la sa portare, **il cervello non ne indica nessuna** — ed è
+scritta come **misura dello stato di oggi**: se diventa rossa, qualcuno ha
+insegnato al cervello a scegliere, e allora si rimisura la sonda. Serve a non far
+cercare a nessun altro il difetto dove non è.
+
+Undicesima e dodicesima volta che un numero fermo dice dove guardare — e stavolta
+l'ho chiesto a una prova invece di tentare una terza modifica.
+
+Suite a **703 prove**.
+
+---
+
 ## 0.1.386 — M3: un criterio che nessuno può soddisfare non è severo, è rotto
 
 Ritagliato il criterio di [ISSUES 60](docs/ISSUES.md#60)
