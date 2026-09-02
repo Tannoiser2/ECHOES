@@ -18,13 +18,14 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `charter_for_all` | 4 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
 | `charter_temporary` | 22 | 0 | 0 | `chronicle` |  |
 | `charter_written` | 20 | 0 | 2 | `asset_physical`, `destiny`, `entity`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
-| `condition:abandoned` | 6 | 0 | 1 | `asset_physical`, `confluence_template`, `destiny_physical`, `tension`, `chronicle`, `echo_card`, `destiny` |  |
+| `condition:abandoned` | 5 | 0 | 1 | `asset_physical`, `confluence_template`, `destiny_physical`, `tension`, `chronicle`, `echo_card`, `destiny` |  |
 | `condition:contested` | 462 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tension`, `destiny`, `echo_card` |  |
 | `condition:cut_off` | 52 | 1 | 1 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
 | `condition:emptied` | 28 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
 | `condition:exploited` | 7 | 1 | 1 | `chronicle`, `destiny`, `entity_strategic_profile`, `objective`, `tension` |  |
 | `condition:guarded` | 38 | 0 | 0 | `entity_strategic_profile`, `tag_rule`, `echo_card` |  |
 | `condition:indebted` | 11 | 0 | 0 | `consequence`, `destiny_physical`, `tension`, `chronicle` |  |
+| `condition:lean` | 1 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension` |  |
 | `condition:mourning` | 17 | 0 | 0 | `asset`, `asset_physical`, `tension`, `chronicle` |  |
 | `condition:plundered` | 14 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
 | `condition:rationed` | 28 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `echo_card` |  |

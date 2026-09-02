@@ -54,7 +54,7 @@ la natura del luogo. Nessuno lo posa: c'e' gia'.
 
 le Pietre e i gradi che le degradano.
 
-**26 segni: 19 arrivano sul tavolo, 7 non ci arrivano mai.**
+**26 segni: 20 arrivano sul tavolo, 6 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
@@ -62,11 +62,11 @@ le Pietre e i gradi che le degradano.
 | `place:cursed_wood` | 0 | 8 | 0 | 3 |  |
 | `place:dry_spring` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `place:forest` | 98 | 191 | 0 | 97 |  |
-| `place:low_spring` | 0 | 0 | 0 | 0 | **non arriva mai** |
+| `place:low_spring` | 0 | 1 | 0 | 1 |  |
 | `place:open_site` | 0 | 6 | 0 | 3 |  |
 | `place:pass` | 64 | 64 | 0 | 64 |  |
 | `place:sleeping_site` | 85 | 119 | 0 | 84 |  |
-| `place:spring` | 88 | 122 | 0 | 88 |  |
+| `place:spring` | 88 | 122 | 0 | 87 |  |
 | `place:stripped_site` | 0 | 1 | 0 | 1 |  |
 | `place:thinned_wood` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `settlement:$proponent` | 0 | 0 | 0 | 0 | **non arriva mai** |
@@ -89,18 +89,18 @@ le Pietre e i gradi che le degradano.
 
 lo stato di adesso: si mette e si toglie.
 
-**14 segni: 11 arrivano sul tavolo, 3 non ci arrivano mai.**
+**14 segni: 12 arrivano sul tavolo, 2 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `condition:abandoned` | 0 | 6 | 0 | 5 |  |
+| `condition:abandoned` | 0 | 5 | 0 | 5 |  |
 | `condition:contested` | 0 | 462 | 103 | 91 |  |
 | `condition:cut_off` | 0 | 52 | 180 | 29 |  |
 | `condition:emptied` | 0 | 28 | 1 | 25 |  |
 | `condition:exploited` | 0 | 7 | 0 | 7 |  |
 | `condition:guarded` | 0 | 38 | 1 | 32 |  |
 | `condition:indebted` | 0 | 11 | 2 | 10 |  |
-| `condition:lean` | 0 | 0 | 78 | 0 | **non arriva mai** |
+| `condition:lean` | 0 | 1 | 78 | 1 |  |
 | `condition:mourning` | 0 | 17 | 4 | 13 |  |
 | `condition:plundered` | 0 | 14 | 3 | 12 |  |
 | `condition:rationed` | 0 | 28 | 34 | 21 |  |
@@ -123,7 +123,7 @@ le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 | `scar:changed_hands` | 0 | 31 | 0 | 26 |  |
 | `scar:divided_seal` | 0 | 2 | 0 | 2 |  |
 | `scar:dragonfall` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `scar:emptied` | 0 | 4 | 0 | 4 |  |
+| `scar:emptied` | 0 | 5 | 0 | 5 |  |
 | `scar:open_wound` | 0 | 19 | 0 | 19 |  |
 | `scar:plundered` | 0 | 11 | 0 | 11 |  |
 | `scar:sealed_border` | 0 | 2 | 0 | 2 |  |
@@ -256,12 +256,11 @@ quello che il mondo ricorda (ISSUES 110).
 ## I segni che non arrivano mai
 
 Hanno un posto sul tavolo, e in cento partite non ci si posano mai.
-Sono **54 su 173**.
+Sono **52 su 173**.
 
 | segno | dove starebbe |
 |---|---|
 | `amnesty_granted` | un gettone sul bordo della mappa |
-| `condition:lean` | un gettone accanto alla tessera |
 | `condition:requisitioned` | un gettone accanto alla tessera |
 | `condition:starving` | un gettone accanto alla tessera |
 | `crown_dispossessed` | un gettone sul bordo della mappa |
@@ -298,7 +297,6 @@ Sono **54 su 173**.
 | `petition_heard` | un gettone sul bordo della mappa |
 | `place:collapsed_pass` | uno spazio sulla tessera |
 | `place:dry_spring` | uno spazio sulla tessera |
-| `place:low_spring` | uno spazio sulla tessera |
 | `place:thinned_wood` | uno spazio sulla tessera |
 | `quota_guaranteed` | un gettone sul bordo della mappa |
 | `relic_recorded` | un gettone sul bordo della mappa |
