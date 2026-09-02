@@ -42,6 +42,16 @@ func _initialize() -> void:
 	var runs: int = int(options.get("runs", 40))
 	var first_seed: int = int(options.get("seed", 7000))
 	var chronicle_id: String = str(options.get("chronicle", "CHR_00"))
+	# **Anni scollegati o anni in saga** (ISSUES 88 e 56). Cinque proposte
+	# chiedono una leggenda o un'era precedente: `legend:order_restored`,
+	# `crown_divided`, `mine_sealed`. Una leggenda nasce solo quando fra due
+	# anni giocati passano decenni, e un'era precedente per definizione non
+	# c'e' al primo anno — quindi in cento anni scollegati quelle proposte
+	# **non possono** salire su una scheda, e chiamarle mute sarebbe dare la
+	# colpa al tavolo di un difetto della misura (e' la lezione di ISSUES 56).
+	# `--saga=K` gioca gli stessi anni a catene di K, ognuno che eredita il
+	# precedente.
+	var saga: int = int(options.get("saga", 1))
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
@@ -64,15 +74,53 @@ func _initialize() -> void:
 	var flipped: Dictionary = {}
 	var hosted: Dictionary = {}
 	var reshuffled: int = 0
+	# **La domanda che ISSUES 88 lascia aperta sulle mute**: offerte e non
+	# scelte, o mai offerte? Sono due difetti diversi. La prima e' la scelta di
+	# chi propone — la voce sta sulla scheda e nessuno la prende; la seconda e'
+	# una `eligibility` che al tavolo non e' mai vera, e allora la voce non e'
+	# **mai stata sulla scheda** e nessuna scelta poteva prenderla.
+	#
+	# Non serve toccare il motore per saperlo: la scheda e' quello che il
+	# Consiglio elenca al passo, e il passo lo annuncia. Ci si mette in ascolto
+	# e si chiede al Consiglio, in quel momento, cosa avrebbe potuto scegliere.
+	var offered_questions: Dictionary = {}
+	var offered_propositions: Dictionary = {}
 
+	# Una saga tiene **lo stesso tavolo** dal primo anno all'ultimo (run_saga).
+	var previous: Dictionary = {}
+	var previous_results: Dictionary = {}
+	var saga_seats: Array = []
 	for run in range(runs):
 		var seed_value: int = first_seed + run
-		var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
+		if saga > 1 and run % saga != 0:
+			# Dentro una saga il seme si sposta come in `run_saga.gd`, e il
+			# tavolo non si ripesca: sono le stesse case che invecchiano.
+			seed_value = first_seed + (run / saga) * saga + (run % saga) * 97
+		else:
+			previous = {}
+			previous_results = {}
+			saga_seats = GameSession.seats_for(data, chronicle_id, seed_value)
+		var seats: Array = saga_seats
 		var session: RefCounted = GameSession.new(data)
 		if not session.setup(chronicle_id, seats, seed_value):
 			printerr("setup fallito al seme %d: %s" % [seed_value, session.last_error])
 			quit(3)
 			return
+		session.inherit_from(previous, previous_results)
+		var ballot: Callable = func(step: String, _context: Dictionary) -> void:
+			# Al passo B la domanda di ripiego e' gia' posata e il cervello non
+			# ha ancora parlato: quello che il Consiglio elenca adesso e' la
+			# scheda. Al passo C la proposta e' scelta, ma la scheda da cui
+			# usciva e' la stessa — `available_propositions` non guarda la
+			# scelta, guarda la domanda e il mondo, e il mondo non e' ancora
+			# cambiato.
+			if step == "QUESTION":
+				for question in session.confluence.available_questions():
+					offered_questions[str((question as Dictionary)["id"])] = true
+			elif step == "PROPOSITION":
+				for proposition in session.confluence.available_propositions():
+					offered_propositions[str((proposition as Dictionary)["id"])] = true
+		session.confluence.step_changed.connect(ballot)
 		# Il mazzetto com'e' stato distribuito, prima che qualcuno lo tocchi.
 		var dealt: Dictionary = {}
 		for theme_id in (session.world.get("theme_decks", {}) as Dictionary):
@@ -91,6 +139,9 @@ func _initialize() -> void:
 			for tension_id in after:
 				if not before.has(tension_id):
 					reshuffled += 1
+		if saga > 1:
+			previous = session.world.duplicate(true)
+			previous_results = (report.get("destiny_results", {}) as Dictionary).duplicate(true)
 		for result in (report.get("confluences", []) as Array):
 			var record: Dictionary = result as Dictionary
 			questions_asked[str(record.get("question_id", ""))] = true
@@ -151,7 +202,10 @@ func _initialize() -> void:
 			)
 
 	print("")
-	print("== CHI SCRIVE NEL MONDO - %d anni di %s, semi da %d ==" % [runs, chronicle_id, first_seed])
+	print("== CHI SCRIVE NEL MONDO - %d anni di %s, semi da %d%s ==" % [
+		runs, chronicle_id, first_seed,
+		"" if saga <= 1 else ", in saghe da %d" % saga
+	])
 	print("")
 	print("  Consigli  %d" % councils)
 	print("")
@@ -196,10 +250,13 @@ func _initialize() -> void:
 		print("      mai in discussione: %s" % ", ".join(never_debated_tensions))
 	if reshuffled > 0:
 		print("    ATTENZIONE: i mazzetti sono stati rimontati %d volte, il conto sotto non vale" % reshuffled)
-	_split("domande", written_questions, questions_asked, flipped, hosted, {}, {})
+	_split(
+		"domande", written_questions, questions_asked, flipped, hosted, {}, {},
+		offered_questions
+	)
 	_split(
 		"proposte", written_propositions, propositions_voted, flipped, hosted,
-		proposition_question, questions_asked
+		proposition_question, questions_asked, offered_propositions
 	)
 	print("")
 	print("    La prima riga e' rigiocabilita': carte che il mazzetto non ha girato.")
@@ -215,11 +272,13 @@ func _initialize() -> void:
 static func _split(
 	what: String, written: Dictionary, used: Dictionary,
 	flipped: Dictionary, hosted: Dictionary,
-	via: Dictionary, via_used: Dictionary
+	via: Dictionary, via_used: Dictionary, offered: Dictionary
 ) -> void:
 	var never_drawn: int = 0
 	var never_debated: int = 0
 	var debated_never_chosen: int = 0
+	var on_the_sheet: int = 0
+	var never_on_the_sheet: int = 0
 	var used_unseen: int = 0
 	var silent: Array = []
 	for id in written:
@@ -236,13 +295,23 @@ static func _split(
 		if debated:
 			debated_never_chosen += 1
 			silent.append(str(id))
+			if offered.has(str(id)):
+				on_the_sheet += 1
+			else:
+				never_on_the_sheet += 1
 		elif seen:
 			never_debated += 1
 		else:
 			never_drawn += 1
 	var total: int = maxi(1, written.size())
 	print("")
-	print("    %s: %d scritte, %d usate" % [what, written.size(), used.size()])
+	# **Uno zero in questo progetto e' quasi sempre la sonda** (CLAUDE.md): la
+	# scheda si stampa accanto all'uso, cosi' un «mai sulla scheda» a zero si
+	# legge insieme al numero che lo rende credibile — se le schede fossero
+	# cieche, questo sarebbe zero anche lui.
+	print("    %s: %d scritte, %d usate, %d viste su una scheda" % [
+		what, written.size(), used.size(), offered.size()
+	])
 	print("      1. mai pescate                    %4d  (%.0f%%)" % [
 		never_drawn, 100.0 * float(never_drawn) / float(total)
 	])
@@ -252,15 +321,25 @@ static func _split(
 	print("      3. in discussione, mai scelte     %4d  (%.0f%%)" % [
 		debated_never_chosen, 100.0 * float(debated_never_chosen) / float(total)
 	])
+	# **La domanda della voce 88, con la sua risposta** (ISSUES 88).
+	print("         3a. sulla scheda, non scelte   %4d  (%.0f%%)" % [
+		on_the_sheet, 100.0 * float(on_the_sheet) / float(total)
+	])
+	print("         3b. mai sulla scheda           %4d  (%.0f%%)" % [
+		never_on_the_sheet, 100.0 * float(never_on_the_sheet) / float(total)
+	])
 	if used_unseen > 0:
 		print("      usate senza essere girate %d  (una Tensione dell'apertura)" % used_unseen)
 	# **Il numero da solo non si puo' lavorare**: per togliere una voce muta
 	# bisogna sapere quale. Il difetto vero e' un elenco, non una percentuale.
 	if not silent.is_empty():
 		silent.sort()
-		print("      le mute:")
+		print("      le mute, e da che parte stanno:")
 		for id in silent:
-			print("        %s" % str(id))
+			print("        %-28s %s" % [
+				str(id),
+				"sulla scheda, non scelta" if offered.has(str(id)) else "mai sulla scheda"
+			])
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:

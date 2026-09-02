@@ -10,6 +10,200 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-405 — Il sacchetto del prezzo non lo leggeva nessuno
+
+**implemented in 0.1.373.** Avanza [ISSUES 56](ISSUES.md#56).
+
+### La quarta volta della stessa malattia
+
+Dodici template portavano un `consequence_pools.cost` — *«il prezzo che il
+tavolo chiede»* — e **nessuna riga di codice lo leggeva**. Il prezzo lo stampa
+la carta, dal suo menu di caselle ([D-280](#d-280), [D-387](#d-387)):
+`price_menu()` chiama `_live_voices("costs")`, che guarda `card_face()["costs"]`
+e basta. Tutte e sessanta le carte hanno le loro caselle: non c'e' nemmeno un
+ripiego che possa cascare sul sacchetto.
+
+Dei tre sacchetti, il Consiglio ne pesca **due**: `failure` quando la proposta
+cade, `decisive_bonus` quando stravince.
+
+E' la stessa forma di [D-398](#d-398), [D-399](#d-399) e [D-400](#d-400): **una
+seconda copia della verita' che nessuno tiene allineata**. Qui la copia morta
+non faceva danno al tavolo — faceva danno alle misure.
+
+### Il danno, misurato
+
+`docs/MISURA_CASELLE.md` conta gli Effetti che un Consiglio puo' produrre e
+chiede se una casella del prezzo saprebbe dirli. Contava anche quelli del
+sacchetto morto:
+
+| | prima | dopo |
+|---|---|---|
+| applicazioni contate | 342 | **294** |
+| Effetti distinti | 46 | 46 |
+
+**Una applicazione su sette era un fantasma.** E `ADJUST_TENSION` *dove si
+discute* — 31 usi — spariva del tutto: nessun Consiglio lo produce da li'.
+
+Anche il disegno del flusso ci tirava frecce `paga_con` verso Conseguenze che
+per quella strada non arrivano.
+
+### La prova che era davvero morto
+
+Non e' un ragionamento sul codice: e' un confronto. Il `run_playtest` su cento
+semi, prima e dopo la rimozione, stampa **la stessa uscita riga per riga** —
+`diff` vuoto. Un sacchetto che il Consiglio pescasse davvero non potrebbe
+sparire senza muovere un carattere.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8**, misto e uniforme. Suite
+680 prove verde.
+
+### Cosa non cambia
+
+Le due Conseguenze che ci stavano dentro — `CNS_COST_DEBT` e `CNS_COST_UNREST`
+— **restano raggiungibili**: la prima da `P_WATER_COMMON`, la seconda da
+`P_ANY_IGNORE` e da quattro carte Tensione. Contate tutte le strade vive
+(proposte dei template, proposte delle carte, sacchetti `failure` e
+`decisive_bonus`, carte Eco), le 65 Conseguenze del catalogo hanno **tutte**
+almeno una strada: **zero irraggiungibili**.
+
+La guardia e' lo schema: `additionalProperties: false` senza `cost` fra le
+proprieta' vuol dire che il sacchetto non puo' tornare per distrazione.
+
+### E le Conseguenze che non escono, rimisurate dove possono uscire
+
+| 200 anni | Conseguenze mai uscite |
+|---|---|
+| scollegati (0.1.369) | 11 su 65 |
+| **in saga (20 x 10 Chronicle)** | **9 su 65** |
+
+Le nove, coi verdetti della sonda:
+
+| Conseguenza | verdetto |
+|---|---|
+| `CNS_COST_DEBT` | la sua proposta e' stata scelta **9 volte su 9** e non e' mai passata |
+| `CNS_DEBT_CALLED` | scelta 1 volta su 7 offerte, non passa |
+| `CNS_MINE_ROAD_CUT` | scelta 1 volta su 8 offerte, non passa |
+| `CNS_LAW_OF_SUCCESSION` | scelta 2 volte su 4, non passa |
+| `CNS_COST_EMPTIED` | scelta 1 volta su 1, non passa |
+| `CNS_CROWN_REUNITED` | **offerta 1 volta**, presa zero |
+| `CNS_DRAGON_SLAIN` | **offerta 1 volta**, presa zero |
+| `CNS_SEALED_VALLEY` | la sua domanda e' stata posta 1 volta e lei esclusa |
+| `CNS_HARVEST_RETURNS` | la sua carta non e' mai uscita dal mazzo |
+
+**Due si sono mosse per conto loro**: `CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN`
+erano *«mai idonee»* e adesso **arrivano sulla scheda** — una volta in duecento
+anni, ma ci arrivano. E' lo stesso fatto che [D-403](#d-403) ha misurato
+dall'altra parte: in saga la leggenda nasce, e con lei le porte che la
+chiedevano.
+
+**Delle nove, sette hanno un solo tentativo o poco piu'**: uno o due casi non
+sono un verdetto, sono un aneddoto. L'unica che ha abbastanza casi per dire
+qualcosa e' `CNS_COST_DEBT`, 9 su 9.
+
+**La voce resta aperta**: il criterio e' zero, e nove non e' zero.
+
+---
+
+## D-404 — Il RIVENDICARE non muore piu' in mano: cinque carte su 213
+
+**implemented in 0.1.372.** Chiude [ISSUES 37](ISSUES.md#37).
+
+### Il difetto cercato, e quello trovato
+
+La voce chiedeva le rivendicazioni morte **sotto una su tre**. Il conto vecchio
+le misurava sulle **prenotazioni**, e su quel denominatore siamo a 5 su 9 —
+peggio di prima. Il punto e' che quel denominatore non esiste piu': quando la
+voce e' stata scritta il RIVENDICARE sapeva fare una cosa sola, e «carte
+giocate» e «prenotazioni» erano lo stesso numero detto in due modi.
+
+| cento anni di CHR_00, semi da 7000 (`cli/run_choice_probe.gd`) | misto | uniforme |
+|---|---|---|
+| carte RIVENDICARE giocate | **213** | **205** |
+| prenotano | 9 | 6 |
+| prendono la parola | 204 | 199 |
+| **giocate per niente** | **5 (2,3%)** | **5 (2,4%)** |
+
+Il 97% delle carte prende la parola. Le cinque bruciate sono prenotazioni aperte
+quando sul tavolo non c'era niente di maturo da strappare — l'unico caso in cui
+[D-402](#d-402) lascia ancora prenotare, per non avere in mano una carta che non
+si puo' giocare.
+
+### E la parola presa, dove va
+
+La sonda adesso segue le prese di parola fino in fondo, perche' **una presa di
+parola e un Consiglio non sono la stessa cosa**: su 204, **52** aprono il secondo
+dibattito dell'Atto, **153** si spendono come controproposta nel primo Consiglio
+([D-268](#d-268)), **zero** si spengono senza trovare una domanda.
+
+**Correzione a [D-402](#d-402)**: quel verbale scrive «Consigli strappati 74 →
+210». Non erano Consigli — erano **prese di parola**. La conclusione regge
+(tutt'e due gli usi sono usi, e nessuno dei due e' uno spreco), il nome del
+numero no. E' la seconda volta in due giorni che un numero giusto porta il nome
+di un'altra cosa: la prima e' [D-391](#d-391).
+
+### Il conto che non chiude per uno
+
+52 + 153 = 205, e le prese di parola contate sono 204. **Non so dire da dove
+venga l'uno**, e la sonda adesso lo stampa nei due versi invece di tacerlo: un
+residuo taciuto sarebbe un numero nascosto.
+
+**Nessuna riga di gioco cambia**: e' una misura, e le voci si chiudono su di lei.
+
+---
+
+## D-403 — La scheda del Consiglio: offerte e non scelte, o mai offerte
+
+**implemented in 0.1.372.** Chiude [ISSUES 88](ISSUES.md#88).
+
+### La domanda che la voce lasciava aperta
+
+*«Offerte e non scelte, o mai offerte?»* Sono due difetti diversi con due
+rimedi diversi, e la sonda non sapeva distinguerli.
+
+Adesso li distingue **senza toccare il motore**: la scheda del Consiglio e'
+quello che il Consiglio elenca al passo, e il passo lo annuncia
+(`step_changed`). Ci si mette in ascolto e gli si chiede, in quel momento, cosa
+avrebbe potuto scegliere.
+
+| cento anni in saghe da cinque, semi da 7000 | domande | proposte |
+|---|---|---|
+| 3a. sulla scheda, non scelte | 8 | **23** |
+| 3b. mai sulla scheda | 2 | **2** |
+
+**Non e' uno zero cieco**: la sonda stampa accanto quante voci ha visto su una
+scheda — 114 domande su 120 e 168 proposte su 194 — cosi' un 3b piccolo si legge
+insieme al numero che lo rende credibile.
+
+### E il tavolo su cui si misura non e' un dettaglio
+
+| cento anni di CHR_00 | riga 3 domande | riga 3 proposte |
+|---|---|---|
+| scollegati, semi da 7000 | 6% | **15%** |
+| scollegati, semi da 9000 | 8% | **21%** |
+| in saghe da cinque, semi da 7000 | 8% | **13%** |
+| in saghe da cinque, semi da 9000 | 8% | **13%** |
+
+Sugli anni scollegati la riga delle proposte sta **a cavallo del quinto** e balla
+di sei punti fra due basi di semi; in saga e' 13% su tutt'e due. E'
+[D-391](#d-391) che morde di nuovo: **un numero si scrive col tavolo su cui e'
+misurato.**
+
+**La scelta del tavolo non e' la scelta del numero piu' basso.** Cinque proposte
+su 194 chiedono una leggenda (`legend:order_restored`, `legend:debt_called`) o
+un'era precedente (`crown_divided`, `mine_sealed`). Una leggenda nasce solo
+quando fra due anni giocati passano decenni; un'era precedente al primo anno non
+c'e' per definizione. **In cento anni scollegati quelle cinque non possono salire
+su una scheda**, e un tavolo che non puo' mostrarle non puo' nemmeno giudicarle.
+E' la lezione che [ISSUES 56](ISSUES.md#56) aveva gia' pagato: sette Conseguenze
+morte su anni scollegati, tre in saga.
+
+Da qui `--saga=K` sulla sonda: gli stessi anni giocati a catene di K, ognuno che
+eredita il precedente, come in `cli/run_saga.gd`.
+
+**Nessuna riga di gioco cambia**: e' una sonda che ha imparato a guardare.
+
+---
+
 ## D-402 — Il ripiego sapeva prenotare e non sapeva parlare
 
 **implemented in 0.1.370.** Chiude [ISSUES 126](ISSUES.md#126): le prenotazioni

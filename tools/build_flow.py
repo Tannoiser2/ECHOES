@@ -600,8 +600,12 @@ if not SERVITA_DA:
 
 # I Consigli come pezzi del tavolo: quello che il template continua a dare
 # quando la carta ha gia' le sue domande — le clausole e i tre sacchetti.
-SACCHETTI = {"cost": ("paga_con", "il prezzo che il tavolo chiede"),
-             "failure": ("se_cade", "quello che resta se la proposta cade"),
+# **I sacchetti che il Consiglio pesca davvero.** Il sacchetto `cost` non c'e'
+# piu' (D-405): il prezzo lo stampa la carta dal suo menu di caselle (D-280,
+# D-387), e il sacchetto del template era una seconda copia che nessun codice
+# leggeva — quindi il disegno ci tirava frecce verso Conseguenze che nessun
+# Consiglio poteva pescare da li'.
+SACCHETTI = {"failure": ("se_cade", "quello che resta se la proposta cade"),
              "decisive_bonus": ("se_stravince", "il di piu' di una vittoria netta")}
 
 for tpl in load("confluences/*.json"):

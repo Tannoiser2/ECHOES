@@ -5,6 +5,134 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.374 — `#granaio`: non due segni indistinguibili, ma una faccia su diciotto
+
+Misura [ISSUES 70](docs/ISSUES.md#70), punto 3 — l'ultimo del suo «fatto quando».
+
+La voce diceva *«due segni, una parola: al tavolo non si distinguono»*. Contate
+le facce che stampano `#granaio` e guardato cosa accetta la macchina dietro
+ognuna:
+
+| facce che stampano `#granaio` | cosa accettano |
+|---|---|
+| **17** (8 Asset, 3 Destini, 6 Tensioni) | solo la **vocazione** `granary` |
+| **1** (`AST_WEALTH_GRAIN`) | vocazione **e** Pietra |
+
+Non è una parola ambigua fra due segni: è **una faccia su diciotto che vuol dire
+una cosa più larga delle altre diciassette**. La Pietra `structure:granary` non è
+il bersaglio stampato di nessuna carta.
+
+**E la scorciatoia non c'è.** Sembrava bastasse togliere il segno di troppo da
+quell'unica carta, perché il Granaio si alza solo dove la vocazione c'è già
+(`CNS_ROYAL_GRANARY` mira a `$region_with:granary`). Non è vero: **dodici carte
+Tensione** hanno la casella «Costruisci 1 Pietra nel luogo: Granaio», e quel
+luogo la vocazione può non averla.
+
+Restano due strade, tutt'e due larghe — una allarga i bersagli di otto Asset e
+tocca le clausole di vittoria di tre Destini, l'altra riscrive il testo stampato
+di diciotto facce. Sono nella [lista](docs/LE_TUE_DECISIONI.md): la scelta è del
+committente.
+
+Solo documenti: nessuna riga di gioco cambia.
+
+---
+
+## 0.1.373 — Il sacchetto del prezzo non lo leggeva nessuno
+
+Avanza [ISSUES 56](docs/ISSUES.md#56) ([D-405](docs/DECISIONS.md#d-405)).
+
+Dodici template portavano un `consequence_pools.cost` — *«il prezzo che il
+tavolo chiede»* — e **nessuna riga di codice lo leggeva**: il prezzo lo stampa
+la carta, dal suo menu di caselle (D-280, D-387), e tutte e sessanta le carte ce
+l'hanno. Dei tre sacchetti il Consiglio ne pesca due: `failure` e
+`decisive_bonus`.
+
+**Quarta volta della stessa malattia** (D-398, D-399, D-400): una seconda copia
+della verità che nessuno tiene allineata. Non faceva danno al tavolo — lo faceva
+alle misure.
+
+| `docs/MISURA_CASELLE.md` | prima | dopo |
+|---|---|---|
+| applicazioni contate | 342 | **294** |
+
+*Una su sette era un fantasma*, e `ADJUST_TENSION` **dove si discute** — 31 usi —
+spariva del tutto: nessun Consiglio lo produce da lì. La guardia è lo schema:
+senza `cost` fra le proprietà, e con `additionalProperties: false`, il sacchetto
+non può tornare per distrazione.
+
+**La prova che era davvero morto** non è un ragionamento: il `run_playtest` su
+cento semi, prima e dopo, stampa **la stessa uscita riga per riga**.
+
+### E le Conseguenze che non escono, rimisurate dove possono uscire
+
+| 200 anni | mai uscite |
+|---|---|
+| scollegati (0.1.369) | 11 su 65 |
+| **in saga** (20 × 10 Chronicle) | **9 su 65** |
+
+Due si sono mosse da sole: `CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN` erano «mai
+idonee» e adesso arrivano sulla scheda. Delle nove, sette hanno un tentativo solo
+o poco più — un aneddoto, non un verdetto; l'unica con abbastanza casi è
+`CNS_COST_DEBT`, scelta 9 volte su 9 e mai passata.
+
+**Nessuna Conseguenza resta senza strada**: tutte e 65 hanno almeno un modo di
+uscire. La voce resta aperta — il criterio è zero.
+
+### E una correzione a [ISSUES 111](docs/ISSUES.md#111)
+
+La voce diceva che i tre gradi consumati che restano — `place:dry_spring`,
+`place:thinned_wood`, `place:collapsed_pass` — sono *«quelli che nessuna
+Conseguenza posa ancora»*. **Non è vero**: ognuno ha esattamente una Conseguenza
+che lo posa. Le cause sono **due**, e la seconda non era scritta da nessuna
+parte: `SET_STRUCTURE_GRADE` è `optional`, quindi se in quella Regione la Pietra
+non c'è **è un no-op silenzioso** — e il Passo sta in **una** Regione su dieci,
+la Sorgente in due, la Foresta in tre, su una mappa che ne pesca sei.
+
+---
+
+## 0.1.372 — Due sonde imparano a guardare, e due voci si chiudono
+
+Chiude [ISSUES 88](docs/ISSUES.md#88) ([D-403](docs/DECISIONS.md#d-403)) e
+[ISSUES 37](docs/ISSUES.md#37) ([D-404](docs/DECISIONS.md#d-404)). **Nessuna riga
+di gioco cambia**: cambiano due sonde, e con loro quello che si sa.
+
+### La scheda del Consiglio (ISSUES 88)
+
+La voce lasciava una domanda aperta sulle voci mute: *«offerte e non scelte, o
+mai offerte?»*. Adesso si sa, e senza toccare il motore — la scheda e' quello che
+il Consiglio elenca al passo, e il passo lo annuncia.
+
+| cento anni in saghe da cinque, semi da 7000 | domande | proposte |
+|---|---|---|
+| 3a. sulla scheda, non scelte | 8 | **23** |
+| 3b. mai sulla scheda | 2 | **2** |
+
+E **il tavolo su cui si misura non e' un dettaglio**: sugli anni scollegati la
+riga delle proposte fa 15% e 21% su due basi di semi — a cavallo del quinto — in
+saga fa 13% su tutt'e due. Cinque proposte chiedono una leggenda o un'era
+precedente, e in cento anni scollegati **non possono** salire su una scheda: un
+tavolo che non puo' mostrarle non puo' nemmeno giudicarle. La sonda ha una nuova
+opzione, `--saga=K`.
+
+### Il RIVENDICARE (ISSUES 37)
+
+| cento anni di CHR_00, semi da 7000 | misto | uniforme |
+|---|---|---|
+| carte RIVENDICARE giocate | **213** | **205** |
+| **giocate per niente** | **5 (2,3%)** | **5 (2,4%)** |
+
+Il 97% delle carte prende la parola: su 204 prese, 52 aprono il secondo dibattito
+e 153 si spendono come controproposta. Il rapporto vecchio — morte sulle
+prenotazioni — resta al 56%, ma conta nove eventi in cento anni.
+
+**Correzione a [D-402](docs/DECISIONS.md#d-402)**: i «210 Consigli strappati» non
+erano Consigli, erano prese di parola. I Consigli aperti da un RIVENDICARE sono
+52. La conclusione regge, il nome del numero no.
+
+Voci aperte **34 → 32**. Cancelli: trentuno, tutti verdi.
+
+---
+
 ## 0.1.371 — L'ultima casa murata non lo era più da ventiquattro versioni
 
 Chiude [ISSUES 108](docs/ISSUES.md#108), e con lei l'ultima delle quattro voci

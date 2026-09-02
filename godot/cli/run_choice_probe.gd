@@ -62,7 +62,25 @@ func _initialize() -> void:
 	# Il diritto di proporre (issue #22): quante volte un seggio se lo e' preso
 	# con CLAIM invece di riceverlo dal posto (D-036, D-063).
 	var claims_laid: Dictionary = {}    # entity_id -> Claim creati
-	var claims_forced: Dictionary = {}  # entity_id -> Consigli forzati
+	var claims_forced: Dictionary = {}  # entity_id -> prenotazioni consumate
+	# **La domanda di ISSUES 37**: quante carte RIVENDICARE finiscono in niente.
+	#
+	# `CONSUME_CLAIM` non basta a contare le volte che qualcuno ha preso la
+	# parola: da [D-191] una domanda gia' matura si strappa **senza
+	# prenotazione**, e quella presa di parola non consuma niente — contarla di
+	# li' direbbe che il RIVENDICARE si usa poco proprio adesso che si usa. Il
+	# fatto vero e' che il mondo si e' trovato un Consiglio forzato.
+	# **Un intero dentro una lambda non si incrementa**: GDScript lo cattura per
+	# valore, e il conto tornava zero mentre le prenotazioni si consumavano.
+	# Il dizionario si cattura per riferimento (CLAUDE.md, le trappole).
+	var seized: Dictionary = {"n": 0}
+	# Le volte che una carta RIVENDICARE ha detto «adesso si discute di questo».
+	var spoken: Dictionary = {"n": 0}
+	var spent: Dictionary = {"n": 0}   # spesa come controproposta: e' un uso
+	var lost: Dictionary = {"n": 0}    # il diritto si spegne: non trova domanda
+	# Una prenotazione che a fine anno sta ancora nel mondo non e' stata spesa:
+	# e' l'Azione e la carta AUTORITA' bruciate per niente della voce.
+	var died: int = 0
 
 	for i in range(runs):
 		var seats: Array = GameSession.seats_for(data, chronicle_id, first_seed + i)
@@ -78,7 +96,27 @@ func _initialize() -> void:
 		var table: RefCounted = PolicyDecider.new(session.log)
 		if mixed:
 			table = Characters.deal(seats, RngService.new(first_seed + i), session.log)
+		session.confluence.step_changed.connect(
+			func(step: String, context: Dictionary) -> void:
+				if step == "QUESTION" and str(context.get("trigger", {}).get("kind", "")) == "CLAIM":
+					seized["n"] = int(seized["n"]) + 1
+		)
 		await session.run(table)
+		died += (session.world["claims"] as Array).size()
+		# **Una presa di parola e un Consiglio non sono la stessa cosa**: il
+		# RIVENDICARE posa `forced_confluence`, e il Consiglio si apre dopo. Se
+		# i due conti non tornano, la differenza sono carte giocate per niente
+		# — e la voce 37 chiede proprio quelle.
+		for line in session.log.lines:
+			var text: String = str(line)
+			if text.contains("forza una Confluence su"):
+				spoken["n"] = int(spoken["n"]) + 1
+			# Le due strade per cui una presa di parola non apre un Consiglio,
+			# e il verbale le dice tutt'e due.
+			elif text.contains("si e' speso in controproposta"):
+				spent["n"] = int(spent["n"]) + 1
+			elif text.contains("non trova una questione aperta"):
+				lost["n"] = int(lost["n"]) + 1
 		for effect in session.world["effect_log"]:
 			var kind: String = str(effect["type"])
 			if kind != "CREATE_CLAIM" and kind != "CONSUME_CLAIM":
@@ -102,12 +140,15 @@ func _initialize() -> void:
 		)
 	)
 	_report(data, chronicle_id, asked, open_questions, offered, chosen)
-	_report_claims(claims_laid, claims_forced)
+	_report_claims(claims_laid, claims_forced, int(seized["n"]), died, int(spoken["n"]), int(spent["n"]), int(lost["n"]))
 	quit(0)
 
 
 ## Chi si e' preso la parola invece di aspettare che il posto gliela desse.
-func _report_claims(laid: Dictionary, forced: Dictionary) -> void:
+func _report_claims(
+	laid: Dictionary, forced: Dictionary, seized: int, died: int, spoken: int,
+	spent: int, lost: int
+) -> void:
 	print("")
 	print("== IL DIRITTO DI PROPORRE ==")
 	var total_laid: int = 0
@@ -116,7 +157,32 @@ func _report_claims(laid: Dictionary, forced: Dictionary) -> void:
 		total_laid += int(value)
 	for value in forced.values():
 		total_forced += int(value)
-	print("  Claim creati: %d   Consigli forzati: %d" % [total_laid, total_forced])
+	print("  Claim creati: %d   prenotazioni consumate: %d" % [total_laid, total_forced])
+	# **ISSUES 37**: la voce chiede quante rivendicazioni muoiono in mano. Una
+	# carta RIVENDICARE si gioca o per prenotare o per prendere la parola: il
+	# denominatore sono le due cose insieme.
+	var played: int = maxi(1, total_laid + spoken)
+	print("  Prese di parola: %d   di cui hanno aperto un Consiglio: %d" % [spoken, seized])
+	print("  Carte RIVENDICARE giocate: %d  (prenotano %d, prendono la parola %d)" % [
+		played, total_laid, spoken
+	])
+	print("    di cui spese come controproposta: %d   spente senza domanda: %d" % [spent, lost])
+	# Il conto delle prese di parola dovrebbe chiudere: ogni diritto o apre il
+	# secondo dibattito, o si spende in controproposta, o si spegne. Se non
+	# chiude si dice, nei due versi — un residuo taciuto e' un numero nascosto.
+	var residual: int = spoken - seized - spent - lost
+	var wasted: int = died + lost
+	print("  Giocate per niente: %d  (%.1f%%)  —  %d prenotazioni morte, %d diritti spenti" % [
+		wasted, 100.0 * float(wasted) / float(played), died, lost
+	])
+	if residual != 0:
+		print("    il conto non chiude per %d: %s" % [
+			absi(residual),
+			(
+				"prese di parola che il verbale non spiega" if residual > 0
+				else "diritti spesi piu' delle prese di parola contate"
+			)
+		])
 	var names: Array = laid.keys()
 	for entity_id in forced:
 		if not names.has(entity_id):

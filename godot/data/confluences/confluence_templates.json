@@ -163,10 +163,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_ABANDONED"
         ],
@@ -343,10 +339,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_RUMOUR"
         ],
@@ -563,10 +555,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_SPIRAL"
         ],
@@ -714,10 +702,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_DEBT",
-          "CNS_COST_UNREST"
-        ],
         "failure": [
           "CNS_FAILURE_CUT_OFF"
         ],
@@ -873,10 +857,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_ABANDONED"
         ],
@@ -984,10 +964,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_CONTESTED"
         ],
@@ -1090,10 +1066,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_DEBT",
-          "CNS_COST_UNREST"
-        ],
         "failure": [
           "CNS_FAILURE_CUT_OFF"
         ],
@@ -1224,10 +1196,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_DEBT",
-          "CNS_COST_UNREST"
-        ],
         "failure": [
           "CNS_VALLEY_DRAINED"
         ],
@@ -1379,10 +1347,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_DEBT",
-          "CNS_COST_UNREST"
-        ],
         "failure": [
           "CNS_OATH_BROKEN"
         ],
@@ -1541,10 +1505,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_PLUNDER"
         ],
@@ -1686,10 +1646,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_WALL"
         ],
@@ -1759,10 +1715,6 @@
         }
       ],
       "consequence_pools": {
-        "cost": [
-          "CNS_COST_UNREST",
-          "CNS_COST_DEBT"
-        ],
         "failure": [
           "CNS_FAILURE_RUMOUR"
         ],

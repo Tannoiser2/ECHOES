@@ -1157,9 +1157,42 @@ presagi). Sono state scritte insieme al codice e mai rilette di fila.
 **Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
 
-### 37. La mappa si muove — ma `ACT_CLAIM` muore in mano tre volte su quattro
+### 37. ✅ La mappa si muove — ma `ACT_CLAIM` muore in mano tre volte su quattro — CHIUSA in 0.1.372: cinque carte bruciate su 213 giocate
 
 `regole` · **metà chiusa in 0.1.121, metà aperta** · [D-152](DECISIONS.md#d-152) → [D-158](DECISIONS.md#d-158) → [D-175](DECISIONS.md#d-175)
+
+> **CHIUSA in 0.1.372** ([D-404](DECISIONS.md#d-404)). E la voce si chiude
+> perché **la carta ha smesso di morire**, non perché il rapporto vecchio si sia
+> mosso: quel rapporto oggi conta sette eventi in cento anni.
+>
+> | cento anni di CHR_00, semi da 7000 (`cli/run_choice_probe.gd`) | tavolo misto | tavolo uniforme |
+> |---|---|---|
+> | carte RIVENDICARE giocate | **213** | **205** |
+> | di cui prenotano | 9 | 6 |
+> | di cui prendono la parola | 204 | 199 |
+> | **giocate per niente** | **5 (2,3%)** | **5 (2,4%)** |
+> | prenotazioni morte sulle prenotazioni | 5 su 9 (56%) | 5 su 6 (83%) |
+>
+> **I due denominatori, e perché quello vecchio non regge più.** Quando la voce
+> è stata scritta, il RIVENDICARE sapeva fare **una cosa sola**: prenotare. Le
+> «128 aperte, 110 morte» erano perciò le carte giocate *e* le prenotazioni,
+> lo stesso numero detto in due modi. Da [D-191](DECISIONS.md#d-191) l'azione ha
+> un secondo modo — la parola si prende in un colpo su una domanda matura — e da
+> [D-402](DECISIONS.md#d-402) il cervello lo usa. Adesso il 97% delle carte
+> RIVENDICARE prende la parola, e la percentuale sulle prenotazioni è un
+> rapporto fra numeri a una cifra: **5 su 9 non è il 56% di niente, è cinque
+> carte in cento anni.**
+>
+> **E dove va a finire la parola presa.** 204 prese di parola, e il verbale le
+> segue tutte: **52** aprono il secondo dibattito dell'Atto, **153** si spendono
+> come controproposta nel primo Consiglio ([D-268](DECISIONS.md#d-268)), **zero**
+> si spengono senza trovare una domanda. Il conto non chiude per **uno** su 204,
+> e non so dire perché: la sonda adesso lo stampa invece di tacerlo.
+>
+> **Una correzione a [D-402](DECISIONS.md#d-402)**: quel verbale dice «Consigli
+> strappati 74 → 210». Non erano Consigli, erano **prese di parola** — i Consigli
+> aperti da un RIVENDICARE sono 52. La conclusione di D-402 regge (tutt'e due gli
+> usi sono usi), il nome del numero no.
 
 **La prima metà è chiusa.** La voce nasceva da un tabellone che a fine anno era
 quasi quello d'inizio: 44% di caselle senza padrone, una casa che guadagnava in
@@ -3991,11 +4024,65 @@ mappa.
 
 ---
 
-### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto — **cinquantadue voci mute, per nome**
+### 88. ✅ Il tavolo vede poco piu' di un terzo di quello che c'e' scritto — CHIUSA in 0.1.372: la riga 3 sta sotto un quinto, e le mute hanno un nome e un perche'
 
 `contenuto` · `misura` · **aperta in 0.1.273**
 ([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`) · **il taglio
 chiesto e' fatto in 0.1.359** ([D-392](DECISIONS.md#d-392))
+
+> **CHIUSA in 0.1.372** ([D-403](DECISIONS.md#d-403)). La voce chiedeva due
+> cose: che la **riga 3** — in discussione e mai scelte — stesse sotto un quinto
+> per le domande *e* per le proposte, e che si sapesse rispondere alla domanda
+> *«offerte e non scelte, o mai offerte?»*. Tutt'e due fatte.
+>
+> **La risposta alla domanda.** `run_who_writes_probe` adesso si mette in
+> ascolto della **scheda del Consiglio** — quello che il Consiglio elenca al
+> passo, non quello che poi viene scelto — e divide la riga 3 in due:
+>
+> | cento anni in saghe da cinque, semi da 7000 | domande | proposte |
+> |---|---|---|
+> | 3a. sulla scheda, non scelte | 8 | **23** |
+> | 3b. mai sulla scheda | 2 | **2** |
+>
+> Sono due difetti diversi: la **3a** e' la scelta di chi propone (il difetto di
+> [D-035](DECISIONS.md#d-035)); la **3b** e' una `eligibility` che al tavolo non
+> e' mai vera, e allora nessuna scelta poteva prenderla.
+>
+> **E il tavolo su cui si misura non e' un dettaglio** — e' la regola di
+> [D-391](DECISIONS.md#d-391) che morde una seconda volta:
+>
+> | cento anni di CHR_00 | riga 3 domande | riga 3 proposte |
+> |---|---|---|
+> | scollegati, semi da 7000 | 6% | **15%** |
+> | scollegati, semi da 9000 | 8% | **21%** |
+> | in saghe da cinque, semi da 7000 | 8% | **13%** |
+> | in saghe da cinque, semi da 9000 | 8% | **13%** |
+>
+> Sugli anni scollegati la riga delle proposte sta **a cavallo del quinto**, e
+> cambia di sei punti fra due basi di semi. In saga e' 13% su tutt'e due.
+>
+> **Non scelgo il numero piu' basso: scelgo il tavolo su cui le voci possono
+> esistere.** Cinque proposte su 194 chiedono una **leggenda**
+> (`legend:order_restored`, `legend:debt_called`) o un'**era precedente**
+> (`crown_divided`, `mine_sealed`): `P_HEIR_AS_STORY`, `P_OLD_PAGE`,
+> `P_ONE_CROWN`, `P_REOPEN_THE_MINE`, `P_SLAY_THE_DRAGON`. Una leggenda nasce
+> solo quando fra due anni giocati passano decenni, e un'era precedente al primo
+> anno non c'e' per definizione: **in cento anni scollegati quelle cinque non
+> possono salire su una scheda**, e chiamarle mute darebbe al tavolo la colpa di
+> un difetto della misura. E' esattamente la lezione di [ISSUES 56](#56), che
+> aveva gia' pagato questo prezzo (sette Conseguenze morte su anni scollegati,
+> tre in saga). In saga tre delle cinque arrivano sulla scheda; restano
+> `P_ONE_CROWN` e `P_REOPEN_THE_MINE` su una base di semi e nessuna sull'altra.
+>
+> **La sonda ha una nuova opzione** — `--saga=K` — che gioca gli stessi anni a
+> catene di K, ognuno che eredita il precedente.
+>
+> **E le quattro Tensioni che non arrivavano mai a un Consiglio non sono piu'
+> le stesse quattro.** Ogni misura ne lascia fuori una, due o tre su sessanta —
+> `TEN_ENCLOSURE` in una, `TEN_FLOOD` in un'altra, `TEN_EMPTY_NETS`,
+> `TEN_ISLAND_SILENCE` e `TEN_MARSH_FEVER` nella terza — e **sono sempre
+> diverse**: e' la pesca dell'anno, non un difetto del catalogo. Una Tensione
+> che nessuna base di semi porta mai al tavolo non c'e'.
 
 > **Il titolo non regge piu'.** Il 37% e il 36% erano su `CHR_01`, cancellato
 > con gli altri anni d'autore. Su cento anni dell'anno che esiste, il tavolo
@@ -4865,6 +4952,45 @@ significato delle Azioni già fatte.
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
 
+> **Il punto 3 e' misurato in 0.1.373**, e non e' quello che la voce diceva.
+>
+> La voce dice *«due segni, una parola: la vocazione `granary` e la pietra
+> `structure:granary` si stampano entrambe #granaio. Al tavolo non si
+> distinguono»*. Contate le facce che stampano davvero `#granaio` e guardato
+> **cosa accetta la macchina** dietro ognuna:
+>
+> | facce che stampano `#granaio` | cosa accettano |
+> |---|---|
+> | **17** (8 Asset, 3 Destini, 6 Tensioni) | **solo la vocazione** `granary` |
+> | **1** (`AST_WEALTH_GRAIN`) | vocazione **e** Pietra |
+>
+> Quindi la parola non e' ambigua fra due segni su diciotto facce: **e' una
+> faccia su diciotto che vuol dire una cosa piu' larga delle altre diciassette.**
+> La Pietra `structure:granary`, di suo, non e' il bersaglio stampato di nessuna
+> carta: la leggono una regola dei segni, un profilo strategico e quell'unico
+> Asset.
+>
+> **E la scorciatoia non c'e'.** Sembrava che bastasse togliere il segno di
+> troppo da `AST_WEALTH_GRAIN`, perche' il Granaio si alza solo dove la
+> vocazione c'e' gia' — `CNS_ROYAL_GRANARY` mira a `$region_with:granary`. **Non
+> e' vero**: dodici carte Tensione hanno la casella *«Costruisci 1 Pietra nel
+> luogo: Granaio»*, e «nel luogo» e' la Regione di cui si discute, che la
+> vocazione puo' non averla. Togliere quel segno perderebbe luoghi veri.
+>
+> **Restano due strade, e tutt'e due sono larghe:**
+>
+> 1. **`#granaio` vuol dire «vocazione o Pietra» dappertutto** — si aggiunge
+>    `structure:granary` alle altre diciassette. E' la lettura naturale al
+>    tavolo (*un posto con un granaio*), ma allarga i bersagli di otto Asset e
+>    **tocca le clausole di vittoria di tre Destini**: e' equilibrio, e va
+>    misurato sui 100 semi.
+> 2. **Due parole diverse** — la vocazione e la Pietra si stampano con nomi
+>    distinti. Non allarga niente, ma riscrive il testo stampato di diciotto
+>    facce.
+>
+> Nessuna delle due e' una riga, e nessuna delle due la prendo da solo: la
+> prima cambia chi vince, la seconda cambia cosa c'e' scritto sulle carte.
+
 > **Avanzamento in 0.1.368** ([D-400](DECISIONS.md#d-400)): **anche il punto 1
 > e' chiuso.** Il dizionario dichiara adesso `title_spoken` — *«la forma con cui
 > l'app dice questo segno dentro una frase, quando non e' quella stampata sul
@@ -5721,10 +5847,59 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. Tre Conseguenze su cinquantadue non escono mai — erano dieci
+### 56. Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati
 
 `contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
 ([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
+
+> **Avanzamento in 0.1.373** ([D-405](DECISIONS.md#d-405)): **rimisurata dove
+> le Conseguenze possono uscire**, e tolto un sacchetto che non leggeva nessuno.
+>
+> | 200 anni | mai uscite |
+> |---|---|
+> | scollegati (0.1.369) | 11 su 65 |
+> | **in saga (20 x 10 Chronicle)** | **9 su 65** |
+>
+> **Due si sono mosse da sole.** `CNS_CROWN_REUNITED` e `CNS_DRAGON_SLAIN` erano
+> *«mai idonee»*; adesso **arrivano sulla scheda** — una volta in duecento anni,
+> ma ci arrivano. E' lo stesso fatto che [D-403](DECISIONS.md#d-403) ha visto
+> dall'altra parte: in saga la leggenda nasce, e con lei le porte che la
+> chiedevano.
+>
+> **E delle nove, sette hanno un tentativo solo o poco piu'** — uno o due casi
+> non sono un verdetto, sono un aneddoto. L'unica con abbastanza casi e'
+> `CNS_COST_DEBT`: la sua proposta e' stata scelta **9 volte su 9** e non e' mai
+> passata.
+>
+> | Conseguenza | verdetto |
+> |---|---|
+> | `CNS_COST_DEBT` | scelta 9 volte su 9, non passa mai |
+> | `CNS_DEBT_CALLED` | scelta 1 su 7 offerte, non passa |
+> | `CNS_MINE_ROAD_CUT` | scelta 1 su 8 offerte, non passa |
+> | `CNS_LAW_OF_SUCCESSION` | scelta 2 su 4, non passa |
+> | `CNS_COST_EMPTIED` | scelta 1 su 1, non passa |
+> | `CNS_CROWN_REUNITED` | offerta 1 volta, presa zero |
+> | `CNS_DRAGON_SLAIN` | offerta 1 volta, presa zero |
+> | `CNS_SEALED_VALLEY` | domanda posta 1 volta, lei esclusa |
+> | `CNS_HARVEST_RETURNS` | la sua carta non esce mai dal mazzo |
+>
+> **E il sacchetto del prezzo non lo leggeva nessuno.** Dodici template
+> portavano un `consequence_pools.cost` — *«il prezzo che il tavolo chiede»* —
+> che nessuna riga di codice guardava: il prezzo lo stampa la carta dal suo menu
+> di caselle ([D-280](DECISIONS.md#d-280), [D-387](DECISIONS.md#d-387)), e tutte
+> e sessanta le carte ce l'hanno. Quarta volta della stessa malattia
+> ([D-398](DECISIONS.md#d-398), [D-399](DECISIONS.md#d-399),
+> [D-400](DECISIONS.md#d-400)): **una seconda copia della verita' che nessuno
+> tiene allineata.**
+>
+> Non faceva danno al tavolo: lo faceva alle misure.
+> [MISURA_CASELLE.md](MISURA_CASELLE.md) contava **342** applicazioni e adesso
+> ne conta **294** — *una su sette era un fantasma* — e `ADJUST_TENSION` *dove
+> si discute*, 31 usi, spariva del tutto: nessun Consiglio lo produce da li'.
+>
+> **Nessuna Conseguenza resta senza strada**: contate tutte quelle vive, le 65
+> del catalogo hanno tutte almeno un modo di uscire. Quello che resta non e' una
+> porta murata — e' una porta che il tavolo non attraversa.
 
 > **Avanzamento in 0.1.369** ([D-401](DECISIONS.md#d-401)): **le orfane sono
 > zero**, ed erano quattro. Tre hanno trovato casa in
@@ -6978,8 +7153,36 @@ riga che dice perche' non gliene serve uno.
 > sera. Nella saga del Regno che si e' seduto la reggia arriva all'anno 818.
 > Vanno misurati con [MISURA_VITE.md](MISURA_VITE.md), non qui.
 >
-> **Restano** `place:dry_spring`, `place:thinned_wood` e `place:collapsed_pass`:
-> i gradi consumati che nessuna Conseguenza posa ancora.
+> **Restano** `place:dry_spring`, `place:thinned_wood` e `place:collapsed_pass`.
+
+> **Correzione in 0.1.373**, e cambia il rimedio. La riga qui sopra diceva *«i
+> gradi consumati che nessuna Conseguenza posa ancora»*: **non e' vero**. Ognuno
+> dei tre ha esattamente **una** Conseguenza che lo posa —
+>
+> | grado | chi lo posa | dove mira |
+> |---|---|---|
+> | `place:thinned_wood` (Foresta, grado 2) | `CNS_VALLEY_CLEARED` | `$region_focus` |
+> | `place:dry_spring` (Sorgente, grado 3) | `CNS_WATER_PRICED` | `$region_focus` |
+> | `place:collapsed_pass` (Passo, grado 2) | `CNS_MINE_ROAD_CUT` | `$region_with:wild` |
+>
+> — e le cause sono **due, non una**:
+>
+> 1. **la Conseguenza non viene scelta** — `CNS_MINE_ROAD_CUT` sta fra le nove di
+>    [ISSUES 56](#56): scelta 1 volta su 8 offerte in duecento anni;
+> 2. **e quando viene scelta, deve trovare la Pietra dov'e'.**
+>    `SET_STRUCTURE_GRADE` e' `optional: true`: se in quella Regione quella
+>    Pietra non c'e', **e' un no-op silenzioso**. E le Pietre stanno in poche
+>    Regioni — il Passo in **una sola** (`REG_MONTAGNE_ROSSE`), la Sorgente in
+>    **due**, la Foresta in **tre** — su una mappa che ne pesca **sei su dieci**.
+>
+> Quindi per vedere un passo franato devono coincidere tre cose: la Regione col
+> Passo pescata, la Conseguenza scelta, e la frase che punta proprio li'. La
+> terza e' quella che si puo' aggiustare senza toccare l'equilibrio: **la strada
+> della miniera si taglia dove c'e' un passo**, non dove il mondo e' selvatico.
+> Non l'ho fatto perche' `$region_with:` vuole un segno **dichiarato** dalle
+> Regioni e i gradi delle Pietre li scrive il gioco a runtime: il validatore
+> direbbe di no, e sistemarlo e' una riga nel validatore piu' una misura. Sta
+> qui, non in una voce nuova.
 
 > **Richiesta del committente:** *«la potatura — fai leggere le 25 fonti e le 7
 > pietre».*

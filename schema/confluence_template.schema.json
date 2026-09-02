@@ -104,20 +104,11 @@
         "consequence_pools": {
           "type": "object",
           "required": [
-            "cost",
             "failure",
             "decisive_bonus"
           ],
           "additionalProperties": false,
           "properties": {
-            "cost": {
-              "type": "array",
-              "minItems": 1,
-              "items": {
-                "type": "string",
-                "pattern": "^CNS_[A-Z0-9_]+$"
-              }
-            },
             "failure": {
               "type": "array",
               "minItems": 1,
