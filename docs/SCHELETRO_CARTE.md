@@ -8,13 +8,31 @@ che entra. Il numero accanto e' su quante facce del mazzo quel blocco c'e'.
 
 | mazzo | formato | facce | pezzi |
 |---|---|---|---|
-| **asset** | 63x88 — la carta da gioco che sta in mano | 48 | 132 |
-| **echo** | 63x88 — la carta da gioco che sta in mano | 48 | 48 |
+| **asset** | 70x120 — il tarocco che resta in vista | 48 | 132 |
+| **echo** | 70x120 — il tarocco che resta in vista | 48 | 48 |
 | **tension** | 44x68 — la mini che sta accanto a una traccia | 60 | 60 |
 | **council** | 70x120 — il tarocco che resta in vista | 60 | 60 |
 | **destiny** | 70x120 — il tarocco che resta in vista | 23 | 23 |
 | **entity** | 70x120 — il tarocco che resta in vista | 26 | 26 |
 | **region** | 80x80 — la tessera quadrata della mappa | 10 | 10 |
+
+## Se il testo ci sta
+
+Portare un blocco e **stamparlo leggibile** sono due cose diverse.
+Quando il testo non entra, la prima cosa che cede e' l'illustrazione —
+fino al 34% della carta e non oltre — e poi si stringe il corpo, fino al
+74%. Una carta che stampa il corpo rimpicciolito e' una carta che al
+tavolo si legge peggio, e questa tabella dice **quante**.
+
+| mazzo | corpo rimpicciolito | la piu' stretta | illustrazione media | la piu' piccola |
+|---|---|---|---|---|
+| **asset** | 0 su 48 | 100% | 49% | 43% |
+| **echo** | 0 su 48 | 100% | 52% | 52% |
+| **tension** | 0 su 60 | 100% | — | — |
+| **council** | 7 su 60 | 89% | — | — |
+| **destiny** | 0 su 23 | 100% | 52% | 52% |
+| **entity** | 0 su 26 | 100% | 52% | 52% |
+| **region** | 0 su 10 | 100% | 91% | 92% |
 
 ## Il mazzo `asset`
 
@@ -22,7 +40,7 @@ La carta che si cala: **tu scegli dove e quale delle due Azioni**.
 Arriva con ACQUISIRE, o dalla mappa a inizio Atto. Limite di mano: 7.
 Costa 1 Occasione. In alternativa la impegni al Consiglio, e vale forza.
 
-**Lo scheletro** — 63x88 — la carta da gioco che sta in mano, 48 facce, 132 pezzi:
+**Lo scheletro** — 70x120 — il tarocco che resta in vista, 48 facce, 132 pezzi:
 
 | blocco | su quante facce |
 |---|---|
@@ -56,7 +74,7 @@ La carta del Narratore, una funzione di Propp: **tu scegli solo quando**.
 Dove cade e cosa lascia lo decide il mondo, non chi la gioca.
 Due a testa a inizio Atto, dal sacchetto dell'Atto. Costa 1 Occasione.
 
-**Lo scheletro** — 63x88 — la carta da gioco che sta in mano, 48 facce, 48 pezzi:
+**Lo scheletro** — 70x120 — il tarocco che resta in vista, 48 facce, 48 pezzi:
 
 | blocco | su quante facce |
 |---|---|

@@ -5421,12 +5421,33 @@ scelta d'autore che viene prima dell'arte · **aperta in 0.1.218** ([D-256](DECI
 >
 > **Quello che resta non e' piu' il contenuto, e' il formato.** Su 48 carte, 0
 > escono dal bordo ma **46 stampano il corpo rimpicciolito** (la piu' stretta al
-> 77%), e l'illustrazione e' scesa al suo pavimento del 34% su tutte. Una carta
+> 74%), e l'illustrazione e' scesa al suo pavimento del 34% su tutte. Una carta
 > 63x88 che porta sette righe di regole **e** un'illustrazione e' una carta che
-> si legge male. Le due strade — tarocco anche per le Asset, come la scheda del
-> Consiglio ([D-338](DECISIONS.md#d-338)); oppure l'illustrazione fuori dalla
-> faccia delle regole — sono misurabili tutte e due, e la scelta e' del
-> committente.
+> si legge male.
+>
+> ### ✅ Fatto in 0.1.393: il tarocco ([D-421](DECISIONS.md#d-421))
+>
+> Delle due strade — tarocco anche per le Asset, come la scheda del Consiglio
+> ([D-338](DECISIONS.md#d-338)); oppure l'illustrazione fuori dalla faccia delle
+> regole — e' stata fatta **la prima**, che era la raccomandata nella
+> [lista](LE_TUE_DECISIONI.md). L'Eco la segue, perche' da
+> [D-359](DECISIONS.md#d-359) e' un blocco stampato sulla stessa carta.
+>
+> | mazzo asset, 48 facce | 63x88 | **70x120** |
+> |---|---|---|
+> | corpo rimpicciolito | **46 su 48** | **0 su 48** |
+> | la piu' stretta | 74% | **100%** |
+> | illustrazione media | 35% | **49%** |
+> | la piu' piccola | 34% — il pavimento | **43%** |
+>
+> **E adesso e' un cancello**: `run_card_skeleton` diceva quali blocchi una
+> carta porta, non se ci stanno. Adesso lo dice chiamando `PrintSheet.layout`,
+> la stessa funzione che disegna lo stampabile — nessuna seconda aritmetica.
+>
+> **Costo dichiarato:** i fogli A4 di carte e tessere da **49 a 67** (+37%), le
+> Asset da sole da 15 a 33. E una mano da sette carte adesso e' sette tarocchi:
+> si e' preferita una carta che si legge a una mano che si maneggia. Tornare
+> indietro e' una riga in `card_face.gd`.
 
 
 > **Correzione a quanto scritto sopra in 0.1.219**: il «0 su 163, contenuto

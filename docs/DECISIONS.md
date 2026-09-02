@@ -10,6 +10,73 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-421 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
+
+**implemented in 0.1.393.** Avanza [ISSUES 69](ISSUES.md#69), la sesta rossa.
+Fatta la raccomandata, come [D-419](#d-419): il committente ha scelto di andare
+avanti su questa voce senza rispondere alla domanda del formato.
+
+### Il difetto, e perche' non era di contenuto
+
+[D-340](#d-340) aveva finito il lavoro sul testo: la faccia fisica si stampa per
+intero — DOVE, le due Azioni col loro nome, SEMPRE, AL CONSIGLIO — e i 96 testi
+erano stati riscritti togliendo il colore, 8.666 caratteri a 5.751. **Quello che
+restava non era piu' il contenuto, era il formato.**
+
+Una carta 63x88 che porta sette righe di regole **e** un'illustrazione non ci
+sta. Il foglio di stampa lo sapeva gia' e faceva l'unica cosa che poteva: prima
+schiacciava il disegno fino al suo pavimento del 34%, poi stringeva il corpo del
+testo fino al 74%. Nessuna carta sbordava — quello lo sorveglia il cancello da
+[D-056](#d-056) — ma quarantasei su quarantotto **si leggevano peggio**, e la
+regola di casa dice che quello che non e' misurato va dichiarato: nessuno lo
+misurava.
+
+### Prima la misura, e adesso e' un cancello
+
+`run_card_skeleton` diceva **quali blocchi** una carta porta. Non diceva **se ci
+stanno**, e sono due cose diverse: la seconda e' quella che decide se al tavolo
+la carta si legge. Adesso lo dice, e non con un'aritmetica sua: chiama
+`PrintSheet.layout`, **la stessa funzione che disegna lo stampabile**.
+
+### La scelta, e il suo numero
+
+Le due strade erano il tarocco anche per le Asset (come la scheda del Consiglio,
+[D-338](#d-338)) oppure l'illustrazione fuori dalla faccia delle regole. La
+seconda costa una carta a due facce e una seconda fustella; la prima costa
+fogli. **Fatto il tarocco**, e l'Eco lo segue perche' da [D-359](#d-359) e' un
+blocco stampato sulla stessa carta, non un mazzo suo.
+
+| mazzo asset, 48 facce | 63x88 | **70x120** |
+|---|---|---|
+| corpo rimpicciolito | **46 su 48** | **0 su 48** |
+| la piu' stretta | 74% | **100%** |
+| illustrazione media | 35% | **49%** |
+| la piu' piccola | 34% — il pavimento | **43%** |
+
+Il disegno guadagna quasi la meta' di quello che aveva, e nessuna carta stringe
+piu' niente. L'Eco, che gia' ci stava, passa dal 46% al 52% di illustrazione.
+
+### E il costo, che e' vero e va scritto
+
+**I fogli A4 di carte e tessere passano da 49 a 67**, +37%. Le carte Asset da
+sole vanno da 15 fogli a **33**: un tarocco occupa quattro caselle per foglio
+dove la classica ne occupava nove.
+
+E la scatola cresce. Le Asset erano l'unico mazzo che si mescola e sta in mano —
+adesso una mano da sette carte e' sette tarocchi, che e' piu' ingombrante da
+tenere. **E' il costo della scelta**, non un effetto collaterale: si e' preferita
+una carta che si legge a una mano che si maneggia. Se al tavolo la mano dara'
+fastidio piu' del testo stretto, la strada alternativa e' ancora li' — e questa
+decisione dice quanto costa tornare indietro: una riga in `card_face.gd`.
+
+### Va prima dell'arte, ed e' il motivo per cui e' una rossa
+
+Il rapporto d'aspetto cambia da 0,72 a 0,58: **un'illustrazione inquadrata per
+63x88 non si riusa su un tarocco**, si ritaglia o si rifa. Con 144 segnaposto su
+155 il conto oggi e' zero; deciderlo dopo sarebbe stato rifare tutto.
+
+---
+
 ## D-420 — Il dado resta al centro, e l'economia gli sta accanto per scelta
 
 **implemented in 0.1.392.** Chiude [ISSUES 80](ISSUES.md#80), la quinta rossa —

@@ -212,19 +212,27 @@ essere un contorno senza togliere di mezzo il dado — due acquisti liberi, il
 gettone che compra il prezzo, e adesso quello che compra l'opposizione, che
 **entra nel margine** insieme al dado invece che dopo.
 
-### R6. [69](ISSUES.md#69) — come è fatta una carta Azione
+### ✔ R6. [69](ISSUES.md#69) — fatta la raccomandata in 0.1.393: **il tarocco**
 
-La faccia fisica adesso si stampa per intero — DOVE, le due Azioni col loro nome,
-SEMPRE, AL CONSIGLIO. Ma su 48 carte **46 stampano il corpo rimpicciolito** (la
-più stretta al 77%) e l'illustrazione è scesa al suo pavimento del 34%. Una carta
-63×88 che porta sette righe di regole **e** un disegno è una carta che si legge
-male.
+Hai scelto di andare avanti su questa senza rispondere alla domanda del formato,
+e vale la regola qui sopra ([D-421](DECISIONS.md#d-421)). L'Eco segue le Asset,
+perché da D-359 è un blocco stampato sulla stessa carta.
 
-> **Farei: formato tarocco anche per le Asset**, come la scheda del Consiglio.
-> Costa una scatola più grande e niente altro. L'alternativa — l'illustrazione
-> fuori dalla faccia delle regole — costa una carta a due facce.
+| mazzo asset, 48 facce | 63×88 | **70×120** |
+|---|---|---|
+| corpo rimpicciolito | **46 su 48** | **0 su 48** |
+| la più stretta | 74% | **100%** |
+| illustrazione media | 35% | **49%** |
+| la più piccola | 34% — il pavimento | **43%** |
 
-Va decisa **prima** dell'arte, come R12: si disegna per un formato, non per due.
+**E prima di cambiare ho scritto la misura**, che non esisteva: lo scheletro
+delle carte diceva quali blocchi una carta porta, non se ci stanno. Adesso lo
+dice chiamando la stessa funzione che disegna lo stampabile, ed è un cancello.
+
+**Il costo, e va detto:** i fogli A4 da **49 a 67** (+37%), le Asset da sole da
+15 a 33. E una mano da sette carte adesso è sette tarocchi — si è preferita una
+carta che si legge a una mano che si maneggia. Se al tavolo la mano darà
+fastidio più del testo stretto, tornare indietro è **una riga**.
 
 ### R7. [65](ISSUES.md#65) — quale delle tre riviste della pagina
 

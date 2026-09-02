@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.393 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
+
+Sesta rossa, fatta la raccomandata ([D-421](docs/DECISIONS.md#d-421)). Avanza
+[ISSUES 69](docs/ISSUES.md#69).
+
+### Prima la misura, che non c'era
+
+`run_card_skeleton` diceva **quali blocchi** una carta porta. Non diceva **se ci
+stanno**, e sono due cose diverse: la seconda decide se al tavolo la carta si
+legge. Adesso lo dice, e non con un'aritmetica sua — chiama `PrintSheet.layout`,
+la stessa funzione che disegna lo stampabile.
+
+| mazzo asset, 48 facce | 63×88 | **70×120** |
+|---|---|---|
+| corpo rimpicciolito | **46 su 48** | **0 su 48** |
+| la più stretta | 74% | **100%** |
+| illustrazione media | 35% | **49%** |
+| la più piccola | 34% — il pavimento | **43%** |
+
+Nessuna carta sbordava — quello è sorvegliato da D-056 — ma quarantasei su
+quarantotto **si leggevano peggio**, e nessuno lo misurava. L'Eco segue le Asset
+perché da D-359 è un blocco stampato sulla stessa carta.
+
+### Il costo, che è vero e va scritto
+
+**I fogli A4 di carte e tessere da 49 a 67** (+37%); le Asset da sole da 15 a
+**33**. E una mano da sette carte adesso è sette tarocchi: si è preferita una
+carta che si legge a una mano che si maneggia. Tornare indietro è una riga in
+`card_face.gd`.
+
+### Va prima dell'arte, ed è perché era una rossa
+
+Il rapporto d'aspetto passa da 0,72 a 0,58: un'illustrazione inquadrata per
+63×88 non si riusa su un tarocco. Con 144 segnaposto su 155 il conto oggi è
+zero; deciderlo dopo sarebbe stato rifare tutto.
+
+---
+
 ## 0.1.392 — Il dado resta al centro, e l'economia gli sta accanto per scelta
 
 Quinta rossa, e l'unica su cui non avevo una raccomandazione da dare. Domanda
