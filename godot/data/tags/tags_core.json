@@ -1199,7 +1199,7 @@
         "tension",
         "asset_physical"
       ],
-      "note": "tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stampano con la stessa parola"
+      "note": "tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST, e a differenza del granaio non c'e' collisione: le facce stampano #bosco per la vocazione, e la Pietra si chiama foresta — nessuna carta la nomina, la legge solo una regola dei segni"
     },
     {
       "id": "free_cities",
@@ -1255,7 +1255,7 @@
         "consequence",
         "echo_card"
       ],
-      "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entrambe"
+      "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, e le facce che stampano #granaio accettano tutt'e due (D-406)"
     },
     {
       "id": "guild",
@@ -2809,10 +2809,12 @@
       ],
       "read_by": [
         "asset_physical",
+        "destiny_physical",
+        "entity_strategic_profile",
         "tag_rule",
-        "entity_strategic_profile"
+        "tension"
       ],
-      "note": "la pietra alzata: non e' la vocazione nuda granary, ma le carte stampano #granaio per entrambe"
+      "note": "la pietra alzata: non e' la vocazione nuda granary, ma le facce che stampano #granaio accettano tutt'e due (D-406) — al tavolo un posto con un granaio e' un posto con un granaio, che sia la terra o l'edificio"
     },
     {
       "id": "structure:library",

@@ -383,6 +383,7 @@
       "description": "I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli riposare.",
       "focus_region_tags": [
         "granary",
+        "structure:granary",
         "condition:lean"
       ],
       "opening_line": "Il grano viene su corto. I vecchi dicono che la terra chiede riposo, e nessuno puo' permetterselo.",
@@ -443,7 +444,8 @@
         {
           "text": "una Presenza arriva o se ne va da una terra con #granaio",
           "on_region_with": [
-            "granary"
+            "granary",
+            "structure:granary"
           ],
           "adds_presence": true,
           "removes_presence": true
@@ -3117,6 +3119,7 @@
       "description": "Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene.",
       "focus_region_tags": [
         "granary",
+        "structure:granary",
         "trade"
       ],
       "opening_line": "La decima si paga, e la meta' della decima si perde per strada fra il campo e l'altare.",
@@ -3172,6 +3175,7 @@
           "text": "una Presenza arriva o se ne va da una terra con #granaio o #commercio",
           "on_region_with": [
             "granary",
+            "structure:granary",
             "trade"
           ],
           "adds_presence": true,
@@ -8324,7 +8328,8 @@
       ],
       "description": "Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza fame.",
       "focus_region_tags": [
-        "granary"
+        "granary",
+        "structure:granary"
       ],
       "opening_line": "Nel granaio grande la muffa ha preso il fondo, e nessuno sa dire quanto sia salita.",
       "theme": "THM_SOPRAVVIVENZA",
@@ -8378,7 +8383,8 @@
         {
           "text": "una Presenza arriva o se ne va da una terra con #granaio",
           "on_region_with": [
-            "granary"
+            "granary",
+            "structure:granary"
           ],
           "adds_presence": true,
           "removes_presence": true

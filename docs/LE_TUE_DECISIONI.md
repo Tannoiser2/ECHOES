@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **99** |
-| aperte | **32** |
+| chiuse | **101** |
+| aperte | **30** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **22** |
+| di cui sono mie da fare | **20** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -43,6 +43,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
+| 0.1.375–0.1.399 | 0 | 2 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -200,8 +201,16 @@ possono nemmeno salire su una scheda. Vanno misurate in saga, o si dà al tavolo
 la colpa di un difetto della misura.
 
 Restano **9 Conseguenze su 65** che non escono mai (56) — erano 11, e il numero è
-sceso perché sono state rimisurate **in saga**, dove possono uscire — e le domande
-che si scaldano tre volte e mezzo meno delle altre (60).
+sceso perché sono state rimisurate **in saga**, dove possono uscire — e la
+[60](ISSUES.md#60), che ho rimisurata anche lei.
+
+**La 60 adesso dice un'altra cosa.** Le domande erano dodici, sono sessanta: le
+mute sono passate da una su dodici a **una su sessanta** (*I Recinti*), ma lo
+scarto fra la più e la meno ascoltata è passato da 3,5× a **13,1×**. E il suo
+criterio scritto **non è più raggiungibile per aritmetica**: chiede che nessuna
+resti senza Consiglio in più di un quarto degli anni in cui è in gioco, e con 3,58
+Consigli l'anno su sessanta domande la più ascoltata del tavolo arriva al 62,5%.
+Va ritagliato prima di lavorarci — il numero da battere è **13,1×**.
 
 Delle nove, sette hanno **un tentativo solo o poco più**: un aneddoto, non un
 verdetto. L'unica con abbastanza casi è `CNS_COST_DEBT`, la cui proposta è stata
@@ -211,37 +220,30 @@ tutte e 65 hanno un modo di uscire.
 **Fatto quando** ogni voce o viene scelta almeno una volta in cento anni, **o
 esce dalla scatola**. Le tolgo, non le riscrivo tre volte.
 
-### G3. Ogni segno ha un lettore, o esce — [70](ISSUES.md#70), [111](ISSUES.md#111)
+### G3. Ogni segno ha un lettore, o esce — [111](ISSUES.md#111)
 
-Tre delle cinque si sono chiuse in 0.1.363: **zero** segni senza una ragione
+Quattro delle cinque sono chiuse. In 0.1.363: **zero** segni senza una ragione
 scritta (erano quindici), `structure:road` è uscito dal dizionario, e i segni
 scritti spesso che nessuna clausola guarda sono passati da **venticinque a due**
 — e quei due sono colore dichiarato da D-278.
 
-**Restano**: `#granaio` (70), e le Pietre che non si alzano mai (111), che
-dipende in parte dalla rossa R1.
+E in 0.1.375 la [70](ISSUES.md#70): **`#granaio` vuol dire una cosa sola**. Ho
+preso la prima delle due strade che ti avevo messo davanti — quella che non tocca
+nessuna parola stampata: la parola era già giusta, era la macchina a essere più
+stretta. Diciassette facce dicevano «un luogo con #granaio» e accettavano solo la
+terra; adesso tutte e diciotto accettano anche l'edificio. Succede in **9 partite
+su 100** che ci sia un granaio dove la vocazione non c'è, e le carte lo
+rifiutavano.
 
-**E la 70 adesso è misurata, e ti chiede una parola.** Non sono «due segni che
-al tavolo non si distinguono»: sono **diciassette facce su diciotto** che
-stampano `#granaio` e accettano solo la **vocazione** della terra, e **una**
-(`AST_WEALTH_GRAIN`) che accetta anche la **Pietra** costruita. La scorciatoia
-— togliere il segno di troppo da quell'unica carta — l'ho provata e non regge:
-dodici carte Tensione hanno la casella «Costruisci 1 Pietra nel luogo: Granaio»,
-e quel luogo la vocazione può non averla, quindi si perderebbero posti veri.
+**Resta** solo la 111: le Pietre che non si alzano mai. E adesso si sa che
+**non dipende da una riga di dati**: i tre gradi consumati che restano hanno
+ognuno la sua Conseguenza, che mira nel posto giusto — ho verificato prima di
+cambiare la mira, e la mira era già buona. La causa è una sola, ed è la stessa
+della [56](ISSUES.md#56): **quelle proposte il cervello non le compra mai**. Chi
+chiude la [78](ISSUES.md#78) chiude anche queste.
 
-Restano due strade, e nessuna è una riga:
-
-1. **`#granaio` vuol dire «vocazione o Pietra» dappertutto.** È la lettura
-   naturale al tavolo, ma allarga i bersagli di otto Asset e **tocca le clausole
-   di vittoria di tre Destini**: è equilibrio, da misurare sui 100 semi.
-2. **Due parole diverse**, una per la vocazione e una per la Pietra. Non allarga
-   niente, ma riscrive il testo stampato di diciotto facce.
-
-La prima cambia chi vince, la seconda cambia cosa c'è scritto sulle carte: **la
-scelta è tua**, e appena la dici la faccio.
-
-**Fatto quando** un segno nuovo si battezza una volta sola, e ogni grado di ogni
-Pietra o si alza almeno una volta in cento partite o non è più nel catalogo.
+**Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
+partite, o non è più nel catalogo.
 
 ### G4. ✔ Nessuna casa è condannata — chiusa in 0.1.371
 
@@ -263,18 +265,32 @@ difetto è nello schermo, e nessuna prova lo tocca.
 **Fatto quando** una prova guida la schermata vera per tre anni di saga e ci
 arriva. Va con G1.
 
-### G6. Il cervello gioca il suo profilo — [78](ISSUES.md#78), [59](ISSUES.md#59)
+### G6. Il cervello gioca il suo profilo — ✔ [78](ISSUES.md#78) chiusa; resta [59](ISSUES.md#59)
 
-La [126](ISSUES.md#126) si è chiusa in 0.1.370: le prenotazioni inutili sono
-passate da **273 a 4**, e il ripiego ha imparato a prendere la parola invece di
-solo prenotarla — 74 Consigli strappati diventano 210, e le Verità scritte
-salgono da 132 a 142.
+La [126](ISSUES.md#126) si è chiusa in 0.1.370, e la **[78](ISSUES.md#78) in
+0.1.377 — senza toccare niente.** La voce diceva: *«si richiude da sola il giorno
+in cui il macchinario produce le cose che le case dichiarano di volere. Alzare il
+peso non la chiude, la peggiora.»* Quel giorno era arrivato **centoventicinque
+versioni fa**, e nessuno era tornato a leggerla.
 
-Restano i quattro profili strategici, che dicono cosa una casa vuole lasciare nel
-mondo e **li legge solo il validatore**.
+Misura appaiata, stessi semi, solo il peso del profilo acceso e spento:
 
-**Fatto quando** il cervello sceglie guardando il suo profilo, e si vede quante
-mosse vanno verso un segno voluto.
+| cento anni | peso 0 | peso 3 | nel 2251 |
+|---|---|---|---|
+| segni posati da chi li voleva | 75 | **83** | 17 → 17 |
+| benefici comprati al Consiglio che davano un segno voluto | 58 | **92** | 15 → 15 |
+
+Al Consiglio il profilo compra **il 59% di benefici voluti in più**. Adesso il
+cervello si vede scegliere in base a quello che la casa vuole lasciare.
+
+**Resta la [59](ISSUES.md#59)**, e anche lei è cambiata sotto: FORGIARE e
+TRAMARE non sono più i verbi morti (8,4% e 9,9% → 52,4% e 75,6%), WEALTH non è
+più la famiglia inerte (3,1× → 1,17×), e le carte mai calate sono passate da
+quattro a una. **Il difetto adesso si chiama INFLUENZARE**: il verbo meno giocato
+(18,5%) e la moneta più votata, con quasi metà delle sue carte che non fa niente.
+
+**Fatto quando** nessun verbo si gioca meno della metà del più giocato, e ogni
+carta viene calata per agire almeno una volta in cento anni.
 
 ### G7. Le due grammatiche non si ripetono — [87](ISSUES.md#87), [106](ISSUES.md#106)
 

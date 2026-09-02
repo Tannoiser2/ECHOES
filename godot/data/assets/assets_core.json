@@ -48,6 +48,7 @@
           "scope": "REGION",
           "any_tag": [
             "granary",
+            "structure:granary",
             "nomad_range",
             "capital",
             "domain:TERRITORY"
@@ -131,6 +132,7 @@
           "any_tag": [
             "capital",
             "granary",
+            "structure:granary",
             "nomad_range",
             "condition:contested",
             "domain:TERRITORY"
@@ -482,6 +484,7 @@
           "any_tag": [
             "capital",
             "granary",
+            "structure:granary",
             "structure:watchtower",
             "structure:castle",
             "domain:TERRITORY"
@@ -898,6 +901,7 @@
           "any_tag": [
             "capital",
             "granary",
+            "structure:granary",
             "trade",
             "harbor",
             "domain:TERRITORY"
@@ -1477,6 +1481,7 @@
           "scope": "REGION",
           "any_tag": [
             "granary",
+            "structure:granary",
             "nomad_range",
             "condition:mourning",
             "settlement:village",
@@ -1564,6 +1569,7 @@
           "scope": "REGION",
           "any_tag": [
             "granary",
+            "structure:granary",
             "condition:lean",
             "condition:starving",
             "domain:SURVIVAL"
@@ -2853,6 +2859,7 @@
           "any_tag": [
             "trade",
             "granary",
+            "structure:granary",
             "settlement:market",
             "condition:lean",
             "harbor",

@@ -158,6 +158,7 @@
             "label": "Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza",
             "any_tag": [
               "granary",
+              "structure:granary",
               "domain:SURVIVAL"
             ]
           },
@@ -228,6 +229,7 @@
                 "label": "La terra del #granaio e' uscita pulita",
                 "any_tag": [
                   "granary",
+                  "structure:granary",
                   "domain:SURVIVAL"
                 ]
               },
@@ -259,6 +261,7 @@
           "settlement:village",
           "valley_sealed",
           "granary",
+          "structure:granary",
           "scar:emptied"
         ],
         "reads": {
@@ -694,6 +697,7 @@
             "label": "Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza",
             "any_tag": [
               "granary",
+              "structure:granary",
               "domain:SURVIVAL"
             ]
           },
@@ -768,6 +772,7 @@
                 "label": "E la terra del #granaio e' uscita pulita",
                 "any_tag": [
                   "granary",
+                  "structure:granary",
                   "domain:SURVIVAL"
                 ]
               },
@@ -1858,6 +1863,7 @@
             "label": "Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza",
             "any_tag": [
               "granary",
+              "structure:granary",
               "domain:SURVIVAL"
             ]
           },
@@ -1901,6 +1907,7 @@
                 "label": "La terra del #granaio e' uscita pulita",
                 "any_tag": [
                   "granary",
+                  "structure:granary",
                   "domain:SURVIVAL"
                 ]
               },

@@ -10,6 +10,144 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-407 — Il cervello gioca il suo profilo, e non gliel'ho insegnato io
+
+**implemented in 0.1.377.** Chiude [ISSUES 78](ISSUES.md#78).
+
+### La voce aspettava una cosa che era arrivata da centoventicinque versioni
+
+[D-289](#d-289) aveva dato al cervello il peso del profilo — `PROFILE_WEIGHT =
+3` — e aveva scritto il numero onesto: **non comprava quasi niente**. Segni
+voluti posati **17 → 17**, benefici al Consiglio **15 su 246 → 15 su 245**.
+
+E aveva scritto anche **perche'**, e la ragione non era la bilancia:
+*«il macchinario non produce quasi nulla di quello che i profili nominano,
+quindi non c'e' niente da preferire»*. La voce si dichiarava appesa a
+[ISSUES 76](ISSUES.md#76), e diceva una cosa precisa: **«si richiude da sola il
+giorno in cui il macchinario produce le cose che le case dichiarano di volere.
+Alzare il peso non la chiude, la peggiora.»**
+
+ISSUES 76 **si e' chiusa in 0.1.270**. Poi il Consiglio e' stato rimesso in
+piedi tre volte. Nessuno e' tornato a rileggere questa voce: **centoventicinque
+versioni**.
+
+### La stessa misura appaiata di D-289, su oggi
+
+Cento anni, stessi semi, solo la costante cambiata da 3 a 0 e ritornata — il
+motore e' deterministico, quindi ogni differenza e' **causata dal peso**, non
+dal rumore.
+
+| cento anni, semi da 7000 | peso **0** | peso **3** |
+|---|---|---|
+| segni posati da chi li **voleva** | 75 | **83** |
+| segni posati da chi li **temeva** | 78 | 77 |
+| benefici comprati al Consiglio | 411 | 420 |
+| **di cui un segno che il proponente voleva** | **58** | **92** |
+
+Al Consiglio il profilo compra **+34 benefici su circa 415: il 59% in piu'**.
+Sulla mappa **+8 segni voluti**. Nel 2251 le stesse due righe facevano **zero**
+e **zero**.
+
+**La condizione della voce e' *«una partita giocata dal cervello si vede
+scegliere in base al profilo»*, e adesso si vede.** L'altra meta' — la colonna
+di destra che nomina i segni del profilo — era gia' fatta in 0.1.251.
+
+### Quello che non ho fatto
+
+**Non ho toccato il peso**, e questa e' la parte che conta: D-289 aveva scritto
+che alzarlo avrebbe peggiorato le cose, e aveva ragione allora. La voce si e'
+chiusa perche' e' cambiato **il mondo intorno al peso**, non il peso.
+
+E' la terza volta in due giorni che una voce era gia' vera e nessuno l'aveva
+riletta ([ISSUES 108](ISSUES.md#108) ne stava ferma ventiquattro, questa
+centoventicinque). Vale la pena dirlo come metodo: **prima di lavorare una voce,
+rimisurarla.**
+
+---
+
+## D-406 — `#granaio`: la macchina smette di essere piu' stretta della parola
+
+**implemented in 0.1.375.** Chiude [ISSUES 70](ISSUES.md#70).
+
+### La scelta, e perche' questa
+
+La voce lasciava due strade. **Presa la prima**: `#granaio` vuol dire
+*«vocazione o Pietra»* su tutte e diciotto le facce che lo stampano.
+
+Non e' la strada piu' comoda: e' quella che **non tocca una sola parola
+stampata**. Diciassette facce dicevano *«un luogo con #granaio»* e dietro
+accettavano solo la vocazione della terra; una — `AST_WEALTH_GRAIN` —
+accettava anche l'edificio. Al tavolo *un posto con un granaio e' un posto con
+un granaio*: la parola era gia' giusta, era la macchina a essere piu' stretta.
+La seconda strada avrebbe riscritto diciotto testi per difendere una distinzione
+che il tavolo non fa.
+
+**26 liste allargate** su 16 facce (7 Asset, 3 Destini, 6 Tensioni): bersagli
+degli Asset, clausole di vittoria e di trionfo dei Destini, `focus_region_tags` e
+`heats_when` delle Tensioni. E il dizionario lo dichiara: `structure:granary`
+adesso e' letto anche da `destiny_physical` e `tension` — **la guardia della
+grammatica fisica ha morso al primo colpo**, prima ancora dei test.
+
+### Il caso e' vero, e ha un numero
+
+Allargare vale la pena solo se la Pietra finisce davvero, qualche volta, dove la
+vocazione non c'e'. **Misurato** (`cli/run_granary_probe.gd`, 100 partite, semi
+da 7000):
+
+| | |
+|---|---|
+| Regioni che finiscono con la Pietra | 21 |
+| **di cui senza la vocazione** | **9** |
+| partite in cui succede | **9 su 100** |
+
+Succede nelle Terre Nahr, sulla Strada dei Mercanti e a Eredan, tre volte
+ciascuna: posti con un granaio che diciassette facce su diciotto rifiutavano di
+vedere.
+
+### E su un anno solo non cambia niente. In saga si'.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8**, misto e uniforme — e
+l'uscita del `run_playtest` su cento semi e' **identica riga per riga** a prima
+della modifica. Su questo avevo scritto *«non cambia niente»*, e il cancello
+delle saghe mi ha corretto prima del commit.
+
+**[MISURA_VITE.md](MISURA_VITE.md) — dodici saghe, 168 salti d'era — si muove:**
+
+| | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 213 | **217** |
+| **Il Regno di Nahr** (`nahr_settled`) | 2 | **5** |
+| Vaerax Ridestato | 9 | 10 |
+| La Repubblica della Valle | 10 | 11 |
+| La Corona Restaurata | 3 | 4 |
+| La Diaspora di Nahr | 11 | 10 |
+| **La Leggenda della Montagna** | **1** | **0** |
+
+Il guadagno grosso e' quello che ci si aspetta: **Il Regno di Nahr passa da 2 a
+5**, ed e' la vita appesa a `nahr_settled` — la gente di Nahr adesso puo'
+sedersi dove il granaio e' un edificio e non solo dove e' una vocazione della
+terra. Le clausole allargate sono le sue.
+
+**E il costo si scrive**: *La Leggenda della Montagna* passa **da 1 a 0** —
+in dodici saghe non si siede piu'. E' un numero piccolo, su un campione piccolo,
+e non lo chiamo rumore per comodita': lo chiamo un uno che e' diventato zero, e
+sta qui perche' si possa ritrovare.
+
+**La lezione e' la stessa di [D-403](#d-403), due decisioni dopo**: *un numero si
+scrive col tavolo su cui e' misurato* ([D-391](#d-391)). L'anno scollegato diceva
+«inerte»; la saga dice altro. Se avessi guardato solo il playtest avrei scritto
+il falso in buona fede.
+
+### Il gemello del bosco non era lo stesso caso
+
+La nota del dizionario su `forest` diceva *«come per #granaio, la vocazione del
+luogo e l'opera si stampano con la stessa parola»*. **Non e' vero**: le facce
+stampano `#bosco` sette volte e `#foresta` mai — la vocazione e' *bosco*, la
+Pietra e' *foresta*, e la Pietra non e' il bersaglio di nessuna carta (la legge
+solo una regola dei segni). La nota e' corretta.
+
+---
+
 ## D-405 — Il sacchetto del prezzo non lo leggeva nessuno
 
 **implemented in 0.1.373.** Avanza [ISSUES 56](ISSUES.md#56).

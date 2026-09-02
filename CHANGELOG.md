@@ -5,6 +5,152 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.377 — Il cervello gioca il suo profilo, e non gliel'ho insegnato io
+
+Chiude [ISSUES 78](docs/ISSUES.md#78) ([D-407](docs/DECISIONS.md#d-407)) e
+rimisura [ISSUES 59](docs/ISSUES.md#59).
+
+### La 78 era vera da centoventicinque versioni
+
+[D-289](docs/DECISIONS.md#d-289) aveva dato al cervello il peso del profilo e
+aveva scritto il numero onesto: **non comprava quasi niente**. E aveva scritto
+anche perché — *«il macchinario non produce quasi nulla di quello che i profili
+nominano»* — dichiarandosi appesa a ISSUES 76 con una frase precisa: **«si
+richiude da sola il giorno in cui il macchinario produce le cose che le case
+dichiarano di volere. Alzare il peso non la chiude, la peggiora.»**
+
+ISSUES 76 si è chiusa **in 0.1.270**. Nessuno è tornato a rileggere questa voce.
+
+Stessa misura appaiata di allora, su oggi — cento anni, stessi semi, solo
+`PROFILE_WEIGHT` da 3 a 0 e ritornato; il motore è deterministico, quindi ogni
+differenza è **causata dal peso**:
+
+| cento anni, semi da 7000 | peso 0 | peso 3 | nel 2251 |
+|---|---|---|---|
+| segni posati da chi li **voleva** | 75 | **83** | 17 → 17 |
+| benefici comprati al Consiglio | 411 | 420 | 246 → 245 |
+| **di cui un segno che il proponente voleva** | **58** | **92** | 15 → 15 |
+
+**Il peso non l'ho toccato.** È cambiato il mondo intorno al peso.
+
+### E la 59 non è più la voce che c'è scritta
+
+| | allora (0.1.194) | oggi |
+|---|---|---|
+| FORGE calato | 8,4% | **52,4%** |
+| SCHEME calato | 9,9% | **75,6%** |
+| WEALTH calata | 8,7% (3,1× da BONDS) | **52,4%** (1,17×) |
+| carte mai calate | 4 | **1** |
+
+Tre difetti su quattro spariti. **Il quarto adesso si chiama INFLUENZARE**: il
+verbo meno giocato (18,5%) e insieme **la moneta più votata** — 396 impegni al
+voto, più di ogni altro verbo. Il libro mastro ha imparato a stampare anche la
+colonna del voto, perché senza quella un verbo poco calato si legge «morto» e può
+essere il contrario. Resta che **il 47,7% delle carte INFLUENZARE non fa niente**,
+il tasso più alto del tavolo. La voce resta aperta sul criterio come è scritto.
+
+### E la 60 va ritagliata prima di lavorarci
+
+Rimisurata anche lei (`cli/run_question_ledger.gd`, 100 partite, 358 Consigli).
+Le domande erano **dodici**, adesso sono **sessanta**: le mute passano da una su
+dodici a **una su sessanta** (*I Recinti*, pescata 7 volte e mai in discussione —
+la stessa che la sonda di ISSUES 88 trova mai debattuta).
+
+Ma lo scarto peggiora: contando i Consigli aperti per ogni volta che la domanda è
+in gioco, dalla Reliquia (0,82) alle Reti Vuote (0,06) ci sono **13,1×**. Era
+**3,5×**.
+
+E il criterio scritto **non è più raggiungibile per aritmetica**: chiede che
+nessuna resti senza Consiglio in più di un quarto degli anni in cui è in gioco, e
+con 3,58 Consigli l'anno su sessanta domande la più ascoltata arriva al 62,5%. È
+la stessa forma della riga 2 di ISSUES 88 — *aritmetica, non difetto*.
+
+Voci aperte **31 → 30**.
+
+---
+
+## 0.1.376 — Le tre Pietre consumate: anche la seconda causa non regge
+
+Corregge quello che [ISSUES 111](docs/ISSUES.md#111) diceva **ieri e stamattina**.
+
+Stamattina avevo corretto la voce una prima volta: non è vero che «nessuna
+Conseguenza posa» i tre gradi consumati — ognuno ha esattamente la sua. E avevo
+aggiunto una seconda causa, il no-op silenzioso di `SET_STRUCTURE_GRADE` quando
+la Pietra non è in quella Regione, indicando come rimedio far mirare
+`CNS_MINE_ROAD_CUT` **dove c'è un passo** invece che dove il mondo è selvatico.
+
+**Verificato prima di farlo: la mira è già giusta.** `wild` lo dichiara **una
+Regione sola** — le Montagne Rosse — ed è esattamente dove il Passo comincia. E
+le altre due mirano al fuoco, che per le loro Tensioni può essere la Valle Verde,
+che porta sia la Foresta sia la Sorgente.
+
+Il no-op resta un **rischio** scritto nel codice, non la causa di questi tre. La
+causa è **una sola**, ed è quella di [ISSUES 56](docs/ISSUES.md#56): la proposta
+che li porta non viene scelta — `P_LET_IT_ROT` una volta su otto offerte in
+duecento anni. Non c'è una riga da aggiustare: c'è un cervello che non compra
+quelle proposte, ed è [ISSUES 78](docs/ISSUES.md#78).
+
+Solo documenti: nessuna riga di gioco cambia, e **una modifica ai dati non è
+stata fatta** perché la verifica l'ha resa inutile.
+
+---
+
+## 0.1.375 — `#granaio`: la macchina smette di essere più stretta della parola
+
+Chiude [ISSUES 70](docs/ISSUES.md#70) ([D-406](docs/DECISIONS.md#d-406)), e con
+lei quattro voci su cinque del gruppo «ogni segno ha un lettore».
+
+**Presa la prima delle due strade**, ed è quella che **non tocca una sola parola
+stampata**: `#granaio` vuol dire *«vocazione o Pietra»* su tutte e diciotto le
+facce che lo stampano. Al tavolo un posto con un granaio è un posto con un
+granaio — la parola era già giusta, era la macchina a essere più stretta.
+
+**26 liste allargate** su 16 facce: bersagli di 7 Asset, clausole di vittoria e
+trionfo di 3 Destini, `focus_region_tags` e `heats_when` di 6 Tensioni. Il
+dizionario dichiara le due mani nuove, e **la guardia della grammatica fisica ha
+morso al primo colpo**, prima ancora dei test.
+
+### Il caso è vero, e ha un numero
+
+`cli/run_granary_probe.gd`, 100 partite, semi da 7000:
+
+| | |
+|---|---|
+| Regioni che finiscono con la Pietra | 21 |
+| **di cui senza la vocazione** | **9** |
+| partite in cui succede | **9 su 100** |
+
+### Su un anno solo non cambia niente; in saga sì
+
+Cancello **0 su 8** sui due tavoli, e l'uscita del playtest su cento semi
+**identica riga per riga**. Avevo scritto «non cambia niente», e **il cancello
+delle saghe mi ha corretto prima del commit**:
+
+| dodici saghe, 168 salti d'era | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 213 | **217** |
+| **Il Regno di Nahr** (`nahr_settled`) | 2 | **5** |
+| La Corona Restaurata | 3 | 4 |
+| **La Leggenda della Montagna** | **1** | **0** |
+
+Il guadagno è quello che ci si aspetta: la gente di Nahr può sedersi dove il
+granaio è un edificio, e le clausole allargate sono le sue. **E il costo si
+scrive**: una vita che si sedeva una volta su dodici saghe adesso non si siede.
+
+È [D-391](docs/DECISIONS.md#d-391) un'altra volta: *un numero si scrive col
+tavolo su cui è misurato*. L'anno scollegato diceva «inerte»; la saga dice
+altro.
+
+### E il gemello del bosco non era lo stesso caso
+
+La nota del dizionario su `forest` diceva «come per #granaio, la vocazione e
+l'opera si stampano con la stessa parola». **Non è vero**: le facce stampano
+`#bosco` sette volte e `#foresta` mai. Nota corretta.
+
+Voci aperte **32 → 31**.
+
+---
+
 ## 0.1.374 — `#granaio`: non due segni indistinguibili, ma una faccia su diciotto
 
 Misura [ISSUES 70](docs/ISSUES.md#70), punto 3 — l'ultimo del suo «fatto quando».

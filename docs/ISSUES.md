@@ -2807,9 +2807,48 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
-### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte
+### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte — **rimisurata in 0.1.377: quei tre difetti non ci sono piu', ce n'e' un altro**
 
 `regole` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_card_ledger.gd`)
+
+> **Rimisurata in 0.1.377, e il titolo non regge piu'.** Cento anni, tavolo
+> misto, semi da 7000, 5.161 carte pescate. **Tre dei quattro difetti che questa
+> voce nomina sono spariti**, e il mazzo di allora non esiste piu' (D-359 ha
+> tolto il mazzo del Narratore e messo l'Eco sulla carta Asset).
+>
+> | | allora (0.1.194) | **oggi** |
+> |---|---|---|
+> | FORGE calato | 8,4% | **52,4%** |
+> | SCHEME calato | 9,9% | **75,6%** |
+> | WEALTH calata | 8,7% (contro BONDS 26,7% — 3,1×) | **52,4%** (contro BONDS 61,1% — **1,17×**) |
+> | carte mai calate in cento anni | 4 | **1** |
+>
+> **E il difetto adesso ha un altro nome: INFLUENZARE.** La sonda ha imparato a
+> guardare anche il voto (senza quella colonna un verbo poco calato si legge
+> «morto», e puo' essere il contrario):
+>
+> | verbo | in mano | calata | al voto | % calate | **% che non fa niente** |
+> |---|---|---|---|---|---|
+> | MUOVERE | 927 | 715 | 98 | 77,1% | 12,3% |
+> | TRAMARE | 1.165 | 881 | 129 | 75,6% | 13,3% |
+> | FORGIARE | 1.067 | 559 | 218 | 52,4% | 27,2% |
+> | RIVENDICARE | 831 | 380 | 201 | 45,7% | 30,1% |
+> | **INFLUENZARE** | 1.171 | **217** | **396** | **18,5%** | **47,7%** |
+>
+> **INFLUENZARE e' il verbo meno giocato e la moneta piu' votata**: nessun altro
+> verbo va al Consiglio cosi' spesso. Non e' contenuto morto — e' contenuto che
+> si spende in un altro modo. Ma **quasi meta' delle sue carte non fa ne' l'una
+> ne' l'altra cosa**, ed e' il tasso piu' alto del tavolo.
+>
+> **L'unica carta mai calata e' «Deposizione Sigillata»** — forza 3, RIVENDICARE:
+> 46 volte in mano, **zero** calate, **23 impegnate al voto**. E' esattamente il
+> comportamento che questa voce chiamava sano — *«le carte forti si tengono per
+> il voto»* — quindi prima di chiamarla muta bisogna decidere se il criterio
+> «calata per agire almeno una volta» vale anche per una carta di forza 3.
+>
+> **La voce resta aperta** sul criterio come e' scritto: 18,5% non e' la meta' di
+> 77,1%, e una carta non si cala mai. Ma **non e' piu' la voce che c'e' scritta
+> sotto**: FORGE, SCHEME e WEALTH sono a posto, e chi la riprende parte da qui.
 
 Il committente ha chiesto se le carte «fanno qualcosa» e se azioni ed effetti
 sono ben bilanciati. Il libro mastro delle carte lo misura per la prima volta:
@@ -2873,9 +2912,46 @@ per agire almeno una volta su cento anni — col playtest ancora **0/8**.
 
 ---
 
-### 60. Una domanda su dodici resta zitta meta' delle volte che esce
+### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_question_ledger.gd`)
+
+> **Rimisurata in 0.1.377** (`cli/run_question_ledger.gd`, 100 partite, CHR_00,
+> tavolo misto, **358 Consigli**). Il tavolo sotto questa voce non c'e' piu':
+> **le domande erano dodici, adesso sono sessanta** — una per carta Tensione
+> (D-310, D-378) — e i numeri qui sotto sono di un mondo scomparso.
+>
+> **Quello che va bene**: le domande mute erano una su dodici; adesso sono
+> **una su sessanta** — *I Recinti*, pescata 7 volte e mai arrivata a un
+> Consiglio. (E' la stessa `TEN_ENCLOSURE` che la sonda di
+> [ISSUES 88](#88) trova mai in discussione: due misure diverse, stesso nome.)
+>
+> **Quello che va peggio**: lo scarto. Contando i Consigli aperti **per ogni
+> volta che la domanda e' in gioco** —
+>
+> | | pescata | Consigli | per pescata |
+> |---|---|---|---|
+> | La Reliquia | 22 | 18 | **0,82** |
+> | I Voti Non Sciolti | 22 | 18 | 0,82 |
+> | *mediana* | | | *0,39* |
+> | Chi Arriva da Fuori | 17 | 2 | 0,12 |
+> | Le Reti Vuote | 16 | 1 | **0,06** |
+> | **I Recinti** | 7 | **0** | **0,00** |
+>
+> — lo scarto fra la piu' e la meno ascoltata (escludendo la muta) e' **13,1×**.
+> Era **3,5×**.
+>
+> **E il criterio scritto non e' piu' raggiungibile per aritmetica.** Chiede che
+> *«nessuna resti senza Concilio in piu' di un quarto degli anni in cui e' in
+> gioco»*: con **3,58 Consigli l'anno** e **sessanta** domande, la piu' ascoltata
+> del tavolo ne apre uno nel **62,5%** degli anni in cui e' in gioco — nessuna
+> puo' arrivare al 75%. Il criterio e' stato scritto per un tavolo da dodici
+> domande e quattro posti l'anno.
+>
+> **Va ritagliato prima di lavorarci**, ed e' la stessa forma della riga 2 di
+> [ISSUES 88](#88): *aritmetica, non difetto*. Una forma che regge sul tavolo di
+> adesso: **zero domande mute**, e lo scarto fra la piu' e la meno ascoltata
+> sotto un fattore da decidere. Il numero da battere e' **13,1×**.
 
 Stesso giro, dal lato delle domande: **100 anni, 446 Concili.**
 
@@ -4651,10 +4727,37 @@ visto da tre parti**.
 
 ---
 
-### 78. Il profilo strategico lo legge la misura, non il gioco
+### 78. ✅ Il profilo strategico lo legge la misura, non il gioco — CHIUSA in 0.1.377: era vera da centoventicinque versioni
 
 `motore` · `ux` · **aperta in 0.1.250** ([D-288](DECISIONS.md#d-288)) ·
 **letta in 0.1.251** ([D-289](DECISIONS.md#d-289))
+
+> **CHIUSA in 0.1.377** ([D-407](DECISIONS.md#d-407)), e **non toccando
+> niente**. La voce diceva: *«si richiude da sola il giorno in cui il macchinario
+> produce le cose che le case dichiarano di volere. Alzare il peso non la chiude,
+> la peggiora.»* Quel giorno e' arrivato — [ISSUES 76](#76) si e' chiusa in
+> 0.1.270 e il Consiglio e' stato rimesso in piedi tre volte — e nessuno era
+> tornato a rileggerla: **centoventicinque versioni**.
+>
+> La stessa misura appaiata di [D-289](DECISIONS.md#d-289), su oggi. Cento anni,
+> stessi semi, solo `PROFILE_WEIGHT` da 3 a 0 e ritornato: il motore e'
+> deterministico, quindi ogni differenza e' **causata dal peso**.
+>
+> | cento anni, semi da 7000 | peso 0 | peso 3 | in 0.1.251 |
+> |---|---|---|---|
+> | segni posati da chi li **voleva** | 75 | **83** | 17 → 17 |
+> | segni posati da chi li **temeva** | 78 | 77 | 17 → 14 |
+> | benefici comprati al Consiglio | 411 | 420 | 246 → 245 |
+> | **di cui un segno che il proponente voleva** | **58** | **92** | 15 → 15 |
+>
+> Al Consiglio il profilo compra **il 59% di benefici voluti in piu'**; sulla
+> mappa otto segni voluti in piu'. La condizione era *«si vede scegliere in base
+> al profilo»*, e adesso si vede. L'altra meta' — la colonna che nomina i segni
+> del profilo — era fatta in 0.1.251.
+>
+> **Il peso non l'ho toccato**: D-289 aveva scritto che alzarlo avrebbe
+> peggiorato le cose, e aveva ragione allora. E' cambiato il mondo intorno al
+> peso, non il peso.
 
 I quattro profili dicono cosa una casa vuole lasciare nel mondo, e per adesso
 li leggono **il validatore** (che li conta fra i lettori dei segni) e **la
@@ -4948,9 +5051,48 @@ proposta. Tocca le proposte e le clausole del Consiglio; da disegnare insieme
 alla lettura del «fatto quando» di PZ-5 — il Consiglio che cambia il
 significato delle Azioni già fatte.
 
-### 70. Il dizionario dei segni esiste, e due voci parlano ancora per conto loro
+### 70. ✅ Il dizionario dei segni esiste, e due voci parlano ancora per conto loro — CHIUSA in 0.1.375: un segno si battezza una volta sola
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
+
+> **CHIUSA in 0.1.375** ([D-406](DECISIONS.md#d-406)). Tutti e tre i pezzi del
+> «fatto quando» sono fatti: l'app prende la parola dal dizionario
+> ([D-400](DECISIONS.md#d-400)), il registro legge le ragioni dalle `note`
+> ([D-399](DECISIONS.md#d-399)), e **`#granaio` vuol dire una cosa sola sul
+> tavolo**.
+>
+> **Presa la prima delle due strade**, ed e' quella che non tocca una sola parola
+> stampata: `#granaio` significa *«vocazione o Pietra»* su tutte e diciotto le
+> facce. Al tavolo *un posto con un granaio e' un posto con un granaio* — la
+> parola era gia' giusta, era la macchina a essere piu' stretta. **26 liste
+> allargate** su 16 facce, e il dizionario dichiara le due mani nuove: la guardia
+> della grammatica fisica ha morso al primo colpo.
+>
+> **Il caso e' vero, e ha un numero** (`cli/run_granary_probe.gd`, 100 partite):
+> 21 Regioni finiscono con la Pietra, **9 senza la vocazione**, in 9 partite su
+> 100 — Terre Nahr, Strada dei Mercanti, Eredan. Posti con un granaio che
+> diciassette facce su diciotto rifiutavano di vedere.
+>
+> **Su un anno solo non cambia niente; in saga si'** — e la seconda meta' di
+> questa riga me l'ha insegnata il cancello, dopo che avevo gia' scritto la
+> prima. Cancello 0 su 8 sui due tavoli e playtest **identico riga per riga**;
+> ma [MISURA_VITE.md](MISURA_VITE.md), che gioca dodici saghe, si muove:
+>
+> | | prima | dopo |
+> |---|---|---|
+> | trasformazioni sedute | 213 | **217** |
+> | **Il Regno di Nahr** (`nahr_settled`) | 2 | **5** |
+> | La Corona Restaurata | 3 | 4 |
+> | **La Leggenda della Montagna** | **1** | **0** |
+>
+> Il guadagno e' quello che ci si aspetta — la gente di Nahr puo' sedersi dove il
+> granaio e' un edificio, e le clausole allargate sono le sue. **Il costo si
+> scrive**: una vita che si sedeva una volta su dodici saghe adesso non si siede.
+> E' la lezione di [D-391](DECISIONS.md#d-391) un'altra volta: *un numero si
+> scrive col tavolo su cui e' misurato*.
+>
+> **Restano i punti 4 e 5**, che non sono nel «fatto quando»: i segni che solo il
+> motore tocca, e l'icona che aspetta l'arte.
 
 > **Il punto 3 e' misurato in 0.1.373**, e non e' quello che la voce diceva.
 >
@@ -7175,14 +7317,27 @@ riga che dice perche' non gliene serve uno.
 >    Regioni — il Passo in **una sola** (`REG_MONTAGNE_ROSSE`), la Sorgente in
 >    **due**, la Foresta in **tre** — su una mappa che ne pesca **sei su dieci**.
 >
-> Quindi per vedere un passo franato devono coincidere tre cose: la Regione col
-> Passo pescata, la Conseguenza scelta, e la frase che punta proprio li'. La
-> terza e' quella che si puo' aggiustare senza toccare l'equilibrio: **la strada
-> della miniera si taglia dove c'e' un passo**, non dove il mondo e' selvatico.
-> Non l'ho fatto perche' `$region_with:` vuole un segno **dichiarato** dalle
-> Regioni e i gradi delle Pietre li scrive il gioco a runtime: il validatore
-> direbbe di no, e sistemarlo e' una riga nel validatore piu' una misura. Sta
-> qui, non in una voce nuova.
+> **E la seconda causa non regge: verificata in 0.1.376, era un meccanismo letto
+> nel codice, non una causa misurata.** Avevo scritto che si poteva far mirare
+> `CNS_MINE_ROAD_CUT` dove c'e' un passo invece che dove il mondo e' selvatico.
+> **La mira e' gia' giusta**: `wild` lo dichiara **una Regione sola** — le
+> Montagne Rosse — ed e' esattamente dove il Passo comincia. E anche le altre
+> due possono cadere bene: `CNS_VALLEY_CLEARED` e `CNS_WATER_PRICED` mirano al
+> fuoco, e il fuoco delle loro Tensioni puo' essere la Valle Verde, che porta sia
+> la Foresta sia la Sorgente.
+>
+> | grado | chi lo posa | dove mira | la Pietra e' li'? |
+> |---|---|---|---|
+> | `place:collapsed_pass` | `CNS_MINE_ROAD_CUT` | `$region_with:wild` | **si', sempre**: `wild` e' solo Montagne Rosse |
+> | `place:thinned_wood` | `CNS_VALLEY_CLEARED` | `$region_focus` | puo' esserlo: la Valle Verde ha `granary` **e** la Foresta |
+> | `place:dry_spring` | `CNS_WATER_PRICED` | `$region_focus` | puo' esserlo: la Valle Verde ha `granary` **e** la Sorgente |
+>
+> Il no-op silenzioso di `SET_STRUCTURE_GRADE` resta un **rischio** scritto nel
+> codice, non la causa di questi tre. **La causa e' una sola, ed e' quella di
+> [ISSUES 56](#56)**: la proposta che li porta non viene scelta —
+> `P_LET_IT_ROT` una volta su otto offerte in duecento anni. Non c'e' una riga
+> da aggiustare qui: c'e' un cervello che non compra quelle proposte, ed e'
+> [ISSUES 78](#78).
 
 > **Richiesta del committente:** *«la potatura — fai leggere le 25 fonti e le 7
 > pietre».*
