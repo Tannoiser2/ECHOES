@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.372 — Due sonde imparano a guardare, e due voci si chiudono
+
+Chiude [ISSUES 88](docs/ISSUES.md#88) ([D-403](docs/DECISIONS.md#d-403)) e
+[ISSUES 37](docs/ISSUES.md#37) ([D-404](docs/DECISIONS.md#d-404)). **Nessuna riga
+di gioco cambia**: cambiano due sonde, e con loro quello che si sa.
+
+### La scheda del Consiglio (ISSUES 88)
+
+La voce lasciava una domanda aperta sulle voci mute: *«offerte e non scelte, o
+mai offerte?»*. Adesso si sa, e senza toccare il motore — la scheda e' quello che
+il Consiglio elenca al passo, e il passo lo annuncia.
+
+| cento anni in saghe da cinque, semi da 7000 | domande | proposte |
+|---|---|---|
+| 3a. sulla scheda, non scelte | 8 | **23** |
+| 3b. mai sulla scheda | 2 | **2** |
+
+E **il tavolo su cui si misura non e' un dettaglio**: sugli anni scollegati la
+riga delle proposte fa 15% e 21% su due basi di semi — a cavallo del quinto — in
+saga fa 13% su tutt'e due. Cinque proposte chiedono una leggenda o un'era
+precedente, e in cento anni scollegati **non possono** salire su una scheda: un
+tavolo che non puo' mostrarle non puo' nemmeno giudicarle. La sonda ha una nuova
+opzione, `--saga=K`.
+
+### Il RIVENDICARE (ISSUES 37)
+
+| cento anni di CHR_00, semi da 7000 | misto | uniforme |
+|---|---|---|
+| carte RIVENDICARE giocate | **213** | **205** |
+| **giocate per niente** | **5 (2,3%)** | **5 (2,4%)** |
+
+Il 97% delle carte prende la parola: su 204 prese, 52 aprono il secondo dibattito
+e 153 si spendono come controproposta. Il rapporto vecchio — morte sulle
+prenotazioni — resta al 56%, ma conta nove eventi in cento anni.
+
+**Correzione a [D-402](docs/DECISIONS.md#d-402)**: i «210 Consigli strappati» non
+erano Consigli, erano prese di parola. I Consigli aperti da un RIVENDICARE sono
+52. La conclusione regge, il nome del numero no.
+
+Voci aperte **34 → 32**. Cancelli: trentuno, tutti verdi.
+
+---
+
 ## 0.1.371 — L'ultima casa murata non lo era più da ventiquattro versioni
 
 Chiude [ISSUES 108](docs/ISSUES.md#108), e con lei l'ultima delle quattro voci

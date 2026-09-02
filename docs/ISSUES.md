@@ -1157,9 +1157,42 @@ presagi). Sono state scritte insieme al codice e mai rilette di fila.
 **Fatto quando** qualcuno ha letto i testi dall'inizio alla fine e le correzioni
 sono nei JSON.
 
-### 37. La mappa si muove — ma `ACT_CLAIM` muore in mano tre volte su quattro
+### 37. ✅ La mappa si muove — ma `ACT_CLAIM` muore in mano tre volte su quattro — CHIUSA in 0.1.372: cinque carte bruciate su 213 giocate
 
 `regole` · **metà chiusa in 0.1.121, metà aperta** · [D-152](DECISIONS.md#d-152) → [D-158](DECISIONS.md#d-158) → [D-175](DECISIONS.md#d-175)
+
+> **CHIUSA in 0.1.372** ([D-404](DECISIONS.md#d-404)). E la voce si chiude
+> perché **la carta ha smesso di morire**, non perché il rapporto vecchio si sia
+> mosso: quel rapporto oggi conta sette eventi in cento anni.
+>
+> | cento anni di CHR_00, semi da 7000 (`cli/run_choice_probe.gd`) | tavolo misto | tavolo uniforme |
+> |---|---|---|
+> | carte RIVENDICARE giocate | **213** | **205** |
+> | di cui prenotano | 9 | 6 |
+> | di cui prendono la parola | 204 | 199 |
+> | **giocate per niente** | **5 (2,3%)** | **5 (2,4%)** |
+> | prenotazioni morte sulle prenotazioni | 5 su 9 (56%) | 5 su 6 (83%) |
+>
+> **I due denominatori, e perché quello vecchio non regge più.** Quando la voce
+> è stata scritta, il RIVENDICARE sapeva fare **una cosa sola**: prenotare. Le
+> «128 aperte, 110 morte» erano perciò le carte giocate *e* le prenotazioni,
+> lo stesso numero detto in due modi. Da [D-191](DECISIONS.md#d-191) l'azione ha
+> un secondo modo — la parola si prende in un colpo su una domanda matura — e da
+> [D-402](DECISIONS.md#d-402) il cervello lo usa. Adesso il 97% delle carte
+> RIVENDICARE prende la parola, e la percentuale sulle prenotazioni è un
+> rapporto fra numeri a una cifra: **5 su 9 non è il 56% di niente, è cinque
+> carte in cento anni.**
+>
+> **E dove va a finire la parola presa.** 204 prese di parola, e il verbale le
+> segue tutte: **52** aprono il secondo dibattito dell'Atto, **153** si spendono
+> come controproposta nel primo Consiglio ([D-268](DECISIONS.md#d-268)), **zero**
+> si spengono senza trovare una domanda. Il conto non chiude per **uno** su 204,
+> e non so dire perché: la sonda adesso lo stampa invece di tacerlo.
+>
+> **Una correzione a [D-402](DECISIONS.md#d-402)**: quel verbale dice «Consigli
+> strappati 74 → 210». Non erano Consigli, erano **prese di parola** — i Consigli
+> aperti da un RIVENDICARE sono 52. La conclusione di D-402 regge (tutt'e due gli
+> usi sono usi), il nome del numero no.
 
 **La prima metà è chiusa.** La voce nasceva da un tabellone che a fine anno era
 quasi quello d'inizio: 44% di caselle senza padrone, una casa che guadagnava in
@@ -3991,11 +4024,65 @@ mappa.
 
 ---
 
-### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto — **cinquantadue voci mute, per nome**
+### 88. ✅ Il tavolo vede poco piu' di un terzo di quello che c'e' scritto — CHIUSA in 0.1.372: la riga 3 sta sotto un quinto, e le mute hanno un nome e un perche'
 
 `contenuto` · `misura` · **aperta in 0.1.273**
 ([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`) · **il taglio
 chiesto e' fatto in 0.1.359** ([D-392](DECISIONS.md#d-392))
+
+> **CHIUSA in 0.1.372** ([D-403](DECISIONS.md#d-403)). La voce chiedeva due
+> cose: che la **riga 3** — in discussione e mai scelte — stesse sotto un quinto
+> per le domande *e* per le proposte, e che si sapesse rispondere alla domanda
+> *«offerte e non scelte, o mai offerte?»*. Tutt'e due fatte.
+>
+> **La risposta alla domanda.** `run_who_writes_probe` adesso si mette in
+> ascolto della **scheda del Consiglio** — quello che il Consiglio elenca al
+> passo, non quello che poi viene scelto — e divide la riga 3 in due:
+>
+> | cento anni in saghe da cinque, semi da 7000 | domande | proposte |
+> |---|---|---|
+> | 3a. sulla scheda, non scelte | 8 | **23** |
+> | 3b. mai sulla scheda | 2 | **2** |
+>
+> Sono due difetti diversi: la **3a** e' la scelta di chi propone (il difetto di
+> [D-035](DECISIONS.md#d-035)); la **3b** e' una `eligibility` che al tavolo non
+> e' mai vera, e allora nessuna scelta poteva prenderla.
+>
+> **E il tavolo su cui si misura non e' un dettaglio** — e' la regola di
+> [D-391](DECISIONS.md#d-391) che morde una seconda volta:
+>
+> | cento anni di CHR_00 | riga 3 domande | riga 3 proposte |
+> |---|---|---|
+> | scollegati, semi da 7000 | 6% | **15%** |
+> | scollegati, semi da 9000 | 8% | **21%** |
+> | in saghe da cinque, semi da 7000 | 8% | **13%** |
+> | in saghe da cinque, semi da 9000 | 8% | **13%** |
+>
+> Sugli anni scollegati la riga delle proposte sta **a cavallo del quinto**, e
+> cambia di sei punti fra due basi di semi. In saga e' 13% su tutt'e due.
+>
+> **Non scelgo il numero piu' basso: scelgo il tavolo su cui le voci possono
+> esistere.** Cinque proposte su 194 chiedono una **leggenda**
+> (`legend:order_restored`, `legend:debt_called`) o un'**era precedente**
+> (`crown_divided`, `mine_sealed`): `P_HEIR_AS_STORY`, `P_OLD_PAGE`,
+> `P_ONE_CROWN`, `P_REOPEN_THE_MINE`, `P_SLAY_THE_DRAGON`. Una leggenda nasce
+> solo quando fra due anni giocati passano decenni, e un'era precedente al primo
+> anno non c'e' per definizione: **in cento anni scollegati quelle cinque non
+> possono salire su una scheda**, e chiamarle mute darebbe al tavolo la colpa di
+> un difetto della misura. E' esattamente la lezione di [ISSUES 56](#56), che
+> aveva gia' pagato questo prezzo (sette Conseguenze morte su anni scollegati,
+> tre in saga). In saga tre delle cinque arrivano sulla scheda; restano
+> `P_ONE_CROWN` e `P_REOPEN_THE_MINE` su una base di semi e nessuna sull'altra.
+>
+> **La sonda ha una nuova opzione** — `--saga=K` — che gioca gli stessi anni a
+> catene di K, ognuno che eredita il precedente.
+>
+> **E le quattro Tensioni che non arrivavano mai a un Consiglio non sono piu'
+> le stesse quattro.** Ogni misura ne lascia fuori una, due o tre su sessanta —
+> `TEN_ENCLOSURE` in una, `TEN_FLOOD` in un'altra, `TEN_EMPTY_NETS`,
+> `TEN_ISLAND_SILENCE` e `TEN_MARSH_FEVER` nella terza — e **sono sempre
+> diverse**: e' la pesca dell'anno, non un difetto del catalogo. Una Tensione
+> che nessuna base di semi porta mai al tavolo non c'e'.
 
 > **Il titolo non regge piu'.** Il 37% e il 36% erano su `CHR_01`, cancellato
 > con gli altri anni d'autore. Su cento anni dell'anno che esiste, il tavolo

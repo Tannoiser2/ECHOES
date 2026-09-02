@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **97** |
-| aperte | **34** |
+| chiuse | **99** |
+| aperte | **32** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **24** |
+| di cui sono mie da fare | **22** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 19 |
+| 0.1.350–0.1.374 | 6 | 20 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -185,13 +185,22 @@ regole fa.
 si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida
 lo schermo dall'inizio alla fine di un Consiglio.
 
-### G2. Le voci mute del Consiglio — [88](ISSUES.md#88), [56](ISSUES.md#56), [60](ISSUES.md#60)
+### G2. Le voci mute del Consiglio — [56](ISSUES.md#56), [60](ISSUES.md#60)
 
-La [104](ISSUES.md#104) si è chiusa in 0.1.365: le tre proposte gemelle sono
-diventate tre strade diverse, e una guardia lo tiene. Restano **13 domande e 39
-proposte** che arrivano in discussione e non vengono scelte mai, **11 Conseguenze
-su 65** che non escono mai, e due domande su trenta che non aprono nessun
-Consiglio in cento anni.
+Due su quattro chiuse. La [104](ISSUES.md#104) in 0.1.365: le tre proposte
+gemelle sono diventate tre strade diverse, e una guardia lo tiene. La
+[88](ISSUES.md#88) in 0.1.372: le voci mute adesso si dividono in **sulla scheda
+e non scelte** (23 proposte) e **mai sulla scheda** (2), e la riga che la voce
+sorvegliava sta al **13%** — sotto il quinto che chiedeva, su tutt'e due le basi
+di semi.
+
+E si è imparata una cosa che vale anche per le altre due: **cinque proposte
+chiedono una leggenda o un'era precedente**, e in cento anni scollegati non
+possono nemmeno salire su una scheda. Vanno misurate in saga, o si dà al tavolo
+la colpa di un difetto della misura.
+
+Restano **11 Conseguenze su 65** che non escono mai (56) e le domande che si
+scaldano tre volte e mezzo meno delle altre (60).
 
 **Fatto quando** ogni voce o viene scelta almeno una volta in cento anni, **o
 esce dalla scatola**. Le tolgo, non le riscrivo tre volte.
@@ -250,13 +259,17 @@ applicazioni su 90.
 
 **Fatto quando** gli acquisti a vuoto sono sotto il 5% e la pedina porta il nome.
 
-### G8. Il RIVENDICARE che muore in mano — [37](ISSUES.md#37)
+### G8. ✔ Il RIVENDICARE che muore in mano — chiusa in 0.1.372
 
-La metà mappa di questo gruppo si è chiusa in 0.1.362: la Strada dei Mercanti è
-la **seconda Regione più abitata** (1,07 → 2,23 presenze). Resta `ACT_CLAIM`, che
-muore in mano tre volte su quattro.
+Chiusa tutt'e due le metà. La mappa in 0.1.362: la Strada dei Mercanti è la
+**seconda Regione più abitata** (1,07 → 2,23 presenze). E `ACT_CLAIM` in 0.1.372:
+su **213 carte RIVENDICARE giocate** in cento anni, **cinque** si bruciano per
+niente — il 2,3%. Il 97% prende la parola.
 
-**Fatto quando** le rivendicazioni morte scendono sotto una su tre.
+Il rapporto vecchio — morte sulle prenotazioni — resta al 56%, ma oggi conta nove
+eventi in cento anni: quando la voce è stata scritta l'azione sapeva fare una cosa
+sola, e quel denominatore era anche il numero delle carte giocate. Adesso sono due
+numeri diversi, e sono scritti tutt'e due.
 
 ---
 

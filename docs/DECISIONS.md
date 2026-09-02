@@ -10,6 +10,106 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-404 — Il RIVENDICARE non muore piu' in mano: cinque carte su 213
+
+**implemented in 0.1.372.** Chiude [ISSUES 37](ISSUES.md#37).
+
+### Il difetto cercato, e quello trovato
+
+La voce chiedeva le rivendicazioni morte **sotto una su tre**. Il conto vecchio
+le misurava sulle **prenotazioni**, e su quel denominatore siamo a 5 su 9 —
+peggio di prima. Il punto e' che quel denominatore non esiste piu': quando la
+voce e' stata scritta il RIVENDICARE sapeva fare una cosa sola, e «carte
+giocate» e «prenotazioni» erano lo stesso numero detto in due modi.
+
+| cento anni di CHR_00, semi da 7000 (`cli/run_choice_probe.gd`) | misto | uniforme |
+|---|---|---|
+| carte RIVENDICARE giocate | **213** | **205** |
+| prenotano | 9 | 6 |
+| prendono la parola | 204 | 199 |
+| **giocate per niente** | **5 (2,3%)** | **5 (2,4%)** |
+
+Il 97% delle carte prende la parola. Le cinque bruciate sono prenotazioni aperte
+quando sul tavolo non c'era niente di maturo da strappare — l'unico caso in cui
+[D-402](#d-402) lascia ancora prenotare, per non avere in mano una carta che non
+si puo' giocare.
+
+### E la parola presa, dove va
+
+La sonda adesso segue le prese di parola fino in fondo, perche' **una presa di
+parola e un Consiglio non sono la stessa cosa**: su 204, **52** aprono il secondo
+dibattito dell'Atto, **153** si spendono come controproposta nel primo Consiglio
+([D-268](#d-268)), **zero** si spengono senza trovare una domanda.
+
+**Correzione a [D-402](#d-402)**: quel verbale scrive «Consigli strappati 74 →
+210». Non erano Consigli — erano **prese di parola**. La conclusione regge
+(tutt'e due gli usi sono usi, e nessuno dei due e' uno spreco), il nome del
+numero no. E' la seconda volta in due giorni che un numero giusto porta il nome
+di un'altra cosa: la prima e' [D-391](#d-391).
+
+### Il conto che non chiude per uno
+
+52 + 153 = 205, e le prese di parola contate sono 204. **Non so dire da dove
+venga l'uno**, e la sonda adesso lo stampa nei due versi invece di tacerlo: un
+residuo taciuto sarebbe un numero nascosto.
+
+**Nessuna riga di gioco cambia**: e' una misura, e le voci si chiudono su di lei.
+
+---
+
+## D-403 — La scheda del Consiglio: offerte e non scelte, o mai offerte
+
+**implemented in 0.1.372.** Chiude [ISSUES 88](ISSUES.md#88).
+
+### La domanda che la voce lasciava aperta
+
+*«Offerte e non scelte, o mai offerte?»* Sono due difetti diversi con due
+rimedi diversi, e la sonda non sapeva distinguerli.
+
+Adesso li distingue **senza toccare il motore**: la scheda del Consiglio e'
+quello che il Consiglio elenca al passo, e il passo lo annuncia
+(`step_changed`). Ci si mette in ascolto e gli si chiede, in quel momento, cosa
+avrebbe potuto scegliere.
+
+| cento anni in saghe da cinque, semi da 7000 | domande | proposte |
+|---|---|---|
+| 3a. sulla scheda, non scelte | 8 | **23** |
+| 3b. mai sulla scheda | 2 | **2** |
+
+**Non e' uno zero cieco**: la sonda stampa accanto quante voci ha visto su una
+scheda — 114 domande su 120 e 168 proposte su 194 — cosi' un 3b piccolo si legge
+insieme al numero che lo rende credibile.
+
+### E il tavolo su cui si misura non e' un dettaglio
+
+| cento anni di CHR_00 | riga 3 domande | riga 3 proposte |
+|---|---|---|
+| scollegati, semi da 7000 | 6% | **15%** |
+| scollegati, semi da 9000 | 8% | **21%** |
+| in saghe da cinque, semi da 7000 | 8% | **13%** |
+| in saghe da cinque, semi da 9000 | 8% | **13%** |
+
+Sugli anni scollegati la riga delle proposte sta **a cavallo del quinto** e balla
+di sei punti fra due basi di semi; in saga e' 13% su tutt'e due. E'
+[D-391](#d-391) che morde di nuovo: **un numero si scrive col tavolo su cui e'
+misurato.**
+
+**La scelta del tavolo non e' la scelta del numero piu' basso.** Cinque proposte
+su 194 chiedono una leggenda (`legend:order_restored`, `legend:debt_called`) o
+un'era precedente (`crown_divided`, `mine_sealed`). Una leggenda nasce solo
+quando fra due anni giocati passano decenni; un'era precedente al primo anno non
+c'e' per definizione. **In cento anni scollegati quelle cinque non possono salire
+su una scheda**, e un tavolo che non puo' mostrarle non puo' nemmeno giudicarle.
+E' la lezione che [ISSUES 56](ISSUES.md#56) aveva gia' pagato: sette Conseguenze
+morte su anni scollegati, tre in saga.
+
+Da qui `--saga=K` sulla sonda: gli stessi anni giocati a catene di K, ognuno che
+eredita il precedente, come in `cli/run_saga.gd`.
+
+**Nessuna riga di gioco cambia**: e' una sonda che ha imparato a guardare.
+
+---
+
 ## D-402 — Il ripiego sapeva prenotare e non sapeva parlare
 
 **implemented in 0.1.370.** Chiude [ISSUES 126](ISSUES.md#126): le prenotazioni
