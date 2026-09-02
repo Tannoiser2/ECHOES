@@ -10,6 +10,102 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-418 — Trentadue cancelli in un comando: la pulizia era il conto, non il taglio
+
+**implemented in 0.1.390.** Parola del committente, 0.1.389:
+
+> *«Forse 31 cancelli e 100 semi sono troppi, bisognerebbe anche fare una pulizia
+> e semplificare il progetto.»*
+
+### Prima di tagliare li ho cronometrati, ed erano il sospettato sbagliato
+
+Nessuno in questo progetto aveva mai misurato quanto costa il giro. Si sapeva
+solo che «costa tanto», e due durate scritte a mano nella tabella —
+*«due minuti»*, *«quattro minuti»* — erano **tutte e due sbagliate**.
+
+| | quanti | costo misurato |
+|---|---|---|
+| i cancelli sotto i dieci secondi | **27** | **23 s in tutto** |
+| le sonde lunghe | **5** | 881 s |
+
+**Ventisette cancelli su trentadue costano ventitre secondi tutti insieme.** I
+diciannove di Python ne costano **6,5**; il piu' caro di loro,
+`validate_physical.py --self-test`, ne costa 2,6. Togliere un cancello di quella
+corsia non fa risparmiare niente e toglie una guardia — e `validate_physical`,
+solo nella giornata del 0.1.383–0.1.388, **ha morso quattro volte, e aveva
+ragione tutte e quattro**.
+
+Il costo vero sta in cinque sonde, e in una sola di loro piu' che nelle altre:
+
+| sonda | costo |
+|---|---|
+| `run_tiles_probe.sh --check` | 328 s |
+| `run_lives_survey.sh --check` | 186 s |
+| la suite | 160 s |
+| `run_table_survey.sh --check` | 105 s |
+| `run_marks_survey.sh --check` | 102 s |
+
+### Quindi la pulizia non e' meno cancelli: e' meno comandi
+
+Il tempo che si perdeva non era **girare** i cancelli, era **ricordarseli**:
+trentadue righe da copiare a mano dalla tabella, e un rosso su tre che era solo
+un documento generato non rigenerato.
+
+[`tools/gates.py`](../tools/gates.py), tre modi:
+
+- **senza argomenti** — i 27 veloci, ventitre secondi: dopo ogni modifica;
+- **`--lenti`** — le 5 sonde lunghe: una volta, prima di aprire la PR;
+- **`--rigenera`** — rifa' i documenti generati invece di controllarli.
+
+**Nessun cancello e' stato tolto.** La corsia lenta non e' facoltativa: e' quella
+che si gira una volta invece che venti, e la CI le gira tutte comunque.
+
+### La lista non e' stata copiata: e' la stessa
+
+`gates.py` legge i cancelli **dalla tabella di CLAUDE.md**, colonna del costo
+compresa. Una seconda lista scritta a mano si sarebbe scostata dalla prima entro
+la settimana: fra il documento e la CI e' gia' successo, **nei due versi**, ed e'
+il motivo per cui esiste [`gates_survey.py`](../tools/gates_survey.py).
+
+E la guardia nuova, `gates.py --self-test`, sorveglia la cosa che fa male: **un
+giro che perde un cancello per strada da' verde piu' in fretta**, ed e'
+esattamente il modo in cui una pulizia diventa un buco.
+
+### I trenta semi mentre si lavora, i cento prima della PR
+
+La prima regola di casa non cambia: **il cancello e' 100 semi, 0 seggi bloccati
+su un solo livello su 8, tavolo misto e uniforme**. Quello che cambia e' cosa si
+gira **mentre** si lavora: per vedere il verso di una modifica ne bastano 30.
+
+| tavolo misto CHR_00, seme 7000 | costo misurato |
+|---|---|
+| 100 semi — **il cancello** | 163 s |
+| 30 semi — mentre si lavora | **50 s** |
+
+Un terzo del tempo. Su una giornata come quella del 0.1.383–0.1.388, dove ogni
+pezzo ha voluto una misura prima e una dopo, sono quattordici giri: **da
+trentotto minuti a dodici**.
+
+E la regola che tiene onesta questa scorciatoia e' [D-391](#d-391) applicata al
+numero dei semi: **un numero preso su 30 semi non si scrive nei verbali.** Sono
+gia' costate una voce tenuta aperta cento versioni due misure prese su tavoli
+diversi e messe in fila come se fossero una strada.
+
+### E una tredicesima sonda cieca, mentre scrivevo questa
+
+Per aspettare la CI della PR precedente avevo armato una vedetta che chiedeva a
+GitHub lo stato dei controlli e si fermava quando nessuno era piu' in corso. Ha
+annunciato **«CI FINITA»** dopo trenta secondi. La richiesta non era arrivata a
+destinazione, la risposta era vuota, e *«nessun controllo in corso»* e *«nessun
+controllo»* per quella vedetta erano la stessa frase.
+
+E' la **tredicesima** volta in questo progetto che un numero fermo era chi
+guardava, e la quinta della giornata. La regola di casa e' scritta gia' da un
+pezzo — *«prima di credere a uno zero, provalo su un caso che deve dare
+non-zero»* — e vale anche fuori da GDScript, anche per una vedetta di tre righe.
+
+---
+
 ## D-417 — Due acquisti liberi, e il numero delle facce l'ha corretto la misura
 
 **implemented in 0.1.388.** Parola del committente: **«R2: due acquisti liberi,

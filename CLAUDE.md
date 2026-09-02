@@ -29,6 +29,10 @@ E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
    negozia mai è **0 seggi bloccati su un solo livello su 8**, tavolo misto *e*
    uniforme:
    `godot --headless --path godot --script res://cli/run_playtest.gd -- --runs=100 --seed=7000`
+   Mentre si lavora **bastano 30 semi** per vedere il verso di una modifica
+   (`--runs=30`: **50 s** invece di 163). I 100 restano il cancello e si girano prima
+   di aprire la PR, e **un numero preso su 30 semi non si scrive nei verbali**
+   ([D-418](docs/DECISIONS.md#d-418)).
 2. **Quello che non è misurato va dichiarato.** *Un numero peggiorato e scritto vale
    più di un numero nascosto.* Se una modifica costa qualcosa, il costo si scrive.
    E **un numero si scrive col tavolo su cui è misurato**: due misure prese su
@@ -44,39 +48,56 @@ E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
 
 Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 
-| comando | cosa sorveglia |
-|---|---|
-| `python3 tools/validate_data.py` | i dati contro `/schema` |
-| `python3 tools/validate_data.py --self-test` | che la guardia dei gettoni morda |
-| `python3 tools/validate_physical.py --check` | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni, tessere senza segni o che nessuno legge, Tensioni senza domande, ponti delle domande rotti, Destini che osservano l'inesistente, Echi senza effetto, bersagli non garantiti sul tavolo pescato, liste di opportunita'/malus monche o con scelte finte sulle carte Tensione |
-| `python3 tools/validate_physical.py --self-test` | che la guardia del dizionario morda, su ogni difetto piantato |
-| `python3 tools/gen_gd_schema.py --check` | `schema_defs.gd` allineato agli schemi |
-| `python3 tools/gen_sign_labels.py --check` | **le parole dei segni**: `sign_labels.gd` generato dal dizionario, cosi' un segno si battezza una volta sola |
-| `python3 tools/build_manifest.py --check` | il manifesto degli asset |
-| `python3 tools/build_sign_registry.py --check` | `docs/REGISTRO_SEGNI.md` |
-| `python3 tools/build_flow.py --check` | `docs/flusso.html`: **il flusso disegnato** — scegli un pezzo e vedi con le frecce chi ce lo mette, dove finisce, chi lo legge e cosa accende |
-| `python3 tools/dead_code.py` | codice che nessuno chiama |
-| `python3 tools/token_catalogue.py --check` | `docs/CATALOGO_PEDINE.md`: **una scheda per segnalino** — cos'e', cosa rappresenta, il prompt — e che nessun segnalino resti senza |
-| `python3 tools/components_survey.py --check` | `docs/COMPONENTI.md`: **quanti pezzi ha la scatola** — carte, tessere, segnalini, arte — e cosa manca perche' l'app dica tutto quello che dice il tavolo |
-| `python3 tools/build_review.py --check` | `docs/REVISIONE_TESTI.md`: **ogni testo che un giocatore puo' leggere**, in ordine di lettura e col suo id — e che non ne manchi nessuno: ogni frase dei dati o e' nel documento, o e' dichiarata come cosa che nessuno legge |
-| `python3 tools/build_review.py --self-test` | che la guardia dei testi veda un blocco nuovo non dichiarato |
-| `python3 tools/matrix_survey.py --check` | `docs/MISURA_MATRICE.md`: **le tre misure che vengono prima della matrice** — segni orfani, obiettivi che non si possono puntare col dito, Tensioni che non incontrano nessun Destino |
-| `bash tools/run_council_catalogue.sh --check` | `docs/CATALOGO_CONSIGLI.md` |
-| `bash tools/run_card_catalogue.sh --check` | `docs/CATALOGO_CARTE.md` |
-| `bash tools/run_lives_survey.sh --check` | `docs/MISURA_VITE.md`: **quante delle vite scritte delle case si siedono davvero al tavolo**, in dodici saghe sui due tavoli (due minuti) |
-| `bash tools/run_tiles_probe.sh --check` | `docs/MISURA_TESSERE.md`: **tutte le pose possibili della mappa**, enumerate — 210 pescate per 720 ordini — e quante lasciano una tessera isolata (quattro minuti) |
-| `bash tools/run_card_skeleton.sh --check` | `docs/SCHELETRO_CARTE.md`: **cosa porta ogni faccia**, ricavato dalle facce vere — i blocchi di ogni mazzo, su quante carte, e una carta vera per mazzo |
-| `bash tools/run_box_survey.sh --check` | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |
-| `bash tools/run_marks_survey.sh --check` | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
-| `bash tools/run_table_survey.sh --check` | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
-| `bash tools/run_page_survey.sh --check` | `docs/MISURA_PAGINA.md`: **cosa la pagina dell'app dice e con quale dito** — i testi che vivono solo nel suggerimento del mouse, i bersagli piu' stretti di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in confronto a un tablet |
-| `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
-| `python3 tools/issues_survey.py --check` | **che il conto delle voci sia vero e che nessuna resti senza casa**: una voce chiusa porta il ✅ nel titolo, ogni voce aperta e' nominata da [la lista](docs/LE_TUE_DECISIONI.md), e il foglio si rigenera da li' |
-| `python3 tools/issues_survey.py --self-test` | che le due guardie delle voci mordano |
-| `python3 tools/gates_survey.py --check` | **che questa tabella e la CI siano lo stesso giro**: un cancello promesso e non girato non si lamenta, e uno girato e non promesso manda in rosso chi segue il documento |
-| `python3 tools/gates_survey.py --self-test` | che la guardia dei cancelli morda, nei due versi |
-| `bash tools/run_sims.sh` | che ogni anno arrivi in fondo, e che lo stesso seme dia lo stesso salvataggio |
-| `$GODOT --headless --path godot --script res://tests/run_tests.gd` | la suite |
+**Sono trentadue, e non si girano a mano uno per uno.** Li gira
+[`tools/gates.py`](tools/gates.py), in tre modi:
+
+- **senza argomenti** — i **27 veloci**, ventisei secondi in tutto: dopo ogni modifica;
+- **`--lenti`** — le **5 sonde lunghe**: una volta, prima di aprire la PR;
+- **`--rigenera`** — rifà i documenti generati invece di controllarli, quando uno
+  va rosso solo perché è vecchio. È il rosso che costa più tempo di tutti.
+
+La corsia lenta **non è facoltativa**: è quella che si gira una volta invece che
+venti. La CI le gira tutte comunque, e
+[`gates_survey.py`](tools/gates_survey.py) tiene questa tabella e la CI uguali.
+
+**La lista dei cancelli è questa tabella, e non ce n'è una seconda:**
+`gates.py` la legge da qui, colonna del costo compresa — misurata su un container
+Linux, e serve solo a dire in quale corsia va un cancello.
+
+| comando | costo | cosa sorveglia |
+|---|---|---|
+| `python3 tools/validate_data.py` | 0.6 s | i dati contro `/schema` |
+| `python3 tools/validate_data.py --self-test` | 0.1 s | che la guardia dei gettoni morda |
+| `python3 tools/validate_physical.py --check` | 0.1 s | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni, tessere senza segni o che nessuno legge, Tensioni senza domande, ponti delle domande rotti, Destini che osservano l'inesistente, Echi senza effetto, bersagli non garantiti sul tavolo pescato, liste di opportunita'/malus monche o con scelte finte sulle carte Tensione |
+| `python3 tools/validate_physical.py --self-test` | 2.6 s | che la guardia del dizionario morda, su ogni difetto piantato |
+| `python3 tools/gen_gd_schema.py --check` | 0.1 s | `schema_defs.gd` allineato agli schemi |
+| `python3 tools/gen_sign_labels.py --check` | 0.1 s | **le parole dei segni**: `sign_labels.gd` generato dal dizionario, cosi' un segno si battezza una volta sola |
+| `python3 tools/build_manifest.py --check` | 0.1 s | il manifesto degli asset |
+| `python3 tools/build_sign_registry.py --check` | 0.2 s | `docs/REGISTRO_SEGNI.md` |
+| `python3 tools/build_flow.py --check` | 0.1 s | `docs/flusso.html`: **il flusso disegnato** — scegli un pezzo e vedi con le frecce chi ce lo mette, dove finisce, chi lo legge e cosa accende |
+| `python3 tools/dead_code.py` | 0.1 s | codice che nessuno chiama |
+| `python3 tools/token_catalogue.py --check` | 0.1 s | `docs/CATALOGO_PEDINE.md`: **una scheda per segnalino** — cos'e', cosa rappresenta, il prompt — e che nessun segnalino resti senza |
+| `python3 tools/components_survey.py --check` | 0.3 s | `docs/COMPONENTI.md`: **quanti pezzi ha la scatola** — carte, tessere, segnalini, arte — e cosa manca perche' l'app dica tutto quello che dice il tavolo |
+| `python3 tools/build_review.py --check` | 0.6 s | `docs/REVISIONE_TESTI.md`: **ogni testo che un giocatore puo' leggere**, in ordine di lettura e col suo id — e che non ne manchi nessuno: ogni frase dei dati o e' nel documento, o e' dichiarata come cosa che nessuno legge |
+| `python3 tools/build_review.py --self-test` | 1.1 s | che la guardia dei testi veda un blocco nuovo non dichiarato |
+| `python3 tools/matrix_survey.py --check` | 0.2 s | `docs/MISURA_MATRICE.md`: **le tre misure che vengono prima della matrice** — segni orfani, obiettivi che non si possono puntare col dito, Tensioni che non incontrano nessun Destino |
+| `bash tools/run_council_catalogue.sh --check` | 1 s | `docs/CATALOGO_CONSIGLI.md` |
+| `bash tools/run_card_catalogue.sh --check` | 1 s | `docs/CATALOGO_CARTE.md` |
+| `bash tools/run_lives_survey.sh --check` | 186 s | `docs/MISURA_VITE.md`: **quante delle vite scritte delle case si siedono davvero al tavolo**, in dodici saghe sui due tavoli |
+| `bash tools/run_tiles_probe.sh --check` | 328 s | `docs/MISURA_TESSERE.md`: **tutte le pose possibili della mappa**, enumerate — 210 pescate per 720 ordini — e quante lasciano una tessera isolata |
+| `bash tools/run_card_skeleton.sh --check` | 1 s | `docs/SCHELETRO_CARTE.md`: **cosa porta ogni faccia**, ricavato dalle facce vere — i blocchi di ogni mazzo, su quante carte, e una carta vera per mazzo |
+| `bash tools/run_box_survey.sh --check` | 1 s | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |
+| `bash tools/run_marks_survey.sh --check` | 102 s | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
+| `bash tools/run_table_survey.sh --check` | 105 s | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
+| `bash tools/run_page_survey.sh --check` | 3 s | `docs/MISURA_PAGINA.md`: **cosa la pagina dell'app dice e con quale dito** — i testi che vivono solo nel suggerimento del mouse, i bersagli piu' stretti di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in confronto a un tablet |
+| `bash tools/run_export.sh --check-brief` | 4 s | `docs/BRIEF_ARTE.md` |
+| `python3 tools/issues_survey.py --check` | 0.1 s | **che il conto delle voci sia vero e che nessuna resti senza casa**: una voce chiusa porta il ✅ nel titolo, ogni voce aperta e' nominata da [la lista](docs/LE_TUE_DECISIONI.md), e il foglio si rigenera da li' |
+| `python3 tools/issues_survey.py --self-test` | 0.1 s | che le due guardie delle voci mordano |
+| `python3 tools/gates_survey.py --check` | 0.1 s | **che questa tabella e la CI siano lo stesso giro**: un cancello promesso e non girato non si lamenta, e uno girato e non promesso manda in rosso chi segue il documento |
+| `python3 tools/gates_survey.py --self-test` | 0.1 s | che la guardia dei cancelli morda, nei due versi |
+| `python3 tools/gates.py --self-test` | 0.1 s | **che il giro in un comando sia questo giro**: un cancello senza costo scritto, o perso per strada, darebbe verde piu' in fretta |
+| `bash tools/run_sims.sh` | 8 s | che ogni anno arrivi in fondo, e che lo stesso seme dia lo stesso salvataggio |
+| `$GODOT --headless --path godot --script res://tests/run_tests.gd` | 160 s | la suite |
 
 **Se tocchi uno schema, rigenera:** `python3 tools/gen_gd_schema.py`. Saltarlo fa
 fallire il caricamento dei dati **in silenzio**, e i test vanno rossi altrove.
