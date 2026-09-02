@@ -49,6 +49,22 @@ colonna del voto, perché senza quella un verbo poco calato si legge «morto» e
 essere il contrario. Resta che **il 47,7% delle carte INFLUENZARE non fa niente**,
 il tasso più alto del tavolo. La voce resta aperta sul criterio come è scritto.
 
+### E la 60 va ritagliata prima di lavorarci
+
+Rimisurata anche lei (`cli/run_question_ledger.gd`, 100 partite, 358 Consigli).
+Le domande erano **dodici**, adesso sono **sessanta**: le mute passano da una su
+dodici a **una su sessanta** (*I Recinti*, pescata 7 volte e mai in discussione —
+la stessa che la sonda di ISSUES 88 trova mai debattuta).
+
+Ma lo scarto peggiora: contando i Consigli aperti per ogni volta che la domanda è
+in gioco, dalla Reliquia (0,82) alle Reti Vuote (0,06) ci sono **13,1×**. Era
+**3,5×**.
+
+E il criterio scritto **non è più raggiungibile per aritmetica**: chiede che
+nessuna resti senza Consiglio in più di un quarto degli anni in cui è in gioco, e
+con 3,58 Consigli l'anno su sessanta domande la più ascoltata arriva al 62,5%. È
+la stessa forma della riga 2 di ISSUES 88 — *aritmetica, non difetto*.
+
 Voci aperte **31 → 30**.
 
 ---

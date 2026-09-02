@@ -201,8 +201,16 @@ possono nemmeno salire su una scheda. Vanno misurate in saga, o si dà al tavolo
 la colpa di un difetto della misura.
 
 Restano **9 Conseguenze su 65** che non escono mai (56) — erano 11, e il numero è
-sceso perché sono state rimisurate **in saga**, dove possono uscire — e le domande
-che si scaldano tre volte e mezzo meno delle altre (60).
+sceso perché sono state rimisurate **in saga**, dove possono uscire — e la
+[60](ISSUES.md#60), che ho rimisurata anche lei.
+
+**La 60 adesso dice un'altra cosa.** Le domande erano dodici, sono sessanta: le
+mute sono passate da una su dodici a **una su sessanta** (*I Recinti*), ma lo
+scarto fra la più e la meno ascoltata è passato da 3,5× a **13,1×**. E il suo
+criterio scritto **non è più raggiungibile per aritmetica**: chiede che nessuna
+resti senza Consiglio in più di un quarto degli anni in cui è in gioco, e con 3,58
+Consigli l'anno su sessanta domande la più ascoltata del tavolo arriva al 62,5%.
+Va ritagliato prima di lavorarci — il numero da battere è **13,1×**.
 
 Delle nove, sette hanno **un tentativo solo o poco più**: un aneddoto, non un
 verdetto. L'unica con abbastanza casi è `CNS_COST_DEBT`, la cui proposta è stata

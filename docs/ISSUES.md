@@ -2912,9 +2912,46 @@ per agire almeno una volta su cento anni — col playtest ancora **0/8**.
 
 ---
 
-### 60. Una domanda su dodici resta zitta meta' delle volte che esce
+### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_question_ledger.gd`)
+
+> **Rimisurata in 0.1.377** (`cli/run_question_ledger.gd`, 100 partite, CHR_00,
+> tavolo misto, **358 Consigli**). Il tavolo sotto questa voce non c'e' piu':
+> **le domande erano dodici, adesso sono sessanta** — una per carta Tensione
+> (D-310, D-378) — e i numeri qui sotto sono di un mondo scomparso.
+>
+> **Quello che va bene**: le domande mute erano una su dodici; adesso sono
+> **una su sessanta** — *I Recinti*, pescata 7 volte e mai arrivata a un
+> Consiglio. (E' la stessa `TEN_ENCLOSURE` che la sonda di
+> [ISSUES 88](#88) trova mai in discussione: due misure diverse, stesso nome.)
+>
+> **Quello che va peggio**: lo scarto. Contando i Consigli aperti **per ogni
+> volta che la domanda e' in gioco** —
+>
+> | | pescata | Consigli | per pescata |
+> |---|---|---|---|
+> | La Reliquia | 22 | 18 | **0,82** |
+> | I Voti Non Sciolti | 22 | 18 | 0,82 |
+> | *mediana* | | | *0,39* |
+> | Chi Arriva da Fuori | 17 | 2 | 0,12 |
+> | Le Reti Vuote | 16 | 1 | **0,06** |
+> | **I Recinti** | 7 | **0** | **0,00** |
+>
+> — lo scarto fra la piu' e la meno ascoltata (escludendo la muta) e' **13,1×**.
+> Era **3,5×**.
+>
+> **E il criterio scritto non e' piu' raggiungibile per aritmetica.** Chiede che
+> *«nessuna resti senza Concilio in piu' di un quarto degli anni in cui e' in
+> gioco»*: con **3,58 Consigli l'anno** e **sessanta** domande, la piu' ascoltata
+> del tavolo ne apre uno nel **62,5%** degli anni in cui e' in gioco — nessuna
+> puo' arrivare al 75%. Il criterio e' stato scritto per un tavolo da dodici
+> domande e quattro posti l'anno.
+>
+> **Va ritagliato prima di lavorarci**, ed e' la stessa forma della riga 2 di
+> [ISSUES 88](#88): *aritmetica, non difetto*. Una forma che regge sul tavolo di
+> adesso: **zero domande mute**, e lo scarto fra la piu' e la meno ascoltata
+> sotto un fattore da decidere. Il numero da battere e' **13,1×**.
 
 Stesso giro, dal lato delle domande: **100 anni, 446 Concili.**
 
