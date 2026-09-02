@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.379 — PUNTO_ZERO diceva di essere fermo a venticinque versioni fa
+
+`docs/PUNTO_ZERO.md` è il primo dei due documenti che CLAUDE.md dice di leggere
+prima di cominciare qualsiasi cosa. Portava i numeri del **0.1.353**, e sono
+passate venticinque versioni.
+
+**Rimisurata la sezione 1** — quella che dice «quello che tiene» — e messa
+accanto a com'era, perché *un numero si scrive col tavolo su cui è misurato*:
+
+| | oggi | in 0.1.353 |
+|---|---|---|
+| suite | **690 prove / 102 suite / 86.390 asserzioni** | 679 / 101 / 86.480 |
+| cancelli | **trentuno** | ventisei |
+| Consigli per anno | misto **3,58** · uniforme **3,49** | 3,15 · 3,23 |
+| Verità scritte | misto **142** (113 diverse) · uniforme **150** (108) | 125 (101) · 130 (95) |
+| voci aperte | **29** su 131 | 51 |
+
+**Il Consiglio si apre di più e il mondo ricorda di più**: mezzo Consiglio in più
+all'anno, e le Verità salgono di un sesto. Viene da D-402.
+
+**E le asserzioni scendono mentre le prove salgono.** Non l'ho attribuito e non
+lo invento: D-405 ha tolto dodici sacchetti morti dai dati, e su dati che non ci
+sono più i validatori asseriscono di meno — ma se sia tutta lì la differenza non
+l'ho misurato, e sta scritto così.
+
+**Il resto del documento porta ancora i numeri del 0.1.353, e adesso lo dice.**
+Il documento stesso avverte che *«una fotografia con una didascalia non è una
+misura»*: per questo la sezione 1 è stata **rimisurata**, non annotata, e le
+altre dichiarano la loro data invece di fingere di essere di oggi.
+
+---
+
 ## 0.1.378 — Il Consiglio si può giocare: dieci domande, dieci prove
 
 Chiude [ISSUES 73](docs/ISSUES.md#73) e avanza [ISSUES 80](docs/ISSUES.md#80)

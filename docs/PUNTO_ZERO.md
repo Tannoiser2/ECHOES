@@ -1,9 +1,8 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.353** · rimisurato per intero in 0.1.349; le sonde rilanciate in
-0.1.353 dopo le tre decisioni del committente
-([D-385](DECISIONS.md#d-385), [D-386](DECISIONS.md#d-386),
-[D-387](DECISIONS.md#d-387)).
+**Versione 0.1.379** · rimisurato per intero in 0.1.349, le sonde rilanciate in
+0.1.353. **La sezione 1 e' stata rimisurata in 0.1.379**; il resto del documento
+porta ancora i numeri del 0.1.353, ed e' detto dove.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
@@ -24,15 +23,29 @@ scatola.
 
 ## 1. Quello che tiene
 
-| | |
-|---|---|
-| suite | **679 prove / 101 suite / 86.480 asserzioni** verdi |
-| il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme |
-| cancelli | **tutti e ventisei verdi** (vedi `CLAUDE.md`) |
-| Consigli per anno | misto **3-4** (media 3,15) · uniforme **3-5** (media 3,23) |
-| Verità scritte | misto **125**, di cui 101 diverse · uniforme 130, di cui 95 |
+*Misurato in 0.1.379.*
 
-I cancelli erano diciannove: i sette in più sorvegliano quello che nessuno
+| | | com'era in 0.1.353 |
+|---|---|---|
+| suite | **690 prove / 102 suite / 86.390 asserzioni** verdi | 679 / 101 / 86.480 |
+| il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme | uguale |
+| cancelli | **tutti e trentuno verdi** (vedi `CLAUDE.md`) | ventisei |
+| Consigli per anno | misto **3-5** (media 3,58) · uniforme **3-6** (media 3,49) | 3,15 · 3,23 |
+| Verità scritte | misto **142**, di cui 113 diverse · uniforme **150**, di cui 108 | 125/101 · 130/95 |
+
+**Il Consiglio si apre di più e il mondo ricorda di più**: mezzo Consiglio in
+più all'anno, e le Verità scritte salgono di un sesto. Viene da
+[D-402](DECISIONS.md#d-402), che ha insegnato al ripiego a prendere la parola
+invece di prenotarla soltanto.
+
+**E le asserzioni scendono mentre le prove salgono** — 86.480 → 86.390 con undici
+prove in più. Non l'ho attribuito, e non lo invento: so che
+[D-405](DECISIONS.md#d-405) ha tolto dodici sacchetti morti dai dati, e su dati
+che non ci sono più i validatori asseriscono di meno. Se sia tutta lì la
+differenza, non l'ho misurato.
+
+I cancelli erano diciannove quando questa riga è stata scritta, e i sette in più
+sorvegliavano quello che nessuno
 guardava — la pagina dell'app, il tavolo posto per posto, le vite delle case, lo
 scheletro delle carte, le caselle del Consiglio, i segni del mondo, e
 [la tabella dei cancelli stessa](DECISIONS.md#d-367), che adesso non può
@@ -203,7 +216,11 @@ E le misure che prima non c'erano:
 
 ## 5. Le voci aperte che posso chiudere io
 
-51 voci aperte su 131, contate da `tools/issues_survey.py`. In ordine di quanto cambiano la partita.
+**29** voci aperte su 131, contate da `tools/issues_survey.py` in 0.1.379 (erano
+51 in 0.1.353). L'elenco qui sotto e' quello del 0.1.353 e **non e' piu' vero
+voce per voce**: la lista viva e' [LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md),
+che si rigenera col suo cancello. Qui sotto resta l'ordine di quanto cambiano la
+partita, che vale ancora.
 
 1. **ISSUES 91 — metà dei punti è già vera prima che qualcuno giochi.**
    `state_tag_absent` da solo sono centinaia di clausole mai contese. D-327 ha
