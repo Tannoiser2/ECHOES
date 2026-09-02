@@ -9102,6 +9102,48 @@ nuova — chiede che il cervello accetti di farsi un po' male, come una persona.
 **Il quinto che resta è il difetto vero**: le carte che il tavolo non prende
 affatto, per nessuna delle due facce.
 
+#### E il quinto ha un nome: sette facce su 96 non portano nessun verbo
+
+Guardato per nome, il quinto sono **3.219 volte su 37 carte diverse**, e le prime
+sei valgono da sole **due terzi**:
+
+| carta | volte | le sue due facce |
+|---|---|---|
+| Assedio | 697 | `CLAIM` / **niente** |
+| Leva Contadina | 693 | `MOVE` / **niente** |
+| Le Porte Bruciate | 363 | `CLAIM` / **niente** |
+| Atto di Successione | 131 | `CLAIM` / **niente** |
+| Banda Armata | 88 | `MOVE` / **niente** |
+| Consiglio degli Anziani | 58 | `SCHEME` / **niente** |
+
+**Sette facce su 96 hanno il nome stampato, il testo scritto, i segni che
+posano — e nessun verbo.** La seconda Azione di quelle carte non si può giocare
+mai, e la regola di casa dice l'opposto: *«**due** Azioni, e due scelte diverse
+davvero»*. La settima è «Censimento».
+
+**Lo schema non lo chiede**: su `physical_action` sono obbligatori `label` e
+`text`, e `template` è facoltativo. Per questo nessun cancello se n'è accorto in
+duecento versioni.
+
+**E le sette sono tutte la stessa forma**, che è il motivo per cui il verbo
+manca: la loro Azione **è** il segno che lasciano. *«La presenza resta, metti
+#razionato»*, *«metti #fame sul luogo»*, *«togli #lutto o #malcontento»*. Nessuno
+dei sei verbi vuol dire *«lascia un segno e basta»*: MUOVERE sposta, TRAMARE
+vuole informazioni private, RIVENDICARE apre una Domanda.
+
+**Quindi è una scelta d'autore, non una riparazione meccanica**, e va con le tre
+strade qui sopra:
+
+- **dare a ognuna il verbo più vicino**, allargandone il senso — è quello che il
+  gioco già fa altrove (29 carte su 48 stampano lo stesso verbo due volte, e a
+  distinguere le due metà sono i segni);
+- **oppure un settimo verbo che lascia un segno e basta** — SEGNARE — che è il
+  taglio grosso e vale una decisione sua.
+
+In tutti e due i casi, il giorno dopo `validate_physical` deve rifiutare una
+faccia stampata senza verbo, e `template` diventa obbligatorio nello schema.
+Oggi la guardia non si può accendere: andrebbe rossa su sette carte.
+
 **Fatto quando** il committente sceglie fra le tre strade, e la misura si rifà
 con la regola scelta:
 

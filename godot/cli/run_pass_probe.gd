@@ -78,6 +78,7 @@ class Witness extends RefCounted:
 	##    scelta, e sparisce da sola il giorno che passare non e' permesso.
 	var mute_because_rules: int = 0
 	var mute_because_choice: int = 0
+	var walled_cards: Dictionary = {}   # asset -> volte che il tavolo non la prendeva
 
 	func _init(who: RefCounted) -> void:
 		inner = who
@@ -157,6 +158,12 @@ class Witness extends RefCounted:
 					mute_because_choice += 1
 				else:
 					mute_because_rules += 1
+					# **E quali sono, per nome.** Il quinto che il tavolo non
+					# prende e' il difetto vero, e ripararlo vuol dire sapere su
+					# quali carte guardare: un numero senza nomi non si ripara.
+					walled_cards[str(asset_id)] = int(
+						walled_cards.get(str(asset_id), 0)
+					) + 1
 
 	## **Il tavolo la prenderebbe?** Si chiede a `can_execute` — le regole vere —
 	## su tutti i bersagli che quel verbo ammette, senza nessuno dei filtri con
@@ -338,6 +345,7 @@ func _initialize() -> void:
 	var mute_faces: Dictionary = {}
 	var mute_rules: int = 0
 	var mute_choice: int = 0
+	var walled: Dictionary = {}
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -379,6 +387,10 @@ func _initialize() -> void:
 		measured += witness.turns_measured
 		mute_rules += witness.mute_because_rules
 		mute_choice += witness.mute_because_choice
+		for asset_id in witness.walled_cards:
+			walled[str(asset_id)] = int(walled.get(str(asset_id), 0)) + int(
+				witness.walled_cards[asset_id]
+			)
 		for asset_id in witness.mute_card_faces:
 			mute_faces[str(asset_id)] = int(
 				mute_faces.get(str(asset_id), 0)
@@ -433,6 +445,23 @@ func _initialize() -> void:
 	print("      il cervello non le vuole  %6d  %5.1f%%  <- una scelta, non un difetto" % [
 		mute_choice, 100.0 * float(mute_choice) / float(mute_total),
 	])
+	if not walled.is_empty():
+		var murate: Array = walled.keys()
+		murate.sort_custom(func(a: Variant, b: Variant) -> bool:
+			return int(walled[a]) > int(walled[b])
+		)
+		print("")
+		print("      E il quinto che il tavolo non prende, per nome (%d carte diverse):" % murate.size())
+		for i in range(mini(12, murate.size())):
+			var asset_id: String = str(murate[i])
+			var card: Dictionary = data.assets.get(asset_id, {}) as Dictionary
+			var verbi: Array = []
+			for face in ((card.get("physical", {}) as Dictionary).get("actions", []) as Array):
+				verbi.append(str((face as Dictionary).get("template", "?")))
+			print("        %-26s %6d volte   %s" % [
+				str(card.get("title", asset_id)), int(walled[asset_id]),
+				"/".join(PackedStringArray(verbi)),
+			])
 	if not mute_faces.is_empty():
 		var worst: Array = mute_faces.keys()
 		worst.sort_custom(func(a: Variant, b: Variant) -> bool:

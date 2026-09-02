@@ -52,6 +52,23 @@ regola nuova — chiede che il cervello accetti di farsi un po' male.
 Le tre strade, e la raccomandazione, stanno in ISSUES 128. Non l'ho fatta di mia
 iniziativa perché cambia **come si sente il turno**.
 
+### E il quinto che il tavolo non prende ha un nome
+
+Guardato per nome sono **3.219 volte su 37 carte**, e le prime sei valgono due
+terzi. Tutte e sei per la stessa ragione: **sette facce su 96 hanno il nome
+stampato, il testo scritto, i segni che posano — e nessun verbo.** La seconda
+Azione di Assedio, Leva Contadina, Le Porte Bruciate, Atto di Successione, Banda
+Armata, Censimento e Consiglio degli Anziani **non si può giocare mai**, e la
+regola di casa dice l'opposto.
+
+Lo schema non lo chiedeva: su `physical_action` `template` è facoltativo, e per
+questo nessun cancello se n'è accorto in duecento versioni.
+
+E le sette sono la stessa forma: **la loro Azione *è* il segno che lasciano**, e
+nessuno dei sei verbi vuol dire *«lascia un segno e basta»*. È una scelta
+d'autore — dare a ognuna il verbo più vicino, o scrivere un settimo verbo — e sta
+in ISSUES 128.
+
 ---
 
 ## 0.1.393 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
