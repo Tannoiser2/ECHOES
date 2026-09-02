@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.394 — La sonda dei «passa» contava il tavolo e non la mano
+
+Domanda del committente — *«e se non ci fosse proprio la possibilità di passare?
+O fai le azioni o giochi l'Eco. Non c'è provare»* — e la misura ha trovato una
+cosa più grossa della domanda ([D-422](docs/DECISIONS.md#d-422)). **Apre
+[ISSUES 128](docs/ISSUES.md#128).**
+
+### La misura chiesta
+
+Togliere il passare oggi vuol dire togliere la riserva di D-285. Costa: i «passa»
+scendono da 45,2% a **36,1%** — non a zero — e le **Verità scritte da 135 a 78**,
+il 42% in meno. I Consigli si aprono un po' di più e passano molto peggio
+(DECISIVE 105 → 56): con la mano svuotata nessuno ha carte da impegnare.
+
+### E la sonda guardava la cosa sbagliata, da centoquaranta versioni
+
+`run_pass_probe` diceva *«23,8 mosse legali per ogni passa»*, ed è la frase su
+cui questa voce è stata discussa da D-254 in poi. **Non dice quello**: conta le
+mosse che il **tavolo** accetterebbe, e non chiede mai se la **mano** sappia
+pronunciarle. Non è una sonda cieca — è peggio: un numero giusto letto come se
+rispondesse a un'altra domanda.
+
+| 100 partite CHR_00, tavolo misto, seme 7000 | |
+|---|---|
+| carte guardate in mano | 36.678 in 7.181 turni |
+| che sanno dire qualcosa | **40,7%** |
+| **mute** | **59,3%** |
+| **turni con la mano tutta muta** | **23,2%** |
+
+Un turno su quattro, passare non è una scelta.
+
+### E le mute sono due difetti opposti
+
+| delle mute | | |
+|---|---|---|
+| il cervello non le vuole | **82,3%** | una scelta |
+| il tavolo non le prende | **17,7%** | le regole |
+
+Quattro su cinque si potrebbero calare: a rifiutarle sono due prudenze scritte
+nel cervello — *INFLUENZARE solo nel verso giusto*, *FORGIARE solo in su*. Se
+passare non è permesso, quelle prudenze smettono di valere: chi **deve** agire
+gioca la carta che gli costa meno. La regola del committente non chiede una
+regola nuova — chiede che il cervello accetti di farsi un po' male.
+
+Le tre strade, e la raccomandazione, stanno in ISSUES 128. Non l'ho fatta di mia
+iniziativa perché cambia **come si sente il turno**.
+
+---
+
 ## 0.1.393 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
 
 Sesta rossa, fatta la raccomandata ([D-421](docs/DECISIONS.md#d-421)). Avanza

@@ -10,6 +10,92 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-422 — La sonda dei «passa» contava il tavolo e non la mano
+
+**implemented in 0.1.394.** Apre [ISSUES 128](ISSUES.md#128), su domanda del
+committente:
+
+> *«E se non ci fosse proprio la possibilità di passare? O fai le azioni o giochi
+> l'Eco. Non c'è provare. Puoi misurare come cambierebbe la partita?»*
+
+### La misura chiesta, e perche' non bastava
+
+Togliere il passare, nel motore di oggi, vuol dire togliere la riserva di
+[D-285](#d-285). Misurato su 100 partite:
+
+| CHR_00, seme 7000 | oggi | senza riserva |
+|---|---|---|
+| turni «passa» | 45,2% | **36,1%** |
+| **Verita' scritte** (misto) | **135** | **78** |
+| DECISIVE (misto) | 105 | **56** |
+| SUCCESS CON COSTO (misto) | 50 | **113** |
+| seggi bloccati | 0 su 8 | 0 su 8 |
+
+Nove punti di «passa» in meno, **non zero**, e il mondo ricorda il **42% in
+meno**. Un risultato cosi' — la regola non fa quello che promette **e** costa
+carissimo — quasi sempre vuol dire che si sta guardando la cosa sbagliata.
+
+### E infatti la sonda guardava la cosa sbagliata, da sempre
+
+`run_pass_probe` dice da [D-254](#d-254): *«mosse legali, media 23,8, zero in 0
+passa su 3.254»*. Sembra dire *«poteva fare ventitre' cose e non ne ha fatta
+nessuna»*, ed e' la frase su cui questa voce e' stata discussa per centoquaranta
+versioni.
+
+**Non dice quello.** `_legal_moves` conta le mosse che **il tavolo**
+accetterebbe — MUOVERE in ogni Regione, INFLUENZARE ogni Tensione, FORGIARE con
+ognuno — e **non chiede mai se la mano sappia pronunciarle**. Da
+[ISSUES 47](ISSUES.md#47) le carte sono l'unica moneta: un verbo che il tavolo
+accetta e che nessuna carta in mano dice **non e' una mossa disponibile**.
+
+Non e' una sonda cieca — non tornava zero, e il numero era giusto per quello che
+misurava. E' peggio: **era un numero giusto letto come se rispondesse a
+un'altra domanda**, e per questo non l'aveva mai sospettato nessuno.
+
+### Il numero che mancava
+
+| 100 partite CHR_00, tavolo misto, seme 7000 | |
+|---|---|
+| carte guardate in mano | 36.678 in 7.181 turni (5,11 di media) |
+| che sanno dire qualcosa | 14.912 — **40,7%** |
+| **mute** | 21.766 — **59,3%** |
+| **turni con la mano tutta muta** | 1.669 — **23,2%** |
+
+**Un turno su quattro, passare non e' una scelta.**
+
+### E le mute sono due difetti opposti
+
+| delle 21.766 mute | | |
+|---|---|---|
+| **il cervello non le vuole** | 14.976 | **82,3%** |
+| **il tavolo non le prende** | 3.219 | **17,7%** |
+
+Il conto si fa chiamando `can_execute` — le regole vere — su tutti i bersagli
+che il verbo ammette, **senza i filtri con cui il cervello si protegge**. Se il
+tavolo la prenderebbe e la carta era muta, muta l'ha resa il cervello.
+
+**Quattro su cinque si potrebbero calare.** A rifiutarle sono due eccezioni
+dichiarate in `_targets_for`: INFLUENZARE si offre *«solo nel verso che il
+Destino vuole»*, FORGIARE *«solo in su»*. Non sono regole del tavolo: sono
+prudenza, e sono scritte come tali.
+
+**Ed e' esattamente il punto della domanda del committente.** Se passare non e'
+permesso, quelle due prudenze smettono di valere: chi *deve* agire gioca la
+carta che gli costa meno, anche quando gli costa. *«Non c'e' provare»* non
+chiede una regola nuova — chiede che il cervello accetti di farsi un po' male,
+come farebbe una persona.
+
+### Cosa resta da decidere, e cosa no
+
+Il **quinto** che il tavolo non prende affatto e' il difetto vero, e va guardato
+carta per carta. I **quattro quinti** sono una riga nel cervello.
+
+Non l'ho scritta di mia iniziativa: cambia **come si sente il turno**, ed e' una
+scelta di gioco, non una taratura. Le tre strade stanno in
+[ISSUES 128](ISSUES.md#128) con la mia raccomandazione.
+
+---
+
 ## D-421 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
 
 **implemented in 0.1.393.** Avanza [ISSUES 69](ISSUES.md#69), la sesta rossa.

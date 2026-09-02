@@ -9037,3 +9037,84 @@ scelta d'autore, e non è mia.
 
 **Fatto quando** il committente sceglie, e — se non è la (1) — la misura delle
 200 mappe si rifà con la regola nuova.
+
+---
+
+### 128. Cinquantanove carte su cento in mano non sanno dire niente
+
+`regole` · `da-decidere` · **aperta in 0.1.394** — domanda del committente:
+
+> *«E se non ci fosse proprio la possibilità di passare? O fai le azioni o giochi
+> l'Eco. Non c'è provare. Puoi misurare come cambierebbe la partita?»*
+
+#### La risposta breve: così com'è, non si può
+
+Togliere il passare oggi vuol dire togliere la riserva di
+[D-285](DECISIONS.md#d-285), e misurato costa moltissimo e non lo toglie:
+
+| 100 partite CHR_00, seme 7000 | oggi | senza riserva |
+|---|---|---|
+| turni «passa» | 45,2% | **36,1%** |
+| **Verità scritte** (misto) | **135** | **78** |
+| DECISIVE (misto) | 105 | **56** |
+| SUCCESS CON COSTO (misto) | 50 | **113** |
+| Consigli per anno (misto) | 3,47 | 3,58 |
+| seggi bloccati | 0 su 8 | 0 su 8 |
+
+I «passa» scendono di nove punti, **non a zero**, e il mondo ricorda il **42% in
+meno**. I Consigli si aprono un po' di più e passano molto peggio: con la mano
+svuotata nessuno ha carte da impegnare.
+
+#### La causa vera, e il numero che nessuno aveva mai preso
+
+`run_pass_probe` diceva *«23,8 mosse legali per ogni passa»*, e sembrava dire
+*«poteva fare ventitré cose e non ne ha fatta nessuna»*. **Non dice quello**:
+conta le mosse che il **tavolo** accetterebbe, e non chiede mai se la **mano**
+sappia pronunciarle. Adesso lo chiede ([D-422](DECISIONS.md#d-422)):
+
+| 100 partite CHR_00, tavolo misto, seme 7000 | |
+|---|---|
+| carte guardate in mano | 36.678 in 7.181 turni (5,11 di media) |
+| che sanno dire qualcosa | 14.912 — **40,7%** |
+| **mute** | 21.766 — **59,3%** |
+| **turni con la mano tutta muta** | 1.669 — **23,2%** |
+
+**Un turno su quattro passare non è una scelta**: nessuna delle carte in mano si
+può calare.
+
+#### E le mute sono due difetti diversi, con due cure opposte
+
+| delle 21.766 mute | | |
+|---|---|---|
+| **il cervello non le vuole** | 14.976 | **82,3%** |
+| **il tavolo non le prende** | 3.219 | **17,7%** |
+
+**Quattro su cinque si potrebbero calare.** Il tavolo le accetterebbe, e a
+rifiutarle è il cervello, per due eccezioni dichiarate nel suo codice:
+INFLUENZARE si offre *«solo nel verso che il Destino vuole»*, FORGIARE *«solo in
+su»*. Non sono regole del gioco: sono prudenza.
+
+**Ed è esattamente il punto della domanda.** Se passare non è permesso, quelle
+due frasi smettono di valere: al tavolo chi *deve* agire gioca la carta che gli
+costa meno, anche quando gli costa. «Non c'è provare» non chiede una regola
+nuova — chiede che il cervello accetti di farsi un po' male, come una persona.
+
+**Il quinto che resta è il difetto vero**: le carte che il tavolo non prende
+affatto, per nessuna delle due facce.
+
+**Fatto quando** il committente sceglie fra le tre strade, e la misura si rifà
+con la regola scelta:
+
+1. **Il cervello accetta di farsi male** quando non ha di meglio: le due
+   eccezioni valgono finché una mossa migliore esiste, e cadono quando non
+   esiste. Non tocca nessuna regola del tavolo, e da sola dovrebbe recuperare i
+   quattro quinti. *Da misurare: quanto scende il «passa» e quanto costa in
+   Verità scritte.*
+2. **Ogni carta ha sempre un bersaglio**: si guarda il quinto che il tavolo non
+   prende e si allarga quello che le facce raggiungono. È il lavoro sui dati, e
+   va misurato carta per carta.
+3. **Passare costa qualcosa** invece di essere vietato — la strada che
+   [D-254](DECISIONS.md#d-254) aveva scartato quando la causa sembrava un'altra.
+
+Le tre non si escludono, e la (1) è la più economica: è una riga nel cervello,
+e senza di lei la (2) ripara un quinto del problema.
