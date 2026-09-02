@@ -45,10 +45,10 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 
 | | distinti | applicazioni |
 |---|---|---|
-| **una casella di oggi lo sa dire** | 44 | 334 |
+| **una casella di oggi lo sa dire** | 44 | 340 |
 | **verbo giusto, posto che la casella non sa dire** | 1 | 2 |
 | **verbo che manca** | 0 | 0 |
-| | **45** | **336** |
+| | **45** | **342** |
 
 ## Le caselle che mancano
 
@@ -73,17 +73,18 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | Effetto | dove | usi | come si direbbe |
 |---|---|---|---|
 | `BUILD_STRUCTURE` | `$region_with:granary` | 4 | si alza Granaio in una Regione con #granaio |
-| `ADJUST_TENSION` | `TEN_ROADS` | 20 | Le Vie Interrotte sale |
+| `ADJUST_TENSION` | `TEN_ROADS` | 21 | Le Vie Interrotte sale |
 | `SET_GLOBAL_TAG` | *dove si discute* | 71 | il mondo registra: il grano e' stato requisito |
 | `REMOVE_PRESENCE` | `$rival` | 4 | il rivale se ne va dove si discute |
-| `SET_REGION_TAG` | *dove si discute* | 33 | dove si discute diventa #requisita |
+| `SET_REGION_TAG` | *dove si discute* | 35 | dove si discute diventa #requisita |
 | `SET_STRUCTURE_GRADE` | *dove si discute* | 8 | Foresta dove si discute va al grado 2 |
 | `ADD_PRESENCE` | `$rival` | 2 | il rivale entra in una Regione confinante |
 | `SET_RELATION` | `$proponent|$rival` | 11 | il rapporto fra chi propone e il rivale cambia |
 | `SET_CONTROL` | *dove si discute* | 4 | dove si discute cambia padrone |
 | `SET_REGION_TAG` | `$rival_seat` | 2 | nella sede del rivale diventa #affamata |
-| `SET_REGION_TAG` | `$adjacent` | 18 | in una Regione confinante diventa #inquieta |
-| `ADJUST_TENSION` | *dove si discute* | 30 | la domanda in gioco sale |
+| `SET_REGION_TAG` | `$adjacent` | 19 | in una Regione confinante diventa #svuotata |
+| `REMOVE_PRESENCE` | `$proponent` | 3 | chi propone se ne va in una Regione confinante |
+| `ADJUST_TENSION` | *dove si discute* | 31 | la domanda in gioco sale |
 | `SET_ENTITY_TAG` | `$proponent` | 29 | chi propone porta addosso: la fama |
 | `REMOVE_REGION_TAG` | `$region_with:nomad_range` | 1 | in una Regione con #pascolo non e' piu' #affamata |
 | `ADJUST_TENSION` | `TEN_FAMINE` | 3 | La Carestia scende |
@@ -105,7 +106,6 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | `BUILD_STRUCTURE` | `$region_with:trade` | 2 | si alza Pedaggio in una Regione con #commercio |
 | `SET_STRUCTURE_GRADE` | `$region_with:wild` | 1 | Passo in una Regione con #selvaggio va al grado 2 |
 | `CLOSE_PASSAGE` | `$region_with:wild` | 1 | si chiude la strada in una Regione con #pascolo |
-| `REMOVE_PRESENCE` | `$proponent` | 2 | chi propone se ne va dove si discute |
 | `ADD_PRESENCE` | `$proponent` | 2 | chi propone entra in una Regione confinante |
 | `ADJUST_TENSION` | `TEN_CHARTER` | 8 | La Carta sale |
 | `ADJUST_TENSION` | `TEN_DEBT` | 6 | Il Debito scende |

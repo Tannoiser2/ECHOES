@@ -15,8 +15,15 @@ segna il numero accanto al titolo.
 il progetto ha già tre casi a verbale in cui la modifica ovvia peggiorava le
 cose ([D-051](DECISIONS.md#d-051), [D-055](DECISIONS.md#d-055)).
 
+**Una voce chiusa porta il ✅ nel titolo**, ed è l'unico segno che conta: il
+foglio `LE_TUE_DECISIONI.md` si conta da lì, e `tools/issues_survey.py` va rosso
+se una voce dice «chiusa in 0.1.x» e il titolo non ce l'ha. Non è pedanteria —
+tredici voci chiuse ne erano senza, e il conto che il committente leggeva per
+decidere era sbagliato di tredici ([D-391](DECISIONS.md#d-391)).
+
 Legenda etichette: `regola` · `contenuto` · `arte` · `motore` · `ux` ·
-`strumenti` · `da-misurare` · `decisione` · `debito`
+`strumenti` · `da-misurare` · `decisione` · `debito` · `da-decidere` (quest'ultima
+è quella che mette una voce sul foglio delle decisioni)
 
 **Un nome in corsivo senza collegamento** — *SEDUTA_TERRA*, *AUDIT_DESTINI*,
 *MECCANICA* — è un documento **tolto in 0.1.291**
@@ -901,7 +908,7 @@ anche l'apertura. Questa mezza obiezione è caduta: il metro c'è.
 **Fatto quando** il committente ha risposto alle cinque domande secche e la
 strada scelta è stata percorsa e misurata.
 
-### 35. Le istituzioni **non** governano diversamente dalle persone
+### 35. ✅ Le istituzioni **non** governano diversamente dalle persone
 
 `contenuto` · **chiusa in 0.1.144** · *SAGA_SALE* → [D-176](DECISIONS.md#d-176)
 
@@ -1425,9 +1432,16 @@ una misura viene respinta da **un solo seggio** e per **una sola partita**, la
 domanda giusta non e' «la regola e' sbagliata?» ma «quel seggio riesce ad
 assorbire qualcosa?».
 
-### 40. Il grado non si muove dentro l'anno — **deciso: è materia di saga**
+### 40. ✅ Il grado non si muove dentro l'anno — CHIUSA in 0.1.364: era decisa da duecento versioni
 
 `regola` · **decisa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
+
+**chiusa in 0.1.364** ([D-396](DECISIONS.md#d-396))
+
+> **La voce chiedeva di scegliere fra due strade, e la scelta e' stata fatta in
+> 0.1.142**: il grado alto resta materia di saga. La regola che ne segue e'
+> scritta qui sotto, e i dati la seguono. Non c'era altro da fare, e la voce e'
+> rimasta aperta **duecentoventi versioni dopo la sua decisione**.
 
 `_settle_structures` gira **dopo** la valutazione del Destino, quindi in una
 Chronicle sola il grado non sale quasi mai: grado 2 nel 15% degli anni per
@@ -1444,7 +1458,7 @@ di qualsiasi misura: villaggio 812, borgo 813, granaio 814, città 815, castello
 Destini di una Chronicle successiva**, mai in quelli d'apertura. Chi la scrive
 altrove sta scrivendo un muro.
 
-### 41. Il sito antico, una volta aperto, veniva sempre saccheggiato
+### 41. ✅ Il sito antico, una volta aperto, veniva sempre saccheggiato
 
 `contenuto` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
@@ -1471,7 +1485,7 @@ irraggiungibile:
 Un anno su cinque il mondo si ferma sul gradino di mezzo, e «aperto e ancora
 intero» è diventata una clausola scrivibile.
 
-### 42. La seconda saga sembrava più generosa della prima
+### 42. ✅ La seconda saga sembrava più generosa della prima
 
 `bilanciamento` · **chiusa in 0.1.142** · [D-167](DECISIONS.md#d-167) → [D-174](DECISIONS.md#d-174)
 
@@ -1493,7 +1507,7 @@ in gioco il carico si distribuisce e le due convergono — CHR_01 **19%**, CHR_0
 *Prima di tarare tre manopole, vale la pena guardare se il difetto non sia un
 effetto di quello che si sta già cambiando altrove.*
 
-### 43. Undici Destini su venti non si giocano mai all'apertura
+### 43. ✅ Undici Destini su venti non si giocano mai all'apertura
 
 `contenuto` · `motore` · **chiusa in 0.1.141** · [D-167](DECISIONS.md#d-167) → [D-170](DECISIONS.md#d-170) → [D-173](DECISIONS.md#d-173)
 
@@ -1518,7 +1532,7 @@ ambizioni in piu' al tavolo si oppongono fra loro molto piu' spesso, e il tasso
 di successo passa dal 64% al 56%. Si spegne in una riga (`_deal_destiny`, il
 ripiego sulla lista dell'Entita'), se quaranta Consigli sono troppi.
 
-### 44. La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
+### 44. ✅ La scala di Lyra ha una porta sola, e aprirla costa gli anni tranquilli
 
 `contenuto` · `bilanciamento` · **chiusa in 0.1.137** · [D-168](DECISIONS.md#d-168) → [D-169](DECISIONS.md#d-169)
 
@@ -1538,10 +1552,26 @@ quattro Tensioni, ed e' la seconda volta che succede per lo stesso motivo
 
 Costo dichiarato: **FAIL 191 → 203**.
 
-### 45. La linea dei Fuochi: metà chiusa, e quello che resta
+### 45. ✅ La linea dei Fuochi — CHIUSA in 0.1.362: sta nella banda delle altre
 
 `contenuto` · `bilanciamento` · **metà chiusa in 0.1.145** · nata da
-[D-176](DECISIONS.md#d-176) → [D-177](DECISIONS.md#d-177)
+[D-176](DECISIONS.md#d-176) → [D-177](DECISIONS.md#d-177) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La condizione era: «la linea dei Fuochi sta nella stessa banda delle altre
+> in ogni sua incarnazione».** Ci sta, su tutt'e due i tavoli del cancello,
+> cento anni:
+>
+> | Kessa dei Fuochi | NONE | MINIMO | VITTORIA | TRIONFO |
+> |---|---|---|---|---|
+> | tavolo misto | 14 | 19 | 24 | 0 |
+> | tavolo uniforme | 8 | 24 | 24 | 1 |
+>
+> E la vita che la voce dava per la piu' debole — **Le Custodi della Cenere**,
+> allora al 22% — oggi e' la **seconda vita piu' seduta** delle diciotto: 12
+> volte su tavolo uniforme e 12 su misto, in dodici saghe
+> ([MISURA_VITE.md](MISURA_VITE.md)). Il residuo scritto qui sotto era misurato
+> sulla **saga del Sale**, cancellata in [D-318](DECISIONS.md#d-318).
 
 **La metà chiusa.** La voce diceva che la linea della Cenere/Fuochi arriva al
 secondo gradino la metà delle volte delle altre, in ogni sua incarnazione. La
@@ -1583,9 +1613,17 @@ verbale:
 **Fatto quando** la linea dei Fuochi sta nella stessa banda delle altre in ogni
 sua incarnazione — o il motivo per cui non ci sta è scritto con i numeri accanto.
 
-### 46. La campagna del Sale ha un vincitore già scritto ([#69](https://github.com/Tannoiser2/ECHOES/issues/69))
+### 46. ✅ La campagna del Sale ha un vincitore già scritto — CHIUSA in 0.1.362: la campagna non c'e' piu'
 
-`contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) · **aperta in 0.1.148**
+`contenuto` · `bilanciamento` · nata da [D-180](DECISIONS.md#d-180) ·
+**aperta in 0.1.148** · **chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La saga del Sale e' `CHR_03`, cancellato in
+> [D-318](DECISIONS.md#d-318).** Il difetto misurato qui — *«SALE 12 su 12»* —
+> era su un anno che non esiste piu'. Sull'anno che esiste il cancello misura
+> **0 seggi bloccati su un solo livello su 8**, sui due tavoli, a ogni
+> decisione. Chiusa perche' il suo oggetto non e' piu' nella scatola, non
+> perche' sia stata curata.
 
 Il contatore di saga ha reso visibile una cosa che c'era già e che nessuno poteva
 vedere finché ogni anno stava in piedi da solo:
@@ -1820,9 +1858,34 @@ contro 4,90 del gioco di prima.
 playtest resta **0/8** a tavolo misto e uniforme, e lo scarto fra il primo e
 l'ultimo seggio **non cresce** di atto in atto.
 
-### 48. La Strada dei Mercanti è una Regione morta
+### 48. ✅ La Strada dei Mercanti è una Regione morta — CHIUSA in 0.1.362: e' la seconda piu' viva
 
-`regole` · `contenuto` · **misurata in 0.1.154** ([D-186](DECISIONS.md#d-186))
+`regole` · `contenuto` · **misurata in 0.1.154** ([D-186](DECISIONS.md#d-186)) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La Strada dei Mercanti non e' piu' morta: e' la seconda Regione piu'
+> abitata della mappa.** Cento anni, tavolo misto, `cli/run_move_probe.gd`,
+> media **sugli anni in cui la tessera e' pescata** — che e' il taglio che
+> mancava alla misura di prima, e che da solo cambiava i numeri di un terzo:
+>
+> | Regione | pescata | apertura → fine |
+> |---|---|---|
+> | Eredan | 51 | 2,12 → **2,53** |
+> | **Strada dei Mercanti** | 60 | 1,07 → **2,23** |
+> | Valle Verde | 59 | 1,66 → 2,19 |
+> | Miniere Antiche | 53 | 2,06 → 2,09 |
+> | Terre Nahr | 63 | 0,68 → 1,51 |
+> | Porto Cinerino | 75 | 0,12 → 1,37 |
+> | Montagne Rosse | 64 | 1,08 → 1,30 |
+> | Bosco dei Confini | 63 | 0,17 → 0,94 |
+> | Palude dei Canali | 56 | 0,07 → 0,84 |
+> | **L'Isola Muta** | 56 | 0,18 → **0,50** |
+>
+> **Il residuo, e va scritto**: la Regione piu' vuota adesso e' l'**Isola Muta**
+> a mezza pedina, e non e' un difetto ma la regola — da
+> [D-393](DECISIONS.md#d-393) e' l'unica tessera con due lati chiusi, cioe'
+> un'isola con due approdi. Se il committente vuole che ci si viva, le serve un
+> terzo varco: e' una riga di dato, e non apre una voce nuova.
 
 Misurando dove finiscono le pedine per scegliere la mappa nuova, è saltato fuori
 un numero che nessuno aveva mai guardato:
@@ -2451,9 +2514,29 @@ questa voce sposta il numero verso il basso.
 
 ---
 
-### 52. Lyra non ha mai trionfato in centoventi anni
+### 52. ✅ Lyra non ha mai trionfato in centoventi anni — CHIUSA in 0.1.362
 
-`bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata dal resoconto della saga 812
+`bilanciamento` · `contenuto` · **aperta in 0.1.175** · nata dal resoconto della
+saga 812 · **chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **Lyra oggi e' il seggio migliore del tavolo uniforme.** Cento anni, il
+> cancello:
+>
+> | Lyra | NONE | MINIMO | VITTORIA | TRIONFO |
+> |---|---|---|---|---|
+> | allora (120 seggi-anno, linea del Grano) | **37** | — | — | **0** |
+> | tavolo misto, oggi | 12 | 14 | 22 | 0 |
+> | tavolo uniforme, oggi | **3** (il minimo del tavolo) | 19 | 23 | **3** |
+>
+> Il difetto che la voce nominava — *una casa che non arriva mai in cima mentre
+> le altre ci arrivano* — non c'e' piu'.
+>
+> **E la condizione scritta («nessun seggio a zero Trionfi») non si puo'
+> giudicare a questo passo**, e va detto invece di far finta: i Trionfi sono
+> **5 su 400 seggi-anno** a tavolo misto e 10 su 400 a uniforme. Con un seggio
+> che ne aspetta mezzo, uno zero non distingue una casa debole da una fortunata.
+> Quello che sorveglia la cosa e' il vincolo del cancello — **0 seggi bloccati
+> su un solo livello su 8** — e quello si misura a ogni decisione.
 
 Il resoconto narrativo di una saga intera ha regalato un numero che nessuna
 sonda chiedeva. Su **120 seggi-anno** (12 saghe da 10 Chronicle, linea del
@@ -2924,7 +3007,9 @@ nessun anno.
 
 ### 98. Chiudere il circuito: ogni segno dichiara se pesa o se e' colore
 
-`regola` · `strumenti` · `decisione` · aperta in 0.1.290 · **direzione del
+`regola` · `strumenti` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
+e' un metodo e genera lavoro all'infinito — la sua meta' utile e' la gialla G3,
+che finisce · aperta in 0.1.290 · **direzione del
 committente**:
 
 > «Il prossimo lavoro non e' aggiungere contenuto, ma **chiudere il circuito**.
@@ -3094,10 +3179,35 @@ Questa strada rende le righe raggiungibili e contese, non conquistate —
 
 ---
 
-### 96. Il segno piu' scritto del gioco non lo guarda nessuno
+### 96. ✅ Il segno piu' scritto del gioco non lo guarda nessuno — CHIUSA in 0.1.363: da venticinque a due, e i due sono colore dichiarato
 
-`regola` · `contenuto` · `bilanciamento` · `decisione` · aperta in 0.1.287
-([D-324](DECISIONS.md#d-324))
+`regola` · `contenuto` · `bilanciamento` · aperta in 0.1.287
+([D-324](DECISIONS.md#d-324)) · **chiusa in 0.1.363**
+([D-395](DECISIONS.md#d-395))
+
+> **Da venticinque a due.** La voce nasceva da `condition:contested`, scritto
+> **531 volte in cento anni** senza una clausola addosso, e da altri ventiquattro
+> segni sopra le dieci scritture. [MISURA_SEGNI.md](MISURA_SEGNI.md), che sta nei
+> cancelli, oggi ne elenca **due**: `watched` (18 scritture) e `price_in_lives`
+> (13).
+>
+> **E quei due non prendono una clausola, di proposito.** Sono i due marchi che
+> [D-278](DECISIONS.md#d-278) ha voluto **non meccanici**, e ognuno porta gia' la
+> sua ragione scritta nel dizionario:
+>
+> - `watched` — *«marchio di memoria: chi ha imposto la guardia se lo porta
+>   addosso, e si legge sulla carta del casato — il motore non lo interroga»*;
+> - `price_in_lives` — *«una decisione passata al prezzo di qualcuno che non c'e'
+>   piu': si legge al centro del tavolo»*.
+>
+> Scrivergli addosso due clausole per far scendere un numero a zero sarebbe
+> contenuto che esiste per la misura, che e' esattamente quello che le regole di
+> casa vietano. Il metro giusto e' quello con cui si chiude la
+> [77](#77) — **o un lettore, o una ragione scritta** — e questi due la ragione
+> ce l'hanno.
+>
+> **Se il committente vuole che quei due marchi pesino**, e' una riga: un passo
+> di Destino che teme la guardia. Non e' una voce nuova, e' questa riga.
 
 Girando la misura dalla parte giusta — non «quanti dei segni che i Destini
 nominano il mondo li scrive», ma **quali segni il mondo scrive** — esce questo:
@@ -3402,7 +3512,9 @@ su 60** sull'anno d'autore, **3 su 60** sulla mappa pescata.
 
 ### 91. Il 60% dei punti era gia' fatto prima che qualcuno giocasse — 52.4% in 0.1.278
 
-`regola` · `bilanciamento` · `decisione` · aperta in 0.1.276
+`regola` · `bilanciamento` · **fuori dalla lista in 0.1.361**
+([la lista](LE_TUE_DECISIONI.md)): la sua cura e' la rossa R4 (gli Obiettivi che
+nominano invece di contare), e si rimisura dopo quella · aperta in 0.1.276
 ([D-314](DECISIONS.md#d-314))
 
 **Misurata**, su 40 tavoli CHR_01 ai semi 7000+, misto e uniforme concordi:
@@ -3550,7 +3662,7 @@ procedurale, far girare al cancello anche una Chronicle a mappa pescata.
 
 ---
 
-### 89. La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa — CHIUSA in 0.1.332
+### 89. ✅ La proposta non si risolve col dito: 642 Effetti che nessuna carta stampa — CHIUSA in 0.1.332
 
 `regole` · `fisico` · **aperta in 0.1.274** ([D-312](DECISIONS.md#d-312)) —
 parola del committente guardando le carte: *«ci dovrebbe essere indicato i tag
@@ -3879,10 +3991,58 @@ mappa.
 
 ---
 
-### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto
+### 88. Il tavolo vede poco piu' di un terzo di quello che c'e' scritto — **cinquantadue voci mute, per nome**
 
 `contenuto` · `misura` · **aperta in 0.1.273**
-([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`)
+([D-311](DECISIONS.md#d-311) · `cli/run_who_writes_probe.gd`) · **il taglio
+chiesto e' fatto in 0.1.359** ([D-392](DECISIONS.md#d-392))
+
+> **Il titolo non regge piu'.** Il 37% e il 36% erano su `CHR_01`, cancellato
+> con gli altri anni d'autore. Su cento anni dell'anno che esiste, il tavolo
+> vede l'**83%** delle domande (99 su 120) e il **65%** delle proposte (126 su
+> 194).
+
+**La voce chiedeva un taglio, e adesso c'e'** — in tre pezzi, non due:
+
+| cento anni, CHR_00, semi da 7000 | domande | proposte | cos'e' |
+|---|---|---|---|
+| 1. mai pescate | **0** | **0** | rigiocabilita' |
+| 2. pescate, mai in discussione | 8 (7%) | 29 (15%) | aritmetica: 312 Consigli, uno apre una domanda sola |
+| **3. in discussione, mai scelte** | **13 (11%)** | **39 (20%)** | **il difetto di [D-035](DECISIONS.md#d-035)** |
+
+`godot --headless --path godot --script res://cli/run_who_writes_probe.gd -- --runs=100 --seed=7000`
+
+**La condizione — «la seconda cifra sotto un quinto» — e' soddisfatta per le
+domande e sta sul filo per le proposte.** Non chiudo su 20,1%: un difetto si
+lavora per nome, e i nomi adesso ci sono.
+
+**Le tredici domande che si aprono e nessuno sceglie:** `Q_AWAKENING_MOUNTAIN`,
+`Q_BAD_GRAIN_BLAME`, `Q_BELLS_WHO`, `Q_CANALS_ARMS`, `Q_EMPTY_NETS_BOATS`,
+`Q_FALLOW_LEAN`, `Q_HOSTAGES_WHO`, `Q_PLAGUE_DOORS`, `Q_QUARANTINE_OUT`,
+`Q_REFUGEES_COST`, `Q_STONES_WHO`, `Q_WINTER_WOOD`, `Q_WOLVES_FLOCK`.
+
+**Le trentanove proposte che stanno nella domanda aperta e non si votano mai:**
+`P_ASH_REGISTERS`, `P_BAD_GRAIN_BURN`, `P_BELLS_ORDER`, `P_BURIALS_GROUND`,
+`P_CALL_IT_IN`, `P_CHANNELS_FORBID`, `P_COUNCIL_SEATS_WIDEN`, `P_ECHOES_MEASURE`,
+`P_EMPTY_NETS_TURNS`, `P_HEIR_AS_STORY`, `P_HOSTAGES_TRADE`, `P_LET_IT_ROT`,
+`P_LEVY_QUOTA`, `P_MARSH_FEVER_SHARE`, `P_NAMELESS_MOVE`, `P_OLD_PAGE`,
+`P_ONE_CROWN`, `P_OPEN_VALLEY`, `P_QUARANTINE_HOLD`, `P_REFUSE_CHARTER`,
+`P_REGISTER_CROWN`, `P_REOPEN_THE_MINE`, `P_REQUISITION`, `P_RETAKE_QUESTION`,
+`P_SALT_COUNCIL`, `P_SEALS_ONE_HAND`, `P_SEAL_BORDERS`, `P_SHRINE_ANOINT`,
+`P_SMUGGLING_AMNESTY`, `P_STONES_WALK`, `P_TAKE_SEAT`, `P_THIRST_FREE`,
+`P_TITHE_OPEN`, `P_TOLLS_CUT`, `P_TRIBUTE_HALF`, `P_UNEARTHED_BACK`,
+`P_WARDS_RITE`, `P_WATCH_THE_ROCK`, `P_WOLVES_TOWERS`.
+
+**E quattro Tensioni non arrivano mai a un Consiglio in cento anni**:
+`TEN_ENCLOSURE`, `TEN_FLOOD`, `TEN_PASTURE`, `TEN_WEIGHTS`. Sono girate — il
+mazzetto le mostra — e non diventano mai la piu' calda.
+
+**Fatto quando** la riga 3 sta sotto un quinto per tutt'e due, e la prima
+domanda da farsi sulle 39 e' quella di [ISSUES 108](#108) e
+[ISSUES 104](#104): **offerte e non scelte, o mai offerte?** La sonda oggi non
+lo dice ancora, ed e' il prossimo passo di questa voce — non una voce nuova.
+
+**Il testo originale:**
 
 Il numero non e' nuovo: e' **appena diventato onesto**. La sonda contava il
 denominatore sui dodici template, e diceva *«36 proposte votate su 49 scritte»*
@@ -3914,6 +4074,9 @@ girate, e' la seconda. La sonda oggi non le distingue.
 
 **Fatto quando** la misura separa "non pescata" da "pescata e mai aperta", e la
 seconda cifra sta sotto un quinto.
+
+*(La separazione e' fatta in 0.1.359, e ha trovato che i pezzi erano tre. Le
+cifre stanno in testa alla voce.)*
 
 ---
 
@@ -4121,9 +4284,28 @@ leggende. Continua in [ISSUES 124](#124).
 
 ---
 
-### 83. La porta spalancata: una gamba che nessuno riesce mai a tenere
+### 83. ✅ La porta spalancata — CHIUSA in 0.1.362: nessuna casa sotto un salto su quattro
 
-`regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298))
+`regole` · `da-misurare` · **aperta in 0.1.261** ([D-298](DECISIONS.md#d-298)) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La condizione era: «nessuna casa sta sotto 1 su 4, e la cosa si e'
+> verificata su un numero e non a occhio».** Il numero c'e', ed e' in un
+> documento che sta nei cancelli — [MISURA_VITE.md](MISURA_VITE.md), dodici
+> saghe da otto anni sui due tavoli, 168 salti d'era:
+>
+> | casa | mutazioni | ogni quanti salti |
+> |---|---|---|
+> | ENT_CENERE | 36 | 1 ogni **4,7** |
+> | ENT_NAHR | 33 | 1 ogni 5,1 |
+> | ENT_VETRO | 31 | 1 ogni 5,4 |
+> | ENT_ALDRIC · ENT_LIBERE | 30 | 1 ogni 5,6 |
+> | ENT_LYRA | 24 | 1 ogni 7,0 |
+> | ENT_SALE | 21 | 1 ogni 8,0 |
+> | ENT_VAERAX | 20 | 1 ogni 8,4 |
+>
+> **La peggiore e' a 4,7 — sopra il limite**, e la sorveglianza continua da
+> sola: se una scende sotto, il cancello delle vite va rosso.
 
 La cura di ISSUES 81 ha un rovescio da sorvegliare. Se una porta fatta di sole
 memorie non si apre **mai**, una porta con una gamba impossibile si apre
@@ -4148,7 +4330,9 @@ un numero e non a occhio.
 
 ### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
 
-`contenuto` · `da-decidere` · **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
+`contenuto` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
+e' una potatura di componenti, e si fa quando la scatola si stampa ·
+**aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
 
 Misurato con `cli/run_punchboard_probe.gd`, 40 anni: dei **34 tipi** di
 segnalino disegnati per la mappa, **17 non escono mai o escono meno di un anno
@@ -4475,9 +4659,29 @@ almeno un Destino vuole.
 
 ---
 
-### 77. Quindici segni muti senza una ragione scritta
+### 77. ✅ Quindici segni muti senza una ragione scritta — CHIUSA in 0.1.363: zero
 
-`contenuto` · `debito` · **aperta in 0.1.249** ([le misure](MISURA_MATRICE.md))
+`contenuto` · `debito` · **aperta in 0.1.249** ([le misure](MISURA_MATRICE.md)) ·
+**chiusa in 0.1.363** ([D-395](DECISIONS.md#d-395))
+
+> **La condizione era: «ognuno dei quindici o trova un lettore, o porta la sua
+> ragione scritta come gli altri 49».** Erano quindici, poi undici. Adesso
+> [MISURA_MATRICE.md](MISURA_MATRICE.md) dice **zero**: gli orfani dichiarati
+> sono 60 su 60.
+>
+> Le undici ragioni non sono un timbro: sono **una frase vera per ognuno**, e
+> quasi tutte dicono la stessa cosa — **quei segni sono bersagli, non premi**.
+> `capitale`, `commercio`, `selvaggio`, `cristallo` sono stampati sulla tessera e
+> servono alle carte per dire **dove**; `tradimento detto`, `ci si e' parlato`,
+> `la richiesta e' stata ascoltata` sono memorie che una faccia interroga per
+> cambiare quello che fa; `requisito` e' un ostacolo che si trova.
+>
+> Due portano invece una ragione **con un difetto dentro**, e sta scritto li':
+> `structure:castle` e `structure:library` sono **gradi alti** di una scala che
+> si insegue col primo grado (arrivano 92 e 14 volte su cento partite), e
+> `structure:palace` **non arriva mai** — che e' un difetto vero, ma e' quello
+> delle Pietre che non si alzano ([ISSUES 111](#111)), non un segno senza
+> ragione.
 
 Su 150 segni scritti, **67 sono orfani** — nessuno li vuole, nessuna Tensione li
 tocca, nessuna regola li usa, l'eredità non li porta avanti. **49 portano già la
@@ -4566,7 +4770,7 @@ schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
 
 ---
 
-### 72. Il cuore del Consiglio: le due liste sulla carta Tensione
+### 72. ✅ Il cuore del Consiglio: le due liste sulla carta Tensione
 
 `regole` · `contenuto` · **aperta in 0.1.240**
 ([D-278](DECISIONS.md#d-278)) · **Fase A chiusa in 0.1.240** · **chiusa in 0.1.308**
@@ -4633,7 +4837,7 @@ stampato niente che il motore non esegua.
 
 ---
 
-### 71. La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
+### 71. ✅ La controproposta del RIVENDICARE non esiste ancora (PZ-5, Fase B)
 
 `regole` · `motore` · **aperta in 0.1.229** ([D-267](DECISIONS.md#d-267)) ·
 **chiusa in 0.1.230** ([D-268](DECISIONS.md#d-268))
@@ -4660,6 +4864,24 @@ significato delle Azioni già fatte.
 ### 70. Il dizionario dei segni esiste, e due voci parlano ancora per conto loro
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
+
+> **Avanzamento in 0.1.367** ([D-399](DECISIONS.md#d-399)): **il punto 2 e'
+> chiuso.** `MUTI_NOTI` non tiene piu' le ragioni — tiene solo gli id e il
+> numero che il registro misura da se'. **La ragione la legge dal dizionario**,
+> dalla `note` della voce, e una guardia nuova va rossa se un muto e' dichiarato
+> qui e il dizionario non dice perche'. Era una seconda copia di undici ragioni,
+> cioe' due posti da aggiornare e uno destinato a invecchiare: la stessa forma
+> di D-338, D-398 e ISSUES 105.
+>
+> **E il punto 1 e' diagnosticato, e non e' quello che sembrava.** Delle 118
+> parole di `sign_labels.gd` che sono segni, **37 non combaciano col dizionario**
+> — ma quasi tutte perche' l'app dice *«contesa, razionata, requisita»* mentre il
+> gettone stampa *«conteso, razionato, requisito»*: e' **l'accordo con la
+> Regione**, che e' femminile, non una divergenza. Generare `sign_labels.gd`
+> dal dizionario cosi' com'e' romperebbe l'italiano dell'app. Serve che il
+> dizionario dichiari **anche la forma che accorda**, e allora la generazione e'
+> meccanica. Riga, non voce nuova.
+
 
 Da 0.1.221 i segni sono una collezione dichiarata (`godot/data/tags`, 171 voci:
 nome stampato, categoria, ambito, chi scrive, chi legge) e
@@ -4700,7 +4922,9 @@ dire una cosa sola sul tavolo.
 
 ### 69. La Risonanza è scritta e non succede
 
-`contenuto` · `direzione` · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
+`contenuto` · `direzione` · `da-decidere` · **rossa R9 dalla 0.1.361**
+([la lista](LE_TUE_DECISIONI.md)): resta il **formato** della carta, ed e' una
+scelta d'autore che viene prima dell'arte · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
 **cure in 0.1.219** ([D-257](DECISIONS.md#d-257)), **0.1.220**
 ([D-258](DECISIONS.md#d-258)) e **0.1.222** ([D-260](DECISIONS.md#d-260)) ·
 **aperta**
@@ -4821,11 +5045,32 @@ Risonanza, e il Tema che ne esce è quello scritto sulla carta.
 
 ---
 
-### 68. Otto turni su dieci non succede niente — **quattro su dieci in 0.1.247**
+### 68. ✅ Otto turni su dieci non succede niente — **quattro e mezzo su dieci, e la voce si chiude**
 
 `bilanciamento` · **misurata in 0.1.216** ([D-254](DECISIONS.md#d-254)) ·
 **prima cura in 0.1.217** ([D-255](DECISIONS.md#d-255)) · **cura vera in
-0.1.247** ([D-285](DECISIONS.md#d-285)) · **aperta, ma di un altro ordine**
+0.1.247** ([D-285](DECISIONS.md#d-285)) · **chiusa in 0.1.358**
+([D-391](DECISIONS.md#d-391))
+
+**Chiusa sulla condizione che si era scritta da sola**: *«i «passa» scendono
+sotto la metà dei turni, e il playtest resta 0/8»*. Cento anni, seme 7000:
+**47,6%** a tavolo misto (3.428 su 7.200) e **47,9%** a tavolo uniforme, con
+**0 seggi bloccati su 8** su tutti e due i tavoli.
+
+**Ed era già vera da cento versioni.** L'ultima riga qui sotto diceva *«Oggi
+sono all'82,8%»* ed era ferma a 0.1.217; la strada scritta — *82,1% → 42,1% →
+oggi* — confrontava misure prese su **anni diversi**, perché il 42,1% di D-285 è
+di `CHR_01`, cancellato in D-317/D-318 con gli altri anni d'autore. Rimisurata
+sull'anno che esiste, la curva è piatta: **47,6% in 0.1.260, 47,3% in 0.1.290,
+46,7% prima di D-385, 47,6% oggi**. La voce non è rimasta aperta perché il
+difetto tornava: è rimasta aperta perché **nessuno ha più riletto la sua
+condizione**.
+
+**Quello che resta ha un'altra voce.** L'**84,0%** dei «passa» è ancora
+*«nessuna mossa gli serviva»* — 2.878 turni, il **40,0% di tutti i turni** — e
+chi passa ha 22,1 mosse legali e 4,4 carte in mano. Non è il mazzo (10,3%: pesca
+sbagliata) e non è la mappa (5,3%: bersaglio sbagliato): è la **ragione**, e la
+ragione è una decisione del committente in [ISSUES 123](#123).
 
 **Aggiornamento 0.1.247.** La causa non era il mazzo né le regole: il cervello
 aveva le mosse e non aveva fame. Il ripiego «fai quello che la mano permette»
@@ -4919,6 +5164,10 @@ dove comincia la prossima: **il mazzo**. Il verbo muto è sempre INFLUENZARE.
 **Fatto quando** i «passa» scendono sotto la metà dei turni, e il playtest resta
 0/8. Oggi sono all'82,8%: la voce resta **aperta**.
 
+*(Questa riga è quella che nessuno ha più riletto: da 0.1.247 la condizione era
+soddisfatta, e il numero qui sopra era vecchio di trenta versioni. Lasciata
+scritta perché si veda com'è successo.)*
+
 ---
 
 ### 67. La saga si ferma alla seconda partita
@@ -4953,9 +5202,18 @@ nell'apertura dell'anno; se non compare, è prima.
 
 ---
 
-### 66. La seconda saga non si raggiunge più
+### 66. ✅ La seconda saga non si raggiunge più — CHIUSA in 0.1.362: e' stata tolta
 
-`contenuto` · `da-decidere` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245))
+`contenuto` · **aperta in 0.1.212** ([D-245](DECISIONS.md#d-245)) ·
+**chiusa in 0.1.362** ([D-394](DECISIONS.md#d-394))
+
+> **La condizione era: «o CHR_03 si raggiunge, o e' stato tolto perche' non
+> serviva». E' stato tolto.** Gli anni d'autore sono stati cancellati in
+> [D-317](DECISIONS.md#d-317)/[D-318](DECISIONS.md#d-318): la scatola contiene
+> **un anno solo, CHR_00**, e chiedere al motore un `CHR_03` risponde
+> `Chronicle sconosciuta`. La voce e' rimasta aperta — e per un pezzo perfino
+> **rossa, in attesa di una parola del committente** — quarantaquattro versioni
+> dopo che la sua condizione era soddisfatta.
 
 Il menu non chiede più da dove cominciare: si apre l'app e si gioca il primo
 anno. Il prezzo è che **CHR_03 — anno 1640, le altre quattro case — non si apre
@@ -5565,7 +5823,24 @@ Il ciclo che il committente descrive — **presenza → carte → azioni → pi�
 più carte** — esiste nel dato ma è tagliato. `run_contest_probe` lo misura per la
 prima volta, su 100 partite a tavolo misto.
 
-### 1. Spostarsi costa e non rende
+### 1. ✅ Spostarsi costa e non rende — CHIUSA in 0.1.364: la quarta pedina paga, da D-220
+
+> **La voce diceva: «oltre tre pedine, una presenza in piu' vale zero», e «chi
+> si espande a cinque finisce con meno carte di chi resta a quattro».** Era vero,
+> e [D-220](DECISIONS.md#d-220) l'ha misurato meglio di questa voce: con quattro
+> pedine si pescava **3,30** carte e con cinque **3,12** — non piatto,
+> **invertito**.
+>
+> La cura e' la stessa della [3](#3): `hand_refill.per_control`. La quarta pedina
+> non paga di piu' per il tetto della pesca — quello resta a 6 — ma paga se
+> **prende una Regione**, perche' il possesso da' una carta **e alza il tetto
+> sulla mano**. Con quattro pedine si pesca **3,52** invece di 3,30, e la curva
+> non e' piu' invertita.
+>
+> Oggi il segnale sulla mappa e' molto piu' forte di allora: il padrone passa di
+> mano **3,87** volte l'anno contro 2,32.
+>
+> **Il testo originale:**
 
 Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4.
 
@@ -5580,7 +5855,26 @@ Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4
 [D-211](DECISIONS.md#d-211) non paga niente. Chi si espande a cinque finisce con
 **meno** carte di chi resta a quattro, perché ha speso i MUOVERE per arrivarci.
 
-### 2. La maggioranza non è una lotta
+### 2. ✅ La maggioranza non è una lotta — CHIUSA in 0.1.364: 3,57 Regioni contese su 6
+
+> **La condizione che questa voce e la [4](#4) si erano scritte** — *«le Regioni
+> contese sono piu' di tre su sei a fine anno, e il padrone cambia mano piu' di
+> quanto non cambi oggi»* — **e' soddisfatta, e con margine.** Cento semi,
+> `cli/run_contest_probe.gd`:
+>
+> | | allora | **oggi** |
+> |---|---|---|
+> | Regioni con dentro piu' di una casa, a fine anno | 2,60 su 6 | **3,57 su 6** |
+> | il padrone cambia mano | 2,32 volte l'anno | **3,87** |
+> | Regioni con un padrone a fine anno | 4,65 su 6 | **5,20** |
+>
+> Le Regioni con una casa sola dentro sono passate da tre e mezzo a **due e
+> mezzo**: la maggioranza e' una lotta piu' spesso che una proprieta'. E non e'
+> merito di una decisione sola — `per_control` ([D-220](DECISIONS.md#d-220)), il
+> padrone che si conta invece di scriversi ([D-158](DECISIONS.md#d-158)) e i
+> varchi ([D-393](DECISIONS.md#d-393)) hanno spinto tutti nello stesso verso.
+>
+> **Il testo originale:**
 
 | su 6 Regioni | |
 |---|---|
@@ -5591,7 +5885,25 @@ Il rifornimento è `presenze × 2`, con un **tetto a 6**. Le pedine arrivano a 4
 **Tre Regioni e mezzo su sei hanno una casa sola dentro**: non sono maggioranze,
 sono proprietà. E il tavolo non si stringe in nove round.
 
-### 3. Tenere non paga più che stare
+### 3. ✅ Tenere non paga più che stare — CHIUSA in 0.1.364: `per_control` c'e' da D-220
+
+> **Curata in 0.1.189 da [D-220](DECISIONS.md#d-220), e mai chiusa.**
+> `hand_refill` di CHR_00 oggi porta **`per_control: 1`**: tenere una Regione da'
+> una carta in piu' **e alza di uno il tetto sulla mano** — che e' la meta' che
+> conta, perche' senza quello chiunque converge alla stessa mano piena e il
+> possesso non si vedrebbe. Il codice sta in `_refill_hands`, e il commento cita
+> questa voce parola per parola.
+>
+> **E il numero si e' mosso ancora dopo.** D-220 dichiarava un effetto piccolo;
+> oggi, cento semi:
+>
+> | | ISSUES 3 | D-220 | **oggi** |
+> |---|---|---|---|
+> | il padrone passa di mano | 2,32 | 2,42 | **3,87** |
+> | Regioni contese a fine anno | 2,60 su 6 | 2,66 | **3,57** |
+> | Regioni con un padrone | 4,65 su 6 | 4,73 | **5,20** |
+>
+> **Il testo originale:**
 
 Una struttura pesa nel conteggio del controllo e **basta**. `hand_refill` conta le
 **presenze**, non il possesso: il controllo di una Regione non dà carte, non dà
@@ -5904,10 +6216,30 @@ non ne emette nessuno (D-191). Continua in [ISSUES 126](#126).
 
 ---
 
-### 101. `structure:road` — una strada che nessuna Pietra costruisce
+### 101. ✅ `structure:road` — CHIUSA in 0.1.363: non ha piu' lettori
 
 `dati` · `grammatica-fisica` · `piccola` · aperta in 0.1.297
-([D-334](DECISIONS.md#d-334))
+([D-334](DECISIONS.md#d-334)) · **chiusa in 0.1.363**
+([D-395](DECISIONS.md#d-395))
+
+> **La condizione era: «`structure:road` ha una penna, oppure non ha piu'
+> lettori».** Non ce l'ha: nel catalogo non c'e' una Pietra che si chiami strada,
+> e dargliene una voleva dire disegnare una Pietra nuova — cioe' aprire lavoro,
+> che e' quello che questo giro non fa.
+>
+> Quindi ha perso i lettori, tutti e tre, e la voce e' uscita dal dizionario
+> (174 → 173 segni):
+>
+> | chi lo leggeva | cosa e' successo |
+> |---|---|
+> | `AST_WEALTH_TOLL`, fra cinque bersagli | tolto: la carta ne ha ancora quattro, e il testo non dice piu' «o #strada» |
+> | il Tema **Vie**, fra nove segni | tolto: ne ha ancora otto |
+> | il profilo delle **Custodi della Cenere**, che la volevano | **spostato su `structure:tollgate`** — *«una sbarra sulla via che esce dalla miniera: il carico passa di li', e chi tiene la sbarra tiene il mestiere»* |
+>
+> L'ultima riga e' quella che conta: la Cenere voleva una cosa che il mondo non
+> sa costruire — una **porta murata**. Adesso vuole una cosa che il mondo posa 39
+> volte in cento partite, e che **anche il Banco del Sale vuole**: una casa in
+> piu' con cui litigare.
 
 Tolta la mano invisibile del motore, trentotto segni su trentotto hanno trovato
 il pezzo di cartone che li posa. **Trentasette.** Il trentottesimo e'
@@ -6045,7 +6377,7 @@ perche' non ce l'ha, e il conto dei segni di Pietra combacia con le Pietre alzat
 
 ---
 
-### 103. `REVISIONE_TESTI` non contiene le 841 caselle di costo e beneficio
+### 103. ✅ `REVISIONE_TESTI` non contiene le 841 caselle di costo e beneficio
 
 `strumenti` · `misura` · aperta in 0.1.305 · **chiusa in 0.1.306**
 ([D-341](DECISIONS.md#d-341))
@@ -6095,9 +6427,38 @@ lo tiene una prova che pianta un blocco nuovo e la vede cadere.
 
 ---
 
-### 104. Tre proposte su quarantanove fanno la stessa identica cosa
+### 104. ✅ Tre proposte su quarantanove fanno la stessa identica cosa — CHIUSA in 0.1.365
 
 `contenuto` · `consigli` · aperta in 0.1.306
+
+> **La condizione era: «due proposte della stessa scheda non hanno mai la stessa
+> catena di effetti, e lo tiene una prova che pianta un doppione».** Tutt'e due
+> le meta' sono fatte.
+>
+> **Le tre gemelle sono diventate tre strade diverse**, e la differenza non e'
+> una parola: e' un Effetto in piu' che il mondo vede. E ognuna e' andata a
+> prendersi una **Conseguenza orfana** — una di quelle che nessuna proposta
+> elencava e che quindi non uscivano mai:
+>
+> | Consiglio | la gemella | cosa le e' stato dato | perche' |
+> |---|---|---|---|
+> | La Carestia | `P_LAND_TO_WORKERS` | `CNS_COST_EMPTIED` — *«Chi puo', se ne va»* | ridistribuire la terra caccia chi la teneva: una presenza se ne va davvero |
+> | L'Acqua | `P_WATER_COMMON` | `CNS_COST_DEBT` — *«Il Debito Contratto»* | dichiarare l'acqua di tutti vuol dire che qualcun altro paga il canale |
+> | La Carta | `P_DRAW_LOTS` | `CNS_FAILURE_CONTESTED` — *«Resta Conteso»* | tirare a sorte scrive la regola e non mette d'accordo nessuno |
+>
+> **E le Conseguenze orfane passano da quattro a una** (resta
+> `CNS_VALLEY_DRAINED`), e quelle che non escono mai da 12 a 11: un pezzo della
+> [56](#56) chiuso senza toccarla.
+>
+> **La guardia c'e', ed e' la 43esima di `validate_physical.py`**: dentro un
+> Consiglio, due proposte non possono applicare la stessa catena di Effetti. La
+> regola esisteva per le due liste della carta Tensione — *«due pedine che fanno
+> la stessa cosa non sono una scelta»* — e non era mai stata portata sui
+> Consigli. Il difetto piantato **si fabbrica** invece di cercarne uno gia'
+> rotto: copia la catena della prima proposta sulla seconda.
+>
+> **Cancello: 0 seggi bloccati su 8** sui due tavoli, dopo il cambio.
+
 
 Misurate le 49 proposte dei 12 Consigli contro la **catena di effetti** che
 applicano davvero — non contro la frase: **tre ripetono una proposta gia'
@@ -6127,9 +6488,46 @@ di effetti, e lo tiene una prova che pianta un doppione.
 
 ---
 
-### 105. Le sezioni di `REVISIONE_TESTI` si aggiungono a mano
+### 105. ✅ Le sezioni di `REVISIONE_TESTI` si aggiungono a mano — CHIUSA in 0.1.366
 
 `strumenti` · `misura` · aperta in 0.1.306
+
+> **La condizione era: «una prova parte dai dati e chiede che ogni testo
+> compaia nel documento; e la prova pianta un blocco nuovo e la vede cadere».**
+> Tutt'e due le meta' sono fatte, e il controllo va **dall'altra parte**.
+>
+> Adesso `build_review.py` guarda **ogni stringa dei dati che somigli a una
+> frase** — uno spazio e almeno quattordici lettere, cosi' gli id e i segni
+> restano fuori da soli — e pretende che o stia nel documento, o che la sua
+> strada sia dichiarata con la ragione scritta. **Un blocco nuovo che nessuno
+> dichiara fa fallire il cancello**, che e' il verso giusto: si e' costretti a
+> decidere se si legge o no.
+>
+> **Girata la prima volta ne mancavano 1.730 in 58 strade.** Il documento
+> passa da **3.111 a 4.136 testi**, e queste sono le sezioni che non c'erano:
+>
+> | cosa mancava | quante |
+> |---|---|
+> | la riga d'apertura di ogni Tensione, letta ad alta voce | 60 |
+> | cosa scalda e cosa raffredda una questione | 239 |
+> | le caselle **SI ACCENDE QUANDO** | 66 |
+> | il nome stampato di ogni segno, con le sue forme divergenti | 109 |
+> | le clausole annidate dei Destini e degli Obiettivi | 88 |
+> | la faccia fisica del Destino — le tre righe che il tarocco stampa | 69 |
+> | **PRENDI**, su tutte e 48 le carte Asset | 48 |
+> | le Pietre: nome, descrizione, i gradi e la rovina | 52 |
+> | le schede del Consiglio che il template porta ancora | ~200 |
+> | i Temi, le regole dei segni, il segreto di una Regione | 63 |
+>
+> **E 746 stringhe sono dichiarate come cose che nessuno legge**, ognuna con la
+> sua riga: le note d'autore agli implementatori, la matrice del disegno, il
+> prompt di chi disegna un gettone, e la grammatica con cui il motore compone i
+> nomi. Nessuna terza via.
+>
+> **Il buco che resta, dichiarato**: il controllo guarda i diciassette tipi di
+> documento che conosce. Se ne arriva uno nuovo e nessuno lo aggiunge a
+> `DOCUMENTI`, quel documento non e' guardato.
+
 
 `build_review.py` compone il documento **sezione per sezione, scritte a mano**.
 Ha funzionato finche' i blocchi di testo erano quelli del 2024; poi sono
@@ -6198,7 +6596,7 @@ essere quella che nessuno compra.
 
 ---
 
-### 107. Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
+### 107. ✅ Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
 
 `regole` · `direzione` · aperta in 0.1.310
 
@@ -6583,7 +6981,7 @@ partite, o non e' piu' nel catalogo.
 
 ---
 
-### 112. Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
+### 112. ✅ Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
 
 `dati` · `piccola` · aperta in 0.1.320 ([D-356](DECISIONS.md#d-356))
 
@@ -6629,7 +7027,7 @@ catene delle ere.
 
 ---
 
-### 113. Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328 — CHIUSA in 0.1.328
+### 113. ✅ Quante carte fanno, nel motore, cose che la loro faccia non dice — CHIUSA in 0.1.328
 
 `regole` · `grammatica-fisica` · `da-misurare` · aperta in 0.1.322 ([D-358](DECISIONS.md#d-358))
 
@@ -6811,7 +7209,7 @@ per un mazzo che potrebbe non esistere.
 
 ---
 
-### 115. Una chiave sbagliata nel payload di un Effetto non la vede nessuno — CHIUSA in 0.1.327
+### 115. ✅ Una chiave sbagliata nel payload di un Effetto non la vede nessuno — CHIUSA in 0.1.327
 
 `cancelli` · `dati` · aperta in 0.1.325 ([D-359](DECISIONS.md#d-359))
 
@@ -7472,6 +7870,14 @@ restano i tre che rendono uguale o meglio da fermi.
   Consiglio contestato cade più spesso, il tavolo di pietra smette di essere
   premiato.
 
+**Quanto costa, adesso che si sa.** Chiudendo [ISSUES 68](#68) in 0.1.358
+([D-391](DECISIONS.md#d-391)) il residuo è finito qui: l'**84,0%** dei turni
+«passa» — il **40,0% di tutti i turni**, 2.878 su 7.200 — è *«nessuna mossa gli
+serviva»*, e chi passa ha **22,1 mosse legali e 4,4 carte in mano**. Non gli
+manca cosa fare: gli manca il motivo. **Quaranta turni su cento sono il prezzo
+di questa decisione non presa**, ed è il numero più grosso che una scelta del
+committente può muovere oggi.
+
 **Fatto quando** il committente sceglie, o quando 119 è chiusa e questa misura
 si rifà con lei.
 
@@ -7569,7 +7975,9 @@ benefici per Consiglio muoversi nella direzione scelta.
 
 ### 126. Si prenota 285 volte e si spende 12: la prima metà del RIVENDICARE
 
-`regole` · `da-decidere` · aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
+`regole` · **gialla G6 dalla 0.1.361** ([la lista](LE_TUE_DECISIONI.md)): la
+regola l'hai gia' dettata, quello che resta e' taratura del cervello ed e' mia ·
+aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
 
 Chiudendo [ISSUES 53](#53) è uscito un numero che nessuno aveva mai guardato
 dalla parte giusta.
@@ -7605,3 +8013,45 @@ per un diritto che poi non gli serviva.
 
 **Fatto quando** le prenotazioni mai spese scendono sotto un terzo, oppure il
 committente decide che la prenotazione esce dal gioco.
+
+---
+
+### 127. La tessera si gira, e l'arte si gira con lei
+
+`arte` · `da-decidere` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390)) ·
+**la scelta è diventata più facile in 0.1.360** ([D-393](DECISIONS.md#d-393))
+
+La regola dei varchi ([D-390](DECISIONS.md#d-390)) si posa **girando la
+tessera**: si prova il quarto di giro finché un varco combacia con quello della
+tessera accanto. È la cosa che rende la promessa — *«nessuna tessera isolata»* —
+vera per costruzione: **0 pose non connesse su 151.200**, enumerate.
+
+> **Aggiornamento 0.1.360.** Allargati i varchi a trentotto lati su quaranta
+> (D-393), la **strada 2 costa quasi niente**: nove tessere su dieci sono croci
+> e si disegnano con la strada che tocca tutti e quattro i bordi, senza nessun
+> gettone sopra. Il gettone «passo franato» servirebbe **su una tessera sola**,
+> l'Isola Muta, e su due lati. Se scegli la 2, l'arte non gira mai e il costo è
+> un segnalino che si posa una volta a partita, quando l'Isola esce.
+
+Ma una tessera girata di novanta gradi ha **l'illustrazione girata**. Per un
+dipinto dall'alto è normale — è quello che fa mezzo scaffale di giochi di
+tessere — e il prompt d'arte dice già *«Readable terrain silhouette from above»*
+e *«no compass rose»*, cioè è disegnata apposta per non avere un sopra. Ma è una
+scelta d'autore, e non è mia.
+
+**Le tre strade:**
+
+1. **Va bene così.** La tessera si gira, l'arte è pensata per reggerlo, e la
+   posa resta una regola che una persona esegue in dieci secondi.
+2. **Quattro varchi disegnati, alcuni chiusi da un segnalino.** Ogni tessera si
+   illustra con la strada che arriva a tutti e quattro i bordi, e i lati chiusi
+   si coprono con un gettone «passo franato» quando la tessera entra in gioco.
+   L'arte non gira mai. Costo: un tipo di segnalino in più, e una posa in più
+   da fare a mano.
+3. **Niente rotazione.** La tessera si posa dritta. Costo misurato: senza il
+   giro **la posa non può garantire la connessione** — due corridoi N/S nella
+   stessa riga non si toccheranno mai — e qualche pesca resterebbe con meno di
+   sei tessere sul tavolo.
+
+**Fatto quando** il committente sceglie, e — se non è la (1) — la misura delle
+200 mappe si rifà con la regola nuova.

@@ -18,7 +18,8 @@
       "read_by": [
         "destiny_physical",
         "entity_strategic_profile"
-      ]
+      ],
+      "note": "memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399)"
     },
     {
       "id": "amnesty_granted",
@@ -119,7 +120,8 @@
       "read_by": [
         "asset_physical",
         "echo_card"
-      ]
+      ],
+      "note": "memoria del mondo che le facce fisiche usano come **bersaglio**, non come premio: una carta dice «se il tradimento e' stato detto» e cambia quello che fa. Nessun Destino la insegue perche' non e' un traguardo — e' una condizione che si trova sul tavolo (D-394)."
     },
     {
       "id": "burden_shared",
@@ -154,7 +156,8 @@
         "destiny_physical",
         "tension",
         "echo_card"
-      ]
+      ],
+      "note": "funzione stampata sulla tessera: e' uno dei segni con cui le carte dicono **dove** si agisce, e il legame che le frasi d'autore risolvono in un luogo. Non si conquista e non si costruisce: si guarda, come si guarda un simbolo su una casella (D-394)."
     },
     {
       "id": "charter_for_all",
@@ -502,7 +505,8 @@
       "read_by": [
         "asset_physical",
         "tension"
-      ]
+      ],
+      "note": "condizione posata da una Conseguenza e letta dalle facce come **bersaglio**: e' un ostacolo che si trova, non un traguardo che si insegue. Nessuna casa la desidera, e va bene cosi' (D-394)."
     },
     {
       "id": "condition:starving",
@@ -687,7 +691,8 @@
         "destiny_physical",
         "tension",
         "consequence"
-      ]
+      ],
+      "note": "luogo stampato sulla tessera: la fonte del cristallo e' un **posto**, e serve da bersaglio a carte, Tensioni e Conseguenze. Non lo posa nessuno perche' c'e' gia' quando la tessera esce (D-394)."
     },
     {
       "id": "debt_called",
@@ -1954,7 +1959,8 @@
       ],
       "read_by": [
         "asset_physical"
-      ]
+      ],
+      "note": "memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**: dice che al tavolo ci si e' parlati, e cambia quello che una carta puo' fare dopo. Non e' un punto (D-394)."
     },
     {
       "id": "petition_heard",
@@ -1969,7 +1975,8 @@
       ],
       "read_by": [
         "asset_physical"
-      ]
+      ],
+      "note": "memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**, come `parley_held`: e' una cosa successa, non una cosa da ottenere (D-394)."
     },
     {
       "id": "place:collapsed_pass",
@@ -2752,7 +2759,8 @@
       ],
       "read_by": [
         "asset_physical"
-      ]
+      ],
+      "note": "secondo grado della Torre (STR_KEEP). Arriva sul tavolo — 92 volte in cento partite, e a fine partita ci sta in 65 — e le facce delle carte lo nominano come bersaglio. Che nessun Destino lo desideri e' una scelta: la scala della Pietra si insegue col primo grado, non col secondo (D-394)."
     },
     {
       "id": "structure:granary",
@@ -2789,7 +2797,8 @@
       ],
       "read_by": [
         "asset_physical"
-      ]
+      ],
+      "note": "secondo grado dell'Archivio (STR_ARCHIVE), la Grande Biblioteca. Arriva 14 volte in cento partite e le facce la nominano come bersaglio. Come il castello: e' il grado alto di una scala, non un traguardo a se' (D-394)."
     },
     {
       "id": "structure:palace",
@@ -2804,22 +2813,8 @@
       ],
       "read_by": [
         "asset_physical"
-      ]
-    },
-    {
-      "id": "structure:road",
-      "title": "strada",
-      "category": "FUNCTION",
-      "table_place": "TILE_SLOT",
-      "scope": [
-        "REGION"
       ],
-      "written_by": [],
-      "read_by": [
-        "asset_physical",
-        "entity_strategic_profile"
-      ],
-      "note": "ISSUES 101: nessuna Pietra si chiama «strada», quindi nessun pezzo posa questo segno — un Tema lo elenca, una carta e un profilo lo guardano, e non uscira' mai"
+      "note": "terzo grado della Torre (STR_KEEP). **Oggi non arriva mai**, e quello e' un difetto vero — ma e' il difetto delle Pietre che non si alzano ([ISSUES 111](../../docs/ISSUES.md#111)), non un segno senza ragione: la ragione c'e', ed e' la cima della scala (D-394)."
     },
     {
       "id": "structure:sealed",
@@ -3021,7 +3016,8 @@
         "tension",
         "echo_card",
         "consequence"
-      ]
+      ],
+      "note": "funzione stampata sulla tessera: il commercio e' uno dei segni con cui le carte dicono **dove**, ed e' letto da carte, Destini, Tensioni, Echi e Conseguenze. C'e' gia' quando la tessera esce (D-394)."
     },
     {
       "id": "twice_uprooted",
@@ -3179,7 +3175,8 @@
         "destiny_physical",
         "tension",
         "consequence"
-      ]
+      ],
+      "note": "luogo stampato sulla tessera: il selvaggio e' un **posto**, bersaglio di carte, Destini, Tensioni e Conseguenze. Non lo posa nessuno perche' e' la natura della terra (D-394)."
     }
   ]
 }

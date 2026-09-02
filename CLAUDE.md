@@ -31,6 +31,9 @@ E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
    `godot --headless --path godot --script res://cli/run_playtest.gd -- --runs=100 --seed=7000`
 2. **Quello che non è misurato va dichiarato.** *Un numero peggiorato e scritto vale
    più di un numero nascosto.* Se una modifica costa qualcosa, il costo si scrive.
+   E **un numero si scrive col tavolo su cui è misurato**: due misure prese su
+   anni diversi non si mettono in fila come se fossero una strada. È costato una
+   voce tenuta aperta cento versioni ([D-391](docs/DECISIONS.md#d-391)).
 3. **I verbali stanno in `docs/DECISIONS.md`, `docs/ISSUES.md` e `CHANGELOG.md`, nello
    stesso commit del codice.** Una decisione senza verbale non è stata presa.
 4. **Dei comandi dei cancelli si guarda il codice di uscita, non l'output.**
@@ -54,17 +57,21 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `python3 tools/dead_code.py` | codice che nessuno chiama |
 | `python3 tools/token_catalogue.py --check` | `docs/CATALOGO_PEDINE.md`: **una scheda per segnalino** — cos'e', cosa rappresenta, il prompt — e che nessun segnalino resti senza |
 | `python3 tools/components_survey.py --check` | `docs/COMPONENTI.md`: **quanti pezzi ha la scatola** — carte, tessere, segnalini, arte — e cosa manca perche' l'app dica tutto quello che dice il tavolo |
-| `python3 tools/build_review.py --check` | `docs/REVISIONE_TESTI.md`: **ogni testo che un giocatore puo' leggere**, in ordine di lettura e col suo id, cosi' una correzione si segna con una riga |
+| `python3 tools/build_review.py --check` | `docs/REVISIONE_TESTI.md`: **ogni testo che un giocatore puo' leggere**, in ordine di lettura e col suo id — e che non ne manchi nessuno: ogni frase dei dati o e' nel documento, o e' dichiarata come cosa che nessuno legge |
+| `python3 tools/build_review.py --self-test` | che la guardia dei testi veda un blocco nuovo non dichiarato |
 | `python3 tools/matrix_survey.py --check` | `docs/MISURA_MATRICE.md`: **le tre misure che vengono prima della matrice** — segni orfani, obiettivi che non si possono puntare col dito, Tensioni che non incontrano nessun Destino |
 | `bash tools/run_council_catalogue.sh --check` | `docs/CATALOGO_CONSIGLI.md` |
 | `bash tools/run_card_catalogue.sh --check` | `docs/CATALOGO_CARTE.md` |
 | `bash tools/run_lives_survey.sh --check` | `docs/MISURA_VITE.md`: **quante delle vite scritte delle case si siedono davvero al tavolo**, in dodici saghe sui due tavoli (due minuti) |
+| `bash tools/run_tiles_probe.sh --check` | `docs/MISURA_TESSERE.md`: **tutte le pose possibili della mappa**, enumerate — 210 pescate per 720 ordini — e quante lasciano una tessera isolata (quattro minuti) |
 | `bash tools/run_card_skeleton.sh --check` | `docs/SCHELETRO_CARTE.md`: **cosa porta ogni faccia**, ricavato dalle facce vere — i blocchi di ogni mazzo, su quante carte, e una carta vera per mazzo |
 | `bash tools/run_box_survey.sh --check` | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |
 | `bash tools/run_marks_survey.sh --check` | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
 | `bash tools/run_table_survey.sh --check` | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
 | `bash tools/run_page_survey.sh --check` | `docs/MISURA_PAGINA.md`: **cosa la pagina dell'app dice e con quale dito** — i testi che vivono solo nel suggerimento del mouse, i bersagli piu' stretti di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in confronto a un tablet |
 | `bash tools/run_export.sh --check-brief` | `docs/BRIEF_ARTE.md` |
+| `python3 tools/issues_survey.py --check` | **che il conto delle voci sia vero e che nessuna resti senza casa**: una voce chiusa porta il ✅ nel titolo, ogni voce aperta e' nominata da [la lista](docs/LE_TUE_DECISIONI.md), e il foglio si rigenera da li' |
+| `python3 tools/issues_survey.py --self-test` | che le due guardie delle voci mordano |
 | `python3 tools/gates_survey.py --check` | **che questa tabella e la CI siano lo stesso giro**: un cancello promesso e non girato non si lamenta, e uno girato e non promesso manda in rosso chi segue il documento |
 | `python3 tools/gates_survey.py --self-test` | che la guardia dei cancelli morda, nei due versi |
 | `bash tools/run_sims.sh` | che ogni anno arrivi in fondo, e che lo stesso seme dia lo stesso salvataggio |

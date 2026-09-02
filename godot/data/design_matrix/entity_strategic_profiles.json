@@ -224,8 +224,8 @@
           "why": "Che si sappia che sotto c'e' altro. Un giacimento che nessuno ha visto non si difende: si perde."
         },
         {
-          "tag": "structure:road",
-          "why": "Una strada che porta fuori il carico: una miniera senza strada e' un buco, non un mestiere."
+          "tag": "structure:tollgate",
+          "why": "Una sbarra sulla via che esce dalla miniera: il carico passa di li', e chi tiene la sbarra tiene il mestiere."
         }
       ],
       "fears": [

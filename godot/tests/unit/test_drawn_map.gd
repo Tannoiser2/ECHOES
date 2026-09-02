@@ -79,40 +79,153 @@ func test_the_drawn_map_is_connected() -> void:
 		opened.dispose()
 
 
-## **La posa comanda** (D-275, parola del committente): le sei tessere stanno
-## in griglia 3x2 nell'ordine di pesca, e vicino e' chi si tocca di lato o di
-## sopra — niente diagonali, niente lati bloccati, niente grafo scritto. Gli
-## angoli toccano due tessere, i centri delle righe tre.
-func test_the_tiles_lie_in_a_grid_and_touch_decides() -> void:
+## **La posa comanda, e il confine e' un varco** (D-275, riscritta da D-390 su
+## parola del committente: *«se due lati hanno adiacenze in comune lo
+## spostamento e' permesso»*).
+##
+## Le tessere non stanno piu' in griglia nell'ordine di pesca: si posano una
+## alla volta accanto a una gia' posata, **girandole finche' il lato che si
+## tocca porta un varco su tutte e due**. Quindi qui non si prova piu' *dove*
+## finisce ogni tessera — quello lo decide la posa — ma le tre cose che la
+## regola promette:
+##
+## 1. ogni adiacenza e' **un varco vero**: le due tessere si toccano di lato, e
+##    i due lati che combaciano sono aperti tutti e due;
+## 2. **nessun varco e' perso**: due tessere accostate coi lati aperti **sono**
+##    vicine;
+## 3. la diagonale non e' mai un tocco, e il tocco e' simmetrico.
+##
+## La prova ricalcola i varchi **da sola**, da `region.edges` e da
+## `map_rotations`, invece di chiamare l'aiutante del motore: una prova che usa
+## la stessa funzione che sta provando non prova niente.
+const LATI: Array = ["N", "E", "S", "O"]
+
+
+## I varchi di una tessera come stanno sul tavolo, girata di `turn`.
+func _varchi(region_id: String, turn: int) -> Array:
+	var printed: Array = (data().regions[region_id] as Dictionary).get("edges", []) as Array
+	var out: Array = []
+	for side in printed:
+		out.append(str(LATI[(LATI.find(str(side)) + turn) % 4]))
+	return out
+
+
+func test_a_border_is_a_passage_open_on_both_sides() -> void:
 	var opened: RefCounted = _open(7000)
-	var order: Array = (opened.world["regions"] as Dictionary).keys()
 	var posa: Dictionary = opened.world["map_positions"] as Dictionary
-	assert_eq(posa.size(), 6, "ogni tessera ha la sua posizione")
-	for i in range(order.size()):
-		assert_eq(
-			posa[str(order[i])], [i % 3, i / 3],
-			"la tessera %d si posa riga per riga, nell'ordine di pesca" % i
+	var giri: Dictionary = opened.world["map_rotations"] as Dictionary
+	var vicini: Dictionary = opened.world["adjacency"] as Dictionary
+	assert_eq(posa.size(), 6, "le sei tessere pescate sono tutte sul tavolo")
+	assert_eq(giri.size(), 6, "e ognuna sa di quanto e' stata girata")
+	for tile in posa:
+		assert_true(
+			int(giri[str(tile)]) >= 0 and int(giri[str(tile)]) <= 3,
+			"la rotazione e' un quarto di giro: %s" % str(giri[str(tile)])
 		)
-	# Il conto del tocco: angolo in alto a sinistra = 2 vicini (destra, sotto);
-	# centro della prima riga = 3 (i due lati e sotto). E la diagonale non
-	# conta: la prima tessera non confina con la quinta (colonna 1, riga 1).
-	var corner: String = str(order[0])
-	var middle: String = str(order[1])
-	var diagonal: String = str(order[4])
-	assert_eq((opened.world["adjacency"][corner] as Array).size(), 2, "l'angolo tocca due tessere")
-	assert_eq((opened.world["adjacency"][middle] as Array).size(), 3, "il centro della riga ne tocca tre")
-	assert_false(
-		(opened.world["adjacency"][corner] as Array).has(diagonal),
-		"la diagonale non e' un tocco"
-	)
-	# E la simmetria: se A tocca B, B tocca A.
-	for here in opened.world["adjacency"]:
-		for neighbour in (opened.world["adjacency"][here] as Array):
+		assert_true(
+			int((posa[str(tile)] as Array)[0]) >= 0
+			and int((posa[str(tile)] as Array)[1]) >= 0,
+			"e la posizione sta dentro il foglio: %s" % str(posa[str(tile)])
+		)
+	# Due caselle non possono ospitare la stessa tessera.
+	var occupate: Dictionary = {}
+	for tile in posa:
+		var key: String = "%d,%d" % [
+			int((posa[str(tile)] as Array)[0]), int((posa[str(tile)] as Array)[1])
+		]
+		assert_false(occupate.has(key), "una casella, una tessera (%s)" % key)
+		occupate[key] = true
+
+	# **Il caso che deve dare non-zero**: se le adiacenze fossero zero, tutto
+	# quello che segue passerebbe a vuoto.
+	var archi: int = 0
+	for here in vicini:
+		archi += (vicini[here] as Array).size()
+	assert_true(archi > 0, "il tavolo ha almeno un confine")
+
+	var passi: Dictionary = {"N": [0, -1], "E": [1, 0], "S": [0, 1], "O": [-1, 0]}
+	# 1. Ogni adiacenza dichiarata e' un varco vero.
+	for here in vicini:
+		for there in (vicini[here] as Array):
+			var qui: Array = posa[str(here)] as Array
+			var la: Array = posa[str(there)] as Array
+			var dx: int = int(la[0]) - int(qui[0])
+			var dy: int = int(la[1]) - int(qui[1])
+			assert_eq(absi(dx) + absi(dy), 1,
+				"%s e %s si toccano di lato, non in diagonale" % [str(here), str(there)])
+			var lato: String = ""
+			for side in LATI:
+				if int((passi[str(side)] as Array)[0]) == dx \
+						and int((passi[str(side)] as Array)[1]) == dy:
+					lato = str(side)
 			assert_true(
-				(opened.world["adjacency"][str(neighbour)] as Array).has(str(here)),
-				"il tocco e' simmetrico (%s-%s)" % [str(here), str(neighbour)]
+				_varchi(str(here), int(giri[str(here)])).has(lato),
+				"%s ha il varco sul lato che guarda %s" % [str(here), str(there)]
+			)
+			assert_true(
+				_varchi(str(there), int(giri[str(there)])).has(
+					str(LATI[(LATI.find(lato) + 2) % 4])
+				),
+				"e %s ce l'ha dall'altra parte" % str(there)
+			)
+			# 3. E il tocco e' simmetrico.
+			assert_true(
+				(vicini[str(there)] as Array).has(str(here)),
+				"il tocco e' simmetrico (%s-%s)" % [str(here), str(there)]
+			)
+
+	# 2. E nessun varco e' perso: due tessere accostate coi lati aperti sono
+	#    vicine per forza.
+	for here in posa:
+		for there in posa:
+			if str(here) == str(there):
+				continue
+			var qui: Array = posa[str(here)] as Array
+			var la: Array = posa[str(there)] as Array
+			var dx: int = int(la[0]) - int(qui[0])
+			var dy: int = int(la[1]) - int(qui[1])
+			if absi(dx) + absi(dy) != 1:
+				continue
+			var lato: String = ""
+			for side in LATI:
+				if int((passi[str(side)] as Array)[0]) == dx \
+						and int((passi[str(side)] as Array)[1]) == dy:
+					lato = str(side)
+			var aperto: bool = _varchi(str(here), int(giri[str(here)])).has(lato) \
+				and _varchi(str(there), int(giri[str(there)])).has(
+					str(LATI[(LATI.find(lato) + 2) % 4])
+				)
+			assert_eq(
+				(vicini[str(here)] as Array).has(str(there)), aperto,
+				"%s e %s: accostate, e il varco decide" % [str(here), str(there)]
 			)
 	opened.dispose()
+
+
+## **E nessuna tessera resta isolata**, che e' la meta' della regola che il
+## committente ha chiesto per nome. La posa la garantisce per costruzione — una
+## tessera entra solo attaccandosi a una gia' posata attraverso un varco — ma
+## una promessa per costruzione va provata lo stesso, e su piu' di un seme.
+func test_the_map_is_one_piece() -> void:
+	for seed_value in [7000, 7001, 7002, 7003, 7004, 7005, 7006, 7007, 7008, 7009]:
+		var opened: RefCounted = _open(seed_value)
+		var vicini: Dictionary = opened.world["adjacency"] as Dictionary
+		var tessere: Array = (opened.world["regions"] as Dictionary).keys()
+		assert_eq(tessere.size(), 6, "sei tessere sul tavolo, al seme %d" % seed_value)
+		var visti: Dictionary = {}
+		var coda: Array = [str(tessere[0])]
+		while not coda.is_empty():
+			var qui: String = str(coda.pop_back())
+			if visti.has(qui):
+				continue
+			visti[qui] = true
+			for n in (vicini.get(qui, []) as Array):
+				coda.append(str(n))
+		assert_eq(
+			visti.size(), tessere.size(),
+			"dal primo posto si arriva a tutte, al seme %d" % seed_value
+		)
+		opened.dispose()
 
 
 ## **Ogni casa seduta comincia sul tavolo, non nella scatola.** Le pedine di

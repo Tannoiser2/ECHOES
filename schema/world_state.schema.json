@@ -118,7 +118,7 @@
         },
         "map_positions": {
           "type": "object",
-          "description": "La posa delle tessere pescate (D-275, parola del committente): [colonna, riga] nell'ordine di pesca, riga per riga — con sei tessere, 3x2. E' un fatto del tavolo: l'adiacenza si legge da qui (vicino e' chi si tocca di lato o di sopra, niente diagonali, niente lati bloccati), l'app la disegna, e la saga la eredita con l'ordine delle tessere. Assente sugli anni scritti, dove la mappa e' d'autore.",
+          "description": "La posa delle tessere pescate (D-275, riscritta da D-390): [colonna, riga] nell'ordine in cui sono state posate. **L'adiacenza non si legge piu' da qui da sola**: due tessere accostate si toccano solo se il lato che combacia porta un varco su tutte e due (`region.edges`), e la rotazione con cui la tessera e' stata girata sta in `map_rotations`. Assente sugli anni scritti, dove la mappa e' d'autore.",
           "additionalProperties": {
             "type": "array",
             "items": {
@@ -288,6 +288,15 @@
           "type": "integer",
           "minimum": 0,
           "description": "Quanti gettoni sono scesi da quando si e' chiuso l'ultimo Consiglio (D-203). E' il cancello del tavolo: quando arriva a `tension_tokens.table_gate` si apre un Consiglio sul mucchio piu' alto, e il conto riparte. E' un **contatore**, come `confluence_count`, ed e' fra le eccezioni dichiarate all'effect-sourcing: non e' uno stato del mondo che qualcuno possa disfare, e' il verbale di quello che e' gia' successo. Resta a zero, e non lo legge nessuno, se la Chronicle non dichiara il cancello."
+        },
+        "map_rotations": {
+          "type": "object",
+          "description": "**Di quanto e' stata girata ogni tessera quando l'hanno posata** (D-390): 0, 1, 2 o 3 quarti di giro in senso orario rispetto all'orientamento stampato. Serve a due cose: l'app la disegna girata come sta sul tavolo, e chi rimonta la partita dal salvataggio ritrova gli stessi varchi.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          }
         }
       }
     },

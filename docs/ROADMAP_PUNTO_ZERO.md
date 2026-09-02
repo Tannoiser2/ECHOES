@@ -92,15 +92,23 @@ Quindi PZ-01 non è finita quando la partita gira: **è finita quando meno della
 metà dei turni sono passa**. Il numero va nel criterio di successo, non rimandato
 a PZ-03.
 
-> **Il criterio è soddisfatto da 0.1.247, e regge in 0.1.353**: i turni «passa»
-> sono **46,4%** (3.340 su 7.200), la forma è piatta per Atto — 47,3% / 45,1% /
-> 46,8% — e **zero** di quei passa aveva zero mosse legali (media: 23,0 mosse).
-> La strada: **82,8% → 42,1% → 46,4%**, e l'ultimo numero è sul gioco *pescato*
-> invece che sui due anni d'autore, quindi non è un peggioramento.
+> **Il criterio è soddisfatto, e [ISSUES 68](ISSUES.md#68) si è chiusa su di
+> esso in 0.1.358** ([D-391](DECISIONS.md#d-391)): i turni «passa» sono **47,6%**
+> a tavolo misto (3.428 su 7.200) e **47,9%** a tavolo uniforme, la forma è
+> piatta per Atto — 48,0% / 46,7% / 48,1% — e **zero** di quei passa aveva zero
+> mosse legali (media: 22,1 mosse, 4,4 carte in mano).
 >
-> **Quello che resta non è il permesso: è ancora la ragione.** L'**83,5%** dei
-> passa è *«nessuna mossa gli serviva»*. È [ISSUES 68](ISSUES.md#68), ed è la
-> voce che vale più di tutte le altre insieme.
+> **E la strada scritta qui prima — «82,8% → 42,1% → 46,4%» — non si poteva
+> percorrere**: il 42,1% era misurato su `CHR_01`, cancellato con gli altri anni
+> d'autore in D-317/D-318. Rimisurato sull'anno che esiste, il difetto non si è
+> mai mosso: **47,6% in 0.1.260, 47,3% in 0.1.290, 46,7% prima di D-385, 47,6%
+> oggi**. Meno di un punto in cento versioni.
+>
+> **Quello che resta non è il permesso: è la ragione**, e adesso ha un prezzo
+> scritto. L'**84,0%** dei passa è *«nessuna mossa gli serviva»* — **il 40,0% di
+> tutti i turni** — e la sua causa è [ISSUES 123](ISSUES.md#123): nessuna delle
+> sei Azioni della plancia alza una Pietra. È una decisione del committente, non
+> una taratura.
 
 ### 1.4 Cosa rende meglio agire che stare fermi va deciso *prima*
 
@@ -425,9 +433,10 @@ Destini · Echo e Cicatrici · 3 Atti · Consiglio a fine Atto · setup esportab
 2. **meno della metà dei turni sono «passa»** (allora: 82,8%);
 3. il playtest su 100 semi tiene **0 seggi bloccati su 8**.
 
-> **Due su tre sono misurati e tengono** (0.1.353): i «passa» sono **46,4%**, e
-> il playtest su 100 semi tiene **0 seggi bloccati su 8 — sui due tavoli**, misto
-> e uniforme. È il vincolo che non si negozia, e ogni decisione lo rifà.
+> **Due su tre sono misurati e tengono** (0.1.358): i «passa» sono **47,6%** a
+> tavolo misto e **47,9%** a uniforme, e il playtest su 100 semi tiene **0 seggi
+> bloccati su 8 — sui due tavoli**. È il vincolo che non si negozia, e ogni
+> decisione lo rifà.
 >
 > **Il primo non lo può dire una sonda**, ed è giusto così: *«si guarda la mappa
 > e si capisce cosa è successo»* è un giudizio del committente su un tavolo vero.

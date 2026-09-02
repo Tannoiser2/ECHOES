@@ -5,6 +5,387 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.367 — La ragione di un segno muto la tiene il dizionario (D-399)
+
+Punto 2 di [ISSUES 70](docs/ISSUES.md#70). `build_sign_registry.py` teneva
+**undici ragioni scritte a mano** che vivono già nella `note` del dizionario:
+due posti da aggiornare, e uno destinato a invecchiare — la stessa forma di
+D-338, D-398 e ISSUES 105.
+
+Adesso `MUTI_NOTI` tiene **solo gli id e il numero che il registro misura da sé**,
+e la ragione la legge dal dizionario. Una guardia nuova va rossa se un muto è
+dichiarato lì e il dizionario non dice perché.
+
+**E il punto 1 non è quello che sembrava.** Delle 118 parole di `sign_labels.gd`
+che sono segni, 37 non combaciano col dizionario — ma quasi tutte perché l'app
+dice *«contesa, razionata, requisita»* e il gettone stampa *«conteso, razionato,
+requisito»*: è **l'accordo con la Regione**, che è femminile. Generare il file
+dal dizionario così com'è romperebbe l'italiano dell'app. Serve che il dizionario
+dichiari anche la forma che accorda.
+
+---
+
+## 0.1.366 — Il documento dei testi si controlla dalla parte dei dati (D-398)
+
+Chiude [ISSUES 105](docs/ISSUES.md#105), ed è il **trentesimo cancello**.
+
+Il cancello confrontava `REVISIONE_TESTI.md` con quello che **il generatore**
+produce, non il generatore con quello che **il gioco stampa**: un blocco nuovo
+restava fuori in silenzio, ed era già successo due volte. Adesso si parte dai
+dati — ogni frase o è nel documento, o è **dichiarata** come cosa che nessuno
+legge.
+
+**Girata la prima volta ne mancavano 1.730**, in 58 strade. Il documento passa da
+**3.111 a 4.136 testi**: la riga d'apertura di ogni Tensione, cosa la scalda e
+cosa la raffredda, le caselle SI ACCENDE QUANDO, il nome stampato di ogni segno,
+le clausole annidate dei Destini, la faccia fisica del Destino, **PRENDI** su
+tutte e 48 le carte, le Pietre coi loro gradi, i Temi.
+
+E **746 stringhe sono dichiarate come cose che nessuno legge**, ognuna con la sua
+riga: note agli implementatori, la matrice del disegno, i prompt d'arte, la
+grammatica dei nomi.
+
+**Il buco che resta è scritto**: il controllo guarda i diciassette tipi di
+documento che conosce; uno nuovo va aggiunto a mano.
+
+Voci aperte: **37 → 36**.
+
+---
+
+## 0.1.365 — Due proposte che portano allo stesso mondo non sono due strade (D-397)
+
+Chiude [ISSUES 104](docs/ISSUES.md#104). Tre proposte su quarantanove applicavano
+la stessa catena di Effetti di un'altra sulla stessa scheda: al voto sembravano
+due strade ed erano una sola, e **la prosa lo nascondeva**.
+
+Adesso sono tre strade diverse, e ognuna è andata a prendersi una **Conseguenza
+orfana** — di quelle che nessuna proposta elencava:
+
+| la gemella | cosa le è stato dato |
+|---|---|
+| `P_LAND_TO_WORKERS` | `CNS_COST_EMPTIED` — ridistribuire la terra caccia chi la teneva |
+| `P_WATER_COMMON` | `CNS_COST_DEBT` — l'acqua di tutti la paga qualcun altro |
+| `P_DRAW_LOTS` | `CNS_FAILURE_CONTESTED` — la sorte scrive la regola e non mette d'accordo nessuno |
+
+Sono aggiunte, non sostituzioni. **Le Conseguenze orfane passano da quattro a
+una**, e quelle che non escono mai da 12 a 11: un pezzo della
+[56](docs/ISSUES.md#56) chiuso senza toccarla.
+
+**E la guardia c'è**: dentro un Consiglio due proposte non possono avere la
+stessa catena di Effetti — la regola esisteva per le due liste della carta
+Tensione e non era mai stata portata sui Consigli. È la 43ª di
+`validate_physical.py`, col difetto **fabbricato** invece che cercato.
+
+Cancello 0/8 sui due tavoli, suite verde. Voci aperte: **38 → 37**.
+
+---
+
+## 0.1.364 — Le quattro voci più vecchie erano curate da centosettanta versioni (D-396)
+
+Seconda passata della verde V1, sulle voci di milestone 0.2 — le più vecchie
+della lista. **Quattro su cinque erano già chiuse.**
+
+Tre le ha curate [D-220](docs/DECISIONS.md#d-220) in 0.1.189, aggiungendo
+`hand_refill.per_control`: tenere una Regione dà una carta **e alza il tetto sulla
+mano**. Il commento nel codice cita ISSUES 3 parola per parola.
+
+| cento semi | ISSUES 1–2–3 | D-220 | **oggi** |
+|---|---|---|---|
+| Regioni con più di una casa, a fine anno | 2,60 su 6 | 2,66 | **3,57** |
+| il padrone cambia mano | 2,32 volte l'anno | 2,42 | **3,87** |
+| Regioni con un padrone | 4,65 su 6 | 4,73 | **5,20** |
+
+La quarta — [40](docs/ISSUES.md#40) — era **decisa in 0.1.142** e non chiedeva
+altro: duecentoventi versioni aperta dopo la sua decisione.
+
+Resta un pezzo della [4](docs/ISSUES.md#4): *«gli obiettivi contesi sono almeno
+un terzo del mazzo»*, che è la stessa domanda della rossa R4.
+
+Voci aperte: **42 → 38**. In tre passate della verde V1: **51 → 38**.
+
+---
+
+## 0.1.363 — Il circuito dei segni si chiude, e due restano colore per scelta (D-395)
+
+La gialla G3 della lista — *«ogni segno ha un lettore, o esce»* — chiude tre voci
+su cinque.
+
+| voce | com'era | com'è |
+|---|---|---|
+| [77](docs/ISSUES.md#77) | 15 segni senza una ragione scritta | **0** su 60 orfani |
+| [101](docs/ISSUES.md#101) | `structure:road` letto da tre parti e costruito da nessuna | **fuori dal dizionario**: 174 → 173 segni |
+| [96](docs/ISSUES.md#96) | 25 segni scritti spesso e senza clausole | **2**, e sono colore dichiarato da D-278 |
+
+**La riga che conta della 101**: le Custodi della Cenere volevano *«una strada
+che porta fuori il carico»* — una cosa che il mondo non sa costruire, cioè una
+porta murata sul loro profilo. Adesso vogliono la **sbarra sulla via che esce
+dalla miniera**, che il mondo posa 39 volte in cento partite e che anche il Banco
+del Sale vuole: una casa in più con cui litigare.
+
+**E due segni non prendono una clausola, di proposito.** `watched` e
+`price_in_lives` sono i marchi che D-278 ha voluto non meccanici, e portano già
+la loro ragione scritta. Inventargli due clausole per far scendere un numero a
+zero sarebbe contenuto che esiste per la misura.
+
+Voci aperte: **45 → 42**. Cancello 0/8 sui due tavoli, suite verde.
+
+---
+
+## 0.1.362 — La passata di verità: sei voci erano già chiuse, e una era rossa (D-394)
+
+La prima verde della lista, e ha fatto quello che prometteva: **rileggere ogni
+voce aperta contro i numeri di oggi** invece che contro quelli con cui è nata.
+Sei voci su cinquantuno cadono, e **una era rossa** — cioè aspettava una parola
+del committente che non serviva più.
+
+| voce | perché cade |
+|---|---|
+| [66](docs/ISSUES.md#66) 🔴 | *«o CHR_03 si raggiunge, o è stato tolto»*: **è stato tolto** in D-318, quarantaquattro versioni fa |
+| [46](docs/ISSUES.md#46) | la saga del Sale è `CHR_03`, cancellata: il difetto era su un anno che non esiste |
+| [52](docs/ISSUES.md#52) | Lyra è il **seggio migliore** del tavolo uniforme: 3 NONE, 23 Vittorie, 3 Trionfi |
+| [45](docs/ISSUES.md#45) | Kessa dei Fuochi sta nella banda su tutt'e due i tavoli, e Le Custodi della Cenere sono la **seconda vita più seduta** |
+| [83](docs/ISSUES.md#83) | la casa che muta più spesso è a **1 salto su 4,7**, sopra il limite |
+| [48](docs/ISSUES.md#48) | la Strada dei Mercanti è la **seconda Regione più abitata**: 1,07 → 2,23 presenze |
+
+**E un difetto di misura corretto strada facendo**: `run_move_probe` divideva le
+presenze per gli anni giocati invece che per gli anni in cui la tessera è
+**pescata**. Con sei tessere su dieci, i quaranta anni in cui una Regione non è
+sul tavolo entravano nella media come zeri — un terzo di errore su ogni riga.
+
+Voci aperte: **51 → 45**. Decisioni che aspettano il committente: **11 → 10**.
+Nessuna riga di gioco è cambiata: erano già tutte e sei vere.
+
+---
+
+## 0.1.361 — La lista che finisce, e una guardia perché finisca
+
+Parola del committente:
+
+> *«Nessuna però deve portare ad altre issue. Perché qui ne chiudiamo una ma ne
+> apriamo dieci. Questo giro deve finire e dobbiamo arrivare a un punto che sia
+> giocabile.»*
+
+`docs/LE_TUE_DECISIONI.md` non è più un foglio di decisioni: è **la lista che
+finisce**. Ventidue righe — **dieci rosse** (sue, una parola ciascuna), **otto
+gialle** e **quattro verdi** (mie) — e ognuna con una fine scritta, non un
+«migliora X». Tutto quello che non sta fra qui e una partita giocabile è in
+fondo, nella sezione *fuori dalla lista*, con scritto perché.
+
+**E la lista non può perdere pezzi.** `tools/issues_survey.py` ha una seconda
+guardia: **ogni voce aperta dev'essere nominata dalla lista** — una rossa, una
+gialla, una verde, o la sezione che dice perché aspetta. Girata la prima volta ha
+trovato quattro voci senza casa. Una voce aperta che nessuno nomina è esattamente
+il modo in cui una lista smette di finire.
+
+**Cinque voci hanno cambiato colore**, e la ragione è scritta su ognuna: la
+[98](docs/ISSUES.md#98) e la [91](docs/ISSUES.md#91) escono dalle decisioni
+(la prima è un metodo che genera lavoro all'infinito, la seconda ha la sua cura
+dentro un'altra rossa); la [96](docs/ISSUES.md#96), la [126](docs/ISSUES.md#126)
+e la [82](docs/ISSUES.md#82) non aspettano più una parola. La
+[69](docs/ISSUES.md#69) ne diventa una: quello che le resta è il **formato della
+carta**, e va deciso prima dell'arte.
+
+Le decisioni che aspettano il committente passano da 15 a **11 voci, dieci
+domande**.
+
+---
+
+## 0.1.360 — I varchi si allargano: torna la densità della griglia (D-393)
+
+Parola del committente, il giorno dopo D-390:
+
+> *«Sì a questo punto aggiungi qualche lato per tornare ai 7 della griglia
+> precedente.»*
+
+**Da ventisei lati aperti a trentotto.** Nove tessere su dieci sono croci;
+l'Isola Muta resta un angolo — due approdi e due lati di mare, che è l'unico
+posto dove il gioco racconta un lato chiuso.
+
+### La curva, prima di scegliere
+
+| lati aperti su 40 | confini per mappa |
+|---|---|
+| 26 (D-390) | 5,30 |
+| 31 | 5,95 |
+| 35 | 6,21 |
+| **38 (oggi)** | **6,80** |
+| 40 | 7,00 |
+
+**Il 7 esatto costa i quaranta lati** — con la regola dei varchi ci si torna solo
+se nessun lato è chiuso, e allora `edges` non distingue più niente. Ma la curva è
+piatta in cima: fra 38 e 40 ci sono **0,20 confini per mappa**, meno del 3%.
+
+### Dove siamo, sulle 151.200 pose enumerate
+
+| | griglia (D-275) | varchi 26 | **varchi 38** |
+|---|---|---|---|
+| confini per mappa | 7 | 5,30 | **6,80** |
+| tessere con un vicino solo | — | 46,2% | **6,7%** |
+| il padrone passa di mano, in un anno | 3,57 | 3,48 | **3,87** |
+| Regioni con più di una casa a fine anno | 3,62 su 6 | 3,24 | **3,57** |
+| Regioni con un padrone a fine anno | 5,29 su 6 | 5,01 | **5,20** |
+| pose che lasciano una tessera isolata | — | **0 su 151.200** | **0 su 151.200** |
+
+**La lotta per la terra non è tornata al livello della griglia: l'ha superata** —
+3,87 passaggi di mano per anno contro 3,57 (+8,4%).
+
+### Una strada provata e non tenuta
+
+Un secondo criterio nella posa — *«a parità di varchi combacianti gira la tessera
+coi varchi liberi verso il vuoto»* — non costava nessun lato. Misurato: **5,08
+contro 5,08**, vicoli ciechi da 52,1% a 52,5%. La densità la fanno i lati, non
+l'astuzia della posa.
+
+---
+
+## 0.1.359 — Quello che il tavolo non vede si divide in tre (D-392)
+
+[ISSUES 88](docs/ISSUES.md#88) chiedeva un taglio: *«se sono le carte non
+pescate è rigiocabilità; se sono le domande di carte che sono state girate, è il
+difetto vecchio»*. Adesso `cli/run_who_writes_probe.gd` lo fa, guardando il
+mazzetto prima e dopo — e i pezzi sono **tre**, non due.
+
+| cento anni, CHR_00 | domande | proposte |
+|---|---|---|
+| scritte | 120 | 194 |
+| **usate** | **99 (83%)** | **126 (65%)** |
+| 1. mai pescate | 0 | 0 |
+| 2. pescate, mai in discussione | 8 (7%) | 29 (15%) |
+| **3. in discussione, mai scelte** | **13 (11%)** | **39 (20%)** |
+
+La riga 2 è aritmetica: 312 Consigli in cento anni, e ognuno apre **una domanda
+sola**. Solo la riga 3 è un difetto.
+
+**Un taglio ha cambiato la risposta, ed è scritto.** Alla prima misura le
+proposte mute erano 66 (34%). Sbagliato: una proposta si vota **dentro** la sua
+domanda, e se la domanda non è mai stata posta la proposta non è stata scartata.
+Passate quelle 30 alla riga 2, la cifra vera è 39 (20%). Tutte e 194 le proposte
+portano un `question_id` che esiste — verificato, 0 vuoti e 0 pendenti.
+
+E il titolo della voce non regge più: il *«poco più di un terzo»* era misurato su
+`CHR_01`, cancellato con gli altri anni d'autore.
+
+**La voce resta aperta a 20,1%**, con le **13 domande** e le **39 proposte**
+scritte per nome, più le quattro Tensioni che in cento anni non arrivano mai a un
+Consiglio (`TEN_ENCLOSURE`, `TEN_FLOOD`, `TEN_PASTURE`, `TEN_WEIGHTS`). Un
+difetto si lavora per nome, non per percentuale.
+
+---
+
+## 0.1.358 — La voce più grossa si chiude, e il conto delle voci si misura (D-391)
+
+Nessuna riga di motore. Solo due misure, e tutt'e due dicono che i numeri scritti
+erano sbagliati.
+
+### ISSUES 68 si chiude sulla condizione che si era scritta da sola
+
+*«Fatto quando i «passa» scendono sotto la metà dei turni, e il playtest resta
+0/8.»* Cento anni, seme 7000: **47,6%** a tavolo misto (3.428 su 7.200) e
+**47,9%** a tavolo uniforme, **0 seggi bloccati su 8** su tutti e due i tavoli.
+
+**Ed era vera da cento versioni.** L'ultima riga della voce diceva *«oggi sono
+all'82,8%»* ed era ferma a 0.1.217. E la strada scritta sotto — *82,1% → 42,1%
+→ oggi* — **confrontava misure prese su anni diversi**: il 42,1% è di `CHR_01`,
+cancellato con gli altri anni d'autore in D-317/D-318. Chiederlo oggi risponde
+`Chronicle sconosciuta 'CHR_01'`. Rimisurato sull'anno che esiste, il difetto non
+si è mai mosso: **47,6% in 0.1.260, 47,3% in 0.1.290, 46,7% prima di D-385,
+47,6% oggi** — meno di un punto in cento versioni. Costo dichiarato dell'ultimo
+blocco (D-385…D-390): **+0,9 punti**, misurato.
+
+Da qui, seconda regola di casa: **un numero si scrive col tavolo su cui è
+misurato.**
+
+**Quello che resta ha un'altra voce, e adesso ha un prezzo.** L'**84,0%** dei
+«passa» è *«nessuna mossa gli serviva»* — **il 40,0% di tutti i turni**, e chi
+passa ha 22,1 mosse legali e 4,4 carte in mano. È [ISSUES 123](docs/ISSUES.md#123): nessuna delle sei
+Azioni della plancia alza una Pietra. **Quaranta turni su cento sono il prezzo di
+quella decisione non presa**, ed è scritto lì.
+
+### Il conto delle voci non si contava a mano
+
+Chiudendo la 68 è venuto fuori che il foglio delle decisioni portava numeri
+falsi: *66 chiuse, 60 aperte*. **Tredici voci chiuse non avevano il ✅ nel
+titolo** (35, 41–44, 68, 71, 72, 89, 103, 107, 112, 113, 115), quindi nessun
+conteggio poteva vederle; la 113 portava il suffisso «— CHIUSA in 0.1.328»
+scritto due volte. Il conto vero è **80 chiuse su 131, 51 aperte, 15 che
+aspettano il committente**.
+
+E smentisce la frase che ci stava sotto: *«apro più di quanto chiudo, e
+sistematicamente»* si appoggiava a una fascia data a 7 aperte e 0 chiuse. È **7 e
+8** — l'unica fascia in cui si chiude più di quanto si apra.
+
+`tools/issues_survey.py` è il **ventottesimo e ventinovesimo cancello**: rigenera
+il blocco del conto e va rosso se una voce dichiara «chiusa in 0.1.x» senza il
+segno. Una mezza chiusura non conta, e le quattro che ci sono restano aperte.
+
+---
+
+## 0.1.357 — Il confine è un varco, non un accostamento (D-390)
+
+Regola dettata dal committente, e riscrive D-275.
+
+> *«Bisogna dare delle adiacenze: Eredan in tutti e quattro i lati, le montagne
+> magari solo su due. Se due lati hanno adiacenze in comune lo spostamento è
+> permesso. E deve essere calcolato in modo che non ci siano tessere isolate.»*
+
+### Cosa c'era
+
+Due mappe, e se ne giocava una sola: l'`adjacency` scritto a mano sulle dieci
+tessere **non lo leggeva nessuno** sul tavolo pescato, dove i vicini erano chi
+capitava di fianco nella griglia. E due letture divergenti della stessa parola —
+`narrative_text` e `board_sheet` leggevano il grafo **del dato** mentre la
+partita giocava su quello **del mondo**: il gioco funzionava e il racconto
+mentiva. Adesso tutti e due leggono il tavolo.
+
+### La regola
+
+Ogni tessera dichiara i suoi **varchi**: quali dei quattro lati si attraversano.
+Cinque forme — **croce** (Eredan, la Strada), **T** (Valle, Nahr, Porto),
+**corridoio** (Montagne, Bosco), **angolo** (Palude, Miniere), **vicolo cieco**
+(l'Isola Muta). Ventisei lati aperti su quaranta.
+
+E la posa non è più una griglia: **si posa accanto a una tessera già posata,
+girandola finché il lato che si tocca porta un varco su tutte e due**, e fra le
+pose possibili si sceglie quella che fa combaciare più varchi.
+
+**La promessa viene per costruzione**: una tessera entra solo attaccandosi
+attraverso un varco. E non si campiona — **si enumera**, come il committente ha
+chiesto: 210 pescate per 720 ordini fanno **151.200 pose**, e la sonda le fa
+tutte chiamando la posa del motore. È il **ventisettesimo cancello**.
+
+| tutte le pose che il gioco può produrre | |
+|---|---|
+| pose enumerate | **151.200** |
+| pose che **lasciano fuori una tessera** | **0** |
+| pose che **lasciano una tessera isolata** | **0** |
+| pescate che si rompono in almeno un ordine | **0 su 210** |
+
+### Il costo, scritto
+
+| | griglia | varchi |
+|---|---|---|
+| confini per mappa | **7** | **5,30** |
+| tessere con un vicino solo | — | **46,2%** |
+| il padrone passa di mano, in un anno | 3,57 | **3,48** |
+| Regioni con più di una casa a fine anno | 3,62 su 6 | **3,24** |
+
+**La mappa è più stretta di un quarto**, ed è quello che la regola dice. La
+lotta per la terra si muove poco: −2,5% sui passaggi di mano.
+
+### E il varco si vede
+
+La faccia stampata della tessera porta `VARCHI alto · destra`; il prompt d'arte
+dice a chi disegna dove la strada arriva al bordo e quali lati sono chiusi dal
+terreno; il disegno del flusso porta i varchi come pezzo.
+
+Aperta [ISSUES 127](docs/ISSUES.md#127): la tessera si gira, e l'arte si gira
+con lei — tre strade, ed è una scelta d'autore.
+
+**Cancello:** 0 seggi bloccati su un solo livello su 8, misto e uniforme. Suite
+**680 prove / 101 suite / 86.562 asserzioni** verde.
+
+---
+
 ## 0.1.356 — Nel grafo c'erano dodici Consigli, e nella scatola sono sessanta
 
 ### E la risposta a «non si arriva mai al punto di chiudere?»

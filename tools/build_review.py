@@ -40,6 +40,114 @@ def quote(text: str) -> str:
     return f"> {text.strip()}" if text and text.strip() else "> *(vuoto)*"
 
 
+def labels_of(block) -> list[str]:
+    """Le righe leggibili di un blocco `eligibility`.
+
+    Lo schema lo lascia in due forme — una lista di condizioni, o un oggetto con
+    dentro `label` e/o `conditions` — e una sonda che ne conoscesse una sola
+    smetterebbe di vedere l'altra in silenzio.
+    """
+    out: list[str] = []
+    if isinstance(block, dict):
+        if block.get("label"):
+            out.append(str(block["label"]))
+        out.extend(labels_of(block.get("conditions")))
+    elif isinstance(block, list):
+        for voce in block:
+            out.extend(labels_of(voce))
+    return out
+
+
+# **Quello che un giocatore NON legge, dichiarato** (ISSUES 105).
+#
+# Il cancello confrontava il documento con quello che il **generatore**
+# produce, non il generatore con quello che il **gioco stampa**: un blocco
+# nuovo domani restava fuori, in silenzio — ed e' successo due volte, con le
+# 288 stringhe della faccia fisica e con le 841 caselle delle Tensioni.
+#
+# Adesso il controllo va dall'altra parte. Si guarda **ogni stringa dei dati
+# che somigli a una frase** — che abbia uno spazio e almeno quattordici
+# lettere, cosi' gli id e i segni restano fuori da soli — e si pretende che o
+# stia nel documento, o che la sua strada sia qui sotto con la ragione
+# scritta. **Un blocco nuovo che nessuno dichiara fa fallire il cancello**, che
+# e' il verso giusto: si e' costretti a decidere se si legge o no.
+NON_SI_LEGGE: dict[str, str] = {
+    # Note d'autore agli implementatori: stanno nei dati perche' e' li' che
+    # servono, e non finiscono su nessun pezzo di cartone.
+    "tag/note": "la ragione per cui un segno esiste — si legge in MISURA_MATRICE, non al tavolo",
+    "tag_rule/note": "la spiegazione della regola per chi la implementa",
+    "entity/relations/note": "il perche' di un rapporto d'apertura, per chi scrive",
+    "asset/on_commit_effects/note": "il mestiere della carta spiegato a chi la implementa",
+    "asset/card_action/note": "idem, sul lato digitale dell'Azione",
+    "consequence/effects/note": "il perche' di un Effetto, per chi lo legge nel codice",
+    "echo_card/effect_hooks/effect/note": "idem, sugli agganci della carta Echo",
+    "action/params/note": "cosa significa un parametro dell'Azione",
+    # La matrice del disegno: e' il documento con cui si scrive il gioco, non
+    # un pezzo che si mette in mano a qualcuno.
+    "entity_strategic_profile/wants/why": "la matrice del disegno, non un pezzo del gioco",
+    "entity_strategic_profile/fears/why": "la matrice del disegno",
+    "entity_strategic_profile/denies/why": "la matrice del disegno",
+    "entity_strategic_profile/in_one_line": "la matrice del disegno",
+    "entity/incarnations/also_enters/unless/why": "il perche' di una porta del tempo, per chi la tara",
+    # Il prompt di chi disegna: sta in CATALOGO_PEDINE, e chi gioca vede il
+    # disegno, non la frase che l'ha ordinato.
+    "token_icon/soggetto": "il prompt del disegno — si legge in CATALOGO_PEDINE",
+    "token_icon/rappresenta": "cosa il gettone rappresenta, per chi lo disegna",
+    # Grammatica: pezzi con cui il motore compone le frasi che poi si leggono.
+    "region/name_forms/definite": "grammatica: il motore la usa per comporre",
+    "region/name_forms/genitive": "grammatica: il motore la usa per comporre",
+    "region/name_forms/locative": "grammatica: il motore la usa per comporre",
+    "entity/name_grammar/pattern": "lo stampo con cui si genera un nome",
+    "entity/name_grammar/epithets": "i pezzi con cui si genera un nome",
+    "entity/incarnations/name_grammar/pattern": "lo stampo con cui si genera un nome",
+    "entity/incarnations/name_grammar/epithets": "i pezzi con cui si genera un nome",
+}
+
+# I documenti che si guardano. Se ne arriva uno nuovo e non e' qui, il
+# controllo non lo vede: e' l'unico buco che resta, ed e' dichiarato.
+DOCUMENTI = (
+    "chronicle", "region", "entity", "tension", "confluence_template",
+    "consequence", "echo_card", "asset", "destiny", "action", "objective",
+    "theme", "structure_type", "tag", "tag_rule", "token_icon",
+    "entity_strategic_profile",
+)
+
+
+def _frasi(nodo, strada: list[str]):
+    if isinstance(nodo, dict):
+        for chiave, valore in nodo.items():
+            yield from _frasi(valore, strada + [str(chiave)])
+    elif isinstance(nodo, list):
+        for valore in nodo:
+            yield from _frasi(valore, strada + ["*"])
+    elif isinstance(nodo, str):
+        yield "/".join(p for p in strada if p != "*"), nodo
+
+
+def quello_che_manca(documento: str, documenti=None) -> list[str]:
+    """Le frasi dei dati che il documento non porta e nessuno ha dichiarato."""
+    guai: list[str] = []
+    visti: set[str] = set()
+    for kind in DOCUMENTI:
+        for item in (documenti or {}).get(kind, load_all(kind)):
+            for strada, frase in _frasi(item, [kind]):
+                if " " not in frase or len(frase) < 14:
+                    continue
+                if strada in NON_SI_LEGGE:
+                    continue
+                if frase.strip() in documento:
+                    continue
+                if strada in visti:
+                    continue
+                visti.add(strada)
+                guai.append(
+                    "testo che nessuno legge e nessuno dichiara: «%s» — %s\n"
+                    "      o entra in REVISIONE_TESTI, o si scrive perche' non si legge"
+                    % (strada, frase.strip()[:70])
+                )
+    return guai
+
+
 class Review:
     def __init__(self) -> None:
         self.lines: list[str] = []
@@ -99,7 +207,11 @@ def main() -> int:
     review.line("## 2. Le Regioni — la mappa")
     review.line()
     for region in regions:
-        review.entry(region["id"], region.get("name"), region.get("description"))
+        review.entry(
+            region["id"], region.get("name"), region.get("description"),
+            # Quello che sa solo chi ci vive: si legge, ed e' d'autore.
+            region.get("private_information"),
+        )
 
     review.line("## 3. Le Casate — chi siede al tavolo")
     review.line()
@@ -127,6 +239,19 @@ def main() -> int:
     review.line()
     for tension in tensions:
         review.entry(tension["id"], tension.get("title"), tension.get("description"))
+        # **La riga che si legge ad alta voce quando la questione si apre**, e
+        # le due liste che dicono cosa la scalda e cosa la raffredda: stanno
+        # sulla mini della Tensione, e questo documento non ne portava nessuna
+        # (ISSUES 105).
+        review.entry("%s, apertura" % tension["id"], tension.get("opening_line"))
+        for kind, label in (("triggers", "sale quando"), ("decrease_rules", "scende quando")):
+            for number, righa in enumerate(tension.get(kind, []) or [], start=1):
+                review.entry("%s, %s %d" % (tension["id"], label, number), righa)
+        for box in tension.get("heats_when", []) or []:
+            review.entry(
+                "%s, si accende quando — %s" % (tension["id"], box.get("id", "?")),
+                box.get("text"),
+            )
         for omen in tension.get("omen_thresholds", []):
             review.entry(
                 "%s, presagio al %d" % (tension["id"], int(omen.get("at", 0))),
@@ -164,8 +289,12 @@ def main() -> int:
         council = tension.get("council") or {}
         for question in council.get("questions", []) or []:
             review.entry(str(question["id"]), question.get("text"))
+            for number, riga in enumerate(labels_of(question.get("eligibility")), start=1):
+                review.entry("%s, si apre se %d" % (question["id"], number), riga)
         for proposition in council.get("propositions", []) or []:
             review.entry(str(proposition["id"]), proposition.get("text"))
+            for number, riga in enumerate(labels_of(proposition.get("eligibility")), start=1):
+                review.entry("%s, si puo' proporre se %d" % (proposition["id"], number), riga)
             if proposition.get("echo_summary"):
                 review.entry(
                     "%s, esito" % proposition["id"], proposition["echo_summary"]
@@ -182,6 +311,29 @@ def main() -> int:
         for clause in template.get("condition_clauses", []) or []:
             review.entry(str(clause["id"]), clause.get("text"))
 
+    # **E il template ha ancora un testo suo** (ISSUES 105): dodici schede col
+    # loro titolo, la loro descrizione e le domande e proposte che non stanno
+    # (ancora) su una carta Tensione. Il motore le legge, quindi si leggono.
+    review.line("### Le schede del Consiglio — quello che il template porta ancora")
+    review.line()
+    for template in templates:
+        review.entry(
+            template["id"], template.get("title"), template.get("description"),
+            template.get("echo_title_template"),
+        )
+        for question in template.get("questions", []) or []:
+            review.entry(str(question["id"]), question.get("text"))
+            for number, riga in enumerate(labels_of(question.get("eligibility")), start=1):
+                review.entry("%s, si apre se %d" % (question["id"], number), riga)
+        for proposition in template.get("propositions", []) or []:
+            review.entry(str(proposition["id"]), proposition.get("text"))
+            for number, riga in enumerate(labels_of(proposition.get("eligibility")), start=1):
+                review.entry("%s, si puo' proporre se %d" % (proposition["id"], number), riga)
+            if proposition.get("echo_summary"):
+                review.entry("%s, esito" % proposition["id"], proposition["echo_summary"])
+            for outcome, text in sorted(proposition.get("echo_summaries", {}).items()):
+                review.entry("%s, esito %s" % (proposition["id"], outcome), text)
+
     review.line("## 6. Le Conseguenze — quello che una decisione lascia")
     review.line()
     for consequence in consequences:
@@ -196,6 +348,10 @@ def main() -> int:
     review.line()
     for card in echoes:
         review.entry(card["id"], card.get("title"), card.get("description"))
+        # QUANDO ESCE: la riga che dice a che punto del mondo la carta puo'
+        # cadere. E' stampata sulla faccia (SCHELETRO_CARTE: 43 su 48).
+        for number, riga in enumerate(labels_of(card.get("eligibility")), start=1):
+            review.entry("%s, quando esce %d" % (card["id"], number), riga)
 
     review.line("## 8. Le carte Asset — quello che si tiene in mano")
     review.line()
@@ -208,7 +364,12 @@ def main() -> int:
     # documento che dice «ogni testo che un giocatore puo' leggere» ne mancava
     # 287 su 288, e non falliva.
     for asset in assets:
-        review.entry(asset["id"], asset.get("title"), asset.get("rules_text"))
+        review.entry(
+            asset["id"], asset.get("title"), asset.get("rules_text"),
+            # PRENDI: come si arriva a questa carta. E' stampata su tutte e 48
+            # le facce (SCHELETRO_CARTE) e mancava.
+            asset.get("acquisition_rule"),
+        )
         physical = asset.get("physical")
         if not physical:
             continue
@@ -232,29 +393,67 @@ def main() -> int:
             block = destiny.get(level)
             if not block:
                 continue
-            clauses = " · ".join(
-                str(condition.get("label", "")) for condition in block.get("conditions", [])
-                if condition.get("label")
-            )
+            # **Anche le clausole annidate**: un `some_of` porta dentro di se'
+            # una lista di righe che sul tarocco si leggono una per una, e il
+            # documento ne saltava 86 (ISSUES 105).
+            clauses = " · ".join(labels_of(block.get("conditions")))
             review.entry(
                 "%s, %s" % (destiny["id"], level),
                 block.get("label"),
                 clauses if clauses else None,
             )
+        # La faccia fisica: le tre righe che il tarocco stampa al posto delle
+        # clausole del motore.
+        reads = (destiny.get("physical") or {}).get("reads") or {}
+        for level in ("minimum", "victory", "triumph"):
+            review.entry("%s, si legge %s" % (destiny["id"], level), reads.get(level))
 
     review.line("## 10. Gli Obiettivi — i tre coperti che si pescano a inizio saga")
     review.line()
     for objective in objectives:
-        clauses = " · ".join(
-            str(condition.get("label", "")) for condition in objective.get("conditions", [])
-            if condition.get("label")
-        )
+        clauses = " · ".join(labels_of(objective.get("conditions")))
         review.entry(
             objective["id"], objective.get("title"), objective.get("description"),
             objective.get("label"), clauses if clauses else None,
         )
 
-    review.line("## 11. Le Azioni — la plancia, stampata una volta")
+    review.line("## 11. Le Pietre — quello che si costruisce, grado per grado")
+    review.line()
+    for stone in sorted_by_id(load_all("structure_type")):
+        review.entry(stone["id"], stone.get("name"), stone.get("description"))
+        for grade in stone.get("grades", []) or []:
+            review.entry(
+                "%s, grado %s" % (stone["id"], grade.get("value", "?")),
+                grade.get("name"), grade.get("description"),
+            )
+        ruin = stone.get("ruin") or {}
+        review.entry(
+            "%s, in rovina" % stone["id"], ruin.get("name"), ruin.get("description")
+        )
+
+    review.line("## 12. I Temi — le sei tracce del calore")
+    review.line()
+    for theme in sorted_by_id(load_all("theme")):
+        review.entry(theme["id"], theme.get("title"), theme.get("covers"))
+
+    review.line("## 13. I segni — il nome stampato sul gettone")
+    review.line()
+    review.line("*(Il nome con cui un segno si chiama al tavolo. Le forme fra")
+    review.line("parentesi sono i modi in cui la stessa cosa e' stata detta altrove,")
+    review.line("e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*")
+    review.line()
+    for sign in sorted_by_id(load_all("tag")):
+        review.entry(
+            sign["id"], sign.get("title"),
+            " · ".join(sign.get("aliases", []) or []) or None,
+        )
+
+    review.line("## 14. Le regole dei segni — cosa fa un segno quando c'e'")
+    review.line()
+    for rule in sorted_by_id(load_all("tag_rule")):
+        review.entry(rule["id"], rule.get("title"))
+
+    review.line("## 15. Le Azioni — la plancia, stampata una volta")
     review.line()
     for action in actions:
         review.entry(
@@ -271,12 +470,39 @@ def main() -> int:
     )
     testo = body.rstrip() + "\n"
 
+    if "--self-test" in sys.argv:
+        # **Il blocco nuovo di domani, piantato oggi.** Una prova che cerca un
+        # difetto fra i dati spediti smette di provare in silenzio il giorno
+        # che il difetto sparisce: questo se lo fabbrica.
+        finti = {kind: [dict(x) for x in load_all(kind)] for kind in DOCUMENTI}
+        finti["region"][0]["cronaca_del_bordo"] = (
+            "Una riga nuova che nessuno ha dichiarato e nessuna sezione stampa."
+        )
+        if not quello_che_manca(testo, finti):
+            print("FALLITO: la guardia non vede un blocco nuovo non dichiarato")
+            return 1
+        if quello_che_manca(testo):
+            print("FALLITO: la guardia morde i dati veri")
+            return 1
+        print("OK  la guardia dei testi vede un blocco nuovo, e tace sui dati veri")
+        return 0
+
     if "--check" in sys.argv:
         if not OUT.exists() or OUT.read_text(encoding="utf-8") != testo:
             print("FAIL  docs/REVISIONE_TESTI.md non e' piu' quello che i dati dicono:")
             print("      rilancia `python3 tools/build_review.py`.")
             return 1
-        print("OK  i testi in lettura sono quelli dei dati (%d)." % review.count)
+        # **E il documento e' completo**, non solo aggiornato: ogni frase dei
+        # dati o e' qui, o e' dichiarata come cosa che nessuno legge.
+        mancano = quello_che_manca(testo)
+        if mancano:
+            print("FAIL  docs/REVISIONE_TESTI.md non porta tutto quello che i dati dicono:")
+            for guaio in mancano[:12]:
+                print("      %s" % guaio)
+            print("      (%d strade in tutto)" % len(mancano))
+            return 1
+        print("OK  i testi in lettura sono quelli dei dati (%d), e non ne manca nessuno."
+              % review.count)
         return 0
 
     OUT.write_text(testo)

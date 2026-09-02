@@ -50,6 +50,7 @@ func _initialize() -> void:
 
 	var placed_open: Dictionary = {}
 	var placed_close: Dictionary = {}
+	var times_drawn: Dictionary = {}
 	var spare_at_open: int = 0
 	var moves_placing: int = 0
 	var moves_relocating: int = 0
@@ -74,6 +75,8 @@ func _initialize() -> void:
 			quit(3)
 			return
 
+		for region_id in (session.world["regions"] as Dictionary):
+			times_drawn[str(region_id)] = int(times_drawn.get(str(region_id), 0)) + 1
 		for effect in session.factory_setup_effects():
 			session.applier.apply(effect)
 		for entity_id in seats:
@@ -147,15 +150,21 @@ func _initialize() -> void:
 	_door("la porta (cacciata, segno, adiacenza, pieno)", blocked_door, occasions)
 	_door("la voglia (poteva, ha scelto altro)", chose_other, occasions)
 	print("")
-	print("  Presenze per Regione, apertura -> fine:")
-	var regions: Array = (data.chronicles[chronicle_id]["regions"] as Array).duplicate()
+	# **E si divide per le volte che la tessera e' stata pescata**, non per gli
+	# anni: con sei tessere su dieci, una media su cento anni conta a zero i
+	# quaranta in cui la Regione non era sul tavolo, e fa sembrare deserta una
+	# tessera che quando c'e' e' piena. Il numero che conta e' l'ultimo.
+	print("  Presenze per Regione, apertura -> fine (media sugli anni in cui e' pescata):")
+	var regions: Array = (data.regions.keys() as Array).duplicate()
 	regions.sort()
 	for region_id in regions:
 		var open_count: int = int(placed_open.get(str(region_id), 0))
 		var close_count: int = int(placed_close.get(str(region_id), 0))
-		print("    %-24s %5.2f -> %5.2f   %s" % [
-			str(data.regions[str(region_id)]["name"]),
-			float(open_count) / float(runs), float(close_count) / float(runs),
+		var drawn: int = int(times_drawn.get(str(region_id), 0))
+		print("    %-24s pescata %3d   %5.2f -> %5.2f   %s" % [
+			str(data.regions[str(region_id)]["name"]), drawn,
+			float(open_count) / float(maxi(1, drawn)),
+			float(close_count) / float(maxi(1, drawn)),
 			"DESERTA" if close_count == 0 else ""
 		])
 	quit(0)

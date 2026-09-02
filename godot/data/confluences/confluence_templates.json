@@ -97,7 +97,8 @@
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
-            "CNS_CROWN_DISPOSSESSED"
+            "CNS_CROWN_DISPOSSESSED",
+            "CNS_COST_EMPTIED"
           ],
           "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta.",
           "echo_summaries": {
@@ -1162,7 +1163,8 @@
           "text": "L'acqua non è di nessuno. Chi la devia risponde a tutti.",
           "eligibility": [],
           "success_consequences": [
-            "CNS_CANALS_DUG"
+            "CNS_CANALS_DUG",
+            "CNS_COST_DEBT"
           ],
           "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
         }
@@ -1623,7 +1625,8 @@
           "text": "Quando l'accordo manca, si tiri a sorte; e la sorte sia scritta.",
           "eligibility": [],
           "success_consequences": [
-            "CNS_CHARTER_WRITTEN"
+            "CNS_CHARTER_WRITTEN",
+            "CNS_FAILURE_CONTESTED"
           ],
           "echo_summary": "Si stabilì di tirare a sorte, e la cosa strana è che tenne."
         }

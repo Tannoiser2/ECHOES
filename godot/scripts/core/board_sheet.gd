@@ -90,11 +90,15 @@ static func _points(world: Dictionary, data: RefCounted) -> Dictionary:
 static func _roads(world: Dictionary, data: RefCounted, points: Dictionary) -> Array:
 	var out: Array = []
 	var done: Dictionary = {}
+	# **Le strade disegnate sono quelle del tavolo** (D-390): il foglio leggeva
+	# l'`adjacency` del dato, cioe' la mappa d'autore, e su un tavolo pescato
+	# disegnava strade che non c'erano e ne ometteva di vere.
+	var graph: Dictionary = world.get("adjacency", {}) as Dictionary
 	for region_id in _sorted(world["regions"].keys()):
 		var definition: Variant = data.regions.get(str(region_id))
 		if definition == null:
 			continue
-		for other in (definition as Dictionary).get("adjacency", []):
+		for other in (graph.get(str(region_id), (definition as Dictionary).get("adjacency", [])) as Array):
 			if not points.has(str(other)):
 				continue
 			var key: String = "|".join(PackedStringArray(

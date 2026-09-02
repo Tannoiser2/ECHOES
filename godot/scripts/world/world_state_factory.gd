@@ -199,17 +199,20 @@ static func _build_map(world: Dictionary, chronicle: Dictionary, data: RefCounte
 	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
 	# momento due Regioni smettono di essere vicine.
 	#
-	# **Sul tavolo pescato la posa comanda** (D-275, parola del committente):
-	# le tessere si posano in griglia nell'ordine di pesca — con sei, tre
-	# colonne e due righe — e vicino e' chi si tocca di lato o di sopra.
-	# L'adiacenza si legge guardando il tavolo, senza grafo scritto e senza
-	# lati bloccati: ogni lato accostato e' un confine aperto (se un giorno
-	# una tessera vorra' un lato chiuso, sara' un segno stampato, e sara'
-	# un'altra decisione). Il grafo dichiarato resta agli anni scritti, dove
-	# la mappa e' d'autore — e la vecchia cucitura delle isole (D-263) non
-	# serve piu': una griglia e' connessa per costruzione.
+	# **Sul tavolo pescato la posa comanda** (D-275), e **il confine e' un
+	# varco** (D-390, parola del committente): le tessere si posano una alla
+	# volta accanto a una gia' posata, girandole finche' il lato che si tocca
+	# porta un varco su tutte e due. Vicino non e' piu' «chi si tocca»: e' chi
+	# si tocca **attraverso un varco aperto sui due lati**.
+	#
+	# La riga di prima diceva *«se un giorno una tessera vorra' un lato chiuso,
+	# sara' un segno stampato, e sara' un'altra decisione»*. Quel giorno e'
+	# arrivato: il segno stampato e' `region.edges`.
+	#
+	# Il grafo dichiarato (`adjacency`) resta agli anni scritti, dove la mappa
+	# e' d'autore.
 	if not (chronicle.get("region_pool", {}) as Dictionary).is_empty():
-		_lay_the_tiles(world, chronicle)
+		_lay_the_tiles(world, chronicle, data)
 	else:
 		world["adjacency"] = {}
 		for region_id in chronicle["regions"]:
@@ -221,30 +224,227 @@ static func _build_map(world: Dictionary, chronicle: Dictionary, data: RefCounte
 			world["adjacency"][str(region_id)] = links
 
 
-## La posa delle tessere pescate (D-275): griglia riga per riga nell'ordine
-## di pesca, colonne = ceil(sqrt(N)) — per sei tessere, 3x2. La posizione
-## resta nel mondo (`map_positions`, [colonna, riga]) perche' e' un fatto del
-## tavolo: l'app la disegna, e la saga la eredita con l'ordine delle tessere.
-static func _lay_the_tiles(world: Dictionary, chronicle: Dictionary) -> void:
+## **La posa delle tessere** (D-275, riscritta da D-390 su parola del
+## committente).
+##
+## > *«Bisogna dare delle adiacenze: per esempio Eredan ha adiacenze in tutti e
+## > quattro i lati, mentre magari le montagne le hanno solo su due. Se due lati
+## > hanno adiacenze in comune lo spostamento e' permesso. Questo naturalmente
+## > deve essere calcolato in modo che ci sia sempre la possibilita' di muoversi
+## > in tutte e sei le tessere pescate, e che quindi non ci siano tessere
+## > isolate.»*
+##
+## Fino a D-389 la posa era una **griglia**: le tessere andavano in fila
+## nell'ordine di pesca, e ogni lato accostato era un confine aperto. Cioe' i
+## `edges` della tessera non esistevano, e il `adjacency` scritto a mano non lo
+## leggeva nessuno: due tessere erano vicine perche' il caso le aveva messe
+## vicine, non perche' i loro varchi combaciassero.
+##
+## **Adesso la posa e' una regola, ed e' una regola che si esegue al tavolo:**
+##
+## 1. la prima tessera si posa e basta;
+## 2. ogni tessera dopo si posa **accanto a una gia' posata**, girandola finche'
+##    **il lato che si tocca porta un varco su tutte e due**;
+## 3. una tessera che non si puo' posare da nessuna parte si mette da parte, e
+##    ci si riprova dopo aver posato le altre.
+##
+## **Da qui la promessa che il committente chiede viene per costruzione**: ogni
+## tessera entra attaccandosi a una gia' posata **attraverso un varco**, quindi
+## la mappa e' connessa mentre nasce, e non c'e' niente da verificare dopo.
+## Quello che va verificato e' l'altra meta' — che le sei tessere ci stiano
+## **tutte** — e lo prova `test_the_map_is_one_piece` su cento semi.
+##
+## Deterministica: le caselle libere si guardano in un ordine fisso (riga per
+## riga), e le quattro rotazioni in ordine di quarto di giro. Nessun dado.
+const QUARTERS: Array = ["N", "E", "S", "O"]
+
+
+## Il lato `side` della tessera, girata di `turn` quarti di giro in senso orario.
+static func _turned(side: String, turn: int) -> String:
+	return str(QUARTERS[(QUARTERS.find(side) + turn) % 4])
+
+
+## I varchi di una tessera come stanno sul tavolo, girata di `turn`.
+static func _openings(region_id: String, turn: int, data) -> Array:
+	if data == null:
+		return QUARTERS.duplicate()
+	var region: Variant = data.regions.get(region_id)
+	if region == null:
+		return QUARTERS.duplicate()
+	var printed: Array = (region as Dictionary).get("edges", []) as Array
+	# Una tessera senza varchi scritti e' aperta su tutti e quattro i lati: e'
+	# la forma di prima di questa decisione, e un dato vecchio non deve
+	# spegnere la mappa in silenzio.
+	if printed.is_empty():
+		return QUARTERS.duplicate()
+	var out: Array = []
+	for side in printed:
+		out.append(_turned(str(side), turn))
+	return out
+
+
+## Il lato di `here` che guarda `there`, se sono accostate.
+static func _side_towards(here: Vector2i, there: Vector2i) -> String:
+	var step: Vector2i = there - here
+	if step == Vector2i(0, -1):
+		return "N"
+	if step == Vector2i(1, 0):
+		return "E"
+	if step == Vector2i(0, 1):
+		return "S"
+	if step == Vector2i(-1, 0):
+		return "O"
+	return ""
+
+
+## Il lato opposto: quello che l'altra tessera deve avere aperto perche' il
+## varco combaci.
+static func _facing(side: String) -> String:
+	return _turned(side, 2)
+
+
+static func _lay_the_tiles(world: Dictionary, chronicle: Dictionary, data = null) -> void:
 	var order: Array = chronicle["regions"] as Array
-	var columns: int = int(ceil(sqrt(float(order.size()))))
-	var at: Dictionary = {}
-	world["map_positions"] = {}
-	for i in range(order.size()):
-		var spot: Vector2i = Vector2i(i % columns, i / columns)
-		at[str(order[i])] = spot
-		world["map_positions"][str(order[i])] = [spot.x, spot.y]
-	world["adjacency"] = {}
-	for i in range(order.size()):
-		var here: String = str(order[i])
-		var links: Array = []
-		for j in range(order.size()):
-			if i == j:
+	var at: Dictionary = {}        # tessera -> Vector2i
+	var turned: Dictionary = {}    # tessera -> quarti di giro
+	var occupied: Dictionary = {}  # "x,y" -> tessera
+	var left: Array = order.duplicate()
+
+	# La prima si posa nell'origine, dritta.
+	if not left.is_empty():
+		var first: String = str(left.pop_front())
+		at[first] = Vector2i(0, 0)
+		turned[first] = 0
+		occupied["0,0"] = first
+
+	# E le altre si attaccano, una per giro, finche' se ne posa almeno una.
+	while not left.is_empty():
+		var placed_one: bool = false
+		for index in range(left.size()):
+			var tile: String = str(left[index])
+			var spot: Dictionary = _where_it_fits(tile, at, turned, occupied, data)
+			if spot.is_empty():
 				continue
-			var step: Vector2i = (at[str(order[j])] as Vector2i) - (at[here] as Vector2i)
-			if absi(step.x) + absi(step.y) == 1:
-				links.append(str(order[j]))
-		world["adjacency"][here] = links
+			at[tile] = spot["at"] as Vector2i
+			turned[tile] = int(spot["turn"])
+			occupied["%d,%d" % [(spot["at"] as Vector2i).x, (spot["at"] as Vector2i).y]] = tile
+			left.remove_at(index)
+			placed_one = true
+			break
+		if not placed_one:
+			# Nessuna delle rimaste si attacca: la mappa si chiude con quelle
+			# posate, e chi guarda il mondo vede sei tessere o meno. Non e' un
+			# errore silenzioso — `test_the_map_is_one_piece` lo prende.
+			break
+
+	# Le coordinate si rimettono in alto a sinistra: la prima tessera parte
+	# dall'origine e le altre le crescono attorno, anche all'indietro, quindi
+	# senza questa riga il salvataggio porterebbe colonne negative e l'app
+	# disegnerebbe fuori dal foglio.
+	var min_x: int = 0
+	var min_y: int = 0
+	var first_seen: bool = false
+	for tile in at:
+		var spot: Vector2i = at[tile] as Vector2i
+		if not first_seen:
+			min_x = spot.x
+			min_y = spot.y
+			first_seen = true
+			continue
+		min_x = mini(min_x, spot.x)
+		min_y = mini(min_y, spot.y)
+	world["map_positions"] = {}
+	world["map_rotations"] = {}
+	for tile in at:
+		var spot: Vector2i = at[tile] as Vector2i
+		world["map_positions"][str(tile)] = [spot.x - min_x, spot.y - min_y]
+		world["map_rotations"][str(tile)] = int(turned[tile])
+
+	# **L'adiacenza e' il varco, non l'accostamento** (D-390): due tessere che
+	# si toccano di lato sono vicine solo se quel lato porta un varco su tutte
+	# e due.
+	world["adjacency"] = {}
+	for here in at:
+		var links: Array = []
+		for there in at:
+			if str(here) == str(there):
+				continue
+			if _passage_between(
+				str(here), at[here] as Vector2i, int(turned[here]),
+				str(there), at[there] as Vector2i, int(turned[there]), data
+			):
+				links.append(str(there))
+		links.sort()
+		world["adjacency"][str(here)] = links
+
+
+## C'e' un varco fra queste due tessere, come stanno sul tavolo?
+static func _passage_between(
+	here: String, here_at: Vector2i, here_turn: int,
+	there: String, there_at: Vector2i, there_turn: int, data
+) -> bool:
+	var side: String = _side_towards(here_at, there_at)
+	if side == "":
+		return false
+	return _openings(here, here_turn, data).has(side) \
+		and _openings(there, there_turn, data).has(_facing(side))
+
+
+## Dove e come si posa questa tessera: la prima casella libera accostata a una
+## gia' posata, con la prima rotazione che fa combaciare un varco. Vuoto se non
+## si posa da nessuna parte.
+static func _where_it_fits(
+	tile: String, at: Dictionary, turned: Dictionary, occupied: Dictionary, data
+) -> Dictionary:
+	# Le caselle libere accostate a quelle occupate, in ordine fisso: per
+	# tessera posata nell'ordine in cui e' stata posata, e per lato N/E/S/O.
+	var seen: Dictionary = {}
+	var spots: Array = []
+	for placed in at:
+		var base: Vector2i = at[placed] as Vector2i
+		for side in QUARTERS:
+			var step: Vector2i = base + _step_of(side)
+			var key: String = "%d,%d" % [step.x, step.y]
+			if occupied.has(key) or seen.has(key):
+				continue
+			seen[key] = true
+			spots.append(step)
+	# **Si posa dove attacca meglio**, non dove attacca per primo: fra le pose
+	# che fanno combaciare almeno un varco si prende quella che ne fa combaciare
+	# **di piu'**. E' quello che fa una persona al tavolo, ed e' la differenza
+	# fra una mappa e una catena: col «primo posto libero» la meta' delle
+	# tessere finiva con un vicino solo (misurato: 646 su 1.200).
+	var best: Dictionary = {}
+	var best_joins: int = 0
+	for spot in spots:
+		for turn in range(4):
+			var joins: int = 0
+			for side in QUARTERS:
+				var neighbour: Vector2i = (spot as Vector2i) + _step_of(str(side))
+				var key: String = "%d,%d" % [neighbour.x, neighbour.y]
+				if not occupied.has(key):
+					continue
+				var other: String = str(occupied[key])
+				if _passage_between(
+					tile, spot as Vector2i, turn,
+					other, at[other] as Vector2i, int(turned[other]), data
+				):
+					joins += 1
+			if joins > best_joins:
+				best_joins = joins
+				best = {"at": spot, "turn": turn}
+	return best
+
+
+static func _step_of(side: String) -> Vector2i:
+	match side:
+		"N":
+			return Vector2i(0, -1)
+		"E":
+			return Vector2i(1, 0)
+		"S":
+			return Vector2i(0, 1)
+	return Vector2i(-1, 0)
 
 
 ## La pesca delle tessere (D-263): stessa forma di `resolve_seats`, candidate

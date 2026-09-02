@@ -2276,7 +2276,7 @@ no border. Not gory, not horror.
 
 **Temi:** Vie · Potere
 
-**BERSAGLIO** — Scegli un luogo con #commercio, #dogana o #strada. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+**BERSAGLIO** — Scegli un luogo con #commercio o #dogana. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 

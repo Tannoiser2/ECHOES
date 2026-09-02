@@ -7,10 +7,10 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 174 |
+| segni nel dizionario | 173 |
 | di cui qualcuno scrive | 170 |
 | orfani in tutto | 60 |
-| **di cui senza una ragione scritta** | **11** |
+| **di cui senza una ragione scritta** | **0** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
 | **livelli che si reggono solo su conteggi** | **11** |
@@ -22,7 +22,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | segni che l'eredita' porta avanti | 49 |
 | profili strategici scritti | 8 |
 | segni che quelle case vogliono o temono | 68 |
-| **fra i voluti, quelli che un Consiglio sa dare** | **25** |
+| **fra i voluti, quelli che un Consiglio sa dare** | **26** |
 | segni che aiutano una casa e ne danneggiano un'altra | 18 |
 | **coppie di case che hanno qualcosa per cui litigare** | **13 su 28** |
 
@@ -35,34 +35,26 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **49 su 60 portano gia' la loro
+Non tutti gli orfani sono un difetto: **60 su 60 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
 la matrice deve prendere per primi.
 
-### Orfani senza una ragione scritta: 11
+### Orfani senza una ragione scritta: 0
 
-| segno | categoria | chi lo scrive |
-|---|---|---|
-| `betrayal_spoken` | MEMORY | Azione stampata, carta Echo |
-| `capital` | FUNCTION | tessera |
-| `condition:requisitioned` | STATE | Conseguenza |
-| `crystal_site` | PLACE | tessera |
-| `parley_held` | MEMORY | carta Echo |
-| `petition_heard` | MEMORY | carta Echo |
-| `structure:castle` | FUNCTION | Pietra |
-| `structure:library` | FUNCTION | Pietra |
-| `structure:palace` | FUNCTION | Pietra |
-| `trade` | FUNCTION | tessera |
-| `wild` | PLACE | tessera |
+Nessuno.
 
-### Orfani dichiarati: 49
+### Orfani dichiarati: 60
 
 | segno | la ragione che porta scritta |
 |---|---|
 | `ancient` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
+| `betrayal_spoken` | memoria del mondo che le facce fisiche usano come **bersaglio**, non come premio: una carta dice «se il tradimento e' st |
 | `burden_shared` | memoria del mondo: narrata (D-103), ereditata |
+| `capital` | funzione stampata sulla tessera: e' uno dei segni con cui le carte dicono **dove** si agisce, e il legame che le frasi d |
+| `condition:requisitioned` | condizione posata da una Conseguenza e letta dalle facce come **bersaglio**: e' un ostacolo che si trova, non un traguar |
+| `crystal_site` | luogo stampato sulla tessera: la fonte del cristallo e' un **posto**, e serve da bersaglio a carte, Tensioni e Conseguen |
 | `discovery:legend` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `discovery:shared_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `discovery:supervised_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
@@ -93,6 +85,8 @@ la matrice deve prendere per primi.
 | `migrating` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `mine` | vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invec |
 | `order` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
+| `parley_held` | memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**: dice che al tavolo ci si e' parlati, e |
+| `petition_heard` | memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**, come `parley_held`: e' una cosa succes |
 | `place:collapsed_pass` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `place:dry_spring` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `place:low_spring` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
@@ -108,8 +102,13 @@ la matrice deve prendere per primi.
 | `sleeping` | era etichetta di famiglia muta; da D-262 la legge la grammatica adattiva ($entity_with e requires_entity_tag): dice chi  |
 | `someone_paid` | memoria del mondo: narrata (D-103), ereditata |
 | `spoke_and_lost` | marchio di memoria (D-278): ha proposto e la proposta e' caduta — si legge sulla carta del casato |
+| `structure:castle` | secondo grado della Torre (STR_KEEP). Arriva sul tavolo — 92 volte in cento partite, e a fine partita ci sta in 65 — e l |
+| `structure:library` | secondo grado dell'Archivio (STR_ARCHIVE), la Grande Biblioteca. Arriva 14 volte in cento partite e le facce la nominano |
+| `structure:palace` | terzo grado della Torre (STR_KEEP). **Oggi non arriva mai**, e quello e' un difetto vero — ma e' il difetto delle Pietre |
 | `took_by_hand` | marchio di memoria (D-278): non ha aspettato la decisione, ha preso — si legge sulla carta del casato |
+| `trade` | funzione stampata sulla tessera: il commercio e' uno dei segni con cui le carte dicono **dove**, ed e' letto da carte, D |
 | `watched` | marchio di memoria (D-278): chi ha imposto la guardia se lo porta addosso, e si legge sulla carta del casato — il motore |
+| `wild` | luogo stampato sulla tessera: il selvaggio e' un **posto**, bersaglio di carte, Destini, Tensioni e Conseguenze. Non lo  |
 
 ## 2. Gli obiettivi che non si possono puntare col dito
 
@@ -183,7 +182,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `crystal_exploited` | **si'** | **si'** | Conseguenza, faccia della Tensione |
 | vuole | `ash` | no | no | casato |
 | vuole | `discovery:crystal` | no | **si'** | Conseguenza |
-| vuole | `structure:road` | no | no | — |
+| vuole | `structure:tollgate` | **si'** | no | Pietra |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |

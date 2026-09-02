@@ -1247,6 +1247,29 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "CouncilEconomy fra i %s e non sta nell'enum dello schema"
                     % (verbo, come))
 
+    # **Due proposte che portano allo stesso mondo non sono due strade**
+    # (ISSUES 104, chiuso in 0.1.365). La regola c'era gia' per le due liste
+    # della carta Tensione — «due pedine che fanno la stessa cosa non sono una
+    # scelta» — e non era mai stata portata sui Consigli, dove al voto due frasi
+    # diverse possono applicare **la stessa identica catena di Effetti**. La
+    # prosa lo nasconde: si vede solo confrontando gli Effetti, non i testi.
+    conseguenze = {str(c["id"]): c for c in documenti.get("consequence", [])}
+    for template in documenti.get("confluence_template", []):
+        catene: Dict[str, List[str]] = {}
+        for proposta in (template.get("propositions") or []):
+            righe: List[str] = []
+            for cid in (proposta.get("success_consequences") or []):
+                for effetto in (conseguenze.get(str(cid), {}).get("effects") or []):
+                    righe.append(json.dumps(effetto, sort_keys=True, ensure_ascii=False))
+            firma = "\n".join(sorted(righe))
+            catene.setdefault(firma, []).append(str(proposta.get("id", "?")))
+        for firma, chi in sorted(catene.items()):
+            if len(chi) > 1:
+                guai.append(
+                    "due proposte che fanno la stessa cosa su %s: %s applicano la "
+                    "stessa catena di Effetti — al voto sembrano due strade e sono "
+                    "una sola" % (template.get("id"), " e ".join(sorted(chi))))
+
     return guai
 
 
@@ -1540,6 +1563,18 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             if str(p.get("question_id")) != muta
         ]
 
+    def proposte_gemelle(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Due proposte dello stesso Consiglio che applicano la stessa catena di
+        # Effetti: al voto sembrano due strade e sono una sola. **Si fabbrica**
+        # — appena i dati sono a posto, cercare una coppia gia' rotta
+        # smetterebbe di provare senza dirlo, che in questo progetto e'
+        # successo quattro volte.
+        template = next(t for t in prova["confluence_template"]
+                        if len(t.get("propositions") or []) > 1)
+        prima = template["propositions"][0]
+        seconda = template["propositions"][1]
+        seconda["success_consequences"] = list(prima.get("success_consequences") or [])
+
     def memoria_sbagliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # IL MONDO RICORDA che nomina un segno del **luogo** invece che del
         # mondo: la pedina si posa e la memoria finisce dove nessuna regola la
@@ -1699,6 +1734,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "porta del tempo murata"),
         pianta("frase d'autore che consegna il luogo che la carta vende",
                frase_che_ruba_la_casella, "la frase fa il mestiere della casella"),
+        pianta("due proposte dello stesso Consiglio con la stessa catena",
+               proposte_gemelle, "due proposte che fanno la stessa cosa"),
         pianta("IL MONDO RICORDA che nomina un segno del luogo, non del mondo",
                memoria_sbagliata, "posa un segno che non e' del mondo"),
         pianta("carta che apre una Domanda a cui nessuno puo' rispondere",

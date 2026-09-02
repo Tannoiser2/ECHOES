@@ -575,6 +575,12 @@ static func _house_promise(entity: Dictionary, data: RefCounted) -> Array:
 	return out
 
 
+## Come si legge un varco sulla faccia stampata: il lato, non la lettera.
+const EDGE_WORDS: Dictionary = {
+	"N": "alto", "E": "destra", "S": "basso", "O": "sinistra",
+}
+
+
 static func _region(region: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("region", str(region["id"]), "TILE")
 	face["title"] = str(region["name"])
@@ -597,6 +603,17 @@ static func _region(region: Dictionary, data: RefCounted) -> Dictionary:
 		if word != "" and not segni.has(word):
 			segni.append(word)
 	face["notes"] = []
+	# **I varchi, stampati sulla tessera** (D-390, parola del committente). Una
+	# tessera si posa girandola finche' un varco combacia con quello della
+	# tessera accanto, e da li' in poi «si puo' passare» si legge guardando i
+	# due lati. Senza questa riga la regola vivrebbe solo nell'app — che e'
+	# esattamente quello che la direzione di questo progetto vieta.
+	face["edges"] = (region.get("edges", []) as Array).duplicate()
+	var varchi: Array = []
+	for side in (face["edges"] as Array):
+		varchi.append(str(EDGE_WORDS.get(str(side), str(side))))
+	if not varchi.is_empty():
+		face["notes"].append("VARCHI  %s" % " · ".join(PackedStringArray(varchi)))
 	if not segni.is_empty():
 		face["notes"].append("SEGNI  %s" % " · ".join(PackedStringArray(segni)))
 	# Le famiglie in italiano (D-339): la tessera diceva «fonti: authority, force».

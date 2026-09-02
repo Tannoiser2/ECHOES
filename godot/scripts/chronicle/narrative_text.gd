@@ -125,13 +125,21 @@ func seat_of(entity_id: String, fallback_region: String) -> String:
 ## D-032. Aiming the spill-over at the *least marked* neighbour spreads damage
 ## across the board instead, and reads right: the trouble goes where it has not
 ## been yet. Ties go to the Chronicle's own Region order.
+## **I vicini sono quelli del tavolo, non quelli del dato** (D-390). Fino a
+## qui questa riga leggeva l'`adjacency` scritto sulla tessera — la mappa
+## d'autore — mentre la partita gioca sulla mappa **posata**, dove vicino e'
+## chi si tocca attraverso un varco. Sul tavolo pescato le due liste non
+## coincidono, e la frase nominava una Regione che non confinava.
 func adjacent_to(region_id: String) -> String:
 	var region: Variant = data.regions.get(region_id)
 	if region == null:
 		return region_id
+	var vicini: Array = (world.get("adjacency", {}) as Dictionary).get(
+		region_id, (region as Dictionary).get("adjacency", [])
+	) as Array
 	var best: String = ""
 	var fewest: int = -1
-	for neighbour_id in region["adjacency"]:
+	for neighbour_id in vicini:
 		var id: String = str(neighbour_id)
 		if not world["regions"].has(id):
 			continue

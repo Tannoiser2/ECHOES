@@ -998,6 +998,7 @@ const DEFS := {
 			"presence_slots",
 			"art_prompt_key",
 			"build_slots",
+			"edges",
 		],
 		"additional_properties": false,
 		"properties": {
@@ -1036,6 +1037,20 @@ const DEFS := {
 				"element": {
 					"type": "String",
 					"pattern": "^REG_[A-Z0-9_]+$",
+				},
+			},
+			"edges": {
+				"type": "Array",
+				"min_items": 1,
+				"max_items": 4,
+				"element": {
+					"type": "String",
+					"enum": [
+						"N",
+						"E",
+						"S",
+						"O",
+					],
 				},
 			},
 			"asset_sources": {
@@ -1955,6 +1970,9 @@ const DEFS := {
 			"tokens_in_bag": {
 				"type": "int",
 				"min": 0,
+			},
+			"map_rotations": {
+				"type": "Dictionary",
 			},
 		},
 	},

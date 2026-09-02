@@ -82,6 +82,12 @@ jobs:
       - name: Drift check - i testi in lettura
         run: python3 tools/build_review.py --check
 
+      # E che non ne manchi nessuno (ISSUES 105): il cancello confrontava il
+      # documento col generatore, non il generatore col gioco — un blocco nuovo
+      # restava fuori in silenzio, ed e' successo due volte.
+      - name: La guardia dei testi morde
+        run: python3 tools/build_review.py --self-test
+
       # Un blocco finito dopo un `return` non e' un errore per GDScript: e'
       # silenzio. Il bottone «Si comincia» della stanza e' vissuto una versione
       # intera dietro un return, e nessun test poteva vederlo (D-140).
@@ -92,6 +98,16 @@ jobs:
       # tabella di CLAUDE.md e' il contratto con chi lavora qui; questi file
       # sono quello che gira davvero. In una giornata sola si sono scostati nei
       # due versi, e nessuno dei due si lamenta da solo.
+      # Il conto delle voci (D-391). Il foglio che il committente legge per
+      # decidere portava numeri contati a mano, ed erano sbagliati: tredici voci
+      # chiuse non avevano il segno nel titolo, quindi nessun conteggio poteva
+      # vederle. Adesso il segno e' la regola e il conto si rigenera.
+      - name: Drift check - il conto delle voci
+        run: python3 tools/issues_survey.py --check
+
+      - name: La guardia delle voci morde
+        run: python3 tools/issues_survey.py --self-test
+
       - name: Il giro dei cancelli di CLAUDE.md e' quello della CI
         run: python3 tools/gates_survey.py --check
 
@@ -179,6 +195,11 @@ jobs:
 
       - name: Drift check - la misura delle vite
         run: GODOT=~/godot/godot tools/run_lives_survey.sh --check
+
+      # **La promessa non si campiona: si enumera** (D-390). 210 pescate per
+      # 720 ordini fanno 151.200 pose, e questo cancello le fa tutte.
+      - name: Drift check - tutte le pose delle tessere
+        run: GODOT=~/godot/godot tools/run_tiles_probe.sh --check
 
       - name: Drift check - la misura dei segni
         run: GODOT=~/godot/godot tools/run_marks_survey.sh --check
