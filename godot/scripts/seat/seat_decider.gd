@@ -601,8 +601,8 @@ func choose_benefits(
 		return fallback.choose_benefits(entity_id, context, menu, session)
 	_speaking_to = entity_id
 	var bought: Array = []
-	# **Il tetto lo dicono i gettoni** (D-387): il primo e' gratis, ogni altro
-	# costa un gettone di rivendicazione.
+	# **Il tetto lo dicono i gettoni** (D-387): i primi due sono gratis (D-417,
+	# parola del committente), ogni altro costa un gettone di rivendicazione.
 	var ceiling: int = session.confluence.benefit_ceiling()
 	while bought.size() < ceiling:
 		var labels: Array = []
@@ -619,7 +619,7 @@ func choose_benefits(
 		var picked: int = await _choose(
 			"  %s, cosa ottieni? (ne hai %d; %s)" % [
 				_name(entity_id, session), bought.size(),
-				"il primo e' gratis" if bought.is_empty()
+				"questo e' gratis" if bought.size() < CouncilEconomy.FREE_BENEFITS
 					else "il prossimo costa un gettone, ne hai %d"
 						% session.confluence.claim_tokens(entity_id),
 			],

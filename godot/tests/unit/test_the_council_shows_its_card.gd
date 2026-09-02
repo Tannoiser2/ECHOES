@@ -1,4 +1,6 @@
 extends "res://tests/test_case.gd"
+
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 ## **Il tabellone del Consiglio mostra la carta girata** (D-291, taglio 1).
 ##
 ## Parola del committente davanti all'app: *«il Concilio e' ancora quello
@@ -107,21 +109,30 @@ func test_the_board_draws_both_lists() -> void:
 func test_what_the_proponent_bought_is_marked() -> void:
 	_open()
 	var benefits: Array = _voices("benefits")
-	# **Il secondo beneficio si paga** (D-387): senza un gettone in mano il
-	# proponente ne posa uno solo, e la prova non proverebbe niente.
-	_give_tokens(str(session.confluence.current["proponent"]), 1)
-	assert_true(session.confluence.set_benefits(benefits.slice(0, 2)), "compra due benefici")
+	# **Il primo acquisto che costa si paga** (D-417): si compra uno oltre i
+	# gratis, cosi' la scheda deve scrivere **due cose** — quante pedine e
+	# quanti gettoni — e la prova le vede tutt'e due. Il numero dei gratis si
+	# legge dalla regola: cambiarlo non deve far fallire questa prova per il
+	# motivo sbagliato.
+	var free: int = CouncilEconomy.FREE_BENEFITS
+	var quante: int = mini(free + 1, benefits.size())
+	_give_tokens(str(session.confluence.current["proponent"]), quante - free)
+	assert_true(
+		session.confluence.set_benefits(benefits.slice(0, quante)),
+		"compra %d benefici" % quante
+	)
 	var drawn: Array = _drawn()
 	var column: String = " · ".join(PackedStringArray(drawn))
 	assert_true(
-		column.contains("2 comprati con 1 gettone"), "il conto e' scritto: %s" % column
+		column.contains("%d comprati con %d gettone" % [quante, quante - free]),
+		"il conto e' scritto: %s" % column
 	)
 	var marked: int = 0
 	for line in drawn:
 		if str(line).begins_with("●"):
 			marked += 1
-	assert_eq(marked, 2, "e due pedine sono posate, non una lista puntata")
-	for i in range(2):
+	assert_eq(marked, quante, "e le pedine sono posate, non una lista puntata")
+	for i in range(quante):
 		assert_true(
 			drawn.has("● %s" % _text_of("benefits", str(benefits[i]))),
 			"la pedina sta sulla voce comprata"

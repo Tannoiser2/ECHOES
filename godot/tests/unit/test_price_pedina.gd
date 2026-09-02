@@ -230,39 +230,52 @@ func test_the_card_offers_benefits_and_costs() -> void:
 	assert_true((face["failure"] as Array).size() >= 1, "e se cade, la carta dice gia' cosa succede")
 
 
-## **L'economia: uno e' gratis, ogni altro costa un gettone** (D-387, ISSUES
-## 122). E' la riga in mezzo alla carta, ed e' quella che rende il Consiglio una
-## decisione invece di un menu — con la differenza che adesso la moneta il
-## proponente se l'e' guadagnata un turno prima, giocando una carta Asset dalla
-## sua faccia RIVENDICARE.
+## **L'economia: due sono gratis, ogni altro costa un gettone** ([D-417](../../docs/DECISIONS.md#d-417),
+## ISSUES 122 + 125, parola del committente: *«due acquisti liberi»*). E' la riga
+## in mezzo alla carta, ed e' quella che rende il Consiglio una decisione invece
+## di un menu — con la differenza che la moneta il proponente se l'e' guadagnata
+## un turno prima, giocando una carta Asset dalla sua faccia RIVENDICARE.
+##
+## Era **uno**, ed era D-280 alla lettera. Misurato: con un solo acquisto libero
+## le caselle **vive** per Consiglio erano una — le altre ventitre' esistevano
+## per quando la prima non si poteva comprare — e i benefici comprati per
+## Consiglio erano 1,22. Coi due liberi sono **2,25**.
 func test_one_benefit_is_free_and_every_other_costs_one() -> void:
 	var context: Dictionary = _open_with_proposition()
 	var proponent: String = str(context["proponent"])
 	var benefits: Array = _benefits()
 	assert_true(session.confluence.set_benefits([]), "si puo' anche non comprare niente")
-	assert_true(session.confluence.set_benefits([str(benefits[0])]), "un beneficio si compra")
-	assert_eq(session.confluence.claim_tokens(proponent), 0, "il primo e' gratis")
+	var free: int = CouncilEconomy.FREE_BENEFITS
+	assert_true(
+		session.confluence.set_benefits(benefits.slice(0, free)),
+		"i primi %d si comprano" % free
+	)
+	assert_eq(session.confluence.claim_tokens(proponent), 0, "e sono gratis")
 	assert_false(
-		session.confluence.set_benefits(benefits.slice(0, 2)),
-		"il secondo senza gettoni non si compra"
+		session.confluence.set_benefits(benefits.slice(0, free + 1)),
+		"quello dopo, senza gettoni, non si compra"
 	)
 	_give_tokens(proponent, 2)
-	assert_true(session.confluence.set_benefits(benefits.slice(0, 2)), "due benefici")
-	assert_eq(session.confluence.claim_tokens(proponent), 1, "il secondo costa un gettone")
-	assert_true(session.confluence.set_benefits(benefits.slice(0, 3)), "tre benefici")
-	assert_eq(session.confluence.claim_tokens(proponent), 0, "il terzo ne costa un altro")
+	assert_true(
+		session.confluence.set_benefits(benefits.slice(0, free + 1)),
+		"col gettone si'"
+	)
+	assert_eq(session.confluence.claim_tokens(proponent), 1, "e costa un gettone")
 	assert_false(
-		session.confluence.set_benefits(benefits.slice(0, 4)),
+		session.confluence.set_benefits(benefits.slice(0, CouncilEconomy.MAX_BENEFITS + 1)),
 		"e il tetto e' tre: sulla carta non ci stanno altre pedine (D-303)"
 	)
 	assert_eq(
-		session.confluence.claim_tokens(proponent), 0,
+		session.confluence.claim_tokens(proponent), 1,
 		"il rifiuto non tocca quello che era gia' comprato"
 	)
 	# **E quello che non si compra piu' torna in mano**: le pedine si posano e
 	# si tolgono, e la borsa segue.
-	assert_true(session.confluence.set_benefits([str(benefits[0])]), "si torna a uno")
-	assert_eq(session.confluence.claim_tokens(proponent), 2, "e i due gettoni tornano")
+	assert_true(
+		session.confluence.set_benefits(benefits.slice(0, free)),
+		"si torna ai gratis"
+	)
+	assert_eq(session.confluence.claim_tokens(proponent), 2, "e i gettoni tornano")
 	assert_false(
 		session.confluence.set_benefits([str(benefits[0]), str(benefits[0])]),
 		"una pedina per voce"
@@ -475,14 +488,18 @@ func test_you_cannot_buy_more_than_you_can_pay_for() -> void:
 	# **Il tetto lo dicono i gettoni** (D-387), non piu' i costi vivi: quello
 	# che il proponente puo' posare dipende da quello che ha in mano.
 	var proponent: String = str(session.confluence.current["proponent"])
-	_give_tokens(proponent, 1)
+	var free: int = CouncilEconomy.FREE_BENEFITS
+	# **Il tetto e' i gratis piu' i gettoni.** Il numero si legge dalla regola e
+	# non si riscrive qui: il giorno in cui il committente cambia i liberi,
+	# questa prova deve misurare ancora la regola e non la taratura di ieri.
 	assert_false(
-		session.confluence.set_benefits(three),
-		"con un gettone solo, tre benefici non si comprano"
+		session.confluence.set_benefits(three.slice(0, free + 1)),
+		"a mani vuote non si compra oltre i %d gratis" % free
 	)
+	_give_tokens(proponent, 1)
 	assert_true(
-		session.confluence.set_benefits(three.slice(0, 2)),
-		"due si', perche' il primo e' gratis e il secondo ha la sua moneta"
+		session.confluence.set_benefits(three.slice(0, free + 1)),
+		"col gettone si', perche' i primi %d sono gratis e il dopo ha la sua moneta" % free
 	)
 	assert_eq(session.confluence.claim_tokens(proponent), 0, "e il gettone e' speso")
 

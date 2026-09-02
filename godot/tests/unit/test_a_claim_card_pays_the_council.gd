@@ -1,4 +1,6 @@
 extends "res://tests/test_case.gd"
+
+const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 ## **Il gettone di rivendicazione** (D-387 — ISSUES 122, parola del committente:
 ## *«io intendo l'azione rivendicare sulla carta come la carta che ti da' i
 ## Token da utilizzare proprio in questa occasione»*).
@@ -73,7 +75,13 @@ func test_another_card_leaves_none() -> void:
 
 
 ## **E il gettone si spende dove il committente ha detto**: nel Consiglio, per
-## il secondo beneficio. Senza, il proponente ne posa uno solo.
+## il **primo acquisto che costa** — che da [D-417](../../docs/DECISIONS.md#d-417)
+## e' il terzo, parola del committente: *«due acquisti liberi»*.
+##
+## La prova chiede il primo che costa, non «il secondo»: cosi' misura **la
+## regola** e non la taratura di oggi. Con un solo acquisto libero le caselle
+## vive per Consiglio erano **una** e i benefici comprati 1,22; coi due liberi
+## sono 2,25.
 func test_the_token_buys_the_second_benefit() -> void:
 	var tension_id: String = ""
 	for candidate in (session.world["tensions"] as Dictionary):
@@ -92,24 +100,35 @@ func test_the_token_buys_the_second_benefit() -> void:
 	var proponent: String = str(context["proponent"])
 
 	var menu: Array = session.confluence.benefit_menu()
-	if menu.size() < 2:
+	if menu.size() < CouncilEconomy.FREE_BENEFITS + 1:
 		# Una carta le cui caselle qui non morderebbero non serve a questa
 		# prova: quello che si sta provando e' la moneta, non le caselle vive.
 		assert_true(true, "questa domanda non offre due caselle vive: niente da provare")
 		return
-	var due: Array = [
-		str((menu[0] as Dictionary)["id"]), str((menu[1] as Dictionary)["id"]),
-	]
-	assert_eq(session.confluence.benefit_ceiling(), 1, "a mani vuote se ne posa una")
-	assert_false(session.confluence.set_benefits(due), "e due non si comprano")
+	var free: int = CouncilEconomy.FREE_BENEFITS
+	if menu.size() < free + 1:
+		assert_true(true, "questa domanda non offre abbastanza caselle vive")
+		return
+	var oltre: Array = []
+	for i in range(free + 1):
+		oltre.append(str((menu[i] as Dictionary)["id"]))
+
+	assert_eq(
+		session.confluence.benefit_ceiling(), free,
+		"a mani vuote se ne posano %d" % free
+	)
+	assert_false(session.confluence.set_benefits(oltre), "e uno in piu' non si compra")
 
 	var effect: GDScript = load("res://scripts/core/effect.gd")
 	session.applier.apply(effect.make(
 		"GRANT_CLAIM_TOKEN", "entity", proponent, {},
 		effect.source("system", "TEST", "", 1, 1, 0)
 	))
-	assert_eq(session.confluence.benefit_ceiling(), 2, "col gettone se ne posano due")
-	assert_true(session.confluence.set_benefits(due), "e adesso si comprano")
+	assert_eq(
+		session.confluence.benefit_ceiling(), free + 1,
+		"col gettone se ne posa uno in piu'"
+	)
+	assert_true(session.confluence.set_benefits(oltre), "e adesso si comprano")
 	assert_eq(
 		int((session.world["entities"][proponent] as Dictionary)["claim_tokens"]), 0,
 		"il gettone e' stato speso"

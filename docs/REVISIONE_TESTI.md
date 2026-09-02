@@ -11970,9 +11970,9 @@ possono spostare nella frase, non togliere. 4182 testi in lettura.
 
 
 **`AST_FORCE_BORDER_WATCH, azione 2`**
-> Far sapere che si guarda
+> Far sapere che il confine e' tuo
 
-> Metti #conteso sul luogo.
+> Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.
 
 
 **`AST_FORCE_BORDER_WATCH, risonanza`**
@@ -12082,9 +12082,9 @@ possono spostare nella frase, non togliere. 4182 testi in lettura.
 
 
 **`AST_FORCE_OLD_ARMY, azione 2`**
-> Lasciarli tornare a casa
+> Rimetterli in riga
 
-> Togli #malcontento dal luogo e pesca 1 Autorita'.
+> Rivendica il luogo: i vecchi soldati stanno di nuovo da qualche parte, e si vede.
 
 
 **`AST_FORCE_OLD_ARMY, risonanza`**
@@ -12336,7 +12336,7 @@ possono spostare nella frase, non togliere. 4182 testi in lettura.
 **`AST_KNOWLEDGE_RUMOR, azione 2`**
 > Mettere in giro la voce
 
-> Metti #malcontento sul luogo.
+> Rivendica il luogo: la voce arriva prima di te, e al prossimo Consiglio la sua Domanda si apre.
 
 
 **`AST_KNOWLEDGE_RUMOR, risonanza`**

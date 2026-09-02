@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-417 — Due acquisti liberi, e il numero delle facce l'ha corretto la misura
+
+**implemented in 0.1.388.** Parola del committente: **«R2: due acquisti liberi,
+RIVENDICARE a 15»**, e poi **«undici»** davanti ai numeri. Chiude
+[ISSUES 122](ISSUES.md#122), avanza [ISSUES 125](ISSUES.md#125),
+[ISSUES 56](ISSUES.md#56) e [ISSUES 111](ISSUES.md#111).
+
+### I due acquisti liberi: il numero piu' redditizio di questo giro
+
+Era **uno**, ed era [D-280](#d-280) alla lettera. Misurato, con un solo acquisto
+libero le caselle **vive** per Consiglio erano una: le altre ventitre' esistevano
+per quando la prima non si poteva comprare. Un menu di ventiquattro voci di cui
+se ne sceglie una non e' un menu.
+
+| 100 partite CHR_00, tavolo misto, seme 7000 | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,22 | **2,25** |
+| ABBASSA LA DOMANDA, comprata su 700+ offerte | 22 | **83** |
+| turni «passa» | 46,0% | **46,1%** |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**La casella che nessuno comprava si e' svegliata**: da una su 32 a una su 8. Ed
+e' il terzo pezzo di [ISSUES 106](ISSUES.md#106), che [D-416](#d-416) aveva
+lasciato aperto — non perche' la pedina abbia imparato a scegliere, ma perche'
+adesso c'e' la moneta per comprarla.
+
+### E il gettone e' diventato moneta, quindi il cervello lo conia
+
+Una riga di `policy_decider` diceva: *«si prenota solo se non c'e' niente da
+strappare»*. Era vera **finche' il gettone non serviva a niente**. Adesso il
+terzo beneficio lo compra un gettone, e i gettoni si coniano solo prenotando:
+prenotare non e' piu' un diritto inutile, e' **mettere da parte quello con cui si
+comprera'**. Il cervello prenota anche a borsa vuota.
+
+### Il numero delle facce: quindici l'ha corretto la misura, e il committente ha scelto undici
+
+La decisione era **quindici**. Scritte, e misurate: **costano quasi sei punti di
+«passa»** — 46,0% → 51,9% — perche' quattro delle sette facce nuove vanno tolte a
+verbi che il cervello gioca, e RIVENDICARE lo gioca meno.
+
+Cercata la compensazione, come il committente ha chiesto. Trovate due leve:
+
+| | passa | benefici | casella | Verita' scritte |
+|---|---|---|---|---|
+| **undici facce** (le tre mute) | **46,1%** | 2,25 | 83 | **157** |
+| quindici, col gettone-moneta | 50,7% | 2,44 | 103 | 158 |
+| quindici, e la riserva della mano da 4 a 3 | 46,9% | 2,40 | 102 | **138** |
+
+La terza riga e' la compensazione che funziona, e **costa venti Verita' scritte
+su 158 — il 13% della memoria del mondo**, che e' la cosa per cui il Consiglio
+esiste. Il committente ha scelto **undici**: prende il 92% del guadagno senza
+toccare ne' i turni ne' la memoria.
+
+**Le tre facce nuove sostituiscono facce che il motore non sapeva eseguire** —
+Guardia di Confine, Il Vecchio Esercito, Voce di Corridoio — quindi nessun verbo
+perde una faccia, e le facce mute passano da dieci a sette.
+
+### Le due voci che aspettavano questa
+
+- **[ISSUES 111](ISSUES.md#111)**: le Pietre alzate passano da 1.186 a **1.257**,
+  e quelle che alza **il Consiglio** da 148 a **211**, +43%. Con due acquisti
+  liberi, COSTRUISCI PIETRA si compra.
+- **[ISSUES 56](ISSUES.md#56)**: restano 7 su 65, ma la lista e' cambiata —
+  `CNS_LAW_OF_SUCCESSION` adesso esce, e ne e' entrata un'altra. Sono numeri
+  piccoli (una o due offerte a testa) e si muovono da soli: **la voce si chiude
+  su 200 anni, non su un giro**.
+
+---
+
 ## D-416 — La pedina porta il nome della domanda, e il cervello non lo usa
 
 **implemented in 0.1.387.** Avanza [ISSUES 106](ISSUES.md#106), e ne isola la

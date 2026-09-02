@@ -77,9 +77,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **102** |
-| aperte | **29** |
-| di cui **aspettano una tua decisione** | **15** |
+| chiuse | **104** |
+| aperte | **27** |
+| di cui **aspettano una tua decisione** | **13** |
 | di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -91,7 +91,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 0 | 2 |
+| 0.1.375–0.1.399 | 0 | 4 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -140,16 +140,25 @@ a un tavolo che passa sempre, 136 a uno che gioca).
 **Sblocca la [111](ISSUES.md#111)** — le Pietre che non si alzano mai — e metà
 della [59](ISSUES.md#59).
 
-### R2. [122](ISSUES.md#122) + [125](ISSUES.md#125) — quanto compra una proposta
+### ✔ R2. [122](ISSUES.md#122) + [125](ISSUES.md#125) — chiuse in 0.1.388
 
-Sono una domanda sola. Con **un solo beneficio gratis**, il numero di caselle
-vive per Consiglio è **uno**: le altre ventitré esistono per quando la prima non
-si può comprare. E la moneta è troppo poca perché una proposta sia una mossa: i
-gettoni di rivendicazione arrivano da **9 carte su 48**.
+Parola tua: **«due acquisti liberi, RIVENDICARE a 15»**, e poi **«undici»**
+davanti ai numeri ([D-417](DECISIONS.md#d-417)).
 
-> **Farei: due acquisti liberi, e le facce RIVENDICARE da 9 a 15 su 48.** Il
-> Consiglio passa da «prendo il massimo» a «costruisco una mossa». Costo: il
-> Consiglio diventa più generoso, e il cancello va rimisurato — è mezz'ora.
+I due acquisti liberi sono **il numero più redditizio di tutto il giro**:
+benefici comprati per Consiglio da **1,22 a 2,25**, e la casella che nessuno
+comprava da 22 a **83** acquisti su 700 offerte — da una su 32 a una su 8. Costa
+niente: «passa» fermo al 46,1%, cancello 0 su 8 sui due tavoli.
+
+**E il quindici l'ha corretto la misura.** Le quindici facce costano quasi sei
+punti di «passa» (46,0% → 51,9%), perché quattro vanno tolte a verbi che il
+cervello gioca. La compensazione esiste — abbassare la riserva della mano — ma
+costa **venti Verità scritte su 158, il 13% della memoria del mondo**. Hai scelto
+undici: il 92% del guadagno senza toccare né i turni né la memoria.
+
+**Ha mosso anche due voci che aspettavano**: le Pietre alzate dal Consiglio da
+148 a **211** ([111](ISSUES.md#111)), e il terzo pezzo della
+[106](ISSUES.md#106) — la casella si compra perché adesso c'è la moneta.
 
 ### R3. [120](ISSUES.md#120) — vincere nominando, non contando
 

@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.388 — R2: due acquisti liberi, e il quindici l'ha corretto la misura
+
+Parola del committente — *«R2: due acquisti liberi, RIVENDICARE a 15»*, e poi
+*«undici»* davanti ai numeri ([D-417](docs/DECISIONS.md#d-417)). Chiude
+[ISSUES 122](docs/ISSUES.md#122) e [ISSUES 125](docs/ISSUES.md#125).
+
+### I due acquisti liberi sono il numero più redditizio del giro
+
+| 100 partite CHR_00, tavolo misto | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,22 | **2,25** |
+| ABBASSA LA DOMANDA, comprata su 700+ offerte | 22 | **83** |
+| Pietre alzate **dal Consiglio** | 148 | **211** |
+| turni «passa» | 46,0% | **46,1%** |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+Le caselle vive per Consiglio erano **una**: le altre ventitré esistevano per
+quando la prima non si poteva comprare. La casella che nessuno comprava passa da
+una su 32 a **una su 8**, ed è il terzo pezzo di
+[ISSUES 106](docs/ISSUES.md#106) — mosso perché adesso c'è la moneta, non perché
+la pedina abbia imparato a scegliere.
+
+**E il gettone è diventato moneta, quindi il cervello lo conia.** Una riga del
+cervello diceva «si prenota solo se non c'è niente da strappare»: era vera
+finché il gettone non serviva a niente.
+
+### Il quindici l'ha corretto la misura
+
+Scritte e misurate, le quindici facce RIVENDICARE **costano quasi sei punti di
+«passa»** — 46,0% → 51,9% — perché quattro delle sette nuove vanno tolte a verbi
+che il cervello gioca. Cercata la compensazione, come il committente ha chiesto:
+
+| | passa | benefici | casella | Verità scritte |
+|---|---|---|---|---|
+| **undici facce** (le tre mute) | **46,1%** | 2,25 | 83 | **157** |
+| quindici, col gettone-moneta | 50,7% | 2,44 | 103 | 158 |
+| quindici, e la riserva della mano da 4 a 3 | 46,9% | 2,40 | 102 | **138** |
+
+La terza riga funziona e costa **venti Verità scritte su 158 — il 13% della
+memoria del mondo**, che è la cosa per cui il Consiglio esiste. Scelte le
+**undici**: il 92% del guadagno senza toccare né i turni né la memoria. Le tre
+facce nuove sostituiscono facce che **il motore non sapeva eseguire**, quindi
+nessun verbo perde una faccia e le mute passano da dieci a sette.
+
+Suite a **703 prove**; tre prove dell'economia riscritte perché misurino **la
+regola** e non la taratura di oggi.
+
+---
+
 ## 0.1.387 — M4: la pedina porta il nome della domanda, e il cervello non lo usa
 
 Due terzi del criterio di [ISSUES 106](docs/ISSUES.md#106)

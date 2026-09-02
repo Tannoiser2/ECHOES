@@ -1181,14 +1181,26 @@ func _targets_for(
 				if domain == "" or seen.has(domain):
 					continue
 				seen[domain] = true
-				# **E si prenota solo se non c'e' niente da strappare.** In
-				# questa Chronicle la parola si prende in un colpo: con una
-				# domanda gia' matura sul tavolo, prenotarne un'altra e'
-				# spendere l'Azione per un diritto che non serve. Quando invece
-				# non c'e' niente di maturo la prenotazione resta l'unica cosa
-				# che il RIVENDICARE sa fare, e togliergliela vorrebbe dire una
-				# carta in mano che non si puo' giocare.
-				if matura and _claim_in_one_move(session):
+				# **E si prenota solo se non c'e' niente da strappare** — questo
+				# era vero **finche' il gettone non serviva a niente**. In questa
+				# Chronicle la parola si prende in un colpo, quindi con una
+				# domanda gia' matura sul tavolo prenotarne un'altra sembrava
+				# spendere l'Azione per un diritto inutile.
+				#
+				# **Da D-417 il gettone e' moneta** (ISSUES 122 + 125): i primi
+				# due benefici sono gratis, il terzo lo compra un gettone di
+				# rivendicazione, e i gettoni si coniano solo cosi'. Prenotare
+				# non e' piu' «un diritto che non serve»: e' **mettere da parte
+				# quello con cui si comprera' al prossimo Consiglio**.
+				#
+				# Quindi si prenota lo stesso quando la borsa e' vuota — che e'
+				# la condizione in cui una carta RIVENDICARE in mano era una
+				# carta che non serviva a niente, e faceva passare il turno.
+				if (
+					matura
+					and _claim_in_one_move(session)
+					and session.confluence.claim_tokens(entity_id) > 0
+				):
 					continue
 				out.append({"mode": "CREATE", "domain": domain})
 		"FORGE":

@@ -7665,6 +7665,21 @@ gioco.
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non e' piu' nel catalogo.
 
+### Rimisurata in 0.1.388, dopo la R2 ([D-417](DECISIONS.md#d-417))
+
+Con **due acquisti liberi** il Consiglio compra COSTRUISCI PIETRA molto più
+spesso, ed era la causa che questa voce nominava:
+
+| 100 partite, tavolo misto | prima di R2 | dopo |
+|---|---|---|
+| Pietre alzate in tutto | 1.186 | **1.257** |
+| — **dal Consiglio o da un'Eco** | 148 | **211** (+43%) |
+| — da un'Azione di chi gioca | 182 | 190 |
+| in piedi a fine anno | 1.009 | 1.055 |
+
+**La strada era quella giusta**: la voce diceva *«quelle proposte il cervello non
+le compra mai»*, e adesso le compra.
+
 > ### Rimisurata in 0.1.336, e i numeri di questa voce erano vecchi
 >
 > «Dieci Pietre» era il conto della 0.1.316. Misurato adesso con
@@ -8307,6 +8322,24 @@ disfare D-378.
 
 **Fatto quando** il committente sceglie.
 
+### ✅ Scelto in 0.1.388: **due acquisti liberi** ([D-417](DECISIONS.md#d-417))
+
+Parola del committente: *«R2: due acquisti liberi»*. È il numero più redditizio
+di tutto questo giro, e si è visto subito:
+
+| 100 partite, tavolo misto | prima | dopo |
+|---|---|---|
+| benefici comprati per Consiglio | 1,22 | **2,25** |
+| ABBASSA LA DOMANDA, comprata su 700+ offerte | 22 | **83** |
+| turni «passa» | 46,0% | **46,1%** |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**Costa niente e sblocca il menu**: le caselle vive per Consiglio erano una, e le
+altre ventitré esistevano per quando la prima non si poteva comprare. La casella
+che nessuno comprava passa da una su 32 a **una su 8** — ed è il terzo pezzo
+della [106](#106), che si è mosso perché adesso c'è la moneta, non perché la
+pedina abbia imparato a scegliere.
+
 ---
 
 ### 120. Dodici Obiettivi su diciassette si vincono contando, e non nominano niente
@@ -8512,7 +8545,7 @@ la tocchi.
 
 ---
 
-### 122. Il primo beneficio è gratis, quindi ne esiste uno solo
+### 122. ✅ Il primo beneficio è gratis, quindi ne esiste uno solo — CHIUSA in 0.1.388: adesso sono due
 
 `regole` · `da-decidere` · aperta in 0.1.350
 ([D-382](DECISIONS.md#d-382) · [la misura](MISURA_CASELLE.md))
@@ -8725,7 +8758,7 @@ mostra desiderio per desiderio, e i due modi di prendere zero sono diversi:
 
 ---
 
-### 125. La moneta del Consiglio è troppo poca perché una proposta sia una mossa
+### 125. ✅ La moneta del Consiglio è troppo poca perché una proposta sia una mossa — CHIUSA in 0.1.388: benefici per Consiglio da 1,22 a 2,25
 
 `regole` · `da-decidere` · aperta in 0.1.353 ([D-387](DECISIONS.md#d-387))
 
@@ -8765,6 +8798,39 @@ la casella che vale di più, come prima.
 
 **Fatto quando** il committente sceglie, e la sonda delle caselle mostra i
 benefici per Consiglio muoversi nella direzione scelta.
+
+### ✅ Chiusa in 0.1.388: due acquisti liberi, e undici facce ([D-417](DECISIONS.md#d-417))
+
+Il committente ha scelto, e la sonda si è mossa: **benefici per Consiglio 1,22 →
+2,25**, la casella che nessuno comprava da 22 a 83 acquisti su 700 offerte.
+Cancello **0 su 8** sui due tavoli, «passa» fermo al 46,1%.
+
+**E il numero delle facce l'ha corretto la misura.** La parola era *«RIVENDICARE
+a 15»*. Scritte e misurate, le quindici **costano quasi sei punti di «passa»** —
+46,0% → 51,9% — perché quattro delle sette facce nuove vanno tolte a verbi che il
+cervello gioca, e RIVENDICARE lo gioca meno.
+
+Cercata la compensazione, come il committente ha chiesto. Due leve, e la seconda
+funziona ma si paga:
+
+| | passa | benefici | casella | Verità scritte |
+|---|---|---|---|---|
+| **undici facce** (le tre mute) | **46,1%** | 2,25 | 83 | **157** |
+| quindici, col gettone-moneta | 50,7% | 2,44 | 103 | 158 |
+| quindici, e la riserva della mano da 4 a 3 | 46,9% | 2,40 | 102 | **138** |
+
+**Venti Verità scritte su 158 — il 13% della memoria del mondo**, che è la cosa
+per cui il Consiglio esiste. Il committente ha scelto **undici**: il 92% del
+guadagno senza toccare né i turni né la memoria.
+
+Le tre facce nuove sostituiscono facce che **il motore non sapeva eseguire** —
+Guardia di Confine, Il Vecchio Esercito, Voce di Corridoio — quindi nessun verbo
+perde una faccia, e le facce mute passano da dieci a sette.
+
+**Resta scritto il numero da battere, se un giorno si vorranno le quindici**: la
+causa è che RIVENDICARE è il verbo che il cervello gioca meno, e la leva non
+ancora provata è insegnargli a giocarlo meglio invece di togliere facce agli
+altri.
 
 ---
 
