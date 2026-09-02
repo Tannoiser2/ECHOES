@@ -10,6 +10,58 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-415 — Un criterio che nessuno puo' soddisfare non e' severo: e' rotto
+
+**implemented in 0.1.386.** Ritaglia [ISSUES 60](ISSUES.md#60). Dichiara un
+costo non previsto di [D-412](#d-412).
+
+### Il criterio chiedeva una cosa che l'aritmetica vieta
+
+*«Nessuna domanda resta senza Concilio in piu' di un quarto degli anni in cui e'
+in gioco»* vuol dire stare sopra il **75%**. Con 3,61 Consigli l'anno su sessanta
+domande, la piu' ascoltata del tavolo arriva al **68,2%**: **nessuna domanda
+puo' soddisfarlo**, nemmeno la migliore possibile.
+
+Rimisurato oggi, `run_question_ledger`, 100 partite CHR_00 a tavolo misto:
+
+| | |
+|---|---|
+| domande mute | **1 su 60** — «L'Acqua Ferma» |
+| la piu' ascoltata | «La Reliquia», 68,2% |
+| la meno, fra quelle che parlano | «I Pesi e le Misure», 11,1% |
+| **scarto** | **6,1×** |
+
+Il nuovo criterio chiede due cose che si possono verificare: **zero domande
+mute**, e **lo scarto sotto 6×**. Il 13,1× di 0.1.377 sta su un altro tavolo —
+prima di R1 e R3 — e i due numeri non si mettono in fila ([D-391](#d-391)).
+
+### E la muta aveva una causa, che e' un costo di D-412
+
+«L'Acqua Ferma» si scaldava su due chiavi: `condition:lean`, che il mondo scrive
+**2 volte in cento partite**, e `structure:canal`, che **nessuna Pietra del
+catalogo si chiama**. Di fatto una sola chiave, rarissima.
+
+**E la Risonanza guarda quello che un'Azione ha appena fatto**, non quello che
+scrive una Conseguenza. Prima di [D-412](#d-412) l'Azione che posava
+`condition:rationed` era «Chiudere i granai» di *Riserva di Grano* — una delle
+dodici facce sostituite. Non era la chiave dell'Acqua Ferma, ma e' lo stesso
+meccanismo, e vale scriverlo: **sostituire una faccia toglie una penna al mondo,
+e le Risonanze leggono le penne delle Azioni.**
+
+Data all'Acqua Ferma una chiave che un'Azione scrive davvero — **il Granaio
+alzato**, 182 volte in cento partite da D-412 — il calore arriva: quanto le manca
+per aprire un Consiglio passa da **+3,50 a +2,88**. Non basta ancora, e resta
+muta: quello e' il numero da battere, e non e' piu' un mistero.
+
+### La prima riparazione era inefficace, e si e' visto da uno zero
+
+Avevo prima aggiunto `condition:rationed` e `condition:starving`, che il mondo
+scrive 27 e 3 volte. **Il numero non si e' mosso di un centesimo**: quei due
+segni li posano le Conseguenze, e la Risonanza non le guarda. Undicesima volta
+che un numero fermo dice dove guardare.
+
+---
+
 ## D-414 — Due porte murate, e due sonde che guardavano il foglio sbagliato
 
 **implemented in 0.1.385.** Avanza [ISSUES 56](ISSUES.md#56) e

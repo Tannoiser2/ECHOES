@@ -5,6 +5,46 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.386 — M3: un criterio che nessuno può soddisfare non è severo, è rotto
+
+Ritagliato il criterio di [ISSUES 60](docs/ISSUES.md#60)
+([D-415](docs/DECISIONS.md#d-415)).
+
+Chiedeva che nessuna domanda restasse senza Concilio in più di un quarto degli
+anni in cui è in gioco — cioè di stare **sopra il 75%**. Con 3,61 Consigli
+l'anno su sessanta domande, **la più ascoltata del tavolo arriva al 68,2%**:
+nessuna domanda poteva soddisfarlo, nemmeno la migliore possibile.
+
+| 100 partite, tavolo misto | |
+|---|---|
+| domande mute | **1 su 60** — «L'Acqua Ferma» |
+| la più ascoltata | «La Reliquia», 68,2% |
+| la meno, fra quelle che parlano | «I Pesi e le Misure», 11,1% |
+| **scarto** | **6,1×** |
+
+Il criterio nuovo chiede due cose verificabili: **zero domande mute**, e lo
+scarto **sotto 6×**. Il 13,1× di 0.1.377 sta su un altro tavolo — prima di R1 e
+R3 — e i due numeri non si mettono in fila (D-391).
+
+### E la muta aveva una causa, che è un costo di R1
+
+«L'Acqua Ferma» si scaldava su `#magro`, che il mondo scrive **2 volte in cento
+partite**, e sul canale, che **nessuna Pietra si chiama**. E la Risonanza guarda
+**quello che un'Azione ha appena fatto**, non quello che scrive una Conseguenza:
+sostituire una faccia toglie una penna al mondo, e le Risonanze leggono le penne
+delle Azioni. Vale scriverlo perché è generale.
+
+Datale una chiave che un'Azione scrive davvero — **il Granaio alzato**, 182
+volte in cento partite da R1 — il calore arriva: quanto le manca per aprire passa
+da **+3,50 a +2,88**. Non basta ancora, e adesso è il numero da battere.
+
+**La prima riparazione era inefficace, e si è visto da uno zero**: avevo aggiunto
+`#razionato` e `#fame`, che il mondo scrive 27 e 3 volte, e il numero non si è
+mosso di un centesimo — quei segni li posano le Conseguenze, che la Risonanza non
+guarda. Undicesima volta.
+
+---
+
 ## 0.1.385 — Due porte murate cadono, e due sonde guardavano il foglio sbagliato
 
 M1 e M2 della lista ([D-414](docs/DECISIONS.md#d-414)).

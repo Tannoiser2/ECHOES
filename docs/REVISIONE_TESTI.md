@@ -6790,7 +6790,7 @@ possono spostare nella frase, non togliere. 4182 testi in lettura.
 
 
 **`TEN_WATER, si accende quando — ?`**
-> una carta posa #magro o #il_canale
+> Quando qualcuno alzo' un granaio, scavo' un canale, o la magra arrivo'.
 
 
 **`TEN_WATER, si accende quando — ?`**

@@ -1976,10 +1976,11 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #magro o #il_canale",
+          "text": "Quando qualcuno alzo' un granaio, scavo' un canale, o la magra arrivo'.",
           "puts_tag": [
             "condition:lean",
-            "structure:canal"
+            "structure:canal",
+            "structure:granary"
           ]
         },
         {

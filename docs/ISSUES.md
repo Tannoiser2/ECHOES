@@ -3021,6 +3021,40 @@ voce 59.
 ascoltata, e nessuna resta senza Concilio in piu' di un quarto degli anni in cui
 e' in gioco.
 
+### Ritagliato in 0.1.386, sui numeri di oggi ([D-415](DECISIONS.md#d-415))
+
+**Il criterio qui sopra non e' raggiungibile per aritmetica**, e la voce lo
+diceva gia': con 3,61 Consigli l'anno su sessanta domande, **la piu' ascoltata
+del tavolo arriva al 68,2%** — nessuna puo' stare sopra il 75% che quel «piu' di
+un quarto» chiede. Un criterio che nessuno puo' soddisfare non e' severo: e'
+rotto.
+
+Rimisurato, 100 partite CHR_00 a tavolo misto, seme 7000, `run_question_ledger`:
+
+| | |
+|---|---|
+| domande mute (pescate, e mai un Consiglio) | **1 su 60** — «L'Acqua Ferma» |
+| la piu' ascoltata | «La Reliquia», **68,2%** degli anni in cui e' in gioco |
+| la meno, fra quelle che parlano | «I Pesi e le Misure», **11,1%** |
+| **lo scarto** | **6,1×** |
+
+Lo scarto era **13,1×** in 0.1.377 — misurato con lo stesso libro mastro, ma
+prima di R1 e R3, e i due numeri stanno su due tavoli diversi ([D-391](DECISIONS.md#d-391)):
+si leggono come due fotografie, non come una discesa.
+
+**E la muta ha una diagnosi.** «L'Acqua Ferma» si scaldava su `#magro` e sul
+canale: il primo il mondo lo scrive **2 volte in cento partite**, il secondo mai
+— nessuna Pietra si chiama canale. E la Risonanza guarda **quello che un'Azione
+ha appena fatto**, non quello che scrive una Conseguenza, quindi le due chiavi
+erano di fatto una sola, rarissima. Datale una chiave che un'Azione scrive
+davvero — **il Granaio alzato**, 182 volte in cento partite da
+[D-412](DECISIONS.md#d-412) — il calore arriva: **quanto le manca per aprire
+passa da +3,50 a +2,88**. Non basta ancora, e questo e' il numero da battere.
+
+**Fatto quando** nessuna domanda pescata resta senza un Consiglio in cento
+partite (oggi: una), e lo scarto fra la piu' e la meno ascoltata sta sotto
+**6×** (oggi 6,1×).
+
 ---
 
 ### 100. Le caselle «si accende quando» sono ancora un pavimento derivato
