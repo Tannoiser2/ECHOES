@@ -3632,6 +3632,12 @@ che nominano invece di contare), e si rimisura dopo quella · aperta in 0.1.276
 > scende da sola. **Sotto la meta' per la prima volta**, e ancora troppo: un
 > punto su due lo consegna il calendario.
 >
+> **E in 0.1.384, dopo la cura** ([D-413](DECISIONS.md#d-413)): **46,2%**
+> (1.389 su 3.005). La cura era questa voce a dirla — *«la sua cura e' la
+> R3»* — e ha mosso di due punti quello che le apparteneva. Il resto non e' suo:
+> le clausole che restano vere all'apertura sono quelle di soglia, e quelle
+> devono esserlo.
+>
 > **Il numero si scrive col tavolo su cui e' misurato** ([D-391](DECISIONS.md#d-391)): i tre
 > non stanno in fila come una strada — quello di 0.1.276 era su 40 tavoli CHR_01
 > ai semi 7000+, questo su 100 CHR_00 a tavolo misto. Sono tre fotografie dello
@@ -6605,6 +6611,23 @@ il playtest degli stessi 100 semi, tavolo misto *e* uniforme:
 vince contando non lo si può contendere: la quarta riga è
 [ISSUES 120](#120), ed è del committente. Questa si chiude con quella.
 
+### ✅ E quella è arrivata: chiusa in 0.1.384 ([D-413](DECISIONS.md#d-413))
+
+Il committente ha detto **«R3 sì»**, gli Obiettivi nominano un luogo, e la
+quarta riga si è mossa più di tutte. Stessa sonda, stessi 100 semi, tavolo
+misto:
+
+| | prima di D-413 | dopo |
+|---|---|---|
+| coppie di seggi che **si contendono una Regione** | 15,5% (93) | **44,0% (264)** |
+| coppie che si contendono una Cicatrice | 26,2% | 26,3% |
+| clausole centrate sulla mappa | 54,2% | **58,9%** |
+
+**Da una coppia su sette a quasi una su due.** Era il numero che questa voce
+inseguiva da 0.1.187 — *«gli obiettivi non si incrociano: uno su dodici»* — e
+adesso si incrociano perché chiedono **lo stesso pezzo di mappa**: due terre del
+dominio del territorio non le possono tenere due case.
+
 E il numero che la voce inseguiva da 0.1.187 — *«la mappa è ferma»* — non è più
 vero: 2,32 → **3,75** passaggi di mano, 2,46 → **3,40** Regioni contese. Nessuna
 delle quattro mosse scritte qui sopra l'ha fatto da sola; l'hanno fatto il tetto
@@ -8278,6 +8301,43 @@ nella scatola — **la pila delle carte giocate, scoperta davanti a ciascuno**,
 che è dove `echo_function_played` già guarda — ma renderebbe il gesto una
 proprietà della carta invece che del mondo. **Fatto quando** il committente dice
 come il tavolo si ricorda di un gesto.
+
+### ✅ «R3 sì» in 0.1.384: gli Obiettivi nominano un luogo, e da otto ne resta uno
+
+Parola del committente, scritta in [D-413](DECISIONS.md#d-413). E rimisurata
+prima di lavorarla, come vuole la casa: **erano otto, non dodici** — il numero
+del titolo è del 0.1.347, e `did_this_year` ne aveva già curati quattro. **E ne
+erano dieci un'ora prima**: [D-412](DECISIONS.md#d-412) ne ha curati altri due
+senza toccarli, perché `A_STONE` e `A_WORK` chiedono una Pietra e adesso una
+Pietra si può alzare.
+
+Lo strumento c'era già e a due clausole mancava: [D-327](DECISIONS.md#d-327)
+aveva insegnato a tre clausole a mirare **per segni**, e le due di conteggio —
+quante terre tieni, quante Pietre hai in piedi — erano rimaste fuori. Adesso
+leggono `any_tag` come le altre.
+
+| obiettivo | come si legge adesso | giocando, prima → dopo |
+|---|---|---|
+| `TWO_LANDS` | due terre **del dominio del territorio** | +32% → **+11%** |
+| `A_LEARNED_HOUSE` | due cose sapute, **e una guardata da vicino** | +86% → **+59%** |
+| `A_HIGH_HOUSE` | una Pietra di grado 2 **nell'antico o in capitale** | +30% → **+20%** |
+| `A_GARRISON` | un presidio **nel territorio** | +15% → **+9%** |
+| `WRITTEN_THINGS` | **e un piede dove le cose si tengono** | +17% → **+14%** |
+| `FULL_HANDS` | **e una pedina dove si produce** | +8% → **+3%** |
+| `QUIET_WORLD` | le Cicatrici **sulle terre della sopravvivenza** | +58% → **+65%** |
+| `SOMETHING_MUST_BREAK` | **lasciato com'è** | +100% |
+
+**Il costo è dichiarato: sette obiettivi su otto sono più difficili.** Nessuno è
+diventato impossibile — il più raro è `FULL_HANDS` a 7 su 72 — e **giocare rende
+più che stare fermi per sedici su diciassette**. Il diciassettesimo è
+`MOST_STONE` a −2%, l'ultimo dei sei di D-386. Cancello: **0 su 8**, misto *e*
+uniforme.
+
+**Obiettivi che si reggono solo su un totale: da 8 a 1.** Quello che resta
+chiede che qualcosa succeda, ed è la cosa che questa voce voleva.
+
+**Resta aperto il segnalino di `did_this_year`**, che è la domanda qui sopra e
+non l'ha toccata nessuno.
 
 ---
 

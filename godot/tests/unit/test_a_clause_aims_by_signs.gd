@@ -148,3 +148,60 @@ func _walk(item: Variant, out: Array) -> void:
 	elif item is Array:
 		for value in (item as Array):
 			_walk(value, out)
+
+
+## **E un conto puo' contare per segni** ([D-413](DECISIONS.md#d-413), ISSUES
+## 120). Le due clausole di conteggio che stavano fuori da D-327 — quante terre
+## tieni e quante Pietre hai in piedi — adesso leggono `any_tag` come le altre
+## tre: **si contano solo quelle terre**.
+##
+## E' la differenza fra un obiettivo che si verifica facendo un totale a mente e
+## uno che si verifica **guardando la mappa**. Erano otto obiettivi su
+## diciassette a reggersi su un totale; adesso e' uno.
+func test_a_count_can_count_by_signs() -> void:
+	new_session()
+	var seat: String = SEATS[0]
+	# **Fabbricato, non cercato**: la casa tiene *tutte* le terre, cosi' il conto
+	# per segni e' l'unica cosa che puo' fare la differenza fra le due letture.
+	var marked: String = ""
+	var sign: String = ""
+	var all_regions: Array = (session.world["regions"] as Dictionary).keys()
+	for region_id in all_regions:
+		(session.world["regions"][str(region_id)] as Dictionary)["control"] = seat
+	var pair: Array = _sign_of_first_region()
+	marked = str(pair[0])
+	sign = str(pair[1])
+
+	var counted_everywhere: Dictionary = {
+		"type": "control_count", "entity_id": "$self", "min": all_regions.size(),
+	}
+	var counted_by_sign: Dictionary = {
+		"type": "control_count", "entity_id": "$self", "min": 1, "any_tag": [sign],
+	}
+	var context: Dictionary = {"self": seat}
+	assert_true(
+		session.destinies.conditions.holds(counted_everywhere, context),
+		"tiene tutte e %d le terre" % all_regions.size()
+	)
+	assert_true(
+		session.destinies.conditions.holds(counted_by_sign, context),
+		"e ne tiene almeno una col segno «%s»" % sign
+	)
+
+	# E il conto per segni **non e'** il conto di tutte: se lo fosse, questa
+	# riga passerebbe lo stesso e la prova non misurerebbe niente.
+	var too_many: Dictionary = {
+		"type": "control_count", "entity_id": "$self",
+		"min": all_regions.size(), "any_tag": [sign],
+	}
+	var tiles_with_sign: int = 0
+	for region_id in all_regions:
+		if (session.data.regions[str(region_id)]["tags"] as Array).has(sign):
+			tiles_with_sign += 1
+	if tiles_with_sign < all_regions.size():
+		assert_false(
+			session.destinies.conditions.holds(too_many, context),
+			"il conto per segni guarda %d tessere su %d, non tutte"
+				% [tiles_with_sign, all_regions.size()]
+		)
+

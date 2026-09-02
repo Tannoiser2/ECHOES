@@ -13642,31 +13642,31 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_A_GARRISON`**
 > Il Muro che Tiene
 
-> C'è chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo è del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso.
+> C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.
 
-> Un presidio suo tiene la terra
+> Un presidio suo tiene una terra del territorio
 
-> Almeno un presidio suo · Controllo di almeno 2 Regioni
+> Almeno un presidio suo nel dominio del territorio · Controllo di almeno 2 Regioni
 
 
 **`OBJ_A_HIGH_HOUSE`**
 > Pietra sopra Pietra
 
-> Alzare qualcosa è facile: alzarlo due volte, no. Chi porta una casa al secondo grado ha speso un anno per farlo.
+> Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.
 
-> Una sua pietra è salita di grado
+> Una sua pietra e' salita di grado dove si guarda
 
-> Almeno una struttura sua di grado 2 o più
+> Una sua pietra di grado 2 nell'antico o in capitale
 
 
 **`OBJ_A_LEARNED_HOUSE`**
 > Le Cose che si Sanno
 
-> Sapere non si vede sul tavolo e non si conta in Regioni. Ma alla fine dell'anno, chi ha guardato più a fondo ha guardato più a fondo.
+> Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.
 
-> Ha imparato almeno due cose che il mondo sa indicare
+> Ha imparato due cose, e una l'ha guardata da vicino
 
-> Almeno due scoperte
+> Almeno due scoperte · Una sua pedina dove il mondo e' ancora da guardare
 
 
 **`OBJ_A_STONE`**
@@ -13702,11 +13702,11 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_FULL_HANDS`**
 > Le Mani Piene
 
-> Finire l'anno con qualcosa ancora da giocare. Non è prudenza: è avere sempre avuto una carta più degli altri — e se tutti tengono tutto, non la tiene nessuno.
+> Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.
 
-> Chiude l'anno con almeno cinque carte in mano
+> Chiude l'anno con le mani piene, e sta dove si produce
 
-> Più carte in mano di ogni altra casa
+> Più carte in mano di ogni altra casa · Una sua pedina in una terra del dominio delle risorse
 
 
 **`OBJ_MOST_STONE`**
@@ -13732,11 +13732,11 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_QUIET_WORLD`**
 > Un Mondo che si Può Ancora Usare
 
-> Il mondo si porta addosso quello che gli fai. Questo obiettivo chiede un anno che non lasci più di due cicatrici — ma non lo dà a chi non ha toccato niente: chi non guarda il mondo non lo tiene pulito, si limita a non esserci.
+> Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.
 
-> Il mondo esce dall'anno con non più di due segni
+> Le terre dove si vive escono dall'anno quasi intere
 
-> Non più di due cicatrici sulla mappa · Almeno una scoperta sua
+> Non piu' di due Cicatrici sulle terre della sopravvivenza · Almeno una scoperta sua
 
 
 **`OBJ_SOMETHING_MUST_BREAK`**
@@ -13792,21 +13792,21 @@ possono spostare nella frase, non togliere. 4172 testi in lettura.
 **`OBJ_TWO_LANDS`**
 > Due Terre, una Voce
 
-> Non basta esserci: bisogna che due posti rispondano quando chiami. È l'ambizione più semplice del tavolo, e la più difficile da nascondere.
+> Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.
 
-> Due Regioni rispondono al suo nome
+> Due terre del territorio rispondono al suo nome
 
-> Controllo di almeno 2 Regioni
+> Controllo di 2 terre del dominio del territorio
 
 
 **`OBJ_WRITTEN_THINGS`**
 > Le Cose Scritte
 
-> Non basta quello che tieni in mano: conta che tu sia andato a cercarlo. Chiudere l'anno con due carte di Sapere e almeno una cosa scoperta è una scelta, perché ognuna delle due era anche un'azione che non hai fatto.
+> Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.
 
-> Chiude l'anno con due carte di Sapere in mano
+> Due carte di Sapere in mano, e un piede dove le cose si tengono
 
-> Almeno 2 carte Sapere in mano · Almeno una scoperta sua
+> Almeno 2 carte Sapere in mano · Almeno una scoperta sua · Una sua pedina in una terra del dominio dell'antico
 
 
 ## 11. Le Pietre — quello che si costruisce, grado per grado

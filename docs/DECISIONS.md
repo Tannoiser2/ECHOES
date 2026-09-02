@@ -10,6 +10,95 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-413 — Gli Obiettivi nominano un luogo, e da otto ne resta uno
+
+**implemented in 0.1.384.** Parola del committente: **«R3 si'»** su
+[ISSUES 120](ISSUES.md#120). Chiude anche la meta' che restava della
+[ISSUES 4](ISSUES.md#4) e rimisura la [ISSUES 91](ISSUES.md#91).
+
+### Rimisurata prima di lavorarla, ed erano otto, non dodici
+
+La voce diceva **dodici**, ed era il numero del 0.1.347. Da allora
+[D-386](#d-386) ha scritto `did_this_year` e ne ha curati quattro: col metro
+della voce — *non nomina un segno, non si indica, si conta* — oggi sono **otto
+su diciassette**.
+
+E ne erano **dieci** fino a un'ora fa: [D-412](#d-412) ne ha curati altri due
+senza toccarli, perche' `A_STONE` e `A_WORK` chiedono una Pietra e adesso una
+Pietra si puo' alzare.
+
+| | prima di D-412 | dopo D-412 |
+|---|---|---|
+| `A_STONE` | 15 su 74 giocando, 20 fermi → **−14%** | 36 / 15 → **+28%** |
+| `A_WORK` | 13 / 13 → **+0%** | 32 / 13 → **+27%** |
+
+### Lo strumento c'era gia', e a due clausole mancava
+
+[D-327](#d-327) ha insegnato a tre clausole a mirare **per segni** invece che
+per nome — presenza, segno del luogo, Cicatrici — perche' una riga che nomina
+una Regione muore quando quella tessera non esce dalla pesca. **Due clausole di
+conteggio erano rimaste fuori**: quante terre tieni, quante Pietre hai in piedi.
+
+Adesso leggono `any_tag` come le altre. E' la differenza fra un obiettivo che si
+verifica **facendo un totale a mente** e uno che si verifica **guardando la
+mappa**: «due Regioni» contro «due terre del dominio del territorio».
+
+### Gli otto, e cosa nominano adesso
+
+| obiettivo | come si legge adesso |
+|---|---|
+| `TWO_LANDS` | due terre **del dominio del territorio** |
+| `A_GARRISON` | un presidio **nel territorio**, e due terre dietro |
+| `A_HIGH_HOUSE` | una Pietra di grado 2 **nell'antico o in capitale** |
+| `QUIET_WORLD` | non piu' di due Cicatrici **sulle terre della sopravvivenza** |
+| `FULL_HANDS` | le mani piene, **e una pedina dove si produce** |
+| `WRITTEN_THINGS` | due carte di Sapere, **e un piede dove le cose si tengono** |
+| `A_LEARNED_HOUSE` | due cose sapute, **e una guardata da vicino** — miniera, cristallo, isola, bosco, palude |
+| `SOMETHING_MUST_BREAK` | **lasciato com'e'** |
+
+L'ultimo e' una scelta, non una dimenticanza: e' l'unico dei diciassette che
+rende **+100%** giocando, e la voce stessa dice perche' — *«chiede che qualcosa
+succeda»*. Dargli un luogo sarebbe stato metterci un segno addosso per far
+tornare un conto.
+
+**E il validatore ha morso per strada**: la prima stesura di `A_LEARNED_HOUSE`
+guardava miniera e cristallo, che stanno su **2 tessere del parco** quando per
+esserci su ogni mappa pescata ne servono **5**. La guardia di D-327 l'ha
+fermata prima della misura.
+
+### Il costo, misurato e dichiarato
+
+100 partite CHR_00, seme 7000, tavolo misto. Un obiettivo che nomina e' un
+obiettivo **piu' difficile**, e sette su otto lo sono diventati:
+
+| obiettivo | prima (giocando su in mano) | dopo |
+|---|---|---|
+| `TWO_LANDS` | 36 su 73 · +32% | 15 su 73 · **+11%** |
+| `A_LEARNED_HOUSE` | 62 su 70 · +86% | 42 su 70 · **+59%** |
+| `A_HIGH_HOUSE` | 23 su 61 · +30% | 12 su 61 · **+20%** |
+| `A_GARRISON` | 23 su 79 · +15% | 17 su 79 · **+9%** |
+| `WRITTEN_THINGS` | 14 su 63 · +17% | 12 su 63 · **+14%** |
+| `FULL_HANDS` | 11 su 72 · +8% | 7 su 72 · **+3%** |
+| `QUIET_WORLD` | 59 su 72 · +58% | 66 su 72 · **+65%** |
+
+`QUIET_WORLD` e' l'unico che si e' **fatto piu' facile**, ed e' giusto cosi':
+contare le Cicatrici su tutta la mappa era chiedere al singolo di rispondere
+del mondo intero.
+
+**Nessuno e' diventato impossibile** — il piu' raro e' `FULL_HANDS` a 7 su 72 —
+e **giocare rende piu' che stare fermi per sedici obiettivi su diciassette**.
+Il diciassettesimo e' `MOST_STONE`, a **−2%**: era −3%, ed e' l'ultimo rimasto
+dei sei che [D-386](#d-386) contava.
+
+**Il cancello regge: 0 seggi bloccati su 8, tavolo misto *e* uniforme.**
+
+### E il conto della voce
+
+**Obiettivi che si reggono solo su un totale: da 8 a 1.** Quello che resta
+chiede che qualcosa succeda, che e' la cosa che la voce voleva.
+
+---
+
 ## D-412 — Un'Azione della plancia alza una Pietra, e la causa non era una taratura
 
 **implemented in 0.1.383.** Parola del committente: **«R1 (a)»** su

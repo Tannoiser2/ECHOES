@@ -5,6 +5,61 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.384 — R3 sì: gli Obiettivi nominano un luogo, e le coppie contese passano da una su sette a una su due
+
+Parola del committente, **«R3 sì»** su [ISSUES 120](docs/ISSUES.md#120)
+([D-413](docs/DECISIONS.md#d-413)).
+
+### Rimisurata prima di lavorarla: erano otto, non dodici
+
+Il **dodici** del titolo è del 0.1.347. `did_this_year` (D-386) ne aveva già
+curati quattro, e **due li ha curati R1 un'ora prima** senza toccarli:
+`A_STONE` da −14% a **+28%**, `A_WORK` da +0% a **+27%**, perché chiedono una
+Pietra e adesso una Pietra si può alzare.
+
+### Lo strumento c'era già, e a due clausole mancava
+
+D-327 aveva insegnato a tre clausole a mirare **per segni**; le due di conteggio
+— quante terre tieni, quante Pietre hai in piedi — erano rimaste fuori. Adesso
+leggono `any_tag` come le altre: è la differenza fra un obiettivo che si
+verifica **facendo un totale a mente** e uno che si verifica **guardando la
+mappa**.
+
+| obiettivo | adesso | giocando, prima → dopo |
+|---|---|---|
+| `TWO_LANDS` | due terre **del dominio del territorio** | +32% → **+11%** |
+| `A_LEARNED_HOUSE` | due cose sapute, **e una guardata da vicino** | +86% → **+59%** |
+| `A_HIGH_HOUSE` | grado 2 **nell'antico o in capitale** | +30% → **+20%** |
+| `A_GARRISON` | un presidio **nel territorio** | +15% → **+9%** |
+| `WRITTEN_THINGS` | **e un piede dove le cose si tengono** | +17% → **+14%** |
+| `FULL_HANDS` | **e una pedina dove si produce** | +8% → **+3%** |
+| `QUIET_WORLD` | le Cicatrici **della sopravvivenza** | +58% → **+65%** |
+| `SOMETHING_MUST_BREAK` | **lasciato com'è**: è l'unico a +100% | +100% |
+
+### Il numero che due voci inseguivano da centonovantasette versioni
+
+| 100 partite, tavolo misto | prima | dopo |
+|---|---|---|
+| coppie di seggi che **si contendono una Regione** | 15,5% | **44,0%** |
+| clausole centrate sulla mappa | 54,2% | **58,9%** |
+| clausole già vere all'apertura ([91](docs/ISSUES.md#91)) | 48,4% | **46,2%** |
+| obiettivi che si reggono **solo su un totale** | 8 su 17 | **1 su 17** |
+
+**Da una coppia su sette a quasi una su due.** Con questo si chiude la quarta e
+ultima riga di [ISSUES 4](docs/ISSUES.md#4), aperta in 0.1.187: gli obiettivi si
+incrociano perché chiedono lo stesso pezzo di mappa.
+
+**Costo dichiarato: sette obiettivi su otto sono più difficili.** Nessuno è
+impossibile — il più raro è `FULL_HANDS` a 7 su 72 — e giocare rende più che
+stare fermi per **sedici su diciassette**; il diciassettesimo è `MOST_STONE` a
+−2%. Cancello **0 su 8**, misto *e* uniforme. Suite a **699 prove**.
+
+**E il validatore ha morso**: la prima stesura di `A_LEARNED_HOUSE` guardava
+miniera e cristallo, che stanno su 2 tessere del parco quando per esserci su
+ogni mappa ne servono 5. La guardia di D-327 l'ha fermata prima della misura.
+
+---
+
 ## 0.1.383 — R1 (a): un'Azione della plancia alza una Pietra, e sono 182
 
 Parola del committente, **«R1 (a)»**: ACQUISIRE diventa *«pesca una carta,

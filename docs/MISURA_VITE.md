@@ -16,29 +16,29 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 18 |
 | **vite che non si sono mai sedute** | **2** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 240 |
+| trasformazioni sedute | 232 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 30 / 82 / 56 |
 
 ## Le vite, una per una
 
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
-| 15 | 15 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 482 |
-| 14 | 14 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 406 |
-| 11 | 13 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 424 |
-| 11 | 12 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 454 |
-| 11 | 10 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 393 |
-| 12 | 8 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 491 |
-| 10 | 9 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 260 |
-| 5 | 12 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 535 |
-| 9 | 8 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 684 |
-| 7 | 9 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 482 |
-| 4 | 4 | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | 535 |
-| 4 | 1 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 482 |
-| 2 | 2 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 639 |
-| 3 | 1 | La Leggenda della Montagna | ENT_VAERAX | ON_TAG | `mountain_forgotten` | 670 |
-| 1 | 2 | L'Inquisizione del Vetro | ENT_VETRO | ON_TAG | `relic_shown` | 185 |
-| **0** | 1 | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | 458 |
+| 14 | 15 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 458 |
+| 13 | 13 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 406 |
+| 11 | 11 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 465 |
+| 11 | 11 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 454 |
+| 11 | 10 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 424 |
+| 14 | 6 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 491 |
+| 10 | 9 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 352 |
+| 4 | 14 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 644 |
+| 8 | 8 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 482 |
+| 5 | 7 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 707 |
+| 5 | 4 | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | 382 |
+| 4 | 3 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 545 |
+| 1 | 2 | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | 406 |
+| 1 | 2 | La Leggenda della Montagna | ENT_VAERAX | ON_TAG | `mountain_forgotten` | 666 |
+| 2 | 1 | L'Inquisizione del Vetro | ENT_VETRO | ON_TAG | `relic_shown` | 185 |
+| **0** | 2 | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | 670 |
 | **0** | **0** | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | — |
 | **0** | **0** | Il Culto della Montagna | ENT_VAERAX | ON_DEATH | — | — |
 
@@ -49,12 +49,12 @@ Il conto e' mutazioni su 168 salti giocati.
 
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
-| ENT_ALDRIC | 26 | 1 ogni 6.5 |
-| ENT_CENERE | 36 | 1 ogni 4.7 |
-| ENT_LIBERE | 37 | 1 ogni 4.5 |
+| ENT_ALDRIC | 29 | 1 ogni 5.8 |
+| ENT_CENERE | 35 | 1 ogni 4.8 |
+| ENT_LIBERE | 38 | 1 ogni 4.4 |
 | ENT_LYRA | 24 | 1 ogni 7.0 |
-| ENT_NAHR | 33 | 1 ogni 5.1 |
-| ENT_SALE | 23 | 1 ogni 7.3 |
-| ENT_VAERAX | 28 | 1 ogni 6.0 |
-| ENT_VETRO | 33 | 1 ogni 5.1 |
+| ENT_NAHR | 28 | 1 ogni 6.0 |
+| ENT_SALE | 22 | 1 ogni 7.6 |
+| ENT_VAERAX | 24 | 1 ogni 7.0 |
+| ENT_VETRO | 32 | 1 ogni 5.2 |
 
