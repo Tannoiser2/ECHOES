@@ -107,6 +107,11 @@ cancello se n'era accorto in duecento versioni), e una faccia SEGNARE **senza
 segni** è rifiutata — dal motore a voce alta e dal validatore prima che parta.
 Il suo effetto *sono* i segni.
 
+**Un costo che va detto:** le vite delle case che non si siedono mai tornano da 1
+a **2**. R4 ne aveva guadagnata una e SEGNARE la riperde — un mondo dove chi
+gioca posa segni per conto suo apre porte diverse. Numero piccolo su un difetto
+vecchio ([ISSUES 4](docs/ISSUES.md#4)), ma tacerlo sarebbe peggio.
+
 **Cosa non è stato fatto:** il passare non è stato tolto, ed è ancora il 43,2%.
 Delle carte mute l'87,6% adesso lo è **per scelta del cervello**, non per le
 regole. È la seconda metà della domanda, e aspetta la parola del committente sui

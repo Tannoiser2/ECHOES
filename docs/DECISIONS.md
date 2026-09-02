@@ -185,6 +185,13 @@ in piu'** e togliergli **la scelta di non giocare**.
 
 ### Cosa non e' stato fatto, e va detto
 
+**E un costo che va detto:** le **vite delle case che non si siedono mai** tornano
+da 1 a **2**. R4 ne aveva guadagnata una ([D-419](#d-419)) e SEGNARE
+la riperde: un mondo dove chi gioca posa segni per conto suo apre porte diverse,
+e una delle diciotto vite scritte non trova piu' la sua. E' un numero piccolo su
+un difetto vecchio, e sta in [ISSUES 4](ISSUES.md#4); non vale il verbo, ma
+tacerlo sarebbe peggio.
+
 **Il passare non e' stato tolto**, ed e' ancora il 43,2% dei turni. Delle carte
 mute, l'87,6% adesso lo e' **per scelta del cervello**, non per le regole: due
 eccezioni dichiarate — INFLUENZARE solo nel verso che il Destino vuole, FORGIARE
