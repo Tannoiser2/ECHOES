@@ -77,9 +77,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **104** |
-| aperte | **27** |
-| di cui **aspettano una tua decisione** | **13** |
+| chiuse | **105** |
+| aperte | **26** |
+| di cui **aspettano una tua decisione** | **12** |
 | di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -91,7 +91,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 0 | 4 |
+| 0.1.375–0.1.399 | 0 | 5 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -107,23 +107,23 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **13** | **tu**, con una parola. Undici stanno sulla strada, due sono fuori |
+| 🔴 | **12** | **tu**, con una parola. Dieci stanno sulla strada, due sono fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventisette voci aperte, quattro le posso muovere senza di te.
+**Quattro.** Delle ventisei voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su tredici parole.**
+**il giro non è fermo su di me, è fermo su dodici parole.**
 
 ---
 
-# 🔴 Tredici aspettano te
+# 🔴 Dodici aspettano te
 
 Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
 
-## Le undici che stanno fra oggi e una partita
+## Le dieci che stanno fra oggi e una partita
 
 ### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
 
@@ -173,47 +173,66 @@ l'obiettivo adesso si può togliere all'avversario.
 gli unici che una casa senza mappa può ancora vincere, e toglierli è una scelta
 sul gioco, non una misura. Aspetta te.
 
-### R4. [119](ISSUES.md#119) — come cade un Consiglio
+### ✔ R4. [119](ISSUES.md#119) — fatta la raccomandata in 0.1.391: **(b)**
 
-**Un Consiglio su undici cade.** Il segno di chi ha parlato e perso si posa
-**8 volte in cento partite**: una minaccia che si vede una volta ogni dodici
-partite non è una minaccia, ed è la ragione per cui il tavolo silenzioso viene
-premiato (R1).
+Hai detto *«passa alla prossima rossa»* senza rispondere, e vale la regola qui
+sopra: **faccio quella raccomandata e lo scrivo** ([D-419](DECISIONS.md#d-419)).
 
-> **Farei (b): il fallimento si compra.** Un gettone speso *contro* la proposta
-> pesa nel margine. Al tavolo: *«questa non deve passare»*, e paghi per fermarla,
-> invece di sperare nel dado. Va dopo R2, perché ha bisogno che i gettoni ci
-> siano.
+Il gettone di rivendicazione adesso ha **due usi che si escludono**: su un costo
+dice *«passi, ma paghi»*, speso contro dice *«questa non deve passare»* e pesa 1
+nel margine.
 
-### R5. [80](ISSUES.md#80) — chi decide un Consiglio: il dado o l'economia
+**Il numero grosso non è quello che guardavo.** Le proposte che cadono salgono di
+un quinto (33 → 39 sul tavolo misto), ma quelle che passano **in scioltezza**
+scendono di un sesto (127 → 105). Il gettone contro raramente affonda una
+proposta: molto più spesso la **ridimensiona**.
 
-Delle tre parti della voce, due sono chiuse: le Domande e le Proposte vengono
-dalla carta (0.1.345), e la plancia mostra l'economia — comprato, prezzo, pedina,
-controproposta — con una prova che lo tiene (0.1.378).
+**Il peso 2 l'ho misurato, non stimato:** porta i FAILURE del tavolo misto da 39
+a **55**, ma quelli dell'uniforme da 10 a **21** — quasi il triplo dello stato
+spento. Il cancello tiene sui due tavoli, ma sull'uniforme si torna vicino al
+difetto che D-378 aveva appena tolto: i Consigli che cadono per aritmetica
+invece che per conflitto. Per questo ho lasciato **1**.
 
-Resta questa. Oggi un Consiglio lo decidono **i voti, le carte impegnate in
-segreto e un d6**; l'economia di D-280 — il proponente compra, gli avversari
-scelgono in che moneta paga — sta **accanto**, non al posto. La mappa e i segni
-entrano dopo, quando il risultato è già deciso.
+**Resta una riga, e aspetta te:** il segno di chi ha parlato e perso è passato da
+6 a 8 su cento partite — un terzo in più, e ancora *una volta ogni dodici
+partite*. I gettoni sono pochi e adesso hanno due usi in concorrenza. **Il
+gettone contro deve pesare 1 o 2?** Oppure le facce RIVENDICARE devono diventare
+più di undici?
 
-> **Non ho una raccomandazione da darti su questa**, ed è l'unica. La voce dice
-> *«è la modifica che vale la parola del committente, non la mia»*, e ci sto: se
-> una proposta passa perché chi la fa può pagare quello che il tavolo chiede,
-> **il dado esce dal gioco**. È il cuore del Consiglio.
+### ✔ R5. [80](ISSUES.md#80) — decisa in 0.1.392: **il dado resta com'è**
 
-### R6. [69](ISSUES.md#69) — come è fatta una carta Azione
+Era l'unica rossa su cui non avevo una raccomandazione, e la parola è arrivata:
+**il dado resta al centro** ([D-420](DECISIONS.md#d-420)). La sequenza A-K resta
+intera, il World Factor resta nel margine, e l'economia le sta **accanto per
+scelta**, non per lavoro non finito. **La voce si chiude** — le altre due parti
+erano già fatte.
 
-La faccia fisica adesso si stampa per intero — DOVE, le due Azioni col loro nome,
-SEMPRE, AL CONSIGLIO. Ma su 48 carte **46 stampano il corpo rimpicciolito** (la
-più stretta al 77%) e l'illustrazione è scesa al suo pavimento del 34%. Una carta
-63×88 che porta sette righe di regole **e** un disegno è una carta che si legge
-male.
+E la scelta il tavolo la sostiene: fra 0.1.353 e 0.1.391 l'economia ha smesso di
+essere un contorno senza togliere di mezzo il dado — due acquisti liberi, il
+gettone che compra il prezzo, e adesso quello che compra l'opposizione, che
+**entra nel margine** insieme al dado invece che dopo.
 
-> **Farei: formato tarocco anche per le Asset**, come la scheda del Consiglio.
-> Costa una scatola più grande e niente altro. L'alternativa — l'illustrazione
-> fuori dalla faccia delle regole — costa una carta a due facce.
+### ✔ R6. [69](ISSUES.md#69) — fatta la raccomandata in 0.1.393: **il tarocco**
 
-Va decisa **prima** dell'arte, come R12: si disegna per un formato, non per due.
+Hai scelto di andare avanti su questa senza rispondere alla domanda del formato,
+e vale la regola qui sopra ([D-421](DECISIONS.md#d-421)). L'Eco segue le Asset,
+perché da D-359 è un blocco stampato sulla stessa carta.
+
+| mazzo asset, 48 facce | 63×88 | **70×120** |
+|---|---|---|
+| corpo rimpicciolito | **46 su 48** | **0 su 48** |
+| la più stretta | 74% | **100%** |
+| illustrazione media | 35% | **49%** |
+| la più piccola | 34% — il pavimento | **43%** |
+
+**E prima di cambiare ho scritto la misura**, che non esisteva: lo scheletro
+delle carte diceva quali blocchi una carta porta, non se ci stanno. Adesso lo
+dice chiamando la stessa funzione che disegna lo stampabile, ed è un cancello.
+
+**Il costo, e va detto:** i fogli A4 da **49 a 67** (+37%), le Asset da sole da
+15 a 33. E una mano da sette carte adesso è sette tarocchi — si è preferita una
+carta che si legge a una mano che si maneggia. Se al tavolo la mano darà
+fastidio più del testo stretto, tornare indietro è **una riga**.
 
 ### R7. [65](ISSUES.md#65) — quale delle tre riviste della pagina
 
@@ -453,9 +472,9 @@ tessera. Non è nella lista perché non è una voce: è la scatola.
 il quinto degli errori, ed era di forma. Un totale scritto a mano invecchia il
 giorno dopo, e questo era invecchiato di tre righe.
 
-**Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
+**Quello che resta da dire in una riga:** delle ventisei voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **tredici aspettano
+chiudono dietro una rossa, sei stanno fuori dalla lista, e **dodici aspettano
 una tua parola**.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia

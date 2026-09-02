@@ -633,6 +633,21 @@ func run_confluence(
 				continue
 			if controller.claim_tokens(str(entity_id)) <= 0:
 				continue
+			# **Prima la domanda che chiude l'altra** (D-419, ISSUES 119): lo
+			# stesso gettone puo' comprare un costo o l'opposizione, e sono uno
+			# la rinuncia dell'altro. Chi lo spende contro non posa nessun
+			# prezzo, e la sua riga finisce qui.
+			if (
+				controller.opposition_weight() > 0
+				and decider.has_method("choose_opposition_token")
+				and await decider.choose_opposition_token(str(entity_id), context, session)
+			):
+				if controller.buy_opposition(str(entity_id)):
+					continue
+				log.bullet("Opposizione rifiutata (%s): %s si astiene." % [
+					controller.last_error, _name(str(entity_id))
+				])
+				illegal_actions += 1
 			if controller.costs_placed() >= CouncilEconomy.MAX_COSTS:
 				break
 			# **Il menu si accorcia** man mano che le pedine si posano: una

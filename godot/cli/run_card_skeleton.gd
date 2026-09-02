@@ -89,6 +89,24 @@ func _initialize() -> void:
 		var row: Dictionary = decks[deck]
 		row["facce"] = int(row["facce"]) + 1
 		row["copie"] = int(row["copie"]) + int(face.get("copies", 1))
+
+		# **Come la faccia esce davvero dal foglio** (ISSUES 69, D-421). Lo
+		# scheletro diceva quali blocchi una carta porta e non se ci stanno: sono
+		# due cose diverse, e la seconda e' quella che decide se al tavolo la
+		# carta si legge. `PrintSheet.layout` e' la stessa funzione che disegna
+		# lo stampabile, quindi qui non c'e' una seconda aritmetica da tenere
+		# allineata — si chiama quella vera.
+		var cell: Vector2 = PrintSheet.cell_size(str(face["shape"]))
+		var posa: Dictionary = PrintSheet.layout(face, cell)
+		var quanto: float = float(posa["scale"])
+		if quanto < 0.999:
+			row["stretti"] = int(row.get("stretti", 0)) + 1
+		row["piu_stretta"] = minf(float(row.get("piu_stretta", 1.0)), quanto)
+		if bool(posa["has_art"]):
+			row["con_arte"] = int(row.get("con_arte", 0)) + 1
+			var quota: float = float(posa["art_h"]) / maxf(cell.y, 0.01)
+			row["arte_min"] = minf(float(row.get("arte_min", 1.0)), quota)
+			row["arte_somma"] = float(row.get("arte_somma", 0.0)) + quota
 		for pair in [
 			["il titolo", str(face["title"])],
 			["il sottotitolo", str(face["subtitle"])],
@@ -121,6 +139,29 @@ func _initialize() -> void:
 		lines.append("| **%s** | %s | %d | %d |" % [
 			str(deck), str(SHAPES.get(str(row["shape"]), str(row["shape"]))),
 			int(row["facce"]), int(row["copie"]),
+		])
+	lines.append("")
+	lines.append("## Se il testo ci sta")
+	lines.append("")
+	lines.append("Portare un blocco e **stamparlo leggibile** sono due cose diverse.")
+	lines.append("Quando il testo non entra, la prima cosa che cede e' l'illustrazione —")
+	lines.append("fino al 34% della carta e non oltre — e poi si stringe il corpo, fino al")
+	lines.append("74%. Una carta che stampa il corpo rimpicciolito e' una carta che al")
+	lines.append("tavolo si legge peggio, e questa tabella dice **quante**.")
+	lines.append("")
+	lines.append("| mazzo | corpo rimpicciolito | la piu' stretta | illustrazione media | la piu' piccola |")
+	lines.append("|---|---|---|---|---|")
+	for deck in order:
+		var row: Dictionary = decks[str(deck)]
+		var con_arte: int = int(row.get("con_arte", 0))
+		var media: String = "—"
+		var minima: String = "—"
+		if con_arte > 0:
+			media = "%d%%" % roundi(float(row["arte_somma"]) / float(con_arte) * 100.0)
+			minima = "%d%%" % roundi(float(row["arte_min"]) * 100.0)
+		lines.append("| **%s** | %d su %d | %d%% | %s | %s |" % [
+			str(deck), int(row.get("stretti", 0)), int(row["facce"]),
+			roundi(float(row.get("piu_stretta", 1.0)) * 100.0), media, minima,
 		])
 	lines.append("")
 	for deck in order:
@@ -163,9 +204,10 @@ func _initialize() -> void:
 	print("SCHELETRO -> %s" % out_path)
 	for deck in order:
 		var row: Dictionary = decks[str(deck)]
-		print("  %-10s %3d facce  %4d pezzi  %2d blocchi" % [
+		print("  %-10s %3d facce  %4d pezzi  %2d blocchi  %3d stretti (min %d%%)" % [
 			str(deck), int(row["facce"]), int(row["copie"]),
-			(row["ordine"] as Array).size(),
+			(row["ordine"] as Array).size(), int(row.get("stretti", 0)),
+			roundi(float(row.get("piu_stretta", 1.0)) * 100.0),
 		])
 	quit(0)
 

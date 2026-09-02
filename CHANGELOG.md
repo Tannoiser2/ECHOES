@@ -5,6 +5,126 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.393 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
+
+Sesta rossa, fatta la raccomandata ([D-421](docs/DECISIONS.md#d-421)). Avanza
+[ISSUES 69](docs/ISSUES.md#69).
+
+### Prima la misura, che non c'era
+
+`run_card_skeleton` diceva **quali blocchi** una carta porta. Non diceva **se ci
+stanno**, e sono due cose diverse: la seconda decide se al tavolo la carta si
+legge. Adesso lo dice, e non con un'aritmetica sua — chiama `PrintSheet.layout`,
+la stessa funzione che disegna lo stampabile.
+
+| mazzo asset, 48 facce | 63×88 | **70×120** |
+|---|---|---|
+| corpo rimpicciolito | **46 su 48** | **0 su 48** |
+| la più stretta | 74% | **100%** |
+| illustrazione media | 35% | **49%** |
+| la più piccola | 34% — il pavimento | **43%** |
+
+Nessuna carta sbordava — quello è sorvegliato da D-056 — ma quarantasei su
+quarantotto **si leggevano peggio**, e nessuno lo misurava. L'Eco segue le Asset
+perché da D-359 è un blocco stampato sulla stessa carta.
+
+### Il costo, che è vero e va scritto
+
+**I fogli A4 di carte e tessere da 49 a 67** (+37%); le Asset da sole da 15 a
+**33**. E una mano da sette carte adesso è sette tarocchi: si è preferita una
+carta che si legge a una mano che si maneggia. Tornare indietro è una riga in
+`card_face.gd`.
+
+### Va prima dell'arte, ed è perché era una rossa
+
+Il rapporto d'aspetto passa da 0,72 a 0,58: un'illustrazione inquadrata per
+63×88 non si riusa su un tarocco. Con 144 segnaposto su 155 il conto oggi è
+zero; deciderlo dopo sarebbe stato rifare tutto.
+
+---
+
+## 0.1.392 — Il dado resta al centro, e l'economia gli sta accanto per scelta
+
+Quinta rossa, e l'unica su cui non avevo una raccomandazione da dare. Domanda
+posta, parola arrivata: **il dado resta com'è** ([D-420](docs/DECISIONS.md#d-420)).
+**Chiude [ISSUES 80](docs/ISSUES.md#80)**, aperta in 0.1.253.
+
+Non si fa il taglio grosso: la sequenza A-K resta intera, il World Factor resta
+nel margine, e l'economia di D-280 le sta **accanto per scelta**, non per lavoro
+non finito. Una voce aperta da centoquaranta versioni stava lì perché nessuno
+aveva detto *«va bene così»*.
+
+**Ed è una scelta che il tavolo sostiene, non un rinvio.** Prima di D-419
+l'economia entrava *dopo* il risultato: si comprava e si pagava, ma a decidere
+erano voti, carte e dado. Adesso un gettone speso contro sta **dentro la stessa
+somma** del World Factor.
+
+**Quello che resta vero, e va scritto:** il caso pesa. Un World Factor a -2 può
+ancora affondare una proposta pagata bene, e al tavolo si vedrà come *«avevo
+pagato tutto e il mondo ha detto di no»*. Si riapre quando darà fastidio: è un
+numero, non una struttura.
+
+Voci aperte **27 → 26**, quelle che aspettano il committente **13 → 12**.
+
+---
+
+## 0.1.391 — Il fallimento si compra: lo stesso gettone, due usi che si escludono
+
+Quarta rossa, e il committente ha detto *«passa alla prossima rossa»* senza
+rispondere: vale la regola della lista — *«se non rispondi, faccio quella
+raccomandata e lo scrivo»*. La raccomandata era **(b)**
+([D-419](docs/DECISIONS.md#d-419)). Avanza [ISSUES 119](docs/ISSUES.md#119).
+
+### La regola
+
+Il gettone di rivendicazione ha **due usi, e sono uno la rinuncia dell'altro**:
+posato su un costo dice *«passi, ma paghi»*; speso **contro** dice *«questa non
+deve passare»*, e pesa 1 nel margine. Una pedina a testa, in chiaro, prima degli
+impegni. Non la compra chi ha dichiarato SUPPORT o CONDITION, né chi propone.
+
+### La misura, e il numero grosso non è quello che guardavo
+
+| 100 partite CHR_00, seme 7000 | spenta | **peso 1** | peso 2 |
+|---|---|---|---|
+| tavolo misto — FAILURE | 33 | **39** | 55 |
+| tavolo misto — DECISIVE | 127 | **105** | 89 |
+| tavolo uniforme — FAILURE | 8 | **10** | 21 |
+| tavolo uniforme — DECISIVE | 141 | **123** | 110 |
+| `spoke_and_lost` (100 partite miste) | 6 | **8** | — |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 |
+
+Le proposte che cadono salgono di un quinto; quelle che passano **in scioltezza**
+scendono di un sesto. Il gettone contro raramente affonda una proposta: molto più
+spesso la **ridimensiona**. Al tavolo: *«non l'ho fermata, ma non è passata come
+voleva lui»*.
+
+**Costo dichiarato:** la voce non si chiude. Il segno di chi ha parlato e perso
+resta a una volta ogni dodici partite, ed è la frase che aveva aperto ISSUES 119.
+La causa è misurata e non è la regola: i gettoni sono pochi, e adesso hanno due
+usi in concorrenza. Resta al committente una riga: **peso 1 o 2**, o più facce
+RIVENDICARE.
+
+### E la prima stesura non si poteva giocare
+
+Chiedeva di aver già dichiarato OPPOSE: in dodici saghe la richiesta è arrivata
+**cinque volte** e si è vista rifiutare **cinque volte**. I 30 semi davano un
+numero fermo, e per una volta lo zero **non era la sonda cieca**: era la regola.
+Il verbale lo diceva a voce alta — *«non ha dichiarato di opporsi»* — ed è la
+prima volta che il difetto si trova leggendo la riga che il gioco stesso ha
+scritto, invece di strumentare una sonda.
+
+### E ha mosso una voce che non stavo guardando
+
+Le **vite delle case** che non si siedono mai al tavolo passano da **2 a 1**
+(`docs/MISURA_VITE.md`, dodici saghe sui due tavoli). Non l'avevo cercato, e la
+ragione e' la stessa: un Consiglio che si ridimensiona invece di passare in
+scioltezza lascia il mondo in stati che prima non capitavano, e una vita in piu'
+trova la sua porta.
+
+Suite da 703 a **709**.
+
+---
+
 ## 0.1.390 — Trentadue cancelli in un comando: la pulizia era il conto, non il taglio
 
 Parola del committente — *«31 cancelli e 100 semi sono troppi, bisognerebbe fare

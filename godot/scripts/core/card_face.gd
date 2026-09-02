@@ -195,7 +195,7 @@ static func _face(deck: String, id: String, shape: String) -> Dictionary:
 ## set. Lo prendono gia' `_echo` e `_destiny` per la stessa ragione.
 static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 	var family: String = str(asset["family"])
-	var face: Dictionary = _face("asset", str(asset["id"]), "CARD")
+	var face: Dictionary = _face("asset", str(asset["id"]), "TAROT")
 	face["title"] = str(asset["title"])
 	# **In italiano** (D-339): la famiglia e' un enum, e `to_lower()` stampava
 	# «authority» su otto carte, «bonds» su altre otto, e cosi' per tutte e 48.
@@ -250,7 +250,7 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 static func _echo(card: Dictionary, data: RefCounted) -> Dictionary:
 	var family: String = str(card["dramatic_family"])
 	var described: Dictionary = DRAMA.get(family, {"colour": NEUTRAL, "label": family})
-	var face: Dictionary = _face("echo", str(card["id"]), "CARD")
+	var face: Dictionary = _face("echo", str(card["id"]), "TAROT")
 	face["title"] = str(card["title"])
 	var function_id: String = str(card["function_id"])
 	face["subtitle"] = "%s · funzione di Propp: %s" % [

@@ -9,14 +9,14 @@ cosa manca perche' l'app dica **tutto** quello che dice il tavolo.
 
 | componente | pezzi diversi | copie in scatola | formato | faccia fisica | fogli A4 |
 |---|---|---|---|---|---|
-| Carte **Asset** (ognuna col suo Eco) | 48 | 132 | 63x88 mm | **tutte** | 15 |
+| Carte **Asset** (ognuna col suo Eco) | 48 | 132 | 70x120 mm | **tutte** | 33 |
 | Carte **Tensione** (le Domande) | 60 | 60 | 44x68 mm | **tutte** | 4 |
 | Schede **Consiglio** | 60 | 60 | 70x120 mm | **tutte** | 15 |
 | Carte **Destino** | 23 | 23 | 70x120 mm | **tutte** | 6 |
 | Carte **Casata** (una per vita) | 26 | 26 | 70x120 mm | **nessuna** | 7 |
 | Tessere **Regione** | 10 | 10 | 80x80 mm | **nessuna** | 2 |
 
-**49 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
+**67 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
 delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 
 ## 2. I segnalini che si posano

@@ -83,7 +83,8 @@ static func resolve(
 	factor: int,
 	condition_threshold: int,
 	support_bonus: int = 0,
-	oppose_bonus: int = 0
+	oppose_bonus: int = 0,
+	bought_opposition: int = 0
 ) -> Dictionary:
 	var support_assets: Array = []
 	var oppose_assets: Array = []
@@ -129,12 +130,29 @@ static func resolve(
 		condition_assets, assets, relevant_families, "CONDITION"
 	)
 	var qualified: bool = condition_total >= condition_threshold
-	var margin: int = support_total + (condition_total if qualified else 0) - oppose_total + factor
+
+	# **L'opposizione comprata** (D-419, ISSUES 119). Un gettone di
+	# rivendicazione speso *contro* la proposta pesa nel margine: al tavolo e'
+	# «questa non deve passare», e si paga per fermarla invece di sperare nel
+	# dado.
+	#
+	# Entra **anche su zero carte impegnate**, ed e' la differenza che conta con
+	# i bonus dei segni qui sopra: quelli sono gratis, e un +1 dal nulla sarebbe
+	# un voto regalato; questo e' comprato, e un gettone speso e' un gettone che
+	# non compra un costo. Chi paga ha diritto di pesare.
+	var margin: int = (
+		support_total
+		+ (condition_total if qualified else 0)
+		- oppose_total
+		- maxi(0, bought_opposition)
+		+ factor
+	)
 
 	return {
 		"strategy": STRATEGY_ID,
 		"support_total": support_total,
 		"oppose_total": oppose_total,
+		"bought_opposition": maxi(0, bought_opposition),
 		"condition_total": condition_total,
 		"condition_qualified": qualified,
 		"world_factor": factor,

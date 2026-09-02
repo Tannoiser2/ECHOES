@@ -4664,7 +4664,7 @@ Resta aperto il rischio speculare, che e' la voce nuova
 
 ---
 
-### 80. Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — **ridotta in 0.1.378 alla sola terza parte: quella che aspetta la tua parola**
+### 80. ✅ Il Consiglio sono due Consigli impilati, e a decidere e' quello vecchio — CHIUSA in 0.1.392: il dado resta, e l'economia gli sta accanto per scelta
 
 `regole` · `ux` · `da-decidere` · **aperta in 0.1.253** — parola del committente davanti
 all'app: *«il Concilio e' ancora quello vecchio, mi sa che va cambiato tutto»*.
@@ -4795,9 +4795,27 @@ volta in questo progetto che uno zero era la sonda.**
    denominatore di *«quanto contenuto d'autore il tavolo vede»*. **La terza è
    caduta in 0.1.345**: `REVISIONE_TESTI.md` leggeva i template e saltava 314
    testi veri.
-3. **Chi decide**: il d6 e gli impegni segreti contro l'economia. Se passa
-   perche' il proponente puo' pagare quello che il tavolo chiede, il dado esce
-   dal gioco — ed e' la modifica che vale la parola del committente, non la mia.
+3. ✅ **Chi decide** — **scelto in 0.1.392: il dado resta com'e'**
+   ([D-420](DECISIONS.md#d-420)).
+
+   La domanda era: se una proposta passa perche' chi la fa puo' pagare quello
+   che il tavolo chiede, **il dado esce dal gioco**. Parola del committente:
+   **no**. La sequenza A-K resta intera, il World Factor resta nel margine, e
+   l'economia di [D-280](DECISIONS.md#d-280) le sta **accanto per scelta**, non
+   per lavoro non finito.
+
+   **Ed e' una scelta che il tavolo sostiene**, non un rinvio: fra 0.1.353 e
+   0.1.391 l'economia ha smesso di essere un contorno senza che il dado si
+   togliesse di mezzo — due acquisti liberi ([D-417](DECISIONS.md#d-417)), il
+   gettone che compra il prezzo ([D-387](DECISIONS.md#d-387)) e adesso quello
+   che compra l'opposizione ([D-419](DECISIONS.md#d-419)), che **entra nel
+   margine** insieme al dado invece che dopo.
+
+   Quello che resta vero e non e' un difetto: il caso pesa. Un World Factor a
+   -2 puo' ancora affondare una proposta pagata bene. Se un giorno al tavolo
+   dara' fastidio, si riapre — e' `confluence_rules`, ed e' un numero.
+
+**Fatto quando** era: il committente sceglie. Ha scelto, e la voce si chiude.
 
 ---
 
@@ -5403,12 +5421,33 @@ scelta d'autore che viene prima dell'arte · **aperta in 0.1.218** ([D-256](DECI
 >
 > **Quello che resta non e' piu' il contenuto, e' il formato.** Su 48 carte, 0
 > escono dal bordo ma **46 stampano il corpo rimpicciolito** (la piu' stretta al
-> 77%), e l'illustrazione e' scesa al suo pavimento del 34% su tutte. Una carta
+> 74%), e l'illustrazione e' scesa al suo pavimento del 34% su tutte. Una carta
 > 63x88 che porta sette righe di regole **e** un'illustrazione e' una carta che
-> si legge male. Le due strade — tarocco anche per le Asset, come la scheda del
-> Consiglio ([D-338](DECISIONS.md#d-338)); oppure l'illustrazione fuori dalla
-> faccia delle regole — sono misurabili tutte e due, e la scelta e' del
-> committente.
+> si legge male.
+>
+> ### ✅ Fatto in 0.1.393: il tarocco ([D-421](DECISIONS.md#d-421))
+>
+> Delle due strade — tarocco anche per le Asset, come la scheda del Consiglio
+> ([D-338](DECISIONS.md#d-338)); oppure l'illustrazione fuori dalla faccia delle
+> regole — e' stata fatta **la prima**, che era la raccomandata nella
+> [lista](LE_TUE_DECISIONI.md). L'Eco la segue, perche' da
+> [D-359](DECISIONS.md#d-359) e' un blocco stampato sulla stessa carta.
+>
+> | mazzo asset, 48 facce | 63x88 | **70x120** |
+> |---|---|---|
+> | corpo rimpicciolito | **46 su 48** | **0 su 48** |
+> | la piu' stretta | 74% | **100%** |
+> | illustrazione media | 35% | **49%** |
+> | la piu' piccola | 34% — il pavimento | **43%** |
+>
+> **E adesso e' un cancello**: `run_card_skeleton` diceva quali blocchi una
+> carta porta, non se ci stanno. Adesso lo dice chiamando `PrintSheet.layout`,
+> la stessa funzione che disegna lo stampabile — nessuna seconda aritmetica.
+>
+> **Costo dichiarato:** i fogli A4 di carte e tessere da **49 a 67** (+37%), le
+> Asset da sole da 15 a 33. E una mano da sette carte adesso e' sette tarocchi:
+> si e' preferita una carta che si legge a una mano che si maneggia. Tornare
+> indietro e' una riga in `card_face.gd`.
 
 
 > **Correzione a quanto scritto sopra in 0.1.219**: il «0 su 163, contenuto
@@ -8320,7 +8359,54 @@ Si misura in mezz'ora, ed è reversibile.
 la forma piena verso cui l'economia sta andando, e (c) è la sola che rischia di
 disfare D-378.
 
-**Fatto quando** il committente sceglie.
+**Scelto in 0.1.391: (b), il fallimento si compra** ([D-419](DECISIONS.md#d-419)).
+
+Il committente ha detto *«passa alla prossima rossa»* senza rispondere alla
+domanda, e vale la regola scritta in
+[la lista](LE_TUE_DECISIONI.md): *«se non rispondi, faccio quella raccomandata e
+lo scrivo»*. La raccomandata era (b), e (a) resta vera sotto: nessuna delle due
+esclude l'altra.
+
+**La regola:** lo stesso gettone di [D-387](DECISIONS.md#d-387) ha due usi, e
+sono uno la rinuncia dell'altro. Posato su un costo dice *«passi, ma paghi»*;
+speso **contro** dice *«questa non deve passare»*, e pesa 1 nel margine. Una
+pedina a testa. Non lo puo' comprare chi ha dichiarato SUPPORT o CONDITION: sta
+dalla parte della proposta.
+
+| 100 partite CHR_00, seme 7000 | spenta | **peso 1** | peso 2 |
+|---|---|---|---|
+| tavolo misto — FAILURE | 33 | **39** | 55 |
+| tavolo misto — DECISIVE | 127 | **105** | 89 |
+| tavolo uniforme — FAILURE | 8 | **10** | 21 |
+| tavolo uniforme — DECISIVE | 141 | **123** | 110 |
+| `spoke_and_lost` scritto (sonda dei segni, 100 partite miste) | 6 | **8** | — |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 |
+
+**Il numero che si e' mosso di piu' non e' quello che la voce guardava.** Le
+proposte che cadono salgono di un quinto; quelle che passano **in scioltezza**
+scendono di un sesto. Cioe' il gettone contro raramente affonda una proposta, e
+molto piu' spesso la **ridimensiona** — un DECISIVE che diventa un SUCCESS, o un
+SUCCESS che diventa un SUCCESS WITH COST. Al tavolo si legge cosi': *«non l'ho
+fermata, ma non e' passata come voleva lui»*.
+
+#### Quello che resta aperto, ed e' una riga sola
+
+**Il segno di chi ha parlato e perso e' passato da 6 a 8 su cento partite.** E'
+un terzo in piu', ed e' ancora **una volta ogni dodici partite**: la frase che
+ha aperto questa voce — *«una minaccia che si vede una volta ogni dodici partite
+non e' una minaccia»* — resta vera.
+
+La causa e' misurata e non e' la regola: **i gettoni sono pochi**. Con undici
+facce RIVENDICARE ([D-417](DECISIONS.md#d-417)) una casa ne vede pochi per anno,
+e adesso ne ha **due usi in concorrenza**. Alzare il peso da 1 a 2 spinge molto
+di piu' — misurato nella tabella qui sopra: FAILURE da 39 a **55** sul misto, ma
+da 10 a **21** sull'uniforme, quasi il triplo dello stato spento. Il cancello
+tiene sui due tavoli, quindi non e' un no tecnico; e' che sull'uniforme si torna
+vicino al difetto che [D-378](DECISIONS.md#d-378) ha appena tolto: **i Consigli
+che cadono per aritmetica invece che per conflitto**.
+
+**Fatto quando** il committente dice se il gettone contro deve pesare **1 o 2**,
+oppure se le facce RIVENDICARE devono diventare piu' di undici.
 
 ### ✅ Scelto in 0.1.388: **due acquisti liberi** ([D-417](DECISIONS.md#d-417))
 

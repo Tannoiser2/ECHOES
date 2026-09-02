@@ -253,8 +253,16 @@ func test_a_house_portrait_is_varied_by_its_archetype() -> void:
 ## le domande diventano mini da appoggiare alla traccia dei valori.
 func test_each_deck_has_the_size_of_its_table_role() -> void:
 	var loaded: RefCounted = data()
-	assert_eq(str(CardFace.deck_of("asset", loaded)[0]["shape"]), "CARD", "gli Asset si mescolano: classica")
-	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "CARD", "gli Echo pure")
+	# **E le Asset sono tarocchi da D-421**, con l'Eco che le segue perche' e' un
+	# blocco stampato sulla stessa carta (D-359). Su 63x88 quarantasei facce su
+	# quarantotto stampavano il corpo rimpicciolito, la piu' stretta al 74%, e
+	# l'illustrazione stava al suo pavimento del 34%: una carta che porta sette
+	# righe di regole **e** un disegno non ci sta, e stringere e' la scelta che
+	# rende la carta illeggibile invece di ammettere che serve piu' spazio.
+	assert_eq(str(CardFace.deck_of("asset", loaded)[0]["shape"]), "TAROT",
+		"le Asset portano regole e disegno: tarocco")
+	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "TAROT",
+		"e l'Eco sta sulla stessa carta, quindi la segue")
 	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "MINI", "le domande sono mini, per la traccia")
 	# **E la scheda del Consiglio e' un tarocco** (D-338). Due pezzi con due
 	# mestieri: la mini sta sulla traccia e dice quando la domanda si scalda; il

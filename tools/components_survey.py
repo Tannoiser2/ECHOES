@@ -198,8 +198,11 @@ def survey() -> str:
         # sono il terzo blocco stampato sulle 48 carte Asset, uno per carta. Il
         # censimento non li conta come pezzi, perche' nella scatola non c'e'
         # niente in piu' da tagliare — c'e' piu' testo sulla stessa carta.
+        # **E il formato e' il tarocco** (D-421): con sette righe di regole e
+        # un'illustrazione, su 63x88 quarantasei carte su quarantotto stampavano
+        # il corpo rimpicciolito. Costa fogli, e il conto qui sotto lo dice.
         ("Carte **Asset** (ognuna col suo Eco)", len(assets), copie_asset,
-         "CARD", len(assets), "asset"),
+         "TAROT", len(assets), "asset"),
         ("Carte **Tensione** (le Domande)", len(tensions), len(tensions), "MINI",
          sum(1 for t in tensions if t.get("physical")), "tension"),
         # **La scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione. La
