@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **101** |
-| aperte | **30** |
+| chiuse | **102** |
+| aperte | **29** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **20** |
+| di cui sono mie da fare | **19** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -176,15 +176,31 @@ riga o è stampata o non esiste.
 
 Non aspettano niente. Le faccio in quest'ordine, e nessuna apre una voce nuova.
 
-### G1. L'app diventa un prototipo giocabile — [63](ISSUES.md#63), [73](ISSUES.md#73), [80](ISSUES.md#80), [65](ISSUES.md#65)
+### G1. L'app diventa un prototipo giocabile — [63](ISSUES.md#63), [80](ISSUES.md#80), [65](ISSUES.md#65)
 
-È la più grossa, ed è **quella che decide la parola «giocabile»**. Oggi l'app è
-un'ispezione di stato con dei bottoni; lo schermo del Consiglio è quello di due
-regole fa.
+È la più grossa, ed è **quella che decide la parola «giocabile»**.
+
+**La [73](ISSUES.md#73) si è chiusa in 0.1.378**, ed è il primo pezzo che cade.
+Il motore chiede qualcosa a una persona in **dieci punti**, contati sul codice:
+adesso ognuno ha una prova che parte dal decider e finisce su quello che si
+tocca. E la prova nuova ha trovato **due difetti veri al primo giro**: la plancia
+del Consiglio disegnava la Domanda e la Proposta **di ripiego** invece di quelle
+stampate sulla carta in tavola, e a chi propone spariva la riga «se passa» — cioè
+la ragione per cui si sceglie una proposta invece di un'altra.
+
+I due passi che quella voce nominava — la scelta del Destino, la fine della
+Chronicle — **non esistono**: il Destino si pesca, e dopo l'ultima domanda la
+Chronicle non chiede più niente.
+
+**Resta il grosso**: la plancia non mostra ancora i benefici comprati, il prezzo,
+la pedina e la controproposta (80); il drag & drop e le pedine sulla mappa (63);
+e la 65, che prima di tutto **ti chiede quale delle tre letture vuoi** — una
+passata di leggibilità (fatta), un'altra disposizione, o un'altra idea di cosa si
+guarda.
 
 **Fatto quando** si gioca un anno intero dall'app senza leggere un id: carte che
-si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida
-lo schermo dall'inizio alla fine di un Consiglio.
+si prendono e si posano, la plancia col Consiglio nuovo, e una prova che guida lo
+schermo dall'inizio alla fine di un Consiglio.
 
 ### G2. Le voci mute del Consiglio — [56](ISSUES.md#56), [60](ISSUES.md#60)
 

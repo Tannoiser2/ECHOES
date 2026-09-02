@@ -10,9 +10,9 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
-## D-408 — Il Consiglio si puo' giocare, e la prova ha trovato due schermi vecchi
+## D-408 — Il Consiglio si puo' giocare: dieci domande, dieci prove, due schermi vecchi
 
-**implemented in 0.1.378.** Avanza [ISSUES 73](ISSUES.md#73) e
+**implemented in 0.1.378.** Chiude [ISSUES 73](ISSUES.md#73) e avanza
 [ISSUES 80](ISSUES.md#80).
 
 ### La prova che mancava
@@ -60,7 +60,25 @@ giusto cosi' — la scelta vive accanto alla domanda a cui risponde.
 **Sesta volta in questo progetto che uno zero era chi guardava.** La regola di
 casa ha pagato ancora: non ho creduto allo zero.
 
-**Suite 684 prove** (erano 680), cancello 0 su 8 sui due tavoli.
+### E chiude la voce, perche' i passi sono dieci e sono tutti coperti
+
+Contati sul codice — `await decider.` e `decider.has_method` nel
+`ChronicleController`, piu' `choose_costs` che sta annidata dentro la
+controproposta — **il motore chiede a una persona in dieci punti**. Nove sono
+nuovi di queste prove; il decimo, `choose_action`, ce l'aveva da 0.1.243.
+
+**E i due passi che la voce nominava non esistono piu':** il Destino si
+**pesca** (`_deal_destiny`), non si sceglie, e dopo `choose_recovery` la
+Chronicle non chiede piu' niente. Erano veri quando la voce e' stata scritta.
+
+**Nessuna prova passa costruendosi il carico da se'**, che e' la clausola che
+la voce metteva in fondo. Quattro hanno bisogno di una condizione che la pesca
+puo' non dare — caselle vive, un prezzo da posare, due carte da salvare, un
+impegno possibile: **la cercano su tutte le Tensioni in gioco e falliscono se
+non c'e'**, invece di tornare a mani vuote in silenzio. E' la regola di casa
+sulle prove che smettono di provare.
+
+**Suite 689 prove** (erano 680), cancello 0 su 8 sui due tavoli.
 
 ---
 

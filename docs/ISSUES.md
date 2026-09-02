@@ -4948,7 +4948,7 @@ domanda propria.
 
 ---
 
-### 73. Nessuna prova lega la domanda a quello che si può toccare
+### 73. ✅ Nessuna prova lega la domanda a quello che si può toccare — CHIUSA in 0.1.378: dieci domande, dieci prove
 
 `ux` · `motore` · `debito` · **aperta e in parte chiusa in 0.1.243**
 ([D-281](DECISIONS.md#d-281))
@@ -4964,9 +4964,37 @@ il carico a mano, e provava lo schermo (`test_the_page_can_be_read_by_a_finger`)
 senza mai aprire una domanda. Fra i due pezzi, ognuno verde, ci stava un turno
 che non si poteva giocare.
 
-> **Avanzamento in 0.1.378** ([D-408](DECISIONS.md#d-408)): **il giro del
+> **CHIUSA in 0.1.378** ([D-408](DECISIONS.md#d-408)): **il giro del
 > Consiglio adesso ha la sua prova**, e ha trovato due schermi vecchi al primo
 > giro.
+>
+> **Il motore chiede a una persona in dieci punti**, contati sul codice
+> (`await decider.` e `decider.has_method` nel `ChronicleController`, piu' la
+> domanda annidata dei costi). Adesso li hanno tutti:
+>
+> | domanda | prova |
+> |---|---|
+> | `choose_action` | `test_a_turn_can_be_played` (0.1.243) |
+> | `choose_question` | `test_a_council_can_be_played` |
+> | `choose_proposition` | idem |
+> | `choose_stance` | idem |
+> | `choose_benefits` | idem |
+> | `choose_counterclaim` | idem |
+> | `choose_costs` (annidata) | idem |
+> | `choose_cost_token` | idem |
+> | `choose_commit` | idem |
+> | `choose_recovery` | idem |
+>
+> **E i due passi che la voce nominava non esistono.** «La scelta del Destino»:
+> il Destino si **pesca** (`_deal_destiny`), non si sceglie — nessuno lo chiede a
+> nessuno. «La fine della Chronicle»: dopo `choose_recovery` il motore non fa
+> piu' domande. Erano veri quando la voce e' stata scritta, in 0.1.243.
+>
+> **E nessuna delle dieci prove passa costruendosi il carico da se'** — la
+> clausola che la voce metteva in fondo. Quattro avevano bisogno di una
+> condizione che la pesca puo' non dare (caselle vive, un prezzo da posare, due
+> carte da salvare, un impegno possibile): **la cercano su tutte le Tensioni in
+> gioco e falliscono se non c'e'**, invece di tornare a mani vuote in silenzio.
 >
 > `test_a_council_can_be_played` fa quattro domande — la proposta, la posizione,
 > i benefici comprati, gli impegni — partendo dal decider e finendo su quello che

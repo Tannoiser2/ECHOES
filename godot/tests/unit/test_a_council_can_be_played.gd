@@ -82,6 +82,29 @@ func _open_a_council() -> Dictionary:
 ## Una scelta del Consiglio e' disegnata come una carta (D-233): un `Button`
 ## con dentro delle etichette, non un bottone con una frase. Il testo si legge
 ## da quelle.
+## **Un Consiglio che soddisfa una condizione**, cercato invece che sperato.
+##
+## Regola di casa: *«una prova che cerca una condizione fra i dati spediti puo'
+## smettere di provare senza dirlo, se quella condizione sparisce.
+## Fabbricatela.»* Qui la condizione non si fabbrica — sarebbe un Consiglio
+## finto — ma si **cerca su tutte le Tensioni in gioco**, e se non c'e' la prova
+## lo dice invece di passare in silenzio.
+func _a_council_where(condizione: Callable) -> Dictionary:
+	for tension_id in session.world["tensions"]:
+		var aperto: Dictionary = session.confluence.open(
+			str(tension_id), {"kind": "THRESHOLD", "entity_id": ""}
+		)
+		if aperto.is_empty():
+			continue
+		var proposte: Array = session.confluence.available_propositions()
+		if proposte.is_empty():
+			continue
+		session.confluence.set_proposition(str((proposte[0] as Dictionary)["id"]))
+		if condizione.call(aperto):
+			return aperto
+	return {}
+
+
 func _buttons(screen: Node) -> Array:
 	var said: Array = []
 	for child in screen.get("_board").get("_choices").get_children():
@@ -181,16 +204,11 @@ func test_a_seat_can_declare_its_stance() -> void:
 ## **Il proponente compra** (D-280): le caselle della carta si toccano, e
 ## dicono cosa fanno con la parola stampata.
 func test_the_proponent_can_buy_what_the_card_sells() -> void:
-	var context: Dictionary = _open_a_council()
-	assert_false(context.is_empty(), "un Consiglio si apre")
-	session.confluence.set_proposition(
-		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool: return not session.confluence.benefit_menu().is_empty()
 	)
+	assert_false(context.is_empty(), "un Consiglio con delle caselle vive esiste")
 	var menu: Array = session.confluence.benefit_menu()
-	if menu.is_empty():
-		# La carta pescata puo' non avere caselle vive adesso (D-306). Non e' un
-		# difetto dello schermo, e chiamarlo tale sarebbe una prova bugiarda.
-		return
 	var proponent: String = str(context["proponent"])
 
 	var screen: Node = _screen(proponent)
@@ -207,15 +225,13 @@ func test_the_proponent_can_buy_what_the_card_sells() -> void:
 ## **E gli Asset si impegnano al voto dallo schermo**, che e' la seconda meta'
 ## dell'economia: si spende per fare, o si tiene per votare.
 func test_a_seat_can_commit_assets_to_the_vote() -> void:
-	var context: Dictionary = _open_a_council()
-	assert_false(context.is_empty(), "un Consiglio si apre")
-	session.confluence.set_proposition(
-		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
+	var context: Dictionary = _a_council_where(
+		func(c: Dictionary) -> bool:
+			return session.confluence.max_commit_for(str(c["proponent"])) > 0
 	)
+	assert_false(context.is_empty(), "un Consiglio dove si puo' impegnare esiste")
 	var voter: String = str(context["proponent"])
 	var limit: int = session.confluence.max_commit_for(voter)
-	if limit <= 0:
-		return
 
 	var screen: Node = _screen(voter)
 	var decider: RefCounted = SeatDecider.new([voter], null)
@@ -224,3 +240,167 @@ func test_a_seat_can_commit_assets_to_the_vote() -> void:
 
 	_the_step_can_be_answered(screen, "Cosa impegni?")
 	_finish(screen)
+
+
+## **La domanda si sceglie, quando la carta ne offre piu' d'una.**
+##
+## Il passo B esiste solo se la Tensione ha aperto piu' di una domanda: quando
+## ce n'e' una sola il Consiglio non chiede niente, ed e' giusto. La prova si
+## fabbrica il caso invece di sperarlo — **una prova che smette di provare
+## quando i dati cambiano non lo dice** (CLAUDE.md).
+func test_the_proponent_can_choose_the_question() -> void:
+	var context: Dictionary = {}
+	var options: Array = []
+	for tension_id in session.world["tensions"]:
+		var aperto: Dictionary = session.confluence.open(
+			str(tension_id), {"kind": "THRESHOLD", "entity_id": ""}
+		)
+		if aperto.is_empty():
+			continue
+		options = session.confluence.available_questions()
+		if options.size() > 1:
+			context = aperto
+			break
+	assert_false(context.is_empty(), "una carta con due domande aperte esiste")
+
+	var screen: Node = _screen(str(context["proponent"]))
+	var decider: RefCounted = SeatDecider.new([str(context["proponent"])], null)
+	decider.io = screen
+	decider.choose_question(context, options, session)
+
+	_the_step_can_be_answered(screen, "Su cosa si decide?")
+	_finish(screen)
+
+
+## **Gli avversari scelgono in che moneta paga** (D-280, D-387): la pedina del
+## prezzo si posa su una casella stampata, e la casella si legge.
+func test_the_other_side_can_name_the_price() -> void:
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool:
+			return not (session.confluence.price_menu()["cost"] as Array).is_empty()
+	)
+	assert_false(context.is_empty(), "un Consiglio con un prezzo da posare esiste")
+	var menu: Array = (session.confluence.price_menu()["cost"] as Array)
+	var avversario: String = ""
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) != str(context["proponent"]):
+			avversario = str(entity_id)
+			break
+	# **Il gettone e\' la condizione della domanda** (D-387): senza, il Consiglio
+	# non chiede niente e la prova misurerebbe un silenzio legittimo.
+	session.world["entities"][avversario]["claim_tokens"] = 1
+
+	var screen: Node = _screen(avversario)
+	var decider: RefCounted = SeatDecider.new([avversario], null)
+	decider.io = screen
+	decider.choose_cost_token(avversario, context, menu, session)
+
+	_the_step_can_be_answered(screen, "Chi paga, e con che moneta?")
+	_finish(screen)
+
+
+## **E chi si oppone dice cosa salverebbe da una sconfitta che non c\'e' ancora**
+## (§12.3). E' l'ultima decisione che le regole danno a chi gioca, e per
+## duecento versioni non la chiedeva nessuno.
+func test_the_losing_side_can_name_what_it_saves() -> void:
+	var context: Dictionary = _open_a_council()
+	assert_false(context.is_empty(), "un Consiglio si apre")
+	session.confluence.set_proposition(
+		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
+	)
+	var avversario: String = ""
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) != str(context["proponent"]):
+			avversario = str(entity_id)
+			break
+	# La domanda si fa solo a chi si e' opposto **con almeno due carte da
+	# salvare**: una carta sola non e' una scelta. Se la mano pescata non ne ha
+	# due, si cerca un altro seggio invece di lasciar cadere la prova.
+	var tenute: Array = []
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) == str(context["proponent"]):
+			continue
+		var possibili: Array = []
+		for asset_id in (session.world["entities"][str(entity_id)]["hand"] as Array):
+			var asset: Dictionary = session.data.assets[str(asset_id)]
+			if str(asset["discard_or_retain_rule"]) != "ALWAYS_DISCARD":
+				possibili.append(str(asset_id))
+		if possibili.size() >= 2:
+			avversario = str(entity_id)
+			tenute = [possibili[0], possibili[1]]
+			break
+	assert_true(tenute.size() >= 2, "un seggio con due carte da salvare esiste")
+	var vivo: Dictionary = session.confluence.current
+	vivo["stances"][avversario] = {"stance": "OPPOSE", "clause_id": ""}
+	vivo["commits"][avversario] = tenute
+
+	var screen: Node = _screen(avversario)
+	var decider: RefCounted = SeatDecider.new([avversario], null)
+	decider.io = screen
+	decider.choose_recovery(vivo, session)
+
+	_the_step_can_be_answered(screen, "Cosa salvi se cade?")
+	_finish(screen)
+
+
+## **La controproposta del RIVENDICARE** (D-268), che e' la strada piu' battuta
+## di tutte: su cento anni le prese di parola si spendono qui **153 volte su
+## 204** ([D-404](../../docs/DECISIONS.md#d-404)). Chi ha il diritto sceglie fra
+## tenerselo, prendersi la pedina del prezzo, o rivendicare una casella che il
+## proponente ha appena comprato.
+func test_the_claimant_can_counter() -> void:
+	var context: Dictionary = _open_a_council()
+	assert_false(context.is_empty(), "un Consiglio si apre")
+	session.confluence.set_proposition(
+		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
+	)
+	var rivendicante: String = ""
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) != str(context["proponent"]):
+			rivendicante = str(entity_id)
+			break
+	var offer: Dictionary = {
+		"price": session.confluence.price_menu(),
+		"benefits": session.confluence.claimable_benefits(),
+	}
+
+	var screen: Node = _screen(rivendicante)
+	var decider: RefCounted = SeatDecider.new([rivendicante], null)
+	decider.io = screen
+	decider.choose_counterclaim(rivendicante, context, offer, session)
+
+	_the_step_can_be_answered(screen, "Controproposta?")
+	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
+	assert_true(
+		column.contains("secondo dibattito"),
+		"e si puo' tenere il diritto invece di spenderlo: %s" % column
+	)
+	_finish(screen)
+
+
+## **E chi si prende la pedina del prezzo sceglie le voci, una per una.**
+##
+## `choose_costs` e' l'unica domanda annidata: ci si arriva solo dicendo di si'
+## alla controproposta. Sta qui perche' il criterio della voce dice **ogni
+## passo in cui il motore chiede qualcosa a una persona**, e questo lo e'.
+func test_the_claimant_can_pick_the_costs() -> void:
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool:
+			return not (session.confluence.price_menu()["cost"] as Array).is_empty()
+	)
+	assert_false(context.is_empty(), "un Consiglio con un prezzo da posare esiste")
+	var menu: Array = (session.confluence.price_menu()["cost"] as Array)
+	var rivendicante: String = ""
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) != str(context["proponent"]):
+			rivendicante = str(entity_id)
+			break
+
+	var screen: Node = _screen(rivendicante)
+	var decider: RefCounted = SeatDecider.new([rivendicante], null)
+	decider.io = screen
+	decider.choose_costs(rivendicante, context, menu, 1, session)
+
+	_the_step_can_be_answered(screen, "Quali costi paga chi vince?")
+	_finish(screen)
+

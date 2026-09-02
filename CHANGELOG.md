@@ -5,9 +5,9 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
-## 0.1.378 — Il Consiglio si può giocare, e la prova ha trovato due schermi vecchi
+## 0.1.378 — Il Consiglio si può giocare: dieci domande, dieci prove
 
-Avanza [ISSUES 73](docs/ISSUES.md#73) e [ISSUES 80](docs/ISSUES.md#80)
+Chiude [ISSUES 73](docs/ISSUES.md#73) e avanza [ISSUES 80](docs/ISSUES.md#80)
 ([D-408](docs/DECISIONS.md#d-408)).
 
 La 73 diceva dove stava il buco, per nome: *«resta scoperto il giro del Consiglio
@@ -44,7 +44,23 @@ passi. Sembrava lo schermo muto; era la prova: quando un Consiglio è aperto le
 scelte vanno **sulla plancia**, accanto alla domanda a cui rispondono. Sesta
 volta in questo progetto che uno zero era chi guardava.
 
-Suite **684 prove** (erano 680), cancello **0 su 8** sui due tavoli.
+### E la voce si chiude: i passi sono dieci, e sono tutti coperti
+
+Contati sul codice, **il motore chiede a una persona in dieci punti** — nove del
+Consiglio più `choose_action`, che aveva già la sua prova da 0.1.243. Adesso li
+hanno tutti.
+
+**E i due passi che la voce nominava non esistono**: il Destino si **pesca**, non
+si sceglie, e dopo l'ultima domanda la Chronicle non chiede più niente. Erano
+veri in 0.1.243, quando la voce è stata scritta.
+
+**Nessuna prova passa costruendosi il carico da sé** — la clausola che la voce
+metteva in fondo. Quattro hanno bisogno di una condizione che la pesca può non
+dare: la **cercano** su tutte le Tensioni in gioco e falliscono se non c'è,
+invece di tornare a mani vuote in silenzio.
+
+Suite **689 prove** (erano 680), cancello **0 su 8** sui due tavoli. Voci aperte
+**30 → 29**.
 
 ---
 
