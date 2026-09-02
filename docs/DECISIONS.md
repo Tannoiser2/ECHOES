@@ -96,6 +96,68 @@ scelta di gioco, non una taratura. Le tre strade stanno in
 
 ---
 
+## D-424 — La cosa meno peggio: il cervello si fa male quando non ha di meglio
+
+**implemented in 0.1.395.** Avanza [ISSUES 128](ISSUES.md#128). E' la seconda
+meta' della strada che il committente ha scelto rispondendo **«1»** alla domanda
+sul passare; la prima era [D-423](#d-423).
+
+### Il difetto
+
+Con SEGNARE le carte mute per le **regole** sono scese al 12,4%. Quelle mute
+restavano il 55%, e l'**87,6%** di loro lo era per due frasi scritte nel
+cervello:
+
+> *«spingere una domanda dalla parte sbagliata e' peggio che non fare niente»*
+> *«rompere un patto per noia e' un prezzo, non un ripiego»*
+
+Sono vere, e sono vere **finche' stare fermi si puo'**. Al tavolo una persona
+che ha una mano e un turno da spendere non ragiona cosi': gioca la cosa che le
+costa meno, anche quando le costa. La domanda del committente — *«e se non ci
+fosse proprio la possibilita' di passare?»* — chiedeva esattamente quel modo.
+
+### La regola
+
+Le due eccezioni si aprono **solo quando il ripiego non ha trovato niente**: si
+alza un interruttore, si richiede alla mano, e si riabbassa subito. Nel giro
+normale il cervello resta prudente com'era, e nessun altro ramo cambia.
+
+E la mossa non e' a caso: `_hand_weakest_first` ordina gia' la mano dalla carta
+che costa meno perderla, quindi **la prima della lista disperata e' la meno
+peggio**.
+
+### La misura
+
+| 100 partite CHR_00, seme 7000 | prima di D-423 | **con SEGNARE** | **+ meno peggio** |
+|---|---|---|---|
+| turni «passa» | 45,2% | 43,2% | **40,8%** |
+| carte in mano mute | 59,3% | 55,3% | **54,0%** |
+| turni con la mano tutta muta | 23,2% | 19,0% | **18,1%** |
+| **Verita' scritte** (misto) | 135 | **149** | **146** |
+| Verita' scritte (uniforme) | 133 | 140 | 136 |
+| DECISIVE (misto) | 105 | 115 | 114 |
+| seggi bloccati | 0 su 8 | 0 su 8 | **0 su 8** |
+
+**Due punti e mezzo di «passa» in meno, e tre Verita'.** E' il prezzo giusto da
+guardare: la stessa cosa fatta a forza bruta — via la riserva, gioca sempre —
+portava le Verita' da 135 a **78**. La differenza fra le due non e' la
+prudenza: e' **quando** si smette di essere prudenti.
+
+### Un numero che sembra fermo e non lo e'
+
+Nella sonda, *«il cervello non le vuole»* resta all'87,3%: sembra che niente sia
+cambiato. Non e' cosi', ed e' una lettura da fare con attenzione — **la sonda
+guarda la mano nel modo normale**, dove le due eccezioni valgono ancora. Quel
+numero misura *quante carte il cervello non proporrebbe di sua iniziativa*, e
+quello non doveva cambiare: cambia **cosa fa quando non ha altro**, e si vede nei
+«passa» che scendono.
+
+Scritto perche' un numero fermo, in questo progetto, e' stato tredici volte la
+sonda cieca: qui non lo e', e la ragione va detta invece di lasciarla sembrare
+un difetto.
+
+---
+
 ## D-423 — SEGNARE, il settimo verbo: la loro Azione era il segno che lasciano
 
 **implemented in 0.1.394.** Parola del committente: **«Segnare»**. Avanza

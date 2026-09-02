@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.395 — La cosa meno peggio: il cervello si fa male quando non ha di meglio
+
+Seconda metà della strada che il committente ha scelto rispondendo **«1»** alla
+domanda sul passare ([D-424](docs/DECISIONS.md#d-424)); la prima era SEGNARE.
+Avanza [ISSUES 128](docs/ISSUES.md#128).
+
+Il cervello ha due frasi scritte dentro — *«spingere una domanda dalla parte
+sbagliata è peggio che non fare niente»*, *«rompere un patto per noia è un
+prezzo, non un ripiego»* — e sono vere **finché stare fermi si può**. Adesso si
+aprono **solo quando il ripiego non ha trovato niente**: si alza un interruttore,
+si richiede alla mano, e si riabbassa subito. Nel giro normale il cervello resta
+prudente com'era.
+
+E la mossa non è a caso: la mano è già ordinata dalla carta che costa meno
+perderla, quindi la prima della lista disperata è **la meno peggio**.
+
+| 100 partite CHR_00, seme 7000 | prima di SEGNARE | con SEGNARE | **+ meno peggio** |
+|---|---|---|---|
+| turni «passa» | 45,2% | 43,2% | **40,8%** |
+| carte in mano mute | 59,3% | 55,3% | **54,0%** |
+| turni con la mano tutta muta | 23,2% | 19,0% | **18,1%** |
+| **Verità scritte** (misto) | 135 | 149 | **146** |
+| DECISIVE (misto) | 105 | 115 | 114 |
+| seggi bloccati | 0 su 8 | 0 su 8 | **0 su 8** |
+
+**Due punti e mezzo di «passa» in meno, e tre Verità.** È il prezzo giusto da
+guardare: la stessa cosa a forza bruta — via la riserva, gioca sempre — le Verità
+le portava da 135 a **78**. La differenza non è la prudenza: è **quando** si
+smette di essere prudenti.
+
+**Un numero che sembra fermo e non lo è:** nella sonda *«il cervello non le
+vuole»* resta all'87,3%, perché la sonda guarda la mano **nel modo normale**,
+dove le due eccezioni valgono ancora. Misura quante carte il cervello non
+proporrebbe di sua iniziativa, e quello non doveva cambiare. Scritto perché in
+questo progetto un numero fermo è stato tredici volte la sonda cieca: qui no.
+
+**E una quattordicesima**, mia, trovata scrivendo la prova: chiedeva i desideri
+al Destino del seggio su `CHR_TEST`, che non ne ha, e passava su **zero bersagli
+contro zero** — cioè non provava niente. Adesso i desideri se li fabbrica.
+
+---
+
 ## 0.1.394 — La sonda dei «passa» contava il tavolo e non la mano
 
 Domanda del committente — *«e se non ci fosse proprio la possibilità di passare?

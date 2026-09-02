@@ -693,6 +693,22 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 ##      3        37,3%        227              3,75
 ##      4        42,1%        256              3,80     <- scelta
 ##      5        47,2%        252              3,81
+## **Quando non c'e' niente di meglio** (D-424, ISSUES 128).
+##
+## Le due eccezioni dichiarate di `_targets_for` — INFLUENZARE solo nel verso
+## che il Destino vuole, FORGIARE solo in su — dicono *«questa mossa mi fa piu'
+## male che stare fermo»*, e sono vere **finche' stare fermi si puo'**. Misurato:
+## di tutte le carte mute in mano, l'**87,6%** lo era per una di queste due, non
+## per le regole del tavolo.
+##
+## Al tavolo una persona che ha davanti una mano e un turno da spendere non
+## ragiona cosi': gioca la cosa che le costa meno, anche quando le costa. Questo
+## interruttore accende quel modo, e **solo li'**: si alza quando il ripiego non
+## ha trovato niente, e si riabbassa subito. Nel giro normale il cervello resta
+## prudente com'era, e nessun altro ramo cambia.
+var _no_better_move: bool = false
+
+
 func _rather_than_nothing(entity_id: String, session: RefCounted) -> Dictionary:
 	var chronicle: Dictionary = session.data.chronicles[
 		str(session.world["chronicle_id"])
@@ -701,7 +717,16 @@ func _rather_than_nothing(entity_id: String, session: RefCounted) -> Dictionary:
 	if session.service.hand_size(entity_id) <= reserve:
 		return {"template": "PASS", "params": {}}
 	var plays: Array = hand_plays(entity_id, session)
-	return plays[0] if not plays.is_empty() else {"template": "PASS", "params": {}}
+	if not plays.is_empty():
+		return plays[0]
+	# **E se non c'e' niente di buono, si fa la cosa meno peggio** (D-424).
+	# `_hand_weakest_first` ordina gia' dalla carta che costa meno perderla,
+	# quindi la prima della lista disperata e' la meno cara: non e' una mossa a
+	# caso, e' la meno peggio.
+	_no_better_move = true
+	var anything: Array = hand_plays(entity_id, session)
+	_no_better_move = false
+	return anything[0] if not anything.is_empty() else {"template": "PASS", "params": {}}
 
 
 func _cards_are_the_coin(session: RefCounted) -> bool:
@@ -1166,6 +1191,13 @@ func _targets_for(
 			for tension_id in _sorted(goals.keys()):
 				if int(goals[str(tension_id)]) == delta:
 					out.append({"tension_id": str(tension_id)})
+			# **E quando non c'e' niente di meglio, anche il verso storto**
+			# (D-424): spingere una domanda dalla parte sbagliata e' peggio che
+			# stare fermi solo finche' stare fermi si puo'.
+			if _no_better_move:
+				for tension_id in _sorted(goals.keys()):
+					if int(goals[str(tension_id)]) != delta:
+						out.append({"tension_id": str(tension_id)})
 		"SCHEME":
 			for tension_id in session.world["tensions"]:
 				out.append({"mode": "TENSION", "tension_id": str(tension_id)})
@@ -1217,6 +1249,16 @@ func _targets_for(
 				out.append({
 					"target_entity_id": str(other), "direction": "UP", "consent": true,
 				})
+			# **E rompere un patto, quando non resta altro** (D-424). Rompere per
+			# noia e' un prezzo e non un ripiego — ma un turno che non lascia
+			# niente e' anche lui un prezzo, e questo almeno si vede sul tavolo.
+			if _no_better_move:
+				for other in session.world["turn_order"]:
+					if str(other) == entity_id:
+						continue
+					out.append({
+						"target_entity_id": str(other), "direction": "DOWN",
+					})
 	return out
 
 

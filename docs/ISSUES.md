@@ -9157,8 +9157,35 @@ adesso lo è **per scelta del cervello**, non per le regole. Sono due eccezioni
 dichiarate — INFLUENZARE solo nel verso che il Destino vuole, FORGIARE solo in su
 — che al tavolo una persona che *deve* agire non avrebbe.
 
-**Fatto quando** il committente dice se il cervello deve accettare di farsi male
-quando non ha di meglio, **sui numeri di adesso** e non su quelli di prima.
+#### ✅ E l'ha detto: fatta in 0.1.395 ([D-424](DECISIONS.md#d-424))
+
+Le due eccezioni si aprono **solo quando il ripiego non ha trovato niente**, e si
+richiudono subito: nel giro normale il cervello resta prudente com'era.
+
+| 100 partite CHR_00, seme 7000 | prima di SEGNARE | con SEGNARE | **+ meno peggio** |
+|---|---|---|---|
+| turni «passa» | 45,2% | 43,2% | **40,8%** |
+| carte in mano mute | 59,3% | 55,3% | **54,0%** |
+| turni con la mano tutta muta | 23,2% | 19,0% | **18,1%** |
+| **Verità scritte** (misto) | 135 | 149 | **146** |
+| seggi bloccati | 0 su 8 | 0 su 8 | **0 su 8** |
+
+**Due punti e mezzo di «passa» in meno, e tre Verità** — contro le 78 su 135 che
+costava la stessa cosa fatta a forza bruta.
+
+**Fatto quando** era: il committente dice se il cervello deve accettare di farsi
+male. Ha detto **«1»**, ed è fatto in due passi — SEGNARE e questo.
+
+#### Quello che resta, e non è più una domanda per il committente
+
+I «passa» sono **40,8%**, non zero. Il resto non è più né le regole né la
+prudenza: è che **il cervello non vuole niente** — 23,8 mosse legali e nessuna
+che lo avvicini a qualcosa. È [ISSUES 68](#68) e la terza strada che il
+committente aveva già scelto lì: obiettivi che chiedono più di quanto il mondo
+dia da solo. Questa voce non ha più niente da chiedergli.
+
+**Fatto quando** i «passa» scendono sotto un terzo dei turni, oppure la misura
+dice che il resto è tutto ISSUES 68.
 
 ---
 
