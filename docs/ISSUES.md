@@ -9131,7 +9131,40 @@ manca: la loro Azione **è** il segno che lasciano. *«La presenza resta, metti
 dei sei verbi vuol dire *«lascia un segno e basta»*: MUOVERE sposta, TRAMARE
 vuole informazioni private, RIVENDICARE apre una Domanda.
 
-**Quindi è una scelta d'autore, non una riparazione meccanica**, e va con le tre
+#### ✅ Scelto in 0.1.394: **SEGNARE**, il settimo verbo ([D-423](DECISIONS.md#d-423))
+
+Parola del committente: **«Segnare»**. Le sette facce hanno il verbo che dicevano
+già, e lo schema adesso lo pretende su ogni faccia stampata.
+
+> **SEGNARE** — lascia un segno su un luogo che la tua carta raggiunge.
+
+| 100 partite CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| turni «passa» | 45,2% | **43,2%** |
+| carte in mano mute | 59,3% | **55,3%** |
+| turni con la mano **tutta** muta | 23,2% | **19,0%** |
+| mute **per le regole** | 17,7% | **12,4%** |
+| **Verità scritte** (misto) | 135 | **149** |
+| seggi bloccati | 0 su 8 | **0 su 8** |
+
+**E la memoria del mondo è salita, non scesa** — 135 → 149. Era la paura giusta
+da avere: la misura del «niente passare» a forza bruta le Verità le portava a 78.
+Dare a chi gioca **una scelta in più** non è togliergli **la scelta di non
+giocare**.
+
+**Resta la seconda metà**, e aspetta il committente: l'87,6% delle carte mute
+adesso lo è **per scelta del cervello**, non per le regole. Sono due eccezioni
+dichiarate — INFLUENZARE solo nel verso che il Destino vuole, FORGIARE solo in su
+— che al tavolo una persona che *deve* agire non avrebbe.
+
+**Fatto quando** il committente dice se il cervello deve accettare di farsi male
+quando non ha di meglio, **sui numeri di adesso** e non su quelli di prima.
+
+---
+
+*Quello che segue è come la voce si leggeva prima della scelta.*
+
+**Era una scelta d'autore, non una riparazione meccanica**, e andava con le tre
 strade qui sopra:
 
 - **dare a ognuna il verbo più vicino**, allargandone il senso — è quello che il

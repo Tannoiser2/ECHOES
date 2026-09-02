@@ -21,7 +21,11 @@ func test_reduced_content_matches_the_milestone() -> void:
 	# Dieci da 0.1.227 (D-265): le sei di sempre piu' le quattro tessere di
 	# PZ-2 — porto, palude, isola, bosco — con i domini bilanciati a 5/5/5/5.
 	assert_eq(loaded.regions.size(), 10, "10 tessere in scatola: le sei di sempre piu' le quattro di PZ-2")
-	assert_eq(loaded.actions.size(), 6, "i sei template di azione")
+	# **Sette da 0.1.394** (D-423, parola del committente: *«Segnare»*). I sei di
+	# §10 piu' SEGNARE, che e' nato da un difetto misurato: sette facce su 96
+	# avevano il nome stampato e nessun verbo, perche' quello che facevano —
+	# lasciare un segno su un luogo — nessuno dei sei lo diceva.
+	assert_eq(loaded.actions.size(), 7, "i sette template di azione")
 
 	# Un setup solo (D-213). Fino a 0.1.181 questa prova contava «due saghe»
 	# con due biblioteche separate, e contarle separate **era** la voce: due

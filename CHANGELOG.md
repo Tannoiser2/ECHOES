@@ -71,6 +71,49 @@ in ISSUES 128.
 
 ---
 
+## 0.1.394 — SEGNARE, il settimo verbo: la loro Azione era il segno che lasciano
+
+Parola del committente: **«Segnare»** ([D-423](docs/DECISIONS.md#d-423)). Avanza
+[ISSUES 128](docs/ISSUES.md#128) e [ISSUES 69](docs/ISSUES.md#69).
+
+Sette facce su 96 avevano il nome stampato, il testo scritto, i segni che posano
+— e **nessun verbo**. Erano tutte la stessa forma, ed è la ragione per cui il
+verbo mancava: **la loro Azione è il segno che lasciano**, e nessuno dei sei lo
+diceva. Adesso c'è il verbo che lo dice.
+
+> **SEGNARE** — lascia un segno su un luogo che la tua carta raggiunge.
+
+È l'unico verbo con cui chi gioca cambia un posto **senza chiedere niente al
+tavolo**: fino a qui i segni li posavano solo il Consiglio e le Conseguenze.
+
+| 100 partite CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| turni «passa» | 45,2% | **43,2%** |
+| carte in mano mute | 59,3% | **55,3%** |
+| turni con la mano **tutta** muta | 23,2% | **19,0%** |
+| mute **per le regole** | 17,7% | **12,4%** |
+| **Verità scritte** (misto) | 135 | **149** |
+| DECISIVE (misto) | 105 | 115 |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**E la memoria del mondo è salita, non scesa.** Era la paura giusta da avere — il
+«niente passare» a forza bruta le Verità le portava da 135 a **78** — e qui
+succede il contrario. Dare a chi gioca una scelta in più non è togliergli la
+scelta di non giocare.
+
+**Due guardie nuove**, perché il difetto non torni: `template` è obbligatorio su
+ogni faccia stampata (lo schema non lo chiedeva, ed è per questo che nessun
+cancello se n'era accorto in duecento versioni), e una faccia SEGNARE **senza
+segni** è rifiutata — dal motore a voce alta e dal validatore prima che parta.
+Il suo effetto *sono* i segni.
+
+**Cosa non è stato fatto:** il passare non è stato tolto, ed è ancora il 43,2%.
+Delle carte mute l'87,6% adesso lo è **per scelta del cervello**, non per le
+regole. È la seconda metà della domanda, e aspetta la parola del committente sui
+numeri nuovi.
+
+---
+
 ## 0.1.393 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
 
 Sesta rossa, fatta la raccomandata ([D-421](docs/DECISIONS.md#d-421)). Avanza

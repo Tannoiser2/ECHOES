@@ -55,7 +55,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Conseguenze | 65 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
 | Regole dei segni | 53 | cosa un segno fa da solo |
-| Azioni | 6 | i verbi del turno |
+| Azioni | 7 | i verbi del turno |
 | Chronicle | 1 | gli anni giocabili |
 
 ## 4. L'arte

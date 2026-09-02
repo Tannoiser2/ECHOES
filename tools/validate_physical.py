@@ -458,6 +458,10 @@ RAGGIUNGE: Dict[str, Set[str]] = {
     "INFLUENCE": {"ENTITY", "GLOBAL"},
     "CLAIM": {"ENTITY", "GLOBAL"},
     "ACQUIRE": {"ENTITY", "GLOBAL"},
+    # **SEGNARE arriva a una Regione** (D-423), come MUOVERE: il suo unico
+    # parametro e' il luogo, ed e' il luogo che la carta raggiunge coi segni
+    # del suo bersaglio.
+    "MARK": {"REGION", "ENTITY", "GLOBAL"},
 }
 
 
@@ -626,6 +630,24 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         if len(fisica.get("actions", [])) != 2:
             guai.append("carta senza due Azioni: %s — con una sola la carta e' un evento che accade"
                         % asset.get("id"))
+        # **E un'Azione che non lascia niente non e' una scelta** (D-423).
+        #
+        # Lo schema pretende il verbo su ogni faccia, e questo e' l'altro
+        # pezzo: SEGNARE non ha un effetto suo — il suo effetto **sono** i
+        # segni stampati sulla faccia. Una faccia SEGNARE senza segni sarebbe
+        # legale e muta, cioe' esattamente il difetto che la voce da cui
+        # SEGNARE nasce aveva trovato: un'Azione stampata che non si puo'
+        # giocare. Il motore la rifiuta a voce alta; qui si rifiuta di
+        # spedirla.
+        for faccia in fisica.get("actions", []):
+            if str(faccia.get("template", "")) != "MARK":
+                continue
+            segni = len(faccia.get("puts_tag", [])) + len(faccia.get("clears_tag", []))
+            if segni == 0:
+                guai.append(
+                    "SEGNARE che non segna niente: %s, «%s» — il verbo dice di "
+                    "lasciare un segno e la faccia non ne porta nessuno"
+                    % (asset.get("id"), faccia.get("label", "?")))
 
     # 8. Risonanze (e Temi dichiarati) che puntano a un Tema che non esiste
     for asset in documenti.get("asset", []):
@@ -1669,7 +1691,23 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         tensione = next(t for t in prova["tension"] if t.get("heats_when"))
         tensione["heats_when"] = [{"text": "una regola che non dice cosa guardare"}]
 
+    def segnare_muto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Una faccia SEGNARE a cui si tolgono i segni.
+
+        E' il caso vero da cui SEGNARE nasce, girato: la faccia c'era e il
+        verbo mancava; qui il verbo c'e' e i segni mancano. Tutt'e due sono
+        un'Azione stampata che non fa niente.
+        """
+        for asset in prova["asset"]:
+            for faccia in (asset.get("physical", {}) or {}).get("actions", []):
+                if str(faccia.get("template", "")) == "MARK":
+                    faccia.pop("puts_tag", None)
+                    faccia.pop("clears_tag", None)
+                    return
+
     esiti = [
+        pianta("SEGNARE che non lascia nessun segno", segnare_muto,
+               "SEGNARE che non segna niente"),
         pianta("segno usato tolto dal dizionario", senza_voce,
                "segno fuori dal dizionario: «%s»" % bersaglio),
         pianta("voce inventata che nessun dato tocca", voce_morta,

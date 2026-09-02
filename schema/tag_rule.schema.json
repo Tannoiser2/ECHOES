@@ -100,7 +100,8 @@
             "INFLUENCE",
             "FORGE",
             "SCHEME",
-            "CLAIM"
+            "CLAIM",
+            "MARK"
           ],
           "description": "Per ACTION_MODIFIER e ACTION_GATE: quale azione la regola piega o vieta."
         },

@@ -96,6 +96,104 @@ scelta di gioco, non una taratura. Le tre strade stanno in
 
 ---
 
+## D-423 — SEGNARE, il settimo verbo: la loro Azione era il segno che lasciano
+
+**implemented in 0.1.394.** Parola del committente: **«Segnare»**. Avanza
+[ISSUES 128](ISSUES.md#128) e [ISSUES 69](ISSUES.md#69).
+
+### Da dove viene: una domanda del committente, e un numero che mentiva
+
+> *«E se non ci fosse proprio la possibilita' di passare? O fai le azioni o
+> giochi l'echo. Non c'e' provare.»*
+
+Misurando quella domanda e' venuto fuori che il numero con cui il progetto
+descriveva i «passa» — **23,8 mosse legali per ogni turno passato** — non
+diceva quello che sembrava dire. Contava le mosse che **il tavolo**
+accetterebbe, e non chiedeva mai se la **mano** sapesse pronunciarle.
+
+Guardata la mano, su 100 partite:
+
+| | |
+|---|---|
+| carte in mano **mute** | **59,3%** |
+| turni con la mano **tutta** muta | **23,2%** |
+| di quelle mute, zittite **dalle regole** | 17,7% |
+| zittite **dal cervello**, che si protegge | 82,3% |
+
+E il quinto delle regole aveva un nome: **sette facce su 96 avevano il nome
+stampato, il testo scritto, i segni che posano — e nessun verbo.** La seconda
+Azione di Assedio, Leva Contadina, Le Porte Bruciate, Atto di Successione, Banda
+Armata, Censimento e Consiglio degli Anziani **non si poteva giocare mai**,
+contro la regola di casa: *«due Azioni, e due scelte diverse davvero»*. Da sole
+valevano **due terzi** delle 3.219 volte in cui il tavolo non prendeva una carta.
+
+**Lo schema non lo chiedeva**: su `physical_action` erano obbligatori `label` e
+`text`, e `template` no. Per questo nessun cancello se n'e' accorto in duecento
+versioni.
+
+### Perche' il verbo mancava, ed e' la parte che vale
+
+Le sette erano **tutte la stessa forma**: *«La presenza resta, metti
+#razionato»*, *«Metti #fame sul luogo»*, *«Togli #lutto o #malcontento»*. La
+loro Azione **e' il segno che lasciano**, e nessuno dei sei verbi dice quella
+cosa — MUOVERE sposta, TRAMARE pretende un'informazione coperta, RIVENDICARE
+apre una Domanda.
+
+Le due strade sono state messe davanti al committente cosi': dare a ognuna il
+verbo piu' vicino allargandone il senso (un pomeriggio, e il verbo smette di
+dire cosa fa), oppure scrivere il verbo che manca (due giorni, e le misure sui
+verbi si azzerano). **Parola: «Segnare».**
+
+### La regola
+
+> **SEGNARE** — lascia un segno su un luogo che la tua carta raggiunge.
+
+E' **l'unico verbo con cui chi gioca cambia un posto senza chiedere niente al
+tavolo**: fino a qui i segni li posavano solo il Consiglio e le Conseguenze,
+cioe' il mondo. Sta esattamente nella direzione del committente — *«Le Azioni
+cambiano il mondo. Il Consiglio decide cosa il mondo ricordera'»*.
+
+Due no, e sono la ragione per cui e' un'Azione e non un timbro:
+
+- **il luogo dev'essere uno che la carta raggiunge** — il bersaglio a segni di
+  [D-274](#d-274), come per MUOVERE;
+- **la faccia deve portare almeno un segno**. SEGNARE non ha un effetto suo: il
+  suo effetto *sono* i segni stampati, che `_face_signs` posa dopo con la firma
+  `face_action`. Una faccia senza segni sarebbe un'azione legale che non fa
+  niente e non avvisa — il difetto che [D-412](#d-412) ha appena tolto ad
+  ACQUISIRE — e adesso la rifiutano tutt'e due: il motore a voce alta, e il
+  validatore prima che parta.
+
+### La misura
+
+| 100 partite CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| turni «passa» | 45,2% | **43,2%** |
+| carte in mano mute | 59,3% | **55,3%** |
+| turni con la mano tutta muta | 23,2% | **19,0%** |
+| mute **per le regole** | 17,7% | **12,4%** |
+| **Verita' scritte** (misto) | 135 | **149** |
+| Verita' scritte (uniforme) | 133 | **140** |
+| DECISIVE (misto) | 105 | 115 |
+| seggi bloccati | 0 su 8 | **0 su 8**, misto *e* uniforme |
+
+**E la memoria del mondo e' salita, non scesa.** Era la paura giusta da avere —
+la misura del «niente passare» a forza bruta le Verita' le portava da 135 a 78 —
+e qui succede il contrario: **135 → 149**. Riparare una faccia muta da' da fare
+senza svuotare la mano, che e' la differenza fra dare a chi gioca **una scelta
+in piu'** e togliergli **la scelta di non giocare**.
+
+### Cosa non e' stato fatto, e va detto
+
+**Il passare non e' stato tolto**, ed e' ancora il 43,2% dei turni. Delle carte
+mute, l'87,6% adesso lo e' **per scelta del cervello**, non per le regole: due
+eccezioni dichiarate — INFLUENZARE solo nel verso che il Destino vuole, FORGIARE
+solo in su — che al tavolo una persona che *deve* agire non avrebbe. Toglierle e'
+la seconda meta' della domanda del committente, e aspetta la sua parola sui
+numeri nuovi invece che su quelli di prima.
+
+---
+
 ## D-421 — Le carte Azione diventano tarocchi: 46 corpi rimpiccioliti su 48, zero
 
 **implemented in 0.1.393.** Avanza [ISSUES 69](ISSUES.md#69), la sesta rossa.

@@ -12,8 +12,8 @@
     "version": { "type": "string" },
     "items": {
       "type": "array",
-      "minItems": 6,
-      "maxItems": 6,
+      "minItems": 7,
+      "maxItems": 7,
       "items": { "$ref": "#/$defs/action" }
     }
   },
@@ -26,7 +26,7 @@
         "id": { "type": "string", "pattern": "^ACT_[A-Z0-9_]+$" },
         "template": {
           "type": "string",
-          "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM"]
+          "enum": ["ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "MARK"]
         },
         "title": { "type": "string", "minLength": 1 },
         "ao_cost": { "type": "integer", "minimum": 1, "maximum": 2 },

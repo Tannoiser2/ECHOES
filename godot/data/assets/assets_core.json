@@ -66,7 +66,8 @@
             "text": "La presenza resta. Metti #razionato sul luogo: nessuno puo' requisirgli il grano fino a fine Atto.",
             "puts_tag": [
               "condition:rationed"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {
@@ -337,7 +338,8 @@
             "text": "Metti #saccheggiato sul luogo e prendi 1 carta a caso dalla mano di chi lo controlla.",
             "puts_tag": [
               "condition:plundered"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {
@@ -510,7 +512,8 @@
             "text": "Metti #fame sul luogo.",
             "puts_tag": [
               "condition:starving"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {
@@ -684,7 +687,8 @@
             "text": "Metti #malcontento su quel luogo e su un luogo confinante.",
             "puts_tag": [
               "condition:unrest"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {
@@ -929,7 +933,8 @@
             "clears_tag": [
               "condition:rationed",
               "condition:requisitioned"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {
@@ -1348,7 +1353,8 @@
             "text": "Metti #successione_per_legge sul mondo.",
             "puts_tag": [
               "succession_by_law"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {
@@ -1513,7 +1519,8 @@
             "clears_tag": [
               "condition:mourning",
               "condition:unrest"
-            ]
+            ],
+            "template": "MARK"
           }
         ],
         "resonance": {

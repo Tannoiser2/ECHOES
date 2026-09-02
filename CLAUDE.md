@@ -161,8 +161,14 @@ stanno); il resto della faccia fisica non ancora — vedi ISSUES 69.
 - **due** Azioni, e due scelte diverse davvero;
 - la Risonanza avviene **sempre** e scalda un Tema che esiste;
 - la parte aggravata può temere solo un segno che **il verbo della carta
-  raggiunge**: MUOVERE e TRAMARE arrivano a una Regione, FORGIARE a un'altra casa,
-  INFLUENZARE e RIVENDICARE al mondo e a chi gioca. Il validatore lo controlla.
+  raggiunge**: MUOVERE, TRAMARE e SEGNARE arrivano a una Regione, FORGIARE a
+  un'altra casa, INFLUENZARE e RIVENDICARE al mondo e a chi gioca. Il validatore
+  lo controlla.
+- **ogni faccia porta un verbo, e i verbi sono sette** ([D-423](docs/DECISIONS.md#d-422)):
+  ai sei di §10 si è aggiunto **SEGNARE** — *«lascia un segno sul luogo che la
+  carta raggiunge»* — perché sette facce su 96 avevano il nome stampato e nessun
+  verbo: quello che facevano non lo diceva nessuno dei sei. Una faccia SEGNARE
+  senza segni è rifiutata: il suo effetto **sono** i segni.
 
 ---
 
