@@ -6704,9 +6704,39 @@ si calavano quando si voleva.
 **Fatto quando** il committente sceglie, e la scelta e' misurata sui 100 semi.
 
 
-### 108. Vaerax ha un Destino murato a tutti e tre i passi — quasi chiusa in 0.1.339
+### 108. ✅ Vaerax ha un Destino murato a tutti e tre i passi — CHIUSA in 0.1.371: il muro e' caduto in 0.1.347
 
 `regole` · `bilanciamento` · aperta in 0.1.311 ([D-346](DECISIONS.md#d-346)) · **strada 2 provata e ritirata in 0.1.315** ([D-348](DECISIONS.md#d-348))
+
+> **La condizione era: «`mine_sealed` esce almeno una volta su 100 partite».**
+> Ne esce **tredici**, e sta sul tavolo a fine partita in **dodici** su cento
+> ([MISURA_TAVOLO.md](MISURA_TAVOLO.md)). `mountain_forgotten`, il terzo anello
+> della catena e la porta d'ingresso della Leggenda, ne esce **una**.
+>
+> **E [MISURA_SEGNI.md](MISURA_SEGNI.md) non elenca piu' nessuna porta murata**:
+> *«tutto quello che un passo chiede, il mondo lo scrive almeno una volta»*. Le
+> quattro clausole che questa voce nominava — la Vittoria di `DST_VAERAX`, e
+> tutt'e tre i passi di `DST_VAERAX_LEGEND` — non sono piu' impossibili.
+>
+> **E nessuna delle tre strade e' stata percorsa.** Il muro e' caduto da solo:
+> il documento dei segni, che sta nei cancelli e si rigenera a ogni cambio,
+> porta la data —
+>
+> | versione | `mine_sealed` scritto |
+> |---|---|
+> | fino a 0.1.346 | **0** |
+> | 0.1.347 ([#166](https://github.com/Tannoiser2/ECHOES/pull/166), D-372…D-380) | **2** |
+> | 0.1.353 ([#168](https://github.com/Tannoiser2/ECHOES/pull/168), D-382…D-387) | **13** |
+> | 0.1.370 ([D-402](DECISIONS.md#d-402)) | **13** |
+>
+> — cioe' e' aperta da **ventiquattro versioni**. Il blocco che l'ha aperta e'
+> quello che ha rimesso in piedi il Consiglio (i Temi con una carta sola, le
+> caselle, i gettoni di rivendicazione): la catena
+> `TEN_AWAKENING → Q_AWAKENING_CRYSTAL → P_SEAL_MINE → CNS_MINE_SEALED` ha
+> ricominciato a passare quando il Consiglio ha ricominciato ad aprirsi.
+> **Non so dire quale delle nove decisioni**, e non lo scrivo per non inventarlo:
+> so le due finestre, e sono scritte qui.
+
 
 > **Stato: aperta.** La strada 2 e' stata scritta, misurata e tolta. Il segno
 > usciva (3 volte su 100 anni contro 0), ma la proposta nuova faceva cadere
