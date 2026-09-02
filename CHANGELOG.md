@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.371 — L'ultima casa murata non lo era più da ventiquattro versioni
+
+Chiude [ISSUES 108](docs/ISSUES.md#108), e con lei l'ultima delle quattro voci
+del gruppo «nessuna casa è condannata».
+
+La voce diceva che `DST_VAERAX_LEGEND` è murato **a tutti e tre i passi**: chi lo
+pesca ha in mano un tarocco su cui non c'è niente da prendere. La condizione era
+*«`mine_sealed` esce almeno una volta su 100 partite»*.
+
+**Ne esce tredici**, e sta sul tavolo a fine partita in dodici su cento. E
+[MISURA_SEGNI.md](docs/MISURA_SEGNI.md) non elenca più **nessuna porta murata**:
+*«tutto quello che un passo chiede, il mondo lo scrive almeno una volta»*.
+
+**E nessuna delle tre strade è stata percorsa.** Il documento dei segni, che sta
+nei cancelli, porta la data:
+
+| versione | `mine_sealed` scritto |
+|---|---|
+| fino a 0.1.346 | **0** |
+| 0.1.347 (D-372…D-380) | **2** |
+| 0.1.353 (D-382…D-387) | **13** |
+
+Il muro è caduto quando il Consiglio ha ricominciato ad aprirsi — la catena
+`TEN_AWAKENING → Q_AWAKENING_CRYSTAL → P_SEAL_MINE → CNS_MINE_SEALED` ha
+ricominciato a passare da sola. **Quale delle nove decisioni non lo so, e non lo
+scrivo per non inventarlo**: so le due finestre, e sono scritte nella voce.
+
+Voci aperte: **35 → 34**.
+
+---
+
 ## 0.1.370 — Il ripiego sapeva prenotare e non sapeva parlare (D-402)
 
 Chiude [ISSUES 126](docs/ISSUES.md#126). Le prenotazioni mai spese passano da

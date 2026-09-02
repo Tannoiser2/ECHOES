@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **96** |
-| aperte | **35** |
+| chiuse | **97** |
+| aperte | **34** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **25** |
+| di cui sono mie da fare | **24** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 18 |
+| 0.1.350–0.1.374 | 6 | 19 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -209,16 +209,16 @@ alzano mai (111), che dipende in parte dalla rossa R1.
 **Fatto quando** un segno nuovo si battezza una volta sola, e ogni grado di ogni
 Pietra o si alza almeno una volta in cento partite o non è più nel catalogo.
 
-### G4. L'ultima casa murata — [108](ISSUES.md#108)
+### G4. ✔ Nessuna casa è condannata — chiusa in 0.1.371
 
-Tre delle quattro voci di questo gruppo si sono chiuse in 0.1.362: Lyra è il
-seggio migliore del tavolo uniforme, la linea dei Fuochi sta nella banda, e
-nessuna casa muta più spesso di un salto su 4,7. **Resta Vaerax**, con un Destino
-murato a tutti e tre i passi: la strada provata in 0.1.315 faceva cadere una
-prova del RIVENDICARE ed è stata ritirata.
+Tutte e quattro le voci di questo gruppo sono chiuse. Lyra è il seggio migliore
+del tavolo uniforme, la linea dei Fuochi sta nella banda, nessuna casa muta più
+spesso di un salto su 4,7 — e il Destino di Vaerax non è più murato:
+`mine_sealed` esce **13 volte su cento partite** (era 0), e
+`MISURA_SEGNI.md` non elenca **nessuna porta murata**.
 
-**Fatto quando** `mine_sealed` esce almeno una volta su cento partite, senza far
-cadere `test_claim_policy`.
+Il muro è caduto in 0.1.347, quando il Consiglio ha ricominciato ad aprirsi:
+ventiquattro versioni prima che qualcuno lo verificasse.
 
 ### G5. La saga arriva in fondo — [67](ISSUES.md#67)
 
