@@ -70,18 +70,6 @@ func _open_a_council() -> Dictionary:
 	return {}
 
 
-## **Le scelte di un Consiglio non stanno nella colonna: stanno sulla plancia.**
-##
-## `GameScreen.ask()` lo dice in una riga — *«se il Consiglio e' aperto, la
-## domanda va al `_board`»* — ed e' giusto cosi': la scelta vive accanto alla
-## domanda a cui risponde. La prima stesura di queste prove guardava
-## `_buttons` e trovava **zero** su tutt'e quattro i passi: **era la prova
-## cieca, non lo schermo muto** — la trappola scritta in CLAUDE.md, presa in
-## pieno.
-##
-## Una scelta del Consiglio e' disegnata come una carta (D-233): un `Button`
-## con dentro delle etichette, non un bottone con una frase. Il testo si legge
-## da quelle.
 ## **Un Consiglio che soddisfa una condizione**, cercato invece che sperato.
 ##
 ## Regola di casa: *«una prova che cerca una condizione fra i dati spediti puo'
@@ -105,6 +93,17 @@ func _a_council_where(condizione: Callable) -> Dictionary:
 	return {}
 
 
+## **Le scelte di un Consiglio non stanno nella colonna: stanno sulla plancia.**
+##
+## `GameScreen.ask()` lo dice in una riga — *«se il Consiglio e' aperto, la
+## domanda va al `_board`»* — ed e' giusto cosi': la scelta vive accanto alla
+## domanda a cui risponde. La prima stesura di queste prove guardava la colonna
+## e trovava **zero** su tutt'e quattro i passi: **era la prova cieca, non lo
+## schermo muto** — la trappola scritta in CLAUDE.md, presa in pieno.
+##
+## Una scelta del Consiglio e' disegnata come una carta (D-233): un `Button`
+## con dentro delle etichette, non un bottone con una frase. Il testo si legge
+## da quelle.
 func _buttons(screen: Node) -> Array:
 	var said: Array = []
 	for child in screen.get("_board").get("_choices").get_children():
