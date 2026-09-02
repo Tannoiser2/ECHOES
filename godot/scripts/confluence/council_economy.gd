@@ -38,6 +38,17 @@ const Effect := preload("res://scripts/core/effect.gd")
 const MAX_BENEFITS: int = 3
 const MAX_COSTS: int = 2
 
+## **Quanti benefici sono gratis** (D-417, ISSUES 122 + 125, parola del
+## committente: *«due acquisti liberi»*).
+##
+## Era **uno**, ed era la [D-280](../../../docs/DECISIONS.md#d-280) alla lettera.
+## Misurato, con un solo acquisto libero il numero di caselle **vive** per
+## Consiglio era **uno**: le altre ventitre' esistevano per quando la prima non
+## si poteva comprare, e i benefici comprati per Consiglio erano scesi a 1,22.
+## Un menu di ventiquattro voci di cui se ne sceglie una non e' un menu: e' una
+## voce con ventitre' ripieghi.
+const FREE_BENEFITS: int = 2
+
 ## Il tetto del Calore, per sapere se SCALDA TEMA ha ancora spazio (D-306).
 ## E' lo stesso numero di `EffectApplier.HEAT_MAX`, e la prova lo verifica.
 const MAX_HEAT: int = 6
@@ -195,7 +206,7 @@ const RELATION_LEVELS: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 ## **come prezzo**, e mai come moneta d'acquisto: il quarto beneficio valeva
 ## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
 static func tokens_due(benefits: int) -> int:
-	return maxi(0, benefits - 1)
+	return maxi(0, benefits - FREE_BENEFITS)
 
 
 ## **Quanti benefici puo' comprare chi ha quei gettoni** (D-387, ISSUES 122).
@@ -214,7 +225,7 @@ static func tokens_due(benefits: int) -> int:
 ## il costo non e' piu' il suo prezzo: e' quello che gli avversari decidono di
 ## fargli pagare, spendendo a loro volta.
 static func benefits_affordable(tokens: int) -> int:
-	return mini(MAX_BENEFITS, 1 + maxi(0, tokens))
+	return mini(MAX_BENEFITS, FREE_BENEFITS + maxi(0, tokens))
 
 
 # --- dove e su chi ---------------------------------------------------------

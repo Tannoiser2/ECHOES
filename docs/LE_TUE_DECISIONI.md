@@ -77,9 +77,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **102** |
-| aperte | **29** |
-| di cui **aspettano una tua decisione** | **15** |
+| chiuse | **104** |
+| aperte | **27** |
+| di cui **aspettano una tua decisione** | **13** |
 | di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -91,7 +91,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 0 | 2 |
+| 0.1.375–0.1.399 | 0 | 4 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -107,63 +107,71 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **15** | **tu**, con una parola. Tredici stanno sulla strada, due sono fuori |
+| 🔴 | **13** | **tu**, con una parola. Undici stanno sulla strada, due sono fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventinove voci aperte, quattro le posso muovere senza di te.
+**Quattro.** Delle ventisette voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su quindici parole.**
+**il giro non è fermo su di me, è fermo su tredici parole.**
 
 ---
 
-# 🔴 Quindici aspettano te
+# 🔴 Tredici aspettano te
 
 Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
 
-## Le tredici che stanno fra oggi e una partita
+## Le undici che stanno fra oggi e una partita
 
-### R1. [123](ISSUES.md#123) — un'Azione che costruisce?
+### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
 
-**Quaranta turni su cento** un giocatore ha ventidue mosse legali, quattro carte
-in mano, e *non gliene serve nessuna*. La causa è misurata: **nessuna** delle sei
-Azioni della plancia alza una Pietra, in cento partite. Chi vuole costruire deve
-convincere il tavolo — e il Consiglio è più generoso con **chi tace** (199 Pietre
-a un tavolo che passa sempre, 136 a uno che gioca).
+Parola tua: **«R1 (a)»** ([D-412](DECISIONS.md#d-412)). ACQUISIRE alza una Pietra
+dove hai presenza, e **dodici facce** la portano stampata, ognuna col nome della
+Pietra che alza: al tavolo si prende il segnalino disegnato sulla carta.
 
-> **Farei (a): ACQUISIRE diventa «pesca una carta, *oppure* alza una Pietra dove
-> hai presenza».** È l'unica delle sei che nessuna carta modifica, quindi ha
-> spazio. Cambia la plancia, ed è per questo che è tua.
+Da **zero** Pietre alzate da un'Azione in cento partite a **190**. I «passa» da
+49,6% a 46,1%. E la causa non era una taratura: **ACQUISIRE non era stampata su
+nessuna delle 96 facce**.
 
-**Sblocca la [111](ISSUES.md#111)** — le Pietre che non si alzano mai — e metà
-della [59](ISSUES.md#59).
+**Resta aperta una riga della voce**, e aspetta ancora te: se la Pietra alzata da
+un'Azione debba costare qualcosa oltre la carta. La misuro insieme alla
+[119](ISSUES.md#119) — sono la stessa domanda vista da due parti.
 
-### R2. [122](ISSUES.md#122) + [125](ISSUES.md#125) — quanto compra una proposta
+### ✔ R2. [122](ISSUES.md#122) + [125](ISSUES.md#125) — chiuse in 0.1.388
 
-Sono una domanda sola. Con **un solo beneficio gratis**, il numero di caselle
-vive per Consiglio è **uno**: le altre ventitré esistono per quando la prima non
-si può comprare. E la moneta è troppo poca perché una proposta sia una mossa: i
-gettoni di rivendicazione arrivano da **9 carte su 48**.
+Parola tua: **«due acquisti liberi, RIVENDICARE a 15»**, e poi **«undici»**
+davanti ai numeri ([D-417](DECISIONS.md#d-417)).
 
-> **Farei: due acquisti liberi, e le facce RIVENDICARE da 9 a 15 su 48.** Il
-> Consiglio passa da «prendo il massimo» a «costruisco una mossa». Costo: il
-> Consiglio diventa più generoso, e il cancello va rimisurato — è mezz'ora.
+I due acquisti liberi sono **il numero più redditizio di tutto il giro**:
+benefici comprati per Consiglio da **1,22 a 2,25**, e la casella che nessuno
+comprava da 22 a **83** acquisti su 700 offerte — da una su 32 a una su 8. Costa
+niente: «passa» fermo al 46,1%, cancello 0 su 8 sui due tavoli.
 
-### R3. [120](ISSUES.md#120) — vincere nominando, non contando
+**E il quindici l'ha corretto la misura.** Le quindici facce costano quasi sei
+punti di «passa» (46,0% → 51,9%), perché quattro vanno tolte a verbi che il
+cervello gioca. La compensazione esiste — abbassare la riserva della mano — ma
+costa **venti Verità scritte su 158, il 13% della memoria del mondo**. Hai scelto
+undici: il 92% del guadagno senza toccare né i turni né la memoria.
 
-**Dodici Obiettivi su diciassette si vincono contando** — tre pedine, due
-Regioni, quattro Pietre — e non nominano niente del mondo.
+**Ha mosso anche due voci che aspettavano**: le Pietre alzate dal Consiglio da
+148 a **211** ([111](ISSUES.md#111)), e il terzo pezzo della
+[106](ISSUES.md#106) — la casella si compra perché adesso c'è la moneta.
 
-> **Farei: i dodici si riscrivono su un segno o un luogo** — *«la Regione dove
-> hai posato la Cicatrice»*, *«il Tema che hai raffreddato»*. Un obiettivo che
-> nomina qualcosa lo si può contendere; un conto no.
+### ✔ R3. [120](ISSUES.md#120) — decisa in 0.1.384: **sì**, e da otto ne resta uno
 
-**È la riga che ne chiude altre due**: la [91](ISSUES.md#91) — il **48,4%** dei
-punti già vero all'apertura, rimisurato oggi su 100 partite a tavolo misto — e la
-metà che resta della [4](ISSUES.md#4). Questa e R1 insieme sono il gioco: **una ragione per agire, e
-qualcosa che si può togliere all'avversario.**
+Parola tua: **«R3 sì»** ([D-413](DECISIONS.md#d-413)). Sette Obiettivi riscritti
+sui segni della mappa: non *«due Regioni»* ma *«la Regione dove sta il Bosco»*.
+
+Gli obiettivi che si reggevano **solo su un totale** da **otto su diciassette** a
+**uno**. E le coppie che si contendono una Regione da 15,5% a **44,0%**: quasi
+una su due, dove prima era una su sette. Questo è il numero che dice che
+l'obiettivo adesso si può togliere all'avversario.
+
+**Resta aperta una riga della voce**: i cinque che restano un'addizione pura sono
+gli unici che una casa senza mappa può ancora vincere, e toglierli è una scelta
+sul gioco, non una misura. Aspetta te.
 
 ### R4. [119](ISSUES.md#119) — come cade un Consiglio
 
@@ -445,9 +453,9 @@ tessera. Non è nella lista perché non è una voce: è la scatola.
 il quinto degli errori, ed era di forma. Un totale scritto a mano invecchia il
 giorno dopo, e questo era invecchiato di tre righe.
 
-**Quello che resta da dire in una riga:** delle ventinove voci aperte ne posso
+**Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **quindici aspettano
+chiudono dietro una rossa, sei stanno fuori dalla lista, e **tredici aspettano
 una tua parola**.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia

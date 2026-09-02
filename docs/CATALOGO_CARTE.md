@@ -851,7 +851,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Richiamarli sotto le armi.** Sposta due tue presenze in quel luogo, anche da lontano.
-B. **Lasciarli tornare a casa.** Togli #malcontento dal luogo e pesca 1 Autorita'.
+B. **Rimetterli in riga.** Rivendica il luogo: i vecchi soldati stanno di nuovo da qualche parte, e si vede.
 
 **RISONANZA (avviene sempre)** — Scalda Antico +2. Un esercito che si muove e' una domanda su chi comanda, posta senza parole. Se la corona e' stata divisa: Antico +3.
 
@@ -994,7 +994,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Guardare chi arriva.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
-B. **Far sapere che si guarda.** Metti #conteso sul luogo.
+B. **Far sapere che il confine e' tuo.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.
 
 **RISONANZA (avviene sempre)** — Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.
 
@@ -1518,7 +1518,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Ascoltare la voce.** Scopri una questione velata che tocca il luogo.
-B. **Mettere in giro la voce.** Metti #malcontento sul luogo.
+B. **Mettere in giro la voce.** Rivendica il luogo: la voce arriva prima di te, e al prossimo Consiglio la sua Domanda si apre.
 
 **RISONANZA (avviene sempre)** — Scalda Antico +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.
 

@@ -149,8 +149,9 @@
             "template": "SCHEME"
           },
           {
-            "label": "Far sapere che si guarda",
-            "text": "Metti #conteso sul luogo.",
+            "label": "Far sapere che il confine e' tuo",
+            "text": "Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.",
+            "template": "CLAIM",
             "puts_tag": [
               "condition:contested"
             ]
@@ -587,10 +588,11 @@
             "template": "MOVE"
           },
           {
-            "label": "Lasciarli tornare a casa",
-            "text": "Togli #malcontento dal luogo e pesca 1 Autorita'.",
-            "clears_tag": [
-              "condition:unrest"
+            "label": "Rimetterli in riga",
+            "text": "Rivendica il luogo: i vecchi soldati stanno di nuovo da qualche parte, e si vede.",
+            "template": "CLAIM",
+            "puts_tag": [
+              "condition:contested"
             ]
           }
         ],
@@ -2097,9 +2099,10 @@
           },
           {
             "label": "Mettere in giro la voce",
-            "text": "Metti #malcontento sul luogo.",
+            "text": "Rivendica il luogo: la voce arriva prima di te, e al prossimo Consiglio la sua Domanda si apre.",
+            "template": "CLAIM",
             "puts_tag": [
-              "condition:unrest"
+              "condition:contested"
             ]
           }
         ],

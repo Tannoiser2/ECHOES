@@ -507,7 +507,7 @@ func set_benefits(chosen: Array) -> bool:
 			said.append(line)
 		log.bullet("C. %s compra: %s  (%s)" % [
 			_name(str(current["proponent"])), " · ".join(said),
-			"il primo e' gratis" if need == 0
+			"i primi %d sono gratis" % CouncilEconomy.FREE_BENEFITS if need == 0
 				else "%d gettoni di rivendicazione" % need,
 		])
 	return true
