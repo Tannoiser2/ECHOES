@@ -5,6 +5,32 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.376 — Le tre Pietre consumate: anche la seconda causa non regge
+
+Corregge quello che [ISSUES 111](docs/ISSUES.md#111) diceva **ieri e stamattina**.
+
+Stamattina avevo corretto la voce una prima volta: non è vero che «nessuna
+Conseguenza posa» i tre gradi consumati — ognuno ha esattamente la sua. E avevo
+aggiunto una seconda causa, il no-op silenzioso di `SET_STRUCTURE_GRADE` quando
+la Pietra non è in quella Regione, indicando come rimedio far mirare
+`CNS_MINE_ROAD_CUT` **dove c'è un passo** invece che dove il mondo è selvatico.
+
+**Verificato prima di farlo: la mira è già giusta.** `wild` lo dichiara **una
+Regione sola** — le Montagne Rosse — ed è esattamente dove il Passo comincia. E
+le altre due mirano al fuoco, che per le loro Tensioni può essere la Valle Verde,
+che porta sia la Foresta sia la Sorgente.
+
+Il no-op resta un **rischio** scritto nel codice, non la causa di questi tre. La
+causa è **una sola**, ed è quella di [ISSUES 56](docs/ISSUES.md#56): la proposta
+che li porta non viene scelta — `P_LET_IT_ROT` una volta su otto offerte in
+duecento anni. Non c'è una riga da aggiustare: c'è un cervello che non compra
+quelle proposte, ed è [ISSUES 78](docs/ISSUES.md#78).
+
+Solo documenti: nessuna riga di gioco cambia, e **una modifica ai dati non è
+stata fatta** perché la verifica l'ha resa inutile.
+
+---
+
 ## 0.1.375 — `#granaio`: la macchina smette di essere più stretta della parola
 
 Chiude [ISSUES 70](docs/ISSUES.md#70) ([D-406](docs/DECISIONS.md#d-406)), e con

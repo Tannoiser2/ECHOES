@@ -227,8 +227,12 @@ terra; adesso tutte e diciotto accettano anche l'edificio. Succede in **9 partit
 su 100** che ci sia un granaio dove la vocazione non c'è, e le carte lo
 rifiutavano.
 
-**Resta** solo la 111: le Pietre che non si alzano mai, che dipende in parte
-dalla rossa R1.
+**Resta** solo la 111: le Pietre che non si alzano mai. E adesso si sa che
+**non dipende da una riga di dati**: i tre gradi consumati che restano hanno
+ognuno la sua Conseguenza, che mira nel posto giusto — ho verificato prima di
+cambiare la mira, e la mira era già buona. La causa è una sola, ed è la stessa
+della [56](ISSUES.md#56): **quelle proposte il cervello non le compra mai**. Chi
+chiude la [78](ISSUES.md#78) chiude anche queste.
 
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non è più nel catalogo.

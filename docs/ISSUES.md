@@ -7214,14 +7214,27 @@ riga che dice perche' non gliene serve uno.
 >    Regioni — il Passo in **una sola** (`REG_MONTAGNE_ROSSE`), la Sorgente in
 >    **due**, la Foresta in **tre** — su una mappa che ne pesca **sei su dieci**.
 >
-> Quindi per vedere un passo franato devono coincidere tre cose: la Regione col
-> Passo pescata, la Conseguenza scelta, e la frase che punta proprio li'. La
-> terza e' quella che si puo' aggiustare senza toccare l'equilibrio: **la strada
-> della miniera si taglia dove c'e' un passo**, non dove il mondo e' selvatico.
-> Non l'ho fatto perche' `$region_with:` vuole un segno **dichiarato** dalle
-> Regioni e i gradi delle Pietre li scrive il gioco a runtime: il validatore
-> direbbe di no, e sistemarlo e' una riga nel validatore piu' una misura. Sta
-> qui, non in una voce nuova.
+> **E la seconda causa non regge: verificata in 0.1.376, era un meccanismo letto
+> nel codice, non una causa misurata.** Avevo scritto che si poteva far mirare
+> `CNS_MINE_ROAD_CUT` dove c'e' un passo invece che dove il mondo e' selvatico.
+> **La mira e' gia' giusta**: `wild` lo dichiara **una Regione sola** — le
+> Montagne Rosse — ed e' esattamente dove il Passo comincia. E anche le altre
+> due possono cadere bene: `CNS_VALLEY_CLEARED` e `CNS_WATER_PRICED` mirano al
+> fuoco, e il fuoco delle loro Tensioni puo' essere la Valle Verde, che porta sia
+> la Foresta sia la Sorgente.
+>
+> | grado | chi lo posa | dove mira | la Pietra e' li'? |
+> |---|---|---|---|
+> | `place:collapsed_pass` | `CNS_MINE_ROAD_CUT` | `$region_with:wild` | **si', sempre**: `wild` e' solo Montagne Rosse |
+> | `place:thinned_wood` | `CNS_VALLEY_CLEARED` | `$region_focus` | puo' esserlo: la Valle Verde ha `granary` **e** la Foresta |
+> | `place:dry_spring` | `CNS_WATER_PRICED` | `$region_focus` | puo' esserlo: la Valle Verde ha `granary` **e** la Sorgente |
+>
+> Il no-op silenzioso di `SET_STRUCTURE_GRADE` resta un **rischio** scritto nel
+> codice, non la causa di questi tre. **La causa e' una sola, ed e' quella di
+> [ISSUES 56](#56)**: la proposta che li porta non viene scelta —
+> `P_LET_IT_ROT` una volta su otto offerte in duecento anni. Non c'e' una riga
+> da aggiustare qui: c'e' un cervello che non compra quelle proposte, ed e'
+> [ISSUES 78](#78).
 
 > **Richiesta del committente:** *«la potatura — fai leggere le 25 fonti e le 7
 > pietre».*
