@@ -38,6 +38,13 @@ jobs:
       - name: Drift check - generated GDScript schema
         run: python3 tools/gen_gd_schema.py --check
 
+      # Le parole dei segni (ISSUES 70). `sign_labels.gd` era «l'unico posto dove
+      # un tag diventa una parola» per l'app, e il dizionario lo era per il
+      # gettone stampato: due unici posti, cioe' due, con 37 parole diverse su
+      # 118. Adesso il file si genera dal dizionario e questo passo lo tiene tale.
+      - name: Drift check - le parole dei segni
+        run: python3 tools/gen_sign_labels.py --check
+
       - name: Drift check - asset manifest
         run: python3 tools/build_manifest.py --check
 

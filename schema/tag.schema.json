@@ -5,22 +5,40 @@
   "x-echoes-def": "tag",
   "x-echoes-kind": "collection",
   "type": "object",
-  "required": ["schema_id", "version", "items"],
+  "required": [
+    "schema_id",
+    "version",
+    "items"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_id": { "const": "tag" },
-    "version": { "type": "string" },
+    "schema_id": {
+      "const": "tag"
+    },
+    "version": {
+      "type": "string"
+    },
     "items": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/tag" }
+      "items": {
+        "$ref": "#/$defs/tag"
+      }
     }
   },
   "$defs": {
     "tag": {
       "type": "object",
       "description": "Una voce del dizionario dei segni (PZ-0). Prima di questo dato i tag non esistevano come collezione: si deducevano raschiando gli effetti, e il validatore indovinava l'ambito di ognuno. Qui ogni segno che il gioco tocca dichiara cos'e', dove vive, chi lo scrive e chi lo legge - e tools/validate_physical.py controlla che la dichiarazione combaci con quello che i dati fanno davvero. Fuori dal dizionario restano solo i livelli di rapporto (ENEMY..PACT): sono gradini di una scala, non segni sul tavolo.",
-      "required": ["id", "title", "category", "table_place", "scope", "written_by", "read_by"],
+      "required": [
+        "id",
+        "title",
+        "category",
+        "table_place",
+        "scope",
+        "written_by",
+        "read_by"
+      ],
       "additionalProperties": false,
       "properties": {
         "id": {
@@ -33,29 +51,57 @@
           "minLength": 1,
           "description": "Il nome stampato: come il segno si chiama sul tavolo e nei verbali."
         },
+        "title_spoken": {
+          "type": "string",
+          "minLength": 1,
+          "description": "La forma con cui l'app dice questo segno **dentro una frase**, quando non e' quella stampata sul gettone. In italiano un segno che si posa su una Regione accorda al femminile — il gettone stampa «conteso» e l'app dice «contesa» — e uno che si legge in una riga vuole l'articolo. Senza questo campo la parola dell'app e quella del gettone erano due dizionari diversi, e un segno nuovo si battezzava due volte (ISSUES 70). Assente = si usa `title`."
+        },
         "category": {
           "type": "string",
-          "enum": ["PLACE", "FUNCTION", "STATE", "MEMORY", "ENTITY"],
+          "enum": [
+            "PLACE",
+            "FUNCTION",
+            "STATE",
+            "MEMORY",
+            "ENTITY"
+          ],
           "description": "Le cinque categorie della roadmap. PLACE: un tratto del luogo, stampato o lasciato da una rovina. FUNCTION: cosa un luogo o una carta sa fare (strutture, insediamenti, funzioni degli Echo). STATE: una condizione reversibile, di Regione o di casa. MEMORY: un fatto che il mondo ricorda - fatti nudi, cicatrici, scoperte, leggende. ENTITY: chi sei - etichette di famiglia, vite, stati d'identita'."
         },
         "table_place": {
           "type": "string",
-          "enum": ["TILE_PRINTED", "TILE_SLOT", "ZONE_TOKEN", "SCAR_TOKEN",
-                   "HOUSE_SHEET", "WORLD_MEMORY", "NONE"],
+          "enum": [
+            "TILE_PRINTED",
+            "TILE_SLOT",
+            "ZONE_TOKEN",
+            "SCAR_TOKEN",
+            "HOUSE_SHEET",
+            "WORLD_MEMORY",
+            "NONE"
+          ],
           "description": "Il posto fisico dove il segno sta, sul tavolo (D-350). `scope` dice a chi appartiene un segno; questo dice **dove lo prendi in mano**, e sono due cose diverse: `condition:emptied` e `scar:emptied` vivono tutt'e due su una Regione, ma uno e' un gettone che va e viene e l'altro un dischetto che si toglie di rado. TILE_PRINTED: stampato sulla tessera, non cambia mai - montagna, capitale, pascolo. TILE_SLOT: uno spazio sulla tessera dove si posa una Pietra, compresi i gradi che degradano (place:forest, place:thinned_wood, place:cursed_wood sono tre stati dello stesso spazio). ZONE_TOKEN: un gettone accanto alla tessera, che si mette e si toglie - affamata, chiusa, in rivolta. SCAR_TOKEN: il dischetto rotondo delle Cicatrici. **Togliere una Cicatrice e' raro, non impossibile** (D-357): serve un pezzo che sappia farlo, e non capita da solo ne' a fine Atto come per una condizione. La differenza col gettone di zona non e' «per sempre contro temporaneo», e' quanto costa levarlo. HOUSE_SHEET: sulla scheda della casa - incoronato, dormiente, decaduto, e la vita che sta vivendo. WORLD_MEMORY: quello che il mondo ricorda - un gettone sul **bordo della mappa** (D-351), dove sta il mondo e non un luogo: non e' ne' sulla tessera ne' sulla scheda, perche' non e' di nessuno dei due. NONE: contabilita' che il motore usa e il tavolo non mostra - nessuna fustella la taglia."
         },
         "scope": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "type": "string", "enum": ["REGION", "ENTITY", "GLOBAL"] },
+          "items": {
+            "type": "string",
+            "enum": [
+              "REGION",
+              "ENTITY",
+              "GLOBAL"
+            ]
+          },
           "description": "Dove il segno vive: sulla mappa, su una casa, o sul mondo. E' l'ambito che prima il validatore deduceva e ora legge da qui - la deduzione resta come controprova, e un ambito dichiarato che non combacia con quello osservato e' un errore."
         },
         "aliases": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "Le altre parole sotto cui questo segno e' gia' stampato da qualche parte: la parola dell'app in sign_labels.gd quando diverge dal nome della carta, il nome di un grado di pietra, la forma a #cancelletto. Un alias e' una divergenza dichiarata, non una liberta': la lista deve accorciarsi, mai allungarsi in silenzio."
         },
         "icon": {
@@ -66,13 +112,17 @@
         "written_by": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/toucher" },
+          "items": {
+            "$ref": "#/$defs/toucher"
+          },
           "description": "Chi posa il segno. Vuoto solo per un segno che nessuno scrive piu': e' ISSUES 24 detto dal dato, non un caso normale."
         },
         "read_by": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/toucher" },
+          "items": {
+            "$ref": "#/$defs/toucher"
+          },
           "description": "Chi se ne accorge. Vuoto per la memoria del mondo dichiarata (D-103): narrata, ereditata, e di proposito senza denti."
         },
         "note": {

@@ -51,6 +51,7 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 | `python3 tools/validate_physical.py --check` | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni, tessere senza segni o che nessuno legge, Tensioni senza domande, ponti delle domande rotti, Destini che osservano l'inesistente, Echi senza effetto, bersagli non garantiti sul tavolo pescato, liste di opportunita'/malus monche o con scelte finte sulle carte Tensione |
 | `python3 tools/validate_physical.py --self-test` | che la guardia del dizionario morda, su ogni difetto piantato |
 | `python3 tools/gen_gd_schema.py --check` | `schema_defs.gd` allineato agli schemi |
+| `python3 tools/gen_sign_labels.py --check` | **le parole dei segni**: `sign_labels.gd` generato dal dizionario, cosi' un segno si battezza una volta sola |
 | `python3 tools/build_manifest.py --check` | il manifesto degli asset |
 | `python3 tools/build_sign_registry.py --check` | `docs/REGISTRO_SEGNI.md` |
 | `python3 tools/build_flow.py --check` | `docs/flusso.html`: **il flusso disegnato** — scegli un pezzo e vedi con le frecce chi ce lo mette, dove finisce, chi lo legge e cosa accende |

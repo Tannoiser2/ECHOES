@@ -4865,6 +4865,26 @@ significato delle Azioni già fatte.
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
 
+> **Avanzamento in 0.1.368** ([D-400](DECISIONS.md#d-400)): **anche il punto 1
+> e' chiuso.** Il dizionario dichiara adesso `title_spoken` — *«la forma con cui
+> l'app dice questo segno dentro una frase, quando non e' quella stampata sul
+> gettone»* — e `sign_labels.gd` **si genera da li'**, col suo cancello, il
+> trentunesimo.
+>
+> Le 118 parole dell'app sono rimaste **identiche una per una**, tranne una: e'
+> proprio il difetto che la voce nomina. `heir_named` aveva **due parole
+> diverse** nello stesso file — «l'erede nominato» sulla scheda della casa e
+> «l'erede e' stato nominato» al centro del tavolo. Adesso ne ha una sola, e la
+> scheda dice la seconda.
+>
+> **Quali segni hanno una parola non e' una lista a parte**: sono quelli con un
+> gettone di cartone, cioe' quelli nominati da `godot/data/token_icons` — le due
+> liste combaciavano gia' su 117 segni su 117, e le sette voci `pedina:*` sono
+> pezzi del gioco, non segni.
+>
+> **Restano i punti 3, 4 e 5**, e il 3 lo rimanda la voce stessa.
+
+
 > **Avanzamento in 0.1.367** ([D-399](DECISIONS.md#d-399)): **il punto 2 e'
 > chiuso.** `MUTI_NOTI` non tiene piu' le ragioni — tiene solo gli id e il
 > numero che il registro misura da se'. **La ragione la legge dal dizionario**,

@@ -1653,7 +1653,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 > Chi siede sul trono quando questo si alza?
 
-- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
+- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
 - **Se passa — L'Ordine Rimesso in Piedi:** dove si discute non e' piu' #inquieta · dove si discute non e' piu' #contesa · La Successione scende
 
 ### Si nomini chi la ballata nomina: l'erede che l'anno buono avrebbe voluto. E stavolta lo si scriva.
@@ -1661,7 +1661,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 > Chi siede sul trono quando questo si alza?
 
 - **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
+- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
 - **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
 ### Non uno solo: si divida il titolo, e la Regione di cui si discute risponda a chi la tiene davvero.
@@ -1677,7 +1677,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 - **Si puo' proporre solo se:** La corona è divisa da un'altra era
 - **Se passa — Un Solo Trono:** il mondo dimentica: la corona e' stata divisa · il rapporto fra chi propone e il rivale cambia · La Successione sale
-- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
+- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
 
 ### Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.
 

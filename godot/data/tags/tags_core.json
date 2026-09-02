@@ -105,6 +105,7 @@
     {
       "id": "betrayal_spoken",
       "title": "tradimento detto",
+      "title_spoken": "il tradimento e' stato detto ad alta voce",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -218,6 +219,7 @@
     {
       "id": "condition:abandoned",
       "title": "abbandonato",
+      "title_spoken": "abbandonata",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -243,6 +245,7 @@
     {
       "id": "condition:contested",
       "title": "conteso",
+      "title_spoken": "contesa",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -271,6 +274,7 @@
     {
       "id": "condition:cut_off",
       "title": "tagliato fuori",
+      "title_spoken": "tagliata fuori",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -301,6 +305,7 @@
     {
       "id": "condition:emptied",
       "title": "svuotato",
+      "title_spoken": "svuotata",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -329,6 +334,7 @@
     {
       "id": "condition:exploited",
       "title": "sfruttato",
+      "title_spoken": "sfruttata",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -395,6 +401,7 @@
     {
       "id": "condition:lean",
       "title": "magro",
+      "title_spoken": "magra",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -418,6 +425,7 @@
     {
       "id": "condition:mourning",
       "title": "lutto",
+      "title_spoken": "in lutto",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -441,6 +449,7 @@
     {
       "id": "condition:plundered",
       "title": "saccheggiato",
+      "title_spoken": "depredata",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -465,6 +474,7 @@
     {
       "id": "condition:rationed",
       "title": "razionato",
+      "title_spoken": "razionata",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -491,6 +501,7 @@
     {
       "id": "condition:requisitioned",
       "title": "requisito",
+      "title_spoken": "requisita",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -511,6 +522,7 @@
     {
       "id": "condition:starving",
       "title": "fame",
+      "title_spoken": "affamata",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -540,6 +552,7 @@
     {
       "id": "condition:unrest",
       "title": "malcontento",
+      "title_spoken": "inquieta",
       "category": "STATE",
       "table_place": "ZONE_TOKEN",
       "scope": [
@@ -653,6 +666,7 @@
     {
       "id": "crystal_measured",
       "title": "cristallo misurato",
+      "title_spoken": "il Cristallo e' stato misurato",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -697,6 +711,7 @@
     {
       "id": "debt_called",
       "title": "debito chiamato",
+      "title_spoken": "il debito e' stato chiamato",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -725,6 +740,7 @@
     {
       "id": "debt_forgiven",
       "title": "debito rimesso",
+      "title_spoken": "il debito e' stato perdonato",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -1092,6 +1108,7 @@
     {
       "id": "escort_sworn",
       "title": "scorta giurata",
+      "title_spoken": "la scorta giurata",
       "category": "STATE",
       "table_place": "HOUSE_SHEET",
       "scope": [
@@ -1148,6 +1165,7 @@
     {
       "id": "faith_established",
       "title": "fede stabilita",
+      "title_spoken": "la fede ha avuto un posto",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -1200,6 +1218,7 @@
     {
       "id": "grain_requisitioned",
       "title": "grano requisito",
+      "title_spoken": "il grano e' stato requisito",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -1286,6 +1305,7 @@
     {
       "id": "heir_named",
       "title": "erede nominato",
+      "title_spoken": "l'erede e' stato nominato",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -1326,6 +1346,7 @@
     {
       "id": "knowledge_shared",
       "title": "sapere condiviso",
+      "title_spoken": "quello che si e' saputo lo sanno tutti",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -1352,6 +1373,7 @@
     {
       "id": "ledger_public",
       "title": "registro pubblico",
+      "title_spoken": "i conti sono pubblici",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -1890,6 +1912,7 @@
     {
       "id": "oath_broken",
       "title": "giuramento rotto",
+      "title_spoken": "il giuramento e' stato rotto",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2141,6 +2164,7 @@
     {
       "id": "price_in_lives",
       "title": "il conto in vite",
+      "title_spoken": "si e' pagato in vite",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2250,6 +2274,7 @@
     {
       "id": "renowned",
       "title": "fama",
+      "title_spoken": "la fama",
       "category": "ENTITY",
       "table_place": "HOUSE_SHEET",
       "scope": [
@@ -2358,6 +2383,7 @@
     {
       "id": "scar:burned_records",
       "title": "l'Archivio bruciato",
+      "title_spoken": "i registri bruciati",
       "category": "MEMORY",
       "table_place": "SCAR_TOKEN",
       "scope": [
@@ -2535,6 +2561,7 @@
     {
       "id": "seal_kept",
       "title": "il sigillo ha retto un'era",
+      "title_spoken": "il sigillo ha tenuto",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2551,6 +2578,7 @@
     {
       "id": "seal_kept_twice",
       "title": "il sigillo ha retto due ere",
+      "title_spoken": "il sigillo ha tenuto due volte",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2612,6 +2640,7 @@
     {
       "id": "settlement:market",
       "title": "mercato",
+      "title_spoken": "il mercato",
       "category": "FUNCTION",
       "table_place": "TILE_SLOT",
       "scope": [
@@ -2697,6 +2726,7 @@
     {
       "id": "spoke_and_lost",
       "title": "ha parlato e ha perso",
+      "title_spoken": "la proposta caduta in Consiglio",
       "category": "MEMORY",
       "table_place": "HOUSE_SHEET",
       "scope": [
@@ -2819,6 +2849,7 @@
     {
       "id": "structure:sealed",
       "title": "sigillato",
+      "title_spoken": "il sigillo",
       "category": "STATE",
       "table_place": "TILE_SLOT",
       "scope": [
@@ -2846,6 +2877,7 @@
     {
       "id": "structure:tollgate",
       "title": "pedaggio",
+      "title_spoken": "il pedaggio",
       "category": "FUNCTION",
       "table_place": "TILE_SLOT",
       "scope": [
@@ -2891,6 +2923,7 @@
     {
       "id": "study_supervised",
       "title": "studio sorvegliato",
+      "title_spoken": "lo studio e' sotto sorveglianza",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2912,6 +2945,7 @@
     {
       "id": "succession_by_law",
       "title": "successione per legge",
+      "title_spoken": "la successione e' passata per legge",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2967,6 +3001,7 @@
     {
       "id": "toll_shared",
       "title": "pedaggio diviso",
+      "title_spoken": "il pedaggio si divide",
       "category": "MEMORY",
       "table_place": "WORLD_MEMORY",
       "scope": [
@@ -2988,6 +3023,7 @@
     {
       "id": "took_by_hand",
       "title": "si e' servito",
+      "title_spoken": "si e' servito da solo",
       "category": "MEMORY",
       "table_place": "HOUSE_SHEET",
       "scope": [

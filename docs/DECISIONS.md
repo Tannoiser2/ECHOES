@@ -10,6 +10,74 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-400 — Un segno si battezza una volta sola
+
+**implemented in 0.1.368.** Punto 1 di [ISSUES 70](ISSUES.md#70), ed è il
+**trentunesimo cancello**.
+
+### Due «unici posti», cioè due
+
+`godot/scripts/core/sign_labels.gd` si presentava come *«l'unico posto dove un
+tag diventa una parola»* per l'app. Il dizionario dei segni
+(`godot/data/tags`) è l'unico posto dove un tag diventa una parola per il
+**gettone stampato**. Su 118 parole in comune, **37 erano diverse**.
+
+**E le 37 non erano un errore.** Quasi tutte sono l'italiano che accorda:
+
+| segno | il gettone stampa | l'app dice |
+|---|---|---|
+| `condition:contested` | contes**o** | contes**a** |
+| `condition:rationed` | razionat**o** | razionat**a** |
+| `structure:tollgate` | pedaggio | **il** pedaggio |
+| `betrayal_spoken` | tradimento detto | il tradimento **è stato detto ad alta voce** |
+
+Un segno che si posa su una **Regione** accorda al femminile, e uno che entra in
+una riga vuole l'articolo. Generare il file dal solo `title` avrebbe rotto le
+frasi dell'app: è il genere di pulizia che peggiora il gioco per far tornare un
+conto, e non si fa.
+
+### Quindi il dizionario dichiara tutt'e due le forme
+
+Campo nuovo, opzionale: **`title_spoken`** — assente vuol dire *«si usa quella
+stampata»*, e infatti 81 segni su 118 non ce l'hanno. I 37 che ce l'hanno sono
+esattamente quelli che divergevano, seminati con la parola che l'app diceva ieri.
+
+`tools/gen_sign_labels.py` monta il blocco da lì, e `--check` lo tiene tale.
+
+### Quali segni hanno una parola: non è una lista a parte
+
+Sono quelli che hanno **un gettone di cartone**, cioè quelli nominati da
+`godot/data/token_icons`. Non è una scelta nuova da mantenere: le due liste
+combaciavano già su **117 segni su 117**, e le sette voci `pedina:*` che restano
+fuori sono pezzi del gioco — presenza, controllo, calore — non segni. Il conto è
+quello dei pezzi che si stampano, e `token_sheet.gd` costruisce il foglio della
+fustella scorrendo proprio questi dizionari: aggiungere una parola vuol dire
+aggiungere un gettone, e adesso le due cose sono la stessa decisione.
+
+I dizionari che **non** sono segni — domini, famiglie, Azioni, archetipi,
+bisogni — restano scritti a mano: non stanno nel dizionario dei segni, e
+generarli vorrebbe dire inventargli una casa.
+
+### La sola parola cambiata, ed è il difetto della voce
+
+Le 118 parole dell'app sono rimaste identiche una per una **tranne una**:
+`heir_named` ne aveva **due**, nello stesso file — *«l'erede nominato»* sulla
+scheda della casa e *«l'erede è stato nominato»* al centro del tavolo, perché
+vive su tutt'e due gli ambiti. È precisamente quello che la voce chiedeva di
+smettere di fare. Adesso ne ha una sola, e la scheda dice la seconda.
+
+**Cancello 0/8** sui due tavoli, suite 680 prove.
+
+### E la guardia nuova dei testi ha morso subito
+
+`title_spoken` è un blocco di prosa nuovo nei dati, e
+[D-398](#d-398) — girato per la prima volta il giorno prima — è andato rosso
+chiedendo *«o entra in REVISIONE_TESTI, o si scrive perché non si legge»*. Ci
+entra: è una parola che un giocatore legge. Una guardia scritta ieri che morde
+oggi su un caso che non esisteva ieri è la prova che serviva.
+
+---
+
 ## D-399 — La ragione di un segno muto la tiene il dizionario, non lo strumento
 
 **implemented in 0.1.367.** Punto 2 di [ISSUES 70](ISSUES.md#70).

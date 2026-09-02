@@ -1300,6 +1300,10 @@ const DEFS := {
 				"type": "String",
 				"min_length": 1,
 			},
+			"title_spoken": {
+				"type": "String",
+				"min_length": 1,
+			},
 			"category": {
 				"type": "String",
 				"enum": [
