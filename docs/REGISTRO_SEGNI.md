@@ -52,17 +52,17 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 
 | segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |
 |---|---|---|---|
-| `account_settled` | un gettone sul bordo della mappa | Conseguenza, carta Echo | «Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni |
-| `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | «Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
-| `hard_bargain` | sulla scheda della casa | Conseguenza | la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278) |
-| `list_witnessed` | un gettone sul bordo della mappa | clausola di Consiglio | la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede |
-| `price_in_lives` | un gettone sul bordo della mappa | Conseguenza | il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278) |
-| `return_promised` | un gettone sul bordo della mappa | clausola di Consiglio | il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola |
-| `settlement:$proponent` | uno spazio sulla tessera | Conseguenza | chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni |
-| `someone_paid` | un gettone sul bordo della mappa | carta Echo | qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278) |
-| `spoke_and_lost` | sulla scheda della casa | Conseguenza | ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278) |
-| `took_by_hand` | sulla scheda della casa | Conseguenza | si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278) |
-| `watched` | sulla scheda della casa | Conseguenza | sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278) |
+| `account_settled` | un gettone sul bordo della mappa | Conseguenza, carta Echo | memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399) — 4 volte in 100 anni |
+| `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | memoria del mondo: narrata (D-103), ereditata — non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
+| `hard_bargain` | sulla scheda della casa | Conseguenza | marchio di memoria (D-278): ha ottenuto cedendo poco, e il tavolo se lo ricorda — il motore non lo interroga |
+| `list_witnessed` | un gettone sul bordo della mappa | clausola di Consiglio | memoria del mondo: narrata (D-103), ereditata |
+| `price_in_lives` | un gettone sul bordo della mappa | Conseguenza | memoria del mondo (D-278): una decisione passata al prezzo di qualcuno che non c'e' piu' — si legge al centro del tavolo |
+| `return_promised` | un gettone sul bordo della mappa | clausola di Consiglio | memoria del mondo: narrata (D-103), ereditata |
+| `settlement:$proponent` | uno spazio sulla tessera | Conseguenza | porta un id dinamico: chi vive li' e' scritto nel segno stesso — 50 volte in 100 anni |
+| `someone_paid` | un gettone sul bordo della mappa | carta Echo | memoria del mondo: narrata (D-103), ereditata |
+| `spoke_and_lost` | sulla scheda della casa | Conseguenza | marchio di memoria (D-278): ha proposto e la proposta e' caduta — si legge sulla carta del casato |
+| `took_by_hand` | sulla scheda della casa | Conseguenza | marchio di memoria (D-278): non ha aspettato la decisione, ha preso — si legge sulla carta del casato |
+| `watched` | sulla scheda della casa | Conseguenza | marchio di memoria (D-278): chi ha imposto la guardia se lo porta addosso, e si legge sulla carta del casato — il motore non lo interroga |
 
 ---
 

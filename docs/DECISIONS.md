@@ -10,6 +10,48 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-399 — La ragione di un segno muto la tiene il dizionario, non lo strumento
+
+**implemented in 0.1.367.** Punto 2 di [ISSUES 70](ISSUES.md#70).
+
+`build_sign_registry.py` teneva in `MUTI_NOTI` **undici ragioni scritte a mano**
+— perché un segno che nessuno legge è ancora nella scatola — e le stesse ragioni
+vivono da [D-259](#d-259) nella `note` del dizionario dei segni. Due posti da
+aggiornare, e uno destinato a invecchiare: è la stessa forma di
+[D-338](#d-338), [D-398](#d-398) e ISSUES 105, tre volte in tre giorni.
+
+Adesso `MUTI_NOTI` tiene **solo gli id e il numero che questo registro misura da
+sé** (*«4 volte in 100 anni»*, *«50 volte»*), e la ragione la legge dal
+dizionario. Una guardia nuova va rossa se un segno è dichiarato muto qui e il
+dizionario non dice perché — a `account_settled` la `note` mancava, ed è stata
+scritta dov'è il suo posto.
+
+### E il punto 1 non è quello che sembrava
+
+La voce chiedeva che `sign_labels.gd` — *«l'unico posto dove un tag diventa una
+parola»* per l'app — fosse generato dal dizionario. Misurato: delle **118**
+parole che sono segni, **37 non combaciano**. Ma guardandole una per una, quasi
+tutte sono così:
+
+| segno | l'app dice | il gettone stampa |
+|---|---|---|
+| `condition:contested` | contes**a** | contes**o** |
+| `condition:rationed` | razionat**a** | razionat**o** |
+| `condition:requisitioned` | requisit**a** | requisit**o** |
+
+**È l'accordo con la Regione, che in italiano è femminile** — non una
+divergenza. Generare `sign_labels.gd` dal dizionario così com'è romperebbe
+l'italiano dell'app, ed è il genere di «pulizia» che peggiora il gioco per far
+tornare un conto. Perché la generazione sia meccanica, il dizionario deve
+dichiarare **anche la forma che accorda**: una riga in più per segno, e allora
+il battesimo è davvero uno solo.
+
+Il punto 3 — `#granaio` che vuol dire due cose — la voce stessa lo rimanda:
+*«si scioglie ri-mirando i bersagli delle carte, non rinominando di nascosto»*.
+La voce resta aperta su 1 e 3.
+
+---
+
 ## D-398 — Il documento dei testi si controlla dalla parte dei dati
 
 **implemented in 0.1.366.** Chiude [ISSUES 105](ISSUES.md#105), ed è il

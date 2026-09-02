@@ -5,6 +5,26 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.367 — La ragione di un segno muto la tiene il dizionario (D-399)
+
+Punto 2 di [ISSUES 70](docs/ISSUES.md#70). `build_sign_registry.py` teneva
+**undici ragioni scritte a mano** che vivono già nella `note` del dizionario:
+due posti da aggiornare, e uno destinato a invecchiare — la stessa forma di
+D-338, D-398 e ISSUES 105.
+
+Adesso `MUTI_NOTI` tiene **solo gli id e il numero che il registro misura da sé**,
+e la ragione la legge dal dizionario. Una guardia nuova va rossa se un muto è
+dichiarato lì e il dizionario non dice perché.
+
+**E il punto 1 non è quello che sembrava.** Delle 118 parole di `sign_labels.gd`
+che sono segni, 37 non combaciano col dizionario — ma quasi tutte perché l'app
+dice *«contesa, razionata, requisita»* e il gettone stampa *«conteso, razionato,
+requisito»*: è **l'accordo con la Regione**, che è femminile. Generare il file
+dal dizionario così com'è romperebbe l'italiano dell'app. Serve che il dizionario
+dichiari anche la forma che accorda.
+
+---
+
 ## 0.1.366 — Il documento dei testi si controlla dalla parte dei dati (D-398)
 
 Chiude [ISSUES 105](docs/ISSUES.md#105), ed è il **trentesimo cancello**.

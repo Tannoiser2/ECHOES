@@ -4865,6 +4865,24 @@ significato delle Azioni già fatte.
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
 
+> **Avanzamento in 0.1.367** ([D-399](DECISIONS.md#d-399)): **il punto 2 e'
+> chiuso.** `MUTI_NOTI` non tiene piu' le ragioni — tiene solo gli id e il
+> numero che il registro misura da se'. **La ragione la legge dal dizionario**,
+> dalla `note` della voce, e una guardia nuova va rossa se un muto e' dichiarato
+> qui e il dizionario non dice perche'. Era una seconda copia di undici ragioni,
+> cioe' due posti da aggiornare e uno destinato a invecchiare: la stessa forma
+> di D-338, D-398 e ISSUES 105.
+>
+> **E il punto 1 e' diagnosticato, e non e' quello che sembrava.** Delle 118
+> parole di `sign_labels.gd` che sono segni, **37 non combaciano col dizionario**
+> — ma quasi tutte perche' l'app dice *«contesa, razionata, requisita»* mentre il
+> gettone stampa *«conteso, razionato, requisito»*: e' **l'accordo con la
+> Regione**, che e' femminile, non una divergenza. Generare `sign_labels.gd`
+> dal dizionario cosi' com'e' romperebbe l'italiano dell'app. Serve che il
+> dizionario dichiari **anche la forma che accorda**, e allora la generazione e'
+> meccanica. Riga, non voce nuova.
+
+
 Da 0.1.221 i segni sono una collezione dichiarata (`godot/data/tags`, 171 voci:
 nome stampato, categoria, ambito, chi scrive, chi legge) e
 `validate_physical.py` la tiene allineata ai dati, con un self-test che si vede

@@ -46,8 +46,14 @@ LIVELLI_DI_RAPPORTO = {"ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND", "BLOOD", 
 WRITE_TYPES = {"SET_REGION_TAG", "SET_GLOBAL_TAG", "SET_ENTITY_TAG"}
 CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 
-# I segni che oggi nessuno legge, con la ragione per cui sono ancora qui.
-# Toglierne uno da questa lista senza farlo mordere fa andare rossa la prova.
+# I segni che oggi nessuno legge. Qui ci sono **solo gli id e il numero che
+# questo registro misura da se'**: la ragione per cui un segno e' ancora nella
+# scatola la tiene **il dizionario**, nella sua `note` (D-399).
+#
+# Prima le ragioni stavano scritte qui, ed erano una seconda copia di quelle del
+# dizionario: due posti da aggiornare, e uno dei due destinato a invecchiare. E'
+# la stessa forma dei difetti di D-338, D-398 e ISSUES 105 — un elenco parallelo
+# che nessuno tiene allineato.
 #
 # **Erano dieci, e quattro non lo erano mai stati** (D-234). Il registro non
 # guardava tre penne che leggono — la Regione di cui si discute
@@ -55,31 +61,43 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 # delle ere (`if_tag`) — e dichiarava muti dei segni che decidono il bersaglio
 # di un Consiglio e perfino chi si siede al tavolo.
 #
-# Dei sei che restano, accanto alla ragione c'e' **quante volte escono in 100
-# anni**, misurato da `godot/cli/run_mute_signs.gd`. ISSUES 61 lo chiedeva:
-# «un segno muto che compare due volte in un secolo e' un problema minore di uno
-# che compare duecento».
+# Il numero accanto e' **quante volte escono in 100 anni**, misurato da
+# `godot/cli/run_mute_signs.gd`. ISSUES 61 lo chiedeva: «un segno muto che
+# compare due volte in un secolo e' un problema minore di uno che compare
+# duecento».
 MUTI_NOTI: Dict[str, str] = {
-    "account_settled": "«Il Conto Saldato» chiude un debito e nessuna regola lo sa — 4 volte in 100 anni",
-    # Memorie del mondo che il Consiglio scrive e che nessuna regola interroga
-    # (D-103, D-286): restano perche' il tavolo le legge — sono la cronaca
-    # dell'anno, non un requisito. Chi vuole farle mordere le aggiunge agli
-    # echi della loro domanda, come D-286 ha fatto con tredici sorelle.
-    "list_witnessed": "la lista letta davanti a testimoni: memoria narrata, nessuna regola la chiede",
-    "someone_paid": "qualcuno ha pagato: il marchio di una decisione passata al prezzo di chi non c'e' piu' — si legge al centro del tavolo, non in una regola (D-278)",
-    "return_promised": "il ritorno promesso: memoria narrata, e la promessa non ha ancora una regola",
-    "dragon_slain": "«Il Drago Abbattuto» — e il mondo non se ne accorge. Non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
-    "settlement:$proponent": "chi ci vive, scritto sulla mappa: la regola e' la pietra che la Conseguenza alza accanto — 50 volte in 100 anni",
-    # I marchi che la pedina del prezzo lascia (D-278). Nascono col loro posto
-    # sul tavolo — sulla tessera, sulla carta del casato, al centro — e per ora
-    # nessuna clausola del motore li interroga: e' dichiarato qui e nel
-    # dizionario, e la Fase B decidera' se farli mordere o toglierli.
-    "hard_bargain": "la parola fredda: si legge sulla carta del casato, nessuna clausola la chiede (D-278)",
-    "price_in_lives": "il conto in vite: memoria del mondo, nessuna clausola la chiede (D-278)",
-    "spoke_and_lost": "ha proposto e la proposta e' caduta: si legge sulla carta del casato (D-278)",
-    "took_by_hand": "si e' servito senza aspettare la decisione: si legge sulla carta del casato (D-278)",
-    "watched": "sotto osservazione: chi ha imposto la guardia se lo porta addosso (D-278)",
+    "account_settled": "4 volte in 100 anni",
+    "list_witnessed": "",
+    "someone_paid": "",
+    "return_promised": "",
+    "dragon_slain": "non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
+    "settlement:$proponent": "50 volte in 100 anni",
+    "hard_bargain": "",
+    "price_in_lives": "",
+    "spoke_and_lost": "",
+    "took_by_hand": "",
+    "watched": "",
 }
+
+
+def dizionario() -> Dict[str, Dict[str, Any]]:
+    """Il dizionario dei segni, letto una volta sola."""
+    global _DIZIONARIO
+    if _DIZIONARIO is None:
+        _DIZIONARIO = {str(v["id"]): v for v in items("tag")}
+    return _DIZIONARIO
+
+
+_DIZIONARIO: Dict[str, Dict[str, Any]] | None = None
+
+
+def ragione_del_muto(tag: str, voci: Dict[str, Dict[str, Any]]) -> str:
+    """La ragione sta nel dizionario; il conto e' di questo registro."""
+    nota = str((voci.get(tag) or {}).get("note", "")).strip()
+    quante = MUTI_NOTI.get(tag, "").strip()
+    if nota and quante:
+        return "%s — %s" % (nota, quante)
+    return nota or quante or "**non dichiarato**"
 
 
 # --- lettura dei dati -------------------------------------------------------
@@ -539,7 +557,7 @@ def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
             who = sorted(signs[tag]["scrive"] | signs[tag]["cancella"])
             nome = next((n for k, n, _ in POSTI if k == dove.get(tag)), "—")
             lines.append("| `%s` | %s | %s | %s |" % (
-                tag, nome, ", ".join(who), MUTI_NOTI.get(tag, "**non dichiarato**")
+                tag, nome, ", ".join(who), ragione_del_muto(tag, dizionario())
             ))
     lines.append("")
     lines.append("---")
@@ -620,6 +638,16 @@ def main() -> int:
             "`%s` e' dichiarato muto ma adesso qualcosa lo legge: togli la riga da MUTI_NOTI."
             % tag
         )
+    # **E la ragione la tiene il dizionario, non questo file** (D-399): un muto
+    # dichiarato qui senza una `note` nel dizionario e' una riga che dice «e'
+    # cosi'» senza dire perche'.
+    for tag in sorted(set(MUTI_NOTI) & mute):
+        if not str((dizionario().get(tag) or {}).get("note", "")).strip():
+            problems.append(
+                "`%s` e' dichiarato muto e il dizionario non dice perche':\n"
+                "  scrivi la sua ragione nella `note` di godot/data/tags, non qui."
+                % tag
+            )
     if not REGISTRY.exists():
         problems.append("manca docs/REGISTRO_SEGNI.md: gira `python3 tools/build_sign_registry.py`.")
     elif REGISTRY.read_text(encoding="utf-8") != text:
