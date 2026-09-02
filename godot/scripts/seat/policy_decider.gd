@@ -507,7 +507,13 @@ func _claim_the_word(entity_id: String, session: RefCounted) -> Dictionary:
 		# **Non si prenota cio' che e' gia' maturo** (D-191): su una domanda a
 		# maturita' il diritto di parlare ce l'hanno tutti, e comprarlo con una
 		# carta AUTORITA' e' spenderla per niente.
-		if _claim_in_one_move(session) and value >= _claim_ready_at(session):
+		# **E quando la parola si prende in un colpo, non si prenota affatto**
+		# (D-402). La prenotazione non abbassa mai la soglia del FORCE — il
+		# resolver chiede `value >= ready_at` comunque — e il diritto della
+		# controproposta nasce dal FORCE, non da lei. In questa Chronicle
+		# comprarla e' spendere un'Azione e una carta AUTORITA' per niente:
+		# misurato, 285 prenotazioni in cento partite e 273 mai spese.
+		if _claim_in_one_move(session):
 			continue
 		# Si prenota solo con in mano anche la carta per riscuotere: senza
 		# questo, meta' dei Claim creati non veniva mai forzata - 124 creati e
@@ -1141,12 +1147,31 @@ func _targets_for(
 			for region_id in session.world["regions"]:
 				out.append({"mode": "REGION", "region_id": str(region_id)})
 		"CLAIM":
+			# **Il ripiego sapeva prenotare e non sapeva parlare** (D-402).
+			# Quando il cervello gioca «quello che la mano permette» (D-285), il
+			# RIVENDICARE gli offriva solo il modo CREATE: una prenotazione, mai
+			# una presa di parola. Di qui venivano quasi tutte le 285
+			# prenotazioni di cento partite, e 273 non si spendevano.
+			var matura: bool = false
+			for tension_id in session.world["tensions"]:
+				if session.tensions.value(str(tension_id)) >= _claim_ready_at(session):
+					out.append({"mode": "FORCE", "tension_id": str(tension_id)})
+					matura = true
 			var seen: Dictionary = {}
 			for tension_id in session.world["tensions"]:
 				var domain: String = str(session.service.tension_domain(str(tension_id)))
 				if domain == "" or seen.has(domain):
 					continue
 				seen[domain] = true
+				# **E si prenota solo se non c'e' niente da strappare.** In
+				# questa Chronicle la parola si prende in un colpo: con una
+				# domanda gia' matura sul tavolo, prenotarne un'altra e'
+				# spendere l'Azione per un diritto che non serve. Quando invece
+				# non c'e' niente di maturo la prenotazione resta l'unica cosa
+				# che il RIVENDICARE sa fare, e togliergliela vorrebbe dire una
+				# carta in mano che non si puo' giocare.
+				if matura and _claim_in_one_move(session):
+					continue
 				out.append({"mode": "CREATE", "domain": domain})
 		"FORGE":
 			for other in session.world["turn_order"]:

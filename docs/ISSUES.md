@@ -8032,11 +8032,46 @@ benefici per Consiglio muoversi nella direzione scelta.
 
 ---
 
-### 126. Si prenota 285 volte e si spende 12: la prima metà del RIVENDICARE
+### 126. ✅ Si prenota 285 volte e si spende 12 — CHIUSA in 0.1.370: adesso si prenota 7 volte
 
 `regole` · **gialla G6 dalla 0.1.361** ([la lista](LE_TUE_DECISIONI.md)): la
 regola l'hai gia' dettata, quello che resta e' taratura del cervello ed e' mia ·
 aperta in 0.1.355 ([D-389](DECISIONS.md#d-389))
+
+> **La condizione era: «le prenotazioni mai spese scendono sotto un terzo».**
+> Erano **273 su 285**; adesso sono **4 su 7**
+> ([D-402](DECISIONS.md#d-402)).
+>
+> **Ed era la prima lettura, il cervello — ma non dove la voce la cercava.**
+> La policy deliberata aveva gia' la sua guardia da D-191. Le prenotazioni
+> venivano quasi tutte dal **ripiego** — «gioca quello che la mano permette»
+> (D-285) — che per il RIVENDICARE offriva **un modo solo, CREATE**: sapeva
+> prenotare e non sapeva prendere la parola.
+>
+> | cento partite | prima | dopo |
+> |---|---|---|
+> | prenotazioni aperte | 285 | **7** |
+> | prenotazioni mai spese | 273 | **4** |
+> | Consigli strappati | 74 | **210** |
+> | Consigli per anno | 3,18 | **3,58** |
+> | Verita' scritte | 132 | **142** |
+>
+> **E il costo, che sembrava esserci e non c'e'.** I turni «passa» salgono da
+> 47,6% a 49,6%, e a prima vista e' un peggioramento. Non lo e', ed e' il conto
+> che lo dice: **una prenotazione che non si spendera' mai non e' un turno in
+> cui e' successo qualcosa.** Contandole per quello che sono —
+>
+> | | passa | + prenotazioni morte | turni in cui non succede niente |
+> |---|---|---|---|
+> | prima | 3.428 | 273 | **3.701 — 51,4%** |
+> | dopo | 3.572 | 4 | **3.576 — 49,7%** |
+>
+> — il numero **scende**. La prova sta nella cura a meta': togliendo la
+> prenotazione **senza** dare al ripiego la presa di parola, i «passa» vanno a
+> **51,6%**, cioe' esattamente dove erano gia', in chiaro.
+>
+> **Cancello 0 su 8** sui due tavoli, suite verde.
+
 
 Chiudendo [ISSUES 53](#53) è uscito un numero che nessuno aveva mai guardato
 dalla parte giusta.

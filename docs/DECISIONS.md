@@ -10,6 +10,76 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-402 — Il ripiego sapeva prenotare e non sapeva parlare
+
+**implemented in 0.1.370.** Chiude [ISSUES 126](ISSUES.md#126): le prenotazioni
+mai spese passano da **273 su 285** a **4 su 7**.
+
+### Dove stavano davvero le prenotazioni
+
+La voce dava due letture — «è il cervello» o «è la regola» — e la prima è
+giusta, ma **non dove la voce la cercava**. La policy deliberata
+(`_claim_the_word`) aveva già la sua guardia da [D-191](#d-191): *«non si
+prenota ciò che è già maturo»*. Toglierla del tutto porta le prenotazioni da 285
+a 259, cioè quasi niente.
+
+Venivano dall'altra parte: dal **ripiego** — *«gioca quello che la mano
+permette»*, [D-285](#d-285) — che per il RIVENDICARE costruiva **un modo solo**:
+
+```gdscript
+"CLAIM":
+    for tension_id in world["tensions"]:
+        ...
+        out.append({"mode": "CREATE", "domain": domain})
+```
+
+**Sapeva prenotare e non sapeva prendere la parola.** Ogni volta che il cervello
+ripiegava su una carta RIVENDICARE, comprava un diritto — e in questa Chronicle
+(`same_round_when_ready: true`) quel diritto **non compra niente**: il resolver
+chiede `value >= ready_at` per forzare comunque, e il diritto della
+controproposta (D-268) nasce dal FORCE, non dalla prenotazione.
+
+### La cura, in due metà che si tengono
+
+1. il ripiego offre anche **FORCE**, su ogni questione già matura;
+2. non offre **CREATE** quando c'è qualcosa di maturo da strappare: prenotarne
+   un'altra sarebbe spendere l'Azione per un diritto che non serve. Quando non
+   c'è niente di maturo la prenotazione resta — toglierla del tutto vorrebbe
+   dire una carta in mano che non si può giocare.
+
+| cento partite, seme 7000 | prima | **dopo** |
+|---|---|---|
+| prenotazioni aperte | 285 | **7** |
+| prenotazioni mai spese | 273 | **4** |
+| Consigli strappati | 74 | **210** |
+| Consigli per anno | 3,18 | **3,58** |
+| Verità scritte | 132 | **142** |
+| Verità diverse | 106 | **113** |
+
+### Il costo che sembrava esserci e non c'è
+
+I turni «passa» salgono da **47,6% a 49,6%**, e a prima vista è un peggioramento
+su [ISSUES 68](ISSUES.md#68), chiusa due giorni fa proprio su quel numero.
+
+**Non lo è, ed è il conto che lo dice.** Una prenotazione che non si spenderà mai
+non è un turno in cui è successo qualcosa: è un'Azione e una carta AUTORITÀ
+bruciate per niente, contate come attività.
+
+| | passa | + prenotazioni morte | turni in cui non succede niente |
+|---|---|---|---|
+| prima | 3.428 | 273 | **3.701 — 51,4%** |
+| dopo | 3.572 | 4 | **3.576 — 49,7%** |
+
+E la prova non è un ragionamento: è **la cura a metà**. Togliendo la prenotazione
+*senza* dare al ripiego la presa di parola, i «passa» vanno a **51,6%** — cioè
+esattamente dove erano già, solo in chiaro. Le due metà si tengono, e separate
+peggiorano.
+
+**Cancello: 0 seggi bloccati su un solo livello su 8**, misto e uniforme. Suite
+680 prove verde.
+
+---
+
 ## D-401 — La quinta sonda cieca: i sacchetti del Consiglio sono una casa
 
 **implemented in 0.1.369.** Avanza [ISSUES 56](ISSUES.md#56) e

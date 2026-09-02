@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.370 — Il ripiego sapeva prenotare e non sapeva parlare (D-402)
+
+Chiude [ISSUES 126](docs/ISSUES.md#126). Le prenotazioni mai spese passano da
+**273 su 285** a **4 su 7**.
+
+La voce dava due letture, e la prima era giusta — ma **non dove la cercava**. La
+policy deliberata aveva già la sua guardia da D-191. Le prenotazioni venivano dal
+**ripiego**, che per il RIVENDICARE costruiva **un modo solo**: `CREATE`. Sapeva
+prenotare e non sapeva prendere la parola.
+
+| cento partite | prima | dopo |
+|---|---|---|
+| prenotazioni aperte | 285 | **7** |
+| prenotazioni mai spese | 273 | **4** |
+| Consigli strappati | 74 | **210** |
+| Consigli per anno | 3,18 | **3,58** |
+| Verità scritte | 132 | **142** |
+
+**Il costo che sembrava esserci e non c'è.** I «passa» salgono da 47,6% a 49,6%,
+e a prima vista è un peggioramento. Non lo è: una prenotazione che non si
+spenderà mai **non è un turno in cui è successo qualcosa**. Contandole,
+prima erano 3.701 turni vuoti su 7.200 (51,4%) e adesso sono 3.576 (49,7%).
+
+E la prova non è un ragionamento: togliendo la prenotazione **senza** dare al
+ripiego la presa di parola, i «passa» vanno a **51,6%** — dove erano già, solo in
+chiaro.
+
+Cancello 0/8 sui due tavoli, suite verde. Voci aperte: **36 → 35**.
+
+---
+
 ## 0.1.369 — La quinta sonda cieca: i sacchetti del Consiglio sono una casa (D-401)
 
 `run_consequence_probe` cercava chi elenca una Conseguenza guardando **solo le

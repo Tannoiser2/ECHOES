@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **95** |
-| aperte | **36** |
+| chiuse | **96** |
+| aperte | **35** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **26** |
+| di cui sono mie da fare | **25** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -42,7 +42,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
-| 0.1.350–0.1.374 | 6 | 17 |
+| 0.1.350–0.1.374 | 6 | 18 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -229,14 +229,18 @@ difetto è nello schermo, e nessuna prova lo tocca.
 **Fatto quando** una prova guida la schermata vera per tre anni di saga e ci
 arriva. Va con G1.
 
-### G6. Il cervello gioca il suo profilo — [78](ISSUES.md#78), [126](ISSUES.md#126), [59](ISSUES.md#59)
+### G6. Il cervello gioca il suo profilo — [78](ISSUES.md#78), [59](ISSUES.md#59)
 
-I quattro profili strategici dicono cosa una casa vuole lasciare nel mondo, e
-**li legge solo il validatore**. E il cervello prenota un diritto **285 volte e
-lo spende 12**.
+La [126](ISSUES.md#126) si è chiusa in 0.1.370: le prenotazioni inutili sono
+passate da **273 a 4**, e il ripiego ha imparato a prendere la parola invece di
+solo prenotarla — 74 Consigli strappati diventano 210, e le Verità scritte
+salgono da 132 a 142.
 
-**Fatto quando** il cervello sceglie guardando il suo profilo, e le prenotazioni
-inutili scendono sotto un quarto.
+Restano i quattro profili strategici, che dicono cosa una casa vuole lasciare nel
+mondo e **li legge solo il validatore**.
+
+**Fatto quando** il cervello sceglie guardando il suo profilo, e si vede quante
+mosse vanno verso un segno voluto.
 
 ### G7. Le due grammatiche non si ripetono — [87](ISSUES.md#87), [106](ISSUES.md#106)
 
