@@ -29,10 +29,10 @@ non hai giocato.
 | | |
 |---|---|
 | voci scritte | **131** |
-| chiuse | **99** |
-| aperte | **32** |
+| chiuse | **100** |
+| aperte | **31** |
 | di cui **aspettano una tua decisione** | **10** |
-| di cui sono mie da fare | **22** |
+| di cui sono mie da fare | **21** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -43,6 +43,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
+| 0.1.375–0.1.399 | 0 | 1 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -211,37 +212,26 @@ tutte e 65 hanno un modo di uscire.
 **Fatto quando** ogni voce o viene scelta almeno una volta in cento anni, **o
 esce dalla scatola**. Le tolgo, non le riscrivo tre volte.
 
-### G3. Ogni segno ha un lettore, o esce — [70](ISSUES.md#70), [111](ISSUES.md#111)
+### G3. Ogni segno ha un lettore, o esce — [111](ISSUES.md#111)
 
-Tre delle cinque si sono chiuse in 0.1.363: **zero** segni senza una ragione
+Quattro delle cinque sono chiuse. In 0.1.363: **zero** segni senza una ragione
 scritta (erano quindici), `structure:road` è uscito dal dizionario, e i segni
 scritti spesso che nessuna clausola guarda sono passati da **venticinque a due**
 — e quei due sono colore dichiarato da D-278.
 
-**Restano**: `#granaio` (70), e le Pietre che non si alzano mai (111), che
-dipende in parte dalla rossa R1.
+E in 0.1.375 la [70](ISSUES.md#70): **`#granaio` vuol dire una cosa sola**. Ho
+preso la prima delle due strade che ti avevo messo davanti — quella che non tocca
+nessuna parola stampata: la parola era già giusta, era la macchina a essere più
+stretta. Diciassette facce dicevano «un luogo con #granaio» e accettavano solo la
+terra; adesso tutte e diciotto accettano anche l'edificio. Succede in **9 partite
+su 100** che ci sia un granaio dove la vocazione non c'è, e le carte lo
+rifiutavano.
 
-**E la 70 adesso è misurata, e ti chiede una parola.** Non sono «due segni che
-al tavolo non si distinguono»: sono **diciassette facce su diciotto** che
-stampano `#granaio` e accettano solo la **vocazione** della terra, e **una**
-(`AST_WEALTH_GRAIN`) che accetta anche la **Pietra** costruita. La scorciatoia
-— togliere il segno di troppo da quell'unica carta — l'ho provata e non regge:
-dodici carte Tensione hanno la casella «Costruisci 1 Pietra nel luogo: Granaio»,
-e quel luogo la vocazione può non averla, quindi si perderebbero posti veri.
+**Resta** solo la 111: le Pietre che non si alzano mai, che dipende in parte
+dalla rossa R1.
 
-Restano due strade, e nessuna è una riga:
-
-1. **`#granaio` vuol dire «vocazione o Pietra» dappertutto.** È la lettura
-   naturale al tavolo, ma allarga i bersagli di otto Asset e **tocca le clausole
-   di vittoria di tre Destini**: è equilibrio, da misurare sui 100 semi.
-2. **Due parole diverse**, una per la vocazione e una per la Pietra. Non allarga
-   niente, ma riscrive il testo stampato di diciotto facce.
-
-La prima cambia chi vince, la seconda cambia cosa c'è scritto sulle carte: **la
-scelta è tua**, e appena la dici la faccio.
-
-**Fatto quando** un segno nuovo si battezza una volta sola, e ogni grado di ogni
-Pietra o si alza almeno una volta in cento partite o non è più nel catalogo.
+**Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
+partite, o non è più nel catalogo.
 
 ### G4. ✔ Nessuna casa è condannata — chiusa in 0.1.371
 

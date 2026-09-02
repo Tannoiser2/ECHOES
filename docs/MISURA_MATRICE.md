@@ -69,9 +69,9 @@ Nessuno.
 | `domain:SURVIVAL` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
 | `domain:TERRITORY` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
 | `dragon_slain` | memoria del mondo: narrata (D-103), ereditata |
-| `forest` | tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST: come per #granaio, la vocazione del luogo e l'opera si stamp |
+| `forest` | tessera nuova di PZ-2 (D-265). Non e' la pietra STR_FOREST, e a differenza del granaio non c'e' collisione: le facce sta |
 | `free_cities` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
-| `granary` | vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, ma le carte stampano #granaio per entra |
+| `granary` | vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, e le facce che stampano #granaio accett |
 | `guild` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `harbor` | vocazione della tessera nuova di PZ-2 (D-265): dove il mare concede e fa pagare |
 | `hard_bargain` | marchio di memoria (D-278): ha ottenuto cedendo poco, e il tavolo se lo ricorda — il motore non lo interroga |

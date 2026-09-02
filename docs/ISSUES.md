@@ -4948,9 +4948,48 @@ proposta. Tocca le proposte e le clausole del Consiglio; da disegnare insieme
 alla lettura del «fatto quando» di PZ-5 — il Consiglio che cambia il
 significato delle Azioni già fatte.
 
-### 70. Il dizionario dei segni esiste, e due voci parlano ancora per conto loro
+### 70. ✅ Il dizionario dei segni esiste, e due voci parlano ancora per conto loro — CHIUSA in 0.1.375: un segno si battezza una volta sola
 
 `strumenti` · `contenuto` · `debito` · **aperta in 0.1.221** ([D-259](DECISIONS.md#d-259))
+
+> **CHIUSA in 0.1.375** ([D-406](DECISIONS.md#d-406)). Tutti e tre i pezzi del
+> «fatto quando» sono fatti: l'app prende la parola dal dizionario
+> ([D-400](DECISIONS.md#d-400)), il registro legge le ragioni dalle `note`
+> ([D-399](DECISIONS.md#d-399)), e **`#granaio` vuol dire una cosa sola sul
+> tavolo**.
+>
+> **Presa la prima delle due strade**, ed e' quella che non tocca una sola parola
+> stampata: `#granaio` significa *«vocazione o Pietra»* su tutte e diciotto le
+> facce. Al tavolo *un posto con un granaio e' un posto con un granaio* — la
+> parola era gia' giusta, era la macchina a essere piu' stretta. **26 liste
+> allargate** su 16 facce, e il dizionario dichiara le due mani nuove: la guardia
+> della grammatica fisica ha morso al primo colpo.
+>
+> **Il caso e' vero, e ha un numero** (`cli/run_granary_probe.gd`, 100 partite):
+> 21 Regioni finiscono con la Pietra, **9 senza la vocazione**, in 9 partite su
+> 100 — Terre Nahr, Strada dei Mercanti, Eredan. Posti con un granaio che
+> diciassette facce su diciotto rifiutavano di vedere.
+>
+> **Su un anno solo non cambia niente; in saga si'** — e la seconda meta' di
+> questa riga me l'ha insegnata il cancello, dopo che avevo gia' scritto la
+> prima. Cancello 0 su 8 sui due tavoli e playtest **identico riga per riga**;
+> ma [MISURA_VITE.md](MISURA_VITE.md), che gioca dodici saghe, si muove:
+>
+> | | prima | dopo |
+> |---|---|---|
+> | trasformazioni sedute | 213 | **217** |
+> | **Il Regno di Nahr** (`nahr_settled`) | 2 | **5** |
+> | La Corona Restaurata | 3 | 4 |
+> | **La Leggenda della Montagna** | **1** | **0** |
+>
+> Il guadagno e' quello che ci si aspetta — la gente di Nahr puo' sedersi dove il
+> granaio e' un edificio, e le clausole allargate sono le sue. **Il costo si
+> scrive**: una vita che si sedeva una volta su dodici saghe adesso non si siede.
+> E' la lezione di [D-391](DECISIONS.md#d-391) un'altra volta: *un numero si
+> scrive col tavolo su cui e' misurato*.
+>
+> **Restano i punti 4 e 5**, che non sono nel «fatto quando»: i segni che solo il
+> motore tocca, e l'icona che aspetta l'arte.
 
 > **Il punto 3 e' misurato in 0.1.373**, e non e' quello che la voce diceva.
 >

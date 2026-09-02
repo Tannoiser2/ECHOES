@@ -184,7 +184,8 @@
         "condition:starving",
         "condition:requisitioned",
         "condition:unrest",
-        "granary"
+        "granary",
+        "structure:granary"
       ],
       "opening_line": "La Valle Verde ha reso un terzo meno dell'anno scorso, e a Eredan il trono conta le riserve due volte al giorno ottenendo lo stesso numero.",
       "theme": "THM_SOPRAVVIVENZA",
@@ -317,7 +318,8 @@
         {
           "text": "una Presenza arriva o se ne va da una terra con #granaio",
           "on_region_with": [
-            "granary"
+            "granary",
+            "structure:granary"
           ],
           "adds_presence": true,
           "removes_presence": true
@@ -1658,6 +1660,7 @@
         "condition:rationed",
         "condition:starving",
         "granary",
+        "structure:granary",
         "trade"
       ],
       "description": "Non apre un Consiglio suo: la questione la porta la sopravvivenza.",
@@ -1721,6 +1724,7 @@
           "text": "una Presenza arriva o se ne va da una terra con #granaio o #commercio",
           "on_region_with": [
             "granary",
+            "structure:granary",
             "trade"
           ],
           "adds_presence": true,
@@ -1875,6 +1879,7 @@
       "description": "I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto secoli nessuno è obbligato a toglierla.",
       "focus_region_tags": [
         "granary",
+        "structure:granary",
         "condition:lean",
         "structure:canal"
       ],
@@ -1948,7 +1953,8 @@
         {
           "text": "una Presenza arriva o se ne va da una terra con #granaio",
           "on_region_with": [
-            "granary"
+            "granary",
+            "structure:granary"
           ],
           "adds_presence": true,
           "removes_presence": true

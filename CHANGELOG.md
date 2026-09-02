@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.375 — `#granaio`: la macchina smette di essere più stretta della parola
+
+Chiude [ISSUES 70](docs/ISSUES.md#70) ([D-406](docs/DECISIONS.md#d-406)), e con
+lei quattro voci su cinque del gruppo «ogni segno ha un lettore».
+
+**Presa la prima delle due strade**, ed è quella che **non tocca una sola parola
+stampata**: `#granaio` vuol dire *«vocazione o Pietra»* su tutte e diciotto le
+facce che lo stampano. Al tavolo un posto con un granaio è un posto con un
+granaio — la parola era già giusta, era la macchina a essere più stretta.
+
+**26 liste allargate** su 16 facce: bersagli di 7 Asset, clausole di vittoria e
+trionfo di 3 Destini, `focus_region_tags` e `heats_when` di 6 Tensioni. Il
+dizionario dichiara le due mani nuove, e **la guardia della grammatica fisica ha
+morso al primo colpo**, prima ancora dei test.
+
+### Il caso è vero, e ha un numero
+
+`cli/run_granary_probe.gd`, 100 partite, semi da 7000:
+
+| | |
+|---|---|
+| Regioni che finiscono con la Pietra | 21 |
+| **di cui senza la vocazione** | **9** |
+| partite in cui succede | **9 su 100** |
+
+### Su un anno solo non cambia niente; in saga sì
+
+Cancello **0 su 8** sui due tavoli, e l'uscita del playtest su cento semi
+**identica riga per riga**. Avevo scritto «non cambia niente», e **il cancello
+delle saghe mi ha corretto prima del commit**:
+
+| dodici saghe, 168 salti d'era | prima | dopo |
+|---|---|---|
+| trasformazioni sedute | 213 | **217** |
+| **Il Regno di Nahr** (`nahr_settled`) | 2 | **5** |
+| La Corona Restaurata | 3 | 4 |
+| **La Leggenda della Montagna** | **1** | **0** |
+
+Il guadagno è quello che ci si aspetta: la gente di Nahr può sedersi dove il
+granaio è un edificio, e le clausole allargate sono le sue. **E il costo si
+scrive**: una vita che si sedeva una volta su dodici saghe adesso non si siede.
+
+È [D-391](docs/DECISIONS.md#d-391) un'altra volta: *un numero si scrive col
+tavolo su cui è misurato*. L'anno scollegato diceva «inerte»; la saga dice
+altro.
+
+### E il gemello del bosco non era lo stesso caso
+
+La nota del dizionario su `forest` diceva «come per #granaio, la vocazione e
+l'opera si stampano con la stessa parola». **Non è vero**: le facce stampano
+`#bosco` sette volte e `#foresta` mai. Nota corretta.
+
+Voci aperte **32 → 31**.
+
+---
+
 ## 0.1.374 — `#granaio`: non due segni indistinguibili, ma una faccia su diciotto
 
 Misura [ISSUES 70](docs/ISSUES.md#70), punto 3 — l'ultimo del suo «fatto quando».
