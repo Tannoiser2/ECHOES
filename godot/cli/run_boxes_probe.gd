@@ -29,6 +29,8 @@ const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 
 var bought: Dictionary = {}
+## Le pedine posate su una domanda indicata col dito, per casella (D-438).
+var named: Dictionary = {}
 var offered: Dictionary = {}
 
 
@@ -36,8 +38,10 @@ class Spy extends RefCounted:
 	var inner: RefCounted
 	var offered: Dictionary
 	var bought: Dictionary
+	var named: Dictionary
 
-	func _init(who: RefCounted, p_offered: Dictionary, p_bought: Dictionary) -> void:
+	func _init(who: RefCounted, p_offered: Dictionary, p_bought: Dictionary, p_named: Dictionary) -> void:
+		named = p_named
 		inner = who
 		offered = p_offered
 		bought = p_bought
@@ -118,6 +122,12 @@ class Spy extends RefCounted:
 					var verb: String = _verb_of(voice)
 					if verb != "":
 						bought[verb] = int(bought.get(verb, 0)) + 1
+						# **E su quale domanda** (D-438, ISSUES 106): una pedina
+						# che porta il nome di un'altra domanda e' il dito del
+						# proponente, e si conta a parte — e' il pezzo del
+						# criterio che la sonda non sapeva vedere.
+						if scelta is Dictionary and str((scelta as Dictionary).get("question", "")) != "":
+							named[verb] = int(named.get(verb, 0)) + 1
 
 	func _verb_of(voice: Variant) -> String:
 		return str((voice as Dictionary).get("verb", "")) if voice is Dictionary else ""
@@ -153,7 +163,7 @@ func _initialize() -> void:
 		var brain: RefCounted = Characters.deal(
 			seats, RngService.new(seed_value * 31 + 7), session.log
 		)
-		await session.run(Spy.new(brain, offered, bought))
+		await session.run(Spy.new(brain, offered, bought, named))
 		consigli += int(session.world.get("confluence_count", 0))
 		# **Quante caselle diverse in un anno** (ISSUES 122, la misura che la
 		# voce chiedeva): non «chi compra questa casella», ma quante ne vede
@@ -174,9 +184,11 @@ func _initialize() -> void:
 			totale_benefici += quante
 		else:
 			totale_costi += quante
-		print("%-18s %8d %8d   %s" % [
+		print("%-18s %8d %8d   %s%s" % [
 			str(verb), int(offered[verb]), quante,
 			"beneficio" if e_beneficio else "costo",
+			"" if int(named.get(verb, 0)) == 0
+				else "  · %d su un'altra domanda, indicata col dito" % int(named[verb]),
 		])
 	print("")
 	print("  Consigli aperti in %d partite: %d" % [runs, consigli])

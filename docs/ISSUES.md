@@ -7573,7 +7573,7 @@ e la vede cadere.
 
 ---
 
-### 106. «La sceglie chi propone»: la pedina non porta con sé il nome della domanda
+### 106. ✅ «La sceglie chi propone»: la pedina non porta con sé il nome della domanda — CHIUSA in 0.1.408: la porta, e il cervello la indica
 
 `regole` · `motore` · aperta in 0.1.308
 
@@ -7645,6 +7645,22 @@ domanda alzare o abbassare cambia il gioco, e va misurato sui 100 semi.
 
 
 ---
+
+### ✅ Chiusa in 0.1.408: il cervello indica, la persona sceglie ([D-438](DECISIONS.md#d-438))
+
+Le tre righe del «fatto quando», misurate insieme:
+
+| | |
+|---|---|
+| un proponente può posare la pedina su una domanda che nomina | ✅ dal motore (D-416), e adesso **anche dal cervello e dall'hotseat** |
+| il verbale dice quale | ✅ «— su La Reliquia» |
+| la sonda mostra se la casella smette di essere quella che nessuno compra | ✅ **91 su 728** offerte (era 22 su 700 in 0.1.387), e **17** pedine su un'altra domanda, indicata col dito |
+
+Il cervello pesa la casella su ogni segnalino in tavola **prima** di
+confrontarla con le altre, e tiene la migliore; a parità non nomina niente.
+Nell'hotseat si chiede *«su quale domanda?»* solo quando c'è da scegliere.
+Cancello 0 su 8 sui due tavoli, Verità ferme (133 → 133, 145 → 146).
+
 
 ### 107. ✅ Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
 

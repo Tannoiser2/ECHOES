@@ -17,6 +17,19 @@ restano sono tutti «non qui, altrove sì». Nessun cambio di gioco.
 
 ---
 
+## 0.1.408 — «La sceglie chi propone»: la pedina esce col nome della domanda
+
+M4 della lista: [ISSUES 106](docs/ISSUES.md#106) ([D-438](docs/DECISIONS.md#d-438)).
+
+Il cervello pesa ABBASSA LA DOMANDA su ogni segnalino in tavola e posa la
+pedina sul migliore; nell'hotseat si chiede *«su quale domanda?»*. In cento
+partite la casella si compra **91 volte su 728** (era 22 su 700 in 0.1.387),
+e **17** pedine finiscono su una domanda che non è quella in discussione. La
+prova che asseriva «oggi non ne nomina nessuna» si è girata. Cancello 0 su 8,
+Verità ferme.
+
+---
+
 ## 0.1.407 — La coda della fustella si chiude
 
 M10 della lista: [ISSUES 82](docs/ISSUES.md#82) ([D-437](docs/DECISIONS.md#d-437)).

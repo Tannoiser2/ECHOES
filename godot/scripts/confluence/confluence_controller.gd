@@ -880,7 +880,12 @@ func place_counterclaim(entity_id: String, mode: String, first: String, second: 
 			])
 			return true
 		"benefit":
-			if not claimable_benefits().has(first):
+			# Le pedine possono portare il nome di una domanda (D-416): si
+			# confronta l'id, non la forma.
+			var posate: Array = []
+			for entry in claimable_benefits():
+				posate.append(_voice_id_of(entry))
+			if not posate.has(first):
 				last_error = "«%s» non e' un beneficio comprato su questa carta" % first
 				return false
 			current["benefit_pedina"] = {"by": entity_id, "voice_id": first}

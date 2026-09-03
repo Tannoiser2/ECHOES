@@ -126,10 +126,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **117** |
-| aperte | **15** |
+| chiuse | **118** |
+| aperte | **14** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **15** |
+| di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,11 +160,12 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **6** | **io**, da sola, senza aspettare niente |
+| 🟡 | **5** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Sei.** Delle quindici voci aperte, sei le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
+**Cinque.** Delle quattordici voci aperte, cinque le posso muovere senza di te
+— ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+parola.**
 
 <!-- COLORI: fine -->
 
@@ -234,7 +235,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **sei**
+# 🟡 Sono mie, e non aspettano niente: **cinque**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
@@ -247,7 +248,6 @@ sparisce dal conto qui sopra.
 |---|---|
 | **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
 | **M3** — [60](ISSUES.md#60), lo scarto fra le domande | **il suo criterio va ritagliato prima**: per aritmetica non è raggiungibile, e lavorarci senza è lavorare a vuoto. Il numero da battere è 13,1× |
-| **M4** — [106](ISSUES.md#106), la pedina senza il nome | la casella è comprata **una volta su settantadue**: è la stessa forma delle due che la 117 ha già curato |
 | **M1** — [56](ISSUES.md#56), le Conseguenze che non escono | ne restano nove, e sette hanno un tentativo solo: prima di riscriverle vanno **misurate su 200 anni**, o tolte |
 | **M2** — [59](ISSUES.md#59), INFLUENZARE | due dei tre difetti sono spariti da soli; resta il verbo meno giocato |
 | **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
@@ -291,7 +291,13 @@ con 3,58 Consigli l'anno su sessanta domande la più ascoltata del tavolo arriva
 al 62,5%. **Il criterio va ritagliato prima di lavorarci** — zero domande mute, e
 lo scarto sotto un fattore da decidere. Il numero da battere è **13,1×**.
 
-### M4. [106](ISSUES.md#106) — la pedina non porta con sé il nome della domanda
+### ✔ M4. [106](ISSUES.md#106) — la pedina non porta con sé il nome della domanda: **chiusa in 0.1.408**
+
+**Chiusa in 0.1.408** ([D-438](DECISIONS.md#d-438)): il cervello pesa la casella
+su ogni segnalino in tavola e posa la pedina sul migliore, l'hotseat chiede *«su
+quale domanda?»*, e la sonda vede il gesto: **91 acquisti su 728** offerte (era
+22 su 700), **17** su una domanda indicata col dito. Cancello 0 su 8.
+
 
 «La sceglie chi propone», ma la pedina muove solo la domanda in discussione: è il
 beneficio meno interessante che si possa offrire, e infatti la casella è comprata
@@ -670,9 +676,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle quindici voci aperte ne posso
-muovere **sei** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle quattordici voci aperte ne
+posso muovere **cinque** da sola. Due le verifica una persona che gioca, sette
+stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

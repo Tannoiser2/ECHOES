@@ -74,6 +74,86 @@ poteva vedere.
 
 ---
 
+## D-438 — «La sceglie chi propone»: la pedina esce col nome della domanda
+
+**implemented in 0.1.408.** Chiude [ISSUES 106](ISSUES.md#106) (M4 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Quello che mancava, in una riga
+
+[D-416](#d-416) aveva fatto due terzi del criterio: il motore accetta una pedina
+posata su una domanda nominata e la muove, e il verbale dice quale. Ma **nessuno
+la nominava**: il cervello comprava ABBASSA LA DOMANDA come un id secco, e la
+persona al tavolo non aveva la domanda da nessuna parte. Una prova asseriva
+proprio questo — *«oggi non ne nomina nessuna»* — scritta come misura dello
+stato, con l'istruzione di girarla il giorno che qualcuno avesse insegnato al
+cervello a indicare.
+
+### Il cervello indica, e la persona sceglie
+
+**Il cervello.** In `choose_benefits` una casella che agisce su una domanda —
+`on: "tension"` nel vocabolario, e senza un `dove: QUESTION` gia' stampato sulla
+carta — si pesa **su ogni segnalino in tavola**: la stessa `_voice_score` di
+sempre, con la voce duplicata e la domanda legata. Si tiene la migliore; a
+parita' vince quella in discussione, che e' la pedina senza nome, cosi' la
+partita non cambia dove il dito non aggiunge niente. Una domanda a terra non si
+indica. Il punteggio non e' cambiato: cambia solo **dove si guarda** — ed e' la
+differenza fra i due tentativi di D-416 (scegliere la domanda *dopo* la
+casella, o valutare la voce gia' posata) e questo: qui la scelta della domanda
+entra **prima** del confronto con le altre caselle, e puo' vincerlo.
+
+**La persona.** Nell'hotseat, comprata una casella che muove una domanda, si
+chiede *«su quale domanda posi la pedina?»* — solo se c'e' qualcosa da
+scegliere: piu' di una domanda in gioco, e nessuna chiamata per nome sulla carta.
+La prima risposta e' sempre *«quella di cui si discute»*.
+
+**Il resto della catena** — la controproposta del RIVENDICARE nel cervello e
+nell'hotseat, e il confronto in `place_counterclaim` — leggeva la pedina come un
+id secco: adesso legge l'id da dentro, comunque sia posata.
+
+### I numeri, 100 partite CHR_00, tavolo misto
+
+`run_boxes_probe` conta anche le pedine posate **su un'altra domanda, indicata
+col dito**, che e' il pezzo del criterio che nessuna sonda vedeva:
+
+| ABBASSA LA DOMANDA | offerta | comprata | col dito su un'altra |
+|---|---|---|---|
+| D-416 (0.1.387) | 700 | **22** | — |
+| oggi, prima di questa modifica | 726 | 80 | 0 |
+| **oggi, con questa modifica** | 728 | **91** | — |
+| e sui dati potati di D-440 | 726 | 90 | **17** |
+
+**Il numero grosso e' salito da solo fra 0.1.387 e oggi** — da 22 a 80 — con le
+modifiche di mezzo, e la casella non e' piu' *«quella che nessuno compra»*: fra
+le molto offerte, quelle rimaste a zero o quasi sono ALZA LA DOMANDA (costo,
+0 su 171), UNA PIETRA SALE (2 su 110, la M12), PRENDI DEBITO e PEDAGGIO. Questa
+modifica aggiunge **undici acquisti**, e diciassette volte su novanta il
+proponente posa la pedina su una domanda che **non** e' quella in discussione:
+il gesto che il committente aveva chiesto adesso succede, e il verbale lo dice
+(«— su La Reliquia»).
+
+Il cancello, sullo stesso seme prima e dopo:
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| Consigli l'anno | 3,54 | 3,53 | 3,38 | 3,38 |
+| DECISIVE | 103 | 103 | 125 | 126 |
+| FAILURE | 32 | 33 | 14 | 14 |
+| **Verita' scritte** | 133 | **133** | 145 | **146** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+**Costo: nessuno che si veda.** Il tavolo e' lo stesso al decimale, che e' quello
+che ci si aspetta da una casella comprata novanta volte su ottocentocinquanta.
+
+### La prova che si e' girata
+
+`test_the_token_carries_the_question` adesso prova il verso nuovo: con una sola
+domanda alta fra quelle in tavola, la pedina esce **col suo nome**; con tutte le
+domande uguali, esce come id secco. La prova del motore (la pedina nominata
+muove quella e non un'altra) resta com'era.
+
+---
+
 ## D-437 — La coda della fustella si chiude: due mai visti, e sono quelli decisi
 
 **implemented in 0.1.407.** Chiude [ISSUES 82](ISSUES.md#82) (M10 della
