@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.413 — Lo scarto fra le domande si misura per Tema, e Terra si apre
+
+M3 della lista: [ISSUES 60](docs/ISSUES.md#60) ([D-443](docs/DECISIONS.md#d-443)).
+
+Il criterio è ritagliato dove il gioco decide: quale domanda si apre è la sorte
+del mazzetto, quante volte un Tema si apre è il Calore delle Risonanze. *Diritto
+di Ospitalità* scalda Terra invece di Fede — contava già Terra al Consiglio — e
+Terra passa da 37 a 50 Consigli col 7000 e da 40 a 58 col 8000: nessun Tema
+sotto la metà del più aperto, nessuna domanda muta su tutti e due i semi. La
+*Febbre delle Paludi* ha una seconda miccia. Cancello 0 su 8; Verità 132 → 136
+sul misto, 145 → 139 sull'uniforme.
+
+---
+
 ## 0.1.412 — Una carta si gioca in due modi, e il libro mastro lo diceva già
 
 M2 della lista: [ISSUES 59](docs/ISSUES.md#59) ([D-442](docs/DECISIONS.md#d-442)).

@@ -10,6 +10,102 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-443 — Lo scarto fra le domande si misura per Tema, e una Risonanza passa a Terra
+
+**implemented in 0.1.413.** Chiude [ISSUES 60](ISSUES.md#60) (M3 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio andava ritagliato, ed e' ritagliato qui
+
+La voce lo diceva da 0.1.377: il suo criterio *«nessuna domanda senza Consiglio
+in piu' di un quarto degli anni»* era scritto per dodici domande e non e'
+raggiungibile con sessanta, e *«lo scarto sotto un fattore da decidere»*
+aspettava il fattore. Prima di decidere il fattore ho guardato **da cosa dipende
+lo scarto**, e non dipende dalle domande.
+
+Da [D-261](#d-261) un Consiglio si apre sul **Tema** col mazzetto piu' alto, e
+la domanda e' la carta girata in cima a quel mazzetto: l'ordine lo pesca il
+seme. Quindi quale domanda si apre e' **sorte dentro il Tema**, e quante volte
+un Tema si apre e' **il Calore che le Risonanze gli portano** — l'unica cosa che
+il contenuto governa. Contando i Consigli del libro mastro per Tema, 100
+partite, tavolo misto:
+
+| seme 7000 | Fede | Potere | Antico | Vie | Sopravvivenza | Terra | min/max |
+|---|---|---|---|---|---|---|---|
+| prima | 87 | 76 | 55 | 54 | 45 | **37** | **0,43** |
+
+**Terra apriva meno della meta' dei Consigli di Fede**, e il Calore lo diceva
+gia': 10,9% contro 21,1% (`run_resonance_probe`). Lo scarto 13,1× fra due
+domande era per due terzi quello fra i loro Temi, e per il resto la sorte del
+mazzetto.
+
+**Il criterio nuovo, scritto dove il gioco decide:** *nessun Tema apre meno
+della meta' dei Consigli del Tema piu' aperto, e nessuna domanda resta senza
+Consiglio su tutti e due i semi* — 7000 e 8000, duecento partite. Il secondo
+pezzo e' su due semi per la lezione di [D-440](#d-440): una domanda in gioco
+otto volte in cento partite che apre zero Consigli e' rumore, non un difetto —
+*La Febbre delle Paludi* era muta col 7000 (0 su 8) e apriva 3 Consigli su 16
+col 8000, prima di toccare niente.
+
+### Una Risonanza, spostata dove la carta gia' stava
+
+*Diritto di Ospitalita'* contava gia' **Terra** al Consiglio (`themes: FEDE,
+TERRA`) e scaldava Fede: adesso scalda **Terra** — *«Scalda Terra +1. Il
+diritto d'ospitalita' regge finche' nessuno lo mette alla prova»* — con la
+stessa parte aggravata. E' la carta che il mondo fa rispondere 144 volte in
+cento anni, ed e' la sola che serve: provato prima con due (anche *Mappa
+Vecchia*, che conta Vie e Terra e scaldava Antico), Terra saliva in testa e
+Sopravvivenza scendeva sotto la meta' — uno spostamento di troppo e' lo stesso
+difetto dall'altra parte. Ritirata.
+
+E la *Febbre delle Paludi* ha una seconda miccia: si accendeva solo *«una casa
+entra nella #palude, o la lascia»*, che con la Palude pescata una volta su due
+e raggiunta da poche carte quasi non succede. Adesso anche *«qualcuno posa la
+#fame o il #magro»*, che sono i segni del suo Tema e da [D-433](#d-433)
+escono davvero. Col 8000 passa da 3 a **6 Consigli su 15**.
+
+### I numeri, su due semi
+
+| Consigli per Tema | 7000 prima | **7000 dopo** | 8000 prima | **8000 dopo** |
+|---|---|---|---|---|
+| Fede | 87 | 76 | 91 | 71 |
+| Potere | 76 | 68 | 75 | 77 |
+| Antico | 55 | 56 | 62 | 60 |
+| Vie | 54 | 61 | 38 | 39 |
+| Sopravvivenza | 45 | 42 | 39 | 44 |
+| Terra | 37 | **50** | 40 | **58** |
+| **min/max** | 0,43 | **0,55** | 0,42 | **0,51** |
+| domande mute | 1 | 1 | 0 | 2 |
+| **mute su tutti e due i semi** | | **0** | | |
+
+Il Calore: Terra dal 10,9% al **14,1%**, Fede dal 21,1% al 17,8%, e i sei Temi
+stanno tutti fra il 14% e il 19%. Le mute cambiano nome col seme — *La Febbre
+delle Paludi* col 7000, *Il Contrabbando* e *L'Acqua Ferma* col 8000, che col
+7000 aprono 9 e 3 Consigli — e nessuna e' muta su tutti e due.
+
+**Lo scarto fra due domande, per pescata, resta scritto come osservazione**: da
+15,4× a 7,5× col 7000, da 11,0× a 16,3× col 8000. E' la sorte del mazzetto, e
+si vede dal fatto che cambia di piu' col seme che con la modifica. Non e' piu'
+un criterio, perche' nessun contenuto lo puo' governare senza togliere il
+mazzetto — e il mazzetto e' una decisione del committente.
+
+### Il costo, sul cancello
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| Consigli l'anno | 3,54 | 3,53 | 3,38 | 3,36 |
+| DECISIVE | 102 | 104 | 126 | 124 |
+| FAILURE | 32 | 30 | 14 | **10** |
+| **Verita' scritte** | 132 | **136** | 145 | **139** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+I due tavoli si muovono in versi opposti — quattro Verita' in piu' sul misto,
+sei in meno sull'uniforme — che e' la forma di [D-430](#d-430), non di una
+deriva: piu' Consigli di Terra sono Consigli diversi, non di piu'. Il cancello
+tiene.
+
+---
+
 ## D-442 — Una carta si gioca in due modi, e il libro mastro lo diceva gia'
 
 **implemented in 0.1.412.** Chiude [ISSUES 59](ISSUES.md#59) (M2 della

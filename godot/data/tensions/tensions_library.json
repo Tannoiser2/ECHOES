@@ -7747,6 +7747,13 @@
           ],
           "adds_presence": true,
           "removes_presence": true
+        },
+        {
+          "text": "qualcuno posa la #fame o il #magro",
+          "puts_tag": [
+            "condition:starving",
+            "condition:lean"
+          ]
         }
       ]
     },

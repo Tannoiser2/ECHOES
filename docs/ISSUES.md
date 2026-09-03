@@ -2997,7 +2997,7 @@ quota di una per giro (D-021) è il 26,9% delle pareti alla mano, e alzarla
 sarebbe una regola, non contenuto.
 
 
-### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
+### 60. ✅ Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato** — CHIUSA in 0.1.413: lo scarto si misura per Tema, e Terra si apre
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_question_ledger.gd`)
 
@@ -3113,6 +3113,20 @@ partite (oggi: una), e lo scarto fra la piu' e la meno ascoltata sta sotto
 **6×** (oggi 6,1×).
 
 ---
+
+### ✅ Chiusa in 0.1.413: lo scarto si misura per Tema ([D-443](DECISIONS.md#d-443))
+
+Quale domanda si apre è la sorte del mazzetto (D-261); quante volte un Tema si
+apre è il Calore che le Risonanze gli portano, ed è l'unica cosa che il
+contenuto governa. Il criterio ritagliato: **nessun Tema apre meno della metà
+dei Consigli del Tema più aperto, e nessuna domanda resta muta su tutti e due i
+semi**. Terra apriva 37 Consigli contro 87 di Fede (0,43): con *Diritto di
+Ospitalità* che scalda Terra invece di Fede — contava già Terra al Consiglio —
+passa a **50 contro 76** (0,55) col 7000 e **58 contro 77** (0,51) col 8000.
+Nessuna domanda è muta su tutti e due i semi; la *Febbre delle Paludi* ha una
+seconda miccia. Lo scarto fra due domande resta scritto come osservazione (7,5×
+e 16,3×): cambia più col seme che con la modifica. Cancello 0 su 8.
+
 
 ### 100. ✅ Le caselle «si accende quando» sono ancora un pavimento derivato
 

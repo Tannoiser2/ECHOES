@@ -3587,9 +3587,9 @@
           }
         ],
         "resonance": {
-          "theme": "THM_FEDE",
+          "theme": "THM_TERRA",
           "heat": 1,
-          "text": "Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Fede +2.",
+          "text": "Scalda Terra +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.",
           "if_target_tag": "escort_sworn",
           "extra_heat": 1
         },

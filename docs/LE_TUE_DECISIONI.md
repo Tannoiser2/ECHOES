@@ -126,10 +126,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **121** |
-| aperte | **11** |
+| chiuse | **122** |
+| aperte | **10** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **11** |
+| di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,10 +160,10 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **2** | **io**, da sola, senza aspettare niente |
+| 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
+**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
 numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
@@ -234,19 +234,20 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **due**
+# 🟡 Sono mie, e non aspettano niente: **una**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
-([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
-e restano queste otto. **Nessuna apre una voce nuova**, e ognuna che si chiude
-sparisce dal conto qui sopra.
+([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
+entro 0.1.405; **le sette che restavano si sono chiuse in 0.1.407–0.1.413**, su
+parola tua — *«vai con M»* — una versione per M, ognuna col suo verbale e col
+cancello 0 su 8 rimisurato. **Nessuna ha aperto una voce nuova.** Resta la
+quattordicesima, che va per ultima da sempre.
 
-**Quello che resta, e in che ordine lo farei:**
+**Quello che resta:**
 
 | | perché, e a che punto è |
 |---|---|
 | **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
-| **M3** — [60](ISSUES.md#60), lo scarto fra le domande | **il suo criterio va ritagliato prima**: per aritmetica non è raggiungibile, e lavorarci senza è lavorare a vuoto. Il numero da battere è 13,1× |
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
@@ -288,7 +289,14 @@ moneta più votata, con quasi metà delle sue carte che non fa niente.
 **Fatto quando** nessun verbo si gioca meno della metà del più giocato, e ogni
 carta viene calata per agire almeno una volta in cento anni.
 
-### M3. [60](ISSUES.md#60) — lo scarto fra la domanda più e meno ascoltata
+### ✔ M3. [60](ISSUES.md#60) — lo scarto fra la domanda più e meno ascoltata: **chiusa in 0.1.413**
+
+**Chiusa in 0.1.413** ([D-443](DECISIONS.md#d-443)): il criterio è ritagliato per
+Tema, che è quello che il contenuto governa — quale domanda si apre è la sorte
+del mazzetto. Con una Risonanza spostata verso Terra nessun Tema apre meno della
+metà dei Consigli del più aperto, su due semi, e nessuna domanda è muta su tutti
+e due. Lo scarto fra due domande resta scritto come osservazione.
+
 
 Rimisurata in 0.1.377, e **dice un'altra cosa di quando è stata scritta**. Le
 domande erano dodici, sono sessanta: le mute sono passate da una su dodici a
@@ -693,8 +701,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
-muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
+muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
