@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**106 segni scritti sul mondo: 95 li legge qualcosa, 11 no.**
+**105 segni scritti sul mondo: 94 li legge qualcosa, 11 no.**
 
 **E 0 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -34,14 +34,14 @@ nessuno legge**, contati posto per posto.
 | posto | segni | scritti sul mondo | di cui muti | cos'e' |
 |---|---|---|---|---|
 | **stampato sulla tessera** | 15 | 0 | — | la natura del luogo: montagna, capitale, pascolo. Non cambia mai. |
-| **uno spazio sulla tessera** | 26 | 9 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
-| **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
+| **uno spazio sulla tessera** | 25 | 9 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
+| **un gettone accanto alla tessera** | 13 | 13 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
 | **sulla scheda della casa** | 57 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
 | **un gettone sul bordo della mappa** | 54 | 48 | **6** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
 | **il tavolo non lo mostra** | 0 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
-Ogni segno ha un posto. **179 stanno sul tavolo**, 0 sono contabilita'.
+Ogni segno ha un posto. **177 stanno sul tavolo**, 0 sono contabilita'.
 
 ---
 
@@ -95,11 +95,10 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `condition:mourning` | Conseguenza, carta Echo | Azione stampata, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:plundered` | Azione stampata, Conseguenza | Conseguenza | Risonanza, la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:rationed` | Azione stampata, Conseguenza, carta Asset | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
-| `condition:requisitioned` | Conseguenza | Azione stampata | la Regione di cui si discute |
 | `condition:starving` | Azione stampata, Conseguenza, Risonanza, carta Echo | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | Risonanza, bersaglio a segni, la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:unrest` | Azione stampata, Conseguenza, Risonanza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset, carta Echo, clausola di Consiglio | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `crown_dispossessed` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
-| `crown_divided` | Conseguenza | Conseguenza | Destino, Risonanza, fatto che dura, pesca delle domande, proposta |
+| `crown_divided` | Conseguenza | — | Destino, Risonanza, fatto che dura, pesca delle domande, proposta |
 | `crowned` | — | Conseguenza | proposta |
 | `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande, proposta |
 | `crystal_measured` | Azione stampata, carta Echo | — | pesca delle domande |

@@ -45,10 +45,10 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 
 | | distinti | applicazioni |
 |---|---|---|
-| **una casella di oggi lo sa dire** | 45 | 292 |
+| **una casella di oggi lo sa dire** | 45 | 285 |
 | **verbo giusto, posto che la casella non sa dire** | 1 | 2 |
 | **verbo che manca** | 0 | 0 |
-| | **46** | **294** |
+| | **46** | **287** |
 
 ## Le caselle che mancano
 
@@ -75,13 +75,11 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | `BUILD_STRUCTURE` | `$region_with:granary` | 4 | si alza Granaio in una Regione con #granaio |
 | `ADJUST_TENSION` | `TEN_ROADS` | 9 | Le Vie Interrotte sale |
 | `SET_GLOBAL_TAG` | *dove si discute* | 70 | il mondo registra: il grano e' stato requisito |
-| `REMOVE_PRESENCE` | `$rival` | 4 | il rivale se ne va dove si discute |
-| `SET_REGION_TAG` | *dove si discute* | 22 | dove si discute diventa #requisita |
-| `SET_STRUCTURE_GRADE` | *dove si discute* | 9 | Foresta dove si discute va al grado 2 |
-| `ADD_PRESENCE` | `$rival` | 2 | il rivale entra in una Regione confinante |
-| `SET_RELATION` | `$proponent|$rival` | 11 | il rapporto fra chi propone e il rivale cambia |
+| `SET_REGION_TAG` | *dove si discute* | 21 | dove si discute diventa insediamento: chi propone |
+| `SET_RELATION` | `$proponent|$rival` | 10 | il rapporto fra chi propone e il rivale cambia |
 | `SET_CONTROL` | *dove si discute* | 4 | dove si discute cambia padrone |
 | `SET_REGION_TAG` | `$rival_seat` | 2 | nella sede del rivale diventa #affamata |
+| `REMOVE_PRESENCE` | `$rival` | 3 | il rivale se ne va in una Regione con #pascolo |
 | `SET_REGION_TAG` | `$adjacent` | 7 | in una Regione confinante diventa #svuotata |
 | `REMOVE_PRESENCE` | `$proponent` | 3 | chi propone se ne va in una Regione confinante |
 | `SET_ENTITY_TAG` | `$proponent` | 29 | chi propone porta addosso: la fama |
@@ -89,12 +87,13 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | `ADJUST_TENSION` | `TEN_FAMINE` | 3 | La Carestia scende |
 | `SET_REGION_TAG` | `$region_with:crystal_site` | 3 | in una Regione con #cristallo diventa #sfruttata |
 | `SET_TENSION_VISIBILITY` | `TEN_AWAKENING` | 1 | Il Risveglio si apre a tutti |
+| `SET_STRUCTURE_GRADE` | *dove si discute* | 8 | Sito antico dove si discute va al grado 3 |
 | `SET_ENTITY_TAG` | `$rival` | 12 | il rivale porta addosso: scoperta: lo studio custodito |
 | `ADJUST_TENSION` | `TEN_AWAKENING` | 5 | Il Risveglio scende |
-| `REMOVE_GLOBAL_TAG` | *dove si discute* | 3 | il mondo dimentica: le Miniere sono state sigillate |
+| `REMOVE_GLOBAL_TAG` | *dove si discute* | 2 | il mondo dimentica: le Miniere sono state sigillate |
 | `REMOVE_REGION_TAG` | `$region_with:crystal_site` | 1 | in una Regione con #cristallo non e' piu' il sigillo |
 | `SET_ENTITY_ACTIVE` | `$entity_with:sleeping` | 1 | la casa che porta #dormiente esce dal tavolo, o ci rientra |
-| `ADJUST_TENSION` | `TEN_SUCCESSION` | 7 | La Successione scende di 2 |
+| `ADJUST_TENSION` | `TEN_SUCCESSION` | 6 | La Successione scende di 2 |
 | `REMOVE_REGION_TAG` | *dove si discute* | 14 | dove si discute non e' piu' #inquieta |
 | `ADJUST_TENSION` | *dove si discute* | 19 | la domanda in gioco scende |
 | `SET_CONTROL` | `$rival_seat` | 2 | nella sede del rivale cambia padrone |
@@ -115,5 +114,6 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | `ADJUST_TENSION` | `TEN_RELIC` | 2 | La Reliquia scende |
 | `SET_REGION_TAG` | `$region_with:mine` | 2 | in una Regione con #miniera diventa #svuotata |
 | `ADJUST_TENSION` | `TEN_ASH` | 4 | La Cenere che Sale scende di 2 |
+| `ADD_PRESENCE` | `$rival` | 1 | il rivale entra in una Regione confinante |
 | `BUILD_STRUCTURE` | `$region_with:wild` | 2 | si alza Presidio in una Regione con #selvaggio |
 | `SET_TENSION_VISIBILITY` | `TEN_RELIC` | 1 | La Reliquia si apre a tutti |

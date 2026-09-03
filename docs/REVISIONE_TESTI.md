@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4243 testi in lettura.
+possono spostare nella frase, non togliere. 4233 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -2346,7 +2346,7 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 
 
 **`TEN_FAMINE, si accende quando — ?`**
-> qualcuno posa la #fame, il #requisito o il #malcontento
+> qualcuno posa la #fame o il #malcontento
 
 
 **`TEN_FAMINE, si accende quando — ?`**
@@ -3486,7 +3486,7 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 
 
 **`TEN_LEVY, si accende quando — ?`**
-> qualcuno posa la #fame o il #requisito
+> qualcuno posa la #fame
 
 
 **`TEN_LEVY, si accende quando — ?`**
@@ -3719,6 +3719,10 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 
 **`TEN_MARSH_FEVER, si accende quando — ?`**
 > una casa entra nella #palude, o la lascia
+
+
+**`TEN_MARSH_FEVER, si accende quando — ?`**
+> qualcuno posa la #fame o il #magro
 
 
 **`TEN_MARSH_FEVER, presagio al 5`**
@@ -10737,12 +10741,6 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 > Il sigillo spezzato in due metà, e nessuna delle due restituita.
 
 
-**`CNS_CROWN_REUNITED`**
-> Un Solo Trono
-
-> I due titoli tornano uno. Non è una riconciliazione: è una conta, e qualcuno l'ha persa.
-
-
 **`CNS_CRYSTAL_EXPLOITED`**
 > La Miniera Aperta
 
@@ -11033,16 +11031,6 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 > Il Pedaggio Scritto
 
 > Un prezzo uguale per tutti, riscosso da uno solo. La strada torna sicura e cara.
-
-
-**`CNS_VALLEY_CLEARED`**
-> La Valle Sgomberata
-
-> Requisire il grano vuol dire decidere chi sta sulla terra che lo produce. I carri che erano fermi nella Valle vengono rimessi in strada.
-
-
-**`CNS_VALLEY_CLEARED, cicatrice`**
-> Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra.
 
 
 **`CNS_VALLEY_DRAINED`**
@@ -11664,7 +11652,7 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 **`AST_AUTHORITY_CENSUS, azione 2`**
 > Contare i sacchi
 
-> Togli #razionato o #requisito dal luogo.
+> Togli #razionato dal luogo.
 
 
 **`AST_AUTHORITY_CENSUS, risonanza`**
@@ -12004,7 +11992,7 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 
 
 **`AST_BONDS_GUEST_RIGHT, risonanza`**
-> Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Fede +2.
+> Scalda Terra +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.
 
 
 **`AST_BONDS_HOSTAGE`**
@@ -14072,12 +14060,6 @@ possono spostare nella frase, non togliere. 4243 testi in lettura.
 
 
 **`STR_FOREST, grado 0`**
-> Bosco diradato
-
-> Si vede attraverso. Nessuno ha deciso di tagliarla tutta: e' stata tagliata un carro per volta.
-
-
-**`STR_FOREST, grado 0`**
 > Selva maledetta
 
 > Ci si entra ancora, e si esce con meno di quello con cui si e' entrati. Nessuno sa dire da quando, e tutti sanno da quando.
@@ -14459,14 +14441,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > razionata
 
 > razionata
-
-
-**`condition:requisitioned`**
-> requisito
-
-> requisita
-
-> requisita
 
 
 **`condition:starving`**
@@ -14907,10 +14881,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`place:stripped_site`**
 > sito saccheggiato
-
-
-**`place:thinned_wood`**
-> bosco diradato
 
 
 **`price_in_lives`**

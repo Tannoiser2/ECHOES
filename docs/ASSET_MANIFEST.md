@@ -237,7 +237,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_WINTER | L'Inverno Lungo | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_WOLVES | I Lupi al Limitare | SURVIVAL | 2 | 6 | OPEN | 1 |
 
-## Map overlays (33)
+## Map overlays (32)
 Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il dominio di Tensione usato da INFLUENCE; `structure:`, `condition:` e `scar:` sono livelli grafici distinti (spec §19.5).
 
 | tag | layer |
@@ -254,7 +254,6 @@ Ogni tag di Regione che il gioco puo mostrare sulla mappa. `domain:` marca il do
 | `condition:mourning` | condition |
 | `condition:plundered` | condition |
 | `condition:rationed` | condition |
-| `condition:requisitioned` | condition |
 | `condition:starving` | condition |
 | `condition:unrest` | condition |
 | `crystal_site` | base |
