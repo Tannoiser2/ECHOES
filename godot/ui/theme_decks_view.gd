@@ -14,10 +14,19 @@ extends Control
 ## carta girata quando c'e' — che e' esattamente cio' che si vede al tavolo.
 ##
 ## Non decide niente e non legge una regola: prende la sessione e disegna.
+##
+## **E da D-444 costruisce nodi, non solo pennellate.** Ogni mazzetto e' un
+## bottone con sopra il nome del Tema e, sotto, una riga che dice cosa si
+## legge: la carta girata, o quanto manca a girarla. Il dorso e i gettoni
+## restano dipinti — sono cartone, non parole — ma quello che si legge e si
+## tocca e' un nodo: la sonda della pagina lo misura, un lettore di schermo lo
+## dice, e un dito lo trova.
 
 const Glyph := preload("res://ui/glyph.gd")
 
-## I sei Temi in due file da tre, come i mazzetti si posano.
+## I sei Temi in due file da tre quando la vista e' un riquadro, in una fila
+## sola quando e' una striscia larga sopra la mappa (D-444): sul tavolo i
+## mazzetti stanno in fila lungo il bordo.
 const COLUMNS: int = 3
 const DECK_RATIO: float = 1.4
 const TOKEN: float = 9.0
@@ -28,12 +37,16 @@ var _themes: Array = []
 ## Il mazzetto sotto il dito, per il suggerimento.
 var _hovered: String = ""
 
+## I nodi di ogni mazzetto: `theme_id -> {"button": Button, "said": Label}`.
+var _nodes: Dictionary = {}
+
 ## Emesso quando si tocca un mazzetto: chi guarda vuole leggere la sua carta.
 signal deck_pressed(theme_id: String)
 
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	resized.connect(_relayout)
 	resized.connect(queue_redraw)
 
 
@@ -41,7 +54,91 @@ func render(session: RefCounted) -> void:
 	_session = session
 	if _themes.is_empty():
 		_themes = session.data.themes.keys()
+	_ensure_nodes()
+	_relayout()
+	_say()
 	queue_redraw()
+
+
+## Quante colonne: sei in fila se la vista e' una striscia, tre per due se e'
+## un riquadro. Il numero esce dalla forma, non da una costante.
+func _columns() -> int:
+	if size.x >= size.y * 3.0:
+		return maxi(1, _themes.size())
+	return COLUMNS
+
+
+## Un bottone e una riga per mazzetto, una volta sola.
+func _ensure_nodes() -> void:
+	for theme_id in _themes:
+		var id: String = str(theme_id)
+		if _nodes.has(id):
+			continue
+		var button := Button.new()
+		button.flat = true
+		button.focus_mode = Control.FOCUS_NONE
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.text = str((_session.data.themes[id] as Dictionary).get("title", id)).to_upper()
+		button.add_theme_font_size_override("font_size", 11)
+		button.add_theme_color_override("font_color", Color("#e8dcc8"))
+		button.add_theme_color_override("font_hover_color", Color("#e8b563"))
+		button.add_theme_color_override("font_pressed_color", Color("#e8b563"))
+		button.add_theme_color_override("font_focus_color", Color("#e8dcc8"))
+		button.pressed.connect(func() -> void: deck_pressed.emit(id))
+		add_child(button)
+		var said := Label.new()
+		said.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		said.add_theme_font_size_override("font_size", 12)
+		said.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		said.clip_text = true
+		add_child(said)
+		_nodes[id] = {"button": button, "said": said}
+
+
+## Ogni nodo al suo posto: il bottone copre il mazzetto intero (e' il
+## bersaglio del dito), la riga sta in fondo al dorso.
+func _relayout() -> void:
+	for i in range(_themes.size()):
+		var id: String = str(_themes[i])
+		if not _nodes.has(id):
+			continue
+		var box: Rect2 = _slot(i)
+		var strip: float = TOKEN * 2.2
+		var deck: Rect2 = Rect2(
+			box.position + Vector2(0.0, strip), Vector2(box.size.x, box.size.y - strip)
+		)
+		var button: Button = (_nodes[id] as Dictionary)["button"]
+		button.position = deck.position
+		button.size = deck.size
+		# Dichiarata, non solo ottenuta: e' quello che la sonda della pagina legge.
+		button.custom_minimum_size = deck.size
+		var said: Label = (_nodes[id] as Dictionary)["said"]
+		said.position = deck.position + Vector2(8.0, deck.size.y - 22.0)
+		said.size = Vector2(deck.size.x - 12.0, 18.0)
+
+
+## La carta girata, o quanto manca a girarla: la sola cosa che il giocatore
+## deve poter leggere da lontano.
+func _say() -> void:
+	var counts: Dictionary = _session.world.get("theme_tokens", {}) as Dictionary
+	var fronts: Dictionary = _session.world.get("theme_front", {}) as Dictionary
+	var reveal: int = int(_session.tensions.reveal_at())
+	for theme_id in _themes:
+		var id: String = str(theme_id)
+		if not _nodes.has(id):
+			continue
+		var fallen: int = int(counts.get(id, 0))
+		var front: String = str(fronts.get(id, ""))
+		var said: Label = (_nodes[id] as Dictionary)["said"]
+		var tint: Color = Color("#8a8172")
+		if front != "":
+			said.text = str((_session.data.tensions[front] as Dictionary)["title"])
+			tint = Color("#e8b563")
+		elif fallen > 0:
+			said.text = "coperto — %d al giro" % maxi(0, reveal - fallen)
+		else:
+			said.text = "freddo"
+		said.add_theme_color_override("font_color", tint)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -68,9 +165,10 @@ func _deck_at(point: Vector2) -> String:
 ## Il posto di un mazzetto: due file da tre, e sopra ogni mazzetto la striscia
 ## dove cadono i gettoni.
 func _slot(index: int) -> Rect2:
-	var rows: int = int(ceil(float(maxi(1, _themes.size())) / float(COLUMNS)))
-	var cell: Vector2 = Vector2(size.x / float(COLUMNS), size.y / float(rows))
-	var at: Vector2 = Vector2(float(index % COLUMNS), float(index / COLUMNS)) * cell
+	var columns: int = _columns()
+	var rows: int = int(ceil(float(maxi(1, _themes.size())) / float(columns)))
+	var cell: Vector2 = Vector2(size.x / float(columns), size.y / float(rows))
+	var at: Vector2 = Vector2(float(index % columns), float(index / columns)) * cell
 	return Rect2(at + Vector2(4.0, 4.0), cell - Vector2(8.0, 8.0))
 
 
@@ -78,14 +176,11 @@ func _draw() -> void:
 	if _session == null or _themes.is_empty():
 		return
 	var counts: Dictionary = _session.world.get("theme_tokens", {}) as Dictionary
-	var fronts: Dictionary = _session.world.get("theme_front", {}) as Dictionary
-	var reveal: int = int(_session.tensions.reveal_at())
 	var font: Font = ThemeDB.fallback_font
 	for i in range(_themes.size()):
 		var theme_id: String = str(_themes[i])
 		var box: Rect2 = _slot(i)
 		var fallen: int = int(counts.get(theme_id, 0))
-		var front: String = str(fronts.get(theme_id, ""))
 
 		# La striscia dei gettoni sta **sopra** il mazzetto, come sul tavolo.
 		var strip: float = TOKEN * 2.2
@@ -103,14 +198,6 @@ func _draw() -> void:
 		if _hovered == theme_id:
 			draw_rect(deck.grow(2.0), Color("#e8b563"), false, 1.0)
 
-		var title: String = str(
-			(_session.data.themes[theme_id] as Dictionary).get("title", theme_id)
-		)
-		draw_string(
-			font, deck.position + Vector2(8.0, 16.0), title.to_upper(),
-			HORIZONTAL_ALIGNMENT_LEFT, deck.size.x - 12.0, 11, Color("#e8dcc8")
-		)
-
 		# I gettoni caduti, uno per uno: quello che il tavolo **vede**. Quanto
 		# valgono non si dice — sono coperti fino a fine Atto (D-261).
 		for token in range(mini(fallen, 8)):
@@ -124,19 +211,3 @@ func _draw() -> void:
 				font, box.position + Vector2(TOKEN * 15.0, TOKEN + 4.0), "+%d" % (fallen - 8),
 				HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Color("#b06b46")
 			)
-
-		# La carta girata, o quanto manca a girarla: la sola cosa che il
-		# giocatore deve poter leggere da lontano.
-		var said: String = ""
-		var tint: Color = Color("#8a8172")
-		if front != "":
-			said = str((_session.data.tensions[front] as Dictionary)["title"])
-			tint = Color("#e8b563")
-		elif fallen > 0:
-			said = "coperto — %d al giro" % maxi(0, reveal - fallen)
-		else:
-			said = "freddo"
-		draw_string(
-			font, deck.position + Vector2(8.0, deck.size.y - 10.0), said,
-			HORIZONTAL_ALIGNMENT_LEFT, deck.size.x - 12.0, 12, tint
-		)

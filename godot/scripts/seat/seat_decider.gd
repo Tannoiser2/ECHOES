@@ -632,8 +632,52 @@ func choose_benefits(
 			return fallback.choose_benefits(entity_id, context, menu, session)
 		if picked >= ids.size():
 			break
-		bought.append(str(ids[picked]))
+		bought.append(await _place_on_a_question(entity_id, str(ids[picked]), menu, session))
 	return bought
+
+
+## **«La sceglie chi propone»** (ISSUES 106, D-438). Una casella che muove
+## una domanda si posa di suo su quella in discussione; ma i segnalini stanno
+## tutti sul tavolo, e chi gioca col dito puo' indicarne un altro. Si chiede
+## solo quando c'e' qualcosa da scegliere: piu' di una domanda in gioco, e una
+## voce che non ne chiama gia' una per nome sulla carta.
+func _place_on_a_question(
+	entity_id: String, voice_id: String, menu: Array, session: RefCounted
+) -> Variant:
+	var voice: Dictionary = {}
+	for candidate in menu:
+		if str((candidate as Dictionary)["id"]) == voice_id:
+			voice = candidate as Dictionary
+			break
+	if voice.is_empty() or not PolicyDecider._names_a_question(voice):
+		return voice_id
+	var discussed: String = str(session.confluence.current.get("tension_id", ""))
+	var ids: Array = (session.world["tensions"] as Dictionary).keys()
+	ids.sort()
+	var labels: Array = []
+	var others: Array = []
+	for tension_id in ids:
+		if str(tension_id) == discussed or session.tensions.value(str(tension_id)) <= 0:
+			continue
+		others.append(str(tension_id))
+		labels.append("%s (a %d)" % [
+			str((session.data.tensions.get(str(tension_id), {}) as Dictionary).get(
+				"title", tension_id
+			)),
+			session.tensions.value(str(tension_id)),
+		])
+	if others.is_empty():
+		return voice_id
+	labels.push_front("Quella di cui si discute")
+	var picked: int = await _choose(
+		"  %s, su quale domanda posi la pedina «%s»?" % [
+			_name(entity_id, session), str(voice.get("text", voice_id)),
+		],
+		labels
+	)
+	if picked <= 0:
+		return voice_id
+	return {"id": voice_id, "question": str(others[picked - 1])}
 
 
 ## **E gli avversari scelgono in che moneta paga** (D-280): il primo seggio del
@@ -737,7 +781,11 @@ func choose_counterclaim(
 	]
 	# **Le caselle comprate sulla carta** (D-304): si rivendica una delle voci
 	# che il proponente ha appena posato, non una frase di un altro elenco.
-	var benefits: Array = offer.get("benefits", []) as Array
+	var benefits: Array = []
+	for entry in (offer.get("benefits", []) as Array):
+		# La pedina puo' portare il nome di una domanda (D-416): si rivendica
+		# la voce, e l'id sta dentro.
+		benefits.append(PolicyDecider._pedina_id(entry))
 	for voice_id in benefits:
 		labels.append("Rivendica «%s»: se la proposta passa, quella voce parla di te" % [
 			session.confluence._voice_text("benefits", str(voice_id)),

@@ -62,7 +62,7 @@ Costa 1 Occasione. In alternativa la impegni al Consiglio, e vale forza.
 > angolo: **1**
 > DOVE  Scegli un luogo con #capitale, #granaio o #commercio. Vale anche il #porto, e ogni luogo del dominio del #territorio.
 > ① Contare le teste — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
-> ② Contare i sacchi — Togli #razionato o #requisito dal luogo.
+> ② Contare i sacchi — Togli #razionato dal luogo.
 > SEMPRE  Potere +1 · se il bersaglio ha #pascolo: +1 ancora e posa #inquieta
 > AL CONSIGLIO  1 · +1 se si discute di Potere o Vie
 > IMPEGNI  +1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #contesa

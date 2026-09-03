@@ -347,67 +347,6 @@
       ]
     },
     {
-      "id": "CNS_VALLEY_CLEARED",
-      "title": "La Valle Sgomberata",
-      "category": "MIGRATION",
-      "description": "Requisire il grano vuol dire decidere chi sta sulla terra che lo produce. I carri che erano fermi nella Valle vengono rimessi in strada.",
-      "creates_scar": true,
-      "scar": {
-        "region_id": "$region_focus",
-        "tag": "scar:emptied",
-        "description": "Le piste dei carri incise nel terreno basso, e nessuno che le ripercorra."
-      },
-      "effects": [
-        {
-          "type": "REMOVE_PRESENCE",
-          "target": {
-            "kind": "entity",
-            "id": "$rival"
-          },
-          "payload": {
-            "region_id": "$region_focus",
-            "optional": true
-          },
-          "note": "optional: la Valle può essere già sgombera."
-        },
-        {
-          "type": "SET_REGION_TAG",
-          "target": {
-            "kind": "region",
-            "id": "$region_focus"
-          },
-          "payload": {
-            "tag": "condition:requisitioned"
-          }
-        },
-        {
-          "type": "SET_STRUCTURE_GRADE",
-          "target": {
-            "kind": "region",
-            "id": "$region_focus"
-          },
-          "payload": {
-            "structure_type": "STR_FOREST",
-            "grade": 2,
-            "optional": true
-          },
-          "note": "D-163: sgomberare una valle vuol dire anche tagliarla. Il bosco passa a diradato — non e' di nessuno, quindi non e' una perdita per qualcuno: e' una perdita per chi ci passera'."
-        },
-        {
-          "type": "ADD_PRESENCE",
-          "target": {
-            "kind": "entity",
-            "id": "$rival"
-          },
-          "payload": {
-            "region_id": "$adjacent",
-            "optional": true
-          },
-          "note": "Le domande spostano la mappa (D-223). «I carri che erano fermi nella Valle vengono rimessi in strada»: rimessi in strada vuol dire che arrivano da qualche parte. Toglierli e basta era uno spopolamento, non una requisizione. `optional` perche' il tetto delle pedine vale anche per il mondo: chi le ha gia' tutte sul tavolo non ne ha una da mandare."
-        }
-      ]
-    },
-    {
       "id": "CNS_CROWN_DISPOSSESSED",
       "title": "Il Titolo che non Vale più",
       "category": "CONTROL",
@@ -1173,7 +1112,7 @@
           },
           "payload": {
             "structure_type": "STR_FOREST",
-            "grade": 3,
+            "grade": 2,
             "optional": true
           },
           "note": "D-163: un posto lasciato non torna com'era. Il bosco diventa selva, e da li' in poi chi ci sta dentro tiene una carta in meno — chiunque sia."
@@ -1431,45 +1370,6 @@
             "optional": true
           },
           "note": "D-165: riaprire le gallerie apre anche quello che c'era prima. Da qui chi ci sta impara piu' in fretta — chiunque sia."
-        }
-      ]
-    },
-    {
-      "id": "CNS_CROWN_REUNITED",
-      "title": "Un Solo Trono",
-      "category": "CONTROL",
-      "description": "I due titoli tornano uno. Non è una riconciliazione: è una conta, e qualcuno l'ha persa.",
-      "effects": [
-        {
-          "type": "REMOVE_GLOBAL_TAG",
-          "target": {
-            "kind": "world",
-            "id": "WORLD"
-          },
-          "payload": {
-            "tag": "crown_divided"
-          }
-        },
-        {
-          "type": "SET_RELATION",
-          "target": {
-            "kind": "relation",
-            "id": "$proponent|$rival"
-          },
-          "payload": {
-            "level": "HOSTILE"
-          },
-          "note": "Il prezzo: chi ha perso la conta non ringrazia."
-        },
-        {
-          "type": "ADJUST_TENSION",
-          "target": {
-            "kind": "tension",
-            "id": "TEN_SUCCESSION"
-          },
-          "payload": {
-            "delta": 1
-          }
         }
       ]
     },
@@ -2078,7 +1978,7 @@
           },
           "payload": {
             "structure_type": "STR_FOREST",
-            "grade": 3,
+            "grade": 2,
             "optional": true
           },
           "note": "D-163: quando le gallerie si lasciano, quello che resta sopra smette di essere un bosco. Nessuno lo ha maledetto: e' successo, e da li' in poi chi ci sta dentro tiene una carta in meno."

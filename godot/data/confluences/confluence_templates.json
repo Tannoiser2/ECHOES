@@ -41,8 +41,7 @@
             }
           ],
           "success_consequences": [
-            "CNS_ROYAL_GRANARY",
-            "CNS_VALLEY_CLEARED"
+            "CNS_ROYAL_GRANARY"
           ],
           "echo_summary": "Il grano $of_region passò sotto il sigillo di $proponent.",
           "echo_summaries": {
@@ -503,7 +502,6 @@
             }
           ],
           "success_consequences": [
-            "CNS_CROWN_REUNITED",
             "CNS_HEIR_NAMED"
           ],
           "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimenticò.",

@@ -2850,7 +2850,7 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
-### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte — **rimisurata in 0.1.377: quei tre difetti non ci sono piu', ce n'e' un altro**
+### 59. ✅ Due verbi su cinque non si giocano, e una famiglia su sei e' inerte — **rimisurata in 0.1.377: quei tre difetti non ci sono piu', ce n'e' un altro** — CHIUSA in 0.1.412: una carta si gioca in due modi
 
 `regole` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_card_ledger.gd`)
 
@@ -2983,7 +2983,21 @@ calata**, Patto Rotto.
 
 ---
 
-### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
+### ✅ Chiusa in 0.1.412: una carta si gioca in due modi ([D-442](DECISIONS.md#d-442))
+
+Il libro mastro lo dice nella sua prima riga: una carta *si spende per agire
+oppure si impegna al voto*. Contando la spesa nei due modi, 100 anni col seme
+7000: MUOVERE 89,2%, TRAMARE 87,2%, RIVENDICARE 76,3%, FORGIARE 70,7%,
+**INFLUENZARE 59,9%** — 0,67 del più spesa, sopra la metà. Zero carte mai
+calate. INFLUENZARE è la moneta più votata (345 impegnate) e non contenuto
+morto, come questa voce aveva già scritto in 0.1.377.
+
+**Contando la sola calata resta al 30,0% contro il 78,2%**, ed è scritto: la
+quota di una per giro (D-021) è il 26,9% delle pareti alla mano, e alzarla
+sarebbe una regola, non contenuto.
+
+
+### 60. ✅ Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato** — CHIUSA in 0.1.413: lo scarto si misura per Tema, e Terra si apre
 
 `contenuto` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_question_ledger.gd`)
 
@@ -3099,6 +3113,20 @@ partite (oggi: una), e lo scarto fra la piu' e la meno ascoltata sta sotto
 **6×** (oggi 6,1×).
 
 ---
+
+### ✅ Chiusa in 0.1.413: lo scarto si misura per Tema ([D-443](DECISIONS.md#d-443))
+
+Quale domanda si apre è la sorte del mazzetto (D-261); quante volte un Tema si
+apre è il Calore che le Risonanze gli portano, ed è l'unica cosa che il
+contenuto governa. Il criterio ritagliato: **nessun Tema apre meno della metà
+dei Consigli del Tema più aperto, e nessuna domanda resta muta su tutti e due i
+semi**. Terra apriva 37 Consigli contro 87 di Fede (0,43): con *Diritto di
+Ospitalità* che scalda Terra invece di Fede — contava già Terra al Consiglio —
+passa a **50 contro 76** (0,55) col 7000 e **58 contro 77** (0,51) col 8000.
+Nessuna domanda è muta su tutti e due i semi; la *Febbre delle Paludi* ha una
+seconda miccia. Lo scarto fra due domande resta scritto come osservazione (7,5×
+e 16,3×): cambia più col seme che con la modifica. Cancello 0 su 8.
+
 
 ### 100. ✅ Le caselle «si accende quando» sono ancora un pavimento derivato
 
@@ -4704,7 +4732,7 @@ un numero e non a occhio.
 
 ---
 
-### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
+### 82. ✅ La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono — CHIUSA in 0.1.407: due mai visti, e sono quelli decisi
 
 `contenuto` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
 e' una potatura di componenti, e si fa quando la scatola si stampa ·
@@ -4813,6 +4841,17 @@ si litiga di più e si conclude di meno. Cancello **0 su 8** sui due tavoli. Se 
 memoria vale più della fame, tornare indietro è una riga.
 
 ---
+
+### ✅ Chiusa in 0.1.407: due mai visti, e sono quelli decisi
+
+Rimisurata con la stessa sonda, 40 anni col seme 7000 e i due tavoli ad anni
+alterni ([D-437](DECISIONS.md#d-437)): **32 tipi su 34 visti almeno una volta**,
+e i mai visti sono **due** — `condition:requisitioned`, che e' del Consiglio per
+costruzione e ricade sulla [56](#56), e `scar:dragonfall`, la Cicatrice rara che
+il committente ha deciso di tenere. `scar:sealed_border` esce 3 anni su 40. Il
+«fatto quando» e' quello: non si pota niente, e la coda resta scritta come
+coda.
+
 
 ### 81. ✅ Una soglia non puo' leggere una memoria — chiusa in 0.1.261
 
@@ -5948,7 +5987,7 @@ che [D-035](DECISIONS.md#d-035) chiama contenuto che non esiste.
 
 ---
 
-### 65. Tutta la pagina dell'app va rivista
+### 65. ✅ Tutta la pagina dell'app va rivista — CHIUSA in 0.1.414: la pagina mostra il tavolo
 
 `ux` · voluta dal committente · **aperta in 0.1.211**
 
@@ -6052,6 +6091,30 @@ che la direzione di 0.1.218 chiede — *un gioco da tavolo con un'app di support
 Il «fatto quando» chiede due cose: **la decisione scritta** — questa — **e che la
 pagina la segua**. La seconda è lavoro mio, e il cartellino `da-decidere` è
 tolto.
+
+### ✅ Chiusa in 0.1.414: la pagina segue la decisione ([D-444](DECISIONS.md#d-444))
+
+**Il tavolo prende il centro, e ci sta una cosa alla volta.** I sei mazzetti in
+fila lungo il bordo alto, come bottoni col nome del Tema; la mappa che
+costruisce nodi sopra la pittura — il nome di ogni tessera, la domanda che ci
+abita come un posto alto un dito dove posare la carta, le parole dei segni
+sempre sotto i pezzi e non più solo sotto il mouse; chi siede in una striscia
+sotto la mappa, un posto per casa; e il racconto, le ultime tre righe dette
+come si direbbero a voce. A destra 240 px con quello che serve per decidere
+adesso. La colonna di stato e il verbale non stanno più intorno al tavolo: sono
+due pagine, *La mia casa* e *Il verbale*, che si aprono al posto del tavolo.
+
+La sonda di questa voce lo misura, sulla stessa partita:
+
+| | 0.1.413 | 0.1.414 |
+|---|---|---|
+| pannelli che dipingono invece di costruire | 2 | **0** |
+| bersagli che si toccano | 7 | **25**, nessuno sotto i 44 px |
+| larghezza chiesta | **788** in fila, senza la mappa | **678** su 768, e la mappa è dentro |
+
+Le tre riviste sono fatte: la leggibilità (D-384), l'impaginazione e l'idea di
+cosa si guarda (D-444). Quello che resta è **l'occhio** — §5ter, il giro su un
+iPad vero — ed è la [63](#63), che da qui si può verificare giocandoci.
 
 ---
 
@@ -6494,7 +6557,7 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati
+### 56. ✅ Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati — CHIUSA in 0.1.410: due escono dalla scatola, e il criterio sta sul pavimento del rumore
 
 `contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
 ([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
@@ -6720,6 +6783,24 @@ mai offerte**, perché vivono in un posto che il Consiglio ha smesso di
 attraversare.
 
 ---
+
+### ✅ Chiusa in 0.1.410: due escono dalla scatola ([D-440](DECISIONS.md#d-440))
+
+Misurate prima su 200 anni in saga: **6 su 65** mai uscite. Due escono —
+`CNS_CROWN_REUNITED` e `CNS_VALLEY_CLEARED` — e con la seconda esce
+**#requisito**, che era l'unica a scrivere. Quattro restano con la ragione
+scritta: `CNS_COST_DEBT` e `CNS_COST_EMPTIED` stanno sull'unica strada aperta a
+tutti delle loro domande (la prima sempre scelta e mai passata su due semi: è la
+riga da cui ripartire; la seconda l'ha difesa `test_questions_asked` prima del
+merge, dopo che il validatore l'aveva chiamata gemella di una proposta di
+un'altra domanda), `CNS_DRAGON_SLAIN` e `CNS_SEALED_VALLEY` sono le uniche porte
+delle due Cicatrici rare che il committente tiene (D-427).
+
+Rimisurate su due semi sui dati definitivi: **5 su 63** col 7000 e **4 su 63**
+col 8000, e solo tre sono le stesse — a 200 anni una Conseguenza che esce una o
+due volte cambia seme e sparisce. Il criterio dice quello che può dire; oltre, misura il seme. Cancello
+0 su 8, Verità 133 → 132 sul misto, 145 → 145 sull'uniforme.
+
 
 ### 55. ✅ Il ciclo del gioco è rotto in tre punti — chiusa in 0.1.198 per tre quarti
 
@@ -7562,7 +7643,7 @@ e la vede cadere.
 
 ---
 
-### 106. «La sceglie chi propone»: la pedina non porta con sé il nome della domanda
+### 106. ✅ «La sceglie chi propone»: la pedina non porta con sé il nome della domanda — CHIUSA in 0.1.408: la porta, e il cervello la indica
 
 `regole` · `motore` · aperta in 0.1.308
 
@@ -7634,6 +7715,22 @@ domanda alzare o abbassare cambia il gioco, e va misurato sui 100 semi.
 
 
 ---
+
+### ✅ Chiusa in 0.1.408: il cervello indica, la persona sceglie ([D-438](DECISIONS.md#d-438))
+
+Le tre righe del «fatto quando», misurate insieme:
+
+| | |
+|---|---|
+| un proponente può posare la pedina su una domanda che nomina | ✅ dal motore (D-416), e adesso **anche dal cervello e dall'hotseat** |
+| il verbale dice quale | ✅ «— su La Reliquia» |
+| la sonda mostra se la casella smette di essere quella che nessuno compra | ✅ **91 su 728** offerte (era 22 su 700 in 0.1.387), e **17** pedine su un'altra domanda, indicata col dito |
+
+Il cervello pesa la casella su ogni segnalino in tavola **prima** di
+confrontarla con le altre, e tiene la migliore; a parità non nomina niente.
+Nell'hotseat si chiede *«su quale domanda?»* solo quando c'è da scegliere.
+Cancello 0 su 8 sui due tavoli, Verità ferme (133 → 133, 145 → 146).
+
 
 ### 107. ✅ Una carta Eco non ha una scelta: e' un evento che decidi di far accadere — CHIUSA in 0.1.328
 
@@ -7957,7 +8054,7 @@ qualcosa, contro i 14 gettoni di condizione.
 riga che dice perche' non gliene serve uno.
 
 
-### 111. Le dieci Pietre che non si alzano mai, e sono due difetti diversi
+### 111. ✅ Le dieci Pietre che non si alzano mai, e sono due difetti diversi — CHIUSA in 0.1.411: il bosco diradato esce, gli altri tre hanno il loro posto
 
 `regole` · `contenuto` · aperta in 0.1.316 ([D-352](DECISIONS.md#d-352))
 
@@ -8165,6 +8262,19 @@ le compra mai»*, e adesso le compra.
 > difetto e non lo e': porta un id dinamico, e la forma nuda non compare mai.
 
 ---
+
+### ✅ Chiusa in 0.1.411: il bosco diradato esce dalla scatola ([D-441](DECISIONS.md#d-441))
+
+Dei quattro gradi, **il bosco diradato** non aveva più nessuno che lo scrivesse
+(la sua Conseguenza è uscita con D-440) ed esce: la Foresta ha due gradi. **Il
+passo franato e la sorgente bassa** arrivano in saga — le loro Conseguenze
+escono in 200 anni su due semi, e il passo è franato una volta in trenta
+Chronicle — e il criterio è ritagliato dove il gioco li pone: *in cento partite
+o in duecento anni di saga*. **La città** non arriva nemmeno in trenta Chronicle,
+ed è scritto; resta perché la scala Villaggio → Borgo → Città è una tua
+decisione ([40](#40)), e il Borgo in cento partite arriva 12 volte. Cancello 0
+su 8, Verità identiche.
+
 
 ### 112. ✅ Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
 
@@ -9573,7 +9683,7 @@ dice mai **cosa** debba dire.
 
 ---
 
-### 128. Cinquantanove carte su cento in mano non sanno dire niente
+### 128. ✅ Cinquantanove carte su cento in mano non sanno dire niente — CHIUSA in 0.1.409: nessuna carta murata dalla mappa
 
 `regole` · **aperta in 0.1.394** — domanda del committente:
 
@@ -9837,3 +9947,17 @@ fisica: *«**due** Azioni, e due scelte diverse davvero»*.
 d'autore**, non una taratura: cambia cosa fa la carta. È la cosa che muoverebbe
 di più il numero, e aspetta una parola.
 
+### ✅ Chiusa in 0.1.409: zero carte murate dalla mappa ([D-439](DECISIONS.md#d-439))
+
+La sonda non sapeva distinguere *«non arriva su quella tessera»* da *«non
+arriva su nessuna»*: contava la ragione più ripetuta, e una carta rifiutata da
+una tessera per i segni e dalle altre cinque per una quota finiva fra i difetti
+del bersaglio. Adesso guarda **faccia per faccia**: se ogni tessera pescata ha
+rifiutato una faccia per i soli segni, la carta è **murata dalla mappa**.
+
+100 anni, seme 7000, tavolo misto: **0 su 1.882** rifiuti del tavolo. I 109 «a
+segni» sono tutti *non qui, altrove sì*, e Diritto di Ospitalità rifiuta il
+Bosco perché porta un segno che la carta vieta. È il «fatto quando».
+
+**Resta scritta, per il committente e non per questa voce**: il 63,9% della
+parete cade sulle diciotto carte con lo stesso verbo su tutte e due le facce.

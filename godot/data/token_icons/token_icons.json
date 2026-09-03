@@ -73,13 +73,6 @@
       "soggetto": "una ciotola con una linea incisa a meta'"
     },
     {
-      "id": "TOK_CONDITION_REQUISITIONED",
-      "tag": "condition:requisitioned",
-      "fustella": "REGIONI",
-      "rappresenta": "Il raccolto non e' piu' di chi l'ha fatto: se l'e' preso l'autorita'.",
-      "soggetto": "una spiga con un sigillo appeso al gambo"
-    },
-    {
       "id": "TOK_CONDITION_STARVING",
       "tag": "condition:starving",
       "fustella": "REGIONI",

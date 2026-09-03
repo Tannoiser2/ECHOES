@@ -481,7 +481,7 @@ Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le ba
 
 > E le barche ferme, di chi restano?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -568,7 +568,6 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Si puo' proporre solo se:** Solo chi porta la corona può requisire
 - **Se passa — Il Granaio del Trono:** si alza Granaio in una Regione con #granaio · Le Vie Interrotte sale · il mondo registra: il grano e' stato requisito
-- **Se passa — La Valle Sgomberata:** il rivale se ne va dove si discute · dove si discute diventa #requisita · Foresta dove si discute va al grado 2 · il rivale entra in una Regione confinante · e resta una Cicatrice: lo sgombero dove si discute
 
 ### Chi propone apra la Regione di cui si discute a chi giunge da levante: chi ne lavora la terra, ne mangi.
 
@@ -653,7 +652,7 @@ Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
 
 > La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
 
 ### Si riaprono e si tengono aperti: l'acqua che ha dove andare non sale.
 
@@ -944,7 +943,7 @@ Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu'
 
 > Ai margini della Regione di cui si discute, a chi si obbedisce davvero?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1263,7 +1262,7 @@ Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno d
 
 > E chi resta fuori, dove va?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1296,7 +1295,7 @@ Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede 
 
 > Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?
 
-- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 3 · e resta una Cicatrice: l'abbandono dove si discute
+- **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
 
 **Le clausole che si possono attaccare:**
 
@@ -1366,7 +1365,7 @@ Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodi
 
 > Chi risponde di quello che c'è nella teca?
 
-- **Se passa — Le Gallerie Lasciate:** in una Regione con #miniera diventa #svuotata · il rivale se ne va in una Regione con #miniera · La Cenere che Sale scende di 2 · Il Debito sale · Foresta dove si discute va al grado 3 · il rivale entra in una Regione confinante
+- **Se passa — Le Gallerie Lasciate:** in una Regione con #miniera diventa #svuotata · il rivale se ne va in una Regione con #miniera · La Cenere che Sale scende di 2 · Il Debito sale · Foresta dove si discute va al grado 2 · il rivale entra in una Regione confinante
 - **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 - **Se passa — La Roccia che Cede:** in una Regione con #miniera diventa #sfruttata · e resta una Cicatrice: la ferita aperta in una Regione con #miniera
 
@@ -1676,7 +1675,6 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 > Chi siede sul trono quando questo si alza?
 
 - **Si puo' proporre solo se:** La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
-- **Se passa — Un Solo Trono:** il mondo dimentica: la corona e' stata divisa · il rapporto fra chi propone e il rivale cambia · La Successione sale
 - **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
 
 ### Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.

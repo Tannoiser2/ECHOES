@@ -182,7 +182,6 @@
       "description": "Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fame.",
       "focus_region_tags": [
         "condition:starving",
-        "condition:requisitioned",
         "condition:unrest",
         "granary",
         "structure:granary"
@@ -224,8 +223,7 @@
               }
             ],
             "success_consequences": [
-              "CNS_ROYAL_GRANARY",
-              "CNS_VALLEY_CLEARED"
+              "CNS_ROYAL_GRANARY"
             ],
             "echo_summary": "Il grano $of_region passò sotto il sigillo di $proponent.",
             "echo_summaries": {
@@ -308,10 +306,9 @@
       },
       "heats_when": [
         {
-          "text": "qualcuno posa la #fame, il #requisito o il #malcontento",
+          "text": "qualcuno posa la #fame o il #malcontento",
           "puts_tag": [
             "condition:starving",
-            "condition:requisitioned",
             "condition:unrest"
           ]
         },
@@ -953,7 +950,6 @@
               }
             ],
             "success_consequences": [
-              "CNS_CROWN_REUNITED",
               "CNS_HEIR_NAMED"
             ],
             "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimenticò.",

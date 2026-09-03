@@ -1887,11 +1887,17 @@ func choose_benefits(
 	var bindings: Dictionary = session.confluence.effect_context()
 	var ranked: Array = []
 	for voice in menu:
+		# **La pedina la posa dove gli conviene** (D-438, ISSUES 106): una
+		# casella che muove una domanda si pesa su ogni segnalino in tavola, e
+		# si compra sul migliore. Il punteggio e' quello di sempre; cambia solo
+		# dove si guarda.
+		var placed: Dictionary = _best_placement(
+			voice as Dictionary, entity_id, goals, session, bindings
+		)
 		ranked.append({
 			"id": str((voice as Dictionary)["id"]),
-			"score": _voice_score(
-				voice as Dictionary, "benefits", entity_id, entity_id, goals, session, bindings
-			),
+			"score": int(placed["score"]),
+			"question": str(placed["question"]),
 		})
 	ranked.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return int(a["score"]) > int(b["score"])
@@ -1900,7 +1906,7 @@ func choose_benefits(
 	# e oltre quello si arriva fin dove la borsa arriva. Il tetto di tre resta,
 	# perche' sono le pedine che stanno sulla carta.
 	var ceiling: int = mini(ranked.size(), session.confluence.benefit_ceiling())
-	var bought: Array = [str((ranked[0] as Dictionary)["id"])]
+	var bought: Array = [_pedina(ranked[0] as Dictionary)]
 	for i in range(1, ceiling):
 		var entry: Dictionary = ranked[i] as Dictionary
 		# **Un gettone si spende per qualcosa che serve.** Non c'e' piu' un
@@ -1909,8 +1915,72 @@ func choose_benefits(
 		# aspetta il Consiglio dopo.
 		if int(entry["score"]) <= 0:
 			break
-		bought.append(str(entry["id"]))
+		bought.append(_pedina(entry))
 	return bought
+
+
+## La pedina come la riceve il motore: un id secco quando parla della domanda
+## in discussione, «questa voce, su quella domanda» quando il proponente ne ha
+## indicata un'altra col dito (D-416).
+static func _pedina(entry: Dictionary) -> Variant:
+	if str(entry.get("question", "")) != "":
+		return {"id": str(entry["id"]), "question": str(entry["question"])}
+	return str(entry["id"])
+
+
+## L'id di una pedina, comunque sia posata.
+static func _pedina_id(entry: Variant) -> String:
+	if entry is Dictionary:
+		return str((entry as Dictionary).get("id", ""))
+	return str(entry)
+
+
+## **«La sceglie chi propone»** (parola del committente, ISSUES 106). Una
+## casella che agisce su una domanda — ABBASSA LA DOMANDA, UNA DOMANDA VELATA
+## SI SCOPRE — di suo parla di quella in discussione. Ma i segnalini stanno
+## tutti sul tavolo, e il proponente puo' posare la pedina su quello che gli
+## serve: qui si pesa la voce su ogni domanda in gioco e si tiene la migliore.
+##
+## A parita' vince quella in discussione, che e' la pedina senza nome: cosi'
+## la partita non cambia dove il nome non aggiunge niente, e il verbale dice
+## «su ...» solo quando il dito ha indicato davvero un altro segnalino. Una
+## domanda gia' a terra non si indica: abbassarla non e' un gesto.
+func _best_placement(
+	voice: Dictionary, entity_id: String, goals: Dictionary, session: RefCounted,
+	bindings: Dictionary
+) -> Dictionary:
+	var best: Dictionary = {
+		"score": _voice_score(voice, "benefits", entity_id, entity_id, goals, session, bindings),
+		"question": "",
+	}
+	if not _names_a_question(voice):
+		return best
+	var discussed: String = str(session.confluence.current.get("tension_id", ""))
+	var ids: Array = (session.world["tensions"] as Dictionary).keys()
+	ids.sort()
+	for tension_id in ids:
+		if str(tension_id) == discussed:
+			continue
+		if session.tensions.value(str(tension_id)) <= 0:
+			continue
+		var named: Dictionary = voice.duplicate()
+		named["dove"] = "QUESTION"
+		named["question"] = str(tension_id)
+		var score: int = _voice_score(
+			named, "benefits", entity_id, entity_id, goals, session, bindings
+		)
+		if score > int(best["score"]):
+			best = {"score": score, "question": str(tension_id)}
+	return best
+
+
+## Una voce che agisce su una domanda e non ne chiama gia' una per nome sulla
+## carta: e' l'unica su cui il dito del proponente ha qualcosa da scegliere.
+static func _names_a_question(voice: Dictionary) -> bool:
+	var spec: Dictionary = CouncilEconomy.BENEFIT_VERBS.get(str(voice.get("verb", "")), {})
+	if str(spec.get("on", "")) != "tension":
+		return false
+	return str(voice.get("dove", "FOCUS")) != "QUESTION"
 
 
 ## **E decide, prima, se pagare per far cadere** (D-419, ISSUES 119).
@@ -2098,11 +2168,13 @@ func choose_counterclaim(
 	redirected["proponent"] = entity_id
 	var best_benefit: String = ""
 	var benefit_gain: int = 0
-	for voice_id in (offer.get("benefits", []) as Array):
+	for entry in (offer.get("benefits", []) as Array):
 		# **Le caselle comprate sulla carta** (D-304), non le Conseguenze del
 		# template: si rivendica quello che sta sul tavolo, e la pedina si posa
-		# su una pedina gia' posata.
-		var voice: Dictionary = session.confluence._voice("benefits", str(voice_id))
+		# su una pedina gia' posata — che da D-416 puo' portare il nome di una
+		# domanda, e allora l'id sta dentro.
+		var voice_id: String = _pedina_id(entry)
+		var voice: Dictionary = session.confluence._voice("benefits", voice_id)
 		if voice.is_empty():
 			continue
 		var mine: int = _voice_score(

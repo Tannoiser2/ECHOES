@@ -56,32 +56,47 @@ func test_a_named_question_is_the_one_that_moves() -> void:
 	)
 
 
-## **E il cervello, oggi, non la indica.** Questa e' la meta' che la sonda non
-## riusciva a vedere, ed e' scritta come **misura**, non come promessa: dice
-## dov'e' il difetto, cosi' che nessuno lo cerchi di nuovo dove non e'.
-##
-## Due tentativi di far scegliere al cervello la domanda migliore hanno lasciato
-## la sonda delle caselle **identica al centesimo** — 700 offerte, 22 comprate,
-## tutt'e due le volte — e il secondo ha anche rotto una prova dei legami. Il
-## motore la pedina la sa portare (prova qui sopra); a non usarla e' chi compra.
-##
-## Se un giorno questa prova diventa rossa, e' perche' qualcuno ha insegnato al
-## cervello a indicare: allora si cambia il verso dell'asserzione e si rimisura
-## `run_boxes_probe`. E' il criterio che resta aperto sulla voce.
-func test_today_the_brain_does_not_name_one() -> void:
+## **E il cervello la indica, quando gli conviene** (D-438). Fino alla 0.1.407
+## questa prova asseriva il contrario — *«oggi non ne nomina nessuna»* — come
+## misura dello stato, non come promessa. Adesso il cervello pesa la casella su
+## ogni segnalino in tavola e posa la pedina sul migliore: qui la domanda
+## migliore e' costruita apposta — una sola e' alta, e non e' quella di cui si
+## discute — e la pedina deve uscire col suo nome.
+func test_the_brain_names_the_question_that_serves_it() -> void:
 	var seat: String = str(session.world["turn_order"][0])
+	var ids: Array = (session.world["tensions"] as Dictionary).keys()
+	ids.sort()
+	assert_true(ids.size() >= 2, "ci sono almeno due domande in tavola")
+	# Tutte a terra tranne una, alta: abbassare quella vale 2, le altre 0.
+	for tension_id in ids:
+		(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 0
+	var alta: String = str(ids[ids.size() - 1])
+	(session.world["tensions"][alta] as Dictionary)["current_value"] = 5
 	var brain: RefCounted = PolicyDecider.new(session.log)
 	var menu: Array = [
 		{"id": "V_TEST_COOL", "verb": "COOL_QUESTION", "text": "Abbassa la domanda"},
 	]
 	var chosen: Array = brain.choose_benefits(seat, {}, menu, session)
 	assert_false(chosen.is_empty(), "il cervello compra la casella offerta")
+	var first: Variant = chosen[0]
+	assert_true(first is Dictionary, "la pedina porta il nome della domanda: %s" % str(chosen))
+	if first is Dictionary:
+		assert_eq(
+			str((first as Dictionary).get("question", "")), alta,
+			"ed e' la domanda alta, non quella in discussione"
+		)
 
-	var named: int = 0
-	for entry in chosen:
-		if entry is Dictionary and str((entry as Dictionary).get("question", "")) != "":
-			named += 1
-	assert_eq(
-		named, 0,
-		"e oggi non ne nomina nessuna: la pedina esce come un id secco. %s" % str(chosen)
-	)
+
+## **E a parita' non indica niente.** Con tutte le domande uguali la pedina
+## esce come un id secco: il nome si dice solo quando il dito ha scelto davvero.
+func test_with_nothing_to_gain_the_token_stays_bare() -> void:
+	var seat: String = str(session.world["turn_order"][0])
+	for tension_id in (session.world["tensions"] as Dictionary):
+		(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 0
+	var brain: RefCounted = PolicyDecider.new(session.log)
+	var menu: Array = [
+		{"id": "V_TEST_COOL", "verb": "COOL_QUESTION", "text": "Abbassa la domanda"},
+	]
+	var chosen: Array = brain.choose_benefits(seat, {}, menu, session)
+	assert_false(chosen.is_empty(), "il cervello compra la casella offerta")
+	assert_true(chosen[0] is String, "e la pedina e' un id secco: %s" % str(chosen))

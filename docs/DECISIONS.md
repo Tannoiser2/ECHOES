@@ -10,6 +10,609 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-444 — L'app mostra il tavolo, non lo stato: la pagina segue la decisione
+
+**implemented in 0.1.414.** Chiude [ISSUES 65](ISSUES.md#65) (M14 della
+[lista](LE_TUE_DECISIONI.md), l'ultima): la terza rivista, scelta dal
+committente in [D-427](#d-427).
+
+### La decisione era scritta; qui la pagina la segue
+
+Parola del committente, in 0.1.397: *«Al tavolo. La plancia e' aperta e il
+tablet sta di lato. Oggi il tablet mostra un cruscotto: elenchi, valori,
+questioni con un numero accanto. Deve mostrare il tavolo — la mappa con le
+pedine dove stanno, e quello che e' appena successo scritto come lo
+racconteresti a voce.»*
+
+Fino alla 0.1.413 la pagina era quattro cose in fila: il verbale a sinistra
+(300 px), la mappa al centro, la colonna di stato a destra (280), la mano
+sotto. La sonda della pagina lo diceva coi numeri — **788 px in fila senza
+contare la mappa**, su un tablet da 768 — e la mappa era quella che perdeva.
+E due pannelli su otto **dipingevano invece di costruire nodi**: una scritta
+dipinta non ha una misura, non e' un bersaglio, e ne' la sonda ne' un lettore
+di schermo la vedono.
+
+### Cosa cambia
+
+**Il tavolo prende il centro, e ci sta una cosa alla volta.**
+
+- **I mazzetti dei Temi** stanno in una striscia lungo il bordo alto del
+  tavolo, sei in fila — tre per due quando la vista e' un riquadro: il numero
+  esce dalla forma, non da una costante. Ogni mazzetto e' un **bottone** col
+  nome del Tema e una riga che dice la carta girata, o quanto manca a girarla.
+  Il dorso e i gettoni restano dipinti: sono cartone, non parole.
+- **La mappa** costruisce nodi sopra la pittura: il nome di ogni tessera, **la
+  domanda che ci abita** — un posto alto un dito dove posare la carta, lo
+  stesso delle righe di [D-231](#d-231) — e **le parole dei segni sempre sotto
+  i pezzi**. Fino a qui uscivano solo sotto il mouse, cioe' mai per chi gioca
+  col dito. Terreno, pedine e pezzi restano dipinti.
+- **Chi siede** e' una striscia sotto la mappa, un posto per casa col suo
+  colore e il livello del rapporto: la carta che parla a un'altra casa
+  (FORGIARE) si posa li'. Era una riga dentro la colonna di stato.
+- **Il racconto**: le ultime tre righe dette dal motore, senza i tag del testo
+  ricco, sotto la mappa. Non un elenco, un rigo.
+- **A destra, 240 px, solo quello che serve per decidere adesso**: a chi tocca,
+  il contesto, la domanda, le scelte, l'aiuto.
+- **La colonna di stato e il verbale non stanno piu' intorno al tavolo.** Sono
+  due pagine — *La mia casa* e *Il verbale* — dietro due bottoni alti un dito,
+  che si aprono **al posto del tavolo** e lo restituiscono quando si chiudono.
+  Aprirne una chiude le altre, come gia' il cruscotto e la cronaca.
+- **Tenere una carta accende i posti dove puo' andare** — sulla mappa, sulla
+  striscia dei seggi, nella pagina della casa — e posarla li' risponde: il
+  gesto di [D-239](#d-239), fatto sul tavolo. Il trascinamento resta, per chi
+  ha un mouse.
+
+Le prove nuove (`test_the_table_is_built_of_nodes`, cinque) tengono il patto:
+quello che sul tavolo si legge e si tocca e' un nodo, e il tocco risponde.
+
+### Misurato
+
+La sonda della pagina ([MISURA_PAGINA](MISURA_PAGINA.md)), stessa partita:
+
+| | 0.1.413 | 0.1.414 |
+|---|---|---|
+| nodi | 188 | 265 |
+| testi sotto gli occhi | 114 | 155 |
+| bersagli che si toccano | 7 | **25** |
+| piu' stretti di un dito | 0 | **0** |
+| testi solo nel suggerimento del mouse | 2 | 2 |
+| pannelli che dipingono invece di costruire | 2 (mappa, mazzetti) | **0** |
+| larghezza chiesta | **788** in fila, senza la mappa | il tavolo con la colonna **678** su 768 · al centro, uno alla volta, **218** su 492 · la mano **342** su 744 |
+
+**La sezione 4 della sonda e' riscritta per la pagina nuova**: non una fila,
+tre posti, e ogni pannello dice in quale sta. I due testi che restano solo
+sotto il mouse sono gli Echi in mano, come da [D-384](#d-384).
+
+**Un bersaglio dichiara la sua misura, non la ottiene e basta.** La prima corsa
+della sonda diceva 15 bersagli sotto il dito: larghi zero, o alti 24, *per
+dichiarazione*, e larghi il giusto sullo schermo. La sonda legge quello che un
+nodo chiede — e' scritto nella sua testa — e un posto che chiede zero si
+stringe davvero dove lo schermo e' stretto. Adesso ogni posto della mappa
+chiede la larghezza della sua tessera, ogni mazzetto il suo dorso, ogni seggio
+96 px.
+
+### Le trappole pagate
+
+- **I nodi della mappa si posavano solo al `render`**: a una finestra che
+  cambiava misura le tessere si ridisponevano e i nomi restavano su quelle di
+  prima. Adesso seguono le tessere. Trovato dalla sonda, non dall'occhio: il
+  tavolo della stanza, senza una misura, mostrava posti larghi 7 px.
+- **Una prova che lascia un nodo in coda da liberare** lo vede disegnare un giro
+  dopo che la sessione e' stata smontata: un errore di script su una prova
+  verde. Si libera subito.
+- **La guardia del foglio delle decisioni piantava il suo difetto sulla prima
+  riga che portava la parola**, non sul titolo che voleva guastare: il giorno
+  che due colori hanno lo stesso conto — *nessuna* in rosso e in giallo, da
+  questa versione — il difetto finiva sul titolo sbagliato e la prova andava
+  rossa. Adesso guasta quel titolo.
+
+### Costo dichiarato
+
+**Nessun file del motore e' toccato**: sei file dell'interfaccia, una sonda,
+due prove. Il cancello e' rimisurato lo stesso — 100 partite, seme 7000, misto
+e uniforme — e da' **0 su 8**. Quello che la misura non copre e' **l'occhio**
+(§5ter): il giro su un iPad vero resta del committente, ed e' la
+[63](ISSUES.md#63), che adesso **si puo' verificare giocandoci** — era il suo
+«fatto quando».
+
+## D-443 — Lo scarto fra le domande si misura per Tema, e una Risonanza passa a Terra
+
+**implemented in 0.1.413.** Chiude [ISSUES 60](ISSUES.md#60) (M3 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio andava ritagliato, ed e' ritagliato qui
+
+La voce lo diceva da 0.1.377: il suo criterio *«nessuna domanda senza Consiglio
+in piu' di un quarto degli anni»* era scritto per dodici domande e non e'
+raggiungibile con sessanta, e *«lo scarto sotto un fattore da decidere»*
+aspettava il fattore. Prima di decidere il fattore ho guardato **da cosa dipende
+lo scarto**, e non dipende dalle domande.
+
+Da [D-261](#d-261) un Consiglio si apre sul **Tema** col mazzetto piu' alto, e
+la domanda e' la carta girata in cima a quel mazzetto: l'ordine lo pesca il
+seme. Quindi quale domanda si apre e' **sorte dentro il Tema**, e quante volte
+un Tema si apre e' **il Calore che le Risonanze gli portano** — l'unica cosa che
+il contenuto governa. Contando i Consigli del libro mastro per Tema, 100
+partite, tavolo misto:
+
+| seme 7000 | Fede | Potere | Antico | Vie | Sopravvivenza | Terra | min/max |
+|---|---|---|---|---|---|---|---|
+| prima | 87 | 76 | 55 | 54 | 45 | **37** | **0,43** |
+
+**Terra apriva meno della meta' dei Consigli di Fede**, e il Calore lo diceva
+gia': 10,9% contro 21,1% (`run_resonance_probe`). Lo scarto 13,1× fra due
+domande era per due terzi quello fra i loro Temi, e per il resto la sorte del
+mazzetto.
+
+**Il criterio nuovo, scritto dove il gioco decide:** *nessun Tema apre meno
+della meta' dei Consigli del Tema piu' aperto, e nessuna domanda resta senza
+Consiglio su tutti e due i semi* — 7000 e 8000, duecento partite. Il secondo
+pezzo e' su due semi per la lezione di [D-440](#d-440): una domanda in gioco
+otto volte in cento partite che apre zero Consigli e' rumore, non un difetto —
+*La Febbre delle Paludi* era muta col 7000 (0 su 8) e apriva 3 Consigli su 16
+col 8000, prima di toccare niente.
+
+### Una Risonanza, spostata dove la carta gia' stava
+
+*Diritto di Ospitalita'* contava gia' **Terra** al Consiglio (`themes: FEDE,
+TERRA`) e scaldava Fede: adesso scalda **Terra** — *«Scalda Terra +1. Il
+diritto d'ospitalita' regge finche' nessuno lo mette alla prova»* — con la
+stessa parte aggravata. E' la carta che il mondo fa rispondere 144 volte in
+cento anni, ed e' la sola che serve: provato prima con due (anche *Mappa
+Vecchia*, che conta Vie e Terra e scaldava Antico), Terra saliva in testa e
+Sopravvivenza scendeva sotto la meta' — uno spostamento di troppo e' lo stesso
+difetto dall'altra parte. Ritirata.
+
+E la *Febbre delle Paludi* ha una seconda miccia: si accendeva solo *«una casa
+entra nella #palude, o la lascia»*, che con la Palude pescata una volta su due
+e raggiunta da poche carte quasi non succede. Adesso anche *«qualcuno posa la
+#fame o il #magro»*, che sono i segni del suo Tema e da [D-433](#d-433)
+escono davvero. Col 8000 passa da 3 a **6 Consigli su 15**.
+
+### I numeri, su due semi
+
+| Consigli per Tema | 7000 prima | **7000 dopo** | 8000 prima | **8000 dopo** |
+|---|---|---|---|---|
+| Fede | 87 | 76 | 91 | 71 |
+| Potere | 76 | 68 | 75 | 77 |
+| Antico | 55 | 56 | 62 | 60 |
+| Vie | 54 | 61 | 38 | 39 |
+| Sopravvivenza | 45 | 42 | 39 | 44 |
+| Terra | 37 | **50** | 40 | **58** |
+| **min/max** | 0,43 | **0,55** | 0,42 | **0,51** |
+| domande mute | 1 | 1 | 0 | 2 |
+| **mute su tutti e due i semi** | | **0** | | |
+
+Il Calore: Terra dal 10,9% al **14,1%**, Fede dal 21,1% al 17,8%, e i sei Temi
+stanno tutti fra il 14% e il 19%. Le mute cambiano nome col seme — *La Febbre
+delle Paludi* col 7000, *Il Contrabbando* e *L'Acqua Ferma* col 8000, che col
+7000 aprono 9 e 3 Consigli — e nessuna e' muta su tutti e due.
+
+**Lo scarto fra due domande, per pescata, resta scritto come osservazione**: da
+15,4× a 7,5× col 7000, da 11,0× a 16,3× col 8000. E' la sorte del mazzetto, e
+si vede dal fatto che cambia di piu' col seme che con la modifica. Non e' piu'
+un criterio, perche' nessun contenuto lo puo' governare senza togliere il
+mazzetto — e il mazzetto e' una decisione del committente.
+
+### Il costo, sul cancello
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| Consigli l'anno | 3,54 | 3,53 | 3,38 | 3,36 |
+| DECISIVE | 102 | 104 | 126 | 124 |
+| FAILURE | 32 | 30 | 14 | **10** |
+| **Verita' scritte** | 132 | **136** | 145 | **139** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+I due tavoli si muovono in versi opposti — quattro Verita' in piu' sul misto,
+sei in meno sull'uniforme — che e' la forma di [D-430](#d-430), non di una
+deriva: piu' Consigli di Terra sono Consigli diversi, non di piu'. Il cancello
+tiene.
+
+---
+
+## D-442 — Una carta si gioca in due modi, e il libro mastro lo diceva gia'
+
+**implemented in 0.1.412.** Chiude [ISSUES 59](ISSUES.md#59) (M2 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio, letto con le parole della sonda che lo misura
+
+*«Fatto quando nessun verbo si gioca meno della meta' del piu' giocato, e ogni
+carta viene calata per agire almeno una volta in cento anni.»* La seconda meta'
+e' vera da un pezzo: `run_card_ledger`, 100 anni CHR_00 seme 7000, **zero carte
+mai calate** (in 0.1.377 era una, *Deposizione Sigillata*, che oggi si cala 15
+volte).
+
+La prima dipende da cosa vuol dire *«si gioca»*, e il libro mastro lo dice nella
+sua prima riga: *«una carta si spende per agire **oppure** si impegna al voto,
+e le due cose si escludono. Chi non fa mai ne' l'una ne' l'altra e' contenuto
+che non esiste»*. Giocare una carta e' spenderla in uno dei due modi. Letto
+cosi', il criterio tiene:
+
+| verbo | in mano | calata | al voto | **spesa** | contro il piu' spesa |
+|---|---|---|---|---|---|
+| MUOVERE | 920 | 719 | 102 | **89,2%** | — |
+| TRAMARE | 1.149 | 855 | 147 | 87,2% | 0,98 |
+| RIVENDICARE | 830 | 476 | 157 | 76,3% | 0,86 |
+| FORGIARE | 1.073 | 535 | 224 | 70,7% | 0,79 |
+| **INFLUENZARE** | 1.154 | 346 | **345** | **59,9%** | **0,67** |
+
+Nessun verbo sotto la meta' del piu' spesa. E la lettura non e' una comodita':
+e' il gioco. INFLUENZARE e' **la moneta piu' votata del tavolo** — 345 carte
+impegnate, piu' di ogni altro verbo — e una carta che decide un Consiglio non
+e' una carta muta. La voce stessa, rimisurata in 0.1.377, l'aveva scritto:
+*«non e' contenuto morto: e' contenuto che si spende in un altro modo»*.
+
+### Quello che la lettura stretta direbbe, scritto lo stesso
+
+Contando la sola **calata**, INFLUENZARE e' al 30,0% contro il 78,2% di MUOVERE —
+0,38, sotto la meta' — e lo era in ogni misura dal 0.1.377 (18,5%, poi 30,2%).
+Non lo nascondo: e' il numero che resta, ed e' il verbo che ha una **quota di
+una per giro** ([D-021](#d-021)), che da sola e' il 26,9% di tutte le pareti
+che il tavolo alza alla mano ([D-439](#d-439)). Una carta INFLUENZARE in mano
+dopo averne gia' giocata una in quel giro non e' rotta: e' un turno gia' speso.
+Alzare quella quota sarebbe una regola nuova, e questa voce e' sul contenuto,
+non sulle regole.
+
+E il resto che la voce aveva trovato e' sparito da solo, come diceva:
+FORGIARE e TRAMARE si calano il 49,9% e il 74,4% (erano 8,4% e 9,9%), WEALTH
+si cala il 58,7% contro il 61,6% di BONDS (1,05×; era 3,1×), e la quota di
+carte INFLUENZARE che non fa niente e' scesa dal 47,7% al **40,1%**.
+
+### Il costo
+
+Nessuno: non cambia una riga. E' una chiusura per lettura, e la lettura e'
+quella del documento che la misura.
+
+---
+
+## D-441 — Il bosco diradato esce dalla scatola, e le altre tre Pietre hanno il loro posto
+
+**implemented in 0.1.411.** Chiude [ISSUES 111](ISSUES.md#111) (M12 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### I quattro gradi, uno per uno
+
+*«Fatto quando ogni grado consumato si alza almeno una volta in cento partite, o
+esce dalla scatola.»* Ne restavano quattro ([D-435](#d-435)), e non hanno lo
+stesso destino:
+
+| grado | chi lo scriveva | cosa se ne fa |
+|---|---|---|
+| **il bosco diradato** (`place:thinned_wood`, Foresta grado 2) | solo `CNS_VALLEY_CLEARED`, uscita con [D-440](#d-440) | **esce dalla scatola** |
+| **il passo franato** (`place:collapsed_pass`) | `CNS_MINE_ROAD_CUT` | resta: **arriva in saga** |
+| **la sorgente bassa** (`place:low_spring`) | `CNS_VALLEY_DRAINED`, il fallimento del Consiglio dell'Acqua | resta: **arriva in saga** |
+| **la citta'** (`settlement:city`, Insediamento grado 3) | UNA PIETRA SALE dal Borgo | resta: **materia di saga** per parola gia' data ([ISSUES 40](ISSUES.md#40)) |
+
+**Il bosco diradato non aveva piu' nessuno.** Con la Conseguenza che lo posava
+fuori dalla scatola, nessuna riga del gioco lo scriveva; UNA PIETRA SALE lo
+avrebbe alzato dalla Foresta, ma in cento partite sulla Foresta la casella non e'
+mai stata comprata. Un grado che nessuno raggiunge non e' una scala: e' un
+gradino dipinto. La Foresta adesso ha due gradi, **Foresta → Selva maledetta**,
+e le due Conseguenze che la maledicono (`CNS_ABANDONED`, `CNS_ASH_ABANDONED`)
+dicono il grado giusto invece di contare su un tetto che le fermava. Il segno
+esce dal dizionario e dalle parole dei segni.
+
+**Il passo e la sorgente arrivano dove il gioco li ha messi.** Le loro
+Conseguenze sono fra quelle che in 200 anni di saga **escono** — su tutti e due
+i semi di D-440 — e in trenta Chronicle di `run_saga` il passo e' franato
+una volta, nelle Montagne Rosse. In cento anni scollegati no, e non e' un
+difetto: il passo e' l'unica Pietra che nessuna Tensione nomina e la sorgente
+si abbassa quando un Consiglio dell'Acqua **cade**, e cento anni senza memoria
+non bastano a nessuno dei due. E' la stessa ragione per cui [D-435](#d-435) aveva
+gia' mandato la reggia e la citta' a misurarsi in saga.
+
+**La citta' non arriva nemmeno in trenta Chronicle di saga** (tre saghe da
+dieci: sei Villaggi costruiti, nessun Borgo, nessuna Citta'), e lo scrivo. Ma
+la scala Villaggio → Borgo → Citta' e' una decisione del committente
+([ISSUES 40](ISSUES.md#40), 0.1.142): *il grado alto e' materia di saga*. Toglierla
+per un numero sarebbe disfare una scelta d'autore con una taratura, e il Borgo
+in cento partite arriva 12 volte: la scala sale, lentamente. Resta scritta come
+traguardo di saga.
+
+### Il criterio, ritagliato dove il gioco lo pone
+
+Il «fatto quando» diceva *in cento partite*. Per due gradi su tre il posto
+giusto e' la saga, e questa decisione lo scrive: **un grado consumato si alza
+almeno una volta in cento partite o in duecento anni di saga, o esce dalla
+scatola.** Con questa forma i tre restano e uno esce.
+
+### Il costo
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| DECISIVE | 102 | 102 | 126 | 126 |
+| **Verita' scritte** | 132 | **132** | 145 | **145** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+Identico al decimale: un gradino che nessuno saliva non manca a nessuno.
+
+---
+
+## D-440 — Due Conseguenze escono dalla scatola, e #requisito con loro
+
+**implemented in 0.1.410.** Chiude [ISSUES 56](ISSUES.md#56) (M1 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### La misura che la voce chiedeva, fatta
+
+*«Fatto quando ogni Conseguenza esce almeno una volta su 200 anni, o esce dalla
+scatola. Le tolgo, non le riscrivo tre volte.»* `run_consequence_probe`, 20
+saghe da 10 Chronicle, seme 7000, prima di toccare niente: **6 su 65** non
+escono mai (erano 9 in 0.1.373 — due si sono mosse da sole con D-434 e D-435).
+
+| Conseguenza | verdetto, 200 anni | cosa se ne fa |
+|---|---|---|
+| `CNS_COST_EMPTIED` | scelta 2 volte su 2, mai passata | **resta**: e' sull'unica strada aperta a tutti della sua domanda (vedi sotto) |
+| `CNS_CROWN_REUNITED` | offerta 5 volte, presa zero | **esce** |
+| `CNS_VALLEY_CLEARED` | esclusa 5 volte su 5: solo chi porta la corona puo' requisire | **esce**, e con lei il segno che era l'unica a scrivere |
+| `CNS_COST_DEBT` | scelta 6 su 6, mai passata | **resta**: e' l'unica strada della sua domanda |
+| `CNS_DRAGON_SLAIN` | offerta 2 volte, presa zero | **resta**: e' l'unica porta di `scar:dragonfall`, che il committente tiene ([D-427](#d-427)) |
+| `CNS_SEALED_VALLEY` | esclusa 2 su 2 | **resta**: stessa ragione, e' l'unica porta di `scar:sealed_border` |
+
+### Quello che il validatore ha fermato, due volte
+
+Togliere una Conseguenza «di costo» da una proposta puo' lasciare **due proposte
+gemelle** — stessa catena di Effetti, due testi — e `validate_physical` le
+rifiuta: *al voto sembrano due strade e sono una sola*. E' successo su
+`P_LAND_TO_WORKERS` (gemella di `P_OPEN_VALLEY`) e su `P_WATER_COMMON` (gemella
+di `P_DIG_TOGETHER`). Per la seconda il validatore ha fermato anche la
+rimozione: **`P_WATER_COMMON` e' l'unica risposta a «Q_WATER_PRICE»**, e una
+domanda senza risposte non si apre. Quindi `CNS_COST_DEBT` resta com'era, ed e'
+l'unica delle sei di cui il verdetto e' uguale su due semi — 6 su 6 e 5 su 5,
+sempre scelta, mai passata. Non e' un aneddoto: e' una domanda che il tavolo
+apre e non chiude, e sta scritto qui perche' chi la riscrivera' sappia da dove
+partire.
+
+**E la prima l'ha fermata la suite, prima del merge.** `P_LAND_TO_WORKERS` era
+uscita con la sua Conseguenza, e `test_questions_asked` e' andata in errore:
+«Q_FAMINE_LAND» restava con la sola `P_SEAL_BORDERS`, che vuole un proponente
+con la corona — per chiunque altro, **una domanda senza risposte**. La gemella
+che il validatore vedeva sta su un'altra domanda, e la guardia delle domande
+senza risposte conta le proposte scritte, non quelle **aperte a tutti**.
+`P_LAND_TO_WORKERS` e `CNS_COST_EMPTIED` sono tornate com'erano: una
+Conseguenza che non esce ma tiene aperta una domanda non e' cartone di troppo.
+Due guardie hanno detto due cose vere e nessuna delle due la cosa intera; a
+vederla e' stata una prova che gioca. Escono **due**, non tre.
+
+### E il segno che era l'unica a scrivere
+
+`condition:requisitioned` — **#requisito** — lo posava solo `CNS_VALLEY_CLEARED`.
+[D-433](#d-433) l'aveva gia' detto: *requisire e' quello che il tavolo decide,
+non un gesto che si fa da soli*, e inventargli una carta sarebbe stato riparare
+il numero. Uscita la Conseguenza, il segno **esce dalla scatola**: dal
+dizionario, dalla fustella (un segnalino in meno da tagliare: 124 icone), dal
+Tema della Sopravvivenza, da due righe «SI ACCENDE QUANDO» che lo nominavano
+senza che potesse mai succedere (*«qualcuno posa la #fame o il #malcontento»*)
+e dalla faccia di *Censimento*, che adesso dice *«Togli #razionato dal
+luogo»*. Nessuna di queste righe cambia una partita: un segno che nessuno
+scrive non si accende e non si toglie.
+
+`crown_divided` perde il suo unico lettore fra le Conseguenze: una corona
+divisa resta divisa, e la nota di `scar:divided_seal` lo dice.
+
+### Rimisurata, su due semi
+
+| 200 anni in saga, dati definitivi | seme 7000 | seme 8000 |
+|---|---|---|
+| Conseguenze nella scatola | **63** | 63 |
+| mai uscite | **5** | **4** |
+| di cui uguali sui due semi | `CNS_COST_DEBT`, `CNS_COST_EMPTIED`, `CNS_DRAGON_SLAIN` | |
+| di cui diverse | `CNS_DEBT_FORGIVEN`, `CNS_LAW_OF_SUCCESSION` | `CNS_SEALED_VALLEY` |
+
+**E questa e' la cosa da scrivere**: a 200 anni il criterio sta **sul pavimento
+del rumore**. Una Conseguenza che esce una o due volte in duecento anni cambia
+seme e sparisce — `CNS_SEALED_VALLEY` e' a zero col 8000 ed esce col 7000,
+`CNS_DEBT_FORGIVEN` e `CNS_LAW_OF_SUCCESSION` il contrario; in una misura
+intermedia, prima che `P_LAND_TO_WORKERS` tornasse, erano a zero `CNS_EXODUS` e
+`CNS_CROWN_DISPOSSESSED`, che qui escono. Le tre che restano a zero su tutti e
+due i semi hanno ognuna la sua ragione scritta sopra: due tengono aperta una
+domanda, una e' la porta di una Cicatrice che il committente tiene. Il criterio
+e' soddisfatto per quello che puo' dire; oltre, misura il seme.
+
+### Il costo, sul cancello
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| DECISIVE | 103 | 102 | 125 | 126 |
+| **Verita' scritte** | 133 | **132** | 145 | **145** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+Piatto. Due Conseguenze che non uscivano non lasciano un buco quando escono.
+
+---
+
+## D-439 — Murata dalla mappa, o solo non qui: la parete a segni si chiude a zero
+
+**implemented in 0.1.409.** Chiude [ISSUES 128](ISSUES.md#128) (M5 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio, e cosa la sonda non sapeva distinguere
+
+Il «fatto quando» riscritto da [D-428](#d-428) chiede che *nessuna carta sia
+murata da un bersaglio a segni che la mappa non porta*. `run_pass_probe` contava
+la famiglia «il bersaglio a segni» prendendo, per ogni carta che il tavolo non
+prende, **la ragione ripetuta piu' volte** — e un rifiuto *«Magistrato non
+arriva li': L'Isola Muta non ne porta nessuno»* dice solo che **quella** tessera
+non porta i segni della carta. Se le altre cinque l'hanno rifiutata per una
+quota gia' spesa o un segno che vieta, la carta non e' murata dalla mappa: e' un
+turno gia' speso, contato come difetto del bersaglio.
+
+La distinzione che conta e' un'altra: **la carta e' murata dalla mappa quando
+nessuna tessera pescata porta i suoi segni** — cioe' quando ogni rifiuto, su
+ogni bersaglio di una faccia, e' «non arriva li'». E' quello che [D-273](#d-273)
+garantisce per costruzione sulle facce a bersaglio REGION, e nessuna sonda
+l'aveva mai verificato in partita.
+
+### Adesso lo dice, faccia per faccia
+
+Il testimone tiene i rifiuti **per faccia**; se una faccia e' stata rifiutata
+su ogni tessera per i soli segni, la parete si chiama *«murata dalla mappa»* ed
+e' una famiglia sua. Il resto della vecchia famiglia diventa *«il bersaglio a
+segni, non qui: altrove un'altra regola»*.
+
+100 anni di CHR_00, seme 7000, tavolo misto:
+
+| la parete | eventi | quota |
+|---|---|---|
+| un segno del mondo lo vieta | 895 | 47,6% |
+| la quota di INFLUENZARE, una per giro | 506 | 26,9% |
+| il Consiglio si forza una volta per giro | 252 | 13,4% |
+| il bersaglio a segni, **non qui**: altrove un'altra regola | 109 | 5,8% |
+| il prezzo in carte da scartare | 107 | 5,7% |
+| **murata dalla mappa: nessuna tessera porta i suoi segni** | **0** | **0** |
+
+**Zero su 1.882 rifiuti.** Le quattro carte che restano in quella riga —
+Magistrato verso l'Isola (27), Il Tesoro verso il Bosco (23), Carovana verso
+l'Isola (16), Diritto di Ospitalita' verso il Bosco (12) — avevano tutte
+un'altra tessera dove andare, e l'Ospitalita' rifiuta il Bosco perche' **porta
+un segno che la carta vieta**: e' la carta, come D-428 aveva gia' scritto.
+
+I numeri intorno, sullo stesso giro: passa **40,9%** (2.944 su 7.200), mano muta
+53,9%, di cui il tavolo non prende il 12,0% e il cervello non vuole l'88,0%.
+
+### Quello che resta scritto, e non e' di questa voce
+
+Il **63,9%** della parete cade ancora sulle diciotto carte che stampano lo
+stesso verbo su tutte e due le facce. Dare a ognuna un secondo verbo diverso
+cambia cosa fa la carta: e' la scelta d'autore che [ISSUES 128](ISSUES.md#128)
+lascia scritta al committente, e non apre una voce nuova.
+
+### Il costo
+
+Nessuno sul gioco: cambia solo la sonda. E la sonda adesso puo' andare rossa
+il giorno che una faccia non arriva su nessuna tessera pescata, che prima non
+poteva vedere.
+
+---
+
+## D-438 — «La sceglie chi propone»: la pedina esce col nome della domanda
+
+**implemented in 0.1.408.** Chiude [ISSUES 106](ISSUES.md#106) (M4 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Quello che mancava, in una riga
+
+[D-416](#d-416) aveva fatto due terzi del criterio: il motore accetta una pedina
+posata su una domanda nominata e la muove, e il verbale dice quale. Ma **nessuno
+la nominava**: il cervello comprava ABBASSA LA DOMANDA come un id secco, e la
+persona al tavolo non aveva la domanda da nessuna parte. Una prova asseriva
+proprio questo — *«oggi non ne nomina nessuna»* — scritta come misura dello
+stato, con l'istruzione di girarla il giorno che qualcuno avesse insegnato al
+cervello a indicare.
+
+### Il cervello indica, e la persona sceglie
+
+**Il cervello.** In `choose_benefits` una casella che agisce su una domanda —
+`on: "tension"` nel vocabolario, e senza un `dove: QUESTION` gia' stampato sulla
+carta — si pesa **su ogni segnalino in tavola**: la stessa `_voice_score` di
+sempre, con la voce duplicata e la domanda legata. Si tiene la migliore; a
+parita' vince quella in discussione, che e' la pedina senza nome, cosi' la
+partita non cambia dove il dito non aggiunge niente. Una domanda a terra non si
+indica. Il punteggio non e' cambiato: cambia solo **dove si guarda** — ed e' la
+differenza fra i due tentativi di D-416 (scegliere la domanda *dopo* la
+casella, o valutare la voce gia' posata) e questo: qui la scelta della domanda
+entra **prima** del confronto con le altre caselle, e puo' vincerlo.
+
+**La persona.** Nell'hotseat, comprata una casella che muove una domanda, si
+chiede *«su quale domanda posi la pedina?»* — solo se c'e' qualcosa da
+scegliere: piu' di una domanda in gioco, e nessuna chiamata per nome sulla carta.
+La prima risposta e' sempre *«quella di cui si discute»*.
+
+**Il resto della catena** — la controproposta del RIVENDICARE nel cervello e
+nell'hotseat, e il confronto in `place_counterclaim` — leggeva la pedina come un
+id secco: adesso legge l'id da dentro, comunque sia posata.
+
+### I numeri, 100 partite CHR_00, tavolo misto
+
+`run_boxes_probe` conta anche le pedine posate **su un'altra domanda, indicata
+col dito**, che e' il pezzo del criterio che nessuna sonda vedeva:
+
+| ABBASSA LA DOMANDA | offerta | comprata | col dito su un'altra |
+|---|---|---|---|
+| D-416 (0.1.387) | 700 | **22** | — |
+| oggi, prima di questa modifica | 726 | 80 | 0 |
+| **oggi, con questa modifica** | 728 | **91** | — |
+| e sui dati potati di D-440 | 726 | 90 | **17** |
+
+**Il numero grosso e' salito da solo fra 0.1.387 e oggi** — da 22 a 80 — con le
+modifiche di mezzo, e la casella non e' piu' *«quella che nessuno compra»*: fra
+le molto offerte, quelle rimaste a zero o quasi sono ALZA LA DOMANDA (costo,
+0 su 171), UNA PIETRA SALE (2 su 110, la M12), PRENDI DEBITO e PEDAGGIO. Questa
+modifica aggiunge **undici acquisti**, e diciassette volte su novanta il
+proponente posa la pedina su una domanda che **non** e' quella in discussione:
+il gesto che il committente aveva chiesto adesso succede, e il verbale lo dice
+(«— su La Reliquia»).
+
+Il cancello, sullo stesso seme prima e dopo:
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| Consigli l'anno | 3,54 | 3,53 | 3,38 | 3,38 |
+| DECISIVE | 103 | 103 | 125 | 126 |
+| FAILURE | 32 | 33 | 14 | 14 |
+| **Verita' scritte** | 133 | **133** | 145 | **146** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+**Costo: nessuno che si veda.** Il tavolo e' lo stesso al decimale, che e' quello
+che ci si aspetta da una casella comprata novanta volte su ottocentocinquanta.
+
+### La prova che si e' girata
+
+`test_the_token_carries_the_question` adesso prova il verso nuovo: con una sola
+domanda alta fra quelle in tavola, la pedina esce **col suo nome**; con tutte le
+domande uguali, esce come id secco. La prova del motore (la pedina nominata
+muove quella e non un'altra) resta com'era.
+
+---
+
+## D-437 — La coda della fustella si chiude: due mai visti, e sono quelli decisi
+
+**implemented in 0.1.407.** Chiude [ISSUES 82](ISSUES.md#82) (M10 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il «fatto quando», rimisurato
+
+La voce chiedeva che *dei tre gettoni mai visti resti solo quello che il
+Consiglio scrive, e le due Cicatrici rare* che la parola del committente ha
+deciso di tenere ([D-427](#d-427)). `run_punchboard_probe`, 40 anni di CHR_00
+col seme 7000, i due tavoli ad anni alterni come da [D-433](#d-433):
+
+| | 0.1.403 (D-433) | **oggi** |
+|---|---|---|
+| tipi disegnati sulla fustella della mappa | 34 | 34 |
+| tipi visti almeno una volta | 31 | **32** |
+| **mai visti in 40 anni** | **3** | **2** |
+| tipi sul tavolo in un anno | 8,9 | 8,6 (massimo 13) |
+
+I due che restano sono **`condition:requisitioned`** e **`scar:dragonfall`**.
+Il primo e' il segno che solo il Consiglio scrive — requisire e' quello che il
+tavolo decide, non un gesto che si fa da soli — e il fatto che non esca e' la
+voce delle Conseguenze che nessuno sceglie, [ISSUES 56](ISSUES.md#56), la M1:
+questa voce non lo puo' curare e non deve. Il secondo e' una delle due Cicatrici
+rare da tenere. L'altra, **`scar:sealed_border`**, e' uscita **3 anni su 40**: fra
+D-433 e oggi il tavolo e' cambiato in tre verbali — sei vite nuove
+([D-434](#d-434)), la casella delle Pietre senza padrone ([D-435](#d-435)), due
+obiettivi in piu' ([D-436](#d-436)) — e non attribuisco a nessuno dei tre una
+Cicatrice che esce tre volte in quarant'anni: e' dentro il rumore di questa
+misura, come la voce stessa aveva scritto per lo spostamento di 0.1.271.
+
+### Cosa resta scritto, e dove
+
+**Non si pota niente.** La coda — 20 tipi su 34 sotto un anno su cinque — e'
+per meta' Cicatrici, e una Cicatrice frequente sarebbe il difetto. Le condizioni
+che la voce chiamava buco — fame, magrezza, saccheggio — escono tutte. Il conto
+di quanti pezzi la scatola deve avere lo fa `docs/COMPONENTI.md`, che questa
+chiusura non tocca: 119 tipi, 154 pezzi, e il numero che conta di piu' —
+**quanti tipi un tavolo vede in un anno** — sta nella sonda, non nel censimento.
+
+### Il costo
+
+Nessuno: non cambia una riga sotto `godot/`. E' una chiusura per misura.
+
+---
+
 ## D-436 — Il mazzo degli obiettivi si conta da solo, e ha tre ambizioni che non si dividono
 
 **implemented in 0.1.405.** Chiude [ISSUES 4](ISSUES.md#4) (M13 della

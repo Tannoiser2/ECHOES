@@ -598,7 +598,12 @@ def main() -> int:
             return 1
         in_grassetto: str = segnato.group(0)
         nudo: str = segnato.group(1)
-        guasto = piantato(sheet_now, in_grassetto, nudo)
+        #    E si guasta **quel titolo**, non la prima riga del foglio che porta la
+        #    stessa parola: il giorno che due colori hanno lo stesso conto — «nessuna»
+        #    in rosso e in giallo, da 0.1.414 — il difetto finiva sul titolo sbagliato.
+        guasto = piantato(
+            sheet_now, titolo_giallo, titolo_giallo.replace(in_grassetto, nudo, 1)
+        )
         if guasto is None:
             return 1
         if not any("in grassetto" in c for c in complaints(voices, guasto)):
@@ -615,10 +620,20 @@ def main() -> int:
 
         # 8. Il ✔ tolto a una voce che ISSUES dice chiusa. Anche la riga col ✔ si
         #    fabbrica: il foglio vero puo' non averne nessuna.
+        #    L'ancora non si nomina: fino a 0.1.413 era «### M1. », e il giorno
+        #    che la M1 si e' chiusa col suo ✔ la guardia non ha piu' trovato dove
+        #    piantare — la trappola dello strumento che nomina un file per nome.
+        #    Si prende il primo titolo di terzo livello dopo la sezione gialla.
+        ancora = re.search(
+            r"^### .*$", sheet_now[sheet_now.index("# 🟡"):], re.M
+        )
+        if ancora is None:
+            print("FALLITO: nessun titolo sotto la sezione gialla dove piantare il ✔")
+            return 1
         con_segno = piantato(
             sheet_now,
-            "### M1. ",
-            "### ✔ [%d](ISSUES.md#%d) — piantata\n\n### M1. " % (chiusa.number, chiusa.number),
+            ancora.group(0),
+            "### ✔ [%d](ISSUES.md#%d) — piantata\n\n%s" % (chiusa.number, chiusa.number, ancora.group(0)),
         )
         if con_segno is None:
             return 1

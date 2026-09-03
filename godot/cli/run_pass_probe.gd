@@ -188,6 +188,7 @@ class Witness extends RefCounted:
 		entity_id: String, asset_id: String, session: RefCounted
 	) -> String:
 		var motivi: Dictionary = {}
+		var per_faccia: Dictionary = {}
 		var card: Variant = session.data.assets.get(asset_id)
 		if card == null:
 			return "carta sconosciuta"
@@ -210,6 +211,7 @@ class Witness extends RefCounted:
 						if no == "":
 							return ""
 						motivi[no] = int(motivi.get(no, 0)) + 1
+						_conta(per_faccia, index, no)
 				"INFLUENCE":
 					for tension_id in session.world["tensions"]:
 						var ask: Dictionary = base.duplicate()
@@ -218,6 +220,7 @@ class Witness extends RefCounted:
 						if no == "":
 							return ""
 						motivi[no] = int(motivi.get(no, 0)) + 1
+						_conta(per_faccia, index, no)
 				"SCHEME":
 					for tension_id in session.world["tensions"]:
 						var ask: Dictionary = base.duplicate()
@@ -227,6 +230,7 @@ class Witness extends RefCounted:
 						if no == "":
 							return ""
 						motivi[no] = int(motivi.get(no, 0)) + 1
+						_conta(per_faccia, index, no)
 					for region_id in session.world["regions"]:
 						var ask: Dictionary = base.duplicate()
 						ask["mode"] = "REGION"
@@ -235,6 +239,7 @@ class Witness extends RefCounted:
 						if no == "":
 							return ""
 						motivi[no] = int(motivi.get(no, 0)) + 1
+						_conta(per_faccia, index, no)
 				"CLAIM":
 					for tension_id in session.world["tensions"]:
 						var ask: Dictionary = base.duplicate()
@@ -244,6 +249,7 @@ class Witness extends RefCounted:
 						if no == "":
 							return ""
 						motivi[no] = int(motivi.get(no, 0)) + 1
+						_conta(per_faccia, index, no)
 				"FORGE":
 					for other in session.world["turn_order"]:
 						if str(other) == entity_id:
@@ -257,6 +263,30 @@ class Witness extends RefCounted:
 							if no_f == "":
 								return ""
 							motivi[no_f] = int(motivi.get(no_f, 0)) + 1
+							_conta(per_faccia, index, no_f)
+		# **Murata dalla mappa, o solo non qui?** (M5, D-439). Un rifiuto «non
+		# arriva li'» dice che *quella* tessera non porta i segni della carta;
+		# la carta e' murata davvero solo se **nessuna** tessera pescata li
+		# porta — cioe' se ogni rifiuto, su ogni bersaglio di ogni faccia, e'
+		# quello. Contarla fra le pareti «a segni» quando cinque tessere su sei
+		# l'hanno rifiutata per un'altra regola vuol dire chiamare difetto del
+		# bersaglio un turno gia' speso.
+		#
+		# Si guarda **faccia per faccia**: l'altra faccia puo' essere zitta per
+		# una quota o un segno che vieta, e quello e' un turno speso, non una
+		# mappa che non porta niente.
+		for index in per_faccia:
+			var ragioni: Dictionary = per_faccia[index] as Dictionary
+			var solo_segni: bool = not ragioni.is_empty()
+			for ragione in ragioni:
+				if not str(ragione).contains("non arriva li'"):
+					solo_segni = false
+					break
+			if solo_segni:
+				return "murata dalla mappa: la faccia «%s» di «%s» non arriva su nessuna tessera pescata" % [
+					str((printed[index] as Dictionary).get("label", str(index))),
+					str((card as Dictionary).get("title", asset_id)),
+				]
 		# La ragione che il motore ha ripetuto di piu': con dieci Regioni provate
 		# e dieci rifiuti uguali, quella e' la parete vera.
 		var peggiore: String = "nessun bersaglio provato"
@@ -266,6 +296,12 @@ class Witness extends RefCounted:
 				quante = int(motivi[ragione])
 				peggiore = str(ragione)
 		return peggiore
+
+	## Un rifiuto in piu' sul conto di quella faccia.
+	static func _conta(per_faccia: Dictionary, index: int, ragione: String) -> void:
+		var ragioni: Dictionary = per_faccia.get(index, {})
+		ragioni[ragione] = int(ragioni.get(ragione, 0)) + 1
+		per_faccia[index] = ragioni
 
 	## Quante carte in mano portano quel verbo. Il mazzo ne ha undici che
 	## influenzano e dieci che muovono: se il cervello voleva influenzare e in
@@ -549,8 +585,10 @@ func _initialize() -> void:
 				nome = "il Consiglio si forza una volta per giro"
 			elif testo.contains("da scartare"):
 				nome = "il prezzo in carte da scartare"
+			elif testo.begins_with("murata dalla mappa"):
+				nome = "**murata dalla mappa: nessuna tessera porta i suoi segni**"
 			elif testo.contains("non arriva li'"):
-				nome = "**il bersaglio a segni**"
+				nome = "il bersaglio a segni, non qui: altrove un'altra regola"
 			famiglie[nome] = int(famiglie.get(nome, 0)) + int(pareti[ragione])
 		var per_famiglia: Array = famiglie.keys()
 		per_famiglia.sort_custom(func(a: Variant, b: Variant) -> bool:

@@ -205,25 +205,6 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 Dashed outline: this is a thing happening, and it can end.
 ```
 
-### requisita
-
-`condition:requisitioned` · categoria **STATE** · sta su region · lo posa: consequence
-
-**Cosa vuol dire.** Il raccolto non e' piu' di chi l'ha fatto: se l'e' preso l'autorita'.
-
-**Cosa si vede.** una spiga con un sigillo appeso al gambo
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: una spiga con un sigillo appeso al gambo.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-Dashed outline: this is a thing happening, and it can end.
-```
-
 ### affamata
 
 `condition:starving` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension

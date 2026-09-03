@@ -385,6 +385,12 @@ persona vede**. Va guardato su un iPad vero.
 > **Restano l'impaginazione** — 788 px in fila su un tablet da 768 — **e l'idea
 > di cosa si guarda**: la mappa dipinge invece di costruire nodi, e nessun
 > lettore di schermo la vede. Il committente le ha lasciate stare per adesso.
+>
+> **Le altre due, in 0.1.414** ([D-444](DECISIONS.md#d-444)): la pagina mostra
+> il tavolo, non lo stato. Mappa e mazzetti costruiscono nodi — pannelli che
+> dipingono **2 → 0** — la colonna di stato e il verbale sono pagine che si
+> aprono al posto del tavolo, e la pagina chiede **678 px su 768** invece di
+> 788 in fila. Resta l'occhio, com'era: il giro su iPad vero è del committente.
 
 ### PZ-9 — I validatori
 

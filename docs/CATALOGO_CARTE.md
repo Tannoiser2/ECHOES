@@ -231,7 +231,7 @@ no border. Not gory, not horror.
 **AZIONE — scegli 1**
 
 A. **Contare le teste.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
-B. **Contare i sacchi.** Togli #razionato o #requisito dal luogo.
+B. **Contare i sacchi.** Togli #razionato dal luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.
 
@@ -662,9 +662,9 @@ no border. Not gory, not horror.
 A. **Entrare come ospite.** Sposta una tua presenza li', anche se il luogo e' di un altro.
 B. **Dare loro una casa.** Alza un Villaggio in un luogo dove hai presenza: chi ospita per un inverno ospita per sempre.
 
-**RISONANZA (avviene sempre)** — Scalda Fede +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Fede +2.
+**RISONANZA (avviene sempre)** — Scalda Terra +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.
 
-> Se il bersaglio porta gia' `escort_sworn`: Fede scalda di 2 invece che di 1.
+> Se il bersaglio porta gia' `escort_sworn`: Terra scalda di 2 invece che di 1.
 
 **IN CONSIGLIO** — vale 1, +1 se la Domanda e' Fede o Terra.
 
@@ -3589,7 +3589,7 @@ colore di chi le tiene — servono in tutti i colori dei seggi.
 |---|---|---|---|---|
 | Archivio | studio | Archivio → La Grande Biblioteca | di una casa | L'Archivio Bruciato |
 | Canale | opera | Canale → La Grande Opera d'Acqua | di una casa | L'Insabbiamento |
-| Foresta | luogo | Foresta → Bosco diradato → Selva maledetta | di nessuno | La Radura Spoglia |
+| Foresta | luogo | Foresta → Selva maledetta | di nessuno | La Radura Spoglia |
 | Granaio | opera | Granaio → Il Grande Granaio | di una casa | Il Granaio Vuoto |
 | Presidio | presidio | Torre di veglia → Castello → Reggia | di una casa | Rovina |
 | Sito antico | luogo | Sito dormiente → Sito aperto → Sito saccheggiato | di nessuno | Il Vuoto sotto la Pietra |
@@ -3617,7 +3617,6 @@ portarne piu' d'una**, quindi conviene averne qualcuna di scorta.
 | in lutto | `condition:mourning` |
 | depredata | `condition:plundered` |
 | razionata | `condition:rationed` |
-| requisita | `condition:requisitioned` |
 | affamata | `condition:starving` |
 | inquieta | `condition:unrest` |
 
@@ -3656,4 +3655,4 @@ servono tutti, perche' quali quattro lo decide l'anno.
 
 ---
 
-*96 carte e 65 pezzi diversi da fare.*
+*96 carte e 63 pezzi diversi da fare.*

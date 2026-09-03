@@ -5,6 +5,117 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.414 — L'app mostra il tavolo, non lo stato
+
+M14 della lista, l'ultima: [ISSUES 65](docs/ISSUES.md#65)
+([D-444](docs/DECISIONS.md#d-444)).
+
+La pagina segue la decisione di D-427. Il tavolo prende il centro: i sei
+mazzetti in fila come bottoni, la mappa coi nomi, le domande e le parole dei
+segni costruiti come nodi, chi siede in una striscia, il racconto sotto. A
+destra solo quello che serve per decidere adesso; la colonna di stato e il
+verbale sono due pagine che si aprono al posto del tavolo. Le carte in mano si
+posano sulla domanda della mappa o sulla casa. Sonda della pagina: pannelli che
+dipingono 2 → **0**, bersagli 7 → 25 e **0** sotto il dito, **678 px su 768**
+invece di 788 in fila. La sezione 4 della sonda è riscritta per tre posti.
+Nessun file del motore toccato; cancello 0 su 8 rimisurato.
+
+---
+
+## 0.1.413 — Lo scarto fra le domande si misura per Tema, e Terra si apre
+
+M3 della lista: [ISSUES 60](docs/ISSUES.md#60) ([D-443](docs/DECISIONS.md#d-443)).
+
+Il criterio è ritagliato dove il gioco decide: quale domanda si apre è la sorte
+del mazzetto, quante volte un Tema si apre è il Calore delle Risonanze. *Diritto
+di Ospitalità* scalda Terra invece di Fede — contava già Terra al Consiglio — e
+Terra passa da 37 a 50 Consigli col 7000 e da 40 a 58 col 8000: nessun Tema
+sotto la metà del più aperto, nessuna domanda muta su tutti e due i semi. La
+*Febbre delle Paludi* ha una seconda miccia. Cancello 0 su 8; Verità 132 → 136
+sul misto, 145 → 139 sull'uniforme.
+
+---
+
+## 0.1.412 — Una carta si gioca in due modi, e il libro mastro lo diceva già
+
+M2 della lista: [ISSUES 59](docs/ISSUES.md#59) ([D-442](docs/DECISIONS.md#d-442)).
+
+Chiusura per lettura, nessun cambio di gioco. Il libro mastro delle carte dice
+che una carta *si spende per agire oppure si impegna al voto*: contando i due
+modi, nessun verbo sta sotto la metà del più spesa — INFLUENZARE è al 59,9%
+contro l'89,2% di MUOVERE, ed è la moneta più votata del tavolo. Zero carte
+mai calate. La lettura stretta (30,0% di sole calate) è scritta accanto, con
+la quota di una per giro che la spiega.
+
+---
+
+## 0.1.411 — Il bosco diradato esce dalla scatola
+
+M12 della lista: [ISSUES 111](docs/ISSUES.md#111) ([D-441](docs/DECISIONS.md#d-441)).
+
+Dei quattro gradi di Pietra che non si alzavano, il bosco diradato non aveva
+più nessuno che lo scrivesse ed esce: la Foresta va da Foresta a Selva
+maledetta. Il passo franato e la sorgente bassa arrivano in saga, e il
+criterio è ritagliato lì. La città non arriva nemmeno in trenta Chronicle, ed è
+scritto: resta perché la scala è una decisione del committente (ISSUES 40).
+Cancello 0 su 8, Verità identiche.
+
+---
+
+## 0.1.410 — Due Conseguenze escono dalla scatola, e #requisito con loro
+
+M1 della lista: [ISSUES 56](docs/ISSUES.md#56) ([D-440](docs/DECISIONS.md#d-440)).
+
+Misurate su 200 anni in saga, sei su sessantacinque non uscivano mai. Due
+escono — *Un Solo Trono* e *La Valle Sgomberata* — e con la seconda esce
+**#requisito**, che era l'unica a scrivere: un segnalino in meno da tagliare,
+due righe «SI ACCENDE QUANDO» e una faccia di *Censimento* che non nominano più
+un segno che non poteva succedere. Quattro restano con la ragione scritta: le
+due sull'unica strada aperta a tutti della loro domanda (una l'ha difesa la
+suite prima del merge), e le uniche porte delle due Cicatrici rare che il
+committente tiene. Rimisurate su due semi: 5 e 4 su 63, e solo tre le
+stesse — il criterio a 200 anni sta sul pavimento del rumore, ed è scritto. Cancello 0
+su 8, Verità 133 → 132 sul misto.
+
+---
+
+## 0.1.409 — Murata dalla mappa, o solo non qui
+
+M5 della lista: [ISSUES 128](docs/ISSUES.md#128) ([D-439](docs/DECISIONS.md#d-439)).
+
+`run_pass_probe` conta i rifiuti del tavolo **faccia per faccia** e distingue
+una carta che non arriva *su quella tessera* da una che non arriva *su nessuna*:
+la seconda è **murata dalla mappa**, ed è la parete che il «fatto quando»
+chiede a zero. 100 anni, seme 7000: **0 su 1.882**. I 109 rifiuti «a segni» che
+restano sono tutti «non qui, altrove sì». Nessun cambio di gioco.
+
+---
+
+## 0.1.408 — «La sceglie chi propone»: la pedina esce col nome della domanda
+
+M4 della lista: [ISSUES 106](docs/ISSUES.md#106) ([D-438](docs/DECISIONS.md#d-438)).
+
+Il cervello pesa ABBASSA LA DOMANDA su ogni segnalino in tavola e posa la
+pedina sul migliore; nell'hotseat si chiede *«su quale domanda?»*. In cento
+partite la casella si compra **91 volte su 728** (era 22 su 700 in 0.1.387),
+e **17** pedine finiscono su una domanda che non è quella in discussione. La
+prova che asseriva «oggi non ne nomina nessuna» si è girata. Cancello 0 su 8,
+Verità ferme.
+
+---
+
+## 0.1.407 — La coda della fustella si chiude
+
+M10 della lista: [ISSUES 82](docs/ISSUES.md#82) ([D-437](docs/DECISIONS.md#d-437)).
+
+Nessun cambio di gioco: una chiusura per misura. `run_punchboard_probe`, 40 anni
+di CHR_00 col seme 7000 sui due tavoli: **32 tipi su 34** si vedono almeno una
+volta, e i mai visti sono **due** — `#requisito`, che solo il Consiglio scrive
+(è la M1), e `scar:dragonfall`, la Cicatrice rara da tenere. Erano tre in
+0.1.403. Non si pota niente.
+
+---
+
 ## 0.1.406 — Il foglio delle decisioni rifatto, e un numero che avevo scritto male
 
 Nessun cambio di gioco: solo verbali.

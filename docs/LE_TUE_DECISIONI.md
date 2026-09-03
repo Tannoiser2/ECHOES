@@ -47,20 +47,21 @@ Otto versioni, otto verbali, otto PR. **Delle quattordici righe di lavoro che
 la tua parola aveva creato, tredici sono state percorse**: sei voci si sono
 chiuse, quattro sono uscite dalla lista o hanno cambiato casa, tre restano
 aperte con la causa finalmente scritta giusta. La quattordicesima — l'app che
-mostra il tavolo — è quella che apriremo dopo, ed è la più cara di tutte.
+mostra il tavolo — era la più cara di tutte, ed è andata per ultima: chiusa in
+0.1.414.
 
 | | voce | dove è finita |
 |---|---|---|
-| **M5** | [128](ISSUES.md#128) | lavorata in 0.1.398 — e **la proposta che avevi avallato era sbagliata**: la parete non erano i bersagli ([D-428](DECISIONS.md#d-428)) |
+| **M5** | [128](ISSUES.md#128) | lavorata in 0.1.398 — e **la proposta che avevi avallato era sbagliata**: la parete non erano i bersagli ([D-428](DECISIONS.md#d-428)); ✔ **chiusa** in 0.1.409 |
 | **M6** | [100](ISSUES.md#100) | ✔ **chiusa** in 0.1.400 — le 46 righe si stampano come le genera il motore |
 | **M7** | [127](ISSUES.md#127) | ✔ **chiusa** in 0.1.399 — quattro varchi disegnati, i chiusi li copre un gettone |
 | **M8** | [64](ISSUES.md#64) | ✔ **chiusa** in 0.1.401 — chi siede l'anno prossimo è una regola scritta |
 | **M9** | [69](ISSUES.md#69) | ✔ **chiusa** in 0.1.402 — la carta Tensione dice su cosa si discute |
-| **M10** | [82](ISSUES.md#82) | lavorata in 0.1.403 — il motore la fame la sapeva solo togliere ([D-433](DECISIONS.md#d-433)) |
+| **M10** | [82](ISSUES.md#82) | lavorata in 0.1.403 — il motore la fame la sapeva solo togliere ([D-433](DECISIONS.md#d-433)); ✔ **chiusa** in 0.1.407 per misura |
 | **M11** | [36](ISSUES.md#36) | percorsa in 0.1.404, e la voce esce fra le ⚪: il resto lo guardi tu, dopo una partita |
 | **M12** | [111](ISSUES.md#111) | rimisurata in 0.1.405 — **resta aperta**, ma le due cause scritte sono cadute e la vera è misurata |
 | **M13** | [4](ISSUES.md#4) | ✔ **chiusa** in 0.1.405 — gli obiettivi si incrociano, e il conto non si scrive più a mano |
-| **M14** | [65](ISSUES.md#65) | **da fare**, e va per ultima: ha bisogno che il resto sia fermo |
+| **M14** | [65](ISSUES.md#65) | ✔ **chiusa** in 0.1.414 — la pagina mostra il tavolo, non lo stato |
 
 **M1**, **M2**, **M3** e **M4** — le quattro di prima — non sono state toccate in
 questo giro e restano fra le mie. La **M3** ha un debito noto: **il suo criterio
@@ -126,10 +127,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **115** |
-| aperte | **17** |
+| chiuse | **123** |
+| aperte | **9** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **17** |
+| di cui sono mie da fare | **9** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,12 +161,9 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **8** | **io**, da sola, senza aspettare niente |
+| 🟡 | **0** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Otto.** Delle diciassette voci aperte, otto le posso muovere senza di te — ed
-è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
-parola.**
 
 <!-- COLORI: fine -->
 
@@ -235,27 +233,28 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **otto**
+# 🟡 Sono mie, e non aspettano niente: **nessuna**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
-([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
-e restano queste otto. **Nessuna apre una voce nuova**, e ognuna che si chiude
-sparisce dal conto qui sopra.
+([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
+entro 0.1.405; **le sette che restavano si sono chiuse in 0.1.407–0.1.413**, su
+parola tua — *«vai con M»* — una versione per M, ognuna col suo verbale e col
+cancello 0 su 8 rimisurato. **Nessuna ha aperto una voce nuova.** E la
+quattordicesima, quella che andava per ultima da sempre, si è chiusa in
+0.1.414 su parola tua — *«vai con la M14»*: **la pagina mostra il tavolo**.
 
-**Quello che resta, e in che ordine lo farei:**
+**Quello che resta: niente.** Delle quattordici righe di lavoro che la tua
+parola aveva creato in 0.1.397, quattordici sono percorse.
 
-| | perché, e a che punto è |
-|---|---|
-| **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
-| **M3** — [60](ISSUES.md#60), lo scarto fra le domande | **il suo criterio va ritagliato prima**: per aritmetica non è raggiungibile, e lavorarci senza è lavorare a vuoto. Il numero da battere è 13,1× |
-| **M4** — [106](ISSUES.md#106), la pedina senza il nome | la casella è comprata **una volta su settantadue**: è la stessa forma delle due che la 117 ha già curato |
-| **M1** — [56](ISSUES.md#56), le Conseguenze che non escono | ne restano nove, e sette hanno un tentativo solo: prima di riscriverle vanno **misurate su 200 anni**, o tolte |
-| **M2** — [59](ISSUES.md#59), INFLUENZARE | due dei tre difetti sono spariti da soli; resta il verbo meno giocato |
-| **M5** — [128](ISSUES.md#128), le carte murate | lavorata in 0.1.398, e il *«passo»* è sceso: resta sotto la soglia che il suo criterio chiede |
-| **M10** — [82](ISSUES.md#82), le condizioni che non escono | lavorata in 0.1.403: `#magro` esce, `#requisito` è del Consiglio per costruzione e ricade sulla M1 |
-| **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
+### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
-### M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai
+**Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in
+saga erano **sei**. Due sono uscite dalla scatola, e con loro **#requisito**;
+quattro restano con la ragione scritta — le uniche strade aperte a tutti di due
+domande, e le due porte delle Cicatrici rare che hai deciso di tenere. Su due
+semi ne restano cinque e quattro a zero, e solo tre le stesse: a 200 anni il
+criterio misura il seme.
+
 
 Erano undici, e il numero è sceso perché sono state rimisurate **in saga**, dove
 cinque di loro possono uscire: chiedono una leggenda o un'era precedente, e in
@@ -268,7 +267,14 @@ scelta 9 volte su 9 e non è mai passata.
 **Fatto quando** ogni Conseguenza esce almeno una volta su 200 anni, **o esce
 dalla scatola**. Le tolgo, non le riscrivo tre volte.
 
-### M2. [59](ISSUES.md#59) — il verbo che nessuno gioca
+### ✔ M2. [59](ISSUES.md#59) — il verbo che nessuno gioca: **chiusa in 0.1.412**
+
+**Chiusa in 0.1.412** ([D-442](DECISIONS.md#d-442)): il libro mastro dice che una
+carta si spende per agire *oppure* si impegna al voto, e contando i due modi
+nessun verbo sta sotto la metà del più spesa — INFLUENZARE al 59,9% contro
+l'89,2% di MUOVERE, ed è la moneta più votata. Zero carte mai calate. La lettura
+stretta (30,0% di sole calate, per la quota di una per giro) è scritta accanto.
+
 
 La voce era su tre difetti e **due sono spariti da soli**: FORGIARE e TRAMARE
 non sono più i verbi morti (8,4% e 9,9% → 52,4% e 75,6%), WEALTH non è più la
@@ -281,7 +287,14 @@ moneta più votata, con quasi metà delle sue carte che non fa niente.
 **Fatto quando** nessun verbo si gioca meno della metà del più giocato, e ogni
 carta viene calata per agire almeno una volta in cento anni.
 
-### M3. [60](ISSUES.md#60) — lo scarto fra la domanda più e meno ascoltata
+### ✔ M3. [60](ISSUES.md#60) — lo scarto fra la domanda più e meno ascoltata: **chiusa in 0.1.413**
+
+**Chiusa in 0.1.413** ([D-443](DECISIONS.md#d-443)): il criterio è ritagliato per
+Tema, che è quello che il contenuto governa — quale domanda si apre è la sorte
+del mazzetto. Con una Risonanza spostata verso Terra nessun Tema apre meno della
+metà dei Consigli del più aperto, su due semi, e nessuna domanda è muta su tutti
+e due. Lo scarto fra due domande resta scritto come osservazione.
+
 
 Rimisurata in 0.1.377, e **dice un'altra cosa di quando è stata scritta**. Le
 domande erano dodici, sono sessanta: le mute sono passate da una su dodici a
@@ -294,7 +307,13 @@ con 3,58 Consigli l'anno su sessanta domande la più ascoltata del tavolo arriva
 al 62,5%. **Il criterio va ritagliato prima di lavorarci** — zero domande mute, e
 lo scarto sotto un fattore da decidere. Il numero da battere è **13,1×**.
 
-### M4. [106](ISSUES.md#106) — la pedina non porta con sé il nome della domanda
+### ✔ M4. [106](ISSUES.md#106) — la pedina non porta con sé il nome della domanda: **chiusa in 0.1.408**
+
+**Chiusa in 0.1.408** ([D-438](DECISIONS.md#d-438)): il cervello pesa la casella
+su ogni segnalino in tavola e posa la pedina sul migliore, l'hotseat chiede *«su
+quale domanda?»*, e la sonda vede il gesto: **91 acquisti su 728** offerte (era
+22 su 700), **17** su una domanda indicata col dito. Cancello 0 su 8.
+
 
 «La sceglie chi propone», ma la pedina muove solo la domanda in discussione: è il
 beneficio meno interessante che si possa offrire, e infatti la casella è comprata
@@ -304,7 +323,13 @@ beneficio meno interessante che si possa offrire, e infatti la casella è compra
 verbale dice quale, e la sonda delle caselle mostra se la casella smette di essere
 quella che nessuno compra.
 
-### M5. [128](ISSUES.md#128) — le carte murate: **lavorata in 0.1.398**
+### ✔ M5. [128](ISSUES.md#128) — le carte murate: **chiusa in 0.1.409**
+
+**Chiusa in 0.1.409** ([D-439](DECISIONS.md#d-439)): la sonda ha imparato a
+distinguere una carta che non arriva *su quella tessera* da una che non arriva
+*su nessuna*, e la seconda — la sola che il criterio chiede a zero — è **0 su
+1.882** rifiuti in cento anni. I 109 «a segni» sono tutti «non qui, altrove sì».
+
 
 **Parola tua: sì.** Il passare non si toglie — toglierlo costa il **42% della
 memoria del mondo** e non porta i «passa» a zero, li porta a 36,1%.
@@ -442,9 +467,13 @@ la **M14**.
 non escono mai**. È finito come riga sotto la **M1**, che è la voce di quella
 famiglia.
 
-### M10. [82](ISSUES.md#82) — le condizioni che non succedono
+### ✔ M10. [82](ISSUES.md#82) — le condizioni che non succedono: **chiusa in 0.1.407**
 
-**Lavorata in 0.1.403** ([D-433](DECISIONS.md#d-433)).
+**Lavorata in 0.1.403** ([D-433](DECISIONS.md#d-433)), **chiusa in 0.1.407**
+([D-437](DECISIONS.md#d-437)): rimisurata sulla stessa sonda, i mai visti in
+quarant'anni sono **due** — `#requisito`, che solo il Consiglio scrive ed è la
+M1, e `scar:dragonfall`, la Cicatrice rara che hai deciso di tenere. L'altra
+Cicatrice rara esce tre anni su quaranta. È esattamente il «fatto quando».
 
 **I numeri della voce erano invecchiati, e la sonda guardava tardi.** La fustella
 leggeva le Regioni **dopo** la fine dell'anno: un gettone posato a marzo e tolto
@@ -518,7 +547,14 @@ partenza vera sulla linea di oggi era **0,64**.)
 trasformazioni salgono ma si spalmano su ventiquattro vite invece che su
 diciotto. E sei illustrazioni in più: 155 → **161**. Cancello **0 su 8**.
 
-### M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai
+### ✔ M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai: **chiusa in 0.1.411**
+
+**Chiusa in 0.1.411** ([D-441](DECISIONS.md#d-441)): il bosco diradato non aveva
+più nessuno che lo scrivesse ed è uscito dalla scatola; il passo franato e la
+sorgente bassa arrivano in saga, e il criterio è ritagliato lì; la città non
+arriva nemmeno in trenta Chronicle, ed è scritto — resta perché la scala è una
+tua decisione (ISSUES 40).
+
 
 **Rimisurata in 0.1.405, e non si chiude: ma adesso sappiamo perché**
 ([D-435](DECISIONS.md#d-435)).
@@ -593,7 +629,15 @@ vede — ed è una riga sotto l'arte, non una voce nuova. Le Verità salgono —
 Con lei si è rimisurata anche la [91](ISSUES.md#91), che sta fra le ⚪: le
 clausole già vere all'apertura scendono da **47,1%** a **46,2%**.
 
-### M14. [65](ISSUES.md#65) — l'app smette di mostrare lo stato
+### ✔ M14. [65](ISSUES.md#65) — l'app smette di mostrare lo stato: **chiusa in 0.1.414**
+
+**Chiusa in 0.1.414** ([D-444](DECISIONS.md#d-444)): il tavolo prende il centro
+e ci sta una cosa alla volta — i mazzetti in fila, la mappa coi nomi, le domande
+e le parole dei segni come nodi, chi siede in una striscia, il racconto sotto —
+e la colonna di stato e il verbale sono due pagine che si aprono al suo posto.
+La sonda della pagina: 0 pannelli che dipingono (erano 2), 25 bersagli e nessuno
+sotto il dito, 678 px su 768 invece di 788 in fila. **Quello che resta è
+l'occhio**: il giro su un iPad vero, che è la 🔵 [63](ISSUES.md#63).
 
 **Parola tua: sì**, la **(3)**, ed è la più cara della lista.
 
@@ -663,8 +707,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle diciassette voci aperte ne
-posso muovere **otto** da sola. Due le verifica una persona che gioca, sette
+**Quello che resta da dire in una riga:** delle nove voci aperte ne posso
+muovere **nessuna** da sola. Due le verifica una persona che gioca, sette
 stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

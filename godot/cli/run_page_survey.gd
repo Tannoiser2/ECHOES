@@ -11,10 +11,11 @@ extends SceneTree
 ## > pagina. Finche' una persona con l'app in mano resta l'unico strumento, ogni
 ## > giro costa un suo pomeriggio — ed e' successo tre volte di fila.»*
 ##
-## Questa e' quella sonda. **Non decide quale delle tre riviste si fa** — quella
-## e' una scelta d'autore, e resta nella 65 — ma misura le quattro cose che i
-## sei difetti trovati su un tablet avevano in comune, cosi' che la prossima
-## passata si giudichi con dei numeri invece che con un pomeriggio.
+## Questa e' quella sonda. Misura le quattro cose che i sei difetti trovati su
+## un tablet avevano in comune, cosi' che ogni passata si giudichi con dei
+## numeri invece che con un pomeriggio. La rivista da fare l'ha scelta il
+## committente (D-427, la terza: *l'app mostra il tavolo, non lo stato*) ed e'
+## fatta in D-444: da li' la sonda dice **se la pagina la segue**.
 ##
 ## Quello che si misura e' **quello che la pagina chiede**, non quello che
 ## ottiene: senza una finestra vera non c'e' un passaggio di disposizione, e
@@ -30,6 +31,7 @@ const MapView := preload("res://ui/map_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const TableView := preload("res://ui/table_view.gd")
 const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
+const SeatsStrip := preload("res://ui/seats_strip.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
 
@@ -48,6 +50,13 @@ const DITO: float = 44.0
 ## La larghezza di un tablet tenuto in verticale, che e' come il committente
 ## l'ha provata. Serve solo a dire **quanto la pagina chiede in confronto**.
 const TAVOLETTA: float = 768.0
+
+## **La pagina di D-444, in due numeri presi da `ui/game_screen.gd`**: la colonna
+## delle scelte a destra del tavolo, e i margini — 12 per lato piu' i 12 fra le
+## due colonne. Sono ricopiati, non letti: la cornice non compila da qui (sopra),
+## e una cifra ricopiata e' la trappola nota. Se la cornice cambia, cambiano qui.
+const COLONNA: float = 240.0
+const MARGINI: float = 36.0
 
 
 var _out_path: String = "docs/MISURA_PAGINA.md"
@@ -145,6 +154,7 @@ func _survey() -> void:
 		var wanted: Vector2 = (root as Control).get_combined_minimum_size()
 		widths.append({
 			"name": name, "w": wanted.x, "h": wanted.y, "nodes": int(seen["nodes"]),
+			"where": str(page.get("where", "")),
 		})
 
 	# **Una sonda che torna zero e' quasi sempre cieca lei** (regola di casa).
@@ -171,19 +181,26 @@ func _survey() -> void:
 	quit(0)
 
 
-## I pannelli che si costruiscono da soli, con una partita vera dietro.
+## I pannelli che si costruiscono da soli, con una partita vera dietro. Ognuno
+## dice **dove sta** nella pagina di D-444: `tavolo` (in colonna a sinistra, con
+## la colonna delle scelte accanto), `centro` (al posto del tavolo, uno alla
+## volta), `sotto` (la mano, tutta la larghezza), `stanza` (la pagina della
+## stanza, prima di sedersi: non e' la pagina di gioco).
 func _build(session: RefCounted, data: RefCounted, viewer: String) -> Array:
 	var out: Array = []
 
 	var status: Node = StatusPanel.new()
 	_seat(status)
 	status.render(session, viewer)
-	out.append({"name": "colonna di stato", "node": status})
+	out.append({"name": "colonna di stato", "node": status, "where": "centro"})
 
 	var map: Node = MapView.new()
 	_seat(map)
+	# La mappa dispone le tessere secondo lo spazio che ha: la misura di un
+	# tablet meno la colonna delle scelte, come nella pagina vera.
+	(map as Control).size = Vector2(TAVOLETTA - 240.0, 520.0)
 	map.render(session, viewer)
-	out.append({"name": "mappa", "node": map})
+	out.append({"name": "mappa", "node": map, "where": "tavolo"})
 
 	# **Il tabellone si guarda aperto.** `render` esce subito se non c'e' un
 	# Consiglio in corso, e una sonda che guarda un tabellone chiuso direbbe che
@@ -192,27 +209,41 @@ func _build(session: RefCounted, data: RefCounted, viewer: String) -> Array:
 	var board: Node = ConfluenceBoard.new()
 	_seat(board)
 	board.render(session, viewer)
-	out.append({"name": "il Consiglio", "node": board})
+	out.append({"name": "il Consiglio", "node": board, "where": "centro"})
 
 	var table: Node = TableView.new()
 	_seat(table)
+	# Largo come la stanza che lo ospita: senza una misura la mappa che ha
+	# dentro si stringe a un raggio minimo, e i suoi posti risultano stretti
+	# quanto un capello — un difetto della sonda, non della pagina.
+	(table as Control).size = Vector2(TAVOLETTA, 520.0)
 	table.render(session)
-	out.append({"name": "il tavolo", "node": table})
+	out.append({"name": "il tavolo", "node": table, "where": "stanza"})
 
 	var decks: Node = ThemeDecksView.new()
 	_seat(decks)
+	# **Larga come una striscia** (D-444): sul tavolo i sei mazzetti stanno in
+	# fila lungo il bordo alto della mappa, e la vista dispone i suoi nodi
+	# secondo lo spazio che ha. Senza una misura si disporrebbe come un
+	# riquadro vuoto, che non e' la pagina.
+	(decks as Control).size = Vector2(TAVOLETTA - 240.0, 96.0)
 	decks.render(session)
-	out.append({"name": "i mazzi dei Temi", "node": decks})
+	out.append({"name": "i mazzi dei Temi", "node": decks, "where": "tavolo"})
+
+	var seats: Node = SeatsStrip.new()
+	_seat(seats)
+	seats.render(session, viewer)
+	out.append({"name": "chi siede", "node": seats, "where": "tavolo"})
 
 	var help: Node = HelpPanel.new()
 	_seat(help)
 	help.render(data, "CHR_00")
-	out.append({"name": "la pagina d'aiuto", "node": help})
+	out.append({"name": "la pagina d'aiuto", "node": help, "where": "centro"})
 
 	var hand: Node = HandView.new()
 	_seat(hand)
 	hand.render(session, viewer)
-	out.append({"name": "la mano", "node": hand})
+	out.append({"name": "la mano", "node": hand, "where": "sotto"})
 
 	return out
 
@@ -362,9 +393,11 @@ func _write(
 	lines.append("questa pagina**, quindi ogni giro costa il pomeriggio di una persona con")
 	lines.append("l'app in mano. Questa e' quella sonda.")
 	lines.append("")
-	lines.append("Non dice **quale** delle tre riviste fare — quella e' una scelta d'autore e")
-	lines.append("resta nella 65. Misura le quattro cose che i sei difetti trovati su un")
-	lines.append("tablet avevano in comune, cosi' la prossima passata si giudica coi numeri.")
+	lines.append("Misura le quattro cose che i sei difetti trovati su un tablet avevano in")
+	lines.append("comune, cosi' ogni passata si giudica coi numeri. La rivista l'ha scelta il")
+	lines.append("committente — [D-427](DECISIONS.md#d-427), la terza: *l'app mostra il")
+	lines.append("tavolo, non lo stato* — ed e' fatta in [D-444](DECISIONS.md#d-444): da li'")
+	lines.append("questa pagina dice **se la pagina la segue**.")
 	lines.append("")
 	lines.append("**Si misura quello che la pagina chiede, non quello che ottiene**: senza")
 	lines.append("una finestra vera non c'e' un passaggio di disposizione. Un bersaglio che")
@@ -458,51 +491,106 @@ func _write(
 
 	lines.append("## 4. Quanto la pagina chiede")
 	lines.append("")
-	lines.append("La 65 dice che quattro cose *«si contendono un tablet in verticale»*.")
-	lines.append("Ecco quanto ognuna chiede, e quanto e' largo il tablet: **%d px**." % int(TAVOLETTA))
+	lines.append("Da [D-444](DECISIONS.md#d-444) la pagina e' **il tavolo, e una cosa alla")
+	lines.append("volta**: a sinistra il tavolo — i mazzetti, la mappa, chi siede, il")
+	lines.append("racconto — e accanto una colonna di **%d px** con quello che serve per" % int(COLONNA))
+	lines.append("decidere adesso. La colonna di stato, il Consiglio e l'aiuto non stanno")
+	lines.append("piu' intorno al tavolo: si aprono **al suo posto**, uno alla volta. La")
+	lines.append("mano sta sotto, per tutta la larghezza. Il tablet e' largo **%d px**." % int(TAVOLETTA))
 	lines.append("")
 	lines.append("Una colonna fatta per scorrere chiede **tutta la sua lunghezza**: la")
 	lines.append("colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».")
+	lines.append("Un pannello che *si adatta* non dichiara niente perche' prende lo spazio")
+	lines.append("che resta: e' la mappa, ed e' giusto che sia lei.")
 	lines.append("")
-	lines.append("| pannello | nodi | larghezza chiesta | altezza chiesta |")
-	lines.append("|---|---|---|---|")
-	var total: float = 0.0
+	lines.append("| pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |")
+	lines.append("|---|---|---|---|---|")
+	var tavolo: float = 0.0
+	var centro: float = 0.0
+	var centro_chi: String = ""
+	var sotto: float = 0.0
 	var painted: Array = []
 	for entry_v in widths:
 		var entry: Dictionary = entry_v as Dictionary
+		var name: String = str(entry["name"])
+		var where: String = str(entry["where"])
+		var w: float = float(entry["w"])
 		if _paints(entry):
-			painted.append(str(entry["name"]))
-			lines.append("| %s | %d | *disegna: non lo dichiara* | |" % [
-				str(entry["name"]), int(entry["nodes"]),
+			painted.append(name)
+			lines.append("| %s | %s | %d | *dipinge: non lo dichiara* | |" % [
+				name, _where_said(where), int(entry["nodes"]),
 			])
 			continue
-		total += float(entry["w"])
-		lines.append("| %s | %d | %.0f | %.0f |" % [
-			str(entry["name"]), int(entry["nodes"]), float(entry["w"]), float(entry["h"]),
+		if w <= 0.0:
+			lines.append("| %s | %s | %d | *si adatta* | |" % [
+				name, _where_said(where), int(entry["nodes"]),
+			])
+			continue
+		lines.append("| %s | %s | %d | %.0f | %.0f |" % [
+			name, _where_said(where), int(entry["nodes"]), w, float(entry["h"]),
 		])
-	lines.append("| **in fila, quelli che lo dichiarano** | | **%.0f** | |" % total)
+		match where:
+			"tavolo":
+				tavolo = maxf(tavolo, w)
+			"centro":
+				if w > centro:
+					centro = w
+					centro_chi = name
+			"sotto":
+				sotto = maxf(sotto, w)
 	lines.append("")
 	if not painted.is_empty():
-		lines.append("**%d pannelli non compaiono in quel conto**, ed e' il primo" % painted.size())
-		lines.append("risultato di questa misura: %s **non costruiscono nodi, dipingono**." % (
-			", ".join(PackedStringArray(painted))
-		))
-		lines.append("Una scritta dipinta non ha una misura minima, non ha un suggerimento e")
-		lines.append("non e' un bersaglio: questa sonda non la vede, e nemmeno un lettore di")
-		lines.append("schermo. E' un fatto da tenere presente prima di scegliere quale delle")
-		lines.append("tre riviste fare — non un difetto da riparare qui.")
-		lines.append("")
-	if total > TAVOLETTA:
-		lines.append("Quelli che una misura la dichiarano chiedono **%.0f px** in fila: %.0f" % [
-			total, total - TAVOLETTA,
+		lines.append("**%d pannelli tornano a dipingere**: %s. Una scritta dipinta non ha" % [
+			painted.size(), ", ".join(PackedStringArray(painted)),
 		])
-		lines.append("piu' del tablet, e la mappa non e' nemmeno nel conto. Non e' un difetto")
-		lines.append("da riparare riga per riga — e' la seconda delle tre riviste della 65,")
-		lines.append("*«forse su un tablet la pagina e' una alla volta»*, e sta al committente.")
+		lines.append("una misura, non e' un bersaglio, e nessun lettore di schermo la vede. Da")
+		lines.append("D-444 quello che si legge e si tocca e' un nodo: questo e' un passo indietro.")
+		lines.append("")
+	var pagina: float = tavolo + COLONNA + MARGINI
+	var posto: float = TAVOLETTA - COLONNA - MARGINI
+	var sotto_posto: float = TAVOLETTA - (MARGINI - 12.0)
+	lines.append("Tre misure, una per posto:")
+	lines.append("")
+	lines.append("| | chiede | ha | |")
+	lines.append("|---|---|---|---|")
+	lines.append("| **il tavolo con la colonna accanto** — il piu' largo dei suoi pannelli (%.0f), la colonna (%d), i margini (%d) | **%.0f** | %.0f | %s |" % [
+		tavolo, int(COLONNA), int(MARGINI), pagina, TAVOLETTA, _fits(pagina, TAVOLETTA),
+	])
+	lines.append("| **al centro, uno alla volta** — il piu' largo e' «%s» | **%.0f** | %.0f | %s |" % [
+		centro_chi, centro, posto, _fits(centro, posto),
+	])
+	lines.append("| **sotto, la mano** | **%.0f** | %.0f | %s |" % [
+		sotto, sotto_posto, _fits(sotto, sotto_posto),
+	])
+	lines.append("")
+	if pagina <= TAVOLETTA and centro <= posto and sotto <= sotto_posto:
+		lines.append("**La pagina sta dentro il tablet**, in tutti e tre i posti. Fino a D-444")
+		lines.append("chiedeva 788 px in fila senza contare la mappa: non e' che i pannelli si")
+		lines.append("sono stretti, e' che non stanno piu' in fila.")
 	else:
-		lines.append("Quelli che una misura la dichiarano stanno dentro il tablet.")
+		lines.append("**La pagina non sta nel tablet**, e la riga col ✗ dice dove. Non si")
+		lines.append("ripara stringendo un pannello: si guarda cosa ci sta accanto.")
 	return lines
 
+
+## Dove sta un pannello, detto a parole.
+static func _where_said(where: String) -> String:
+	match where:
+		"tavolo":
+			return "sul tavolo"
+		"centro":
+			return "al centro, uno alla volta"
+		"sotto":
+			return "sotto, tutta la larghezza"
+		"stanza":
+			return "nella stanza, prima di sedersi"
+	return where
+
+
+static func _fits(asked: float, had: float) -> String:
+	if asked <= had:
+		return "✓ ne avanzano %.0f" % (had - asked)
+	return "✗ ne mancano %.0f" % (asked - had)
 
 ## Un pannello che dipinge invece di costruire: nessuna misura dichiarata e
 ## nessun figlio. Non e' vuoto — e' fatto in un altro modo.
