@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-426 — Il foglio delle decisioni si conta da solo
+
+**implemented in 0.1.396.** Domanda del committente, alla fine di
+[D-425](#d-425): *«ma perche' non e' aggiornato le_mie_decisioni?»*
+
+### La risposta era: perche' niente lo obbligava a esserlo
+
+Di [`docs/LE_TUE_DECISIONI.md`](LE_TUE_DECISIONI.md) era generato **solo il
+blocco del conto**. Tutto il resto lo scriveva una mano: il numero nel titolo
+rosso, i cinque numeri della tabella dei colori, il ✔ su una voce decisa, i due
+paragrafi che ripetono quei numeri a parole. In una giornata sola quel foglio
+l'ho rattoppato **quattro volte**, e una di quelle l'ha vista il committente:
+aveva chiesto *«mancano solo le quindici?»* e la risposta era tredici.
+
+E' [la regola due di casa](../CLAUDE.md) applicata a un documento invece che a
+un numero: *quello che non e' misurato va dichiarato* — e un numero che nessuno
+rimisura non e' un numero, e' un ricordo. Era gia' successo con lo stesso foglio
+in [D-391](#d-391), e la cura di allora — generare il conto — aveva coperto solo
+il conto.
+
+### Cosa e' generato adesso
+
+`tools/issues_survey.py` non scrive piu' un blocco solo: **ritocca la spina
+dorsale** del foglio, cioe' tutto quello che si puo' contare.
+
+| cosa | prima | adesso |
+|---|---|---|
+| blocco del conto | generato | generato |
+| numero nel titolo di ogni colore | a mano | **generato**, a parole |
+| i due titoli dentro le rosse (strada / fuori strada) | a mano | **generato** |
+| tabella dei colori, cinque righe | a mano | **generato** |
+| paragrafo «Delle N voci aperte…» | a mano | **generato** |
+| paragrafo «Quello che resta da dire in una riga» | a mano | **generato** |
+| ✔ su una voce che ISSUES dice chiusa | a mano | **generato** |
+| la domanda e la raccomandazione di ogni riga | a mano | **a mano** |
+
+L'ultima riga e' il punto: a mano resta **solo quello che a mano deve restare**.
+
+### Il ✔ si mette e non si toglie
+
+Una voce puo' essere **decisa e ancora aperta** — la parola e' arrivata, il
+lavoro no: e' il caso di R4 e R6. Quel ✔ e' vero, e lo strumento non lo tocca.
+Quello che non puo' succedere e' il contrario: una voce che ISSUES dichiara
+chiusa e che nella lista sembra ancora aspettare il committente. La guardia e'
+in un verso solo, ed e' il verso che mente.
+
+### E una guardia nuova, che non contava numeri
+
+La casa di una voce non e' piu' *«il suo numero compare da qualche parte nel
+foglio»*: e' **una sezione a colore che la ospita**, in un titolo di riga o in
+una riga di tabella. Nominarla nel racconto di un'altra e' un rimando, non una
+casa. Da li' vengono tre cose che prima non si potevano dire:
+
+- una voce aperta **senza casa** (era gia' rosso, ma su un criterio piu' largo);
+- una voce ospitata **da due sezioni** insieme;
+- una voce col cartellino `da-decidere` messa **fra le mie**. E' l'errore che
+  accorcia la lista senza accorciare il giro — era il secondo dei cinque trovati
+  in 0.1.382, e allora l'avevo trovato leggendo.
+
+### Il difetto che si e' fatto trovare subito
+
+Alla prima passata il conto delle nere e' sceso da due a una, e il ✔ e' comparso
+su una voce viva. Causa: **quattro numeri sono usati due volte** in due milestone
+diverse — l'1, il 2, il 3 e il 4 — e `ISSUES.md#4` non sa dire quale intende. Lo
+decide il senso della lista: **la lista nomina cose da fare**, quindi un numero
+ambiguo vuol dire quella aperta. Scritto nello strumento, con la ragione accanto.
+
+### Quello che ha corretto sul foglio vero
+
+Una parola sola, e stava nell'ultima riga: *«delle **ventisette** voci aperte»*
+quando sono ventisei. E' esattamente il tipo di numero che il committente legge
+se non legge altro.
+
+### Il costo, dichiarato
+
+**Nessun cancello nuovo**: la spina dorsale sta dentro
+`python3 tools/issues_survey.py --check`, che gia' c'era. Le guardie di
+`--self-test` passano da due a **cinque**, e il costo dei due cancelli resta
+0,1 s ciascuno.
+
+---
+
 ## D-422 — La sonda dei «passa» contava il tavolo e non la mano
 
 **implemented in 0.1.394.** Apre [ISSUES 128](ISSUES.md#128), su domanda del

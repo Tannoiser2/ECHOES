@@ -5,6 +5,60 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.396 — Il foglio delle decisioni si conta da solo
+
+Domanda del committente: *«ma perché non è aggiornato le_mie_decisioni?»* La
+risposta era **perché niente lo obbligava a esserlo**
+([D-426](docs/DECISIONS.md#d-426)).
+
+Di [`docs/LE_TUE_DECISIONI.md`](docs/LE_TUE_DECISIONI.md) era generato **solo il
+blocco del conto**. Il numero nel titolo rosso, i cinque numeri della tabella dei
+colori, il ✔ su una voce decisa e i due paragrafi che ripetono quei numeri a
+parole li scriveva una mano — e in un giorno solo quel foglio l'ho rattoppato
+quattro volte, una delle quali l'ha vista il committente.
+
+### Adesso si genera la spina dorsale, non il solo conto
+
+| cosa | prima | adesso |
+|---|---|---|
+| blocco del conto | generato | generato |
+| numero nel titolo di ogni colore | a mano | **generato**, a parole |
+| i due titoli dentro le rosse (strada / fuori strada) | a mano | **generato** |
+| tabella dei colori, cinque righe | a mano | **generato** |
+| i due paragrafi che ripetono i numeri a parole | a mano | **generato** |
+| ✔ su una voce che ISSUES dice chiusa | a mano | **generato** |
+| la domanda e la raccomandazione di ogni riga | a mano | **a mano** |
+
+Il ✔ **si mette e non si toglie**: una voce può essere decisa e ancora aperta —
+la parola è arrivata, il lavoro no — e quel segno è vero. La guardia è in un
+verso solo, ed è il verso che mente.
+
+### E una guardia che non conta numeri
+
+La casa di una voce non è più *«il suo numero compare da qualche parte»*: è **una
+sezione a colore che la ospita**, in un titolo di riga o in una riga di tabella.
+Da lì tre cose che prima non si potevano dire: una voce aperta **senza casa**,
+una ospitata **da due sezioni**, e una col cartellino `da-decidere` messa **fra
+le mie** — l'errore che accorcia la lista senza accorciare il giro.
+
+### Il difetto che si è fatto trovare subito
+
+Alla prima passata il conto delle nere è sceso da due a una, e il ✔ è comparso su
+una voce viva: **quattro numeri sono usati due volte** in due milestone diverse,
+e `ISSUES.md#4` non sa dire quale intende. Lo decide il senso della lista — che
+nomina cose da fare — quindi un numero ambiguo vuol dire quella aperta.
+
+### Sul foglio vero ha corretto una parola
+
+*«Delle **ventisette** voci aperte»* quando sono ventisei, nell'ultima riga: cioè
+in quella che si legge se non si legge altro.
+
+**Costo dichiarato: nessun cancello nuovo.** La spina dorsale sta dentro
+`python3 tools/issues_survey.py --check`, che c'era già; le guardie del
+`--self-test` passano da due a **cinque**, e i due cancelli restano a 0,1 s.
+
+---
+
 ## 0.1.395 — La cosa meno peggio: il cervello si fa male quando non ha di meglio
 
 Seconda metà della strada che il committente ha scelto rispondendo **«1»** alla
