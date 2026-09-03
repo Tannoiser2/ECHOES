@@ -10,6 +10,52 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-437 — La coda della fustella si chiude: due mai visti, e sono quelli decisi
+
+**implemented in 0.1.407.** Chiude [ISSUES 82](ISSUES.md#82) (M10 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il «fatto quando», rimisurato
+
+La voce chiedeva che *dei tre gettoni mai visti resti solo quello che il
+Consiglio scrive, e le due Cicatrici rare* che la parola del committente ha
+deciso di tenere ([D-427](#d-427)). `run_punchboard_probe`, 40 anni di CHR_00
+col seme 7000, i due tavoli ad anni alterni come da [D-433](#d-433):
+
+| | 0.1.403 (D-433) | **oggi** |
+|---|---|---|
+| tipi disegnati sulla fustella della mappa | 34 | 34 |
+| tipi visti almeno una volta | 31 | **32** |
+| **mai visti in 40 anni** | **3** | **2** |
+| tipi sul tavolo in un anno | 8,9 | 8,6 (massimo 13) |
+
+I due che restano sono **`condition:requisitioned`** e **`scar:dragonfall`**.
+Il primo e' il segno che solo il Consiglio scrive — requisire e' quello che il
+tavolo decide, non un gesto che si fa da soli — e il fatto che non esca e' la
+voce delle Conseguenze che nessuno sceglie, [ISSUES 56](ISSUES.md#56), la M1:
+questa voce non lo puo' curare e non deve. Il secondo e' una delle due Cicatrici
+rare da tenere. L'altra, **`scar:sealed_border`**, e' uscita **3 anni su 40**: fra
+D-433 e oggi il tavolo e' cambiato in tre verbali — sei vite nuove
+([D-434](#d-434)), la casella delle Pietre senza padrone ([D-435](#d-435)), due
+obiettivi in piu' ([D-436](#d-436)) — e non attribuisco a nessuno dei tre una
+Cicatrice che esce tre volte in quarant'anni: e' dentro il rumore di questa
+misura, come la voce stessa aveva scritto per lo spostamento di 0.1.271.
+
+### Cosa resta scritto, e dove
+
+**Non si pota niente.** La coda — 20 tipi su 34 sotto un anno su cinque — e'
+per meta' Cicatrici, e una Cicatrice frequente sarebbe il difetto. Le condizioni
+che la voce chiamava buco — fame, magrezza, saccheggio — escono tutte. Il conto
+di quanti pezzi la scatola deve avere lo fa `docs/COMPONENTI.md`, che questa
+chiusura non tocca: 119 tipi, 154 pezzi, e il numero che conta di piu' —
+**quanti tipi un tavolo vede in un anno** — sta nella sonda, non nel censimento.
+
+### Il costo
+
+Nessuno: non cambia una riga sotto `godot/`. E' una chiusura per misura.
+
+---
+
 ## D-436 — Il mazzo degli obiettivi si conta da solo, e ha tre ambizioni che non si dividono
 
 **implemented in 0.1.405.** Chiude [ISSUES 4](ISSUES.md#4) (M13 della

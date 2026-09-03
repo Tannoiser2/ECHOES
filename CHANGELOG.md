@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.407 — La coda della fustella si chiude
+
+M10 della lista: [ISSUES 82](docs/ISSUES.md#82) ([D-437](docs/DECISIONS.md#d-437)).
+
+Nessun cambio di gioco: una chiusura per misura. `run_punchboard_probe`, 40 anni
+di CHR_00 col seme 7000 sui due tavoli: **32 tipi su 34** si vedono almeno una
+volta, e i mai visti sono **due** — `#requisito`, che solo il Consiglio scrive
+(è la M1), e `scar:dragonfall`, la Cicatrice rara da tenere. Erano tre in
+0.1.403. Non si pota niente.
+
+---
+
 ## 0.1.406 — Il foglio delle decisioni rifatto, e un numero che avevo scritto male
 
 Nessun cambio di gioco: solo verbali.

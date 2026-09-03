@@ -4704,7 +4704,7 @@ un numero e non a occhio.
 
 ---
 
-### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
+### 82. ✅ La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono — CHIUSA in 0.1.407: due mai visti, e sono quelli decisi
 
 `contenuto` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
 e' una potatura di componenti, e si fa quando la scatola si stampa ·
@@ -4813,6 +4813,17 @@ si litiga di più e si conclude di meno. Cancello **0 su 8** sui due tavoli. Se 
 memoria vale più della fame, tornare indietro è una riga.
 
 ---
+
+### ✅ Chiusa in 0.1.407: due mai visti, e sono quelli decisi
+
+Rimisurata con la stessa sonda, 40 anni col seme 7000 e i due tavoli ad anni
+alterni ([D-437](DECISIONS.md#d-437)): **32 tipi su 34 visti almeno una volta**,
+e i mai visti sono **due** — `condition:requisitioned`, che e' del Consiglio per
+costruzione e ricade sulla [56](#56), e `scar:dragonfall`, la Cicatrice rara che
+il committente ha deciso di tenere. `scar:sealed_border` esce 3 anni su 40. Il
+«fatto quando» e' quello: non si pota niente, e la coda resta scritta come
+coda.
+
 
 ### 81. ✅ Una soglia non puo' leggere una memoria — chiusa in 0.1.261
 

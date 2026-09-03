@@ -56,7 +56,7 @@ mostra il tavolo — è quella che apriremo dopo, ed è la più cara di tutte.
 | **M7** | [127](ISSUES.md#127) | ✔ **chiusa** in 0.1.399 — quattro varchi disegnati, i chiusi li copre un gettone |
 | **M8** | [64](ISSUES.md#64) | ✔ **chiusa** in 0.1.401 — chi siede l'anno prossimo è una regola scritta |
 | **M9** | [69](ISSUES.md#69) | ✔ **chiusa** in 0.1.402 — la carta Tensione dice su cosa si discute |
-| **M10** | [82](ISSUES.md#82) | lavorata in 0.1.403 — il motore la fame la sapeva solo togliere ([D-433](DECISIONS.md#d-433)) |
+| **M10** | [82](ISSUES.md#82) | lavorata in 0.1.403 — il motore la fame la sapeva solo togliere ([D-433](DECISIONS.md#d-433)); ✔ **chiusa** in 0.1.407 per misura |
 | **M11** | [36](ISSUES.md#36) | percorsa in 0.1.404, e la voce esce fra le ⚪: il resto lo guardi tu, dopo una partita |
 | **M12** | [111](ISSUES.md#111) | rimisurata in 0.1.405 — **resta aperta**, ma le due cause scritte sono cadute e la vera è misurata |
 | **M13** | [4](ISSUES.md#4) | ✔ **chiusa** in 0.1.405 — gli obiettivi si incrociano, e il conto non si scrive più a mano |
@@ -126,10 +126,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **115** |
-| aperte | **17** |
+| chiuse | **116** |
+| aperte | **16** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **17** |
+| di cui sono mie da fare | **16** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,11 +160,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **8** | **io**, da sola, senza aspettare niente |
+| 🟡 | **7** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Otto.** Delle diciassette voci aperte, otto le posso muovere senza di te — ed
-è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+**Sette.** Delle sedici voci aperte, sette le posso muovere senza di te — ed è
+il numero che va detto per primo. **Il giro non è fermo su nessuna tua
 parola.**
 
 <!-- COLORI: fine -->
@@ -235,7 +235,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **otto**
+# 🟡 Sono mie, e non aspettano niente: **sette**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
@@ -252,7 +252,6 @@ sparisce dal conto qui sopra.
 | **M1** — [56](ISSUES.md#56), le Conseguenze che non escono | ne restano nove, e sette hanno un tentativo solo: prima di riscriverle vanno **misurate su 200 anni**, o tolte |
 | **M2** — [59](ISSUES.md#59), INFLUENZARE | due dei tre difetti sono spariti da soli; resta il verbo meno giocato |
 | **M5** — [128](ISSUES.md#128), le carte murate | lavorata in 0.1.398, e il *«passo»* è sceso: resta sotto la soglia che il suo criterio chiede |
-| **M10** — [82](ISSUES.md#82), le condizioni che non escono | lavorata in 0.1.403: `#magro` esce, `#requisito` è del Consiglio per costruzione e ricade sulla M1 |
 | **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
 
 ### M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai
@@ -442,9 +441,13 @@ la **M14**.
 non escono mai**. È finito come riga sotto la **M1**, che è la voce di quella
 famiglia.
 
-### M10. [82](ISSUES.md#82) — le condizioni che non succedono
+### ✔ M10. [82](ISSUES.md#82) — le condizioni che non succedono: **chiusa in 0.1.407**
 
-**Lavorata in 0.1.403** ([D-433](DECISIONS.md#d-433)).
+**Lavorata in 0.1.403** ([D-433](DECISIONS.md#d-433)), **chiusa in 0.1.407**
+([D-437](DECISIONS.md#d-437)): rimisurata sulla stessa sonda, i mai visti in
+quarant'anni sono **due** — `#requisito`, che solo il Consiglio scrive ed è la
+M1, e `scar:dragonfall`, la Cicatrice rara che hai deciso di tenere. L'altra
+Cicatrice rara esce tre anni su quaranta. È esattamente il «fatto quando».
 
 **I numeri della voce erano invecchiati, e la sonda guardava tardi.** La fustella
 leggeva le Regioni **dopo** la fine dell'anno: un gettone posato a marzo e tolto
@@ -663,9 +666,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle diciassette voci aperte ne
-posso muovere **otto** da sola. Due le verifica una persona che gioca, sette
-stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle sedici voci aperte ne posso
+muovere **sette** da sola. Due le verifica una persona che gioca, sette stanno
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 
