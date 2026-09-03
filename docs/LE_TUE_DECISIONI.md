@@ -96,10 +96,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **110** |
-| aperte | **22** |
+| chiuse | **111** |
+| aperte | **21** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **22** |
+| di cui sono mie da fare | **21** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -130,12 +130,12 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **14** | **io**, da sola, senza aspettare niente |
+| 🟡 | **13** | **io**, da sola, senza aspettare niente |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattordici.** Delle ventidue voci aperte, quattordici le posso muovere senza
-di te — ed è il numero che va detto per primo. **Il giro non è fermo su nessuna
-tua parola.**
+**Tredici.** Delle ventuno voci aperte, tredici le posso muovere senza di te —
+ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+parola.**
 
 <!-- COLORI: fine -->
 
@@ -205,11 +205,12 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **quattordici**
+# 🟡 Sono mie, e non aspettano niente: **tredici**
 
-Erano quattro. Da 0.1.397 sono quattordici: dieci sono arrivate qui dalle rosse,
-perché la tua parola è arrivata e quello che resta è lavoro
-([D-427](DECISIONS.md#d-427)). **Nessuna apre una voce nuova.**
+Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
+dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
+([D-427](DECISIONS.md#d-427)). **Nessuna apre una voce nuova**, e ognuna che si
+chiude sparisce dal conto qui sopra.
 
 **L'ordine in cui le faccio**, che non è l'ordine dei numeri:
 
@@ -336,17 +337,21 @@ mano quelle che suonano male.
 **Fatto quando** ogni riga stampata sta nel dato e non nel motore, e le tredici
 che ancora non hanno una casella ce l'hanno.
 
-### M7. [127](ISSUES.md#127) — quattro varchi disegnati, e un gettone
+### ✔ M7. [127](ISSUES.md#127) — quattro varchi disegnati, e un gettone
 
-**Parola tua: sì**, la **(2)**. L'arte disegna tutti e quattro i varchi, e i lati
-chiusi si coprono con un gettone: costa **un gettone su una tessera sola**,
-l'Isola Muta, e il disegno non gira mai.
+**Fatta in 0.1.399** ([D-429](DECISIONS.md#d-429)), ed era quella con la
+scadenza: andava chiusa **prima** di commissionare i disegni.
 
-**Questa ha una scadenza vera**: va fatta prima di commissionare i disegni, se no
-un ripensamento costa quaranta tessere ridisegnate.
+Ogni tessera si illustra adesso con la strada che arriva a **tutti e quattro i
+bordi**, e i lati che il dato chiude si coprono con la pedina **«varco chiuso»**:
+il disegno non gira mai, perché non c'è nessun bordo diverso dagli altri. Cambia
+**il prompt di una tessera su dieci** — solo l'Isola Muta ha lati chiusi — e la
+fustella passa da 124 a **125** segnalini.
 
-**Fatto quando** il gettone dei lati chiusi è nella fustella e la misura delle
-200 mappe è rifatta con la regola nuova.
+**La misura delle 200 mappe non cambia, e l'ho detto invece di rifarla per
+finta:** la (2) non è una regola di posa. I varchi nel dato restano quelli, la
+tessera si gira come prima, e il cancello lo dimostra — **0 pose non connesse su
+151.200**.
 
 ### M8. [64](ISSUES.md#64) — la saga ricambia metà tavolo, ed è la regola
 
@@ -473,9 +478,9 @@ mano invecchia il giorno dopo.
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle ventidue voci aperte ne posso
-muovere **quattordici** da sola. Due le verifica una persona che gioca, sei
-stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle ventuno voci aperte ne posso
+muovere **tredici** da sola. Due le verifica una persona che gioca, sei stanno
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

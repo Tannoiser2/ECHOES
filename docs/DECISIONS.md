@@ -10,6 +10,75 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-429 — Quattro varchi disegnati, e i chiusi li copre un gettone
+
+**implemented in 0.1.399.** Chiude [ISSUES 127](ISSUES.md#127) (M7 della
+[lista](LE_TUE_DECISIONI.md)), sulla strada **(2)** scelta dal committente in
+[D-427](#d-427).
+
+### Il difetto, in una riga
+
+La tessera si posa **girandola** finche' un varco combacia con quella accanto
+([D-390](#d-390)). Il prompt d'arte diceva a chi disegna, per l'Isola Muta:
+
+> *«A visible way in and out reaches the top and left edges, and the right and
+> bottom edges are closed by the terrain itself.»*
+
+Un'illustrazione che nomina i propri lati chiusi **ha un sopra**: girata di
+novanta gradi, la frana finisce dove la strada passa e la strada dove c'e' la
+frana. Il disegno mentirebbe al tavolo.
+
+### La cura, che e' una riga e un segnalino
+
+**Ogni tessera si illustra con la strada che arriva a tutti e quattro i bordi**,
+e i lati che il dato chiude si coprono con la pedina **«varco chiuso»** quando la
+tessera entra in gioco. Cosi' il disegno **non gira mai**: non c'e' nessun bordo
+disegnato diverso dagli altri.
+
+| | prima | dopo |
+|---|---|---|
+| la riga per chi disegna (Isola Muta) | *«reaches the top and left edges, and the right and bottom are closed by the terrain»* | *«reaches all four edges: draw the way through on every side, including the right and bottom edges, which a landslide token covers once the tile is on the table»* |
+| tessere il cui prompt cambia | — | **1 su 10** |
+| segnalini nella fustella | 124 | **125** |
+
+**Costa un gettone su una tessera sola.** Allargati i varchi a trentotto su
+quaranta ([D-393](#d-393)), nove tessere su dieci sono croci e non hanno niente
+da coprire: la pedina si posa **due volte per partita**, e solo quando esce
+l'Isola Muta.
+
+### La misura delle 200 mappe: **non cambia, e va detto perche'**
+
+Il «fatto quando» della voce chiedeva di rifarla *«con la regola nuova»*. La
+regola nuova **non e' una regola di posa**: i varchi nel dato restano quelli, la
+tessera si gira come prima, e la connessione si calcola come prima. Cambia
+l'**arte** e si aggiunge un **segnalino**. Quindi la misura e' identica per
+costruzione, e il cancello `run_tiles_probe --check` lo dimostra invece di
+lasciarlo credere: **0 pose non connesse su 151.200**, come in D-393.
+
+Rifarla facendo finta che fosse cambiata sarebbe stato scrivere un numero
+uguale spacciandolo per una verifica.
+
+### La prova, e la diciassettesima cieca
+
+La riga dei varchi **non aveva nessuna prova**: era guardata solo dal confronto
+col brief generato, che va rosso **dopo** che la riga e' cambiata e non dice mai
+**cosa** debba dire. Adesso `test_four_gates_are_drawn` la sorveglia su facce
+**fabbricate** — una croce, una con due lati chiusi, una con un lato solo, una
+senza varchi — piu' il fatto che la pedina promessa dal brief esista davvero
+nella fustella.
+
+**E la prima stesura di quella prova era cieca.** Il caso della fustella
+chiedeva `session.data` senza aver aperto una sessione: GDScript non alza
+niente, la funzione si interrompe a meta' e il caso **passa avendo asserito
+zero**. Si vedeva solo contando le asserzioni — 7 invece di 9. E' la
+diciassettesima volta in questo progetto, e la seconda in due giorni che tocca
+una prova mia.
+
+**Costo dichiarato: nessun codice di gioco toccato** — l'unica riga di motore e'
+quella che compone il prompt d'arte.
+
+---
+
 ## D-428 — La parete non era il bersaglio, e tre Regioni non le raggiungeva nessuno
 
 **implemented in 0.1.398.** Avanza [ISSUES 128](ISSUES.md#128) (M5 della

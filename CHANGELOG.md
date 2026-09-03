@@ -5,6 +5,56 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.399 — Quattro varchi disegnati, e i chiusi li copre un gettone
+
+M7 della lista, e chiude [ISSUES 127](docs/ISSUES.md#127)
+([D-429](docs/DECISIONS.md#d-429)). Era quella con **la scadenza vera**: andava
+chiusa prima di commissionare i disegni.
+
+### Il difetto
+
+La tessera si posa **girandola** finché un varco combacia con quella accanto
+(D-390). Il prompt d'arte diceva a chi disegna, per l'Isola Muta: *«…the right
+and bottom edges are closed by the terrain itself»*. Un'illustrazione che nomina
+i propri lati chiusi **ha un sopra**: girata di novanta gradi, la frana finisce
+dove passa la strada.
+
+### La cura: una riga e un segnalino
+
+Ogni tessera si illustra con la strada che arriva a **tutti e quattro i bordi**,
+e i lati che il dato chiude si coprono con la pedina **«varco chiuso»** quando la
+tessera entra in gioco. Il disegno **non gira mai**.
+
+| | prima | dopo |
+|---|---|---|
+| tessere il cui prompt cambia | — | **1 su 10** |
+| segnalini nella fustella | 124 | **125** |
+| volte che la pedina si posa in una partita | — | **due**, e solo se esce l'Isola Muta |
+
+### La misura delle 200 mappe non cambia, ed è detto perché
+
+Il «fatto quando» chiedeva di rifarla *«con la regola nuova»*. La (2) **non è una
+regola di posa**: i varchi nel dato restano quelli, la tessera si gira come
+prima. Il cancello `run_tiles_probe --check` lo dimostra — **0 pose non connesse
+su 151.200** — invece di lasciarlo credere. Rifarla fingendo che fosse cambiata
+sarebbe stato scrivere un numero uguale spacciandolo per una verifica.
+
+### Due prove cieche, tutt'e due mie, prese lo stesso giorno
+
+- **La diciassettesima.** Il caso nuovo che controlla la fustella chiedeva
+  `session.data` senza aver aperto una sessione: GDScript non alza niente, la
+  funzione si interrompe a metà e il caso **passa avendo asserito zero**. Si
+  vedeva solo contando le asserzioni: 7 invece di 9.
+- **La diciottesima.** Il `--self-test` del foglio delle decisioni piantava il
+  difetto sulla stringa `**quattordici**`, scritta a mano. Chiusa una voce, il
+  conto è passato a tredici e la guardia non ha più potuto piantare niente.
+  Adesso il numero **si legge dal foglio**.
+
+**Costo dichiarato: nessun codice di gioco toccato** — l'unica riga di motore è
+quella che compone il prompt d'arte.
+
+---
+
 ## 0.1.398 — La parete non era il bersaglio, e tre Regioni non le raggiungeva nessuno
 
 M5 della lista, sulla parola **«sì a tutte»** ([D-428](docs/DECISIONS.md#d-428)).

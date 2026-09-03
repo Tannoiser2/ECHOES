@@ -869,6 +869,13 @@
       "fustella": "MONDO",
       "rappresenta": "Due ere, e nessuno ha riaperto: la montagna sta diventando racconto.",
       "soggetto": "due tacche incise una sotto l'altra su un architrave di pietra"
+    },
+    {
+      "id": "TOK_PEDINA_VARCO_CHIUSO",
+      "tag": "pedina:varco_chiuso",
+      "fustella": "PEDINE",
+      "rappresenta": "Da questo lato non si passa: la tessera disegna una strada anche qui, e questo gettone dice che e' franata.",
+      "soggetto": "una frana di tre massi di traverso su una strada"
     }
   ]
 }

@@ -9195,7 +9195,7 @@ committente decide che la prenotazione esce dal gioco.
 
 ---
 
-### 127. La tessera si gira, e l'arte si gira con lei
+### 127. ✅ La tessera si gira, e l'arte si gira con lei
 
 `arte` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390)) ·
 **la scelta è diventata più facile in 0.1.360** ([D-393](DECISIONS.md#d-393))
@@ -9250,6 +9250,35 @@ combaciano.
 Resta da fare, ed è mio: **rifare la misura delle 200 mappe con la regola nuova**
 e portare il gettone dei lati chiusi nella fustella. Il cartellino `da-decidere`
 è tolto.
+
+### ✅ Chiusa in 0.1.399: quattro varchi disegnati, e i chiusi li copre un gettone
+
+Fatta la **(2)** scelta dal committente ([D-429](DECISIONS.md#d-429)). Ogni
+tessera si illustra con la strada che arriva a **tutti e quattro i bordi**, e i
+lati che il dato chiude si coprono con la pedina **«varco chiuso»** quando la
+tessera entra in gioco: così **il disegno non gira mai**, perché non c'è nessun
+bordo disegnato diverso dagli altri.
+
+| | prima | dopo |
+|---|---|---|
+| il prompt dell'Isola Muta | *«…the right and bottom edges are closed by the terrain itself»* | *«…draw the way through on every side, including the right and bottom edges, which a landslide token covers»* |
+| tessere il cui prompt cambia | — | **1 su 10** |
+| segnalini nella fustella | 124 | **125** |
+
+Costa **un gettone su una tessera sola**: allargati i varchi a trentotto su
+quaranta ([D-393](DECISIONS.md#d-393)), nove tessere su dieci sono croci e non
+hanno niente da coprire.
+
+**La misura delle 200 mappe non cambia, ed è il secondo pezzo del «fatto
+quando».** La (2) non è una regola di posa: i varchi nel dato restano quelli, la
+tessera si gira come prima, la connessione si calcola come prima. Cambia l'arte e
+si aggiunge un segnalino. Il cancello `run_tiles_probe --check` lo dimostra —
+**0 pose non connesse su 151.200** — invece di lasciarlo credere.
+
+E la riga dei varchi adesso ha **una prova sua**
+(`test_four_gates_are_drawn`, su facce fabbricate): prima era guardata solo dal
+confronto col brief generato, che va rosso *dopo* che la riga è cambiata e non
+dice mai **cosa** debba dire.
 
 ---
 

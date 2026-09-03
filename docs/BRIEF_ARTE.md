@@ -1860,7 +1860,7 @@ L'Isola Muta.
 What this land is right now: Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.
 Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches the top and left edges, and the right and bottom edges are closed by the terrain itself. Composition: the centre is
+edges that can tile against neighbouring regions. A visible way in and out reaches all four edges: draw the way through on every side, including the right and bottom edges, which a landslide token covers once the tile is on the table. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
 condition, scar) sit legibly on top; detail concentrates at the borders. Square
 framing. No text, no letters, no numerals, no map labels, no compass rose, no
