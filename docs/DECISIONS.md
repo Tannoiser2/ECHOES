@@ -10,6 +10,67 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-431 — Chi siede l'anno prossimo: si ripesca, ed e' scritto
+
+**implemented in 0.1.401.** Chiude [ISSUES 64](ISSUES.md#64) (M8 della
+[lista](LE_TUE_DECISIONI.md)), sulla parola **«si' a tutte»** ([D-427](#d-427)).
+
+### Il difetto non era la regola: era che non ce n'era una
+
+[D-237](#d-237) aveva misurato che **solo il 51% dei seggi seduti dopo
+l'apertura sono le case che hanno aperto la saga**, e la voce chiedeva se fosse
+il gioco o un artefatto della sonda. Guardando il codice: **erano due sonde con
+due regole diverse**, e nessuna delle due leggeva niente.
+
+| | cosa faceva | cosa scriveva nel suo commento |
+|---|---|---|
+| `run_era_probe` | ripescava il tavolo **a ogni era**, con un seme per anno | niente |
+| `run_saga` | teneva **lo stesso tavolo** per tutti i secoli | *«una saga tiene lo stesso tavolo dal primo anno all'ultimo»* |
+
+Due giochi con lo stesso nome. Chi guardava la prima misura vedeva le case
+cambiare, chi guardava la seconda vedeva le stesse case invecchiare, e nessuno
+dei due poteva sapere quale fosse il gioco.
+
+### La regola, adesso, sta sulla Chronicle
+
+`seats_between_eras`, e lo schema la **pretende**: una regola che nessuno
+dichiara e' quella che si e' deciso di non decidere.
+
+| | |
+|---|---|
+| **`REDRAW`** | si ripesca dal pool a ogni era — **e' la scelta del committente** |
+| `KEEP` | siedono le stesse case dal primo anno all'ultimo |
+| `KEEP_THEN_DRAW` | si ripesca, ma chi c'era ha precedenza |
+
+Tutte e tre le sa eseguire il motore (`GameSession.seats_for_next_era`), e le due
+sonde adesso **la applicano** invece di deciderla: `run_era_probe` faceva gia'
+`REDRAW` e non cambia; **`run_saga` cambia**, e da qui ripesca come tutti.
+
+### E la regola sta dove un giocatore la legge
+
+In [PROCEDURA_FINE_CHRONICLE](PROCEDURA_FINE_CHRONICLE.md), al punto **5-bis**,
+con la ragione accanto:
+
+> *In una saga si gioca **il mondo**, non la propria casa: le Azioni cambiano il
+> mondo, il Consiglio decide cosa il mondo ricorderà. Le case passano — e' il
+> senso stesso delle ere, delle generazioni e delle leggende.*
+
+E col gesto al tavolo: si rimettono nel sacchetto le otto carte casato, si
+pescano le quattro dell'anno nuovo, e chi rientra riprende la sua **con sopra
+tutto quello che aveva**.
+
+**Va saputo prima di affezionarsi ad Aldric**, ed e' per questo che il «fatto
+quando» della voce chiedeva che fosse scritta e non solo eseguita.
+
+### Il costo, dichiarato
+
+**Nessuna misura si muove**: la Chronicle spedita dichiara `REDRAW`, che e'
+quello che il playtest, la sonda delle vite e quella delle ere gia' facevano.
+Cambia solo `run_saga`, che non e' un cancello — e cambia **verso la regola**.
+Cancello 0 su 8 sui due tavoli, rimisurato.
+
+---
+
 ## D-430 — Le sessantasei righe scritte a mano, e il verbo dei rapporti
 
 **implemented in 0.1.400.** Chiude [ISSUES 100](ISSUES.md#100) (M6 della

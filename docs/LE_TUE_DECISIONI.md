@@ -96,10 +96,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **112** |
-| aperte | **20** |
+| chiuse | **113** |
+| aperte | **19** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **20** |
+| di cui sono mie da fare | **19** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -130,11 +130,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **12** | **io**, da sola, senza aspettare niente |
+| 🟡 | **11** | **io**, da sola, senza aspettare niente |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Dodici.** Delle venti voci aperte, dodici le posso muovere senza di te — ed è
-il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+**Undici.** Delle diciannove voci aperte, undici le posso muovere senza di te —
+ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
 parola.**
 
 <!-- COLORI: fine -->
@@ -205,7 +205,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **dodici**
+# 🟡 Sono mie, e non aspettano niente: **undici**
 
 Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
 dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
@@ -367,17 +367,27 @@ finta:** la (2) non è una regola di posa. I varchi nel dato restano quelli, la
 tessera si gira come prima, e il cancello lo dimostra — **0 pose non connesse su
 151.200**.
 
-### M8. [64](ISSUES.md#64) — la saga ricambia metà tavolo, ed è la regola
+### ✔ M8. [64](ISSUES.md#64) — la saga ricambia metà tavolo, ed è la regola
 
-**Parola tua: sì**, è giusto e si scrive sulla scatola.
+**Fatta in 0.1.401** ([D-431](DECISIONS.md#d-431)).
 
-> **Al tavolo.** Finisce l'anno, la saga va avanti, e **quattro giocatori su
-> otto cambiano casa**: chi ha costruito tutto l'anno per Aldric adesso gioca
-> Lyra, e le sue Pietre le eredita un altro. È il gioco — *le case passano, il
-> mondo resta* — ma va saputo **prima** di affezionarsi ad Aldric.
+> **Al tavolo.** Finisce l'anno. Si rimettono nel sacchetto le otto carte
+> casato, si pescano le quattro dell'anno nuovo, e chi rientra riprende la sua
+> **con sopra tutto quello che aveva**. È scritto in
+> [PROCEDURA_FINE_CHRONICLE](PROCEDURA_FINE_CHRONICLE.md) al punto 5-bis, dove
+> un giocatore lo legge **prima** di affezionarsi ad Aldric.
 
-**Fatto quando** la regola è scritta dove un giocatore la legge, e la sonda delle
-ere la applica invece di deciderla per conto proprio.
+**E il difetto non era la regola: era che non ce n'era una.** Erano **due sonde
+con due regole diverse** — `run_era_probe` ripescava a ogni era, `run_saga`
+teneva il tavolo fermo per secoli — e nessuna delle due leggeva niente. Due
+giochi con lo stesso nome.
+
+Adesso la regola sta sulla Chronicle (`seats_between_eras`) e lo schema la
+**pretende**: `REDRAW`, `KEEP`, `KEEP_THEN_DRAW`. Il motore le sa eseguire tutte
+e tre; le sonde le applicano invece di deciderle.
+
+**Costo: nessuna misura si muove** — `REDRAW` è quello che il playtest e le sonde
+già facevano. Cancello 0 su 8.
 
 ### M9. [69](ISSUES.md#69) — la faccia della Tensione, stampata ed eseguita
 
@@ -492,8 +502,8 @@ mano invecchia il giorno dopo.
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle venti voci aperte ne posso
-muovere **dodici** da sola. Due le verifica una persona che gioca, sei stanno
+**Quello che resta da dire in una riga:** delle diciannove voci aperte ne posso
+muovere **undici** da sola. Due le verifica una persona che gioca, sei stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

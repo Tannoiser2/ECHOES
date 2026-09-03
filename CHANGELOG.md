@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.401 — Chi siede l'anno prossimo: si ripesca, ed è scritto
+
+M8 della lista, e chiude [ISSUES 64](docs/ISSUES.md#64)
+([D-431](docs/DECISIONS.md#d-431)).
+
+### Il difetto non era la regola: era che non ce n'era una
+
+[D-237](docs/DECISIONS.md#d-237) aveva misurato che **solo il 51% dei seggi
+seduti dopo l'apertura sono le case che hanno aperto la saga**. Guardando il
+codice, erano **due sonde con due regole diverse**, e nessuna leggeva niente:
+
+| | cosa faceva | cosa scriveva nel suo commento |
+|---|---|---|
+| `run_era_probe` | ripescava il tavolo **a ogni era** | niente |
+| `run_saga` | teneva **lo stesso tavolo** per tutti i secoli | *«una saga tiene lo stesso tavolo dal primo anno all'ultimo»* |
+
+Due giochi con lo stesso nome, e nessuno poteva sapere quale fosse quello vero.
+
+### La regola sta sulla Chronicle, e lo schema la pretende
+
+`seats_between_eras`: **`REDRAW`** (la scelta del committente), `KEEP`,
+`KEEP_THEN_DRAW`. Una regola che nessuno dichiara è quella che si è deciso di non
+decidere. Il motore le sa eseguire tutte e tre
+(`GameSession.seats_for_next_era`), e le sonde **la applicano** invece di
+deciderla: `run_era_probe` faceva già REDRAW e non cambia, **`run_saga` cambia**
+e da qui ripesca come tutti.
+
+### E sta dove un giocatore la legge
+
+In [PROCEDURA_FINE_CHRONICLE](docs/PROCEDURA_FINE_CHRONICLE.md) al punto
+**5-bis**, col gesto al tavolo — *si rimettono nel sacchetto le otto carte
+casato, si pescano le quattro dell'anno nuovo, e chi rientra riprende la sua con
+sopra tutto quello che aveva* — e la ragione accanto: **in una saga si gioca il
+mondo, non la propria casa**. Va saputo prima di affezionarsi ad Aldric.
+
+**Costo dichiarato: nessuna misura si muove.** `REDRAW` è quello che il playtest,
+la sonda delle vite e quella delle ere già facevano. Cancello **0 su 8** sui due
+tavoli, rimisurato.
+
+---
+
 ## 0.1.400 — Le sessantasei righe scritte a mano, e il verbo dei rapporti
 
 M6 della lista, e chiude [ISSUES 100](docs/ISSUES.md#100)

@@ -97,6 +97,28 @@ Per ogni casato, sulla sua carta:
 I **tre obiettivi coperti sono della saga**: passano al casato che li aveva,
 finché la saga dura. Chi si siede adesso e prima non c'era pesca i propri.
 
+## 5-bis. Chi siede l'anno prossimo — **si ripesca**
+
+**Questa è la regola, ed è una scelta** ([D-431](DECISIONS.md#d-431), parola del
+committente): fra un anno e l'altro della saga **il tavolo si ripesca dal pool
+delle otto case**. Su una saga di dieci anni, poco più della metà dei seggi
+resta alla stessa casa: le altre cambiano.
+
+> **Va saputo prima di affezionarsi ad Aldric.** In una saga si gioca **il
+> mondo**, non la propria casa: *le Azioni cambiano il mondo, il Consiglio
+> decide cosa il mondo ricorderà*. Le case passano — è il senso stesso delle
+> ere, delle generazioni e delle leggende. Chi si siede eredita un mondo che
+> qualcun altro ha piegato, e il punteggio della saga resta del **casato**, non
+> di chi lo tiene in mano quest'anno.
+
+Al tavolo: si rimettono nel sacchetto le otto carte casato, si pescano le
+quattro dell'anno nuovo, e chi rientra riprende la sua carta **con sopra tutto
+quello che aveva** — generazione, vite, segni, punteggio di saga.
+
+**La regola è scritta sulla Chronicle** (`seats_between_eras`), e vale anche per
+le altre due che il gioco sa eseguire, se un giorno si vorranno provare:
+*«siedono gli stessi»* e *«si ripesca, ma chi c'era ha precedenza»*.
+
 ## 6. Si rimonta il tavolo
 
 - **mani nuove** a tutti, dai mazzi rimescolati;

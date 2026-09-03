@@ -126,6 +126,7 @@ func _initialize() -> void:
 		var seed_base: int = first_seed + saga_index * 1009
 		var previous: Dictionary = {}
 		var previous_results: Dictionary = {}
+		var previous_seats: Array = []
 		var saga_levels: Dictionary = {}
 		var leaders_by_year: Array = []
 		var first_end_tags: Array = []
@@ -136,7 +137,12 @@ func _initialize() -> void:
 			var chronicle_id: String = first_id if index == 0 else later_id
 			var session: RefCounted = GameSession.new(data)
 			var seed_value: int = seed_base + index * 97
-			var seats: Array = GameSession.seats_for(data, chronicle_id, seed_value)
+			# **La regola di chi siede la dice la Chronicle** (D-431): questa
+			# sonda ripescava di suo, e nessuno aveva deciso che dovesse.
+			var seats: Array = GameSession.seats_for_next_era(
+				data, chronicle_id, seed_value, previous_seats
+			)
+			previous_seats = seats.duplicate()
 			session.setup(chronicle_id, seats, seed_value)
 			session.inherit_from(previous, previous_results)
 			if index > 0:

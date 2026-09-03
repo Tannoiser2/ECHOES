@@ -188,6 +188,7 @@ const DEFS := {
 			"act_echo_pools",
 			"confluence_templates",
 			"opening_text",
+			"seats_between_eras",
 		],
 		"additional_properties": false,
 		"properties": {
@@ -398,6 +399,14 @@ const DEFS := {
 			},
 			"region_pool": {
 				"type": "Dictionary",
+			},
+			"seats_between_eras": {
+				"type": "String",
+				"enum": [
+					"REDRAW",
+					"KEEP",
+					"KEEP_THEN_DRAW",
+				],
 			},
 		},
 	},
