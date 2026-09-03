@@ -96,10 +96,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **113** |
-| aperte | **19** |
+| chiuse | **114** |
+| aperte | **18** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **19** |
+| di cui sono mie da fare | **18** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -130,11 +130,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **11** | **io**, da sola, senza aspettare niente |
+| 🟡 | **10** | **io**, da sola, senza aspettare niente |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Undici.** Delle diciannove voci aperte, undici le posso muovere senza di te —
-ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+**Dieci.** Delle diciotto voci aperte, dieci le posso muovere senza di te — ed
+è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
 parola.**
 
 <!-- COLORI: fine -->
@@ -205,7 +205,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **undici**
+# 🟡 Sono mie, e non aspettano niente: **dieci**
 
 Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
 dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
@@ -389,19 +389,30 @@ e tre; le sonde le applicano invece di deciderle.
 **Costo: nessuna misura si muove** — `REDRAW` è quello che il playtest e le sonde
 già facevano. Cancello 0 su 8.
 
-### M9. [69](ISSUES.md#69) — la faccia della Tensione, stampata ed eseguita
+### ✔ M9. [69](ISSUES.md#69) — la faccia della Tensione, stampata ed eseguita
 
-**Parola tua: sì.** Il formato l'avevi deciso (il tarocco, 0.1.393), quindi
-questa non aspettava più te. Restano due lavori: **stampare la faccia della
-Tensione con le sue domande**, ed **eseguire nel motore il resto della faccia
-fisica**.
+**Fatta in 0.1.402** ([D-432](DECISIONS.md#d-432)).
 
-**Perché conta più di quanto sembri:** è il posto dove le due grammatiche
-divergono. Se le facce fisiche crescono e il motore non le esegue, fra dieci
-carte sono due giochi diversi con lo stesso nome.
+> **Al tavolo.** Giri la Tensione sul Tema caldo e adesso la carta dice **su cosa
+> si discute**: *«La montagna fuma di nuovo: si mette qualcuno a guardarla, o si
+> scrive che ha sempre fumato? · E le bocche aperte sul fianco, si murano?»*
+> Prima diceva quando si scalda, quando si raffredda e cosa vale al Consiglio —
+> e taceva sulla ragione per cui la si gira.
 
-**Fatto quando** una carta giocata nell'app esegue l'Azione scelta **e** la sua
-Risonanza, e il Tema che ne esce è quello scritto sulla carta.
+| | prima | **dopo** |
+|---|---|---|
+| Tensioni che dicono su cosa si discute | **0 su 60** | **60 su 60** |
+| corpo rimpicciolito | 0 su 60 | **2 su 60** (la più stretta all'85%) |
+
+**Il resto del «fatto quando» era già fatto, e l'ho verificato invece di
+darlo per buono:** il motore esegue l'Azione scelta **e** la Risonanza, e il Tema
+che ne esce è quello stampato (`test_the_world_answers`). L'app che lo mostra è
+la **M14**.
+
+**Un ritrovamento per strada:** le **clausole** sono rimaste tutte sui template —
+21 su 12, zero sulle Tensioni — e **nove dei dieci segni che solo loro scrivono
+non escono mai**. È finito come riga sotto la **M1**, che è la voce di quella
+famiglia.
 
 ### M10. [82](ISSUES.md#82) — le condizioni che non succedono
 
@@ -502,8 +513,8 @@ mano invecchia il giorno dopo.
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle diciannove voci aperte ne posso
-muovere **undici** da sola. Due le verifica una persona che gioca, sei stanno
+**Quello che resta da dire in una riga:** delle diciotto voci aperte ne posso
+muovere **dieci** da sola. Due le verifica una persona che gioca, sei stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

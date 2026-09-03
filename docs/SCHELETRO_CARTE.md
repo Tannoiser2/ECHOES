@@ -28,7 +28,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 |---|---|---|---|---|
 | **asset** | 0 su 48 | 100% | 49% | 43% |
 | **echo** | 0 su 48 | 100% | 52% | 52% |
-| **tension** | 0 su 60 | 100% | — | — |
+| **tension** | 2 su 60 | 85% | — | — |
 | **council** | 7 su 60 | 89% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
 | **entity** | 0 su 26 | 100% | 52% | 52% |
@@ -104,6 +104,7 @@ Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno.
 | il titolo | 60 su 60 |
 | il sottotitolo | 60 su 60 |
 | la cifra d'angolo | 60 su 60 |
+| una riga di testo libero | 60 su 60 |
 | **SI ACCENDE QUANDO** | 60 su 60 |
 | **SI RAFFREDDA** | 60 su 60 |
 | **AL CONSIGLIO VALGONO** | 60 su 60 |
@@ -113,6 +114,7 @@ Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno.
 > **La Cenere che Sale**
 > domanda velata · l'antico
 > angolo: **4**
+> SI DISCUTE DI  La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato? · E le bocche aperte sul fianco, si murano?
 > SI ACCENDE QUANDO  una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va
 > SI RAFFREDDA  Una Confluence risolta su chi tiene d'occhio la montagna.
 > AL CONSIGLIO VALGONO  forza, sapere, gente

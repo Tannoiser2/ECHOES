@@ -158,7 +158,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 	match deck:
 		"asset": return _asset(item, data)
 		"echo": return _echo(item, data)
-		"tension": return _tension(item)
+		"tension": return _tension(item, data)
 		"council": return _council(item, data)
 		"destiny": return _destiny(item, data)
 		"entity": return _entity(item, data)
@@ -342,7 +342,7 @@ static func _when_it_comes(condition: Dictionary, data: RefCounted) -> String:
 	return str(condition.get("label", ""))
 
 
-static func _tension(tension: Dictionary) -> Dictionary:
+static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("tension", str(tension["id"]), "MINI")
 	face["title"] = str(tension["title"])
 	# La velatura e' una regola e sta nel dato `visibility`: la carta la
@@ -394,8 +394,55 @@ static func _tension(tension: Dictionary) -> Dictionary:
 			)
 		)),
 	]
+	# **Le Domande, sulla carta** (D-432 — ISSUES 69). La Domanda non e' una
+	# carta a parte ([D-266](../../docs/DECISIONS.md#d-266), revoca del
+	# committente): sta **su questa**, ed e' quello che un giocatore deve leggere
+	# quando la gira sul Tema caldo. Fino alla 0.1.402 non c'era: la Tensione
+	# diceva quando si scalda e cosa vale al Consiglio, e taceva **su cosa si
+	# discute** — cioe' la ragione per cui la si gira.
+	#
+	# Il testo viene dai template, dove le domande vivono, e i buchi si
+	# **spiegano** invece di riempirli (`CouncilText`): su una carta stampata
+	# «$the_region» non e' un nome mancante, e' una regola.
+	var asked: Array = _questions_of(tension, data)
+	if not asked.is_empty():
+		face["body"] = [
+			"SI DISCUTE DI  %s" % " · ".join(PackedStringArray(asked)),
+		]
 	face["footer"] = str(tension["id"])
 	return face
+
+
+## Le Domande che questa Tensione puo' aprire, in parole da leggere.
+##
+## `possible_questions` porta gli id, e il testo sta **in due posti**: il blocco
+## `council` della Tensione — che e' la casa nuova di
+## [D-266](../../docs/DECISIONS.md#d-266), e ce l'hanno tutte e sessanta — e i
+## template di Consiglio, che sono il ripiego. Si guarda prima la carta e poi il
+## template, nello stesso ordine in cui lo fa la guardia dei dati: una faccia
+## che leggesse solo i template stamperebbe **otto carte su sessanta** e
+## direbbe che le altre non hanno domande. Provato, ed e' quello che faceva la
+## prima stesura di questa funzione.
+static func _questions_of(tension: Dictionary, data: RefCounted) -> Array:
+	var wanted: Array = tension.get("possible_questions", []) as Array
+	if wanted.is_empty():
+		return []
+	var by_id: Dictionary = {}
+	for question in ((tension.get("council", {}) as Dictionary).get("questions", []) as Array):
+		var own: Dictionary = question as Dictionary
+		by_id[str(own.get("id", ""))] = str(own.get("text", ""))
+	for template_id in data.confluence_templates:
+		var template: Dictionary = data.confluence_templates[template_id] as Dictionary
+		for question in (template.get("questions", []) as Array):
+			var q: Dictionary = question as Dictionary
+			if not by_id.has(str(q.get("id", ""))):
+				by_id[str(q.get("id", ""))] = str(q.get("text", ""))
+	var said: Array = []
+	for question_id in wanted:
+		var text: String = str(by_id.get(str(question_id), ""))
+		if text != "":
+			said.append(CouncilText.speak(text))
+	return said
 
 
 ## La scheda del Consiglio che una Tensione apre: la domanda, le proposte con
