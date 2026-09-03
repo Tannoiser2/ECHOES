@@ -868,7 +868,7 @@ giocano davvero. ✓
 
 ### 36. Linee sempre diverse: pool di Destini, ruoli, generatore
 
-`contenuto` · `regole` · `da-decidere` · voluta dal committente · **in seduta** (*SEDUTA_LINEE*)
+`contenuto` · `regole` · voluta dal committente · **in seduta** (*SEDUTA_LINEE*)
 
 «Io andrei oltre, farei un sistema che combina e permuta per ottenere linee
 sempre diverse, un randomizzatore di obiettivi, entità e incarnazioni che
@@ -907,6 +907,20 @@ anche l'apertura. Questa mezza obiezione è caduta: il metro c'è.
 
 **Fatto quando** il committente ha risposto alle cinque domande secche e la
 strada scelta è stata percorsa e misurata.
+
+### La strada scelta in 0.1.397: **la (D)** adesso, il resto dopo la prima partita
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Delle quattro strade del dossier
+si fa la **(D)** — più vite per casa, con ingressi più fini: è **solo scrittura,
+nessun rischio**, e il metro per dire se ha funzionato esiste già
+(`run_variety_probe`, distanza fra due saghe **0,86** oggi).
+
+La **(C)**, il generatore di linee vero, resta ferma per scelta: questo gioco è
+fatto di frasi che qualcuno ha scritto, e un generatore le fa diventare rumore.
+Le altre due si guardano **dopo la prima partita vera**, che è anche quando le
+cinque domande secche avranno una risposta informata.
+
+Il cartellino `da-decidere` è tolto: la (D) è lavoro mio.
 
 ### 35. ✅ Le istituzioni **non** governano diversamente dalle persone
 
@@ -3059,7 +3073,7 @@ partite (oggi: una), e lo scarto fra la piu' e la meno ascoltata sta sotto
 
 ### 100. Le caselle «si accende quando» sono ancora un pavimento derivato
 
-`contenuto` · `regole` · `da-decidere` · aperta in 0.1.293
+`contenuto` · `regole` · aperta in 0.1.293
 ([D-330](DECISIONS.md#d-330)) · **riscritta in 0.1.294**
 ([D-331](DECISIONS.md#d-331)) · **due punti chiusi in 0.1.298**
 ([D-335](DECISIONS.md#d-335))
@@ -3108,6 +3122,18 @@ va riletto a ogni carta finita, non alla fine.
 **Il metro**: `cli/run_resonance_probe.gd` col ponte spento (121 su 409) e la
 riga *...e di un Tema diverso dalla carta* (54). **Fatto quando** ogni riga
 stampata e' scritta da chi scrive il gioco, e le tredici hanno la loro casella.
+
+### La parola è arrivata in 0.1.397: si stampano come le genera il motore
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Le **46** righe «SI ACCENDE
+QUANDO» si **congelano nel dato** così come il motore le genera oggi, e da lì si
+correggono a mano quelle che suonano male. La strada scartata era riscriverle
+tutte e 46 da zero: stesso risultato, molto più lavoro, e più occasioni di
+sbagliarne una che il motore non sbaglia.
+
+Serviva una parola del committente perché diventano **quarantasei frasi che un
+giocatore legge**. Adesso c'è, e il resto è lavoro mio: il cartellino
+`da-decidere` è tolto.
 
 ---
 
@@ -4322,7 +4348,7 @@ cifre stanno in testa alla voce.)*
 
 ---
 
-### 87. Gli Effetti d'autore che parlano la lingua delle caselle
+### 87. ✅ Gli Effetti d'autore che parlano la lingua delle caselle
 
 `contenuto` · `regole` · `da-decidere` · aperta in 0.1.267 ([D-305](DECISIONS.md#d-305)) ·
 **taglio A fatto in 0.1.269** ([D-307](DECISIONS.md#d-307)), il resto aperto
@@ -4393,6 +4419,27 @@ Tre letture, e la scelta e' del committente:
 3. **si tiene cosi' e si dichiara** — la sovrapposizione e' voluta, la frase
    ripete la casella perche' e' la stessa cosa detta due volte, e chi compra
    compra la certezza.
+
+### ✅ Chiusa in 0.1.397: **(3)** — si tiene così, e si dichiara
+
+Parola del committente, **«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Dei tre
+modi di leggere i 67 Effetti d'autore che parlano la lingua delle caselle, è
+scelto il terzo: **la sovrapposizione è voluta, e si dichiara.**
+
+**La dichiarazione, che è la cosa che chiudeva la voce.** Chi compra un beneficio
+in Consiglio non compra l'effetto: compra **la certezza**. La frase d'autore è
+una possibilità fra sette pescate dal sacchetto del dominio; il beneficio
+comprato è garantito. Quando le due coincidono, il giocatore ha pagato per non
+dipendere dal sacchetto — e il verbale glielo dice già: *«e non lascia niente:
+era già così»*.
+
+**Il numero resta, e resta dichiarato:** l'**11%** dei benefici comprati non
+lascia niente (era il 24% prima del taglio A di 0.1.269). Non è più un difetto
+aperto: è il prezzo della certezza, scritto.
+
+La strada scartata era la (1) — riscrivere i 67 Effetti perché nessuno faccia più
+quello che una casella fa: è la direzione di [D-280](DECISIONS.md#d-280) portata
+fino in fondo, e resta possibile in un giro futuro.
 
 ### 86. ✅ La frase d'autore riscriveva la carta — chiusa in 0.1.267
 
@@ -4572,7 +4619,7 @@ un numero e non a occhio.
 
 ### 82. La coda della fustella: Cicatrici rare che vanno bene, e condizioni che non succedono
 
-`contenuto` · `da-decidere` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
+`contenuto` · **fuori dalla lista in 0.1.361** ([la lista](LE_TUE_DECISIONI.md)):
 e' una potatura di componenti, e si fa quando la scatola si stampa ·
 **aperta in 0.1.259** ([D-296](DECISIONS.md#d-296))
 
@@ -4621,6 +4668,18 @@ i benefici li tocca il taglio 2), `condition:mourning` e `condition:plundered`.
 
 **Fatto quando** il committente ha scelto, e il numero della coda si e' mosso
 nella direzione scelta.
+
+### La parola è arrivata in 0.1.397: **non si pota niente**
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Le **Cicatrici rare restano**:
+`scar:divided_seal` che esce due volte in quarant'anni è memorabile *perché* è
+raro — una Cicatrice frequente sarebbe il difetto. Non è cartone di troppo.
+
+**E il difetto vero è l'altra metà della voce, che è mia:** `condition:starving`
+esce **un anno su quaranta**, `condition:lean` uno, `condition:requisitioned`
+uno. La fame è un Tema del gioco e il motore quasi non sa produrla — non è coda
+di fustella, è **contenuto che non succede**. Il cartellino `da-decidere` è tolto,
+e questa riga resta come lavoro mio.
 
 ---
 
@@ -5387,7 +5446,7 @@ dire una cosa sola sul tavolo.
 
 ### 69. La Risonanza è scritta e non succede
 
-`contenuto` · `direzione` · `da-decidere` · **rossa R6 dalla 0.1.382**
+`contenuto` · `direzione` · **rossa R6 dalla 0.1.382**
 ([la lista](LE_TUE_DECISIONI.md)): resta il **formato** della carta, ed e' una
 scelta d'autore che viene prima dell'arte · **aperta in 0.1.218** ([D-256](DECISIONS.md#d-256)) ·
 **cure in 0.1.219** ([D-257](DECISIONS.md#d-257)), **0.1.220**
@@ -5528,6 +5587,15 @@ fra dieci carte saranno due giochi diversi con lo stesso nome.
 
 **Fatto quando** una carta giocata nell'app esegue l'Azione scelta **e** la sua
 Risonanza, e il Tema che ne esce è quello scritto sulla carta.
+
+### La parola è arrivata in 0.1.397, e questa voce non aspetta più il committente
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)): il formato era la parte rossa di
+questa voce, ed è stato deciso in 0.1.393 — **il tarocco**
+([D-421](DECISIONS.md#d-421)). Quello che resta non è una scelta d'autore, sono
+due lavori miei: **stampare la faccia della Tensione con le sue domande**, ed
+**eseguire nel motore il resto della faccia fisica**. Il cartellino `da-decidere`
+è tolto, e la voce passa fra le mie.
 
 ---
 
@@ -5724,7 +5792,7 @@ che [D-035](DECISIONS.md#d-035) chiama contenuto che non esiste.
 
 ### 65. Tutta la pagina dell'app va rivista
 
-`ux` · `da-decidere` · voluta dal committente · **aperta in 0.1.211**
+`ux` · voluta dal committente · **aperta in 0.1.211**
 
 > «Tutta la pagina dell'app va rivista.»
 
@@ -5814,11 +5882,24 @@ allungare la carta — e quella e' la seconda rivista.
 **Fatto quando** c'è una decisione scritta su *quale* delle tre riviste si sta
 facendo, e la pagina la segue.
 
+### La decisione scritta, in 0.1.397: **la (3)**
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Delle tre riviste si fa la
+**terza**: l'app smette di mostrare **lo stato** — elenchi, valori, questioni con
+un numero accanto — e mostra **il tavolo**: la mappa con le pedine dove stanno, e
+quello che è appena successo scritto come lo si racconterebbe a voce. È quello
+che la direzione di 0.1.218 chiede — *un gioco da tavolo con un'app di supporto*
+— ed è la più cara delle tre: si riscrive la pagina, non si ritocca.
+
+Il «fatto quando» chiede due cose: **la decisione scritta** — questa — **e che la
+pagina la segua**. La seconda è lavoro mio, e il cartellino `da-decidere` è
+tolto.
+
 ---
 
 ### 64. Una saga ricambia metà tavolo, e nessuno ha deciso che dovesse
 
-`regole` · `da-decidere` · **misurata in 0.1.208** ([D-237](DECISIONS.md#d-237))
+`regole` · **misurata in 0.1.208** ([D-237](DECISIONS.md#d-237))
 
 Trovata misurando [ISSUES 58](#58), e non la stavo cercando.
 
@@ -5848,6 +5929,19 @@ intermittenti sia leggibile accanto a quello dei continui.
 **Fatto quando** c'è una regola scritta su chi siede l'anno prossimo — che sia
 «gli stessi», «si ripesca» o «si ripesca ma chi c'era ha precedenza» — e la
 sonda delle ere la applica invece di deciderla per conto proprio.
+
+### La regola è scritta in 0.1.397: **si ripesca, ed è voluto**
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Fra un anno e l'altro di una saga
+**metà dei seggi cambia casa**, e adesso non succede più senza che nessuno
+l'abbia deciso: **è la regola.** Le case passano, il mondo resta — *le Azioni
+cambiano il mondo, il Consiglio decide cosa il mondo ricorderà* — e in una saga
+si gioca **il mondo**, non la propria casa.
+
+Quello che resta è mio, ed è il «fatto quando» di questa voce: **scriverla dove un
+giocatore la legge prima di affezionarsi ad Aldric**, e far sì che la sonda delle
+ere la **applichi** invece di deciderla per conto proprio. Il cartellino
+`da-decidere` è tolto.
 
 ---
 
@@ -8296,7 +8390,7 @@ Destini condivisi su quattro pagano **meglio** chi gioca di chi sta fermo.
 
 ---
 
-### 119. Il Consiglio non cade quasi più, e cosa si perde quando non cade
+### 119. ✅ Il Consiglio non cade quasi più, e cosa si perde quando non cade
 
 `regole` · `da-decidere` · aperta in 0.1.345
 ([D-378](DECISIONS.md#d-378) · rimisurata e riscritta in 0.1.353)
@@ -8446,9 +8540,31 @@ che nessuno comprava passa da una su 32 a **una su 8** — ed è il terzo pezzo
 della [106](#106), che si è mosso perché adesso c'è la moneta, non perché la
 pedina abbia imparato a scegliere.
 
+### ✅ Chiusa in 0.1.397: il gettone contro pesa **1**, e le facce restano undici
+
+Parola del committente, **«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Alla
+domanda rimasta — *«1 o 2, oppure più di undici facce RIVENDICARE?»* — la
+risposta è **1 e undici**, cioè quello che 0.1.391 aveva già spedito.
+
+Le due alternative erano misurate, e costavano tutte e due:
+
+| | tavolo misto | tavolo uniforme |
+|---|---|---|
+| FAILURE col gettone a peso **1** | 39 | 10 |
+| FAILURE col gettone a peso **2** | 55 | **21** |
+
+Il peso 2 quasi **triplica** i Consigli che cadono sul tavolo uniforme, e li fa
+cadere *per aritmetica* invece che per conflitto — il difetto che
+[D-378](DECISIONS.md#d-378) aveva appena tolto. E quindici facce RIVENDICARE
+invece di undici costano quasi **sei punti di «passa»**.
+
+**Il costo, dichiarato:** il segno `spoke_and_lost` resta a **8 posate su cento
+partite** — una volta ogni dodici partite. Chi ha parlato e ha perso lascia un
+segno che il tavolo quasi non vede, e questa chiusura lo accetta.
+
 ---
 
-### 120. Dodici Obiettivi su diciassette si vincono contando, e non nominano niente
+### 120. ✅ Dodici Obiettivi su diciassette si vincono contando, e non nominano niente
 
 `contenuto` · `da-decidere` · aperta in 0.1.347
 ([D-380](DECISIONS.md#d-380) · [il flusso](flusso.html))
@@ -8599,6 +8715,20 @@ chiede che qualcosa succeda, ed è la cosa che questa voce voleva.
 **Resta aperto il segnalino di `did_this_year`**, che è la domanda qui sopra e
 non l'ha toccata nessuno.
 
+### ✅ Chiusa in 0.1.397: i cinque che restano un'addizione restano
+
+Parola del committente, **«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Sette
+Obiettivi sono stati riscritti sui segni in 0.1.384
+([D-413](DECISIONS.md#d-413)) e quelli che si reggevano solo su un totale sono
+passati da **otto a uno**. I cinque che restano un conto puro **restano**: sono
+il **pavimento del punteggio**, gli unici cinque punti che una casa che ha
+giocato male l'anno può ancora prendere.
+
+E c'è una ragione di cancello: una clausola in più rende un obiettivo **più
+difficile**, e *0 seggi bloccati su 8* è il vincolo che non si negozia. Se un
+giorno si vorranno riscrivere, la strada misurata è **tre su cinque** — i tre che
+valgono di più — con la rimisura dei seggi bloccati subito dopo.
+
 ---
 
 ### 121. ✅ Due segni e un'Azione che nessuno tocca — CHIUSA in 0.1.348: non era vero
@@ -8722,7 +8852,7 @@ deve essere abbondante la moneta.
 
 ---
 
-### 123. Nessuna Azione della plancia alza una Pietra, e il Consiglio paga meglio chi tace
+### 123. ✅ Nessuna Azione della plancia alza una Pietra, e il Consiglio paga meglio chi tace
 
 `regole` · `da-decidere` · aperta in 0.1.353 ([D-386](DECISIONS.md#d-386))
 
@@ -8814,6 +8944,18 @@ concedere.
 
 **Resta aperta**, e su cosa: la voce chiedeva anche che [119](#119) fosse chiusa
 e la misura rifatta con lei. Quella e' ancora del committente.
+
+### ✅ Chiusa in 0.1.397: la Pietra costa la carta, e basta
+
+Parola del committente, **«sì a tutte»** ([D-427](DECISIONS.md#d-427)): alla riga
+rimasta — *«quella Pietra deve costare qualcos'altro?»* — la risposta è **no**.
+La carta è già la moneta scarsa: la mano è di sette e ogni turno ne consuma una.
+I numeri lo reggono: **190** Pietre alzate da un'Azione contro **136** dal
+Consiglio, cancello **0 su 8** sui due tavoli.
+
+La strada scartata era il prezzo in presenza — *«il cantiere consuma la gente che
+l'ha aperto»* — e resta scritta qui, nel caso in cui un giorno ACQUISIRE diventi
+troppo facile.
 
 ---
 
@@ -9055,7 +9197,7 @@ committente decide che la prenotazione esce dal gioco.
 
 ### 127. La tessera si gira, e l'arte si gira con lei
 
-`arte` · `da-decidere` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390)) ·
+`arte` · aperta in 0.1.357 ([D-390](DECISIONS.md#d-390)) ·
 **la scelta è diventata più facile in 0.1.360** ([D-393](DECISIONS.md#d-393))
 
 La regola dei varchi ([D-390](DECISIONS.md#d-390)) si posa **girando la
@@ -9093,11 +9235,27 @@ scelta d'autore, e non è mia.
 **Fatto quando** il committente sceglie, e — se non è la (1) — la misura delle
 200 mappe si rifà con la regola nuova.
 
+### La scelta è arrivata in 0.1.397: **(2)**, quattro varchi disegnati
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). L'arte disegna **tutti e quattro
+i varchi** su ogni tessera, e i lati che sul dato sono chiusi si coprono con un
+**gettone**. Allargati i varchi a trentotto su quaranta
+([D-393](DECISIONS.md#d-393)), costa **un gettone su una tessera sola** — l'Isola
+Muta — e il disegno **non gira mai**.
+
+Le due scartate: **(1)** un disegno senza alto e basso, che costa in bellezza e
+in riconoscibilità; **(3)** la tessera che non ruota, che costa in varchi che non
+combaciano.
+
+Resta da fare, ed è mio: **rifare la misura delle 200 mappe con la regola nuova**
+e portare il gettone dei lati chiusi nella fustella. Il cartellino `da-decidere`
+è tolto.
+
 ---
 
 ### 128. Cinquantanove carte su cento in mano non sanno dire niente
 
-`regole` · `da-decidere` · **aperta in 0.1.394** — domanda del committente:
+`regole` · **aperta in 0.1.394** — domanda del committente:
 
 > *«E se non ci fosse proprio la possibilità di passare? O fai le azioni o giochi
 > l'Eco. Non c'è provare. Puoi misurare come cambierebbe la partita?»*
@@ -9275,3 +9433,17 @@ con la regola scelta:
 
 Le tre non si escludono, e la (1) è la più economica: è una riga nel cervello,
 e senza di lei la (2) ripara un quinto del problema.
+
+### La parola è arrivata in 0.1.397: si allargano i bersagli, e il passare resta
+
+**«sì a tutte»** ([D-427](DECISIONS.md#d-427)). Il passare **non si toglie**:
+toglierlo porta i «passa» a 36,1% — *non a zero* — e costa il **42% della memoria
+del mondo** (Verità scritte da 135 a 78), misurato in 0.1.394.
+
+Quello che si fa è il quinto duro: **allargare i bersagli delle facce murate**,
+carta per carta, sui dati, senza toccare nessuna regola del tavolo. È lavoro mio,
+e il cartellino `da-decidere` è tolto.
+
+La strada scartata resta scritta: **passare costa qualcosa** invece di essere
+vietato — si scarta una carta, o il Tema più caldo si scalda di uno.
+

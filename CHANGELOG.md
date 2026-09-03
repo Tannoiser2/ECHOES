@@ -5,6 +5,73 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.397 — «Sì a tutte»: le rosse finiscono, e la lista diventa un elenco di lavori
+
+Il committente aveva chiesto di spiegare le dodici decisioni **con un esempio di
+gioco e una proposta da avallare o meno**. Riscritte così, la risposta è stata
+**«sì a tutte»** ([D-427](docs/DECISIONS.md#d-427)).
+
+### Quattro voci si chiudono
+
+| voce | la risposta |
+|---|---|
+| [123](docs/ISSUES.md#123) | la Pietra alzata da un'Azione costa **la carta e basta** |
+| [120](docs/ISSUES.md#120) | i cinque Obiettivi che sono un conto puro **restano** |
+| [119](docs/ISSUES.md#119) | il gettone contro pesa **1**, le facce restano **undici** |
+| [87](docs/ISSUES.md#87) | la sovrapposizione è voluta: **si tiene e si dichiara** |
+
+### Otto smettono di aspettare il committente
+
+69, 128, 65, 100, 64, 127, 82 e 36 perdono il cartellino `da-decidere`: la parola
+è arrivata, e quello che resta è lavoro. Nella lista prendono un posto e un ordine
+— **M5** i bersagli murati, **M6** le 46 righe stampate, **M7** i quattro varchi
+(che ha una scadenza: viene prima dell'arte), **M8** la regola della saga, **M9**
+la faccia della Tensione, **M10** le condizioni che non escono, **M11** più vite
+per casa, **M14** l'app che mostra il tavolo, che va per ultima perché è la più
+cara.
+
+### Il numero che conta
+
+| [la lista](docs/LE_TUE_DECISIONI.md) | prima | dopo |
+|---|---|---|
+| voci aperte | 26 | **22** |
+| di cui **ferme su una parola del committente** | 12 | **nessuna** |
+| di cui mie | 14 | **22** |
+| sezione ⚫ (mie, ma dietro una rossa) | 2 | **sparita** |
+
+**Per la prima volta da quando la lista esiste non c'è niente di rosso.** La
+sezione nera esisteva solo per le voci che aspettavano una rossa: le sue due — 111
+e 4 — passano fra le mie **da rimisurare**, perché la rossa che le bloccava è
+chiusa e potrebbero chiudersi da sole.
+
+### Tre costi, dichiarati
+
+- `spoke_and_lost` resta a **8 posate su cento partite** — una ogni dodici — ed è
+  il prezzo del gettone a peso 1. Il peso 2 costava di più: i FAILURE del tavolo
+  uniforme da 10 a **21**, cioè Consigli che cadono per aritmetica.
+- L'**11%** dei benefici comprati non lascia niente. Non è più un difetto aperto:
+  è il prezzo della certezza, scritto.
+- I cinque Obiettivi che si vincono contando restano **non contendibili**.
+
+### E il foglio ha imparato a scrivere «nessuna»
+
+[D-426](docs/DECISIONS.md#d-426) dava per scontato che i conti fossero almeno due.
+Con zero rosse la spina dorsale si rompeva in silenzio — *«Le zero che stanno fra
+oggi e una partita»*. Adesso il numero di un titolo **si marca in grassetto** ed è
+quello che lo strumento cambia; un colore sparito dal foglio sparisce dalla
+tabella invece di portare zeri; e una voce ospitata **due volte dalla stessa
+sezione** è rossa.
+
+**E la sedicesima prova cieca, presa prima che mordesse:** il `--self-test`
+pescava una rossa vera per piantarci il difetto, e con zero rosse non c'era più
+niente da pescare. Adesso le condizioni si **fabbricano** — il cartellino si
+appiccica, la riga col ✔ si costruisce, la casa doppia si pianta — e le guardie
+passano da cinque a **otto**.
+
+**Costo dichiarato: nessun cancello nuovo, nessun codice di gioco toccato.**
+
+---
+
 ## 0.1.396 — Il foglio delle decisioni si conta da solo
 
 Domanda del committente: *«ma perché non è aggiornato le_mie_decisioni?»* La

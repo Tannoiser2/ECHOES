@@ -22,6 +22,25 @@ Domanda del committente, 0.1.361:
 
 ---
 
+## 0.1.397 — hai risposto a tutte e dodici, e questa smette di essere una lista di domande
+
+*«Sì a tutte»*, in tre parole ([D-427](DECISIONS.md#d-427)). Delle dodici rosse
+**quattro voci si sono chiuse** — la Pietra costa la carta e basta, i cinque
+Obiettivi che sono un conto puro restano, il gettone contro pesa 1, la
+sovrapposizione fra frasi d'autore e caselle è voluta — e **otto sono passate fra
+le mie**, perché quello che gli mancava era una parola e adesso è un lavoro.
+
+**Il numero che conta è questo: da ventisei voci aperte di cui dodici ferme su di
+te, a ventidue di cui nessuna.** La lista non è più corta perché ho lavorato: è
+più corta perché hai deciso, ed è il tipo di accorciamento che *«questo giro deve
+finire»* chiedeva.
+
+Da qui in avanti questo foglio è un **elenco di lavori con un ordine**, non un
+elenco di domande. Se una rossa nuova nasce, nasce in cima, e lo strumento dei
+cancelli va rosso se non le do una casa.
+
+---
+
 ## Riscritta in 0.1.382, e non è un riordino: il conto era sbagliato
 
 Hai detto che alcune cose scritte qui non erano vere. Le ho ricontrollate una per
@@ -77,16 +96,16 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **106** |
-| aperte | **26** |
-| di cui **aspettano una tua decisione** | **12** |
-| di cui sono mie da fare | **14** |
+| chiuse | **110** |
+| aperte | **22** |
+| di cui **aspettano una tua decisione** | **0** |
+| di cui sono mie da fare | **22** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
 | versioni | aperte | chiuse |
 |---|---|---|
-| 0.1.250–0.1.274 | 12 | 5 |
+| 0.1.250–0.1.274 | 12 | 6 |
 | 0.1.275–0.1.299 | 13 | 7 |
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
@@ -109,262 +128,52 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **12** | **tu**, con una parola. Dieci stanno sulla strada, due sono fuori |
+| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **4** | **io**, da sola, senza aspettare niente |
-| ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
+| 🟡 | **14** | **io**, da sola, senza aspettare niente |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventisei voci aperte, quattro le posso muovere senza di te.
-Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su dodici parole.**
+**Quattordici.** Delle ventidue voci aperte, quattordici le posso muovere senza
+di te — ed è il numero che va detto per primo. **Il giro non è fermo su nessuna
+tua parola.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Dodici aspettano te
+# 🔴 Aspettano te: **nessuna**
 
-Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
+**Per la prima volta da quando questa lista esiste, non c'è niente di rosso.** In
+0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a tutte»* — e
+questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
-## Le dieci che stanno fra oggi e una partita
+| | voce | cosa hai detto | dov'è finita |
+|---|---|---|---|
+| R1 | [123](ISSUES.md#123) | la Pietra alzata da un'Azione costa la carta, e basta | **chiusa** |
+| R3 | [120](ISSUES.md#120) | i cinque Obiettivi che sono un conto puro restano | **chiusa** |
+| R4 | [119](ISSUES.md#119) | il gettone contro pesa **1**, e le facce restano undici | **chiusa** |
+| R9 | [87](ISSUES.md#87) | la sovrapposizione è voluta: si tiene e si dichiara | **chiusa** |
+| R6 | [69](ISSUES.md#69) | il formato era già deciso: il resto è lavoro mio | 🟡 **M9** |
+| R7 | [128](ISSUES.md#128) | si allargano i bersagli murati, e il passare resta | 🟡 **M5** |
+| R8 | [65](ISSUES.md#65) | la **(3)**: l'app mostra il tavolo, non lo stato | 🟡 **M14** |
+| R10 | [100](ISSUES.md#100) | le 46 righe si stampano come le genera il motore | 🟡 **M6** |
+| R12 | [64](ISSUES.md#64) | la saga ricambia i seggi ed è giusto: si scrive | 🟡 **M8** |
+| R13 | [127](ISSUES.md#127) | **(2)**: quattro varchi disegnati, i chiusi coperti | 🟡 **M7** |
+| — | [82](ISSUES.md#82) | non si pota niente: il buco sono le condizioni | 🟡 **M10** |
+| — | [36](ISSUES.md#36) | la **(D)** adesso, il resto dopo la prima partita | 🟡 **M11** |
 
-### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
+*(Questa tabella è un riepilogo, non una casa: ognuna di quelle voci vive sotto il
+suo colore, e da 0.1.397 lo strumento va rosso se una voce prova ad abitare in due
+posti — vedi [D-427](DECISIONS.md#d-427).)*
 
-Parola tua: **«R1 (a)»** ([D-412](DECISIONS.md#d-412)). ACQUISIRE alza una Pietra
-dove hai presenza, e **dodici facce** la portano stampata, ognuna col nome della
-Pietra che alza: al tavolo si prende il segnalino disegnato sulla carta.
-
-Da **zero** Pietre alzate da un'Azione in cento partite a **190**. I «passa» da
-49,6% a 46,1%. E la causa non era una taratura: **ACQUISIRE non era stampata su
-nessuna delle 96 facce**.
-
-**Resta aperta una riga della voce**, e aspetta ancora te: se la Pietra alzata da
-un'Azione debba costare qualcosa oltre la carta. La misuro insieme alla
-[119](ISSUES.md#119) — sono la stessa domanda vista da due parti.
-
-### ✔ R2. [122](ISSUES.md#122) + [125](ISSUES.md#125) — chiuse in 0.1.388
-
-Parola tua: **«due acquisti liberi, RIVENDICARE a 15»**, e poi **«undici»**
-davanti ai numeri ([D-417](DECISIONS.md#d-417)).
-
-I due acquisti liberi sono **il numero più redditizio di tutto il giro**:
-benefici comprati per Consiglio da **1,22 a 2,25**, e la casella che nessuno
-comprava da 22 a **83** acquisti su 700 offerte — da una su 32 a una su 8. Costa
-niente: «passa» fermo al 46,1%, cancello 0 su 8 sui due tavoli.
-
-**E il quindici l'ha corretto la misura.** Le quindici facce costano quasi sei
-punti di «passa» (46,0% → 51,9%), perché quattro vanno tolte a verbi che il
-cervello gioca. La compensazione esiste — abbassare la riserva della mano — ma
-costa **venti Verità scritte su 158, il 13% della memoria del mondo**. Hai scelto
-undici: il 92% del guadagno senza toccare né i turni né la memoria.
-
-**Ha mosso anche due voci che aspettavano**: le Pietre alzate dal Consiglio da
-148 a **211** ([111](ISSUES.md#111)), e il terzo pezzo della
-[106](ISSUES.md#106) — la casella si compra perché adesso c'è la moneta.
-
-### ✔ R3. [120](ISSUES.md#120) — decisa in 0.1.384: **sì**, e da otto ne resta uno
-
-Parola tua: **«R3 sì»** ([D-413](DECISIONS.md#d-413)). Sette Obiettivi riscritti
-sui segni della mappa: non *«due Regioni»* ma *«la Regione dove sta il Bosco»*.
-
-Gli obiettivi che si reggevano **solo su un totale** da **otto su diciassette** a
-**uno**. E le coppie che si contendono una Regione da 15,5% a **44,0%**: quasi
-una su due, dove prima era una su sette. Questo è il numero che dice che
-l'obiettivo adesso si può togliere all'avversario.
-
-**Resta aperta una riga della voce**: i cinque che restano un'addizione pura sono
-gli unici che una casa senza mappa può ancora vincere, e toglierli è una scelta
-sul gioco, non una misura. Aspetta te.
-
-### ✔ R4. [119](ISSUES.md#119) — fatta la raccomandata in 0.1.391: **(b)**
-
-Hai detto *«passa alla prossima rossa»* senza rispondere, e vale la regola qui
-sopra: **faccio quella raccomandata e lo scrivo** ([D-419](DECISIONS.md#d-419)).
-
-Il gettone di rivendicazione adesso ha **due usi che si escludono**: su un costo
-dice *«passi, ma paghi»*, speso contro dice *«questa non deve passare»* e pesa 1
-nel margine.
-
-**Il numero grosso non è quello che guardavo.** Le proposte che cadono salgono di
-un quinto (33 → 39 sul tavolo misto), ma quelle che passano **in scioltezza**
-scendono di un sesto (127 → 105). Il gettone contro raramente affonda una
-proposta: molto più spesso la **ridimensiona**.
-
-**Il peso 2 l'ho misurato, non stimato:** porta i FAILURE del tavolo misto da 39
-a **55**, ma quelli dell'uniforme da 10 a **21** — quasi il triplo dello stato
-spento. Il cancello tiene sui due tavoli, ma sull'uniforme si torna vicino al
-difetto che D-378 aveva appena tolto: i Consigli che cadono per aritmetica
-invece che per conflitto. Per questo ho lasciato **1**.
-
-**Resta una riga, e aspetta te:** il segno di chi ha parlato e perso è passato da
-6 a 8 su cento partite — un terzo in più, e ancora *una volta ogni dodici
-partite*. I gettoni sono pochi e adesso hanno due usi in concorrenza. **Il
-gettone contro deve pesare 1 o 2?** Oppure le facce RIVENDICARE devono diventare
-più di undici?
-
-### ✔ R5. [80](ISSUES.md#80) — decisa in 0.1.392: **il dado resta com'è**
-
-Era l'unica rossa su cui non avevo una raccomandazione, e la parola è arrivata:
-**il dado resta al centro** ([D-420](DECISIONS.md#d-420)). La sequenza A-K resta
-intera, il World Factor resta nel margine, e l'economia le sta **accanto per
-scelta**, non per lavoro non finito. **La voce si chiude** — le altre due parti
-erano già fatte.
-
-E la scelta il tavolo la sostiene: fra 0.1.353 e 0.1.391 l'economia ha smesso di
-essere un contorno senza togliere di mezzo il dado — due acquisti liberi, il
-gettone che compra il prezzo, e adesso quello che compra l'opposizione, che
-**entra nel margine** insieme al dado invece che dopo.
-
-### ✔ R6. [69](ISSUES.md#69) — fatta la raccomandata in 0.1.393: **il tarocco**
-
-Hai scelto di andare avanti su questa senza rispondere alla domanda del formato,
-e vale la regola qui sopra ([D-421](DECISIONS.md#d-421)). L'Eco segue le Asset,
-perché da D-359 è un blocco stampato sulla stessa carta.
-
-| mazzo asset, 48 facce | 63×88 | **70×120** |
-|---|---|---|
-| corpo rimpicciolito | **46 su 48** | **0 su 48** |
-| la più stretta | 74% | **100%** |
-| illustrazione media | 35% | **49%** |
-| la più piccola | 34% — il pavimento | **43%** |
-
-**E prima di cambiare ho scritto la misura**, che non esisteva: lo scheletro
-delle carte diceva quali blocchi una carta porta, non se ci stanno. Adesso lo
-dice chiamando la stessa funzione che disegna lo stampabile, ed è un cancello.
-
-**Il costo, e va detto:** i fogli A4 da **49 a 67** (+37%), le Asset da sole da
-15 a 33. E una mano da sette carte adesso è sette tarocchi — si è preferita una
-carta che si legge a una mano che si maneggia. Se al tavolo la mano darà
-fastidio più del testo stretto, tornare indietro è **una riga**.
-
-### R7. [128](ISSUES.md#128) — il passare, e le carte che non sanno dire niente
-
-**È tua, e l'hai aperta tu**: *«e se non ci fosse proprio la possibilità di
-passare? O fai le azioni o giochi l'Eco. Non c'è provare.»*
-
-Misurato: togliere il passare così com'è porta i «passa» da 45,2% a **36,1%** —
-non a zero — e costa **il 42% della memoria del mondo** (Verità scritte 135 →
-78). Ma la misura ha trovato la causa vera, e nessuno l'aveva mai presa: delle
-carte che una casa ha **in mano**, il **59,3%** non si può calare, e **un turno
-su quattro la mano è tutta muta** — lì passare non è una scelta.
-
-E le mute sono due difetti opposti:
-
-| delle mute | | |
-|---|---|---|
-| **il cervello non le vuole** | 82,3% | una scelta, non un difetto |
-| **il tavolo non le prende** | 17,7% | le regole |
-
-> **Farei la (1): il cervello accetta di farsi male quando non ha di meglio.**
-> Le sue due prudenze — *INFLUENZARE solo nel verso giusto*, *FORGIARE solo in
-> su* — valgono finché una mossa migliore esiste, e cadono quando non esiste. È
-> una riga, non tocca nessuna regola del tavolo, e da sola dovrebbe recuperare i
-> quattro quinti. Poi si guarda il quinto che resta, che è il difetto vero.
-
-Le tre strade stanno per esteso nella voce. **Non l'ho fatta di mia iniziativa
-perché cambia come si sente il turno**, e quello lo decidi tu.
-
-### R8. [65](ISSUES.md#65) — quale delle tre riviste della pagina
-
-Questa la credevo mia, e non lo è: il suo «fatto quando» chiede *«una decisione
-scritta su **quale** delle tre riviste si sta facendo»*. La passata di
-leggibilità l'ho fatta (0.1.376) ed è la prima delle tre. Le altre due non le
-posso scegliere io.
-
-> **Le tre, e sono davvero diverse:** (1) una passata di leggibilità — **fatta**;
-> (2) un'altra **disposizione** della pagina, cioè dove stanno le cose; (3)
-> un'altra idea di **cosa si guarda** — l'app smette di mostrare lo stato e
-> mostra il tavolo.
->
-> **Farei la (3)**, perché è quella che la direzione di 0.1.218 chiede: *un gioco
-> da tavolo con un'app di supporto*. Ma è la più cara delle tre, ed è per questo
-> che non la comincio da sola.
-
-Va insieme alla 🔵 [63](ISSUES.md#63) qui sotto: quella la verifichi giocando,
-questa la decidi prima.
-
-### R9. [87](ISSUES.md#87) — le frasi d'autore contro le caselle del prezzo
-
-Fra le Conseguenze spedite, **67 Effetti d'autore fanno esattamente quello che le
-caselle del prezzo fanno**. Il danno ha un numero: **il 24% dei benefici comprati
-non lascia niente**, perché la frase l'aveva già fatto gratis. Il taglio A ha
-portato gli acquisti a vuoto dal 24% al 9%, poi risaliti all'11%.
-
-> **Farei la (3): si tiene così e si dichiara.** La sovrapposizione è voluta, chi
-> compra compra la certezza, e il verbale già lo dice — *«e non lascia niente:
-> era già così»*. La (1) è la direzione di D-280 portata fino in fondo e costa
-> **67 Effetti da riscrivere**; la (2) è una regola nuova da spiegare al tavolo.
-
-**Questa era la voce che avevo messo fra le mie con un criterio inventato.** La
-voce dice tre letture e la scelta è tua, e lo dice due volte.
-
-### R10. [100](ISSUES.md#100) — le caselle «SI ACCENDE QUANDO»
-
-Le 46 facce che dicono quando una Tensione si scalda sono ancora **derivate**:
-le calcola il motore invece di leggerle dalla carta. Al tavolo fisico quella
-riga o è stampata o non esiste.
-
-> **Farei: si stampano come stanno.** Il motore le genera già bene; si
-> congelano nel dato, e da lì si correggono a mano quelle che suonano male. È
-> una tua parola perché sono **quarantasei frasi che un giocatore legge**.
-
-### ✔ R11. [124](ISSUES.md#124) — fatta la raccomandata in 0.1.395, **e la voce si chiude**
-
-Hai detto «mergia e vai» senza rispondere, e vale la regola qui sopra
-([D-425](DECISIONS.md#d-425)): ho scritto quella voce.
-
-| Eredità media per saga, 48 saghe | prima | **dopo** |
-|---|---|---|
-| La Diaspora di Nahr | 0,00 | **2,88** |
-| Vaerax | 0,00 | **1,88** |
-| le altre sei | 2,12–7,62 | **uguali, cifra per cifra** |
-
-**Un desiderio a testa, sostituito e non aggiunto:** Nahr perde `crown_divided`
-(che era murato, e parlava della corona di Aldric) e guadagna **«il peso è stato
-diviso»**; Vaerax perde `structure:sealed` (un segno di tessera, condiviso col
-Vetro) e guadagna **«studio sorvegliato»**. Nessun segno inventato.
-
-**E la voce raccontava la causa sbagliata.** Conosceva due modi di prendere zero;
-ce n'era un terzo: l'unico desiderio di Vaerax che poteva sbiadire era **l'ultimo
-anello di una catena d'era**, e i contatori non diventano leggende per scelta
-(D-133). È anche il motivo per cui la prima riparazione che avevo in mano non
-avrebbe funzionato.
-
-### R12. [64](ISSUES.md#64) — una saga ricambia metà tavolo
-
-Fra un anno e l'altro di una saga **metà dei seggi cambia casa**, e nessuno ha
-mai deciso che dovesse. O è la cosa giusta — le case passano, il mondo resta — o
-è un difetto.
-
-> **Farei: è giusto, e si dichiara.** È il gioco che hai voluto: *le Azioni
-> cambiano il mondo, il Consiglio decide cosa il mondo ricorderà*. Ma va scritto
-> sulla scatola, non lasciato succedere.
-
-### R13. [127](ISSUES.md#127) — la tessera si gira, e l'arte si gira con lei
-
-Da D-390 una tessera si posa **ruotata**, perché i varchi combacino. Un
-disegno ha un alto e un basso.
-
-> **Farei (2): l'arte disegna tutti e quattro i varchi, e i lati chiusi si
-> coprono con un gettone.** Allargati i varchi a trentotto su quaranta (D-393)
-> questo costa **un gettone su una tessera sola** — l'Isola Muta — e l'arte non
-> gira mai. Va deciso **prima** di commissionare i disegni, ed è per questo che
-> è qui.
-
-## Le due che aspettano te, ma non stanno sulla strada
-
-Aspettano una tua parola come le altre tredici, ma **nessuna delle due sta fra
-oggi e una partita giocabile**: se non rispondi, il giro finisce lo stesso.
-
-| voce | cosa aspetta | perché può aspettare |
-|---|---|---|
-| [82](ISSUES.md#82) — la coda della fustella | *«il committente ha scelto»* fra tenere e potare le Cicatrici rare | è una potatura di **componenti**: si fa quando la scatola si stampa, non prima |
-| [36](ISSUES.md#36) — il generatore di linee | le tue cinque risposte secche su come si permutano Destini, ruoli e incarnazioni | è un **gioco nuovo dentro il gioco**. Dopo la prima partita |
+**Quello che questo cambia, ed è la cosa che chiedevi:** il giro non è più fermo
+su di te. Delle ventidue voci aperte non ce n'è **nessuna** che aspetti una tua
+parola — le due 🔵 aspettano una partita, non una decisione. Se una rossa nasce di
+nuovo, nasce qui.
 
 ---
 
-# 🔵 Due aspettano una partita, non una misura
+# 🔵 Aspettano una partita e non una misura: **due**
 
 Queste due non le posso chiudere io **per come sono scritte**, e non perché mi
 manchi il tempo: il loro criterio nomina una persona che gioca.
@@ -396,9 +205,26 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Le quattro che sono mie, e non aspettano niente
+# 🟡 Sono mie, e non aspettano niente: **quattordici**
 
-Le faccio in quest'ordine. Nessuna apre una voce nuova.
+Erano quattro. Da 0.1.397 sono quattordici: dieci sono arrivate qui dalle rosse,
+perché la tua parola è arrivata e quello che resta è lavoro
+([D-427](DECISIONS.md#d-427)). **Nessuna apre una voce nuova.**
+
+**L'ordine in cui le faccio**, che non è l'ordine dei numeri:
+
+| | perché prima |
+|---|---|
+| **M5** — i bersagli murati | è il numero più grosso che c'è sul tavolo: **quattro turni su dieci** finiscono in «passo» |
+| **M6** — le 46 righe stampate | senza, al tavolo fisico una carta non sa dire perché è uscita |
+| **M7** — i quattro varchi | **ha una scadenza**: viene prima di commissionare i disegni |
+| **M8** — la regola della saga | è una riga scritta e una sonda che smette di decidere da sola |
+| **M9** — la faccia della Tensione | la seconda grammatica smette di divergere dalla prima |
+| **M10** — le condizioni che non escono | la fame è un Tema del gioco e il motore quasi non la produce |
+| **M11** — più vite per casa | è solo scrittura, e il metro esiste già |
+| **M1–M4** | le quattro di prima, che non sono cambiate |
+| **M12**, **M13** | si **rimisurano** adesso che R1 e R3 sono chiuse: potrebbero chiudersi da sole |
+| **M14** — l'app che mostra il tavolo | **la più cara di tutte**, e va per ultima: ha bisogno che il resto sia fermo |
 
 ### M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai
 
@@ -449,42 +275,133 @@ beneficio meno interessante che si possa offrire, e infatti la casella è compra
 verbale dice quale, e la sonda delle caselle mostra se la casella smette di essere
 quella che nessuno compra.
 
+### M5. [128](ISSUES.md#128) — le carte murate, e il passare che resta
+
+**Parola tua: sì.** Il passare non si toglie — toglierlo costa il **42% della
+memoria del mondo** e non porta i «passa» a zero, li porta a 36,1%.
+
+> **Al tavolo.** Hai sette carte in mano e non ne puoi calare nessuna: una vuole
+> `#granaio` e sulla mappa pescata non c'è nessun granaio. Dici *«passo»*, e non
+> è una scelta.
+
+Oggi i «passa» sono al **40,8%** (erano 45,2%) e le carte mute in mano al
+**54,0%** (erano 59,3%), dopo SEGNARE e *la cosa meno peggio*. Il quinto che
+resta è quello delle **regole**: il tavolo non prende la carta, il 12,4%.
+
+**Fatto quando** le carte mute per le regole sono sotto il 5%, senza che il
+cancello si muova e senza perdere Verità scritte.
+
+### M6. [100](ISSUES.md#100) — le 46 righe «SI ACCENDE QUANDO»
+
+**Parola tua: sì**, si stampano come le genera il motore, e poi si correggono a
+mano quelle che suonano male.
+
+> **Al tavolo.** Giri la Tensione *«Il grano non basta»* e in basso c'è scritto
+> **quando** quella carta entra in gioco. Oggi quella riga la calcola il motore:
+> senza app, la carta non lo sa dire.
+
+**Fatto quando** ogni riga stampata sta nel dato e non nel motore, e le tredici
+che ancora non hanno una casella ce l'hanno.
+
+### M7. [127](ISSUES.md#127) — quattro varchi disegnati, e un gettone
+
+**Parola tua: sì**, la **(2)**. L'arte disegna tutti e quattro i varchi, e i lati
+chiusi si coprono con un gettone: costa **un gettone su una tessera sola**,
+l'Isola Muta, e il disegno non gira mai.
+
+**Questa ha una scadenza vera**: va fatta prima di commissionare i disegni, se no
+un ripensamento costa quaranta tessere ridisegnate.
+
+**Fatto quando** il gettone dei lati chiusi è nella fustella e la misura delle
+200 mappe è rifatta con la regola nuova.
+
+### M8. [64](ISSUES.md#64) — la saga ricambia metà tavolo, ed è la regola
+
+**Parola tua: sì**, è giusto e si scrive sulla scatola.
+
+> **Al tavolo.** Finisce l'anno, la saga va avanti, e **quattro giocatori su
+> otto cambiano casa**: chi ha costruito tutto l'anno per Aldric adesso gioca
+> Lyra, e le sue Pietre le eredita un altro. È il gioco — *le case passano, il
+> mondo resta* — ma va saputo **prima** di affezionarsi ad Aldric.
+
+**Fatto quando** la regola è scritta dove un giocatore la legge, e la sonda delle
+ere la applica invece di deciderla per conto proprio.
+
+### M9. [69](ISSUES.md#69) — la faccia della Tensione, stampata ed eseguita
+
+**Parola tua: sì.** Il formato l'avevi deciso (il tarocco, 0.1.393), quindi
+questa non aspettava più te. Restano due lavori: **stampare la faccia della
+Tensione con le sue domande**, ed **eseguire nel motore il resto della faccia
+fisica**.
+
+**Perché conta più di quanto sembri:** è il posto dove le due grammatiche
+divergono. Se le facce fisiche crescono e il motore non le esegue, fra dieci
+carte sono due giochi diversi con lo stesso nome.
+
+**Fatto quando** una carta giocata nell'app esegue l'Azione scelta **e** la sua
+Risonanza, e il Tema che ne esce è quello scritto sulla carta.
+
+### M10. [82](ISSUES.md#82) — le condizioni che non succedono
+
+**Parola tua: sì**, non si pota niente. Le Cicatrici rare sono design; il difetto
+è l'altra metà della voce, ed è mia: `condition:starving` esce **un anno su
+quaranta**, `condition:lean` uno, `condition:requisitioned` uno. **La fame è un
+Tema del gioco e il motore quasi non sa produrla.**
+
+**Fatto quando** ognuna delle tre condizioni esce almeno un anno su cinque.
+
+### M11. [36](ISSUES.md#36) — più vite per casa, con ingressi più fini
+
+**Parola tua: sì**, la **(D)**: solo scrittura, nessun rischio. Il generatore
+vero — la (C) — resta fermo per scelta: questo gioco è fatto di frasi che
+qualcuno ha scritto.
+
+**Fatto quando** la distanza fra due saghe sale sopra lo **0,86** di oggi, con le
+mani d'apertura misurate insieme.
+
+### M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai
+
+**Da rimisurare, e potrebbe chiudersi da sola.** La sua causa era *«nessuna
+Azione della plancia alza una Pietra»*, e da 0.1.383 ACQUISIRE la alza: le Pietre
+da Azione sono passate da **0 a 190** e quelle dal Consiglio da 148 a **211**.
+
+**Fatto quando** ogni grado consumato si alza almeno una volta in cento partite,
+o esce dalla scatola.
+
+### M13. [4](ISSUES.md#4) — gli obiettivi non si incrociano
+
+**Da rimisurare, e tre righe del suo criterio su quattro erano già passate.** La
+quarta era la R3, che adesso è chiusa: sette Obiettivi nominano i segni della
+mappa, e le coppie che si contendono una Regione sono passate da 15,5% a
+**44,0%**.
+
+| | chiedeva | l'ultima misura |
+|---|---|---|
+| Regioni contese a fine anno | > 3 su 6 | **3,40 su 6** ✅ |
+| il padrone passa di mano | > 3 volte l'anno | **3,75 volte** ✅ |
+| playtest | 0 su 8 | **0 su 8** ✅ |
+| obiettivi contesi | ≥ un terzo del mazzo | **3 su 15** ❌ — da rifare |
+
+Con lei si rimisura anche la [91](ISSUES.md#91), che sta fra le ⚪.
+
+### M14. [65](ISSUES.md#65) — l'app smette di mostrare lo stato
+
+**Parola tua: sì**, la **(3)**, ed è la più cara della lista.
+
+> **Al tavolo.** La plancia è aperta e il tablet sta di lato. Oggi il tablet
+> mostra **un cruscotto**: elenchi, valori, questioni con un numero accanto. Deve
+> mostrare **il tavolo** — la mappa con le pedine dove stanno, e quello che è
+> appena successo scritto come lo racconteresti a voce.
+
+**Va per ultima**, e non per paura: ha bisogno che le carte, le tessere e la
+faccia della Tensione siano ferme, se no si disegna due volte la stessa pagina.
+
+**Fatto quando** la pagina segue la decisione scritta, e la 🔵
+[63](ISSUES.md#63) si può verificare giocandoci.
+
 ---
 
-# ⚫ Le due che sono mie, ma dopo una tua parola
-
-Non sono in attesa di lavoro: sono in attesa che una rossa si sblocchi. Se la
-rossa passa, queste si chiudono **con lei**, e probabilmente da sole.
-
-### [111](ISSUES.md#111) — le Pietre che non si alzano mai → chiude con **R1**
-
-E adesso si sa che **non dipende da una riga di dati**: i tre gradi consumati che
-restano hanno ognuno la sua Conseguenza, che mira nel posto giusto — verificato
-prima di cambiare la mira, e la mira era già buona. La causa è la stessa della
-M1: **quelle proposte il cervello non le compra mai**, perché nessuna Azione
-della plancia alza una Pietra.
-
-### [4](ISSUES.md#4) — gli obiettivi non si incrociano → chiude con **R3**
-
-**Rimisurata oggi, e metà del suo criterio è soddisfatta.** La voce chiedeva
-*«le Regioni contese a fine anno sono più di tre su sei e il padrone cambia mano
-più di tre volte l'anno, col playtest ancora 0/8»*. Su 100 partite CHR_00 a
-tavolo misto, seme 7000:
-
-| | chiedeva | oggi | |
-|---|---|---|---|
-| Regioni contese a fine anno | > 3 su 6 | **3,40 su 6** | ✅ |
-| il padrone passa di mano | > 3 volte l'anno | **3,75 volte** | ✅ |
-| playtest | 0 su 8 | **0 su 8** | ✅ |
-| obiettivi contesi | ≥ un terzo del mazzo | **3 su 15** | ❌ |
-
-Le tre righe sulla mappa sono passate. La quarta è **esattamente la R3**: un
-obiettivo che si vince contando non lo si può contendere. Chiudi quella e questa
-si chiude con lei — e con lei la [91](ISSUES.md#91).
-
----
-
-# ⚪ Sei fuori dalla lista, finché non giochi
+# ⚪ Fuori dalla lista finché non giochi: **sei**
 
 Non perché non valgano: perché **ognuna di queste è un gioco nuovo**, e aprirla
 adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
@@ -523,13 +440,14 @@ mano invecchia il giorno dopo.
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle ventisei voci aperte ne posso
-muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **dodici aspettano
-una tua parola**.
+**Quello che resta da dire in una riga:** delle ventidue voci aperte ne posso
+muovere **quattordici** da sola. Due le verifica una persona che gioca, sei
+stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 
-Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia
-parola*, così non è il gioco a stare fermo ad aspettare. **Tranne la R5**: quella
-non ha una raccomandazione, perché la voce dice che non è mia da dare.
+**E la regola 3 non serve più, per adesso.** Diceva: *se una rossa non arriva,
+faccio la raccomandata e la segno come fatta sulla mia parola*. L'ho usata quattro
+volte — R4, R6, R11, e prima ancora — e in 0.1.397 le rosse sono finite: hai
+risposto a tutte e dodici. Resta scritta perché una rossa nuova può nascere in
+qualsiasi momento, e allora vale di nuovo.
