@@ -5,6 +5,62 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.403 — La fame che il motore sapeva solo togliere
+
+M10 della lista, e lavora [ISSUES 82](docs/ISSUES.md#82)
+([D-433](docs/DECISIONS.md#d-433)).
+
+### La sonda guardava il momento sbagliato
+
+`run_punchboard_probe` leggeva le Regioni **dopo** la fine dell'anno, e diceva
+che `condition:lean` non usciva **mai** in quarant'anni. Sullo stesso tavolo
+`run_mark_probe` ne contava **trenta**: erano vere tutt'e due, perché un gettone
+posato a marzo e tolto a settembre, a dicembre non c'è più.
+
+Ma la domanda della fustella non è *«cosa resta a fine anno»*: è **quanti pezzi
+la scatola deve avere** — e chi leggesse quella lista per **potare** il cartone
+taglierebbe pezzi che il gioco usa. Due correzioni: conta anche i gettoni posati
+**dentro** l'anno, e gioca **tutti e due i tavoli** invece del solo uniforme.
+
+### E il difetto vero era nei dati
+
+| | chi la posa | chi la toglie |
+|---|---|---|
+| `#magro` | *nessuna carta* — solo una Conseguenza | **due** facce di *Braccia per il Raccolto*, più una Conseguenza |
+| `#requisito` | *nessuna carta* — solo una Conseguenza | *Censimento*, «Contare i sacchi» |
+
+**Il motore la fame la sapeva solo togliere.** La cura per `#magro` era già
+scritta sulla carta: *Marcia*, «Marciare verso il grano», sposta una presenza in
+un luogo col #granaio — un esercito che marcia sul grano **se lo mangia**.
+
+**Per `#requisito` la cura non è una carta:** requisire non è un gesto che si fa
+da soli, è quello che il tavolo decide. Il segno è **del Consiglio per
+costruzione**, e la sua assenza è la voce delle Conseguenze che nessuno sceglie
+([ISSUES 56](docs/ISSUES.md#56)). Inventargli una carta apposta sarebbe stato
+riparare il numero invece della cosa.
+
+| 40 anni, seme 7000 | prima | **dopo** |
+|---|---|---|
+| tipi visti almeno una volta | 28 su 34 | **31 su 34** |
+| **mai visti** | **6** | **3** |
+| tipi sul tavolo in un anno | 7,5 | **8,9** |
+
+### Il costo, dichiarato, e non è piccolo
+
+| 100 partite | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| DECISIVE | 99 | **97** | 132 | **123** |
+| **Verità scritte** | **135** | **129** | **141** | **134** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+Sei Verità in meno sul misto e sette sull'uniforme — **nella stessa direzione su
+tutt'e due**, che è il segno che non è deriva ma la modifica. Una terra magra è
+una terra su cui si litiga di più e si conclude di meno. È un baratto: si compra
+un Tema del gioco che il motore sapeva solo spegnere, e si paga in memoria del
+mondo. **Se la memoria vale più della fame, tornare indietro è una riga.**
+
+---
+
 ## 0.1.402 — La carta Tensione dice su cosa si discute
 
 M9 della lista, e chiude [ISSUES 69](docs/ISSUES.md#69)

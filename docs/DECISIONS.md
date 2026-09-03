@@ -10,6 +10,103 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-433 — La fame che il motore sapeva solo togliere, e una fustella che guardava tardi
+
+**implemented in 0.1.403.** Lavora [ISSUES 82](ISSUES.md#82) (M10 della
+[lista](LE_TUE_DECISIONI.md)), sulla parola **«si' a tutte»** ([D-427](#d-427)).
+
+### Il numero della voce era invecchiato, e ne restavano due
+
+La voce diceva `condition:starving` **1 anno su 40**, `condition:lean` 1,
+`condition:requisitioned` 1. Rimisurato oggi con la stessa sonda: **la fame sta
+bene**, e i mai visti sono altri.
+
+### E la sonda guardava il momento sbagliato
+
+`run_punchboard_probe` leggeva le Regioni **dopo** che l'anno era finito, e
+diceva che `condition:lean` non usciva **mai** in quarant'anni. Sullo stesso
+tavolo `run_mark_probe` contava trenta segni: erano vere tutt'e due, perche' un
+gettone posato a marzo e tolto a settembre a dicembre non c'e' piu'.
+
+**Ma la domanda della fustella non e' «cosa resta a fine anno»: e' quanti pezzi
+la scatola deve avere.** Un gettone che si prende e si rimette nella riserva la
+stessa sera va tagliato nel cartone lo stesso — e chi leggesse quella lista per
+**potare** la fustella, sul numero vecchio, taglierebbe pezzi che il gioco usa.
+
+Due correzioni alla sonda, e nessuna delle due e' una taratura:
+
+1. **conta anche i gettoni posati dentro l'anno**, leggendo il registro degli
+   Effetti oltre al tavolo di dicembre;
+2. **gioca tutti e due i tavoli**, misto e uniforme, a anni alterni. La fustella
+   non e' del tavolo uniforme: e' della scatola, e sullo stesso anno un tavolo
+   misto pesca carte diverse e posa segni diversi.
+
+### E il difetto vero, che era nei dati
+
+Delle due condizioni che restavano, **nessuna carta le posava**:
+
+| | chi la posa | chi la toglie |
+|---|---|---|
+| `#magro` | *nessuna carta* — solo `CNS_VALLEY_DRAINED` | **due** facce di *Braccia per il Raccolto*, piu' una Conseguenza |
+| `#requisito` | *nessuna carta* — solo `CNS_VALLEY_CLEARED` | *Censimento*, faccia «Contare i sacchi» |
+
+**Il motore la fame la sapeva solo togliere.** Quattro facce la cancellano e
+nessuna la produce: un segno che solo il Consiglio puo' creare e che le carte
+possono solo spegnere non arriva mai sul tavolo.
+
+**La cura per `#magro`, e sta gia' scritta sulla carta.** *Marcia*, faccia
+«Marciare verso il grano», sposta una presenza in un luogo col #granaio: un
+esercito che marcia sul grano **se lo mangia**. Adesso la faccia lo dice e lo fa:
+*«dove arriva la marcia, il grano finisce. Metti #magro sul luogo.»* La mano
+nuova e' dichiarata nel dizionario — la guardia della grammatica l'ha preteso
+subito, ed e' il suo mestiere.
+
+**Per `#requisito` la cura non e' una carta, ed e' la cosa da dire.** Requisire
+non e' un gesto che si fa da soli: e' quello che il tavolo decide — *«il grano
+sia requisito in nome del trono»*. Il segno e' **del Consiglio per costruzione**,
+e il fatto che non esca e' la voce delle Conseguenze che nessuno sceglie:
+[ISSUES 56](ISSUES.md#56), la M1. Inventargli una carta apposta sarebbe stato
+riparare il numero invece della cosa.
+
+### I numeri, 40 anni col seme 7000
+
+| | prima | **dopo** |
+|---|---|---|
+| tipi visti almeno una volta | 28 su 34 | **31 su 34** |
+| **mai visti in 40 anni** | **6** | **3** |
+| tipi sul tavolo in un anno | 7,5 | **8,9** |
+
+I tre che restano: **`condition:requisitioned`** (del Consiglio, sopra),
+**`scar:dragonfall`** e **`scar:sealed_border`** — due Cicatrici rare, che la
+parola del committente ha gia' deciso di **tenere**: *«una Cicatrice che esce due
+volte in quarant'anni e' memorabile»* ([D-427](#d-427)).
+
+### Il costo, dichiarato, e non e' piccolo
+
+Una carta che **produce** fame rende il mondo piu' duro, e si vede su tutti e due
+i tavoli. 100 partite CHR_00, seme 7000:
+
+| | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| DECISIVE | 99 | **97** | 132 | **123** |
+| SUCCESS | 163 | 160 | 178 | **179** |
+| SUCCESS CON COSTO | 51 | 54 | 36 | 35 |
+| FAILURE | 35 | 35 | 12 | **15** |
+| **Verita' scritte** | **135** | **129** | **141** | **134** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+**Sei Verita' in meno sul misto e sette sull'uniforme** — attorno al 4-5% della
+memoria, e stavolta **nella stessa direzione su tutt'e due**, che e' il segno che
+non e' deriva ma la modifica. Una terra magra e' una terra su cui si litiga di
+piu' e si conclude di meno.
+
+**E' un baratto, e va detto per quello che e':** si compra un Tema del gioco che
+prima il motore sapeva solo spegnere, e si paga in memoria del mondo. Il cancello
+tiene sui due tavoli. **Se la memoria vale piu' della fame, tornare indietro e'
+una riga** — il `puts_tag` sulla faccia di *Marcia*.
+
+---
+
 ## D-432 — La carta Tensione dice su cosa si discute
 
 **implemented in 0.1.402.** Chiude [ISSUES 69](ISSUES.md#69) (M9 della

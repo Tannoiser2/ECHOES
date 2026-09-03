@@ -17,6 +17,8 @@ extends SceneTree
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const Characters := preload("res://scripts/seat/table_of_characters.gd")
+const RngService := preload("res://scripts/core/rng_service.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 ## Sotto questa frequenza un tipo e' coda: meno di un anno su cinque.
@@ -47,12 +49,41 @@ func _initialize() -> void:
 			printerr("setup fallito al seme %d" % seed_value)
 			quit(3)
 			return
-		await session.run(PolicyDecider.new(session.log))
+		# **I due tavoli, non uno solo** (D-433). Fino alla 0.1.403 questa sonda
+		# giocava solo il tavolo uniforme — quattro ottimizzatori uguali — e la
+		# fustella non e' del tavolo uniforme: e' della scatola. Sullo stesso
+		# anno un tavolo misto pesca carte diverse e posa segni diversi, e la
+		# lista dei «mai visti» **cambia**. Un pezzo lo si taglia dal cartone
+		# solo se non lo usa nessuno dei due.
+		var cervello: RefCounted = (
+			Characters.deal(seats, RngService.new(seed_value * 31 + 7), session.log)
+			if run % 2 == 1 else PolicyDecider.new(session.log)
+		)
+		await session.run(cervello)
 		var qui: Dictionary = {}
 		for region_id in session.world["regions"]:
 			for tag in (session.world["regions"][str(region_id)] as Dictionary).get("tags", []):
 				if SignLabels.REGION_WORDS.has(str(tag)):
 					qui[str(tag)] = true
+		# **E i gettoni che si posano e si tolgono dentro l'anno** (D-433).
+		# Fino alla 0.1.403 questa sonda guardava **solo il tavolo a fine anno**,
+		# e diceva che `condition:lean` non usciva **mai** in quarant'anni.
+		# `run_mark_probe`, sullo stesso tavolo, lo contava posato **trenta
+		# volte**: era vero tutt'e due le volte, perche' la magra arriva e
+		# qualcuno la risolve prima di dicembre.
+		#
+		# Ma la domanda della fustella non e' *«cosa resta a fine anno»*: e'
+		# **quanti pezzi la scatola deve avere**. Un gettone che si prende e si
+		# rimette nella riserva la stessa sera va tagliato nel cartone lo stesso
+		# — e chi legge quella lista per potare la fustella, sul numero vecchio,
+		# potava pezzi che il gioco usa.
+		for entry in (session.world.get("effect_log", []) as Array):
+			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
+			if str(effect.get("type", "")) != "SET_REGION_TAG":
+				continue
+			var posato: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
+			if SignLabels.REGION_WORDS.has(posato):
+				qui[posato] = true
 		for tag in qui:
 			anni_con[str(tag)] = int(anni_con.get(str(tag), 0)) + 1
 		per_anno.append(qui.size())

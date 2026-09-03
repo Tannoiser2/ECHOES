@@ -1898,7 +1898,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Marciare verso il grano.** Sposta una tua presenza in un luogo con #granaio, anche se non confina.
+A. **Marciare verso il grano.** Sposta una tua presenza in un luogo con #granaio, anche se non confina: dove arriva la marcia, il grano finisce. Metti #magro sul luogo.
 B. **Marciare sulla capitale.** Metti #malcontento su un luogo con #capitale, ovunque sia.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa. Se sul luogo c'e' #fame: Sopravvivenza +2, e ci resta #malcontento.

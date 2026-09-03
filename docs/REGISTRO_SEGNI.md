@@ -91,7 +91,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `condition:exploited` | Conseguenza, Risonanza | — | Destino, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:guarded` | Conseguenza | — | carta Echo, regola del segno |
 | `condition:indebted` | Conseguenza, carta Asset, carta Echo | Conseguenza | la Regione di cui si discute, pesca delle domande |
-| `condition:lean` | Conseguenza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute |
+| `condition:lean` | Azione stampata, Conseguenza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute |
 | `condition:mourning` | Conseguenza, carta Echo | Azione stampata, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:plundered` | Azione stampata, Conseguenza | Conseguenza | Risonanza, la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:rationed` | Azione stampata, Conseguenza, carta Asset | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
