@@ -2236,20 +2236,6 @@
       "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
     },
     {
-      "id": "place:thinned_wood",
-      "title": "bosco diradato",
-      "category": "PLACE",
-      "table_place": "TILE_SLOT",
-      "scope": [
-        "REGION"
-      ],
-      "written_by": [
-        "structure_type"
-      ],
-      "read_by": [],
-      "note": "grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24)"
-    },
-    {
       "id": "price_in_lives",
       "title": "il conto in vite",
       "title_spoken": "si e' pagato in vite",

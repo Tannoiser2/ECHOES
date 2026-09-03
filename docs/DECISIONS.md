@@ -66,6 +66,69 @@ quella del documento che la misura.
 
 ---
 
+## D-441 — Il bosco diradato esce dalla scatola, e le altre tre Pietre hanno il loro posto
+
+**implemented in 0.1.411.** Chiude [ISSUES 111](ISSUES.md#111) (M12 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### I quattro gradi, uno per uno
+
+*«Fatto quando ogni grado consumato si alza almeno una volta in cento partite, o
+esce dalla scatola.»* Ne restavano quattro ([D-435](#d-435)), e non hanno lo
+stesso destino:
+
+| grado | chi lo scriveva | cosa se ne fa |
+|---|---|---|
+| **il bosco diradato** (`place:thinned_wood`, Foresta grado 2) | solo `CNS_VALLEY_CLEARED`, uscita con [D-440](#d-440) | **esce dalla scatola** |
+| **il passo franato** (`place:collapsed_pass`) | `CNS_MINE_ROAD_CUT` | resta: **arriva in saga** |
+| **la sorgente bassa** (`place:low_spring`) | `CNS_VALLEY_DRAINED`, il fallimento del Consiglio dell'Acqua | resta: **arriva in saga** |
+| **la citta'** (`settlement:city`, Insediamento grado 3) | UNA PIETRA SALE dal Borgo | resta: **materia di saga** per parola gia' data ([ISSUES 40](ISSUES.md#40)) |
+
+**Il bosco diradato non aveva piu' nessuno.** Con la Conseguenza che lo posava
+fuori dalla scatola, nessuna riga del gioco lo scriveva; UNA PIETRA SALE lo
+avrebbe alzato dalla Foresta, ma in cento partite sulla Foresta la casella non e'
+mai stata comprata. Un grado che nessuno raggiunge non e' una scala: e' un
+gradino dipinto. La Foresta adesso ha due gradi, **Foresta → Selva maledetta**,
+e le due Conseguenze che la maledicono (`CNS_ABANDONED`, `CNS_ASH_ABANDONED`)
+dicono il grado giusto invece di contare su un tetto che le fermava. Il segno
+esce dal dizionario e dalle parole dei segni.
+
+**Il passo e la sorgente arrivano dove il gioco li ha messi.** Le loro
+Conseguenze sono fra quelle che in 200 anni di saga **escono** — su tutti e due
+i semi di D-440 — e in trenta Chronicle di `run_saga` il passo e' franato
+una volta, nelle Montagne Rosse. In cento anni scollegati no, e non e' un
+difetto: il passo e' l'unica Pietra che nessuna Tensione nomina e la sorgente
+si abbassa quando un Consiglio dell'Acqua **cade**, e cento anni senza memoria
+non bastano a nessuno dei due. E' la stessa ragione per cui [D-435](#d-435) aveva
+gia' mandato la reggia e la citta' a misurarsi in saga.
+
+**La citta' non arriva nemmeno in trenta Chronicle di saga** (tre saghe da
+dieci: sei Villaggi costruiti, nessun Borgo, nessuna Citta'), e lo scrivo. Ma
+la scala Villaggio → Borgo → Citta' e' una decisione del committente
+([ISSUES 40](ISSUES.md#40), 0.1.142): *il grado alto e' materia di saga*. Toglierla
+per un numero sarebbe disfare una scelta d'autore con una taratura, e il Borgo
+in cento partite arriva 12 volte: la scala sale, lentamente. Resta scritta come
+traguardo di saga.
+
+### Il criterio, ritagliato dove il gioco lo pone
+
+Il «fatto quando» diceva *in cento partite*. Per due gradi su tre il posto
+giusto e' la saga, e questa decisione lo scrive: **un grado consumato si alza
+almeno una volta in cento partite o in duecento anni di saga, o esce dalla
+scatola.** Con questa forma i tre restano e uno esce.
+
+### Il costo
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| DECISIVE | 102 | 102 | 126 | 126 |
+| **Verita' scritte** | 132 | **132** | 145 | **145** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+Identico al decimale: un gradino che nessuno saliva non manca a nessuno.
+
+---
+
 ## D-440 — Tre Conseguenze escono dalla scatola, e #requisito con loro
 
 **implemented in 0.1.410.** Chiude [ISSUES 56](ISSUES.md#56) (M1 della

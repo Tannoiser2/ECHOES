@@ -255,12 +255,6 @@
           "description": "Alta abbastanza da fare ombra a mezzogiorno. Ci si prende legna e ci si nasconde, spesso le stesse persone."
         },
         {
-          "name": "Bosco diradato",
-          "value": 0,
-          "tag": "place:thinned_wood",
-          "description": "Si vede attraverso. Nessuno ha deciso di tagliarla tutta: e' stata tagliata un carro per volta."
-        },
-        {
           "name": "Selva maledetta",
           "value": 0,
           "tag": "place:cursed_wood",

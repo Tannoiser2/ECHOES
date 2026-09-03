@@ -18,6 +18,19 @@ la quota di una per giro che la spiega.
 
 ---
 
+## 0.1.411 — Il bosco diradato esce dalla scatola
+
+M12 della lista: [ISSUES 111](docs/ISSUES.md#111) ([D-441](docs/DECISIONS.md#d-441)).
+
+Dei quattro gradi di Pietra che non si alzavano, il bosco diradato non aveva
+più nessuno che lo scrivesse ed esce: la Foresta va da Foresta a Selva
+maledetta. Il passo franato e la sorgente bassa arrivano in saga, e il
+criterio è ritagliato lì. La città non arriva nemmeno in trenta Chronicle, ed è
+scritto: resta perché la scala è una decisione del committente (ISSUES 40).
+Cancello 0 su 8, Verità identiche.
+
+---
+
 ## 0.1.410 — Tre Conseguenze escono dalla scatola, e #requisito con loro
 
 M1 della lista: [ISSUES 56](docs/ISSUES.md#56) ([D-440](docs/DECISIONS.md#d-440)).

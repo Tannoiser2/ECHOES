@@ -126,10 +126,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **120** |
-| aperte | **12** |
+| chiuse | **121** |
+| aperte | **11** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **12** |
+| di cui sono mie da fare | **11** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,10 +160,10 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **3** | **io**, da sola, senza aspettare niente |
+| 🟡 | **2** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Tre.** Delle dodici voci aperte, tre le posso muovere senza di te — ed è il
+**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
 numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
@@ -234,7 +234,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **tre**
+# 🟡 Sono mie, e non aspettano niente: **due**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
@@ -247,7 +247,6 @@ sparisce dal conto qui sopra.
 |---|---|
 | **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
 | **M3** — [60](ISSUES.md#60), lo scarto fra le domande | **il suo criterio va ritagliato prima**: per aritmetica non è raggiungibile, e lavorarci senza è lavorare a vuoto. Il numero da battere è 13,1× |
-| **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
@@ -542,7 +541,14 @@ partenza vera sulla linea di oggi era **0,64**.)
 trasformazioni salgono ma si spalmano su ventiquattro vite invece che su
 diciotto. E sei illustrazioni in più: 155 → **161**. Cancello **0 su 8**.
 
-### M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai
+### ✔ M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai: **chiusa in 0.1.411**
+
+**Chiusa in 0.1.411** ([D-441](DECISIONS.md#d-441)): il bosco diradato non aveva
+più nessuno che lo scrivesse ed è uscito dalla scatola; il passo franato e la
+sorgente bassa arrivano in saga, e il criterio è ritagliato lì; la città non
+arriva nemmeno in trenta Chronicle, ed è scritto — resta perché la scala è una
+tua decisione (ISSUES 40).
+
 
 **Rimisurata in 0.1.405, e non si chiude: ma adesso sappiamo perché**
 ([D-435](DECISIONS.md#d-435)).
@@ -687,8 +693,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
-muovere **tre** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

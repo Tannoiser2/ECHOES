@@ -8014,7 +8014,7 @@ qualcosa, contro i 14 gettoni di condizione.
 riga che dice perche' non gliene serve uno.
 
 
-### 111. Le dieci Pietre che non si alzano mai, e sono due difetti diversi
+### 111. ✅ Le dieci Pietre che non si alzano mai, e sono due difetti diversi — CHIUSA in 0.1.411: il bosco diradato esce, gli altri tre hanno il loro posto
 
 `regole` · `contenuto` · aperta in 0.1.316 ([D-352](DECISIONS.md#d-352))
 
@@ -8222,6 +8222,19 @@ le compra mai»*, e adesso le compra.
 > difetto e non lo e': porta un id dinamico, e la forma nuda non compare mai.
 
 ---
+
+### ✅ Chiusa in 0.1.411: il bosco diradato esce dalla scatola ([D-441](DECISIONS.md#d-441))
+
+Dei quattro gradi, **il bosco diradato** non aveva più nessuno che lo scrivesse
+(la sua Conseguenza è uscita con D-440) ed esce: la Foresta ha due gradi. **Il
+passo franato e la sorgente bassa** arrivano in saga — le loro Conseguenze
+escono in 200 anni su due semi, e il passo è franato una volta in trenta
+Chronicle — e il criterio è ritagliato dove il gioco li pone: *in cento partite
+o in duecento anni di saga*. **La città** non arriva nemmeno in trenta Chronicle,
+ed è scritto; resta perché la scala Villaggio → Borgo → Città è una tua
+decisione ([40](#40)), e il Borgo in cento partite arriva 12 volte. Cancello 0
+su 8, Verità identiche.
+
 
 ### 112. ✅ Due segni della catena delle ere non stanno nel dizionario — CHIUSA in 0.1.335
 
