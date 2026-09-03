@@ -6533,7 +6533,7 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. ✅ Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati — CHIUSA in 0.1.410: tre escono dalla scatola, e il criterio sta sul pavimento del rumore
+### 56. ✅ Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati — CHIUSA in 0.1.410: due escono dalla scatola, e il criterio sta sul pavimento del rumore
 
 `contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
 ([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
@@ -6760,15 +6760,17 @@ attraversare.
 
 ---
 
-### ✅ Chiusa in 0.1.410: tre escono dalla scatola ([D-440](DECISIONS.md#d-440))
+### ✅ Chiusa in 0.1.410: due escono dalla scatola ([D-440](DECISIONS.md#d-440))
 
-Misurate prima su 200 anni in saga: **6 su 65** mai uscite. Tre escono —
-`CNS_COST_EMPTIED`, `CNS_CROWN_REUNITED`, `CNS_VALLEY_CLEARED` — e con l'ultima
-esce **#requisito**, che era l'unica a scrivere. Tre restano con la ragione
-scritta: `CNS_COST_DEBT` è l'unica strada della sua domanda (sempre scelta, mai
-passata, su due semi: è la riga da cui ripartire), `CNS_DRAGON_SLAIN` e
-`CNS_SEALED_VALLEY` sono le uniche porte delle due Cicatrici rare che il
-committente tiene (D-427).
+Misurate prima su 200 anni in saga: **6 su 65** mai uscite. Due escono —
+`CNS_CROWN_REUNITED` e `CNS_VALLEY_CLEARED` — e con la seconda esce
+**#requisito**, che era l'unica a scrivere. Quattro restano con la ragione
+scritta: `CNS_COST_DEBT` e `CNS_COST_EMPTIED` stanno sull'unica strada aperta a
+tutti delle loro domande (la prima sempre scelta e mai passata su due semi: è la
+riga da cui ripartire; la seconda l'ha difesa `test_questions_asked` prima del
+merge, dopo che il validatore l'aveva chiamata gemella di una proposta di
+un'altra domanda), `CNS_DRAGON_SLAIN` e `CNS_SEALED_VALLEY` sono le uniche porte
+delle due Cicatrici rare che il committente tiene (D-427).
 
 Rimisurate su due semi: **4 su 62** mai uscite con entrambi, ma non le stesse
 quattro — a 200 anni una Conseguenza che esce una o due volte cambia seme e

@@ -88,6 +88,23 @@
             "FAILURE": "Si provò a chiudere i confini $of_region, e il primo a passare fu chi li aveva proposti.",
             "SUCCESS_WITH_COST": "I confini $of_region furono chiusi, e l'inverno restò fuori con $rival: dentro si contò due volte tutto quello che c'era."
           }
+        },
+        {
+          "id": "P_LAND_TO_WORKERS",
+          "question_id": "Q_FAMINE_LAND",
+          "text": "La terra $of_region appartenga a chi la lavora - e quest'anno la lavora chi è arrivato.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_NAHR_SETTLEMENT",
+            "CNS_CROWN_DISPOSSESSED",
+            "CNS_COST_EMPTIED"
+          ],
+          "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "La terra $of_region passò a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
+            "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
+            "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
+          }
         }
       ],
       "condition_clauses": [

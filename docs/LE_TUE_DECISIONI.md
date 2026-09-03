@@ -252,9 +252,9 @@ quattordicesima, che va per ultima da sempre.
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in
-saga erano **sei**. Tre sono uscite dalla scatola, e con loro **#requisito**;
-tre restano con la ragione scritta — l'unica strada di una domanda, e le due
-porte delle Cicatrici rare che hai deciso di tenere. Su due semi ne restano
+saga erano **sei**. Due sono uscite dalla scatola, e con loro **#requisito**;
+quattro restano con la ragione scritta — le uniche strade aperte a tutti di due
+domande, e le due porte delle Cicatrici rare che hai deciso di tenere. Su due semi ne restano
 quattro a zero, e non le stesse quattro: a 200 anni il criterio misura il seme.
 
 

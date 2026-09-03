@@ -225,7 +225,7 @@ Identico al decimale: un gradino che nessuno saliva non manca a nessuno.
 
 ---
 
-## D-440 — Tre Conseguenze escono dalla scatola, e #requisito con loro
+## D-440 — Due Conseguenze escono dalla scatola, e #requisito con loro
 
 **implemented in 0.1.410.** Chiude [ISSUES 56](ISSUES.md#56) (M1 della
 [lista](LE_TUE_DECISIONI.md)).
@@ -239,7 +239,7 @@ escono mai (erano 9 in 0.1.373 — due si sono mosse da sole con D-434 e D-435).
 
 | Conseguenza | verdetto, 200 anni | cosa se ne fa |
 |---|---|---|
-| `CNS_COST_EMPTIED` | scelta 2 volte su 2, mai passata | **esce** |
+| `CNS_COST_EMPTIED` | scelta 2 volte su 2, mai passata | **resta**: e' sull'unica strada aperta a tutti della sua domanda (vedi sotto) |
 | `CNS_CROWN_REUNITED` | offerta 5 volte, presa zero | **esce** |
 | `CNS_VALLEY_CLEARED` | esclusa 5 volte su 5: solo chi porta la corona puo' requisire | **esce**, e con lei il segno che era l'unica a scrivere |
 | `CNS_COST_DEBT` | scelta 6 su 6, mai passata | **resta**: e' l'unica strada della sua domanda |
@@ -252,13 +252,24 @@ Togliere una Conseguenza «di costo» da una proposta puo' lasciare **due propos
 gemelle** — stessa catena di Effetti, due testi — e `validate_physical` le
 rifiuta: *al voto sembrano due strade e sono una sola*. E' successo su
 `P_LAND_TO_WORKERS` (gemella di `P_OPEN_VALLEY`) e su `P_WATER_COMMON` (gemella
-di `P_DIG_TOGETHER`). La prima e' uscita con la sua Conseguenza. La seconda no,
-perche' il validatore ha fermato anche quello: **`P_WATER_COMMON` e' l'unica
-risposta a «Q_WATER_PRICE»**, e una domanda senza risposte non si apre. Quindi
-`CNS_COST_DEBT` resta com'era, ed e' l'unica delle sei di cui il verdetto e'
-uguale su due semi — 6 su 6 e 5 su 5, sempre scelta, mai passata. Non e' un
-aneddoto: e' una domanda che il tavolo apre e non chiude, e sta scritto qui
-perche' chi la riscrivera' sappia da dove partire.
+di `P_DIG_TOGETHER`). Per la seconda il validatore ha fermato anche la
+rimozione: **`P_WATER_COMMON` e' l'unica risposta a «Q_WATER_PRICE»**, e una
+domanda senza risposte non si apre. Quindi `CNS_COST_DEBT` resta com'era, ed e'
+l'unica delle sei di cui il verdetto e' uguale su due semi — 6 su 6 e 5 su 5,
+sempre scelta, mai passata. Non e' un aneddoto: e' una domanda che il tavolo
+apre e non chiude, e sta scritto qui perche' chi la riscrivera' sappia da dove
+partire.
+
+**E la prima l'ha fermata la suite, prima del merge.** `P_LAND_TO_WORKERS` era
+uscita con la sua Conseguenza, e `test_questions_asked` e' andata in errore:
+«Q_FAMINE_LAND» restava con la sola `P_SEAL_BORDERS`, che vuole un proponente
+con la corona — per chiunque altro, **una domanda senza risposte**. La gemella
+che il validatore vedeva sta su un'altra domanda, e la guardia delle domande
+senza risposte conta le proposte scritte, non quelle **aperte a tutti**.
+`P_LAND_TO_WORKERS` e `CNS_COST_EMPTIED` sono tornate com'erano: una
+Conseguenza che non esce ma tiene aperta una domanda non e' cartone di troppo.
+Due guardie hanno detto due cose vere e nessuna delle due la cosa intera; a
+vederla e' stata una prova che gioca. Escono **due**, non tre.
 
 ### E il segno che era l'unica a scrivere
 
@@ -301,7 +312,7 @@ per quello che puo' dire; oltre, misura il seme.
 | **Verita' scritte** | 133 | **132** | 145 | **145** |
 | seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
 
-Piatto. Tre Conseguenze che non uscivano non lasciano un buco quando escono.
+Piatto. Due Conseguenze che non uscivano non lasciano un buco quando escono.
 
 ---
 
