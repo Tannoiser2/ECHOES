@@ -29,6 +29,7 @@ import argparse
 import difflib
 import re
 import sys
+import textwrap
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -76,7 +77,7 @@ FUORI_STRADA = "non stanno sulla strada"
 ANCORA = re.compile(r"ISSUES\.md#(\d+)\)")
 
 PAROLE = [
-    "zero", "una", "due", "tre", "quattro", "cinque", "sei", "sette", "otto",
+    "nessuna", "una", "due", "tre", "quattro", "cinque", "sei", "sette", "otto",
     "nove", "dieci", "undici", "dodici", "tredici", "quattordici", "quindici",
     "sedici", "diciassette", "diciotto", "diciannove", "venti", "ventuno",
     "ventidue", "ventitré", "ventiquattro", "venticinque", "ventisei",
@@ -84,10 +85,13 @@ PAROLE = [
     "trentatré", "trentaquattro", "trentacinque", "trentasei", "trentasette",
     "trentotto", "trentanove", "quaranta",
 ]
+# Il numero di un titolo si marca **in grassetto**, e lo strumento cambia quello
+# e nient'altro. Cercare «il primo numero a parole» non funzionava: «Le dieci che
+# stanno fra oggi e **una** partita» ne ha due, e il secondo non e' un conto.
 # «uno» non serve a contare voci — sono femminili — ma va riconosciuto lo stesso
 # se qualcuno l'ha scritto a mano.
 PAROLA = re.compile(
-    r"\b(?:%s)\b" % "|".join(sorted(PAROLE + ["uno"], key=len, reverse=True)),
+    r"\*\*(%s)\*\*" % "|".join(sorted(PAROLE + ["uno", "zero"], key=len, reverse=True)),
     re.I,
 )
 
@@ -158,7 +162,12 @@ class Sezione:
         self.colore = colore
         self.titolo = titolo
         self.corpo = corpo
-        self.ospita = _hosted(corpo)
+        grezzo = _hosted(corpo)
+        # Una voce ospitata due volte nella stessa sezione va contata una volta —
+        # e va detto, perche' e' quasi sempre una tabella di riepilogo che si e'
+        # messa a fare la casa di qualcuno.
+        self.doppie = sorted({n for n in grezzo if grezzo.count(n) > 1})
+        self.ospita = list(dict.fromkeys(grezzo))
 
     def sotto(self, pezzo: str) -> list[int]:
         """Le voci ospitate dalla sottosezione il cui titolo contiene `pezzo`."""
@@ -221,6 +230,12 @@ def complaints(voices: list[Voice], sheet: str = "") -> list[str]:
     un'altra e' un rimando, non una casa — e una voce aperta senza casa e'
     esattamente il modo in cui una lista smette di finire.
 
+    La quarta e la quinta (0.1.397): **il titolo di ogni colore porta il suo
+    conto in grassetto** — e' li' che lo strumento lo va a cambiare, e un titolo
+    senza grassetto smetterebbe di aggiornarsi in silenzio — e **nessuna voce e'
+    ospitata due volte dalla stessa sezione**, che e' il modo in cui una tabella
+    di riepilogo si mette a contare come se fosse una casa.
+
     La terza (0.1.396): **la casa dice il colore giusto**. Una voce col
     cartellino `da-decidere` sta fra le rosse e da nessun'altra parte: se aspetta
     una parola del committente e sta fra le mie, la lista mi da' del lavoro che
@@ -238,6 +253,17 @@ def complaints(voices: list[Voice], sheet: str = "") -> list[str]:
         return out
 
     sez = sezioni(sheet)
+    for colore, sezione in sez.items():
+        if not PAROLA.search(sezione.titolo):
+            out.append(
+                "il titolo della sezione %s non porta il suo conto in grassetto: %s"
+                % (colore, sezione.titolo.strip()[:70])
+            )
+        for n in sezione.doppie:
+            out.append(
+                "la voce %d e' ospitata due volte dalla sezione %s: una tabella di "
+                "riepilogo non deve fare la casa di nessuno" % (n, colore)
+            )
     casa: dict[int, list[str]] = {}
     for colore, s in sez.items():
         for n in s.ospita:
@@ -325,68 +351,86 @@ def render(voices: list[Voice]) -> str:
     return "\n".join(lines)
 
 
-def render_colori(c: dict[str, int]) -> str:
+def render_colori(c: dict[str, int], presenti: list[str]) -> str:
     """La tabella dei colori, e il paragrafo che la ripete a parole.
 
     Non e' una copia del conto qui sopra: il conto dice *quante* voci ci sono,
     questa dice **chi le puo' muovere**, che e' l'unica domanda utile a chi
     legge. I numeri sono gli stessi, e proprio per questo nessuno dei due si
-    scrive a mano."""
+    scrive a mano. Un colore che dal foglio e' sparito — perche' non ospita piu'
+    niente — non porta una riga di zeri: sparisce anche di qui."""
     lines = [COLORI_START, ""]
     lines.append("| | quante | chi la muove |")
     lines.append("|---|---|---|")
-    lines.append(
-        "| 🔴 | **%d** | **tu**, con una parola. %s stanno sulla strada, %s sono fuori |"
-        % (c["🔴"], parola(c[STRADA]).capitalize(), parola(c[FUORI_STRADA]))
-    )
+    if "🔴" in presenti:
+        if c["🔴"] == 0:
+            lines.append(
+                "| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |"
+            )
+        else:
+            lines.append(
+                "| 🔴 | **%d** | **tu**, con una parola. %s stanno sulla strada, %s sono fuori |"
+                % (c["🔴"], parola(c[STRADA]).capitalize(), parola(c[FUORI_STRADA]))
+            )
     for colore in ["🔵", "🟡", "⚫", "⚪"]:
-        lines.append("| %s | **%d** | %s |" % (colore, c[colore], CHI_LA_MUOVE[colore]))
+        if colore in presenti:
+            lines.append("| %s | **%d** | %s |" % (colore, c[colore], CHI_LA_MUOVE[colore]))
     lines.append("")
-    lines.append(
-        "**%s.** Delle %s voci aperte, %s le posso muovere senza di te."
-        % (parola(c["🟡"]).capitalize(), parola(c["aperte"]), parola(c["🟡"]))
-    )
-    lines.append("Questo è il numero che la lista di prima non diceva, e che va detto per primo:")
-    lines.append("**il giro non è fermo su di me, è fermo su %s parole.**" % parola(c["🔴"]))
+    if c["🟡"]:
+        testo = (
+            "**%s.** Delle %s voci aperte, %s le posso muovere senza di te — ed e' "
+            "il numero che va detto per primo."
+            % (parola(c["🟡"]).capitalize(), parola(c["aperte"]), parola(c["🟡"]))
+        )
+        if c["🔴"] == 0:
+            testo += " **Il giro non e' fermo su nessuna tua parola.**"
+        else:
+            testo += " **Il giro e' fermo su %s parole.**" % parola(c["🔴"])
+        lines.append(textwrap.fill(testo.replace("e'", "è"), width=79))
     lines.append("")
     lines.append(COLORI_END)
     return "\n".join(lines)
 
 
-def render_riga(c: dict[str, int]) -> str:
+def render_riga(c: dict[str, int], presenti: list[str]) -> str:
     """La riga sola in fondo. E' il paragrafo che il committente legge se non
     legge altro, ed era quello che invecchiava per primo."""
-    lines = [RIGA_START, ""]
-    lines.append(
-        "**Quello che resta da dire in una riga:** delle %s voci aperte ne posso"
-        % parola(c["aperte"])
+    pezzi = []
+    if "🔵" in presenti and c["🔵"]:
+        pezzi.append("%s le verifica una persona che gioca" % parola(c["🔵"]))
+    if "⚫" in presenti and c["⚫"]:
+        pezzi.append("%s si chiudono dietro una rossa" % parola(c["⚫"]))
+    if "⚪" in presenti and c["⚪"]:
+        pezzi.append("%s stanno fuori dalla lista" % parola(c["⚪"]))
+    coda = (
+        "**nessuna aspetta una tua parola**"
+        if c["🔴"] == 0
+        else "**%s aspettano una tua parola**" % parola(c["🔴"])
     )
-    lines.append(
-        "muovere **%s** da sola. %s le verifica una persona che gioca, %s si"
-        % (parola(c["🟡"]), parola(c["🔵"]).capitalize(), parola(c["⚫"]))
+    testo = (
+        "**Quello che resta da dire in una riga:** delle %s voci aperte ne posso "
+        "muovere **%s** da sola. " % (parola(c["aperte"]), parola(c["🟡"]))
     )
-    lines.append(
-        "chiudono dietro una rossa, %s stanno fuori dalla lista, e **%s aspettano"
-        % (parola(c["⚪"]), parola(c["🔴"]))
-    )
-    lines.append("una tua parola**.")
-    lines.append("")
-    lines.append(RIGA_END)
-    return "\n".join(lines)
+    if pezzi:
+        pezzi[0] = pezzi[0][:1].upper() + pezzi[0][1:]
+    testo += ", ".join(pezzi)
+    testo += (", e " if pezzi else "") + coda + "."
+    return "\n".join([RIGA_START, "", textwrap.fill(testo, width=79), "", RIGA_END])
 
 
 def _rinumera(riga: str, n: int) -> str:
-    """Cambia il **primo** numero a parole di un titolo, e lascia stare il resto.
+    """Cambia il numero **in grassetto** di un titolo, e lascia stare il resto.
 
-    Un titolo di questo foglio porta un numero e una frase: «Le dieci che stanno
-    fra oggi e una partita». La frase la scrive una mano, il numero no."""
+    Un titolo di questo foglio porta un numero e una frase: «Aspettano te:
+    **nessuna**». La frase la scrive una mano, il numero no — e il grassetto dice
+    quale delle parole e' il conto."""
     m = PAROLA.search(riga)
     if not m:
         return riga
     nuova = parola(n)
-    if m.group(0)[:1].isupper():
+    if m.group(1)[:1].isupper():
         nuova = nuova.capitalize()
-    return riga[: m.start()] + nuova + riga[m.end() :]
+    return riga[: m.start(1)] + nuova + riga[m.end(1) :]
 
 
 def ritocca(sheet: str, voices: list[Voice], c: dict[str, int]) -> str:
@@ -426,10 +470,11 @@ def rigenera(sheet: str, voices: list[Voice]) -> str:
     blocchi generati. E' una porta sola, cosi' `--check` e la riscrittura non
     possono divergere."""
     c = conti(voices, sheet)
+    presenti = [k for k in COLORI if k in sezioni(sheet)]
     out = ritocca(sheet, voices, c)
     out = splice(out, render(voices))
-    out = splice(out, render_colori(c), COLORI_START, COLORI_END)
-    return splice(out, render_riga(c), RIGA_START, RIGA_END)
+    out = splice(out, render_colori(c, presenti), COLORI_START, COLORI_END)
+    return splice(out, render_riga(c, presenti), RIGA_START, RIGA_END)
 
 
 def splice(sheet: str, block: str, start: str = START, end: str = END) -> str:
@@ -465,6 +510,14 @@ def main() -> int:
                 return None
             return guasto
 
+        # Le condizioni non si cercano fra i dati spediti: si **fabbricano**. Da
+        # 0.1.397 non c'e' piu' nessuna voce rossa, e una prova che cercava una
+        # rossa vera avrebbe smesso di provare senza dirlo — e' la trappola che
+        # in questo progetto ha morso quindici volte.
+        cavia = next(v for v in voices if not v.closed and not v.wants_a_decision)
+        chiusa = next(v for v in voices if v.closed)
+        casa = "[%d](ISSUES.md#%d)" % (cavia.number, cavia.number)
+
         # 1. Una voce chiusa a cui si toglie il segno di spunta.
         guasto = piantato(text, "### 115. ✅ ", "### 115. ")
         if guasto is None:
@@ -474,9 +527,8 @@ def main() -> int:
             return 1
 
         # 2. Una voce aperta a cui si toglie la casa.
-        orfana = [v for v in voices if not v.closed][0]
         guasto = piantato(
-            sheet_now, "ISSUES.md#%d)" % orfana.number, "ISSUES.md#zzz)", tutte=True
+            sheet_now, "ISSUES.md#%d)" % cavia.number, "ISSUES.md#zzz)", tutte=True
         )
         if guasto is None:
             return 1
@@ -484,60 +536,79 @@ def main() -> int:
             print("FALLITO: la guardia non ha visto una voce aperta senza casa")
             return 1
 
-        # 3. Una voce che aspetta il committente, messa fra le mie: la lista
-        #    sembrerebbe piu' corta di quello che e'.
-        rossa = [v for v in voices if v.wants_a_decision][0]
-        casa = "[%d](ISSUES.md#%d)" % (rossa.number, rossa.number)
+        # 3. Una voce che aspetta il committente, ma abita fra le mie: la lista
+        #    sembrerebbe piu' corta di quello che e'. Il cartellino si fabbrica.
+        rossa_finta = piantato(text, cavia.heading, cavia.heading + "\n\n`da-decidere` ·")
+        if rossa_finta is None:
+            return 1
+        if not any(
+            "aspetta una tua parola" in c
+            for c in complaints(read_voices(rossa_finta), sheet_now)
+        ):
+            print("FALLITO: la guardia non ha visto una rossa che abita fra le gialle")
+            return 1
+
+        # 4. E il contrario: una voce senza cartellino messa fra le rosse.
+        guasto = piantato(sheet_now, casa, "[%d](ISSUES.md#zzz)" % cavia.number, tutte=True)
+        if guasto is None:
+            return 1
         guasto = piantato(
-            sheet_now, casa, "[%d](ISSUES.md#zzz)" % rossa.number, tutte=True
+            guasto, "# 🔴", "# 🔴 **una**\n\n### %s — piantata\n\n#" % casa
         )
         if guasto is None:
             return 1
-        guasto = piantato(guasto, "# 🟡", "# 🟡 %s\n\n### %s — piantata\n" % (casa, casa))
-        if guasto is None:
-            return 1
-        if not any("aspetta una tua parola" in c for c in complaints(voices, guasto)):
-            print("FALLITO: la guardia non ha visto una rossa messa fra le gialle")
+        if not any("non ha il cartellino" in c for c in complaints(voices, guasto)):
+            print("FALLITO: la guardia non ha visto una non-rossa messa fra le rosse")
             return 1
 
-        # 4. Un numero sbagliato in un titolo: la spina dorsale deve raddrizzarlo.
-        guasto = piantato(sheet_now, "# 🔴 Dodici aspettano te", "# 🔴 Trenta aspettano te")
+        # 5. Una voce ospitata due volte dalla stessa sezione.
+        guasto = piantato(sheet_now, "### M1. ", "### %s — piantata\n\n### M1. " % casa)
+        if guasto is None:
+            return 1
+        if not any("ospitata due volte" in c for c in complaints(voices, guasto)):
+            print("FALLITO: la guardia non ha visto una voce ospitata due volte")
+            return 1
+
+        # 6. Un titolo di colore senza il suo conto in grassetto: smetterebbe di
+        #    aggiornarsi in silenzio.
+        guasto = piantato(sheet_now, ": **quattordici**", ": quattordici")
+        if guasto is None:
+            return 1
+        if not any("in grassetto" in c for c in complaints(voices, guasto)):
+            print("FALLITO: la guardia non ha visto un titolo senza il conto in grassetto")
+            return 1
+
+        # 7. Un numero sbagliato in un titolo: la spina dorsale deve raddrizzarlo.
+        guasto = piantato(sheet_now, ": **quattordici**", ": **trenta**")
         if guasto is None:
             return 1
         if rigenera(guasto, voices) != sheet_now:
-            print("FALLITO: il numero sbagliato nel titolo rosso non e' stato raddrizzato")
+            print("FALLITO: il numero sbagliato in un titolo non e' stato raddrizzato")
             return 1
 
-        # 5. Il ✔ tolto a una voce che ISSUES dice chiusa.
-        segnata = [
-            v.number
-            for v in voices
-            if v.closed and v.number not in aperte_num(voices)
-            and "### ✔ " in sheet_now
-            and "(ISSUES.md#%d)" % v.number in sheet_now
-        ]
-        riga_col_segno = ""
-        for riga in sheet_now.splitlines():
-            if riga.startswith("### ✔ ") and any(
-                int(n) in set(segnata) for n in ANCORA.findall(riga)
-            ):
-                riga_col_segno = riga
-                break
-        if not riga_col_segno:
-            print("FALLITO: nessuna riga col ✔ su una voce chiusa da guastare")
+        # 8. Il ✔ tolto a una voce che ISSUES dice chiusa. Anche la riga col ✔ si
+        #    fabbrica: il foglio vero puo' non averne nessuna.
+        con_segno = piantato(
+            sheet_now,
+            "### M1. ",
+            "### ✔ [%d](ISSUES.md#%d) — piantata\n\n### M1. " % (chiusa.number, chiusa.number),
+        )
+        if con_segno is None:
             return 1
-        guasto = piantato(sheet_now, riga_col_segno, "### " + riga_col_segno[6:])
-        if guasto is None:
+        senza_segno = piantato(con_segno, "### ✔ [%d]" % chiusa.number, "### [%d]" % chiusa.number)
+        if senza_segno is None:
             return 1
-        if rigenera(guasto, voices) != sheet_now:
+        if rigenera(senza_segno, voices) != rigenera(con_segno, voices):
             print("FALLITO: il ✔ di una voce chiusa non e' stato rimesso")
             return 1
 
         # E le guardie non devono mordere i dati veri.
         if complaints(voices, sheet_now):
             print("FALLITO: le guardie mordono i dati veri")
+            for c in complaints(voices, sheet_now):
+                print("   " + c)
             return 1
-        print("OK  le cinque guardie del foglio delle decisioni mordono")
+        print("OK  le otto guardie del foglio delle decisioni mordono")
         return 0
 
     sheet_now = SHEET.read_text(encoding="utf-8")

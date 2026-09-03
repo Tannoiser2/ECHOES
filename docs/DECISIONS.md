@@ -10,6 +10,98 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-427 — «Sì a tutte»: le dodici rosse finiscono in tre parole
+
+**implemented in 0.1.397.** Chiude [ISSUES 123](ISSUES.md#123),
+[120](ISSUES.md#120), [119](ISSUES.md#119) e [87](ISSUES.md#87); toglie il
+cartellino `da-decidere` a [69](ISSUES.md#69), [128](ISSUES.md#128),
+[65](ISSUES.md#65), [100](ISSUES.md#100), [64](ISSUES.md#64),
+[127](ISSUES.md#127), [82](ISSUES.md#82) e [36](ISSUES.md#36).
+
+Il committente aveva chiesto: *«per le dodici decisioni, puoi spiegarle meglio con
+un esempio di gioco e dare una eventuale soluzione che posso avallare o meno?»*
+Riscritte con un momento al tavolo e una proposta ciascuna, la risposta e' stata
+**«si' a tutte»**.
+
+### Le dodici, e cosa vuol dire ognuna
+
+| | voce | la risposta | dove finisce |
+|---|---|---|---|
+| R1 | 123 | la Pietra alzata da un'Azione costa **la carta e basta** | **chiusa** |
+| R3 | 120 | i cinque Obiettivi che sono un conto puro **restano** | **chiusa** |
+| R4 | 119 | il gettone contro pesa **1**, le facce restano **undici** | **chiusa** |
+| R9 | 87 | la sovrapposizione e' voluta: **si tiene e si dichiara** | **chiusa** |
+| R6 | 69 | il formato era gia' deciso: il resto e' lavoro | 🟡 M9 |
+| R7 | 128 | si allargano i **bersagli murati**, il passare resta | 🟡 M5 |
+| R8 | 65 | la **(3)**: l'app mostra il tavolo, non lo stato | 🟡 M14 |
+| R10 | 100 | le 46 righe si **stampano** come le genera il motore | 🟡 M6 |
+| R12 | 64 | la saga ricambia i seggi ed **e' giusto**: si scrive | 🟡 M8 |
+| R13 | 127 | **(2)**: quattro varchi disegnati, i chiusi coperti | 🟡 M7 |
+| — | 82 | **non si pota niente**: il buco sono le condizioni | 🟡 M10 |
+| — | 36 | la **(D)** adesso, il resto dopo la prima partita | 🟡 M11 |
+
+### Le tre che costano qualcosa, e il costo va scritto
+
+- **R4.** Il gettone resta a peso 1, quindi `spoke_and_lost` resta a **8 posate
+  su cento partite** — una volta ogni dodici partite. Chi ha parlato e ha perso
+  lascia un segno che il tavolo quasi non vede, e questa chiusura lo accetta. Il
+  peso 2 costava di piu': FAILURE del tavolo uniforme da 10 a **21**, cioe'
+  Consigli che cadono per aritmetica invece che per conflitto — il difetto che
+  [D-378](#d-378) aveva appena tolto.
+- **R9.** L'**11%** dei benefici comprati non lascia niente, perche' una frase
+  d'autore l'aveva gia' fatto gratis. Non e' piu' un difetto aperto: e' il prezzo
+  della certezza, dichiarato. Chi compra non compra l'effetto, compra che
+  succeda.
+- **R3.** I cinque Obiettivi che si vincono contando restano il pavimento del
+  punteggio, e restano non contendibili: nessuna Tensione li puo' aiutare ne'
+  minacciare.
+
+### Cosa cambia nella lista, e perche' e' il numero che conta
+
+| [la lista](LE_TUE_DECISIONI.md) | prima | dopo |
+|---|---|---|
+| voci aperte | 26 | **22** |
+| di cui **ferme su una parola del committente** | 12 | **nessuna** |
+| di cui mie | 14 | **22** |
+| sezione ⚫ (mie, ma dietro una rossa) | 2 | **sparita** |
+
+La sezione nera esisteva solo per le voci che aspettavano una rossa. Non
+c'e' piu' nessuna rossa da aspettare, quindi le sue due voci — 111 e 4 —
+passano fra le mie **da rimisurare**: tutte e due hanno per causa una rossa che
+adesso e' chiusa, e potrebbero chiudersi da sole.
+
+### E il foglio ha dovuto imparare a scrivere «nessuna»
+
+[D-426](#d-426) aveva reso generata la spina dorsale del foglio dando per
+scontato che i conti fossero **almeno due**. Con zero rosse tutto si rompeva in
+silenzio: *«Le zero che stanno fra oggi e una partita»*, *«Nessuna stanno sulla
+strada»*. Tre cambiamenti, e ognuno chiude un buco vero:
+
+1. **Il numero di un titolo si marca in grassetto**, e lo strumento cambia
+   quello. Cercare «il primo numero a parole» non funzionava gia' prima: *«Le
+   dieci che stanno fra oggi e **una** partita»* ne ha due, e il secondo non e'
+   un conto. Un titolo di colore senza grassetto adesso e' rosso: senza la
+   guardia avrebbe semplicemente smesso di aggiornarsi.
+2. **Un colore sparito dal foglio sparisce dalla tabella**, invece di portare una
+   riga di zeri.
+3. **Una voce ospitata due volte dalla stessa sezione e' rossa.** E' il modo in
+   cui una tabella di riepilogo — come quella che adesso sta in cima alle rosse —
+   si mette a contare come se fosse una casa.
+
+### La sedicesima prova cieca, presa prima che mordesse
+
+Il `--self-test` di D-426 pescava **una rossa vera** per piantarci il difetto.
+Con zero rosse quella riga alzava un `IndexError` — e se avesse pescato in modo
+piu' morbido sarebbe passata su zero contro zero, che e' la trappola di casa.
+Adesso le condizioni si **fabbricano**: il cartellino `da-decidere` si appiccica
+a una voce che non ce l'ha, la riga col ✔ si costruisce, la casa doppia si
+pianta. Le guardie passano da cinque a **otto** e nessuna dipende piu' da come
+sono fatti i dati spediti.
+
+**Costo dichiarato: nessun cancello nuovo, e nessun codice di gioco toccato.**
+
+---
+
 ## D-426 — Il foglio delle decisioni si conta da solo
 
 **implemented in 0.1.396.** Domanda del committente, alla fine di
