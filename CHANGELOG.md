@@ -5,6 +5,22 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.410 — Tre Conseguenze escono dalla scatola, e #requisito con loro
+
+M1 della lista: [ISSUES 56](docs/ISSUES.md#56) ([D-440](docs/DECISIONS.md#d-440)).
+
+Misurate su 200 anni in saga, sei su sessantacinque non uscivano mai. Tre
+escono — *Chi Può, Se Ne Va*, *Un Solo Trono*, *La Valle Sgomberata* — e con
+l'ultima esce **#requisito**, che era l'unica a scrivere: un segnalino in meno
+da tagliare, due righe «SI ACCENDE QUANDO» e una faccia di *Censimento* che
+non nominano più un segno che non poteva succedere. Tre restano con la ragione
+scritta: l'unica strada di una domanda, e le uniche porte delle due Cicatrici
+rare che il committente tiene. Rimisurate su due semi: 4 su 62, non le stesse —
+il criterio a 200 anni sta sul pavimento del rumore, ed è scritto. Cancello 0
+su 8, Verità 133 → 132 sul misto.
+
+---
+
 ## 0.1.409 — Murata dalla mappa, o solo non qui
 
 M5 della lista: [ISSUES 128](docs/ISSUES.md#128) ([D-439](docs/DECISIONS.md#d-439)).

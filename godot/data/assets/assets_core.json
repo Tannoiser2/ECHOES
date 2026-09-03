@@ -929,10 +929,9 @@
           },
           {
             "label": "Contare i sacchi",
-            "text": "Togli #razionato o #requisito dal luogo.",
+            "text": "Togli #razionato dal luogo.",
             "clears_tag": [
-              "condition:rationed",
-              "condition:requisitioned"
+              "condition:rationed"
             ],
             "template": "MARK"
           }

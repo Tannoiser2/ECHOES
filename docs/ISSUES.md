@@ -6505,7 +6505,7 @@ ogni vista è disegnata almeno una volta da una prova.
 
 ---
 
-### 56. Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati
+### 56. ✅ Nove Conseguenze su sessantacinque non escono mai — in saga; erano undici sugli anni scollegati — CHIUSA in 0.1.410: tre escono dalla scatola, e il criterio sta sul pavimento del rumore
 
 `contenuto` · `bilanciamento` · **rimisurata in 0.1.206**
 ([D-235](DECISIONS.md#d-235)) · **da dieci a tre**
@@ -6731,6 +6731,22 @@ mai offerte**, perché vivono in un posto che il Consiglio ha smesso di
 attraversare.
 
 ---
+
+### ✅ Chiusa in 0.1.410: tre escono dalla scatola ([D-440](DECISIONS.md#d-440))
+
+Misurate prima su 200 anni in saga: **6 su 65** mai uscite. Tre escono —
+`CNS_COST_EMPTIED`, `CNS_CROWN_REUNITED`, `CNS_VALLEY_CLEARED` — e con l'ultima
+esce **#requisito**, che era l'unica a scrivere. Tre restano con la ragione
+scritta: `CNS_COST_DEBT` è l'unica strada della sua domanda (sempre scelta, mai
+passata, su due semi: è la riga da cui ripartire), `CNS_DRAGON_SLAIN` e
+`CNS_SEALED_VALLEY` sono le uniche porte delle due Cicatrici rare che il
+committente tiene (D-427).
+
+Rimisurate su due semi: **4 su 62** mai uscite con entrambi, ma non le stesse
+quattro — a 200 anni una Conseguenza che esce una o due volte cambia seme e
+sparisce. Il criterio dice quello che può dire; oltre, misura il seme. Cancello
+0 su 8, Verità 133 → 132 sul misto, 145 → 145 sull'uniforme.
+
 
 ### 55. ✅ Il ciclo del gioco è rotto in tre punti — chiusa in 0.1.198 per tre quarti
 

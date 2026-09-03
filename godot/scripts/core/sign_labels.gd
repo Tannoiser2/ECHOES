@@ -23,7 +23,6 @@ const REGION_WORDS: Dictionary = {
 	"condition:mourning": "in lutto",
 	"condition:plundered": "depredata",
 	"condition:rationed": "razionata",
-	"condition:requisitioned": "requisita",
 	"condition:starving": "affamata",
 	"condition:unrest": "inquieta",
 	"scar:abandoned": "l'abbandono",

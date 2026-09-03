@@ -31,7 +31,6 @@
         "condition:starving",
         "condition:lean",
         "condition:rationed",
-        "condition:requisitioned",
         "grain_requisitioned",
         "condition:mourning",
         "burden_shared",

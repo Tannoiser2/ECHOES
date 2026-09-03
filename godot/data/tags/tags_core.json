@@ -504,27 +504,6 @@
       ]
     },
     {
-      "id": "condition:requisitioned",
-      "title": "requisito",
-      "title_spoken": "requisita",
-      "category": "STATE",
-      "table_place": "ZONE_TOKEN",
-      "scope": [
-        "REGION"
-      ],
-      "aliases": [
-        "requisita"
-      ],
-      "written_by": [
-        "consequence"
-      ],
-      "read_by": [
-        "asset_physical",
-        "tension"
-      ],
-      "note": "condizione posata da una Conseguenza e letta dalle facce come **bersaglio**: e' un ostacolo che si trova, non un traguardo che si insegue. Nessuna casa la desidera, e va bene cosi' (D-394)."
-    },
-    {
       "id": "condition:starving",
       "title": "fame",
       "title_spoken": "affamata",
@@ -618,7 +597,6 @@
         "asset_physical",
         "chronicle",
         "confluence_template",
-        "consequence",
         "destiny",
         "destiny_physical",
         "entity_strategic_profile",
@@ -2534,7 +2512,7 @@
         "consequence"
       ],
       "read_by": [],
-      "note": "il dente vivo e' crown_divided, letto dai Destini e sciolto da CNS_CROWN_REUNITED"
+      "note": "il dente vivo e' crown_divided, letto dai Destini. La Conseguenza che lo scioglieva, Un Solo Trono, non e' uscita una volta in duecento anni di saga ed e' uscita dalla scatola (D-440): una corona divisa resta divisa."
     },
     {
       "id": "scar:dragonfall",

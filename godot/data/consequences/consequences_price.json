@@ -59,35 +59,6 @@
       ]
     },
     {
-      "id": "CNS_COST_EMPTIED",
-      "title": "Chi Puo', Se Ne Va",
-      "category": "MIGRATION",
-      "description": "Passa, e la gente vota coi piedi. Il posto accanto si assottiglia di una famiglia alla volta, senza che nessuno lo dichiari.",
-      "effects": [
-        {
-          "type": "SET_REGION_TAG",
-          "target": {
-            "kind": "region",
-            "id": "$adjacent"
-          },
-          "payload": {
-            "tag": "condition:emptied"
-          }
-        },
-        {
-          "type": "REMOVE_PRESENCE",
-          "target": {
-            "kind": "entity",
-            "id": "$proponent"
-          },
-          "payload": {
-            "region_id": "$adjacent",
-            "optional": true
-          }
-        }
-      ]
-    },
-    {
       "id": "CNS_COST_EXPLOITED",
       "title": "Si Spreme Quello Che C'e'",
       "category": "EXPLOITATION",

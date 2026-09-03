@@ -4535,10 +4535,9 @@
       },
       "heats_when": [
         {
-          "text": "qualcuno posa la #fame o il #requisito",
+          "text": "qualcuno posa la #fame",
           "puts_tag": [
-            "condition:starving",
-            "condition:requisitioned"
+            "condition:starving"
           ]
         },
         {

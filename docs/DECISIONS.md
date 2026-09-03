@@ -10,6 +10,86 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-440 — Tre Conseguenze escono dalla scatola, e #requisito con loro
+
+**implemented in 0.1.410.** Chiude [ISSUES 56](ISSUES.md#56) (M1 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### La misura che la voce chiedeva, fatta
+
+*«Fatto quando ogni Conseguenza esce almeno una volta su 200 anni, o esce dalla
+scatola. Le tolgo, non le riscrivo tre volte.»* `run_consequence_probe`, 20
+saghe da 10 Chronicle, seme 7000, prima di toccare niente: **6 su 65** non
+escono mai (erano 9 in 0.1.373 — due si sono mosse da sole con D-434 e D-435).
+
+| Conseguenza | verdetto, 200 anni | cosa se ne fa |
+|---|---|---|
+| `CNS_COST_EMPTIED` | scelta 2 volte su 2, mai passata | **esce** |
+| `CNS_CROWN_REUNITED` | offerta 5 volte, presa zero | **esce** |
+| `CNS_VALLEY_CLEARED` | esclusa 5 volte su 5: solo chi porta la corona puo' requisire | **esce**, e con lei il segno che era l'unica a scrivere |
+| `CNS_COST_DEBT` | scelta 6 su 6, mai passata | **resta**: e' l'unica strada della sua domanda |
+| `CNS_DRAGON_SLAIN` | offerta 2 volte, presa zero | **resta**: e' l'unica porta di `scar:dragonfall`, che il committente tiene ([D-427](#d-427)) |
+| `CNS_SEALED_VALLEY` | esclusa 2 su 2 | **resta**: stessa ragione, e' l'unica porta di `scar:sealed_border` |
+
+### Quello che il validatore ha fermato, due volte
+
+Togliere una Conseguenza «di costo» da una proposta puo' lasciare **due proposte
+gemelle** — stessa catena di Effetti, due testi — e `validate_physical` le
+rifiuta: *al voto sembrano due strade e sono una sola*. E' successo su
+`P_LAND_TO_WORKERS` (gemella di `P_OPEN_VALLEY`) e su `P_WATER_COMMON` (gemella
+di `P_DIG_TOGETHER`). La prima e' uscita con la sua Conseguenza. La seconda no,
+perche' il validatore ha fermato anche quello: **`P_WATER_COMMON` e' l'unica
+risposta a «Q_WATER_PRICE»**, e una domanda senza risposte non si apre. Quindi
+`CNS_COST_DEBT` resta com'era, ed e' l'unica delle sei di cui il verdetto e'
+uguale su due semi — 6 su 6 e 5 su 5, sempre scelta, mai passata. Non e' un
+aneddoto: e' una domanda che il tavolo apre e non chiude, e sta scritto qui
+perche' chi la riscrivera' sappia da dove partire.
+
+### E il segno che era l'unica a scrivere
+
+`condition:requisitioned` — **#requisito** — lo posava solo `CNS_VALLEY_CLEARED`.
+[D-433](#d-433) l'aveva gia' detto: *requisire e' quello che il tavolo decide,
+non un gesto che si fa da soli*, e inventargli una carta sarebbe stato riparare
+il numero. Uscita la Conseguenza, il segno **esce dalla scatola**: dal
+dizionario, dalla fustella (un segnalino in meno da tagliare: 124 icone), dal
+Tema della Sopravvivenza, da due righe «SI ACCENDE QUANDO» che lo nominavano
+senza che potesse mai succedere (*«qualcuno posa la #fame o il #malcontento»*)
+e dalla faccia di *Censimento*, che adesso dice *«Togli #razionato dal
+luogo»*. Nessuna di queste righe cambia una partita: un segno che nessuno
+scrive non si accende e non si toglie.
+
+`crown_divided` perde il suo unico lettore fra le Conseguenze: una corona
+divisa resta divisa, e la nota di `scar:divided_seal` lo dice.
+
+### Rimisurata, su due semi
+
+| 200 anni in saga | seme 7000 | seme 8000 |
+|---|---|---|
+| Conseguenze nella scatola | **62** | 62 |
+| mai uscite | **4** | **4** |
+| di cui uguali sui due semi | `CNS_COST_DEBT`, `CNS_DRAGON_SLAIN` | |
+| di cui diverse | `CNS_CROWN_DISPOSSESSED`, `CNS_EXODUS` | `CNS_CROWN_DISPOSSESSED`, `CNS_LAW_OF_SUCCESSION` |
+
+**E questa e' la cosa da scrivere**: a 200 anni il criterio sta **sul pavimento
+del rumore**. Una Conseguenza che esce una o due volte in duecento anni cambia
+seme e sparisce — `CNS_EXODUS` e' *«carta mai uscita dal mazzo»* col 7000 ed
+esce con l'8000, `CNS_SEALED_VALLEY` era a zero prima della potatura ed e'
+uscita in tutte e due le misure dopo. Le due che restano a zero su tutti e due
+i semi hanno ognuna la sua ragione scritta sopra. Il criterio e' soddisfatto
+per quello che puo' dire; oltre, misura il seme.
+
+### Il costo, sul cancello
+
+| 100 semi | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| DECISIVE | 103 | 102 | 125 | 126 |
+| **Verita' scritte** | 133 | **132** | 145 | **145** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+Piatto. Tre Conseguenze che non uscivano non lasciano un buco quando escono.
+
+---
+
 ## D-439 — Murata dalla mappa, o solo non qui: la parete a segni si chiude a zero
 
 **implemented in 0.1.409.** Chiude [ISSUES 128](ISSUES.md#128) (M5 della
