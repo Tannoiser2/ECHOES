@@ -570,8 +570,20 @@ def main() -> int:
             return 1
 
         # 6. Un titolo di colore senza il suo conto in grassetto: smetterebbe di
-        #    aggiornarsi in silenzio.
-        guasto = piantato(sheet_now, ": **quattordici**", ": quattordici")
+        #    aggiornarsi in silenzio. Il numero **si legge dal foglio**: scriverlo
+        #    a mano qui vorrebbe dire che il giorno che il conto cambia questa
+        #    guardia smette di provare — ed e' successo appena il conto e'
+        #    passato da quattordici a tredici.
+        titolo_giallo = next(
+            (r for r in sheet_now.splitlines() if r.startswith("# 🟡")), ""
+        )
+        segnato = PAROLA.search(titolo_giallo)
+        if segnato is None:
+            print("FALLITO: il titolo giallo non porta un conto in grassetto da guastare")
+            return 1
+        in_grassetto: str = segnato.group(0)
+        nudo: str = segnato.group(1)
+        guasto = piantato(sheet_now, in_grassetto, nudo)
         if guasto is None:
             return 1
         if not any("in grassetto" in c for c in complaints(voices, guasto)):
@@ -579,7 +591,7 @@ def main() -> int:
             return 1
 
         # 7. Un numero sbagliato in un titolo: la spina dorsale deve raddrizzarlo.
-        guasto = piantato(sheet_now, ": **quattordici**", ": **trenta**")
+        guasto = piantato(sheet_now, in_grassetto, "**trenta**")
         if guasto is None:
             return 1
         if rigenera(guasto, voices) != sheet_now:

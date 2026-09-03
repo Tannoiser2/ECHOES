@@ -126,9 +126,14 @@ static func _passages_line(face: Dictionary) -> String:
 	var sides: Array = face.get("edges", []) as Array
 	if sides.is_empty():
 		return ""
-	var said: PackedStringArray = PackedStringArray()
-	for side in sides:
-		said.append(str(VARCHI_DETTI.get(str(side), str(side))))
+	# **Quattro varchi disegnati, e i chiusi li copre un gettone** (D-429, strada
+	# (2) scelta dal committente). Prima questa riga diceva a chi disegna
+	# *«questi due lati sono chiusi dal terreno»*, e allora l'illustrazione aveva
+	# un sopra: la tessera si posa **girandola** finche' un varco combacia
+	# (D-390), e un disegno che nomina i suoi lati chiusi girato di novanta gradi
+	# mente. Adesso ogni tessera si illustra con la strada che arriva a **tutti e
+	# quattro i bordi** — cosi' il disegno non gira mai — e i lati che il dato
+	# chiude si coprono al tavolo con la pedina «varco chiuso».
 	var closed: PackedStringArray = PackedStringArray()
 	for side in VARCHI_DETTI:
 		if not sides.has(str(side)):
@@ -136,13 +141,10 @@ static func _passages_line(face: Dictionary) -> String:
 	if closed.is_empty():
 		return "A visible way in and out reaches all four edges."
 	return (
-		"A visible way in and out reaches the %s edge%s, and the %s edge%s %s closed"
-		+ " by the terrain itself."
-	) % [
-		_listed(said), "" if said.size() == 1 else "s",
-		_listed(closed), "" if closed.size() == 1 else "s",
-		"is" if closed.size() == 1 else "are",
-	]
+		"A visible way in and out reaches all four edges: draw the way through on"
+		+ " every side, including the %s edge%s, which a landslide token covers"
+		+ " once the tile is on the table."
+	) % [_listed(closed), "" if closed.size() == 1 else "s"]
 
 
 ## «top, right and bottom» invece di «top and right and bottom».

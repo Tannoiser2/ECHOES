@@ -2286,3 +2286,21 @@ one object or one gesture, seen from the side or from straight above.
 Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 
+### varco chiuso
+
+`pedina:varco_chiuso`
+
+**Cosa vuol dire.** Da questo lato non si passa: la tessera disegna una strada anche qui, e questo gettone dice che e' franata.
+
+**Cosa si vede.** una frana di tre massi di traverso su una strada
+
+```
+Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
+Subject: una frana di tre massi di traverso su una strada.
+Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
+Two or three strokes at most, closed silhouette, thick enough to survive at
+16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
+one object or one gesture, seen from the side or from straight above.
+Medieval woodcut sensibility, not modern flat-icon geometry.
+```
+
