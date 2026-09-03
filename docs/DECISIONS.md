@@ -10,6 +10,161 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-436 — Il mazzo degli obiettivi si conta da solo, e ha tre ambizioni che non si dividono
+
+**implemented in 0.1.405.** Chiude [ISSUES 4](ISSUES.md#4) (M13 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio che restava, e il numero che era vecchio
+
+Delle quattro righe del «fatto quando» di quella voce ne passavano tre: le
+Regioni contese a fine anno, il padrone che passa di mano, il cancello. La
+quarta — *«gli obiettivi contesi sono almeno un terzo del mazzo»* — stava ferma
+a **3 su 15**, un numero contato a mano quando il mazzo era gia' di diciassette.
+E' esattamente il difetto di [D-426](#d-426): un numero scritto a mano invecchia
+il giorno dopo, e questo aveva invecchiato di due carte.
+
+### Adesso lo conta la sonda
+
+`run_contest_probe` — che di questa voce e' l'strumento — stampa il conto e
+**l'elenco**. La regola e' dichiarata, non intuita: due case non possono avere
+insieme un obiettivo che chiede
+
+- di essere **il primo** (`leads_in`) — primo ce n'e' uno;
+- o di **tenere due terre di uno stesso dominio** — il titolo di una Regione e'
+  di una casa sola, e di un dominio ne entrano in gioco tre o quattro su sei.
+
+**`control_count` senza dominio non basta**, ed e' la prima cosa che la sonda ha
+fatto sbagliare: tenere due Regioni su sei lo possono fare due case insieme, e
+infatti lo fanno. La regola stretta toglie `OBJ_A_GARRISON` dal conto.
+
+### E due carte nuove, che completano una famiglia
+
+«Due Terre, una Voce» chiedeva due tessere del **Territorio**, ed era da sola.
+Adesso ha due sorelle: **Il Fondo Antico** (due dell'Antico) e **Le Due Rese**
+(due delle risorse). Una ambizione per dominio, e nessuna delle tre si puo'
+avere in due — che al tavolo si vede senza contare: se quelle due tessere
+rispondono a lui, non rispondono a te.
+
+| | prima | dopo |
+|---|---|---|
+| carte del mazzo | 17 | **19** |
+| **contese** | 5 | **7** (36,8%) |
+| un terzo del mazzo | 6 | **7** |
+
+### I quattro numeri della voce, misurati insieme
+
+`run_contest_probe --runs=100 --seed=7000`, tavolo misto:
+
+| | chiedeva | ora |
+|---|---|---|
+| Regioni contese a fine anno | > 3 su 6 | **3,71** |
+| il padrone passa di mano | piu' di prima | **3,87** volte l'anno |
+| obiettivi contesi | ≥ un terzo del mazzo | **7 su 19** |
+| playtest 100 semi | 0 su 8 | **0 su 8**, misto e uniforme |
+
+**E la [91](ISSUES.md#91) scende con lei**, come previsto: le clausole gia' vere
+all'apertura passano da **47,1%** a **46,2%**.
+
+**Il prezzo, scritto:** due illustrazioni in piu' (161 → **163** soggetti). E le
+Verita' salgono — 130 → **133** sul misto, 134 → **145** sull'uniforme: due
+ambizioni che non si dividono fanno decidere di piu', non di meno.
+
+---
+
+## D-435 — Un luogo non ha un padrone: ce l'ha la Regione
+
+**implemented in 0.1.405.** Lavora [ISSUES 111](ISSUES.md#111) (M12 della
+[lista](LE_TUE_DECISIONI.md)). **La voce non si chiude**, e la ragione e' scritta
+in fondo.
+
+### Le due cause che la voce aveva scritto, e che oggi non reggono piu'
+
+La voce ne aveva nominate due e ne aveva scartata una a turno:
+
+1. *«la Conseguenza non viene mai scelta»* (0.1.373);
+2. *«e quando viene scelta, deve trovare la Pietra dov'e'»* — scartata in
+   0.1.376 leggendo la mappa: `wild` e' solo le Montagne Rosse, ed e' li' che il
+   Passo comincia.
+
+**Rimisurate, non regge piu' nemmeno la prima.** `run_consequence_probe` elenca
+le nove Conseguenze che in cento partite non escono mai, e **ne'
+`CNS_VALLEY_CLEARED` ne' `CNS_MINE_ROAD_CUT` ci sono**. Quelle proposte passano.
+
+### La causa vera era una riga, e valeva zero per costruzione
+
+Il punteggio della casella UNA PIETRA SALE:
+
+    return 2 if _stone_owner(world, region_id, structure) == proponent else 0
+
+Un bosco, una sorgente, un passo, un sito antico **non hanno padrone**: sono
+luoghi, e `structure_types` li dichiara `owned: false`. `_stone_owner` torna la
+stringa vuota, che con un proponente vero non e' mai uguale — quindi **dodici
+delle ventisette caselle UNA PIETRA SALE scritte sulle Tensioni**, cioe' tutte
+quelle dei luoghi, valevano **zero**. E una casella che vale zero, con il primo
+beneficio gratis e gli altri a pagamento, non la compra nessuno: offerta **128
+volte in cento partite, comprata 4**. E' la forma di [ISSUES 117](ISSUES.md#117),
+scritta un anno dopo e in un altro posto.
+
+**Un luogo non ha un padrone: ce l'ha la Regione.** Al tavolo il bosco e' di chi
+tiene la tessera su cui e' disegnato, e la casella adesso legge di li'. Lo stesso
+al contrario per UNA PIETRA SCENDE.
+
+### E due dei quattro «non arriva mai» non erano difetti
+
+`settlement:$proponent` e `evicted:$region_focus` portano un segnaposto nell'id:
+il motore ci scrive dentro il nome vero — chi ci vive, la Regione in questione —
+prima di posarle. La **forma nuda** non arriva sul tavolo mai, **per
+costruzione**, e chiamarla «non arriva mai» accanto a un segno che davvero
+nessuno posa mette due cose diverse sotto la stessa parola: la stessa ragione di
+[D-376](#d-376), un piano piu' in la'. `MISURA_TAVOLO` adesso le dichiara per
+quello che sono, e le tiene fuori dal conto.
+
+### I numeri
+
+| 100 partite, tavolo misto | prima | dopo |
+|---|---|---|
+| UNA PIETRA SALE, offerta / comprata | 128 / **4** | 128 / **6** |
+| gradi di Pietra che non arrivano mai | 4 | **4** — e non sono piu' gli stessi |
+| segni mai arrivati, forme escluse (semi 7000 / 8000) | 51 / 54 | **54 / 52** |
+
+**La coda e' rumorosa, e si e' misurato invece di dirlo.** Una decina di questi
+segni escono zero, una o due volte in cento partite: quali atterrano cambia a
+ogni perturbazione, e **lo scarto fra due semi e' largo quanto la differenza fra
+prima e dopo**. `settlement:$proponent` e' uscito dal conto perche' non e' un
+segno, e al suo posto e' entrato `place:low_spring`, che sul seme 7000 usciva una
+volta sola. Il conto dei segni mai arrivati **non si e' mosso**: quello che si e'
+mosso e' la riga di UNA PIETRA SALE, ed e' poco.
+
+Cancello 100 semi: **0 su 8** su tutti e due i tavoli.
+
+### Perche' la voce resta aperta, e cosa le manca davvero
+
+**Sei acquisti su centoventotto sono ancora quasi zero.** La riga era sbagliata e
+adesso e' giusta, ma la casella continua a perdere: COSTRUISCI PIETRA e' comprata
+**206 volte su 236** e CAMBIA CONTROLLO **172 su 172**, in un Consiglio che compra
+2,33 benefici. Alzare il valore di UNA PIETRA SALE da 2 a 3 la metterebbe alla
+pari con CAMBIA CONTROLLO, ed e' precisamente la mossa che [ISSUES 117](ISSUES.md#117)
+ha gia' provato su ABBASSA LA DOMANDA e **rifiutato**: la casella si mangiava le
+altre. Non si cura una casella morta facendone morire un'altra.
+
+I tre gradi che restano, e cosa sono davvero:
+
+| grado | perche' non arriva |
+|---|---|
+| `place:thinned_wood` | il grado di mezzo del bosco ha **un solo scrittore** che lo posa, e i quattro che scrivono il grado 3 saltano da 1 a 3 in un colpo |
+| `place:collapsed_pass` | il Passo e' l'unica Pietra che **nessuna Tensione nomina**: nessun Consiglio puo' toccarlo, e il suo unico scrittore e' una Conseguenza che deve trovare il Passo dov'e' |
+| `settlement:city` | il terzo grado dell'Insediamento: vuole **due salite** sulla stessa Pietra, e la Reggia — che ne vuole altrettante — arriva 3 volte su 100 |
+| `place:low_spring` | usciva **una volta** sul seme di prima e zero adesso: e' la coda, non una causa |
+
+Il criterio della voce — *«ogni grado si alza almeno una volta in cento partite,
+o non e' piu' nel catalogo»* — resta mancato da quattro gradi: i tre qui sopra
+piu' `place:low_spring`, che sul seme di prima usciva una volta e adesso no. La voce resta aperta
+con la causa scritta giusta per la prima volta, che e' quello che questa versione
+le ha dato.
+
+---
+
 ## D-434 — Sei vite nuove, e la distanza che non le sente
 
 **implemented in 0.1.404.** Lavora [ISSUES 36](ISSUES.md#36) (M11 della

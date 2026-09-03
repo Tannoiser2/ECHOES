@@ -210,6 +210,17 @@ func _on_the_table(world: Dictionary, place_of: Dictionary) -> Array:
 	return seen.keys()
 
 
+## **Una forma non e' un segno.** Due voci del dizionario portano un
+## segnaposto nell'id — `settlement:$proponent`, `evicted:$region_focus` — e il
+## motore ci scrive dentro il nome vero prima di posarle: chi ci vive, la
+## Regione in questione. La **forma nuda** non arriva sul tavolo mai, per
+## costruzione, e chiamarla «non arriva mai» accanto a un segno che davvero
+## nessuno posa mette due cose diverse sotto la stessa parola — la stessa
+## ragione di D-376, un piano piu' in la'.
+static func _is_a_form(tag: String) -> bool:
+	return tag.contains("$")
+
+
 ## **I segni che questa sonda non puo' vedere, ricavati** (D-376).
 ##
 ## Gioca un anno per partita: il passaggio di consegne fra un'era e l'altra non
@@ -268,6 +279,18 @@ func _report(
 	lines.append("che davvero nessuno posa metterebbe due difetti diversi sotto la stessa")
 	lines.append("parola. Quelli li misura [MISURA_VITE.md](MISURA_VITE.md), che gioca le saghe.")
 	lines.append("")
+	var forme: Array = []
+	for tag in place_of:
+		if _is_a_form(str(tag)):
+			forme.append(str(tag))
+	forme.sort()
+	if not forme.is_empty():
+		lines.append("**E %d non sono segni: sono forme.** %s portano un segnaposto"
+			% [forme.size(), ", ".join(PackedStringArray(forme.map(
+				func(t: String) -> String: return "`%s`" % t)))])
+		lines.append("nell'id, e il motore ci scrive dentro il nome vero prima di posarle. La")
+		lines.append("forma nuda non arriva mai **per costruzione**, e sta fuori dal conto.")
+		lines.append("")
 	lines.append("Misura: `cli/run_table_marks_probe.gd`, %d partite, tavolo %s, semi da 7000."
 		% [runs, "misto" if mixed else "uniforme"])
 	lines.append("")
@@ -288,7 +311,7 @@ func _report(
 			if (int(at_setup.get(tag, 0)) > 0 or int(placed.get(tag, 0)) > 0
 					or int(at_end.get(tag, 0)) > 0):
 				arrives.append(tag)
-			else:
+			elif not _is_a_form(tag):
 				never.append(tag)
 				never_any.append(tag)
 		lines.append("## %s" % str(entry[1]))
@@ -315,10 +338,12 @@ func _report(
 				# **per costruzione**, e chiamarli «non arriva mai» accanto a
 				# un segno che davvero nessuno posa mette due cose diverse
 				# sotto la stessa parola.
-				note = (
-					"*fuori portata: si scrive al salto d'era*"
-					if beyond_the_year.has(tag) else "**non arriva mai**"
-				)
+				if _is_a_form(tag):
+					note = "*una forma: l'id vero lo scrive il motore*"
+				elif beyond_the_year.has(tag):
+					note = "*fuori portata: si scrive al salto d'era*"
+				else:
+					note = "**non arriva mai**"
 			elif key == "SCAR_TOKEN" and put_count > 0 and cut_count > put_count:
 				note = "**tolta piu' volte di quante si posa**"
 			elif open_count == runs and put_count == 0:

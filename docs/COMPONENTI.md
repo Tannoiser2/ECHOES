@@ -51,7 +51,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Case (Entita') | 8 | i seggi, con **32 vite** in tutto |
 | Profili strategici | 8 su 8 | cosa ogni casa vuole lasciare nel mondo |
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
-| Obiettivi | 17 | i tre coperti che si pescano a inizio saga |
+| Obiettivi | 19 | i tre coperti che si pescano a inizio saga |
 | Conseguenze | 65 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
 | Regole dei segni | 59 | cosa un segno fa da solo |

@@ -477,6 +477,45 @@ func _initialize() -> void:
 	var couples: float = float(maxi(1, tables)) * 6.0   # 4 seggi -> 6 coppie
 	var points: int = maxi(1, free_points + fought_points)
 	var lanes: int = maxi(1, won_map + won_world + won_house)
+	# **Il mazzo, prima dei tavoli.** La voce chiede «obiettivi contesi almeno
+	# un terzo del mazzo», e per cento versioni quel numero e' stato contato a
+	# mano: nel foglio delle decisioni stava scritto *«3 su 15»* quando il mazzo
+	# era gia' di diciassette. Un conto scritto a mano invecchia il giorno dopo
+	# (D-426), quindi adesso lo fa la sonda.
+	#
+	# **Due case non possono averlo insieme** quando l'obiettivo chiede o di
+	# essere il primo — `leads_in`, e primo ce n'e' uno — o di **tenere** due
+	# terre di un dominio: il titolo di una Regione e' di una casa sola, e le
+	# tessere di un dominio che entrano in gioco sono tre o quattro su sei.
+	var contested_cards: Array = []
+	for objective_id in data.objectives:
+		var card: Dictionary = data.objectives[str(objective_id)] as Dictionary
+		for clause in (card.get("conditions", []) as Array):
+			var kind: String = str((clause as Dictionary).get("type", ""))
+			# `control_count` senza un dominio non basta: tenere due Regioni
+			# su sei lo possono fare due case insieme, e infatti lo fanno. E'
+			# **due terre di uno stesso dominio** che si escludono, perche' di
+			# quel dominio ne entrano in gioco poche.
+			if kind == "leads_in" or (
+					kind == "control_count"
+					and int((clause as Dictionary).get("min", 0)) >= 2
+					and not ((clause as Dictionary).get("any_tag", []) as Array).is_empty()):
+				contested_cards.append(str(objective_id))
+				break
+	contested_cards.sort()
+	var deck: int = maxi(1, data.objectives.size())
+	print("")
+	print("  **Il mazzo degli obiettivi: quanti due case non possono avere insieme**")
+	print("    contesi   %d su %d   (%.1f%% — un terzo del mazzo sono %d)" % [
+		contested_cards.size(), deck,
+		100.0 * float(contested_cards.size()) / float(deck),
+		int(ceil(float(deck) / 3.0)),
+	])
+	for objective_id in contested_cards:
+		print("      %-26s %s" % [
+			objective_id,
+			str((data.objectives[objective_id] as Dictionary).get("label", "")),
+		])
 	print("")
 	print("  **Gli obiettivi si incrociano?**  (%d tavoli, 6 coppie per tavolo)" % tables)
 	print("    coppie che si contendono una Regione   %5.1f%%   (%d)" % [

@@ -63,7 +63,15 @@ func test_reduced_content_matches_the_milestone() -> void:
 	# che chiede una Tensione alta, cioe' il primo che chiede **INFLUENZARE** —
 	# il verbo che i seggi volevano dire nel 79% delle intenzioni mute e che
 	# nessuna clausola chiedeva ([D-255](DECISIONS.md#d-255)).
-	assert_eq(loaded.objectives.size(), 17, "17 obiettivi, pescati dallo stesso mazzo da tutti")
+	#
+	# **Diciannove da 0.1.405** ([D-436](DECISIONS.md#d-436)): «Il Fondo Antico» e
+	# «Le Due Rese» completano la famiglia di «Due Terre, una Voce» — una
+	# ambizione per dominio, e nessuna delle tre due case la possono avere
+	# insieme. Qui il conto si tiene scritto apposta: questa prova e' l'inventario
+	# della scatola, e accorgersi che il contenuto e' cambiato e' il suo mestiere.
+	# Quanti siano **contesi** lo conta invece la sonda (`run_contest_probe`),
+	# perche' quello e' un numero che si legge dai dati e non si ricopia.
+	assert_eq(loaded.objectives.size(), 19, "19 obiettivi, pescati dallo stesso mazzo da tutti")
 
 
 ## Cosa c'e' in biblioteca, e che **e' la stessa per ogni anno**. Contarlo per
