@@ -5,6 +5,33 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.406 — Il foglio delle decisioni rifatto, e un numero che avevo scritto male
+
+Nessun cambio di gioco: solo verbali.
+
+### Il foglio delle decisioni, aggiornato a mano dove è scritto a mano
+
+La spina dorsale di [`LE_TUE_DECISIONI.md`](docs/LE_TUE_DECISIONI.md) si genera
+da sé ([D-426](docs/DECISIONS.md#d-426)), ma la **prosa** no — ed era rimasta
+ferma a 0.1.397, quando le quattordici «M» erano tutte da fare. Adesso dice dove
+sono finite: **sei chiuse, una uscita dalla lista, tre lavorate e ancora aperte,
+quattro mai toccate, e la M14 che è la prossima**. E l'ordine di lavoro non è più
+quello di allora: è quello di adesso, M14 in testa.
+
+### E un numero che avevo scritto male, corretto in tutti e quattro i verbali
+
+In 0.1.405 avevo scritto *«due illustrazioni in più: 161 → 163»* per le due carte
+Obiettivo nuove. **Non è vero.** `components_survey.py` conta i soggetti da
+illustrare su carte Asset, Echi, tessere, case e Destini: **gli obiettivi non ci
+sono mai stati**. I soggetti restano 161, di cui 150 segnaposto.
+
+Il difetto vero è quello che la correzione ha scoperto: **diciannove carte
+Obiettivo portano un `art_prompt_key` scritto e nessuna compare in quel conto**,
+quindi i soggetti veri da disegnare sono più di quanti il censimento ne dica. È
+una riga sotto l'arte, non una voce nuova — la regola 2 della lista.
+
+---
+
 ## 0.1.405 — Le due Pietre che il tavolo non poteva nominare, e il mazzo che adesso si conta da solo
 
 M12 e M13 della lista: [ISSUES 111](docs/ISSUES.md#111) e
@@ -85,7 +112,14 @@ scende ancora: clausole già vere all'apertura **47,1% → 46,2%**.
 
 ### Il prezzo, scritto
 
-Due illustrazioni in più: 161 → **163** soggetti. E `test_data_boot` — che è
+**Correzione (0.1.406): due illustrazioni in più era sbagliato.** Le due carte
+nuove portano il loro `art_prompt_key` come le altre diciassette, ma il censimento
+dei soggetti conta **solo** carte Asset, Echi, tessere, case e Destini: gli
+obiettivi non ci sono mai stati. I soggetti restano **161**, di cui 150
+segnaposto, e il buco vero è che diciannove carte con un prompt scritto non
+compaiono in quel conto — riga sotto la voce dell'arte, non voce nuova.
+
+E `test_data_boot` — che è
 l'inventario della scatola — passa da 17 a **19**: lì il conto si tiene scritto
 apposta, perché accorgersi che il contenuto è cambiato è il suo mestiere. Quanti
 siano *contesi* lo conta la sonda, non una prova. Verità **130 → 133** sul misto

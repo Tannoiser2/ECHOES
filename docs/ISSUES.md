@@ -6975,7 +6975,11 @@ risorse. Una ambizione per dominio, e nessuna delle tre si può avere in due.
 | obiettivi contesi | ≥ un terzo del mazzo | **7 su 19** (36,8%) ✅ |
 | playtest 100 semi | 0 su 8 | **0 su 8**, misto e uniforme ✅ |
 
-**Il prezzo, scritto:** due illustrazioni in più (161 → 163 soggetti). E le
+**Il prezzo, scritto** *(corretto in 0.1.406)*: **non** due illustrazioni in più.
+Le due carte portano il loro `art_prompt_key`, ma il censimento dei soggetti conta
+solo carte Asset, Echi, tessere, case e Destini — gli obiettivi non ci sono mai
+stati, e i soggetti restano **161**. Il buco è che diciannove carte con un prompt
+scritto non compaiono in quel conto. E le
 Verità salgono — 130 → **133** sul misto, 134 → **145** sull'uniforme.
 
 E la [91](#91), che si rimisurava con lei, scende ancora: clausole già vere

@@ -41,6 +41,36 @@ cancelli va rosso se non le do una casa.
 
 ---
 
+## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
+
+Otto versioni, otto verbali, otto PR. **Delle quattordici righe di lavoro che
+la tua parola aveva creato, tredici sono state percorse**: sei voci si sono
+chiuse, quattro sono uscite dalla lista o hanno cambiato casa, tre restano
+aperte con la causa finalmente scritta giusta. La quattordicesima — l'app che
+mostra il tavolo — è quella che apriremo dopo, ed è la più cara di tutte.
+
+| | voce | dove è finita |
+|---|---|---|
+| **M5** | [128](ISSUES.md#128) | lavorata in 0.1.398 — e **la proposta che avevi avallato era sbagliata**: la parete non erano i bersagli ([D-428](DECISIONS.md#d-428)) |
+| **M6** | [100](ISSUES.md#100) | ✔ **chiusa** in 0.1.400 — le 46 righe si stampano come le genera il motore |
+| **M7** | [127](ISSUES.md#127) | ✔ **chiusa** in 0.1.399 — quattro varchi disegnati, i chiusi li copre un gettone |
+| **M8** | [64](ISSUES.md#64) | ✔ **chiusa** in 0.1.401 — chi siede l'anno prossimo è una regola scritta |
+| **M9** | [69](ISSUES.md#69) | ✔ **chiusa** in 0.1.402 — la carta Tensione dice su cosa si discute |
+| **M10** | [82](ISSUES.md#82) | lavorata in 0.1.403 — il motore la fame la sapeva solo togliere ([D-433](DECISIONS.md#d-433)) |
+| **M11** | [36](ISSUES.md#36) | percorsa in 0.1.404, e la voce esce fra le ⚪: il resto lo guardi tu, dopo una partita |
+| **M12** | [111](ISSUES.md#111) | rimisurata in 0.1.405 — **resta aperta**, ma le due cause scritte sono cadute e la vera è misurata |
+| **M13** | [4](ISSUES.md#4) | ✔ **chiusa** in 0.1.405 — gli obiettivi si incrociano, e il conto non si scrive più a mano |
+| **M14** | [65](ISSUES.md#65) | **da fare**, e va per ultima: ha bisogno che il resto sia fermo |
+
+**M1**, **M2**, **M3** e **M4** — le quattro di prima — non sono state toccate in
+questo giro e restano fra le mie. La **M3** ha un debito noto: **il suo criterio
+va ritagliato prima di lavorarci**, perché per aritmetica non è raggiungibile.
+
+E quello che il giro è costato, in una riga: **il cancello 0 su 8 non si è mai
+rotto**, su tavolo misto e uniforme, in nessuna delle otto versioni.
+
+---
+
 ## Riscritta in 0.1.382, e non è un riordino: il conto era sbagliato
 
 Hai detto che alcune cose scritte qui non erano vere. Le ho ricontrollate una per
@@ -167,9 +197,9 @@ suo colore, e da 0.1.397 lo strumento va rosso se una voce prova ad abitare in d
 posti — vedi [D-427](DECISIONS.md#d-427).)*
 
 **Quello che questo cambia, ed è la cosa che chiedevi:** il giro non è più fermo
-su di te. Delle ventidue voci aperte non ce n'è **nessuna** che aspetti una tua
-parola — le due 🔵 aspettano una partita, non una decisione. Se una rossa nasce di
-nuovo, nasce qui.
+su di te. Delle diciassette voci ancora aperte non ce n'è **nessuna** che aspetti
+una tua parola — le due 🔵 aspettano una partita, non una decisione. Se una rossa
+nasce di nuovo, nasce qui.
 
 ---
 
@@ -207,25 +237,23 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 # 🟡 Sono mie, e non aspettano niente: **otto**
 
-Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
-dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
-([D-427](DECISIONS.md#d-427)). **Nessuna apre una voce nuova**, e ognuna che si
-chiude sparisce dal conto qui sopra.
+Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
+([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
+e restano queste otto. **Nessuna apre una voce nuova**, e ognuna che si chiude
+sparisce dal conto qui sopra.
 
-**L'ordine in cui le faccio**, che non è l'ordine dei numeri:
+**Quello che resta, e in che ordine lo farei:**
 
-| | perché prima |
+| | perché, e a che punto è |
 |---|---|
-| **M5** — i bersagli murati | è il numero più grosso che c'è sul tavolo: **quattro turni su dieci** finiscono in «passo» |
-| **M6** — le 46 righe stampate | senza, al tavolo fisico una carta non sa dire perché è uscita |
-| **M7** — i quattro varchi | **ha una scadenza**: viene prima di commissionare i disegni |
-| **M8** — la regola della saga | è una riga scritta e una sonda che smette di decidere da sola |
-| **M9** — la faccia della Tensione | la seconda grammatica smette di divergere dalla prima |
-| **M10** — le condizioni che non escono | la fame è un Tema del gioco e il motore quasi non la produce |
-| **M11** — più vite per casa | è solo scrittura, e il metro esiste già — **fatta in 0.1.404** |
-| **M1–M4** | le quattro di prima, che non sono cambiate |
-| **M12**, **M13** | si **rimisurano** adesso che R1 e R3 sono chiuse: potrebbero chiudersi da sole |
-| **M14** — l'app che mostra il tavolo | **la più cara di tutte**, e va per ultima: ha bisogno che il resto sia fermo |
+| **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
+| **M3** — [60](ISSUES.md#60), lo scarto fra le domande | **il suo criterio va ritagliato prima**: per aritmetica non è raggiungibile, e lavorarci senza è lavorare a vuoto. Il numero da battere è 13,1× |
+| **M4** — [106](ISSUES.md#106), la pedina senza il nome | la casella è comprata **una volta su settantadue**: è la stessa forma delle due che la 117 ha già curato |
+| **M1** — [56](ISSUES.md#56), le Conseguenze che non escono | ne restano nove, e sette hanno un tentativo solo: prima di riscriverle vanno **misurate su 200 anni**, o tolte |
+| **M2** — [59](ISSUES.md#59), INFLUENZARE | due dei tre difetti sono spariti da soli; resta il verbo meno giocato |
+| **M5** — [128](ISSUES.md#128), le carte murate | lavorata in 0.1.398, e il *«passo»* è sceso: resta sotto la soglia che il suo criterio chiede |
+| **M10** — [82](ISSUES.md#82), le condizioni che non escono | lavorata in 0.1.403: `#magro` esce, `#requisito` è del Consiglio per costruzione e ricade sulla M1 |
+| **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
 
 ### M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai
 
@@ -554,7 +582,12 @@ Una ambizione per dominio, e nessuna delle tre si può avere in due.
 | obiettivi contesi | ≥ un terzo del mazzo | **7 su 19** (36,8%) ✅ |
 | playtest | 0 su 8 | **0 su 8** ✅ |
 
-**Il prezzo, scritto:** due illustrazioni in più (161 → 163). Le Verità salgono —
+**Il prezzo, scritto** — *e qui mi correggo*: avevo scritto «due illustrazioni in
+più». **Non è vero.** Le due carte portano il loro prompt come le altre
+diciassette, ma il censimento dell'arte conta solo carte Asset, Echi, tessere,
+case e Destini: gli obiettivi non ci sono mai stati, e i soggetti restano **161**.
+Il buco vero è quello — diciannove carte con un prompt scritto che quel conto non
+vede — ed è una riga sotto l'arte, non una voce nuova. Le Verità salgono —
 130 → **133** sul misto, 134 → **145** sull'uniforme.
 
 Con lei si è rimisurata anche la [91](ISSUES.md#91), che sta fra le ⚪: le
@@ -596,10 +629,16 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 
 # E una cosa che non è una voce: l'arte
 
-**144 illustrazioni su 155 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I
-prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e va
-**dopo R6 e R12**, che decidono il formato di una carta e come si disegna una
-tessera. Non è nella lista perché non è una voce: è la scatola.
+**150 illustrazioni su 161 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I
+prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due
+decisioni che lo bloccavano — il formato di una carta e come si disegna una
+tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista
+perché non è una voce: è la scatola.
+
+**E una riga trovata qui, in 0.1.406:** quel conto di 161 guarda carte Asset,
+Echi, tessere, case e Destini. **Le diciannove carte Obiettivo portano un prompt
+scritto e non ci sono dentro** — quindi i soggetti veri da disegnare sono di più
+di quanto quel numero dica. Non apro una voce: è una riga sotto questa.
 
 ---
 
@@ -614,6 +653,13 @@ di ogni riga, che è quello che a mano deve restare.
 Prima era generato il solo conto in cima, e il resto lo riscrivevo io: in un
 giorno l'ho rattoppato quattro volte, e una l'hai vista tu. Un numero scritto a
 mano invecchia il giorno dopo.
+
+**E succede ancora, dove il generatore non arriva.** In questo giro tre numeri
+scritti a mano si sono rotti da soli — «3 su 15» di obiettivi contesi quando il
+mazzo era di diciassette, «53 regole dei segni» dentro una prova, «due
+illustrazioni in più» che non erano vere. Due li conta adesso una sonda, il terzo
+l'ho corretto qui sopra. **La regola è sempre la stessa: se un numero si può
+generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
