@@ -47,7 +47,8 @@ Otto versioni, otto verbali, otto PR. **Delle quattordici righe di lavoro che
 la tua parola aveva creato, tredici sono state percorse**: sei voci si sono
 chiuse, quattro sono uscite dalla lista o hanno cambiato casa, tre restano
 aperte con la causa finalmente scritta giusta. La quattordicesima — l'app che
-mostra il tavolo — è quella che apriremo dopo, ed è la più cara di tutte.
+mostra il tavolo — era la più cara di tutte, ed è andata per ultima: chiusa in
+0.1.414.
 
 | | voce | dove è finita |
 |---|---|---|
@@ -60,7 +61,7 @@ mostra il tavolo — è quella che apriremo dopo, ed è la più cara di tutte.
 | **M11** | [36](ISSUES.md#36) | percorsa in 0.1.404, e la voce esce fra le ⚪: il resto lo guardi tu, dopo una partita |
 | **M12** | [111](ISSUES.md#111) | rimisurata in 0.1.405 — **resta aperta**, ma le due cause scritte sono cadute e la vera è misurata |
 | **M13** | [4](ISSUES.md#4) | ✔ **chiusa** in 0.1.405 — gli obiettivi si incrociano, e il conto non si scrive più a mano |
-| **M14** | [65](ISSUES.md#65) | **da fare**, e va per ultima: ha bisogno che il resto sia fermo |
+| **M14** | [65](ISSUES.md#65) | ✔ **chiusa** in 0.1.414 — la pagina mostra il tavolo, non lo stato |
 
 **M1**, **M2**, **M3** e **M4** — le quattro di prima — non sono state toccate in
 questo giro e restano fra le mie. La **M3** ha un debito noto: **il suo criterio
@@ -126,10 +127,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **122** |
-| aperte | **10** |
+| chiuse | **123** |
+| aperte | **9** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **10** |
+| di cui sono mie da fare | **9** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,11 +161,9 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **1** | **io**, da sola, senza aspettare niente |
+| 🟡 | **0** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
@@ -234,20 +233,18 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **una**
+# 🟡 Sono mie, e non aspettano niente: **nessuna**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
 entro 0.1.405; **le sette che restavano si sono chiuse in 0.1.407–0.1.413**, su
 parola tua — *«vai con M»* — una versione per M, ognuna col suo verbale e col
-cancello 0 su 8 rimisurato. **Nessuna ha aperto una voce nuova.** Resta la
-quattordicesima, che va per ultima da sempre.
+cancello 0 su 8 rimisurato. **Nessuna ha aperto una voce nuova.** E la
+quattordicesima, quella che andava per ultima da sempre, si è chiusa in
+0.1.414 su parola tua — *«vai con la M14»*: **la pagina mostra il tavolo**.
 
-**Quello che resta:**
-
-| | perché, e a che punto è |
-|---|---|
-| **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
+**Quello che resta: niente.** Delle quattordici righe di lavoro che la tua
+parola aveva creato in 0.1.397, quattordici sono percorse.
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
@@ -632,7 +629,15 @@ vede — ed è una riga sotto l'arte, non una voce nuova. Le Verità salgono —
 Con lei si è rimisurata anche la [91](ISSUES.md#91), che sta fra le ⚪: le
 clausole già vere all'apertura scendono da **47,1%** a **46,2%**.
 
-### M14. [65](ISSUES.md#65) — l'app smette di mostrare lo stato
+### ✔ M14. [65](ISSUES.md#65) — l'app smette di mostrare lo stato: **chiusa in 0.1.414**
+
+**Chiusa in 0.1.414** ([D-444](DECISIONS.md#d-444)): il tavolo prende il centro
+e ci sta una cosa alla volta — i mazzetti in fila, la mappa coi nomi, le domande
+e le parole dei segni come nodi, chi siede in una striscia, il racconto sotto —
+e la colonna di stato e il verbale sono due pagine che si aprono al suo posto.
+La sonda della pagina: 0 pannelli che dipingono (erano 2), 25 bersagli e nessuno
+sotto il dito, 678 px su 768 invece di 788 in fila. **Quello che resta è
+l'occhio**: il giro su un iPad vero, che è la 🔵 [63](ISSUES.md#63).
 
 **Parola tua: sì**, la **(3)**, ed è la più cara della lista.
 
@@ -702,9 +707,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
-muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle nove voci aperte ne posso
+muovere **nessuna** da sola. Due le verifica una persona che gioca, sette
+stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

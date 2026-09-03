@@ -7,9 +7,11 @@ accanto porta la ragione per cui e' rimasta ferma: **nessuna sonda tocca
 questa pagina**, quindi ogni giro costa il pomeriggio di una persona con
 l'app in mano. Questa e' quella sonda.
 
-Non dice **quale** delle tre riviste fare — quella e' una scelta d'autore e
-resta nella 65. Misura le quattro cose che i sei difetti trovati su un
-tablet avevano in comune, cosi' la prossima passata si giudica coi numeri.
+Misura le quattro cose che i sei difetti trovati su un tablet avevano in
+comune, cosi' ogni passata si giudica coi numeri. La rivista l'ha scelta il
+committente — [D-427](DECISIONS.md#d-427), la terza: *l'app mostra il
+tavolo, non lo stato* — ed e' fatta in [D-444](DECISIONS.md#d-444): da li'
+questa pagina dice **se la pagina la segue**.
 
 **Si misura quello che la pagina chiede, non quello che ottiene**: senza
 una finestra vera non c'e' un passaggio di disposizione. Un bersaglio che
@@ -18,12 +20,12 @@ sta in una colonna sua.
 
 | | |
 |---|---|
-| pannelli guardati | 7 |
-| nodi in tutto | 188 |
-| testi sotto gli occhi | 114 |
+| pannelli guardati | 8 |
+| nodi in tutto | 265 |
+| testi sotto gli occhi | 155 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
-| bersagli che si toccano | 7 |
+| bersagli che si toccano | 25 |
 | **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
@@ -74,31 +76,37 @@ Nessuna: tutto quello che si legge e' in italiano da giocatore.
 
 ## 4. Quanto la pagina chiede
 
-La 65 dice che quattro cose *«si contendono un tablet in verticale»*.
-Ecco quanto ognuna chiede, e quanto e' largo il tablet: **768 px**.
+Da [D-444](DECISIONS.md#d-444) la pagina e' **il tavolo, e una cosa alla
+volta**: a sinistra il tavolo — i mazzetti, la mappa, chi siede, il
+racconto — e accanto una colonna di **240 px** con quello che serve per
+decidere adesso. La colonna di stato, il Consiglio e l'aiuto non stanno
+piu' intorno al tavolo: si aprono **al suo posto**, uno alla volta. La
+mano sta sotto, per tutta la larghezza. Il tablet e' largo **768 px**.
 
 Una colonna fatta per scorrere chiede **tutta la sua lunghezza**: la
 colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».
+Un pannello che *si adatta* non dichiara niente perche' prende lo spazio
+che resta: e' la mappa, ed e' giusto che sia lei.
 
-| pannello | nodi | larghezza chiesta | altezza chiesta |
+| pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
+|---|---|---|---|---|
+| colonna di stato | al centro, uno alla volta | 93 | 191 | 1825 |
+| mappa | sul tavolo | 21 | *si adatta* | |
+| il Consiglio | al centro, uno alla volta | 55 | 218 | 1670 |
+| il tavolo | nella stanza, prima di sedersi | 43 | *si adatta* | |
+| i mazzi dei Temi | sul tavolo | 13 | *si adatta* | |
+| chi siede | sul tavolo | 25 | 402 | 44 |
+| la pagina d'aiuto | al centro, uno alla volta | 2 | 37 | 28 |
+| la mano | sotto, tutta la larghezza | 13 | 342 | 246 |
+
+Tre misure, una per posto:
+
+| | chiede | ha | |
 |---|---|---|---|
-| colonna di stato | 93 | 191 | 1825 |
-| mappa | 1 | *disegna: non lo dichiara* | |
-| il Consiglio | 55 | 218 | 1670 |
-| il tavolo | 23 | 0 | 0 |
-| i mazzi dei Temi | 1 | *disegna: non lo dichiara* | |
-| la pagina d'aiuto | 2 | 37 | 28 |
-| la mano | 13 | 342 | 246 |
-| **in fila, quelli che lo dichiarano** | | **788** | |
+| **il tavolo con la colonna accanto** — il piu' largo dei suoi pannelli (402), la colonna (240), i margini (36) | **678** | 768 | ✓ ne avanzano 90 |
+| **al centro, uno alla volta** — il piu' largo e' «il Consiglio» | **218** | 492 | ✓ ne avanzano 274 |
+| **sotto, la mano** | **342** | 744 | ✓ ne avanzano 402 |
 
-**2 pannelli non compaiono in quel conto**, ed e' il primo
-risultato di questa misura: mappa, i mazzi dei Temi **non costruiscono nodi, dipingono**.
-Una scritta dipinta non ha una misura minima, non ha un suggerimento e
-non e' un bersaglio: questa sonda non la vede, e nemmeno un lettore di
-schermo. E' un fatto da tenere presente prima di scegliere quale delle
-tre riviste fare — non un difetto da riparare qui.
-
-Quelli che una misura la dichiarano chiedono **788 px** in fila: 20
-piu' del tablet, e la mappa non e' nemmeno nel conto. Non e' un difetto
-da riparare riga per riga — e' la seconda delle tre riviste della 65,
-*«forse su un tablet la pagina e' una alla volta»*, e sta al committente.
+**La pagina sta dentro il tablet**, in tutti e tre i posti. Fino a D-444
+chiedeva 788 px in fila senza contare la mappa: non e' che i pannelli si
+sono stretti, e' che non stanno piu' in fila.

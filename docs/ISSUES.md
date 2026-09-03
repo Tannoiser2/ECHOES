@@ -5987,7 +5987,7 @@ che [D-035](DECISIONS.md#d-035) chiama contenuto che non esiste.
 
 ---
 
-### 65. Tutta la pagina dell'app va rivista
+### 65. ✅ Tutta la pagina dell'app va rivista — CHIUSA in 0.1.414: la pagina mostra il tavolo
 
 `ux` · voluta dal committente · **aperta in 0.1.211**
 
@@ -6091,6 +6091,30 @@ che la direzione di 0.1.218 chiede — *un gioco da tavolo con un'app di support
 Il «fatto quando» chiede due cose: **la decisione scritta** — questa — **e che la
 pagina la segua**. La seconda è lavoro mio, e il cartellino `da-decidere` è
 tolto.
+
+### ✅ Chiusa in 0.1.414: la pagina segue la decisione ([D-444](DECISIONS.md#d-444))
+
+**Il tavolo prende il centro, e ci sta una cosa alla volta.** I sei mazzetti in
+fila lungo il bordo alto, come bottoni col nome del Tema; la mappa che
+costruisce nodi sopra la pittura — il nome di ogni tessera, la domanda che ci
+abita come un posto alto un dito dove posare la carta, le parole dei segni
+sempre sotto i pezzi e non più solo sotto il mouse; chi siede in una striscia
+sotto la mappa, un posto per casa; e il racconto, le ultime tre righe dette
+come si direbbero a voce. A destra 240 px con quello che serve per decidere
+adesso. La colonna di stato e il verbale non stanno più intorno al tavolo: sono
+due pagine, *La mia casa* e *Il verbale*, che si aprono al posto del tavolo.
+
+La sonda di questa voce lo misura, sulla stessa partita:
+
+| | 0.1.413 | 0.1.414 |
+|---|---|---|
+| pannelli che dipingono invece di costruire | 2 | **0** |
+| bersagli che si toccano | 7 | **25**, nessuno sotto i 44 px |
+| larghezza chiesta | **788** in fila, senza la mappa | **678** su 768, e la mappa è dentro |
+
+Le tre riviste sono fatte: la leggibilità (D-384), l'impaginazione e l'idea di
+cosa si guarda (D-444). Quello che resta è **l'occhio** — §5ter, il giro su un
+iPad vero — ed è la [63](#63), che da qui si può verificare giocandoci.
 
 ---
 

@@ -598,7 +598,12 @@ def main() -> int:
             return 1
         in_grassetto: str = segnato.group(0)
         nudo: str = segnato.group(1)
-        guasto = piantato(sheet_now, in_grassetto, nudo)
+        #    E si guasta **quel titolo**, non la prima riga del foglio che porta la
+        #    stessa parola: il giorno che due colori hanno lo stesso conto — «nessuna»
+        #    in rosso e in giallo, da 0.1.414 — il difetto finiva sul titolo sbagliato.
+        guasto = piantato(
+            sheet_now, titolo_giallo, titolo_giallo.replace(in_grassetto, nudo, 1)
+        )
         if guasto is None:
             return 1
         if not any("in grassetto" in c for c in complaints(voices, guasto)):

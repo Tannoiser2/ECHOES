@@ -10,6 +10,111 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-444 — L'app mostra il tavolo, non lo stato: la pagina segue la decisione
+
+**implemented in 0.1.414.** Chiude [ISSUES 65](ISSUES.md#65) (M14 della
+[lista](LE_TUE_DECISIONI.md), l'ultima): la terza rivista, scelta dal
+committente in [D-427](#d-427).
+
+### La decisione era scritta; qui la pagina la segue
+
+Parola del committente, in 0.1.397: *«Al tavolo. La plancia e' aperta e il
+tablet sta di lato. Oggi il tablet mostra un cruscotto: elenchi, valori,
+questioni con un numero accanto. Deve mostrare il tavolo — la mappa con le
+pedine dove stanno, e quello che e' appena successo scritto come lo
+racconteresti a voce.»*
+
+Fino alla 0.1.413 la pagina era quattro cose in fila: il verbale a sinistra
+(300 px), la mappa al centro, la colonna di stato a destra (280), la mano
+sotto. La sonda della pagina lo diceva coi numeri — **788 px in fila senza
+contare la mappa**, su un tablet da 768 — e la mappa era quella che perdeva.
+E due pannelli su otto **dipingevano invece di costruire nodi**: una scritta
+dipinta non ha una misura, non e' un bersaglio, e ne' la sonda ne' un lettore
+di schermo la vedono.
+
+### Cosa cambia
+
+**Il tavolo prende il centro, e ci sta una cosa alla volta.**
+
+- **I mazzetti dei Temi** stanno in una striscia lungo il bordo alto del
+  tavolo, sei in fila — tre per due quando la vista e' un riquadro: il numero
+  esce dalla forma, non da una costante. Ogni mazzetto e' un **bottone** col
+  nome del Tema e una riga che dice la carta girata, o quanto manca a girarla.
+  Il dorso e i gettoni restano dipinti: sono cartone, non parole.
+- **La mappa** costruisce nodi sopra la pittura: il nome di ogni tessera, **la
+  domanda che ci abita** — un posto alto un dito dove posare la carta, lo
+  stesso delle righe di [D-231](#d-231) — e **le parole dei segni sempre sotto
+  i pezzi**. Fino a qui uscivano solo sotto il mouse, cioe' mai per chi gioca
+  col dito. Terreno, pedine e pezzi restano dipinti.
+- **Chi siede** e' una striscia sotto la mappa, un posto per casa col suo
+  colore e il livello del rapporto: la carta che parla a un'altra casa
+  (FORGIARE) si posa li'. Era una riga dentro la colonna di stato.
+- **Il racconto**: le ultime tre righe dette dal motore, senza i tag del testo
+  ricco, sotto la mappa. Non un elenco, un rigo.
+- **A destra, 240 px, solo quello che serve per decidere adesso**: a chi tocca,
+  il contesto, la domanda, le scelte, l'aiuto.
+- **La colonna di stato e il verbale non stanno piu' intorno al tavolo.** Sono
+  due pagine — *La mia casa* e *Il verbale* — dietro due bottoni alti un dito,
+  che si aprono **al posto del tavolo** e lo restituiscono quando si chiudono.
+  Aprirne una chiude le altre, come gia' il cruscotto e la cronaca.
+- **Tenere una carta accende i posti dove puo' andare** — sulla mappa, sulla
+  striscia dei seggi, nella pagina della casa — e posarla li' risponde: il
+  gesto di [D-239](#d-239), fatto sul tavolo. Il trascinamento resta, per chi
+  ha un mouse.
+
+Le prove nuove (`test_the_table_is_built_of_nodes`, cinque) tengono il patto:
+quello che sul tavolo si legge e si tocca e' un nodo, e il tocco risponde.
+
+### Misurato
+
+La sonda della pagina ([MISURA_PAGINA](MISURA_PAGINA.md)), stessa partita:
+
+| | 0.1.413 | 0.1.414 |
+|---|---|---|
+| nodi | 188 | 265 |
+| testi sotto gli occhi | 114 | 155 |
+| bersagli che si toccano | 7 | **25** |
+| piu' stretti di un dito | 0 | **0** |
+| testi solo nel suggerimento del mouse | 2 | 2 |
+| pannelli che dipingono invece di costruire | 2 (mappa, mazzetti) | **0** |
+| larghezza chiesta | **788** in fila, senza la mappa | il tavolo con la colonna **678** su 768 · al centro, uno alla volta, **218** su 492 · la mano **342** su 744 |
+
+**La sezione 4 della sonda e' riscritta per la pagina nuova**: non una fila,
+tre posti, e ogni pannello dice in quale sta. I due testi che restano solo
+sotto il mouse sono gli Echi in mano, come da [D-384](#d-384).
+
+**Un bersaglio dichiara la sua misura, non la ottiene e basta.** La prima corsa
+della sonda diceva 15 bersagli sotto il dito: larghi zero, o alti 24, *per
+dichiarazione*, e larghi il giusto sullo schermo. La sonda legge quello che un
+nodo chiede — e' scritto nella sua testa — e un posto che chiede zero si
+stringe davvero dove lo schermo e' stretto. Adesso ogni posto della mappa
+chiede la larghezza della sua tessera, ogni mazzetto il suo dorso, ogni seggio
+96 px.
+
+### Le trappole pagate
+
+- **I nodi della mappa si posavano solo al `render`**: a una finestra che
+  cambiava misura le tessere si ridisponevano e i nomi restavano su quelle di
+  prima. Adesso seguono le tessere. Trovato dalla sonda, non dall'occhio: il
+  tavolo della stanza, senza una misura, mostrava posti larghi 7 px.
+- **Una prova che lascia un nodo in coda da liberare** lo vede disegnare un giro
+  dopo che la sessione e' stata smontata: un errore di script su una prova
+  verde. Si libera subito.
+- **La guardia del foglio delle decisioni piantava il suo difetto sulla prima
+  riga che portava la parola**, non sul titolo che voleva guastare: il giorno
+  che due colori hanno lo stesso conto — *nessuna* in rosso e in giallo, da
+  questa versione — il difetto finiva sul titolo sbagliato e la prova andava
+  rossa. Adesso guasta quel titolo.
+
+### Costo dichiarato
+
+**Nessun file del motore e' toccato**: sei file dell'interfaccia, una sonda,
+due prove. Il cancello e' rimisurato lo stesso — 100 partite, seme 7000, misto
+e uniforme — e da' **0 su 8**. Quello che la misura non copre e' **l'occhio**
+(§5ter): il giro su un iPad vero resta del committente, ed e' la
+[63](ISSUES.md#63), che adesso **si puo' verificare giocandoci** — era il suo
+«fatto quando».
+
 ## D-443 — Lo scarto fra le domande si misura per Tema, e una Risonanza passa a Terra
 
 **implemented in 0.1.413.** Chiude [ISSUES 60](ISSUES.md#60) (M3 della

@@ -55,10 +55,198 @@ var _echoes: Dictionary = {}
 
 signal region_clicked(region_id: String)
 
+## --- i nodi sopra la pittura (D-444, ISSUES 65) --------------------------------
+##
+## La tessera resta dipinta — terreno, pedine, pezzi sono cartone — ma **quello
+## che si legge e si tocca e' un nodo**: il nome della Regione, le domande che
+## abitano la tessera (un posto dove posare una carta, come la riga della
+## colonna in D-231), e le parole dei segni sotto i pezzi, che fino a qui
+## uscivano solo sotto il mouse — cioe' mai, per chi gioca col dito. La sonda
+## della pagina li vede, un lettore di schermo li dice, un dito li trova.
+const DropSlot := preload("res://ui/drop_slot.gd")
+
+## `region_id -> Label` col nome, e con le parole dei segni.
+var _names: Dictionary = {}
+var _words: Dictionary = {}
+## `tension_id -> DropSlot`: la domanda sulla tessera dove abita adesso.
+var _questions: Dictionary = {}
+## `"tension:ID" -> indice della scelta`, riempito da chi tiene la carta in mano.
+var held_places: Dictionary = {}
+
+## Una carta **tenuta in mano** e' stata posata su una domanda della mappa.
+signal card_placed(index: int)
+## Qualcuno vuole leggere la scheda di questa domanda, toccandola sulla mappa.
+signal tension_opened(tension_id: String)
+## Una carta trascinata e' caduta su una domanda: le scelte che porta per lei.
+signal card_dropped_on_question(indices: Array)
+
+
+## Accende le domande dove la carta tenuta in mano puo' andare, e spegne le altre.
+func hold(places: Dictionary) -> void:
+	held_places = places.duplicate()
+	for tension_id in _questions:
+		(_questions[tension_id] as Object).call(
+			"light", held_places.has("tension:%s" % str(tension_id))
+		)
+
+
+## I nodi che mancano, costruiti; quelli che non abitano piu' nessuna tessera,
+## tolti. Si chiama a ogni `render`, perche' le domande in gioco cambiano.
+func _ensure_nodes() -> void:
+	for region_id in _regions:
+		var id: String = str(region_id)
+		if not _names.has(id):
+			var name := Label.new()
+			name.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			name.add_theme_font_size_override("font_size", 13)
+			name.add_theme_color_override("font_color", Color("#efe7d8"))
+			name.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.8))
+			name.add_theme_constant_override("shadow_offset_x", 1)
+			name.add_theme_constant_override("shadow_offset_y", 1)
+			name.clip_text = true
+			add_child(name)
+			_names[id] = name
+			var words := Label.new()
+			words.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			words.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			words.add_theme_font_size_override("font_size", 11)
+			words.add_theme_color_override("font_color", Color("#efe7d8"))
+			words.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.8))
+			words.add_theme_constant_override("shadow_offset_x", 1)
+			words.add_theme_constant_override("shadow_offset_y", 1)
+			words.clip_text = true
+			add_child(words)
+			_words[id] = words
+		(_names[id] as Label).text = str(_session.data.regions[id]["name"])
+	var alive: Dictionary = {}
+	for tension_id in _session.world["tensions"]:
+		var id: String = str(tension_id)
+		alive[id] = true
+		if _questions.has(id):
+			continue
+		var slot: PanelContainer = DropSlot.new()
+		slot.field = "tension"
+		slot.key = id
+		# **Alto come un dito** (D-243): e' un bersaglio, e un bersaglio
+		# stretto e' una bugia per chi gioca sul tablet.
+		slot.custom_minimum_size = Vector2(0, 44)
+		# La domanda ferma il tocco: la tessera sotto non deve rispondere allo
+		# stesso dito che ha posato la carta sulla domanda.
+		slot.mouse_filter = Control.MOUSE_FILTER_STOP
+		var line := Label.new()
+		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		line.add_theme_font_size_override("font_size", 11)
+		line.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		line.clip_text = true
+		slot.add_child(line)
+		slot.card_dropped.connect(
+			func(indices: Array) -> void: card_dropped_on_question.emit(indices)
+		)
+		slot.gui_input.connect(func(event: InputEvent) -> void:
+			if not (event is InputEventMouseButton):
+				return
+			var press := event as InputEventMouseButton
+			if not press.pressed or press.button_index != MOUSE_BUTTON_LEFT:
+				return
+			var where: String = "tension:%s" % id
+			if held_places.has(where):
+				card_placed.emit(int(held_places[where]))
+			else:
+				tension_opened.emit(id)
+		)
+		add_child(slot)
+		_questions[id] = slot
+	for tension_id in _questions.keys():
+		if not alive.has(str(tension_id)):
+			(_questions[tension_id] as Node).queue_free()
+			_questions.erase(tension_id)
+
+
+## Ogni nodo al suo posto sulla tessera, e con le parole giuste.
+func _place_nodes() -> void:
+	if _session == null:
+		return
+	var half: float = _radius
+	for region_id in _regions:
+		var id: String = str(region_id)
+		if not _points.has(id) or not _names.has(id):
+			continue
+		var centre: Vector2 = _points[id]
+		var name: Label = _names[id]
+		name.position = Vector2(centre.x - half + 4.0, centre.y + half - 22.0)
+		name.size = Vector2(half * 2.0 - 8.0, 18.0)
+		var words: Label = _words[id]
+		words.text = _words_of(id)
+		words.visible = words.text != ""
+		words.position = Vector2(centre.x - half, centre.y + half + 10.0 + PIECE + 8.0)
+		words.size = Vector2(half * 2.0, 16.0)
+	var stacked: Dictionary = {}
+	for tension_id in _questions:
+		var id: String = str(tension_id)
+		var slot: Control = _questions[id]
+		var home: String = str(_session.confluence.narrative.focus_region(id))
+		if home == "" or not _points.has(home):
+			slot.visible = false
+			continue
+		slot.visible = true
+		var row: int = int(stacked.get(home, 0))
+		stacked[home] = row + 1
+		var centre: Vector2 = _points[home]
+		slot.position = Vector2(centre.x - half + 4.0, centre.y - half + 4.0 + float(row) * 46.0)
+		slot.size = Vector2(half * 2.0 - 8.0, 44.0)
+		# La misura si **dichiara**, non si ottiene e basta: la sonda della pagina
+		# legge quello che un nodo chiede, e un posto che chiede zero di
+		# larghezza le risulta stretto quanto un capello.
+		slot.custom_minimum_size = slot.size
+		var threshold: int = _session.tensions.threshold(id)
+		var value: int = _session.service.visible_tension_value(id, _viewer)
+		var title: String = str(_session.data.tensions[id]["title"])
+		var line: Label = slot.get_child(0) as Label
+		var tint: Color = Color("#8a8172")
+		if value < 0:
+			line.text = "%s · velata" % title
+		else:
+			line.text = "%s · %d/%d" % [title, value, threshold]
+			var margin: int = threshold - value
+			tint = Color("#6fa88a")
+			if margin <= 0:
+				tint = Color("#c8553d")
+			elif margin <= 1:
+				tint = Color("#e8b563")
+		line.add_theme_color_override("font_color", tint)
+
+
+## Le parole dei pezzi di una tessera, in italiano da giocatore: quello che il
+## cartone stampa sotto ogni segnalino.
+func _words_of(region_id: String) -> String:
+	var region: Dictionary = _session.world["regions"][region_id]
+	var data: RefCounted = _session.data
+	var words: Array = []
+	for record in region.get("structures", []):
+		var stone: Dictionary = record as Dictionary
+		var kind: String = str(stone.get("structure_type", ""))
+		var word: String = SignLabels.grade_name(kind, int(stone.get("grade", 1)), data)
+		if word != "":
+			words.append(word)
+	var marks: Array = []
+	for tag in region["tags"]:
+		var text: String = str(tag)
+		if text.begins_with("condition:") or text.begins_with("scar:"):
+			marks.append(text)
+	marks.sort()
+	for tag in marks:
+		if SignLabels.piece(str(tag), data) == "":
+			continue
+		var word: String = SignLabels.label(str(tag), data)
+		if word != "":
+			words.append(word)
+	return " · ".join(PackedStringArray(words))
+
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	resized.connect(_relayout)
+	resized.connect(_on_resized)
 	set_process(false)
 
 
@@ -109,7 +297,9 @@ func render(session: RefCounted, viewer_id: String) -> void:
 		var ids: Array = (session.world["regions"] as Dictionary).keys()
 		ids.sort()
 		_regions = ids
+	_ensure_nodes()
 	_relayout()
+	_place_nodes()
 	queue_redraw()
 
 
@@ -135,6 +325,14 @@ func _board_rect(board: Texture2D) -> Rect2:
 	var scale: float = minf(size.x / art.x, size.y / art.y)
 	var span: Vector2 = art * scale
 	return Rect2((size - span) * 0.5, span)
+
+
+## Al cambio di misura le tessere si ridispongono, **e i nodi con loro**: un
+## nome, una domanda, una riga di parole posati al `render` e lasciati li'
+## resterebbero sulla tessera di prima.
+func _on_resized() -> void:
+	_relayout()
+	_place_nodes()
 
 
 func _relayout() -> void:
@@ -304,7 +502,6 @@ func _draw() -> void:
 		_draw_roads()
 	for region_id in _regions:
 		_draw_region(str(region_id))
-	_draw_questions()
 
 
 ## Roads first, so the Regions sit on top of them. Drawn once per pair: the
@@ -457,17 +654,12 @@ func _draw_square_tile(
 			3.0 if lit else 2.0
 		)
 
-	var font: Font = ThemeDB.fallback_font
-	var name: String = str(definition["name"])
-	var name_size: Vector2 = font.get_string_size(name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
-	# Il nome sta **dentro** la tessera, in basso: fuori si sovrapporrebbe alla
-	# tessera della riga sotto, che qui e' accostata e non distante.
-	var at: Vector2 = centre + Vector2(-name_size.x * 0.5, half - 8.0)
+	# Il nome sta **dentro** la tessera, in basso, ed e' un nodo (D-444): qui
+	# resta solo la fascia scura che lo stacca dal quadro.
 	draw_rect(
-		Rect2(at + Vector2(-6.0, -13.0), name_size + Vector2(12.0, 6.0)),
+		Rect2(centre + Vector2(-half + 4.0, half - 24.0), Vector2(half * 2.0 - 8.0, 22.0)),
 		Color(0.05, 0.04, 0.03, 0.62), true
 	)
-	draw_string(font, at, name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
 
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
@@ -519,15 +711,7 @@ func _draw_over_board(region_id: String, centre: Vector2, control: Variant, offe
 			3.0 if _hovered == region_id else 2.0, true
 		)
 
-	var font: Font = ThemeDB.fallback_font
-	var name: String = str(_session.data.regions[region_id]["name"])
-	var name_size: Vector2 = font.get_string_size(name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
-	# Il nome su un fondo dipinto ha bisogno di un'ombra per staccarsi: un solo
-	# pixel di nero sotto, che e' il trucco piu' vecchio e ancora il migliore.
-	var at: Vector2 = centre + Vector2(-name_size.x * 0.5, _radius + 16.0)
-	draw_string(font, at + Vector2(1, 1), name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0, 0, 0, 0.8))
-	draw_string(font, at, name, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
-
+	# Il nome e' un nodo (D-444), con la sua ombra: qui non si dipinge.
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
 	_draw_marks(centre, region_id, _session.world["regions"][region_id])
@@ -544,48 +728,6 @@ func _draw_echo(centre: Vector2, region_id: String) -> void:
 		centre, _radius + 12.0, 0.0, TAU, 48,
 		Color(0.91, 0.71, 0.39, 0.85 * strength), 2.0 + 2.5 * strength, true
 	)
-
-
-## I marker delle domande (l'inventario dell'app, ISSUES 22): ogni Tensione
-## abita la Regione su cui la sua domanda verte adesso - la stessa regola del
-## Consiglio (`focus_region`) - e li' pianta il suo marker con la lettura che
-## spetta a chi guarda: il numero se ne ha diritto, il glifo spento se la
-## questione e' velata (§11.1). I colori sono quelli del pannello: verde
-## lontana, ambra a un passo, rossa a soglia.
-func _draw_questions() -> void:
-	var per_region: Dictionary = {}
-	for tension_id in _session.world["tensions"]:
-		var home: String = str(_session.confluence.narrative.focus_region(str(tension_id)))
-		if home == "" or not _points.has(home):
-			continue
-		if not per_region.has(home):
-			per_region[home] = []
-		(per_region[home] as Array).append(str(tension_id))
-
-	var font: Font = ThemeDB.fallback_font
-	for region_id in per_region:
-		var centre: Vector2 = _points[region_id]
-		var at: Vector2 = centre + Vector2(_radius * 0.55, -_radius - 8.0)
-		for tension_id in per_region[region_id]:
-			var threshold: int = _session.tensions.threshold(str(tension_id))
-			var value: int = _session.service.visible_tension_value(str(tension_id), _viewer)
-			var reading: String = "?" if value < 0 else "%d/%d" % [value, threshold]
-			var tint: Color = Color("#5f584c")
-			if value >= 0:
-				var margin: int = threshold - value
-				tint = Color("#6fa88a")
-				if margin <= 0:
-					tint = Color("#c8553d")
-				elif margin <= 1:
-					tint = Color("#e8b563")
-			Glyph.paint(self, "tension", Rect2(at, Vector2(11.0, 11.0)), tint)
-			var text_at: Vector2 = at + Vector2(15.0, 10.0)
-			draw_string(
-				font, text_at + Vector2(1, 1), reading,
-				HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color(0, 0, 0, 0.8)
-			)
-			draw_string(font, text_at, reading, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, tint)
-			at.y -= 15.0
 
 
 ## L'illustrazione dentro la sagoma. Le UV sono le stesse coordinate normalizzate
@@ -773,29 +915,9 @@ func _draw_marks(centre: Vector2, region_id: String, region: Dictionary) -> void
 					2.2, tint
 				)
 
-	# La parola solo sotto il mouse: la plancia mostra i pezzi, la Regione che
-	# stai guardando li nomina. Al tavolo la carta si legge quando la prendi in
-	# mano, non mentre guardi il tavolo.
-	if _hovered != region_id:
-		return
-	var words: Array = []
-	for piece_data in pieces:
-		var word: String = str((piece_data as Dictionary)["word"])
-		if word != "":
-			words.append(word)
-	if words.is_empty():
-		return
-	var font: Font = ThemeDB.fallback_font
-	var line: String = " · ".join(PackedStringArray(words))
-	var size: Vector2 = font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
-	var word_at: Vector2 = Vector2(centre.x - size.x * 0.5, top + PIECE + 22.0)
-	# Una fascia scura sotto la riga, non solo l'ombra di un pixel: su una
-	# tessera dipinta chiara la parola spariva dentro il quadro.
-	draw_rect(
-		Rect2(word_at + Vector2(-6.0, -13.0), size + Vector2(12.0, 6.0)),
-		Color(0.06, 0.05, 0.04, 0.78)
-	)
-	draw_string(font, word_at, line, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("#efe7d8"))
+	# Le parole dei pezzi sono un nodo sempre visibile (D-444): al tavolo il
+	# cartone le stampa sotto il segnalino, e un dito non ha un «sopra» da cui
+	# far uscire un suggerimento.
 
 
 ## Four colours, readable next to each other, handed out by seat rather than by

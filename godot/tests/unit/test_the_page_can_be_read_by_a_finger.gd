@@ -293,23 +293,28 @@ func test_the_side_column_can_be_taller_than_a_window() -> void:
 ## Quindi la pagina la mette dentro qualcosa che scorre. Letto dal codice: per
 ## misurarlo su una schermata montata servirebbe mezza applicazione in piedi, e
 ## la riga che conta e' una sola.
+##
+## **Da D-444 la colonna e' una pagina** — «La mia casa» — che si apre al posto
+## del tavolo: il patto e' che lo stato stia dentro un pannello che scorre, e
+## che **non** stia piu' in fila accanto alla mappa, dove la sua larghezza si
+## sommava a quella del verbale e della mano su un tablet da 768.
 func test_the_side_column_lives_inside_something_that_scrolls() -> void:
 	var source: String = FileAccess.get_file_as_string("res://ui/game_screen.gd")
-	# Da D-279 dentro `reading` c'e' una colonna sola — i sei mazzetti piu' il
-	# pannello di stato — quindi la prova guarda **quella**: il patto e' che lo
-	# stato stia dentro il pannello che scorre, non che ci sia attaccato
-	# direttamente.
 	assert_true(
-		source.contains("reading.add_child(decks_column)"),
-		"la colonna della lettura sta dentro un pannello che scorre"
+		source.contains("_casa = ScrollContainer.new()"),
+		"la pagina della casa e' un pannello che scorre"
 	)
 	assert_true(
-		source.contains("decks_column.add_child(_status)"),
-		"e il pannello di stato sta in quella colonna"
+		source.contains("_casa.add_child(_status)"),
+		"e il pannello di stato sta dentro quella pagina"
 	)
 	assert_false(
 		source.contains("right.add_child(_status)"),
 		"e non piu' attaccato dritto alla colonna, dove la sua altezza decideva la pagina"
+	)
+	assert_false(
+		source.contains("columns.add_child(_transcript)"),
+		"e nemmeno il verbale sta in fila accanto alla mappa: e' una pagina (D-444)"
 	)
 
 

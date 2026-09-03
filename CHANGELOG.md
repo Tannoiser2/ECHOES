@@ -5,6 +5,23 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.414 — L'app mostra il tavolo, non lo stato
+
+M14 della lista, l'ultima: [ISSUES 65](docs/ISSUES.md#65)
+([D-444](docs/DECISIONS.md#d-444)).
+
+La pagina segue la decisione di D-427. Il tavolo prende il centro: i sei
+mazzetti in fila come bottoni, la mappa coi nomi, le domande e le parole dei
+segni costruiti come nodi, chi siede in una striscia, il racconto sotto. A
+destra solo quello che serve per decidere adesso; la colonna di stato e il
+verbale sono due pagine che si aprono al posto del tavolo. Le carte in mano si
+posano sulla domanda della mappa o sulla casa. Sonda della pagina: pannelli che
+dipingono 2 → **0**, bersagli 7 → 25 e **0** sotto il dito, **678 px su 768**
+invece di 788 in fila. La sezione 4 della sonda è riscritta per tre posti.
+Nessun file del motore toccato; cancello 0 su 8 rimisurato.
+
+---
+
 ## 0.1.413 — Lo scarto fra le domande si misura per Tema, e Terra si apre
 
 M3 della lista: [ISSUES 60](docs/ISSUES.md#60) ([D-443](docs/DECISIONS.md#d-443)).
