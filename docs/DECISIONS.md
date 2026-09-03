@@ -66,7 +66,13 @@ rispondono a lui, non rispondono a te.
 **E la [91](ISSUES.md#91) scende con lei**, come previsto: le clausole gia' vere
 all'apertura passano da **47,1%** a **46,2%**.
 
-**Il prezzo, scritto:** due illustrazioni in piu' (161 → **163** soggetti). E le
+**Il prezzo, scritto.** *Corretto in 0.1.406:* avevo scritto «due illustrazioni
+in piu', 161 → 163», e **non e' vero**. Le due carte portano il loro
+`art_prompt_key` come le altre diciassette, ma `components_survey.py` conta i
+soggetti su carte Asset, Echi, tessere, case e Destini — gli obiettivi non ci
+sono mai stati. I soggetti restano **161**. Il difetto vero e' che diciannove
+carte con un prompt scritto non compaiono in quel conto, e sta scritto qui invece
+che nascosto. E le
 Verita' salgono — 130 → **133** sul misto, 134 → **145** sull'uniforme: due
 ambizioni che non si dividono fanno decidere di piu', non di meno.
 
