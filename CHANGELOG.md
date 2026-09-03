@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.412 — Una carta si gioca in due modi, e il libro mastro lo diceva già
+
+M2 della lista: [ISSUES 59](docs/ISSUES.md#59) ([D-442](docs/DECISIONS.md#d-442)).
+
+Chiusura per lettura, nessun cambio di gioco. Il libro mastro delle carte dice
+che una carta *si spende per agire oppure si impegna al voto*: contando i due
+modi, nessun verbo sta sotto la metà del più spesa — INFLUENZARE è al 59,9%
+contro l'89,2% di MUOVERE, ed è la moneta più votata del tavolo. Zero carte
+mai calate. La lettura stretta (30,0% di sole calate) è scritta accanto, con
+la quota di una per giro che la spiega.
+
+---
+
 ## 0.1.410 — Tre Conseguenze escono dalla scatola, e #requisito con loro
 
 M1 della lista: [ISSUES 56](docs/ISSUES.md#56) ([D-440](docs/DECISIONS.md#d-440)).

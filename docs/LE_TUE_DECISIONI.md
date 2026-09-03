@@ -126,10 +126,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **119** |
-| aperte | **13** |
+| chiuse | **120** |
+| aperte | **12** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **13** |
+| di cui sono mie da fare | **12** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,12 +160,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **4** | **io**, da sola, senza aspettare niente |
+| 🟡 | **3** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle tredici voci aperte, quattro le posso muovere senza di te —
-ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
-parola.**
+**Tre.** Delle dodici voci aperte, tre le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
@@ -235,7 +234,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **quattro**
+# 🟡 Sono mie, e non aspettano niente: **tre**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
@@ -248,7 +247,6 @@ sparisce dal conto qui sopra.
 |---|---|
 | **M14** — [65](ISSUES.md#65), l'app che mostra il tavolo | **la più cara di tutte, e adesso tocca a lei**: aspettava che carte, tessere e faccia della Tensione fossero ferme, e adesso lo sono. È la prossima sessione |
 | **M3** — [60](ISSUES.md#60), lo scarto fra le domande | **il suo criterio va ritagliato prima**: per aritmetica non è raggiungibile, e lavorarci senza è lavorare a vuoto. Il numero da battere è 13,1× |
-| **M2** — [59](ISSUES.md#59), INFLUENZARE | due dei tre difetti sono spariti da soli; resta il verbo meno giocato |
 | **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
@@ -271,7 +269,14 @@ scelta 9 volte su 9 e non è mai passata.
 **Fatto quando** ogni Conseguenza esce almeno una volta su 200 anni, **o esce
 dalla scatola**. Le tolgo, non le riscrivo tre volte.
 
-### M2. [59](ISSUES.md#59) — il verbo che nessuno gioca
+### ✔ M2. [59](ISSUES.md#59) — il verbo che nessuno gioca: **chiusa in 0.1.412**
+
+**Chiusa in 0.1.412** ([D-442](DECISIONS.md#d-442)): il libro mastro dice che una
+carta si spende per agire *oppure* si impegna al voto, e contando i due modi
+nessun verbo sta sotto la metà del più spesa — INFLUENZARE al 59,9% contro
+l'89,2% di MUOVERE, ed è la moneta più votata. Zero carte mai calate. La lettura
+stretta (30,0% di sole calate, per la quota di una per giro) è scritta accanto.
+
 
 La voce era su tre difetti e **due sono spariti da soli**: FORGIARE e TRAMARE
 non sono più i verbi morti (8,4% e 9,9% → 52,4% e 75,6%), WEALTH non è più la
@@ -682,9 +687,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
-muovere **quattro** da sola. Due le verifica una persona che gioca, sette
-stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
+muovere **tre** da sola. Due le verifica una persona che gioca, sette stanno
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

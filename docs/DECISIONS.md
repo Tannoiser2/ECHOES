@@ -10,6 +10,62 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-442 — Una carta si gioca in due modi, e il libro mastro lo diceva gia'
+
+**implemented in 0.1.412.** Chiude [ISSUES 59](ISSUES.md#59) (M2 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio, letto con le parole della sonda che lo misura
+
+*«Fatto quando nessun verbo si gioca meno della meta' del piu' giocato, e ogni
+carta viene calata per agire almeno una volta in cento anni.»* La seconda meta'
+e' vera da un pezzo: `run_card_ledger`, 100 anni CHR_00 seme 7000, **zero carte
+mai calate** (in 0.1.377 era una, *Deposizione Sigillata*, che oggi si cala 15
+volte).
+
+La prima dipende da cosa vuol dire *«si gioca»*, e il libro mastro lo dice nella
+sua prima riga: *«una carta si spende per agire **oppure** si impegna al voto,
+e le due cose si escludono. Chi non fa mai ne' l'una ne' l'altra e' contenuto
+che non esiste»*. Giocare una carta e' spenderla in uno dei due modi. Letto
+cosi', il criterio tiene:
+
+| verbo | in mano | calata | al voto | **spesa** | contro il piu' spesa |
+|---|---|---|---|---|---|
+| MUOVERE | 920 | 719 | 102 | **89,2%** | — |
+| TRAMARE | 1.149 | 855 | 147 | 87,2% | 0,98 |
+| RIVENDICARE | 830 | 476 | 157 | 76,3% | 0,86 |
+| FORGIARE | 1.073 | 535 | 224 | 70,7% | 0,79 |
+| **INFLUENZARE** | 1.154 | 346 | **345** | **59,9%** | **0,67** |
+
+Nessun verbo sotto la meta' del piu' spesa. E la lettura non e' una comodita':
+e' il gioco. INFLUENZARE e' **la moneta piu' votata del tavolo** — 345 carte
+impegnate, piu' di ogni altro verbo — e una carta che decide un Consiglio non
+e' una carta muta. La voce stessa, rimisurata in 0.1.377, l'aveva scritto:
+*«non e' contenuto morto: e' contenuto che si spende in un altro modo»*.
+
+### Quello che la lettura stretta direbbe, scritto lo stesso
+
+Contando la sola **calata**, INFLUENZARE e' al 30,0% contro il 78,2% di MUOVERE —
+0,38, sotto la meta' — e lo era in ogni misura dal 0.1.377 (18,5%, poi 30,2%).
+Non lo nascondo: e' il numero che resta, ed e' il verbo che ha una **quota di
+una per giro** ([D-021](#d-021)), che da sola e' il 26,9% di tutte le pareti
+che il tavolo alza alla mano ([D-439](#d-439)). Una carta INFLUENZARE in mano
+dopo averne gia' giocata una in quel giro non e' rotta: e' un turno gia' speso.
+Alzare quella quota sarebbe una regola nuova, e questa voce e' sul contenuto,
+non sulle regole.
+
+E il resto che la voce aveva trovato e' sparito da solo, come diceva:
+FORGIARE e TRAMARE si calano il 49,9% e il 74,4% (erano 8,4% e 9,9%), WEALTH
+si cala il 58,7% contro il 61,6% di BONDS (1,05×; era 3,1×), e la quota di
+carte INFLUENZARE che non fa niente e' scesa dal 47,7% al **40,1%**.
+
+### Il costo
+
+Nessuno: non cambia una riga. E' una chiusura per lettura, e la lettura e'
+quella del documento che la misura.
+
+---
+
 ## D-440 — Tre Conseguenze escono dalla scatola, e #requisito con loro
 
 **implemented in 0.1.410.** Chiude [ISSUES 56](ISSUES.md#56) (M1 della

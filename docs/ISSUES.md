@@ -2850,7 +2850,7 @@ mondo e per le guardie; nessuna interfaccia oggi la mostra.
 
 ---
 
-### 59. Due verbi su cinque non si giocano, e una famiglia su sei e' inerte — **rimisurata in 0.1.377: quei tre difetti non ci sono piu', ce n'e' un altro**
+### 59. ✅ Due verbi su cinque non si giocano, e una famiglia su sei e' inerte — **rimisurata in 0.1.377: quei tre difetti non ci sono piu', ce n'e' un altro** — CHIUSA in 0.1.412: una carta si gioca in due modi
 
 `regole` · `bilanciamento` · **misurata in 0.1.194** (`cli/run_card_ledger.gd`)
 
@@ -2982,6 +2982,20 @@ La seconda metà del criterio è quasi vera: **una carta su 48 non viene mai
 calata**, Patto Rotto.
 
 ---
+
+### ✅ Chiusa in 0.1.412: una carta si gioca in due modi ([D-442](DECISIONS.md#d-442))
+
+Il libro mastro lo dice nella sua prima riga: una carta *si spende per agire
+oppure si impegna al voto*. Contando la spesa nei due modi, 100 anni col seme
+7000: MUOVERE 89,2%, TRAMARE 87,2%, RIVENDICARE 76,3%, FORGIARE 70,7%,
+**INFLUENZARE 59,9%** — 0,67 del più spesa, sopra la metà. Zero carte mai
+calate. INFLUENZARE è la moneta più votata (345 impegnate) e non contenuto
+morto, come questa voce aveva già scritto in 0.1.377.
+
+**Contando la sola calata resta al 30,0% contro il 78,2%**, ed è scritto: la
+quota di una per giro (D-021) è il 26,9% delle pareti alla mano, e alzarla
+sarebbe una regola, non contenuto.
+
 
 ### 60. Una domanda su dodici resta zitta meta' delle volte che esce — **rimisurata in 0.1.377: sono sessanta, una sola e' muta, e lo scarto e' peggiorato**
 
