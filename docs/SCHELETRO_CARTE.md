@@ -13,7 +13,7 @@ che entra. Il numero accanto e' su quante facce del mazzo quel blocco c'e'.
 | **tension** | 44x68 — la mini che sta accanto a una traccia | 60 | 60 |
 | **council** | 70x120 — il tarocco che resta in vista | 60 | 60 |
 | **destiny** | 70x120 — il tarocco che resta in vista | 23 | 23 |
-| **entity** | 70x120 — il tarocco che resta in vista | 26 | 26 |
+| **entity** | 70x120 — il tarocco che resta in vista | 32 | 32 |
 | **region** | 80x80 — la tessera quadrata della mappa | 10 | 10 |
 
 ## Se il testo ci sta
@@ -31,7 +31,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 | **tension** | 2 su 60 | 85% | — | — |
 | **council** | 7 su 60 | 89% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
-| **entity** | 0 su 26 | 100% | 52% | 52% |
+| **entity** | 0 su 32 | 100% | 52% | 52% |
 | **region** | 0 su 10 | 100% | 91% | 92% |
 
 ## Il mazzo `asset`
@@ -194,16 +194,16 @@ Non si gioca: si guarda per sapere quanto manca.
 
 La casa, in vista tutta la partita: cosa sa fare e cosa vuole lasciare.
 
-**Lo scheletro** — 70x120 — il tarocco che resta in vista, 26 facce, 26 pezzi:
+**Lo scheletro** — 70x120 — il tarocco che resta in vista, 32 facce, 32 pezzi:
 
 | blocco | su quante facce |
 |---|---|
-| il titolo | 26 su 26 |
-| il sottotitolo | 26 su 26 |
-| l'illustrazione | 26 su 26 |
-| **SA FARE** | 26 su 26 |
-| **VUOI LASCIARE** | 26 su 26 |
-| **SE NON CE LA FAI** | 12 su 26 |
+| il titolo | 32 su 32 |
+| il sottotitolo | 32 su 32 |
+| l'illustrazione | 32 su 32 |
+| **SA FARE** | 32 su 32 |
+| **VUOI LASCIARE** | 32 su 32 |
+| **SE NON CE LA FAI** | 12 su 32 |
 
 **Una carta vera**, come esce dal foglio di stampa:
 

@@ -37,11 +37,11 @@ nessuno legge**, contati posto per posto.
 | **uno spazio sulla tessera** | 26 | 9 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
 | **un gettone accanto alla tessera** | 14 | 14 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
-| **sulla scheda della casa** | 51 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
+| **sulla scheda della casa** | 57 | 23 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
 | **un gettone sul bordo della mappa** | 54 | 48 | **6** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
 | **il tavolo non lo mostra** | 0 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
-Ogni segno ha un posto. **173 stanno sul tavolo**, 0 sono contabilita'.
+Ogni segno ha un posto. **179 stanno sul tavolo**, 0 sono contabilita'.
 
 ---
 
@@ -80,13 +80,13 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `anointed` | Conseguenza | — | Destino |
 | `ash_watch` | Conseguenza, clausola di Consiglio | — | Destino |
 | `betrayal_spoken` | Azione stampata, carta Echo | — | Risonanza, carta Echo |
-| `burden_shared` | Conseguenza, carta Echo | — | carta Echo |
+| `burden_shared` | Conseguenza, carta Echo | — | carta Echo, chi siede l'anno prossimo |
 | `charter_for_all` | clausola di Consiglio | — | pesca delle domande |
-| `charter_temporary` | carta Echo, clausola di Consiglio | — | pesca delle domande |
+| `charter_temporary` | carta Echo, clausola di Consiglio | — | chi siede l'anno prossimo, pesca delle domande |
 | `charter_written` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `condition:abandoned` | Conseguenza | clausola di Consiglio | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute |
-| `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
+| `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, chi siede l'anno prossimo, la Regione di cui si discute, pesca delle domande |
 | `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:exploited` | Conseguenza, Risonanza | — | Destino, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:guarded` | Conseguenza | — | carta Echo, regola del segno |
@@ -104,7 +104,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `crystal_exploited` | Azione stampata, Conseguenza | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande, proposta |
 | `crystal_measured` | Azione stampata, carta Echo | — | pesca delle domande |
 | `debt_called` | Azione stampata, Conseguenza, carta Asset | — | Destino, Risonanza, carta Echo, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande, regola del segno |
-| `debt_forgiven` | Azione stampata, Conseguenza, carta Echo | — | Destino |
+| `debt_forgiven` | Azione stampata, Conseguenza, carta Echo | — | Destino, chi siede l'anno prossimo |
 | `debt_staggered` | clausola di Consiglio | — | pesca delle domande |
 | `descent_witnessed` | clausola di Consiglio | — | pesca delle domande |
 | `discovery:crystal` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
@@ -119,14 +119,14 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `discovery:trade_ledger` | Azione stampata, clausola di Consiglio | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:written_law` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `distribution_audited` | clausola di Consiglio | — | pesca delle domande |
-| `escort_sworn` | Azione stampata, Conseguenza | — | Destino, Risonanza |
+| `escort_sworn` | Azione stampata, Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo |
 | `evicted:$region_focus` | — | carta Asset | codice (chronicle_controller.gd) |
 | `failed_proposal` | Conseguenza | — | Destino |
 | `faith_established` | Conseguenza | — | Risonanza, pesca delle domande |
 | `grain_requisitioned` | Azione stampata, Conseguenza | — | Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo, proposta |
 | `knowledge_shared` | Azione stampata, carta Echo, clausola di Consiglio | — | Destino, Risonanza, carta Echo, pesca delle domande |
-| `ledger_public` | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | — | Destino, Risonanza, carta Echo, fatto che dura |
+| `ledger_public` | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio | — | Destino, Risonanza, carta Echo, chi siede l'anno prossimo, fatto che dura |
 | `mine_sealed` | Conseguenza | Conseguenza | Destino, catena delle ere, fatto che dura, pesca delle domande, proposta |
 | `nahr_settled` | Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura |
 | `no_charter` | Conseguenza | — | Destino, Risonanza, pesca delle domande |

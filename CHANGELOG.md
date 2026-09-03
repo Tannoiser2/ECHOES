@@ -5,6 +5,90 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.404 — Sei vite nuove, e sei porte che il mondo scrive davvero
+
+M11 della lista, e lavora [ISSUES 36](docs/ISSUES.md#36)
+([D-434](docs/DECISIONS.md#d-434)).
+
+### La strada (D), quella che il committente ha scelto
+
+Delle quattro strade del dossier — il pool dei Destini, i ruoli staccati dalle
+case, il generatore di linee, **più vite per casa** — si è fatta la (D):
+**solo scrittura, nessun rischio**. Sei case avevano tre vite e due ne avevano
+quattro; adesso ne hanno **quattro tutte e otto**.
+
+| casa | vita nuova | ci si entra con |
+|---|---|---|
+| ENT_NAHR | **Gli Ospiti di Nahr** | `burden_shared` |
+| ENT_LYRA | **L'Archivio Aperto** | `ledger_public` |
+| ENT_SALE | **La Mano Rimessa** | `debt_forgiven` |
+| ENT_VETRO | **La Scuola del Vetro** | `escort_sworn` |
+| ENT_CENERE | **Le Strade della Cenere** | `condition:cut_off` |
+| ENT_LIBERE | **L'Assemblea Permanente** | `charter_temporary` |
+
+Nessuna porta è inventata: tutte e sei sono segni che `MISURA_SEGNI` conta in
+cento partite — da `charter_temporary` (18) a `escort_sworn` (207).
+
+### Le sei si siedono tutte
+
+| | prima | dopo |
+|---|---|---|
+| vite scritte, in tutto | 26 | **32** |
+| vite scritte oltre la prima | 18 | **24** |
+| **vite che non si sono mai sedute** | 1 | **1** |
+| trasformazioni sedute (12 saghe × 8 anni, due tavoli) | 237 | **269** |
+
+Gli Ospiti di Nahr entrano **11 volte su uniforme e 10 su misto**: è la quarta
+vita più giocata della scatola al primo giro.
+
+### Il metro che la voce nominava non si muove, ed è scritto
+
+La voce chiedeva la **distanza fra due saghe** sopra lo 0,86. Misurata su
+**tre semi** (812, 900, 1300), 12 saghe da 10 anni a tavolo misto:
+
+| | prima | dopo |
+|---|---|---|
+| distanza fra due saghe | 0,67 / 0,65 / 0,59 | **0,62 / 0,69 / 0,58** |
+| vite viste al tavolo | 22 / 24 / 24 | **28 / 30 / 29** |
+
+**La distanza non si muove** — lo scarto fra un seme e l'altro (0,58–0,69) è più
+largo della differenza. Quello che si muove, e nella stessa direzione su tutti e
+tre i semi, è **quante vite diverse si siedono**. Il metro guarda le frasi che il
+Consiglio scrive, e quale vita siede non cambia quale frase viene scritta: la
+distanza non è il metro della strada (D). Lo 0,86 della voce, poi, è misurato su
+`CHR_01` e `CHR_03`, due linee che oggi non ci sono più: non sta in fila con
+questi numeri ([D-391](docs/DECISIONS.md#d-391)).
+
+### Il prezzo, scritto
+
+- **Le vite vecchie siedono meno.** La Diaspora di Nahr passa da 10/11 a **4/4**:
+  `burden_shared` esce prima e più spesso di `twice_uprooted`, e la porta la
+  prende chi arriva primo. Il Culto della Misura da 8/8 a **4/6**, la Compagnia
+  del Sale da 3/3 a **1/1**. Le trasformazioni totali salgono, ma si spalmano su
+  ventiquattro vite invece che su diciotto.
+- **Sei illustrazioni in più:** i soggetti da disegnare passano da 155 a **161**,
+  i segnaposto da 144 a **150**.
+
+Cancello 100 semi: **0 su 8** su tutti e due i tavoli. Verità 129 sul misto e
+134 sull'uniforme, **identiche** a prima delle sei vite.
+
+### Due guardie che guardavano il numero invece della cosa
+
+`test_tag_rules` apriva con `tag_rules.size() == 53` un caso che si chiama *«a
+tavolo pulito ogni gancio resta neutro»*: un conto congelato che andava rosso a
+ogni regola nuova senza dire niente sulla frase che il caso promette. Adesso il
+caso prova quello che dice, su **tutte** le case e **tutte** le Regioni invece
+che su una — 734 prove, **89.425** asserzioni.
+
+### E una guardia che aveva la casa scritta a mano
+
+Spostare la voce fra le ⚪ ha fatto andare rosso `issues_survey.py --self-test`, e
+aveva ragione: la quinta prova piantava il suo difetto prima di un titolo scritto
+a mano che sta fra le 🟡, mentre la cavia era appena passata fra le ⚪. Adesso la
+sezione **si chiede al foglio**.
+
+---
+
 ## 0.1.403 — La fame che il motore sapeva solo togliere
 
 M10 della lista, e lavora [ISSUES 82](docs/ISSUES.md#82)

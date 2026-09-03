@@ -10,6 +10,149 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-434 — Sei vite nuove, e la distanza che non le sente
+
+**implemented in 0.1.404.** Lavora [ISSUES 36](ISSUES.md#36) (M11 della
+[lista](LE_TUE_DECISIONI.md)), sulla parola **«si' a tutte»** ([D-427](#d-427)).
+
+### La strada scelta, e perche' era quella
+
+Il dossier della seduta misurava quattro strade per «linee sempre diverse»:
+**A** il pool dei Destini, **B** i ruoli staccati dalle case, **C** il
+generatore di linee, **D** piu' vite per casa con ingressi piu' fini. La (C)
+resta ferma per scelta del committente: questo gioco e' fatto di frasi che
+qualcuno ha scritto, e un generatore le fa diventare rumore. La (D) e' **solo
+scrittura, nessun rischio**, e si fa adesso; A e B si guardano dopo la prima
+partita vera.
+
+Sei case avevano **tre** vite e due ne avevano **quattro**. Adesso ne hanno
+quattro tutte e otto: 26 vite scritte, 24 oltre la prima.
+
+### Le sei porte, e perche' proprio quelle
+
+Una vita nuova vale quanto la porta che la apre: un ingresso su un segno che il
+mondo non scrive mai e' una vita che non si siede. Le sei porte sono state
+scelte **guardando `MISURA_SEGNI`**, cioe' quello che il mondo scrive davvero in
+cento partite:
+
+| casa | vita nuova | porta | quante volte il mondo la scrive |
+|---|---|---|---|
+| ENT_NAHR | Gli Ospiti di Nahr | `burden_shared` | 35 |
+| ENT_LYRA | L'Archivio Aperto | `ledger_public` | 151 |
+| ENT_SALE | La Mano Rimessa | `debt_forgiven` | 98 |
+| ENT_VETRO | La Scuola del Vetro | `escort_sworn` | 207 |
+| ENT_CENERE | Le Strade della Cenere | `condition:cut_off` | 48 |
+| ENT_LIBERE | L'Assemblea Permanente | `charter_temporary` | 18 |
+
+### La grammatica fisica ha morso tre volte, e aveva ragione tutte e tre
+
+Il dizionario dei segni non lascia scrivere una vita a meta':
+
+1. **mani non dichiarate** — i sei segni d'ingresso non avevano `entity` fra chi
+   li legge. Una casa che si trasforma su un segno e' un lettore di quel segno,
+   e il dizionario deve dirlo.
+2. **segni mancanti** — ogni vita e' anche un segno (`life:INC_*`) che sta
+   sull'Entita' finche' quella vita siede. Sei vite, sei segni.
+3. **mani inventate** — dichiarare `tag_rule` fra i lettori di `life:INC_*`
+   senza scrivere la regola sarebbe stata una bugia. Ed e' li' che la guardia ha
+   fatto il lavoro migliore: ha costretto a dare **un potere a ognuna delle sei**
+   invece di sei nomi senza conseguenze.
+
+I sei poteri stanno nelle due forme che il progetto ha gia': **World Factor +1
+quando propone** ([D-109](#d-109)) per gli Ospiti (ogni casa li ha ospitati una
+volta), l'Assemblea (non convoca, e' gia' riunita), la Mano Rimessa (sul Debito)
+e le Strade (sulle Vie Interrotte); **una Condition qualifica con un impegno in
+meno** ([D-126](#d-126)) per l'Archivio Aperto e la Scuola del Vetro, che la
+procedura ce l'hanno gia' scritta.
+
+### La misura: le sei si siedono, e il metro della voce non se ne accorge
+
+Dodici saghe da otto anni su due tavoli (`MISURA_VITE`):
+
+| | prima | dopo |
+|---|---|---|
+| vite scritte oltre la prima | 18 | **24** |
+| **vite che non si sono mai sedute** | **1** | **1** |
+| trasformazioni sedute | 237 | **269** |
+
+Tutte e sei si siedono, e gli Ospiti di Nahr entrano 11 volte su uniforme e 10
+su misto: al primo giro sono la quarta vita piu' giocata della scatola.
+L'unica che non si siede mai resta quella che non si siedeva prima — il Culto
+della Montagna, che entra `ON_DEATH`.
+
+**Il metro che la voce nominava, pero', non si muove.** Chiedeva la distanza fra
+due saghe sopra lo 0,86; misurata su tre semi, 12 saghe da 10 anni, tavolo misto:
+
+| seme | distanza prima | distanza dopo | vite viste prima | dopo |
+|---|---|---|---|---|
+| 812 | 0,67 | 0,62 | 22 | **28** |
+| 900 | 0,65 | 0,69 | 24 | **30** |
+| 1300 | 0,59 | 0,58 | 24 | **29** |
+
+Lo scarto fra un seme e l'altro (0,58–0,69) e' piu' largo della differenza fra
+prima e dopo: **la distanza e' ferma**. Quello che si muove, e nella stessa
+direzione su tutti e tre i semi, sono le vite viste al tavolo.
+
+**E si capisce perche'.** Il metro sono le **Truth** — le frasi che una decisione
+lascia scritte nel registro — e una Truth la scrive il Consiglio sulla domanda in
+discussione, non la casa che la propone. Quale vita siede cambia *chi* propone e
+con quanta forza; non cambia *quale frase* finisce nel verbale. La distanza fra
+due saghe misura la varieta' delle **questioni**, e per quella la biblioteca delle
+domande sta gia' facendo il suo lavoro. La strada (D) non poteva muoverla, e
+sapere quale metro non risponde a quale strada vale quanto il numero.
+
+Lo 0,86 della voce, inoltre, e' misurato su `CHR_01` e `CHR_03`: due linee che
+oggi non esistono piu'. Non sta in fila con questi numeri ([D-391](#d-391)), e la
+misura di partenza vera, sulla linea di oggi, e' **0,64**.
+
+### Il prezzo, scritto
+
+- **Le vite vecchie siedono meno.** La Diaspora di Nahr passa da 10/11 a
+  **4/4**: `burden_shared` esce prima e piu' spesso di `twice_uprooted`, e la
+  porta la prende chi arriva primo. Il Culto della Misura da 8/8 a **4/6**, la
+  Compagnia del Sale da 3/3 a **1/1**, con la mediana che si allunga da 727 a
+  1177 anni. Le trasformazioni salgono, ma si spalmano su ventiquattro vite
+  invece che su diciotto: **ogni singola vita vecchia si vede meno di prima**.
+  E' il prezzo strutturale della strada (D), non un difetto da riparare.
+- **Sei illustrazioni in piu':** 155 → **161** soggetti, 144 → **150**
+  segnaposto.
+
+Cancello 100 semi: **0 su 8** su tutti e due i tavoli. Verita' 129 sul misto e
+134 sull'uniforme, identiche a prima delle sei vite.
+
+### Una guardia che aveva la casa scritta a mano
+
+Spostare la 36 dalle gialle alle bianche ha fatto andare rosso l'autotest del
+foglio delle decisioni, e aveva ragione. La quinta prova — *«la guardia vede una
+voce ospitata due volte dalla stessa sezione?»* — piantava il doppione prima di
+un titolo **scritto a mano**, `### M1.`, che sta fra le gialle; la cavia, invece,
+e' la prima voce aperta non-rossa, ed era appena passata fra le bianche. Il
+difetto finiva nella sezione sbagliata e faceva scattare **un'altra** guardia.
+Adesso la sezione **si chiede al foglio**: si cerca chi ospita la cavia e si
+raddoppia li'. E' la stessa trappola di sempre — una prova che cerca la sua
+condizione fra i dati spediti invece di fabbricarsela.
+
+### E un conto congelato dentro una guardia
+
+`test_tag_rules` apriva il suo primo caso con `tag_rules.size() == 53`. Il caso
+si chiama *«a tavolo pulito ogni gancio resta neutro»*, e quel numero non diceva
+niente su quella frase: diceva solo che i dati erano cambiati, e andava rosso a
+ogni regola nuova. E' lo stesso difetto di 0.1.400, scritto in un altro file.
+
+Adesso il caso prova quello che dice, e su **tutte** le case e **tutte** le
+Regioni invece che su una: le regole ci sono, e con la plancia pulita nessuna
+morde. Le due raccolte su cui gira si dichiarano piene prima di girarci sopra —
+un ciclo su una raccolta vuota passa senza provare niente, ed e' la trappola di
+casa. La suite resta a 734 prove e sale a **89.425** asserzioni.
+
+### Cosa resta della voce
+
+Il residuo di [ISSUES 36](ISSUES.md#36) non e' piu' lavoro mio: sono le strade
+**A** e **B** e le cinque domande secche, che per parola del committente si
+guardano **dopo la prima partita vera**. La voce esce dalle 🟡 e va fra le ⚪.
+
+---
+
 ## D-433 — La fame che il motore sapeva solo togliere, e una fustella che guardava tardi
 
 **implemented in 0.1.403.** Lavora [ISSUES 82](ISSUES.md#82) (M10 della

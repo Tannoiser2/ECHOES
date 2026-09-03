@@ -13,16 +13,16 @@ cosa manca perche' l'app dica **tutto** quello che dice il tavolo.
 | Carte **Tensione** (le Domande) | 60 | 60 | 44x68 mm | **tutte** | 4 |
 | Schede **Consiglio** | 60 | 60 | 70x120 mm | **tutte** | 15 |
 | Carte **Destino** | 23 | 23 | 70x120 mm | **tutte** | 6 |
-| Carte **Casata** (una per vita) | 26 | 26 | 70x120 mm | **nessuna** | 7 |
+| Carte **Casata** (una per vita) | 32 | 32 | 70x120 mm | **nessuna** | 8 |
 | Tessere **Regione** | 10 | 10 | 80x80 mm | **nessuna** | 2 |
 
-**67 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
+**68 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
 delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 173 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 179 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa
@@ -48,13 +48,13 @@ centodiciotto simboli, si impara quello che si vede.
 
 | | quanti | cos'e' |
 |---|---|---|
-| Case (Entita') | 8 | i seggi, con **26 vite** in tutto |
+| Case (Entita') | 8 | i seggi, con **32 vite** in tutto |
 | Profili strategici | 8 su 8 | cosa ogni casa vuole lasciare nel mondo |
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
 | Obiettivi | 17 | i tre coperti che si pescano a inizio saga |
 | Conseguenze | 65 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
-| Regole dei segni | 53 | cosa un segno fa da solo |
+| Regole dei segni | 59 | cosa un segno fa da solo |
 | Azioni | 7 | i verbi del turno |
 | Chronicle | 1 | gli anni giocabili |
 
@@ -62,9 +62,9 @@ centodiciotto simboli, si impara quello che si vede.
 
 | | |
 |---|---|
-| soggetti da illustrare (`art_prompt_key`) | **155** |
+| soggetti da illustrare (`art_prompt_key`) | **161** |
 | gia' disegnati | **11** |
-| ancora segnaposto | **144** |
+| ancora segnaposto | **150** |
 
 I prompt pronti da mandare a chi disegna stanno in
 [BRIEF_ARTE.md](BRIEF_ARTE.md), generati dagli stessi dati.
@@ -94,7 +94,7 @@ che le legge dalle facce vere; la colonna «d'autore» da questi dati.
 | Schede Consiglio | **60** | — | ricavata dalla Tensione |
 | Carte Destino | **23** | 23 su 23 | d'autore |
 | Echi (stampati sulla carta Asset) | **48** | — | ricavata dai dati (D-344) |
-| Carte Casata | **26** | — | ricavata dai dati |
+| Carte Casata | **32** | — | ricavata dai dati |
 | Tessere Regione | **10** | — | ricavata dai dati |
 
 **Nessun pezzo esce senza faccia**, e da [D-365](DECISIONS.md#d-365) la
@@ -105,7 +105,7 @@ posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 
 ### b. L'arte
 
-**144 soggetti su 155 sono ancora segnaposto.** E' il pezzo piu' grosso
+**150 soggetti su 161 sono ancora segnaposto.** E' il pezzo piu' grosso
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
 

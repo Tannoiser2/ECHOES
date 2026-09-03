@@ -230,7 +230,7 @@ E le misure che prima non c'erano:
 |---|---|
 | segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | 50 su 174 |
 | **punti regalati** / **porte murate** (`MISURA_SEGNI`) | **1** / **0** |
-| vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 18** |
+| vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 24** (0.1.404) |
 | testi che un giocatore può leggere (`REVISIONE_TESTI`) | **2.968** |
 | pezzi e legami del flusso disegnato (`flusso.html`) | **964 / 4.262** |
 | pezzi del disegno senza nemmeno una freccia | **7** (erano 12) |

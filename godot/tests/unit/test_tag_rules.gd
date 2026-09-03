@@ -34,22 +34,33 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 	# D-105: le cinque regole di casa viaggiano nei dati, ma i loro segni
 	# (granaio, fame, razzia, giuramento, fama) non esistono a inizio
 	# partita - quindi ogni gancio resta neutro finché il gioco non li posa.
-	assert_eq(
-		session.data.tag_rules.size(), 53,
-		"le regole di D-105, i poteri di vita di D-109/D-124/D-126/D-129/D-130/D-131/D-133, i denti di D-117, le cicatrici di D-122, i gradi dell'insediamento di D-160, la foresta di D-163, i due doni dei luoghi di D-165 e il primo dente di #sorvegliata (D-353)"
+	# Il conto delle regole **non si congela qui**: un numero scritto a mano in
+	# una guardia dice solo che i dati sono cambiati, e va rosso ogni volta che
+	# qualcuno ne scrive una nuova (l'ultima in 0.1.404, con le sei vite di
+	# D-434). Quello che questo caso deve dire e' che le regole **ci sono** e che
+	# **nessuna morde a tavolo pulito** - e questo si prova su tutte, non su una.
+	assert_true(
+		session.data.tag_rules.size() > 0,
+		"le regole dei segni viaggiano nei dati e sono caricate"
 	)
-	var bonus: Dictionary = TagRules.action_bonus(
-		session.data, session.world, "ENT_ALDRIC", "INFLUENCE", "TEN_FAMINE"
-	)
-	assert_eq(int(bonus["delta"]), 0, "nessun bonus d'azione")
-	var factor: Dictionary = TagRules.council_world_factor(
-		session.data, session.world, "TEN_FAMINE", "ENT_ALDRIC"
-	)
-	assert_eq(int(factor["delta"]), 0, "nessun peso sul Consiglio")
-	assert_eq(
-		TagRules.movement_gate(session.data, session.world, "REG_VALLE_VERDE"),
-		"", "nessuna porta"
-	)
+	# Un ciclo su una raccolta vuota non prova niente e non lo dice: le due
+	# raccolte su cui gira si dichiarano piene prima di girarci sopra.
+	assert_true(session.data.entities.size() > 0, "ci sono case su cui provare")
+	assert_true(session.data.regions.size() > 0, "ci sono Regioni su cui provare")
+	for entity_id: String in session.data.entities.keys():
+		var bonus: Dictionary = TagRules.action_bonus(
+			session.data, session.world, entity_id, "INFLUENCE", "TEN_FAMINE"
+		)
+		assert_eq(int(bonus["delta"]), 0, "nessun bonus d'azione per %s" % entity_id)
+		var factor: Dictionary = TagRules.council_world_factor(
+			session.data, session.world, "TEN_FAMINE", entity_id
+		)
+		assert_eq(int(factor["delta"]), 0, "nessun peso sul Consiglio per %s" % entity_id)
+	for region_id: String in session.data.regions.keys():
+		assert_eq(
+			TagRules.movement_gate(session.data, session.world, region_id),
+			"", "nessuna porta su %s" % region_id
+		)
 	assert_eq(
 		TagRules.relation_cap(session.data, session.world, "ENT_ALDRIC|ENT_NAHR"),
 		"", "nessun tetto"

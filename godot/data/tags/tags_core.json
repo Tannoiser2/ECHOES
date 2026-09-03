@@ -138,6 +138,7 @@
       ],
       "read_by": [
         "echo_card",
+        "entity",
         "entity_strategic_profile"
       ],
       "note": "memoria del mondo: narrata (D-103), ereditata"
@@ -192,7 +193,8 @@
         "echo_card"
       ],
       "read_by": [
-        "chronicle"
+        "chronicle",
+        "entity"
       ],
       "note": "memoria del mondo (D-286): la pesca dell'era successiva la ascolta — se il mondo porta ancora questo segno, la sua questione pesa il triplo"
     },
@@ -294,13 +296,14 @@
       "read_by": [
         "asset",
         "asset_physical",
-        "consequence",
-        "tension",
         "chronicle",
-        "entity_strategic_profile",
+        "consequence",
         "destiny",
         "destiny_physical",
-        "echo_card"
+        "echo_card",
+        "entity",
+        "entity_strategic_profile",
+        "tension"
       ]
     },
     {
@@ -762,6 +765,7 @@
       "read_by": [
         "destiny",
         "destiny_physical",
+        "entity",
         "entity_strategic_profile"
       ]
     },
@@ -1130,7 +1134,8 @@
       "read_by": [
         "asset_physical",
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity"
       ]
     },
     {
@@ -1401,8 +1406,9 @@
         "asset_physical",
         "destiny",
         "destiny_physical",
-        "entity_strategic_profile",
-        "echo_card"
+        "echo_card",
+        "entity",
+        "entity_strategic_profile"
       ]
     },
     {
@@ -1541,6 +1547,38 @@
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
+      "id": "life:INC_CENERE_ROADS",
+      "title": "vita: Le Strade della Cenere",
+      "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
+    },
+    {
+      "id": "life:INC_LIBERE_ASSEMBLY",
+      "title": "vita: L'Assemblea Permanente",
+      "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
+    },
+    {
       "id": "life:INC_LIBERE_HEGEMONY",
       "title": "vita: L'Egemonia di Eredan",
       "category": "ENTITY",
@@ -1605,8 +1643,40 @@
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
+      "id": "life:INC_LYRA_ARCHIVE",
+      "title": "vita: L'Archivio Aperto",
+      "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
+    },
+    {
       "id": "life:INC_NAHR_DIASPORA",
       "title": "vita: La Diaspora di Nahr",
+      "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
+    },
+    {
+      "id": "life:INC_NAHR_HOSTS",
+      "title": "vita: Gli Ospiti di Nahr",
       "category": "ENTITY",
       "table_place": "HOUSE_SHEET",
       "scope": [
@@ -1655,6 +1725,22 @@
     {
       "id": "life:INC_SALE_BANK",
       "title": "vita: Il Banco Nero",
+      "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
+    },
+    {
+      "id": "life:INC_SALE_FORGIVEN",
+      "title": "vita: La Mano Rimessa",
       "category": "ENTITY",
       "table_place": "HOUSE_SHEET",
       "scope": [
@@ -1735,6 +1821,22 @@
     {
       "id": "life:INC_VETRO_INQUISITION",
       "title": "vita: L'Inquisizione del Vetro",
+      "category": "ENTITY",
+      "table_place": "HOUSE_SHEET",
+      "scope": [
+        "ENTITY"
+      ],
+      "written_by": [
+        "entity"
+      ],
+      "read_by": [
+        "tag_rule"
+      ],
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
+    },
+    {
+      "id": "life:INC_VETRO_SCHOOL",
+      "title": "vita: La Scuola del Vetro",
       "category": "ENTITY",
       "table_place": "HOUSE_SHEET",
       "scope": [

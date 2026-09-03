@@ -2275,6 +2275,48 @@ text, no letters, no numerals, no logos, no frame, no border. Not gory, not
 horror.
 ```
 
+### `entity.cenere_roads` — Le Strade della Cenere
+
+- **soggetto**: Le Strade della Cenere
+- **scena**: Tagliata fuori una volta di troppo, la casa smise di aspettare che le strade tornassero e si mise a farle. Dove passano loro, passa tutto: e' il pedaggio a essere cambiato di mano.
+- **id**: `INC_CENERE_ROADS`
+
+```
+ECHOES — House card. Portrait of Le Strade della Cenere.
+Who this is: Tagliata fuori una volta di troppo, la casa smise di aspettare che le strade tornassero e si mise a farle. Dove passano loro, passa tutto: e' il pedaggio a essere cambiato di mano.
+Dominant accent: ambra, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+chi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
+```
+
+### `entity.libere_assembly` — L'Assemblea Permanente
+
+- **soggetto**: L'Assemblea Permanente
+- **scena**: La Carta valse per un tempo solo, e alla scadenza nessuno la richiuse. Non c'e' piu' una citta' che parla per le altre: c'e' una stanza che non si svuota mai, e chi ci entra vota.
+- **id**: `INC_LIBERE_ASSEMBLY`
+
+```
+ECHOES — House card. Portrait of L'Assemblea Permanente.
+Who this is: La Carta valse per un tempo solo, e alla scadenza nessuno la richiuse. Non c'e' piu' una citta' che parla per le altre: c'e' una stanza che non si svuota mai, e chi ci entra vota.
+Dominant accent: terracotta, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
+```
+
 ### `entity.libere_hegemony` — L'Egemonia di Eredan
 
 - **soggetto**: L'Egemonia di Eredan
@@ -2359,6 +2401,27 @@ text, no letters, no numerals, no logos, no frame, no border. Not gory, not
 horror.
 ```
 
+### `entity.lyra_archive` — L'Archivio Aperto
+
+- **soggetto**: L'Archivio Aperto
+- **scena**: Il registro fu letto in piazza, e da allora non si richiuse. Lyra smette di sapere per prima e comincia a sapere per tutti: chi legge le deve una riga.
+- **id**: `INC_LYRA_ARCHIVE`
+
+```
+ECHOES — House card. Portrait of L'Archivio Aperto.
+Who this is: Il registro fu letto in piazza, e da allora non si richiuse. Lyra smette di sapere per prima e comincia a sapere per tutti: chi legge le deve una riga.
+Dominant accent: verde-azzurro pallido, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+una persona sola, lo strumento del proprio mestiere a portata di mano. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
+```
+
 ### `entity.nahr_diaspora` — La Diaspora di Nahr
 
 - **soggetto**: La Diaspora di Nahr
@@ -2368,6 +2431,27 @@ horror.
 ```
 ECHOES — House card. Portrait of La Diaspora di Nahr.
 Who this is: Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro.
+Dominant accent: terracotta, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+una figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
+```
+
+### `entity.nahr_hosts` — Gli Ospiti di Nahr
+
+- **soggetto**: Gli Ospiti di Nahr
+- **scena**: Il peso fu diviso, e chi lo divise si sedette. Non sono piu' un popolo che passa: sono quelli che ogni casa ha ospitato una volta, e a cui ogni casa deve mezza stagione.
+- **id**: `INC_NAHR_HOSTS`
+
+```
+ECHOES — House card. Portrait of Gli Ospiti di Nahr.
+Who this is: Il peso fu diviso, e chi lo divise si sedette. Non sono piu' un popolo che passa: sono quelli che ogni casa ha ospitato una volta, e a cui ogni casa deve mezza stagione.
 Dominant accent: terracotta, over the game's muted earth palette. One subject,
 close, facing the viewer: this framing is what separates a House card from an
 Asset card, where a single centred figure looking out is forbidden.
@@ -2431,6 +2515,27 @@ horror.
 ```
 ECHOES — House card. Portrait of Il Banco Nero.
 Who this is: Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita.
+Dominant accent: ambra, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+chi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
+```
+
+### `entity.sale_forgiven` — La Mano Rimessa
+
+- **soggetto**: La Mano Rimessa
+- **scena**: Rimesso un debito grosso davanti a tutti, la Gilda scopri' che perdonare rende piu' del riscuotere. Adesso presta a chi non puo' rendere, e tiene il conto di chi lo sa.
+- **id**: `INC_SALE_FORGIVEN`
+
+```
+ECHOES — House card. Portrait of La Mano Rimessa.
+Who this is: Rimesso un debito grosso davanti a tutti, la Gilda scopri' che perdonare rende piu' del riscuotere. Adesso presta a chi non puo' rendere, e tiene il conto di chi lo sa.
 Dominant accent: ambra, over the game's muted earth palette. One subject,
 close, facing the viewer: this framing is what separates a House card from an
 Asset card, where a single centred figure looking out is forbidden.
@@ -2536,6 +2641,27 @@ horror.
 ```
 ECHOES — House card. Portrait of L'Inquisizione del Vetro.
 Who this is: Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze.
+Dominant accent: porpora tenue, over the game's muted earth palette. One subject,
+close, facing the viewer: this framing is what separates a House card from an
+Asset card, where a single centred figure looking out is forbidden.
+chi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side lighting, shallow depth of field; the background says
+where they come from without telling a story of its own. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+head and shoulders in the upper two thirds; the lower third is a calm,
+low-detail area reserved for a text overlay. Vertical card framing, 2:3. No
+text, no letters, no numerals, no logos, no frame, no border. Not gory, not
+horror.
+```
+
+### `entity.vetro_school` — La Scuola del Vetro
+
+- **soggetto**: La Scuola del Vetro
+- **scena**: Quando la scorta giurata torno' senza reliquia e senza morti, l'Ordine capi' che il segreto non era il tesoro. Insegnano quello che custodivano, e chiedono in cambio che venga ripetuto uguale.
+- **id**: `INC_VETRO_SCHOOL`
+
+```
+ECHOES — House card. Portrait of La Scuola del Vetro.
+Who this is: Quando la scorta giurata torno' senza reliquia e senza morti, l'Ordine capi' che il segreto non era il tesoro. Insegnano quello che custodivano, e chiedono in cambio che venga ripetuto uguale.
 Dominant accent: porpora tenue, over the game's muted earth palette. One subject,
 close, facing the viewer: this framing is what separates a House card from an
 Asset card, where a single centred figure looking out is forbidden.

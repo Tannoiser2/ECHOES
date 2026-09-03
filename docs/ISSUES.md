@@ -922,6 +922,35 @@ cinque domande secche avranno una risposta informata.
 
 Il cartellino `da-decidere` è tolto: la (D) è lavoro mio.
 
+### La (D) è percorsa e misurata, in 0.1.404 ([D-434](DECISIONS.md#d-434))
+
+Sei case avevano tre vite e due ne avevano quattro: adesso ne hanno **quattro
+tutte e otto**, 24 oltre la prima invece di 18. Ogni porta è un segno che
+`MISURA_SEGNI` conta davvero in cento partite — da `charter_temporary` (18) a
+`escort_sworn` (207) — e **tutte e sei le vite nuove si siedono**: gli Ospiti di
+Nahr entrano 11 volte su uniforme e 10 su misto, quarta vita più giocata della
+scatola. Le vite mai sedute restano **una**, quella che entra `ON_DEATH`.
+
+**Il metro che questa voce nominava non si muove, ed è la cosa più utile che la
+misura abbia detto.** Su tre semi, 12 saghe da 10 anni a tavolo misto, la
+distanza fra due saghe fa 0,67/0,65/0,59 prima e **0,62/0,69/0,58** dopo: lo
+scarto fra un seme e l'altro è più largo della differenza. Le Truth le scrive il
+Consiglio sulla **questione** in discussione, non la casa che propone — quindi
+quale vita siede non cambia quale frase finisce nel verbale. La distanza misura
+la varietà delle domande, e la strada (D) non poteva muoverla. (Lo 0,86 di sopra,
+poi, è misurato su `CHR_01` e `CHR_03`, due linee che oggi non esistono più: non
+sta in fila con questi numeri, [D-391](DECISIONS.md#d-391). La partenza vera
+sulla linea di oggi era **0,64**.)
+
+**Il prezzo, scritto:** le vite vecchie siedono meno — la Diaspora di Nahr da
+10/11 a **4/4**, il Culto della Misura da 8/8 a **4/6** — perché le
+trasformazioni salgono (237 → 269) ma si spalmano su ventiquattro vite invece
+che su diciotto. E sei illustrazioni in più. Cancello **0 su 8**.
+
+**Quello che resta di questa voce non è più lavoro mio:** sono le strade **A** e
+**B** e le cinque domande secche, che per tua parola si guardano **dopo la prima
+partita vera**. La voce esce dalle 🟡 e va fra le ⚪.
+
 ### 35. ✅ Le istituzioni **non** governano diversamente dalle persone
 
 `contenuto` · **chiusa in 0.1.144** · *SAGA_SALE* → [D-176](DECISIONS.md#d-176)
