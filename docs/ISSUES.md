@@ -9584,7 +9584,7 @@ dice mai **cosa** debba dire.
 
 ---
 
-### 128. Cinquantanove carte su cento in mano non sanno dire niente
+### 128. ✅ Cinquantanove carte su cento in mano non sanno dire niente — CHIUSA in 0.1.409: nessuna carta murata dalla mappa
 
 `regole` · **aperta in 0.1.394** — domanda del committente:
 
@@ -9848,3 +9848,17 @@ fisica: *«**due** Azioni, e due scelte diverse davvero»*.
 d'autore**, non una taratura: cambia cosa fa la carta. È la cosa che muoverebbe
 di più il numero, e aspetta una parola.
 
+### ✅ Chiusa in 0.1.409: zero carte murate dalla mappa ([D-439](DECISIONS.md#d-439))
+
+La sonda non sapeva distinguere *«non arriva su quella tessera»* da *«non
+arriva su nessuna»*: contava la ragione più ripetuta, e una carta rifiutata da
+una tessera per i segni e dalle altre cinque per una quota finiva fra i difetti
+del bersaglio. Adesso guarda **faccia per faccia**: se ogni tessera pescata ha
+rifiutato una faccia per i soli segni, la carta è **murata dalla mappa**.
+
+100 anni, seme 7000, tavolo misto: **0 su 1.882** rifiuti del tavolo. I 109 «a
+segni» sono tutti *non qui, altrove sì*, e Diritto di Ospitalità rifiuta il
+Bosco perché porta un segno che la carta vieta. È il «fatto quando».
+
+**Resta scritta, per il committente e non per questa voce**: il 63,9% della
+parete cade sulle diciotto carte con lo stesso verbo su tutte e due le facce.

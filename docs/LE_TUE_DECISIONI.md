@@ -51,7 +51,7 @@ mostra il tavolo — è quella che apriremo dopo, ed è la più cara di tutte.
 
 | | voce | dove è finita |
 |---|---|---|
-| **M5** | [128](ISSUES.md#128) | lavorata in 0.1.398 — e **la proposta che avevi avallato era sbagliata**: la parete non erano i bersagli ([D-428](DECISIONS.md#d-428)) |
+| **M5** | [128](ISSUES.md#128) | lavorata in 0.1.398 — e **la proposta che avevi avallato era sbagliata**: la parete non erano i bersagli ([D-428](DECISIONS.md#d-428)); ✔ **chiusa** in 0.1.409 |
 | **M6** | [100](ISSUES.md#100) | ✔ **chiusa** in 0.1.400 — le 46 righe si stampano come le genera il motore |
 | **M7** | [127](ISSUES.md#127) | ✔ **chiusa** in 0.1.399 — quattro varchi disegnati, i chiusi li copre un gettone |
 | **M8** | [64](ISSUES.md#64) | ✔ **chiusa** in 0.1.401 — chi siede l'anno prossimo è una regola scritta |
@@ -126,10 +126,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **116** |
-| aperte | **16** |
+| chiuse | **117** |
+| aperte | **15** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **16** |
+| di cui sono mie da fare | **15** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -160,12 +160,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **7** | **io**, da sola, senza aspettare niente |
+| 🟡 | **6** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Sette.** Delle sedici voci aperte, sette le posso muovere senza di te — ed è
-il numero che va detto per primo. **Il giro non è fermo su nessuna tua
-parola.**
+**Sei.** Delle quindici voci aperte, sei le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
@@ -235,7 +234,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **sette**
+# 🟡 Sono mie, e non aspettano niente: **sei**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). **Sei si sono chiuse e una è uscita dalla lista**,
@@ -251,7 +250,6 @@ sparisce dal conto qui sopra.
 | **M4** — [106](ISSUES.md#106), la pedina senza il nome | la casella è comprata **una volta su settantadue**: è la stessa forma delle due che la 117 ha già curato |
 | **M1** — [56](ISSUES.md#56), le Conseguenze che non escono | ne restano nove, e sette hanno un tentativo solo: prima di riscriverle vanno **misurate su 200 anni**, o tolte |
 | **M2** — [59](ISSUES.md#59), INFLUENZARE | due dei tre difetti sono spariti da soli; resta il verbo meno giocato |
-| **M5** — [128](ISSUES.md#128), le carte murate | lavorata in 0.1.398, e il *«passo»* è sceso: resta sotto la soglia che il suo criterio chiede |
 | **M12** — [111](ISSUES.md#111), le Pietre che non si alzano | rimisurata in 0.1.405: la causa è scritta giusta, e la cura non è alzare un numero |
 
 ### M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai
@@ -303,7 +301,13 @@ beneficio meno interessante che si possa offrire, e infatti la casella è compra
 verbale dice quale, e la sonda delle caselle mostra se la casella smette di essere
 quella che nessuno compra.
 
-### M5. [128](ISSUES.md#128) — le carte murate: **lavorata in 0.1.398**
+### ✔ M5. [128](ISSUES.md#128) — le carte murate: **chiusa in 0.1.409**
+
+**Chiusa in 0.1.409** ([D-439](DECISIONS.md#d-439)): la sonda ha imparato a
+distinguere una carta che non arriva *su quella tessera* da una che non arriva
+*su nessuna*, e la seconda — la sola che il criterio chiede a zero — è **0 su
+1.882** rifiuti in cento anni. I 109 «a segni» sono tutti «non qui, altrove sì».
+
 
 **Parola tua: sì.** Il passare non si toglie — toglierlo costa il **42% della
 memoria del mondo** e non porta i «passa» a zero, li porta a 36,1%.
@@ -666,8 +670,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle sedici voci aperte ne posso
-muovere **sette** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle quindici voci aperte ne posso
+muovere **sei** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

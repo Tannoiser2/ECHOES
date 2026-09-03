@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.409 — Murata dalla mappa, o solo non qui
+
+M5 della lista: [ISSUES 128](docs/ISSUES.md#128) ([D-439](docs/DECISIONS.md#d-439)).
+
+`run_pass_probe` conta i rifiuti del tavolo **faccia per faccia** e distingue
+una carta che non arriva *su quella tessera* da una che non arriva *su nessuna*:
+la seconda è **murata dalla mappa**, ed è la parete che il «fatto quando»
+chiede a zero. 100 anni, seme 7000: **0 su 1.882**. I 109 rifiuti «a segni» che
+restano sono tutti «non qui, altrove sì». Nessun cambio di gioco.
+
+---
+
 ## 0.1.407 — La coda della fustella si chiude
 
 M10 della lista: [ISSUES 82](docs/ISSUES.md#82) ([D-437](docs/DECISIONS.md#d-437)).

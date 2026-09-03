@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-439 — Murata dalla mappa, o solo non qui: la parete a segni si chiude a zero
+
+**implemented in 0.1.409.** Chiude [ISSUES 128](ISSUES.md#128) (M5 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Il criterio, e cosa la sonda non sapeva distinguere
+
+Il «fatto quando» riscritto da [D-428](#d-428) chiede che *nessuna carta sia
+murata da un bersaglio a segni che la mappa non porta*. `run_pass_probe` contava
+la famiglia «il bersaglio a segni» prendendo, per ogni carta che il tavolo non
+prende, **la ragione ripetuta piu' volte** — e un rifiuto *«Magistrato non
+arriva li': L'Isola Muta non ne porta nessuno»* dice solo che **quella** tessera
+non porta i segni della carta. Se le altre cinque l'hanno rifiutata per una
+quota gia' spesa o un segno che vieta, la carta non e' murata dalla mappa: e' un
+turno gia' speso, contato come difetto del bersaglio.
+
+La distinzione che conta e' un'altra: **la carta e' murata dalla mappa quando
+nessuna tessera pescata porta i suoi segni** — cioe' quando ogni rifiuto, su
+ogni bersaglio di una faccia, e' «non arriva li'». E' quello che [D-273](#d-273)
+garantisce per costruzione sulle facce a bersaglio REGION, e nessuna sonda
+l'aveva mai verificato in partita.
+
+### Adesso lo dice, faccia per faccia
+
+Il testimone tiene i rifiuti **per faccia**; se una faccia e' stata rifiutata
+su ogni tessera per i soli segni, la parete si chiama *«murata dalla mappa»* ed
+e' una famiglia sua. Il resto della vecchia famiglia diventa *«il bersaglio a
+segni, non qui: altrove un'altra regola»*.
+
+100 anni di CHR_00, seme 7000, tavolo misto:
+
+| la parete | eventi | quota |
+|---|---|---|
+| un segno del mondo lo vieta | 895 | 47,6% |
+| la quota di INFLUENZARE, una per giro | 506 | 26,9% |
+| il Consiglio si forza una volta per giro | 252 | 13,4% |
+| il bersaglio a segni, **non qui**: altrove un'altra regola | 109 | 5,8% |
+| il prezzo in carte da scartare | 107 | 5,7% |
+| **murata dalla mappa: nessuna tessera porta i suoi segni** | **0** | **0** |
+
+**Zero su 1.882 rifiuti.** Le quattro carte che restano in quella riga —
+Magistrato verso l'Isola (27), Il Tesoro verso il Bosco (23), Carovana verso
+l'Isola (16), Diritto di Ospitalita' verso il Bosco (12) — avevano tutte
+un'altra tessera dove andare, e l'Ospitalita' rifiuta il Bosco perche' **porta
+un segno che la carta vieta**: e' la carta, come D-428 aveva gia' scritto.
+
+I numeri intorno, sullo stesso giro: passa **40,9%** (2.944 su 7.200), mano muta
+53,9%, di cui il tavolo non prende il 12,0% e il cervello non vuole l'88,0%.
+
+### Quello che resta scritto, e non e' di questa voce
+
+Il **63,9%** della parete cade ancora sulle diciotto carte che stampano lo
+stesso verbo su tutte e due le facce. Dare a ognuna un secondo verbo diverso
+cambia cosa fa la carta: e' la scelta d'autore che [ISSUES 128](ISSUES.md#128)
+lascia scritta al committente, e non apre una voce nuova.
+
+### Il costo
+
+Nessuno sul gioco: cambia solo la sonda. E la sonda adesso puo' andare rossa
+il giorno che una faccia non arriva su nessuna tessera pescata, che prima non
+poteva vedere.
+
+---
+
 ## D-437 — La coda della fustella si chiude: due mai visti, e sono quelli decisi
 
 **implemented in 0.1.407.** Chiude [ISSUES 82](ISSUES.md#82) (M10 della
