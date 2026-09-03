@@ -1847,8 +1847,16 @@ func _rule_matches(rule: Dictionary, done: Array) -> bool:
 	var control: bool = bool(rule.get("takes_control", false))
 	var leaves: bool = bool(rule.get("removes_presence", false))
 	var arrives: bool = bool(rule.get("adds_presence", false))
+	# **Il verbo dei rapporti** (D-430). `SET_RELATION` esce 159 volte su
+	# vent'anni e nessuna riga poteva nominarlo: le tredici Tensioni di rapporti
+	# — *I Voti Non Sciolti*, *Il Diritto d'Asilo*, *La Vecchia Guardia* — non
+	# avevano nessun gesto da guardare, e restavano senza casella. `becomes`
+	# filtra sul livello **d'arrivo**: la direzione non si puo' chiedere, perche'
+	# l'Effetto porta il livello nuovo e non quello di prima.
+	var relation: bool = bool(rule.get("changes_relation", false))
+	var becomes: Array = rule.get("relation_becomes", []) as Array
 	if puts.is_empty() and clears.is_empty() and builds.is_empty() \
-			and not control and not leaves and not arrives:
+			and not control and not leaves and not arrives and not relation:
 		return false
 	var where: Array = rule.get("on_region_with", []) as Array
 	for entry in done:
@@ -1870,6 +1878,10 @@ func _rule_matches(rule: Dictionary, done: Array) -> bool:
 				hit = leaves
 			"ADD_PRESENCE":
 				hit = arrives
+			"SET_RELATION":
+				hit = relation and (
+					becomes.is_empty() or becomes.has(str(payload.get("level", "")))
+				)
 		if not hit:
 			continue
 		if where.is_empty():

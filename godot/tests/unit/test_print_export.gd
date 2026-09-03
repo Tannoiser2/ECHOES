@@ -379,8 +379,16 @@ func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
 		for old in tension.get("triggers", []) as Array:
 			assert_false(notes.contains(str(old)),
 				"%s stampa ancora la prosa insieme alla regola" % str(card["id"]))
-	assert_eq(col_regola, 47, "le Tensioni che stampano la regola")
-	assert_eq(col_prosa, 13, "e quelle che, senza casella, tengono la prosa")
+	# **Tutte, e nessuna in prosa** (D-430). Fino alla 0.1.399 questa riga
+	# fissava 47 e 13, e i tredici che restavano erano un difetto scritto in una
+	# prova: la carta si scaldava e non lo diceva. Adesso l'invariante e' quello
+	# che conta, e non un conto che invecchia — **ogni Tensione stampa la sua
+	# regola, e nessuna ripiega sulla prosa**.
+	assert_eq(col_prosa, 0, "nessuna Tensione ripiega sulla prosa")
+	assert_eq(
+		col_regola, loaded.tensions.size(),
+		"ogni Tensione stampa la regola che dice quando si scalda"
+	)
 
 
 ## **Il cancelletto sta su una parola sola, dappertutto**

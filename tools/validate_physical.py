@@ -1107,7 +1107,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             verbi = [
                 riga.get("puts_tag"), riga.get("clears_tag"), riga.get("builds"),
                 riga.get("takes_control"), riga.get("removes_presence"),
-                riga.get("adds_presence"),
+                riga.get("adds_presence"), riga.get("changes_relation"),
             ]
             if not any(verbi):
                 guai.append(
@@ -1125,6 +1125,18 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     guai.append(
                         "si accende quando: %s nomina la Pietra «%s», che non "
                         "esiste: la riga non si accende mai" % (dove, pietra))
+            # Il filtro sul livello d'arrivo senza il verbo dei rapporti non
+            # filtra niente: la riga si accenderebbe su un gesto qualsiasi.
+            if riga.get("relation_becomes") and not riga.get("changes_relation"):
+                guai.append(
+                    "si accende quando: %s chiede un livello di rapporto senza "
+                    "dire `changes_relation`: il filtro non filtra niente" % dove)
+            # E un filtro di luogo su un cambio di rapporto non si accende mai:
+            # un rapporto non sta su una Regione.
+            if riga.get("changes_relation") and riga.get("on_region_with"):
+                guai.append(
+                    "si accende quando: %s mette un filtro di luogo su un cambio "
+                    "di rapporto, che non sta su nessuna Regione" % dove)
 
     # 21. il posto sul tavolo combacia con la forma del nome e con l'ambito (D-350)
     #
@@ -1680,6 +1692,29 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             "puts_tag": ["condition:seminato_apposta"],
         }]
 
+    def livello_senza_verbo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Il filtro sul livello d'arrivo senza il verbo dei rapporti (D-430).
+
+        La riga sembra dire «quando due case si legano» e invece si accende su
+        un gesto qualsiasi: il filtro non filtra, perche' non c'e' niente da
+        filtrare."""
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{
+            "text": "due case si legano",
+            "relation_becomes": ["ALLY", "BOUND"],
+            "puts_tag": ["condition:contested"],
+        }]
+
+    def rapporto_con_luogo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Un filtro di luogo su un cambio di rapporto: non si accende mai,
+        perche' un rapporto non sta su nessuna Regione."""
+        tensione = next(t for t in prova["tension"] if t.get("heats_when"))
+        tensione["heats_when"] = [{
+            "text": "due case cambiano il patto, in una terra col granaio",
+            "changes_relation": True,
+            "on_region_with": ["granary"],
+        }]
+
     def accende_pietra_inventata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         tensione = next(t for t in prova["tension"] if t.get("heats_when"))
         tensione["heats_when"] = [{
@@ -1784,6 +1819,10 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                accende_pietra_inventata, "nomina la Pietra"),
         pianta("si accende quando: una riga senza verbo", accende_senza_verbo,
                "non dice nessun verbo"),
+        pianta("si accende quando: un livello di rapporto senza il suo verbo",
+               livello_senza_verbo, "il filtro non filtra niente"),
+        pianta("si accende quando: un cambio di rapporto con un filtro di luogo",
+               rapporto_con_luogo, "non sta su nessuna Regione"),
         pianta("Cicatrice di rovina fuori dal dizionario", rovina_non_dichiarata,
                "segno fuori dal dizionario"),
         pianta("scrittore dichiarato che il censimento non vede",

@@ -308,7 +308,7 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #fame o #requisito o #malcontento",
+          "text": "qualcuno posa la #fame, il #requisito o il #malcontento",
           "puts_tag": [
             "condition:starving",
             "condition:requisitioned",
@@ -316,7 +316,7 @@
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #granaio",
+          "text": "una casa entra in una terra col #granaio, o la lascia",
           "on_region_with": [
             "granary",
             "structure:granary"
@@ -642,14 +642,14 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #sfruttato o #sigillato",
+          "text": "qualcuno posa lo #sfruttato o il #sigillato",
           "puts_tag": [
             "condition:exploited",
             "structure:sealed"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #cristallo",
+          "text": "una casa entra dove sta il #cristallo, o se ne va",
           "on_region_with": [
             "crystal_site"
           ],
@@ -1016,7 +1016,7 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #conteso o #malcontento o #il_seggio_vuoto",
+          "text": "qualcuno posa il #conteso, il #malcontento o il #il_seggio_vuoto",
           "puts_tag": [
             "condition:contested",
             "condition:unrest",
@@ -1024,7 +1024,7 @@
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -1295,14 +1295,14 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #tagliato_fuori o #saccheggiato",
+          "text": "qualcuno posa il #tagliato_fuori o il #saccheggiato",
           "puts_tag": [
             "condition:cut_off",
             "condition:plundered"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #commercio o #cristallo",
+          "text": "una casa entra dove passa il #commercio o dove sta il #cristallo, o se ne va",
           "on_region_with": [
             "trade",
             "crystal_site"
@@ -1526,7 +1526,7 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #fame o #malcontento o #abbandonato",
+          "text": "qualcuno posa la #fame, il #malcontento o l'#abbandonato",
           "puts_tag": [
             "condition:starving",
             "condition:unrest",
@@ -1534,7 +1534,7 @@
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #pascolo",
+          "text": "una casa entra in un #pascolo, o lo lascia",
           "on_region_with": [
             "nomad_range"
           ],
@@ -1746,14 +1746,14 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #razionato o #fame",
+          "text": "qualcuno posa il #razionato o la #fame",
           "puts_tag": [
             "condition:rationed",
             "condition:starving"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #granaio o #commercio",
+          "text": "una casa entra dove c'e' il #granaio o il #commercio, o se ne va",
           "on_region_with": [
             "granary",
             "structure:granary",
@@ -1976,7 +1976,7 @@
       },
       "heats_when": [
         {
-          "text": "Quando qualcuno alzo' un granaio, scavo' un canale, o la magra arrivo'.",
+          "text": "qualcuno alza un Granaio o un Canale, o posa il #magro",
           "puts_tag": [
             "condition:lean",
             "structure:canal",
@@ -1984,7 +1984,7 @@
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #granaio",
+          "text": "una casa entra in una terra col #granaio, o la lascia",
           "on_region_with": [
             "granary",
             "structure:granary"
@@ -2235,14 +2235,14 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #indebitata o #pedaggio",
+          "text": "qualcuno posa l'#indebitata o alza un Pedaggio",
           "puts_tag": [
             "condition:indebted",
             "structure:tollgate"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #commercio",
+          "text": "una casa entra dove passa il #commercio, o se ne va",
           "on_region_with": [
             "trade"
           ],
@@ -2526,14 +2526,14 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #sigillato o #malcontento",
+          "text": "qualcuno posa il #sigillato o il #malcontento",
           "puts_tag": [
             "structure:sealed",
             "condition:unrest"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #cristallo",
+          "text": "una casa entra dove sta il #cristallo, o se ne va",
           "on_region_with": [
             "crystal_site"
           ],
@@ -2780,14 +2780,14 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #conteso o #malcontento",
+          "text": "qualcuno posa il #conteso o il #malcontento",
           "puts_tag": [
             "condition:contested",
             "condition:unrest"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -3004,13 +3004,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #svuotato",
+          "text": "qualcuno posa lo #svuotato",
           "puts_tag": [
             "condition:emptied"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #pascolo",
+          "text": "una casa entra in un #pascolo, o lo lascia",
           "on_region_with": [
             "nomad_range"
           ],
@@ -3230,7 +3230,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #cristallo o #selvaggio",
+          "text": "una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va",
           "on_region_with": [
             "crystal_site",
             "wild"

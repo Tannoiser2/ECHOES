@@ -622,6 +622,24 @@
                   "type": "string"
                 },
                 "description": "Filtro: la Regione toccata deve portare uno di questi segni. Senza, vale ovunque."
+              },
+              "changes_relation": {
+                "type": "boolean",
+                "description": "L'Azione ha cambiato il rapporto fra due case. E' il gesto che le tredici Tensioni di rapporti aspettavano: `SET_RELATION` esce 159 volte su vent'anni e fino alla 0.1.400 nessun verbo lo nominava, quindi quelle carte non potevano dire sulla faccia perche' si scaldano (D-430)."
+              },
+              "relation_becomes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "ENEMY",
+                    "HOSTILE",
+                    "NEUTRAL",
+                    "ALLY",
+                    "BOUND"
+                  ]
+                },
+                "description": "Filtro: il rapporto deve **arrivare** a uno di questi livelli. Senza, vale ogni cambio. La direzione non si puo' chiedere — l'Effetto porta il livello nuovo e non quello di prima — e questo e' il modo onesto di dire «quando due case si legano» o «quando due case rompono»."
               }
             }
           }

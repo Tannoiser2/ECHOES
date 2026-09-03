@@ -113,7 +113,7 @@ Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno.
 > **La Cenere che Sale**
 > domanda velata · l'antico
 > angolo: **4**
-> SI ACCENDE QUANDO  una Presenza arriva o se ne va da una terra con #cristallo o #selvaggio
+> SI ACCENDE QUANDO  una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va
 > SI RAFFREDDA  Una Confluence risolta su chi tiene d'occhio la montagna.
 > AL CONSIGLIO VALGONO  forza, sapere, gente
 

@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4185 testi in lettura.
+possono spostare nella frase, non togliere. 4211 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -458,7 +458,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_ASH, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #cristallo o #selvaggio
+> una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va
 
 
 **`TEN_ASH, presagio al 3`**
@@ -572,11 +572,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_AWAKENING, si accende quando — ?`**
-> una carta posa #sfruttato o #sigillato
+> qualcuno posa lo #sfruttato o il #sigillato
 
 
 **`TEN_AWAKENING, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #cristallo
+> una casa entra dove sta il #cristallo, o se ne va
 
 
 **`TEN_AWAKENING, presagio al 3`**
@@ -710,7 +710,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #granaio
+> una casa entra in una terra col #granaio, o la lascia
 
 
 **`TEN_BAD_GRAIN, presagio al 5`**
@@ -816,7 +816,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #bosco o #commercio
+> una casa entra nel #bosco o dove passa il #commercio, o se ne va
 
 
 **`TEN_BLACK_TOLLS, presagio al 5`**
@@ -919,6 +919,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_BOUNDARY_STONES, scende quando 2`**
 > Un catasto riscritto al Consiglio.
+
+
+**`TEN_BOUNDARY_STONES, si accende quando — ?`**
+> qualcuno posa il #conteso
+
+
+**`TEN_BOUNDARY_STONES, si accende quando — ?`**
+> il controllo di una terra passa di mano
 
 
 **`TEN_BOUNDARY_STONES, presagio al 5`**
@@ -1036,11 +1044,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_BURIALS, si accende quando — ?`**
-> una carta posa #lutto
+> qualcuno posa il #lutto
 
 
 **`TEN_BURIALS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #palude
+> una casa entra nella #palude, o la lascia
 
 
 **`TEN_BURIALS, presagio al 5`**
@@ -1150,11 +1158,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_CHARTER, si accende quando — ?`**
-> una carta posa #conteso o #malcontento
+> qualcuno posa il #conteso o il #malcontento
 
 
 **`TEN_CHARTER, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_CHARTER, presagio al 4`**
@@ -1272,7 +1280,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_CLEARING, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #bosco
+> una casa entra nel #bosco, o lo lascia
 
 
 **`TEN_CLEARING, presagio al 5`**
@@ -1386,7 +1394,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_COUNCIL_SEATS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_COUNCIL_SEATS, presagio al 5`**
@@ -1501,6 +1509,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_COURIERS, scende quando 2`**
 > Una posta sigillata con pene scritte.
+
+
+**`TEN_COURIERS, si accende quando — ?`**
+> una casa entra dove passa il #commercio o nella #capitale, o se ne va
+
+
+**`TEN_COURIERS, si accende quando — ?`**
+> due case cambiano il patto che le lega
 
 
 **`TEN_COURIERS, presagio al 5`**
@@ -1622,11 +1638,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_DEBT, si accende quando — ?`**
-> una carta posa #indebitata o #pedaggio
+> qualcuno posa l'#indebitata o alza un Pedaggio
 
 
 **`TEN_DEBT, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #commercio
+> una casa entra dove passa il #commercio, o se ne va
 
 
 **`TEN_DEBT, presagio al 4`**
@@ -1732,7 +1748,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_DEEP_WATER, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #palude o #isola
+> una casa entra nella #palude o sull'#isola, o se ne va
 
 
 **`TEN_DEEP_WATER, presagio al 5`**
@@ -1838,7 +1854,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_ECHOES_BELOW, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #miniera
+> una casa scende nella #miniera, o ne risale
 
 
 **`TEN_ECHOES_BELOW, presagio al 5`**
@@ -1952,7 +1968,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #porto
+> una casa entra nel #porto, o lo lascia
 
 
 **`TEN_EMPTY_NETS, presagio al 5`**
@@ -2180,11 +2196,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_FALLOW, si accende quando — ?`**
-> una carta posa #magro
+> qualcuno posa il #magro
 
 
 **`TEN_FALLOW, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #granaio
+> una casa entra in una terra col #granaio, o la lascia
 
 
 **`TEN_FALLOW, presagio al 5`**
@@ -2294,11 +2310,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_FAMINE, si accende quando — ?`**
-> una carta posa #fame o #requisito o #malcontento
+> qualcuno posa la #fame, il #requisito o il #malcontento
 
 
 **`TEN_FAMINE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #granaio
+> una casa entra in una terra col #granaio, o la lascia
 
 
 **`TEN_FAMINE, presagio al 5`**
@@ -2424,7 +2440,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_FERRY, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #porto o #isola
+> una casa entra nel #porto o sull'#isola, o se ne va
 
 
 **`TEN_FERRY, presagio al 5`**
@@ -2530,7 +2546,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_FLOOD, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #palude
+> una casa entra nella #palude, o la lascia
 
 
 **`TEN_FLOOD, presagio al 5`**
@@ -2636,7 +2652,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #commercio o #capitale
+> una casa entra dove passa il #commercio o nella #capitale, o se ne va
 
 
 **`TEN_GUILD_WAR, presagio al 5`**
@@ -2742,7 +2758,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_HERESY, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_HERESY, presagio al 5`**
@@ -2860,7 +2876,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_HOSTAGES, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_HOSTAGES, presagio al 5`**
@@ -2978,7 +2994,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_ISLAND_SHRINE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #isola
+> una casa sbarca sull'#isola, o la lascia
 
 
 **`TEN_ISLAND_SHRINE, presagio al 5`**
@@ -3092,7 +3108,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_ISLAND_SILENCE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #isola
+> una casa sbarca sull'#isola, o la lascia
 
 
 **`TEN_ISLAND_SILENCE, presagio al 5`**
@@ -3205,6 +3221,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 > Terra concessa a chi la lavora.
 
 
+**`TEN_LANDLESS, si accende quando — ?`**
+> una casa entra in una terra col #granaio o in un #pascolo, o la lascia
+
+
+**`TEN_LANDLESS, si accende quando — ?`**
+> due case cambiano il patto che le lega
+
+
 **`TEN_LANDLESS, presagio al 5`**
 > I braccianti hanno cominciato a contarsi. Sono piu' dei padroni, e adesso lo sanno.
 
@@ -3308,7 +3332,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_LAND_REGISTER, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_LAND_REGISTER, presagio al 5`**
@@ -3425,6 +3449,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 > Un anno senza chiamate.
 
 
+**`TEN_LEVY, si accende quando — ?`**
+> qualcuno posa la #fame o il #requisito
+
+
+**`TEN_LEVY, si accende quando — ?`**
+> due case si legano fino al patto o al sangue
+
+
 **`TEN_LEVY, presagio al 5`**
 > Al mercato si vendono certificati di malattia. Il prezzo sale ogni settimana.
 
@@ -3528,11 +3560,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_MARCHES, si accende quando — ?`**
-> una carta posa #conteso
+> qualcuno posa il #conteso
 
 
 **`TEN_MARCHES, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #bosco
+> una casa entra nel #bosco, o lo lascia
 
 
 **`TEN_MARCHES, presagio al 5`**
@@ -3650,7 +3682,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_MARSH_FEVER, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #palude
+> una casa entra nella #palude, o la lascia
 
 
 **`TEN_MARSH_FEVER, presagio al 5`**
@@ -3752,11 +3784,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_NAMELESS, si accende quando — ?`**
-> una carta posa #svuotato
+> qualcuno posa lo #svuotato
 
 
 **`TEN_NAMELESS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #pascolo
+> una casa entra in un #pascolo, o lo lascia
 
 
 **`TEN_NAMELESS, presagio al 4`**
@@ -3870,7 +3902,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #palude o #bosco
+> una casa entra nella #palude o nel #bosco, o se ne va
 
 
 **`TEN_OLD_CHANNELS, presagio al 5`**
@@ -3973,6 +4005,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_OLD_GUARD, scende quando 2`**
 > Una pensione decisa al Consiglio.
+
+
+**`TEN_OLD_GUARD, si accende quando — ?`**
+> due case cambiano il patto che le lega
+
+
+**`TEN_OLD_GUARD, si accende quando — ?`**
+> qualcuno alza un Presidio
 
 
 **`TEN_OLD_GUARD, presagio al 5`**
@@ -4089,6 +4129,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 > Un divieto o una riabilitazione decisi al Consiglio.
 
 
+**`TEN_OLD_NAMES, si accende quando — ?`**
+> qualcuno posa lo #svuotato o l'#abbandonato
+
+
+**`TEN_OLD_NAMES, si accende quando — ?`**
+> una casa entra nel #selvaggio o nel #bosco, o se ne va
+
+
 **`TEN_OLD_NAMES, presagio al 5`**
 > Il traghettatore ha chiamato il fiume col nome vecchio, per sbaglio. L'acqua era piu' fredda del solito, dice.
 
@@ -4192,11 +4240,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_PASTURE, si accende quando — ?`**
-> una carta posa #conteso
+> qualcuno posa il #conteso
 
 
 **`TEN_PASTURE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #pascolo
+> una casa entra in un #pascolo, o lo lascia
 
 
 **`TEN_PASTURE, presagio al 5`**
@@ -4313,6 +4361,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 > Un anno santo dichiarato e organizzato.
 
 
+**`TEN_PILGRIMS, si accende quando — ?`**
+> qualcuno posa la #fame o il #razionato
+
+
+**`TEN_PILGRIMS, si accende quando — ?`**
+> una casa sbarca sull'#isola o entra nella #capitale, o se ne va
+
+
 **`TEN_PILGRIMS, presagio al 5`**
 > I pellegrini accampati fuori porta sono piu' degli abitanti dentro. Pregano. Per ora.
 
@@ -4408,11 +4464,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_PLAGUE, si accende quando — ?`**
-> una carta posa #fame o #malcontento o #abbandonato
+> qualcuno posa la #fame, il #malcontento o l'#abbandonato
 
 
 **`TEN_PLAGUE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #pascolo
+> una casa entra in un #pascolo, o lo lascia
 
 
 **`TEN_PLAGUE, presagio al 3`**
@@ -4530,7 +4586,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_PROPHECY, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #cristallo
+> una casa entra dove sta il #cristallo, o se ne va
 
 
 **`TEN_PROPHECY, presagio al 5`**
@@ -4644,7 +4700,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_QUARANTINE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #commercio o #porto
+> una casa entra dove passa il #commercio o nel #porto, o se ne va
 
 
 **`TEN_QUARANTINE, presagio al 5`**
@@ -4749,6 +4805,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 > Terra o lavoro dati a chi arriva.
 
 
+**`TEN_REFUGEES, si accende quando — ?`**
+> qualcuno posa lo #svuotato, l'#abbandonato o il #saccheggiato
+
+
+**`TEN_REFUGEES, si accende quando — ?`**
+> due case cambiano il patto che le lega
+
+
 **`TEN_REFUGEES, presagio al 5`**
 > Quelli fuori porta hanno acceso il terzo fuoco. Contano di restare, o non hanno dove tornare.
 
@@ -4849,6 +4913,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_REGENCY, scende quando 2`**
 > La consegna del sigillo davanti a testimoni.
+
+
+**`TEN_REGENCY, si accende quando — ?`**
+> qualcuno posa il #il_seggio_vuoto o il #conteso
+
+
+**`TEN_REGENCY, si accende quando — ?`**
+> il controllo di una terra passa di mano
 
 
 **`TEN_REGENCY, presagio al 5`**
@@ -4970,11 +5042,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_RELIC, si accende quando — ?`**
-> una carta posa #sigillato o #malcontento
+> qualcuno posa il #sigillato o il #malcontento
 
 
 **`TEN_RELIC, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #cristallo
+> una casa entra dove sta il #cristallo, o se ne va
 
 
 **`TEN_RELIC, presagio al 4`**
@@ -5104,11 +5176,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_ROADS, si accende quando — ?`**
-> una carta posa #tagliato_fuori o #saccheggiato
+> qualcuno posa il #tagliato_fuori o il #saccheggiato
 
 
 **`TEN_ROADS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #commercio o #cristallo
+> una casa entra dove passa il #commercio o dove sta il #cristallo, o se ne va
 
 
 **`TEN_ROADS, presagio al 2`**
@@ -5234,7 +5306,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_SALT_FIELDS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #porto o #palude
+> una casa entra nel #porto o nella #palude, o se ne va
 
 
 **`TEN_SALT_FIELDS, presagio al 5`**
@@ -5337,6 +5409,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_SANCTUARY, scende quando 2`**
 > Una consegna negoziata senza sangue.
+
+
+**`TEN_SANCTUARY, si accende quando — ?`**
+> due case si legano fino al patto o al sangue
+
+
+**`TEN_SANCTUARY, si accende quando — ?`**
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_SANCTUARY, presagio al 5`**
@@ -5454,7 +5534,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_SEALS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #commercio o #capitale
+> una casa entra dove passa il #commercio o nella #capitale, o se ne va
 
 
 **`TEN_SEALS, presagio al 5`**
@@ -5560,11 +5640,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_SILENT_BELLS, si accende quando — ?`**
-> una carta posa #lutto
+> qualcuno posa il #lutto
 
 
 **`TEN_SILENT_BELLS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_SILENT_BELLS, presagio al 5`**
@@ -5682,7 +5762,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #palude
+> una casa entra nella #palude, o la lascia
 
 
 **`TEN_SILTED_CANALS, presagio al 5`**
@@ -5785,6 +5865,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_SLEEPERS, scende quando 2`**
 > Una veglia istituita dove si dorme.
+
+
+**`TEN_SLEEPERS, si accende quando — ?`**
+> qualcuno posa il #sigillato
+
+
+**`TEN_SLEEPERS, si accende quando — ?`**
+> una casa entra dove sta il #cristallo o nella #miniera, o se ne va
 
 
 **`TEN_SLEEPERS, presagio al 5`**
@@ -5890,7 +5978,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_SMUGGLING, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #porto
+> una casa entra nel #porto, o lo lascia
 
 
 **`TEN_SMUGGLING, presagio al 5`**
@@ -5996,11 +6084,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_SUCCESSION, si accende quando — ?`**
-> una carta posa #conteso o #malcontento o #il_seggio_vuoto
+> qualcuno posa il #conteso, il #malcontento o il #il_seggio_vuoto
 
 
 **`TEN_SUCCESSION, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #capitale
+> una casa entra nella #capitale, o la lascia
 
 
 **`TEN_SUCCESSION, presagio al 4`**
@@ -6130,11 +6218,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_THIRST, si accende quando — ?`**
-> una carta posa #razionato o #fame
+> qualcuno posa il #razionato o la #fame
 
 
 **`TEN_THIRST, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #granaio o #commercio
+> una casa entra dove c'e' il #granaio o il #commercio, o se ne va
 
 
 **`TEN_THIRST, presagio al 2`**
@@ -6244,7 +6332,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_TITHE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #granaio o #commercio
+> una casa entra dove c'e' il #granaio o il #commercio, o se ne va
 
 
 **`TEN_TITHE, presagio al 5`**
@@ -6350,7 +6438,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_TRIBUTE, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #porto o #commercio
+> una casa entra nel #porto o dove passa il #commercio, o se ne va
 
 
 **`TEN_TRIBUTE, presagio al 5`**
@@ -6456,7 +6544,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_UNEARTHED, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #miniera o #cristallo
+> una casa entra nella #miniera o dove sta il #cristallo, o se ne va
 
 
 **`TEN_UNEARTHED, presagio al 5`**
@@ -6569,6 +6657,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 > Un Consiglio che dice quali voti valgono ancora.
 
 
+**`TEN_VOWS, si accende quando — ?`**
+> due case scendono a nemiche
+
+
+**`TEN_VOWS, si accende quando — ?`**
+> qualcuno posa il #lutto
+
+
 **`TEN_VOWS, presagio al 5`**
 > La lista dei voti in sospeso e' piu' lunga della lista dei battesimi. Qualcuno ha cominciato a dirlo forte.
 
@@ -6672,7 +6768,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_WARD_STONES, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #selvaggio o #bosco
+> una casa entra nel #selvaggio o nel #bosco, o se ne va
 
 
 **`TEN_WARD_STONES, presagio al 5`**
@@ -6790,11 +6886,11 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_WATER, si accende quando — ?`**
-> Quando qualcuno alzo' un granaio, scavo' un canale, o la magra arrivo'.
+> qualcuno alza un Granaio o un Canale, o posa il #magro
 
 
 **`TEN_WATER, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #granaio
+> una casa entra in una terra col #granaio, o la lascia
 
 
 **`TEN_WATER, presagio al 5`**
@@ -6900,7 +6996,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_WEIGHTS, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #commercio
+> una casa entra dove passa il #commercio, o se ne va
 
 
 **`TEN_WEIGHTS, presagio al 5`**
@@ -7003,6 +7099,14 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 **`TEN_WINTER, scende quando 2`**
 > Un disgelo arrivato in tempo.
+
+
+**`TEN_WINTER, si accende quando — ?`**
+> qualcuno posa la #fame, il #magro o il #razionato
+
+
+**`TEN_WINTER, si accende quando — ?`**
+> una casa entra in una terra col #granaio, o la lascia
 
 
 **`TEN_WINTER, presagio al 5`**
@@ -7112,7 +7216,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`TEN_WOLVES, si accende quando — ?`**
-> una Presenza arriva o se ne va da una terra con #bosco o #selvaggio
+> una casa entra nel #bosco o nel #selvaggio, o se ne va
 
 
 **`TEN_WOLVES, presagio al 5`**
