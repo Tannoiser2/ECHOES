@@ -10,6 +10,82 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-432 — La carta Tensione dice su cosa si discute
+
+**implemented in 0.1.402.** Chiude [ISSUES 69](ISSUES.md#69) (M9 della
+[lista](LE_TUE_DECISIONI.md)).
+
+### Quello che la carta taceva
+
+La Domanda **non e' una carta a parte** ([D-266](#d-266), revoca del
+committente): sta sulla carta Tensione. Ma la faccia stampata diceva **quando si
+scalda**, **quando si raffredda** e **cosa vale al Consiglio**, e taceva proprio
+su cosa si discute — cioe' la ragione per cui la si gira.
+
+Adesso porta il blocco **SI DISCUTE DI**, con le sue domande per intero, e i
+buchi si **spiegano** invece di riempirli (`CouncilText`): su una carta stampata
+`$the_region` non e' un nome mancante, e' una regola.
+
+> **SI DISCUTE DI**  La montagna fuma di nuovo nella Regione di cui si discute:
+> si mette qualcuno a guardarla, o si scrive che ha sempre fumato? · E le bocche
+> aperte sul fianco, si murano?
+
+### Otto su sessanta, e la prima stesura era mia
+
+Il testo delle domande sta **in due posti**: il blocco `council` della Tensione —
+la casa nuova di D-266, e ce l'hanno **tutte e sessanta** — e i template di
+Consiglio, che sono il ripiego e ne coprono **otto**. La prima stesura di questa
+faccia leggeva **solo i template**: stampava 8 carte su 60 e taceva sulle altre
+52.
+
+Non l'ha trovato una prova: l'ha trovato la **misura**, che diceva *«una riga di
+testo libero: 8 su 60»* dove doveva dire sessanta. Ed e' anche il motivo per cui
+per un momento ho creduto che 52 Tensioni nominassero domande inesistenti — la
+guardia dei dati non era cieca, ero io che guardavo nel posto sbagliato.
+
+| | prima | **dopo** |
+|---|---|---|
+| Tensioni che dicono su cosa si discute | **0 su 60** | **60 su 60** |
+
+### Il costo, dichiarato
+
+| mazzo tension, 60 facce | prima | dopo |
+|---|---|---|
+| corpo rimpicciolito | 0 su 60 | **2 su 60** |
+| la piu' stretta | 100% | **85%** |
+
+Due carte su sessanta stanno strette. E' meno di quanto costava la carta Asset
+prima del tarocco (46 su 48 al 74%, [D-421](#d-421)) e in linea con la scheda del
+Consiglio, che ne ha 7 su 60 all'89%. **Se al tavolo quelle due danno fastidio,
+la leva e' la stessa della R6: il formato.**
+
+### E il «fatto quando» della voce, letto per intero
+
+Chiedeva che *«una carta giocata nell'app esegua l'Azione scelta e la sua
+Risonanza, e il Tema che ne esce sia quello scritto sulla carta»*. Il **motore**
+lo fa, ed e' sorvegliato: `test_the_world_answers` gioca una carta con la faccia
+e pretende che scaldi il Tema stampato; il bersaglio a segni lo esegue
+[D-274](#d-274). **L'app** che lo mostra e' un'altra voce, ed e' la
+[65](ISSUES.md#65) — la M14 della lista, l'ultima e la piu' cara.
+
+### E un ritrovamento che non e' di questa voce
+
+Cercando dove vivono le domande si e' visto che le **clausole** no: stanno ancora
+tutte sui template — **21 clausole su 12 template, zero sulle Tensioni** — e i
+segni che solo loro scrivono quasi non arrivano al mondo.
+
+| segni scritti **solo** da un template | 10 |
+|---|---|
+| di quelli, che la misura vede scritti in 100 anni | **1** |
+
+Nove segni su dieci — `relic_recorded`, `water_shared`, `quota_guaranteed`,
+`debt_staggered`, `list_witnessed`, `distribution_audited`,
+`descent_witnessed`, `discovery:shared_record`, `return_promised` — non escono
+**mai**. E' la stessa famiglia di [D-425](#d-425), e la sua casa e'
+[ISSUES 56](ISSUES.md#56): ci va come riga, non come voce nuova.
+
+---
+
 ## D-431 — Chi siede l'anno prossimo: si ripesca, ed e' scritto
 
 **implemented in 0.1.401.** Chiude [ISSUES 64](ISSUES.md#64) (M8 della

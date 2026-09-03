@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.402 — La carta Tensione dice su cosa si discute
+
+M9 della lista, e chiude [ISSUES 69](docs/ISSUES.md#69)
+([D-432](docs/DECISIONS.md#d-432)).
+
+### Quello che la carta taceva
+
+La Domanda **non è una carta a parte** (D-266, revoca del committente): sta sulla
+carta Tensione. Ma la faccia stampata diceva **quando si scalda**, **quando si
+raffredda** e **cosa vale al Consiglio**, e taceva proprio su cosa si discute —
+cioè la ragione per cui la si gira.
+
+> **SI DISCUTE DI**  La montagna fuma di nuovo nella Regione di cui si discute:
+> si mette qualcuno a guardarla, o si scrive che ha sempre fumato? · E le bocche
+> aperte sul fianco, si murano?
+
+| | prima | **dopo** |
+|---|---|---|
+| Tensioni che dicono su cosa si discute | **0 su 60** | **60 su 60** |
+| corpo rimpicciolito | 0 su 60 | **2 su 60** (la più stretta all'85%) |
+
+Due carte su sessanta stanno strette: è meno di quanto costava la carta Asset
+prima del tarocco (46 su 48 al 74%) e in linea con la scheda del Consiglio (7 su
+60 all'89%). Se al tavolo danno fastidio, la leva è la stessa della R6: il
+formato.
+
+### Otto su sessanta, e la prima stesura era mia
+
+Il testo delle domande sta **in due posti**: il blocco `council` della Tensione —
+la casa nuova di D-266, ce l'hanno tutte e sessanta — e i template, che sono il
+ripiego e ne coprono **otto**. La prima stesura leggeva solo i template:
+stampava 8 carte su 60. **L'ha trovato la misura**, non una prova — e per un
+momento mi ha fatto credere che 52 Tensioni nominassero domande inesistenti: la
+guardia dei dati non era cieca, guardavo io nel posto sbagliato.
+
+### E un ritrovamento che non è di questa voce
+
+Le **clausole** sono rimaste tutte sui template — **21 su 12 template, zero sulle
+sessanta Tensioni** — e dei dieci segni che solo loro scrivono, **nove non escono
+mai in 100 anni**: `relic_recorded`, `water_shared`, `quota_guaranteed`,
+`debt_staggered`, `list_witnessed`, `distribution_audited`, `descent_witnessed`,
+`discovery:shared_record`, `return_promised`. È la stessa famiglia di D-425, ed è
+finito come **riga sotto [ISSUES 56](docs/ISSUES.md#56)** — non come voce nuova.
+
+**Costo dichiarato: nessun cambio di comportamento.** La modifica tocca la faccia
+stampata, non quello che il motore gioca.
+
+---
+
 ## 0.1.401 — Chi siede l'anno prossimo: si ripesca, ed è scritto
 
 M8 della lista, e chiude [ISSUES 64](docs/ISSUES.md#64)

@@ -5502,7 +5502,7 @@ dire una cosa sola sul tavolo.
 
 ---
 
-### 69. La Risonanza è scritta e non succede
+### 69. ✅ La Risonanza è scritta e non succede
 
 `contenuto` · `direzione` · **rossa R6 dalla 0.1.382**
 ([la lista](LE_TUE_DECISIONI.md)): resta il **formato** della carta, ed e' una
@@ -5654,6 +5654,33 @@ questa voce, ed è stato deciso in 0.1.393 — **il tarocco**
 due lavori miei: **stampare la faccia della Tensione con le sue domande**, ed
 **eseguire nel motore il resto della faccia fisica**. Il cartellino `da-decidere`
 è tolto, e la voce passa fra le mie.
+
+### ✅ Chiusa in 0.1.402: la carta dice su cosa si discute
+
+Fatto l'ultimo pezzo ([D-432](DECISIONS.md#d-432)). La faccia stampata diceva
+**quando si scalda**, **quando si raffredda** e **cosa vale al Consiglio**, e
+taceva proprio su cosa si discute — cioè la ragione per cui la si gira. Adesso
+porta il blocco **SI DISCUTE DI**, e i buchi si spiegano invece di riempirli.
+
+| | prima | **dopo** |
+|---|---|---|
+| Tensioni che dicono su cosa si discute | **0 su 60** | **60 su 60** |
+| corpo rimpicciolito | 0 su 60 | **2 su 60** (la più stretta all'85%) |
+
+**La prima stesura era mia, e stampava otto carte su sessanta.** Il testo delle
+domande sta in due posti — il blocco `council` della Tensione (la casa nuova di
+D-266, ce l'hanno tutte e sessanta) e i template (il ripiego, che ne coprono
+otto) — e leggevo solo i secondi. L'ha trovato **la misura**, non una prova.
+
+**E il «fatto quando», letto per intero.** Chiedeva che *«una carta giocata
+nell'app esegua l'Azione scelta e la sua Risonanza, e il Tema che ne esce sia
+quello scritto sulla carta»*. Il **motore** lo fa ed è sorvegliato
+(`test_the_world_answers`); il bersaglio a segni lo esegue D-274. **L'app** che
+lo mostra è la [65](#65), la M14 della lista.
+
+**Un ritrovamento che non è di questa voce:** le **clausole** stanno ancora tutte
+sui template — 21 su 12 template, zero sulle Tensioni — e nove dei dieci segni
+che solo loro scrivono non escono **mai**. Va sotto la [56](#56).
 
 ---
 
@@ -6595,6 +6622,29 @@ template, e **le Proposte vengono dalla carta Tensione** (D-378) — il numero n
 si è mosso di un centesimo; la seconda la puntava su una Regione, e **una
 Scoperta sta sull'entità**. Nona e decima volta che un numero fermo era chi
 guardava.
+
+### Una riga nuova in 0.1.402: le clausole sono rimaste sui template
+
+Trovato lavorando la [69](#69) ([D-432](DECISIONS.md#d-432)), e non lo stavo
+cercando. Da [D-378](DECISIONS.md#d-378) le **domande** e le **proposte** stanno
+sulla carta Tensione; le **clausole** no: sono rimaste tutte sui template — **21
+clausole su 12 template, zero sulle sessanta Tensioni**.
+
+E i segni che solo loro scrivono quasi non arrivano al mondo:
+
+| segni scritti **solo** da un template di Consiglio | 10 |
+|---|---|
+| di quelli, che la misura vede scritti in 100 anni | **1** |
+
+I nove che non escono mai: `relic_recorded`, `water_shared`, `quota_guaranteed`,
+`debt_staggered`, `list_witnessed`, `distribution_audited`, `descent_witnessed`,
+`discovery:shared_record`, `return_promised` — quest'ultimo già trovato in
+[D-425](DECISIONS.md#d-425), che è la prova che è una famiglia e non un caso.
+
+**È lo stesso difetto di questa voce visto dall'altra parte:** non è che il
+cervello non compra quelle Conseguenze, è che quelle clausole **non gli vengono
+mai offerte**, perché vivono in un posto che il Consiglio ha smesso di
+attraversare.
 
 ---
 

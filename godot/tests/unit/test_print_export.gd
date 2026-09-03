@@ -391,6 +391,41 @@ func test_the_tension_card_prints_the_rule_not_the_prose() -> void:
 	)
 
 
+## **La carta Tensione dice su cosa si discute** (D-432 — ISSUES 69).
+##
+## La Domanda non e' una carta a parte ([D-266](../../docs/DECISIONS.md#d-266),
+## revoca del committente): sta su questa. Fino alla 0.1.402 la carta diceva
+## quando si scalda, quando si raffredda e cosa vale al Consiglio, e taceva
+## **su cosa si discute** — cioe' la ragione per cui la si gira.
+##
+## E il testo delle domande sta **in due posti**: il blocco `council` della
+## Tensione (la casa nuova, ce l'hanno tutte e sessanta) e i template di
+## Consiglio (il ripiego, che ne coprono otto). Una faccia che leggesse solo i
+## template stamperebbe **otto carte su sessanta**: e' quello che faceva la
+## prima stesura, e questa prova lo tiene fermo.
+func test_every_tension_card_says_what_is_debated() -> void:
+	var loaded: RefCounted = data()
+	var senza: Array = []
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "tension":
+			continue
+		var body: String = " ".join(PackedStringArray(card.get("body", []) as Array))
+		if not body.contains("SI DISCUTE DI"):
+			senza.append(str(card["id"]))
+			continue
+		# E i buchi si **spiegano**, non restano: su una carta stampata un `$`
+		# e' un nome mancante che nessuno puo' riempire.
+		assert_false(
+			body.contains("$"), "%s stampa un buco non spiegato" % str(card["id"])
+		)
+	assert_eq(
+		senza.size(), 0,
+		"ogni Tensione dice su cosa si discute (senza: %s)"
+			% ", ".join(PackedStringArray(senza))
+	)
+
+
 ## **Il cancelletto sta su una parola sola, dappertutto**
 ## ([D-347](../../docs/DECISIONS.md#d-347)).
 ##
