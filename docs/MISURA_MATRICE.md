@@ -9,7 +9,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 |---|---|
 | segni nel dizionario | 173 |
 | di cui qualcuno scrive | 170 |
-| orfani in tutto | 60 |
+| orfani in tutto | 59 |
 | **di cui senza una ragione scritta** | **0** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -22,8 +22,8 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | segni che l'eredita' porta avanti | 49 |
 | profili strategici scritti | 8 |
 | segni che quelle case vogliono o temono | 68 |
-| **fra i voluti, quelli che un Consiglio sa dare** | **26** |
-| segni che aiutano una casa e ne danneggiano un'altra | 18 |
+| **fra i voluti, quelli che un Consiglio sa dare** | **24** |
+| segni che aiutano una casa e ne danneggiano un'altra | 19 |
 | **coppie di case che hanno qualcosa per cui litigare** | **13 su 28** |
 
 ---
@@ -35,7 +35,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **60 su 60 portano gia' la loro
+Non tutti gli orfani sono un difetto: **59 su 59 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -45,13 +45,12 @@ la matrice deve prendere per primi.
 
 Nessuno.
 
-### Orfani dichiarati: 60
+### Orfani dichiarati: 59
 
 | segno | la ragione che porta scritta |
 |---|---|
 | `ancient` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `betrayal_spoken` | memoria del mondo che le facce fisiche usano come **bersaglio**, non come premio: una carta dice «se il tradimento e' st |
-| `burden_shared` | memoria del mondo: narrata (D-103), ereditata |
 | `capital` | funzione stampata sulla tessera: e' uno dei segni con cui le carte dicono **dove** si agisce, e il legame che le frasi d |
 | `condition:requisitioned` | condizione posata da una Conseguenza e letta dalle facce come **bersaglio**: e' un ostacolo che si trova, non un traguar |
 | `crystal_site` | luogo stampato sulla tessera: la fonte del cristallo e' un **posto**, e serve da bersaglio a carte, Tensioni e Conseguen |
@@ -228,7 +227,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `nahr_settled` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | vuole | `settlement:village` | **si'** | **si'** | Pietra |
 | vuole | `nomad_range` | no | no | tessera |
-| vuole | `crown_divided` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
+| vuole | `burden_shared` | no | no | Conseguenza, carta Echo |
 | teme | `valley_sealed` | no | no | Conseguenza, fatto che dura |
 | teme | `scar:sealed_border` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
@@ -257,7 +256,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
-| vuole | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
+| vuole | `study_supervised` | no | no | Conseguenza |
 | vuole | `mountain_forgotten` | **si'** | no | catena delle ere, faccia della Tensione |
 | vuole | `place:sleeping_site` | **si'** | no | Pietra |
 | teme | `crystal_exploited` | **si'** | **si'** | Conseguenza, faccia della Tensione |
@@ -314,7 +313,7 @@ dichiarano. Un segno che aiuta qualcuno e non danneggia nessuno non e'
 una questione: e' un regalo, e al Consiglio nessuno avra' mai una
 ragione per opporsi.
 
-**Segni che incrociano davvero: 18.**
+**Segni che incrociano davvero: 19.**
 
 **Il conto e' un pavimento**, come quello delle Tensioni: guarda i
 segni **nominati** da un Destino o da un profilo, non i conteggi. Un
@@ -330,12 +329,12 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | segno | aiuta | danneggia | cambia pelle | chi lo sa scrivere |
 |---|---|---|---|---|
 | `condition:cut_off` | VAERAX | LIBERE, NAHR, SALE | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
-| `crown_divided` | NAHR | ALDRIC, SALE | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
+| `crown_divided` | NAHR | ALDRIC, SALE | — | Conseguenza, faccia della Tensione, fatto che dura |
 | `discovery:crystal` | CENERE, LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
 | `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, carta Echo, clausola di Consiglio, faccia della Tensione |
 | `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
 | `mine_sealed` | VAERAX | CENERE, LYRA | — | Conseguenza, faccia della Tensione, fatto che dura |
-| `structure:sealed` | VAERAX, VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
+| `study_supervised` | VAERAX | CENERE, LYRA | — | Conseguenza |
 | `condition:contested` | NAHR | ALDRIC | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crowned` | ALDRIC | LIBERE | **si'** | casato |
 | `crystal_exploited` | CENERE | VAERAX | **si'** | Azione stampata, Conseguenza, faccia della Tensione |
@@ -345,6 +344,7 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
 | `rumour_running` | VAERAX | VETRO | — | Conseguenza |
+| `structure:sealed` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
 | `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, faccia della Tensione, fatto che dura |
 | `water_priced` | SALE | LIBERE | — | Conseguenza |
 
@@ -392,9 +392,9 @@ dichiarato a mano, e costa una riga.
 | coppia | segni condivisi | quali |
 |---|---|---|
 | ALDRIC ↔ NAHR | 4 | `condition:contested`, `crown_divided`, `nahr_settled`, `succession_by_law` |
-| CENERE ↔ VAERAX | 4 | `crystal_exploited`, `discovery:crystal`, `mine_sealed`, `structure:sealed` |
+| CENERE ↔ VAERAX | 4 | `crystal_exploited`, `discovery:crystal`, `mine_sealed`, `study_supervised` |
+| LYRA ↔ VAERAX | 4 | `discovery:crystal`, `knowledge_shared`, `mine_sealed`, `study_supervised` |
 | LIBERE ↔ SALE | 3 | `debt_called`, `debt_forgiven`, `water_priced` |
-| LYRA ↔ VAERAX | 3 | `discovery:crystal`, `knowledge_shared`, `mine_sealed` |
 | CENERE ↔ VETRO | 2 | `relic_buried`, `structure:sealed` |
 | LYRA ↔ VETRO | 2 | `crystal_measured`, `knowledge_shared` |
 | ALDRIC ↔ LIBERE | 1 | `crowned` |

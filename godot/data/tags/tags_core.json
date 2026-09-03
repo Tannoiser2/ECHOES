@@ -137,7 +137,8 @@
         "echo_card"
       ],
       "read_by": [
-        "echo_card"
+        "echo_card",
+        "entity_strategic_profile"
       ],
       "note": "memoria del mondo: narrata (D-103), ereditata"
     },

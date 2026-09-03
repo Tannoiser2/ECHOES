@@ -27,7 +27,7 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | 15 | 13 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 406 |
 | 12 | 12 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 465 |
 | 5 | 15 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 535 |
-| 9 | 10 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 458 |
+| 10 | 9 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 406 |
 | 6 | 10 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 647 |
 | 9 | 7 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 454 |
 | 8 | 7 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 382 |
