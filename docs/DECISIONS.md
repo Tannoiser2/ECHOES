@@ -10,6 +10,125 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-428 — La parete non era il bersaglio, e tre Regioni non le raggiungeva nessuno
+
+**implemented in 0.1.398.** Avanza [ISSUES 128](ISSUES.md#128) (M5 della
+[lista](LE_TUE_DECISIONI.md)), sulla parola del committente **«si' a tutte»**
+([D-427](#d-427)).
+
+### La proposta avallata era sbagliata, e l'ha detto la misura
+
+Avevo proposto — e il committente aveva avallato — *«allargo i bersagli delle
+facce murate»*, dando per scontato che il quinto di carte che il tavolo non
+prende fosse un problema di bersagli. `run_pass_probe` diceva **quali** carte il
+tavolo rifiuta e non **perche'**: un nome senza ragione non si ripara.
+
+Adesso lo dice: `_why_the_table_refuses` chiede a `check` la ragione invece che a
+`can_execute` un si'/no, e le ragioni si contano per famiglia. Su 100 partite
+CHR_00, seme 7000, tavolo misto:
+
+| la parete | prima | cos'e' |
+|---|---|---|
+| un segno del mondo lo vieta | 39,1% | **una regola** ([D-025](#d-025)) |
+| la quota di INFLUENZARE, una per giro | 29,7% | **una regola** ([D-021](#d-021)) |
+| **il bersaglio a segni** | **12,4%** | l'unica cosa che la proposta toccava |
+| il Consiglio si forza una volta per giro | 10,8% | **una regola** |
+| il prezzo in carte da scartare | 7,3% | **una regola** |
+
+**Quattro quinti della parete sono le regole che fanno quello per cui sono state
+scritte.** Se hai gia' influenzato in questo giro, ogni carta INFLUENZARE che ti
+resta in mano e' muta fino al giro dopo: non e' una carta rotta, e' un turno
+gia' speso.
+
+### Ma il quinto vero era peggio di come l'avevo descritto
+
+Non sono le carte ad avere bersagli stretti: sono **tre Regioni della mappa che
+non raggiunge quasi nessuno**. Delle 30 carte che puntano una Regione:
+
+| regione | segni fissi | la raggiungono | dopo |
+|---|---|---|---|
+| Eredan | `capital` + tre domini | 28 su 30 | 28 |
+| Strada dei Mercanti | `trade` + tre domini | 27 | 27 |
+| Miniere Antiche | `mine crystal_site` + due | 13 | 13 |
+| **Montagne Rosse** | `wild crystal_site domain:ANCIENT` | **8** | **12** |
+| **Il Bosco dei Confini** | `forest domain:ANCIENT` | **8** | **10** |
+| **L'Isola Muta** | `island domain:ANCIENT` | **7** | **8** |
+
+La causa sta nei **segni delle Regioni**, non nelle carte: le Regioni civili
+portano **tre** segni di dominio, quelle selvatiche **uno**. Un bersaglio detto
+per domini raggiunge le prime e non le seconde.
+
+### La cura, quattro carte e nessuna regola toccata
+
+Quattro carte pagavano tutto il conto — Esodo, Carovana, Il Tesoro, Magistrato —
+e i loro bersagli sono stati allargati dove il senso lo reggeva, non dove
+faceva comodo:
+
+| carta | segni aggiunti | perche' al tavolo |
+|---|---|---|
+| **Esodo** | `forest island wild` | un esodo va dove non c'e' nessuno |
+| **Carovana** | `mine crystal_site nomad_range` | una carovana serve le miniere e i pascoli |
+| **Il Tesoro** | `mine crystal_site` | un tesoro sta dove si scava |
+| **Magistrato** | `wild forest marsh` | un magistrato lo si manda ai margini |
+
+### I numeri, sugli stessi 100 semi prima e dopo
+
+| CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| il tavolo non le prende | 12,7% (1.978) | **11,0% (1.688)** |
+| di cui **il bersaglio a segni** | 246 | **78** |
+| carte diverse murate | 35 | **23** |
+| carte in mano mute | 54,0% | 53,7% |
+| turni con la mano tutta muta | 18,1% | 17,8% |
+| turni «passa» | 40,8% | **40,1%** |
+| seggi bloccati (misto e uniforme) | 0 su 8 | **0 su 8** |
+
+La famiglia che la modifica doveva colpire **scende del 68%**, e quello che
+resta e' quasi tutto *Diritto di Ospitalita'*, che rifiuta i luoghi contesi
+**per come e' scritta**: non e' un difetto, e' la carta.
+
+### Il costo, dichiarato, e non e' zero
+
+| tavolo misto, 100 partite | prima | dopo |
+|---|---|---|
+| DECISIVE | **114** | **105** |
+| SUCCESS | 141 | 144 |
+| SUCCESS CON COSTO | 52 | 55 |
+| FAILURE | 37 | 40 |
+| **Verita' scritte** | **146** | **142** |
+
+**Gli esiti scendono di un gradino.** Piu' carte giocabili vuol dire piu' case
+che agiscono, piu' proposte contestate, e meno Consigli che passano in
+scioltezza: DECISIVE **−9**, e tutto quello che perdono lo ritrovano SUCCESS,
+SUCCESS CON COSTO e FAILURE. Il mondo e' piu' conteso e ricorda **quattro
+Verita' in meno su 146** (−2,7%). Sul tavolo uniforme il conto e' piatto
+(DECISIVE 124 → 125, Verita' 136 → 134).
+
+**Il baseline e' stato rimisurato oggi sugli stessi semi**, non ripreso da
+0.1.395: si riproduce cifra per cifra, quindi questi scarti sono di questa
+modifica e non di deriva ([D-391](#d-391)).
+
+### E il criterio che avevo scritto per M5 non e' raggiungibile
+
+In 0.1.397 avevo scritto *«fatto quando le carte mute per le regole sono sotto il
+5%»*. Non ci si arriva: dell'11,0% che resta, **oltre il 90% sono regole
+volute**. E' lo stesso errore della M3 — un criterio che nessuno puo'
+soddisfare non e' severo, e' rotto — e il criterio e' riscritto sulla cosa che
+si puo' davvero chiudere: **nessuna carta murata da un bersaglio che la mappa
+non porta**.
+
+### Quello che resta, ed e' una domanda per il committente
+
+**Il 61,2% della parete cade sulle diciotto carte che stampano lo stesso verbo su
+tutte e due le facce** — nove INFLUENZARE/INFLUENZARE, otto FORGIARE/FORGIARE,
+una TRAMARE/TRAMARE. Quando quel verbo e' bloccato — dalla quota o da un segno
+che lo vieta — **quella carta muore intera, perche' non ha una seconda strada**.
+E' scritto in [CLAUDE.md](../CLAUDE.md) fra le regole di una carta fisica:
+*«**due** Azioni, e due scelte diverse davvero»*. Diciotto carte su 48 non le
+hanno, ed e' una scelta d'autore cambiarle: sta in [ISSUES 128](ISSUES.md#128).
+
+---
+
 ## D-427 — «Sì a tutte»: le dodici rosse finiscono in tre parole
 
 **implemented in 0.1.397.** Chiude [ISSUES 123](ISSUES.md#123),

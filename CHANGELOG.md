@@ -5,6 +5,90 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.398 — La parete non era il bersaglio, e tre Regioni non le raggiungeva nessuno
+
+M5 della lista, sulla parola **«sì a tutte»** ([D-428](docs/DECISIONS.md#d-428)).
+Avanza [ISSUES 128](docs/ISSUES.md#128).
+
+### La proposta avallata era sbagliata, e l'ha detto la misura
+
+Dicevo *«allargo i bersagli delle facce murate»* dando per scontato che il quinto
+di carte che il tavolo non prende fosse un problema di bersagli. La sonda diceva
+**quali** carte il tavolo rifiuta e non **perché**: un nome senza ragione non si
+ripara. Adesso `run_pass_probe` chiede a `check` la ragione invece che a
+`can_execute` un sì/no, e le conta per famiglia.
+
+| la parete (100 partite, tavolo misto) | prima | cos'è |
+|---|---|---|
+| un segno del mondo lo vieta | 39,1% | **una regola** (D-025) |
+| la quota di INFLUENZARE, una per giro | 29,7% | **una regola** (D-021) |
+| **il bersaglio a segni** | **12,4%** | l'unica cosa che la proposta toccava |
+| il Consiglio si forza una volta per giro | 10,8% | **una regola** |
+| il prezzo in carte da scartare | 7,3% | **una regola** |
+
+Se hai già influenzato in questo giro, ogni carta INFLUENZARE che ti resta in
+mano è muta fino al giro dopo: non è una carta rotta, è **un turno già speso**.
+
+### Ma il quinto vero era peggio: tre Regioni fuori portata
+
+| regione | la raggiungono (su 30 carte) | dopo |
+|---|---|---|
+| Eredan | 28 | 28 |
+| Montagne Rosse | **8** | **12** |
+| Il Bosco dei Confini | **8** | **10** |
+| L'Isola Muta | **7** | **8** |
+
+La causa sta nei **segni delle Regioni**: le civili ne portano tre di dominio, le
+selvatiche uno. Allargate quattro carte dove il senso lo reggeva — **Esodo** nel
+bosco, sull'isola e nel selvaggio; **Carovana** alla miniera, al cristallo e al
+pascolo; **Il Tesoro** dove si scava; **Magistrato** ai margini.
+
+### I numeri, sugli stessi 100 semi prima e dopo
+
+| CHR_00, seme 7000 | prima | **dopo** |
+|---|---|---|
+| il tavolo non le prende | 12,7% (1.978) | **11,0% (1.688)** |
+| di cui **il bersaglio a segni** | 246 | **78** — meno 68% |
+| carte diverse murate | 35 | **23** |
+| carte in mano mute | 54,0% | 53,7% |
+| turni con la mano tutta muta | 18,1% | 17,8% |
+| turni «passa» | 40,8% | **40,1%** |
+| seggi bloccati | 0 su 8 | **0 su 8** |
+
+### Il costo, dichiarato, e non è zero
+
+| tavolo misto | prima | dopo |
+|---|---|---|
+| DECISIVE | **114** | **105** |
+| SUCCESS | 141 | 144 |
+| SUCCESS CON COSTO | 52 | 55 |
+| FAILURE | 37 | 40 |
+| **Verità scritte** | **146** | **142** |
+
+Gli esiti scendono di un gradino: più carte giocabili vuol dire più case che
+agiscono e più proposte contestate. Sul tavolo uniforme il conto è piatto
+(DECISIVE 124 → 125). **Il baseline è stato rimisurato oggi sugli stessi semi**,
+non ripreso da 0.1.395: si riproduce cifra per cifra, quindi lo scarto è di
+questa modifica e non di deriva (D-391).
+
+### Il criterio di M5 era rotto, ed è riscritto
+
+Dicevo *«fatto quando le carte mute per le regole sono sotto il 5%»*: non ci si
+arriva, perché oltre il 90% dell'11,0% che resta sono **regole volute**. Stesso
+errore della M3. Il criterio nuovo è *«nessuna carta murata da un bersaglio a
+segni che la mappa non porta»*, e ne resta una famiglia sola — *Diritto di
+Ospitalità*, che rifiuta i luoghi contesi per come è scritta.
+
+### E una domanda per il committente
+
+Il **61,2%** della parete cade sulle **diciotto carte che stampano lo stesso
+verbo su tutte e due le facce**. Quando quel verbo è bloccato, la carta muore
+intera perché non ha una seconda strada — e `CLAUDE.md` lo chiede già: *«due
+Azioni, e due scelte diverse davvero»*. Dargliela **cambia cosa fa la carta**: è
+una scelta d'autore, e aspetta una parola.
+
+---
+
 ## 0.1.397 — «Sì a tutte»: le rosse finiscono, e la lista diventa un elenco di lavori
 
 Il committente aveva chiesto di spiegare le dodici decisioni **con un esempio di

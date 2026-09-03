@@ -178,7 +178,7 @@ no border. Not gory, not horror.
 
 **Temi:** Potere · Vie
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio.
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche il #selvaggio, il #bosco e la #palude, e ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -1562,7 +1562,7 @@ no border. Not gory, not horror.
 
 **Temi:** Terra · Sopravvivenza
 
-**BERSAGLIO** — Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, e ogni luogo del dominio della #sopravvivenza.
+**BERSAGLIO** — Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, il #bosco, l'#isola e il #selvaggio, e ogni luogo del dominio della #sopravvivenza.
 
 **AZIONE — scegli 1**
 
@@ -1990,7 +1990,7 @@ no border. Not gory, not horror.
 
 **Temi:** Potere · Vie
 
-**BERSAGLIO** — Scegli un luogo con #capitale o #commercio. Vale anche ogni luogo del dominio delle #risorse.
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 
@@ -2037,7 +2037,7 @@ no border. Not gory, not horror.
 
 **Temi:** Vie
 
-**BERSAGLIO** — Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+**BERSAGLIO** — Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, la #miniera, il #cristallo e il #pascolo, e ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 

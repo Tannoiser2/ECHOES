@@ -79,6 +79,10 @@ class Witness extends RefCounted:
 	var mute_because_rules: int = 0
 	var mute_because_choice: int = 0
 	var walled_cards: Dictionary = {}   # asset -> volte che il tavolo non la prendeva
+	## **E perche' non la prendeva** (M5). Un nome senza ragione non si ripara:
+	## «Investitura muta 57 volte» non dice se le manca un bersaglio sulla mappa,
+	## un gradino da salire o una casa da toccare — e sono tre cure diverse.
+	var walled_why: Dictionary = {}     # asset -> {ragione -> volte}
 
 	func _init(who: RefCounted) -> void:
 		inner = who
@@ -154,7 +158,10 @@ class Witness extends RefCounted:
 				mute_card_faces[str(asset_id)] = int(
 					mute_card_faces.get(str(asset_id), 0)
 				) + 1
-				if _table_would_take_it(entity_id, str(asset_id), session):
+				var perche: String = _why_the_table_refuses(
+					entity_id, str(asset_id), session
+				)
+				if perche == "":
 					mute_because_choice += 1
 				else:
 					mute_because_rules += 1
@@ -164,17 +171,26 @@ class Witness extends RefCounted:
 					walled_cards[str(asset_id)] = int(
 						walled_cards.get(str(asset_id), 0)
 					) + 1
+					var ragioni: Dictionary = walled_why.get(str(asset_id), {})
+					ragioni[perche] = int(ragioni.get(perche, 0)) + 1
+					walled_why[str(asset_id)] = ragioni
 
-	## **Il tavolo la prenderebbe?** Si chiede a `can_execute` — le regole vere —
-	## su tutti i bersagli che quel verbo ammette, senza nessuno dei filtri con
-	## cui il cervello si protegge. Se torna vero e la carta era muta, muta l'ha
-	## resa il cervello; se torna falso, l'hanno resa muta le regole.
-	func _table_would_take_it(
+	## **Il tavolo la prenderebbe, e se no perche'?** Si chiede a `check` — le
+	## regole vere — su tutti i bersagli che quel verbo ammette, senza nessuno
+	## dei filtri con cui il cervello si protegge. Torna **stringa vuota** se il
+	## tavolo la prenderebbe (e allora muta l'ha resa il cervello), altrimenti la
+	## ragione che il motore ha ripetuto piu' volte.
+	##
+	## Da M5 torna la ragione e non un si'/no: sapere *quali* carte il tavolo non
+	## prende non basta a ripararle, perche' «nessun luogo con quei segni», «non
+	## hai una presenza da muovere» e «e' gia' in cima» chiedono tre cure diverse.
+	func _why_the_table_refuses(
 		entity_id: String, asset_id: String, session: RefCounted
-	) -> bool:
+	) -> String:
+		var motivi: Dictionary = {}
 		var card: Variant = session.data.assets.get(asset_id)
 		if card == null:
-			return false
+			return "carta sconosciuta"
 		var printed: Array = (
 			((card as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array
 		)
@@ -190,34 +206,44 @@ class Witness extends RefCounted:
 							ask["structure_type"] = str(
 								(printed[index] as Dictionary).get("builds", "")
 							)
-						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
-							return true
+						var no: String = session.actions.check(entity_id, "PLAY_CARD", ask)
+						if no == "":
+							return ""
+						motivi[no] = int(motivi.get(no, 0)) + 1
 				"INFLUENCE":
 					for tension_id in session.world["tensions"]:
 						var ask: Dictionary = base.duplicate()
 						ask["tension_id"] = str(tension_id)
-						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
-							return true
+						var no: String = session.actions.check(entity_id, "PLAY_CARD", ask)
+						if no == "":
+							return ""
+						motivi[no] = int(motivi.get(no, 0)) + 1
 				"SCHEME":
 					for tension_id in session.world["tensions"]:
 						var ask: Dictionary = base.duplicate()
 						ask["mode"] = "TENSION"
 						ask["tension_id"] = str(tension_id)
-						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
-							return true
+						var no: String = session.actions.check(entity_id, "PLAY_CARD", ask)
+						if no == "":
+							return ""
+						motivi[no] = int(motivi.get(no, 0)) + 1
 					for region_id in session.world["regions"]:
 						var ask: Dictionary = base.duplicate()
 						ask["mode"] = "REGION"
 						ask["region_id"] = str(region_id)
-						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
-							return true
+						var no: String = session.actions.check(entity_id, "PLAY_CARD", ask)
+						if no == "":
+							return ""
+						motivi[no] = int(motivi.get(no, 0)) + 1
 				"CLAIM":
 					for tension_id in session.world["tensions"]:
 						var ask: Dictionary = base.duplicate()
 						ask["mode"] = "FORCE"
 						ask["tension_id"] = str(tension_id)
-						if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
-							return true
+						var no: String = session.actions.check(entity_id, "PLAY_CARD", ask)
+						if no == "":
+							return ""
+						motivi[no] = int(motivi.get(no, 0)) + 1
 				"FORGE":
 					for other in session.world["turn_order"]:
 						if str(other) == entity_id:
@@ -227,9 +253,19 @@ class Witness extends RefCounted:
 							ask["target_entity_id"] = str(other)
 							ask["direction"] = str(direction)
 							ask["consent"] = true
-							if session.actions.can_execute(entity_id, "PLAY_CARD", ask):
-								return true
-		return false
+							var no_f: String = session.actions.check(entity_id, "PLAY_CARD", ask)
+							if no_f == "":
+								return ""
+							motivi[no_f] = int(motivi.get(no_f, 0)) + 1
+		# La ragione che il motore ha ripetuto di piu': con dieci Regioni provate
+		# e dieci rifiuti uguali, quella e' la parete vera.
+		var peggiore: String = "nessun bersaglio provato"
+		var quante: int = -1
+		for ragione in motivi:
+			if int(motivi[ragione]) > quante:
+				quante = int(motivi[ragione])
+				peggiore = str(ragione)
+		return peggiore
 
 	## Quante carte in mano portano quel verbo. Il mazzo ne ha undici che
 	## influenzano e dieci che muovono: se il cervello voleva influenzare e in
@@ -346,6 +382,7 @@ func _initialize() -> void:
 	var mute_rules: int = 0
 	var mute_choice: int = 0
 	var walled: Dictionary = {}
+	var walled_why: Dictionary = {}
 
 	for run in range(runs):
 		var seed_value: int = first_seed + run
@@ -391,6 +428,13 @@ func _initialize() -> void:
 			walled[str(asset_id)] = int(walled.get(str(asset_id), 0)) + int(
 				witness.walled_cards[asset_id]
 			)
+		for asset_id in witness.walled_why:
+			var somma: Dictionary = walled_why.get(str(asset_id), {})
+			for ragione in (witness.walled_why[asset_id] as Dictionary):
+				somma[str(ragione)] = int(somma.get(str(ragione), 0)) + int(
+					(witness.walled_why[asset_id] as Dictionary)[ragione]
+				)
+			walled_why[str(asset_id)] = somma
 		for asset_id in witness.mute_card_faces:
 			mute_faces[str(asset_id)] = int(
 				mute_faces.get(str(asset_id), 0)
@@ -458,9 +502,100 @@ func _initialize() -> void:
 			var verbi: Array = []
 			for face in ((card.get("physical", {}) as Dictionary).get("actions", []) as Array):
 				verbi.append(str((face as Dictionary).get("template", "?")))
-			print("        %-26s %6d volte   %s" % [
+			# **La parete, non solo il nome.** La ragione che il motore ha
+			# ripetuto di piu' su quella carta: e' l'unica cosa che dice quale
+			# delle tre cure serve.
+			var parete: String = "?"
+			var quante: int = -1
+			for ragione in (walled_why.get(asset_id, {}) as Dictionary):
+				if int((walled_why[asset_id] as Dictionary)[ragione]) > quante:
+					quante = int((walled_why[asset_id] as Dictionary)[ragione])
+					parete = str(ragione)
+			print("        %-26s %5d volte  %-13s  %s" % [
 				str(card.get("title", asset_id)), int(walled[asset_id]),
-				"/".join(PackedStringArray(verbi)),
+				"/".join(PackedStringArray(verbi)), parete,
+			])
+	if not walled_why.is_empty():
+		# **Le pareti, contate per quello che sono e non per carta.** Sapere che
+		# «Mobilitazione e' murata 61 volte» non dice niente finche' non si sa
+		# che a murarla e' una quota per giro e non un bersaglio che manca: la
+		# prima e' una regola che funziona, il secondo un difetto da riparare.
+		var pareti: Dictionary = {}
+		for asset_id in walled_why:
+			for ragione in (walled_why[asset_id] as Dictionary):
+				pareti[str(ragione)] = int(pareti.get(str(ragione), 0)) + int(
+					(walled_why[asset_id] as Dictionary)[ragione]
+				)
+		var elenco: Array = pareti.keys()
+		elenco.sort_custom(func(a: Variant, b: Variant) -> bool:
+			return int(pareti[a]) > int(pareti[b])
+		)
+		var totale_pareti: int = 0
+		for ragione in pareti:
+			totale_pareti += int(pareti[ragione])
+		# E raccolte per **famiglia**, che e' il numero che decide cosa fare: una
+		# quota per giro e un bersaglio che non esiste sono due mondi diversi.
+		var famiglie: Dictionary = {}
+		for ragione in pareti:
+			var nome: String = "altro"
+			var testo: String = str(ragione)
+			if testo.contains("ha gia usato INFLUENCE"):
+				nome = "la quota di INFLUENZARE, una per giro"
+			elif testo.contains("e gia stata mossa"):
+				nome = "la quota della questione, per giro"
+			elif testo.begins_with("il segno lo vieta"):
+				nome = "un segno del mondo lo vieta"
+			elif testo.contains("Confluence e gia stata forzata"):
+				nome = "il Consiglio si forza una volta per giro"
+			elif testo.contains("da scartare"):
+				nome = "il prezzo in carte da scartare"
+			elif testo.contains("non arriva li'"):
+				nome = "**il bersaglio a segni**"
+			famiglie[nome] = int(famiglie.get(nome, 0)) + int(pareti[ragione])
+		var per_famiglia: Array = famiglie.keys()
+		per_famiglia.sort_custom(func(a: Variant, b: Variant) -> bool:
+			return int(famiglie[a]) > int(famiglie[b])
+		)
+		# **E quanta di quella parete cade su carte con un verbo solo.** Diciotto
+		# carte su 48 stampano lo stesso verbo su tutte e due le facce: il giorno
+		# che quel verbo e' bloccato — una quota per giro, un segno che lo vieta
+		# — quella carta muore intera, perche' non ha una seconda strada. E'
+		# l'unico numero che dice se la parete e' un difetto delle carte o una
+		# regola che funziona.
+		var muro_mono: int = 0
+		var muro_due: int = 0
+		for asset_id in walled:
+			var scheda: Dictionary = data.assets.get(str(asset_id), {}) as Dictionary
+			var verbi_carta: Dictionary = {}
+			for face in ((scheda.get("physical", {}) as Dictionary).get("actions", []) as Array):
+				verbi_carta[str((face as Dictionary).get("template", "?"))] = true
+			if verbi_carta.size() <= 1:
+				muro_mono += int(walled[asset_id])
+			else:
+				muro_due += int(walled[asset_id])
+		print("")
+		print("      E su che carte cade la parete:")
+		print("        %5d  %5.1f%%  carte con **un verbo solo** su tutte e due le facce" % [
+			muro_mono, 100.0 * float(muro_mono) / float(maxi(1, muro_mono + muro_due)),
+		])
+		print("        %5d  %5.1f%%  carte con due verbi diversi" % [
+			muro_due, 100.0 * float(muro_due) / float(maxi(1, muro_mono + muro_due)),
+		])
+		print("")
+		print("      E le pareti per famiglia, che e' quello che dice cosa riparare:")
+		for nome in per_famiglia:
+			print("        %5d  %5.1f%%  %s" % [
+				int(famiglie[nome]),
+				100.0 * float(famiglie[nome]) / float(maxi(1, totale_pareti)),
+				str(nome),
+			])
+		print("")
+		print("      E le pareti, per quello che sono (%d diverse):" % elenco.size())
+		for i in range(mini(15, elenco.size())):
+			print("        %5d  %5.1f%%  %s" % [
+				int(pareti[elenco[i]]),
+				100.0 * float(pareti[elenco[i]]) / float(maxi(1, totale_pareti)),
+				str(elenco[i]),
 			])
 	if not mute_faces.is_empty():
 		var worst: Array = mute_faces.keys()

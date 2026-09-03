@@ -275,21 +275,54 @@ beneficio meno interessante che si possa offrire, e infatti la casella è compra
 verbale dice quale, e la sonda delle caselle mostra se la casella smette di essere
 quella che nessuno compra.
 
-### M5. [128](ISSUES.md#128) — le carte murate, e il passare che resta
+### M5. [128](ISSUES.md#128) — le carte murate: **lavorata in 0.1.398**
 
 **Parola tua: sì.** Il passare non si toglie — toglierlo costa il **42% della
 memoria del mondo** e non porta i «passa» a zero, li porta a 36,1%.
 
-> **Al tavolo.** Hai sette carte in mano e non ne puoi calare nessuna: una vuole
-> `#granaio` e sulla mappa pescata non c'è nessun granaio. Dici *«passo»*, e non
-> è una scelta.
+> **Al tavolo.** Hai sette carte in mano e non ne puoi calare nessuna. Dici
+> *«passo»*, e non è una scelta.
 
-Oggi i «passa» sono al **40,8%** (erano 45,2%) e le carte mute in mano al
-**54,0%** (erano 59,3%), dopo SEGNARE e *la cosa meno peggio*. Il quinto che
-resta è quello delle **regole**: il tavolo non prende la carta, il 12,4%.
+**E la proposta che avevi avallato era sbagliata** ([D-428](DECISIONS.md#d-428)).
+Dicevo *«allargo i bersagli»* dando per scontato che la parete fosse un problema
+di bersagli. Ho fatto dire alla sonda **perché** il tavolo rifiuta una carta, e
+quattro quinti della parete sono **le regole che fanno quello per cui sono
+scritte**: la quota di INFLUENZARE una per giro, i segni che vietano, il
+Consiglio che si forza una volta per giro, il prezzo in carte.
 
-**Fatto quando** le carte mute per le regole sono sotto il 5%, senza che il
-cancello si muova e senza perdere Verità scritte.
+**Ma il quinto vero era peggio:** tre Regioni della mappa non le raggiungeva quasi
+nessuno — L'Isola Muta **7 carte su 30**, il Bosco 8, le Montagne Rosse 8, contro
+le 28 di Eredan. Le Regioni civili portano tre segni di dominio, quelle selvatiche
+uno.
+
+| 100 partite, tavolo misto | prima | **dopo** |
+|---|---|---|
+| il tavolo non le prende | 12,7% | **11,0%** |
+| di cui **il bersaglio a segni** | 246 eventi | **78** |
+| carte diverse murate | 35 | **23** |
+| L'Isola Muta la raggiungono | 7 su 30 | **8** |
+| Montagne Rosse | 8 | **12** |
+| turni «passa» | 40,8% | **40,1%** |
+
+**Il costo, e non è zero:** sul tavolo misto gli esiti scendono di un gradino —
+DECISIVE **114 → 105** — e le Verità scritte **146 → 142**. Più carte giocabili
+vuol dire più case che agiscono e più proposte contestate. Cancello 0 su 8.
+
+**Il criterio che avevo scritto era rotto.** Dicevo *«sotto il 5%»*: non ci si
+arriva, perché oltre il 90% di quell'11,0% sono regole volute. È lo stesso errore
+della M3.
+
+**Fatto quando** nessuna carta è murata da un bersaglio a segni che la mappa non
+porta. Ne resta una famiglia sola — *Diritto di Ospitalità*, che rifiuta i luoghi
+contesi **per come è scritta**: non è un difetto, è la carta.
+
+> **E una cosa aspetta te, ed è l'unica che muoverebbe ancora il numero.** Il
+> **61,2%** della parete cade sulle **diciotto carte che stampano lo stesso verbo
+> su tutte e due le facce** (nove INFLUENZARE, otto FORGIARE, una TRAMARE):
+> quando quel verbo è bloccato, la carta muore intera perché non ha una seconda
+> strada. `CLAUDE.md` lo chiede già — *«due Azioni, e due scelte diverse
+> davvero»* — e dargliela **cambia cosa fa la carta**: è una scelta d'autore, non
+> una taratura.
 
 ### M6. [100](ISSUES.md#100) — le 46 righe «SI ACCENDE QUANDO»
 
