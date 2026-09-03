@@ -447,6 +447,23 @@
               }
             ]
           }
+        },
+        {
+          "id": "INC_NAHR_HOSTS",
+          "name": "Gli Ospiti di Nahr",
+          "description": "Il peso fu diviso, e chi lo divise si sedette. Non sono piu' un popolo che passa: sono quelli che ogni casa ha ospitato una volta, e a cui ogni casa deve mezza stagione.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 4,
+            "INFLUENCE": 4,
+            "FORGE": 4,
+            "SCHEME": 2,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.nahr_hosts",
+          "entry": "ON_TAG",
+          "entry_tag": "burden_shared"
         }
       ],
       "starting_structures": [
@@ -699,6 +716,23 @@
               }
             ]
           }
+        },
+        {
+          "id": "INC_LYRA_ARCHIVE",
+          "name": "L'Archivio Aperto",
+          "description": "Il registro fu letto in piazza, e da allora non si richiuse. Lyra smette di sapere per prima e comincia a sapere per tutti: chi legge le deve una riga.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 3,
+            "SCHEME": 4,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.lyra_archive",
+          "entry": "ON_TAG",
+          "entry_tag": "ledger_public"
         }
       ],
       "starting_structures": [
@@ -1106,6 +1140,23 @@
               }
             ]
           }
+        },
+        {
+          "id": "INC_SALE_FORGIVEN",
+          "name": "La Mano Rimessa",
+          "description": "Rimesso un debito grosso davanti a tutti, la Gilda scopri' che perdonare rende piu' del riscuotere. Adesso presta a chi non puo' rendere, e tiene il conto di chi lo sa.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 4,
+            "SCHEME": 3,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.sale_forgiven",
+          "entry": "ON_TAG",
+          "entry_tag": "debt_forgiven"
         }
       ],
       "starting_structures": [
@@ -1344,6 +1395,23 @@
               }
             ]
           }
+        },
+        {
+          "id": "INC_VETRO_SCHOOL",
+          "name": "La Scuola del Vetro",
+          "description": "Quando la scorta giurata torno' senza reliquia e senza morti, l'Ordine capi' che il segreto non era il tesoro. Insegnano quello che custodivano, e chiedono in cambio che venga ripetuto uguale.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 3,
+            "INFLUENCE": 3,
+            "FORGE": 4,
+            "SCHEME": 3,
+            "CLAIM": 1
+          },
+          "art_prompt_key": "entity.vetro_school",
+          "entry": "ON_TAG",
+          "entry_tag": "escort_sworn"
         }
       ],
       "starting_structures": [
@@ -1581,6 +1649,23 @@
               }
             ]
           }
+        },
+        {
+          "id": "INC_CENERE_ROADS",
+          "name": "Le Strade della Cenere",
+          "description": "Tagliata fuori una volta di troppo, la casa smise di aspettare che le strade tornassero e si mise a farle. Dove passano loro, passa tutto: e' il pedaggio a essere cambiato di mano.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 3,
+            "MOVE": 4,
+            "INFLUENCE": 2,
+            "FORGE": 3,
+            "SCHEME": 3,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.cenere_roads",
+          "entry": "ON_TAG",
+          "entry_tag": "condition:cut_off"
         }
       ],
       "starting_structures": [
@@ -1722,6 +1807,23 @@
           "entry": "ON_TAG",
           "entry_tag": "scar:emptied@REG_VALLE_VERDE",
           "entry_forbidden_tag": "scar:emptied@REG_EREDAN"
+        },
+        {
+          "id": "INC_LIBERE_ASSEMBLY",
+          "name": "L'Assemblea Permanente",
+          "description": "La Carta valse per un tempo solo, e alla scadenza nessuno la richiuse. Non c'e' piu' una citta' che parla per le altre: c'e' una stanza che non si svuota mai, e chi ci entra vota.",
+          "persistence": "COLLECTIVE",
+          "action_values": {
+            "ACQUIRE": 2,
+            "MOVE": 2,
+            "INFLUENCE": 4,
+            "FORGE": 4,
+            "SCHEME": 3,
+            "CLAIM": 2
+          },
+          "art_prompt_key": "entity.libere_assembly",
+          "entry": "ON_TAG",
+          "entry_tag": "charter_temporary"
         }
       ],
       "starting_structures": [

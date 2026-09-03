@@ -130,11 +130,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **10** | **io**, da sola, senza aspettare niente |
-| ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
+| 🟡 | **9** | **io**, da sola, senza aspettare niente |
+| ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Dieci.** Delle diciotto voci aperte, dieci le posso muovere senza di te — ed
-è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+**Nove.** Delle diciotto voci aperte, nove le posso muovere senza di te — ed è
+il numero che va detto per primo. **Il giro non è fermo su nessuna tua
 parola.**
 
 <!-- COLORI: fine -->
@@ -160,7 +160,7 @@ questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 | R12 | [64](ISSUES.md#64) | la saga ricambia i seggi ed è giusto: si scrive | 🟡 **M8** |
 | R13 | [127](ISSUES.md#127) | **(2)**: quattro varchi disegnati, i chiusi coperti | 🟡 **M7** |
 | — | [82](ISSUES.md#82) | non si pota niente: il buco sono le condizioni | 🟡 **M10** |
-| — | [36](ISSUES.md#36) | la **(D)** adesso, il resto dopo la prima partita | 🟡 **M11** |
+| — | [36](ISSUES.md#36) | la **(D)** adesso, il resto dopo la prima partita | **percorsa**, poi ⚪ |
 
 *(Questa tabella è un riepilogo, non una casa: ognuna di quelle voci vive sotto il
 suo colore, e da 0.1.397 lo strumento va rosso se una voce prova ad abitare in due
@@ -205,7 +205,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **dieci**
+# 🟡 Sono mie, e non aspettano niente: **nove**
 
 Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
 dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
@@ -222,7 +222,7 @@ chiude sparisce dal conto qui sopra.
 | **M8** — la regola della saga | è una riga scritta e una sonda che smette di decidere da sola |
 | **M9** — la faccia della Tensione | la seconda grammatica smette di divergere dalla prima |
 | **M10** — le condizioni che non escono | la fame è un Tema del gioco e il motore quasi non la produce |
-| **M11** — più vite per casa | è solo scrittura, e il metro esiste già |
+| **M11** — più vite per casa | è solo scrittura, e il metro esiste già — **fatta in 0.1.404** |
 | **M1–M4** | le quattro di prima, che non sono cambiate |
 | **M12**, **M13** | si **rimisurano** adesso che R1 e R3 sono chiuse: potrebbero chiudersi da sole |
 | **M14** — l'app che mostra il tavolo | **la più cara di tutte**, e va per ultima: ha bisogno che il resto sia fermo |
@@ -446,14 +446,49 @@ magra è una terra su cui si litiga di più e si conclude di meno. Cancello 0 su
 **Fatto quando** dei tre gettoni mai visti resta solo quello che il Consiglio
 scrive, e le due Cicatrici rare che hai deciso di tenere.
 
-### M11. [36](ISSUES.md#36) — più vite per casa, con ingressi più fini
+### M11. Più vite per casa: **la strada (D) è percorsa**, in 0.1.404
+
+La voce ([36](ISSUES.md#36), [D-434](DECISIONS.md#d-434)) esce dalle mie e va
+fra le ⚪: quello che resta non è lavoro mio.
 
 **Parola tua: sì**, la **(D)**: solo scrittura, nessun rischio. Il generatore
 vero — la (C) — resta fermo per scelta: questo gioco è fatto di frasi che
 qualcuno ha scritto.
 
-**Fatto quando** la distanza fra due saghe sale sopra lo **0,86** di oggi, con le
-mani d'apertura misurate insieme.
+> **Al tavolo.** Rigiochi la stessa linea per la terza volta. Le case sono le
+> stesse otto, e a un certo punto ognuna diventa la stessa cosa che è diventata
+> le altre due volte. Adesso ognuna ha **quattro** strade invece di tre, e
+> quale prende dipende da cosa il mondo ha scritto quell'anno.
+
+Sei case avevano tre vite e due ne avevano quattro: adesso ne hanno **quattro
+tutte e otto**. Ogni porta è un segno che il mondo scrive davvero — da
+`charter_temporary` (18 volte in cento partite) a `escort_sworn` (207) — e la
+grammatica fisica ha preteso che ognuna delle sei avesse anche **un potere**, se
+no era un nome senza conseguenze.
+
+| 12 saghe × 8 anni, due tavoli | prima | **dopo** |
+|---|---|---|
+| vite scritte oltre la prima | 18 | **24** |
+| **vite che non si sono mai sedute** | 1 | **1** |
+| trasformazioni sedute | 237 | **269** |
+
+**Tutte e sei si siedono.** Gli Ospiti di Nahr entrano 11 volte su uniforme e 10
+su misto: al primo giro sono la quarta vita più giocata della scatola.
+
+**E il «fatto quando» che avevo scritto non si può soddisfare, e vale la pena
+sapere perché.** Chiedeva la distanza fra due saghe sopra lo 0,86. Su tre semi la
+distanza fa 0,67/0,65/0,59 prima e **0,62/0,69/0,58** dopo: è **ferma**, e lo
+scarto fra un seme e l'altro è più largo della differenza. Le frasi del verbale
+le scrive il Consiglio sulla **questione** in discussione, non la casa che
+propone — quindi quale vita siede non cambia quale frase resta scritta. La
+distanza misura la varietà delle **domande**, e questa strada non poteva
+muoverla. (Lo 0,86, poi, è misurato su due linee che oggi non esistono più: la
+partenza vera sulla linea di oggi era **0,64**.)
+
+**Il prezzo, scritto:** le vite vecchie siedono meno — la Diaspora di Nahr da
+10/11 a **4/4**, il Culto della Misura da 8/8 a **4/6** — perché le
+trasformazioni salgono ma si spalmano su ventiquattro vite invece che su
+diciotto. E sei illustrazioni in più: 155 → **161**. Cancello **0 su 8**.
 
 ### M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai
 
@@ -497,7 +532,7 @@ faccia della Tensione siano ferme, se no si disegna due volte la stessa pagina.
 
 ---
 
-# ⚪ Fuori dalla lista finché non giochi: **sei**
+# ⚪ Fuori dalla lista finché non giochi: **sette**
 
 Non perché non valgano: perché **ognuna di queste è un gioco nuovo**, e aprirla
 adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
@@ -509,6 +544,7 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 | [47](ISSUES.md#47) — le carte come unica moneta | tua idea grossa: riscrive l'economia del turno |
 | [50](ISSUES.md#50) — quattro obiettivi al posto dei tre gradini | tua idea grossa, e R3 la anticipa in parte |
 | [27](ISSUES.md#27) — il tavolo sullo schermo grande e le console in tasca | milestone 0.6, e ha bisogno che l'app della 63 esista prima |
+| [36](ISSUES.md#36) — linee sempre diverse: la strada **(D)** è percorsa ([D-434](DECISIONS.md#d-434)) | quello che resta sono le strade **A** e **B** e le cinque domande secche, e per tua parola si guardano **dopo la prima partita vera** |
 | [91](ISSUES.md#91) — i punti già veri all'apertura, **48,4% oggi** | **la sua cura è R3**. Si rimisura dopo, e probabilmente si chiude da sola. Sotto la metà per la prima volta — ma il 60,5% con cui è nata è misurato su un altro tavolo, e i due numeri non stanno in fila ([D-391](DECISIONS.md#d-391)) |
 
 ---
@@ -537,7 +573,7 @@ mano invecchia il giorno dopo.
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
 **Quello che resta da dire in una riga:** delle diciotto voci aperte ne posso
-muovere **dieci** da sola. Due le verifica una persona che gioca, sei stanno
+muovere **nove** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

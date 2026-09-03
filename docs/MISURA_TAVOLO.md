@@ -2,7 +2,7 @@
 
 <!-- FILE GENERATO — si rifa' con `tools/run_table_survey.sh`. -->
 
-Ogni segno che sul tavolo ha un pezzo di cartone — i **173** con un posto
+Ogni segno che sul tavolo ha un pezzo di cartone — i **179** con un posto
 dichiarato (D-350) — e se in cento partite ci arriva davvero.
 
 La sonda dei segni ne guardava 66: le memorie del mondo e le condizioni dei
@@ -17,7 +17,7 @@ L'ultima colonna e' quella di cui fidarsi: non passa dal registro degli
 Effetti, guarda il tavolo. Le prime tre dipendono da quali Effetti questa
 sonda sa leggere, e in questo progetto quella e' la strada di sette difetti.
 
-**E 21 segni sono fuori dalla portata di questa misura** (D-376): questa
+**E 27 segni sono fuori dalla portata di questa misura** (D-376): questa
 sonda gioca **un anno per partita**, e loro il motore li scrive solo al
 passaggio di consegne fra un'era e l'altra — la vita che si siede, il fatto
 che sbiadisce in leggenda. Chiamarli «non arriva mai» accanto a un segno
@@ -134,7 +134,7 @@ le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 
 chi sei adesso, e la vita che stai vivendo.
 
-**51 segni: 29 arrivano sul tavolo, 22 non ci arrivano mai.**
+**57 segni: 29 arrivano sul tavolo, 28 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
@@ -165,19 +165,25 @@ chi sei adesso, e la vita che stai vivendo.
 | `life:INC_ALDRIC_RESTORED` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_CENERE_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_CENERE_FURNACES` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_CENERE_ROADS` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_LIBERE_ASSEMBLY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_LIBERE_HEGEMONY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_LIBERE_LEAGUE` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_LYRA_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_LYRA_ACADEMY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_LYRA_ARCHIVE` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_NAHR_DIASPORA` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_NAHR_HOSTS` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_NAHR_KINGDOM` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_SALE_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_SALE_BANK` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_SALE_FORGIVEN` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_VAERAX_CULT` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_VAERAX_LEGEND` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_VAERAX_RISEN` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_VETRO_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_VETRO_INQUISITION` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
+| `life:INC_VETRO_SCHOOL` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `migrating` | 54 | 0 | 0 | 54 |  |
 | `order` | 48 | 0 | 0 | 48 |  |
 | `renowned` | 0 | 213 | 0 | 86 |  |
@@ -256,7 +262,7 @@ quello che il mondo ricorda (ISSUES 110).
 ## I segni che non arrivano mai
 
 Hanno un posto sul tavolo, e in cento partite non ci si posano mai.
-Sono **47 su 173**.
+Sono **53 su 179**.
 
 | segno | dove starebbe |
 |---|---|
@@ -277,19 +283,25 @@ Sono **47 su 173**.
 | `life:INC_ALDRIC_RESTORED` | sulla scheda della casa |
 | `life:INC_CENERE_02` | sulla scheda della casa |
 | `life:INC_CENERE_FURNACES` | sulla scheda della casa |
+| `life:INC_CENERE_ROADS` | sulla scheda della casa |
+| `life:INC_LIBERE_ASSEMBLY` | sulla scheda della casa |
 | `life:INC_LIBERE_HEGEMONY` | sulla scheda della casa |
 | `life:INC_LIBERE_LEAGUE` | sulla scheda della casa |
 | `life:INC_LYRA_02` | sulla scheda della casa |
 | `life:INC_LYRA_ACADEMY` | sulla scheda della casa |
+| `life:INC_LYRA_ARCHIVE` | sulla scheda della casa |
 | `life:INC_NAHR_DIASPORA` | sulla scheda della casa |
+| `life:INC_NAHR_HOSTS` | sulla scheda della casa |
 | `life:INC_NAHR_KINGDOM` | sulla scheda della casa |
 | `life:INC_SALE_02` | sulla scheda della casa |
 | `life:INC_SALE_BANK` | sulla scheda della casa |
+| `life:INC_SALE_FORGIVEN` | sulla scheda della casa |
 | `life:INC_VAERAX_CULT` | sulla scheda della casa |
 | `life:INC_VAERAX_LEGEND` | sulla scheda della casa |
 | `life:INC_VAERAX_RISEN` | sulla scheda della casa |
 | `life:INC_VETRO_02` | sulla scheda della casa |
 | `life:INC_VETRO_INQUISITION` | sulla scheda della casa |
+| `life:INC_VETRO_SCHOOL` | sulla scheda della casa |
 | `list_witnessed` | un gettone sul bordo della mappa |
 | `no_charter` | un gettone sul bordo della mappa |
 | `parley_held` | un gettone sul bordo della mappa |

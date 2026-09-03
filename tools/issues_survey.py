@@ -561,8 +561,23 @@ def main() -> int:
             print("FALLITO: la guardia non ha visto una non-rossa messa fra le rosse")
             return 1
 
-        # 5. Una voce ospitata due volte dalla stessa sezione.
-        guasto = piantato(sheet_now, "### M1. ", "### %s — piantata\n\n### M1. " % casa)
+        # 5. Una voce ospitata due volte dalla stessa sezione. La sezione
+        #    **si chiede al foglio**, non si scrive qui: la cavia cambia casa
+        #    quando una voce cambia colore, e un titolo scritto a mano avrebbe
+        #    piantato il difetto nella sezione sbagliata — che e' un'altra
+        #    guardia, non questa. E' successo in 0.1.404, quando la 36 e' passata
+        #    dalle gialle alle bianche.
+        sua_casa = next(
+            (z for z in sezioni(sheet_now).values() if cavia.number in z.ospita), None
+        )
+        if sua_casa is None:
+            print("FALLITO: la cavia non ha una casa da raddoppiare")
+            return 1
+        guasto = piantato(
+            sheet_now,
+            sua_casa.titolo,
+            "%s\n\n### %s — piantata\n" % (sua_casa.titolo, casa),
+        )
         if guasto is None:
             return 1
         if not any("ospitata due volte" in c for c in complaints(voices, guasto)):

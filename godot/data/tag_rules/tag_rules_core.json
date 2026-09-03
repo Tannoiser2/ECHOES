@@ -3,67 +3,17 @@
   "version": "0.2.0",
   "items": [
     {
-      "id": "TGR_GRANARY_VOICE",
-      "title": "Il granaio parla",
+      "id": "TGR_ABANDONED_WEALTH",
+      "title": "Nella terra abbandonata la ricchezza non attecchisce",
       "when": {
         "scope": "REGION",
-        "tag": "structure:granary"
+        "tag": "scar:abandoned"
       },
-      "kind": "ACTION_MODIFIER",
-      "template": "INFLUENCE",
-      "tension_id": "TEN_FAMINE",
-      "delta": 1,
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "MALUS",
       "active": true,
-      "note": "Chi sta nella Regione del granaio pesa di più sulla Carestia, nel verso che sceglie: il grano è un argomento (D-105)."
-    },
-    {
-      "id": "TGR_STARVING_TABLE",
-      "title": "La fame siede al tavolo",
-      "when": {
-        "scope": "REGION",
-        "tag": "condition:starving"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_FAMINE",
-      "world_factor_delta": -1,
-      "active": true,
-      "note": "Finché una Regione muore di fame, i Consigli sulla Carestia partono col mondo contro (D-105)."
-    },
-    {
-      "id": "TGR_PLUNDERED_GATE",
-      "title": "La strada depredata",
-      "when": {
-        "scope": "REGION",
-        "tag": "condition:plundered"
-      },
-      "kind": "GATE",
-      "movement": "BLOCK",
-      "active": true,
-      "note": "Dove è passata la razzia non si entra, finché Le Vie Riaperte non tolgono il segno: la cura esiste già nei dati (D-105)."
-    },
-    {
-      "id": "TGR_OATH_CEILING",
-      "title": "Il giuramento spezzato",
-      "when": {
-        "scope": "RELATION",
-        "tag": "oath_broken"
-      },
-      "kind": "RELATION_CAP",
-      "max_level": "HOSTILE",
-      "active": true,
-      "note": "Il Patto Rotto firma la coppia (CNS_OATH_BROKEN): fra quelle due case la relazione non sale sopra HOSTILE. Scendere resta possibile (D-105)."
-    },
-    {
-      "id": "TGR_RENOWN_PRECEDES",
-      "title": "La fama precede",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "renowned"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
-      "active": true,
-      "note": "Chi ha vinto un Consiglio in modo clamoroso viene ascoltato: quando propone, il World Factor parte a +1. Il segno più famoso fra i muti del censimento, finalmente al lavoro (D-105)."
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove tutto fu lasciato, i commerci tornano per ultimi - la pesca di ricchezza prende la carta peggiore."
     },
     {
       "id": "TGR_ACADEMY_VOICE",
@@ -78,75 +28,41 @@
       "note": "Il potere della vita (D-109): quando l'Accademia propone, la sua misura fa testo - World Factor +1. Vale solo finché quella vita siede al tavolo."
     },
     {
-      "id": "TGR_KINGDOM_GRANARY",
-      "title": "Il regno del grano",
+      "id": "TGR_ARCHIVE_READ_ALOUD",
+      "title": "Si legge in piazza",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_NAHR_KINGDOM"
+        "tag": "life:INC_LYRA_ARCHIVE"
       },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_FAMINE",
-      "world_factor_delta": 1,
+      "kind": "CONDITION_THRESHOLD",
+      "threshold_delta": -1,
       "active": true,
-      "note": "Il potere della vita (D-109): quando il Regno di Nahr propone sulla Carestia, parla chi ha il granaio - World Factor +1. Prima forma (INFLUENCE +1) respinta coi numeri: scaldava la Carestia e l'anno-biblioteca decideva 7 Consigli contro la banda 3-6 della guardia."
+      "note": "Il potere della vita (D-126): quello che l'Archivio dichiara e' gia' pubblico, e una Condition qualifica con un impegno in meno. Mai sotto 1: qualcosa va sempre messo per iscritto."
     },
     {
-      "id": "TGR_MOUNTAIN_MEMORY",
-      "title": "La memoria della montagna",
+      "id": "TGR_ASH_VIGIL",
+      "title": "La veglia arma",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_VAERAX_CULT"
+        "tag": "life:INC_CENERE_02"
       },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_AWAKENING",
-      "world_factor_delta": 1,
+      "kind": "DRAW_BIAS",
+      "family": "FORCE",
+      "bias": "BONUS",
       "active": true,
-      "note": "D-109, portata in forma piena da D-127: la memoria arma i fedeli - il Culto della Montagna pesa +1 quando propone, finche' la caduta del drago e' scritta sulla montagna. La cicatrice che lo ha fatto nascere e' la stessa che lo sostiene.",
-      "when_also": [
-        {
-          "scope": "REGION",
-          "tag": "scar:dragonfall"
-        }
-      ]
+      "note": "La seduta sulle vite (D-124, decisione A): le Custodi della Cenere vegliano armate - quando pescano forza guardano due carte e tengono la migliore. La torre di D-122 resta per tutti; questa e' la mano delle Custodi."
     },
     {
-      "id": "TGR_REGENCY_RATIONS",
-      "title": "La Reggenza tiene le razioni",
+      "id": "TGR_ASSEMBLY_NEVER_EMPTY",
+      "title": "La stanza non si svuota",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_ALDRIC_REGENCY"
+        "tag": "life:INC_LIBERE_ASSEMBLY"
       },
       "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_FAMINE",
       "world_factor_delta": 1,
       "active": true,
-      "note": "Il potere della vita (D-109): chi governa a razioni parla per ultimo sulla fame - World Factor +1 quando la Reggenza propone sulla Carestia."
-    },
-    {
-      "id": "TGR_RESTORED_NAME",
-      "title": "Il nome restaurato",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_ALDRIC_RESTORED"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_SUCCESSION",
-      "world_factor_delta": 1,
-      "active": true,
-      "note": "Il potere della vita (D-109): la Corona Restaurata parla di corone - World Factor +1 quando propone sulla Successione."
-    },
-    {
-      "id": "TGR_RISEN_LISTENS",
-      "title": "Il Ridestato ascolta",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_VAERAX_RISEN"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_AWAKENING",
-      "world_factor_delta": 1,
-      "active": true,
-      "note": "Il potere della vita (D-109): ogni Consiglio sul Risveglio parla di lui, e lui e' sveglio - World Factor +1 quando Vaerax Ridestato propone sul Risveglio."
+      "note": "Il potere della vita (D-109): l'Assemblea non convoca, e' gia' riunita - World Factor +1 quando propone."
     },
     {
       "id": "TGR_BANK_LEDGER",
@@ -160,83 +76,6 @@
       "world_factor_delta": 1,
       "active": true,
       "note": "Il potere della vita (D-109): chi tiene il registro dei debiti decide quando parlarne - World Factor +1 quando il Banco Nero propone sul Debito."
-    },
-    {
-      "id": "TGR_INQUISITION_EYE",
-      "title": "L'occhio dell'Inquisizione",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_VETRO_INQUISITION"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_RELIC",
-      "world_factor_delta": 1,
-      "active": true,
-      "note": "Il potere della vita (D-109): sulla Reliquia nessuno sa piu' cose dell'Inquisizione - World Factor +1 quando propone sulla Reliquia."
-    },
-    {
-      "id": "TGR_LEAGUE_SIGNATURE",
-      "title": "La firma delle sette",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_LIBERE_LEAGUE"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
-      "active": true,
-      "note": "Il potere della vita (D-109): quando la Lega delibera, sette citta' hanno gia' detto si' - World Factor +1 quando propone."
-    },
-    {
-      "id": "TGR_STARVING_NO_FORGE",
-      "title": "I patti non si firmano a stomaco vuoto",
-      "when": {
-        "scope": "REGION",
-        "tag": "condition:starving"
-      },
-      "kind": "ACTION_GATE",
-      "template": "FORGE",
-      "active": true,
-      "note": "Il primo divieto (D-117, ISSUES 25): chi ha presenza in una Regione affamata non stringe alleanze. La fame si cura prima - con la Riserva, con le Braccia, con un Consiglio - e poi si torna a firmare."
-    },
-    {
-      "id": "TGR_DEBT_SOURS_MARKET",
-      "title": "Il debito chiamato guasta il mercato",
-      "when": {
-        "scope": "GLOBAL",
-        "tag": "debt_called"
-      },
-      "kind": "DRAW_BIAS",
-      "family": "WEALTH",
-      "bias": "MALUS",
-      "active": true,
-      "note": "La pesca piegata (D-117): finche' il Banco ha chiamato il debito, chi pesca ricchezza guarda due carte e prende la peggiore. Il segno debt_called lo posa la carta Credito (D-114) ed e' la porta del Banco Nero."
-    },
-    {
-      "id": "TGR_STARVING_HAND",
-      "title": "La fame mangia le scorte",
-      "when": {
-        "scope": "REGION",
-        "tag": "condition:starving"
-      },
-      "kind": "HAND_LIMIT",
-      "hand_limit_delta": -1,
-      "active": true,
-      "note": "La mano stretta (D-117): chi ha presenza in una Regione affamata tiene una carta in meno. La fame non ferma solo i patti: consuma."
-    },
-    {
-      "id": "TGR_CANAL_GRAIN",
-      "title": "Chi riapre i canali ha il grano",
-      "when": {
-        "scope": "REGION",
-        "tag": "structure:canal"
-      },
-      "kind": "GRANT_ON_SET",
-      "grant": {
-        "asset_id": "AST_WEALTH_GRAIN",
-        "give_to": "ACTOR"
-      },
-      "active": true,
-      "note": "La carta consegnata (D-117): quando CNS_CANALS_DUG posa il canale, il proponente riceve la Riserva di Grano - l'acqua torna nei campi, e il primo raccolto e' di chi ha scavato."
     },
     {
       "id": "TGR_BLOOD_FLOOR",
@@ -264,32 +103,6 @@
       "note": "La cicatrice che morde (ISSUES 24, fase 4): finche' da qualche parte un ponte resta rotto, i Consigli sulle Vie partono col mondo contro. La cicatrice non si cura: e' il ponte meccanico fra le ere."
     },
     {
-      "id": "TGR_TAKEN_CAPITAL_REMEMBERS",
-      "title": "La capitale presa non dimentica",
-      "when": {
-        "scope": "REGION",
-        "tag": "scar:changed_hands"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_SUCCESSION",
-      "world_factor_delta": -1,
-      "active": true,
-      "note": "La cicatrice che morde (ISSUES 24, fase 4): una capitale passata di mano con la forza rende ogni Consiglio sulla Successione piu' duro, per sempre. Le corone si contano da quel giorno."
-    },
-    {
-      "id": "TGR_EMPTY_CHAIR_WEIGHS",
-      "title": "Il seggio vuoto pesa sulla Carta",
-      "when": {
-        "scope": "REGION",
-        "tag": "scar:the_empty_chair"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "tension_id": "TEN_CHARTER",
-      "world_factor_delta": -1,
-      "active": true,
-      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove un seggio fu preso con la forza, la Carta si scrive in salita - il mondo ricorda chi non si fido' delle firme."
-    },
-    {
       "id": "TGR_BROKEN_WORD_BONDS",
       "title": "La parola rotta guasta i legami",
       "when": {
@@ -301,6 +114,83 @@
       "bias": "MALUS",
       "active": true,
       "note": "La cicatrice che morde (ISSUES 24, fase 4): chi sta dove una parola fu rotta pesca legami peggiori - guarda due carte e prende la piu' debole. Nessuno giura volentieri su quella terra."
+    },
+    {
+      "id": "TGR_CANAL_GRAIN",
+      "title": "Chi riapre i canali ha il grano",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:canal"
+      },
+      "kind": "GRANT_ON_SET",
+      "grant": {
+        "asset_id": "AST_WEALTH_GRAIN",
+        "give_to": "ACTOR"
+      },
+      "active": true,
+      "note": "La carta consegnata (D-117): quando CNS_CANALS_DUG posa il canale, il proponente riceve la Riserva di Grano - l'acqua torna nei campi, e il primo raccolto e' di chi ha scavato."
+    },
+    {
+      "id": "TGR_CITY_VOICE",
+      "title": "La citta' parla piu' forte al Consiglio",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:city"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il terzo grado (D-160): dove c'e' una citta', il mondo ascolta. Non e' un bonus a chi la tiene — e' il Fattore Mondo che pende dalla parte di chi propone, perche' una citta' rende una decisione piu' facile da far applicare."
+    },
+    {
+      "id": "TGR_CURSED_WOOD_HAND",
+      "title": "Dalla selva si torna con meno",
+      "when": {
+        "scope": "REGION",
+        "tag": "place:cursed_wood"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": -1,
+      "active": true,
+      "note": "Il luogo che si guasta (D-163): chi ha presenza nella selva maledetta tiene una carta in meno. Una foresta maledetta non e' una perdita per qualcuno — e' una perdita per chiunque ci stia dentro, e nessuno l'ha fatto apposta."
+    },
+    {
+      "id": "TGR_DEBT_SOURS_MARKET",
+      "title": "Il debito chiamato guasta il mercato",
+      "when": {
+        "scope": "GLOBAL",
+        "tag": "debt_called"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "MALUS",
+      "active": true,
+      "note": "La pesca piegata (D-117): finche' il Banco ha chiamato il debito, chi pesca ricchezza guarda due carte e prende la peggiore. Il segno debt_called lo posa la carta Credito (D-114) ed e' la porta del Banco Nero."
+    },
+    {
+      "id": "TGR_DIASPORA_ROOTLESS",
+      "title": "Nessun centro da cui cacciarla",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_NAHR_DIASPORA"
+      },
+      "kind": "GATE",
+      "movement": "PASS",
+      "passes_eviction": true,
+      "active": true,
+      "note": "La Diaspora di Nahr (D-130, decisione C della seduta): la cacciata di un Consiglio (D-067) e i BLOCK delle regole non tengono chi non ha piu' un dentro. Dove gli altri restano fuori un atto intero, la Diaspora rientra il round dopo - il rientro costa comunque la sua azione di MOVE."
+    },
+    {
+      "id": "TGR_DOGMA_VEILS",
+      "title": "Il dogma vela",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LYRA_02"
+      },
+      "kind": "ACTION_GRANT",
+      "grants": "SCHEME_VEIL",
+      "active": true,
+      "note": "La seduta sulle vite (D-126): il Culto della Misura puo' chiudere un numero al tavolo - lo SCHEME inverso, l'arte che nessun altro ha. Le sedie automatiche non la usano: al tavolo umano e' un potere che si vede, come i divieti di D-117."
     },
     {
       "id": "TGR_EMPTIED_ARMS",
@@ -316,107 +206,43 @@
       "note": "La cicatrice che morde (ISSUES 24, fase 4): lo sgombero si paga per generazioni - chi sta nella terra svuotata pesca la gente che e' rimasta, cioe' poca."
     },
     {
-      "id": "TGR_ABANDONED_WEALTH",
-      "title": "Nella terra abbandonata la ricchezza non attecchisce",
+      "id": "TGR_EMPTY_CHAIR_WEIGHS",
+      "title": "Il seggio vuoto pesa sulla Carta",
       "when": {
         "scope": "REGION",
-        "tag": "scar:abandoned"
+        "tag": "scar:the_empty_chair"
       },
-      "kind": "DRAW_BIAS",
-      "family": "WEALTH",
-      "bias": "MALUS",
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_CHARTER",
+      "world_factor_delta": -1,
       "active": true,
-      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove tutto fu lasciato, i commerci tornano per ultimi - la pesca di ricchezza prende la carta peggiore."
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove un seggio fu preso con la forza, la Carta si scrive in salita - il mondo ricorda chi non si fido' delle firme."
     },
     {
-      "id": "TGR_WATCHTOWER_FORCE",
-      "title": "Sotto la torre di veglia la forza si trova",
+      "id": "TGR_FOREST_TIMBER",
+      "title": "Il bosco da' legna e riparo",
       "when": {
         "scope": "REGION",
-        "tag": "structure:watchtower"
+        "tag": "place:forest"
       },
       "kind": "DRAW_BIAS",
       "family": "FORCE",
       "bias": "BONUS",
       "active": true,
-      "note": "Il segno che costruisce (ISSUES 24, fase 4 - lo schizzo di D-116): chi sta sotto la torre di veglia pesca la forza migliore. La Veglia sulla Montagna adesso paga anche in armi."
+      "note": "Il primo dei luoghi del mondo (D-163): chi ha presenza dove il bosco e' ancora intero pesca forza migliore. Non e' di nessuno: vale per chiunque ci stia."
     },
     {
-      "id": "TGR_TOLLGATE_WEALTH",
-      "title": "Al pedaggio i denari girano",
-      "when": {
-        "scope": "REGION",
-        "tag": "structure:tollgate"
-      },
-      "kind": "DRAW_BIAS",
-      "family": "WEALTH",
-      "bias": "BONUS",
-      "active": true,
-      "note": "Il segno che costruisce (ISSUES 24, fase 4): dove si riscuote il pedaggio la ricchezza passa di mano - chi ci sta pesca la carta migliore."
-    },
-    {
-      "id": "TGR_MARKET_DRAWS",
-      "title": "Dove sta il mercato, la ricchezza gira",
-      "when": {
-        "scope": "REGION",
-        "tag": "settlement:market"
-      },
-      "kind": "DRAW_BIAS",
-      "family": "WEALTH",
-      "bias": "BONUS",
-      "active": true,
-      "note": "Il segno che costruisce (ISSUES 24, fase 4): il mercato spostato porta i commerci dove sta - chi ha presenza li' pesca ricchezza migliore. Il MALUS di una terra abbandonata vince, se le due si sommano."
-    },
-    {
-      "id": "TGR_MARCH_PASSES",
-      "title": "La marca tiene il passo aperto",
-      "when": {
-        "scope": "REGION",
-        "tag": "settlement:march"
-      },
-      "kind": "GATE",
-      "movement": "ALLOW",
-      "active": true,
-      "note": "La porta concessa (ISSUES 24, fase 4 - lo schizzo di D-104): nella marca si entra anche senza presenza adiacente. Il passo e' il suo mestiere; una porta sbarrata (BLOCK, la cacciata) vince comunque."
-    },
-    {
-      "id": "TGR_WOUND_SPEAKS",
-      "title": "La ferita aperta parla del Risveglio",
-      "when": {
-        "scope": "REGION",
-        "tag": "scar:open_wound"
-      },
-      "kind": "ACTION_MODIFIER",
-      "template": "INFLUENCE",
-      "tension_id": "TEN_AWAKENING",
-      "delta": 1,
-      "active": true,
-      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove il Cristallo fu sfruttato, chi sta sulla ferita pesa di piu' sul Risveglio, nel verso che sceglie - come il granaio parla della fame (D-105). La montagna ricorda a voce alta."
-    },
-    {
-      "id": "TGR_PACT_FLOOR",
-      "title": "Il patto firmato non si rimangia",
-      "when": {
-        "scope": "RELATION",
-        "tag": "PACT"
-      },
-      "kind": "RELATION_FLOOR",
-      "min_level": "NEUTRAL",
-      "active": true,
-      "note": "La cicatrice che morde (ISSUES 24, fase 4): il PACT lo scrive l'Insediamento Nahr sulla coppia che lo firma, e da quel giorno quella relazione non scende sotto NEUTRAL - come il sangue (D-117). Il tetto del giuramento spezzato vince, se i due segni coesistono."
-    },
-    {
-      "id": "TGR_SALT_CREDIT",
-      "title": "Il credito federato pesca il meglio",
+      "id": "TGR_FORGIVEN_HAND",
+      "title": "La mano che rimette",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_SALE_02"
+        "tag": "life:INC_SALE_FORGIVEN"
       },
-      "kind": "DRAW_BIAS",
-      "family": "WEALTH",
-      "bias": "BONUS",
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_DEBT",
+      "world_factor_delta": 1,
       "active": true,
-      "note": "La seduta sulle vite (D-124, decisione A): la Compagnia del Sale ha il credito di tutte le case federate - quando pesca ricchezza guarda due carte e tiene la migliore. Il dente che la seconda vita di Ilve aspettava dal 0.1.70."
+      "note": "Il potere della vita (D-109): chi ha rimesso un debito grosso davanti a tutti parla del Debito con un credito diverso - World Factor +1 quando propone sul Debito."
     },
     {
       "id": "TGR_FRIARS_MEASURE",
@@ -437,66 +263,18 @@
       ]
     },
     {
-      "id": "TGR_ASH_VIGIL",
-      "title": "La veglia arma",
+      "id": "TGR_FURNACE_HUNGER",
+      "title": "I forni mangiano il grano",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_CENERE_02"
+        "tag": "life:INC_CENERE_FURNACES"
       },
-      "kind": "DRAW_BIAS",
-      "family": "FORCE",
-      "bias": "BONUS",
+      "kind": "ACTION_RIPPLE",
+      "template": "FORGE",
+      "tension_id": "TEN_WATER",
+      "ripple_delta": 1,
       "active": true,
-      "note": "La seduta sulle vite (D-124, decisione A): le Custodi della Cenere vegliano armate - quando pescano forza guardano due carte e tengono la migliore. La torre di D-122 resta per tutti; questa e' la mano delle Custodi."
-    },
-    {
-      "id": "TGR_REPUBLIC_BRAKE",
-      "title": "Il consenso frena chi propone",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_ALDRIC_02"
-      },
-      "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": -1,
-      "active": true,
-      "note": "La seduta sulle vite (D-126): la Repubblica della Valle delibera per collegi - quando propone, il mondo la ascolta con un anno di ritardo. E' la meta' prudente del suo carattere; l'altra meta' e' il muro."
-    },
-    {
-      "id": "TGR_REPUBLIC_WALL",
-      "title": "Il consenso fa muro",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_ALDRIC_02"
-      },
-      "kind": "STANCE_MODIFIER",
-      "stance": "OPPOSE",
-      "stance_delta": 1,
-      "active": true,
-      "note": "La seduta sulle vite (D-126): quando la Repubblica si oppone con almeno una carta sul tavolo, il suo fronte vale +1 - un collegio che dice no e' piu' difficile da scavalcare di un re."
-    },
-    {
-      "id": "TGR_DOGMA_VEILS",
-      "title": "Il dogma vela",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_LYRA_02"
-      },
-      "kind": "ACTION_GRANT",
-      "grants": "SCHEME_VEIL",
-      "active": true,
-      "note": "La seduta sulle vite (D-126): il Culto della Misura puo' chiudere un numero al tavolo - lo SCHEME inverso, l'arte che nessun altro ha. Le sedie automatiche non la usano: al tavolo umano e' un potere che si vede, come i divieti di D-117."
-    },
-    {
-      "id": "TGR_LEAGUE_LIGHT_SIGNATURE",
-      "title": "La firma leggera delle Sette",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_LIBERE_LEAGUE"
-      },
-      "kind": "CONDITION_THRESHOLD",
-      "threshold_delta": -1,
-      "active": true,
-      "note": "La seduta sulle vite (D-126): per la Lega una Condition qualifica con un impegno in meno - sette citta' hanno gia' firmato, il tavolo deve solo prenderne atto. Mai sotto 1: una firma serve sempre."
+      "note": "I Forni Riaccesi (D-129): ogni patto che i Forni stringono e' un contratto di fornitura, e la domanda dell'acqua si scalda - l'industria non e' gratis, e il conto arriva sulla questione della sopravvivenza. Su una Tensione assente il colpo e' un no-op (D-028)."
     },
     {
       "id": "TGR_FURNACE_ORE",
@@ -518,31 +296,42 @@
       "note": "I Forni Riaccesi (D-129, decisione C della seduta): chi sta sulla ferita aperta e la lavora pesca ricchezza migliore. Composita: la vita E la presenza sulla ferita - l'industria e' dove la montagna soffia."
     },
     {
-      "id": "TGR_FURNACE_HUNGER",
-      "title": "I forni mangiano il grano",
+      "id": "TGR_GRANARY_VOICE",
+      "title": "Il granaio parla",
       "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_CENERE_FURNACES"
+        "scope": "REGION",
+        "tag": "structure:granary"
       },
-      "kind": "ACTION_RIPPLE",
-      "template": "FORGE",
-      "tension_id": "TEN_WATER",
-      "ripple_delta": 1,
+      "kind": "ACTION_MODIFIER",
+      "template": "INFLUENCE",
+      "tension_id": "TEN_FAMINE",
+      "delta": 1,
       "active": true,
-      "note": "I Forni Riaccesi (D-129): ogni patto che i Forni stringono e' un contratto di fornitura, e la domanda dell'acqua si scalda - l'industria non e' gratis, e il conto arriva sulla questione della sopravvivenza. Su una Tensione assente il colpo e' un no-op (D-028)."
+      "note": "Chi sta nella Regione del granaio pesa di più sulla Carestia, nel verso che sceglie: il grano è un argomento (D-105)."
     },
     {
-      "id": "TGR_DIASPORA_ROOTLESS",
-      "title": "Nessun centro da cui cacciarla",
+      "id": "TGR_GUARDED_NO_SCHEME",
+      "title": "Sotto gli occhi della guardia non si trama",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:guarded"
+      },
+      "kind": "ACTION_GATE",
+      "template": "SCHEME",
+      "active": true,
+      "note": "Il primo dente di #sorvegliata (D-353). Il segno lo posa il prezzo di una proposta che passa (D-278) — 35 volte in 100 anni — e per due versioni non lo interrogava nessuna regola: il registro lo dichiarava «candidato numero uno a mordere». Adesso morde nel verso della sua parola: dove qualcuno guarda, chi ha presenza li' non ordisce. Si cura come si cura una condizione, e la guardia non e' per sempre."
+    },
+    {
+      "id": "TGR_HEGEMONY_UNLOVED",
+      "title": "Nessuno ama l'egemone",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_NAHR_DIASPORA"
+        "tag": "life:INC_LIBERE_HEGEMONY"
       },
-      "kind": "GATE",
-      "movement": "PASS",
-      "passes_eviction": true,
+      "kind": "RELATION_CAP",
+      "max_level": "ALLY",
       "active": true,
-      "note": "La Diaspora di Nahr (D-130, decisione C della seduta): la cacciata di un Consiglio (D-067) e i BLOCK delle regole non tengono chi non ha piu' un dentro. Dove gli altri restano fuori un atto intero, la Diaspora rientra il round dopo - il rientro costa comunque la sua azione di MOVE."
+      "note": "L'Egemonia di Eredan (D-131): ogni coppia di cui l'egemone e' membro ha un tetto ad ALLY - ci si allea con lei, non ci si lega. Il gancio ENTITY sulla coppia e' l'estensione di D-131."
     },
     {
       "id": "TGR_HEGEMONY_WORD",
@@ -557,16 +346,66 @@
       "note": "L'Egemonia di Eredan (D-131, decisione C della seduta): rivendicare e forzare il Consiglio non le costa l'Asset AUTHORITY - la parola dell'ultima citta' piena e' gia' autorita'. Lo sconto si nomina a verbale: un diritto gratis e' un fatto del tavolo."
     },
     {
-      "id": "TGR_HEGEMONY_UNLOVED",
-      "title": "Nessuno ama l'egemone",
+      "id": "TGR_HOSTS_DEBT_OF_SEASON",
+      "title": "Il debito di mezza stagione",
       "when": {
         "scope": "ENTITY",
-        "tag": "life:INC_LIBERE_HEGEMONY"
+        "tag": "life:INC_NAHR_HOSTS"
       },
-      "kind": "RELATION_CAP",
-      "max_level": "ALLY",
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
       "active": true,
-      "note": "L'Egemonia di Eredan (D-131): ogni coppia di cui l'egemone e' membro ha un tetto ad ALLY - ci si allea con lei, non ci si lega. Il gancio ENTITY sulla coppia e' l'estensione di D-131."
+      "note": "Il potere della vita (D-109): ogni casa ha ospitato gli Ospiti una volta, e nessuna vuole ricordarselo ad alta voce - World Factor +1 quando propongono."
+    },
+    {
+      "id": "TGR_INQUISITION_EYE",
+      "title": "L'occhio dell'Inquisizione",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VETRO_INQUISITION"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_RELIC",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): sulla Reliquia nessuno sa piu' cose dell'Inquisizione - World Factor +1 quando propone sulla Reliquia."
+    },
+    {
+      "id": "TGR_KINGDOM_GRANARY",
+      "title": "Il regno del grano",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_NAHR_KINGDOM"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_FAMINE",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): quando il Regno di Nahr propone sulla Carestia, parla chi ha il granaio - World Factor +1. Prima forma (INFLUENCE +1) respinta coi numeri: scaldava la Carestia e l'anno-biblioteca decideva 7 Consigli contro la banda 3-6 della guardia."
+    },
+    {
+      "id": "TGR_LEAGUE_LIGHT_SIGNATURE",
+      "title": "La firma leggera delle Sette",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LIBERE_LEAGUE"
+      },
+      "kind": "CONDITION_THRESHOLD",
+      "threshold_delta": -1,
+      "active": true,
+      "note": "La seduta sulle vite (D-126): per la Lega una Condition qualifica con un impegno in meno - sette citta' hanno gia' firmato, il tavolo deve solo prenderne atto. Mai sotto 1: una firma serve sempre."
+    },
+    {
+      "id": "TGR_LEAGUE_SIGNATURE",
+      "title": "La firma delle sette",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_LIBERE_LEAGUE"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): quando la Lega delibera, sette citta' hanno gia' detto si' - World Factor +1 quando propone."
     },
     {
       "id": "TGR_LEGEND_STILL",
@@ -600,66 +439,60 @@
       "note": "La Leggenda della Montagna (D-133): finche' il mondo dimentica cosa dorme davvero, la sua parola sui fronti che sostiene pesa un impegno in piu'. Se il sigillo cade il segno sparisce, e la voce torna una voce."
     },
     {
-      "id": "TGR_VILLAGE_PEOPLE",
-      "title": "Dove ci sono case, ci sono braccia",
+      "id": "TGR_MARCH_PASSES",
+      "title": "La marca tiene il passo aperto",
       "when": {
         "scope": "REGION",
-        "tag": "settlement:village"
+        "tag": "settlement:march"
+      },
+      "kind": "GATE",
+      "movement": "ALLOW",
+      "active": true,
+      "note": "La porta concessa (ISSUES 24, fase 4 - lo schizzo di D-104): nella marca si entra anche senza presenza adiacente. Il passo e' il suo mestiere; una porta sbarrata (BLOCK, la cacciata) vince comunque."
+    },
+    {
+      "id": "TGR_MARKET_DRAWS",
+      "title": "Dove sta il mercato, la ricchezza gira",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:market"
       },
       "kind": "DRAW_BIAS",
-      "family": "PEOPLE",
+      "family": "WEALTH",
       "bias": "BONUS",
       "active": true,
-      "note": "Il primo grado dell'insediamento (D-160, catalogo §8.2): chi ha presenza dove sta un villaggio pesca gente migliore. Un villaggio non e' una fortezza: e' un posto dove qualcuno risponde quando chiami."
+      "note": "Il segno che costruisce (ISSUES 24, fase 4): il mercato spostato porta i commerci dove sta - chi ha presenza li' pesca ricchezza migliore. Il MALUS di una terra abbandonata vince, se le due si sommano."
     },
     {
-      "id": "TGR_TOWN_HAND",
-      "title": "Nel borgo si tiene qualcosa da parte",
+      "id": "TGR_MOUNTAIN_MEMORY",
+      "title": "La memoria della montagna",
       "when": {
-        "scope": "REGION",
-        "tag": "settlement:town"
-      },
-      "kind": "HAND_LIMIT",
-      "hand_limit_delta": 1,
-      "active": true,
-      "note": "Il secondo grado (D-160): un borgo ha magazzini, e chi ci sta tiene una carta in piu'. E' l'inverso esatto della fame, che una carta la toglie."
-    },
-    {
-      "id": "TGR_CITY_VOICE",
-      "title": "La citta' parla piu' forte al Consiglio",
-      "when": {
-        "scope": "REGION",
-        "tag": "settlement:city"
+        "scope": "ENTITY",
+        "tag": "life:INC_VAERAX_CULT"
       },
       "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_AWAKENING",
       "world_factor_delta": 1,
       "active": true,
-      "note": "Il terzo grado (D-160): dove c'e' una citta', il mondo ascolta. Non e' un bonus a chi la tiene — e' il Fattore Mondo che pende dalla parte di chi propone, perche' una citta' rende una decisione piu' facile da far applicare."
+      "note": "D-109, portata in forma piena da D-127: la memoria arma i fedeli - il Culto della Montagna pesa +1 quando propone, finche' la caduta del drago e' scritta sulla montagna. La cicatrice che lo ha fatto nascere e' la stessa che lo sostiene.",
+      "when_also": [
+        {
+          "scope": "REGION",
+          "tag": "scar:dragonfall"
+        }
+      ]
     },
     {
-      "id": "TGR_FOREST_TIMBER",
-      "title": "Il bosco da' legna e riparo",
+      "id": "TGR_OATH_CEILING",
+      "title": "Il giuramento spezzato",
       "when": {
-        "scope": "REGION",
-        "tag": "place:forest"
+        "scope": "RELATION",
+        "tag": "oath_broken"
       },
-      "kind": "DRAW_BIAS",
-      "family": "FORCE",
-      "bias": "BONUS",
+      "kind": "RELATION_CAP",
+      "max_level": "HOSTILE",
       "active": true,
-      "note": "Il primo dei luoghi del mondo (D-163): chi ha presenza dove il bosco e' ancora intero pesca forza migliore. Non e' di nessuno: vale per chiunque ci stia."
-    },
-    {
-      "id": "TGR_CURSED_WOOD_HAND",
-      "title": "Dalla selva si torna con meno",
-      "when": {
-        "scope": "REGION",
-        "tag": "place:cursed_wood"
-      },
-      "kind": "HAND_LIMIT",
-      "hand_limit_delta": -1,
-      "active": true,
-      "note": "Il luogo che si guasta (D-163): chi ha presenza nella selva maledetta tiene una carta in meno. Una foresta maledetta non e' una perdita per qualcuno — e' una perdita per chiunque ci stia dentro, e nessuno l'ha fatto apposta."
+      "note": "Il Patto Rotto firma la coppia (CNS_OATH_BROKEN): fra quelle due case la relazione non sale sopra HOSTILE. Scendere resta possibile (D-105)."
     },
     {
       "id": "TGR_OPEN_SITE_KNOWLEDGE",
@@ -675,6 +508,144 @@
       "note": "D-165: chi ha presenza dove il sito e' aperto pesca sapere migliore — chiunque sia, perche' un luogo del mondo non e' di nessuno. Il degrado non aggiunge una penalita': toglie questo dono, e basta."
     },
     {
+      "id": "TGR_PACT_FLOOR",
+      "title": "Il patto firmato non si rimangia",
+      "when": {
+        "scope": "RELATION",
+        "tag": "PACT"
+      },
+      "kind": "RELATION_FLOOR",
+      "min_level": "NEUTRAL",
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): il PACT lo scrive l'Insediamento Nahr sulla coppia che lo firma, e da quel giorno quella relazione non scende sotto NEUTRAL - come il sangue (D-117). Il tetto del giuramento spezzato vince, se i due segni coesistono."
+    },
+    {
+      "id": "TGR_PLUNDERED_GATE",
+      "title": "La strada depredata",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:plundered"
+      },
+      "kind": "GATE",
+      "movement": "BLOCK",
+      "active": true,
+      "note": "Dove è passata la razzia non si entra, finché Le Vie Riaperte non tolgono il segno: la cura esiste già nei dati (D-105)."
+    },
+    {
+      "id": "TGR_REGENCY_RATIONS",
+      "title": "La Reggenza tiene le razioni",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_REGENCY"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_FAMINE",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): chi governa a razioni parla per ultimo sulla fame - World Factor +1 quando la Reggenza propone sulla Carestia."
+    },
+    {
+      "id": "TGR_RENOWN_PRECEDES",
+      "title": "La fama precede",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "renowned"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Chi ha vinto un Consiglio in modo clamoroso viene ascoltato: quando propone, il World Factor parte a +1. Il segno più famoso fra i muti del censimento, finalmente al lavoro (D-105)."
+    },
+    {
+      "id": "TGR_REPUBLIC_BRAKE",
+      "title": "Il consenso frena chi propone",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_02"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "La seduta sulle vite (D-126): la Repubblica della Valle delibera per collegi - quando propone, il mondo la ascolta con un anno di ritardo. E' la meta' prudente del suo carattere; l'altra meta' e' il muro."
+    },
+    {
+      "id": "TGR_REPUBLIC_WALL",
+      "title": "Il consenso fa muro",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_02"
+      },
+      "kind": "STANCE_MODIFIER",
+      "stance": "OPPOSE",
+      "stance_delta": 1,
+      "active": true,
+      "note": "La seduta sulle vite (D-126): quando la Repubblica si oppone con almeno una carta sul tavolo, il suo fronte vale +1 - un collegio che dice no e' piu' difficile da scavalcare di un re."
+    },
+    {
+      "id": "TGR_RESTORED_NAME",
+      "title": "Il nome restaurato",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_ALDRIC_RESTORED"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_SUCCESSION",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): la Corona Restaurata parla di corone - World Factor +1 quando propone sulla Successione."
+    },
+    {
+      "id": "TGR_RISEN_LISTENS",
+      "title": "Il Ridestato ascolta",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VAERAX_RISEN"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_AWAKENING",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): ogni Consiglio sul Risveglio parla di lui, e lui e' sveglio - World Factor +1 quando Vaerax Ridestato propone sul Risveglio."
+    },
+    {
+      "id": "TGR_ROADS_TOLL_CHANGED",
+      "title": "Il pedaggio ha cambiato mano",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_CENERE_ROADS"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_ROADS",
+      "world_factor_delta": 1,
+      "active": true,
+      "note": "Il potere della vita (D-109): chi ha rifatto le strade parla delle Vie Interrotte da chi ci passa sopra - World Factor +1 quando propone su quella questione."
+    },
+    {
+      "id": "TGR_SALT_CREDIT",
+      "title": "Il credito federato pesca il meglio",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_SALE_02"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "BONUS",
+      "active": true,
+      "note": "La seduta sulle vite (D-124, decisione A): la Compagnia del Sale ha il credito di tutte le case federate - quando pesca ricchezza guarda due carte e tiene la migliore. Il dente che la seconda vita di Ilve aspettava dal 0.1.70."
+    },
+    {
+      "id": "TGR_SCHOOL_REPEATED",
+      "title": "Si insegna ripetendolo uguale",
+      "when": {
+        "scope": "ENTITY",
+        "tag": "life:INC_VETRO_SCHOOL"
+      },
+      "kind": "CONDITION_THRESHOLD",
+      "threshold_delta": -1,
+      "active": true,
+      "note": "Il potere della vita (D-126): la Scuola ha gia' scritto la procedura, e una Condition qualifica con un impegno in meno. Mai sotto 1: qualcuno deve pur firmarla."
+    },
+    {
       "id": "TGR_SPRING_PEOPLE",
       "title": "Dove c'e' acqua, la gente resta",
       "when": {
@@ -688,16 +659,119 @@
       "note": "D-165: la sorgente viva fa pescare gente migliore a chi ci sta. Quando cala o si secca il segno cambia e la regola smette di valere: **niente penalita' nuove**, solo un dono che finisce."
     },
     {
-      "id": "TGR_GUARDED_NO_SCHEME",
-      "title": "Sotto gli occhi della guardia non si trama",
+      "id": "TGR_STARVING_HAND",
+      "title": "La fame mangia le scorte",
       "when": {
         "scope": "REGION",
-        "tag": "condition:guarded"
+        "tag": "condition:starving"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": -1,
+      "active": true,
+      "note": "La mano stretta (D-117): chi ha presenza in una Regione affamata tiene una carta in meno. La fame non ferma solo i patti: consuma."
+    },
+    {
+      "id": "TGR_STARVING_NO_FORGE",
+      "title": "I patti non si firmano a stomaco vuoto",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:starving"
       },
       "kind": "ACTION_GATE",
-      "template": "SCHEME",
+      "template": "FORGE",
       "active": true,
-      "note": "Il primo dente di #sorvegliata (D-353). Il segno lo posa il prezzo di una proposta che passa (D-278) — 35 volte in 100 anni — e per due versioni non lo interrogava nessuna regola: il registro lo dichiarava «candidato numero uno a mordere». Adesso morde nel verso della sua parola: dove qualcuno guarda, chi ha presenza li' non ordisce. Si cura come si cura una condizione, e la guardia non e' per sempre."
+      "note": "Il primo divieto (D-117, ISSUES 25): chi ha presenza in una Regione affamata non stringe alleanze. La fame si cura prima - con la Riserva, con le Braccia, con un Consiglio - e poi si torna a firmare."
+    },
+    {
+      "id": "TGR_STARVING_TABLE",
+      "title": "La fame siede al tavolo",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:starving"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_FAMINE",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "Finché una Regione muore di fame, i Consigli sulla Carestia partono col mondo contro (D-105)."
+    },
+    {
+      "id": "TGR_TAKEN_CAPITAL_REMEMBERS",
+      "title": "La capitale presa non dimentica",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:changed_hands"
+      },
+      "kind": "COUNCIL_MODIFIER",
+      "tension_id": "TEN_SUCCESSION",
+      "world_factor_delta": -1,
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): una capitale passata di mano con la forza rende ogni Consiglio sulla Successione piu' duro, per sempre. Le corone si contano da quel giorno."
+    },
+    {
+      "id": "TGR_TOLLGATE_WEALTH",
+      "title": "Al pedaggio i denari girano",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:tollgate"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "WEALTH",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il segno che costruisce (ISSUES 24, fase 4): dove si riscuote il pedaggio la ricchezza passa di mano - chi ci sta pesca la carta migliore."
+    },
+    {
+      "id": "TGR_TOWN_HAND",
+      "title": "Nel borgo si tiene qualcosa da parte",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:town"
+      },
+      "kind": "HAND_LIMIT",
+      "hand_limit_delta": 1,
+      "active": true,
+      "note": "Il secondo grado (D-160): un borgo ha magazzini, e chi ci sta tiene una carta in piu'. E' l'inverso esatto della fame, che una carta la toglie."
+    },
+    {
+      "id": "TGR_VILLAGE_PEOPLE",
+      "title": "Dove ci sono case, ci sono braccia",
+      "when": {
+        "scope": "REGION",
+        "tag": "settlement:village"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "PEOPLE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il primo grado dell'insediamento (D-160, catalogo §8.2): chi ha presenza dove sta un villaggio pesca gente migliore. Un villaggio non e' una fortezza: e' un posto dove qualcuno risponde quando chiami."
+    },
+    {
+      "id": "TGR_WATCHTOWER_FORCE",
+      "title": "Sotto la torre di veglia la forza si trova",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:watchtower"
+      },
+      "kind": "DRAW_BIAS",
+      "family": "FORCE",
+      "bias": "BONUS",
+      "active": true,
+      "note": "Il segno che costruisce (ISSUES 24, fase 4 - lo schizzo di D-116): chi sta sotto la torre di veglia pesca la forza migliore. La Veglia sulla Montagna adesso paga anche in armi."
+    },
+    {
+      "id": "TGR_WOUND_SPEAKS",
+      "title": "La ferita aperta parla del Risveglio",
+      "when": {
+        "scope": "REGION",
+        "tag": "scar:open_wound"
+      },
+      "kind": "ACTION_MODIFIER",
+      "template": "INFLUENCE",
+      "tension_id": "TEN_AWAKENING",
+      "delta": 1,
+      "active": true,
+      "note": "La cicatrice che morde (ISSUES 24, fase 4): dove il Cristallo fu sfruttato, chi sta sulla ferita pesa di piu' sul Risveglio, nel verso che sceglie - come il granaio parla della fame (D-105). La montagna ricorda a voce alta."
     }
   ]
 }

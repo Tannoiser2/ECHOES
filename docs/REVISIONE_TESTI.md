@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4211 testi in lettura.
+possono spostare nella frase, non togliere. 4235 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -187,6 +187,12 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 > L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo.
 
 
+**`INC_CENERE_ROADS`**
+> Le Strade della Cenere
+
+> Tagliata fuori una volta di troppo, la casa smise di aspettare che le strade tornassero e si mise a farle. Dove passano loro, passa tutto: e' il pedaggio a essere cambiato di mano.
+
+
 **`ENT_CENERE, erede`**
 > Toldan dei Fuochi
 
@@ -231,6 +237,12 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 > Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari.
 
 
+**`INC_LIBERE_ASSEMBLY`**
+> L'Assemblea Permanente
+
+> La Carta valse per un tempo solo, e alla scadenza nessuno la richiuse. Non c'e' piu' una citta' che parla per le altre: c'e' una stanza che non si svuota mai, e chi ci entra vota.
+
+
 **`ENT_LYRA`**
 > Lyra
 
@@ -249,6 +261,12 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 > Il Culto della Misura
 
 > Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire.
+
+
+**`INC_LYRA_ARCHIVE`**
+> L'Archivio Aperto
+
+> Il registro fu letto in piazza, e da allora non si richiuse. Lyra smette di sapere per prima e comincia a sapere per tutti: chi legge le deve una riga.
 
 
 **`ENT_LYRA, erede`**
@@ -319,6 +337,12 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 > Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro.
 
 
+**`INC_NAHR_HOSTS`**
+> Gli Ospiti di Nahr
+
+> Il peso fu diviso, e chi lo divise si sedette. Non sono piu' un popolo che passa: sono quelli che ogni casa ha ospitato una volta, e a cui ogni casa deve mezza stagione.
+
+
 **`ENT_SALE`**
 > Maestra Ilve
 
@@ -337,6 +361,12 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 > La Compagnia del Sale
 
 > Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno.
+
+
+**`INC_SALE_FORGIVEN`**
+> La Mano Rimessa
+
+> Rimesso un debito grosso davanti a tutti, la Gilda scopri' che perdonare rende piu' del riscuotere. Adesso presta a chi non puo' rendere, e tiene il conto di chi lo sa.
 
 
 **`ENT_SALE, erede`**
@@ -407,6 +437,12 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 > I Frati del Vetro
 
 > Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia.
+
+
+**`INC_VETRO_SCHOOL`**
+> La Scuola del Vetro
+
+> Quando la scorta giurata torno' senza reliquia e senza morti, l'Ordine capi' che il segreto non era il tesoro. Insegnano quello che custodivano, e chiedono in cambio che venga ripetuto uguale.
 
 
 **`ENT_VETRO, erede`**
@@ -14677,6 +14713,14 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > vita: I Forni Riaccesi
 
 
+**`life:INC_CENERE_ROADS`**
+> vita: Le Strade della Cenere
+
+
+**`life:INC_LIBERE_ASSEMBLY`**
+> vita: L'Assemblea Permanente
+
+
 **`life:INC_LIBERE_HEGEMONY`**
 > vita: L'Egemonia di Eredan
 
@@ -14693,8 +14737,16 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > vita: L'Accademia delle Misure
 
 
+**`life:INC_LYRA_ARCHIVE`**
+> vita: L'Archivio Aperto
+
+
 **`life:INC_NAHR_DIASPORA`**
 > vita: La Diaspora di Nahr
+
+
+**`life:INC_NAHR_HOSTS`**
+> vita: Gli Ospiti di Nahr
 
 
 **`life:INC_NAHR_KINGDOM`**
@@ -14707,6 +14759,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`life:INC_SALE_BANK`**
 > vita: Il Banco Nero
+
+
+**`life:INC_SALE_FORGIVEN`**
+> vita: La Mano Rimessa
 
 
 **`life:INC_VAERAX_CULT`**
@@ -14727,6 +14783,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`life:INC_VETRO_INQUISITION`**
 > vita: L'Inquisizione del Vetro
+
+
+**`life:INC_VETRO_SCHOOL`**
+> vita: La Scuola del Vetro
 
 
 **`list_witnessed`**
@@ -15129,8 +15189,16 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > L'Accademia fa testo
 
 
+**`TGR_ARCHIVE_READ_ALOUD`**
+> Si legge in piazza
+
+
 **`TGR_ASH_VIGIL`**
 > La veglia arma
+
+
+**`TGR_ASSEMBLY_NEVER_EMPTY`**
+> La stanza non si svuota
 
 
 **`TGR_BANK_LEDGER`**
@@ -15185,6 +15253,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > Il bosco da' legna e riparo
 
 
+**`TGR_FORGIVEN_HAND`**
+> La mano che rimette
+
+
 **`TGR_FRIARS_MEASURE`**
 > La regola come misura, dove la reliquia e' custodita
 
@@ -15211,6 +15283,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_HEGEMONY_WORD`**
 > La parola che comanda
+
+
+**`TGR_HOSTS_DEBT_OF_SEASON`**
+> Il debito di mezza stagione
 
 
 **`TGR_INQUISITION_EYE`**
@@ -15289,8 +15365,16 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > Il Ridestato ascolta
 
 
+**`TGR_ROADS_TOLL_CHANGED`**
+> Il pedaggio ha cambiato mano
+
+
 **`TGR_SALT_CREDIT`**
 > Il credito federato pesca il meglio
+
+
+**`TGR_SCHOOL_REPEATED`**
+> Si insegna ripetendolo uguale
 
 
 **`TGR_SPRING_PEOPLE`**
