@@ -96,10 +96,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **114** |
-| aperte | **18** |
+| chiuse | **115** |
+| aperte | **17** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **18** |
+| di cui sono mie da fare | **17** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -130,11 +130,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **9** | **io**, da sola, senza aspettare niente |
+| 🟡 | **8** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Nove.** Delle diciotto voci aperte, nove le posso muovere senza di te — ed è
-il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+**Otto.** Delle diciassette voci aperte, otto le posso muovere senza di te — ed
+è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
 parola.**
 
 <!-- COLORI: fine -->
@@ -205,7 +205,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **nove**
+# 🟡 Sono mie, e non aspettano niente: **otto**
 
 Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
 dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
@@ -492,28 +492,73 @@ diciotto. E sei illustrazioni in più: 155 → **161**. Cancello **0 su 8**.
 
 ### M12. [111](ISSUES.md#111) — le Pietre che non si alzano mai
 
-**Da rimisurare, e potrebbe chiudersi da sola.** La sua causa era *«nessuna
-Azione della plancia alza una Pietra»*, e da 0.1.383 ACQUISIRE la alza: le Pietre
-da Azione sono passate da **0 a 190** e quelle dal Consiglio da 148 a **211**.
+**Rimisurata in 0.1.405, e non si chiude: ma adesso sappiamo perché**
+([D-435](DECISIONS.md#d-435)).
+
+> **Al tavolo.** Il Consiglio ti offre *«una Pietra del luogo sale di grado»*, e
+> tu non la prendi mai. Non perché non ti serva: perché quella casella, quando
+> la Pietra è un bosco o una sorgente, per il cervello del gioco **valeva zero**.
+
+Le due cause che la voce aveva scritto sono cadute tutte e due: le Conseguenze
+che posano quei gradi **vengono scelte**. La vera era una riga sola — il valore
+della casella si leggeva dal *padrone della Pietra*, e un bosco, una sorgente,
+un passo, un sito antico **non hanno padrone**. Dodici caselle su ventisette
+valevano zero per costruzione, e la casella era offerta 128 volte in cento
+partite e comprata **4**.
+
+| 100 partite, tavolo misto | prima | **dopo** |
+|---|---|---|
+| UNA PIETRA SALE, offerta / comprata | 128 / **4** | 128 / **6** |
+| gradi di Pietra che non arrivano mai | 4 | **4** — e non sono più gli stessi |
+| segni mai arrivati, forme escluse (semi 7000 / 8000) | 51 / 54 | **54 / 52** |
+
+**E il conto dei segni mai arrivati non si è mosso**, che è la cosa onesta da
+dirti: una decina di quei segni escono zero, una o due volte in cento partite, e
+lo scarto fra due semi è largo quanto la differenza fra prima e dopo. Quello che
+si è mosso è la sola riga di UNA PIETRA SALE, ed è poco.
+
+**E due dei quattro non erano difetti**: `settlement:$proponent` e
+`evicted:$region_focus` portano un segnaposto nell'id, e la forma nuda non arriva
+mai per costruzione. Adesso la misura lo dichiara invece di contarli fra i mancanti.
+
+**Perché la lascio aperta.** Sei acquisti su centoventotto sono ancora quasi
+zero: la casella perde contro COSTRUISCI PIETRA e CAMBIA CONTROLLO in un
+Consiglio che compra 2,33 benefici. Alzarne il valore da 2 a 3 è la mossa che la
+[117](ISSUES.md#117) ha già provato altrove e **rifiutato** — la casella si
+mangiava le altre — e non si cura una casella morta facendone morire un'altra.
 
 **Fatto quando** ogni grado consumato si alza almeno una volta in cento partite,
-o esce dalla scatola.
+o esce dalla scatola. Ne restano **quattro**: il bosco diradato, il passo
+franato, la città e la sorgente bassa. E il passo è l'unica Pietra della scatola che **nessuna Tensione
+nomina**: nessun Consiglio può toccarlo.
 
-### M13. [4](ISSUES.md#4) — gli obiettivi non si incrociano
+### M13. ✔ [4](ISSUES.md#4) — gli obiettivi non si incrociano: **chiusa in 0.1.405**
 
-**Da rimisurare, e tre righe del suo criterio su quattro erano già passate.** La
-quarta era la R3, che adesso è chiusa: sette Obiettivi nominano i segni della
-mappa, e le coppie che si contendono una Regione sono passate da 15,5% a
-**44,0%**.
+Tre righe del criterio passavano già. La quarta stava ferma su un numero
+**contato a mano** — «3 su 15» — quando il mazzo era già di diciassette: lo
+stesso difetto per cui questo foglio si genera da solo
+([D-436](DECISIONS.md#d-436)).
 
-| | chiedeva | l'ultima misura |
+**Adesso lo conta la sonda**, con la regola scritta: due case non possono avere
+insieme un obiettivo che chiede o di essere **il primo**, o di **tenere due terre
+di uno stesso dominio** — di un dominio ne entrano in gioco tre o quattro su sei.
+
+E ne ho scritte due, che completano una famiglia: «Due Terre, una Voce» aveva il
+Territorio, adesso **Il Fondo Antico** ha l'Antico e **Le Due Rese** le risorse.
+Una ambizione per dominio, e nessuna delle tre si può avere in due.
+
+| | chiedeva | **l'ultima misura** |
 |---|---|---|
-| Regioni contese a fine anno | > 3 su 6 | **3,40 su 6** ✅ |
-| il padrone passa di mano | > 3 volte l'anno | **3,75 volte** ✅ |
+| Regioni contese a fine anno | > 3 su 6 | **3,71 su 6** ✅ |
+| il padrone passa di mano | più di prima | **3,87 volte** ✅ |
+| obiettivi contesi | ≥ un terzo del mazzo | **7 su 19** (36,8%) ✅ |
 | playtest | 0 su 8 | **0 su 8** ✅ |
-| obiettivi contesi | ≥ un terzo del mazzo | **3 su 15** ❌ — da rifare |
 
-Con lei si rimisura anche la [91](ISSUES.md#91), che sta fra le ⚪.
+**Il prezzo, scritto:** due illustrazioni in più (161 → 163). Le Verità salgono —
+130 → **133** sul misto, 134 → **145** sull'uniforme.
+
+Con lei si è rimisurata anche la [91](ISSUES.md#91), che sta fra le ⚪: le
+clausole già vere all'apertura scendono da **47,1%** a **46,2%**.
 
 ### M14. [65](ISSUES.md#65) — l'app smette di mostrare lo stato
 
@@ -545,7 +590,7 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 | [50](ISSUES.md#50) — quattro obiettivi al posto dei tre gradini | tua idea grossa, e R3 la anticipa in parte |
 | [27](ISSUES.md#27) — il tavolo sullo schermo grande e le console in tasca | milestone 0.6, e ha bisogno che l'app della 63 esista prima |
 | [36](ISSUES.md#36) — linee sempre diverse: la strada **(D)** è percorsa ([D-434](DECISIONS.md#d-434)) | quello che resta sono le strade **A** e **B** e le cinque domande secche, e per tua parola si guardano **dopo la prima partita vera** |
-| [91](ISSUES.md#91) — i punti già veri all'apertura, **48,4% oggi** | **la sua cura è R3**. Si rimisura dopo, e probabilmente si chiude da sola. Sotto la metà per la prima volta — ma il 60,5% con cui è nata è misurato su un altro tavolo, e i due numeri non stanno in fila ([D-391](DECISIONS.md#d-391)) |
+| [91](ISSUES.md#91) — i punti già veri all'apertura, **46,2% in 0.1.405** | **la sua cura era R3**, ed è arrivata: rimisurata con la M13, scende da 47,1% a **46,2%** sullo stesso tavolo e lo stesso seme. Sotto la metà e ancora in calo — ma il 60,5% con cui è nata è misurato su un altro tavolo, e i due numeri non stanno in fila ([D-391](DECISIONS.md#d-391)) |
 
 ---
 
@@ -572,9 +617,9 @@ mano invecchia il giorno dopo.
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle diciotto voci aperte ne posso
-muovere **nove** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle diciassette voci aperte ne
+posso muovere **otto** da sola. Due le verifica una persona che gioca, sette
+stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

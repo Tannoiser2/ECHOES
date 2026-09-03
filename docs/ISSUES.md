@@ -6847,7 +6847,7 @@ Una struttura pesa nel conteggio del controllo e **basta**. `hand_refill` conta 
 **presenze**, non il possesso: il controllo di una Regione non dà carte, non dà
 azioni, non dà niente che si veda al tavolo.
 
-### 4. Gli obiettivi non si incrociano: uno su dodici
+### 4. ✅ Gli obiettivi non si incrociano: uno su dodici — **chiusa in 0.1.405**
 
 | | |
 |---|---|
@@ -6950,6 +6950,36 @@ del titolo.
 le Regioni contese sono più di tre su sei a fine anno, il padrone cambia mano più
 di quanto non cambi oggi, e gli obiettivi contesi sono almeno un terzo del mazzo
 — col playtest ancora **0/8**.
+
+### Chiusa in 0.1.405 ([D-436](DECISIONS.md#d-436))
+
+Tre righe del «fatto quando» passavano già da 0.1.398. La quarta — *«obiettivi
+contesi almeno un terzo del mazzo»* — stava ferma a un numero **contato a mano**,
+«3 su 15», quando il mazzo era già di diciassette: il difetto di
+[D-426](DECISIONS.md#d-426), scritto in un altro foglio.
+
+**Adesso lo conta `run_contest_probe`**, con la regola dichiarata: due case non
+possono avere insieme un obiettivo che chiede o di essere **il primo**
+(`leads_in`), o di **tenere due terre di uno stesso dominio** — il titolo di una
+Regione è di una casa sola, e di un dominio ne entrano in gioco tre o quattro su
+sei.
+
+E ne sono stati scritti due, che completano una famiglia: «Due Terre, una Voce»
+aveva il Territorio, adesso **Il Fondo Antico** ha l'Antico e **Le Due Rese** le
+risorse. Una ambizione per dominio, e nessuna delle tre si può avere in due.
+
+| | chiedeva | ora |
+|---|---|---|
+| Regioni contese a fine anno | > 3 su 6 | **3,71** ✅ |
+| il padrone passa di mano | più di prima | **3,87** volte l'anno ✅ |
+| obiettivi contesi | ≥ un terzo del mazzo | **7 su 19** (36,8%) ✅ |
+| playtest 100 semi | 0 su 8 | **0 su 8**, misto e uniforme ✅ |
+
+**Il prezzo, scritto:** due illustrazioni in più (161 → 163 soggetti). E le
+Verità salgono — 130 → **133** sul misto, 134 → **145** sull'uniforme.
+
+E la [91](#91), che si rimisurava con lei, scende ancora: clausole già vere
+all'apertura **47,1% → 46,2%**.
 
 ---
 
@@ -8030,6 +8060,50 @@ gioco.
 
 **Fatto quando** ogni grado di ogni Pietra o si alza almeno una volta in cento
 partite, o non e' piu' nel catalogo.
+
+### Rimisurata in 0.1.405: **le due cause scritte non reggono, la terza è misurata** ([D-435](DECISIONS.md#d-435))
+
+Le due cause che questa voce aveva nominato — *«la Conseguenza non viene mai
+scelta»* e *«e quando viene scelta deve trovare la Pietra dov'è»* — **non
+reggono più**: `run_consequence_probe` elenca le nove Conseguenze che in cento
+partite non escono mai, e né `CNS_VALLEY_CLEARED` né `CNS_MINE_ROAD_CUT` ci sono.
+
+**La causa vera era una riga.** La casella UNA PIETRA SALE valeva
+`2 if _stone_owner(...) == proponent else 0`, e un bosco, una sorgente, un passo,
+un sito antico **non hanno padrone**: `structure_types` li dichiara
+`owned: false`. Quindi **dodici delle ventisette caselle scritte sulle Tensioni**
+— tutte quelle dei luoghi — valevano **zero per costruzione**, e la casella era
+offerta **128 volte in cento partite e comprata 4**. Adesso legge il padrone
+dalla **Regione**, che al tavolo è dove sta.
+
+| 100 partite, tavolo misto | prima | dopo |
+|---|---|---|
+| UNA PIETRA SALE, offerta / comprata | 128 / **4** | 128 / **6** |
+| gradi di Pietra che non arrivano mai | 4 | **4** — e non sono più gli stessi |
+| segni mai arrivati, forme escluse (semi 7000 / 8000) | 51 / 54 | **54 / 52** |
+
+**La coda è rumorosa, e si è misurato invece di dirlo.** Una decina di questi
+segni escono zero, una o due volte in cento partite: lo scarto fra due semi è
+largo quanto la differenza fra prima e dopo. Il conto **non si è mosso**; quello
+che si è mosso è la riga di UNA PIETRA SALE, ed è poco.
+
+**E due dei quattro non erano difetti:** `settlement:$proponent` e
+`evicted:$region_focus` portano un segnaposto nell'id e il motore ci scrive
+dentro il nome vero prima di posarle — la forma nuda non arriva mai **per
+costruzione**, ed è la ragione di [D-376](DECISIONS.md#d-376) un piano più in là.
+
+**Perché resta aperta.** Sei acquisti su centoventotto sono ancora quasi zero: la
+casella perde contro COSTRUISCI PIETRA (206 su 236) e CAMBIA CONTROLLO (172 su
+172) in un Consiglio che compra 2,33 benefici. Alzarne il valore da 2 a 3 è la
+mossa che [ISSUES 117](#117) ha già provato altrove e **rifiutato**, perché la
+casella si mangiava le altre. I tre gradi che restano:
+
+| grado | perché non arriva |
+|---|---|
+| `place:thinned_wood` | il grado di mezzo ha **un solo scrittore**, e i quattro che scrivono il grado 3 saltano da 1 a 3 in un colpo |
+| `place:collapsed_pass` | il Passo è l'unica Pietra che **nessuna Tensione nomina**: nessun Consiglio può toccarlo |
+| `settlement:city` | vuole **due salite** sulla stessa Pietra, e la Reggia — che ne vuole altrettante — arriva 3 volte su 100 |
+| `place:low_spring` | usciva **una volta** sul seme di prima e zero adesso: è la coda, non una causa |
 
 ### Rimisurata in 0.1.388, dopo la R2 ([D-417](DECISIONS.md#d-417))
 

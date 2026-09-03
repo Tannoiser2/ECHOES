@@ -295,8 +295,9 @@ Quattro sono state decise in 0.1.353, e sono scritte.
    proposta.** Con un solo beneficio gratis le caselle vive per Consiglio sono
    **una**, e i benefici comprati sono **scesi** da 1,71 a 1,40.
 3. **[ISSUES 120](ISSUES.md#120) — vincere nominando invece che contando.** E'
-   anche la cura della [91](ISSUES.md#91) (48,4% dei punti gia' veri
-   all'apertura) e la meta' che resta della [4](ISSUES.md#4).
+   anche la cura della [91](ISSUES.md#91) — **46,2%** dei punti gia' veri
+   all'apertura in 0.1.405, era 48,4% — e la [4](ISSUES.md#4), che con lei si e'
+   chiusa ([D-436](DECISIONS.md#d-436)).
 4. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi piu'.** Un
    Consiglio su undici cade sul tavolo misto; `spoke_and_lost` si posa 8 volte
    in cento partite.

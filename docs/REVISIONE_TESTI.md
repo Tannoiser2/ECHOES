@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 4235 testi in lettura.
+possono spostare nella frase, non togliere. 4243 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -13947,6 +13947,26 @@ possono spostare nella frase, non togliere. 4235 testi in lettura.
 > Il suo nome porta il segno della fama
 
 > La casa porta il segno della fama
+
+
+**`OBJ_THE_OLD_GROUND`**
+> Il Fondo Antico
+
+> Le terre vecchie sono poche e non si moltiplicano: quello che c'e' sotto ci sta da prima di tutti, e ne risponde una casa sola alla volta. Tenerne due vuol dire che nessun altro ne tiene due, ed e' per questo che vale.
+
+> Due terre dell'Antico rispondono al suo nome
+
+> Controllo di 2 terre del dominio dell'Antico
+
+
+**`OBJ_THE_TWO_YIELDS`**
+> Le Due Rese
+
+> Non la roba: i posti dove la roba si fa. Un raccolto lo si divide, una terra che lo produce no — e chi ne tiene due ha messo la mano su meta' di quello che il tavolo mangia.
+
+> Due terre delle risorse rispondono al suo nome
+
+> Controllo di 2 terre del dominio delle risorse
 
 
 **`OBJ_THE_USEFUL_RUIN`**

@@ -981,10 +981,32 @@ static func intrinsic_value(
 			return 1
 		"UNVEIL_QUESTION":
 			return 1
+		# **UNA PIETRA SALE su una Pietra che non e' di nessuno valeva zero.**
+		# Un bosco, una sorgente, un passo, un sito antico non hanno padrone:
+		# `_stone_owner` torna vuoto, e `== proponent` con `proponent` pieno e'
+		# falso — quindi **dodici caselle su ventisette**, tutte quelle dei
+		# luoghi, valevano zero per costruzione. La casella era offerta 128
+		# volte in cento partite e comprata **4**, ed e' la forma di ISSUES 117:
+		# una casella che nessuno compra e', per il gioco, identica a una che
+		# non esiste.
+		#
+		# Un luogo non ha un padrone: ce l'ha la Regione. Al tavolo il bosco e'
+		# di chi tiene la tessera su cui sta disegnato, e la casella adesso
+		# legge di li'.
 		"RAISE_STONE":
-			return 2 if _stone_owner(world, region_id, str(voice.get("structure", ""))) == proponent else 0
+			var chi_alza: String = _stone_owner(
+				world, region_id, str(voice.get("structure", ""))
+			)
+			if chi_alza != "":
+				return 2 if chi_alza == proponent else 0
+			return 2 if mine else 0
 		"LOWER_STONE":
-			return -2 if _stone_owner(world, region_id, str(voice.get("structure", ""))) == proponent else -1
+			var chi_abbassa: String = _stone_owner(
+				world, region_id, str(voice.get("structure", ""))
+			)
+			if chi_abbassa != "":
+				return -2 if chi_abbassa == proponent else -1
+			return -2 if mine else -1
 		"MOVE_IN":
 			return 1 if on_me else -1
 		"MOVE_OUT":

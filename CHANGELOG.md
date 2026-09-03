@@ -5,6 +5,95 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.405 — Le due Pietre che il tavolo non poteva nominare, e il mazzo che adesso si conta da solo
+
+M12 e M13 della lista: [ISSUES 111](docs/ISSUES.md#111) e
+[ISSUES 4](docs/ISSUES.md#4) ([D-435](docs/DECISIONS.md#d-435),
+[D-436](docs/DECISIONS.md#d-436)).
+
+### M12: la causa scritta due volte non era quella, e la terza è misurata
+
+La voce aveva nominato due cause, e le aveva scartate a turno. Rimisurata oggi,
+**nessuna delle due regge più**: `CNS_VALLEY_CLEARED` e `CNS_MINE_ROAD_CUT` non
+sono fra le nove Conseguenze che non escono mai, quindi *«la proposta non viene
+scelta»* è caduta.
+
+**La causa vera è una riga sola.** La casella UNA PIETRA SALE valeva il suo
+punteggio così:
+
+    return 2 if _stone_owner(...) == proponent else 0
+
+Un bosco, una sorgente, un passo, un sito antico **non hanno padrone**:
+`_stone_owner` torna vuoto, e con `== proponent` il valore era **zero** — cioè
+**dodici caselle su ventisette**, tutte quelle dei luoghi, valevano zero per
+costruzione. Misurata: offerta **128 volte in cento partite e comprata 4**.
+
+Un luogo non ha un padrone: ce l'ha la Regione. Adesso la casella legge di lì.
+
+| 100 partite, tavolo misto | prima | dopo |
+|---|---|---|
+| UNA PIETRA SALE comprata | 4 su 128 | **6 su 128** |
+| gradi di Pietra che non arrivano mai | 4 | **4** — ma non sono più gli stessi |
+| segni che non arrivano mai, forme escluse (semi 7000 / 8000) | 51 / 54 | **54 / 52** |
+
+**La coda è rumorosa, e la misura lo dice.** Una decina di questi segni escono
+zero, una o due volte in cento partite: quali di loro atterrano cambia a ogni
+perturbazione, e **lo scarto fra due semi è largo quanto la differenza fra prima
+e dopo**. `settlement:$proponent` è uscito dal conto perché non è un segno; al
+suo posto è entrato `place:low_spring`, che sul seme 7000 usciva una volta sola.
+Il conto dei segni mai arrivati **non si è mosso**: quello che si è mosso è la
+riga di UNA PIETRA SALE.
+
+**E il numero non basta: la voce non si chiude.** Sei acquisti su centoventotto
+sono ancora quasi zero, perché la casella perde contro COSTRUISCI PIETRA (206 su
+236) e CAMBIA CONTROLLO (172 su 172) in un Consiglio che compra 2,33 benefici.
+Il criterio *«ogni grado si alza almeno una volta in cento partite»* resta
+mancato da **quattro** gradi, e la voce resta aperta con la sua causa finalmente
+scritta giusta.
+
+**E due dei quattro non erano difetti.** `settlement:$proponent` e
+`evicted:$region_focus` portano un segnaposto nell'id: il motore ci scrive dentro
+il nome vero prima di posarle, e la **forma nuda** non arriva sul tavolo mai per
+costruzione. La misura le chiamava «non arriva mai» accanto a segni che davvero
+nessuno posa: adesso le dichiara per quello che sono.
+
+### M13: gli obiettivi si incrociano, e il conto non si scrive più a mano
+
+Tre criteri su quattro erano già passati; il quarto — *«obiettivi contesi almeno
+un terzo del mazzo»* — stava fermo a un numero **contato a mano**, «3 su 15»,
+quando il mazzo era già di diciassette.
+
+**Adesso lo conta la sonda** (`run_contest_probe`). Due case non possono avere
+insieme un obiettivo che chiede o di essere **il primo** (`leads_in`) o di
+**tenere due terre di uno stesso dominio**: il titolo di una Regione è di una
+casa sola, e di un dominio ne entrano in gioco tre o quattro su sei.
+
+E ne sono stati scritti **due**, che completano una famiglia: «Due Terre, una
+Voce» aveva il Territorio, adesso **Il Fondo Antico** ha l'Antico e **Le Due
+Rese** le risorse. Una ambizione per dominio, e nessuna delle tre si può avere
+in due.
+
+| il «fatto quando» della voce | chiedeva | ora |
+|---|---|---|
+| Regioni contese a fine anno | > 3 su 6 | **3,71** ✅ |
+| il padrone passa di mano | > di oggi | **3,87** volte l'anno ✅ |
+| obiettivi contesi | ≥ un terzo del mazzo | **7 su 19** (36,8%) ✅ |
+| playtest | 0 su 8 | **0 su 8** ✅ |
+
+**ISSUES 4 si chiude.** E la [91](docs/ISSUES.md#91), che si rimisurava con lei,
+scende ancora: clausole già vere all'apertura **47,1% → 46,2%**.
+
+### Il prezzo, scritto
+
+Due illustrazioni in più: 161 → **163** soggetti. E `test_data_boot` — che è
+l'inventario della scatola — passa da 17 a **19**: lì il conto si tiene scritto
+apposta, perché accorgersi che il contenuto è cambiato è il suo mestiere. Quanti
+siano *contesi* lo conta la sonda, non una prova. Verità **130 → 133** sul misto
+e **134 → 145** sull'uniforme: due obiettivi contesi in più fanno decidere di
+più, non di meno. Cancello **0 su 8** su tutti e due i tavoli.
+
+---
+
 ## 0.1.404 — Sei vite nuove, e sei porte che il mondo scrive davvero
 
 M11 della lista, e lavora [ISSUES 36](docs/ISSUES.md#36)

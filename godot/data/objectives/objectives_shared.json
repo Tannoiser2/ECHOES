@@ -298,6 +298,42 @@
       "art_prompt_key": "objective.the_name"
     },
     {
+      "id": "OBJ_THE_OLD_GROUND",
+      "title": "Il Fondo Antico",
+      "description": "Le terre vecchie sono poche e non si moltiplicano: quello che c'e' sotto ci sta da prima di tutti, e ne risponde una casa sola alla volta. Tenerne due vuol dire che nessun altro ne tiene due, ed e' per questo che vale.",
+      "label": "Due terre dell'Antico rispondono al suo nome",
+      "conditions": [
+        {
+          "type": "control_count",
+          "entity_id": "$self",
+          "min": 2,
+          "label": "Controllo di 2 terre del dominio dell'Antico",
+          "any_tag": [
+            "domain:ANCIENT"
+          ]
+        }
+      ],
+      "art_prompt_key": "objective.the_old_ground"
+    },
+    {
+      "id": "OBJ_THE_TWO_YIELDS",
+      "title": "Le Due Rese",
+      "description": "Non la roba: i posti dove la roba si fa. Un raccolto lo si divide, una terra che lo produce no — e chi ne tiene due ha messo la mano su meta' di quello che il tavolo mangia.",
+      "label": "Due terre delle risorse rispondono al suo nome",
+      "conditions": [
+        {
+          "type": "control_count",
+          "entity_id": "$self",
+          "min": 2,
+          "label": "Controllo di 2 terre del dominio delle risorse",
+          "any_tag": [
+            "domain:RESOURCE"
+          ]
+        }
+      ],
+      "art_prompt_key": "objective.the_two_yields"
+    },
+    {
       "id": "OBJ_THE_USEFUL_RUIN",
       "title": "Quello che si Prende",
       "description": "Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.",
