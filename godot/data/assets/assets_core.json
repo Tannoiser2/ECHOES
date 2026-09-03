@@ -1087,9 +1087,12 @@
             "trade",
             "condition:contested",
             "condition:unrest",
-            "domain:TERRITORY"
+            "domain:TERRITORY",
+            "wild",
+            "forest",
+            "marsh"
           ],
-          "text": "Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio."
+          "text": "Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche il #selvaggio, il #bosco e la #palude, e ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -1923,9 +1926,12 @@
             "condition:abandoned",
             "nomad_range",
             "marsh",
-            "domain:SURVIVAL"
+            "domain:SURVIVAL",
+            "forest",
+            "island",
+            "wild"
           ],
-          "text": "Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, e ogni luogo del dominio della #sopravvivenza."
+          "text": "Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, il #bosco, l'#isola e il #selvaggio, e ogni luogo del dominio della #sopravvivenza."
         },
         "actions": [
           {
@@ -3061,9 +3067,12 @@
             "settlement:market",
             "condition:cut_off",
             "harbor",
-            "domain:RESOURCE"
+            "domain:RESOURCE",
+            "mine",
+            "crystal_site",
+            "nomad_range"
           ],
-          "text": "Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
+          "text": "Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, la #miniera, il #cristallo e il #pascolo, e ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
@@ -3307,9 +3316,11 @@
           "any_tag": [
             "capital",
             "trade",
-            "domain:RESOURCE"
+            "domain:RESOURCE",
+            "mine",
+            "crystal_site"
           ],
-          "text": "Scegli un luogo con #capitale o #commercio. Vale anche ogni luogo del dominio delle #risorse."
+          "text": "Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {

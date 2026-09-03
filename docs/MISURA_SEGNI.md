@@ -13,73 +13,73 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | segno | scritto | temuto | voluto | chi altro lo legge | |
 |---|---|---|---|---|---|
 | `account_settled` | 13 | 0 | 0 | `destiny_physical`, `entity_strategic_profile` |  |
-| `amnesty_granted` | 1 | 0 | 0 | `chronicle` |  |
-| `betrayal_spoken` | 19 | 0 | 0 | `asset_physical`, `echo_card` |  |
-| `burden_shared` | 33 | 0 | 0 | `echo_card`, `entity_strategic_profile` |  |
+| `betrayal_spoken` | 18 | 0 | 0 | `asset_physical`, `echo_card` |  |
+| `burden_shared` | 32 | 0 | 0 | `echo_card`, `entity_strategic_profile` |  |
 | `charter_for_all` | 2 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
-| `charter_temporary` | 15 | 0 | 0 | `chronicle` |  |
-| `charter_written` | 27 | 0 | 2 | `asset_physical`, `destiny`, `entity`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
-| `condition:abandoned` | 13 | 0 | 1 | `asset_physical`, `confluence_template`, `destiny_physical`, `tension`, `chronicle`, `echo_card`, `destiny` |  |
-| `condition:contested` | 400 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tension`, `destiny`, `echo_card` |  |
-| `condition:cut_off` | 56 | 1 | 1 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
-| `condition:emptied` | 28 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
-| `condition:exploited` | 7 | 1 | 1 | `chronicle`, `destiny`, `entity_strategic_profile`, `objective`, `tension` |  |
-| `condition:guarded` | 25 | 0 | 0 | `entity_strategic_profile`, `tag_rule`, `echo_card` |  |
+| `charter_temporary` | 14 | 0 | 0 | `chronicle` |  |
+| `charter_written` | 26 | 0 | 2 | `asset_physical`, `destiny`, `entity`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `condition:abandoned` | 8 | 0 | 1 | `asset_physical`, `confluence_template`, `destiny_physical`, `tension`, `chronicle`, `echo_card`, `destiny` |  |
+| `condition:contested` | 411 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tension`, `destiny`, `echo_card` |  |
+| `condition:cut_off` | 52 | 1 | 1 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
+| `condition:emptied` | 37 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
+| `condition:exploited` | 9 | 1 | 1 | `chronicle`, `destiny`, `entity_strategic_profile`, `objective`, `tension` |  |
+| `condition:guarded` | 23 | 0 | 0 | `entity_strategic_profile`, `tag_rule`, `echo_card` |  |
 | `condition:indebted` | 7 | 0 | 0 | `consequence`, `destiny_physical`, `tension`, `chronicle` |  |
 | `condition:lean` | 4 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension` |  |
-| `condition:mourning` | 10 | 0 | 0 | `asset`, `asset_physical`, `tension`, `chronicle` |  |
-| `condition:plundered` | 29 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
-| `condition:rationed` | 110 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `echo_card` |  |
-| `condition:starving` | 62 | 0 | 0 | `asset`, `asset_physical`, `confluence_template`, `consequence`, `destiny_physical`, `tag_rule`, `tension`, `chronicle`, `entity_strategic_profile` |  |
-| `condition:unrest` | 197 | 5 | 0 | `asset`, `asset_physical`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `echo_card`, `tension`, `chronicle`, `entity_strategic_profile` |  |
-| `crown_divided` | 10 | 2 | 1 | `asset_physical`, `chronicle`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` |  |
-| `crystal_exploited` | 22 | 3 | 0 | `asset_physical`, `chronicle`, `confluence_template`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile`, `tension` |  |
-| `crystal_measured` | 5 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
-| `debt_called` | 227 | 0 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `tag_rule`, `chronicle`, `entity_strategic_profile`, `echo_card` |  |
+| `condition:mourning` | 11 | 0 | 0 | `asset`, `asset_physical`, `tension`, `chronicle` |  |
+| `condition:plundered` | 33 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
+| `condition:rationed` | 117 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `echo_card` |  |
+| `condition:starving` | 61 | 0 | 0 | `asset`, `asset_physical`, `confluence_template`, `consequence`, `destiny_physical`, `tag_rule`, `tension`, `chronicle`, `entity_strategic_profile` |  |
+| `condition:unrest` | 189 | 5 | 0 | `asset`, `asset_physical`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `echo_card`, `tension`, `chronicle`, `entity_strategic_profile` |  |
+| `crown_divided` | 9 | 2 | 1 | `asset_physical`, `chronicle`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` |  |
+| `crystal_exploited` | 19 | 3 | 0 | `asset_physical`, `chronicle`, `confluence_template`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile`, `tension` |  |
+| `crystal_measured` | 7 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
+| `debt_called` | 223 | 0 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `tag_rule`, `chronicle`, `entity_strategic_profile`, `echo_card` |  |
 | `debt_forgiven` | 99 | 0 | 1 | `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
-| `discovery:crystal` | 9 | 0 | 0 | `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective` |  |
-| `discovery:legend` | 172 | 0 | 0 | `destiny`, `objective` |  |
+| `discovery:crystal` | 10 | 0 | 0 | `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective` |  |
+| `discovery:legend` | 176 | 0 | 0 | `destiny`, `objective` |  |
 | `discovery:relic` | 36 | 0 | 3 | `destiny`, `objective` |  |
-| `discovery:supervised_record` | 15 | 0 | 0 | `destiny`, `objective` |  |
-| `discovery:the_charter` | 19 | 0 | 0 | `destiny`, `objective` |  |
+| `discovery:supervised_record` | 14 | 0 | 0 | `destiny`, `objective` |  |
+| `discovery:the_charter` | 18 | 0 | 0 | `destiny`, `objective` |  |
 | `discovery:the_ledger` | 326 | 0 | 0 | `destiny`, `objective` |  |
-| `discovery:the_omen` | 434 | 0 | 0 | `confluence_template`, `destiny`, `objective`, `tension` |  |
-| `discovery:trade_ledger` | 216 | 0 | 0 | `destiny`, `objective` |  |
-| `discovery:written_law` | 156 | 0 | 0 | `destiny`, `objective` |  |
+| `discovery:the_omen` | 435 | 0 | 0 | `confluence_template`, `destiny`, `objective`, `tension` |  |
+| `discovery:trade_ledger` | 221 | 0 | 0 | `destiny`, `objective` |  |
+| `discovery:written_law` | 158 | 0 | 0 | `destiny`, `objective` |  |
 | `escort_sworn` | 205 | 0 | 2 | `asset_physical`, `destiny`, `destiny_physical` |  |
-| `failed_proposal` | 3 | 1 | 0 | `destiny`, `destiny_physical` |  |
-| `faith_established` | 17 | 0 | 0 | `asset_physical`, `chronicle`, `entity_strategic_profile` |  |
-| `grain_requisitioned` | 7 | 0 | 0 | `asset_physical`, `entity`, `chronicle` |  |
+| `failed_proposal` | 6 | 1 | 0 | `destiny`, `destiny_physical` |  |
+| `faith_established` | 20 | 0 | 0 | `asset_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `grain_requisitioned` | 10 | 0 | 0 | `asset_physical`, `entity`, `chronicle` |  |
 | `hard_bargain` | 2 | 0 | 0 | — |  |
-| `heir_named` | 42 | 0 | 0 | `asset_physical`, `confluence_template`, `entity`, `tension` |  |
-| `knowledge_shared` | 156 | 0 | 1 | `asset_physical`, `destiny_physical`, `chronicle`, `entity_strategic_profile`, `echo_card`, `destiny` |  |
-| `ledger_public` | 158 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `echo_card` |  |
-| `mine_sealed` | 11 | 3 | 3 | `chronicle`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` |  |
+| `heir_named` | 40 | 0 | 0 | `asset_physical`, `confluence_template`, `entity`, `tension` |  |
+| `knowledge_shared` | 158 | 0 | 1 | `asset_physical`, `destiny_physical`, `chronicle`, `entity_strategic_profile`, `echo_card`, `destiny` |  |
+| `ledger_public` | 154 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `echo_card` |  |
+| `mine_sealed` | 10 | 3 | 3 | `chronicle`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` |  |
 | `mountain_forgotten` | 5 | 0 | 1 | `chronicle`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule` |  |
 | `nahr_settled` | 4 | 0 | 2 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
-| `no_charter` | 3 | 1 | 0 | `asset_physical`, `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
-| `oath_broken` | 7 | 1 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule` |  |
-| `order_restored` | 111 | 0 | 2 | `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
-| `price_in_lives` | 10 | 0 | 0 | — | nessuno lo guarda |
-| `question_unresolved` | 31 | 5 | 0 | `asset_physical`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
-| `relic_buried` | 11 | 1 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `no_charter` | 4 | 1 | 0 | `asset_physical`, `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `oath_broken` | 5 | 1 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule` |  |
+| `order_restored` | 106 | 0 | 2 | `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
+| `petition_heard` | 1 | 0 | 0 | `asset_physical` |  |
+| `price_in_lives` | 11 | 0 | 0 | — | nessuno lo guarda |
+| `question_unresolved` | 30 | 5 | 0 | `asset_physical`, `confluence_template`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
+| `relic_buried` | 10 | 1 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `relic_shown` | 6 | 1 | 1 | `destiny`, `entity`, `destiny_physical`, `chronicle` |  |
-| `rumour_running` | 10 | 1 | 1 | `destiny`, `destiny_physical`, `echo_card` |  |
-| `scar:open_wound` | 2 | 0 | 0 | `entity`, `tag_rule` |  |
+| `rumour_running` | 8 | 1 | 1 | `destiny`, `destiny_physical`, `echo_card` |  |
+| `scar:open_wound` | 3 | 0 | 0 | `entity`, `tag_rule` |  |
 | `someone_paid` | 4 | 0 | 0 | — |  |
-| `spoke_and_lost` | 7 | 0 | 0 | — |  |
-| `structure:sealed` | 15 | 2 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule`, `tension` |  |
-| `study_supervised` | 15 | 2 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `spoke_and_lost` | 5 | 0 | 0 | — |  |
+| `structure:sealed` | 13 | 2 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule`, `tension` |  |
+| `study_supervised` | 14 | 2 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `succession_by_law` | 17 | 0 | 1 | `destiny`, `entity`, `destiny_physical`, `entity_strategic_profile` |  |
-| `succession_settled` | 1 | 0 | 0 | `chronicle` |  |
-| `succession_witnessed` | 3 | 0 | 0 | `chronicle` |  |
-| `toll_shared` | 26 | 0 | 0 | `asset_physical`, `chronicle`, `echo_card` |  |
+| `succession_settled` | 2 | 0 | 0 | `chronicle` |  |
+| `succession_witnessed` | 1 | 0 | 0 | `chronicle` |  |
+| `toll_shared` | 24 | 0 | 0 | `asset_physical`, `chronicle`, `echo_card` |  |
 | `took_by_hand` | 6 | 0 | 0 | — |  |
 | `valley_sealed` | 0 | 2 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` | **mai scritto** |
 | `watched` | 19 | 0 | 0 | — | nessuno lo guarda |
 | `water_moves` | 20 | 0 | 2 | `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
-| `water_priced` | 3 | 2 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
-| `water_rights` | 3 | 0 | 0 | `chronicle` |  |
+| `water_priced` | 2 | 2 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `water_rights` | 2 | 0 | 0 | `chronicle` |  |
 
 ## Lavoro del motore che al tavolo non conta
 
@@ -88,7 +88,7 @@ Scritti almeno 10 volte, e nessuna clausola li nomina.
 | segno | scritto |
 |---|---|
 | `watched` | 19 |
-| `price_in_lives` | 10 |
+| `price_in_lives` | 11 |
 
 ## Punti regalati: temuti e mai scritti
 

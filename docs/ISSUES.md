@@ -9447,3 +9447,73 @@ e il cartellino `da-decidere` è tolto.
 La strada scartata resta scritta: **passare costa qualcosa** invece di essere
 vietato — si scarta una carta, o il Tema più caldo si scalda di uno.
 
+### Lavorata in 0.1.398, e la proposta avallata era sbagliata ([D-428](DECISIONS.md#d-428))
+
+La parola del committente era **«sì a tutte»**, e la proposta che aveva avallato
+diceva *«allargo i bersagli delle facce murate»*. La sonda adesso dice **perché**
+il tavolo rifiuta una carta e non solo **quali** — e quattro quinti della parete
+non sono un bersaglio, sono le regole che fanno quello per cui sono scritte:
+
+| la parete (100 partite, tavolo misto) | prima | dopo |
+|---|---|---|
+| un segno del mondo lo vieta | 39,1% | 39,8% |
+| la quota di INFLUENZARE, una per giro | 29,7% | 35,4% |
+| **il bersaglio a segni** | **12,4%** | **4,6%** |
+| il Consiglio si forza una volta per giro | 10,8% | 12,1% |
+| il prezzo in carte da scartare | 7,3% | 7,3% |
+
+**Ma il quinto vero era peggio di come l'avevo descritto:** non sono le carte ad
+avere bersagli stretti, sono **tre Regioni della mappa che non raggiunge quasi
+nessuno**. Le Regioni civili portano tre segni di dominio, quelle selvatiche uno.
+
+| regione | la raggiungono (su 30 carte) | dopo |
+|---|---|---|
+| Eredan | 28 | 28 |
+| Montagne Rosse | **8** | **12** |
+| Il Bosco dei Confini | **8** | **10** |
+| L'Isola Muta | **7** | **8** |
+
+Allargate quattro carte dove il senso lo reggeva — **Esodo** nel bosco,
+sull'isola e nel selvaggio; **Carovana** alla miniera, al cristallo e al pascolo;
+**Il Tesoro** dove si scava; **Magistrato** ai margini — la famiglia del
+bersaglio scende del **68%** (246 → 78 eventi) e le carte murate da 35 a 23.
+
+**Il costo, dichiarato:** sul tavolo misto gli esiti scendono di un gradino —
+DECISIVE **114 → 105**, e quello che perdono lo ritrovano SUCCESS (141 → 144),
+SUCCESS CON COSTO (52 → 55) e FAILURE (37 → 40). Le Verità scritte **146 → 142**.
+Più carte giocabili vuol dire più case che agiscono e più proposte contestate.
+Cancello **0 su 8** sui due tavoli.
+
+### Il criterio di M5 era rotto, e questo è quello nuovo
+
+In 0.1.397 avevo scritto *«fatto quando le carte mute per le regole sono sotto il
+5%»*. Non ci si arriva: dell'11,0% che resta, **oltre il 90% sono regole volute**
+— la quota di INFLUENZARE ([D-021](DECISIONS.md#d-021)), i segni che vietano
+([D-025](DECISIONS.md#d-025)), il Consiglio che si forza una volta per giro. È lo
+stesso errore della M3: *un criterio che nessuno può soddisfare non è severo, è
+rotto.*
+
+**Fatto quando** nessuna carta è murata da un bersaglio a segni che la mappa non
+porta. Oggi ne resta una sola famiglia, ed è **Diritto di Ospitalità**, che
+rifiuta i luoghi contesi **per come è scritta**: non è un difetto, è la carta.
+
+### E quello che resta è una domanda per il committente
+
+**Il 61,2% della parete cade sulle diciotto carte che stampano lo stesso verbo su
+tutte e due le facce** — nove INFLUENZARE/INFLUENZARE, otto FORGIARE/FORGIARE,
+una TRAMARE/TRAMARE:
+
+> Braccia Ferme · Chiavi del Granaio · Credito · Favore · Folla · Giuramento ·
+> Il Cristallo Rosso · Interdetto · Investitura · Ipoteca sulle Terre ·
+> Mercenari · Mobilitazione · Ostaggio · Patto Rotto · Promessa di Nozze ·
+> Registro · Sigillo · Testimone
+
+Quando quel verbo è bloccato — dalla quota o da un segno che lo vieta — **quella
+carta muore intera, perché non ha una seconda strada**. E
+[CLAUDE.md](../CLAUDE.md) lo chiede già fra le regole di scrittura di una carta
+fisica: *«**due** Azioni, e due scelte diverse davvero»*.
+
+**Dare a ognuna di quelle diciotto un secondo verbo diverso è una scelta
+d'autore**, non una taratura: cambia cosa fa la carta. È la cosa che muoverebbe
+di più il numero, e aspetta una parola.
+

@@ -11652,7 +11652,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`AST_AUTHORITY_MAGISTRATE, bersaglio`**
-> Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio.
+> Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche il #selvaggio, il #bosco e la #palude, e ogni luogo del dominio del #territorio.
 
 
 **`AST_AUTHORITY_MAGISTRATE, azione 1`**
@@ -12464,7 +12464,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`AST_PEOPLE_EXODUS, bersaglio`**
-> Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, e ogni luogo del dominio della #sopravvivenza.
+> Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, il #bosco, l'#isola e il #selvaggio, e ogni luogo del dominio della #sopravvivenza.
 
 
 **`AST_PEOPLE_EXODUS, azione 1`**
@@ -12632,7 +12632,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`AST_WEALTH_CARAVAN, bersaglio`**
-> Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio delle #risorse.
+> Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, la #miniera, il #cristallo e il #pascolo, e ogni luogo del dominio delle #risorse.
 
 
 **`AST_WEALTH_CARAVAN, azione 1`**
@@ -12828,7 +12828,7 @@ possono spostare nella frase, non togliere. 4185 testi in lettura.
 
 
 **`AST_WEALTH_TREASURY, bersaglio`**
-> Scegli un luogo con #capitale o #commercio. Vale anche ogni luogo del dominio delle #risorse.
+> Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse.
 
 
 **`AST_WEALTH_TREASURY, azione 1`**
