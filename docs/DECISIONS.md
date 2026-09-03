@@ -10,6 +10,113 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-430 — Le sessantasei righe scritte a mano, e il verbo dei rapporti
+
+**implemented in 0.1.400.** Chiude [ISSUES 100](ISSUES.md#100) (M6 della
+[lista](LE_TUE_DECISIONI.md)), sulla parola **«si' a tutte»** ([D-427](#d-427)).
+
+Quello che restava della voce erano tre cose, e si tenevano l'una con l'altra.
+
+### 1. Le righe si vedeva che le scriveva una macchina
+
+Una sola Tensione portava una casella scritta a mano — *I Recinti*, disegnata dal
+committente. Le altre 46 avevano un **pavimento derivato** da
+`focus_region_tags`, e si leggeva:
+
+| | prima | dopo |
+|---|---|---|
+| *La Carestia* | «una carta posa #fame o #requisito o #malcontento» | «qualcuno posa la #fame, il #requisito o il #malcontento» |
+| *La Terra Stanca* | «una Presenza arriva o se ne va da una terra con #granaio» | «una casa entra in una terra col #granaio, o la lascia» |
+| *Gli Echi nel Fondo* | «una Presenza arriva o se ne va da una terra con #miniera» | «una casa scende nella #miniera, o ne risale» |
+| *Il Santuario dell'Isola* | «una Presenza arriva o se ne va da una terra con #isola» | «una casa sbarca sull'#isola, o la lascia» |
+
+**Sessantadue righe riscritte una per una**, e nessuna condizione toccata: cambia
+la frase che un giocatore legge, non quello che il motore esegue. *I Recinti*
+restano come sono: quelle righe le ha scritte il committente.
+
+### 2. Mancava il verbo dei rapporti
+
+`SET_RELATION` esce **159 volte su vent'anni** e nessuna riga poteva nominarlo: i
+sei verbi guardavano tutti la mappa — un segno posato o tolto, una Pietra
+costruita, il controllo che cambia, una Presenza che arriva o se ne va.
+
+Adesso ci sono **`changes_relation`** e il filtro **`relation_becomes`**, che
+guarda il livello **d'arrivo**. La direzione non si puo' chiedere, ed e' una
+cosa da dire invece che da nascondere: l'Effetto porta il livello nuovo e non
+quello di prima, quindi *«due case si legano»* si dice *«il rapporto arriva ad
+ALLY o BOUND»*, non *«il rapporto sale»*.
+
+Due guardie nuove, e tutt'e due mordono su un difetto piantato (46 in tutto):
+un filtro di livello **senza** il verbo non filtra niente, e un filtro **di
+luogo** su un cambio di rapporto non si accende mai — un patto non sta su una
+Regione.
+
+### 3. E allora le tredici hanno la loro casella
+
+Erano senza perche' non dichiaravano `focus_region_tags` da cui derivare
+qualcosa, **e sono quasi tutte di rapporti**: *I Voti Non Sciolti*, *Il Diritto
+d'Asilo*, *La Vecchia Guardia*, *I Nomi Vecchi*. Adesso ognuna ha due righe, e
+sei delle tredici usano il verbo nuovo:
+
+| | si accende quando |
+|---|---|
+| *I Voti Non Sciolti* | due case **scendono a nemiche** · qualcuno posa il #lutto |
+| *Il Diritto d'Asilo* | due case **si legano fino al patto o al sangue** · una casa entra nella #capitale, o la lascia |
+| *La Vecchia Guardia* | due case **cambiano il patto che le lega** · qualcuno alza un Presidio |
+| *La Leva* | qualcuno posa la #fame o il #requisito · due case **si legano** |
+| *Le Staffette* | una casa entra dove passa il #commercio o nella #capitale · due case **cambiano il patto** |
+| *Chi Arriva da Fuori* | qualcuno posa lo #svuotato, l'#abbandonato o il #saccheggiato · due case **cambiano il patto** |
+
+**Nessuna Tensione resta senza la riga che dice quando si scalda**, e c'e' una
+prova che lo tiene vero: `test_the_verb_of_bonds`.
+
+### Il numero che chiudeva la voce
+
+Il metro era `run_resonance_probe`, ed e' netto — 100 anni, seme 7000:
+
+| | prima | **dopo** |
+|---|---|---|
+| **Tensioni con la casella «si accende»** | **47 su 60** | **60 su 60** |
+| righe «SI ACCENDE QUANDO» nei dati | 66 | **92** |
+| di cui scritte a mano | 4 | **92** |
+| Risonanze in 100 anni | 4.298 | 4.284 |
+| di quelle, col ponte | 2.256 | 2.323 |
+
+E si vede **carta per carta**: nella classifica delle piu' scaldate, *L'Inverno
+Lungo*, *I Voti Non Sciolti*, *I Dormienti*, *Il Diritto d'Asilo* e *I Nomi
+Vecchi* passano da **«(ponte)»** a **«si accende quando»**. Prima quelle carte si
+scaldavano e **non lo dicevano da nessuna parte**: il motore le svegliava per il
+ponte di [D-261](#d-261), e chi guardava la carta non poteva sapere perche'.
+
+### Il costo, dichiarato, e i due tavoli non dicono la stessa cosa
+
+Tredici Tensioni in piu' che possono scaldarsi cambiano il gioco, e la voce lo
+aveva previsto: *«ogni riga scritta a mano sposta quel numero»*.
+
+| 100 partite, seme 7000 | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| FAILURE | 40 | **35** | 10 | 12 |
+| SUCCESS CON COSTO | 55 | **51** | 43 | **36** |
+| SUCCESS | 144 | **163** | 178 | 178 |
+| DECISIVE | 105 | **99** | 125 | **132** |
+| **Verita' scritte** | **142** | **135** | **134** | **141** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+**Sul tavolo misto il mondo ricorda sette Verita' in meno**, ed e' la stessa
+meccanica che [D-335](#d-335) aveva gia' misurato: piu' questioni sveglie vuol
+dire piu' Consigli che passano **puliti** (SUCCESS da 144 a 163), e un successo
+che non costa niente lascia meno memoria di uno che costa.
+
+**Sul tavolo uniforme succede il contrario, e di altrettanto**: sette Verita' in
+piu' e sette DECISIVE in piu'. I due numeri **non si sommano** — sono due tavoli
+diversi ([D-391](#d-391)) — e la cosa onesta e' dire tutt'e due: questa modifica
+avvicina i due tavoli invece di spostarli insieme.
+
+**Il baseline e' stato rimisurato oggi sugli stessi semi**, non ripreso: la
+colonna «prima» esce da una corsa fatta adesso coi dati di 0.1.399.
+
+---
+
 ## D-429 — Quattro varchi disegnati, e i chiusi li copre un gettone
 
 **implemented in 0.1.399.** Chiude [ISSUES 127](ISSUES.md#127) (M7 della

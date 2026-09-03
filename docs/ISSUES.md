@@ -3071,7 +3071,7 @@ partite (oggi: una), e lo scarto fra la piu' e la meno ascoltata sta sotto
 
 ---
 
-### 100. Le caselle «si accende quando» sono ancora un pavimento derivato
+### 100. ✅ Le caselle «si accende quando» sono ancora un pavimento derivato
 
 `contenuto` · `regole` · aperta in 0.1.293
 ([D-330](DECISIONS.md#d-330)) · **riscritta in 0.1.294**
@@ -3134,6 +3134,64 @@ sbagliarne una che il motore non sbaglia.
 Serviva una parola del committente perché diventano **quarantasei frasi che un
 giocatore legge**. Adesso c'è, e il resto è lavoro mio: il cartellino
 `da-decidere` è tolto.
+
+### ✅ Chiusa in 0.1.400: le righe sono scritte a mano, e le tredici hanno la casella
+
+Fatti tutti e tre i punti che restavano ([D-430](DECISIONS.md#d-430)).
+
+**1. Le righe si vedeva che le scriveva una macchina.** Sessantadue riscritte una
+per una, e nessuna condizione toccata: cambia la frase che un giocatore legge,
+non quello che il motore esegue. *I Recinti* restano come sono — quelle righe le
+ha scritte il committente.
+
+| | prima | dopo |
+|---|---|---|
+| *La Carestia* | «una carta posa #fame o #requisito o #malcontento» | «qualcuno posa la #fame, il #requisito o il #malcontento» |
+| *Gli Echi nel Fondo* | «una Presenza arriva o se ne va da una terra con #miniera» | «una casa scende nella #miniera, o ne risale» |
+| *Il Santuario dell'Isola* | «una Presenza arriva o se ne va da una terra con #isola» | «una casa sbarca sull'#isola, o la lascia» |
+
+**2. Il verbo dei rapporti c'è.** `changes_relation`, col filtro
+`relation_becomes` sul livello **d'arrivo** — la direzione non si può chiedere,
+perché l'Effetto porta il livello nuovo e non quello di prima. Due guardie
+nuove, e mordono su un difetto piantato: un filtro di livello senza il verbo non
+filtra niente, e un filtro di luogo su un cambio di rapporto non si accende mai.
+
+**3. E allora le tredici hanno la loro casella**, sei delle quali col verbo nuovo:
+*I Voti Non Sciolti* si scaldano quando **due case scendono a nemiche**, *Il
+Diritto d'Asilo* quando **due case si legano fino al patto o al sangue**.
+
+#### Il numero che chiudeva la voce
+
+| 100 anni, seme 7000 | prima | **dopo** |
+|---|---|---|
+| **Tensioni con la casella «si accende»** | **47 su 60** | **60 su 60** |
+| righe nei dati | 66 | **92** |
+| di cui scritte a mano | 4 | **92** |
+| Risonanze | 4.298 | 4.284 |
+
+E si vede carta per carta: *L'Inverno Lungo*, *I Voti Non Sciolti*, *I
+Dormienti*, *Il Diritto d'Asilo* e *I Nomi Vecchi* passano da **«(ponte)»** a
+**«si accende quando»**. Prima quelle carte si scaldavano e **non lo dicevano da
+nessuna parte**.
+
+#### Il costo, dichiarato, e i due tavoli non dicono la stessa cosa
+
+| 100 partite | misto prima | misto dopo | uniforme prima | uniforme dopo |
+|---|---|---|---|---|
+| FAILURE | 40 | **35** | 10 | 12 |
+| SUCCESS CON COSTO | 55 | **51** | 43 | **36** |
+| SUCCESS | 144 | **163** | 178 | 178 |
+| DECISIVE | 105 | **99** | 125 | **132** |
+| **Verità scritte** | **142** | **135** | **134** | **141** |
+| seggi bloccati | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+
+Sul tavolo misto il mondo ricorda **sette Verità in meno**, ed è la stessa
+meccanica che [D-335](DECISIONS.md#d-335) aveva già misurato: più questioni
+sveglie vuol dire più Consigli che passano **puliti**, e un successo che non
+costa niente lascia meno memoria. Sul tavolo uniforme succede **il contrario, e
+di altrettanto**. I due numeri non si sommano — sono due tavoli diversi
+([D-391](DECISIONS.md#d-391)) — e questa modifica **avvicina i due tavoli**
+invece di spostarli insieme.
 
 ---
 

@@ -436,13 +436,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #magro",
+          "text": "qualcuno posa il #magro",
           "puts_tag": [
             "condition:lean"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #granaio",
+          "text": "una casa entra in una terra col #granaio, o la lascia",
           "on_region_with": [
             "granary",
             "structure:granary"
@@ -641,7 +641,23 @@
             "echo_summary": "Ai margini fu concessa terra a chi la lavorava, e in un anno il margine si spostò."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una casa entra in una terra col #granaio o in un #pascolo, o la lascia",
+          "on_region_with": [
+            "granary",
+            "structure:granary",
+            "nomad_range"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        },
+        {
+          "text": "due case cambiano il patto che le lega",
+          "changes_relation": true
+        }
+      ]
     },
     {
       "id": "TEN_FLOOD",
@@ -837,7 +853,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #palude",
+          "text": "una casa entra nella #palude, o la lascia",
           "on_region_with": [
             "marsh"
           ],
@@ -1052,7 +1068,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #bosco",
+          "text": "una casa entra nel #bosco, o lo lascia",
           "on_region_with": [
             "forest"
           ],
@@ -1268,7 +1284,19 @@
             "echo_summary": "Non si cercò nessuno, e a tavola si smise di sedere accanto a qualcuno."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa il #conteso",
+          "puts_tag": [
+            "condition:contested"
+          ]
+        },
+        {
+          "text": "il controllo di una terra passa di mano",
+          "takes_control": true
+        }
+      ]
     },
     {
       "id": "TEN_PASTURE",
@@ -1486,13 +1514,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #conteso",
+          "text": "qualcuno posa il #conteso",
           "puts_tag": [
             "condition:contested"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #pascolo",
+          "text": "una casa entra in un #pascolo, o lo lascia",
           "on_region_with": [
             "nomad_range"
           ],
@@ -1696,7 +1724,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #porto o #palude",
+          "text": "una casa entra nel #porto o nella #palude, o se ne va",
           "on_region_with": [
             "harbor",
             "marsh"
@@ -1918,7 +1946,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -2116,7 +2144,25 @@
             "echo_summary": "L'anno santo fu dichiarato con le date scritte, e per una volta si seppe quanti aspettarne."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa la #fame o il #razionato",
+          "puts_tag": [
+            "condition:starving",
+            "condition:rationed"
+          ]
+        },
+        {
+          "text": "una casa sbarca sull'#isola o entra nella #capitale, o se ne va",
+          "on_region_with": [
+            "island",
+            "capital"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        }
+      ]
     },
     {
       "id": "TEN_HERESY",
@@ -2333,7 +2379,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -2531,7 +2577,23 @@
             "echo_summary": "Si tenne il conto di chi non aveva sciolto il voto, e il conto girò di casa in casa."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "due case scendono a nemiche",
+          "changes_relation": true,
+          "relation_becomes": [
+            "ENEMY",
+            "HOSTILE"
+          ]
+        },
+        {
+          "text": "qualcuno posa il #lutto",
+          "puts_tag": [
+            "condition:mourning"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SILENT_BELLS",
@@ -2746,13 +2808,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #lutto",
+          "text": "qualcuno posa il #lutto",
           "puts_tag": [
             "condition:mourning"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -2967,7 +3029,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #isola",
+          "text": "una casa sbarca sull'#isola, o la lascia",
           "on_region_with": [
             "island"
           ],
@@ -3172,7 +3234,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #granaio o #commercio",
+          "text": "una casa entra dove c'e' il #granaio o il #commercio, o se ne va",
           "on_region_with": [
             "granary",
             "structure:granary",
@@ -3378,13 +3440,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #lutto",
+          "text": "qualcuno posa il #lutto",
           "puts_tag": [
             "condition:mourning"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #palude",
+          "text": "una casa entra nella #palude, o la lascia",
           "on_region_with": [
             "marsh"
           ],
@@ -3599,7 +3661,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #cristallo",
+          "text": "una casa entra dove sta il #cristallo, o se ne va",
           "on_region_with": [
             "crystal_site"
           ],
@@ -3818,7 +3880,25 @@
             "echo_summary": "Davanti al tempio restò una guardia sola, e gli armati tornarono a casa senza avere deciso niente."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "due case si legano fino al patto o al sangue",
+          "changes_relation": true,
+          "relation_becomes": [
+            "ALLY",
+            "BOUND"
+          ]
+        },
+        {
+          "text": "una casa entra nella #capitale, o la lascia",
+          "on_region_with": [
+            "capital"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        }
+      ]
     },
     {
       "id": "TEN_REGENCY",
@@ -4027,7 +4107,20 @@
             "echo_summary": "Il sigillo passò a due mani insieme, e da allora nessun ordine uscì in fretta."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa il #il_seggio_vuoto o il #conteso",
+          "puts_tag": [
+            "scar:the_empty_chair",
+            "condition:contested"
+          ]
+        },
+        {
+          "text": "il controllo di una terra passa di mano",
+          "takes_control": true
+        }
+      ]
     },
     {
       "id": "TEN_HOSTAGES",
@@ -4241,7 +4334,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -4439,7 +4532,24 @@
             "echo_summary": "Dalla leva $of_region ci si comprava fuori, e il prezzo lo riscuoteva $proponent."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa la #fame o il #requisito",
+          "puts_tag": [
+            "condition:starving",
+            "condition:requisitioned"
+          ]
+        },
+        {
+          "text": "due case si legano fino al patto o al sangue",
+          "changes_relation": true,
+          "relation_becomes": [
+            "ALLY",
+            "BOUND"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_SEALS",
@@ -4636,7 +4746,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #commercio o #capitale",
+          "text": "una casa entra dove passa il #commercio o nella #capitale, o se ne va",
           "on_region_with": [
             "trade",
             "capital"
@@ -4859,13 +4969,13 @@
       },
       "heats_when": [
         {
-          "text": "una carta posa #conteso",
+          "text": "qualcuno posa il #conteso",
           "puts_tag": [
             "condition:contested"
           ]
         },
         {
-          "text": "una Presenza arriva o se ne va da una terra con #bosco",
+          "text": "una casa entra nel #bosco, o lo lascia",
           "on_region_with": [
             "forest"
           ],
@@ -5086,7 +5196,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #capitale",
+          "text": "una casa entra nella #capitale, o la lascia",
           "on_region_with": [
             "capital"
           ],
@@ -5302,7 +5412,19 @@
             "echo_summary": "Si mise per iscritto quale insegna valeva, e i vecchi ufficiali la lessero senza commentare."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "due case cambiano il patto che le lega",
+          "changes_relation": true
+        },
+        {
+          "text": "qualcuno alza un Presidio",
+          "builds": [
+            "STR_KEEP"
+          ]
+        }
+      ]
     },
     {
       "id": "TEN_TRIBUTE",
@@ -5499,7 +5621,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #porto o #commercio",
+          "text": "una casa entra nel #porto o dove passa il #commercio, o se ne va",
           "on_region_with": [
             "harbor",
             "trade"
@@ -5719,7 +5841,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #miniera",
+          "text": "una casa scende nella #miniera, o ne risale",
           "on_region_with": [
             "mine"
           ],
@@ -5923,7 +6045,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #palude o #bosco",
+          "text": "una casa entra nella #palude o nel #bosco, o se ne va",
           "on_region_with": [
             "marsh",
             "forest"
@@ -6123,7 +6245,24 @@
             "echo_summary": "Si vegliò dove si dorme, e la guardia costò più di quanto costasse dormire."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa il #sigillato",
+          "puts_tag": [
+            "structure:sealed"
+          ]
+        },
+        {
+          "text": "una casa entra dove sta il #cristallo o nella #miniera, o se ne va",
+          "on_region_with": [
+            "crystal_site",
+            "mine"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        }
+      ]
     },
     {
       "id": "TEN_ISLAND_SILENCE",
@@ -6331,7 +6470,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #isola",
+          "text": "una casa sbarca sull'#isola, o la lascia",
           "on_region_with": [
             "island"
           ],
@@ -6551,7 +6690,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #miniera o #cristallo",
+          "text": "una casa entra nella #miniera o dove sta il #cristallo, o se ne va",
           "on_region_with": [
             "mine",
             "crystal_site"
@@ -6751,7 +6890,25 @@
             "echo_summary": "Si scrisse quali nomi si potevano dire, e l'elenco venne più corto di quanto chiunque sperasse."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa lo #svuotato o l'#abbandonato",
+          "puts_tag": [
+            "condition:emptied",
+            "condition:abandoned"
+          ]
+        },
+        {
+          "text": "una casa entra nel #selvaggio o nel #bosco, o se ne va",
+          "on_region_with": [
+            "wild",
+            "forest"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        }
+      ]
     },
     {
       "id": "TEN_WARD_STONES",
@@ -6960,7 +7117,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #selvaggio o #bosco",
+          "text": "una casa entra nel #selvaggio o nel #bosco, o se ne va",
           "on_region_with": [
             "wild",
             "forest"
@@ -7165,7 +7322,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #palude o #isola",
+          "text": "una casa entra nella #palude o sull'#isola, o se ne va",
           "on_region_with": [
             "marsh",
             "island"
@@ -7370,7 +7527,26 @@
             "echo_summary": "$in_region si fece come nell'anno del gelo grande, o come si racconta che si fece."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa la #fame, il #magro o il #razionato",
+          "puts_tag": [
+            "condition:starving",
+            "condition:lean",
+            "condition:rationed"
+          ]
+        },
+        {
+          "text": "una casa entra in una terra col #granaio, o la lascia",
+          "on_region_with": [
+            "granary",
+            "structure:granary"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        }
+      ]
     },
     {
       "id": "TEN_MARSH_FEVER",
@@ -7566,7 +7742,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #palude",
+          "text": "una casa entra nella #palude, o la lascia",
           "on_region_with": [
             "marsh"
           ],
@@ -7769,7 +7945,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #porto",
+          "text": "una casa entra nel #porto, o lo lascia",
           "on_region_with": [
             "harbor"
           ],
@@ -7967,7 +8143,21 @@
             "echo_summary": "$in_region si lasciò passare chi arrivava, e nessuno chiese dove sarebbe andato a dormire."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "qualcuno posa lo #svuotato, l'#abbandonato o il #saccheggiato",
+          "puts_tag": [
+            "condition:emptied",
+            "condition:abandoned",
+            "condition:plundered"
+          ]
+        },
+        {
+          "text": "due case cambiano il patto che le lega",
+          "changes_relation": true
+        }
+      ]
     },
     {
       "id": "TEN_WOLVES",
@@ -8176,7 +8366,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #bosco o #selvaggio",
+          "text": "una casa entra nel #bosco o nel #selvaggio, o se ne va",
           "on_region_with": [
             "forest",
             "wild"
@@ -8381,7 +8571,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #granaio",
+          "text": "una casa entra in una terra col #granaio, o la lascia",
           "on_region_with": [
             "granary",
             "structure:granary"
@@ -8586,7 +8776,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #commercio o #porto",
+          "text": "una casa entra dove passa il #commercio o nel #porto, o se ne va",
           "on_region_with": [
             "trade",
             "harbor"
@@ -8794,7 +8984,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #porto o #isola",
+          "text": "una casa entra nel #porto o sull'#isola, o se ne va",
           "on_region_with": [
             "harbor",
             "island"
@@ -9002,7 +9192,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #bosco o #commercio",
+          "text": "una casa entra nel #bosco o dove passa il #commercio, o se ne va",
           "on_region_with": [
             "forest",
             "trade"
@@ -9206,7 +9396,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #commercio",
+          "text": "una casa entra dove passa il #commercio, o se ne va",
           "on_region_with": [
             "trade"
           ],
@@ -9422,7 +9612,22 @@
             "echo_summary": "I sigilli rotti furono contati davanti a chi li aspettava, e non riparo' niente, ma chiuse."
           }
         ]
-      }
+      },
+      "heats_when": [
+        {
+          "text": "una casa entra dove passa il #commercio o nella #capitale, o se ne va",
+          "on_region_with": [
+            "trade",
+            "capital"
+          ],
+          "adds_presence": true,
+          "removes_presence": true
+        },
+        {
+          "text": "due case cambiano il patto che le lega",
+          "changes_relation": true
+        }
+      ]
     },
     {
       "id": "TEN_SILTED_CANALS",
@@ -9621,7 +9826,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #palude",
+          "text": "una casa entra nella #palude, o la lascia",
           "on_region_with": [
             "marsh"
           ],
@@ -9825,7 +10030,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #commercio o #capitale",
+          "text": "una casa entra dove passa il #commercio o nella #capitale, o se ne va",
           "on_region_with": [
             "trade",
             "capital"
@@ -10032,7 +10237,7 @@
       },
       "heats_when": [
         {
-          "text": "una Presenza arriva o se ne va da una terra con #porto",
+          "text": "una casa entra nel #porto, o lo lascia",
           "on_region_with": [
             "harbor"
           ],

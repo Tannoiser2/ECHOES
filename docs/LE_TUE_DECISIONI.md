@@ -96,10 +96,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **111** |
-| aperte | **21** |
+| chiuse | **112** |
+| aperte | **20** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **21** |
+| di cui sono mie da fare | **20** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -130,11 +130,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **13** | **io**, da sola, senza aspettare niente |
+| 🟡 | **12** | **io**, da sola, senza aspettare niente |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Tredici.** Delle ventuno voci aperte, tredici le posso muovere senza di te —
-ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+**Dodici.** Delle venti voci aperte, dodici le posso muovere senza di te — ed è
+il numero che va detto per primo. **Il giro non è fermo su nessuna tua
 parola.**
 
 <!-- COLORI: fine -->
@@ -205,7 +205,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **tredici**
+# 🟡 Sono mie, e non aspettano niente: **dodici**
 
 Erano quattro. In 0.1.397 sono diventate **quattordici**: dieci sono arrivate qui
 dalle rosse, perché la tua parola è arrivata e quello che resta è lavoro
@@ -325,17 +325,31 @@ contesi **per come è scritta**: non è un difetto, è la carta.
 > davvero»* — e dargliela **cambia cosa fa la carta**: è una scelta d'autore, non
 > una taratura.
 
-### M6. [100](ISSUES.md#100) — le 46 righe «SI ACCENDE QUANDO»
+### ✔ M6. [100](ISSUES.md#100) — le 46 righe «SI ACCENDE QUANDO»
 
-**Parola tua: sì**, si stampano come le genera il motore, e poi si correggono a
-mano quelle che suonano male.
+**Fatta in 0.1.400** ([D-430](DECISIONS.md#d-430)).
 
-> **Al tavolo.** Giri la Tensione *«Il grano non basta»* e in basso c'è scritto
-> **quando** quella carta entra in gioco. Oggi quella riga la calcola il motore:
-> senza app, la carta non lo sa dire.
+> **Al tavolo.** Giri la Tensione *«I Voti Non Sciolti»* e in basso c'è scritto
+> **quando** quella carta si scalda: *«due case scendono a nemiche · qualcuno
+> posa il #lutto»*. Prima quella riga non c'era: la carta si scaldava e non lo
+> diceva da nessuna parte.
 
-**Fatto quando** ogni riga stampata sta nel dato e non nel motore, e le tredici
-che ancora non hanno una casella ce l'hanno.
+| 100 anni, seme 7000 | prima | **dopo** |
+|---|---|---|
+| **Tensioni con la casella «si accende»** | **47 su 60** | **60 su 60** |
+| righe nei dati | 66 | **92** |
+| di cui scritte a mano | 4 | **92** |
+
+Tre cose in una: **62 righe riscritte** una per una (la condizione non si tocca,
+cambia la frase che si legge), **il verbo dei rapporti** — `SET_RELATION` esce
+159 volte su vent'anni e nessuna riga poteva nominarlo — e **le tredici caselle**
+che mancavano, sei delle quali usano il verbo nuovo.
+
+**Il costo, e i due tavoli non dicono la stessa cosa:** sul misto le Verità
+scritte scendono da **142 a 135**, sull'uniforme salgono da **134 a 141**. Più
+questioni sveglie vuol dire più Consigli che passano puliti, e un successo che
+non costa niente lascia meno memoria. I due numeri non si sommano: questa
+modifica **avvicina i due tavoli** invece di spostarli insieme. Cancello 0 su 8.
 
 ### ✔ M7. [127](ISSUES.md#127) — quattro varchi disegnati, e un gettone
 
@@ -478,8 +492,8 @@ mano invecchia il giorno dopo.
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle ventuno voci aperte ne posso
-muovere **tredici** da sola. Due le verifica una persona che gioca, sei stanno
+**Quello che resta da dire in una riga:** delle venti voci aperte ne posso
+muovere **dodici** da sola. Due le verifica una persona che gioca, sei stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
