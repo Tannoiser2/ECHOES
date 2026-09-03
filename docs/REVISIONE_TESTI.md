@@ -12630,7 +12630,7 @@ possono spostare nella frase, non togliere. 4211 testi in lettura.
 **`AST_PEOPLE_MARCH, azione 1`**
 > Marciare verso il grano
 
-> Sposta una tua presenza in un luogo con #granaio, anche se non confina.
+> Sposta una tua presenza in un luogo con #granaio, anche se non confina: dove arriva la marcia, il grano finisce. Metti #magro sul luogo.
 
 
 **`AST_PEOPLE_MARCH, azione 2`**

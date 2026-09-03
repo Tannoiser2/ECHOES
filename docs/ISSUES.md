@@ -4739,6 +4739,50 @@ uno. La fame è un Tema del gioco e il motore quasi non sa produrla — non è c
 di fustella, è **contenuto che non succede**. Il cartellino `da-decidere` è tolto,
 e questa riga resta come lavoro mio.
 
+### Lavorata in 0.1.403: la fame che il motore sapeva solo togliere
+
+M10 della lista ([D-433](DECISIONS.md#d-433)). **I numeri di questa voce erano
+invecchiati**: rimisurati oggi, `condition:starving` sta bene, e i mai visti
+erano altri.
+
+**E la sonda guardava il momento sbagliato.** `run_punchboard_probe` leggeva le
+Regioni **dopo** la fine dell'anno, e diceva che `condition:lean` non usciva mai
+in quarant'anni; sullo stesso tavolo `run_mark_probe` ne contava trenta. Erano
+vere tutt'e due: un gettone posato a marzo e tolto a settembre, a dicembre non
+c'è più. Ma la domanda della fustella non è *«cosa resta a fine anno»*: è
+**quanti pezzi la scatola deve avere** — e chi leggesse quella lista per potare
+il cartone taglierebbe pezzi che il gioco usa. Adesso la sonda conta anche i
+gettoni posati **dentro** l'anno, e gioca **tutti e due i tavoli**.
+
+**Il difetto vero era nei dati, e nessuna carta posava quelle condizioni:**
+
+| | chi la posa | chi la toglie |
+|---|---|---|
+| `#magro` | *nessuna carta* — solo `CNS_VALLEY_DRAINED` | **due** facce di *Braccia per il Raccolto*, più una Conseguenza |
+| `#requisito` | *nessuna carta* — solo `CNS_VALLEY_CLEARED` | *Censimento*, «Contare i sacchi» |
+
+**Il motore la fame la sapeva solo togliere.** La cura per `#magro` era già
+scritta sulla carta: *Marcia*, «Marciare verso il grano», sposta una presenza in
+un luogo col #granaio — un esercito che marcia sul grano **se lo mangia**.
+Adesso la faccia lo dice e lo fa.
+
+**Per `#requisito` la cura non è una carta**, ed è la cosa da dire: requisire non
+è un gesto che si fa da soli, è quello che il tavolo decide. Il segno è **del
+Consiglio per costruzione**, e il fatto che non esca è la voce delle Conseguenze
+che nessuno sceglie — la [56](#56).
+
+| 40 anni, seme 7000 | prima | **dopo** |
+|---|---|---|
+| tipi visti almeno una volta | 28 su 34 | **31 su 34** |
+| **mai visti** | **6** | **3** |
+| tipi sul tavolo in un anno | 7,5 | **8,9** |
+
+**Il costo, dichiarato, e non è piccolo:** le Verità scritte scendono da **135 a
+129** sul misto e da **141 a 134** sull'uniforme — nella stessa direzione su
+tutt'e due, che è il segno che non è deriva. Una terra magra è una terra su cui
+si litiga di più e si conclude di meno. Cancello **0 su 8** sui due tavoli. Se la
+memoria vale più della fame, tornare indietro è una riga.
+
 ---
 
 ### 81. ✅ Una soglia non puo' leggere una memoria — chiusa in 0.1.261

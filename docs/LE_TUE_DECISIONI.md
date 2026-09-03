@@ -416,12 +416,35 @@ famiglia.
 
 ### M10. [82](ISSUES.md#82) — le condizioni che non succedono
 
-**Parola tua: sì**, non si pota niente. Le Cicatrici rare sono design; il difetto
-è l'altra metà della voce, ed è mia: `condition:starving` esce **un anno su
-quaranta**, `condition:lean` uno, `condition:requisitioned` uno. **La fame è un
-Tema del gioco e il motore quasi non sa produrla.**
+**Lavorata in 0.1.403** ([D-433](DECISIONS.md#d-433)).
 
-**Fatto quando** ognuna delle tre condizioni esce almeno un anno su cinque.
+**I numeri della voce erano invecchiati, e la sonda guardava tardi.** La fustella
+leggeva le Regioni **dopo** la fine dell'anno: un gettone posato a marzo e tolto
+a settembre, a dicembre non c'è più. Ma la domanda della fustella è **quanti
+pezzi la scatola deve avere**, non cosa resta a dicembre. Adesso conta anche i
+gettoni posati dentro l'anno, e gioca **tutti e due i tavoli**.
+
+**E il difetto vero era che nessuna carta posava quelle condizioni:** quattro
+facce tolgono `#magro` e nessuna lo mette. *Il motore la fame la sapeva solo
+togliere.* La cura era già scritta su una carta — *Marcia*, «marciare verso il
+grano»: un esercito che marcia sul grano **se lo mangia**.
+
+| 40 anni, seme 7000 | prima | **dopo** |
+|---|---|---|
+| tipi visti almeno una volta | 28 su 34 | **31 su 34** |
+| **mai visti** | **6** | **3** |
+
+**Per `#requisito` la cura non è una carta:** requisire è quello che **il tavolo
+decide**, non un gesto che si fa da soli. È un segno del Consiglio per
+costruzione, e il fatto che non esca è la **M1**.
+
+**Il costo, e non è piccolo:** Verità scritte da **135 a 129** sul misto e da
+**141 a 134** sull'uniforme, nella stessa direzione su tutt'e due. Una terra
+magra è una terra su cui si litiga di più e si conclude di meno. Cancello 0 su 8.
+**Se preferisci la memoria alla fame, tornare indietro è una riga** — dimmelo.
+
+**Fatto quando** dei tre gettoni mai visti resta solo quello che il Consiglio
+scrive, e le due Cicatrici rare che hai deciso di tenere.
 
 ### M11. [36](ISSUES.md#36) — più vite per casa, con ingressi più fini
 

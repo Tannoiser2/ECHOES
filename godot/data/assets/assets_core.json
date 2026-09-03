@@ -1845,8 +1845,11 @@
         "actions": [
           {
             "label": "Marciare verso il grano",
-            "text": "Sposta una tua presenza in un luogo con #granaio, anche se non confina.",
-            "template": "MOVE"
+            "text": "Sposta una tua presenza in un luogo con #granaio, anche se non confina: dove arriva la marcia, il grano finisce. Metti #magro sul luogo.",
+            "template": "MOVE",
+            "puts_tag": [
+              "condition:lean"
+            ]
           },
           {
             "label": "Marciare sulla capitale",

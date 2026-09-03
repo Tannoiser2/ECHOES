@@ -131,7 +131,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### magra
 
-`condition:lean` · categoria **STATE** · sta su region · lo posa: consequence, echo_card, tension
+`condition:lean` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** L'annata e' scarsa: si mangia, ma poco.
 
