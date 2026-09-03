@@ -21,12 +21,19 @@ const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 
 
 
-## Chi siede al tavolo lo pesca il seme (D-213). Una saga tiene **lo stesso
-## tavolo** dal primo anno all'ultimo: sono le stesse case che invecchiano, e
-## ripescarle a ogni Chronicle vorrebbe dire raccontare dieci storie diverse
-## invece di una lunga.
+## Chi siede al tavolo lo pesca il seme (D-213), e **cosa succede fra un anno e
+## l'altro lo dice la Chronicle** (D-431): questa sonda teneva il tavolo fermo
+## per tutti i secoli della saga, `run_era_probe` lo ripescava a ogni era, e
+## nessuna delle due leggeva una regola — erano due giochi con lo stesso nome.
 func _seats(data: RefCounted, chronicle_id: String, seed_value: int) -> Array:
 	return GameSession.seats_for(data, chronicle_id, seed_value)
+
+
+## Il tavolo dell'anno dopo, secondo la regola scritta sulla Chronicle.
+func _seats_next(
+	data: RefCounted, chronicle_id: String, seed_value: int, previous: Array
+) -> Array:
+	return GameSession.seats_for_next_era(data, chronicle_id, seed_value, previous)
 
 
 func _initialize() -> void:
@@ -53,7 +60,12 @@ func _initialize() -> void:
 
 	for index in range(chronicles):
 		var session: RefCounted = GameSession.new(data)
-		session.setup(chronicle_id if index == 0 else later_id, SEATS, first_seed + index * 97)
+		var year_id: String = chronicle_id if index == 0 else later_id
+		var year_seed: int = first_seed + index * 97
+		# **Chi siede quest'anno lo dice la regola, non questa sonda** (D-431).
+		if index > 0:
+			SEATS = _seats_next(data, year_id, year_seed, SEATS)
+		session.setup(year_id, SEATS, year_seed)
 		session.inherit_from(previous, previous_results)
 
 		# What the world played at each Act end, in order.

@@ -5955,7 +5955,7 @@ tolto.
 
 ---
 
-### 64. Una saga ricambia metà tavolo, e nessuno ha deciso che dovesse
+### 64. ✅ Una saga ricambia metà tavolo, e nessuno ha deciso che dovesse
 
 `regole` · **misurata in 0.1.208** ([D-237](DECISIONS.md#d-237))
 
@@ -6000,6 +6000,38 @@ Quello che resta è mio, ed è il «fatto quando» di questa voce: **scriverla d
 giocatore la legge prima di affezionarsi ad Aldric**, e far sì che la sonda delle
 ere la **applichi** invece di deciderla per conto proprio. Il cartellino
 `da-decidere` è tolto.
+
+### ✅ Chiusa in 0.1.401: la regola è scritta, e le sonde la applicano
+
+Fatti tutti e due i pezzi del «fatto quando» ([D-431](DECISIONS.md#d-431)).
+
+**E il difetto non era la regola: era che non ce n'era una.** Guardando il
+codice, erano **due sonde con due regole diverse**, e nessuna delle due leggeva
+niente:
+
+| | cosa faceva | cosa scriveva nel suo commento |
+|---|---|---|
+| `run_era_probe` | ripescava il tavolo **a ogni era** | niente |
+| `run_saga` | teneva **lo stesso tavolo** per tutti i secoli | *«una saga tiene lo stesso tavolo dal primo anno all'ultimo»* |
+
+Due giochi con lo stesso nome. Il 51% misurato in
+[D-237](DECISIONS.md#d-237) veniva dalla prima; chi leggeva la seconda vedeva
+un'altra cosa.
+
+**Adesso la regola sta sulla Chronicle** (`seats_between_eras`), e lo schema la
+**pretende**: `REDRAW` (la scelta), `KEEP`, `KEEP_THEN_DRAW`. Il motore le sa
+eseguire tutte e tre, e le sonde **la applicano** invece di deciderla —
+`run_era_probe` faceva già REDRAW e non cambia, `run_saga` cambia e da qui
+ripesca come tutti.
+
+**E sta dove un giocatore la legge**, in
+[PROCEDURA_FINE_CHRONICLE](PROCEDURA_FINE_CHRONICLE.md) al punto 5-bis, col
+gesto al tavolo e la ragione accanto: *in una saga si gioca il mondo, non la
+propria casa*. Va saputo **prima** di affezionarsi ad Aldric.
+
+**Costo dichiarato: nessuna misura si muove.** La Chronicle spedita dichiara
+`REDRAW`, che è quello che il playtest, la sonda delle vite e quella delle ere
+già facevano. Cancello 0 su 8 sui due tavoli, rimisurato.
 
 ---
 

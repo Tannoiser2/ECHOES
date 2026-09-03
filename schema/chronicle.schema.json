@@ -43,7 +43,8 @@
         "regions",
         "act_echo_pools",
         "confluence_templates",
-        "opening_text"
+        "opening_text",
+        "seats_between_eras"
       ],
       "additionalProperties": false,
       "properties": {
@@ -521,18 +522,18 @@
           }
         },
         "acquire_rules": {
-   "type": "object",
-   "additionalProperties": false,
-   "description": "Cosa sa fare ACQUISIRE, oltre a pescare (ISSUES 123, D-412). Omesso - il default - ACQUISIRE pesca e basta, ed e' la §10. Misurato, con la sola pesca **nessuna delle sei Azioni della plancia alza una Pietra**: chi vuole costruire deve convincere il tavolo, e il Consiglio paga meglio chi tace.",
-   "properties": {
-    "can_build_stone": {
-     "type": "boolean",
-     "default": false,
-     "description": "Acceso, ACQUISIRE ha due strade e chi gioca ne sceglie una: **pesca una carta, oppure alza una Pietra di grado 1 in una Regione dove ha presenza**. La Pietra deve stare in quella terra (i suoi `biomes`), la tessera deve avere un posto libero (`build_slots`), e quella Pietra non deve gia' esserci. Le Pietre della terra - bosco, sorgente, passo, sito antico - non si alzano: sono la tessera."
-    }
-   }
-  },
-  "claim_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Cosa sa fare ACQUISIRE, oltre a pescare (ISSUES 123, D-412). Omesso - il default - ACQUISIRE pesca e basta, ed e' la §10. Misurato, con la sola pesca **nessuna delle sei Azioni della plancia alza una Pietra**: chi vuole costruire deve convincere il tavolo, e il Consiglio paga meglio chi tace.",
+          "properties": {
+            "can_build_stone": {
+              "type": "boolean",
+              "default": false,
+              "description": "Acceso, ACQUISIRE ha due strade e chi gioca ne sceglie una: **pesca una carta, oppure alza una Pietra di grado 1 in una Regione dove ha presenza**. La Pietra deve stare in quella terra (i suoi `biomes`), la tessera deve avere un posto libero (`build_slots`), e quella Pietra non deve gia' esserci. Le Pietre della terra - bosco, sorgente, passo, sito antico - non si alzano: sono la tessera."
+            }
+          }
+        },
+        "claim_rules": {
           "type": "object",
           "additionalProperties": false,
           "description": "La deroga a §10 sulla presa di parola (ISSUES 37, D-191). Omessa - il default - RIVENDICARE e' quella del regolamento: si prenota un dominio in un round e si riscuote in un round successivo. Misurato, tre prenotazioni su quattro muoiono in mano, perche' chi rivendica deve indovinare un round prima che la domanda sara' matura, che nessun altro avra' gia' forzato, e di avere ancora un secondo AUTORITA'.",
@@ -952,6 +953,15 @@
               "description": "Posate per prime, sempre: i posti di cui questa Chronicle parla per definizione."
             }
           }
+        },
+        "seats_between_eras": {
+          "type": "string",
+          "enum": [
+            "REDRAW",
+            "KEEP",
+            "KEEP_THEN_DRAW"
+          ],
+          "description": "**Chi siede l'anno prossimo** (D-431, ISSUES 64). `REDRAW`: si ripesca dal pool a ogni era, e le case passano mentre il mondo resta — e' la regola scelta dal committente. `KEEP`: siedono le stesse case dal primo anno all'ultimo. `KEEP_THEN_DRAW`: si ripesca, ma chi c'era ha precedenza. Prima di questo campo la regola non era scritta da nessuna parte e ogni sonda ne applicava una sua: `run_era_probe` ripescava con un seme per era, `run_saga` teneva il tavolo fermo. Due sonde, due giochi."
         }
       }
     }

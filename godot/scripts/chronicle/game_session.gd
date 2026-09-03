@@ -76,6 +76,47 @@ static func seats_for(p_data: RefCounted, chronicle_id: String, seed_value: int)
 	)
 
 
+## **Chi siede l'anno prossimo** (D-431, ISSUES 64).
+##
+## Fino alla 0.1.401 questa regola **non era scritta da nessuna parte**, e ogni
+## sonda ne applicava una sua: `run_era_probe` ripescava il tavolo con un seme
+## per era — meta' dei seggi cambiava casa — e `run_saga` lo teneva fermo per
+## tutti i suoi secoli. Due sonde, due giochi, e nessuno aveva deciso quale
+## fosse quello vero.
+##
+## Adesso la regola sta sulla Chronicle (`seats_between_eras`) e la applicano
+## tutte. La scelta del committente e' **`REDRAW`**: *le case passano, il mondo
+## resta* — in una saga si gioca il mondo, non la propria casa.
+static func seats_for_next_era(
+	p_data: RefCounted,
+	chronicle_id: String,
+	seed_value: int,
+	previous_seats: Array
+) -> Array:
+	if previous_seats.is_empty():
+		return seats_for(p_data, chronicle_id, seed_value)
+	if not p_data.chronicles.has(chronicle_id):
+		return previous_seats
+	var rule: String = str(
+		(p_data.chronicles[chronicle_id] as Dictionary).get("seats_between_eras", "REDRAW")
+	)
+	match rule:
+		"KEEP":
+			return previous_seats.duplicate()
+		"KEEP_THEN_DRAW":
+			# Chi c'era ha precedenza: si tiene chi sedeva, e si pesca solo per
+			# i posti che avanzano — cosi' il tavolo cresce invece di cambiare.
+			var kept: Array = previous_seats.duplicate()
+			for entity_id in seats_for(p_data, chronicle_id, seed_value):
+				if kept.size() >= previous_seats.size():
+					break
+				if not kept.has(entity_id):
+					kept.append(entity_id)
+			return kept
+		_:
+			return seats_for(p_data, chronicle_id, seed_value)
+
+
 static func apply_plan_overrides(p_data: RefCounted, plan: Dictionary) -> void:
 	var overrides: Dictionary = plan.get("chronicle_overrides", {}) as Dictionary
 	if overrides.is_empty():
