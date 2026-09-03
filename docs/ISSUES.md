@@ -6772,9 +6772,9 @@ merge, dopo che il validatore l'aveva chiamata gemella di una proposta di
 un'altra domanda), `CNS_DRAGON_SLAIN` e `CNS_SEALED_VALLEY` sono le uniche porte
 delle due Cicatrici rare che il committente tiene (D-427).
 
-Rimisurate su due semi: **4 su 62** mai uscite con entrambi, ma non le stesse
-quattro — a 200 anni una Conseguenza che esce una o due volte cambia seme e
-sparisce. Il criterio dice quello che può dire; oltre, misura il seme. Cancello
+Rimisurate su due semi sui dati definitivi: **5 su 63** col 7000 e **4 su 63**
+col 8000, e solo tre sono le stesse — a 200 anni una Conseguenza che esce una o
+due volte cambia seme e sparisce. Il criterio dice quello che può dire; oltre, misura il seme. Cancello
 0 su 8, Verità 133 → 132 sul misto, 145 → 145 sull'uniforme.
 
 

@@ -254,8 +254,9 @@ quattordicesima, che va per ultima da sempre.
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in
 saga erano **sei**. Due sono uscite dalla scatola, e con loro **#requisito**;
 quattro restano con la ragione scritta — le uniche strade aperte a tutti di due
-domande, e le due porte delle Cicatrici rare che hai deciso di tenere. Su due semi ne restano
-quattro a zero, e non le stesse quattro: a 200 anni il criterio misura il seme.
+domande, e le due porte delle Cicatrici rare che hai deciso di tenere. Su due
+semi ne restano cinque e quattro a zero, e solo tre le stesse: a 200 anni il
+criterio misura il seme.
 
 
 Erano undici, e il numero è sceso perché sono state rimisurate **in saga**, dove

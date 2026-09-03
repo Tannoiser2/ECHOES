@@ -289,20 +289,22 @@ divisa resta divisa, e la nota di `scar:divided_seal` lo dice.
 
 ### Rimisurata, su due semi
 
-| 200 anni in saga | seme 7000 | seme 8000 |
+| 200 anni in saga, dati definitivi | seme 7000 | seme 8000 |
 |---|---|---|
-| Conseguenze nella scatola | **62** | 62 |
-| mai uscite | **4** | **4** |
-| di cui uguali sui due semi | `CNS_COST_DEBT`, `CNS_DRAGON_SLAIN` | |
-| di cui diverse | `CNS_CROWN_DISPOSSESSED`, `CNS_EXODUS` | `CNS_CROWN_DISPOSSESSED`, `CNS_LAW_OF_SUCCESSION` |
+| Conseguenze nella scatola | **63** | 63 |
+| mai uscite | **5** | **4** |
+| di cui uguali sui due semi | `CNS_COST_DEBT`, `CNS_COST_EMPTIED`, `CNS_DRAGON_SLAIN` | |
+| di cui diverse | `CNS_DEBT_FORGIVEN`, `CNS_LAW_OF_SUCCESSION` | `CNS_SEALED_VALLEY` |
 
 **E questa e' la cosa da scrivere**: a 200 anni il criterio sta **sul pavimento
 del rumore**. Una Conseguenza che esce una o due volte in duecento anni cambia
-seme e sparisce — `CNS_EXODUS` e' *«carta mai uscita dal mazzo»* col 7000 ed
-esce con l'8000, `CNS_SEALED_VALLEY` era a zero prima della potatura ed e'
-uscita in tutte e due le misure dopo. Le due che restano a zero su tutti e due
-i semi hanno ognuna la sua ragione scritta sopra. Il criterio e' soddisfatto
-per quello che puo' dire; oltre, misura il seme.
+seme e sparisce — `CNS_SEALED_VALLEY` e' a zero col 8000 ed esce col 7000,
+`CNS_DEBT_FORGIVEN` e `CNS_LAW_OF_SUCCESSION` il contrario; in una misura
+intermedia, prima che `P_LAND_TO_WORKERS` tornasse, erano a zero `CNS_EXODUS` e
+`CNS_CROWN_DISPOSSESSED`, che qui escono. Le tre che restano a zero su tutti e
+due i semi hanno ognuna la sua ragione scritta sopra: due tengono aperta una
+domanda, una e' la porta di una Cicatrice che il committente tiene. Il criterio
+e' soddisfatto per quello che puo' dire; oltre, misura il seme.
 
 ### Il costo, sul cancello
 

@@ -56,8 +56,8 @@ due righe «SI ACCENDE QUANDO» e una faccia di *Censimento* che non nominano pi
 un segno che non poteva succedere. Quattro restano con la ragione scritta: le
 due sull'unica strada aperta a tutti della loro domanda (una l'ha difesa la
 suite prima del merge), e le uniche porte delle due Cicatrici rare che il
-committente tiene. Rimisurate su due semi: 4 su 62, non le stesse —
-il criterio a 200 anni sta sul pavimento del rumore, ed è scritto. Cancello 0
+committente tiene. Rimisurate su due semi: 5 e 4 su 63, e solo tre le
+stesse — il criterio a 200 anni sta sul pavimento del rumore, ed è scritto. Cancello 0
 su 8, Verità 133 → 132 sul misto.
 
 ---
