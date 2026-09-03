@@ -105,6 +105,8 @@ Non più per colore, ma per **chi la può muovere**. È l'unica domanda che serv
 te: se una riga aspetta una tua parola, il tempo che passa è tempo perso; se
 aspetta me, non devi farci niente.
 
+<!-- COLORI: inizio - generato da tools/issues_survey.py -->
+
 | | quante | chi la muove |
 |---|---|---|
 | 🔴 | **12** | **tu**, con una parola. Dieci stanno sulla strada, due sono fuori |
@@ -116,6 +118,8 @@ aspetta me, non devi farci niente.
 **Quattro.** Delle ventisei voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
 **il giro non è fermo su di me, è fermo su dodici parole.**
+
+<!-- COLORI: fine -->
 
 ---
 
@@ -507,14 +511,24 @@ tessera. Non è nella lista perché non è una voce: è la scatola.
 
 ## Come finisce
 
-**Il conto in cima è generato**, e non lo riscrivo a mano da nessuna parte: era
-il quinto degli errori, ed era di forma. Un totale scritto a mano invecchia il
-giorno dopo, e questo era invecchiato di tre righe.
+**Di questo foglio, ogni numero è generato** ([D-426](DECISIONS.md#d-426)): il
+conto in cima, il numero nel titolo di ogni colore, la tabella dei colori, il ✔
+su una voce che ISSUES dice chiusa, e i due paragrafi che ripetono quei numeri a
+parole — questo compreso. A mano resta **solo la domanda e la raccomandazione**
+di ogni riga, che è quello che a mano deve restare.
 
-**Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
+Prima era generato il solo conto in cima, e il resto lo riscrivevo io: in un
+giorno l'ho rattoppato quattro volte, e una l'hai vista tu. Un numero scritto a
+mano invecchia il giorno dopo.
+
+<!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
+
+**Quello che resta da dire in una riga:** delle ventisei voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
 chiudono dietro una rossa, sei stanno fuori dalla lista, e **dodici aspettano
 una tua parola**.
+
+<!-- IN UNA RIGA: fine -->
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia
 parola*, così non è il gioco a stare fermo ad aspettare. **Tranne la R5**: quella
