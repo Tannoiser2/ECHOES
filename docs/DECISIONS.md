@@ -96,6 +96,103 @@ scelta di gioco, non una taratura. Le tre strade stanno in
 
 ---
 
+## D-425 — Due case che non potevano lasciare niente, e la causa non era quella scritta
+
+**implemented in 0.1.395.** Chiude [ISSUES 124](ISSUES.md#124), l'undicesima
+rossa. Fatta la raccomandata della [lista](LE_TUE_DECISIONI.md) — *«si scrive
+quella voce»* — perche' il committente ha detto **«mergia e vai»** senza
+rispondere alla domanda.
+
+### Il difetto, rimisurato prima di toccarlo
+
+La voce era aperta da 0.1.353 e i suoi numeri avevano due anni di versioni
+addosso. Rigirata la sonda sulla **regola che il motore gioca davvero**
+(`--variante=scritta`, 48 saghe), la premessa tiene:
+
+| casa | Eredita' media per saga |
+|---|---|
+| Le Libere Citta' | **7,62** |
+| La Compagnia del Sale | 4,81 |
+| Lyra | 3,94 |
+| Re Aldric | 3,00 |
+| Il Vetro | 2,81 |
+| Le Custodi della Cenere | 2,12 |
+| **La Diaspora di Nahr** | **0,00** |
+| **Vaerax** | **0,00** |
+
+**E la prima misura che avevo fatto era la variante sbagliata** — quella che
+classifica i salti d'era — e diceva Nahr 1,62 e Vaerax 1,33. Stavo per
+dichiarare la voce invecchiata su un numero che misurava un'altra cosa.
+
+### La causa vera, che la voce non nominava
+
+L'Eredita' paga **+3 per ogni leggenda che porta il tuo nome**, e una leggenda
+nasce da un fatto globale che al salto d'era **sbiadisce**. La voce spiegava due
+modi di prendere zero: un segno di Regione non diventa mai leggenda, e un fatto
+murato negli `enduring_facts` nemmeno — *«una cosa che e' ancora non e' una cosa
+di cui si racconta ancora»*, che come regola e' giusta.
+
+**C'e' un terzo modo, e la voce non lo conosceva.** Il desiderio
+`mountain_forgotten` di Vaerax non e' murato, capita **13 volte su 48**, e
+diventa leggenda **zero**. Non e' un caso: e' l'ultimo anello della catena d'era
+`TLY_SEAL` — *sigillo tenuto → tenuto due volte → la montagna e' dimenticata* —
+e i segni delle catene sono esclusi dalle leggende **per scelta**
+([D-133](#d-133)): *«un conteggio interrotto non e' una memoria»*.
+
+Quindi Vaerax era a zero perche' il suo unico desiderio che poteva sbiadire e'
+**un contatore**, e i contatori non diventano leggende. E' la ragione per cui la
+prima riparazione che avevo in mano — dargli `seal_kept` — non avrebbe funzionato:
+e' un anello della stessa catena.
+
+### Cosa e' stato scritto
+
+Un desiderio a testa, **sostituito e non aggiunto**: le altre sei case ne hanno
+quattro, e cinque per due di loro sarebbe stato un vantaggio nascosto.
+
+| casa | via | al suo posto | perche' |
+|---|---|---|---|
+| Nahr | `crown_divided` | **`burden_shared`** | murato, e parlava della corona di Aldric — che Nahr gia' nega altrove. *«Il peso diviso e' la prova che ci hanno contati: un popolo tollerato porta da solo, uno riconosciuto porta insieme agli altri.»* |
+| Vaerax | `structure:sealed` | **`study_supervised`** | era un segno di tessera, per giunta condiviso col Vetro. *«Non vietare di sapere: vietare di sapere da soli. Uno studio sorvegliato e' il divieto che sopravvive a chi l'ha imposto.»* |
+
+Nessun segno nuovo inventato, nessuna regola toccata: tutt'e due esistevano gia'
+ed erano fatti che sbiadiscono.
+
+### La misura
+
+| Eredita' media per saga, 48 saghe | prima | **dopo** |
+|---|---|---|
+| La Diaspora di Nahr | 0,00 | **2,88** |
+| Vaerax | 0,00 | **1,88** |
+| le altre sei | 2,12–7,62 | **uguali, cifra per cifra** |
+| saghe in cui l'Eredita' ribalta il vincitore | 14 su 48 | **10 su 48** |
+
+`burden_shared` diventa leggenda **46 volte su 48**, `study_supervised` **30**.
+Nessuna casa e' piu' a zero, e la piu' bassa (Vaerax, 1,88) e' un quarto della
+piu' alta invece che niente.
+
+**E l'Eredita' ribalta meno.** Quattro saghe su quarantotto in cui il vincitore
+cambiava per l'Eredita' non cambiano piu': prima due case ci arrivavano con zero
+in tasca, e uno zero strutturale sposta la classifica quanto un punteggio. E'
+l'effetto collaterale buono, e vale la pena scriverlo: **una regola che paga
+tutti pesa meno di una che ne paga sei.**
+
+### E un difetto trovato per strada, che non e' di questa voce
+
+Il primo desiderio che avevo dato a Nahr, `return_promised`, e' risultato
+**fatto zero volte su 48**. Lo scrive **solo un template di Consiglio** — e da
+[D-378](#d-378) le Domande e le Proposte vengono dalla carta Tensione: il
+template resta un ripiego che, con tutte le sessanta carte che portano le
+proprie, non si usa mai.
+
+**Sono dieci segni in quella condizione**: `debt_staggered`,
+`descent_witnessed`, `discovery:shared_record`, `distribution_audited`,
+`list_witnessed`, `quota_guaranteed`, `relic_recorded`, `return_promised`,
+`succession_witnessed`, `water_shared`. Hanno una penna sola, e quella penna non
+scrive piu'. Non e' questa voce e non l'ho allargata: e' una riga in
+[ISSUES 56](ISSUES.md#56), dove stanno le cose che il tavolo non vede mai.
+
+---
+
 ## D-424 — La cosa meno peggio: il cervello si fa male quando non ha di meglio
 
 **implemented in 0.1.395.** Avanza [ISSUES 128](ISSUES.md#128). E' la seconda

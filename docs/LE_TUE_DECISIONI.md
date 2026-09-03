@@ -77,9 +77,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **132** |
-| chiuse | **105** |
-| aperte | **27** |
-| di cui **aspettano una tua decisione** | **13** |
+| chiuse | **106** |
+| aperte | **26** |
+| di cui **aspettano una tua decisione** | **12** |
 | di cui sono mie da fare | **14** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -91,7 +91,7 @@ E il ritmo, voce per voce, per fascia di venticinque versioni:
 | 0.1.300–0.1.324 | 12 | 4 |
 | 0.1.325–0.1.349 | 7 | 8 |
 | 0.1.350–0.1.374 | 6 | 20 |
-| 0.1.375–0.1.399 | 1 | 5 |
+| 0.1.375–0.1.399 | 1 | 6 |
 
 *(Conto generato da `tools/issues_survey.py`: i numeri 1, 2, 3, 4 sono usati due volte, in due milestone diverse; 67 voci non dicono a che versione si sono aperte.)*
 
@@ -107,23 +107,23 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **13** | **tu**, con una parola. Undici stanno sulla strada, due sono fuori |
+| 🔴 | **12** | **tu**, con una parola. Dieci stanno sulla strada, due sono fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚫ | **2** | io, ma **dopo** una rossa: si chiudono con lei |
 | ⚪ | **6** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle ventisette voci aperte, quattro le posso muovere senza di te.
+**Quattro.** Delle ventisei voci aperte, quattro le posso muovere senza di te.
 Questo è il numero che la lista di prima non diceva, e che va detto per primo:
-**il giro non è fermo su di me, è fermo su tredici parole.**
+**il giro non è fermo su di me, è fermo su dodici parole.**
 
 ---
 
-# 🔴 Tredici aspettano te
+# 🔴 Dodici aspettano te
 
 Sotto ognuna: la domanda in una riga, il numero che la motiva, cosa farei io.
 
-## Le undici che stanno fra oggi e una partita
+## Le dieci che stanno fra oggi e una partita
 
 ### ✔ R1. [123](ISSUES.md#123) — decisa in 0.1.383: **(a)**, e dodici facce
 
@@ -305,15 +305,27 @@ riga o è stampata o non esiste.
 > congelano nel dato, e da lì si correggono a mano quelle che suonano male. È
 > una tua parola perché sono **quarantasei frasi che un giocatore legge**.
 
-### R11. [124](ISSUES.md#124) — le due case che non possono vincere l'Eredità
+### ✔ R11. [124](ISSUES.md#124) — fatta la raccomandata in 0.1.395, **e la voce si chiude**
 
-L'Eredità (+3 per ogni leggenda che porta il tuo nome, tua parola in 0.1.353) è
-**strutturalmente zero** per due case su otto: il loro profilo non ha una voce
-che una leggenda possa portare.
+Hai detto «mergia e vai» senza rispondere, e vale la regola qui sopra
+([D-425](DECISIONS.md#d-425)): ho scritto quella voce.
 
-> **Farei: si scrive quella voce.** Due righe di dato, mezz'ora, e nessuna regola
-> cambia. La metto rossa solo perché è **cosa vogliono quelle due case**, e
-> questo lo decidi tu.
+| Eredità media per saga, 48 saghe | prima | **dopo** |
+|---|---|---|
+| La Diaspora di Nahr | 0,00 | **2,88** |
+| Vaerax | 0,00 | **1,88** |
+| le altre sei | 2,12–7,62 | **uguali, cifra per cifra** |
+
+**Un desiderio a testa, sostituito e non aggiunto:** Nahr perde `crown_divided`
+(che era murato, e parlava della corona di Aldric) e guadagna **«il peso è stato
+diviso»**; Vaerax perde `structure:sealed` (un segno di tessera, condiviso col
+Vetro) e guadagna **«studio sorvegliato»**. Nessun segno inventato.
+
+**E la voce raccontava la causa sbagliata.** Conosceva due modi di prendere zero;
+ce n'era un terzo: l'unico desiderio di Vaerax che poteva sbiadire era **l'ultimo
+anello di una catena d'era**, e i contatori non diventano leggende per scelta
+(D-133). È anche il motivo per cui la prima riparazione che avevo in mano non
+avrebbe funzionato.
 
 ### R12. [64](ISSUES.md#64) — una saga ricambia metà tavolo
 
@@ -501,7 +513,7 @@ giorno dopo, e questo era invecchiato di tre righe.
 
 **Quello che resta da dire in una riga:** delle ventisette voci aperte ne posso
 muovere **quattro** da sola. Due le verifica una persona che gioca, due si
-chiudono dietro una rossa, sei stanno fuori dalla lista, e **tredici aspettano
+chiudono dietro una rossa, sei stanno fuori dalla lista, e **dodici aspettano
 una tua parola**.
 
 Se una rossa non arriva, faccio la raccomandata e la segno come *fatta sulla mia

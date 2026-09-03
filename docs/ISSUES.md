@@ -6362,6 +6362,26 @@ o è stata tolta perché non serviva.
 
 </details>
 
+#### E dieci segni hanno una penna sola, e quella penna non scrive più
+
+Trovato di striscio in 0.1.395, misurando l'Eredità ([D-425](DECISIONS.md#d-425)):
+`return_promised` è **fatto zero volte su 48 saghe**. Lo scrive **solo un
+template di Consiglio**, e da [D-378](DECISIONS.md#d-378) le Domande e le
+Proposte vengono dalla carta Tensione — il template resta un ripiego che, con
+tutte le sessanta carte che portano le proprie, non si usa mai.
+
+Sono **dieci** in quella condizione: `debt_staggered`, `descent_witnessed`,
+`discovery:shared_record`, `distribution_audited`, `list_witnessed`,
+`quota_guaranteed`, `relic_recorded`, `return_promised`, `succession_witnessed`,
+`water_shared`.
+
+Non è un difetto del dizionario — i segni sono buoni — è che nessuna carta li
+scrive. Le due strade sono le stesse di questa voce: **o una carta Tensione li
+prende in carico**, o **escono dal dizionario**.
+
+**Fatto quando** ognuno dei dieci ha una penna che scrive davvero, oppure non è
+più nel dizionario.
+
 ### Rimisurata in 0.1.385 sul perimetro giusto, e le due porte murate sono cadute ([D-414](DECISIONS.md#d-414))
 
 Il criterio dice **200 anni**, e il numero della voce era preso su cento anni
@@ -8797,7 +8817,7 @@ e la misura rifatta con lei. Quella e' ancora del committente.
 
 ---
 
-### 124. Due case su otto non possono prendere l'Eredità, mai
+### 124. ✅ Due case su otto non possono prendere l'Eredità, mai — CHIUSA in 0.1.395: la causa non era quella scritta
 
 `contenuto` · `da-decidere` · aperta in 0.1.353 ([D-385](DECISIONS.md#d-385))
 
@@ -8840,7 +8860,42 @@ mostra desiderio per desiderio, e i due modi di prendere zero sono diversi:
   è premiare la durata con un altro nome, cioè esattamente quello che
   [D-299](DECISIONS.md#d-299) ha scartato.
 
-**Fatto quando** il committente sceglie.
+#### ✅ Fatta la (b) in 0.1.395 ([D-425](DECISIONS.md#d-425)), e c'era un terzo modo
+
+Il committente ha detto **«mergia e vai»** senza rispondere: vale la regola
+della [lista](LE_TUE_DECISIONI.md), *«faccio quella raccomandata e lo scrivo»*.
+
+**Rimisurato prima di toccare niente**, sulla regola che il motore gioca davvero
+(48 saghe): la premessa tiene, Nahr e Vaerax sono a **0,00** e Le Libere Città a
+**7,62**.
+
+**Ma la voce conosceva due modi di prendere zero, e ce n'è un terzo.**
+`mountain_forgotten` di Vaerax non è murato, capita **13 volte su 48**, e
+diventa leggenda **zero**: è l'ultimo anello della catena d'era `TLY_SEAL`, e i
+segni delle catene sono esclusi dalle leggende **per scelta**
+([D-133](DECISIONS.md#d-133)) — *«un conteggio interrotto non è una memoria»*. È
+anche il motivo per cui dare a Vaerax `seal_kept` non avrebbe funzionato: stessa
+catena.
+
+**Un desiderio a testa, sostituito e non aggiunto** (le altre sei ne hanno
+quattro):
+
+- Nahr: `crown_divided` → **`burden_shared`**, *«il peso è stato diviso»*;
+- Vaerax: `structure:sealed` → **`study_supervised`**, *«studio sorvegliato»*.
+
+| Eredità media per saga, 48 saghe | prima | **dopo** |
+|---|---|---|
+| La Diaspora di Nahr | 0,00 | **2,88** |
+| Vaerax | 0,00 | **1,88** |
+| le altre sei | 2,12–7,62 | **uguali, cifra per cifra** |
+| saghe in cui l'Eredità ribalta il vincitore | 14 su 48 | **10 su 48** |
+
+Nessuna casa è più a zero, e l'Eredità ribalta meno: uno zero strutturale sposta
+la classifica quanto un punteggio, e **una regola che paga tutti pesa meno di una
+che ne paga sei**.
+
+**Fatto quando** era: il committente sceglie. Ha lasciato fare la raccomandata, e
+la voce si chiude.
 
 ---
 

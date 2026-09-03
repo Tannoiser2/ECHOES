@@ -75,8 +75,8 @@
           "why": "Le rotte aperte: fermarsi e' una scelta finche' andarsene resta possibile."
         },
         {
-          "tag": "crown_divided",
-          "why": "Una corona sola decide di noi; due corone devono chiedercelo."
+          "tag": "burden_shared",
+          "why": "Il peso diviso e' la prova che ci hanno contati: un popolo tollerato porta da solo, uno riconosciuto porta insieme agli altri."
         }
       ],
       "fears": [
@@ -165,8 +165,8 @@
           "why": "Chiuse le gallerie, la cosa che dorme continua a dormire."
         },
         {
-          "tag": "structure:sealed",
-          "why": "Il sigillo e' una pietra: dura piu' di un divieto detto."
+          "tag": "study_supervised",
+          "why": "Non vietare di sapere: vietare di sapere da soli. Uno studio sorvegliato e' il divieto che sopravvive a chi l'ha imposto."
         },
         {
           "tag": "mountain_forgotten",

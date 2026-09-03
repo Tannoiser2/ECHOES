@@ -47,6 +47,68 @@ contro zero** — cioè non provava niente. Adesso i desideri se li fabbrica.
 
 ---
 
+## 0.1.395 — Due case che non potevano lasciare niente, e la causa non era quella scritta
+
+Undicesima rossa, fatta la raccomandata perché il committente ha detto **«mergia
+e vai»** senza rispondere ([D-425](docs/DECISIONS.md#d-425)). **Chiude
+[ISSUES 124](docs/ISSUES.md#124)**, aperta in 0.1.353.
+
+### Rimisurato prima di toccarlo, e la premessa tiene
+
+| Eredità media per saga, 48 saghe | prima | **dopo** |
+|---|---|---|
+| La Diaspora di Nahr | 0,00 | **2,88** |
+| Vaerax | 0,00 | **1,88** |
+| le altre sei | 2,12–7,62 | **uguali, cifra per cifra** |
+| saghe in cui l'Eredità ribalta il vincitore | 14 su 48 | **10 su 48** |
+
+E la prima misura che avevo fatto era **la variante sbagliata** — quella che
+classifica i salti d'era invece di giocare la regola scritta — e diceva Nahr 1,62
+e Vaerax 1,33. Stavo per dichiarare la voce invecchiata su un numero che misurava
+un'altra cosa.
+
+### La causa vera, che la voce non nominava
+
+L'Eredità paga +3 per ogni **leggenda** che porta il tuo nome, e una leggenda
+nasce da un fatto globale che al salto d'era sbiadisce. La voce spiegava due modi
+di prendere zero — un segno di Regione, e un fatto murato negli `enduring_facts`.
+
+**Ce n'è un terzo.** `mountain_forgotten` di Vaerax non è murato, capita 13 volte
+su 48 e diventa leggenda **zero**: è l'ultimo anello della catena d'era
+`TLY_SEAL`, e i segni delle catene sono esclusi dalle leggende **per scelta**
+(D-133) — *«un conteggio interrotto non è una memoria»*. È anche il motivo per
+cui la prima riparazione che avevo in mano, dargli `seal_kept`, non avrebbe
+funzionato: stessa catena.
+
+### Un desiderio a testa, sostituito e non aggiunto
+
+Le altre sei case ne hanno quattro, e cinque per due di loro sarebbe stato un
+vantaggio nascosto.
+
+- **Nahr**: `crown_divided` → **`burden_shared`**. *«Il peso diviso è la prova
+  che ci hanno contati: un popolo tollerato porta da solo, uno riconosciuto porta
+  insieme agli altri.»*
+- **Vaerax**: `structure:sealed` → **`study_supervised`**. *«Non vietare di
+  sapere: vietare di sapere da soli.»*
+
+Nessun segno nuovo, nessuna regola toccata: esistevano già ed erano fatti che
+sbiadiscono. `burden_shared` diventa leggenda 46 volte su 48, `study_supervised`
+30.
+
+**E l'Eredità ribalta meno**, che è l'effetto collaterale buono: uno zero
+strutturale sposta la classifica quanto un punteggio, e una regola che paga tutti
+pesa meno di una che ne paga sei.
+
+### E dieci segni trovati per strada
+
+Il primo desiderio che avevo dato a Nahr, `return_promised`, è risultato **fatto
+zero volte su 48**: lo scrive solo un template di Consiglio, e da D-378 le
+Proposte vengono dalla carta. **Dieci segni sono in quella condizione** — una
+penna sola, e quella penna non scrive più. Non ho allargato questa voce: è una
+riga nuova sotto [ISSUES 56](docs/ISSUES.md#56).
+
+---
+
 ## 0.1.394 — La sonda dei «passa» contava il tavolo e non la mano
 
 Domanda del committente — *«e se non ci fosse proprio la possibilità di passare?

@@ -15,7 +15,7 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `account_settled` | 13 | 0 | 0 | `destiny_physical`, `entity_strategic_profile` |  |
 | `amnesty_granted` | 1 | 0 | 0 | `chronicle` |  |
 | `betrayal_spoken` | 19 | 0 | 0 | `asset_physical`, `echo_card` |  |
-| `burden_shared` | 33 | 0 | 0 | `echo_card` |  |
+| `burden_shared` | 33 | 0 | 0 | `echo_card`, `entity_strategic_profile` |  |
 | `charter_for_all` | 2 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
 | `charter_temporary` | 15 | 0 | 0 | `chronicle` |  |
 | `charter_written` | 27 | 0 | 2 | `asset_physical`, `destiny`, `entity`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
