@@ -1,0 +1,575 @@
+{
+  "tipo": "objective",
+  "nome": "carta Obiettivo",
+  "formato": {
+    "nome": "tarocco",
+    "sigla": "TAROT",
+    "mm": [
+      70,
+      120
+    ]
+  },
+  "facce": 19,
+  "pezzi": 19,
+  "cos_e": "La promessa coperta che **qualunque casa puo' pescare**, dietro il paravento come il Destino. Non si gioca: si conta a fine anno, clausola per clausola.",
+  "immagine": "**Niente volti** e **nessun colore di casa**: la prova da portare — una cosa costruita, tenuta, contata — come un ex voto.",
+  "sottotitolo": "fissa: «obiettivo coperto · si conta a fine anno»",
+  "angolo": "nessuna",
+  "scena": "`description`",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "ECHOES — Objective card. Emblematic scene of {SOGGETTO}.\nWhat must be true at the end of the year: {SITUAZIONE}\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror.",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "la promessa",
+      "da_dove": "nel corpo, in una riga: `label`"
+    },
+    {
+      "voce": "CONTA",
+      "da_dove": "le clausole che la contano: `conditions[].label`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "OBJ_A_GARRISON",
+      "tipo": "objective",
+      "titolo": "Il Muro che Tiene",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Un presidio suo tiene una terra del territorio"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno un presidio suo nel dominio del territorio · Controllo di almeno 2 Regioni"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.a_garrison",
+        "scena": "C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Il Muro che Tiene.\nWhat must be true at the end of the year: C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_A_GARRISON",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_A_HIGH_HOUSE",
+      "tipo": "objective",
+      "titolo": "Pietra sopra Pietra",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Una sua pietra e' salita di grado dove si guarda"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Una sua pietra di grado 2 nell'antico o in capitale"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.a_high_house",
+        "scena": "Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Pietra sopra Pietra.\nWhat must be true at the end of the year: Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_A_HIGH_HOUSE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_A_LEARNED_HOUSE",
+      "tipo": "objective",
+      "titolo": "Le Cose che si Sanno",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Ha imparato due cose, e una l'ha guardata da vicino"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno due scoperte · Una sua pedina dove il mondo e' ancora da guardare"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.a_learned_house",
+        "scena": "Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Le Cose che si Sanno.\nWhat must be true at the end of the year: Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_A_LEARNED_HOUSE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_A_STONE",
+      "tipo": "objective",
+      "titolo": "Qualcosa che Resta in Piedi",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Ha alzato una pietra quest'anno, e ne restano due in piedi"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno due strutture sue in piedi · Una pietra alzata da lei quest'anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.a_stone",
+        "scena": "Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: quello che conta non è quante ne hai, è che quest'anno ne sia salita una.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Qualcosa che Resta in Piedi.\nWhat must be true at the end of the year: Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: quello che conta non è quante ne hai, è che quest'anno ne sia salita una.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_A_STONE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_A_WORK",
+      "tipo": "objective",
+      "titolo": "L'Opera che Porta il Nome",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Ha alzato quest'anno un'opera che porta il suo nome"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno un'opera sua · Un'opera alzata da lei quest'anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.a_work",
+        "scena": "Non un presidio, non un insediamento: un'opera. E non una che era già lì quando l'anno è cominciato — una che quest'anno è salita, e tutti sanno di chi è.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of L'Opera che Porta il Nome.\nWhat must be true at the end of the year: Non un presidio, non un insediamento: un'opera. E non una che era già lì quando l'anno è cominciato — una che quest'anno è salita, e tutti sanno di chi è.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_A_WORK",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_BOUND_HOUSE",
+      "tipo": "objective",
+      "titolo": "Le Corde che Tengono",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Ha stretto un legame quest'anno, e chiude l'anno alleata"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno una carta Legami in mano · Alleata o legata con almeno un'altra casa · Un legame stretto da lei quest'anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.bound_house",
+        "scena": "Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va **fatta**, e quest'anno: un legame ereditato non è una mano tesa, è un'abitudine.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Le Corde che Tengono.\nWhat must be true at the end of the year: Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va **fatta**, e quest'anno: un legame ereditato non è una mano tesa, è un'abitudine.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_BOUND_HOUSE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_FULL_HANDS",
+      "tipo": "objective",
+      "titolo": "Le Mani Piene",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chiude l'anno con le mani piene, e sta dove si produce"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Più carte in mano di ogni altra casa · Una sua pedina in una terra del dominio delle risorse"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.full_hands",
+        "scena": "Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Le Mani Piene.\nWhat must be true at the end of the year: Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_FULL_HANDS",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_MOST_STONE",
+      "tipo": "objective",
+      "titolo": "Più Pietra di Tutti",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Più cose in piedi di chiunque altro, e una alzata quest'anno"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Più strutture sue in piedi di ogni altra casa · E almeno una alzata da lei quest'anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.most_stone",
+        "scena": "Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**, e lo fa **quest'anno**. Arrivare primi senza aver alzato niente è essere rimasti primi, che è un'altra cosa.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Più Pietra di Tutti.\nWhat must be true at the end of the year: Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**, e lo fa **quest'anno**. Arrivare primi senza aver alzato niente è essere rimasti primi, che è un'altra cosa.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_MOST_STONE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_NO_OPEN_QUESTION",
+      "tipo": "objective",
+      "titolo": "Nessuna Domanda Lasciata Aperta",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "L'anno si chiude senza questioni aperte"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Nessuna questione lasciata aperta · Non più di 5 carte in mano a fine anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.no_open_question",
+        "scena": "Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso, e non gli importa chi li ha chiusi — ma chiuderli costa, e chi arriva a fine anno con la mano ancora piena non ha pagato niente.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Nessuna Domanda Lasciata Aperta.\nWhat must be true at the end of the year: Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso, e non gli importa chi li ha chiusi — ma chiuderli costa, e chi arriva a fine anno con la mano ancora piena non ha pagato niente.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_NO_OPEN_QUESTION",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_QUIET_WORLD",
+      "tipo": "objective",
+      "titolo": "Un Mondo che si Può Ancora Usare",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le terre dove si vive escono dall'anno quasi intere"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Non piu' di due Cicatrici sulle terre della sopravvivenza · Almeno una scoperta sua"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.quiet_world",
+        "scena": "Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Un Mondo che si Può Ancora Usare.\nWhat must be true at the end of the year: Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_QUIET_WORLD",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_SOMETHING_MUST_BREAK",
+      "tipo": "objective",
+      "titolo": "Qualcosa Deve Rompersi",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Almeno due questioni portate a 4 o più"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno due questioni arrivate a 4 o più"
+        }
+      ],
+      "arte": null,
+      "pie": "OBJ_SOMETHING_MUST_BREAK",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_THE_LONGEST_REACH",
+      "tipo": "objective",
+      "titolo": "La Mano Più Lunga",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Tiene più Regioni di chiunque altro, e una l'ha presa quest'anno"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Più Regioni di ogni altra casa · E una terra passata a lei quest'anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.the_longest_reach",
+        "scena": "Non «due Regioni»: **più di chiunque altro**, e non per eredità. Il numero che serve non lo decidi tu, lo decide chi ti sta davanti; la terra in più, quella devi essertela presa.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of La Mano Più Lunga.\nWhat must be true at the end of the year: Non «due Regioni»: **più di chiunque altro**, e non per eredità. Il numero che serve non lo decidi tu, lo decide chi ti sta davanti; la terra in più, quella devi essertela presa.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_THE_LONGEST_REACH",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_THE_NAME",
+      "tipo": "objective",
+      "titolo": "Il Nome che Pesa",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Il suo nome porta il segno della fama"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "La casa porta il segno della fama"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.the_name",
+        "scena": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Il Nome che Pesa.\nWhat must be true at the end of the year: Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_THE_NAME",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_THE_OLD_GROUND",
+      "tipo": "objective",
+      "titolo": "Il Fondo Antico",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Due terre dell'Antico rispondono al suo nome"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Controllo di 2 terre del dominio dell'Antico"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.the_old_ground",
+        "scena": "Le terre vecchie sono poche e non si moltiplicano: quello che c'e' sotto ci sta da prima di tutti, e ne risponde una casa sola alla volta. Tenerne due vuol dire che nessun altro ne tiene due, ed e' per questo che vale.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Il Fondo Antico.\nWhat must be true at the end of the year: Le terre vecchie sono poche e non si moltiplicano: quello che c'e' sotto ci sta da prima di tutti, e ne risponde una casa sola alla volta. Tenerne due vuol dire che nessun altro ne tiene due, ed e' per questo che vale.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_THE_OLD_GROUND",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_THE_TWO_YIELDS",
+      "tipo": "objective",
+      "titolo": "Le Due Rese",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Due terre delle risorse rispondono al suo nome"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Controllo di 2 terre del dominio delle risorse"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.the_two_yields",
+        "scena": "Non la roba: i posti dove la roba si fa. Un raccolto lo si divide, una terra che lo produce no — e chi ne tiene due ha messo la mano su meta' di quello che il tavolo mangia.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Le Due Rese.\nWhat must be true at the end of the year: Non la roba: i posti dove la roba si fa. Un raccolto lo si divide, una terra che lo produce no — e chi ne tiene due ha messo la mano su meta' di quello che il tavolo mangia.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_THE_TWO_YIELDS",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_THE_USEFUL_RUIN",
+      "tipo": "objective",
+      "titolo": "Quello che si Prende",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Una terra altrui è stata spolpata o svuotata"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Sfruttata o svuotata, in una terra che non è sua"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.the_useful_ruin",
+        "scena": "Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Quello che si Prende.\nWhat must be true at the end of the year: Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_THE_USEFUL_RUIN",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_THE_WIDEST_SPREAD",
+      "tipo": "objective",
+      "titolo": "La Gente più Sparsa",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Più pedine sul tavolo di chiunque altro, e una posata quest'anno"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Più pedine di ogni altra casa · E una presenza posata da lei quest'anno"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.the_widest_spread",
+        "scena": "Essere in più posti degli altri non è tenere: è **esserci**, e l'esserci si paga in pedine che quest'anno sono uscite dalla riserva. Chi non ne ha mossa nessuna non si è sparso: era già sparso.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of La Gente più Sparsa.\nWhat must be true at the end of the year: Essere in più posti degli altri non è tenere: è **esserci**, e l'esserci si paga in pedine che quest'anno sono uscite dalla riserva. Chi non ne ha mossa nessuna non si è sparso: era già sparso.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_THE_WIDEST_SPREAD",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_TWO_LANDS",
+      "tipo": "objective",
+      "titolo": "Due Terre, una Voce",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Due terre del territorio rispondono al suo nome"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Controllo di 2 terre del dominio del territorio"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.two_lands",
+        "scena": "Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Due Terre, una Voce.\nWhat must be true at the end of the year: Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_TWO_LANDS",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "OBJ_WRITTEN_THINGS",
+      "tipo": "objective",
+      "titolo": "Le Cose Scritte",
+      "sottotitolo": "obiettivo coperto · si conta a fine anno",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Due carte di Sapere in mano, e un piede dove le cose si tengono"
+      ],
+      "righe": [
+        {
+          "voce": "CONTA",
+          "testo": "Almeno 2 carte Sapere in mano · Almeno una scoperta sua · Una sua pedina in una terra del dominio dell'antico"
+        }
+      ],
+      "arte": {
+        "chiave": "objective.written_things",
+        "scena": "Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.",
+        "prompt": "ECHOES — Objective card. Emblematic scene of Le Cose Scritte.\nWhat must be true at the end of the year: Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.\nNeutral accent — worn stone grey and pale ochre — over the game's muted earth\npalette; no house colour: this card can belong to anyone. No faces: an\nObjective card shows the proof, not the one who brings it — a thing built,\nheld, counted or kept, composed like an ex-voto. Seen close, at eye level, in\nplain daylight; one clear light source and a quiet background. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nsubject in the upper two thirds; the lower third is a calm, low-detail area\nreserved for a text overlay. Vertical card framing, 2:3. No text, no letters,\nno numerals, no logos, no frame, no border. Not gory, not horror."
+      },
+      "pie": "OBJ_WRITTEN_THINGS",
+      "copie": 1,
+      "segreta": true
+    }
+  ]
+}

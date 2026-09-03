@@ -1,0 +1,1893 @@
+{
+  "tipo": "tension",
+  "nome": "carta Domanda (la Tensione)",
+  "formato": {
+    "nome": "carta da gioco",
+    "sigla": "CARD",
+    "mm": [
+      63,
+      88
+    ]
+  },
+  "facce": 60,
+  "pezzi": 60,
+  "cos_e": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano.",
+  "immagine": "Nessuna: e' tutta testo, e il testo prende il posto del quadro.",
+  "sottotitolo": "«domanda» o «domanda velata» (`visibility`) e il Tema (`domain`)",
+  "angolo": "la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo",
+  "scena": "nessuna",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "SI DISCUTE DI",
+      "da_dove": "le domande che puo' aprire, nel corpo: `possible_questions`, col testo da `council.questions`"
+    },
+    {
+      "voce": "SI ACCENDE QUANDO",
+      "da_dove": "la regola a segni che la fa salire: `heats_when` (o `triggers`, dove la regola non c'e')"
+    },
+    {
+      "voce": "SI RAFFREDDA",
+      "da_dove": "`decrease_rules`"
+    },
+    {
+      "voce": "AL CONSIGLIO VALGONO",
+      "da_dove": "le famiglie che pesano al voto: `relevant_asset_families`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "TEN_ASH",
+      "tipo": "tension",
+      "titolo": "La Cenere che Sale",
+      "sottotitolo": "domanda velata · l'antico",
+      "angolo": "4",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato? · E le bocche aperte sul fianco, si murano?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta su chi tiene d'occhio la montagna."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, sapere, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ASH",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_AWAKENING",
+      "tipo": "tension",
+      "titolo": "Il Risveglio",
+      "sottotitolo": "domanda velata · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute? · A chi appartiene ciò che dorme sotto la Regione di cui si discute?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa lo #sfruttato o il #sigillato · una casa entra dove sta il #cristallo, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Sigillare le Miniere. Un patto che vincoli chi studia il Cristallo."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, forza, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_AWAKENING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BAD_GRAIN",
+      "tipo": "tension",
+      "titolo": "Il Grano Guasto",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi apre i sili e guarda dentro? · E del raccolto marcito, chi risponde?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra in una terra col #granaio, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una conta pubblica del granaio. Il grano guasto bruciato davanti a tutti."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BAD_GRAIN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BLACK_TOLLS",
+      "tipo": "tension",
+      "titolo": "I Pedaggi Neri",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi ha teso la catena sulla strada, e con che diritto? · E i carri che passano domani, chi li accompagna?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #bosco o dove passa il #commercio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una scorta armata decisa al Consiglio. La catena tolta e mostrata in piazza."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BLACK_TOLLS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BOUNDARY_STONES",
+      "tipo": "tension",
+      "titolo": "Le Pietre di Confine",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto? · E chi le ha spostate, si cerca?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #conteso · il controllo di una terra passa di mano"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un confine camminato e giurato davanti a testimoni. Un catasto riscritto al Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BOUNDARY_STONES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BURIALS",
+      "tipo": "tension",
+      "titolo": "I Sepolti Senza Nome",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano? · E l'acqua che li ha scoperti, si rimanda dov'era?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #lutto · una casa entra nella #palude, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un rito per i senza nome celebrato davanti a tutti. Un campo santo nuovo consacrato."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BURIALS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_CHARTER",
+      "tipo": "tension",
+      "titolo": "La Carta",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "7",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi scrive la regola che vale nella Regione di cui si discute? · E chi si siede, quando non si è d'accordo?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #conteso o il #malcontento · una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta su chi scrive la regola. Una regola scritta e accettata anche da chi ci perde."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, gente, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_CHARTER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_CLEARING",
+      "tipo": "tension",
+      "titolo": "Il Disboscamento",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio? · E le fornaci, si fermano una stagione?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #bosco, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un limite di taglio deciso e sorvegliato. Una stagione senza fornaci."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_CLEARING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_COUNCIL_SEATS",
+      "tipo": "tension",
+      "titolo": "I Seggi del Consiglio",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi si siede al tavolo, e chi lo decide? · E un veto, quanto vale?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una regola dei seggi scritta e giurata. Un seggio nuovo assegnato senza sangue."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_COUNCIL_SEATS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_COURIERS",
+      "tipo": "tension",
+      "titolo": "Le Staffette",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi paga le staffette, e cosa compra davvero? · E le lettere che arrivano aperte, per le mani di chi sono passate?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove passa il #commercio o nella #capitale, o se ne va · due case cambiano il patto che le lega"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un servizio di staffette giurato al Consiglio. Una posta sigillata con pene scritte."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "legami, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_COURIERS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_DEBT",
+      "tipo": "tension",
+      "titolo": "Il Debito",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "7",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi tiene il registro, e chi può leggerlo? · E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa l'#indebitata o alza un Pedaggio · una casa entra dove passa il #commercio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta sul registro. Un condono, per quanto parziale."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, autorità, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_DEBT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_DEEP_WATER",
+      "tipo": "tension",
+      "titolo": "L'Acqua Fonda",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo? · E andare a vedere cosa c'è sotto, conviene a qualcuno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #palude o sull'#isola, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un divieto di pesca deciso e rispettato. Una spedizione fatta con giudizio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_DEEP_WATER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ECHOES_BELOW",
+      "tipo": "tension",
+      "titolo": "Gli Echi nel Fondo",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere? · E il turno lungo, chi lo fa adesso?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa scende nella #miniera, o ne risale"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una veglia decisa e mantenuta. Il fondo sigillato per decisione del Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ECHOES_BELOW",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_EMPTY_NETS",
+      "tipo": "tension",
+      "titolo": "Le Reti Vuote",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi pesca nella Regione di cui si discute, adesso che le reti tornano vuote? · E le barche ferme, di chi restano?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #porto, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Turni e banchi divisi per decisione del Consiglio. Il pesce tornato con la stagione."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_EMPTY_NETS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ENCLOSURE",
+      "tipo": "tension",
+      "titolo": "I Recinti",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati? · E l'uso della terra, a chi resta?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "aggiunge #conteso a una terra da coltivo, da pascolo o del Territorio · costruisce un Pedaggio o un Granaio · porta una Presenza in una terra da coltivo · toglie una Presenza da una terra da coltivo"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un Consiglio che decide di chi e' l'uso della terra. Un titolo scritto e letto in piazza."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ENCLOSURE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FALLOW",
+      "tipo": "tension",
+      "titolo": "La Terra Stanca",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia? · E chi non può permetterselo, come semina?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #magro · una casa entra in una terra col #granaio, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un anno di maggese deciso e rispettato. Una rotazione scritta al Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FALLOW",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FAMINE",
+      "tipo": "tension",
+      "titolo": "La Carestia",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi nutre la Regione di cui si discute quando i granai si svuotano? · Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa la #fame o il #malcontento · una casa entra in una terra col #granaio, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta sulla distribuzione del grano. Carte Echo di RISOLUZIONE che spendono qualcosa di reale."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, gente, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FAMINE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FERRY",
+      "tipo": "tension",
+      "titolo": "Il Traghetto",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  La traversata ha un prezzo: chi lo scrive, e chi lo riscuote? · E se una barca sola non basta piu'?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #porto o sull'#isola, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una tariffa scritta al Consiglio. Una seconda barca messa in acqua."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FERRY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FLOOD",
+      "tipo": "tension",
+      "titolo": "L'Acqua Alta",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra? · E i canali vecchi, si riaprono?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #palude, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Argini rifatti per decisione del Consiglio. I canali vecchi riaperti."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FLOOD",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_GUILD_WAR",
+      "tipo": "tension",
+      "titolo": "La Guerra delle Gilde",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Le vie sono strette: di chi sono? · E del magazzino bruciato, chi risponde?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove passa il #commercio o nella #capitale, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un arbitrato del Consiglio fra le gilde. Un mercato diviso con confini scritti."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_GUILD_WAR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_HERESY",
+      "tipo": "tension",
+      "titolo": "La Parola Storta",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire? · E a chi la ascolta, cosa si fa?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un Consiglio che decide cosa si puo' predicare. Una disputa pubblica con un vincitore."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_HERESY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_HOSTAGES",
+      "tipo": "tension",
+      "titolo": "Gli Ostaggi di Corte",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Gli ospiti di corte, quando possono tornare a casa? · E chi risponde di loro?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Uno scambio di ostaggi deciso al Consiglio. Un ritorno a casa concesso e festeggiato."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "legami, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_HOSTAGES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ISLAND_SHRINE",
+      "tipo": "tension",
+      "titolo": "Il Santuario dell'Isola",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce? · E il rito, si scrive nuovo o si copia il vecchio?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa sbarca sull'#isola, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una custodia dell'altare decisa al Consiglio. Un rito nuovo scritto per il posto vecchio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ISLAND_SHRINE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ISLAND_SILENCE",
+      "tipo": "tension",
+      "titolo": "Il Silenzio dell'Isola",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo? · E a chi ci ha già passato la notte, cosa si chiede?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa sbarca sull'#isola, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un presidio stabilito con un rito. Un divieto di sbarco deciso al Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ISLAND_SILENCE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_LANDLESS",
+      "tipo": "tension",
+      "titolo": "I Braccianti",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare? · E dare terra a chi la lavora, si può?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra in una terra col #granaio o in un #pascolo, o la lascia · due case cambiano il patto che le lega"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un patto di lavoro deciso al Consiglio. Terra concessa a chi la lavora."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_LANDLESS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_LAND_REGISTER",
+      "tipo": "tension",
+      "titolo": "Il Catasto",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Il trono vuole un registro delle terre: chi misura? · E chi non si fa scrivere?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un catasto giurato dalle parti. Un Consiglio che decide chi misura."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_LAND_REGISTER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_LEVY",
+      "tipo": "tension",
+      "titolo": "La Leva",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi decide quante braccia vanno alle armi? · E il raccolto che resta indietro, chi lo perde?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa la #fame · due case si legano fino al patto o al sangue"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una leva con regole scritte al Consiglio. Un anno senza chiamate."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_LEVY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_MARCHES",
+      "tipo": "tension",
+      "titolo": "Le Marche di Confine",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Ai margini della Regione di cui si discute, a chi si obbedisce davvero? · E i titoli che si danno da soli, valgono?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #conteso · una casa entra nel #bosco, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una marca concessa a un titolare scelto. Un giro d'ispezione del trono ai margini."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_MARCHES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_MARSH_FEVER",
+      "tipo": "tension",
+      "titolo": "La Febbre delle Paludi",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi manda gli uomini a prosciugare? · E i malati, chi se li tiene?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #palude, o la lascia · qualcuno posa la #fame o il #magro"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un cordone e cure decisi al Consiglio. I canali riaperti che muovono l'acqua."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_MARSH_FEVER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_NAMELESS",
+      "tipo": "tension",
+      "titolo": "I Senza Città",
+      "sottotitolo": "domanda velata · la sopravvivenza",
+      "angolo": "5",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute? · E contarli, conviene a qualcuno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa lo #svuotato · una casa entra in un #pascolo, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta su chi ha diritto di restare."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, legami, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_NAMELESS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_OLD_CHANNELS",
+      "tipo": "tension",
+      "titolo": "Le Vie di Prima",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita? · E dove finiscono, cosa ci si fa?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #palude o nel #bosco, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una mappa delle vie vecchie fatta e custodita. Un divieto di percorrerle deciso al Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_OLD_CHANNELS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_OLD_GUARD",
+      "tipo": "tension",
+      "titolo": "La Vecchia Guardia",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Le insegne del vecchio ordine, si portano ancora? · E chi comanda i veterani?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "due case cambiano il patto che le lega · qualcuno alza un Presidio"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un giuramento nuovo prestato dai vecchi. Una pensione decisa al Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_OLD_GUARD",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_OLD_NAMES",
+      "tipo": "tension",
+      "titolo": "I Nomi Vecchi",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano? · E dirli, si può?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa lo #svuotato o l'#abbandonato · una casa entra nel #selvaggio o nel #bosco, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una disputa dei dotti che stabilisca cosa significano. Un divieto o una riabilitazione decisi al Consiglio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_OLD_NAMES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PASTURE",
+      "tipo": "tension",
+      "titolo": "Il Pascolo Conteso",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba? · E il margine, si divide?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #conteso · una casa entra in un #pascolo, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un calendario dei pascoli deciso al Consiglio. Una stagione divisa senza sangue."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PASTURE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PILGRIMS",
+      "tipo": "tension",
+      "titolo": "I Pellegrini",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada? · E l'anno santo, lo dichiara qualcuno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa la #fame o il #razionato · una casa sbarca sull'#isola o entra nella #capitale, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un cammino con tappe e granai decisi al Consiglio. Un anno santo dichiarato e organizzato."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PILGRIMS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PLAGUE",
+      "tipo": "tension",
+      "titolo": "La Febbre Bassa",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "5",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi decide quali porte restano aperte? · E chi tiene il conto dei morti?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa la #fame, il #malcontento o l'#abbandonato · una casa entra in un #pascolo, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una divisione che tutti riescono a dire ad alta voce."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, sapere, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PLAGUE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PROPHECY",
+      "tipo": "tension",
+      "titolo": "La Profezia Contata",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare? · E il giorno dopo la data, cosa si fa?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove sta il #cristallo, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una disputa pubblica sulla lettura. Il Consiglio che fissa cosa si fa il giorno dopo la data."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PROPHECY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_QUARANTINE",
+      "tipo": "tension",
+      "titolo": "Il Cordone",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi traccia il cordone nella Regione di cui si discute, e dove passa? · E chi resta fuori, dove va?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove passa il #commercio o nel #porto, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un cordone con regole e termini scritti. Una quarantena finita senza contagio."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_QUARANTINE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_REFUGEES",
+      "tipo": "tension",
+      "titolo": "Chi Arriva da Fuori",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano? · E chi paga il pane in piu'?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa lo #svuotato, l'#abbandonato o il #saccheggiato · due case cambiano il patto che le lega"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un'accoglienza con regole decisa al Consiglio. Terra o lavoro dati a chi arriva."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_REFUGEES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_REGENCY",
+      "tipo": "tension",
+      "titolo": "La Reggenza",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Il sigillo, fino a quando lo tiene il reggente? · E dopo, a chi torna?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #il_seggio_vuoto o il #conteso · il controllo di una terra passa di mano"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un termine scritto e giurato al Consiglio. La consegna del sigillo davanti a testimoni."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_REGENCY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_RELIC",
+      "tipo": "tension",
+      "titolo": "La Reliquia",
+      "sottotitolo": "domanda velata · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  E chi ha diritto di vederlo? · Chi risponde di quello che c'è nella teca?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #sigillato o il #malcontento · una casa entra dove sta il #cristallo, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta su chi la custodisce. Sotterrarla di nuovo, e dirlo."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, legami, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_RELIC",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ROADS",
+      "tipo": "tension",
+      "titolo": "Le Vie Interrotte",
+      "sottotitolo": "domanda velata · le risorse",
+      "angolo": "5",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi riscuote su quello che passa nella Regione di cui si discute? · Chi risponde di un carico che non arriva?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #tagliato_fuori o il #saccheggiato · una casa entra dove passa il #commercio o dove sta il #cristallo, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una scorta pagata da chi ci guadagna. Un pedaggio scritto e uguale per tutti."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, sapere, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ROADS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SALT_FIELDS",
+      "tipo": "tension",
+      "titolo": "I Campi di Sale",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale? · E le vasche, si contano?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #porto o nella #palude, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un prezzo del sale deciso al Consiglio. Le vasche contate e scritte."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SALT_FIELDS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SANCTUARY",
+      "tipo": "tension",
+      "titolo": "Il Diritto d'Asilo",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo? · E gli armati davanti alla porta, chi li manda via?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "due case si legano fino al patto o al sangue · una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un Consiglio che decide i confini dell'asilo. Una consegna negoziata senza sangue."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SANCTUARY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SEALS",
+      "tipo": "tension",
+      "titolo": "I Sigilli Falsi",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi controlla la mano che preme il sigillo? · E gli ordini gia' partiti, valgono?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove passa il #commercio o nella #capitale, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un registro dei sigilli deciso al Consiglio. Un falsario preso e mostrato."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SEALS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SILENT_BELLS",
+      "tipo": "tension",
+      "titolo": "Le Campane Mute",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi? · E chi ha deciso il silenzio, si scopre?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #lutto · una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un Consiglio che decide chi suona, e per chi. Un lutto sciolto con un rito."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SILENT_BELLS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SILTED_CANALS",
+      "tipo": "tension",
+      "titolo": "I Canali Interrati",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi manda le braccia a scavare, e per quante stagioni? · E quando l'acqua torna a correre, di chi e'?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #palude, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un cantiere diviso per decisione del Consiglio. Il primo tratto riaperto che paga il secondo."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "gente, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SILTED_CANALS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SLEEPERS",
+      "tipo": "tension",
+      "titolo": "I Dormienti",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli? · E dove si dorme, chi veglia?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #sigillato · una casa entra dove sta il #cristallo o nella #miniera, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un censimento dei racconti fatto sul serio. Una veglia istituita dove si dorme."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, legami"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SLEEPERS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SMUGGLING",
+      "tipo": "tension",
+      "titolo": "Il Contrabbando",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  La cala vecchia scarica di notte: si chiude, o si apre? · E i doganieri che guardano il mare sbagliato?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #porto, o lo lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una dogana onesta pagata bene. Un condono che fa emergere i traffici."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SMUGGLING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SUCCESSION",
+      "tipo": "tension",
+      "titolo": "La Successione",
+      "sottotitolo": "domanda · il territorio",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi siede sul trono quando questo si alza? · Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #conteso, il #malcontento o il #il_seggio_vuoto · una casa entra nella #capitale, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un erede riconosciuto davanti a testimoni. Un patto che leghi una casa al trono."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "autorità, legami, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SUCCESSION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_THIRST",
+      "tipo": "tension",
+      "titolo": "I Pozzi Bassi",
+      "sottotitolo": "domanda velata · la sopravvivenza",
+      "angolo": "5",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi apre i pozzi e a che ora? · E l'acqua, si paga?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa il #razionato o la #fame · una casa entra dove c'e' il #granaio o il #commercio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una divisione che tutti riescono a dire ad alta voce."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, gente, forza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_THIRST",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_TITHE",
+      "tipo": "tension",
+      "titolo": "La Decima",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare? · E in un anno magro, si paga lo stesso?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove c'e' il #granaio o il #commercio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Registri della decima aperti al Consiglio. Una decima sospesa in un anno magro."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_TITHE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_TRIBUTE",
+      "tipo": "tension",
+      "titolo": "Il Tributo",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Il tributo si paga intero, in un anno che ha reso a meta'? · E in cambio di che cosa, esattamente?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #porto o dove passa il #commercio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un tributo ridotto per l'anno magro. Un conto pubblico di dove va il tributo."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_TRIBUTE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_UNEARTHED",
+      "tipo": "tension",
+      "titolo": "Il Dissotterrato",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove? · E studiarlo, con quali regole?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nella #miniera o dove sta il #cristallo, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una custodia decisa al Consiglio. Uno studio fatto con regole scritte."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_UNEARTHED",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_VOWS",
+      "tipo": "tension",
+      "titolo": "I Voti Non Sciolti",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno? · E chi non lo scioglie, si conta?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "due case scendono a nemiche · qualcuno posa il #lutto"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un rito di scioglimento celebrato per tutti. Un Consiglio che dice quali voti valgono ancora."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "legami, autorità"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_VOWS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WARD_STONES",
+      "tipo": "tension",
+      "titolo": "Le Pietre di Guardia",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Una delle pietre incise è a terra: si rialza, e chi la tocca? · E il margine, chi lo gira?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #selvaggio o nel #bosco, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Le pietre rialzate con il rito giusto. Un giro di guardia istituito sul margine."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WARD_STONES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WATER",
+      "tipo": "tension",
+      "titolo": "L'Acqua Ferma",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi manda gli uomini a scavare nella Regione di cui si discute? · E l'acqua, dopo, di chi e?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno alza un Granaio o un Canale, o posa il #magro · una casa entra in una terra col #granaio, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una Confluence risolta su chi scava e chi paga. Carte Echo di RISOLUZIONE che spendono braccia vere."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, gente, sapere"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WATER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WEIGHTS",
+      "tipo": "tension",
+      "titolo": "I Pesi e le Misure",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Di chi e' il braccio con cui si misura? · E chi guarda le bilance quando il mercato e' pieno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra dove passa il #commercio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Un campione dei pesi giurato al Consiglio. Un ispettore dei mercati nominato."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "sapere, ricchezza"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WEIGHTS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WINTER",
+      "tipo": "tension",
+      "titolo": "L'Inverno Lungo",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Nella Regione di cui si discute, chi distribuisce la legna quando gela? · E i debiti dell'inverno, si contano a primavera?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "qualcuno posa la #fame, il #magro o il #razionato · una casa entra in una terra col #granaio, o la lascia"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Legna e tetti divisi per decisione del Consiglio. Un disgelo arrivato in tempo."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "ricchezza, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WINTER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WOLVES",
+      "tipo": "tension",
+      "titolo": "I Lupi al Limitare",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "6",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "SI DISCUTE DI  Chi veglia il limitare nella Regione di cui si discute? · E le bestie perse, chi le rimette?"
+      ],
+      "righe": [
+        {
+          "voce": "SI ACCENDE QUANDO",
+          "testo": "una casa entra nel #bosco o nel #selvaggio, o se ne va"
+        },
+        {
+          "voce": "SI RAFFREDDA",
+          "testo": "Una battuta ordinata dal Consiglio. Recinti e guardiani pagati in comune."
+        },
+        {
+          "voce": "AL CONSIGLIO VALGONO",
+          "testo": "forza, gente"
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WOLVES",
+      "copie": 1,
+      "segreta": false
+    }
+  ]
+}

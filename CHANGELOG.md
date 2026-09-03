@@ -5,6 +5,28 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.415 — La scheda di ogni tipo di carta, e la Domanda diventa una carta
+
+Parola del committente, due volte: [D-445](docs/DECISIONS.md#d-445) e
+[D-446](docs/DECISIONS.md#d-446).
+
+**Le schede.** `docs/SCHEDE_CARTE.md`, generato e con cancello: per ogni tipo
+cos'è, che immagine porta col prompt generale, e cosa c'è scritto sopra voce
+per voce con il campo da cui viene. Accanto, `docs/schede/<tipo>.json`, uno
+per mazzo, con il record di ogni carta e il prompt già composto: otto tipi,
+300 facce, pronte da generare senza aprire Godot. Le voci scritte a mano sono
+controllate contro le facce nei due versi.
+
+**Il mazzo Obiettivo** ha una faccia: 19 tarocchi coperti, la promessa in una
+riga e le clausole sotto, col MASTER PROMPT 7 e il brief.
+
+**La Domanda è una carta da gioco, 63×88** — *«44x68 è troppo piccolo»*: corpo
+rimpicciolito 2 → 0 su 60. La traccia dei valori passa a due fogli, e nel
+riscriverla si è visto che quello di prima usciva dal bordo (223 mm su 210).
+Fogli A4 di carte e tessere 68 → 76. Nessun file del motore toccato.
+
+---
+
 ## 0.1.414 — L'app mostra il tavolo, non lo stato
 
 M14 della lista, l'ultima: [ISSUES 65](docs/ISSUES.md#65)

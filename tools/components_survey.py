@@ -75,6 +75,7 @@ MAZZI = [
     ("tension", "Carte Tensione (le Domande)", "tension", "d'autore"),
     ("council", "Schede Consiglio", None, "ricavata dalla Tensione"),
     ("destiny", "Carte Destino", "destiny", "d'autore"),
+    ("objective", "Carte Obiettivo", None, "ricavata dai dati (D-445)"),
     ("echo", "Echi (stampati sulla carta Asset)", None, "ricavata dai dati (D-344)"),
     ("entity", "Carte Casata", None, "ricavata dai dati"),
     ("region", "Tessere Regione", None, "ricavata dai dati"),
@@ -203,18 +204,26 @@ def survey() -> str:
         # il corpo rimpicciolito. Costa fogli, e il conto qui sotto lo dice.
         ("Carte **Asset** (ognuna col suo Eco)", len(assets), copie_asset,
          "TAROT", len(assets), "asset"),
-        ("Carte **Tensione** (le Domande)", len(tensions), len(tensions), "MINI",
+        # **Carta da gioco da D-446**: era mini per la traccia dei valori, e il
+        # committente l'ha detto — *«44x68 e' troppo piccolo»* — perche' da D-261
+        # si gira sul mazzetto e si legge. La traccia le fa posto su due fogli.
+        ("Carte **Tensione** (le Domande)", len(tensions), len(tensions), "CARD",
          sum(1 for t in tensions if t.get("physical")), "tension"),
-        # **La scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione. La
-        # carta Domanda resta mini perche' sta sulla traccia (D-097); quello che
-        # serve per *risolvere* un Consiglio — la domanda, le proposte con cosa
-        # lasciano, le dodici caselle — sono 870 caratteri, e su una mini non
-        # entrano. La faccia fisica c'e' per tutte: e' fatta di dato, non di
-        # blocco `physical`.
+        # **La scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione.
+        # Quello che serve per *risolvere* un Consiglio — la domanda, le proposte
+        # con cosa lasciano, le dodici caselle — sono 870 caratteri, e su una
+        # carta sola non entrano (TEN_SUCCESSION sbordava anche su un tarocco).
+        # La faccia fisica c'e' per tutte: e' fatta di dato, non di blocco
+        # `physical`.
         ("Schede **Consiglio**", len(tensions), len(tensions), "TAROT",
          len(tensions), "council"),
         ("Carte **Destino**", len(destinies), len(destinies), "TAROT",
          sum(1 for d in destinies if d.get("physical")), "destiny"),
+        # **Le carte Obiettivo** (D-445): coperte, dietro il paravento come il
+        # Destino. Fino alla 0.1.414 stavano fra le cose «che non si stampano»,
+        # e un obiettivo coperto che non si stampa non si pesca.
+        ("Carte **Obiettivo** (coperte)", len(objectives), len(objectives), "TAROT",
+         len(objectives), "objective"),
         ("Carte **Casata** (una per vita)", vite, vite, "TAROT", 0, "entity"),
         ("Tessere **Regione**", len(regions), len(regions), "TILE", 0, "region"),
     ]
@@ -321,7 +330,6 @@ def survey() -> str:
     add("| Profili strategici | %d su %d | cosa ogni casa vuole lasciare nel mondo |" % (
         len(profiles), len(entities)))
     add("| Temi | %d | i mazzetti che scaldano e aprono la Domanda |" % len(themes))
-    add("| Obiettivi | %d | i tre coperti che si pescano a inizio saga |" % len(objectives))
     add("| Conseguenze | %d | cosa una proposta scrive sul mondo se passa |" % len(consequences))
     add("| Modelli di Consiglio | %d | domande, proposte e clausole d'autore |" % len(templates))
     add("| Regole dei segni | %d | cosa un segno fa da solo |" % len(rules))

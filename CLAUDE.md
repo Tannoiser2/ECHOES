@@ -48,10 +48,10 @@ E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
 
 Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 
-**Sono trentadue, e non si girano a mano uno per uno.** Li gira
+**Sono trentatré, e non si girano a mano uno per uno.** Li gira
 [`tools/gates.py`](tools/gates.py), in tre modi:
 
-- **senza argomenti** — i **27 veloci**, ventisei secondi in tutto: dopo ogni modifica;
+- **senza argomenti** — i **28 veloci**, ventisette secondi in tutto: dopo ogni modifica;
 - **`--lenti`** — le **5 sonde lunghe**: una volta, prima di aprire la PR;
 - **`--rigenera`** — rifà i documenti generati invece di controllarli, quando uno
   va rosso solo perché è vecchio. È il rosso che costa più tempo di tutti.
@@ -86,6 +86,7 @@ Linux, e serve solo a dire in quale corsia va un cancello.
 | `bash tools/run_lives_survey.sh --check` | 186 s | `docs/MISURA_VITE.md`: **quante delle vite scritte delle case si siedono davvero al tavolo**, in dodici saghe sui due tavoli |
 | `bash tools/run_tiles_probe.sh --check` | 328 s | `docs/MISURA_TESSERE.md`: **tutte le pose possibili della mappa**, enumerate — 210 pescate per 720 ordini — e quante lasciano una tessera isolata |
 | `bash tools/run_card_skeleton.sh --check` | 1 s | `docs/SCHELETRO_CARTE.md`: **cosa porta ogni faccia**, ricavato dalle facce vere — i blocchi di ogni mazzo, su quante carte, e una carta vera per mazzo |
+| `bash tools/run_card_sheets.sh --check` | 1 s | `docs/SCHEDE_CARTE.md` e `docs/schede/*.json`: **la scheda di ogni tipo di carta** — cos'e', cosa c'e' scritto sopra voce per voce e da dove viene, l'immagine e il suo prompt generale — e **il dato di ogni carta**, col prompt composto, pronto per generarle senza aprire Godot |
 | `bash tools/run_box_survey.sh --check` | 1 s | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |
 | `bash tools/run_marks_survey.sh --check` | 102 s | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
 | `bash tools/run_table_survey.sh --check` | 105 s | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |

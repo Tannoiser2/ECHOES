@@ -41,6 +41,26 @@ cancelli va rosso se non le do una casa.
 
 ---
 
+## 0.1.415 — due parole tue, dopo le M: la scheda per tipo di carta, e «44x68 è troppo piccolo»
+
+Non sono voci della lista, e non ne aprono: sono due cose che hai detto guardando
+l'audit, e sono fatte ([D-445](DECISIONS.md#d-445), [D-446](DECISIONS.md#d-446)).
+
+- **La scheda per tipo di carta** — *«una vera e propria scheda che posso usare
+  per generare in automatico le carte con grafica e testo»* — è
+  [SCHEDE_CARTE](SCHEDE_CARTE.md): per ogni tipo cos'è, che immagine porta col
+  prompt generale, e cosa c'è scritto sopra voce per voce. Accanto, un JSON per
+  mazzo con ogni carta e il prompt già composto: **otto tipi, 300 facce**. E le
+  **19 carte Obiettivo**, che non avevano una faccia, ce l'hanno.
+- **La Domanda a 63×88** — era mini per la traccia dei valori, e da quando si
+  gira e si legge non lo era più: 2 su 60 strette → 0. La traccia passa a due
+  fogli, e la scheda Consiglio resta un pezzo a parte.
+
+Quello che resta tuo è lo stesso di prima: **l'occhio** — le carte stampate in
+mano, e il giro su un iPad vero.
+
+---
+
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
 
 Otto versioni, otto verbali, otto PR. **Delle quattordici righe di lavoro che

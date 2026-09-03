@@ -1,0 +1,2405 @@
+{
+  "tipo": "asset",
+  "nome": "carta Asset",
+  "formato": {
+    "nome": "tarocco",
+    "sigla": "TAROT",
+    "mm": [
+      70,
+      120
+    ]
+  },
+  "facce": 48,
+  "pezzi": 132,
+  "cos_e": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. Il suo Eco e' l'altra faccia dello stesso pezzo.",
+  "immagine": "Una **scena** — un luogo, un gesto, persone dentro una cosa che sta succedendo — mai un ritratto singolo centrato. L'accento e' il colore della famiglia.",
+  "sottotitolo": "famiglia e rarita' (`family`, `rarity`), in italiano",
+  "angolo": "la forza (`strength`)",
+  "scena": "`rules_text`, la voce d'autore che la faccia non stampa piu' da D-340",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "ECHOES — Asset card. Single evocative scene: {SOGGETTO}.\nWhat is happening: {SITUAZIONE}\nDominant accent: {ACCENTO}, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror.",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "DOVE",
+      "da_dove": "il bersaglio a segni: `physical.target`"
+    },
+    {
+      "voce": "① e ②",
+      "da_dove": "le due Azioni, nome e effetto: `physical.actions`"
+    },
+    {
+      "voce": "SEMPRE",
+      "da_dove": "la Risonanza, e la parte aggravata: `physical.resonance`"
+    },
+    {
+      "voce": "AL CONSIGLIO",
+      "da_dove": "quanto vale al voto e quando di piu': `physical.council_use`, `strength`"
+    },
+    {
+      "voce": "IMPEGNI",
+      "da_dove": "cosa lascia se la impegni: `on_commit_effects`, `discard_or_retain_rule`"
+    },
+    {
+      "voce": "PRENDI",
+      "da_dove": "come arriva in mano: `acquisition_rule`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "AST_AUTHORITY_CENSUS",
+      "tipo": "asset",
+      "titolo": "Censimento",
+      "sottotitolo": "autorità · comune",
+      "angolo": "1",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #granaio o #commercio. Vale anche il #porto, e ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Contare le teste — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere."
+        },
+        {
+          "voce": "②",
+          "testo": "Contare i sacchi — Togli #razionato dal luogo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +1 · se il bersaglio ha #pascolo: +1 ancora e posa #inquieta"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Potere o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #contesa"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.census",
+        "scena": "Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Censimento.\nWhat is happening: Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_CENSUS",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_CROWN_RIGHT",
+      "tipo": "asset",
+      "titolo": "Diritto di Corona",
+      "sottotitolo": "autorità · non comune",
+      "angolo": "2",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Rivendicare per diritto — Rivendica il luogo."
+        },
+        {
+          "voce": "②",
+          "testo": "Cedere il diritto — Un'altra casa prende la rivendicazione al posto tuo e sale di 2 gradini nel rapporto con te."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +2 · se il bersaglio ha la corona e' stata divisa: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: dove si discute diventa #contesa"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.crown_right",
+        "scena": "Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Diritto di Corona.\nWhat is happening: Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_CROWN_RIGHT",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_EDICT",
+      "tipo": "asset",
+      "titolo": "Editto",
+      "sottotitolo": "autorità · comune",
+      "angolo": "1",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo qualsiasi che non sia gia' #conteso."
+        },
+        {
+          "voce": "①",
+          "testo": "Rivendicare — Rivendica il luogo: al prossimo Consiglio apre la sua Domanda, e parli per primo."
+        },
+        {
+          "voce": "②",
+          "testo": "Proibire — Nessuno puo' giocare carte Forza su quel luogo fino a fine Atto."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +1 · se il bersaglio ha una domanda e' rimasta aperta: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Potere o Terra"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: dove si discute non e' piu' #inquieta"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.edict",
+        "scena": "Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Editto.\nWhat is happening: Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_EDICT",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_INTERDICT",
+      "tipo": "asset",
+      "titolo": "Interdetto",
+      "sottotitolo": "autorità · rara",
+      "angolo": "3",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Proibire — Abbassa quella questione di 2. Nessuno puo' influenzarla fino a fine Atto."
+        },
+        {
+          "voce": "②",
+          "testo": "Scomunicare — Alzala di 1 e metti #tradimento_detto sul mondo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +2 · se il bersaglio ha la fede ha avuto un posto: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.interdict",
+        "scena": "Vietare una cosa a tutti alza la posta per tutti.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Interdetto.\nWhat is happening: Vietare una cosa a tutti alza la posta per tutti.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_INTERDICT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_INVESTITURE",
+      "tipo": "asset",
+      "titolo": "Investitura",
+      "sottotitolo": "autorità · comune",
+      "angolo": "1",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Investirla — Sale di 2 gradini nel rapporto con te e prende #fama."
+        },
+        {
+          "voce": "②",
+          "testo": "Farsi investire — Sali di 1 gradino verso di lei e prendi #fama."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +1 · se il bersaglio ha la fama: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Potere o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sempre · si scarta comunque · costa: il mondo registra: l'erede e' stato nominato"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.investiture",
+        "scena": "Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Investitura.\nWhat is happening: Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_INVESTITURE",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_MAGISTRATE",
+      "tipo": "asset",
+      "titolo": "Magistrato",
+      "sottotitolo": "autorità · non comune",
+      "angolo": "2",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #commercio, #conteso o #malcontento. Vale anche il #selvaggio, il #bosco e la #palude, e ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Mandarlo a giudicare — Sposta una tua presenza li' e togli #conteso dal luogo."
+        },
+        {
+          "voce": "②",
+          "testo": "Mandarlo a tenere le carte — Alza un Archivio in un luogo dove hai presenza: dove il magistrato siede, le carte si tengono."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +1 · se il bersaglio ha la Carta e' stata scritta: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Potere o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+2 se ti opponi · torna in mano se la proposta passa · costa: dove si discute non e' piu' la domanda sul muro"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.magistrate",
+        "scena": "Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Magistrato.\nWhat is happening: Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_MAGISTRATE",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_SEAL",
+      "tipo": "asset",
+      "titolo": "Sigillo",
+      "sottotitolo": "autorità · comune",
+      "angolo": "1",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Sigillare in basso — Abbassa quella questione di 1."
+        },
+        {
+          "voce": "②",
+          "testo": "Sigillare in alto — Alza quella questione di 1."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +1 · se il bersaglio ha la Carta non e' stata scritta: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 se ti opponi · si scarta se la impegni · costa: la domanda in gioco scende"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.seal",
+        "scena": "Il sigillo che manca ferma più cose del sigillo che c'è.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Sigillo.\nWhat is happening: Il sigillo che manca ferma più cose del sigillo che c'è.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_SEAL",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_AUTHORITY_SUCCESSION_ACT",
+      "tipo": "asset",
+      "titolo": "Atto di Successione",
+      "sottotitolo": "autorità · rara",
+      "angolo": "3",
+      "accento": "#e8b563",
+      "famiglia": "AUTHORITY",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Scrivere il nome — Rivendica il luogo e metti #erede_nominato sul mondo."
+        },
+        {
+          "voce": "②",
+          "testo": "Scrivere la regola — Metti #successione_per_legge sul mondo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +2 · se il bersaglio ha la corona e' stata divisa: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: il rivale entra dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.authority.succession_act",
+        "scena": "Nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Atto di Successione.\nWhat is happening: Nominare un erede fa arrivare tutti quelli che non sono stati nominati.\nDominant accent: oro spento, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_AUTHORITY_SUCCESSION_ACT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_BETROTHAL",
+      "tipo": "asset",
+      "titolo": "Promessa di Nozze",
+      "sottotitolo": "legami · non comune",
+      "angolo": "2",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa che non porti #giuramento_rotto."
+        },
+        {
+          "voce": "①",
+          "testo": "Promettere — Salite tutti e due di 2 gradini. Da adesso ogni Consiglio in cui vi opponete costa 1 carta a testa."
+        },
+        {
+          "voce": "②",
+          "testo": "Rimandare — Salite di 1 gradino e pesca 1 Legami."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +2 · se il bersaglio ha la fama: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+2 se ti opponi · si scarta comunque · costa: il rapporto fra chi gioca e il rivale cambia"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.betrothal",
+        "scena": "Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Promessa di Nozze.\nWhat is happening: Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_BETROTHAL",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_BLOOD_TIE",
+      "tipo": "asset",
+      "titolo": "Legame di Sangue",
+      "sottotitolo": "legami · non comune",
+      "angolo": "2",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #pascolo o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza."
+        },
+        {
+          "voce": "①",
+          "testo": "Cercare il legame — Scopri una questione velata che tocca il luogo, e pesca 1 Legami."
+        },
+        {
+          "voce": "②",
+          "testo": "Fermare la famiglia — Alza un Villaggio in un luogo dove hai presenza: il sangue mette radici dove si ferma."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +1 · se il bersaglio ha l'erede e' stato nominato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: il rapporto fra chi gioca e il rivale cambia"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.blood_tie",
+        "scena": "Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Legame di Sangue.\nWhat is happening: Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_BLOOD_TIE",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_BROKEN_PACT",
+      "tipo": "asset",
+      "titolo": "Patto Rotto",
+      "sottotitolo": "legami · rara",
+      "angolo": "3",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Rompere adesso — Alza quella questione di 2, metti #giuramento_rotto sul mondo e scendi di 2 gradini con chi aveva il patto."
+        },
+        {
+          "voce": "②",
+          "testo": "Minacciare di rompere — Alza quella questione di 1. Chi aveva il patto ti da' 1 carta a scelta perche' tu non lo faccia."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +2 · se il bersaglio ha il giuramento e' stato rotto: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.broken_pact",
+        "scena": "Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Patto Rotto.\nWhat is happening: Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_BROKEN_PACT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_FAVOR",
+      "tipo": "asset",
+      "titolo": "Favore",
+      "sottotitolo": "legami · comune",
+      "angolo": "1",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Chiedere il favore — Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo."
+        },
+        {
+          "voce": "②",
+          "testo": "Fare il favore — Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +1 · se il bersaglio ha ci si e' parlato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Fede o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: il rapporto fra chi gioca e il rivale cambia"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.favor",
+        "scena": "Piccolo, ricordato con precisione, e restituito al momento giusto.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Favore.\nWhat is happening: Piccolo, ricordato con precisione, e restituito al momento giusto.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_FAVOR",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_GUEST_RIGHT",
+      "tipo": "asset",
+      "titolo": "Diritto di Ospitalità",
+      "sottotitolo": "legami · comune",
+      "angolo": "1",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo che non sia #conteso."
+        },
+        {
+          "voce": "①",
+          "testo": "Entrare come ospite — Sposta una tua presenza li', anche se il luogo e' di un altro."
+        },
+        {
+          "voce": "②",
+          "testo": "Dare loro una casa — Alza un Villaggio in un luogo dove hai presenza: chi ospita per un inverno ospita per sempre."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +1 · se il bersaglio ha la scorta giurata: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Fede o Terra"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sul suo tema · si scarta se la impegni · costa: chi gioca perde: cacciata da dove si discuteva"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.guest_right",
+        "scena": "Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Diritto di Ospitalità.\nWhat is happening: Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_GUEST_RIGHT",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_HOSTAGE",
+      "tipo": "asset",
+      "titolo": "Ostaggio",
+      "sottotitolo": "legami · rara",
+      "angolo": "3",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Mostrare l'ostaggio — Abbassa quella questione di 2."
+        },
+        {
+          "voce": "②",
+          "testo": "Restituire l'ostaggio — Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +2 · se il bersaglio ha il tradimento e' stato detto ad alta voce: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: il rivale entra dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.hostage",
+        "scena": "Chi consegna un figlio compra una parola, e la paga a casa propria.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Ostaggio.\nWhat is happening: Chi consegna un figlio compra una parola, e la paga a casa propria.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_HOSTAGE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_OATH",
+      "tipo": "asset",
+      "titolo": "Giuramento",
+      "sottotitolo": "legami · comune",
+      "angolo": "1",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo che non porti #giuramento_rotto."
+        },
+        {
+          "voce": "①",
+          "testo": "Giurare insieme — Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su tutti e due. Vale finche' uno dei due non lo rompe."
+        },
+        {
+          "voce": "②",
+          "testo": "Farsi giurare — Lei sale di 1 gradino verso di te, tu no. Prendi 1 sua carta a scelta."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +1 · se il bersaglio ha la fama: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "non si scarta mai · costa: il rapporto fra chi gioca e il rivale cambia"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.oath",
+        "scena": "Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Giuramento.\nWhat is happening: Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_OATH",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_BONDS_OLD_DEBT",
+      "tipo": "asset",
+      "titolo": "Debito Vecchio",
+      "sottotitolo": "legami · comune",
+      "angolo": "1",
+      "accento": "#b06b8f",
+      "famiglia": "BONDS",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Esigere — Metti #debito_chiamato su di lei: ti da' 1 carta adesso, oppure scende di 1 gradino nel rapporto con te."
+        },
+        {
+          "voce": "②",
+          "testo": "Rimettere — Metti #debito_rimesso e sali di 2 gradini nel rapporto con lei."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +1 · se il bersaglio ha il debito e' stato chiamato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 se ti opponi · si scarta se la impegni · costa: nella sede del rivale diventa #indebitata"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.bonds.old_debt",
+        "scena": "Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Debito Vecchio.\nWhat is happening: Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.\nDominant accent: porpora tenue, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_BONDS_OLD_DEBT",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_BORDER_WATCH",
+      "tipo": "asset",
+      "titolo": "Guardia di Confine",
+      "sottotitolo": "forza · comune",
+      "angolo": "1",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #granaio, #pascolo o #conteso. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Guardare chi arriva — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere."
+        },
+        {
+          "voce": "②",
+          "testo": "Far sapere che il confine e' tuo — Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +1 · se il bersaglio ha #pascolo: +1 ancora e posa #inquieta"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Terra o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sul suo tema · si scarta se la impegni · costa: Le Vie Interrotte sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.border_watch",
+        "scena": "Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Guardia di Confine.\nWhat is happening: Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_BORDER_WATCH",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_BURNED_GATE",
+      "tipo": "asset",
+      "titolo": "Le Porte Bruciate",
+      "sottotitolo": "forza · rara",
+      "angolo": "3",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale o una struttura murata. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Bruciare la porta — Rivendica il luogo e metti 1 Cicatrice."
+        },
+        {
+          "voce": "②",
+          "testo": "Mostrare la fiaccola — Metti #malcontento su quel luogo e su un luogo confinante."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +2 · se il bersaglio ha una domanda e' rimasta aperta: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere o Terra"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: chi gioca se ne va dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.burned_gate",
+        "scena": "Chi apre una porta così non resta lì a difenderla.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Le Porte Bruciate.\nWhat is happening: Chi apre una porta così non resta lì a difenderla.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_BURNED_GATE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_LEVY",
+      "tipo": "asset",
+      "titolo": "Leva Contadina",
+      "sottotitolo": "forza · comune",
+      "angolo": "1",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #granaio, #pascolo o #capitale dove hai gia' una presenza. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Chiamare la leva — Sposta una tua presenza da quel luogo a un luogo confinante."
+        },
+        {
+          "voce": "②",
+          "testo": "Tenerli a casa — La presenza resta. Metti #razionato sul luogo: nessuno puo' requisirgli il grano fino a fine Atto."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Sopravvivenza +1 · se il bersaglio ha #magra: +1 ancora e posa #affamata"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: La Carestia sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.levy",
+        "scena": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Leva Contadina.\nWhat is happening: Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_LEVY",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_MERCENARIES",
+      "tipo": "asset",
+      "titolo": "Mercenari",
+      "sottotitolo": "forza · comune",
+      "angolo": "1",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Prestarli — Sali di 1 gradino nel rapporto con lei."
+        },
+        {
+          "voce": "②",
+          "testo": "Toglierli di mezzo — Scendi di 1 gradino con lei e pesca 1 Ricchezza."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha il debito e' stato chiamato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Potere o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sempre · si scarta se la impegni · costa: dove si discute diventa #inquieta"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.mercenaries",
+        "scena": "Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Mercenari.\nWhat is happening: Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_MERCENARIES",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_OLD_ARMY",
+      "tipo": "asset",
+      "titolo": "Il Vecchio Esercito",
+      "sottotitolo": "forza · rara",
+      "angolo": "3",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #conteso o #malcontento. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Richiamarli sotto le armi — Sposta due tue presenze in quel luogo, anche da lontano."
+        },
+        {
+          "voce": "②",
+          "testo": "Rimetterli in riga — Rivendica il luogo: i vecchi soldati stanno di nuovo da qualche parte, e si vede."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +2 · se il bersaglio ha la corona e' stata divisa: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.old_army",
+        "scena": "Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Il Vecchio Esercito.\nWhat is happening: Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_OLD_ARMY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_ROADBLOCK",
+      "tipo": "asset",
+      "titolo": "Posto di Blocco",
+      "sottotitolo": "forza · comune",
+      "angolo": "1",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #commercio, #dogana o #capitale che non sia gia' #tagliato_fuori. Vale anche il #porto, e ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Sbarrare la strada — Metti #tagliato_fuori sul luogo. Finche' c'e', muovere una presenza dentro o fuori costa 1 carta in piu'."
+        },
+        {
+          "voce": "②",
+          "testo": "Mettere la sbarra — Alza una Dogana in un luogo dove hai presenza: da qui in poi chi passa paga te."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha il pedaggio si divide: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 se ti opponi · si scarta se la impegni · costa: dove si discute diventa tagliata fuori"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.roadblock",
+        "scena": "Fermare un carro costa sempre meno che farlo partire.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Posto di Blocco.\nWhat is happening: Fermare un carro costa sempre meno che farlo partire.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_ROADBLOCK",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_SIEGE",
+      "tipo": "asset",
+      "titolo": "Assedio",
+      "sottotitolo": "forza · non comune",
+      "angolo": "2",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #granaio o una struttura murata. Vale anche ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Stringere l'assedio — Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre e parli per primo."
+        },
+        {
+          "voce": "②",
+          "testo": "Affamare e aspettare — Metti #fame sul luogo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +2 · se il bersaglio ha il grano e' stato requisito: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Potere o Sopravvivenza"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+2 se ti opponi · si scarta se la impegni · costa: La Carestia sale, viene giu' Presidio dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.siege",
+        "scena": "Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Assedio.\nWhat is happening: Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_SIEGE",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_FORCE_WARBAND",
+      "tipo": "asset",
+      "titolo": "Banda Armata",
+      "sottotitolo": "forza · non comune",
+      "angolo": "2",
+      "accento": "#c8553d",
+      "famiglia": "FORCE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #selvaggio, #pascolo, #abbandonato o #conteso che non sia una #capitale. Vale anche il #bosco, e ogni luogo del dominio del #territorio."
+        },
+        {
+          "voce": "①",
+          "testo": "Prendere il posto — Sposta una tua presenza li'."
+        },
+        {
+          "voce": "②",
+          "testo": "Spogliare il posto — Metti #saccheggiato sul luogo e prendi 1 carta a caso dalla mano di chi lo controlla."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +2 · se il bersaglio ha #depredata: +1 ancora e posa #inquieta"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Potere o Terra"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.force.warband",
+        "scena": "Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Banda Armata.\nWhat is happening: Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.\nDominant accent: rosso ossido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_FORCE_WARBAND",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_ARCHIVE",
+      "tipo": "asset",
+      "titolo": "Archivio",
+      "sottotitolo": "sapere · comune",
+      "angolo": "1",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #commercio o una stanza dove si tengono le carte. Vale anche ogni luogo del dominio dell'#antico."
+        },
+        {
+          "voce": "①",
+          "testo": "Cercare indietro — Scopri una questione velata che tocca il luogo, e pesca 1 Sapere."
+        },
+        {
+          "voce": "②",
+          "testo": "Aprire l'archivio — Alza un Archivio in un luogo dove hai presenza."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +1 · se il bersaglio ha i conti sono pubblici: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "torna in mano se la proposta passa · costa: si alza Archivio dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.archive",
+        "scena": "Le carte non si consumano: si consuma chi le sa leggere.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Archivio.\nWhat is happening: Le carte non si consumano: si consuma chi le sa leggere.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_ARCHIVE",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_LEDGER",
+      "tipo": "asset",
+      "titolo": "Registro",
+      "sottotitolo": "sapere · comune",
+      "angolo": "1",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Aprire il registro — Metti #registro_pubblico sul mondo e sali di 1 gradino con lei."
+        },
+        {
+          "voce": "②",
+          "testo": "Chiudere il registro — Scendi di 1 gradino con lei e metti #debito_chiamato sul mondo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha i conti sono pubblici: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 se ti opponi · si scarta se la impegni · costa: il mondo registra: i conti sono pubblici"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.ledger",
+        "scena": "Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Registro.\nWhat is happening: Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_LEDGER",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_OLD_MAP",
+      "tipo": "asset",
+      "titolo": "Mappa Vecchia",
+      "sottotitolo": "sapere · comune",
+      "angolo": "1",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #tagliato_fuori, #selvaggio o #commercio. Vale anche la #palude, l'#isola, e ogni luogo del dominio dell'#antico."
+        },
+        {
+          "voce": "①",
+          "testo": "Trovare il passaggio — Togli #tagliato_fuori dal luogo, oppure muovi una tua presenza li' ignorando i confini."
+        },
+        {
+          "voce": "②",
+          "testo": "Tenere la mappa per se' — Metti #registro_del_commercio: al prossimo Consiglio vale +1."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +1 · se il bersaglio ha #commercio: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Antico"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' il ponte rotto"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.old_map",
+        "scena": "I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Mappa Vecchia.\nWhat is happening: I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_OLD_MAP",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_PROOF",
+      "tipo": "asset",
+      "titolo": "Prova",
+      "sottotitolo": "sapere · non comune",
+      "angolo": "2",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #cristallo o una stanza dove si tengono le carte. Vale anche la #miniera, e ogni luogo del dominio dell'#antico."
+        },
+        {
+          "voce": "①",
+          "testo": "Mostrare la prova — Scopri una questione velata e metti #sapere_condiviso sul mondo."
+        },
+        {
+          "voce": "②",
+          "testo": "Depositare la prova — Alza un Archivio in un luogo dove hai presenza, e la prova resta li' dove tutti sanno di trovarla."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +1 · se il bersaglio ha quello che si e' saputo lo sanno tutti: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "torna in mano se la proposta passa · costa: la domanda in gioco si apre a tutti"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.proof",
+        "scena": "Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Prova.\nWhat is happening: Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_PROOF",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_RED_CRYSTAL",
+      "tipo": "asset",
+      "titolo": "Il Cristallo Rosso",
+      "sottotitolo": "sapere · rara",
+      "angolo": "3",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #cristallo, #selvaggio o #sigillato. Vale anche la #miniera, e ogni luogo del dominio dell'#antico."
+        },
+        {
+          "voce": "①",
+          "testo": "Aprire la vena — Togli #sigillato dal luogo e aggiungi una tua presenza."
+        },
+        {
+          "voce": "②",
+          "testo": "Misurare senza toccare — Metti #cristallo_misurato sul luogo e pesca 1 Sapere."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +1 · se il bersaglio ha il Cristallo e' stato sfruttato: +2 ancora e posa #sfruttata"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Antico o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco si apre a tutti"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.red_crystal",
+        "scena": "Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Il Cristallo Rosso.\nWhat is happening: Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_RED_CRYSTAL",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_RUMOR",
+      "tipo": "asset",
+      "titolo": "Voce di Corridoio",
+      "sottotitolo": "sapere · comune",
+      "angolo": "1",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #commercio, #malcontento o #mercato. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
+        },
+        {
+          "voce": "①",
+          "testo": "Ascoltare la voce — Scopri una questione velata che tocca il luogo."
+        },
+        {
+          "voce": "②",
+          "testo": "Mettere in giro la voce — Rivendica il luogo: la voce arriva prima di te, e al prossimo Consiglio la sua Domanda si apre."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +1 · se il bersaglio ha il tradimento e' stato detto ad alta voce: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: la domanda in gioco si apre a tutti"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.rumor",
+        "scena": "Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Voce di Corridoio.\nWhat is happening: Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_RUMOR",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_SEALED_TESTIMONY",
+      "tipo": "asset",
+      "titolo": "Deposizione Sigillata",
+      "sottotitolo": "sapere · rara",
+      "angolo": "3",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #conteso o un archivio. Vale anche l'#isola, e ogni luogo del dominio dell'#antico."
+        },
+        {
+          "voce": "①",
+          "testo": "Aprire la busta — Rivendica il luogo e metti #tradimento_detto sul mondo."
+        },
+        {
+          "voce": "②",
+          "testo": "Metterla agli atti — Alza un Archivio in un luogo dove hai presenza: la busta resta chiusa, ma adesso si sa dov'e'."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +2 · se il bersaglio ha una domanda e' rimasta aperta: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.sealed_testimony",
+        "scena": "Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Deposizione Sigillata.\nWhat is happening: Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_SEALED_TESTIMONY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_KNOWLEDGE_WITNESS",
+      "tipo": "asset",
+      "titolo": "Testimone",
+      "sottotitolo": "sapere · non comune",
+      "angolo": "2",
+      "accento": "#7fa6c9",
+      "famiglia": "KNOWLEDGE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Farlo parlare — Alza quella questione di 2 e metti #tradimento_detto sul mondo."
+        },
+        {
+          "voce": "②",
+          "testo": "Farlo tacere — Abbassa quella questione di 2."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Fede +2 · se il bersaglio ha il tradimento e' stato detto ad alta voce: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Fede o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+2 se ti opponi · si scarta comunque · costa: nella sede del rivale diventa #inquieta"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.knowledge.witness",
+        "scena": "Un testimone si spende una volta sola, e la deposizione agita la casa accusata.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Testimone.\nWhat is happening: Un testimone si spende una volta sola, e la deposizione agita la casa accusata.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_KNOWLEDGE_WITNESS",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_CROWD",
+      "tipo": "asset",
+      "titolo": "Folla",
+      "sottotitolo": "gente · comune",
+      "angolo": "1",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Portare la folla sotto le finestre — Alza quella questione di 1."
+        },
+        {
+          "voce": "②",
+          "testo": "Mandare la folla a casa — Abbassa quella questione di 1."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Sopravvivenza +1 · se il bersaglio ha il grano e' stato requisito: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Sopravvivenza o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: nella capitale diventa #inquieta"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.crowd",
+        "scena": "Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Folla.\nWhat is happening: Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_CROWD",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_ELDERS",
+      "tipo": "asset",
+      "titolo": "Consiglio degli Anziani",
+      "sottotitolo": "gente · comune",
+      "angolo": "1",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #granaio, #pascolo, #lutto o un insediamento. Vale anche ogni luogo del dominio della #sopravvivenza."
+        },
+        {
+          "voce": "①",
+          "testo": "Ascoltarli — Scopri una questione velata che tocca il luogo, e pesca 1 Legami."
+        },
+        {
+          "voce": "②",
+          "testo": "Farli parlare in pubblico — Togli #lutto o #malcontento dal luogo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Antico +1 · se il bersaglio ha la fede ha avuto un posto: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Fede o Sopravvivenza"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 se ti opponi · si scarta se la impegni · costa: dove si discute non e' piu' in lutto"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.elders",
+        "scena": "Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Consiglio degli Anziani.\nWhat is happening: Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_ELDERS",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_EXODUS",
+      "tipo": "asset",
+      "titolo": "Esodo",
+      "sottotitolo": "gente · rara",
+      "angolo": "3",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #fame, #svuotato, #abbandonato o #pascolo. Vale anche la #palude, il #bosco, l'#isola e il #selvaggio, e ogni luogo del dominio della #sopravvivenza."
+        },
+        {
+          "voce": "①",
+          "testo": "Andarsene tutti — Togli tutte le tue presenze da quel luogo e mettine due in un altro qualsiasi. Metti #svuotato dove sei partito."
+        },
+        {
+          "voce": "②",
+          "testo": "Mandare avanti i primi — Alza un Villaggio in un luogo dove hai presenza: i primi arrivati smettono di andarsene."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +2 · se il bersaglio ha i Nahr si sono fermati: +1 ancora e posa lo sgombero"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Terra o Sopravvivenza"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: chi gioca se ne va dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.exodus",
+        "scena": "Chi parte non torna al tavolo.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Esodo.\nWhat is happening: Chi parte non torna al tavolo.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_EXODUS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_HARVEST_HANDS",
+      "tipo": "asset",
+      "titolo": "Braccia per il Raccolto",
+      "sottotitolo": "gente · comune",
+      "angolo": "1",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #granaio, #magro o #fame. Vale anche ogni luogo del dominio della #sopravvivenza."
+        },
+        {
+          "voce": "①",
+          "testo": "Portare le braccia — Togli #magro dal luogo, oppure abbassa di 1 la questione Sopravvivenza piu' calda."
+        },
+        {
+          "voce": "②",
+          "testo": "Prestare le braccia — Un'altra casa toglie #magro da un suo luogo. Sali di 1 gradino nel rapporto con lei."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +1 · se il bersaglio ha il grano e' stato requisito: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Sopravvivenza"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #affamata"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.harvest_hands",
+        "scena": "Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Braccia per il Raccolto.\nWhat is happening: Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_HARVEST_HANDS",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_MARCH",
+      "tipo": "asset",
+      "titolo": "Marcia",
+      "sottotitolo": "gente · comune",
+      "angolo": "1",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #fame, #razionato, #magro o #pascolo. Vale anche ogni luogo del dominio della #sopravvivenza."
+        },
+        {
+          "voce": "①",
+          "testo": "Marciare verso il grano — Sposta una tua presenza in un luogo con #granaio, anche se non confina: dove arriva la marcia, il grano finisce. Metti #magro sul luogo."
+        },
+        {
+          "voce": "②",
+          "testo": "Marciare sulla capitale — Metti #malcontento su un luogo con #capitale, ovunque sia."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Sopravvivenza +1 · se il bersaglio ha #affamata: +1 ancora e posa #inquieta"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Sopravvivenza o Terra"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: dove si discute non e' piu' #razionata"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.march",
+        "scena": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Marcia.\nWhat is happening: Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_MARCH",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_MOBILIZATION",
+      "tipo": "asset",
+      "titolo": "Mobilitazione",
+      "sottotitolo": "gente · non comune",
+      "angolo": "2",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Chiamare tutti — Alza quella questione di 2."
+        },
+        {
+          "voce": "②",
+          "testo": "Chiamare solo i tuoi — Alza quella questione di 1 e pesca 1 Popolo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Sopravvivenza +2 · se il bersaglio ha una domanda e' rimasta aperta: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Sopravvivenza o Terra"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+2 se ti opponi · si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.mobilization",
+        "scena": "È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Mobilitazione.\nWhat is happening: È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_MOBILIZATION",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_SPOKESMAN",
+      "tipo": "asset",
+      "titolo": "Portavoce",
+      "sottotitolo": "gente · non comune",
+      "angolo": "2",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #malcontento o un insediamento cresciuto. Vale anche ogni luogo del dominio della #sopravvivenza."
+        },
+        {
+          "voce": "①",
+          "testo": "Prendere la parola — Rivendica il luogo: al prossimo Consiglio parli per primo."
+        },
+        {
+          "voce": "②",
+          "testo": "Darla a un altro — Un'altra casa parla per prima al prossimo Consiglio e sale di 2 gradini nel rapporto con te."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +1 · se il bersaglio ha la richiesta e' stata ascoltata: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Potere o Fede"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: il rapporto fra chi gioca e il rivale cambia"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.spokesman",
+        "scena": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Portavoce.\nWhat is happening: Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_SPOKESMAN",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_PEOPLE_STILL_HANDS",
+      "tipo": "asset",
+      "titolo": "Braccia Ferme",
+      "sottotitolo": "gente · rara",
+      "angolo": "3",
+      "accento": "#6fa88a",
+      "famiglia": "PEOPLE",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli una questione aperta sul tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Fermare tutto — Alza quella questione di 2."
+        },
+        {
+          "voce": "②",
+          "testo": "Fermare solo una cosa — Abbassa quella questione di 1 e pesca 1 Popolo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +2 · se il bersaglio ha il pedaggio si divide: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Sopravvivenza o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.people.still_hands",
+        "scena": "Un paese che si ferma non si rimette in moto dove l'avevi lasciato.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Braccia Ferme.\nWhat is happening: Un paese che si ferma non si rimette in moto dove l'avevi lasciato.\nDominant accent: terracotta, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_PEOPLE_STILL_HANDS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_CARAVAN",
+      "tipo": "asset",
+      "titolo": "Carovana",
+      "sottotitolo": "ricchezza · non comune",
+      "angolo": "2",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #commercio, #mercato o #tagliato_fuori. Vale anche il #porto, la #miniera, il #cristallo e il #pascolo, e ogni luogo del dominio delle #risorse."
+        },
+        {
+          "voce": "①",
+          "testo": "Farla arrivare — Sposta una tua presenza li' e togli #tagliato_fuori dal luogo."
+        },
+        {
+          "voce": "②",
+          "testo": "Fermare la carovana — Alza un Villaggio in un luogo dove hai presenza: chi si ferma una volta si ferma."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha il debito e' stato chiamato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: dove si discute non e' piu' tagliata fuori"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.caravan",
+        "scena": "Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Carovana.\nWhat is happening: Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_CARAVAN",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_CREDIT",
+      "tipo": "asset",
+      "titolo": "Credito",
+      "sottotitolo": "ricchezza · comune",
+      "angolo": "1",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Aprire credito — Sale di 2 gradini nel rapporto con te e metti #indebitata sul mondo."
+        },
+        {
+          "voce": "②",
+          "testo": "Comprare il suo debito — Scendi di 1 gradino con lei e pesca 2 Ricchezza."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha il debito e' stato chiamato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sempre · si scarta se la impegni · costa: il mondo registra: il debito e' stato chiamato"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.credit",
+        "scena": "Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Credito.\nWhat is happening: Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_CREDIT",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_GRAIN",
+      "tipo": "asset",
+      "titolo": "Riserva di Grano",
+      "sottotitolo": "ricchezza · comune",
+      "angolo": "1",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #granaio, #fame o #magro. Vale anche ogni luogo del dominio delle #risorse."
+        },
+        {
+          "voce": "①",
+          "testo": "Aprire i granai — Togli #fame dal luogo e abbassa di 1 la questione Sopravvivenza piu' calda."
+        },
+        {
+          "voce": "②",
+          "testo": "Costruire il granaio — Alza un Granaio in un luogo dove hai presenza."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Sopravvivenza +1 · se il bersaglio ha il grano e' stato requisito: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Sopravvivenza o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta se la impegni · costa: La Carestia scende"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.grain",
+        "scena": "Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Riserva di Grano.\nWhat is happening: Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_GRAIN",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_GRANARY_KEYS",
+      "tipo": "asset",
+      "titolo": "Chiavi del Granaio",
+      "sottotitolo": "ricchezza · non comune",
+      "angolo": "2",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Dare le chiavi — Sale di 2 gradini nel rapporto con te."
+        },
+        {
+          "voce": "②",
+          "testo": "Tenere le chiavi — Scendi di 1 gradino con lei e metti #grano_requisito sul mondo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Sopravvivenza +2 · se il bersaglio ha il grano e' stato requisito: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "2 · +1 se si discute di Sopravvivenza o Potere"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+2 se ti opponi · si scarta se la impegni · costa: dove si discute diventa #razionata"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.granary_keys",
+        "scena": "Non possiedi il grano: possiedi la serratura, e la serratura raziona.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Chiavi del Granaio.\nWhat is happening: Non possiedi il grano: possiedi la serratura, e la serratura raziona.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_GRANARY_KEYS",
+      "copie": 2,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_LAND_MORTGAGE",
+      "tipo": "asset",
+      "titolo": "Ipoteca sulle Terre",
+      "sottotitolo": "ricchezza · rara",
+      "angolo": "3",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un'altra casa al tavolo."
+        },
+        {
+          "voce": "①",
+          "testo": "Prendere la terra in garanzia — Scendi di 1 gradino con lei. Se a fine anno controlla meno terre di adesso, ne prendi una tu."
+        },
+        {
+          "voce": "②",
+          "testo": "Rimettere l'ipoteca — Sali di 2 gradini con lei e metti #debito_rimesso sul mondo."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Terra +2 · se il bersaglio ha il debito e' stato chiamato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Terra o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: il rivale entra dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.land_mortgage",
+        "scena": "Impegnare una terra fa arrivare chi la vuole.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Ipoteca sulle Terre.\nWhat is happening: Impegnare una terra fa arrivare chi la vuole.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_LAND_MORTGAGE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_SALT",
+      "tipo": "asset",
+      "titolo": "Sale",
+      "sottotitolo": "ricchezza · comune",
+      "angolo": "1",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #commercio, #granaio, #mercato o #magro. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
+        },
+        {
+          "voce": "①",
+          "testo": "Vendere il sale — Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza."
+        },
+        {
+          "voce": "②",
+          "testo": "Salare per l'inverno — Alza un Granaio in un luogo dove hai presenza: quello che si sala, si tiene."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha il pedaggio si divide: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie o Sopravvivenza"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #magra"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.salt",
+        "scena": "Non nutre nessuno: senza, quello che nutre non arriva.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Sale.\nWhat is happening: Non nutre nessuno: senza, quello che nutre non arriva.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_SALT",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_TOLL",
+      "tipo": "asset",
+      "titolo": "Pedaggio",
+      "sottotitolo": "ricchezza · comune",
+      "angolo": "1",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #commercio o #dogana. Vale anche il #porto, e ogni luogo del dominio delle #risorse."
+        },
+        {
+          "voce": "①",
+          "testo": "Alzare la sbarra — Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre."
+        },
+        {
+          "voce": "②",
+          "testo": "Dividere l'incasso — Metti #pedaggio_diviso sul luogo e sali di 1 gradino nel rapporto con chi lo controlla."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Vie +1 · se il bersaglio ha il debito e' stato chiamato: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "1 · +1 se si discute di Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "+1 se ti opponi · si scarta se la impegni · costa: si alza Pedaggio dove si discute"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.toll",
+        "scena": "Una corda tesa fra due pali, e il diritto di non alzarla.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Pedaggio.\nWhat is happening: Una corda tesa fra due pali, e il diritto di non alzarla.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_TOLL",
+      "copie": 4,
+      "segreta": false
+    },
+    {
+      "id": "AST_WEALTH_TREASURY",
+      "tipo": "asset",
+      "titolo": "Il Tesoro",
+      "sottotitolo": "ricchezza · rara",
+      "angolo": "3",
+      "accento": "#c9a86a",
+      "famiglia": "WEALTH",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "DOVE",
+          "testo": "Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse."
+        },
+        {
+          "voce": "①",
+          "testo": "Aprire il tesoro — Sposta due tue presenze in quel luogo."
+        },
+        {
+          "voce": "②",
+          "testo": "Metterci una guardia — Alza una Torre di veglia in un luogo dove hai presenza: il tesoro si tiene dove si vede."
+        },
+        {
+          "voce": "SEMPRE",
+          "testo": "Potere +2 · se il bersaglio ha la corona e' stata spogliata: +1 ancora"
+        },
+        {
+          "voce": "AL CONSIGLIO",
+          "testo": "3 · +1 se si discute di Potere o Vie"
+        },
+        {
+          "voce": "IMPEGNI",
+          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+        },
+        {
+          "voce": "PRENDI",
+          "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        }
+      ],
+      "arte": {
+        "chiave": "asset.wealth.treasury",
+        "scena": "Aprire il tesoro dice a tutti quanto vale davvero la questione.",
+        "prompt": "ECHOES — Asset card. Single evocative scene: Il Tesoro.\nWhat is happening: Aprire il tesoro dice a tutti quanto vale davvero la questione.\nDominant accent: ambra, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror."
+      },
+      "pie": "AST_WEALTH_TREASURY",
+      "copie": 1,
+      "segreta": false
+    }
+  ]
+}

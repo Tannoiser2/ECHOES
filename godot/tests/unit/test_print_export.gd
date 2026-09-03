@@ -263,7 +263,12 @@ func test_each_deck_has_the_size_of_its_table_role() -> void:
 		"le Asset portano regole e disegno: tarocco")
 	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "TAROT",
 		"e l'Eco sta sulla stessa carta, quindi la segue")
-	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "MINI", "le domande sono mini, per la traccia")
+	# **E la Domanda e' una carta da gioco da D-446**: era mini per la traccia dei
+	# valori, e il committente l'ha detto — *«44x68 e' troppo piccolo»* — perche'
+	# da D-261 si gira sul mazzetto e si legge, e da D-432 dice su cosa si
+	# discute. La traccia le fa posto su due fogli.
+	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "CARD",
+		"le domande sono carte da gioco: si leggono, e la traccia fa loro posto")
 	# **E la scheda del Consiglio e' un tarocco** (D-338). Due pezzi con due
 	# mestieri: la mini sta sulla traccia e dice quando la domanda si scalda; il
 	# tarocco dice cosa si puo' proporre e cosa costa, e si tira fuori quando il
@@ -275,12 +280,21 @@ func test_each_deck_has_the_size_of_its_table_role() -> void:
 		CardFace.deck_of("tension", loaded).size(),
 		"una scheda per ogni domanda")
 	assert_eq(str(CardFace.deck_of("destiny", loaded)[0]["shape"]), "TAROT", "i Destini sono tarocchi, sempre in vista")
+	# **E l'Obiettivo e' un tarocco come il Destino** (D-445): l'altra carta che si
+	# guarda da soli, dietro il paravento. Diciannove, e fino alla 0.1.414
+	# nessuna aveva una faccia.
+	var objectives: Array = CardFace.deck_of("objective", loaded)
+	assert_eq(objectives.size(), loaded.objectives.size(), "una carta per Obiettivo")
+	assert_true(objectives.size() >= 10, "e sono piu' di dieci: %d" % objectives.size())
+	assert_eq(str(objectives[0]["shape"]), "TAROT", "l'Obiettivo e' un tarocco, come il Destino")
+	for face in objectives:
+		assert_true(bool((face as Dictionary)["secret"]), "%s sta dietro il paravento" % str((face as Dictionary)["id"]))
 	assert_eq(str(CardFace.deck_of("entity", loaded)[0]["shape"]), "TAROT", "le Casate pure")
 	assert_eq(str(CardFace.deck_of("region", loaded)[0]["shape"]), "TILE", "le Regioni restano tessere: la mappa e' fatta")
 	assert_eq(PrintSheet.cell_size("TAROT"), Vector2(70.0, 120.0), "il tarocco e' 70x120")
-	assert_eq(PrintSheet.cell_size("MINI"), Vector2(44.0, 68.0), "la mini e' 44x68")
+	assert_eq(PrintSheet.cell_size("CARD"), Vector2(63.0, 88.0), "la carta da gioco e' 63x88")
 	assert_eq(PrintSheet.per_page("TAROT"), 4, "quattro tarocchi per foglio")
-	assert_eq(PrintSheet.per_page("MINI"), 16, "sedici mini per foglio")
+	assert_eq(PrintSheet.per_page("CARD"), 9, "nove carte da gioco per foglio")
 
 
 ## E i segnalini si contano: sei presenze e sei controlli per casa (sei
@@ -303,9 +317,20 @@ func test_the_token_sheet_counts_its_pieces() -> void:
 	assert_true(svg.contains("width=\"210mm\" height=\"297mm\""), "il foglio e' un A4 vero")
 	assert_eq(svg, TokenSheet.tokens_svg(data(), "CHR_TEST"), "deterministico byte per byte")
 
-	var track: String = TokenSheet.track_board_svg()
-	assert_eq(track.count("<rect"), 1 + 4 * 10, "il fondo, e per corsia un posto-carta e nove caselle")
-	assert_true(track.contains("si apre il Consiglio"), "la regola della soglia e' scritta sul foglio")
+	# La traccia dei valori, su due fogli da D-446: due corsie per foglio, e per
+	# corsia un posto-carta da 63x88 e nove caselle — **dentro** il foglio, che
+	# e' la cosa che il foglio di prima non faceva (223 mm su 210).
+	var pages: Array = TokenSheet.track_board_pages()
+	assert_eq(pages.size(), 2, "quattro corsie, due per foglio")
+	for page in pages:
+		var track: String = str(page)
+		assert_eq(track.count("<rect"), 1 + 2 * 10, "il fondo, e per corsia un posto-carta e nove caselle")
+		assert_true(track.contains("si apre il Consiglio"), "la regola della soglia e' scritta sul foglio")
+		var regex := RegEx.new()
+		regex.compile('<rect x="([0-9.]+)" y="[0-9.]+" width="([0-9.]+)"')
+		for found in regex.search_all(track):
+			var right: float = float(found.get_string(1)) + float(found.get_string(2))
+			assert_true(right <= 210.0, "ogni casella sta dentro il foglio: %.1f" % right)
 
 
 ## D-101: la GUI mostra le carte fisiche. Una carta si rende da sola - stessa

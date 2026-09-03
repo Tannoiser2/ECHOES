@@ -10,6 +10,129 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-446 — La carta Domanda e' una carta da gioco, 63x88: «44x68 e' troppo piccolo»
+
+**implemented in 0.1.415.** Parola del committente, e rivede [D-097](#d-097) e
+la meta' di [D-338](#d-338) che teneva la Domanda mini.
+
+### La parola, e la ragione che era gia' scritta
+
+*«Poi 44x68 e' troppo piccolo.»* La Domanda era nata mini in D-097 perche' **si
+appoggiava alla traccia dei valori**: era il segnalino della questione in gioco,
+e sulla traccia una carta grande non ci stava. D-338 l'ha tenuta mini per la
+stessa ragione, e ha messo le caselle su una scheda a parte.
+
+Da allora la Domanda ha cambiato mestiere due volte senza cambiare taglia: da
+[D-261](#d-261) **si gira sul mazzetto del Tema e si legge**, e da
+[D-432](#d-432) porta anche *su cosa si discute*. Lo scheletro delle carte lo
+misurava: **2 mini su 60 stampavano il corpo rimpicciolito**, la piu' stretta
+all'85%. Una carta che si legge e' una carta, non un segnalino.
+
+### Cosa cambia
+
+| | prima | dopo |
+|---|---|---|
+| carta Domanda | mini 44x68, 16 per foglio | **carta da gioco 63x88**, 9 per foglio |
+| corpo rimpicciolito | 2 su 60, la piu' stretta 85% | **0 su 60** |
+| fogli A4 delle Domande | 4 | 7 |
+| la traccia dei valori | 1 foglio, 4 corsie | **2 fogli**, 2 corsie ciascuno |
+
+**La scheda Consiglio resta un pezzo a parte**: le dodici caselle e le domande
+sono 870 caratteri mediani, e su una carta sola non entravano nemmeno a 70x120
+(D-338, TEN_SUCCESSION sbordava). Fondere i due pezzi resta misurato come
+impossibile senza tagliare le caselle. Fra Domanda e scheda cambia solo la
+taglia della prima.
+
+### E la traccia dei valori aveva gia' un difetto
+
+Riscrivendo il posto della carta sulla traccia si e' visto che il foglio di
+prima **usciva dal bordo**: un posto-carta da 46 mm, sei di stacco e nove
+caselle da 17 finivano a **223 mm** su un A4 da 210, tredici oltre il bordo
+destro. Nessuna prova lo guardava: si contavano i rettangoli, non dove
+stavano. Adesso le caselle sono da 12 mm, l'ultima chiude a 197, e la prova
+chiede a ogni rettangolo di stare dentro il foglio. Con un posto-carta da 63x88
+in piedi quattro corsie non stanno in un A4: la traccia e' su due fogli.
+
+### Costo dichiarato
+
+Tre fogli A4 in piu' per le Domande e uno per la traccia. **Nessuna regola
+cambia**: e' cambiato cosa e' stampato, e il cancello dei 100 semi non puo'
+muoversi — nessun file del motore e' toccato. La traccia va ristampata da chi
+l'aveva gia'.
+
+---
+
+## D-445 — La scheda di ogni tipo di carta, il dato per generarle, e il mazzo Obiettivo
+
+**implemented in 0.1.415.** Parola del committente.
+
+### La richiesta
+
+> *«Per ogni tipo vorrei la descrizione e quello che bisogna scrivere su ogni
+> carta oltre al prompt generale della grafica scelta e del tipo di carta e
+> dell'immagine su di essa. Qualcosa tipo: Titolo, #tag, Scelte, Conseguenze…
+> Cioe' una vera e propria scheda che posso usare per generare in automatico le
+> carte con grafica e testo.»*
+
+### Tre pezzi esistevano, e nessuno era quella scheda
+
+| | cosa dice | cosa gli manca |
+|---|---|---|
+| [SCHELETRO_CARTE](SCHELETRO_CARTE.md) | i blocchi di ogni mazzo e su quante facce stanno | non dice cosa sono i campi ne' da dove vengono |
+| [CATALOGO_CARTE](CATALOGO_CARTE.md) | una scheda per carta col prompt | solo Asset ed Echi: Domande, schede, Destini, Casate, Regioni no |
+| [BRIEF_ARTE](BRIEF_ARTE.md) | i prompt, uno per chiave | niente testo della carta |
+
+Il pezzo che mancava e' uno solo: `CardFace.of()` compone per ogni faccia
+**esattamente il record che serve** — titolo, sottotitolo, cifra, righe con la
+loro voce, pie', chiave d'arte, colore, copie — e quel record finiva solo
+nell'SVG.
+
+### Cosa c'e' adesso
+
+**[SCHEDE_CARTE](SCHEDE_CARTE.md)**, generato da `cli/run_card_sheets.gd` e
+sorvegliato da un cancello: per ogni tipo, **cos'e'**, **che immagine porta**
+col prompt generale del tipo (il MASTER PROMPT della ART_BIBLE, coi segnaposto
+ancora dentro), e **cosa c'e' scritto sopra** — voce per voce, con il campo
+dei dati da cui viene. Otto tipi, 300 facce.
+
+**E il dato**, `docs/schede/<tipo>.json`, uno per mazzo: in testa la scheda del
+tipo e lo stile, sotto una scheda per carta con lo stesso record — `titolo`,
+`sottotitolo`, `angolo`, `accento`, `corpo`, `righe` (ognuna `voce` + `testo`),
+`arte` (chiave, scena, **prompt gia' composto**), `pie`, `copie`, `segreta`. Le
+chiavi stanno nell'ordine in cui si leggono. E' quello che serve per generare le
+carte, grafica e testo, con qualunque strumento e senza aprire Godot.
+
+**Niente e' ricopiato**: le carte vengono da `CardFace`, lo stesso che le
+stampa e le mostra; i prompt da `ArtBible`, lo stesso che compone il brief. Le
+sole righe scritte a mano — cos'e' un tipo, che immagine porta, da dove viene
+ogni voce — sono **controllate contro le facce vere nei due versi**: una voce
+stampata che la scheda tace, o promessa che nessuna faccia stampa, e il
+documento non si scrive. La prova la fabbrica in tutti e due i versi, e morde.
+
+### Il mazzo Obiettivo, che non aveva una faccia
+
+L'audit lo diceva: **diciannove carte Obiettivo senza faccia ne' scheda**. Il
+censimento dei componenti le contava fra le cose «che non si stampano», e un
+obiettivo coperto che non si stampa non si pesca. Adesso sono un mazzo di
+`CardFace` come gli altri: tarocco 70x120, **dietro il paravento** come il
+Destino, la promessa in una riga (`label`) e sotto **CONTA**, le clausole che
+la contano a fine anno. Diciotto su diciannove hanno una chiave d'arte; per
+loro c'e' il **MASTER PROMPT 7** nella ART_BIBLE — niente volti e **nessun
+colore di casa**, perche' e' la promessa che qualunque casa puo' pescare — e il
+brief d'arte le porta. Tutte e 19 stanno nel tarocco senza stringere il corpo.
+
+Entrano nel foglio di stampa (5 fogli A4), nello scheletro, nel censimento —
+che passa da **68 a 76 fogli** con D-446 — e nel brief.
+
+### Costo dichiarato
+
+Un cancello in piu' (28 veloci, 33 in tutto), circa un secondo. Otto JSON
+generati in `docs/schede/`, poco piu' di mezzo megabyte in tutto: e' un
+documento generato come gli altri, e si rigenera. **Nessun file del motore e'
+toccato.**
+
+---
+
 ## D-444 — L'app mostra il tavolo, non lo stato: la pagina segue la decisione
 
 **implemented in 0.1.414.** Chiude [ISSUES 65](ISSUES.md#65) (M14 della

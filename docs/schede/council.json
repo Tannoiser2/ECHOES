@@ -1,0 +1,6633 @@
+{
+  "tipo": "council",
+  "nome": "scheda Consiglio",
+  "formato": {
+    "nome": "tarocco",
+    "sigla": "TAROT",
+    "mm": [
+      70,
+      120
+    ]
+  },
+  "facce": 60,
+  "pezzi": 60,
+  "cos_e": "La scheda che si tira fuori quando il Consiglio si apre su una domanda: **le domande e le dodici caselle** con cui il tavolo la risolve (D-280, D-338). Una per Tensione.",
+  "immagine": "Nessuna: e' un elenco da cui si sceglie.",
+  "sottotitolo": "fissa: «il Consiglio che questa domanda apre»",
+  "angolo": "nessuna",
+  "scena": "nessuna",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "le domande",
+      "da_dove": "nel corpo, una per riga, con «— solo se» quando serve una condizione: `council.questions`"
+    },
+    {
+      "voce": "SI OTTIENE",
+      "da_dove": "le caselle beneficio, una per riga con «·»: `physical.benefits`"
+    },
+    {
+      "voce": "SI PAGA",
+      "da_dove": "le caselle costo: `physical.costs`"
+    },
+    {
+      "voce": "SE CADE",
+      "da_dove": "cosa succede se la proposta cade: `physical.failure`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "TEN_ASH",
+      "tipo": "council",
+      "titolo": "La Cenere che Sale",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?",
+        "E le bocche aperte sul fianco, si murano?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ASH",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_AWAKENING",
+      "tipo": "council",
+      "titolo": "Il Risveglio",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?",
+        "A chi appartiene ciò che dorme sotto la Regione di cui si discute?  — solo se: Il Risveglio è vicino"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il Cristallo e' stato messo a rendere."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: le Miniere sono state sigillate."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Sito dormiente del luogo sale di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "La domanda in discussione si gira a faccia in su."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sfruttato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo dimentica: le Miniere erano state sigillate."
+        },
+        {
+          "voce": "·",
+          "testo": "La casa che porta #dormiente lascia il tavolo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_AWAKENING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BAD_GRAIN",
+      "tipo": "council",
+      "titolo": "Il Grano Guasto",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi apre i sili e guarda dentro?",
+        "E del raccolto marcito, chi risponde?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Grano Guasto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Grano Guasto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #fame."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BAD_GRAIN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BLACK_TOLLS",
+      "tipo": "council",
+      "titolo": "I Pedaggi Neri",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi ha teso la catena sulla strada, e con che diritto?",
+        "E i carri che passano domani, chi li accompagna?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato chiamato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Pedaggi Neri."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Pedaggi Neri."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BLACK_TOLLS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BOUNDARY_STONES",
+      "tipo": "council",
+      "titolo": "Le Pietre di Confine",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?",
+        "E chi le ha spostate, si cerca?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Pietre di Confine."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Pietre di Confine."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BOUNDARY_STONES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_BURIALS",
+      "tipo": "council",
+      "titolo": "I Sepolti Senza Nome",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?",
+        "E l'acqua che li ha scoperti, si rimanda dov'era?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Sepolti Senza Nome."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #lutto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Sepolti Senza Nome."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #abbandonato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_BURIALS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_CHARTER",
+      "tipo": "council",
+      "titolo": "La Carta",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi scrive la regola che vale nella Regione di cui si discute?",
+        "E chi si siede, quando non si è d'accordo?  — solo se: La Carta è al limite"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Debito."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Debito."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_CHARTER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_CLEARING",
+      "tipo": "council",
+      "titolo": "Il Disboscamento",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?",
+        "E le fornaci, si fermano una stagione?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il Cristallo e' stato messo a rendere."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Disboscamento."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sfruttato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Disboscamento."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_CLEARING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_COUNCIL_SEATS",
+      "tipo": "council",
+      "titolo": "I Seggi del Consiglio",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi si siede al tavolo, e chi lo decide?",
+        "E un veto, quanto vale?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la Carta vale anche per chi non siede."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Seggi del Consiglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Seggi del Consiglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_COUNCIL_SEATS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_COURIERS",
+      "tipo": "council",
+      "titolo": "Le Staffette",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi paga le staffette, e cosa compra davvero?",
+        "E le lettere che arrivano aperte, per le mani di chi sono passate?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Staffette."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Staffette."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_COURIERS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_DEBT",
+      "tipo": "council",
+      "titolo": "Il Debito",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi tiene il registro, e chi può leggerlo?",
+        "E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?  — solo se: Il Debito è al limite"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Debito."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Debito."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo resta tagliato fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_DEBT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_DEEP_WATER",
+      "tipo": "council",
+      "titolo": "L'Acqua Fonda",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?",
+        "E andare a vedere cosa c'è sotto, conviene a qualcuno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Fonda."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Fonda."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_DEEP_WATER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ECHOES_BELOW",
+      "tipo": "council",
+      "titolo": "Gli Echi nel Fondo",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?",
+        "E il turno lungo, chi lo fa adesso?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la miniera e' stata chiusa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Gli Echi nel Fondo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Gli Echi nel Fondo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ECHOES_BELOW",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_EMPTY_NETS",
+      "tipo": "council",
+      "titolo": "Le Reti Vuote",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi pesca nella Regione di cui si discute, adesso che le reti tornano vuote?",
+        "E le barche ferme, di chi restano?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Reti Vuote."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Reti Vuote."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #fame."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_EMPTY_NETS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ENCLOSURE",
+      "tipo": "council",
+      "titolo": "I Recinti",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?",
+        "E l'uso della terra, a chi resta?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Recinti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Recinti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ENCLOSURE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FALLOW",
+      "tipo": "council",
+      "titolo": "La Terra Stanca",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?",
+        "E chi non può permetterselo, come semina?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Terra Stanca."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Terra Stanca."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FALLOW",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FAMINE",
+      "tipo": "council",
+      "titolo": "La Carestia",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi nutre la Regione di cui si discute quando i granai si svuotano?",
+        "Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?  — solo se: La Carestia è al limite"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "·",
+          "testo": "Chi propone esce dal Consiglio con la fama."
+        },
+        {
+          "voce": "·",
+          "testo": "Il rivale toglie la sua pedina dal luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "·",
+          "testo": "Il rivale posa una pedina in una Regione confinante."
+        },
+        {
+          "voce": "·",
+          "testo": "Il filo con il rivale scende a nemico."
+        },
+        {
+          "voce": "·",
+          "testo": "La Foresta del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #fame."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FAMINE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FERRY",
+      "tipo": "council",
+      "titolo": "Il Traghetto",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?",
+        "E se una barca sola non basta piu'?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Traghetto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #svuotato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Traghetto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FERRY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_FLOOD",
+      "tipo": "council",
+      "titolo": "L'Acqua Alta",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?",
+        "E i canali vecchi, si riaprono?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Alta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #svuotato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Alta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo resta tagliato fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_FLOOD",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_GUILD_WAR",
+      "tipo": "council",
+      "titolo": "La Guerra delle Gilde",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le vie sono strette: di chi sono?",
+        "E del magazzino bruciato, chi risponde?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Guerra delle Gilde."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Guerra delle Gilde."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_GUILD_WAR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_HERESY",
+      "tipo": "council",
+      "titolo": "La Parola Storta",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire?",
+        "E a chi la ascolta, cosa si fa?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Parola Storta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Parola Storta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_HERESY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_HOSTAGES",
+      "tipo": "council",
+      "titolo": "Gli Ostaggi di Corte",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Gli ospiti di corte, quando possono tornare a casa?",
+        "E chi risponde di loro?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'ordine e' stato rimesso in piedi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Gli Ostaggi di Corte."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Gli Ostaggi di Corte."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_HOSTAGES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ISLAND_SHRINE",
+      "tipo": "council",
+      "titolo": "Il Santuario dell'Isola",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?",
+        "E il rito, si scrive nuovo o si copia il vecchio?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Santuario dell'Isola."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Santuario dell'Isola."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ISLAND_SHRINE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ISLAND_SILENCE",
+      "tipo": "council",
+      "titolo": "Il Silenzio dell'Isola",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?",
+        "E a chi ci ha già passato la notte, cosa si chiede?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Silenzio dell'Isola."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Silenzio dell'Isola."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ISLAND_SILENCE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_LANDLESS",
+      "tipo": "council",
+      "titolo": "I Braccianti",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?",
+        "E dare terra a chi la lavora, si può?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Braccianti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #svuotato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Braccianti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_LANDLESS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_LAND_REGISTER",
+      "tipo": "council",
+      "titolo": "Il Catasto",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Il trono vuole un registro delle terre: chi misura?",
+        "E chi non si fa scrivere?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Catasto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Catasto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_LAND_REGISTER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_LEVY",
+      "tipo": "council",
+      "titolo": "La Leva",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi decide quante braccia vanno alle armi?",
+        "E il raccolto che resta indietro, chi lo perde?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'ordine e' stato rimesso in piedi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Leva."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Leva."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_LEVY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_MARCHES",
+      "tipo": "council",
+      "titolo": "Le Marche di Confine",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Ai margini della Regione di cui si discute, a chi si obbedisce davvero?",
+        "E i titoli che si danno da soli, valgono?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la corona e' stata divisa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Marche di Confine."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Marche di Confine."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_MARCHES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_MARSH_FEVER",
+      "tipo": "council",
+      "titolo": "La Febbre delle Paludi",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi manda gli uomini a prosciugare?",
+        "E i malati, chi se li tiene?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Febbre delle Paludi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #lutto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Febbre delle Paludi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #abbandonato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_MARSH_FEVER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_NAMELESS",
+      "tipo": "council",
+      "titolo": "I Senza Città",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?",
+        "E contarli, conviene a qualcuno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
+        },
+        {
+          "voce": "·",
+          "testo": "Insediamento del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
+        },
+        {
+          "voce": "·",
+          "testo": "Insediamento del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_NAMELESS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_OLD_CHANNELS",
+      "tipo": "council",
+      "titolo": "Le Vie di Prima",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?",
+        "E dove finiscono, cosa ci si fa?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie di Prima."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie di Prima."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_OLD_CHANNELS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_OLD_GUARD",
+      "tipo": "council",
+      "titolo": "La Vecchia Guardia",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le insegne del vecchio ordine, si portano ancora?",
+        "E chi comanda i veterani?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la successione e' scritta in una legge."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Vecchia Guardia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Vecchia Guardia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_OLD_GUARD",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_OLD_NAMES",
+      "tipo": "council",
+      "titolo": "I Nomi Vecchi",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?",
+        "E dirli, si può?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Archivio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Nomi Vecchi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Nomi Vecchi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_OLD_NAMES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PASTURE",
+      "tipo": "council",
+      "titolo": "Il Pascolo Conteso",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba?",
+        "E il margine, si divide?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Pascolo Conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Insediamento del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Pascolo Conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "·",
+          "testo": "Insediamento del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PASTURE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PILGRIMS",
+      "tipo": "council",
+      "titolo": "I Pellegrini",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?",
+        "E l'anno santo, lo dichiara qualcuno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Pellegrini."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Pellegrini."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PILGRIMS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PLAGUE",
+      "tipo": "council",
+      "titolo": "La Febbre Bassa",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi decide quali porte restano aperte?",
+        "E chi tiene il conto dei morti?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Febbre Bassa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "·",
+          "testo": "Insediamento del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #lutto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Febbre Bassa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "·",
+          "testo": "Insediamento del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #abbandonato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PLAGUE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_PROPHECY",
+      "tipo": "council",
+      "titolo": "La Profezia Contata",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?",
+        "E il giorno dopo la data, cosa si fa?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il Cristallo e' stato misurato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Profezia Contata."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Profezia Contata."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_PROPHECY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_QUARANTINE",
+      "tipo": "council",
+      "titolo": "Il Cordone",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi traccia il cordone nella Regione di cui si discute, e dove passa?",
+        "E chi resta fuori, dove va?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Cordone."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Cordone."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo resta tagliato fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_QUARANTINE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_REFUGEES",
+      "tipo": "council",
+      "titolo": "Chi Arriva da Fuori",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?",
+        "E chi paga il pane in piu'?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Chi Arriva da Fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Chi Arriva da Fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_REFUGEES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_REGENCY",
+      "tipo": "council",
+      "titolo": "La Reggenza",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Il sigillo, fino a quando lo tiene il reggente?",
+        "E dopo, a chi torna?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la corona e' stata divisa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reggenza."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reggenza."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_REGENCY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_RELIC",
+      "tipo": "council",
+      "titolo": "La Reliquia",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "E chi ha diritto di vederlo?  — solo se: La Reliquia è al limite",
+        "Chi risponde di quello che c'è nella teca?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Chi propone porta addosso: scoperta: la reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "La Reliquia si gira a faccia in su, per tutti."
+        },
+        {
+          "voce": "·",
+          "testo": "Il rivale posa una pedina nel luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_RELIC",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_ROADS",
+      "tipo": "council",
+      "titolo": "Le Vie Interrotte",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi riscuote su quello che passa nella Regione di cui si discute?",
+        "Chi risponde di un carico che non arriva?  — solo se: Le Vie Interrotte sono al limite"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato chiamato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "·",
+          "testo": "Chi propone posa una pedina in una Regione confinante."
+        },
+        {
+          "voce": "·",
+          "testo": "Il filo con il rivale sale ad alleato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Pozzi Bassi."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra una Regione con #selvaggio e una con #pascolo."
+        },
+        {
+          "voce": "·",
+          "testo": "Chi propone perde la fama."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Pozzi Bassi."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo resta tagliato fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_ROADS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SALT_FIELDS",
+      "tipo": "council",
+      "titolo": "I Campi di Sale",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale?",
+        "E le vasche, si contano?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i conti sono stati chiusi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Campi di Sale."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sfruttato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Campi di Sale."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SALT_FIELDS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SANCTUARY",
+      "tipo": "council",
+      "titolo": "Il Diritto d'Asilo",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo?",
+        "E gli armati davanti alla porta, chi li manda via?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Diritto d'Asilo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Diritto d'Asilo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SANCTUARY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SEALS",
+      "tipo": "council",
+      "titolo": "I Sigilli Falsi",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi controlla la mano che preme il sigillo?",
+        "E gli ordini gia' partiti, valgono?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Sigilli Falsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Sigilli Falsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SEALS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SILENT_BELLS",
+      "tipo": "council",
+      "titolo": "Le Campane Mute",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi?",
+        "E chi ha deciso il silenzio, si scopre?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Campane Mute."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Campane Mute."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SILENT_BELLS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SILTED_CANALS",
+      "tipo": "council",
+      "titolo": "I Canali Interrati",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi manda le braccia a scavare, e per quante stagioni?",
+        "E quando l'acqua torna a correre, di chi e'?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Canali Interrati."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Canali Interrati."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #abbandonato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SILTED_CANALS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SLEEPERS",
+      "tipo": "council",
+      "titolo": "I Dormienti",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?",
+        "E dove si dorme, chi veglia?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Archivio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la miniera e' stata chiusa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Dormienti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Dormienti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SLEEPERS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SMUGGLING",
+      "tipo": "council",
+      "titolo": "Il Contrabbando",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "La cala vecchia scarica di notte: si chiude, o si apre?",
+        "E i doganieri che guardano il mare sbagliato?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Contrabbando."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Contrabbando."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SMUGGLING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_SUCCESSION",
+      "tipo": "council",
+      "titolo": "La Successione",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi siede sul trono quando questo si alza?",
+        "Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?  — solo se: La Successione è al limite"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la successione e' scritta in una legge."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Al rivale si toglie la corona."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo dimentica: la corona era stata divisa."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "·",
+          "testo": "Chi propone toglie la sua pedina dalla capitale."
+        },
+        {
+          "voce": "·",
+          "testo": "Chi propone resta sotto osservazione."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "·",
+          "testo": "Presidio del luogo scende di 1 grado."
+        },
+        {
+          "voce": "·",
+          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_SUCCESSION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_THIRST",
+      "tipo": "council",
+      "titolo": "I Pozzi Bassi",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi apre i pozzi e a che ora?",
+        "E l'acqua, si paga?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Pozzi Bassi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Febbre Bassa."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Pozzi Bassi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Febbre Bassa."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #magra."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_THIRST",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_TITHE",
+      "tipo": "council",
+      "titolo": "La Decima",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?",
+        "E in un anno magro, si paga lo stesso?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Decima."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Decima."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_TITHE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_TRIBUTE",
+      "tipo": "council",
+      "titolo": "Il Tributo",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Il tributo si paga intero, in un anno che ha reso a meta'?",
+        "E in cambio di che cosa, esattamente?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i conti sono stati chiusi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Tributo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Successione."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #svuotato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Tributo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Successione."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_TRIBUTE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_UNEARTHED",
+      "tipo": "council",
+      "titolo": "Il Dissotterrato",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?",
+        "E studiarlo, con quali regole?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il Cristallo e' stato misurato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Dissotterrato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Dissotterrato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Sito antico del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_UNEARTHED",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_VOWS",
+      "tipo": "council",
+      "titolo": "I Voti Non Sciolti",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?",
+        "E chi non lo scioglie, si conta?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Archivio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Voti Non Sciolti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #lutto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Voti Non Sciolti."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #malcontento."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_VOWS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WARD_STONES",
+      "tipo": "council",
+      "titolo": "Le Pietre di Guardia",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Una delle pietre incise è a terra: si rialza, e chi la tocca?",
+        "E il margine, chi lo gira?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Pietre di Guardia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #lutto."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Pietre di Guardia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #abbandonato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WARD_STONES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WATER",
+      "tipo": "council",
+      "titolo": "L'Acqua Ferma",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi manda gli uomini a scavare nella Regione di cui si discute?",
+        "E l'acqua, dopo, di chi e?  — solo se: L'Acqua Ferma è al limite"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Il Debito."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Il Debito."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #abbandonato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WATER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WEIGHTS",
+      "tipo": "council",
+      "titolo": "I Pesi e le Misure",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Di chi e' il braccio con cui si misura?",
+        "E chi guarda le bilance quando il mercato e' pieno?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Pesi e le Misure."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Pesi e le Misure."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #conteso."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WEIGHTS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WINTER",
+      "tipo": "council",
+      "titolo": "L'Inverno Lungo",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Nella Regione di cui si discute, chi distribuisce la legna quando gela?",
+        "E i debiti dell'inverno, si contano a primavera?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di L'Inverno Lungo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #razionato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di L'Inverno Lungo."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo resta tagliato fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #magra."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WINTER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "TEN_WOLVES",
+      "tipo": "council",
+      "titolo": "I Lupi al Limitare",
+      "sottotitolo": "il Consiglio che questa domanda apre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [
+        "Chi veglia il limitare nella Regione di cui si discute?",
+        "E le bestie perse, chi le rimette?"
+      ],
+      "righe": [
+        {
+          "voce": "SI OTTIENE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
+        },
+        {
+          "voce": "·",
+          "testo": "Rimuovi 1 condizione dal luogo scelto."
+        },
+        {
+          "voce": "·",
+          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+        },
+        {
+          "voce": "·",
+          "testo": "Assegna o trasferisci il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Raffredda il Tema di 1 (minimo 0)."
+        },
+        {
+          "voce": "·",
+          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di I Lupi al Limitare."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo sale di 1 grado."
+        },
+        {
+          "voce": "SI PAGA",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #sorvegliata."
+        },
+        {
+          "voce": "·",
+          "testo": "Il luogo ottiene #pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "Cedi il controllo del luogo."
+        },
+        {
+          "voce": "·",
+          "testo": "Scalda il Tema di 1."
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #indebitata."
+        },
+        {
+          "voce": "·",
+          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di I Lupi al Limitare."
+        },
+        {
+          "voce": "·",
+          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
+        },
+        {
+          "voce": "·",
+          "testo": "Foresta del luogo scende di 1 grado."
+        },
+        {
+          "voce": "SE CADE",
+          "testo": ""
+        },
+        {
+          "voce": "·",
+          "testo": "Al luogo si aggiunge #saccheggiato."
+        },
+        {
+          "voce": "·",
+          "testo": "Il Tema di questa domanda si scalda di 1."
+        }
+      ],
+      "arte": null,
+      "pie": "TEN_WOLVES",
+      "copie": 1,
+      "segreta": false
+    }
+  ]
+}

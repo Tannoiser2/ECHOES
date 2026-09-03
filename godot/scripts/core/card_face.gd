@@ -67,28 +67,33 @@ const BIOMES: Dictionary = {
 ## overlay, e la COMPONENTS §2 lo dice gia'.
 ## **E la scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione.
 ##
-## La carta Tensione resta **mini**, perche' D-097 la vuole appoggiata alla
-## traccia dei valori: e' il segnalino della domanda in gioco, e una carta da
-## tarocco sulla traccia non ci sta. Ma quello che serve per **risolvere** un
-## Consiglio — la domanda, le proposte con cosa lasciano, le dodici caselle
-## dell'economia — sono 870 caratteri mediani, e su una mini non entrano.
+## La carta Tensione era mini (D-097, per la traccia dei valori) ed e' una
+## carta da gioco da D-446 — *«44x68 e' troppo piccolo»*, parola del
+## committente — ma resta **un pezzo a parte** dalla scheda: quello che serve
+## per **risolvere** un Consiglio — la domanda, le proposte con cosa lasciano,
+## le dodici caselle dell'economia — sono 870 caratteri mediani, e su una carta
+## sola non entrano (TEN_SUCCESSION sbordava anche su un tarocco).
 ##
-## Quindi due pezzi con due mestieri: la mini dice **quando** la domanda si
-## scalda e sta sulla traccia; il tarocco dice **cosa si puo' proporre e cosa
-## costa**, e si tira fuori quando il Consiglio si apre. E' il «fatto quando»
-## di ISSUES 89: una proposta si risolve guardando questa scheda e la mappa.
+## Quindi due pezzi con due mestieri: la carta dice **quando** la domanda si
+## scalda e su cosa si discute, e sta accanto alla traccia; il tarocco dice
+## **cosa si puo' proporre e cosa costa**, e si tira fuori quando il Consiglio
+## si apre. E' il «fatto quando» di ISSUES 89: una proposta si risolve
+## guardando questa scheda e la mappa.
 ## Come si chiama, su una carta Eco, il posto che l'Effetto colpisce: non «dove
 ## si discute», che e' la parola del Consiglio (D-344).
 const DOVE_CADE: String = "nel luogo della carta"
 
-const DECKS: Array = ["asset", "echo", "tension", "council", "destiny", "entity"]
+## **E il mazzo Obiettivo** (D-445): diciannove carte coperte che fino alla
+## 0.1.414 non avevano una faccia — il censimento le contava fra le cose «che
+## non si stampano», e un obiettivo coperto che non si stampa non si pesca.
+const DECKS: Array = ["asset", "echo", "tension", "council", "destiny", "objective", "entity"]
 const TILES: Array = ["region"]
 
 ## Come si chiamano al tavolo, che e' come vanno chiamati ovunque li si nomini:
 ## sul foglio di stampa, nell'anteprima e nel riepilogo dell'export.
 const DECK_LABELS: Dictionary = {
 	"asset": "carte Asset", "echo": "carte Echo", "tension": "carte Domanda",
-	"council": "schede Consiglio",
+	"council": "schede Consiglio", "objective": "carte Obiettivo",
 	"destiny": "carte Destino", "entity": "carte Casata", "region": "tessere Regione",
 }
 
@@ -132,6 +137,7 @@ static func _source(deck: String, data: RefCounted) -> Dictionary:
 		"tension": return data.tensions
 		"council": return data.tensions
 		"destiny": return data.destinies
+		"objective": return data.objectives
 		"entity": return data.entities
 		"region": return data.regions
 	return {}
@@ -161,6 +167,7 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		"tension": return _tension(item, data)
 		"council": return _council(item, data)
 		"destiny": return _destiny(item, data)
+		"objective": return _objective(item)
 		"entity": return _entity(item, data)
 		"region": return _region(item, data)
 	return {}
@@ -343,7 +350,12 @@ static func _when_it_comes(condition: Dictionary, data: RefCounted) -> String:
 
 
 static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
-	var face: Dictionary = _face("tension", str(tension["id"]), "MINI")
+	# **Carta da gioco, 63x88** (D-446). Era mini — 44x68, per la traccia dei
+	# valori (D-097) — e il committente l'ha detto in quattro parole: *«44x68 e'
+	# troppo piccolo»*. Da D-261 la Tensione si gira sul mazzetto e **si legge**,
+	# e da D-432 porta anche su cosa si discute: due mini su sessanta stampavano
+	# il corpo rimpicciolito. La traccia dei valori le fa posto (`token_sheet`).
+	var face: Dictionary = _face("tension", str(tension["id"]), "CARD")
 	face["title"] = str(tension["title"])
 	# La velatura e' una regola e sta nel dato `visibility`: la carta la
 	# dichiara da se', cosi' la descrizione resta racconto (D-099).
@@ -539,6 +551,28 @@ static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:
 	face["art_prompt_key"] = str(destiny.get("art_prompt_key", ""))
 	# Sta dietro il paravento (COMPONENTS §5): il foglio la stampa, l'anteprima la
 	# marca, e chi la stampa sa che non va lasciata sul tavolo.
+	face["secret"] = true
+	return face
+
+
+## **La carta Obiettivo** (D-445). Sta dietro il paravento come il Destino, e
+## come il Destino e' una scala per contare: la promessa in una riga, e sotto le
+## clausole che la contano a fine anno. Non porta una casa in calce — e' la
+## promessa che **qualunque** casa puo' pescare — e per questo non ha un colore
+## di famiglia: l'accento resta neutro.
+static func _objective(objective: Dictionary) -> Dictionary:
+	var face: Dictionary = _face("objective", str(objective["id"]), "TAROT")
+	face["title"] = str(objective["title"])
+	face["subtitle"] = "obiettivo coperto · si conta a fine anno"
+	face["body"] = [str(objective.get("label", ""))]
+	var clauses: Array = []
+	for condition in objective.get("conditions", []) as Array:
+		var clause: Dictionary = condition
+		clauses.append(str(clause.get("label", clause.get("type", ""))))
+	if not clauses.is_empty():
+		face["notes"] = ["CONTA  %s" % " · ".join(PackedStringArray(clauses))]
+	face["art_prompt_key"] = str(objective.get("art_prompt_key", ""))
+	face["footer"] = str(objective["id"])
 	face["secret"] = true
 	return face
 

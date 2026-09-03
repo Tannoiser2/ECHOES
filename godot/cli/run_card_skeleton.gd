@@ -45,6 +45,10 @@ const JOBS: Dictionary = {
 		"L'ambizione di una casa, **dietro il paravento**: la scala per contare.",
 		"Non si gioca: si guarda per sapere quanto manca.",
 	],
+	"objective": [
+		"La promessa coperta che **qualunque casa puo' pescare**, dietro il paravento.",
+		"Non si gioca: si conta a fine anno, clausola per clausola.",
+	],
 	"entity": [
 		"La casa, in vista tutta la partita: cosa sa fare e cosa vuole lasciare.",
 	],

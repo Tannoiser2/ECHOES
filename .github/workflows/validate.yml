@@ -231,6 +231,13 @@ jobs:
       - name: Drift check - lo scheletro delle carte
         run: GODOT=~/godot/godot tools/run_card_skeleton.sh --check
 
+      # La scheda di ogni tipo di carta (D-445): cos'e', cosa c'e' scritto
+      # sopra e da dove viene, l'immagine col suo prompt, e il dato di ogni
+      # carta pronto per generarla. Se una faccia cambia e il dato no, chi
+      # genera le carte lavora su una carta che non esiste piu'.
+      - name: Drift check - le schede delle carte
+        run: GODOT=~/godot/godot tools/run_card_sheets.sh --check
+
       # Le caselle del Consiglio (D-343, D-366). Questo passo non sorveglia solo
       # un documento: da D-366 `docs/MISURA_CASELLE.md` e' il **lato motore** del
       # controllo che tiene uguali l'enum delle carte e il vocabolario che
