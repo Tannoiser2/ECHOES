@@ -585,14 +585,29 @@ func _forge(entity_id: String, session: RefCounted) -> Dictionary:
 
 
 ## Global and entity tags this Destiny wants present (+1) or absent (-1).
-func _tag_goals(entity_id: String, session: RefCounted) -> Dictionary:
+func _tag_goals(entity_id: String, session: RefCounted, with_profile: bool = true) -> Dictionary:
 	var goals: Dictionary = {}
+	# **La sedia legge il suo profilo** (D-457, parola del committente: *«il
+	# gioco si basa su obiettivi in contrasto, #tag che servono a me e
+	# danneggiano gli avversari»*). La matrice dei contrasti c'e' da D-171 —
+	# `entity_profiles`, cosa ogni casa vuole e cosa teme (D-288) — e
+	# MISURA_MATRICE la tiene; la sedia pero' leggeva solo le clausole del
+	# Destino dell'anno, e una proposta che scriveva un segno temuto dal
+	# profilo, ma non nominato dal Destino, valeva zero. Prima il profilo, poi
+	# il Destino, che sul segno che nomina vince.
+	var profile: Variant = session.data.entity_profiles.get(entity_id) if with_profile else null
+	if profile != null:
+		for want in ((profile as Dictionary).get("wants", []) as Array):
+			goals[str((want as Dictionary).get("tag", ""))] = 1
+		for fear in ((profile as Dictionary).get("fears", []) as Array):
+			goals[str((fear as Dictionary).get("tag", ""))] = -1
 	for condition in _conditions(entity_id, session):
 		var kind: String = str(condition.get("type", ""))
 		if kind == "state_tag_present":
 			goals[str(condition.get("tag", ""))] = 1
 		elif kind == "state_tag_absent":
 			goals[str(condition.get("tag", ""))] = -1
+	goals.erase("")
 	return goals
 
 

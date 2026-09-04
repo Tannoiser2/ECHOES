@@ -55,6 +55,11 @@ func _initialize() -> void:
 	var by_entity: Dictionary = {}
 	var rooms: Dictionary = {}
 	var voted: Dictionary = {}
+	# **Le proposte piatte** (D-456): quelle che, messe ai voti, non hanno mosso
+	# il punteggio di nessun seggio. Sono il contenuto che non fa litigare:
+	# per ogni proposta, quante volte e' stata votata, quante e' rimasta piatta,
+	# e quali Effetti porta — cosi' si vede cosa riscrivere, carta per carta.
+	var flat: Dictionary = {}
 	# In a Dictionary, not two ints: a lambda captures a local by value, so
 	# counters incremented inside the callback would read zero out here.
 	var counters: Dictionary = {"confluences": 0, "opposed": 0}
@@ -82,12 +87,15 @@ func _initialize() -> void:
 				]
 				voted[put] = int(voted.get(put, 0)) + 1
 				var any_opposition: bool = false
+				var anyone_moved: bool = false
 				for entity_id in seats:
 					if str(entity_id) == proponent:
 						continue
 					var score: int = probe._score_proposition(
 						proposition, str(entity_id), proponent, session
 					)
+					if score != 0:
+						anyone_moved = true
 					var declared: Dictionary = probe.choose_stance(
 						str(entity_id), context, session
 					)
@@ -101,6 +109,23 @@ func _initialize() -> void:
 					_attribute(probe, proposition, str(entity_id), proponent, session, by_effect)
 				if any_opposition:
 					counters["opposed"] = int(counters["opposed"]) + 1
+				var flat_key: String = "%s / %s" % [
+					str(context["tension_id"]).replace("TEN_", ""), str(context["proposition_id"])
+				]
+				if not flat.has(flat_key):
+					var kinds: Dictionary = {}
+					for consequence_id in proposition.get("success_consequences", []):
+						var consequence: Variant = data.consequences.get(str(consequence_id))
+						if consequence == null:
+							continue
+						for effect in (consequence as Dictionary).get("effects", []):
+							kinds[str((effect as Dictionary).get("type", ""))] = true
+					var listed: Array = kinds.keys()
+					listed.sort()
+					flat[flat_key] = {"voted": 0, "flat": 0, "effects": listed}
+				flat[flat_key]["voted"] = int(flat[flat_key]["voted"]) + 1
+				if not anyone_moved:
+					flat[flat_key]["flat"] = int(flat[flat_key]["flat"]) + 1
 		)
 		await session.run(PolicyDecider.new(session.log))
 		session.dispose()
@@ -109,6 +134,7 @@ func _initialize() -> void:
 		runs, int(counters["confluences"]), int(counters["opposed"]),
 		stances, scores, by_entity, by_effect, rooms, voted
 	)
+	_report_flat(flat)
 	quit(0)
 
 
@@ -225,6 +251,30 @@ func _report(
 	voted_keys.sort()
 	for key in voted_keys:
 		print("  %-58s %4d" % [str(key), int(voted[key])])
+
+
+## Le proposte che non fanno litigare, dalla piu' piatta: votate N volte, piatte
+## M — cioe' nessun seggio ha mosso il punteggio — e gli Effetti che portano.
+func _report_flat(flat: Dictionary) -> void:
+	print("")
+	print("Le proposte piatte: votate, piatte (nessun seggio le pesa), e cosa fanno")
+	var keys: Array = flat.keys()
+	keys.sort_custom(func(a, b) -> bool:
+		var fa: float = float(flat[a]["flat"]) / float(maxi(1, int(flat[a]["voted"])))
+		var fb: float = float(flat[b]["flat"]) / float(maxi(1, int(flat[b]["voted"])))
+		if fa != fb:
+			return fa > fb
+		return str(a) < str(b)
+	)
+	var all_flat: int = 0
+	for key in keys:
+		var row: Dictionary = flat[key]
+		if int(row["flat"]) == int(row["voted"]):
+			all_flat += 1
+		print("  %-44s %3d votate %3d piatte   %s" % [
+			str(key), int(row["voted"]), int(row["flat"]), ", ".join(PackedStringArray(row["effects"]))
+		])
+	print("  proposte messe ai voti: %d, sempre piatte: %d" % [keys.size(), all_flat])
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:

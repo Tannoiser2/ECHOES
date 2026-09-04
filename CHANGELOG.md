@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.426 — La sedia legge il suo profilo, e la lista delle proposte piatte
+
+[D-457](docs/DECISIONS.md#d-457), parola del committente. Il profilo
+strategico di ogni casa (D-288: cosa vuole e cosa teme) entra in quello che
+la sedia pesa al Consiglio, prima del Destino. La sonda delle posizioni elenca
+le proposte piatte, carta per carta: 15 su 73, dodici del Tema Antico, che
+scrivono memorie che nessuno nomina. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli; Consigli falliti
+sull'uniforme 71 → 107. E dodici coppie di profili su ventotto condividono un
+desiderio o un timore: la lista da cui partire per polarizzarli.
+
+---
+
 ## 0.1.425 — La sedia legge la mappa
 
 [D-456](docs/DECISIONS.md#d-456), parola del committente. La policy pesava una

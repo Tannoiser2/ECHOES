@@ -32,8 +32,11 @@ func test_no_two_destinies_want_the_same_sign() -> void:
 		for b in seats:
 			if str(a) >= str(b):
 				continue
-			var mine: Dictionary = policy._tag_goals(str(a), session)
-			var theirs: Dictionary = policy._tag_goals(str(b), session)
+			# I Destini soli (D-171): da D-457 i `goals` portano anche il
+			# profilo strategico, e due profili possono temere lo stesso segno
+			# — la rete di contrasti e' dei Destini, e qui si misura quella.
+			var mine: Dictionary = policy._tag_goals(str(a), session, false)
+			var theirs: Dictionary = policy._tag_goals(str(b), session, false)
 			for tag in mine:
 				if theirs.has(tag) and int(theirs[tag]) == int(mine[tag]):
 					agreements += 1

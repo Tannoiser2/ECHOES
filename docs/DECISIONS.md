@@ -10,6 +10,87 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-457 — La sedia legge il suo profilo, e la lista delle proposte piatte
+
+**implemented in 0.1.426.** Parola del committente, davanti al quarto che
+[D-456](#d-456) lasciava a zero: *«il gioco si basa su questo: obiettivi in
+contrasto, Consigli che vanno combattuti per far passare cose che mi danno
+punteggio, mettere #tag che servono a me e danneggiano gli avversari. Se
+non e' stata costruita una matrice di questo tipo e' stato fatto tutto
+lavoro inutile.»* E poi *«vai»* sulla lista carta per carta.
+
+**La matrice c'e', e la sedia non la leggeva.** [D-171](#d-171) l'ha
+scritta come rete di contrasti, [D-288](#d-288) l'ha messa nei dati come
+**profilo strategico** di ogni casa — cosa vuole lasciare nel mondo e cosa
+teme, segno per segno, con il perche' — e [MISURA_MATRICE](MISURA_MATRICE.md)
+la misura: 19 segni che aiutano una casa e ne danneggiano un'altra. Ma
+`_tag_goals`, la lista di quello che la sedia vuole, leggeva **solo le
+clausole del Destino dell'anno**: un segno temuto dal profilo e non nominato
+dal Destino valeva zero. Il Re temeva `condition:starving` sulla carta del
+profilo, e al Consiglio non se ne accorgeva. Da qui il profilo entra nei
+`goals`, prima del Destino, che sul segno che nomina vince.
+
+**La lista delle proposte piatte.** La sonda delle posizioni ha una sezione
+nuova: per ogni proposta messa ai voti, quante volte e' stata votata, quante
+e' rimasta **piatta** — nessun seggio ha mosso il punteggio — e gli Effetti
+che porta. Con la sola lettura della mappa (D-456), quaranta anni: **73
+proposte votate, 15 sempre piatte**, e tutte con la stessa firma — spostano
+la Domanda, scrivono un segno sulla casa o sul mondo, e nient'altro:
+
+| Tensione | proposta | votata | piatta | cosa fa |
+|---|---|---|---|---|
+| Il Santuario | P_SANCTUARY_WRITE | 3 | 3 | sposta la Domanda, segno sulla casa, segno sul mondo |
+| I Voti | P_VOWS_LIST | 3 | 3 | sposta la Domanda, segno sulla casa |
+| I Senza Citta' | P_NAMELESS_ROLL, P_NAMELESS_SETTLE | 2, 2 | 2, 2 | segni sulla casa, sul mondo, un rapporto |
+| I Voti · Le Pietre di Guardia | P_VOWS_RITE, P_WARDS_RITE | 2, 2 | 2, 2 | sposta la Domanda, segni |
+| Le Sepolture, La Guerra delle Gilde, L'Eresia, Il Santuario dell'Isola, Il Silenzio dell'Isola, I Vecchi Nomi, I Pellegrini, La Profezia, I Dormienti | una proposta ciascuna | 1 | 1 | sposta la Domanda, segni sulla casa o sul mondo |
+
+Dodici delle quindici sono carte del Tema **Antico**: quello dove le
+proposte scrivono memorie — `list_witnessed`, `rite_held` — che nessun
+profilo e nessun Destino nomina.
+
+**Cosa dice la sonda col profilo**, quaranta anni (145 Consigli): Consigli
+con almeno un no 72% → **69%**, posizioni OPPOSE · SUPPORT · ABSTAIN 47% ·
+29% · 24% → **43% · 27% · 31%**; proposte votate 75, **sempre piatte 14** —
+le stesse di prima, meno una. Il profilo pesa quello che le proposte scrivono
+**sulla casa e sul mondo** 41 volte su 480 (era 15 su 378): i segni che i
+profili nominano — `succession_by_law`, `crown_divided`, `crystal_exploited` —
+sono quelli delle Conseguenze grandi, e le proposte piatte scrivono altro:
+`rite_held`, `list_witnessed`, `names_disputed`. **Non e' un difetto della
+sedia: e' la matrice che non arriva a quelle carte.** La lista qui sopra e'
+quindi il lavoro sulle carte, e lo dice segno per segno: o quelle memorie
+entrano in un profilo che le vuole o le teme, o quelle proposte scrivono una
+cosa che sta sulla mappa.
+
+**E i profili stessi si somigliano piu' di quanto la rete di contrasti
+prometta.** La prova di D-171 pretende che due Destini non vogliano mai lo
+stesso segno nello stesso verso, e regge: ma i profili, letti alla stessa
+maniera, condividono un desiderio o un timore in **dodici coppie su
+ventotto** — la Cenere e Lyra vogliono tutt'e due `discovery:crystal` e
+temono `mine_sealed` e `study_supervised`; Nahr, le Citta' Libere e il Sale
+temono tutti `condition:cut_off`; la Cenere, Nahr e il Vetro
+`condition:emptied`. Sono i segni su cui al Consiglio si fa fronte comune
+invece che litigare. La prova di D-171 continua a misurare i Destini soli
+(`_tag_goals(..., false)`); i profili sono del committente, e questa e' la
+lista da cui partire per polarizzarli.
+
+**La partecipazione**, trenta anni, misto / uniforme: astensioni 32% / 29%
+→ **34% / 33%**, opposizione nel margine 68% / 55% → **72% / 56%**, carte
+degli altri tre per Consiglio 3,05 / 2,70, Consigli falliti 37 / 38 — un
+tavolo che litiga a un Consiglio su tre, su tutti e due i tavoli.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **128 · 63 · 72 · 86** sul misto e
+**107 · 39 · 99 · 102** sull'uniforme — un tavolo che si oppone con le carte
+fa cadere un Consiglio su tre anche fra gli ottimizzatori (era 43 su 350 in
+0.1.421, 107 adesso).
+
+**La corsia lenta**, rigirata: vite mai sedute 1 → 2, trasformazioni sedute
+277 → 273, i segni sul tavolo di uno o due per famiglia. Suite 746 prove
+verdi, 28 cancelli veloci e 6 lenti verdi.
+
+---
+
 ## D-456 — La sedia legge la mappa
 
 **implemented in 0.1.425.** Parola del committente, davanti al plebiscito di
