@@ -43,6 +43,18 @@
         {
           "tag": "scar:changed_hands",
           "why": "Una terra passata di mano insegna che si puo' fare."
+        },
+        {
+          "tag": "charter_written",
+          "why": "Una Carta scritta senza una corona sopra e' un regno che ha smesso di sapere a chi obbedisce."
+        },
+        {
+          "tag": "discovery:the_charter",
+          "why": "Una Carta che tutti sanno leggere e' un trono che tutti sanno contestare."
+        },
+        {
+          "tag": "nahr_settled",
+          "why": "Chi si ferma sulla sua terra senza la sua corona sopra e' un regno dentro il regno."
         }
       ],
       "denies": [
@@ -128,6 +140,14 @@
         {
           "tag": "structure:archive",
           "why": "Un archivio e' il posto dove il sapere sopravvive a chi lo ha trovato."
+        },
+        {
+          "tag": "discovery:legend",
+          "why": "Una leggenda capita e' una cosa in meno che si crede e una in piu' che si sa: va scritta dove chiunque la rilegga."
+        },
+        {
+          "tag": "discovery:the_ledger",
+          "why": "Un registro letto e' un registro che non si puo' piu' riscrivere di nascosto."
         }
       ],
       "fears": [
@@ -146,6 +166,14 @@
         {
           "tag": "scar:unanswered",
           "why": "Una domanda lasciata senza risposta diventa, in due generazioni, una cosa che non si chiede."
+        },
+        {
+          "tag": "faith_established",
+          "why": "Una fede stabilita e' una misura che nessuno ha il permesso di rifare: e' il contrario di capire."
+        },
+        {
+          "tag": "anointed",
+          "why": "Una custodia riconosciuta e' un sapere chiuso a chiave, con la chiave in mano a uno solo."
         }
       ],
       "denies": [
@@ -197,6 +225,10 @@
         {
           "tag": "condition:unrest",
           "why": "La rivolta scava dove la legge non lascerebbe scavare."
+        },
+        {
+          "tag": "discovery:legend",
+          "why": "Una leggenda spiegata e' una montagna di cui si ricorda il perche': e' esattamente quello che non deve succedere."
         }
       ],
       "denies": [
@@ -244,6 +276,14 @@
         {
           "tag": "study_supervised",
           "why": "Uno studioso con un permesso in mano diventa il padrone del buco che noi scaviamo."
+        },
+        {
+          "tag": "faith_established",
+          "why": "Una fede stabilita decide della montagna da lontano, e chi decide non ci e' mai sceso."
+        },
+        {
+          "tag": "anointed",
+          "why": "Un custode unto e' uno che non e' mai sceso e da' ordini a chi ci scende."
         }
       ],
       "denies": [
@@ -278,6 +318,10 @@
         {
           "tag": "debt_forgiven",
           "why": "Un debito cancellato e' una citta' che torna a decidere da sola; uno chiamato e' un padrone nuovo."
+        },
+        {
+          "tag": "discovery:the_charter",
+          "why": "Una Carta letta e capita da tutti e' una Carta che nessuna corona puo' fingere di non conoscere."
         }
       ],
       "fears": [
@@ -300,6 +344,14 @@
         {
           "tag": "debt_called",
           "why": "Il debito chiamato compra una citta' senza assedio, e le nostre non hanno mura contro un registro."
+        },
+        {
+          "tag": "anointed",
+          "why": "Un custode riconosciuto sopra tutti e' una corona con un altro nome."
+        },
+        {
+          "tag": "account_settled",
+          "why": "Un conto saldato a forza e' una citta' in meno che si regge da sola: le sette citta' non pagano a comando."
         }
       ],
       "denies": [
@@ -334,6 +386,10 @@
         {
           "tag": "ledger_public",
           "why": "Un registro che si puo' leggere e' una firma che vale anche quando chi l'ha scritta non c'e' piu'. Il commercio c'e' comunque: quello si eredita davvero."
+        },
+        {
+          "tag": "discovery:the_ledger",
+          "why": "Un registro letto e' una firma che vale: chi ha promesso non puo' piu' dire di non sapere."
         }
       ],
       "fears": [
@@ -399,6 +455,14 @@
         {
           "tag": "condition:emptied",
           "why": "Un luogo svuotato non ha piu' nessuno che ricordi perche' quella cosa andava custodita."
+        },
+        {
+          "tag": "discovery:legend",
+          "why": "Quello che fu misurato una volta non si rimette in discussione: una scoperta nuova sulla vecchia e' una misura contestata."
+        },
+        {
+          "tag": "discovery:the_ledger",
+          "why": "Un registro riaperto e' una misura che torna in discussione."
         }
       ],
       "denies": [

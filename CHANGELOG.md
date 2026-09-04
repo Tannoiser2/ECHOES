@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.427 — I profili si polarizzano sui segni delle proposte piatte
+
+[D-458](docs/DECISIONS.md#d-458), parola del committente. Le quattordici
+proposte piatte scrivono nove segni che nessuno temeva: sedici voci nuove nei
+profili strategici, con la ragione, danno a ogni segno chi lo vuole e chi lo
+teme. Proposte sempre piatte 14 → 5, Consigli con almeno un no 72% → 78%, tavolo
+in silenzio 15% → 5% (misto) e 19% → 9% (uniforme). Cancello dei 100 semi:
+0 seggi bloccati sui due tavoli; Consigli falliti 128 → 141 (misto) e 107 → 115
+(uniforme).
+
+---
+
 ## 0.1.426 — La sedia legge il suo profilo, e la lista delle proposte piatte
 
 [D-457](docs/DECISIONS.md#d-457), parola del committente. Il profilo

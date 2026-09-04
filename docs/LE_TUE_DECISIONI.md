@@ -104,6 +104,18 @@ almeno un no da uno su quattro a tre su quattro, e il tavolo dei quattro
 ottimizzatori si oppone nel margine in un Consiglio su due. Il quarto che
 resta a zero è contenuto: le carte, come dicevi.
 
+**E in 0.1.426 hai detto che se non c'è una matrice di contrasti è stato tutto
+lavoro inutile** ([D-457](DECISIONS.md#d-457)). La matrice c'era dal D-288, e la
+sedia non la leggeva: ora il profilo di ogni casa entra in quello che pesa al
+Consiglio. E la sonda elenca, carta per carta, le proposte che non muovono il
+punteggio di nessuno: quindici, dodici del Tema Antico.
+
+**E in 0.1.427 hai detto «vai» su quella lista** ([D-458](DECISIONS.md#d-458)).
+Fatto il minimo: sedici voci nei profili, ognuna con la sua ragione, perché i
+nove segni delle proposte piatte trovino chi li teme. Proposte sempre piatte
+da quattordici a cinque, il tavolo in silenzio da un Consiglio su sei a uno su
+venti. Le dodici coppie di profili che si somigliano sono ancora tue.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

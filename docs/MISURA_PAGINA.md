@@ -21,8 +21,8 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 8 |
-| nodi in tutto | 254 |
-| testi sotto gli occhi | 144 |
+| nodi in tutto | 256 |
+| testi sotto gli occhi | 146 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
 | bersagli che si toccano | 25 |
@@ -90,7 +90,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | al centro, uno alla volta | 93 | 234 | 1660 |
+| colonna di stato | al centro, uno alla volta | 95 | 234 | 1726 |
 | mappa | sul tavolo | 21 | *si adatta* | |
 | il Consiglio | al centro, uno alla volta | 44 | 218 | 1241 |
 | il tavolo | nella stanza, prima di sedersi | 43 | *si adatta* | |
