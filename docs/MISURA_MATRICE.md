@@ -21,10 +21,10 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 | **carte che aprono ancora una domanda in prestito** | **0** |
 | segni che l'eredita' porta avanti | 49 |
 | profili strategici scritti | 8 |
-| segni che quelle case vogliono o temono | 84 |
+| segni che quelle case vogliono o temono | 97 |
 | **fra i voluti, quelli che un Consiglio sa dare** | **24** |
-| segni che aiutano una casa e ne danneggiano un'altra | 26 |
-| **coppie di case che hanno qualcosa per cui litigare** | **15 su 28** |
+| segni che aiutano una casa e ne danneggiano un'altra | 29 |
+| **coppie di case che hanno qualcosa per cui litigare** | **28 su 28** |
 
 ---
 
@@ -168,6 +168,8 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `discovery:the_charter` | no | no | Conseguenza |
 | teme | `nahr_settled` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
+| teme | `structure:tollgate` | **si'** | **si'** | Pietra |
+| teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 
 ### ENT_CENERE
 
@@ -185,6 +187,8 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `study_supervised` | no | no | Conseguenza |
 | teme | `faith_established` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `anointed` | no | no | Conseguenza |
+| teme | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
+| teme | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
 
 ### ENT_LIBERE
 
@@ -204,6 +208,8 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
 | teme | `anointed` | no | no | Conseguenza |
 | teme | `account_settled` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
+| teme | `structure:tollgate` | **si'** | **si'** | Pietra |
+| teme | `structure:archive` | **si'** | **si'** | Pietra |
 
 ### ENT_LYRA
 
@@ -217,12 +223,15 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `structure:archive` | **si'** | **si'** | Pietra |
 | vuole | `discovery:legend` | no | **si'** | Conseguenza |
 | vuole | `discovery:the_ledger` | no | **si'** | Conseguenza |
+| vuole | `question_unresolved` | no | no | Conseguenza |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `study_supervised` | no | no | Conseguenza |
 | teme | `condition:guarded` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `scar:unanswered` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `faith_established` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `anointed` | no | no | Conseguenza |
+| teme | `crystal_exploited` | **si'** | **si'** | Conseguenza, faccia della Tensione |
+| teme | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
 
 ### ENT_NAHR
 
@@ -239,6 +248,10 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | teme | `condition:guarded` | **si'** | no | Conseguenza, faccia della Tensione |
+| teme | `structure:tollgate` | **si'** | **si'** | Pietra |
+| teme | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione |
+| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, faccia della Tensione |
+| teme | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
 
 ### ENT_SALE
 
@@ -323,7 +336,7 @@ dichiarano. Un segno che aiuta qualcuno e non danneggia nessuno non e'
 una questione: e' un regalo, e al Consiglio nessuno avra' mai una
 ragione per opporsi.
 
-**Segni che incrociano davvero: 26.**
+**Segni che incrociano davvero: 29.**
 
 **Il conto e' un pavimento**, come quello delle Tensioni: guarda i
 segni **nominati** da un Destino o da un profilo, non i conteggi. Un
@@ -338,30 +351,33 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 
 | segno | aiuta | danneggia | cambia pelle | chi lo sa scrivere |
 |---|---|---|---|---|
+| `structure:tollgate` | CENERE, SALE | ALDRIC, LIBERE, NAHR | **si'** | Azione stampata, Pietra |
+| `charter_written` | LIBERE, VETRO | ALDRIC, NAHR | — | Conseguenza, faccia della Tensione |
 | `anointed` | VETRO | CENERE, LIBERE, LYRA | **si'** | Conseguenza |
 | `condition:cut_off` | VAERAX | LIBERE, NAHR, SALE | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
-| `charter_written` | LIBERE, VETRO | ALDRIC | — | Conseguenza, faccia della Tensione |
+| `knowledge_shared` | LYRA | NAHR, VAERAX, VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
+| `ledger_public` | SALE | CENERE, SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
+| `mine_sealed` | VAERAX | ALDRIC, CENERE, LYRA | — | Conseguenza, faccia della Tensione, fatto che dura |
 | `crown_divided` | NAHR | ALDRIC, SALE | — | Conseguenza, faccia della Tensione, fatto che dura |
+| `crystal_exploited` | CENERE | LYRA, VAERAX | **si'** | Azione stampata, Conseguenza, faccia della Tensione |
+| `crystal_measured` | LYRA | CENERE, VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
+| `debt_called` | SALE | LIBERE, LYRA | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione |
 | `discovery:crystal` | CENERE, LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
 | `discovery:legend` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, Conseguenza |
 | `discovery:the_ledger` | LYRA, SALE | VETRO | **si'** | Azione stampata, Conseguenza |
 | `faith_established` | VETRO | CENERE, LYRA | **si'** | Conseguenza, faccia della Tensione |
-| `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
-| `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
-| `mine_sealed` | VAERAX | CENERE, LYRA | — | Conseguenza, faccia della Tensione, fatto che dura |
+| `question_unresolved` | LYRA | ALDRIC, SALE | **si'** | Conseguenza |
+| `structure:sealed` | VETRO | CENERE, NAHR | **si'** | Conseguenza, faccia della Tensione |
 | `study_supervised` | VAERAX | CENERE, LYRA | — | Conseguenza |
 | `account_settled` | SALE | LIBERE | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | `condition:contested` | NAHR | ALDRIC | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crowned` | ALDRIC | LIBERE | **si'** | casato |
-| `crystal_exploited` | CENERE | VAERAX | **si'** | Azione stampata, Conseguenza, faccia della Tensione |
-| `crystal_measured` | LYRA | VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
-| `debt_called` | SALE | LIBERE | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione |
 | `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza, carta Echo, faccia della Tensione |
 | `discovery:the_charter` | LIBERE | ALDRIC | — | Conseguenza |
 | `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
 | `rumour_running` | VAERAX | VETRO | — | Conseguenza |
-| `structure:sealed` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
+| `structure:archive` | LYRA | LIBERE | **si'** | Azione stampata, Pietra |
 | `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, faccia della Tensione, fatto che dura |
 | `water_priced` | SALE | LIBERE | — | Conseguenza |
 
@@ -372,7 +388,7 @@ devono condividere almeno un segno che le spinge in direzioni
 opposte**. Le coppie che non ce l'hanno possono sedere allo stesso
 tavolo per otto anni senza incontrarsi mai.
 
-**Coppie incrociate: 15 su 28.**
+**Coppie incrociate: 28 su 28.**
 
 **Tutte le case hanno un profilo**, quindi quello che resta non e'
 piu' un buco di dichiarazioni: e' la superficie. Un incrocio
@@ -386,38 +402,37 @@ Tensione** che metta uno di quei segni sul tavolo dove le due case
 si incontrano, oppure **un `denies`** scritto — che e' un incrocio
 dichiarato a mano, e costa una riga.
 
-| coppia | |
-|---|---|
-| ALDRIC ↔ CENERE | niente |
-| ALDRIC ↔ LYRA | niente |
-| ALDRIC ↔ SALE | niente |
-| ALDRIC ↔ VAERAX | niente |
-| CENERE ↔ LIBERE | niente |
-| CENERE ↔ LYRA | niente |
-| CENERE ↔ NAHR | niente |
-| CENERE ↔ SALE | niente |
-| LIBERE ↔ LYRA | niente |
-| LIBERE ↔ NAHR | niente |
-| LYRA ↔ NAHR | niente |
-| LYRA ↔ SALE | niente |
-| NAHR ↔ VETRO | niente |
+Nessuna coppia resta muta: ogni casa ha una questione con ogni altra.
 
 ### Quante questioni ha ogni coppia
 
 | coppia | segni condivisi | quali |
 |---|---|---|
 | LYRA ↔ VETRO | 6 | `anointed`, `crystal_measured`, `discovery:legend`, `discovery:the_ledger`, `faith_established`, `knowledge_shared` |
+| LIBERE ↔ SALE | 5 | `account_settled`, `debt_called`, `debt_forgiven`, `structure:tollgate`, `water_priced` |
 | LYRA ↔ VAERAX | 5 | `discovery:crystal`, `discovery:legend`, `knowledge_shared`, `mine_sealed`, `study_supervised` |
 | ALDRIC ↔ NAHR | 4 | `condition:contested`, `crown_divided`, `nahr_settled`, `succession_by_law` |
 | CENERE ↔ VAERAX | 4 | `crystal_exploited`, `discovery:crystal`, `mine_sealed`, `study_supervised` |
 | CENERE ↔ VETRO | 4 | `anointed`, `faith_established`, `relic_buried`, `structure:sealed` |
-| LIBERE ↔ SALE | 4 | `account_settled`, `debt_called`, `debt_forgiven`, `water_priced` |
 | ALDRIC ↔ LIBERE | 3 | `charter_written`, `crowned`, `discovery:the_charter` |
+| CENERE ↔ LYRA | 2 | `crystal_exploited`, `crystal_measured` |
+| LYRA ↔ SALE | 2 | `debt_called`, `question_unresolved` |
+| NAHR ↔ SALE | 2 | `crown_divided`, `structure:tollgate` |
+| NAHR ↔ VETRO | 2 | `charter_written`, `structure:sealed` |
 | SALE ↔ VETRO | 2 | `discovery:the_ledger`, `ledger_public` |
+| ALDRIC ↔ CENERE | 1 | `structure:tollgate` |
+| ALDRIC ↔ LYRA | 1 | `question_unresolved` |
+| ALDRIC ↔ SALE | 1 | `structure:tollgate` |
+| ALDRIC ↔ VAERAX | 1 | `mine_sealed` |
 | ALDRIC ↔ VETRO | 1 | `charter_written` |
+| CENERE ↔ LIBERE | 1 | `structure:tollgate` |
+| CENERE ↔ NAHR | 1 | `structure:tollgate` |
+| CENERE ↔ SALE | 1 | `ledger_public` |
+| LIBERE ↔ LYRA | 1 | `structure:archive` |
+| LIBERE ↔ NAHR | 1 | `charter_written` |
 | LIBERE ↔ VAERAX | 1 | `condition:cut_off` |
 | LIBERE ↔ VETRO | 1 | `anointed` |
-| NAHR ↔ SALE | 1 | `crown_divided` |
+| LYRA ↔ NAHR | 1 | `knowledge_shared` |
 | NAHR ↔ VAERAX | 1 | `condition:cut_off` |
 | SALE ↔ VAERAX | 1 | `condition:cut_off` |
 | VAERAX ↔ VETRO | 1 | `rumour_running` |

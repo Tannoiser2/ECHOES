@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.428 — Nessuna coppia di case resta senza un litigio
+
+[D-459](docs/DECISIONS.md#d-459), parola del committente. Tredici coppie di
+case su ventotto non condividevano nessun segno in versi opposti: potevano
+sedere allo stesso tavolo per otto anni senza incontrarsi. Tredici voci nei
+profili strategici, senza segni nuovi, e le coppie incrociate passano da 15 a
+28 su 28. Costo scritto: i fronti comuni salgono da 15 a 21 coppie. Sonda delle
+posizioni: astensioni 25% → 16%, proposte sempre piatte 5 → 3. Cancello dei
+100 semi: 0 seggi bloccati sui due tavoli; opposizione nel margine
+sull'uniforme 64% → 70%.
+
+---
+
 ## 0.1.427 — I profili si polarizzano sui segni delle proposte piatte
 
 [D-458](docs/DECISIONS.md#d-458), parola del committente. Le quattordici

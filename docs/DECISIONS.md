@@ -10,6 +10,82 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-459 — Nessuna coppia di case resta senza un litigio
+
+**implemented in 0.1.428.** Parola del committente: *«merge e vai»* dopo
+[D-458](#d-458), che lasciava sul tavolo *«le dodici coppie di profili che
+condividono un segno»*. La misura che conta e' l'altra, quella della linea
+delle trasformazioni: **due case devono condividere almeno un segno che le
+spinge in direzioni opposte**. [MISURA_MATRICE](MISURA_MATRICE.md) la teneva
+a **15 coppie su 28**: tredici coppie potevano sedere allo stesso tavolo
+per otto anni senza incontrarsi mai — il Re e la Cenere, il Re e Lyra, la
+Cenere e il Sale, le Citta' e Nahr… E siccome si pesca un tavolo di quattro
+su otto, in molti anni un Consiglio aveva al tavolo solo case che non
+avevano niente da dirsi.
+
+**Cosa cambia**: tredici voci nei profili strategici, ognuna con la sua
+ragione detta come la direbbe chi siede a quel posto, e nessun segno
+nuovo — tutti segni che un profilo gia' nominava e che una Tensione o una
+Conseguenza scrive. Una voce sola chiude piu' coppie quando il segno e' un
+litigio del mondo:
+
+| coppia muta | segno | chi lo vuole | **chi lo teme adesso** |
+|---|---|---|---|
+| Re ↔ Cenere, Re ↔ Sale, Cenere ↔ Citta', Cenere ↔ Nahr | `structure:tollgate` | Cenere, Sale | **il Re** (il pane che paga pedaggio), **le Citta'** (una capitale con un altro nome), **Nahr** (ogni barriera pagata due volte) |
+| Re ↔ Vaerax | `mine_sealed` | Vaerax | **il Re** (la meta' del tesoro che non paga il pane) |
+| Re ↔ Lyra | `question_unresolved` | **Lyra** (una misura ancora da prendere) | il Re |
+| Cenere ↔ Lyra | `crystal_exploited` · `crystal_measured` | Cenere · Lyra | **Lyra** · **la Cenere** (misurare o cavare) |
+| Cenere ↔ Sale | `ledger_public` | Sale | **la Cenere** (la fine del segreto che sotto c'e' di piu') |
+| Citta' ↔ Lyra | `structure:archive` | Lyra | **le Citta'** (la memoria di tutti in un posto solo) |
+| Citta' ↔ Nahr | `charter_written` | Citta' | **Nahr** (un confine con la firma sotto) |
+| Lyra ↔ Nahr | `knowledge_shared` | Lyra | **Nahr** (un calendario che tutti sanno leggere) |
+| Lyra ↔ Sale | `debt_called` | Sale | **Lyra** (una studiosa senza patrono vive a credito) |
+| Nahr ↔ Vetro | `structure:sealed` | Vetro | **Nahr** (una strada chiusa con un altro nome) |
+
+**Coppie incrociate: 28 su 28.** Segni che aiutano una casa e ne
+danneggiano un'altra 26 → 29; segni nominati dai profili 84 → 97. La
+barriera di pedaggio diventa il litigio piu' largo del tavolo — due case
+la vogliono, tre la temono — e la miniera sigillata il secondo.
+
+**Il costo, scritto**: le coppie che condividono un segno *nello stesso
+verso* salgono da 15 a **21 su 28** — piu' voci, piu' fronti comuni. Non
+e' un difetto: una coppia che litiga su un segno e fa fronte su un altro
+e' un'alleanza di convenienza, che e' quello che il Consiglio deve
+produrre. Il difetto era la coppia che non aveva *niente*.
+
+**La misura**, quaranta anni con la sonda delle posizioni e trenta con
+quella della partecipazione, stessi semi di D-458:
+
+| | D-458 | **D-459** |
+|---|---|---|
+| proposte messe ai voti, sempre piatte | 5 su 79 | **3 su 83** |
+| Consigli con almeno un no (40 anni) | 78% | **79%** |
+| posizioni OPPOSE · SUPPORT · ABSTAIN (40 anni) | 46% · 29% · 25% | **42% · 42% · 16%** |
+| astensioni, misto / uniforme (30 anni) | 30% / 27% | **30% / 27%** |
+| Consigli col tavolo in silenzio | 5% / 9% | **5% / 8%** |
+| Consigli con opposizione nel margine | 70% / 64% | **71% / 70%** |
+
+Il numero che si muove e' l'astensione della sonda delle posizioni: da un
+quarto a un sesto, e quello che si e' mosso e' diventato **sostegno**, non
+opposizione — con ventotto coppie incrociate su ventotto, chi non propone
+trova quasi sempre un segno suo nella proposta, in un verso o nell'altro.
+Il tavolo dei quattro ottimizzatori si oppone nel margine in sette Consigli
+su dieci, come quello misto: e' la prima volta che i due tavoli si
+somigliano.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **143 · 52 · 71 · 83** sul misto e
+**129 · 57 · 81 · 88** sull'uniforme — quattordici Consigli caduti in piu'
+sull'uniforme rispetto a D-458. Suite 746 prove verdi. La corsia lenta rigirata.
+
+**Cosa resta al committente**: le tredici ragioni sono scritte come le
+direbbe chi siede a quel posto, e sono sue da correggere; le tre proposte
+ancora piatte — il registro del grano, la spedizione nell'acqua profonda,
+la reliquia mostrata — scrivono segni sulla casa e sul mondo che nessun
+profilo nomina, e sono la stessa lista di D-457, tre righe piu' corta.
+
+---
+
 ## D-458 — I profili si polarizzano sui segni delle proposte piatte
 
 **implemented in 0.1.427.** Parola del committente: *«vai»* sulla seconda

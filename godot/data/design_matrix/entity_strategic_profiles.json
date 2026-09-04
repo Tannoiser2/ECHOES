@@ -55,6 +55,14 @@
         {
           "tag": "nahr_settled",
           "why": "Chi si ferma sulla sua terra senza la sua corona sopra e' un regno dentro il regno."
+        },
+        {
+          "tag": "structure:tollgate",
+          "why": "Il pane che paga un pedaggio arriva piu' caro e piu' tardi: una barriera sulla strada del grano e' una tassa sul trono."
+        },
+        {
+          "tag": "mine_sealed",
+          "why": "Una miniera sigillata e' la meta' del tesoro che non paga il pane. Un re con un raccolto che non basta non chiude niente."
         }
       ],
       "denies": [
@@ -111,6 +119,22 @@
         {
           "tag": "condition:guarded",
           "why": "Sorvegliati si vive, ma si vive come ospiti di qualcun altro."
+        },
+        {
+          "tag": "structure:tollgate",
+          "why": "Un popolo che si sposta paga ogni barriera due volte: andando e tornando."
+        },
+        {
+          "tag": "charter_written",
+          "why": "Una Carta scritta da chi ha citta' dice dove si puo' passare e dove no: e' un confine con la firma sotto."
+        },
+        {
+          "tag": "knowledge_shared",
+          "why": "Un calendario che tutti sanno leggere e' un popolo che chiunque sa dove trovare."
+        },
+        {
+          "tag": "structure:sealed",
+          "why": "Un luogo sigillato e' una strada chiusa con un altro nome, e un popolo che si sposta le conta tutte."
         }
       ],
       "denies": [
@@ -148,6 +172,10 @@
         {
           "tag": "discovery:the_ledger",
           "why": "Un registro letto e' un registro che non si puo' piu' riscrivere di nascosto."
+        },
+        {
+          "tag": "question_unresolved",
+          "why": "Una questione lasciata aperta e' una misura ancora da prendere: e' il suo mestiere, e il verbale che la chiude glielo toglie."
         }
       ],
       "fears": [
@@ -174,6 +202,14 @@
         {
           "tag": "anointed",
           "why": "Una custodia riconosciuta e' un sapere chiuso a chiave, con la chiave in mano a uno solo."
+        },
+        {
+          "tag": "crystal_exploited",
+          "why": "Cavata prima di essere misurata, la pietra e' una risposta persa per sempre."
+        },
+        {
+          "tag": "debt_called",
+          "why": "Una studiosa senza patrono vive a credito: il debito chiamato e' la fine dello studio, non del debito."
         }
       ],
       "denies": [
@@ -284,6 +320,14 @@
         {
           "tag": "anointed",
           "why": "Un custode unto e' uno che non e' mai sceso e da' ordini a chi ci scende."
+        },
+        {
+          "tag": "crystal_measured",
+          "why": "Una pietra misurata e' una pietra con un prezzo scritto da altri: si cava prima che qualcuno lo scriva."
+        },
+        {
+          "tag": "ledger_public",
+          "why": "Quello che la miniera rende, scritto in un registro che tutti leggono, e' la fine del segreto che sotto c'e' di piu'."
         }
       ],
       "denies": [
@@ -352,6 +396,14 @@
         {
           "tag": "account_settled",
           "why": "Un conto saldato a forza e' una citta' in meno che si regge da sola: le sette citta' non pagano a comando."
+        },
+        {
+          "tag": "structure:tollgate",
+          "why": "Sette citta' senza capitale vivono di strade aperte: una barriera che conta chi passa e' una capitale con un altro nome."
+        },
+        {
+          "tag": "structure:archive",
+          "why": "Un archivio e' la memoria di tutti in un posto solo, e chi tiene quel posto tiene le sette."
         }
       ],
       "denies": [
