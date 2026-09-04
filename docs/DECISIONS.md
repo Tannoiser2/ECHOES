@@ -10,6 +10,80 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-461 — Tre Conseguenze scritte nel foglio sbagliato, e la sonda che leggeva lo stesso foglio
+
+**implemented in 0.1.430.** Parola del committente: *«mergia e vai»* dopo
+[D-460](#d-460), che lasciava un costo scritto: *la quota garantita ha una
+penna e non ha ancora scritto*. La sonda delle Conseguenze sa dire perche'
+una Conseguenza non esce — non idonea, mai scelta, sempre perdente — e
+girata su cento anni ha risposto **«ORFANA: nessuna proposta la elenca»**.
+Tre carte la elencano. **Lo zero era la sonda**, la quinta volta in questo
+progetto, e la ragione e' la nona di [D-414](#d-414): dal 0.1.272 il motore
+legge Domande e Proposte **dalla carta Tensione**, e la sonda le leggeva
+ancora **dal template crudo**, che tiene una copia di allora come ripiego.
+
+**E leggendo la copia cruda si e' trovato quello che ci stava scritto.**
+[D-397](#d-397) ha dato a tre proposte gemelle una Conseguenza in piu' perche'
+diventassero tre strade — *Chi puo', se ne va* a «la terra a chi la lavora»,
+*Il Debito Contratto* a «l'acqua non e' di nessuno», *Resta Conteso* a
+«si tiri a sorte» — e le ha scritte in `confluence_templates.json`. Il motore
+non le ha lette mai: **le tre gemelle sono rimaste gemelle al tavolo**, e le
+tre Conseguenze non sono mai state su una carta. Poi [D-405](#d-405) ha
+misurato `CNS_COST_DEBT` *«scelta 9 volte su 9, mai passata»* e
+[D-440](#d-440) l'ha tenuta *«perche' e' l'unica strada della sua domanda»*:
+due verbali presi sulla stessa sonda cieca, che contava come scelta una
+Conseguenza che non era in gioco. Il numero era vero su un foglio che il
+tavolo non leggeva.
+
+**Cosa cambia**:
+
+1. **La sonda legge la carta**, come il motore: `confluence_template_for` nei
+   due punti — chi elenca ogni Conseguenza, e chi e' stato escluso con la sua
+   domanda in tavola.
+2. **Le tre Conseguenze di D-397 arrivano sulla carta**, dove D-397 le
+   voleva: `P_LAND_TO_WORKERS` + `CNS_COST_EMPTIED`, `P_WATER_COMMON` +
+   `CNS_COST_DEBT`, `P_DRAW_LOTS` + `CNS_FAILURE_CONTESTED`. Da oggi le
+   gemelle sono strade davvero.
+3. **La copia cruda non puo' piu' divergere**: `validate_data` va rosso se un
+   template legato a una Tensione porta Domande o Proposte diverse da quelle
+   della sua carta — *la carta vince, riallinea o togli la copia*. Le sette
+   copie che divergevano sono riallineate; la guardia e' stata provata su
+   una deriva piantata (1 errore) e sui dati veri (0).
+
+**I verdetti veri**, seme 7000, prima del punto 2:
+
+| perimetro | non escono mai | e la quota garantita |
+|---|---|---|
+| 100 anni scollegati, 488 Consigli | 12 su 67 | **sempre perdente**: scelta 1 volta su 8 offerte |
+| 200 anni in 20 saghe da 10, 966 Consigli | 7 su 67 | **esce** |
+
+E fra le sette in saga, due **orfane vere** — `CNS_COST_DEBT` e
+`CNS_COST_EMPTIED` — che nessuna carta elencava: sono le due del punto 2.
+
+**Dopo il punto 2**, stessi semi: su cento anni scollegati **13 su 67** non
+escono — *Il Debito Contratto* e *Chi puo', se ne va* sono **fuori
+portata**, la loro domanda non arriva al tavolo in cento anni scollegati —
+e in saga **5 su 67** (erano 7): *Il Debito Contratto*, che tre verbali
+davano per «sempre perdente», **esce** appena e' su una carta. *Resta
+Conteso* esce sui due perimetri.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **141 · 49 · 75 · 85** sul misto e
+**129 · 52 · 86 · 86** sull'uniforme. Suite 746 prove verdi, dopo una prova
+che misurava un caso: `test_the_natural_proponent_does_not_claim` trovava
+`{}` perche' Vaerax non aveva altro da chiedere, e con *Chi puo', se ne va*
+sulla Carestia prenotava quella — adesso spegne il resto del tavolo, come
+le sue sorelle nello stesso file dicevano di fare dal D-207.
+
+**Cosa resta**: la copia cruda esiste ancora, e il ripiego che lo schema le
+chiede (*«per una carta che non porta il suo blocco council»*) non serve a
+nessuna delle 60 carte. Toglierla vuol dire allentare lo schema e girare
+quattordici lettori: e' la strada, e la guardia di oggi la tiene aperta
+senza percorrerla. E ogni sonda che legga `confluence_templates` crudo va
+guardata con questo sospetto: `run_box_survey` lo fa ancora.
+
+---
+
 ## D-460 — Le otto memorie della biblioteca hanno una penna
 
 **implemented in 0.1.429.** Parola del committente: *«merge e vai»* dopo

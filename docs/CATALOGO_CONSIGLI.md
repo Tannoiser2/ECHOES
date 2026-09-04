@@ -214,6 +214,7 @@ Otto secoli senza corona hanno funzionato benissimo finché nessuno ha avuto bis
 > E chi si siede, quando non si è d'accordo?
 
 - **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
+- **Se passa — Resta Conteso:** dove si discute diventa #contesa · la domanda in gioco sale
 
 ---
 
@@ -501,6 +502,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 - **Se passa — Chi Lavora Mangia:** dove si discute diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto fra chi propone e il rivale cambia
 - **Se passa — Il Titolo che non Vale più:** dove si discute cambia padrone · il mondo registra: la corona e' stata spogliata
 - **Se passa — La Quota Garantita:** il mondo registra: una quota e' garantita · La Carestia scende
+- **Se passa — Chi Puo', Se Ne Va:** in una Regione confinante diventa #svuotata · chi propone se ne va in una Regione confinante
 
 ### Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.
 
@@ -1607,6 +1609,7 @@ I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto 
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 - **Se passa — L'Acqua di Tutti:** il mondo registra: l'acqua si divide · L'Acqua Ferma scende
+- **Se passa — Il Debito Contratto:** dove si discute diventa #indebitata · Le Vie Interrotte sale
 
 ---
 

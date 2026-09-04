@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.430 — Tre Conseguenze scritte nel foglio sbagliato, e la sonda che leggeva lo stesso foglio
+
+[D-461](docs/DECISIONS.md#d-461), parola del committente. La sonda delle
+Conseguenze leggeva le Proposte dal template crudo, non dalla carta come il
+motore dal 0.1.272: chiamava orfana una Conseguenza che tre carte elencano, e
+tre verbali (D-397, D-405, D-440) avevano misurato una Conseguenza che non era
+mai stata in gioco. La sonda legge la carta; le tre Conseguenze di D-397
+arrivano sulla carta; `validate_data` va rosso se la copia cruda diverge. Conseguenze mai uscite in
+saga 7 → 5 su 67; cancello dei 100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.429 — Le otto memorie della biblioteca hanno una penna
 
 [D-460](docs/DECISIONS.md#d-460), parola del committente. Le otto memorie che

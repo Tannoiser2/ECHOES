@@ -41,7 +41,8 @@
             }
           ],
           "success_consequences": [
-            "CNS_ROYAL_GRANARY"
+            "CNS_ROYAL_GRANARY",
+            "CNS_DISTRIBUTION_AUDITED"
           ],
           "echo_summary": "Il grano $of_region passò sotto il sigillo di $proponent.",
           "echo_summaries": {
@@ -57,7 +58,8 @@
           "eligibility": [],
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
-            "CNS_CROWN_DISPOSSESSED"
+            "CNS_CROWN_DISPOSSESSED",
+            "CNS_QUOTA_GUARANTEED"
           ],
           "echo_summary": "$proponent entrò $in_region, e quella terra smise di essere solo di $controller.",
           "echo_summaries": {
@@ -97,6 +99,7 @@
           "success_consequences": [
             "CNS_NAHR_SETTLEMENT",
             "CNS_CROWN_DISPOSSESSED",
+            "CNS_QUOTA_GUARANTEED",
             "CNS_COST_EMPTIED"
           ],
           "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta.",
@@ -104,6 +107,21 @@
             "DECISIVE_SUCCESS": "La terra $of_region passò a chi la lavorava, e il vecchio titolo non fu nemmeno riletto ad alta voce.",
             "FAILURE": "Si chiese che la terra $of_region andasse a chi la lavorava, e la carta rimase quella di prima.",
             "SUCCESS_WITH_COST": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso."
+          }
+        },
+        {
+          "id": "P_SEAL_MINE_FOR_FIELDS",
+          "question_id": "Q_FAMINE_GRAIN",
+          "text": "Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_MINE_SEALED"
+          ],
+          "echo_summary": "Le gallerie furono sigillate, e le braccia tornarono ai campi.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "$proponent entrò $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.",
+            "FAILURE": "$proponent chiese di entrare $in_region e la porta restò dov'era, con la stessa gente davanti.",
+            "SUCCESS_WITH_COST": "$proponent entrò $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perché qualcuno lo chiamasse un accordo."
           }
         }
       ],
@@ -180,20 +198,6 @@
           }
         },
         {
-          "id": "P_GUARDED_STUDY",
-          "question_id": "Q_AWAKENING_MOUNTAIN",
-          "text": "Il Cristallo si studi sotto vincolo, e del limite risponda $rival.",
-          "eligibility": [],
-          "success_consequences": [
-            "CNS_STUDY_UNDER_GUARD"
-          ],
-          "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.",
-          "echo_summaries": {
-            "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu più lungo di quanto chiunque si aspettasse.",
-            "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già."
-          }
-        },
-        {
           "id": "P_REOPEN_THE_MINE",
           "question_id": "Q_AWAKENING_CRYSTAL",
           "text": "Si tolga la pietra. Quello che fu murato per non dover decidere, si decide adesso, con le lampade accese.",
@@ -211,6 +215,20 @@
           "echo_summary": "La pietra fu tolta, e quello che dormiva tornò una domanda.",
           "echo_summaries": {
             "FAILURE": "Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa."
+          }
+        },
+        {
+          "id": "P_GUARDED_STUDY",
+          "question_id": "Q_AWAKENING_MOUNTAIN",
+          "text": "Il Cristallo si studi sotto vincolo, e del limite risponda $rival.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_STUDY_UNDER_GUARD"
+          ],
+          "echo_summary": "Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu più lungo di quanto chiunque si aspettasse.",
+            "FAILURE": "Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già."
           }
         },
         {
@@ -339,37 +357,6 @@
           "echo_summary": "La corona fu divisa in due, e $of_region nessuno seppe più dire a chi rispondesse."
         },
         {
-          "id": "P_WRITE_THE_LAW",
-          "question_id": "Q_SUCCESSION_LAW",
-          "text": "Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.",
-          "eligibility": [],
-          "success_consequences": [
-            "CNS_LAW_OF_SUCCESSION"
-          ],
-          "echo_summary": "La successione fu affidata a una legge scritta, e il trono smise di essere una questione di famiglia."
-        },
-        {
-          "id": "P_TAKE_THE_SEAT",
-          "question_id": "Q_SUCCESSION_LAW",
-          "text": "$proponent prende il posto adesso, e a chi non ci sta risponde $rival.",
-          "eligibility": [
-            {
-              "type": "tension_limit",
-              "tension_id": "TEN_SUCCESSION",
-              "min": 6,
-              "label": "Solo un trono al limite si prende così"
-            }
-          ],
-          "success_consequences": [
-            "CNS_CAPITAL_TAKEN"
-          ],
-          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo.",
-          "echo_summaries": {
-            "FAILURE": "$proponent si mosse per prendere il posto e trovò $rival già seduto, e sveglio.",
-            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivò."
-          }
-        },
-        {
           "id": "P_ONE_CROWN",
           "question_id": "Q_SUCCESSION_HEIR",
           "text": "Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.",
@@ -399,6 +386,37 @@
           "echo_summary": "I due titoli tornarono uno, e chi perse la conta non lo dimenticò.",
           "echo_summaries": {
             "FAILURE": "Si contò chi teneva cosa, e la conta non tornò a nessuno."
+          }
+        },
+        {
+          "id": "P_WRITE_THE_LAW",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_LAW_OF_SUCCESSION"
+          ],
+          "echo_summary": "La successione fu affidata a una legge scritta, e il trono smise di essere una questione di famiglia."
+        },
+        {
+          "id": "P_TAKE_THE_SEAT",
+          "question_id": "Q_SUCCESSION_LAW",
+          "text": "$proponent prende il posto adesso, e a chi non ci sta risponde $rival.",
+          "eligibility": [
+            {
+              "type": "tension_limit",
+              "tension_id": "TEN_SUCCESSION",
+              "min": 6,
+              "label": "Solo un trono al limite si prende così"
+            }
+          ],
+          "success_consequences": [
+            "CNS_CAPITAL_TAKEN"
+          ],
+          "echo_summary": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo.",
+          "echo_summaries": {
+            "FAILURE": "$proponent si mosse per prendere il posto e trovò $rival già seduto, e sveglio.",
+            "SUCCESS_WITH_COST": "$proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivò."
           }
         },
         {
@@ -815,7 +833,8 @@
           "text": "Ogni città mandi braccia per quanta acqua prende. E nessuno riscuota.",
           "eligibility": [],
           "success_consequences": [
-            "CNS_CANALS_DUG"
+            "CNS_CANALS_DUG",
+            "CNS_WATER_SHARED"
           ],
           "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua tornò a muoversi $in_region.",
           "echo_summaries": {
@@ -840,6 +859,7 @@
           "eligibility": [],
           "success_consequences": [
             "CNS_CANALS_DUG",
+            "CNS_WATER_SHARED",
             "CNS_COST_DEBT"
           ],
           "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
@@ -911,6 +931,26 @@
           }
         },
         {
+          "id": "P_OLD_PAGE",
+          "question_id": "Q_DEBT_LEDGER",
+          "text": "Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.",
+          "eligibility": [
+            {
+              "type": "state_tag_present",
+              "scope": "GLOBAL",
+              "tag": "legend:debt_called",
+              "label": "Si racconta del giorno in cui la Gilda chiese tutto"
+            }
+          ],
+          "success_consequences": [
+            "CNS_LEGEND_RETOLD"
+          ],
+          "echo_summary": "La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.",
+          "echo_summaries": {
+            "FAILURE": "Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto."
+          }
+        },
+        {
           "id": "P_FORGIVE",
           "question_id": "Q_DEBT_CALL",
           "text": "Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.",
@@ -930,26 +970,6 @@
             "CNS_SEAT_CLAIMED"
           ],
           "echo_summary": "Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo."
-        },
-        {
-          "id": "P_OLD_PAGE",
-          "question_id": "Q_DEBT_LEDGER",
-          "text": "Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.",
-          "eligibility": [
-            {
-              "type": "state_tag_present",
-              "scope": "GLOBAL",
-              "tag": "legend:debt_called",
-              "label": "Si racconta del giorno in cui la Gilda chiese tutto"
-            }
-          ],
-          "success_consequences": [
-            "CNS_LEGEND_RETOLD"
-          ],
-          "echo_summary": "La vecchia pagina fu letta ad alta voce, e i numeri nuovi fecero meno paura.",
-          "echo_summaries": {
-            "FAILURE": "Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto."
-          }
         }
       ],
       "consequence_pools": {
@@ -976,11 +996,6 @@
       "description": "L'Ordine dice che non si guarda. I Signori della Cenere scavano sotto la cella da un anno. Nessuno dei due ha ancora detto ad alta voce cosa pensa che ci sia.",
       "questions": [
         {
-          "id": "Q_RELIC_KEEP",
-          "text": "Chi risponde di quello che c'è nella teca?",
-          "eligibility": []
-        },
-        {
           "id": "Q_RELIC_SHOW",
           "text": "E chi ha diritto di vederlo?",
           "eligibility": [
@@ -991,9 +1006,37 @@
               "label": "La Reliquia è al limite"
             }
           ]
+        },
+        {
+          "id": "Q_RELIC_KEEP",
+          "text": "Chi risponde di quello che c'è nella teca?",
+          "eligibility": []
         }
       ],
       "propositions": [
+        {
+          "id": "P_SHOW_IT",
+          "question_id": "Q_RELIC_SHOW",
+          "text": "Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_RELIC_SHOWN"
+          ],
+          "echo_summary": "La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.",
+          "echo_summaries": {
+            "DECISIVE_SUCCESS": "La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio."
+          }
+        },
+        {
+          "id": "P_BURY_IT",
+          "question_id": "Q_RELIC_SHOW",
+          "text": "Si muri la cella, e si metta a verbale che è stata murata.",
+          "eligibility": [],
+          "success_consequences": [
+            "CNS_RELIC_BURIED"
+          ],
+          "echo_summary": "La cella fu murata, e messo a verbale che era stata murata."
+        },
         {
           "id": "P_ANOINT_KEEPER",
           "question_id": "Q_RELIC_KEEP",
@@ -1031,29 +1074,6 @@
           "echo_summaries": {
             "FAILURE": "Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno."
           }
-        },
-        {
-          "id": "P_SHOW_IT",
-          "question_id": "Q_RELIC_SHOW",
-          "text": "Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.",
-          "eligibility": [],
-          "success_consequences": [
-            "CNS_RELIC_SHOWN"
-          ],
-          "echo_summary": "La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.",
-          "echo_summaries": {
-            "DECISIVE_SUCCESS": "La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio."
-          }
-        },
-        {
-          "id": "P_BURY_IT",
-          "question_id": "Q_RELIC_SHOW",
-          "text": "Si muri la cella, e si metta a verbale che è stata murata.",
-          "eligibility": [],
-          "success_consequences": [
-            "CNS_RELIC_BURIED"
-          ],
-          "echo_summary": "La cella fu murata, e messo a verbale che era stata murata."
         }
       ],
       "consequence_pools": {

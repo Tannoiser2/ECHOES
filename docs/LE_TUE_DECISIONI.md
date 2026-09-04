@@ -132,6 +132,13 @@ Conseguenze nuove legate alle proposte che le dicono, una nella casella IL
 MONDO RICORDA. Costo scritto: il Debito scrive la sua rata dalle carte della
 Decima e del Tributo, non dalle sue.
 
+**E in 0.1.430, ancora «mergia e vai»** ([D-461](DECISIONS.md#d-461)): sono
+andato a vedere perché la quota garantita non scriveva, e la sonda ha risposto
+«orfana». Era cieca lei: leggeva le proposte dal template, il motore dalla
+carta. Leggendo il template ho trovato tre Conseguenze che una decisione di
+trenta versioni fa aveva scritto lì, e che non sono mai arrivate al tavolo: ora
+ci sono. E il validatore non lascia più divergere la copia dalla carta.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3646 testi in lettura.
+possono spostare nella frase, non togliere. 3651 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7653,22 +7653,6 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 > Si volle sigillare le gallerie $in_region, e la pietra restò dov'era, con la porta aperta.
 
 
-**`P_GUARDED_STUDY`**
-> Il Cristallo si studi sotto vincolo, e del limite risponda $rival.
-
-
-**`P_GUARDED_STUDY, esito`**
-> Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.
-
-
-**`P_GUARDED_STUDY, esito DECISIVE_SUCCESS`**
-> Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu più lungo di quanto chiunque si aspettasse.
-
-
-**`P_GUARDED_STUDY, esito FAILURE`**
-> Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già.
-
-
 **`P_REOPEN_THE_MINE`**
 > Si tolga la pietra. Quello che fu murato per non dover decidere, si decide adesso, con le lampade accese.
 
@@ -7683,6 +7667,22 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 
 **`P_REOPEN_THE_MINE, esito FAILURE`**
 > Si volle togliere la pietra, e la pietra restò dove qualcuno l'aveva messa.
+
+
+**`P_GUARDED_STUDY`**
+> Il Cristallo si studi sotto vincolo, e del limite risponda $rival.
+
+
+**`P_GUARDED_STUDY, esito`**
+> Il Cristallo Rosso fu affidato a $rival, e lo studio ebbe un limite scritto.
+
+
+**`P_GUARDED_STUDY, esito DECISIVE_SUCCESS`**
+> Il Cristallo Rosso fu affidato a $rival, e il limite scritto fu più lungo di quanto chiunque si aspettasse.
+
+
+**`P_GUARDED_STUDY, esito FAILURE`**
+> Si propose di affidare il Cristallo Rosso a una custodia, e restò in mano a chi lo aveva già.
 
 
 **`P_SLAY_THE_DRAGON`**
@@ -7801,22 +7801,6 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 > Si volle che il registro restasse a uno solo, e tre città smisero di firmare.
 
 
-**`P_FORGIVE`**
-> Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.
-
-
-**`P_FORGIVE, esito`**
-> Il debito fu rimesso, e per un anno non si parlò d'altro.
-
-
-**`P_CALL_IT_IN`**
-> Si chieda tutto, adesso. Chi non può pagare, paghi con quello che ha.
-
-
-**`P_CALL_IT_IN, esito`**
-> Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo.
-
-
 **`P_OLD_PAGE`**
 > Si riapre il registro alla pagina che si racconta, e la si legge ad alta voce prima di scrivere la nuova.
 
@@ -7831,6 +7815,22 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 
 **`P_OLD_PAGE, esito FAILURE`**
 > Si cercò la pagina che si racconta, e nessuno fu d'accordo su cosa ci fosse scritto.
+
+
+**`P_FORGIVE`**
+> Una riga tirata sotto la colonna: si riparta da zero, e si scriva come.
+
+
+**`P_FORGIVE, esito`**
+> Il debito fu rimesso, e per un anno non si parlò d'altro.
+
+
+**`P_CALL_IT_IN`**
+> Si chieda tutto, adesso. Chi non può pagare, paghi con quello che ha.
+
+
+**`P_CALL_IT_IN, esito`**
+> Il debito fu chiamato tutto insieme, e $in_region cambiò padrone senza che partisse un colpo.
 
 
 **`CNF_FAMINE_01`**
@@ -7941,6 +7941,26 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 > La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta - insieme al conto di chi ci aveva rimesso.
 
 
+**`P_SEAL_MINE_FOR_FIELDS`**
+> Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito`**
+> Le gallerie furono sigillate, e le braccia tornarono ai campi.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito DECISIVE_SUCCESS`**
+> $proponent entrò $in_region senza che nessuno contasse i carri, e quella terra smise di essere di qualcuno in particolare.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito FAILURE`**
+> $proponent chiese di entrare $in_region e la porta restò dov'era, con la stessa gente davanti.
+
+
+**`P_SEAL_MINE_FOR_FIELDS, esito SUCCESS_WITH_COST`**
+> $proponent entrò $in_region, e quella terra smise di essere solo di $controller: ci vollero due inverni perché qualcuno lo chiamasse un accordo.
+
+
 **`CNF_RELIC_03`**
 > Quello che c'è nella Teca
 
@@ -7949,16 +7969,36 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 > Quello che c'e nella Teca
 
 
-**`Q_RELIC_KEEP`**
-> Chi risponde di quello che c'è nella teca?
-
-
 **`Q_RELIC_SHOW`**
 > E chi ha diritto di vederlo?
 
 
 **`Q_RELIC_SHOW, si apre se 1`**
 > La Reliquia è al limite
+
+
+**`Q_RELIC_KEEP`**
+> Chi risponde di quello che c'è nella teca?
+
+
+**`P_SHOW_IT`**
+> Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.
+
+
+**`P_SHOW_IT, esito`**
+> La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.
+
+
+**`P_SHOW_IT, esito DECISIVE_SUCCESS`**
+> La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio.
+
+
+**`P_BURY_IT`**
+> Si muri la cella, e si metta a verbale che è stata murata.
+
+
+**`P_BURY_IT, esito`**
+> La cella fu murata, e messo a verbale che era stata murata.
 
 
 **`P_ANOINT_KEEPER`**
@@ -7991,26 +8031,6 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 
 **`P_WATCH_THE_ROCK, esito FAILURE`**
 > Si volle spostare la veglia dalla teca alla montagna, e per un anno non la tenne nessuno.
-
-
-**`P_SHOW_IT`**
-> Si apra la teca davanti a testimoni, e a mostrarla sia $proponent.
-
-
-**`P_SHOW_IT, esito`**
-> La teca fu aperta davanti a testimoni, e non successe niente: fu quella la notizia.
-
-
-**`P_SHOW_IT, esito DECISIVE_SUCCESS`**
-> La teca fu aperta davanti a tutti, e otto secoli di prudenza finirono in un pomeriggio.
-
-
-**`P_BURY_IT`**
-> Si muri la cella, e si metta a verbale che è stata murata.
-
-
-**`P_BURY_IT, esito`**
-> La cella fu murata, e messo a verbale che era stata murata.
 
 
 **`CNF_ROADS_01`**
@@ -8141,6 +8161,30 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 > La corona fu divisa in due, e $of_region nessuno seppe più dire a chi rispondesse.
 
 
+**`P_ONE_CROWN`**
+> Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.
+
+
+**`P_ONE_CROWN, si puo' proporre se 1`**
+> La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
+
+
+**`P_ONE_CROWN, si puo' proporre se 2`**
+> La corona e' divisa da un'altra era
+
+
+**`P_ONE_CROWN, si puo' proporre se 3`**
+> Qualcuno ha gia' fatto il nome di un erede
+
+
+**`P_ONE_CROWN, esito`**
+> I due titoli tornarono uno, e chi perse la conta non lo dimenticò.
+
+
+**`P_ONE_CROWN, esito FAILURE`**
+> Si contò chi teneva cosa, e la conta non tornò a nessuno.
+
+
 **`P_WRITE_THE_LAW`**
 > Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.
 
@@ -8167,30 +8211,6 @@ possono spostare nella frase, non togliere. 3646 testi in lettura.
 
 **`P_TAKE_THE_SEAT, esito SUCCESS_WITH_COST`**
 > $proponent prese il posto senza aspettare che si liberasse, e $rival non arrivò in tempo - ma arrivò.
-
-
-**`P_ONE_CROWN`**
-> Due titoli sono due guerre che aspettano. Si conti chi tiene cosa, e il titolo torni uno.
-
-
-**`P_ONE_CROWN, si puo' proporre se 1`**
-> La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
-
-
-**`P_ONE_CROWN, si puo' proporre se 2`**
-> La corona e' divisa da un'altra era
-
-
-**`P_ONE_CROWN, si puo' proporre se 3`**
-> Qualcuno ha gia' fatto il nome di un erede
-
-
-**`P_ONE_CROWN, esito`**
-> I due titoli tornarono uno, e chi perse la conta non lo dimenticò.
-
-
-**`P_ONE_CROWN, esito FAILURE`**
-> Si contò chi teneva cosa, e la conta non tornò a nessuno.
 
 
 **`P_RETAKE_QUESTION`**
