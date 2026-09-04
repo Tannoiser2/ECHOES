@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.421 — Le sedie vedono la proposta
+
+[D-452](docs/DECISIONS.md#d-452). Da 0.1.272 le Proposte stanno sulla carta
+Tensione; la policy delle sedie le cercava ancora nel template crudo, non le
+trovava mai, e si asteneva per cecità. Una riga, tre volte, e la sonda delle
+posizioni con lei. Nessuna regola cambia; cambia tutto quello che le sedie
+fanno al Consiglio. Partecipazione a trenta anni, misto: astensioni 95% → 63%,
+opposizione nel margine 7% → 55%, Consigli falliti 8 → 43; uniforme 99% → 83%,
+1% → 8%. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli, esiti falliti
+33 → 135 (misto) e 23 → 43 (uniforme). E l'esperimento chiesto dal committente,
+«non ci si può astenere», misurato in tre letture con `--no-abstain`: cambia le
+parole e non il peso — l'opposizione nel margine resta 55–58% e 8–10%.
+
+---
+
 ## 0.1.420 — La misura della partecipazione
 
 [D-451](docs/DECISIONS.md#d-451), parola del committente. Una sonda nuova gioca

@@ -2,7 +2,14 @@ extends SceneTree
 ## **Chi partecipa davvero a un Consiglio** (D-451).
 ##
 ##   godot --headless --path godot --script res://cli/run_participation_probe.gd -- \
-##       --runs=30 --seed=7000 [--out=FILE]
+##       --runs=30 --seed=7000 [--out=FILE] [--no-abstain=support|oppose|condition]
+##
+## `--no-abstain` e' un **esperimento**, non una regola: risponde alla domanda
+## del committente *«e se non ci si potesse astenere?»* sostituendo ogni
+## ABSTAIN con la posizione detta — SUPPORT, OPPOSE, o CONDITION con la
+## clausola migliore per quel seggio (e SUPPORT dove una clausola non c'e').
+## Il documento generato con l'opzione lo dice in testa e non e' quello del
+## cancello.
 ##
 ## Il cancello dei 100 semi conta i Consigli e i loro esiti, non chi ci
 ## partecipa: un Consiglio con tre astenuti conta verde quanto uno combattuto.
@@ -36,9 +43,16 @@ class Spy extends RefCounted:
 	## Un record per Consiglio, nell'ordine in cui si aprono:
 	## {proponent, stances: {entity: stance}, commits: {entity: n}}
 	var councils: Array = []
+	## L'esperimento: "" gioca com'e'; altrimenti ogni ABSTAIN diventa questo.
+	var forced: String = ""
+	var forced_count: int = 0
+	var policy: RefCounted = null
 
-	func _init(who: RefCounted) -> void:
+	func _init(who: RefCounted, p_forced: String = "") -> void:
 		inner = who
+		forced = p_forced
+		if forced != "":
+			policy = PolicyDecider.new(null)
 
 	func _current(context: Dictionary) -> Dictionary:
 		var proponent: String = str(context.get("proponent", ""))
@@ -65,6 +79,19 @@ class Spy extends RefCounted:
 
 	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 		var declared: Dictionary = await inner.choose_stance(entity_id, context, session)
+		if forced != "" and str(declared.get("stance", "ABSTAIN")) == "ABSTAIN":
+			forced_count += 1
+			match forced:
+				"support":
+					declared = {"stance": "SUPPORT", "clause_id": ""}
+				"oppose":
+					declared = {"stance": "OPPOSE", "clause_id": ""}
+				"condition":
+					var clause: String = str(policy._best_clause(entity_id, context, session))
+					declared = (
+						{"stance": "CONDITION", "clause_id": clause} if clause != ""
+						else {"stance": "SUPPORT", "clause_id": ""}
+					)
 		var record: Dictionary = _current(context)
 		(record["stances"] as Dictionary)[entity_id] = str(declared.get("stance", "ABSTAIN"))
 		return declared
@@ -106,6 +133,11 @@ func _initialize() -> void:
 	var runs: int = int(options.get("runs", 30))
 	var first_seed: int = int(options.get("seed", 7000))
 	var out_path: String = str(options.get("out", ""))
+	var forced: String = str(options.get("no-abstain", ""))
+	if forced != "" and not ["support", "oppose", "condition"].has(forced):
+		printerr("--no-abstain vuole support, oppose o condition")
+		quit(4)
+		return
 
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
@@ -114,13 +146,13 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var mixed: Dictionary = await _play(data, runs, first_seed, true)
-	var same: Dictionary = await _play(data, runs, first_seed, false)
+	var mixed: Dictionary = await _play(data, runs, first_seed, true, forced)
+	var same: Dictionary = await _play(data, runs, first_seed, false, forced)
 	if bool(mixed["blind"]) or bool(same["blind"]):
 		quit(3)
 		return
 
-	var lines: Array = _document(runs, first_seed, mixed, same, data)
+	var lines: Array = _document(runs, first_seed, mixed, same, data, forced)
 	var text: String = "\n".join(PackedStringArray(lines)) + "\n"
 	if out_path == "":
 		print(text)
@@ -147,9 +179,9 @@ func _initialize() -> void:
 	quit(0)
 
 
-func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool) -> Dictionary:
+func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool, forced: String = "") -> Dictionary:
 	var out: Dictionary = {
-		"councils": 0, "opposed": 0, "declared_opposed": 0, "silent": 0,
+		"councils": 0, "opposed": 0, "declared_opposed": 0, "silent": 0, "forced": 0,
 		"stances": {}, "by_seat": {}, "by_character": {},
 		"cards_proponent": 0, "cards_others": 0, "others_with_cards": 0, "others": 0,
 		"outcomes": {}, "margin_sum": 0, "bought": 0, "blind": false,
@@ -166,7 +198,7 @@ func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool) -> Diction
 			decider = table
 		else:
 			decider = PolicyDecider.new(session.log)
-		var spy: Spy = Spy.new(decider)
+		var spy: Spy = Spy.new(decider, forced)
 		session.chronicle.confluence_resolved.connect(func(_result: Dictionary) -> void: spy.close())
 		var report: Dictionary = await session.run(spy)
 		var results: Array = report["confluences"] as Array
@@ -181,6 +213,7 @@ func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool) -> Diction
 			return out
 		for i in range(results.size()):
 			_count(out, spy.councils[i] as Dictionary, results[i] as Dictionary, seats, table)
+		out["forced"] = int(out["forced"]) + spy.forced_count
 		session.dispose()
 	return out
 
@@ -228,10 +261,14 @@ func _count(out: Dictionary, seen: Dictionary, result: Dictionary, seats: Array,
 	out["outcomes"][band] = int(out["outcomes"].get(band, 0)) + 1
 
 
-func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, data: RefCounted) -> Array:
+func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, data: RefCounted, forced: String = "") -> Array:
 	var lines: Array = []
 	lines.append("# Misura della partecipazione — chi gioca davvero un Consiglio")
 	lines.append("")
+	if forced != "":
+		lines.append("> **ESPERIMENTO `--no-abstain=%s`**: ogni ABSTAIN e' stato sostituito (%d volte" % [forced, int(mixed["forced"])])
+		lines.append("> sul misto, %d sull'uniforme). Non e' il documento del cancello." % int(same["forced"]))
+		lines.append("")
 	lines.append("Generato da `tools/run_participation_probe.sh` (D-451). **Non si scrive a mano.**")
 	lines.append("")
 	lines.append("%d anni pescati di CHR_00, semi da %d, sui due tavoli del cancello: **misto**" % [runs, first_seed])

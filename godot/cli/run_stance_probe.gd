@@ -162,8 +162,9 @@ func _attribute(
 
 
 func _proposition(data: RefCounted, context: Dictionary) -> Dictionary:
-	var template: Variant = data.confluence_templates.get(str(context["template_id"]))
-	if template == null:
+	# La proposta sta sulla carta, non nel template crudo (D-452).
+	var template: Dictionary = data.confluence_template_for(str(context.get("tension_id", "")))
+	if template.is_empty():
 		return {}
 	for proposition in template["propositions"]:
 		if str(proposition["id"]) == str(context.get("proposition_id", "")):

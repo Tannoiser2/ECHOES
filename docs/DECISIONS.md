@@ -10,6 +10,110 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-452 — Le sedie vedono la proposta: centocinquanta versioni di astensione per cecita'
+
+**implemented in 0.1.421.** Segue [D-451](#d-451), che ha trovato la causa:
+da 0.1.272 le Proposte stanno sulla carta Tensione e il Consiglio le legge da
+`confluence_template_for(tension_id)`; la policy delle sedie — in tre punti:
+la proposta in dibattito, la clausola migliore, il punteggio della domanda da
+scegliere — le cercava ancora in `confluence_templates[template_id]`, il
+template crudo, dove non ci sono piu'. Risultato: `_current_proposition`
+vuoto a ogni presa di posizione, punteggio mai calcolato, **ABSTAIN sempre**,
+e `_best_proposition_score` a -999 su ogni domanda, cioe' la domanda scelta a
+caso. La sonda delle posizioni (`run_stance_probe`) leggeva nello stesso
+posto, e per questo non aveva mai visto niente.
+
+**La correzione e' una riga, tre volte**: le sedie leggono da
+`confluence_template_for`, come il Consiglio. Nessuna regola cambia. Cambia
+tutto quello che le sedie fanno al Consiglio, e quindi ogni numero preso da
+0.1.272 in poi su un tavolo di sedie automatiche va riletto sapendo che
+quelle sedie erano cieche. Non si riscrivono i verbali vecchi: si scrive
+qui che lo erano.
+
+**Il cancello dei 100 semi**, seme 7000, prima e dopo, nella stessa sessione:
+
+| | 0.1.420 misto | **0.1.421 misto** | 0.1.420 uniforme | **0.1.421 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,58 | **3,50** | 3,61 | **3,54** |
+| esiti FAIL · SUCC · SUCC · DECI | 33 · 46 · 176 · 103 | **135 · 72 · 76 · 67** | 23 · 36 · 172 · 130 | **43 · 41 · 162 · 108** |
+| Verita' scritte, diverse | 124, 95 | **148, 140** | 144, 111 | **145, 126** |
+
+Sul tavolo misto i Consigli falliti passano da 33 a **135 su 350**: e' il
+tavolo dove siede l'*aggressivo*, che adesso vede la proposta e si oppone a
+tutto quello che non gli rende — 77 OPPOSE su 78 prese di posizione — con le
+carte in mano. Il cancello che non si negozia tiene: nessun seggio bloccato.
+Le Verita' diverse salgono da 95 a 140: un Consiglio che puo' cadere scrive
+storie diverse.
+
+**La partecipazione**, trenta anni, prima e dopo:
+
+| | cieche, misto | **corrette, misto** | cieche, uniforme | **corrette, uniforme** |
+|---|---|---|---|---|
+| astensioni fra i non proponenti | 95% | **63%** | 99% | **83%** |
+| Consigli col tavolo in silenzio | 90% | **17%** | 98% | **70%** |
+| carte impegnate dagli altri tre, per Consiglio | 0,24 | **1,71** | 0,05 | **0,56** |
+| margine medio | 3,50 | **1,03** | 4,01 | **4,11** |
+| Consigli falliti | 8 su 103 | **43 su 106** | 1 su 105 | **4 su 106** |
+| **Consigli con opposizione nel margine** | 7% | **55%** | 1% | **8%** |
+
+Il tavolo uniforme resta quasi muto anche vedendo: quattro ottimizzatori si
+astengono nell'83% dei casi, perche' una proposta che non tocca il loro
+Destino non vale una carta. E' una scelta, non piu' una cecita', ed e' la
+misura che dice quanto pesa davvero l'economia di D-280 fra sedie razionali.
+
+**L'esperimento chiesto dal committente**: *«la soluzione sarebbe che non ci
+si puo' astenere. Puoi verificare cosa cambierebbe?»*. La sonda ha un'opzione
+`--no-abstain` che sostituisce ogni ABSTAIN con SUPPORT, con OPPOSE, o con
+CONDITION sulla clausola migliore (e SUPPORT dove una clausola non c'e').
+Trenta anni per lettura, stessi semi, sedie corrette:
+
+| | com'e' | ABSTAIN → SUPPORT | ABSTAIN → OPPOSE | ABSTAIN → CONDITION |
+|---|---|---|---|---|
+| astensioni, misto / uniforme | 63% / 83% | 0 / 0 | 0 / 0 | 0 / 0 |
+| carte degli altri tre per Consiglio, misto | 1,71 | 1,77 | 1,65 | 1,76 |
+| carte degli altri tre per Consiglio, uniforme | 0,56 | 0,61 | 0,58 | 0,50 |
+| **opposizione nel margine, misto** | **55%** | 58% | 56% | 58% |
+| **opposizione nel margine, uniforme** | **8%** | 10% | 10% | 8% |
+| margine medio, misto / uniforme | 1,03 / 4,11 | 0,38 / 2,87 | 0,59 / 2,94 | 0,68 / 3,01 |
+| Consigli falliti, misto / uniforme | 43 / 4 | 44 / 10 | 46 / 10 | 46 / 6 |
+| gettoni di opposizione comprati | 0 | 0 | 0 | 0 |
+
+**Vietare l'astensione cambia le parole, non il peso.** L'opposizione nel
+margine resta la stessa in tutte e tre le letture, perche' una posizione
+dichiarata senza carte non pesa niente: un OPPOSE a mani vuote e'
+un'astensione con un altro nome, e le sedie che non hanno interesse non
+impegnano carte comunque (1,7 e 0,6 per Consiglio, uguali a prima). Quello
+che cambia e' il bonus del silenzio-assenso (D-267), che sparisce con il
+silenzio: il margine scende di mezzo punto sul misto e di un punto
+sull'uniforme, e qualche Consiglio in piu' cade. La leva che sposterebbe il
+margine e' il **peso**, non la voce: una carta o un gettone obbligatori con la
+posizione — e il gettone di opposizione di D-419, che in centoventi anni
+misurati nessuna sedia ha mai comprato. E' una decisione del committente, e
+qui non si prende.
+
+**La saga del seme 812, rigiocata** — quella da cui la domanda era partita,
+dieci anni, tavolo uniforme:
+
+| | sedie cieche | **sedie corrette** |
+|---|---|---|
+| Consigli | 33 | 34 |
+| prese di posizione | 99 ABSTAIN | **85 ABSTAIN · 7 SUPPORT · 6 OPPOSE** |
+| Consigli con opposizione | 0 | **6** |
+| esiti DECI · SUCC · COSTO · FAIL | 13 · 13 · 6 · 1 | **11 · 11 · 5 · 7** |
+| turni «passa» | 495 | **445** |
+| la campagna | Maestra Sadin 10 | **La Mano Rimessa 7**, e la casa vincitrice cambia |
+
+Stesso seme, stesso mondo: cambia chi vince la campagna. E' il tavolo
+uniforme, quello che anche corretto resta muto per quattro quinti: la saga
+dice quanto poco basta.
+
+**La corsia lenta** si e' mossa con le sedie, come in D-450: trasformazioni
+sedute 283 → 268, vite mai sedute ferme a 2; i segni sul tavolo di uno o due
+per famiglia. Rigenerata, e committata insieme.
+
+---
+
 ## D-451 — La misura della partecipazione, e il cancello sull'opposizione zero
 
 **implemented in 0.1.420.** Parola del committente, davanti alla saga del

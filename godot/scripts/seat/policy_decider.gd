@@ -1495,8 +1495,8 @@ func choose_question(context: Dictionary, options: Array, session: RefCounted) -
 ## that is actually legal behind it. Eligibility is checked the same way the
 ## Council checks it, so the policy never picks a question it cannot use.
 func _best_proposition_score(question_id: String, context: Dictionary, session: RefCounted) -> int:
-	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
-	if template == null:
+	var template: Dictionary = _council_template(context, session)
+	if (template as Dictionary).is_empty():
 		return -999
 	var proponent: String = str(context["proponent"])
 	var bindings: Dictionary = session.confluence.effect_context()
@@ -2235,9 +2235,29 @@ func _price_gain(
 	)
 
 
+## Il template del Consiglio come lo vede il Consiglio (D-452): con la
+## Tensione in dibattito, quello fuso con la carta; senza — una prova che
+## fabbrica il contesto — il template crudo, che e' quello che c'era prima.
+func _council_template(context: Dictionary, session: RefCounted) -> Dictionary:
+	var tension_id: String = str(context.get("tension_id", ""))
+	if tension_id != "":
+		var fused: Dictionary = session.data.confluence_template_for(tension_id)
+		if not fused.is_empty():
+			return fused
+	var raw: Variant = session.data.confluence_templates.get(str(context.get("template_id", "")))
+	return {} if raw == null else raw as Dictionary
+
+
+## **Dove sta la proposta** (D-452). Da 0.1.272 le Domande e le Proposte
+## stanno sulla carta Tensione (ISSUES 80, «ogni carta sue proposte») e il
+## Consiglio le legge da `confluence_template_for`, che fonde template e carta.
+## Fino alla 0.1.420 questa funzione — e le due sorelle qui sopra e qui sotto —
+## le cercavano nel template crudo: la proposta non c'era mai, il punteggio
+## non si calcolava, e ogni sedia si asteneva **per cecita'**, non per scelta.
+## Centocinquanta versioni di Consigli a opposizione zero (D-451).
 func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionary:
-	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
-	if template == null:
+	var template: Dictionary = _council_template(context, session)
+	if template.is_empty():
 		return {}
 	for proposition in template["propositions"]:
 		if str(proposition["id"]) == str(context.get("proposition_id", "")):
@@ -2252,8 +2272,8 @@ func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionar
 ## sceglie quella i cui Effect servono meglio il proprio Destino; a parita'
 ## decide l'RNG di sessione, per la stessa ragione di choose_proposition.
 func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -> String:
-	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
-	if template == null or (template["condition_clauses"] as Array).is_empty():
+	var template: Dictionary = _council_template(context, session)
+	if template.is_empty() or (template["condition_clauses"] as Array).is_empty():
 		return ""
 	var goals: Dictionary = _tag_goals(entity_id, session)
 	var bindings: Dictionary = session.confluence.effect_context()
