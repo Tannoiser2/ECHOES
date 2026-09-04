@@ -10,6 +10,24 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-448 — Il flusso disegnato sta sul sito, accanto all'app
+
+**implemented in 0.1.417.** Parola del committente: *«aggiungi il grafo al
+sito pubblicato dalla CI»*.
+
+`docs/flusso.html` — il flusso disegnato, [D-381](#d-381) — e' una pagina sola
+coi suoi dati dentro, e dal repository GitHub non la esegue: per aprirla
+bisognava scaricarla. Il lavoro `pages` pubblicava solo l'export dell'app. Adesso
+copia anche quella pagina nella cartella che manda a Pages, e il grafo sta in
+`/flusso.html` accanto all'app, nella stessa copia che il cancello del flusso
+tiene allineata ai dati: si aggiorna quando si aggiorna `main`, e non c'e' una
+seconda sorgente.
+
+**Costo dichiarato**: nessuno sul gioco, un `cp` nella CI. Nessun altro
+documento e' pubblicato: sono Markdown, e GitHub li mostra gia' dal repository.
+
+---
+
 ## D-447 — PUNTO_ZERO rimisurato per intero, dopo trentatre' versioni
 
 **implemented in 0.1.416.**

@@ -76,6 +76,16 @@ jobs:
             --export-release "Web" ../build/web/index.html
           test -f build/web/index.wasm
 
+      # **Il flusso disegnato, accanto all'app** (D-448, parola del committente).
+      # `docs/flusso.html` e' una pagina sola, con dentro i suoi dati, e GitHub
+      # non la esegue dal repository: per aprirla bisognava scaricarla. Sul sito
+      # sta in `/flusso.html`, e ci arriva la stessa copia che il cancello del
+      # flusso tiene allineata ai dati.
+      - name: Il flusso disegnato, sul sito
+        run: |
+          test -f docs/flusso.html
+          cp docs/flusso.html build/web/flusso.html
+
       # Stampa com'e configurato Pages, e basta. Il PUT che c'era qui tornava
       # sempre 403 "Resource not accessible by integration": il GITHUB_TOKEN non
       # puo toccare le impostazioni di Pages, quindi la modalita e il branch di
