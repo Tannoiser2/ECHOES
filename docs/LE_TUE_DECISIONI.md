@@ -59,6 +59,13 @@ l'audit, e sono fatte ([D-445](DECISIONS.md#d-445), [D-446](DECISIONS.md#d-446))
 Quello che resta tuo è lo stesso di prima: **l'occhio** — le carte stampate in
 mano, e il giro su un iPad vero.
 
+**E in 0.1.418, guardando le schede, hai visto due cose che erano decise e non
+stampate** ([D-449](DECISIONS.md#d-449)): l'Eco va sulla carta Asset, e la
+Domanda e il suo Consiglio sono la stessa carta. Fatte: l'Eco è stampato, la
+Domanda è un tarocco col Consiglio sul retro, il velo è un gettone sulla soglia,
+e «le dodici caselle» non c'è più. Costo scritto: 84 fogli, e l'illustrazione
+dell'Asset al pavimento.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

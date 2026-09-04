@@ -362,6 +362,10 @@ visto che il foglio di prima usciva dal bordo di tredici millimetri. E le
 diciannove carte Obiettivo, che questa voce non contava, hanno un formato: il
 tarocco, coperte come i Destini ([D-445](DECISIONS.md#d-445)).
 
+**E in 0.1.418 le facce si uniscono** ([D-449](DECISIONS.md#d-449)): l'Eco è
+stampato sulla carta Asset, come D-359 diceva; la Domanda torna tarocco e porta
+il suo Consiglio sul retro, su fogli specchiati. Fogli 76 → 84.
+
 ---
 
 ### 18. ✅ I fatti eterni strozzano i Destini di seconda rotazione — fatta in 0.1.40

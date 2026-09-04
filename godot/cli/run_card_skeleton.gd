@@ -27,19 +27,15 @@ const JOBS: Dictionary = {
 		"La carta che si cala: **tu scegli dove e quale delle due Azioni**.",
 		"Arriva con ACQUISIRE, o dalla mappa a inizio Atto. Limite di mano: 7.",
 		"Costa 1 Occasione. In alternativa la impegni al Consiglio, e vale forza.",
-	],
-	"echo": [
-		"La carta del Narratore, una funzione di Propp: **tu scegli solo quando**.",
-		"Dove cade e cosa lascia lo decide il mondo, non chi la gioca.",
-		"Due a testa a inizio Atto, dal sacchetto dell'Atto. Costa 1 Occasione.",
+		"E porta il suo **Eco** (D-359): si cala al posto di un'Azione se le condizioni ci sono, e costa la carta.",
 	],
 	"tension": [
-		"La domanda, appoggiata alla traccia dei valori: dice **quando si scalda**.",
-		"Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno.",
+		"La domanda, accanto alla traccia dei valori: dice **quando si scalda** e su cosa si discute.",
+		"Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno. **Sul retro, il suo Consiglio** (D-449).",
 	],
 	"council": [
-		"La scheda che si tira fuori quando il Consiglio si apre.",
-		"Dice la domanda e **le dodici caselle** con cui il tavolo la risolve.",
+		"**Il retro della carta Domanda**: si gira quando il Consiglio si apre.",
+		"Dice le domande e le caselle con cui il tavolo la risolve.",
 	],
 	"destiny": [
 		"L'ambizione di una casa, **dietro il paravento**: la scala per contare.",

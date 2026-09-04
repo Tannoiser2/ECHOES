@@ -10,6 +10,76 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-449 — Una carta, due facce: l'Eco sull'Asset, il Consiglio sul retro della Domanda
+
+**implemented in 0.1.418.** Parola del committente, due volte: *«il mazzo
+Tension e il mazzo council sono ancora due cose separate, invece dovrebbe
+essere la stessa carta»* e *«anche il mazzo echo e quello asset dovrebbero
+essere unificati, questa cosa era gia' stata detta»*. Era stata detta:
+[D-359](#d-359).
+
+### Due decisioni prese e non stampate
+
+**L'Eco.** D-359 (0.1.325) dice che l'Eco e' il terzo blocco della carta Asset
+e che il mazzo del Narratore non esiste piu'. Il motore lo fa da allora, e la
+mano sullo schermo lo mostra. Ma la faccia Asset **non stampava il blocco**, e
+l'export stampava ancora **48 carte Eco a parte, su 12 fogli**, mentre il
+censimento scriveva «stampati sulla carta Asset». Il documento diceva la
+decisione, la stampa no.
+
+**Il Consiglio.** [D-338](#d-338) aveva separato la scheda dalla carta
+Domanda perche' insieme non stavano su una faccia — misurato, e giusto. Nessuno
+aveva misurato **il retro**: l'export non conosce il retro di una carta, ogni
+pezzo e' a faccia singola. Misurato adesso, con la stessa funzione che impagina
+i fogli:
+
+| il Consiglio sul retro di | sbordano | corpo rimpicciolito | la piu' stretta |
+|---|---|---|---|
+| una carta 63x88 | 13 su 60 | 60 su 60 | 74% |
+| un tarocco 70x120 | **0** | 8 su 60 | **87%** |
+
+### Cosa cambia
+
+- **La carta Asset stampa il suo Eco**: sotto PRENDI, la riga **ECO** col
+  titolo, la famiglia drammatica e la funzione di Propp, e poi le stesse
+  righe della faccia Eco — QUANDO ESCE, IL MONDO, CONVOCA IL CONSIGLIO — che la
+  prova confronta una per una. Il mazzo «echo» resta leggibile per lo schermo
+  (la carta calata a fine Atto) e per il brief, ma **non si stampa piu'**.
+- **La Domanda e' un tarocco fronte-retro**: davanti il Tema, quando si scalda,
+  la soglia, su cosa si discute; dietro il Consiglio che apre, con le sue
+  caselle. `CardFace.BACKS` dice quale mazzo e' il retro di quale, e l'export
+  scrive per ogni foglio `tension_NN` un foglio `tension_retro_NN` **specchiato**,
+  cosi' stampando i due lati ogni retro finisce dietro la sua carta.
+- **Il velo cambia gesto.** [D-187](#d-187) diceva *«una carta girata a faccia
+  in giu' accanto al segnalino»*: con il Consiglio sul retro non si puo'. Da qui
+  una Domanda velata sta in vista come le altre e **la soglia si copre con un
+  gettone** — uno dei dodici gettoni di RIVENDICARE, che sono gia' nella
+  scatola — finche' qualcuno non la scopre. La regola del motore non cambia:
+  valore pubblico, soglia coperta.
+- **Via «le dodici caselle»**: era una frase rimasta da D-280. Una carta porta
+  in media **8,6 SI OTTIENE, 8,9 SI PAGA e 2 SE CADE**, da 18 a 25 caselle,
+  mai dodici. Corretta ovunque fosse viva; nei verbali vecchi resta.
+- **D-446 e' rivista dopo un giorno**: la Domanda era passata a 63x88 con la
+  tua parola *«44x68 e' troppo piccolo»*; col Consiglio dietro serve il
+  tarocco, che e' piu' grande ancora. La traccia dei valori ospita un posto da
+  72x122, due corsie per foglio, l'ultima chiude a 286 mm.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| fogli A4 di carte e tessere | 76 | **84** — Domande 7 → 15 fronti + 15 retri, Eco 12 → 0 |
+| carte Asset col corpo rimpicciolito | 0 su 48 | **24 su 48**, la piu' stretta 84% |
+| illustrazione media / minima sull'Asset | 49% / 43% | **37% / 34%**, il pavimento |
+| Consiglio, corpo rimpicciolito | 7 su 60 (89%) | 8 su 60 (87%) |
+
+Il prezzo vero e' sull'Asset: tre blocchi su una faccia, e l'illustrazione
+scende al minimo che D-421 ammette. E' il prezzo di una carta che dice tutto
+quello che fa, ed e' la direzione di casa: *un gioco da tavolo con un'app*.
+Nessun file del motore e' toccato: il cancello non si muove.
+
+---
+
 ## D-448 — Il flusso disegnato sta sul sito, accanto all'app
 
 **implemented in 0.1.417.** Parola del committente: *«aggiungi il grafo al

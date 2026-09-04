@@ -67,18 +67,18 @@ const BIOMES: Dictionary = {
 ## overlay, e la COMPONENTS §2 lo dice gia'.
 ## **E la scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione.
 ##
-## La carta Tensione era mini (D-097, per la traccia dei valori) ed e' una
-## carta da gioco da D-446 — *«44x68 e' troppo piccolo»*, parola del
-## committente — ma resta **un pezzo a parte** dalla scheda: quello che serve
-## per **risolvere** un Consiglio — la domanda, le proposte con cosa lasciano,
-## le dodici caselle dell'economia — sono 870 caratteri mediani, e su una carta
-## sola non entrano (TEN_SUCCESSION sbordava anche su un tarocco).
+## **Una carta, due facce** (D-449, parola del committente). La Tensione e il
+## suo Consiglio sono **la stessa carta**: sul fronte il Tema che si scalda,
+## quando si scalda e su cosa si discute; sul retro il Consiglio che quella
+## domanda apre, con le sue caselle. D-338 le aveva separate perche' insieme
+## non stavano su una faccia — e nessuno aveva misurato il retro. Misurato:
+## il Consiglio sta sul retro di un tarocco (0 sbordano, 7 su 60 stretti,
+## la piu' stretta 88%) e non su quello di una 63x88 (13 sbordano). Quindi la
+## Domanda e' un tarocco, e `BACKS` dice quale mazzo e' il retro di quale.
 ##
-## Quindi due pezzi con due mestieri: la carta dice **quando** la domanda si
-## scalda e su cosa si discute, e sta accanto alla traccia; il tarocco dice
-## **cosa si puo' proporre e cosa costa**, e si tira fuori quando il Consiglio
-## si apre. E' il «fatto quando» di ISSUES 89: una proposta si risolve
-## guardando questa scheda e la mappa.
+## E lo stesso vale per l'Eco (D-359): non e' un mazzo, e' il terzo blocco
+## stampato sulla carta Asset. Il mazzo «echo» resta leggibile — lo schermo
+## mostra la carta calata a fine Atto — ma non si stampa da solo.
 ## Come si chiama, su una carta Eco, il posto che l'Effetto colpisce: non «dove
 ## si discute», che e' la parola del Consiglio (D-344).
 const DOVE_CADE: String = "nel luogo della carta"
@@ -86,14 +86,17 @@ const DOVE_CADE: String = "nel luogo della carta"
 ## **E il mazzo Obiettivo** (D-445): diciannove carte coperte che fino alla
 ## 0.1.414 non avevano una faccia — il censimento le contava fra le cose «che
 ## non si stampano», e un obiettivo coperto che non si stampa non si pesca.
-const DECKS: Array = ["asset", "echo", "tension", "council", "destiny", "objective", "entity"]
+const DECKS: Array = ["asset", "tension", "destiny", "objective", "entity"]
 const TILES: Array = ["region"]
+## Il retro di un mazzo stampato: le facce del mazzo di destra si stampano
+## dietro quelle del mazzo di sinistra, nello stesso ordine.
+const BACKS: Dictionary = {"tension": "council"}
 
 ## Come si chiamano al tavolo, che e' come vanno chiamati ovunque li si nomini:
 ## sul foglio di stampa, nell'anteprima e nel riepilogo dell'export.
 const DECK_LABELS: Dictionary = {
 	"asset": "carte Asset", "echo": "carte Echo", "tension": "carte Domanda",
-	"council": "schede Consiglio", "objective": "carte Obiettivo",
+	"council": "carte Domanda, retro", "objective": "carte Obiettivo",
 	"destiny": "carte Destino", "entity": "carte Casata", "region": "tessere Regione",
 }
 
@@ -107,8 +110,19 @@ static func family_colour(family: String) -> String:
 ## byte per byte, come i salvataggi (§18.3).
 static func every(data: RefCounted) -> Array:
 	var out: Array = []
-	for deck in DECKS + TILES:
+	for deck in printed():
 		out.append_array(deck_of(str(deck), data))
+	return out
+
+
+## I mazzi che finiscono sul foglio, retri compresi, nell'ordine di stampa.
+static func printed() -> Array:
+	var out: Array = []
+	for deck in DECKS:
+		out.append(str(deck))
+		if BACKS.has(str(deck)):
+			out.append(str(BACKS[str(deck)]))
+	out.append_array(TILES)
 	return out
 
 
@@ -247,6 +261,17 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 			"IMPEGNI  %s" % AssetText.note(asset, data),
 			"PRENDI  %s" % str(asset.get("acquisition_rule", "")),
 		]
+	# **L'Eco e' il terzo blocco di questa carta** (D-359, stampato da D-449).
+	# Si cala al posto di un'Azione, se le condizioni ci sono, e costa la
+	# carta: QUANDO ESCE e IL MONDO sono le stesse righe della faccia Eco, e
+	# la prova le confronta una per una.
+	var echo_v: Variant = data.echo_cards.get(str(asset.get("echo_id", "")))
+	if echo_v != null:
+		var eco: Dictionary = _echo(echo_v as Dictionary, data)
+		face["notes"].append("ECO  %s · %s" % [str(eco["title"]), str(eco["subtitle"])])
+		for note in eco["notes"]:
+			face["notes"].append(str(note))
+		face["echo_id"] = str(eco["id"])
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
 	face["copies"] = int(asset.get("deck_copies", 1))
@@ -350,12 +375,11 @@ static func _when_it_comes(condition: Dictionary, data: RefCounted) -> String:
 
 
 static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
-	# **Carta da gioco, 63x88** (D-446). Era mini — 44x68, per la traccia dei
-	# valori (D-097) — e il committente l'ha detto in quattro parole: *«44x68 e'
-	# troppo piccolo»*. Da D-261 la Tensione si gira sul mazzetto e **si legge**,
-	# e da D-432 porta anche su cosa si discute: due mini su sessanta stampavano
-	# il corpo rimpicciolito. La traccia dei valori le fa posto (`token_sheet`).
-	var face: Dictionary = _face("tension", str(tension["id"]), "CARD")
+	# **Un tarocco, col Consiglio sul retro** (D-449). Era mini per la traccia
+	# dei valori (D-097), poi 63x88 per un giorno (D-446, *«44x68 e' troppo
+	# piccolo»*): con il Consiglio dietro serve il tarocco, misurato. La traccia
+	# dei valori le fa posto (`token_sheet`).
+	var face: Dictionary = _face("tension", str(tension["id"]), "TAROT")
 	face["title"] = str(tension["title"])
 	# La velatura e' una regola e sta nel dato `visibility`: la carta la
 	# dichiara da se', cosi' la descrizione resta racconto (D-099).
@@ -457,14 +481,14 @@ static func _questions_of(tension: Dictionary, data: RefCounted) -> Array:
 	return said
 
 
-## La scheda del Consiglio che una Tensione apre: la domanda, le proposte con
-## cosa lasciano, e le dodici caselle. La riga di ogni proposta e' la stessa che
-## D-336 ha fatto dire il vero — fino alla 0.1.301 diceva «dove si discute»
-## anche quando la cosa succedeva altrove.
+## **Il retro della carta Domanda** (D-449): il Consiglio che quella Tensione
+## apre — le sue domande e le caselle con cui il tavolo lo risolve, in media
+## nove SI OTTIENE, nove SI PAGA e due SE CADE. Fino a D-449 era una scheda a
+## parte, e «le dodici caselle» era una frase rimasta da D-280.
 static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("council", str(tension["id"]), "TAROT")
 	face["title"] = str(tension["title"])
-	face["subtitle"] = "il Consiglio che questa domanda apre"
+	face["subtitle"] = "il Consiglio che questa domanda apre — retro della carta"
 	# **Perche' due domande** (D-341). Il committente, davanti alla scheda: *«due
 	# domande? Perche' due»*. La ragione era scritta e non stampata: undici
 	# domande su ventitre' portano una `eligibility` con la sua `label` — «La
@@ -495,7 +519,7 @@ static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 	# ci stanno nemmeno senza la loro frase: provato, resta una scheda fuori.
 	#
 	# Sulla scheda resta la grammatica del tavolo (D-280): la domanda, e le
-	# dodici caselle con cui si risolve. **Cosa si perde e' dichiarato**: le
+	# caselle con cui si risolve. **Cosa si perde e' dichiarato**: le
 	# proposte che l'app risolve fanno cose che nessuna casella sa dire — «la
 	# Foresta va al grado 2», «il rivale entra in una Regione confinante» — ed e'
 	# esattamente il 65% misurato in ISSUES 89. Finche' quella voce e' aperta, il

@@ -5,6 +5,17 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.418 — Una carta, due facce
+
+[D-449](docs/DECISIONS.md#d-449), parola del committente. L'Eco è stampato
+sulla carta Asset (D-359 lo diceva dalla 0.1.325, la stampa no) e il mazzo Eco
+non si stampa più; la Domanda è un tarocco fronte-retro col suo Consiglio
+dietro, su fogli specchiati; il velo diventa un gettone sulla soglia; «le
+dodici caselle» sparisce dai testi (sono 18–25 per carta). Fogli 76 → 84.
+Costo sull'Asset: 24 su 48 col corpo rimpicciolito, illustrazione al 34%.
+
+---
+
 ## 0.1.417 — Il flusso disegnato sul sito
 
 [D-448](docs/DECISIONS.md#d-448). Il lavoro `pages` pubblica anche

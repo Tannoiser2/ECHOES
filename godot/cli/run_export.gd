@@ -74,6 +74,33 @@ func _initialize() -> void:
 		])
 		index.append({"deck": str(deck), "faces": faces, "pages": pages.size(), "cards": to_print.size()})
 
+		# **Il retro** (D-449): le facce del mazzo di dietro, nello stesso ordine
+		# delle carte stampate davanti, su fogli specchiati con lo stesso numero.
+		if CardFace.BACKS.has(str(deck)):
+			var back_deck: String = str(CardFace.BACKS[str(deck)])
+			var by_id: Dictionary = {}
+			for back in CardFace.deck_of(back_deck, data):
+				by_id[str((back as Dictionary)["id"])] = back
+			var backs: Array = []
+			for front in to_print:
+				backs.append(by_id[str((front as Dictionary)["id"])])
+			var back_pages: Array = PrintSheet.paginate(backs, shape)
+			for number in range(back_pages.size()):
+				var path: String = "%s/fogli/%s_retro_%02d.svg" % [out_dir, str(deck), number + 1]
+				var svg: String = PrintSheet.page_svg(
+					back_pages[number], shape, str(LABELS.get(back_deck, back_deck)),
+					number + 1, back_pages.size(), true
+				)
+				if not _write(path, svg):
+					printerr("non riesco a scrivere %s" % path)
+					quit(4)
+					return
+				written.append(path)
+			print("  %-16s %6d %6d %7d" % [
+				str(LABELS.get(back_deck, back_deck)), backs.size(), backs.size(), back_pages.size()
+			])
+			index.append({"deck": back_deck, "faces": backs, "pages": back_pages.size(), "cards": backs.size()})
+
 	# I segnalini e la traccia dei valori (D-097, voce 7): un foglio-fustella
 	# per ogni eta' scritta - le case sono le sue - e la plancia dei tracciati,
 	# una sola perche' le corsie sono generiche (la soglia sta sulla carta).
@@ -145,10 +172,12 @@ func _readme(index: Array, proof: bool, bible: RefCounted) -> String:
 		"mano: si rigenera. Ogni foglio e' A4 in **scala 1:1** — si stampa al 100%,",
 		"senza «adatta alla pagina», altrimenti i segni di taglio mentono.",
 		"",
-		"I formati (D-097, e D-421 per le Asset): Asset, Echo, Destini ed Entita'",
-		"70x120 mm (tarocchi, due per due); Tensioni 44x68 mm (mini, quattro per",
-		"quattro); tessere Regione 80x80 mm, due per tre. In coda i fogli-fustella",
-		"dei segnalini (15 mm) e la traccia dei valori.",
+		"I formati (D-097, D-421, D-449): Asset (col loro Eco), Domande, Destini,",
+		"Obiettivi ed Entita' 70x120 mm (tarocchi, due per due); tessere Regione",
+		"80x80 mm, due per tre. **Le carte Domanda sono fronte-retro**: il foglio",
+		"`tension_retro_NN` porta il Consiglio di ogni domanda, specchiato, e va",
+		"stampato dietro `tension_NN`. In coda i fogli-fustella dei segnalini",
+		"(15 mm) e la traccia dei valori.",
 		"",
 		"| mazzo | facce | carte | fogli |",
 		"|---|---|---|---|",

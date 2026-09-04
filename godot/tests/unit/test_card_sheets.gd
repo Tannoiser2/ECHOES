@@ -33,7 +33,7 @@ func _art() -> RefCounted:
 ## **Ogni faccia e' nel dato, e ogni tipo ha la sua scheda.**
 func test_every_face_is_in_the_data_of_its_deck() -> void:
 	var loaded: RefCounted = _shipped()
-	for deck in CardFace.DECKS + CardFace.TILES:
+	for deck in CardFace.printed():
 		var sheet: Dictionary = CardSheets.deck_of(str(deck), loaded, _art())
 		var faces: Array = CardFace.deck_of(str(deck), loaded)
 		assert_eq((sheet["carte"] as Array).size(), faces.size(), "%s: una scheda per faccia" % str(deck))
@@ -71,7 +71,7 @@ func test_every_illustrated_card_carries_its_composed_prompt() -> void:
 	var loaded: RefCounted = _shipped()
 	var with_art: int = 0
 	var without: int = 0
-	for deck in CardFace.DECKS + CardFace.TILES:
+	for deck in CardFace.printed():
 		var sheet: Dictionary = CardSheets.deck_of(str(deck), loaded, _art())
 		for card_v in sheet["carte"] as Array:
 			var card: Dictionary = card_v

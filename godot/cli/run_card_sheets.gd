@@ -52,7 +52,7 @@ func _initialize() -> void:
 		quit(4)
 		return
 	var written: int = 0
-	for deck in CardFace.DECKS + CardFace.TILES:
+	for deck in CardFace.printed():
 		var path: String = "%s/%s.json" % [json_dir, str(deck)]
 		var handle: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 		if handle == null:

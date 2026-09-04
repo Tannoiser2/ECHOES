@@ -92,7 +92,9 @@ static func track_board_pages() -> Array:
 	var pages: Array = []
 	var lanes: Array = ["I", "II", "III", "IV"]
 	var box: float = 12.0
-	var card: Vector2 = PrintSheet.cell_size("CARD")
+	# La carta Domanda e' un tarocco da D-449: il posto e' 72x122, e con due
+	# corsie per foglio l'ultima chiude a 286 mm su 297.
+	var card: Vector2 = PrintSheet.cell_size("TAROT")
 	var slot: Vector2 = card + Vector2(2.0, 2.0)
 	for page in range(2):
 		var out: Array = []
@@ -101,11 +103,14 @@ static func track_board_pages() -> Array:
 			% [int(PAGE_W), int(PAGE_H), int(PAGE_W), int(PAGE_H)]
 		)
 		out.append('<rect width="%d" height="%d" fill="#ffffff"/>' % [int(PAGE_W), int(PAGE_H)])
-		out.append(_text(MARGIN, MARGIN - 5.0,
+		out.append(_text(MARGIN, MARGIN - 8.0,
 			"ECHOES · la traccia dei valori · una corsia per domanda in gioco · foglio %d di 2"
 			% (page + 1), 3.0, "#999999", false))
+		out.append(_text(MARGIN, MARGIN - 3.0,
+			"Il quadrato del Drift avanza sulla corsia che il sacchetto nomina a ogni round.",
+			2.8, "#666666", false))
 
-		var y: float = MARGIN + 14.0
+		var y: float = MARGIN + 10.0
 		for lane in range(page * 2, page * 2 + 2):
 			out.append(_text(MARGIN, y - 3.0, "Domanda %s — la carta si appoggia qui:" % [
 				str(lanes[lane])
@@ -126,11 +131,8 @@ static func track_board_pages() -> Array:
 			out.append(_text(MARGIN + slot.x + 6.0, y + box + 5.0,
 				"La soglia e' scritta sulla carta: raggiunta, si apre il Consiglio.",
 				2.6, "#666666", false))
-			y += slot.y + 16.0
+			y += slot.y + 14.0
 
-		out.append(_text(MARGIN, y + 2.0,
-			"Il quadrato del Drift avanza sulla corsia che il sacchetto nomina a ogni round.",
-			2.8, "#666666", false))
 		out.append("</svg>")
 		pages.append("\n".join(PackedStringArray(out)) + "\n")
 	return pages

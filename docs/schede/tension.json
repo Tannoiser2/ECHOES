@@ -1,21 +1,23 @@
 {
   "tipo": "tension",
-  "nome": "carta Domanda (la Tensione)",
+  "nome": "carta Domanda (la Tensione), fronte",
   "formato": {
-    "nome": "carta da gioco",
-    "sigla": "CARD",
+    "nome": "tarocco",
+    "sigla": "TAROT",
     "mm": [
-      63,
-      88
+      70,
+      120
     ]
   },
   "facce": 60,
   "pezzi": 60,
-  "cos_e": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano.",
+  "cos_e": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. Se e' velata, la soglia si copre con un gettone: la carta resta in vista.",
   "immagine": "Nessuna: e' tutta testo, e il testo prende il posto del quadro.",
   "sottotitolo": "«domanda» o «domanda velata» (`visibility`) e il Tema (`domain`)",
   "angolo": "la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo",
   "scena": "nessuna",
+  "retro": "council",
+  "fronte": "",
   "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
   "prompt_generale": "",
   "campi": [

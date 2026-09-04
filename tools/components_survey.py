@@ -71,12 +71,11 @@ SCHERMO = {
 SCHELETRO = REPO / "docs" / "SCHELETRO_CARTE.md"
 
 MAZZI = [
-    ("asset", "Carte Asset", "asset", "d'autore, piu' le righe ricavate"),
-    ("tension", "Carte Tensione (le Domande)", "tension", "d'autore"),
-    ("council", "Schede Consiglio", None, "ricavata dalla Tensione"),
+    ("asset", "Carte Asset (con l'Eco sulla faccia, D-359)", "asset", "d'autore, piu' le righe ricavate"),
+    ("tension", "Carte Domanda, fronte", "tension", "d'autore"),
+    ("council", "Carte Domanda, retro (il Consiglio, D-449)", None, "ricavata dalla Tensione"),
     ("destiny", "Carte Destino", "destiny", "d'autore"),
     ("objective", "Carte Obiettivo", None, "ricavata dai dati (D-445)"),
-    ("echo", "Echi (stampati sulla carta Asset)", None, "ricavata dai dati (D-344)"),
     ("entity", "Carte Casata", None, "ricavata dai dati"),
     ("region", "Tessere Regione", None, "ricavata dai dati"),
 ]
@@ -204,18 +203,14 @@ def survey() -> str:
         # il corpo rimpicciolito. Costa fogli, e il conto qui sotto lo dice.
         ("Carte **Asset** (ognuna col suo Eco)", len(assets), copie_asset,
          "TAROT", len(assets), "asset"),
-        # **Carta da gioco da D-446**: era mini per la traccia dei valori, e il
-        # committente l'ha detto — *«44x68 e' troppo piccolo»* — perche' da D-261
-        # si gira sul mazzetto e si legge. La traccia le fa posto su due fogli.
-        ("Carte **Tensione** (le Domande)", len(tensions), len(tensions), "CARD",
+        # **Una carta, due facce** (D-449): la Domanda e' un tarocco col suo
+        # Consiglio stampato sul retro. Era mini per la traccia dei valori
+        # (D-097), poi 63x88 per un giorno (D-446); col Consiglio dietro serve
+        # il tarocco, misurato. I fogli dei retri si contano a parte, perche'
+        # si stampano a parte e si girano.
+        ("Carte **Domanda**, fronte", len(tensions), len(tensions), "TAROT",
          sum(1 for t in tensions if t.get("physical")), "tension"),
-        # **La scheda del Consiglio** (D-338): un pezzo suo, uno per Tensione.
-        # Quello che serve per *risolvere* un Consiglio — la domanda, le proposte
-        # con cosa lasciano, le dodici caselle — sono 870 caratteri, e su una
-        # carta sola non entrano (TEN_SUCCESSION sbordava anche su un tarocco).
-        # La faccia fisica c'e' per tutte: e' fatta di dato, non di blocco
-        # `physical`.
-        ("Schede **Consiglio**", len(tensions), len(tensions), "TAROT",
+        ("Carte **Domanda**, retro (il Consiglio)", len(tensions), len(tensions), "TAROT",
          len(tensions), "council"),
         ("Carte **Destino**", len(destinies), len(destinies), "TAROT",
          sum(1 for d in destinies if d.get("physical")), "destiny"),
