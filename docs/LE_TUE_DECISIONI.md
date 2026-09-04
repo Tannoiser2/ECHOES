@@ -116,6 +116,15 @@ nove segni delle proposte piatte trovino chi li teme. Proposte sempre piatte
 da quattordici a cinque, il tavolo in silenzio da un Consiglio su sei a uno su
 venti. Le dodici coppie di profili che si somigliano sono ancora tue.
 
+**E in 0.1.428 hai detto «merge e vai»** ([D-459](DECISIONS.md#d-459)). Sono
+andato sulle coppie: non quelle che si somigliano, ma le tredici che non
+avevano *niente* per cui litigare — il Re e la Cenere, Lyra e il Sale, le
+Città e Nahr. Tredici voci, nessun segno nuovo, e ogni coppia di case ha
+adesso almeno un segno che le spinge in direzioni opposte: 28 su 28. La
+barriera di pedaggio è il litigio più largo del tavolo. Le ragioni sono
+scritte come le direbbe chi siede a quel posto: se una non è la sua voce,
+è una riga da correggere.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
