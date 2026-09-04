@@ -27,6 +27,7 @@ se su un tavolo intero e' zero, il cancello e' rosso.
 | carte impegnate dagli altri tre, per Consiglio | 1.61 | 0.58 |
 | non proponenti che impegnano almeno una carta | 83 (26%) | 49 (15%) |
 | gettoni di opposizione comprati (D-419) | 0 | 0 |
+| punti del dibattito guadagnati · persi (D-455) | 0 · 0 | 0 · 0 |
 | margine medio | 0.56 | 3.18 |
 | **Consigli con opposizione nel margine** | **63 (60%)** | **22 (20%)** |
 

@@ -1845,7 +1845,23 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	# condizione che un avversario pone e' il costo che sceglie (D-387).
 	if score < 0:
 		return {"stance": "OPPOSE", "clause_id": ""}
+	# **Se astenersi costa, non ci si astiene** (D-455): a chi la proposta non
+	# tocca conviene stare sul fronte che vince — quello di chi propone, che
+	# ha le carte e il silenzio-assenso dalla sua — con una carta in mano.
+	if _debate_points_active(session) and not session.service.hand(entity_id).is_empty():
+		return {"stance": "SUPPORT", "clause_id": ""}
 	return {"stance": "ABSTAIN", "clause_id": ""}
+
+
+## La Chronicle fa pagare l'astensione, o premia chi vince con le carte (D-455)?
+func _debate_points_active(session: RefCounted) -> bool:
+	var chronicle: Variant = session.data.chronicles.get(str(session.world.get("chronicle_id", "")))
+	if chronicle == null:
+		return false
+	var rules: Dictionary = (
+		((chronicle as Dictionary).get("confluence_rules", {}) as Dictionary).get("debate_points", {}) as Dictionary
+	)
+	return int(rules.get("winners_gain", 0)) > 0 or int(rules.get("silent_lose", 0)) > 0
 
 
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
@@ -1858,6 +1874,10 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	if entity_id == str(context["proponent"]):
 		stake = maxi(stake, 2)
 	var wanted: int = clampi(stake, 0, limit)
+	# Con l'astensione a prezzo (D-455) una carta si mette sempre: e' quella
+	# che vale il punto, o che evita di perderlo.
+	if wanted <= 0 and _debate_points_active(session):
+		wanted = 1
 	if wanted <= 0:
 		return []
 	var ranked: Array = session.service.ranked_hand_for_tension(

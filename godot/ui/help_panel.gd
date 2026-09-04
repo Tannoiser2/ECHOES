@@ -317,6 +317,20 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 				+ "un Consiglio[/b], ed e li che il gioco decide qualcosa."
 			)
 
+		# **L'astensione ha un prezzo** (D-455): se la Chronicle lo dichiara,
+		# la pagina lo dice, e pende solo da quella dichiarazione.
+		var debate: Dictionary = (rules.get("confluence_rules", {}) as Dictionary).get("debate_points", {}) as Dictionary
+		var winners_gain: int = int(debate.get("winners_gain", 0))
+		var silent_lose: int = int(debate.get("silent_lose", 0))
+		if winners_gain > 0 or silent_lose > 0:
+			var said: Array = []
+			if winners_gain > 0:
+				said.append("chi sta sul fronte che vince con almeno una carta impegnata guadagna [b]%d punt%s di campagna[/b]" % [winners_gain, "o" if winners_gain == 1 else "i"])
+			if silent_lose > 0:
+				said.append("chi non propone e non impegna nessuna carta ne perde [b]%d[/b]" % silent_lose)
+			out.append("")
+			out.append("[b]ASTENERSI COSTA.[/b] A Consiglio chiuso, %s." % "; ".join(PackedStringArray(said)))
+
 		# I mucchi coperti (ISSUES 49 fase 3): se la Chronicle dichiara il
 		# sacchetto dei valori, la pagina lo deve dire — una persona che conta i
 		# gettoni e crede di sapere l'altezza sta giocando un altro gioco.

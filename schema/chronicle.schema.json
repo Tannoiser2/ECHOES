@@ -397,6 +397,25 @@
             "at_end_of_act": {
               "type": "boolean",
               "description": "Il Consiglio si tiene alla fine di ogni Atto, sulla domanda col mucchio piu' alto (D-214). Decisione del committente: «il concilio c'e' alla fine di ogni atto, non servono due gettoni per farlo partire». Acceso, il Consiglio non si apre piu' a fine round — ne' per soglia ne' per gettoni nel sacchetto — e restano solo i Consigli **forzati** da RIVENDICARE, che e' il modo di dibattere una seconda domanda. Cosi' il numero di Consigli non e' piu' un'incognita del sistema: sono almeno quanti sono gli Atti."
+            },
+            "debate_points": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "L'astensione ha un prezzo (D-455). `winners_gain`: quanti punti di campagna prende, a Consiglio chiuso, chi sta sul fronte che ha vinto con almeno una carta impegnata (il proponente compreso). `silent_lose`: quanti ne perde chi non propone e non impegna nessuna carta. Omessi o 0, il Consiglio non tocca il punteggio: il comportamento fino a 0.1.423.",
+              "properties": {
+                "winners_gain": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3,
+                  "default": 0
+                },
+                "silent_lose": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3,
+                  "default": 0
+                }
+              }
             }
           }
         },

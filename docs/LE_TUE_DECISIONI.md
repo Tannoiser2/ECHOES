@@ -90,6 +90,12 @@ posizioni; le ventiquattro clausole che nessuna carta stampava escono con la
 loro soglia. Costo scritto: otto memorie che le clausole scrivevano restano
 senza penna, in ISSUES 98.
 
+**E in 0.1.424 l'astensione ha un prezzo** ([D-455](DECISIONS.md#d-455)), come
+chiedevi: due numeri nella Chronicle, chi vince con le carte guadagna e chi non
+ne gioca perde. Misurata, fa il contrario: tutti salgono sul carro di chi
+propone, e il Consiglio diventa un plebiscito. È nei dati a zero, con tre forme
+alternative scritte nel verbale: la scelta è tua.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

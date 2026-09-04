@@ -125,6 +125,9 @@ func _initialize() -> void:
 	var first_seed: int = int(options.get("seed", 7000))
 	var out_path: String = str(options.get("out", ""))
 	var forced: String = str(options.get("no-abstain", ""))
+	# `--debate-points=W:S` (D-455): scrive `confluence_rules.debate_points`
+	# della Chronicle prima di giocare — un esperimento, come `--no-abstain`.
+	var debate: String = str(options.get("debate-points", ""))
 	if forced != "" and not ["support", "oppose"].has(forced):
 		printerr("--no-abstain vuole support o oppose")
 		quit(4)
@@ -137,13 +140,19 @@ func _initialize() -> void:
 		quit(3)
 		return
 
+	if debate != "":
+		var pair: PackedStringArray = debate.split(":")
+		var chronicle: Dictionary = data.chronicles["CHR_00"] as Dictionary
+		(chronicle["confluence_rules"] as Dictionary)["debate_points"] = {
+			"winners_gain": int(pair[0]), "silent_lose": int(pair[1]) if pair.size() > 1 else 0,
+		}
 	var mixed: Dictionary = await _play(data, runs, first_seed, true, forced)
 	var same: Dictionary = await _play(data, runs, first_seed, false, forced)
 	if bool(mixed["blind"]) or bool(same["blind"]):
 		quit(3)
 		return
 
-	var lines: Array = _document(runs, first_seed, mixed, same, data, forced)
+	var lines: Array = _document(runs, first_seed, mixed, same, data, forced, debate)
 	var text: String = "\n".join(PackedStringArray(lines)) + "\n"
 	if out_path == "":
 		print(text)
@@ -176,6 +185,7 @@ func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool, forced: St
 		"stances": {}, "by_seat": {}, "by_character": {},
 		"cards_proponent": 0, "cards_others": 0, "others_with_cards": 0, "others": 0,
 		"outcomes": {}, "margin_sum": 0, "bought": 0, "blind": false,
+		"points_won": 0, "points_lost": 0,
 	}
 	for index in range(runs):
 		var seed_value: int = first_seed + index
@@ -247,15 +257,26 @@ func _count(out: Dictionary, seen: Dictionary, result: Dictionary, seats: Array,
 	if weight > 0:
 		out["opposed"] = int(out["opposed"]) + 1
 	out["bought"] = int(out["bought"]) + int(result.get("bought_opposition", 0))
+	# I punti del dibattito (D-455), come li ha scritti il Consiglio.
+	for seat in (result.get("debate_points", {}) as Dictionary):
+		var delta: int = int((result["debate_points"] as Dictionary)[seat])
+		if delta > 0:
+			out["points_won"] = int(out["points_won"]) + delta
+		else:
+			out["points_lost"] = int(out["points_lost"]) - delta
 	out["margin_sum"] = int(out["margin_sum"]) + int(result.get("margin", 0))
 	var band: String = str(result.get("outcome", ""))
 	out["outcomes"][band] = int(out["outcomes"].get(band, 0)) + 1
 
 
-func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, data: RefCounted, forced: String = "") -> Array:
+func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, data: RefCounted, forced: String = "", debate: String = "") -> Array:
 	var lines: Array = []
 	lines.append("# Misura della partecipazione — chi gioca davvero un Consiglio")
 	lines.append("")
+	if debate != "":
+		lines.append("> **ESPERIMENTO `--debate-points=%s`**: la Chronicle fa pagare l'astensione o premia" % debate)
+		lines.append("> chi vince con le carte (D-455). Non e' il documento del cancello.")
+		lines.append("")
 	if forced != "":
 		lines.append("> **ESPERIMENTO `--no-abstain=%s`**: ogni ABSTAIN e' stato sostituito (%d volte" % [forced, int(mixed["forced"])])
 		lines.append("> sul misto, %d sull'uniforme). Non e' il documento del cancello." % int(same["forced"]))
@@ -304,6 +325,9 @@ func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, 
 		_share(int(same["others_with_cards"]), int(same["others"])),
 	])
 	lines.append("| gettoni di opposizione comprati (D-419) | %d | %d |" % [int(mixed["bought"]), int(same["bought"])])
+	lines.append("| punti del dibattito guadagnati · persi (D-455) | %d · %d | %d · %d |" % [
+		int(mixed["points_won"]), int(mixed["points_lost"]), int(same["points_won"]), int(same["points_lost"]),
+	])
 	lines.append("| margine medio | %.2f | %.2f |" % [
 		_per(int(mixed["margin_sum"]), int(mixed["councils"])),
 		_per(int(same["margin_sum"]), int(same["councils"])),

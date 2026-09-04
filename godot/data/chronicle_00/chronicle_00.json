@@ -29,7 +29,11 @@
         },
         "at_end_of_act": true,
         "silence_support_bonus": 1,
-        "opposition_token_weight": 1
+        "opposition_token_weight": 1,
+        "debate_points": {
+          "winners_gain": 0,
+          "silent_lose": 0
+        }
       },
       "control_rules": {
         "contested": {

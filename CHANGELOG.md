@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.424 — L'astensione ha un prezzo, misurato e spento
+
+[D-455](docs/DECISIONS.md#d-455), parola del committente. Due numeri nella
+Chronicle, `confluence_rules.debate_points`: chi vince con le carte in mano
+guadagna, chi non ne gioca perde. Motore, registro, verbale, pagina d'aiuto,
+prova e sonda (`--debate-points`). Misurata su trenta anni fa il contrario
+di quello che vuole: le astensioni scendono da 65% a 13% ma l'opposizione nel
+margine cade da 60% a 17% e i Consigli falliti da 46 a 9 — tutti salgono sul
+carro di chi propone. Per questo nei dati è a zero: si accende con due
+numeri, e la forma giusta è del committente.
+
+---
+
 ## 0.1.423 — La CONDITION esce dal motore
 
 [D-454](docs/DECISIONS.md#d-454), parola del committente. La condizione che un

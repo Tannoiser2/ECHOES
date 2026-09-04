@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-455 — L'astensione ha un prezzo: la regola c'e', e misurata fa il contrario di quello che vuole
+
+**implemented in 0.1.424, spenta nei dati.** Parola del committente: *«chi
+non gioca carte, oltre a fare un favore a chi le gioca, potrebbe perdere
+punti vittoria se perde un dibattito, oppure potrebbero guadagnarle chi li
+vince»*. La regola e' scritta come due numeri nella Chronicle,
+`confluence_rules.debate_points`: **`winners_gain`**, quanti punti di
+campagna prende a Consiglio chiuso chi sta sul fronte che ha vinto con
+almeno una carta impegnata, il proponente compreso; **`silent_lose`**, quanti
+ne perde chi non propone e non impegna nessuna carta. A zero e zero il
+Consiglio non tocca il punteggio. Il motore la applica dopo `resolve()`,
+scrive il verbale (*«Punti del dibattito: Lyra +1 — ha vinto con le carte in
+mano»*) e la mette nel registro del Consiglio (`debate_points`); la pagina
+d'aiuto la dice quando e' accesa; una prova la fabbrica nei due versi.
+
+**Le sedie la sentono.** A chi la proposta non tocca — punteggio zero, che
+prima voleva dire astenersi — conviene stare sul fronte che vince con una
+carta in mano: il fronte di chi propone, che ha le carte e il silenzio-
+assenso dalla sua. La policy fa esattamente questo, ed e' quello che una
+persona razionale farebbe.
+
+**La misura**, trenta anni per lettura, stessi semi, con `--debate-points`
+sulla sonda della partecipazione:
+
+| | spenta | vince +1 | astenuto −1 | tutt'e due |
+|---|---|---|---|---|
+| astensioni, misto / uniforme | 65% / 82% | **13% / 15%** | 13% / 15% | 13% / 15% |
+| SUPPORT fra i non proponenti | 5% / 4% | **72% / 67%** | 72% / 67% | 72% / 67% |
+| carte degli altri tre per Consiglio | 1,61 / 0,58 | 3,15 / 2,71 | 3,15 / 2,71 | 3,15 / 2,71 |
+| **opposizione nel margine** | **60% / 20%** | **17% / 25%** | 17% / 25% | 17% / 25% |
+| margine medio | 0,56 / 3,18 | 6,03 / 4,93 | 6,03 / 4,93 | 6,03 / 4,93 |
+| Consigli falliti | 46 / 18 | 9 / 12 | 9 / 12 | 9 / 12 |
+| esiti decisivi | 15 / 35 | 71 / 64 | 71 / 64 | 71 / 64 |
+
+**Il prezzo dell'astensione uccide l'astensione, e con lei l'opposizione.**
+Le tre letture giocano uguali, perche' la mossa razionale e' una sola:
+salire sul carro di chi propone. Le astensioni scendono da due terzi a un
+ottavo, ma i tre quarti delle prese di posizione diventano SUPPORT, il
+margine medio passa da mezzo punto a sei, i Consigli falliti da 46 a 9 e i
+successi decisivi da 15 a 71. Il Consiglio smette di essere un'astensione e
+diventa un plebiscito: la proposta passa sempre, e con le carte di tutti.
+Non e' quello che il committente chiedeva — voleva che chi sta a guardare
+pagasse, non che tutti votassero si'.
+
+**Per questo la regola e' nei dati a zero.** Il meccanismo c'e', si accende
+con due numeri, e la sonda lo misura con un'opzione. La forma che
+farebbe quello che il committente intende e' un'altra, ed e' sua da
+scegliere: un punto **solo a chi vince contro il proponente**, cosi' il carro
+non c'e'; oppure la penalita' a chi non impegna carte **e** la carta
+obbligatoria con la posizione, cosi' un SUPPORT vuoto non compra niente;
+oppure il gettone di opposizione di D-419 che pesa nel punteggio. Ognuna e'
+un numero in piu' nella stessa regola, e si misura con la stessa sonda.
+
+**E il cancello dei 100 semi, col prezzo acceso a uno e uno**, girato su una
+copia dei dati (seme 7000): 0 seggi bloccati su 8 sui due tavoli — il
+vincolo tiene — ma gli esiti dicono il plebiscito: falliti 153 → **25** e
+decisivi 46 → **221** sul misto, 71 → **37** e 93 → **208** sull'uniforme.
+Con la regola spenta, che e' quella spedita, i numeri di 0.1.423 restano
+quelli. Suite 746 prove verdi (due in piu': quelle della regola), 28
+cancelli veloci verdi; la misura della partecipazione porta la riga dei punti,
+a zero.
+
+---
+
 ## D-454 — La CONDITION esce dal motore: la condizione e' il costo che l'avversario sceglie
 
 **implemented in 0.1.423.** Parola del committente, davanti alle caselle:
