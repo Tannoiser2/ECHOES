@@ -5,6 +5,17 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.429 — Le otto memorie della biblioteca hanno una penna
+
+[D-460](docs/DECISIONS.md#d-460), parola del committente. Le otto memorie che
+la pesca delle domande chiedeva e nessuno scriveva dal D-454 hanno una penna:
+tre in Conseguenze che esistono, quattro in Conseguenze nuove legate alle
+proposte che le dicono, una nella casella IL MONDO RICORDA che il registro
+dei segni ora sa leggere. `CHIESTI_NOTI` torna a una riga sola. Cancello dei 100
+semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.428 — Nessuna coppia di case resta senza un litigio
 
 [D-459](docs/DECISIONS.md#d-459), parola del committente. Tredici coppie di

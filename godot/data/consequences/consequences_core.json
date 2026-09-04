@@ -427,6 +427,17 @@
           "payload": {
             "delta": -1
           }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "descent_witnessed"
+          },
+          "note": "D-460: si scende con regole scritte e testimoni, e la discesa resta a verbale."
         }
       ]
     },
@@ -590,6 +601,17 @@
           "payload": {
             "delta": -2
           }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "succession_witnessed"
+          },
+          "note": "D-460: nominato davanti a tutti, e chi era presente ne risponde — la memoria che la pesca dell'era dopo ascolta."
         }
       ]
     },
@@ -1719,6 +1741,17 @@
           "payload": {
             "delta": -2
           }
+        },
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "relic_recorded"
+          },
+          "note": "D-460: murata, e messo a verbale che e' stata murata."
         }
       ]
     },
@@ -2055,6 +2088,118 @@
             "optional": true
           },
           "note": "D-165: una valle che si vuota si porta dietro l'acqua. La sorgente cala — e chi ci stava vicino smette di contare meno le giornate."
+        }
+      ]
+    },
+    {
+      "id": "CNS_WATER_SHARED",
+      "title": "L'Acqua di Tutti",
+      "category": "PACT",
+      "description": "Nessuno riscuote. Ogni citta' manda braccia per quanta acqua prende, e chi devia un canale risponde a tutte le altre. E' la memoria che la Valle si porta dietro quando torna a litigare sull'acqua.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "water_shared"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_WATER"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_DISTRIBUTION_AUDITED",
+      "title": "La Distribuzione Verificata",
+      "category": "CONTROL",
+      "description": "Razione per razione, con un registro aperto accanto: chi distribuisce lo fa sotto gli occhi di chi mangia. Il grano arriva, e il nome di chi lo tratteneva e' scritto in fondo.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "distribution_audited"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_FAMINE"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_QUOTA_GUARANTEED",
+      "title": "La Quota Garantita",
+      "category": "FAMINE",
+      "description": "A ognuno la sua parte, scritta prima del raccolto: chi lavora mangia, e la lista la tiene chi l'ha proposta. Una promessa che l'anno dopo qualcuno verra' a riscuotere.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "quota_guaranteed"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_FAMINE"
+          },
+          "payload": {
+            "delta": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "CNS_DEBT_STAGGERED",
+      "title": "Il Debito a Rate",
+      "category": "DEBT",
+      "description": "Non rimesso e non chiamato: rinviato, e scritto che e' stato rinviato. Un debito con gli dei o con il trono si scrive come gli altri, e torna alla pagina dopo.",
+      "effects": [
+        {
+          "type": "SET_GLOBAL_TAG",
+          "target": {
+            "kind": "world",
+            "id": "WORLD"
+          },
+          "payload": {
+            "tag": "debt_staggered"
+          }
+        },
+        {
+          "type": "ADJUST_TENSION",
+          "target": {
+            "kind": "tension",
+            "id": "TEN_DEBT"
+          },
+          "payload": {
+            "delta": -1
+          }
         }
       ]
     }

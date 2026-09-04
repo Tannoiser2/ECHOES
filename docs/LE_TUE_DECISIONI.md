@@ -125,6 +125,13 @@ barriera di pedaggio è il litigio più largo del tavolo. Le ragioni sono
 scritte come le direbbe chi siede a quel posto: se una non è la sua voce,
 è una riga da correggere.
 
+**E in 0.1.429, di nuovo «merge e vai»** ([D-460](DECISIONS.md#d-460)): il
+costo di D-454 è pagato. Le otto memorie che la biblioteca chiedeva e nessuno
+scriveva hanno una penna, tre in Conseguenze che c'erano, quattro in
+Conseguenze nuove legate alle proposte che le dicono, una nella casella IL
+MONDO RICORDA. Costo scritto: il Debito scrive la sua rata dalle carte della
+Decima e del Tributo, non dalle sue.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
