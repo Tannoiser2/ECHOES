@@ -801,6 +801,7 @@
       ],
       "read_by": [
         "destiny",
+        "entity_strategic_profile",
         "objective"
       ],
       "note": "una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — per questo il censimento la vede orfana pur avendo chi la scrive e chi la conta"
@@ -868,6 +869,7 @@
       ],
       "read_by": [
         "destiny",
+        "entity_strategic_profile",
         "objective"
       ],
       "note": "una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — per questo il censimento la vede orfana pur avendo chi la scrive e chi la conta"
@@ -886,6 +888,7 @@
       ],
       "read_by": [
         "destiny",
+        "entity_strategic_profile",
         "objective"
       ],
       "note": "una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — per questo il censimento la vede orfana pur avendo chi la scrive e chi la conta"

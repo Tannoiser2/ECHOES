@@ -10,6 +10,74 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-458 — I profili si polarizzano sui segni delle proposte piatte
+
+**implemented in 0.1.427.** Parola del committente: *«vai»* sulla seconda
+meta' di [D-457](#d-457) — le quattordici proposte che non muovevano il
+punteggio di nessuno. Lette una per una, scrivono **nove segni**: cinque
+riti che stabiliscono una fede e riconoscono una custodia
+(`faith_established`, `anointed`), cinque scoperte di una leggenda
+(`discovery:legend`), la Carta scritta e letta (`charter_written`,
+`discovery:the_charter`), il registro letto (`discovery:the_ledger`), i Nahr
+che si fermano (`nahr_settled`), il conto saldato (`account_settled`). Di
+questi, **quattro non li voleva ne' li temeva nessuna casa**, e gli altri
+cinque li voleva una casa sola: un segno che aiuta uno e non danneggia
+nessuno *«non e' una questione: e' un regalo»*, come dice MISURA_MATRICE, e
+al Consiglio nessuno ha una ragione per opporsi.
+
+**Cosa cambia**: sedici voci nei profili strategici, ognuna con la sua
+ragione nella voce della casa, e tre lettori in piu' nel dizionario:
+
+| segno | voleva | **vuole** | **teme** |
+|---|---|---|---|
+| `faith_established` | Vetro | Vetro | **Lyra, Cenere** |
+| `anointed` | Vetro | Vetro | **Lyra, Cenere, Citta' Libere** |
+| `discovery:legend` | — | **Lyra** | **Vaerax, Vetro** |
+| `charter_written` | Citta' Libere | Citta' Libere | **Aldric** |
+| `discovery:the_charter` | — | **Citta' Libere** | **Aldric** |
+| `discovery:the_ledger` | — | **Lyra, Sale** | **Vetro** |
+| `nahr_settled` | Nahr | Nahr | **Aldric** |
+| `account_settled` | Sale | Sale | **Citta' Libere** |
+
+Ogni riga e' un litigio che il mondo gia' racconta: Lyra contro il Vetro
+sulla misura che si rifa' o si custodisce, Vaerax contro chiunque spieghi
+la montagna, Aldric contro la Carta e contro chi si ferma sulla sua terra
+senza la sua corona, le Citta' contro un custode sopra tutti e contro un
+conto pagato a comando. I profili restano del committente: qui si e' scritto
+il minimo perche' le quattordici carte trovino un avversario al tavolo.
+
+**La misura**, quaranta anni con la sonda delle posizioni e trenta con
+quella della partecipazione, stessi semi:
+
+| | D-457 | **D-458** |
+|---|---|---|
+| proposte messe ai voti, sempre piatte | 14 su 75 | **5 su 79** |
+| Consigli con almeno un no (40 anni) | 72% | **78%** |
+| astensioni, misto / uniforme (30 anni) | 34% / 33% | **30% / 27%** |
+| Consigli col tavolo in silenzio | 15% / 19% | **5% / 9%** |
+| Consigli con opposizione nel margine | 72% / 56% | **70% / 64%** |
+
+Le cinque che restano piatte lo sono per una ragione diversa: la Guerra
+delle Gilde salda un conto, il Silenzio dell'Isola svela una domanda, i Nomi
+Vecchi aprono una disputa fra dotti — segni che i profili nominano, ma
+posati in anni in cui al tavolo non sedeva la casa che li vuole o li teme.
+Con quattro seggi su otto, e' il tavolo pescato che decide se un segno fa
+litigare: e' un pavimento, come dice MISURA_MATRICE, non un difetto.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **141 · 47 · 75 · 87** sul misto e
+**115 · 55 · 86 · 97** sull'uniforme — tredici e otto Consigli caduti in piu'
+di D-457, sugli stessi semi: i nove segni hanno trovato chi si oppone. Suite
+746 prove verdi; la corsia lenta rigirata, `MISURA_PARTECIPAZIONE.md` con
+questi numeri.
+
+**Cosa resta**: le cinque proposte ancora piatte dipendono dal tavolo
+pescato, e le dodici coppie di profili che condividono un segno
+([D-457](#d-457)) sono ancora li' — sedici voci non le sciolgono, e i
+profili restano del committente.
+
+---
+
 ## D-457 — La sedia legge il suo profilo, e la lista delle proposte piatte
 
 **implemented in 0.1.426.** Parola del committente, davanti al quarto che
