@@ -3437,6 +3437,10 @@ clausole, le chiede la pesca delle domande della biblioteca. Sono dichiarate in
 `CHIESTI_NOTI` con la ragione, e vanno riscritte come casella o come
 Conseguenza: finché non lo sono, le domande che le aspettano non escono mai.
 
+*In 0.1.429 hanno una penna* ([D-460](DECISIONS.md#d-460)): tre in
+Conseguenze che esistono, quattro in Conseguenze nuove, una nella casella IL
+MONDO RICORDA. `CHIESTI_NOTI` torna alla sola strada.
+
 ---
 
 ### 97. ✅ Le clausole di Regione nascevano morte — chiusa in 0.1.290, strada 1

@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3638 testi in lettura.
+possono spostare nella frase, non togliere. 3646 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -8401,10 +8401,22 @@ possono spostare nella frase, non togliere. 3638 testi in lettura.
 > Una riga tirata sotto una colonna di numeri. Costa a chi la tira, e per un anno intero nessuno parla d'altro.
 
 
+**`CNS_DEBT_STAGGERED`**
+> Il Debito a Rate
+
+> Non rimesso e non chiamato: rinviato, e scritto che e' stato rinviato. Un debito con gli dei o con il trono si scrive come gli altri, e torna alla pagina dopo.
+
+
 **`CNS_DECISIVE_RENOWN`**
 > Ordine Ristabilito
 
 > La proposta non passa soltanto: convince. Per un tempo, il tavolo smette di discutere chi ha ragione.
+
+
+**`CNS_DISTRIBUTION_AUDITED`**
+> La Distribuzione Verificata
+
+> Razione per razione, con un registro aperto accanto: chi distribuisce lo fa sotto gli occhi di chi mangia. Il grano arriva, e il nome di chi lo tratteneva e' scritto in fondo.
 
 
 **`CNS_DRAGON_SLAIN`**
@@ -8593,6 +8605,12 @@ possono spostare nella frase, non togliere. 3638 testi in lettura.
 > Quello che un consiglio lasciò cadere viene deciso e scritto. Il registro non ha più pagine bianche - e riaprire vecchie ferite ha un prezzo.
 
 
+**`CNS_QUOTA_GUARANTEED`**
+> La Quota Garantita
+
+> A ognuno la sua parte, scritta prima del raccolto: chi lavora mangia, e la lista la tiene chi l'ha proposta. Una promessa che l'anno dopo qualcuno verra' a riscuotere.
+
+
 **`CNS_RATIONED`**
 > La Razione Imposta
 
@@ -8685,6 +8703,12 @@ possono spostare nella frase, non togliere. 3638 testi in lettura.
 > L'Acqua a Prezzo
 
 > Chi ha pagato i lavori riscuote sull'acqua. È legittimo, è scritto, e da quel giorno la Valle ha un padrone che non ha mai messo piede nella Valle.
+
+
+**`CNS_WATER_SHARED`**
+> L'Acqua di Tutti
+
+> Nessuno riscuote. Ogni citta' manda braccia per quanta acqua prende, e chi devia un canale risponde a tutte le altre. E' la memoria che la Valle si porta dietro quando torna a litigare sull'acqua.
 
 
 **`CNS_WORD_GOES_ROUND`**

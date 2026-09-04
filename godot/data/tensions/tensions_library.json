@@ -2446,7 +2446,8 @@
             "text": "Sospesa per un anno, e si segni che è stata sospesa: un debito con gli dei si scrive come gli altri.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_RATIONED"
+              "CNS_RATIONED",
+              "CNS_DEBT_STAGGERED"
             ],
             "echo_summary": "La decima fu sospesa per un anno, e la sospensione restò scritta dove tutti la leggevano."
           }
@@ -3397,7 +3398,8 @@
             "text": "Una quota per villaggio, e $proponent tiene la lista.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_RATIONED"
+              "CNS_RATIONED",
+              "CNS_QUOTA_GUARANTEED"
             ],
             "echo_summary": "La leva $of_region si prese una quota per villaggio, e la lista la teneva $proponent."
           },
@@ -4218,7 +4220,8 @@
             "text": "Mezzo tributo per l'anno mezzo. Il resto si rimette, e non si conta piu'.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_SHARED_BURDEN"
+              "CNS_SHARED_BURDEN",
+              "CNS_DEBT_STAGGERED"
             ],
             "echo_summary": "Il tributo fu dimezzato come l'annata, e il resto nessuno lo chiese più."
           },
@@ -6506,7 +6509,8 @@
             "text": "Si apra il registro dei sili: si vedra' chi ha chiuso male le porte.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_LEDGER_OPENED"
+              "CNS_LEDGER_OPENED",
+              "CNS_DISTRIBUTION_AUDITED"
             ],
             "echo_summary": "I registri dei sili $of_region furono aperti, e il nome di chi li chiudeva era scritto in fondo."
           }

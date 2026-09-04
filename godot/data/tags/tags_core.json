@@ -747,7 +747,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],
@@ -761,7 +763,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],
@@ -976,7 +980,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],
@@ -2246,7 +2252,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],
@@ -2279,7 +2287,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],
@@ -3013,7 +3023,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],
@@ -3207,7 +3219,9 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [],
+      "written_by": [
+        "consequence"
+      ],
       "read_by": [
         "chronicle"
       ],

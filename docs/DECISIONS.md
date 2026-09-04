@@ -10,6 +10,79 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-460 — Le otto memorie della biblioteca hanno una penna
+
+**implemented in 0.1.429.** Parola del committente: *«merge e vai»* dopo
+[D-459](#d-459). Il costo scritto di [D-454](#d-454), rimasto in
+[ISSUES 98](ISSUES.md#98-chiudere-il-circuito-ogni-segno-dichiara-se-pesa-o-se-e-colore):
+**otto memorie chieste e non scritte**. Le chiede la pesca delle domande
+della biblioteca — se il mondo le porta ancora, la domanda della loro
+Tensione pesa il triplo nell'era dopo (D-286) — e le scrivevano le clausole
+della CONDITION, uscite dal motore. Da allora quelle otto righe della
+Chronicle erano promesse false: la Carestia, il Debito, la Reliquia, la
+Successione, l'Acqua e il Risveglio avevano una memoria che nessuna partita
+poteva lasciare.
+
+**Cosa cambia**, come ISSUES 98 prescrive — *«come casella o come
+Conseguenza»* — e senza toccare le carte, che il taglio a quattro piu'
+quattro ha chiuso:
+
+| memoria | chi la scrive adesso | la proposta che la dice |
+|---|---|---|
+| `succession_witnessed` | CNS_HEIR_NAMED | *«Si nomini un erede ora, davanti a tutti, e chi e' presente ne risponda»* |
+| `relic_recorded` | CNS_RELIC_BURIED | *«Si muri la cella, e si metta a verbale che e' stata murata»* |
+| `descent_witnessed` | CNS_STUDY_UNDER_GUARD | *«Si scende con regole scritte e due testimoni per turno»*, *«tutto a verbale»* |
+| `water_shared` | **CNS_WATER_SHARED**, nuova | *«L'acqua non e' di nessuno»*, *«ogni citta' mandi braccia… e nessuno riscuota»* |
+| `distribution_audited` | **CNS_DISTRIBUTION_AUDITED**, nuova | *«distribuito razione per razione»*, *«si apra il registro dei sili»* |
+| `quota_guaranteed` | **CNS_QUOTA_GUARANTEED**, nuova | *«chi ne lavora la terra, ne mangi»*, *«una quota per villaggio»* |
+| `debt_staggered` | **CNS_DEBT_STAGGERED**, nuova | *«sospesa per un anno, e si segni che e' stata sospesa»*, *«mezzo tributo per l'anno mezzo»* |
+| `charter_for_all` | la casella IL MONDO RICORDA di *I Seggi del Consiglio* | gia' dal taglio di D-453 |
+
+Tre memorie entrano in Conseguenze che esistono, perche' la proposta che le
+porta gia' le dice; quattro hanno una Conseguenza nuova, perche' la
+Conseguenza che quelle proposte portavano e' condivisa con proposte che
+dicono il contrario — *L'Acqua di Tutti* non poteva stare dentro *I Canali
+Riaperti*, che scava anche per chi poi la vende. Nessuna Conseguenza nuova
+tocca la mappa: posano la memoria sul mondo e raffreddano di uno la
+Tensione che la chiede.
+
+**E il registro dei segni ha imparato a leggere la casella**: contava le
+penne delle Conseguenze, delle carte Asset e degli Echi, e non la casella
+IL MONDO RICORDA che il motore esegue dal taglio — `charter_for_all` era
+scritto da una carta e dichiarato impossibile. Le otto righe di
+`CHIESTI_NOTI` escono, e con loro l'ultima clausola impossibile tollerata a
+mano che non sia la strada.
+
+**Il costo, scritto**: il Debito scrive la sua memoria dalle carte della
+Decima e del Tributo, non dalle sue cinque proposte — nessuna delle cinque
+rinvia un debito, e non si e' voluto scriverne una sesta. Se la domanda del
+Debito deve pesare il triplo per una rata, e' la biblioteca a doverla
+porgere.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **143 · 50 · 71 · 84** sul misto e
+**129 · 53 · 83 · 88** sull'uniforme — gli stessi di D-459 a un Consiglio
+o due: una memoria posata sul mondo non cambia l'anno in cui si posa,
+cambia la pesca dell'era dopo. Suite 746 prove verdi. **E la misura dei segni**, cento anni di saga
+([MISURA_SEGNI](MISURA_SEGNI.md)), dice quante volte le otto memorie
+arrivano sul mondo adesso — erano tutte a zero, per costruzione:
+
+| memoria | scatti per secolo |
+|---|---|
+| `succession_witnessed`, `relic_recorded` | 8 |
+| `descent_witnessed` | 6 |
+| `distribution_audited`, `debt_staggered` | 2 |
+| `water_shared`, `charter_for_all` | 1 |
+| `quota_guaranteed` | **0** |
+
+La quota garantita ha una penna e non ha ancora scritto: le tre proposte
+che la portano — la terra a chi la lavora, la Valle aperta, una quota per
+villaggio — non sono passate una volta in cento anni. Non e' piu' una
+promessa falsa: e' una promessa rara, e il numero resta qui finche' non
+sale.
+
+---
+
 ## D-459 — Nessuna coppia di case resta senza un litigio
 
 **implemented in 0.1.428.** Parola del committente: *«merge e vai»* dopo

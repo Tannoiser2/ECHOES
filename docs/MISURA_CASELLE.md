@@ -45,10 +45,10 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 
 | | distinti | applicazioni |
 |---|---|---|
-| **una casella di oggi lo sa dire** | 43 | 247 |
+| **una casella di oggi lo sa dire** | 43 | 252 |
 | **verbo giusto, posto che la casella non sa dire** | 0 | 0 |
 | **verbo che manca** | 0 | 0 |
-| | **43** | **247** |
+| | **43** | **252** |
 
 ## Le caselle che mancano
 
@@ -74,7 +74,7 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 |---|---|---|---|
 | `BUILD_STRUCTURE` | `$region_with:granary` | 4 | si alza Granaio in una Regione con #granaio |
 | `ADJUST_TENSION` | `TEN_ROADS` | 9 | Le Vie Interrotte sale |
-| `SET_GLOBAL_TAG` | *dove si discute* | 53 | il mondo registra: il grano e' stato requisito |
+| `SET_GLOBAL_TAG` | *dove si discute* | 58 | il mondo registra: il grano e' stato requisito |
 | `SET_REGION_TAG` | *dove si discute* | 21 | dove si discute diventa insediamento: chi propone |
 | `SET_RELATION` | `$proponent|$rival` | 10 | il rapporto fra chi propone e il rivale cambia |
 | `SET_CONTROL` | *dove si discute* | 4 | dove si discute cambia padrone |

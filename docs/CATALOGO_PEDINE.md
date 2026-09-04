@@ -1473,7 +1473,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il debito e' stato dilazionato
 
-`debt_staggered` · categoria **MEMORY** · sta su global
+`debt_staggered` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** Non si paga tutto adesso: il conto e' stato spezzato in piu' volte.
 
@@ -1491,7 +1491,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la discesa e' stata fatta davanti a testimoni
 
-`descent_witnessed` · categoria **MEMORY** · sta su global
+`descent_witnessed` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** Qualcuno e' sceso sotto la pietra, e non lo ha fatto di nascosto.
 
@@ -1509,7 +1509,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la distribuzione e' stata contata
 
-`distribution_audited` · categoria **MEMORY** · sta su global
+`distribution_audited` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** Qualcuno ha controllato chi ha ricevuto quanto.
 
@@ -1797,7 +1797,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### una quota e' garantita
 
-`quota_guaranteed` · categoria **MEMORY** · sta su global
+`quota_guaranteed` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** A qualcuno spetta una parte fissa, qualunque cosa succeda.
 
@@ -1833,7 +1833,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la reliquia e' a registro
 
-`relic_recorded` · categoria **MEMORY** · sta su global
+`relic_recorded` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** Esiste, ed e' scritto dove sta e di chi e'.
 
@@ -1959,7 +1959,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la successione ha avuto testimoni
 
-`succession_witnessed` · categoria **MEMORY** · sta su global
+`succession_witnessed` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** Il passaggio e' avvenuto davanti a gente che puo' ridirlo.
 
@@ -2049,7 +2049,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### l'acqua si divide
 
-`water_shared` · categoria **MEMORY** · sta su global
+`water_shared` · categoria **MEMORY** · sta su global · lo posa: consequence
 
 **Cosa vuol dire.** La sorgente e' di piu' d'uno, e la parte e' stabilita.
 

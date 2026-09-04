@@ -52,7 +52,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Case (Entita') | 8 | i seggi, con **32 vite** in tutto |
 | Profili strategici | 8 su 8 | cosa ogni casa vuole lasciare nel mondo |
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
-| Conseguenze | 63 | cosa una proposta scrive sul mondo se passa |
+| Conseguenze | 67 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
 | Regole dei segni | 56 | cosa un segno fa da solo |
 | Azioni | 7 | i verbi del turno |

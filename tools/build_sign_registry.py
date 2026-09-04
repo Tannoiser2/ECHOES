@@ -350,6 +350,24 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
     for tension in items("tension"):
         for tag in tension.get("focus_region_tags", []) or []:
             note(str(tag), "legge", "la Regione di cui si discute")
+    # **E la casella IL MONDO RICORDA e' una penna** (D-460): dal menu a
+    # quattro piu' quattro (D-453) ogni carta Tensione porta una memoria che il
+    # motore posa sul mondo quando il proponente la compra
+    # (`council_economy.gd`, SET_GLOBAL_TAG), e DIMENTICA la toglie. Senza
+    # questa riga `charter_for_all` risultava chiesto dalla pesca e scritto da
+    # nessuno, mentre una casella lo scrive dal giorno del taglio.
+    for tension in items("tension"):
+        face = tension.get("physical") or {}
+        for lista in ("benefits", "costs", "failure"):
+            for voce in face.get(lista, []) or []:
+                verbo = str((voce or {}).get("verb", ""))
+                tag = str((voce or {}).get("tag", ""))
+                if not tag:
+                    continue
+                if verbo == "REMEMBER":
+                    note(tag, "scrive", "casella IL MONDO RICORDA")
+                elif verbo == "FORGET":
+                    note(tag, "cancella", "casella IL MONDO DIMENTICA")
     # 2. `entry_tag` e `entry_forbidden_tag` di una vita decidono **chi siede
     #    l'anno prossimo**: e' il morso piu' forte che ci sia in questo gioco,
     #    perche' cambia il giocatore e non una modifica. `heir_named` sta li'.
@@ -441,18 +459,6 @@ CHIESTI_NOTI: Dict[str, str] = {
     # (lo dice anche il dizionario). Visibile solo da D-286, da quando il
     # registro sa che una faccia di carta legge.
     "structure:road": "la strada non e' un segno posato: il motore la conta dalle strutture sulla mappa",
-    # **Le otto memorie delle clausole** (D-454). Le scrivevano le clausole
-    # della CONDITION, uscita dal motore; le chiede la pesca delle domande
-    # della biblioteca. Restano chieste e non scritte finche' non tornano
-    # come casella o come Conseguenza — ISSUES 98 le tiene in lista.
-    "charter_for_all": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "debt_staggered": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "descent_witnessed": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "distribution_audited": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "quota_guaranteed": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "relic_recorded": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "succession_witnessed": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
-    "water_shared": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
 }
 
 

@@ -69,7 +69,7 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 
 > A chi appartiene ciò che dorme sotto la Regione di cui si discute?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende · il mondo registra: la discesa e' stata fatta davanti a testimoni
 
 ### Si scenda con ferro e fuoco: cio' che dorme sotto la Regione di cui si discute non si svegli mai piu'.
 
@@ -103,6 +103,7 @@ Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza 
 > E del raccolto marcito, chi risponde?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
+- **Se passa — La Distribuzione Verificata:** il mondo registra: la distribuzione e' stata contata · La Carestia scende
 
 ---
 
@@ -174,7 +175,7 @@ La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcu
 
 > La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?
 
-- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2 · il mondo registra: la reliquia e' a registro
 
 ### Si scavi il canale e l'acqua torni alta: quello che la palude tiene, lo tenga.
 
@@ -356,7 +357,7 @@ Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e 
 
 > E andare a vedere cosa c'è sotto, conviene a qualcuno?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende · il mondo registra: la discesa e' stata fatta davanti a testimoni
 
 ---
 
@@ -370,7 +371,7 @@ In fondo alle gallerie qualcosa risponde ai colpi. Con un ritardo. Sempre lo ste
 
 > In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende · il mondo registra: la discesa e' stata fatta davanti a testimoni
 
 ### Si mura il fondo e si lavora sopra. Quello che sta sotto stia sotto.
 
@@ -476,6 +477,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Si puo' proporre solo se:** Solo chi porta la corona può requisire
 - **Se passa — Il Granaio del Trono:** si alza Granaio in una Regione con #granaio · Le Vie Interrotte sale · il mondo registra: il grano e' stato requisito
+- **Se passa — La Distribuzione Verificata:** il mondo registra: la distribuzione e' stata contata · La Carestia scende
 
 ### Chi propone apra la Regione di cui si discute a chi giunge da levante: chi ne lavora la terra, ne mangi.
 
@@ -483,6 +485,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Se passa — Chi Lavora Mangia:** dove si discute diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto fra chi propone e il rivale cambia
 - **Se passa — Il Titolo che non Vale più:** dove si discute cambia padrone · il mondo registra: la corona e' stata spogliata
+- **Se passa — La Quota Garantita:** il mondo registra: una quota e' garantita · La Carestia scende
 
 ### Si serrino i confini: quello che cresce nella Regione di cui si discute resti a chi propone, e a nessun altro.
 
@@ -497,6 +500,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Se passa — Chi Lavora Mangia:** dove si discute diventa insediamento: chi propone · il mondo registra: i Nahr si sono fermati · il rapporto fra chi propone e il rivale cambia
 - **Se passa — Il Titolo che non Vale più:** dove si discute cambia padrone · il mondo registra: la corona e' stata spogliata
+- **Se passa — La Quota Garantita:** il mondo registra: una quota e' garantita · La Carestia scende
 
 ### Si sigillino le gallerie sotto la montagna: ogni uomo valido resti nei campi, e il Cristallo resti addormentato.
 
@@ -684,7 +688,7 @@ Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la nott
 
 > E a chi ci ha già passato la notte, cosa si chiede?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende · il mondo registra: la discesa e' stata fatta davanti a testimoni
 
 ---
 
@@ -751,6 +755,7 @@ Servono braccia per le armi. Le stesse braccia servivano per il raccolto.
 > Nella Regione di cui si discute, chi decide quante braccia vanno alle armi?
 
 - **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
+- **Se passa — La Quota Garantita:** il mondo registra: una quota e' garantita · La Carestia scende
 
 ### Ogni casa perda le sue braccia, in parti uguali, e nessuna si tenga i giovani buoni.
 
@@ -1017,7 +1022,7 @@ Qualcuno ha letto nei cristalli una data. Da allora, tutto quello che succede se
 
 > Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende · il mondo registra: la discesa e' stata fatta davanti a testimoni
 
 ### Si scriva adesso cosa si fa il giorno dopo, e si firmi adesso: dopo, chi ha avuto ragione non ascolta più nessuno.
 
@@ -1121,7 +1126,7 @@ Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodi
 
 > E chi ha diritto di vederlo?
 
-- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2 · il mondo registra: la reliquia e' a registro
 
 ### La custodia divenga incarico scritto, e a portarlo sia chi propone.
 
@@ -1371,7 +1376,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 > Chi siede sul trono quando questo si alza?
 
-- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
+- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2 · il mondo registra: la successione ha avuto testimoni
 - **Se passa — L'Ordine Rimesso in Piedi:** dove si discute non e' piu' #inquieta · dove si discute non e' piu' #contesa · La Successione scende
 
 ### Si nomini chi la ballata nomina: l'erede che l'anno buono avrebbe voluto. E stavolta lo si scriva.
@@ -1379,7 +1384,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 > Chi siede sul trono quando questo si alza?
 
 - **Si puo' proporre solo se:** Si racconta di un anno in cui l'ordine torno davvero
-- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
+- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2 · il mondo registra: la successione ha avuto testimoni
 - **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
 ### Non uno solo: si divida il titolo, e la Regione di cui si discute risponda a chi la tiene davvero.
@@ -1394,7 +1399,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 > Chi siede sul trono quando questo si alza?
 
 - **Si puo' proporre solo se:** La corona e' divisa da un'altra era, oppure un erede ha gia' un nome
-- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2
+- **Se passa — L'Erede Nominato:** chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2 · il mondo registra: la successione ha avuto testimoni
 
 ### Si scriva una legge in luogo di scegliere un uomo. E valga anche per chi la scrive.
 
@@ -1467,6 +1472,7 @@ Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene
 > E in un anno magro, si paga lo stesso?
 
 - **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
+- **Se passa — Il Debito a Rate:** il mondo registra: il debito e' stato dilazionato · Il Debito scende
 
 ---
 
@@ -1487,6 +1493,7 @@ Il tributo si paga a chi protegge. Quando la protezione non si vede, il tributo 
 > Il tributo si paga intero, in un anno che ha reso a meta'?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Il Debito a Rate:** il mondo registra: il debito e' stato dilazionato · Il Debito scende
 
 ### Si scriva cosa si compra col tributo, e chi non protegge non riscuota.
 
@@ -1512,13 +1519,13 @@ Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbrica
 
 > È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?
 
-- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2 · il mondo registra: la reliquia e' a registro
 
 ### Regole scritte e una guardia alla porta: chi misura non tocca, chi tocca non misura.
 
 > E studiarlo, con quali regole?
 
-- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
+- **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende · il mondo registra: la discesa e' stata fatta davanti a testimoni
 
 ---
 
@@ -1564,7 +1571,7 @@ Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' c
 
 > Una delle pietre incise è a terra: si rialza, e chi la tocca?
 
-- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2
+- **Se passa — La Teca Murata:** il mondo registra: la reliquia e' stata sepolta · in una Regione con #cristallo diventa il sigillo · La Reliquia scende di 2 · il mondo registra: la reliquia e' a registro
 
 ### Un giro di guardia a turni contati: le pietre si guardano, non si spostano.
 
@@ -1585,6 +1592,7 @@ I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto 
 > Chi manda gli uomini a scavare nella Regione di cui si discute?
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
+- **Se passa — L'Acqua di Tutti:** il mondo registra: l'acqua si divide · L'Acqua Ferma scende
 
 ### Li paghi chi propone; chi vorrà l'acqua, poi, la compri.
 
@@ -1598,6 +1606,7 @@ I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto 
 > E l'acqua, dopo, di chi e?
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
+- **Se passa — L'Acqua di Tutti:** il mondo registra: l'acqua si divide · L'Acqua Ferma scende
 
 ---
 

@@ -148,7 +148,8 @@
               }
             ],
             "success_consequences": [
-              "CNS_ROYAL_GRANARY"
+              "CNS_ROYAL_GRANARY",
+              "CNS_DISTRIBUTION_AUDITED"
             ],
             "echo_summary": "Il grano $of_region passò sotto il sigillo di $proponent.",
             "echo_summaries": {
@@ -164,7 +165,8 @@
             "eligibility": [],
             "success_consequences": [
               "CNS_NAHR_SETTLEMENT",
-              "CNS_CROWN_DISPOSSESSED"
+              "CNS_CROWN_DISPOSSESSED",
+              "CNS_QUOTA_GUARANTEED"
             ],
             "echo_summary": "$proponent entrò $in_region, e quella terra smise di essere solo di $controller.",
             "echo_summaries": {
@@ -203,7 +205,8 @@
             "eligibility": [],
             "success_consequences": [
               "CNS_NAHR_SETTLEMENT",
-              "CNS_CROWN_DISPOSSESSED"
+              "CNS_CROWN_DISPOSSESSED",
+              "CNS_QUOTA_GUARANTEED"
             ],
             "echo_summary": "La terra $of_region fu assegnata a chi la lavorava, e il titolo di chi la teneva restò scritto solo sulla carta.",
             "echo_summaries": {
@@ -1480,7 +1483,8 @@
             "text": "Ogni città mandi braccia per quanta acqua prende. E nessuno riscuota.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_CANALS_DUG"
+              "CNS_CANALS_DUG",
+              "CNS_WATER_SHARED"
             ],
             "echo_summary": "I canali furono riaperti a spese di tutti, e l'acqua tornò a muoversi $in_region.",
             "echo_summaries": {
@@ -1504,7 +1508,8 @@
             "text": "L'acqua non è di nessuno. Chi la devia risponde a tutti.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_CANALS_DUG"
+              "CNS_CANALS_DUG",
+              "CNS_WATER_SHARED"
             ],
             "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
           }
