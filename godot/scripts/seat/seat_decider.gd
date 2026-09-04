@@ -564,41 +564,17 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	if not _is_human(entity_id):
 		return fallback.choose_stance(entity_id, context, session)
 	_speaking_to = entity_id
-	# **La scheda della carta, non il template grezzo** (D-310, D-378): le
-	# Domande e le Proposte stanno sulla carta Tensione, e quel dizionario
-	# tiene ancora quelle di ripiego. Leggerlo di li' faceva sparire la riga
-	# «se passa» — chi propone vedeva la frase e non cosa lasciava al mondo,
-	# che e' proprio quello che D-233 aveva messo li'.
-	var template: Dictionary = session.data.confluence_template_for(
-		str(context["tension_id"])
-	)
-	var clauses: Array = template["condition_clauses"]
-
+	# **Tre voci** (D-454): sostenere, opporsi, astenersi. La quarta —
+	# «sostieni a condizione che», con una clausola del template — e' uscita:
+	# la condizione che un avversario pone e' il costo che sceglie sulla carta.
 	var labels: Array = ["Sostieni", "Opponiti", "Astieniti"]
-	var clause_ids: Array = []
-	# Anche una clausola lascia qualcosa dietro, e anche quello stava solo nel
-	# database: si sceglieva di qualificare senza sapere cosa si scriveva.
-	var said_clauses: Array = CouncilText.clauses(
-		template, session.data, Callable(session.confluence, "say")
-	)
-	for i in range(clauses.size()):
-		var clause: Dictionary = clauses[i] as Dictionary
-		clause_ids.append(str(clause["id"]))
-		var leaves: String = "" if i >= said_clauses.size() else str(
-			(said_clauses[i] as Dictionary)["leaves"]
-		)
-		labels.append("Sostieni a condizione che: %s%s" % [
-			session.confluence.say(str(clause["text"])),
-			"" if leaves == "" else "\nSe qualificata: %s" % leaves,
-		])
 	var choice: int = await _choose("  %s, cosa dici?" % _name(entity_id, session), labels)
 	if choice < 0:
 		return fallback.choose_stance(entity_id, context, session)
 	match choice:
 		0: return {"stance": "SUPPORT", "clause_id": ""}
 		1: return {"stance": "OPPOSE", "clause_id": ""}
-		2: return {"stance": "ABSTAIN", "clause_id": ""}
-	return {"stance": "CONDITION", "clause_id": str(clause_ids[choice - 3])}
+	return {"stance": "ABSTAIN", "clause_id": ""}
 ## **Il proponente compra** (D-280): posa le pedine sui benefici della carta,
 ## sapendo che ogni beneficio oltre il primo lo fara' pagare — e che a scegliere
 ## la moneta saranno gli altri.

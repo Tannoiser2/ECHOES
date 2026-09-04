@@ -107,60 +107,6 @@
           }
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_FAMINE_SHARE",
-          "text": "...purché una quota fissa resti a $rival.",
-          "effects": [
-            {
-              "type": "REMOVE_REGION_TAG",
-              "target": {
-                "kind": "region",
-                "id": "$region_with:nomad_range"
-              },
-              "payload": {
-                "tag": "condition:starving"
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "quota_guaranteed"
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_FAMINE_AUDIT",
-          "text": "...purché la distribuzione $in_region sia contata davanti a testimoni.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "distribution_audited"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_FAMINE"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_FAILURE_ABANDONED"
@@ -300,60 +246,6 @@
           ],
           "success_consequences": [
             "CNS_DRAGON_SLAIN"
-          ]
-        }
-      ],
-      "condition_clauses": [
-        {
-          "id": "C_AWAKENING_WITNESS",
-          "text": "...purché $rival assista a ogni discesa.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "descent_witnessed"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_AWAKENING"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_AWAKENING_SHARE",
-          "text": "...purché ciò che si scopre sia detto a tutti, non a chi paga.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "knowledge_shared"
-              }
-            },
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$conditioner"
-              },
-              "payload": {
-                "tag": "discovery:shared_record"
-              }
-            }
           ]
         }
       ],
@@ -530,60 +422,6 @@
           }
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_SUCCESSION_WITNESS",
-          "text": "...purché $rival sia fra i testimoni, e la sua firma valga come le altre.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "succession_witnessed"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_SUCCESSION"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_SUCCESSION_AMNESTY",
-          "text": "...purché chi ha giurato all'altro non ne paghi il prezzo.",
-          "effects": [
-            {
-              "type": "REMOVE_REGION_TAG",
-              "target": {
-                "kind": "region",
-                "id": "$region_focus"
-              },
-              "payload": {
-                "tag": "condition:unrest"
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "amnesty_granted"
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_FAILURE_SPIRAL"
@@ -675,60 +513,6 @@
             "DECISIVE_SUCCESS": "Si decise che nessuno rispondesse, e $in_region si smise di viaggiare del tutto.",
             "FAILURE": "Si volle che nessuno rispondesse di niente, e qualcuno rispose lo stesso."
           }
-        }
-      ],
-      "condition_clauses": [
-        {
-          "id": "C_ROADS_SHARE",
-          "text": "...purché una quota resti a chi la strada la percorre e non la possiede.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "toll_shared"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_FAMINE"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_ROADS_LEDGER",
-          "text": "...purché ogni carico sia scritto su un registro che chiunque può leggere.",
-          "effects": [
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$conditioner"
-              },
-              "payload": {
-                "tag": "discovery:trade_ledger"
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "ledger_public"
-              }
-            }
-          ]
         }
       ],
       "consequence_pools": {
@@ -832,60 +616,6 @@
           }
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_ANY_WITNESS",
-          "text": "...purché $rival veda la lista con i propri occhi.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "list_witnessed"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "$tension"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_ANY_RETURN",
-          "text": "...purché chi se ne va possa tornare quando torna l'acqua.",
-          "effects": [
-            {
-              "type": "REMOVE_REGION_TAG",
-              "target": {
-                "kind": "region",
-                "id": "$region_focus"
-              },
-              "payload": {
-                "tag": "condition:abandoned"
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "return_promised"
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_FAILURE_ABANDONED"
@@ -965,34 +695,6 @@
           }
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_ANY_WITNESSED_LINE",
-          "text": "...purché il confine sia camminato alla presenza di $rival, pietra per pietra.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "list_witnessed"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "$tension"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_FAILURE_CONTESTED"
@@ -1065,34 +767,6 @@
             "CNS_SHARED_BURDEN"
           ],
           "echo_summary": "Il costo $of_region fu diviso in parti uguali, e fu il massimo che quel consiglio riusci' a fare."
-        }
-      ],
-      "condition_clauses": [
-        {
-          "id": "C_ANY_PUBLIC_COUNT",
-          "text": "...purché il conto si faccia in piazza, e $rival possa contare per secondo.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "distribution_audited"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "$tension"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
         }
       ],
       "consequence_pools": {
@@ -1169,60 +843,6 @@
             "CNS_COST_DEBT"
           ],
           "echo_summary": "Si stabilì che l'acqua non fosse di nessuno, e per un anno intero funzionò."
-        }
-      ],
-      "condition_clauses": [
-        {
-          "id": "C_WATER_LAST",
-          "text": "...purché l'ultima presa sia di chi sta più in basso.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "water_shared"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_NAMELESS"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_WATER_COUNT",
-          "text": "...purché le braccia mandate da ciascuno siano contate e scritte.",
-          "effects": [
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$rival"
-              },
-              "payload": {
-                "tag": "discovery:the_ledger"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_DEBT"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
         }
       ],
       "consequence_pools": {
@@ -1332,50 +952,6 @@
           }
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_DEBT_YEARS",
-          "text": "...purché il rientro sia in dieci anni e non in uno.",
-          "effects": [
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_DEBT"
-              },
-              "payload": {
-                "delta": -1
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "debt_staggered"
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_DEBT_WITNESS",
-          "text": "...purché a contare sia presente anche $rival.",
-          "effects": [
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$rival"
-              },
-              "payload": {
-                "tag": "discovery:the_ledger"
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_OATH_BROKEN"
@@ -1480,60 +1056,6 @@
           "echo_summary": "La cella fu murata, e messo a verbale che era stata murata."
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_RELIC_RECORD",
-          "text": "...purché quello che si vede sia scritto lo stesso giorno.",
-          "effects": [
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$rival"
-              },
-              "payload": {
-                "tag": "discovery:relic"
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "relic_recorded"
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_RELIC_WATCH",
-          "text": "...purché sulla montagna resti una veglia, chiunque la tenga.",
-          "effects": [
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$rival"
-              },
-              "payload": {
-                "tag": "ash_watch"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_ASH"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_FAILURE_PLUNDER"
@@ -1621,60 +1143,6 @@
           "echo_summary": "Si stabilì di tirare a sorte, e la cosa strana è che tenne."
         }
       ],
-      "condition_clauses": [
-        {
-          "id": "C_CHARTER_REVIEW",
-          "text": "...purché fra dieci anni si possa riscriverla.",
-          "effects": [
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "charter_temporary"
-              }
-            },
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_CHARTER"
-              },
-              "payload": {
-                "delta": -1
-              }
-            }
-          ]
-        },
-        {
-          "id": "C_CHARTER_NAMELESS",
-          "text": "...purché valga anche per chi non ha una città.",
-          "effects": [
-            {
-              "type": "ADJUST_TENSION",
-              "target": {
-                "kind": "tension",
-                "id": "TEN_NAMELESS"
-              },
-              "payload": {
-                "delta": -2
-              }
-            },
-            {
-              "type": "SET_GLOBAL_TAG",
-              "target": {
-                "kind": "world",
-                "id": "WORLD"
-              },
-              "payload": {
-                "tag": "charter_for_all"
-              }
-            }
-          ]
-        }
-      ],
       "consequence_pools": {
         "failure": [
           "CNS_FAILURE_WALL"
@@ -1724,24 +1192,6 @@
             "CNS_COST_UNREST"
           ],
           "echo_summary": "Si stabilì che non ci fosse niente da guardare, e per qualche mese fu vero."
-        }
-      ],
-      "condition_clauses": [
-        {
-          "id": "C_ANY_ANCIENT_TELL",
-          "text": "...purché quello che si vede sia detto anche a $rival.",
-          "effects": [
-            {
-              "type": "SET_ENTITY_TAG",
-              "target": {
-                "kind": "entity",
-                "id": "$rival"
-              },
-              "payload": {
-                "tag": "discovery:relic"
-              }
-            }
-          ]
         }
       ],
       "consequence_pools": {

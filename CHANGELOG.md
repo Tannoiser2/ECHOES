@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.423 — La CONDITION esce dal motore
+
+[D-454](docs/DECISIONS.md#d-454), parola del committente. La condizione che un
+avversario pone è il costo che sceglie sulla carta (D-280, D-387); la
+posizione CONDITION con le sue ventiquattro clausole, la soglia di qualifica
+e la regola CONDITION_THRESHOLD escono dal motore, dai dati e dagli schemi. Il
+margine è S − O − G + W; le posizioni sono tre. Costo: otto memorie chieste
+dalla pesca delle domande restano senza chi le scrive (ISSUES 98). Cancello
+dei 100 semi: 0 seggi bloccati sui due tavoli; opposizione nel margine 55% →
+60% (misto) e 10% → 20% (uniforme); Consigli falliti sull'uniforme 4 → 18.
+
+---
+
 ## 0.1.422 — Il menu del Consiglio a quattro più quattro
 
 [D-453](docs/DECISIONS.md#d-453), parola del committente. La carta Domanda

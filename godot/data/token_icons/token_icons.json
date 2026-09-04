@@ -661,13 +661,6 @@
       "soggetto": "un libro aperto su un leggio, e nessuno che lo tiene"
     },
     {
-      "id": "TOK_LIST_WITNESSED",
-      "tag": "list_witnessed",
-      "fustella": "MONDO",
-      "rappresenta": "I nomi sono stati detti ad alta voce, e c'era gente ad ascoltare.",
-      "soggetto": "un rotolo srotolato fino a terra"
-    },
-    {
       "id": "TOK_MINE_SEALED",
       "tag": "mine_sealed",
       "fustella": "MONDO",
@@ -764,13 +757,6 @@
       "fustella": "MONDO",
       "rappresenta": "E' stata tirata fuori e fatta vedere: adesso tutti sanno che c'e'.",
       "soggetto": "due mani che sollevano un cofanetto aperto"
-    },
-    {
-      "id": "TOK_RETURN_PROMISED",
-      "tag": "return_promised",
-      "fustella": "MONDO",
-      "rappresenta": "Qualcuno ha giurato che tornera', e il mondo se lo segna.",
-      "soggetto": "una soglia di pietra con un solco consumato al centro"
     },
     {
       "id": "TOK_RUMOUR_RUNNING",

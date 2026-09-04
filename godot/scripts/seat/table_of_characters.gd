@@ -56,23 +56,13 @@ class Prudente extends PolicyDecider:
 		var declared: Dictionary = super.choose_stance(entity_id, context, session)
 		if str(declared["stance"]) != "OPPOSE":
 			return declared
-		var clause: String = _best_clause(entity_id, context, session)
-		return (
-			{"stance": "CONDITION", "clause_id": clause} if clause != ""
-			else {"stance": "ABSTAIN", "clause_id": ""}
-		)
+		# Senza la CONDITION (D-454) chi non litiga si astiene: non c'e' piu'
+		# una via di mezzo con le carte in mano.
+		return {"stance": "ABSTAIN", "clause_id": ""}
 
-	## Tiene le carte in mano - una in meno di quante ne spenderebbe la policy -
-	## tranne quando sta ponendo una condizione. Una condizione che non si
-	## qualifica non vale niente, quindi chi negozia paga il prezzo del negoziato:
-	## e' la differenza fra essere cauti e non aver capito la regola.
+	## Tiene le carte in mano - una in meno di quante ne spenderebbe la policy.
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 		var wanted: Array = super.choose_commit(entity_id, context, limit, session)
-		var stance: String = str(
-			session.confluence.current.get("stances", {}).get(entity_id, {}).get("stance", "")
-		)
-		if stance == "CONDITION":
-			return wanted
 		return wanted.slice(0, maxi(1, wanted.size() - 1))
 
 
@@ -81,7 +71,7 @@ class Prudente extends PolicyDecider:
 class Aggressivo extends PolicyDecider:
 	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 		var declared: Dictionary = super.choose_stance(entity_id, context, session)
-		if str(declared["stance"]) == "CONDITION" or str(declared["stance"]) == "ABSTAIN":
+		if str(declared["stance"]) == "ABSTAIN":
 			var proposition: Dictionary = _current_proposition(context, session)
 			if not proposition.is_empty():
 				var score: int = _score_proposition(

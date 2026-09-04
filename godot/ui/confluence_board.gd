@@ -20,7 +20,7 @@ const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 const STANCE_COLOURS: Dictionary = {
 	"SUPPORT": "#6fa88a", "OPPOSE": "#c8553d",
-	"CONDITION": "#e8b563", "ABSTAIN": "#5f584c",
+	"ABSTAIN": "#5f584c",
 }
 
 ## What the four outcomes are, in words. The engine's names are for the log; a
@@ -437,19 +437,8 @@ func _render_outcome(council: Dictionary) -> void:
 	var result: Variant = council.get("result", null)
 	if result != null:
 		var outcome: String = str((result as Dictionary)["outcome"])
-		# The Condition front only appears when somebody took that stance, and it
-		# says whether it qualified: qualified it is part of the sum (D-055),
-		# unqualified it is two cards spent for nothing, and both need to be
-		# readable off the same line.
-		var condition: String = ""
-		if int((result as Dictionary)["condition_total"]) > 0:
-			condition = " · C %d%s" % [
-				int((result as Dictionary)["condition_total"]),
-				"" if bool((result as Dictionary)["condition_qualified"]) else " (non qualificata)",
-			]
-		lines.append("S %d%s · O %d · Mondo %+d -> M %+d — %s" % [
+		lines.append("S %d · O %d · Mondo %+d -> M %+d — %s" % [
 			int((result as Dictionary)["support_total"]),
-			condition,
 			int((result as Dictionary)["oppose_total"]),
 			int((result as Dictionary)["world_factor"]),
 			int((result as Dictionary)["margin"]),

@@ -296,7 +296,6 @@
                 "enum": [
                   "SUPPORT",
                   "OPPOSE",
-                  "CONDITION",
                   "ABSTAIN"
                 ]
               },

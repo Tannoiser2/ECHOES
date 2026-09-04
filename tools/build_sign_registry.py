@@ -67,9 +67,7 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 # duecento».
 MUTI_NOTI: Dict[str, str] = {
     "account_settled": "4 volte in 100 anni",
-    "list_witnessed": "",
     "someone_paid": "",
-    "return_promised": "",
     "dragon_slain": "non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
     "settlement:$proponent": "50 volte in 100 anni",
     "hard_bargain": "",
@@ -313,9 +311,6 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         # non guardava qui, e quelle memorie risultavano scritte da
         # nessuno: un allarme falso su contenuto sano, che si e' visto
         # solo il giorno in cui qualcuno ha cominciato a leggerle.
-        for clause in template.get("condition_clauses", []) or []:
-            for role, tag in tags_in_effects((clause or {}).get("effects")):
-                note(tag, role, "clausola di Consiglio")
     # Le altre tre penne che scrivono sul mondo, e che una scansione dei soli
     # Effetti non vede: l'apertura della Chronicle, le Regioni come nascono, e
     # le **catene** — un fatto che si ripete di era in era avanza di un gradino
@@ -446,6 +441,18 @@ CHIESTI_NOTI: Dict[str, str] = {
     # (lo dice anche il dizionario). Visibile solo da D-286, da quando il
     # registro sa che una faccia di carta legge.
     "structure:road": "la strada non e' un segno posato: il motore la conta dalle strutture sulla mappa",
+    # **Le otto memorie delle clausole** (D-454). Le scrivevano le clausole
+    # della CONDITION, uscita dal motore; le chiede la pesca delle domande
+    # della biblioteca. Restano chieste e non scritte finche' non tornano
+    # come casella o come Conseguenza — ISSUES 98 le tiene in lista.
+    "charter_for_all": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "debt_staggered": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "descent_witnessed": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "distribution_audited": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "quota_guaranteed": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "relic_recorded": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "succession_witnessed": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
+    "water_shared": "la scriveva una clausola (D-454); da riscrivere come casella o Conseguenza",
 }
 
 

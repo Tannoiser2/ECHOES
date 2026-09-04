@@ -7,9 +7,9 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 
 | | |
 |---|---|
-| segni nel dizionario | 177 |
-| di cui qualcuno scrive | 174 |
-| orfani in tutto | 57 |
+| segni nel dizionario | 175 |
+| di cui qualcuno scrive | 164 |
+| orfani in tutto | 56 |
 | **di cui senza una ragione scritta** | **0** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -35,7 +35,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **57 su 57 portano gia' la loro
+Non tutti gli orfani sono un difetto: **56 su 56 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -45,7 +45,7 @@ la matrice deve prendere per primi.
 
 Nessuno.
 
-### Orfani dichiarati: 57
+### Orfani dichiarati: 56
 
 | segno | la ragione che porta scritta |
 |---|---|
@@ -54,7 +54,6 @@ Nessuno.
 | `capital` | funzione stampata sulla tessera: e' uno dei segni con cui le carte dicono **dove** si agisce, e il legame che le frasi d |
 | `crystal_site` | luogo stampato sulla tessera: la fonte del cristallo e' un **posto**, e serve da bersaglio a carte, Tensioni e Conseguen |
 | `discovery:legend` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
-| `discovery:shared_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `discovery:supervised_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `discovery:the_charter` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `discovery:the_ledger` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
@@ -78,7 +77,8 @@ Nessuno.
 | `legend:debt_called` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
 | `legend:oath_broken` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
 | `legend:order_restored` | la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero  |
-| `list_witnessed` | memoria del mondo: narrata (D-103), ereditata |
+| `life:INC_LYRA_ARCHIVE` | la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione |
+| `life:INC_VETRO_SCHOOL` | la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione |
 | `marsh` | tessera nuova di PZ-2 (D-265): acqua ferma, canali vecchi, febbri |
 | `migrating` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
 | `mine` | vocazione del luogo, stampata sulla Regione (D-262): il posto dove si scava, che le Conseguenze nominano col segno invec |
@@ -91,7 +91,6 @@ Nessuno.
 | `place:pass` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `place:stripped_site` | grado di pietra sulla mappa: oggi nessuna regola lo legge — colore dichiarato, in fila per un lettore (ISSUES 24) |
 | `price_in_lives` | memoria del mondo (D-278): una decisione passata al prezzo di qualcuno che non c'e' piu' — si legge al centro del tavolo |
-| `return_promised` | memoria del mondo: narrata (D-103), ereditata |
 | `scar:burned_records` | la Cicatrice che l'Archivio (STR_ARCHIVE) lascia sulla tessera andando in rovina; nessuna clausola la nomina, come scar: |
 | `scar:divided_seal` | il dente vivo e' crown_divided, letto dai Destini. La Conseguenza che lo scioglieva, Un Solo Trono, non e' uscita una vo |
 | `scholar` | etichetta di famiglia: dice chi sei, non cosa puoi fare, e nessuna regola deve leggerla |
@@ -192,7 +191,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione |
-| vuole | `charter_for_all` | **si'** | no | clausola di Consiglio, faccia della Tensione |
+| vuole | `charter_for_all` | **si'** | no | faccia della Tensione |
 | vuole | `water_moves` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
 | vuole | `debt_forgiven` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `crowned` | no | no | casato |
@@ -208,7 +207,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `discovery:crystal` | no | **si'** | Conseguenza |
-| vuole | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
+| vuole | `knowledge_shared` | **si'** | **si'** | carta Echo, faccia della Tensione |
 | vuole | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
 | vuole | `structure:archive` | **si'** | **si'** | Pietra |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
@@ -241,7 +240,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
 | vuole | `account_settled` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
 | vuole | `structure:tollgate` | **si'** | **si'** | Pietra |
-| vuole | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
+| vuole | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
 | teme | `debt_forgiven` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `condition:cut_off` | **si'** | **si'** | Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | teme | `crown_divided` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
@@ -260,7 +259,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `crystal_exploited` | **si'** | **si'** | Conseguenza, faccia della Tensione |
 | teme | `discovery:crystal` | no | **si'** | Conseguenza |
 | teme | `condition:exploited` | **si'** | no | Conseguenza, Risonanza, faccia della Tensione |
-| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
+| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, faccia della Tensione |
 | teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo, faccia della Tensione |
 
 ### ENT_VETRO
@@ -273,9 +272,9 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `faith_established` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `relic_buried` | **si'** | no | Conseguenza, faccia della Tensione |
 | vuole | `structure:sealed` | **si'** | no | Conseguenza, faccia della Tensione |
-| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, clausola di Consiglio, faccia della Tensione |
+| teme | `knowledge_shared` | **si'** | **si'** | carta Echo, faccia della Tensione |
 | teme | `crystal_measured` | **si'** | **si'** | carta Echo, faccia della Tensione |
-| teme | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
+| teme | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 
 ## 3. Le Tensioni che non incontrano nessun Destino
@@ -329,8 +328,8 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `condition:cut_off` | VAERAX | LIBERE, NAHR, SALE | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crown_divided` | NAHR | ALDRIC, SALE | — | Conseguenza, faccia della Tensione, fatto che dura |
 | `discovery:crystal` | CENERE, LYRA | VAERAX | **si'** | Azione stampata, Conseguenza |
-| `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, carta Echo, clausola di Consiglio, faccia della Tensione |
-| `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, clausola di Consiglio, faccia della Tensione, fatto che dura |
+| `knowledge_shared` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, carta Echo, faccia della Tensione |
+| `ledger_public` | SALE | SALE, VETRO | **si'** | Azione stampata, Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
 | `mine_sealed` | VAERAX | CENERE, LYRA | — | Conseguenza, faccia della Tensione, fatto che dura |
 | `study_supervised` | VAERAX | CENERE, LYRA | — | Conseguenza |
 | `condition:contested` | NAHR | ALDRIC | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |

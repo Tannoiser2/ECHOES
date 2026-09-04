@@ -60,7 +60,6 @@ func _initialize() -> void:
 	ids.sort()
 
 	var propositions: int = 0
-	var clauses: int = 0
 	for tension_id in ids:
 		var about: Dictionary = data.tensions[tension_id] as Dictionary
 		var template: Dictionary = data.confluence_template_for(str(tension_id))
@@ -97,23 +96,10 @@ func _initialize() -> void:
 				lines.append("- *(nessuna condizione, e non lascia segni al mondo)*")
 			lines.append("")
 
-		var attachable: Array = CouncilText.clauses(template, data)
-		if not attachable.is_empty():
-			lines.append("**Le clausole che si possono attaccare:**")
-			lines.append("")
-			for clause in attachable:
-				var record: Dictionary = clause as Dictionary
-				clauses += 1
-				lines.append("- %s" % str(record["text"]))
-				if str(record["leaves"]) != "":
-					lines.append("  - se qualificata: %s" % str(record["leaves"]))
-			lines.append("")
 
 	lines.append("---")
 	lines.append("")
-	lines.append("*%d carte, %d proposte, %d clausole.*" % [
-		ids.size(), propositions, clauses,
-	])
+	lines.append("*%d carte, %d proposte.*" % [ids.size(), propositions])
 	lines.append("")
 
 	# **Il ponte per il disegno del flusso.**
@@ -153,9 +139,7 @@ func _initialize() -> void:
 		return
 	handle.store_string(text)
 	handle.close()
-	print("scritto %s — %d carte, %d proposte, %d clausole" % [
-		out, ids.size(), propositions, clauses,
-	])
+	print("scritto %s — %d carte, %d proposte" % [out, ids.size(), propositions])
 	quit(0)
 
 

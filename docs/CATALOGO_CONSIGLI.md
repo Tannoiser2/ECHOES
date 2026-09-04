@@ -37,11 +37,6 @@ La montagna ha ricominciato a fumare. I vecchi dicono che l'ha sempre fatto; i r
 
 - **Se passa — Le Miniere Sigillate:** in una Regione con #cristallo diventa il sigillo · il mondo registra: le Miniere sono state sigillate · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Il Risveglio
@@ -83,13 +78,6 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 - **Si puo' proporre solo se:** Una Rivelazione l'ha mostrato, qualcuno e' sceso a guardare, oppure chi propone ha visto il presagio
 - **Se passa — Il Drago Abbattuto:** la casa che porta #dormiente esce dal tavolo, o ci rientra · Il Risveglio scende di 6 · il mondo registra: il drago e' stato abbattuto · e resta una Cicatrice: la caduta del drago in una Regione con #selvaggio
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale assista a ogni discesa.
-  - se qualificata: il mondo registra: la discesa e' stata fatta davanti a testimoni · Il Risveglio scende
-- ...purché ciò che si scopre sia detto a tutti, non a chi paga.
-  - se qualificata: il mondo registra: quello che si e' saputo lo sanno tutti · chi ha posto la condizione porta addosso: scoperta: il registro condiviso
-
 ---
 
 ## Il Grano Guasto
@@ -115,13 +103,6 @@ Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza 
 > E del raccolto marcito, chi risponde?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -149,11 +130,6 @@ Sul tratto in ombra qualcuno riscuote un pedaggio che nessun Consiglio ha scritt
 
 - **Se passa — La Scorta Giurata:** chi propone porta addosso: la scorta giurata · dove si discute non e' piu' tagliata fuori · Le Vie Interrotte scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
-
 ---
 
 ## Le Pietre di Confine
@@ -180,11 +156,6 @@ Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pie
 
 - **Se passa — La Parola Fredda:** il rapporto fra chi propone e il rivale cambia · chi propone porta addosso: la parola fredda
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-
 ---
 
 ## I Sepolti Senza Nome
@@ -210,11 +181,6 @@ La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcu
 > E l'acqua che li ha scoperti, si rimanda dov'era?
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
-
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
 
 ---
 
@@ -248,13 +214,6 @@ Otto secoli senza corona hanno funzionato benissimo finché nessuno ha avuto bis
 
 - **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché fra dieci anni si possa riscriverla.
-  - se qualificata: il mondo registra: la Carta vale per un tempo solo · La Carta scende
-- ...purché valga anche per chi non ha una città.
-  - se qualificata: I Senza Città scende di 2 · il mondo registra: la Carta vale per tutti
-
 ---
 
 ## Il Disboscamento
@@ -280,11 +239,6 @@ Il bosco rende: legna, carbone, terra nuova. Rende una volta sola.
 > E le fornaci, si fermano una stagione?
 
 - **Se passa — Il Mercato Spostato:** dove si discute diventa il mercato · in una Regione confinante diventa tagliata fuori
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -312,11 +266,6 @@ Chi siede decide. Percio' la prima decisione e' sempre chi siede.
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-
 ---
 
 ## Le Staffette
@@ -342,11 +291,6 @@ Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie co
 > E le lettere che arrivano aperte, per le mani di chi sono passate?
 
 - **Se passa — Il Conto Saldato:** il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco scende di 2
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -388,13 +332,6 @@ Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi:
 - **Se passa — Il Debito Chiamato:** il mondo registra: il debito e' stato chiamato · il rapporto fra chi propone e il rivale cambia · dove si discute diventa #indebitata
 - **Se passa — Il Seggio Preso:** il rapporto fra chi propone e il rivale cambia · dove si discute diventa #inquieta · La Carta sale · e resta una Cicatrice: il seggio vuoto dove si discute
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rientro sia in dieci anni e non in uno.
-  - se qualificata: Il Debito scende · il mondo registra: il debito e' stato dilazionato
-- ...purché a contare sia presente anche il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: il registro
-
 ---
 
 ## L'Acqua Fonda
@@ -420,11 +357,6 @@ Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e 
 > E andare a vedere cosa c'è sotto, conviene a qualcuno?
 
 - **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
 
 ---
 
@@ -452,11 +384,6 @@ In fondo alle gallerie qualcosa risponde ai colpi. Con un ritardo. Sempre lo ste
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Le Reti Vuote
@@ -482,13 +409,6 @@ Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le ba
 > E le barche ferme, di chi restano?
 
 - **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -516,11 +436,6 @@ I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un pad
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-
 ---
 
 ## La Terra Stanca
@@ -546,13 +461,6 @@ I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli ripo
 > E chi non può permetterselo, come semina?
 
 - **Se passa — Il Granaio del Trono:** si alza Granaio in una Regione con #granaio · Le Vie Interrotte sale · il mondo registra: il grano e' stato requisito
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -596,13 +504,6 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Se passa — Le Miniere Sigillate:** in una Regione con #cristallo diventa il sigillo · il mondo registra: le Miniere sono state sigillate · chi propone porta addosso: scoperta: il cristallo · Sito antico dove si discute va al grado 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché una quota fissa resti a il rivale.
-  - se qualificata: in una Regione con #pascolo non e' piu' #affamata · il mondo registra: una quota e' garantita
-- ...purché la distribuzione nella Regione di cui si discute sia contata davanti a testimoni.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · La Carestia scende
-
 ---
 
 ## Il Traghetto
@@ -628,11 +529,6 @@ Un'unica barca collega l'isola. Chi la governa, governa l'isola piu' del suo pad
 > E se una barca sola non basta piu'?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -660,13 +556,6 @@ Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## La Guerra delle Gilde
@@ -692,11 +581,6 @@ Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie so
 > E del magazzino bruciato, chi risponde?
 
 - **Se passa — Il Conto Saldato:** il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco scende di 2
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -724,11 +608,6 @@ Qualcuno predica una fede quasi uguale. Il quasi e' il problema.
 
 - **Se passa — La Voce Gira Lo Stesso:** il mondo registra: la voce corre · la domanda in gioco sale
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-
 ---
 
 ## Gli Ostaggi di Corte
@@ -754,11 +633,6 @@ Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.
 > Gli ospiti di corte, quando possono tornare a casa?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -786,11 +660,6 @@ Sull'isola c'e' un altare piu' vecchio della fede che lo usa. Le barche hanno ri
 
 - **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Il Silenzio dell'Isola
@@ -816,11 +685,6 @@ Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la nott
 > E a chi ci ha già passato la notte, cosa si chiede?
 
 - **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
 
 ---
 
@@ -848,13 +712,6 @@ Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comin
 
 - **Se passa — La Marca Concessa:** nella sede del rivale cambia padrone · nella sede del rivale diventa la marca · si alza Presidio nella sede del rivale
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## Il Catasto
@@ -880,11 +737,6 @@ Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro
 > E chi non si fa scrivere?
 
 - **Se passa — La Carta Rifiutata:** il mondo registra: la Carta non e' stata scritta · dove si discute diventa #contesa · La Carta sale
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -912,13 +764,6 @@ Servono braccia per le armi. Le stesse braccia servivano per il raccolto.
 
 - **Se passa — Il Pedaggio Scritto:** in una Regione con #commercio cambia padrone · si alza Pedaggio in una Regione con #commercio · Le Vie Interrotte scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## Le Marche di Confine
@@ -944,11 +789,6 @@ Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu'
 > Ai margini della Regione di cui si discute, a chi si obbedisce davvero?
 
 - **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -976,13 +816,6 @@ Dalla palude sale una febbre lenta che non uccide subito. Prima toglie le forze,
 
 - **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## I Senza Città
@@ -1008,13 +841,6 @@ Non sono nemici e non sono poveri: sono persone che non risultano da nessuna par
 > E contarli, conviene a qualcuno?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -1042,11 +868,6 @@ Sotto i sentieri ci sono strade piu' vecchie, dritte come nessuno costruisce piu
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## La Vecchia Guardia
@@ -1072,11 +893,6 @@ Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' co
 > Le insegne del vecchio ordine, si portano ancora?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -1105,11 +921,6 @@ I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha rip
 
 - **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Il Pascolo Conteso
@@ -1135,11 +946,6 @@ Le greggi non leggono i confini. I pastori si', e li leggono diversi.
 > E il margine, si divide?
 
 - **Se passa — La Marca Concessa:** nella sede del rivale cambia padrone · nella sede del rivale diventa la marca · si alza Presidio nella sede del rivale
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -1167,13 +973,6 @@ Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arri
 
 - **Se passa — La Custodia Riconosciuta:** chi propone porta addosso: la custodia riconosciuta · il mondo registra: la fede ha avuto un posto · La Reliquia scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## La Febbre Bassa
@@ -1199,13 +998,6 @@ Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 > E chi tiene il conto dei morti?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -1233,11 +1025,6 @@ Qualcuno ha letto nei cristalli una data. Da allora, tutto quello che succede se
 
 - **Se passa — La Carta Scritta:** il mondo registra: la Carta e' stata scritta · il rivale porta addosso: scoperta: la carta · La Carta scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Il Cordone
@@ -1263,13 +1050,6 @@ Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno d
 > E chi resta fuori, dove va?
 
 - **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -1297,13 +1077,6 @@ Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede 
 
 - **Se passa — Il Luogo Abbandonato:** dove si discute cambia padrone · chi propone se ne va dove si discute · dove si discute diventa #abbandonata · la domanda in gioco scende di 2 · chi propone entra in una Regione confinante · Foresta dove si discute va al grado 2 · e resta una Cicatrice: l'abbandono dove si discute
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## La Reggenza
@@ -1329,11 +1102,6 @@ Chi governa in nome di un altro governa comunque. E ci prende gusto.
 > E dopo, a chi torna?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
 
 ---
 
@@ -1375,13 +1143,6 @@ Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodi
 
 - **Se passa — La Veglia sulla Montagna:** chi propone porta addosso: la veglia della cenere · si alza Presidio in una Regione con #selvaggio · La Cenere che Sale scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia scritto lo stesso giorno.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia · il mondo registra: la reliquia e' a registro
-- ...purché sulla montagna resti una veglia, chiunque la tenga.
-  - se qualificata: il rivale porta addosso: la veglia della cenere · La Cenere che Sale scende
-
 ---
 
 ## Le Vie Interrotte
@@ -1416,13 +1177,6 @@ Si vede il prezzo del sale, non chi lo fa salire.
 - **Se passa — La Strada Spogliata:** dove si discute diventa #depredata · in una Regione confinante diventa tagliata fuori · La Carestia sale · e resta una Cicatrice: la razzia dove si discute
 - **Se passa — La Via delle Miniere Tagliata:** in una Regione confinante diventa tagliata fuori · Il Risveglio sale · Passo in una Regione con #selvaggio va al grado 2 · si chiude la strada in una Regione con #pascolo · e resta una Cicatrice: il ponte rotto in una Regione confinante
 
-**Le clausole che si possono attaccare:**
-
-- ...purché una quota resti a chi la strada la percorre e non la possiede.
-  - se qualificata: il mondo registra: il pedaggio si divide · La Carestia scende
-- ...purché ogni carico sia scritto su un registro che chiunque può leggere.
-  - se qualificata: chi ha posto la condizione porta addosso: scoperta: il registro dei traffici · il mondo registra: i conti sono pubblici
-
 ---
 
 ## I Campi di Sale
@@ -1448,11 +1202,6 @@ Dove l'acqua si ritira resta il sale, e il sale vale. La terra che lo da' non da
 > E le vasche, si contano?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -1480,11 +1229,6 @@ Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggr
 
 - **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-
 ---
 
 ## I Sigilli Falsi
@@ -1510,11 +1254,6 @@ Un sigillo vale quanto la cera se nessuno controlla la mano che lo preme.
 > E gli ordini gia' partiti, valgono?
 
 - **Se passa — Il Prezzo del Consenso:** in una Regione confinante diventa #inquieta · la domanda in gioco sale
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -1542,11 +1281,6 @@ Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa
 
 - **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il confine sia camminato alla presenza di il rivale, pietra per pietra.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-
 ---
 
 ## I Canali Interrati
@@ -1572,11 +1306,6 @@ Una volta le barche passavano dalla palude. I canali ci sono ancora, sotto: chie
 > E quando l'acqua torna a correre, di chi e'?
 
 - **Se passa — L'Acqua a Prezzo:** il mondo registra: l'acqua ha un prezzo · chi propone porta addosso: i diritti d'acqua · Sorgente dove si discute va al grado 3
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -1604,11 +1333,6 @@ Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si 
 
 - **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Il Contrabbando
@@ -1634,11 +1358,6 @@ Quello che non passa dal molo passa dalla cala. Il porto vive due volte: di gior
 > E i doganieri che guardano il mare sbagliato?
 
 - **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -1697,13 +1416,6 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 - **Si puo' proporre solo se:** Una questione è rimasta aperta
 - **Se passa — La Domanda Ripresa:** il mondo dimentica: una domanda e' rimasta aperta · la domanda in gioco sale di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale sia fra i testimoni, e la sua firma valga come le altre.
-  - se qualificata: il mondo registra: la successione ha avuto testimoni · La Successione scende
-- ...purché chi ha giurato all'altro non ne paghi il prezzo.
-  - se qualificata: dove si discute non e' piu' #inquieta · il mondo registra: l'amnistia e' stata concessa
-
 ---
 
 ## I Pozzi Bassi
@@ -1729,13 +1441,6 @@ Non apre un Consiglio suo: la questione la porta la sopravvivenza.
 > E l'acqua, si paga?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
 
 ---
 
@@ -1763,11 +1468,6 @@ Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene
 
 - **Se passa — La Razione Imposta:** dove si discute diventa #razionata · la domanda in gioco scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
-
 ---
 
 ## Il Tributo
@@ -1793,11 +1493,6 @@ Il tributo si paga a chi protegge. Quando la protezione non si vede, il tributo 
 > E in cambio di che cosa, esattamente?
 
 - **Se passa — Il Registro Aperto:** il mondo registra: i conti sono pubblici · il rivale porta addosso: scoperta: il registro · Il Debito scende
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -1825,11 +1520,6 @@ Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbrica
 
 - **Se passa — Studio sotto Custodia:** il mondo registra: lo studio e' sotto sorveglianza · il rivale porta addosso: scoperta: lo studio custodito · Il Risveglio scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## I Voti Non Sciolti
@@ -1856,11 +1546,6 @@ Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.
 
 - **Se passa — Il Conto in Vite:** dove si discute diventa in lutto · il mondo registra: si e' pagato in vite
 
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
-
 ---
 
 ## Le Pietre di Guardia
@@ -1886,11 +1571,6 @@ Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' c
 > E il margine, chi lo gira?
 
 - **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
-
-**Le clausole che si possono attaccare:**
-
-- ...purché quello che si vede sia detto anche a il rivale.
-  - se qualificata: il rivale porta addosso: scoperta: la reliquia
 
 ---
 
@@ -1919,13 +1599,6 @@ I canali che Aldric fece scavare ci sono ancora. Sono pieni di terra, e da otto 
 
 - **Se passa — I Canali Riaperti:** il mondo registra: l'acqua ha cambiato strada · si alza Canale in una Regione con #granaio · L'Acqua Ferma scende di 2
 
-**Le clausole che si possono attaccare:**
-
-- ...purché l'ultima presa sia di chi sta più in basso.
-  - se qualificata: il mondo registra: l'acqua si divide · I Senza Città scende
-- ...purché le braccia mandate da ciascuno siano contate e scritte.
-  - se qualificata: il rivale porta addosso: scoperta: il registro · Il Debito scende
-
 ---
 
 ## I Pesi e le Misure
@@ -1951,11 +1624,6 @@ Il braccio di Eredan non e' il braccio del porto. Su ogni differenza, qualcuno g
 > E chi guarda le bilance quando il mercato e' pieno?
 
 - **Se passa — Il Mercato Spostato:** dove si discute diventa il mercato · in una Regione confinante diventa tagliata fuori
-
-**Le clausole che si possono attaccare:**
-
-- ...purché il conto si faccia in piazza, e il rivale possa contare per secondo.
-  - se qualificata: il mondo registra: la distribuzione e' stata contata · la domanda in gioco scende
 
 ---
 
@@ -1983,13 +1651,6 @@ Il freddo non e' una carestia. E' la carestia con la porta chiusa.
 
 - **Se passa — La Leggenda Messa per Iscritto:** chi propone porta addosso: scoperta: la leggenda · la domanda in gioco scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
 ## I Lupi al Limitare
@@ -2016,16 +1677,9 @@ I lupi hanno smesso di aver paura. Qualcosa nel bosco li ha convinti che di qua 
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
 
-**Le clausole che si possono attaccare:**
-
-- ...purché il rivale veda la lista con i propri occhi.
-  - se qualificata: il mondo registra: la lista e' stata letta davanti a testimoni · la domanda in gioco scende
-- ...purché chi se ne va possa tornare quando torna l'acqua.
-  - se qualificata: dove si discute non e' piu' #abbandonata · il mondo registra: il ritorno e' stato promesso
-
 ---
 
-*60 carte, 194 proposte, 83 clausole.*
+*60 carte, 194 proposte.*
 
 <!-- PONTE — quale Consiglio serve quale carta, letto chiamando
      `DataSet.confluence_template_for`. Lo legge tools/build_flow.py. -->

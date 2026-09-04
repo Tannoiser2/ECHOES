@@ -84,6 +84,12 @@ cento partite più la memoria della carta, con i bersagli suoi; 569 caselle
 tolte, e la guardia nel validatore. Le quattro sono le stesse su ogni carta:
 l'hai visto e l'hai scelto tu, contro le due proprie più due comprate.
 
+**E in 0.1.423 la CONDITION è uscita dal motore** ([D-454](DECISIONS.md#d-454)):
+i costi sono le condizioni che pongono gli altri, come dicevi. Restano tre
+posizioni; le ventiquattro clausole che nessuna carta stampava escono con la
+loro soglia. Costo scritto: otto memorie che le clausole scrivevano restano
+senza penna, in ISSUES 98.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

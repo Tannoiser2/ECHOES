@@ -88,16 +88,6 @@
           "minimum": 1,
           "default": 3
         },
-        "max_condition_commit_assets": {
-          "type": "integer",
-          "minimum": 1,
-          "default": 2
-        },
-        "condition_qualified_threshold": {
-          "type": "integer",
-          "minimum": 1,
-          "default": 2
-        },
         "minimum_confluences": {
           "type": "integer",
           "minimum": 0,

@@ -99,18 +99,6 @@ func show_tension(tension_id: String, data: RefCounted, session: RefCounted = nu
 		if not said_anything:
 			_line("Non lascia segni sul mondo.", 11, "#9b9382")
 
-	var clauses: Array = CouncilText.clauses(template as Dictionary, data, voice)
-	if not clauses.is_empty():
-		_gap()
-		_line("Le clausole che si possono attaccare", 12, "#8a8172")
-		for clause in clauses:
-			var record: Dictionary = clause as Dictionary
-			# La frase d'autore comincia gia' con i suoi puntini: aggiungerne
-			# altri tre faceva «......purche'».
-			var text: String = str(record["text"])
-			_line(text if text.begins_with("...") else "...%s" % text, 12, "#d9d2c5")
-			if str(record["leaves"]) != "":
-				_line("se qualificata: %s" % str(record["leaves"]), 11, "#9b9382")
 	_the_two_lists(tension as Dictionary)
 	_close_button()
 

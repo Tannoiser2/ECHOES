@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-454 — La CONDITION esce dal motore: la condizione e' il costo che l'avversario sceglie
+
+**implemented in 0.1.423.** Parola del committente, davanti alle caselle:
+*«caselle per i benefici e caselle per i costi, che dovevano essere le
+condizioni che ponevano gli altri giocatori»*. E' quello che la grammatica
+fisica dice da [D-280](#d-280) — *il proponente compra, gli avversari
+scelgono in che moneta paga* — e che il motore gia' gioca con la pedina del
+prezzo ([D-387](#d-387)). Accanto viveva la regola vecchia: la **CONDITION**,
+*«sono a favore, a una condizione»*, con una clausola presa da ventiquattro
+scritte nei dodici template, che nessuna carta stampava e nessun tavolo
+poteva leggere. Due grammatiche per la stessa cosa non si controllavano a
+vicenda: si contraddicevano. Una doveva uscire, ed e' uscita quella che non
+sta sulla carta.
+
+**Cosa esce.** La posizione CONDITION e le sue clausole
+(`condition_clauses` dai template e dallo schema), la soglia di qualifica
+(`condition_qualified_threshold`, `max_condition_commit_assets` dalla
+Chronicle), il passo H.6 che attaccava la clausola alla proposta passata, la
+regola dei segni `CONDITION_THRESHOLD` con le tre regole che la usavano
+(l'Archivio, la Lega, la Scuola: *«una Condition qualifica con un impegno in
+meno»*), la voce «sostieni a condizione che» nel menu della persona, la
+scelta della clausola nella policy e la lettura nei cataloghi, nel flusso,
+nel registro dei segni. Il margine torna `M = S − O − G + W`. Le tre
+posizioni sono SOSTIENI, OPPONITI, ASTIENITI.
+
+**Le sedie.** Chi vedeva la proposta come un danno piccolo poneva una
+condizione; ora si oppone. Il *prudente*, che non litiga, si astiene dove
+prima negoziava.
+
+**Il costo, dichiarato.** Ventiquattro clausole erano contenuto scritto, e
+otto memorie del mondo le scrivevano solo loro: `quota_guaranteed`,
+`relic_recorded`, `succession_witnessed`, `water_shared`, `debt_staggered`,
+`descent_witnessed`, `distribution_audited`, `charter_for_all`. Le chiede la
+pesca delle domande della biblioteca, e adesso niente le scrive: sono
+dichiarate in `CHIESTI_NOTI` con la ragione e stanno in ISSUES 98, da
+riscrivere come casella o come Conseguenza. Due segni che nessun dato tocca
+piu' (`list_witnessed`, `return_promised`) escono dal dizionario con i loro
+due segnalini. Sedici mani del dizionario perdono il template. Le prove della
+Condition — la qualifica, la soglia, la clausola migliore — escono con lei;
+`test_alliance_of_convenience` e le altre restano.
+
+**I numeri.** Cancello dei 100 semi, seme 7000, prima e dopo:
+
+| | 0.1.422 misto | **0.1.423 misto** | 0.1.422 uniforme | **0.1.423 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,50 | **3,50** | 3,54 | **3,59** |
+| esiti FAIL · SUCC · SUCC · DECI | 140 · 67 · 78 · 65 | **153 · 71 · 80 · 46** | 42 · 43 · 161 · 108 | **71 · 44 · 151 · 93** |
+
+Partecipazione a trenta anni: astensioni 62% → **65%** (misto) e 82% →
+**82%** (uniforme); Consigli con opposizione nel margine 55% → **60%** e 10%
+→ **20%**; Consigli falliti 43 → 46 e 4 → 18. Chi negoziava ora si oppone
+con le carte, e sul tavolo uniforme i Consigli caduti passano da quattro a
+diciotto: e' la seconda meta' del prezzo che il committente chiedeva.
+
+**La corsia lenta**, rigirata: trasformazioni sedute 261 → 256, vite mai
+sedute a 2, i segni sul tavolo di uno o due per famiglia. Suite 744 prove
+verdi (quattro in meno: quelle della Condition), 28 cancelli veloci e 6 lenti
+verdi, documenti generati rifatti — il catalogo dei Consigli senza le
+clausole, il flusso senza il nodo «clausola», il registro dei segni con le
+otto memorie dichiarate.
+
+---
+
 ## D-453 — Il menu del Consiglio a quattro piu' quattro
 
 **implemented in 0.1.422.** Parola del committente, davanti alla carta con

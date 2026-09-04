@@ -80,10 +80,6 @@ func _initialize() -> void:
 				continue
 			for effect_v in (consequence as Dictionary).get("effects", []):
 				_count(effect_v as Dictionary, seen, uses, order)
-		# Le clausole portano i loro Effetti addosso, non un id di Conseguenza.
-		for clause_v in template.get("condition_clauses", []):
-			for effect_v in (clause_v as Dictionary).get("effects", []):
-				_count(effect_v as Dictionary, seen, uses, order)
 
 	var groups: Dictionary = {"0": [], "2": [], "3": []}
 	for key in order:

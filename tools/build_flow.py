@@ -611,15 +611,6 @@ SACCHETTI = {"failure": ("se_cade", "quello che resta se la proposta cade"),
 for tpl in load("confluences/*.json"):
     node(tpl["id"], "consiglio", t=tpl.get("title", tpl["id"]), d=tpl.get("description", ""),
          dom=tpl.get("applies_to_domain", ""))
-    for clausola in tpl.get("condition_clauses", []) or []:
-        cid = str(clausola.get("id", ""))
-        if not cid:
-            continue
-        node(cid, "clausola", t=str(clausola.get("text", ""))[:70],
-             d=str(clausola.get("text", "")))
-        edge(tpl["id"], cid, "si_contratta",
-             "un avversario la attacca alla proposta prima del voto")
-        effetti(clausola, cid, "clausola qualificata")
     pools = tpl.get("consequence_pools") or {}
     for sacco, (verso, perche) in SACCHETTI.items():
         for cns in pools.get(sacco, []) or []:

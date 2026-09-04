@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3664 testi in lettura.
+possono spostare nella frase, non togliere. 3638 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7391,92 +7391,6 @@ possono spostare nella frase, non togliere. 3664 testi in lettura.
 > Le bestie perse $of_region furono rimesse fra tutti, e il conto non tornò a nessuno.
 
 
-### Le clausole — quello che si aggiunge prima del voto
-
-**`C_ANY_ANCIENT_TELL`**
-> ...purché quello che si vede sia detto anche a $rival.
-
-
-**`C_ANY_PUBLIC_COUNT`**
-> ...purché il conto si faccia in piazza, e $rival possa contare per secondo.
-
-
-**`C_ANY_WITNESS`**
-> ...purché $rival veda la lista con i propri occhi.
-
-
-**`C_ANY_RETURN`**
-> ...purché chi se ne va possa tornare quando torna l'acqua.
-
-
-**`C_ANY_WITNESSED_LINE`**
-> ...purché il confine sia camminato alla presenza di $rival, pietra per pietra.
-
-
-**`C_AWAKENING_WITNESS`**
-> ...purché $rival assista a ogni discesa.
-
-
-**`C_AWAKENING_SHARE`**
-> ...purché ciò che si scopre sia detto a tutti, non a chi paga.
-
-
-**`C_CHARTER_REVIEW`**
-> ...purché fra dieci anni si possa riscriverla.
-
-
-**`C_CHARTER_NAMELESS`**
-> ...purché valga anche per chi non ha una città.
-
-
-**`C_DEBT_YEARS`**
-> ...purché il rientro sia in dieci anni e non in uno.
-
-
-**`C_DEBT_WITNESS`**
-> ...purché a contare sia presente anche $rival.
-
-
-**`C_FAMINE_SHARE`**
-> ...purché una quota fissa resti a $rival.
-
-
-**`C_FAMINE_AUDIT`**
-> ...purché la distribuzione $in_region sia contata davanti a testimoni.
-
-
-**`C_RELIC_RECORD`**
-> ...purché quello che si vede sia scritto lo stesso giorno.
-
-
-**`C_RELIC_WATCH`**
-> ...purché sulla montagna resti una veglia, chiunque la tenga.
-
-
-**`C_ROADS_SHARE`**
-> ...purché una quota resti a chi la strada la percorre e non la possiede.
-
-
-**`C_ROADS_LEDGER`**
-> ...purché ogni carico sia scritto su un registro che chiunque può leggere.
-
-
-**`C_SUCCESSION_WITNESS`**
-> ...purché $rival sia fra i testimoni, e la sua firma valga come le altre.
-
-
-**`C_SUCCESSION_AMNESTY`**
-> ...purché chi ha giurato all'altro non ne paghi il prezzo.
-
-
-**`C_WATER_LAST`**
-> ...purché l'ultima presa sia di chi sta più in basso.
-
-
-**`C_WATER_COUNT`**
-> ...purché le braccia mandate da ciascuno siano contate e scritte.
-
-
 ### Le schede del Consiglio — quello che il template porta ancora
 
 **`CNF_ANY_ANCIENT`**
@@ -12507,10 +12421,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > vita: La Scuola del Vetro
 
 
-**`list_witnessed`**
-> la lista e' stata letta davanti a testimoni
-
-
 **`marsh`**
 > palude
 
@@ -12641,10 +12551,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > la fama
 
 > la fama
-
-
-**`return_promised`**
-> il ritorno e' stato promesso
 
 
 **`rumour_running`**
@@ -12903,10 +12809,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > L'Accademia fa testo
 
 
-**`TGR_ARCHIVE_READ_ALOUD`**
-> Si legge in piazza
-
-
 **`TGR_ASH_VIGIL`**
 > La veglia arma
 
@@ -13011,10 +12913,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > Il regno del grano
 
 
-**`TGR_LEAGUE_LIGHT_SIGNATURE`**
-> La firma leggera delle Sette
-
-
 **`TGR_LEAGUE_SIGNATURE`**
 > La firma delle sette
 
@@ -13085,10 +12983,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_SALT_CREDIT`**
 > Il credito federato pesca il meglio
-
-
-**`TGR_SCHOOL_REPEATED`**
-> Si insegna ripetendolo uguale
 
 
 **`TGR_SPRING_PEOPLE`**

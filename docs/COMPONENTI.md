@@ -23,7 +23,7 @@ delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 177 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 175 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa
@@ -33,12 +33,12 @@ dove sta quello che il mondo ricorda (D-351).
 |---|---|---|
 | **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | 33 | 50 |
 | **Segni delle case** — fama, scoperte, promesse | 33 | 39 |
-| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 51 | 51 |
+| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 49 | 49 |
 | Presenza e controllo | 2 | 5 per casa |
 | Rombi del Calore | 1 | uno per ognuno dei 6 Temi, piu' due di scorta |
 | **Gettoni RIVENDICARE** — la moneta del Consiglio | 1 | 12 |
 
-**118 tipi diversi, 152 pezzi** piu' le pedine dei seggi.
+**116 tipi diversi, 150 pezzi** piu' le pedine dei seggi.
 
 Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
 questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca
@@ -54,7 +54,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
 | Conseguenze | 63 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
-| Regole dei segni | 59 | cosa un segno fa da solo |
+| Regole dei segni | 56 | cosa un segno fa da solo |
 | Azioni | 7 | i verbi del turno |
 | Chronicle | 1 | gli anni giocabili |
 

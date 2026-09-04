@@ -3429,6 +3429,14 @@ c'e', il conto «32 scattano» e' un **pavimento**, non un totale.
 **Fatto quando** ogni segno dichiara il suo peso, nessun `pesa` resta senza
 scatti, e nessun `flavour` compare in una clausola di punteggio.
 
+*In 0.1.423, con la CONDITION fuori dal motore* ([D-454](DECISIONS.md#d-454)),
+**otto memorie restano chieste e non scritte**: `quota_guaranteed`,
+`relic_recorded`, `succession_witnessed`, `water_shared`, `debt_staggered`,
+`descent_witnessed`, `distribution_audited`, `charter_for_all`. Le scrivevano le
+clausole, le chiede la pesca delle domande della biblioteca. Sono dichiarate in
+`CHIESTI_NOTI` con la ragione, e vanno riscritte come casella o come
+Conseguenza: finché non lo sono, le domande che le aspettano non escono mai.
+
 ---
 
 ### 97. ✅ Le clausole di Regione nascevano morte — chiusa in 0.1.290, strada 1

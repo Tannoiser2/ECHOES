@@ -149,7 +149,7 @@ func test_the_supporting_side_cannot_pay_against() -> void:
 	var context: Dictionary = _open()
 	var proponent: String = str(context["proponent"])
 	var altri: Array = _others(proponent)
-	for side in ["SUPPORT", "CONDITION"]:
+	for side in ["SUPPORT"]:
 		var seggio: String = str(altri[0])
 		session.confluence.declare_stance(seggio, str(side))
 		_give_tokens(seggio, 1)

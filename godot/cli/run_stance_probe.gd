@@ -55,13 +55,9 @@ func _initialize() -> void:
 	var by_entity: Dictionary = {}
 	var rooms: Dictionary = {}
 	var voted: Dictionary = {}
-	# Le clausole: quale viene davvero posta con una CONDITION, e quante
-	# Condition si qualificano. Una clausola mai scelta e' contenuto che non
-	# esiste (D-035), e fino alla 0.1.27 la policy prendeva sempre la prima.
-	var clauses: Dictionary = {}
 	# In a Dictionary, not two ints: a lambda captures a local by value, so
 	# counters incremented inside the callback would read zero out here.
-	var counters: Dictionary = {"confluences": 0, "opposed": 0, "qualified": 0}
+	var counters: Dictionary = {"confluences": 0, "opposed": 0}
 
 	for i in range(runs):
 		var session: RefCounted = GameSession.new(data)
@@ -97,11 +93,8 @@ func _initialize() -> void:
 					)
 					var stance: String = str(declared["stance"])
 					stances[stance] = int(stances.get(stance, 0)) + 1
-					if stance == "CONDITION":
-						var clause_id: String = str(declared.get("clause_id", ""))
-						clauses[clause_id] = int(clauses.get(clause_id, 0)) + 1
 					scores[score] = int(scores.get(score, 0)) + 1
-					if stance == "OPPOSE" or stance == "CONDITION":
+					if stance == "OPPOSE":
 						any_opposition = true
 					var key: String = "%s/%s" % [str(entity_id), stance]
 					by_entity[key] = int(by_entity.get(key, 0)) + 1
@@ -110,29 +103,13 @@ func _initialize() -> void:
 					counters["opposed"] = int(counters["opposed"]) + 1
 		)
 		await session.run(PolicyDecider.new(session.log))
-		for result in session.chronicle.confluence_results:
-			if bool((result as Dictionary).get("condition_qualified", false)):
-				counters["qualified"] = int(counters["qualified"]) + 1
 		session.dispose()
 
 	_report(
 		runs, int(counters["confluences"]), int(counters["opposed"]),
 		stances, scores, by_entity, by_effect, rooms, voted
 	)
-	_report_clauses(clauses, int(counters["qualified"]))
 	quit(0)
-
-
-## La meta' negoziale del Consiglio: quali clausole vengono poste, e quante
-## Condition arrivano a qualificarsi davvero (D-055: solo una Condition
-## qualificata entra nel margine).
-func _report_clauses(clauses: Dictionary, qualified: int) -> void:
-	print("")
-	print("Le clausole poste con una CONDITION, e i Consigli con Condition qualificata: %d" % qualified)
-	var keys: Array = clauses.keys()
-	keys.sort()
-	for key in keys:
-		print("  %-24s %5d" % [str(key), int(clauses[key])])
 
 
 ## Score every Effect on its own, so we can see which axes are alive. An Effect

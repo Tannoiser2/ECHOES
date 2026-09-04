@@ -16,65 +16,64 @@ se su un tavolo intero e' zero, il cancello e' rosso.
 
 | | misto | uniforme |
 |---|---|---|
-| Consigli | 106 | 108 |
-| prese di posizione dei non proponenti | 318 | 324 |
-| — SUPPORT | 13 (4%) | 12 (4%) |
-| — CONDITION | 28 (9%) | 35 (11%) |
-| — OPPOSE | 81 (25%) | 12 (4%) |
-| — ABSTAIN | 196 (62%) | 265 (82%) |
-| Consigli col tavolo in silenzio (tutti astenuti) | 16 (15%) | 72 (67%) |
-| Consigli con un OPPOSE o una CONDITION dichiarati | 84 (79%) | 25 (23%) |
-| carte impegnate dal proponente, per Consiglio | 1.61 | 1.78 |
-| carte impegnate dagli altri tre, per Consiglio | 1.76 | 0.60 |
-| non proponenti che impegnano almeno una carta | 95 (30%) | 50 (15%) |
+| Consigli | 105 | 108 |
+| prese di posizione dei non proponenti | 315 | 324 |
+| — SUPPORT | 15 (5%) | 13 (4%) |
+| — OPPOSE | 95 (30%) | 44 (14%) |
+| — ABSTAIN | 205 (65%) | 267 (82%) |
+| Consigli col tavolo in silenzio (tutti astenuti) | 16 (15%) | 74 (69%) |
+| Consigli con un OPPOSE dichiarato | 82 (78%) | 23 (21%) |
+| carte impegnate dal proponente, per Consiglio | 1.59 | 1.78 |
+| carte impegnate dagli altri tre, per Consiglio | 1.61 | 0.58 |
+| non proponenti che impegnano almeno una carta | 83 (26%) | 49 (15%) |
 | gettoni di opposizione comprati (D-419) | 0 | 0 |
-| margine medio | 1.06 | 4.04 |
-| **Consigli con opposizione nel margine** | **58 (55%)** | **11 (10%)** |
+| margine medio | 0.56 | 3.18 |
+| **Consigli con opposizione nel margine** | **63 (60%)** | **22 (20%)** |
 
 ## Gli esiti
 
 | esito | misto | uniforme |
 |---|---|---|
-| DECISIVE_SUCCESS | 23 | 41 |
-| FAILURE | 43 | 6 |
-| SUCCESS | 21 | 55 |
-| SUCCESS_WITH_COST | 19 | 6 |
+| DECISIVE_SUCCESS | 15 | 35 |
+| FAILURE | 46 | 18 |
+| SUCCESS | 29 | 48 |
+| SUCCESS_WITH_COST | 15 | 7 |
 
 ## Chi si astiene, seggio per seggio
 
 Le posizioni di ogni casa quando non propone, sui due tavoli.
 
-| casa | tavolo | SUPPORT | CONDITION | OPPOSE | ABSTAIN |
-|---|---|---|---|---|---|
-| Re Aldric | misto | 1 | 3 | 13 | 17 |
-| Re Aldric | uniforme | 0 | 2 | 3 | 30 |
-| Kessa dei Fuochi | misto | 1 | 3 | 6 | 39 |
-| Kessa dei Fuochi | uniforme | 1 | 7 | 1 | 52 |
-| Le Città Libere | misto | 0 | 8 | 7 | 19 |
-| Le Città Libere | uniforme | 3 | 3 | 3 | 20 |
-| Lyra | misto | 2 | 3 | 14 | 21 |
-| Lyra | uniforme | 4 | 6 | 1 | 33 |
-| Popolo Nahr | misto | 3 | 3 | 17 | 24 |
-| Popolo Nahr | uniforme | 0 | 4 | 0 | 39 |
-| Maestra Ilve | misto | 2 | 2 | 8 | 31 |
-| Maestra Ilve | uniforme | 0 | 2 | 2 | 34 |
-| Vaerax | misto | 3 | 3 | 8 | 22 |
-| Vaerax | uniforme | 2 | 9 | 1 | 27 |
-| Priore Anselmo | misto | 1 | 3 | 8 | 23 |
-| Priore Anselmo | uniforme | 2 | 2 | 1 | 30 |
+| casa | tavolo | SUPPORT | OPPOSE | ABSTAIN |
+|---|---|---|---|---|
+| Re Aldric | misto | 2 | 14 | 21 |
+| Re Aldric | uniforme | 0 | 5 | 29 |
+| Kessa dei Fuochi | misto | 1 | 8 | 39 |
+| Kessa dei Fuochi | uniforme | 2 | 8 | 52 |
+| Le Città Libere | misto | 0 | 11 | 22 |
+| Le Città Libere | uniforme | 3 | 6 | 22 |
+| Lyra | misto | 2 | 14 | 22 |
+| Lyra | uniforme | 4 | 7 | 32 |
+| Popolo Nahr | misto | 4 | 20 | 23 |
+| Popolo Nahr | uniforme | 0 | 3 | 40 |
+| Maestra Ilve | misto | 2 | 8 | 31 |
+| Maestra Ilve | uniforme | 0 | 4 | 35 |
+| Vaerax | misto | 3 | 10 | 24 |
+| Vaerax | uniforme | 2 | 9 | 26 |
+| Priore Anselmo | misto | 1 | 10 | 23 |
+| Priore Anselmo | uniforme | 2 | 2 | 31 |
 
 ## E carattere per carattere, sul tavolo misto
 
-| carattere | SUPPORT | CONDITION | OPPOSE | ABSTAIN |
-|---|---|---|---|---|
-| prudente | 6 | 14 | 0 | 57 |
-| aggressivo | 2 | 0 | 78 | 0 |
-| distratto | 4 | 7 | 0 | 74 |
-| ostinato | 1 | 7 | 3 | 65 |
+| carattere | SUPPORT | OPPOSE | ABSTAIN |
+|---|---|---|---|
+| prudente | 6 | 0 | 67 |
+| aggressivo | 3 | 77 | 0 |
+| distratto | 4 | 8 | 74 |
+| ostinato | 2 | 10 | 64 |
 
 ## Come leggerla
 
-- Una **posizione dichiarata** (OPPOSE, CONDITION) e una **opposizione nel
+- Una **posizione dichiarata** (OPPOSE) e una **opposizione nel
   margine** sono due cose: la seconda vuole carte impegnate contro, o un gettone
   comprato contro (D-419). Un OPPOSE a mani vuote non sposta niente.
 - Col tavolo in silenzio il proponente prende il bonus del silenzio-assenso

@@ -40,10 +40,6 @@ func _collect_written_tags() -> Dictionary:
 	# mondo sono rimasti senza parola fino a D-236 — invisibili finche' una
 	# clausola qualificata applicava i suoi effetti e basta, evidenti il giorno
 	# che la scheda di una domanda ha cominciato a dire cosa lascia al mondo.
-	for template_id in session.data.confluence_templates:
-		var template: Dictionary = session.data.confluence_templates[template_id]
-		for clause in template.get("condition_clauses", []):
-			writers.append((clause as Dictionary).get("effects", []))
 	for effects in writers:
 		for effect in effects:
 			var tag: String = str(effect.get("payload", {}).get("tag", ""))

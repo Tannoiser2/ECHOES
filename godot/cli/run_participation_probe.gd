@@ -6,8 +6,8 @@ extends SceneTree
 ##
 ## `--no-abstain` e' un **esperimento**, non una regola: risponde alla domanda
 ## del committente *«e se non ci si potesse astenere?»* sostituendo ogni
-## ABSTAIN con la posizione detta — SUPPORT, OPPOSE, o CONDITION con la
-## clausola migliore per quel seggio (e SUPPORT dove una clausola non c'e').
+## ABSTAIN con la posizione detta — SUPPORT o OPPOSE (la lettura `condition`
+## e' rimasta nel verbale di D-452, e con D-454 non esiste piu').
 ## Il documento generato con l'opzione lo dice in testa e non e' quello del
 ## cancello.
 ##
@@ -34,7 +34,7 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 
-const STANCES: Array = ["SUPPORT", "CONDITION", "OPPOSE", "ABSTAIN"]
+const STANCES: Array = ["SUPPORT", "OPPOSE", "ABSTAIN"]
 
 
 ## Il cane da guardia: inoltra tutto, e annota posizioni e impegni per Consiglio.
@@ -46,13 +46,10 @@ class Spy extends RefCounted:
 	## L'esperimento: "" gioca com'e'; altrimenti ogni ABSTAIN diventa questo.
 	var forced: String = ""
 	var forced_count: int = 0
-	var policy: RefCounted = null
 
 	func _init(who: RefCounted, p_forced: String = "") -> void:
 		inner = who
 		forced = p_forced
-		if forced != "":
-			policy = PolicyDecider.new(null)
 
 	func _current(context: Dictionary) -> Dictionary:
 		var proponent: String = str(context.get("proponent", ""))
@@ -86,12 +83,6 @@ class Spy extends RefCounted:
 					declared = {"stance": "SUPPORT", "clause_id": ""}
 				"oppose":
 					declared = {"stance": "OPPOSE", "clause_id": ""}
-				"condition":
-					var clause: String = str(policy._best_clause(entity_id, context, session))
-					declared = (
-						{"stance": "CONDITION", "clause_id": clause} if clause != ""
-						else {"stance": "SUPPORT", "clause_id": ""}
-					)
 		var record: Dictionary = _current(context)
 		(record["stances"] as Dictionary)[entity_id] = str(declared.get("stance", "ABSTAIN"))
 		return declared
@@ -134,8 +125,8 @@ func _initialize() -> void:
 	var first_seed: int = int(options.get("seed", 7000))
 	var out_path: String = str(options.get("out", ""))
 	var forced: String = str(options.get("no-abstain", ""))
-	if forced != "" and not ["support", "oppose", "condition"].has(forced):
-		printerr("--no-abstain vuole support, oppose o condition")
+	if forced != "" and not ["support", "oppose"].has(forced):
+		printerr("--no-abstain vuole support o oppose")
 		quit(4)
 		return
 
@@ -239,7 +230,7 @@ func _count(out: Dictionary, seen: Dictionary, result: Dictionary, seats: Array,
 			out["by_character"][by_character] = int(out["by_character"].get(by_character, 0)) + 1
 		if stance != "ABSTAIN":
 			silent = false
-		if stance == "OPPOSE" or stance == "CONDITION":
+		if stance == "OPPOSE":
 			declared_opposed = true
 		out["others"] = int(out["others"]) + 1
 		var cards: int = int(commits.get(seat, 0))
@@ -296,7 +287,7 @@ func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, 
 		_share(int(mixed["silent"]), int(mixed["councils"])),
 		_share(int(same["silent"]), int(same["councils"])),
 	])
-	lines.append("| Consigli con un OPPOSE o una CONDITION dichiarati | %s | %s |" % [
+	lines.append("| Consigli con un OPPOSE dichiarato | %s | %s |" % [
 		_share(int(mixed["declared_opposed"]), int(mixed["councils"])),
 		_share(int(same["declared_opposed"]), int(same["councils"])),
 	])
@@ -343,8 +334,8 @@ func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, 
 	lines.append("")
 	lines.append("Le posizioni di ogni casa quando non propone, sui due tavoli.")
 	lines.append("")
-	lines.append("| casa | tavolo | SUPPORT | CONDITION | OPPOSE | ABSTAIN |")
-	lines.append("|---|---|---|---|---|---|")
+	lines.append("| casa | tavolo | SUPPORT | OPPOSE | ABSTAIN |")
+	lines.append("|---|---|---|---|---|")
 	var seats: Array = []
 	for key in mixed["by_seat"]:
 		var seat: String = str(key).split("/")[0]
@@ -366,8 +357,8 @@ func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, 
 	lines.append("")
 	lines.append("## E carattere per carattere, sul tavolo misto")
 	lines.append("")
-	lines.append("| carattere | SUPPORT | CONDITION | OPPOSE | ABSTAIN |")
-	lines.append("|---|---|---|---|---|")
+	lines.append("| carattere | SUPPORT | OPPOSE | ABSTAIN |")
+	lines.append("|---|---|---|---|")
 	for character in Characters.NAMES:
 		var cells: Array = []
 		for stance in STANCES:
@@ -376,7 +367,7 @@ func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, 
 	lines.append("")
 	lines.append("## Come leggerla")
 	lines.append("")
-	lines.append("- Una **posizione dichiarata** (OPPOSE, CONDITION) e una **opposizione nel")
+	lines.append("- Una **posizione dichiarata** (OPPOSE) e una **opposizione nel")
 	lines.append("  margine** sono due cose: la seconda vuole carte impegnate contro, o un gettone")
 	lines.append("  comprato contro (D-419). Un OPPOSE a mani vuote non sposta niente.")
 	lines.append("- Col tavolo in silenzio il proponente prende il bonus del silenzio-assenso")
