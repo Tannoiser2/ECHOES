@@ -96,6 +96,14 @@ ne gioca perde. Misurata, fa il contrario: tutti salgono sul carro di chi
 propone, e il Consiglio diventa un plebiscito. È nei dati a zero, con tre forme
 alternative scritte nel verbale: la scelta è tua.
 
+**E in 0.1.425 hai detto che la sedia deve pesare tutto** ([D-456](DECISIONS.md#d-456)):
+il controllo che pesca carte, la città che vale, il villaggio che costa, la
+Regione affamata che è mia. Fatto: la sedia legge la mappa. Le proposte che
+valevano zero per chi non le propone passano dal 79% al 24%, i Consigli con
+almeno un no da uno su quattro a tre su quattro, e il tavolo dei quattro
+ottimizzatori si oppone nel margine in un Consiglio su due. Il quarto che
+resta a zero è contenuto: le carte, come dicevi.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.425 — La sedia legge la mappa
+
+[D-456](docs/DECISIONS.md#d-456), parola del committente. La policy pesava una
+proposta solo coi segni che il Destino nomina: il 79% delle proposte valeva
+zero per chi non le proponeva. Ora pesa la mappa: un danno dove sto costa, una
+Pietra che sale da me rende, il controllo pesa sempre, una presenza tolta
+costa, un rapporto che scende costa. Proposte a zero 79% → 24%, Consigli con
+almeno un no 26% → 72%. Partecipazione a trenta anni: astensioni 65% → 32%
+(misto) e 82% → 29% (uniforme), opposizione nel margine 60% → 68% e 20% →
+55%. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.424 — L'astensione ha un prezzo, misurato e spento
 
 [D-455](docs/DECISIONS.md#d-455), parola del committente. Due numeri nella

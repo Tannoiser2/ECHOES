@@ -90,12 +90,17 @@ func test_a_relation_between_other_people_is_worth_nothing() -> void:
 	)
 
 
-## E senza una clausola che nomini qualcuno non c'e' niente da leggere: il ramo
-## nuovo non inventa opinioni a chi non ne ha.
-func test_without_a_relation_clause_nothing_moves() -> void:
+## Senza una clausola che nomini qualcuno, un rapporto **con me** che scende
+## costa comunque un punto (D-456): un alleato in meno e' una mano in meno al
+## Consiglio. Fino alla 0.1.424 valeva zero, e la sedia non leggeva la mappa.
+func test_without_a_relation_clause_a_bond_with_me_still_weighs() -> void:
 	assert_eq(
-		_score(_relation_effect("%s|%s" % [VAERAX, LYRA], {"level": "ENEMY"}), VAERAX), 0,
-		"il Destino di partenza di Vaerax non nomina nessuno"
+		_score(_relation_effect("%s|%s" % [VAERAX, LYRA], {"level": "ENEMY"}), VAERAX), -1,
+		"un rapporto con me che scende costa un punto anche senza clausola"
+	)
+	assert_eq(
+		_score(_relation_effect("%s|%s" % [VAERAX, LYRA], {"level": "ALLY"}), VAERAX), 1,
+		"e uno che sale ne rende uno"
 	)
 
 

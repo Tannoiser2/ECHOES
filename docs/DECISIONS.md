@@ -10,6 +10,116 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-456 — La sedia legge la mappa
+
+**implemented in 0.1.425.** Parola del committente, davanti al plebiscito di
+[D-455](#d-455): *«le proposte che stanno sulle carte Tensione non si
+combattono abbastanza… se il Re affama una regione che mi serve non posso
+non oppormi. La sonda deve pesare tutto: anche non avere il controllo di una
+Regione che non mi fa pescare carte e' uno svantaggio da evitare. Costruire
+una citta' e' per me un valore, che torni villaggio e' un costo da evitare.»*
+
+**Cosa diceva la sonda delle posizioni prima**, quaranta anni, 152 Consigli,
+456 prese di posizione: il **79%** delle proposte valeva **esattamente zero**
+per chi non le proponeva, e un Consiglio su quattro aveva almeno un no. La
+sedia pesava una proposta con tre cose sole: i segni che il suo Destino
+nomina, il controllo di una Regione, e la presenza dove una clausola del
+Destino la chiede. Tutto il resto era letto e non pesato:
+
+| Effetto nelle proposte | letto | pesava |
+|---|---|---|
+| CAMBIA CONTROLLO | 81 | 56 |
+| segno sulla Regione | 180 | 19 |
+| sposta la Domanda | 390 | 5 |
+| COSTRUISCI PIETRA | 102 | **mai** |
+| togli o metti una presenza | 51 | **mai** |
+| alza o abbassa una Pietra | 27 | **mai** |
+| cambia un rapporto | 42 | **mai** |
+
+Il committente ha ragione due volte: la matrice dei contrasti c'e' da
+[D-171](#d-171) e la misura la tiene ([MISURA_MATRICE](MISURA_MATRICE.md):
+19 segni che aiutano una casa e ne danneggiano un'altra), ma la sedia
+**non leggeva la mappa**: un segno #affamata pesava solo se il Destino lo
+nominava, che la Regione fosse sua o no. Per questo il controllo era l'unico
+Effetto che facesse litigare: era l'unico collegato a «una Regione mia».
+
+**Cosa cambia**, in `policy_decider`, e vale per ogni sedia e per ogni
+carattere:
+
+- **quanto una Regione e' mia** (`_stake_in`): 2 se la tengo, 1 se ci ho una
+  presenza o una Pietra mia. E se la tiene un altro seggio, e' sua;
+- **un danno sulla Regione** — una condizione, una Cicatrice, una strada
+  chiusa — costa 1 piu' quanto e' mia, e rende 1 se e' di un avversario;
+  toglierlo, il contrario;
+- **una Pietra costruita da me rende 2**, abbattuta costa 2; **che sale rende
+  2, che scende costa 2**; da un avversario, il contrario e la meta';
+- **il controllo pesa sempre**, non solo se il Destino lo conta: una Regione
+  tenuta pesca carte, e perderla e' perdere la mano dell'anno dopo;
+- **una presenza mia tolta costa sempre 1** (3 se il Destino la chiede),
+  messa rende 1;
+- **un rapporto con me che sale rende 1, che scende costa 1**, anche senza una
+  clausola che lo nomini.
+
+**Cosa dice la sonda dopo**, stessi quaranta anni:
+
+| | prima | **dopo** |
+|---|---|---|
+| proposte che valgono zero per chi non propone | 79% | **24%** |
+| Consigli con almeno un no | 26% | **72%** |
+| OPPOSE · SUPPORT · ABSTAIN | 16% · 5% · 79% | **47% · 29% · 24%** |
+
+E gli Effetti che ora pesano, sugli stessi anni: COSTRUISCI PIETRA 81 su 81,
+segno tolto dalla Regione 332 su 333, segno posato 72 su 105, Pietra che
+sale o scende 9 su 9, controllo 40 su 42. Restano a zero **sposta la
+Domanda** (4 su 393) e i segni del mondo e delle case che nessun Destino
+nomina (20 su 426): quelli non sono della mappa, sono delle carte.
+
+**La partecipazione a trenta anni**, sedie corrette e menu a quattro, prima e
+dopo:
+
+| | 0.1.424 misto | **0.1.425 misto** | 0.1.424 uniforme | **0.1.425 uniforme** |
+|---|---|---|---|---|
+| astensioni fra i non proponenti | 65% | **32%** | 82% | **29%** |
+| SUPPORT · OPPOSE | 5% · 30% | **31% · 36%** | 4% · 14% | **31% · 40%** |
+| Consigli col tavolo in silenzio | 15% | **6%** | 69% | **19%** |
+| carte impegnate dagli altri tre, per Consiglio | 1,61 | **2,98** | 0,58 | **2,92** |
+| margine medio | 0,56 | **1,86** | 3,18 | **1,98** |
+| **Consigli con opposizione nel margine** | **60%** | **68%** | **20%** | **55%** |
+| esiti DECI · SUCC · COSTO · FAIL | 15 · 29 · 15 · 46 | **34 · 18 · 18 · 37** | 35 · 48 · 7 · 18 | **28 · 33 · 11 · 31** |
+
+Il tavolo uniforme, quello dei quattro ottimizzatori che si astenevano
+nell'82% dei casi, adesso si astiene nel 29% e si oppone nel margine in un
+Consiglio su due: era la tabella che il committente aveva davanti quando ha
+detto che il gioco falliva sul Consiglio. E le due posizioni si dividono —
+un terzo sostiene, un terzo si oppone, un terzo tace — invece del carro di
+D-455: il conflitto viene dalla mappa, non da un premio.
+
+**Il cancello dei 100 semi**, seme 7000, prima e dopo:
+
+| | 0.1.424 misto | **0.1.425 misto** | 0.1.424 uniforme | **0.1.425 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,50 | **3,47** | 3,59 | **3,46** |
+| esiti FAIL · SUCC · SUCC · DECI | 153 · 71 · 80 · 46 | **123 · 60 · 77 · 87** | 71 · 44 · 151 · 93 | **97 · 38 · 104 · 107** |
+
+Il vincolo tiene. Sull'uniforme i Consigli falliti passano da 71 a 97 e i
+decisivi da 93 a 107 insieme: si combatte di piu' nei due versi, che e' la
+forma di un Consiglio con due fronti. Una prova che diceva la regola vecchia
+— *«senza una clausola niente si muove»* sui rapporti — dice la nuova.
+
+**La corsia lenta**, rigirata: le vite mai sedute in dodici saghe scendono da
+2 a **1**, le trasformazioni sedute salgono da 256 a **277** — un tavolo che
+litiga cambia pelle piu' spesso; i segni sul tavolo di uno o due per
+famiglia. Suite 746 prove verdi, 28 cancelli veloci e 6 lenti verdi.
+
+**Quello che resta a zero, un quarto, e' contenuto.** Sono le proposte che
+non toccano niente di mio e niente di nessuno: segni che nessun Destino
+nomina, memorie senza casa, domande che si spostano e non contano. E' la
+seconda meta' che il committente chiedeva — *«costi e benefici non sono
+abbastanza polarizzati»* — e adesso si vede da sola, separata dalla prima.
+
+---
+
 ## D-455 — L'astensione ha un prezzo: la regola c'e', e misurata fa il contrario di quello che vuole
 
 **implemented in 0.1.424, spenta nei dati.** Parola del committente: *«chi

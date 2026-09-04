@@ -16,29 +16,29 @@ se su un tavolo intero e' zero, il cancello e' rosso.
 
 | | misto | uniforme |
 |---|---|---|
-| Consigli | 105 | 108 |
-| prese di posizione dei non proponenti | 315 | 324 |
-| — SUPPORT | 15 (5%) | 13 (4%) |
-| — OPPOSE | 95 (30%) | 44 (14%) |
-| — ABSTAIN | 205 (65%) | 267 (82%) |
-| Consigli col tavolo in silenzio (tutti astenuti) | 16 (15%) | 74 (69%) |
-| Consigli con un OPPOSE dichiarato | 82 (78%) | 23 (21%) |
-| carte impegnate dal proponente, per Consiglio | 1.59 | 1.78 |
-| carte impegnate dagli altri tre, per Consiglio | 1.61 | 0.58 |
-| non proponenti che impegnano almeno una carta | 83 (26%) | 49 (15%) |
+| Consigli | 107 | 103 |
+| prese di posizione dei non proponenti | 321 | 309 |
+| — SUPPORT | 101 (31%) | 97 (31%) |
+| — OPPOSE | 117 (36%) | 123 (40%) |
+| — ABSTAIN | 103 (32%) | 89 (29%) |
+| Consigli col tavolo in silenzio (tutti astenuti) | 6 (6%) | 20 (19%) |
+| Consigli con un OPPOSE dichiarato | 84 (79%) | 65 (63%) |
+| carte impegnate dal proponente, per Consiglio | 1.63 | 1.97 |
+| carte impegnate dagli altri tre, per Consiglio | 2.98 | 2.92 |
+| non proponenti che impegnano almeno una carta | 174 (54%) | 180 (58%) |
 | gettoni di opposizione comprati (D-419) | 0 | 0 |
 | punti del dibattito guadagnati · persi (D-455) | 0 · 0 | 0 · 0 |
-| margine medio | 0.56 | 3.18 |
-| **Consigli con opposizione nel margine** | **63 (60%)** | **22 (20%)** |
+| margine medio | 1.86 | 1.98 |
+| **Consigli con opposizione nel margine** | **73 (68%)** | **57 (55%)** |
 
 ## Gli esiti
 
 | esito | misto | uniforme |
 |---|---|---|
-| DECISIVE_SUCCESS | 15 | 35 |
-| FAILURE | 46 | 18 |
-| SUCCESS | 29 | 48 |
-| SUCCESS_WITH_COST | 15 | 7 |
+| DECISIVE_SUCCESS | 34 | 28 |
+| FAILURE | 37 | 31 |
+| SUCCESS | 18 | 33 |
+| SUCCESS_WITH_COST | 18 | 11 |
 
 ## Chi si astiene, seggio per seggio
 
@@ -46,31 +46,31 @@ Le posizioni di ogni casa quando non propone, sui due tavoli.
 
 | casa | tavolo | SUPPORT | OPPOSE | ABSTAIN |
 |---|---|---|---|---|
-| Re Aldric | misto | 2 | 14 | 21 |
-| Re Aldric | uniforme | 0 | 5 | 29 |
-| Kessa dei Fuochi | misto | 1 | 8 | 39 |
-| Kessa dei Fuochi | uniforme | 2 | 8 | 52 |
-| Le Città Libere | misto | 0 | 11 | 22 |
-| Le Città Libere | uniforme | 3 | 6 | 22 |
-| Lyra | misto | 2 | 14 | 22 |
-| Lyra | uniforme | 4 | 7 | 32 |
-| Popolo Nahr | misto | 4 | 20 | 23 |
-| Popolo Nahr | uniforme | 0 | 3 | 40 |
-| Maestra Ilve | misto | 2 | 8 | 31 |
-| Maestra Ilve | uniforme | 0 | 4 | 35 |
-| Vaerax | misto | 3 | 10 | 24 |
-| Vaerax | uniforme | 2 | 9 | 26 |
-| Priore Anselmo | misto | 1 | 10 | 23 |
-| Priore Anselmo | uniforme | 2 | 2 | 31 |
+| Re Aldric | misto | 16 | 12 | 11 |
+| Re Aldric | uniforme | 12 | 9 | 15 |
+| Kessa dei Fuochi | misto | 13 | 18 | 23 |
+| Kessa dei Fuochi | uniforme | 13 | 28 | 14 |
+| Le Città Libere | misto | 12 | 14 | 6 |
+| Le Città Libere | uniforme | 16 | 9 | 6 |
+| Lyra | misto | 15 | 11 | 13 |
+| Lyra | uniforme | 15 | 14 | 12 |
+| Popolo Nahr | misto | 13 | 20 | 7 |
+| Popolo Nahr | uniforme | 14 | 12 | 9 |
+| Maestra Ilve | misto | 14 | 12 | 16 |
+| Maestra Ilve | uniforme | 12 | 18 | 10 |
+| Vaerax | misto | 8 | 16 | 14 |
+| Vaerax | uniforme | 9 | 18 | 11 |
+| Priore Anselmo | misto | 10 | 14 | 13 |
+| Priore Anselmo | uniforme | 6 | 15 | 12 |
 
 ## E carattere per carattere, sul tavolo misto
 
 | carattere | SUPPORT | OPPOSE | ABSTAIN |
 |---|---|---|---|
-| prudente | 6 | 0 | 67 |
-| aggressivo | 3 | 77 | 0 |
-| distratto | 4 | 8 | 74 |
-| ostinato | 2 | 10 | 64 |
+| prudente | 26 | 0 | 49 |
+| aggressivo | 30 | 54 | 0 |
+| distratto | 22 | 29 | 30 |
+| ostinato | 23 | 34 | 24 |
 
 ## Come leggerla
 

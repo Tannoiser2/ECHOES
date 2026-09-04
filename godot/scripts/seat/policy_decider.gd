@@ -1556,6 +1556,93 @@ func _score_proposition(
 	return score
 
 
+## Quanto una Regione e' mia: 2 se la tengo, 1 se ci ho una presenza o una
+## Pietra mia, 0 altrimenti. E' il peso con cui quello che le succede mi tocca.
+func _stake_in(entity_id: String, region_id: String, session: RefCounted) -> int:
+	var region: Variant = session.world["regions"].get(region_id)
+	if region == null:
+		return 0
+	if str((region as Dictionary).get("control", "")) == entity_id:
+		return 2
+	if (session.world["entities"][entity_id]["presence"] as Array).has(region_id):
+		return 1
+	for structure in ((region as Dictionary).get("structures", []) as Array):
+		if str((structure as Dictionary).get("owner", "")) == entity_id:
+			return 1
+	return 0
+
+
+## La Regione e' tenuta da un altro seggio del tavolo?
+func _held_by_a_rival(entity_id: String, region_id: String, session: RefCounted) -> bool:
+	var region: Variant = session.world["regions"].get(region_id)
+	if region == null:
+		return false
+	var holder: String = str((region as Dictionary).get("control", ""))
+	return holder != "" and holder != "null" and holder != entity_id
+
+
+## Un segno che fa male a una Regione: le condizioni e le Cicatrici. Il resto
+## — memorie, luoghi, Pietre — non e' un danno di per se'.
+static func _harms_a_region(tag: String) -> bool:
+	return tag.begins_with("condition:") or tag.begins_with("scar:") or tag == "structure:sealed"
+
+
+## Il grado che una Pietra ha oggi in una Regione, 0 se non c'e'.
+static func _grade_of(region: Dictionary, structure_type: String) -> int:
+	for structure in (region.get("structures", []) as Array):
+		if str((structure as Dictionary).get("type", (structure as Dictionary).get("structure_type", ""))) == structure_type:
+			return int((structure as Dictionary).get("grade", 1))
+	return 0
+
+
+## Quello che un Effetto fa **alla mappa dove sto** (D-456). Un danno su una
+## Regione mia costa 1 piu' quanto e' mia; lo stesso danno dove sta un
+## avversario rende 1. Una Pietra che sale da me rende 2, che scende costa 2;
+## da un avversario, il contrario e la meta'.
+func _score_on_the_map(
+	effect_type: String, target_id: String, payload: Dictionary, entity_id: String, session: RefCounted
+) -> int:
+	if not session.world["regions"].has(target_id):
+		return 0
+	var mine: int = _stake_in(entity_id, target_id, session)
+	var theirs: bool = _held_by_a_rival(entity_id, target_id, session)
+	var region: Dictionary = session.world["regions"][target_id] as Dictionary
+	match effect_type:
+		"SET_REGION_TAG":
+			if _harms_a_region(str(payload.get("tag", ""))):
+				if mine > 0:
+					return -(1 + mine)
+				if theirs:
+					return 1
+		"REMOVE_REGION_TAG":
+			if _harms_a_region(str(payload.get("tag", ""))):
+				if mine > 0:
+					return 1 + mine
+				if theirs:
+					return -1
+		"BUILD_STRUCTURE":
+			if mine > 0:
+				return 2
+			if theirs:
+				return -1
+		"RAZE_STRUCTURE":
+			if mine > 0:
+				return -2
+			if theirs:
+				return 1
+		"SET_STRUCTURE_GRADE":
+			var now: int = _grade_of(region, str(payload.get("structure_type", "")))
+			var wanted: int = int(payload.get("grade", now))
+			if wanted == now:
+				return 0
+			var up: bool = wanted > now
+			if mine > 0:
+				return 2 if up else -2
+			if theirs:
+				return -1 if up else 1
+	return 0
+
+
 ## Resolve an authored `$slot` to the id it will actually carry at K.
 ##
 ## The Council fixes its bindings at A, before a single stance is declared, so a
@@ -1597,12 +1684,24 @@ func _score_effect(
 	# Being pushed out of - or planted in - a Region your Destiny names. The
 	# target is always a $slot in the authored data ($rival, $proponent), so this
 	# only ever fires once the slot is resolved.
+	# **La sedia legge la mappa** (D-456, parola del committente: *«la sonda
+	# deve pesare tutto: non avere il controllo di una Regione che non mi fa
+	# pescare carte e' uno svantaggio; costruire una citta' e' un valore, che
+	# torni villaggio e' un costo»*). Fino alla 0.1.424 una presenza tolta, una
+	# Pietra costruita o abbattuta, un segno posato sulla Regione dove sto
+	# valevano zero se il Destino non li nominava: il 79% delle proposte valeva
+	# zero per chi non le proponeva, e l'unico Effetto che facesse litigare era
+	# il controllo. Qui pesa quello che tocca **dove sto**, e in senso inverso
+	# quello che tocca dove sta un avversario.
 	if effect_type == "REMOVE_PRESENCE" and target_id == entity_id:
+		score -= 1
 		if _needs_presence(entity_id, _resolve(payload.get("region_id", ""), bindings, session), session):
-			score -= 3
+			score -= 2
 	if effect_type == "ADD_PRESENCE" and target_id == entity_id:
+		score += 1
 		if _needs_presence(entity_id, _resolve(payload.get("region_id", ""), bindings, session), session):
-			score += 3
+			score += 2
+	score += _score_on_the_map(effect_type, target_id, payload, entity_id, session)
 
 	# A Tension your Destiny puts a ceiling or a floor on. This is the commonest
 	# Effect in the whole Consequence set and the commonest clause in the whole
@@ -1633,7 +1732,9 @@ func _score_effect(
 			score -= 6
 
 	# Control changing hands, for whoever counts Regions.
-	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
+	# Il controllo pesa sempre (D-456): una Regione tenuta pesca carte, e
+	# perderla e' perdere la mano dell'anno dopo — Destino o no.
+	if effect_type == "SET_CONTROL":
 		if not session.world["regions"].has(target_id):
 			return score
 		var new_owner: Variant = payload.get("entity_id", null)
@@ -1765,6 +1866,11 @@ func _score_relation_move(
 			score -= 1
 		elif after > before:
 			score += 1
+	# Senza una clausola che lo nomini, un rapporto che sale con me rende un
+	# punto e uno che scende me lo costa (D-456): un alleato in meno e' una
+	# mano in meno al Consiglio.
+	if score == 0 and after != before:
+		score = 1 if after > before else -1
 	return score
 
 
