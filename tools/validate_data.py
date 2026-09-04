@@ -86,6 +86,12 @@ def check_references(
     known_consequences = ids.get("consequence", set())
     known_echoes = ids.get("echo_card", set())
     known_templates = ids.get("confluence_template", set())
+    # Il blocco `council` di ogni carta Tensione: e' la casa vera di Domande e
+    # Proposte (0.1.272), e il template deve rispecchiarla o tacere (D-461).
+    known_councils = {
+        str(tension.get("id", "")): tension.get("council") or {}
+        for tension in documents.get("tension", [])
+    }
 
     def require(container: Set[str], value: str, kind: str, where: str) -> None:
         if value not in container:
@@ -256,6 +262,20 @@ def check_references(
                 _check_condition(
                     condition, known_entities, known_regions, known_tensions, report, where
                 )
+        # **La carta vince, e la copia cruda non deve divergere** (D-461). Dal
+        # 0.1.272 il motore legge Domande e Proposte dalla carta Tensione; il
+        # template le tiene solo come ripiego. Tre Conseguenze scritte nel
+        # template (D-397) non sono mai arrivate al tavolo, e tre verbali le
+        # hanno misurate su una sonda che leggeva la stessa copia cieca.
+        card_council = (known_councils or {}).get(str(template.get("tension_id", "")))
+        if card_council:
+            for field in ("questions", "propositions"):
+                if card_council.get(field) and template.get(field) != card_council.get(field):
+                    report.fail(
+                        where,
+                        f"{field} divergono dalla carta '{template['tension_id']}': "
+                        "la carta vince, riallinea o togli la copia nel template",
+                    )
         for proposition in template["propositions"]:
             for condition in proposition["eligibility"]:
                 _check_condition(

@@ -72,9 +72,12 @@ class Watcher extends RefCounted:
 		# separano — contando solo le volte in cui **quella domanda** era sul
 		# tavolo, perche' una proposta che risponde a un'altra domanda non e'
 		# stata esclusa: non era in argomento.
-		var template: Dictionary = session.data.confluence_templates[
-			str(context["template_id"])
-		] as Dictionary
+		# **Le Proposte vengono dalla carta** (0.1.272), e il motore le legge
+		# fuse col template: leggerle dal template crudo e' la nona volta di
+		# D-414, e qui e' costato un verdetto falso (D-461).
+		var template: Dictionary = session.data.confluence_template_for(
+			str(context["tension_id"])
+		) as Dictionary
 		var asked: String = str(context.get("question_id", ""))
 		for entry in template.get("propositions", []):
 			var candidate: Dictionary = entry as Dictionary
@@ -122,15 +125,21 @@ func _initialize() -> void:
 	# verdetto che vale per una proposta («offerta tante volte, presa zero») su
 	# di lei direbbe il falso, quindi si tiene separata.
 	var pooled_in: Dictionary = {}  # consequence_id -> ["CNF_X (failure)"]
-	for template_id in data.confluence_templates:
-		var template: Dictionary = data.confluence_templates[str(template_id)] as Dictionary
-		for entry in template.get("propositions", []):
+	# **Chi elenca si legge dalla carta, non dal template crudo** (D-461): dal
+	# 0.1.272 ogni carta porta le sue Proposte e il template e' solo il ripiego.
+	# Letto crudo, il template diceva ancora le liste di allora — e chiamava
+	# «orfana» una Conseguenza che tre carte elencano.
+	for tension_id in data.tensions:
+		var sheet: Dictionary = data.confluence_template_for(str(tension_id)) as Dictionary
+		for entry in sheet.get("propositions", []):
 			var proposition: Dictionary = entry as Dictionary
 			for consequence_id in proposition.get("success_consequences", []):
 				var who: Array = listed_by.get(str(consequence_id), [])
 				if not who.has(str(proposition["id"])):
 					who.append(str(proposition["id"]))
 				listed_by[str(consequence_id)] = who
+	for template_id in data.confluence_templates:
+		var template: Dictionary = data.confluence_templates[str(template_id)] as Dictionary
 		# **E i sacchetti del Consiglio** (D-401). Una Conseguenza puo' avere una
 		# casa che non e' una proposta: il costo, il fallimento, il premio di chi
 		# decide. La sonda non li guardava, e chiamava «orfana» una Conseguenza

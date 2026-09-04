@@ -139,6 +139,11 @@ func test_the_word_rotates() -> void:
 ## E chi la parola l'avrebbe comunque non spreca carte per chiederla.
 func test_the_natural_proponent_does_not_claim() -> void:
 	_arm("ENT_VAERAX", 4)
+	# Col resto del tavolo acceso la prova misurava un caso: da D-461 la
+	# Carestia porta «Chi puo', se ne va», e Vaerax la prenotava. Qui si prova
+	# che il proponente naturale non compra la parola che ha, non che il resto
+	# del tavolo taccia.
+	_cool_the_table("TEN_AWAKENING")
 	_heat("TEN_AWAKENING", 5)
 	assert_eq(
 		PolicyDecider.new(null)._claim_the_word("ENT_VAERAX", session), {},
