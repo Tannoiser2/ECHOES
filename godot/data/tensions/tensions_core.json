@@ -28,16 +28,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
@@ -58,31 +48,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
             "tag": "debt_forgiven"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Carestia."
-          },
-          {
-            "id": "B_MARK",
-            "verb": "MARK_HOUSE",
-            "text": "Chi propone esce dal Consiglio con la fama.",
-            "tag": "renowned",
-            "chi": "PROPONENT"
-          },
-          {
-            "id": "B_MOVE_OUT",
-            "verb": "MOVE_OUT",
-            "text": "Il rivale toglie la sua pedina dal luogo.",
-            "chi": "RIVAL"
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Il Risveglio.",
-            "dove": "QUESTION",
-            "question": "TEN_AWAKENING"
           }
         ],
         "costs": [
@@ -93,24 +58,9 @@
             "tag": "condition:rationed"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
-          },
-          {
-            "id": "C_DEBT",
-            "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
           },
           {
             "id": "C_SCAR",
@@ -119,36 +69,11 @@
             "tag": "scar:changed_hands"
           },
           {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Carestia."
-          },
-          {
-            "id": "C_MOVE_IN",
-            "verb": "MOVE_IN",
-            "text": "Il rivale posa una pedina in una Regione confinante.",
-            "chi": "RIVAL",
-            "dove": "ADJACENT"
-          },
-          {
             "id": "C_BIND",
             "verb": "BIND_HOUSES",
             "text": "Il filo con il rivale scende a nemico.",
             "chi": "RIVAL",
             "level": "ENEMY"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "La Foresta del luogo scende di 1 grado.",
-            "structure": "STR_FOREST"
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Il Risveglio.",
-            "dove": "QUESTION",
-            "question": "TEN_AWAKENING"
           }
         ],
         "failure": [
@@ -354,16 +279,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
@@ -384,35 +299,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato messo a rendere.",
             "tag": "crystal_exploited"
-          },
-          {
-            "id": "B_SEAL",
-            "verb": "REMEMBER",
-            "text": "Il mondo ricorda: le Miniere sono state sigillate.",
-            "tag": "mine_sealed"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Il Risveglio."
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Il Sito dormiente del luogo sale di 1 grado.",
-            "structure": "STR_OLD_SITE"
-          },
-          {
-            "id": "B_UNVEIL",
-            "verb": "UNVEIL_QUESTION",
-            "text": "La domanda in discussione si gira a faccia in su."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Successione.",
-            "dove": "QUESTION",
-            "question": "TEN_SUCCESSION"
           }
         ],
         "costs": [
@@ -423,19 +309,9 @@
             "tag": "condition:exploited"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -447,37 +323,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Il Risveglio."
-          },
-          {
-            "id": "C_FORGET",
-            "verb": "FORGET",
-            "text": "Il mondo dimentica: le Miniere erano state sigillate.",
-            "tag": "mine_sealed"
-          },
-          {
-            "id": "C_LEAVE",
-            "verb": "LEAVE_TABLE",
-            "text": "La casa che porta #dormiente lascia il tavolo.",
-            "chi": "HOUSE_WITH",
-            "who_tag": "sleeping"
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Successione.",
-            "dove": "QUESTION",
-            "question": "TEN_SUCCESSION"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Sito antico del luogo scende di 1 grado.",
-            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -686,16 +531,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
@@ -716,37 +551,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la successione e' scritta in una legge.",
             "tag": "succession_by_law"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Successione."
-          },
-          {
-            "id": "B_UNMARK",
-            "verb": "UNMARK_HOUSE",
-            "text": "Al rivale si toglie la corona.",
-            "tag": "crowned",
-            "chi": "RIVAL"
-          },
-          {
-            "id": "B_FORGET",
-            "verb": "FORGET",
-            "text": "Il mondo dimentica: la corona era stata divisa.",
-            "tag": "crown_divided"
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte.",
-            "dove": "QUESTION",
-            "question": "TEN_ROADS"
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Presidio del luogo sale di 1 grado.",
-            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -757,24 +561,9 @@
             "tag": "condition:guarded"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
-          },
-          {
-            "id": "C_DEBT",
-            "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
           },
           {
             "id": "C_SCAR",
@@ -783,42 +572,11 @@
             "tag": "scar:changed_hands"
           },
           {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Successione."
-          },
-          {
-            "id": "C_MOVE_OUT",
-            "verb": "MOVE_OUT",
-            "text": "Chi propone toglie la sua pedina dalla capitale.",
-            "chi": "PROPONENT",
-            "dove": "CAPITAL"
-          },
-          {
             "id": "C_MARK",
             "verb": "MARK_HOUSE",
             "text": "Chi propone resta sotto osservazione.",
             "tag": "watched",
             "chi": "PROPONENT"
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte.",
-            "dove": "QUESTION",
-            "question": "TEN_ROADS"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Presidio del luogo scende di 1 grado.",
-            "structure": "STR_KEEP"
-          },
-          {
-            "id": "C_SEAL",
-            "verb": "SEAL_ROAD",
-            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
-            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -1060,16 +818,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
@@ -1090,32 +838,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato chiamato.",
             "tag": "debt_called"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-          },
-          {
-            "id": "B_MOVE_IN",
-            "verb": "MOVE_IN",
-            "text": "Chi propone posa una pedina in una Regione confinante.",
-            "chi": "PROPONENT",
-            "dove": "ADJACENT"
-          },
-          {
-            "id": "B_BIND",
-            "verb": "BIND_HOUSES",
-            "text": "Il filo con il rivale sale ad alleato.",
-            "chi": "RIVAL",
-            "level": "ALLY"
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di I Pozzi Bassi.",
-            "dove": "QUESTION",
-            "question": "TEN_THIRST"
           }
         ],
         "costs": [
@@ -1126,19 +848,9 @@
             "tag": "condition:guarded"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -1150,34 +862,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
-          },
-          {
-            "id": "C_SEAL",
-            "verb": "SEAL_ROAD",
-            "text": "Si chiude la strada fra una Regione con #selvaggio e una con #pascolo.",
-            "dove": "REGION_WITH",
-            "place_tag": "wild",
-            "verso": "REGION_WITH",
-            "verso_tag": "nomad_range"
-          },
-          {
-            "id": "C_UNMARK",
-            "verb": "UNMARK_HOUSE",
-            "text": "Chi propone perde la fama.",
-            "tag": "renowned",
-            "chi": "PROPONENT"
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di I Pozzi Bassi.",
-            "dove": "QUESTION",
-            "question": "TEN_THIRST"
           }
         ],
         "failure": [
@@ -1339,16 +1023,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Villaggio.",
@@ -1369,24 +1043,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
             "tag": "debt_forgiven"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Febbre Bassa."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Carestia.",
-            "dove": "QUESTION",
-            "question": "TEN_FAMINE"
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Insediamento del luogo sale di 1 grado.",
-            "structure": "STR_SETTLEMENT"
           }
         ],
         "costs": [
@@ -1397,19 +1053,9 @@
             "tag": "condition:mourning"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -1421,24 +1067,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Febbre Bassa."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Carestia.",
-            "dove": "QUESTION",
-            "question": "TEN_FAMINE"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Insediamento del luogo scende di 1 grado.",
-            "structure": "STR_SETTLEMENT"
           }
         ],
         "failure": [
@@ -1570,16 +1198,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
@@ -1600,18 +1218,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di I Pozzi Bassi."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Febbre Bassa.",
-            "dove": "QUESTION",
-            "question": "TEN_PLAGUE"
           }
         ],
         "costs": [
@@ -1622,19 +1228,9 @@
             "tag": "condition:rationed"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -1646,18 +1242,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di I Pozzi Bassi."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Febbre Bassa.",
-            "dove": "QUESTION",
-            "question": "TEN_PLAGUE"
           }
         ],
         "failure": [
@@ -1786,16 +1370,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
@@ -1816,18 +1390,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
             "tag": "water_moves"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Il Debito.",
-            "dove": "QUESTION",
-            "question": "TEN_DEBT"
           }
         ],
         "costs": [
@@ -1838,19 +1400,9 @@
             "tag": "condition:rationed"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -1862,18 +1414,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Il Debito.",
-            "dove": "QUESTION",
-            "question": "TEN_DEBT"
           }
         ],
         "failure": [
@@ -2016,16 +1556,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
@@ -2046,18 +1576,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
             "tag": "debt_forgiven"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Il Debito."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di L'Acqua Ferma.",
-            "dove": "QUESTION",
-            "question": "TEN_WATER"
           }
         ],
         "costs": [
@@ -2068,19 +1586,9 @@
             "tag": "condition:unrest"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -2092,18 +1600,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Il Debito."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di L'Acqua Ferma.",
-            "dove": "QUESTION",
-            "question": "TEN_WATER"
           }
         ],
         "failure": [
@@ -2278,16 +1774,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
@@ -2308,31 +1794,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
             "tag": "relic_buried"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Reliquia."
-          },
-          {
-            "id": "B_MARK",
-            "verb": "MARK_HOUSE",
-            "text": "Chi propone porta addosso: scoperta: la reliquia.",
-            "tag": "discovery:relic",
-            "chi": "PROPONENT"
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Cenere che Sale.",
-            "dove": "QUESTION",
-            "question": "TEN_ASH"
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Sito antico del luogo sale di 1 grado.",
-            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -2343,19 +1804,9 @@
             "tag": "condition:guarded"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -2367,37 +1818,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Reliquia."
-          },
-          {
-            "id": "C_UNVEIL",
-            "verb": "UNVEIL_QUESTION",
-            "text": "La Reliquia si gira a faccia in su, per tutti.",
-            "dove": "QUESTION",
-            "question": "TEN_RELIC"
-          },
-          {
-            "id": "C_MOVE_IN",
-            "verb": "MOVE_IN",
-            "text": "Il rivale posa una pedina nel luogo.",
-            "chi": "RIVAL"
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Cenere che Sale.",
-            "dove": "QUESTION",
-            "question": "TEN_ASH"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Sito antico del luogo scende di 1 grado.",
-            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [
@@ -2564,16 +1984,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
@@ -2594,24 +2004,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
             "tag": "charter_written"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Carta."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di Il Debito.",
-            "dove": "QUESTION",
-            "question": "TEN_DEBT"
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Presidio del luogo sale di 1 grado.",
-            "structure": "STR_KEEP"
           }
         ],
         "costs": [
@@ -2622,19 +2014,9 @@
             "tag": "condition:unrest"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -2646,30 +2028,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Carta."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di Il Debito.",
-            "dove": "QUESTION",
-            "question": "TEN_DEBT"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Presidio del luogo scende di 1 grado.",
-            "structure": "STR_KEEP"
-          },
-          {
-            "id": "C_SEAL",
-            "verb": "SEAL_ROAD",
-            "text": "Si chiude la strada fra il luogo e una Regione confinante.",
-            "verso": "ADJACENT"
           }
         ],
         "failure": [
@@ -2818,16 +2176,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Rimuovi 1 condizione dal luogo scelto."
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Villaggio.",
@@ -2848,24 +2196,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
             "tag": "nahr_settled"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di I Senza Città."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di L'Acqua Ferma.",
-            "dove": "QUESTION",
-            "question": "TEN_WATER"
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Insediamento del luogo sale di 1 grado.",
-            "structure": "STR_SETTLEMENT"
           }
         ],
         "costs": [
@@ -2876,19 +2206,9 @@
             "tag": "condition:guarded"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -2900,24 +2220,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di I Senza Città."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di L'Acqua Ferma.",
-            "dove": "QUESTION",
-            "question": "TEN_WATER"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Insediamento del luogo scende di 1 grado.",
-            "structure": "STR_SETTLEMENT"
           }
         ],
         "failure": [
@@ -3041,17 +2343,6 @@
       "physical": {
         "benefits": [
           {
-            "id": "B_REOPEN",
-            "verb": "REOPEN",
-            "text": "Riapri l'accesso: il luogo torna raggiungibile."
-          },
-          {
-            "id": "B_CLEAR",
-            "verb": "CLEAR_CONDITION",
-            "text": "Il luogo torna raggiungibile.",
-            "tag": "structure:sealed"
-          },
-          {
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
@@ -3072,24 +2363,6 @@
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: della montagna si e' smesso di parlare.",
             "tag": "mountain_forgotten"
-          },
-          {
-            "id": "B_COOL_QUESTION",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
-          },
-          {
-            "id": "B_COOL_LINKED",
-            "verb": "COOL_QUESTION",
-            "text": "Sposta di 1 indietro il segnalino di La Reliquia.",
-            "dove": "QUESTION",
-            "question": "TEN_RELIC"
-          },
-          {
-            "id": "B_RAISE",
-            "verb": "RAISE_STONE",
-            "text": "Sito antico del luogo sale di 1 grado.",
-            "structure": "STR_OLD_SITE"
           }
         ],
         "costs": [
@@ -3100,19 +2373,9 @@
             "tag": "structure:sealed"
           },
           {
-            "id": "C_TOLL",
-            "verb": "TOLL",
-            "text": "Il luogo ottiene #pedaggio."
-          },
-          {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo."
-          },
-          {
-            "id": "C_HEAT",
-            "verb": "HEAT_THEME",
-            "text": "Scalda il Tema di 1."
           },
           {
             "id": "C_DEBT",
@@ -3124,24 +2387,6 @@
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered"
-          },
-          {
-            "id": "C_HEAT_QUESTION",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
-          },
-          {
-            "id": "C_HEAT_LINKED",
-            "verb": "HEAT_QUESTION",
-            "text": "Sposta di 1 avanti il segnalino di La Reliquia.",
-            "dove": "QUESTION",
-            "question": "TEN_RELIC"
-          },
-          {
-            "id": "C_LOWER",
-            "verb": "LOWER_STONE",
-            "text": "Sito antico del luogo scende di 1 grado.",
-            "structure": "STR_OLD_SITE"
           }
         ],
         "failure": [

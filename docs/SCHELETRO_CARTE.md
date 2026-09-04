@@ -28,7 +28,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 |---|---|---|---|---|
 | **asset** | 24 su 48 | 84% | 37% | 34% |
 | **tension** | 0 su 60 | 100% | — | — |
-| **council** | 8 su 60 | 87% | — | — |
+| **council** | 0 su 60 | 100% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
 | **objective** | 0 su 19 | 100% | 52% | 52% |
 | **entity** | 0 su 32 | 100% | 52% | 52% |
@@ -117,7 +117,7 @@ Dice le domande e le caselle con cui il tavolo la risolve.
 | il sottotitolo | 60 su 60 |
 | una riga di testo libero | 120 su 60 |
 | **SI OTTIENE** | 60 su 60 |
-| una casella, una per riga | 1170 su 60 |
+| una casella, una per riga | 601 su 60 |
 | **SI PAGA** | 60 su 60 |
 | **SE CADE** | 60 su 60 |
 
@@ -128,25 +128,15 @@ Dice le domande e le caselle con cui il tavolo la risolve.
 > La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
 > E le bocche aperte sul fianco, si murano?
 > SI OTTIENE
-> · Riapri l'accesso: il luogo torna raggiungibile.
-> · Il luogo torna raggiungibile.
 > · Costruisci 1 Pietra nel luogo: Sito dormiente.
 > · Assegna o trasferisci il controllo del luogo.
 > · Raffredda il Tema di 1 (minimo 0).
 > · Il mondo ricorda: della montagna si e' smesso di parlare.
-> · Sposta di 1 indietro il segnalino di La Cenere che Sale.
-> · Sposta di 1 indietro il segnalino di La Reliquia.
-> · Sito antico del luogo sale di 1 grado.
 > SI PAGA
 > · Il luogo viene murato: quello che sta sotto resta sotto.
-> · Il luogo ottiene #pedaggio.
 > · Cedi il controllo del luogo.
-> · Scalda il Tema di 1.
 > · Al luogo si aggiunge #indebitata.
 > · Accetta 1 Cicatrice permanente: la domanda sul muro.
-> · Sposta di 1 avanti il segnalino di La Cenere che Sale.
-> · Sposta di 1 avanti il segnalino di La Reliquia.
-> · Sito antico del luogo scende di 1 grado.
 > SE CADE
 > · Al luogo si aggiunge #malcontento.
 > · Il Tema di questa domanda si scalda di 1.

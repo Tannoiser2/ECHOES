@@ -275,14 +275,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "·",
-      "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-    },
-    {
-      "voce": "·",
-      "testo": "Il luogo torna raggiungibile."
-    },
-    {
-      "voce": "·",
       "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
     },
     {
@@ -298,18 +290,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
       "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
     },
     {
-      "voce": "·",
-      "testo": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
-    },
-    {
-      "voce": "·",
-      "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-    },
-    {
-      "voce": "·",
-      "testo": "Sito antico del luogo sale di 1 grado."
-    },
-    {
       "voce": "SI PAGA",
       "testo": ""
     },
@@ -319,15 +299,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "·",
-      "testo": "Il luogo ottiene #pedaggio."
-    },
-    {
-      "voce": "·",
       "testo": "Cedi il controllo del luogo."
-    },
-    {
-      "voce": "·",
-      "testo": "Scalda il Tema di 1."
     },
     {
       "voce": "·",
@@ -336,18 +308,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "·",
       "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-    },
-    {
-      "voce": "·",
-      "testo": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
-    },
-    {
-      "voce": "·",
-      "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-    },
-    {
-      "voce": "·",
-      "testo": "Sito antico del luogo scende di 1 grado."
     },
     {
       "voce": "SE CADE",

@@ -6,6 +6,7 @@ extends "res://tests/test_case.gd"
 ## esattamente questa: «i bot non puoi fare un modo che stringano alleanze se
 ## conviene loro?»
 
+const Effect := preload("res://scripts/core/effect.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 
@@ -86,25 +87,31 @@ func test_the_memory_is_only_what_the_table_saw() -> void:
 ## legami. Era il test a dirlo con una moneta sola. Adesso chiede quello che
 ## intendeva - che su una manciata di anni la regola spari - e il messaggio
 ## porta il numero, cosi' il giorno che scende si legge di quanto.
+##
+## **Riscritta in D-453.** I cinque legami che questa prova contava in cinque
+## anni non li stringeva la regola: erano la casella LEGA LE CASE del Consiglio
+## sulle Vie Interrotte (`confluence/CNF_ROADS_01`, livello ALLY), e il giorno
+## che il menu e' sceso a quattro caselle la prova ha detto zero — cieca da
+## sempre su quello che intendeva. Adesso fabbrica il caso, come vuole la regola
+## di casa: un seggio che ha votato insieme a un altro, una carta BONDS in
+## mano, e la regola deve proporre di salire di grado proprio con quello.
 func test_a_bond_is_forged_that_no_clause_asked_for() -> void:
-	var warmed: int = 0
-	var years: int = 0
-	for seed_value in [4242, 4243, 4244, 4245, 4246]:
-		new_session(seed_value, false)
-		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
-		assert_false(report.is_empty(), "seme %d: la Chronicle e' arrivata in fondo" % seed_value)
-		years += 1
-		for entry in (session.world["effect_log"] as Array):
-			var effect: Dictionary = (entry as Dictionary).get("effect", entry) as Dictionary
-			if str(effect.get("type", "")) != "SET_RELATION":
-				continue
-			var level: String = str((effect.get("payload", {}) as Dictionary).get("level", ""))
-			if level == "ALLY" or level == "BOUND":
-				warmed += 1
-	assert_true(
-		warmed > 0,
-		"legami scaldati: %d in %d anni" % [warmed, years]
-	)
+	var policy: RefCounted = PolicyDecider.new(session.log)
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	session.applier.apply(Effect.make(
+		"GRANT_ASSET", "entity", NAHR, {"asset_id": "AST_BONDS_OATH", "source": "VOID"}, source
+	))
+	assert_true(policy._ally_of_convenience(NAHR, session).is_empty(),
+		"senza un Consiglio chiuso non si sa niente di nessuno")
+	var memory: Dictionary = session.world.get("voted_together", {})
+	memory[Ids.relation_key(NAHR, LYRA)] = 2
+	memory[Ids.relation_key(NAHR, ALDRIC)] = -1
+	session.world["voted_together"] = memory
+	var ally: Dictionary = policy._ally_of_convenience(NAHR, session)
+	assert_eq(str(ally.get("template", "")), "FORGE", "chi ha votato con te e' un alleato da comprare")
+	assert_eq(str((ally.get("params", {}) as Dictionary).get("target_entity_id", "")), LYRA,
+		"e si sale di grado con chi e' stato sul tuo fronte, non contro")
+	assert_eq(str((ally.get("params", {}) as Dictionary).get("direction", "")), "UP", "si sale")
 
 
 ## E non ci si allea con chi ha lasciato il tavolo.

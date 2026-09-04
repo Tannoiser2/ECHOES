@@ -5406,7 +5406,9 @@ schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
 del seme 812* ([D-451](DECISIONS.md#d-451)): il cuore c'è, ma **nessuno lo
 gioca** — astensioni al 95% e 99% sui due tavoli, Consigli con opposizione nel
 margine 7 su 103 e 1 su 105. Da qui `docs/MISURA_PARTECIPAZIONE.md` e il suo
-cancello. La causa è una cecità delle sedie, corretta in D-452.
+cancello. La causa è una cecità delle sedie, corretta in D-452. *E in 0.1.422
+la carta torna a quattro più quattro* ([D-453](DECISIONS.md#d-453)): il menu da
+8–12 per lato era il vocabolario, non una scelta.
 
 **Fase A — i malus (fatta).** Le liste `costs` e `failures` sulla faccia della
 carta, 12 Conseguenze nuove, 240 testi diversi, il motore che legge il menu

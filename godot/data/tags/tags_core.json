@@ -612,8 +612,7 @@
         "ENTITY"
       ],
       "written_by": [
-        "entity",
-        "tension"
+        "entity"
       ],
       "read_by": [
         "confluence_template",
@@ -828,8 +827,7 @@
       "written_by": [
         "confluence_template",
         "consequence",
-        "echo_card",
-        "tension"
+        "echo_card"
       ],
       "read_by": [
         "destiny",
@@ -2360,8 +2358,7 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
-        "tension"
+        "echo_card"
       ],
       "read_by": [
         "asset_physical",

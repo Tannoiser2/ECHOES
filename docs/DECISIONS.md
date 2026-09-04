@@ -10,6 +10,108 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-453 — Il menu del Consiglio a quattro piu' quattro
+
+**implemented in 0.1.422.** Parola del committente, davanti alla carta con
+piu' caselle: *«non e' possibile che una carta abbia 25 caselle. Su una carta
+ci devono essere caselle per i benefici e caselle per i costi, che dovevano
+essere le condizioni che ponevano gli altri giocatori, ma massimo ci potevano
+essere 4 benefici e 4 costi. C'e' qualcosa di profondamente sbagliato nelle
+carte Tensione».* E poi, davanti alla misura: *«le quattro piu' comprate»*.
+
+**Cos'erano le 25.** Non quello che si compra: l'economia di [D-280](#d-280)
+limita gia' l'acquisto a tre benefici — quattro con una Cicatrice — e due
+costi. Erano il **menu**: la carta stampava tutto il vocabolario che il suo
+Tema raggiunge, da 8 a 12 voci per lato, per farne scegliere tre. La
+Successione ne aveva 11 e 12, il Debito 8 e 8. Un menu che nessuno legge, e
+che i numeri dicono morto per tre quarti.
+
+**La misura che ha deciso** (`run_boxes_probe --runs=100`, semi da 7000, 360
+Consigli, sedie corrette da D-452): 15 verbi su 32 comprati almeno una volta;
+i primi otto fanno il 95% degli acquisti; sei verbi offerti in tutto 620
+volte e comprati zero.
+
+| casella | offerta | comprata |
+|---|---|---|
+| COSTRUISCI PIETRA | 258 | 217 |
+| RAFFREDDA TEMA | 360 | 180 |
+| CAMBIA CONTROLLO | 172 | 172 |
+| RIMUOVI CONDIZIONE | 205 | 105 |
+| ABBASSA LA DOMANDA | 720 | 75 |
+| IL MONDO RICORDA | 284 | 55 |
+| CICATRICE (costo) | 122 | 56 |
+| CEDI CONTROLLO (costo) | 69 | 54 |
+| AGGIUNGI CONDIZIONE (costo) | 130 | 28 |
+| SCALDA DOMANDA · PEDAGGIO · CHIUDI STRADA · SCALDA TEMA · DIMENTICA · MUOVI DENTRO | 620 | **0** |
+
+**La regola del taglio**, in `tools/trim_council_menus.py`, girato una volta:
+per ogni carta restano **la casella della memoria** — IL MONDO RICORDA, la
+storia della carta ([D-308](#d-308)) — piu' le tre piu' comprate; fra i
+costi le quattro piu' posate; a parita' l'ordine d'autore; il «se cade» non si
+tocca. Ne escono **569 caselle** su 60 carte, e da qui la guardia sta in
+`validate_physical.py`: piu' di quattro per lato e' un difetto, con la sua
+prova piantata (*«cinque benefici su una carta»*).
+
+**Il costo, dichiarato per intero: le quattro sono le stesse su tutte le
+carte.** COSTRUISCI PIETRA, CAMBIA CONTROLLO, RAFFREDDA TEMA, IL MONDO RICORDA
+fra i benefici; AGGIUNGI CONDIZIONE, CEDI CONTROLLO, CICATRICE, PRENDI DEBITO
+fra i costi — con LEGA LE CASE o MARCHIA LA CASA al posto del debito sulle
+due carte che le portano. Cambiano i **bersagli**: la Pietra che si
+costruisce, il segno che si aggiunge, il luogo di cui si parla, e la memoria
+che si scrive, che e' di ogni carta la sua. Il committente l'ha visto e ha
+scelto cosi', contro l'alternativa *due proprie piu' due comprate* — che
+avrebbe tenuto la domanda collegata, i marchi e il dimentica, comprati in
+cento partite quasi mai. E' la stessa forma che ISSUES 72 aveva chiamato
+difetto nel 0.1.240 — *«la stessa coppia su tutte e 60 le carte»* — ma allora
+il menu era la stessa coppia **e basta**; adesso e' quattro verbi vivi con
+bersagli propri, ed e' quello che il tavolo compra. La casella
+SVELA LA DOMANDA, su due carte, esce con [D-450](#d-450): non c'e' piu'
+niente da svelare. ABBASSA LA DOMANDA, la prima casella di [D-343](#d-343),
+esce dal menu: offerta 720 volte, comprata 75.
+
+**Tre segni perdono una mano.** `crowned`, `discovery:relic` e `renowned`
+avevano fra chi li scrive la Tensione, attraverso le caselle tolte: il
+dizionario e' aggiornato, e restano scritti dalle Conseguenze, dagli Echi e
+dalle carte Asset.
+
+**Dopo il taglio, cento partite** (stessi semi): benefici comprati 2,33 →
+**2,05** a Consiglio, costi posati 0,39 → **0,42**, caselle diverse comprate
+15 → 8 su 32 — le sette che escono dal conto erano comprate 33 volte su 837.
+COSTRUISCI PIETRA passa da 217 a 256 acquisti, RAFFREDDA TEMA da 180 a 249:
+quello che prima si disperdeva su ABBASSA LA DOMANDA e RIMUOVI CONDIZIONE si
+posa sulle quattro che restano.
+
+**Il cancello dei 100 semi**, seme 7000, sui dati tagliati (sedie di D-452):
+
+| | 0.1.421 misto | **0.1.422 misto** | 0.1.421 uniforme | **0.1.422 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,50 | **3,50** | 3,54 | **3,54** |
+| esiti FAIL · SUCC · SUCC · DECI | 135 · 72 · 76 · 67 | **140 · 67 · 78 · 65** | 43 · 41 · 162 · 108 | **42 · 43 · 161 · 108** |
+| Verita' scritte, diverse | 148, 140 | **146, 138** | 145, 126 | **147, 127** |
+
+Il gioco non si accorge del taglio: quello che le sedie compravano stava gia'
+nelle quattro che restano.
+
+**Tre prove dicevano la regola vecchia, e sono riscritte.** `test_two_lists`
+pretendeva il vocabolario intero in gioco e sette costi vivi per carta: ora
+pretende al massimo quattro per lato e la memoria su ogni carta.
+`test_price_pedina` cercava RIAPRI sulla Carestia: ora la fabbrica, come vuole
+la regola di casa. E `test_alliance_of_convenience` contava cinque legami in
+cinque anni credendo di misurare l'alleanza di convenienza della policy:
+**li stringeva la casella LEGA LE CASE** sulle Vie Interrotte, e la regola
+che intendeva provare non era mai scattata. Ora fabbrica il caso — un seggio
+che ha votato con un altro, una carta BONDS in mano — e la regola risponde.
+E' la quinta prova cieca di questo progetto, e la si e' vista perche' il
+menu e' cambiato sotto.
+
+**La corsia lenta**, rigirata: partecipazione a trenta anni ferma — astensioni
+62% e 82%, opposizione nel margine 55% e 10% — trasformazioni sedute 268 →
+261, vite mai sedute a 2, i segni sul tavolo di uno o due per famiglia. Suite
+748 prove verdi, 28 cancelli veloci e 6 lenti verdi.
+
+---
+
 ## D-452 — Le sedie vedono la proposta: centocinquanta versioni di astensione per cecita'
 
 **implemented in 0.1.421.** Segue [D-451](#d-451), che ha trovato la causa:

@@ -110,14 +110,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -133,18 +125,6 @@
           "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -154,15 +134,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -171,18 +143,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -221,14 +181,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -244,26 +196,6 @@
           "testo": "Il mondo ricorda: il Cristallo e' stato messo a rendere."
         },
         {
-          "voce": "·",
-          "testo": "Il mondo ricorda: le Miniere sono state sigillate."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Il Sito dormiente del luogo sale di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "La domanda in discussione si gira a faccia in su."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -273,15 +205,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -290,26 +214,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Il mondo dimentica: le Miniere erano state sigillate."
-        },
-        {
-          "voce": "·",
-          "testo": "La casa che porta #dormiente lascia il tavolo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -348,14 +252,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -371,14 +267,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Grano Guasto."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -388,15 +276,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -405,14 +285,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Grano Guasto."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
         },
         {
           "voce": "SE CADE",
@@ -451,14 +323,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -474,14 +338,6 @@
           "testo": "Il mondo ricorda: il debito e' stato chiamato."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Pedaggi Neri."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -491,15 +347,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -508,14 +356,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Pedaggi Neri."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
         },
         {
           "voce": "SE CADE",
@@ -554,14 +394,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -577,18 +409,6 @@
           "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Pietre di Confine."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -598,15 +418,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -615,22 +427,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Pietre di Confine."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -669,14 +465,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -692,14 +480,6 @@
           "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Sepolti Senza Nome."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -709,15 +489,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -726,14 +498,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Sepolti Senza Nome."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
         },
         {
           "voce": "SE CADE",
@@ -772,14 +536,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -795,18 +551,6 @@
           "testo": "Il mondo ricorda: la Carta e' stata scritta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carta."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Debito."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -816,15 +560,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -833,22 +569,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carta."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Debito."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -887,14 +607,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
@@ -910,18 +622,6 @@
           "testo": "Il mondo ricorda: il Cristallo e' stato messo a rendere."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Disboscamento."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -931,15 +631,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -948,18 +640,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Disboscamento."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -998,14 +678,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -1021,18 +693,6 @@
           "testo": "Il mondo ricorda: la Carta vale anche per chi non siede."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Seggi del Consiglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1042,15 +702,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1059,22 +711,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Seggi del Consiglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -1113,14 +749,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -1136,18 +764,6 @@
           "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Staffette."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1157,15 +773,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1174,22 +782,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Staffette."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -1228,14 +820,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -1251,14 +835,6 @@
           "testo": "Il mondo ricorda: il debito e' stato rimesso."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Debito."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1268,15 +844,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1285,14 +853,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Debito."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
         },
         {
           "voce": "SE CADE",
@@ -1331,14 +891,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -1354,14 +906,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Fonda."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1371,15 +915,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1388,14 +924,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Fonda."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
         },
         {
           "voce": "SE CADE",
@@ -1434,14 +962,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -1457,18 +977,6 @@
           "testo": "Il mondo ricorda: la miniera e' stata chiusa."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Gli Echi nel Fondo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1478,15 +986,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1495,18 +995,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Gli Echi nel Fondo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -1545,14 +1033,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -1568,14 +1048,6 @@
           "testo": "Il mondo ricorda: il debito e' stato rimesso."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Reti Vuote."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1585,15 +1057,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1602,14 +1066,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Reti Vuote."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
         },
         {
           "voce": "SE CADE",
@@ -1648,14 +1104,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -1671,14 +1119,6 @@
           "testo": "Il mondo ricorda: la Carta e' stata scritta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Recinti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1688,15 +1128,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1705,18 +1137,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Recinti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -1755,14 +1175,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -1778,14 +1190,6 @@
           "testo": "Il mondo ricorda: il debito e' stato rimesso."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Terra Stanca."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1795,15 +1199,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -1812,14 +1208,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Terra Stanca."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
         },
         {
           "voce": "SE CADE",
@@ -1858,14 +1246,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -1881,22 +1261,6 @@
           "testo": "Il mondo ricorda: il debito e' stato rimesso."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
-          "voce": "·",
-          "testo": "Chi propone esce dal Consiglio con la fama."
-        },
-        {
-          "voce": "·",
-          "testo": "Il rivale toglie la sua pedina dal luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -1906,19 +1270,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
-        },
-        {
-          "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
@@ -1926,23 +1278,7 @@
         },
         {
           "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
-        },
-        {
-          "voce": "·",
-          "testo": "Il rivale posa una pedina in una Regione confinante."
-        },
-        {
-          "voce": "·",
           "testo": "Il filo con il rivale scende a nemico."
-        },
-        {
-          "voce": "·",
-          "testo": "La Foresta del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
         },
         {
           "voce": "SE CADE",
@@ -1981,14 +1317,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -2004,14 +1332,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Traghetto."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2021,15 +1341,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2038,14 +1350,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Traghetto."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
         },
         {
           "voce": "SE CADE",
@@ -2084,14 +1388,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -2107,14 +1403,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Alta."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2124,15 +1412,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2141,14 +1421,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Alta."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
         },
         {
           "voce": "SE CADE",
@@ -2187,14 +1459,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -2210,14 +1474,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Guerra delle Gilde."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2227,15 +1483,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2244,14 +1492,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Guerra delle Gilde."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
         },
         {
           "voce": "SE CADE",
@@ -2290,14 +1530,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -2313,18 +1545,6 @@
           "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Parola Storta."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2334,15 +1554,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2351,22 +1563,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Parola Storta."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -2405,14 +1601,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -2428,18 +1616,6 @@
           "testo": "Il mondo ricorda: l'ordine e' stato rimesso in piedi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Gli Ostaggi di Corte."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2449,15 +1625,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2466,22 +1634,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Gli Ostaggi di Corte."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -2520,14 +1672,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -2543,18 +1687,6 @@
           "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Santuario dell'Isola."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2564,15 +1696,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2581,18 +1705,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Santuario dell'Isola."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -2631,14 +1743,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -2654,18 +1758,6 @@
           "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Silenzio dell'Isola."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2675,15 +1767,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2692,18 +1776,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Silenzio dell'Isola."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -2742,14 +1814,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -2765,14 +1829,6 @@
           "testo": "Il mondo ricorda: la Carta e' stata scritta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Braccianti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2782,15 +1838,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2799,14 +1847,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Braccianti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
         },
         {
           "voce": "SE CADE",
@@ -2845,14 +1885,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -2868,18 +1900,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Catasto."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -2889,15 +1909,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -2906,22 +1918,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Catasto."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -2960,14 +1956,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -2983,14 +1971,6 @@
           "testo": "Il mondo ricorda: l'ordine e' stato rimesso in piedi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Leva."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3000,15 +1980,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3017,14 +1989,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Leva."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
         },
         {
           "voce": "SE CADE",
@@ -3063,14 +2027,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
@@ -3086,18 +2042,6 @@
           "testo": "Il mondo ricorda: la corona e' stata divisa."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Marche di Confine."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3107,15 +2051,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3124,22 +2060,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Marche di Confine."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -3178,14 +2098,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -3201,14 +2113,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Febbre delle Paludi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3218,15 +2122,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3235,14 +2131,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Febbre delle Paludi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
         },
         {
           "voce": "SE CADE",
@@ -3281,14 +2169,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
         },
         {
@@ -3304,18 +2184,6 @@
           "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
-        },
-        {
-          "voce": "·",
-          "testo": "Insediamento del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3325,15 +2193,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3342,18 +2202,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
-        },
-        {
-          "voce": "·",
-          "testo": "Insediamento del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -3392,14 +2240,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -3415,14 +2255,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie di Prima."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3432,15 +2264,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3449,14 +2273,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie di Prima."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
         },
         {
           "voce": "SE CADE",
@@ -3495,14 +2311,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -3518,18 +2326,6 @@
           "testo": "Il mondo ricorda: la successione e' scritta in una legge."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Vecchia Guardia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3539,15 +2335,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3556,22 +2344,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Vecchia Guardia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -3610,14 +2382,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Archivio."
         },
         {
@@ -3633,14 +2397,6 @@
           "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Nomi Vecchi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3650,15 +2406,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3667,14 +2415,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Nomi Vecchi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
         },
         {
           "voce": "SE CADE",
@@ -3713,14 +2453,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
         },
         {
@@ -3736,18 +2468,6 @@
           "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Pascolo Conteso."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Insediamento del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3757,15 +2477,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3774,22 +2486,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Pascolo Conteso."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
-        },
-        {
-          "voce": "·",
-          "testo": "Insediamento del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -3828,14 +2524,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -3851,14 +2539,6 @@
           "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Pellegrini."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3868,15 +2548,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3885,14 +2557,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Pellegrini."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
         },
         {
           "voce": "SE CADE",
@@ -3931,14 +2595,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
         },
         {
@@ -3954,18 +2610,6 @@
           "testo": "Il mondo ricorda: il debito e' stato rimesso."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Febbre Bassa."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
-          "voce": "·",
-          "testo": "Insediamento del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -3975,15 +2619,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -3992,18 +2628,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Febbre Bassa."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
-        },
-        {
-          "voce": "·",
-          "testo": "Insediamento del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -4042,14 +2666,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -4065,18 +2681,6 @@
           "testo": "Il mondo ricorda: il Cristallo e' stato misurato."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Profezia Contata."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4086,15 +2690,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4103,18 +2699,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Profezia Contata."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -4153,14 +2737,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -4176,14 +2752,6 @@
           "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Cordone."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4193,15 +2761,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4210,14 +2770,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Cordone."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
         },
         {
           "voce": "SE CADE",
@@ -4256,14 +2808,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -4279,14 +2823,6 @@
           "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Chi Arriva da Fuori."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4296,15 +2832,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4313,14 +2841,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Chi Arriva da Fuori."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
         },
         {
           "voce": "SE CADE",
@@ -4359,14 +2879,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -4382,18 +2894,6 @@
           "testo": "Il mondo ricorda: la corona e' stata divisa."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reggenza."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4403,15 +2903,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4420,22 +2912,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reggenza."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -4474,14 +2950,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -4497,22 +2965,6 @@
           "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Chi propone porta addosso: scoperta: la reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4522,15 +2974,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4539,26 +2983,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "La Reliquia si gira a faccia in su, per tutti."
-        },
-        {
-          "voce": "·",
-          "testo": "Il rivale posa una pedina nel luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -4597,14 +3021,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -4620,22 +3036,6 @@
           "testo": "Il mondo ricorda: il debito e' stato chiamato."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
-          "voce": "·",
-          "testo": "Chi propone posa una pedina in una Regione confinante."
-        },
-        {
-          "voce": "·",
-          "testo": "Il filo con il rivale sale ad alleato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Pozzi Bassi."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4645,15 +3045,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4662,22 +3054,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra una Regione con #selvaggio e una con #pascolo."
-        },
-        {
-          "voce": "·",
-          "testo": "Chi propone perde la fama."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Pozzi Bassi."
         },
         {
           "voce": "SE CADE",
@@ -4716,14 +3092,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -4739,14 +3107,6 @@
           "testo": "Il mondo ricorda: i conti sono stati chiusi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Campi di Sale."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Senza Città."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4756,15 +3116,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4773,14 +3125,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Campi di Sale."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Senza Città."
         },
         {
           "voce": "SE CADE",
@@ -4819,14 +3163,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -4842,18 +3178,6 @@
           "testo": "Il mondo ricorda: la Carta e' stata scritta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Diritto d'Asilo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4863,15 +3187,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4880,22 +3196,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Diritto d'Asilo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -4934,14 +3234,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -4957,14 +3249,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Sigilli Falsi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -4974,15 +3258,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -4991,14 +3267,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Sigilli Falsi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
         },
         {
           "voce": "SE CADE",
@@ -5037,14 +3305,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -5060,18 +3320,6 @@
           "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Campane Mute."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5081,15 +3329,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5098,22 +3338,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Campane Mute."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -5152,14 +3376,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Canale."
         },
         {
@@ -5175,14 +3391,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Canali Interrati."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5192,15 +3400,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5209,14 +3409,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Canali Interrati."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
         },
         {
           "voce": "SE CADE",
@@ -5255,14 +3447,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Archivio."
         },
         {
@@ -5278,14 +3462,6 @@
           "testo": "Il mondo ricorda: la miniera e' stata chiusa."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Dormienti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5295,15 +3471,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5312,14 +3480,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Dormienti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
         },
         {
           "voce": "SE CADE",
@@ -5358,14 +3518,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -5381,14 +3533,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Contrabbando."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5398,15 +3542,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5415,14 +3551,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Contrabbando."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
         },
         {
           "voce": "SE CADE",
@@ -5461,14 +3589,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
@@ -5484,26 +3604,6 @@
           "testo": "Il mondo ricorda: la successione e' scritta in una legge."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Al rivale si toglie la corona."
-        },
-        {
-          "voce": "·",
-          "testo": "Il mondo dimentica: la corona era stata divisa."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5513,19 +3613,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
-        },
-        {
-          "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
@@ -5533,27 +3621,7 @@
         },
         {
           "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
-        },
-        {
-          "voce": "·",
-          "testo": "Chi propone toglie la sua pedina dalla capitale."
-        },
-        {
-          "voce": "·",
           "testo": "Chi propone resta sotto osservazione."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
-        },
-        {
-          "voce": "·",
-          "testo": "Presidio del luogo scende di 1 grado."
-        },
-        {
-          "voce": "·",
-          "testo": "Si chiude la strada fra il luogo e una Regione confinante."
         },
         {
           "voce": "SE CADE",
@@ -5592,14 +3660,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -5615,14 +3675,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Pozzi Bassi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Febbre Bassa."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5632,15 +3684,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5649,14 +3693,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Pozzi Bassi."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Febbre Bassa."
         },
         {
           "voce": "SE CADE",
@@ -5695,14 +3731,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -5718,14 +3746,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Decima."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5735,15 +3755,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5752,14 +3764,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Decima."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
         },
         {
           "voce": "SE CADE",
@@ -5798,14 +3802,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -5821,14 +3817,6 @@
           "testo": "Il mondo ricorda: i conti sono stati chiusi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Tributo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Successione."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5838,15 +3826,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5855,14 +3835,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Tributo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Successione."
         },
         {
           "voce": "SE CADE",
@@ -5901,14 +3873,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
@@ -5924,18 +3888,6 @@
           "testo": "Il mondo ricorda: il Cristallo e' stato misurato."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Dissotterrato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -5945,15 +3897,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -5962,18 +3906,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Dissotterrato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Sito antico del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -6012,14 +3944,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Archivio."
         },
         {
@@ -6035,14 +3959,6 @@
           "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Voti Non Sciolti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -6052,15 +3968,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -6069,14 +3977,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Voti Non Sciolti."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
         },
         {
           "voce": "SE CADE",
@@ -6115,14 +4015,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
@@ -6138,18 +4030,6 @@
           "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Pietre di Guardia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -6159,15 +4039,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -6176,18 +4048,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Pietre di Guardia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Risveglio."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",
@@ -6226,14 +4086,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -6249,14 +4101,6 @@
           "testo": "Il mondo ricorda: l'acqua torna a muoversi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di L'Acqua Ferma."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Il Debito."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -6266,15 +4110,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -6283,14 +4119,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di L'Acqua Ferma."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Il Debito."
         },
         {
           "voce": "SE CADE",
@@ -6329,14 +4157,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
@@ -6352,14 +4172,6 @@
           "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Pesi e le Misure."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di Le Vie Interrotte."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -6369,15 +4181,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -6386,14 +4190,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: passata di mano."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Pesi e le Misure."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di Le Vie Interrotte."
         },
         {
           "voce": "SE CADE",
@@ -6432,14 +4228,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
@@ -6455,14 +4243,6 @@
           "testo": "Il mondo ricorda: il debito e' stato rimesso."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di L'Inverno Lungo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -6472,15 +4252,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -6489,14 +4261,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di L'Inverno Lungo."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
         },
         {
           "voce": "SE CADE",
@@ -6539,14 +4303,6 @@
         },
         {
           "voce": "·",
-          "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-        },
-        {
-          "voce": "·",
-          "testo": "Rimuovi 1 condizione dal luogo scelto."
-        },
-        {
-          "voce": "·",
           "testo": "Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
@@ -6562,18 +4318,6 @@
           "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
         },
         {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di I Lupi al Limitare."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 indietro il segnalino di La Carestia."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo sale di 1 grado."
-        },
-        {
           "voce": "SI PAGA",
           "testo": ""
         },
@@ -6583,15 +4327,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo ottiene #pedaggio."
-        },
-        {
-          "voce": "·",
           "testo": "Cedi il controllo del luogo."
-        },
-        {
-          "voce": "·",
-          "testo": "Scalda il Tema di 1."
         },
         {
           "voce": "·",
@@ -6600,18 +4336,6 @@
         {
           "voce": "·",
           "testo": "Accetta 1 Cicatrice permanente: la razzia."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di I Lupi al Limitare."
-        },
-        {
-          "voce": "·",
-          "testo": "Sposta di 1 avanti il segnalino di La Carestia."
-        },
-        {
-          "voce": "·",
-          "testo": "Foresta del luogo scende di 1 grado."
         },
         {
           "voce": "SE CADE",

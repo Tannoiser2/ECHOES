@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.422 — Il menu del Consiglio a quattro più quattro
+
+[D-453](docs/DECISIONS.md#d-453), parola del committente. La carta Domanda
+stampava da 8 a 12 caselle per lato per farne scegliere tre; ora ne porta
+quattro e quattro, le più comprate in cento partite più la memoria della
+carta, con i bersagli suoi. 569 caselle tolte da 60 carte, e la guardia nel
+validatore fisico. Le quattro sono le stesse su ogni carta: scritto in D-453.
+Cancello dei 100 semi: 0 seggi bloccati sui due tavoli, esiti invariati
+(falliti 135 → 140 misto, 43 → 42 uniforme). Caselle comprate 2,33 → 2,05 a
+Consiglio. Tre prove riscritte sulla regola nuova, e una era cieca da sempre.
+
+---
+
 ## 0.1.421 — Le sedie vedono la proposta
 
 [D-452](docs/DECISIONS.md#d-452). Da 0.1.272 le Proposte stanno sulla carta

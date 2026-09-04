@@ -78,6 +78,12 @@ ogni Consiglio senza opposizione. Il numero ti dà ragione — astensioni al 95%
 al 99% — e la causa è una riga: le sedie cercavano la proposta nel posto
 vecchio, e non la vedevano.
 
+**E in 0.1.422 hai detto che una carta non può avere 25 caselle** ([D-453](DECISIONS.md#d-453)):
+quattro benefici e quattro costi al massimo. Fatto: le quattro più comprate in
+cento partite più la memoria della carta, con i bersagli suoi; 569 caselle
+tolte, e la guardia nel validatore. Le quattro sono le stesse su ogni carta:
+l'hai visto e l'hai scelto tu, contro le due proprie più due comprate.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
