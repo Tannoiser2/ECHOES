@@ -5,6 +5,14 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.417 — Il flusso disegnato sul sito
+
+[D-448](docs/DECISIONS.md#d-448). Il lavoro `pages` pubblica anche
+`docs/flusso.html` accanto all'app, in `/flusso.html`: la stessa copia che il
+cancello del flusso tiene allineata ai dati. Nessun file del gioco toccato.
+
+---
+
 ## 0.1.416 — PUNTO_ZERO rimisurato per intero
 
 [D-447](docs/DECISIONS.md#d-447). Il foglio d'ingresso era fermo a 0.1.382,
