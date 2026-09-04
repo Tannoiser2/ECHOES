@@ -10,6 +10,48 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-447 — PUNTO_ZERO rimisurato per intero, dopo trentatre' versioni
+
+**implemented in 0.1.416.**
+
+### Il difetto
+
+Il primo documento che CLAUDE.md ordina di leggere era fermo a 0.1.382: diceva
+quattro voci mie da chiudere (sono zero), quindici decisioni del committente in
+attesa (zero), 49,6% di turni «passa» (41,2%), tre obiettivi di Pietra che
+rendono meglio stando fermi (uno, e non e' di Pietra), 49 fogli da stampare
+(76), e non sapeva della pagina riscritta, del mazzo Obiettivo, delle schede
+delle carte. E' la lezione 5 pagata la terza volta, ed e' scritta cosi'.
+
+### Cosa e' stato misurato prima di riscriverlo
+
+Tutto, oggi, sul codice di 0.1.415: il cancello dei 100 semi (0 su 8, misto e
+uniforme), la suite (746 prove, 114 suite, 93.907 asserzioni), le tre sonde di
+PZ-01 e i documenti di misura che i cancelli tengono allineati.
+
+| | 0.1.380–0.1.382 | oggi |
+|---|---|---|
+| turni «passa» | 49,6% | **41,2%** — con la sonda corretta in mezzo (D-422): non e' lo stesso metro, il margine dalla soglia si' |
+| quanto rende giocare | +266,4% | **+252,8%**, su 19 obiettivi invece di 17 |
+| obiettivi che rendono meglio da fermi | 3, tutti di Pietra | **2**, e i due di Pietra sono passati a +27% (R1, D-412) |
+| Risonanze in 100 anni | 3.779 | **4.255** |
+| Calore, min/max fra i Temi | 0,43 | **0,74** |
+| voci aperte, di cui mie / del committente | 29, 4 / 15 | **9, 0 / 0** |
+| fogli A4 | 49 | **76** |
+
+### Due cose che il foglio dice e nessun verbale diceva
+
+- **`MOST_STONE` e' un confronto**, e chi sta fermo lo vince quando gli altri
+  costruiscono per lui: −3% stando fermi. Non e' un difetto di Pietra — quelli
+  R1 li ha curati — e' la forma dell'obiettivo. Resta scritto, non riparato.
+- **Un Destino su diciassette si avvera da fermi**: `SHARED_QUIET`, 0,78
+  giocando contro 0,96. E' il Destino condivisibile della quiete, e la quiete
+  premia chi non tocca niente. Va guardato con la 91, che sta fra le ⚪.
+
+Nessun file del motore e' toccato: e' un documento, e i numeri sono i suoi.
+
+---
+
 ## D-446 — La carta Domanda e' una carta da gioco, 63x88: «44x68 e' troppo piccolo»
 
 **implemented in 0.1.415.** Parola del committente, e rivede [D-097](#d-097) e

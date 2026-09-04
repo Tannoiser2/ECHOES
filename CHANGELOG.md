@@ -5,6 +5,16 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.416 — PUNTO_ZERO rimisurato per intero
+
+[D-447](docs/DECISIONS.md#d-447). Il foglio d'ingresso era fermo a 0.1.382,
+trentatré versioni: tutte le sezioni rifatte sulle sonde di oggi. Turni «passa»
+41,2% (con la sonda corretta in mezzo), giocare rende +252,8% su 19 obiettivi,
+Calore min/max fra i Temi 0,74, nove voci aperte e nessuna mia né del
+committente. Tre lezioni nuove in fondo. Nessun file del motore toccato.
+
+---
+
 ## 0.1.415 — La scheda di ogni tipo di carta, e la Domanda diventa una carta
 
 Parola del committente, due volte: [D-445](docs/DECISIONS.md#d-445) e

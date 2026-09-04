@@ -1,9 +1,10 @@
 # PUNTO ZERO — dov'è ECHOES, misurato
 
-**Versione 0.1.382** · rimisurato per intero in 0.1.349, le sonde rilanciate in
-0.1.353. **Le sezioni 1, 2, 5 e 6 sono state rimisurate** in 0.1.379, 0.1.380 e
-0.1.382; le sezioni 3, 4, 7 e 8 portano ancora i numeri del 0.1.353, ed e' detto
-dove.
+**Versione 0.1.415** · rimisurato per intero in 0.1.416 ([D-447](DECISIONS.md#d-447)).
+Le versioni prima: rifatto in 0.1.349, rimisurato a pezzi in 0.1.379–0.1.382, e
+poi fermo per **trentatré versioni** — le stesse in cui la lista delle M si è
+svuotata e la pagina dell'app è stata riscritta. Tutti i numeri qui sotto sono
+usciti dalle sonde oggi.
 
 Questo documento non racconta cosa il gioco vuole essere. Dice **cosa fa oggi,
 con i numeri**, e cosa è ancora aperto. È il foglio contro cui si decide: se una
@@ -14,128 +15,114 @@ misto salvo dove detto. Da [D-318](DECISIONS.md#d-318) non esiste più un anno
 d'autore: ogni seme è una mappa diversa, e questo è il gioco che sta nella
 scatola.
 
-> **Perché questo foglio va rifatto e non aggiornato.** La versione prima di
-> questa era ferma da cinquantaquattro versioni, con una banda in cima che
-> elencava i numeri che sapevo cambiati. Una fotografia con una didascalia non è
-> una misura: la regola è **rimisurare**, e i numeri qui sotto sono usciti dalle
-> sonde oggi, non dalla memoria.
+> **Perché questo foglio va rifatto e non aggiornato.** Una fotografia con una
+> didascalia non è una misura: la regola è **rimisurare**, e i numeri qui sotto
+> sono usciti dalle sonde oggi, non dalla memoria. Dove un numero non è
+> confrontabile con quello di prima — perché la sonda è cambiata, non il gioco —
+> è detto.
 
 ---
 
 ## 1. Quello che tiene
 
-*Misurato in 0.1.379.*
-
-| | | com'era in 0.1.353 |
+| | | com'era in 0.1.379 |
 |---|---|---|
-| suite | **690 prove / 102 suite / 86.390 asserzioni** verdi | 679 / 101 / 86.480 |
+| suite | **746 prove / 114 suite / 93.907 asserzioni** verdi | 690 / 102 / 86.390 |
 | il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme | uguale |
-| cancelli | **tutti e trentadue verdi** (vedi `CLAUDE.md`) | ventisei |
-| Consigli per anno | misto **3-5** (media 3,58) · uniforme **3-6** (media 3,49) | 3,15 · 3,23 |
-| Verità scritte | misto **142**, di cui 113 diverse · uniforme **150**, di cui 108 | 125/101 · 130/95 |
+| cancelli | **tutti e trentatré verdi** (vedi `CLAUDE.md`) | trentadue |
+| Consigli per anno | misto **3–6** (media 3,53) · uniforme **3–5** (media 3,36) | 3,58 · 3,49 |
+| Verità scritte | misto **136**, di cui 113 diverse · uniforme **139**, di cui 107 | 142/113 · 150/108 |
 
-**Il Consiglio si apre di più e il mondo ricorda di più**: mezzo Consiglio in
-più all'anno, e le Verità scritte salgono di un sesto. Viene da
-[D-402](DECISIONS.md#d-402), che ha insegnato al ripiego a prendere la parola
-invece di prenotarla soltanto.
+**Il cancello non si è mai rotto** in trentatré versioni, sette delle quali
+hanno toccato i dati ([D-437](DECISIONS.md#d-437) → [D-443](DECISIONS.md#d-443)).
+Le Verità scendono di sei sul misto e di undici sull'uniforme, e il costo è
+scritto verbale per verbale: due Conseguenze e un segno usciti dalla scatola
+([D-440](DECISIONS.md#d-440)), una Risonanza spostata verso Terra
+([D-443](DECISIONS.md#d-443)). Un numero peggiorato e scritto vale più di un
+numero nascosto.
 
-**E le asserzioni scendono mentre le prove salgono** — 86.480 → 86.390 con undici
-prove in più. Non l'ho attribuito, e non lo invento: so che
-[D-405](DECISIONS.md#d-405) ha tolto dodici sacchetti morti dai dati, e su dati
-che non ci sono più i validatori asseriscono di meno. Se sia tutta lì la
-differenza, non l'ho misurato.
-
-I cancelli erano diciannove quando questa riga è stata scritta, e i sette in più
-sorvegliavano quello che nessuno
-guardava — la pagina dell'app, il tavolo posto per posto, le vite delle case, lo
-scheletro delle carte, le caselle del Consiglio, i segni del mondo, e
-[la tabella dei cancelli stessa](DECISIONS.md#d-367), che adesso non può
-scollarsi dalla CI senza far rosso.
-
-**E da 0.1.390 si sa quanto costano**, che nessuno aveva mai misurato:
-ventisette dei trentadue costano **ventitré secondi tutti insieme**, e le cinque
-sonde lunghe 881. Si girano con un comando solo,
-[`tools/gates.py`](../tools/gates.py), in due corsie —
-[D-418](DECISIONS.md#d-418). Nessun cancello è stato tolto: quello che è stato
-tolto è il doverli ricordare a memoria.
+**I cancelli sono trentatré, e costano ventotto secondi.** Ventotto veloci — il
+ventottesimo è la scheda di ogni tipo di carta ([D-445](DECISIONS.md#d-445)) —
+e cinque sonde lunghe, 881 secondi, che si girano una volta prima della PR.
+Un comando solo, [`tools/gates.py`](../tools/gates.py), in due corsie
+([D-418](DECISIONS.md#d-418)).
 
 ---
 
 ## 2. I due numeri di PZ-01
 
-*Rimisurati in 0.1.380.*
-
-### Il difetto più grosso del progetto resta sotto la soglia — di quattro decimi
+### Il difetto più grosso del progetto è sotto la soglia, di nove punti
 
 Il criterio 2 della milestone — *«meno della metà dei turni sono passa»* — è
-soddisfatto, e **meno di prima**. `cli/run_pass_probe.gd`, 100 anni, tavolo
-misto:
+soddisfatto. `cli/run_pass_probe.gd`, 100 anni, tavolo misto:
 
-| | oggi | in 0.1.353 |
+| | oggi | in 0.1.380 |
 |---|---|---|
-| turni «passa» | **49,6%** (3.571 su 7.200) | 47,6% |
-| per Atto | 50,2% → 48,2% → 50,4% | 48,0 → 46,7 → 48,1 |
-| passa con **zero mosse legali** | **0 su 3.571** (media 22,6 mosse) | 0 su 3.428 |
-| passa con la mano vuota | **9** su 3.571 (media 4,5 carte) | 16 |
+| turni «passa» | **41,2%** (2.963 su 7.200) | 49,6% |
+| per Atto | 42,4% → 40,5% → 40,6% | 50,2 → 48,2 → 50,4 |
+| passa con **zero mosse legali** | **0 su 2.963** (media 23,2 mosse) | 0 su 3.571 |
+| passa con la mano vuota | **4** su 2.963 (media 3,8 carte) | 9 |
 
-**I due punti in più sono il conto di [D-402](DECISIONS.md#d-402), ed erano
-previsti.** Quel verbale li aveva già scritti: una prenotazione che non si
-spenderà mai non è un turno in cui succede qualcosa, è un'Azione e una carta
-bruciate contate come attività. Contando le prenotazioni morte insieme ai
-«passa», i turni in cui non succede niente **scendono** da 51,4% a 49,7%. Il
-numero che sale è quello onesto.
-
-**Resta il fatto che il margine è di quattro decimi**, e va detto: la prossima
-cosa che sposta i turni può portare questo criterio sopra la metà.
+**Gli otto punti non sono tutti gioco, e va detto.** In mezzo ci sono tre cose:
+un'Azione della plancia che alza una Pietra ([D-412](DECISIONS.md#d-412), R1 —
+e ACQUISIRE non era stampata su nessuna faccia), il cervello che si fa male
+quando non ha di meglio ([D-424](DECISIONS.md#d-424)), e **la sonda corretta**
+([D-422](DECISIONS.md#d-422)): fino alla 0.1.393 contava il tavolo e non la
+mano. Il 49,6% e il 41,2% non sono lo stesso metro; quello che è confrontabile è
+il margine dalla soglia, che da quattro decimi è diventato **nove punti**.
 
 Le cause di quello che resta, misurate:
 
 | | quota dei «passa» | dei 7.200 turni |
 |---|---|---|
-| nessuna mossa gli serviva | **84,5%** | **41,9%** |
-| voleva un verbo, in mano niente | 8,7% | 4,4% |
-| aveva il verbo e non poteva usarlo lì | 6,5% | 3,2% |
+| mosse legali, nessuna che gli servisse | **87,8%** | **36,1%** |
+| voleva un verbo, in mano niente | 7,0% | 2,9% |
+| aveva il verbo e non poteva usarlo lì | 5,1% | 2,1% |
 
-La prima riga è la **ragione**: è [ISSUES 123](ISSUES.md#123), ed è una
-decisione, non una taratura.
+E la mano: su tutti i turni, **il 54,0% delle carte guardate è muto** — 46,0%
+sanno dire qualcosa — e in **1.284 turni su 7.180 la mano è tutta muta**: lì
+passare non è una scelta. Delle mute, l'88,0% le zittisce il cervello (una
+scelta) e il 12,0% il tavolo (le regole): **zero murate dalla mappa**, da
+[D-439](DECISIONS.md#d-439).
 
-I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 337**, TRAMARE
-172, FORGIARE 24, RIVENDICARE 12. Di quelle 545 intenzioni, **314 sono pesca
-sbagliata** e 231 bersaglio sbagliato.
-
-**E qui c'è la seconda cosa che D-402 ha fatto**: il RIVENDICARE che il cervello
-voleva e non riusciva a dire era **64**, adesso è **12**. Da quando il ripiego sa
-prendere la parola invece di prenotarla soltanto, quel verbo esce quando serve.
-Il verbo in sofferenza adesso è **INFLUENZARE**, ed è lo stesso che
-[ISSUES 59](ISSUES.md#59) trova essere il meno giocato e insieme la moneta più
-votata.
+I verbi che il cervello vuole dire e non riesce: **INFLUENZARE 207**, TRAMARE
+130, RIVENDICARE 17, FORGIARE 4. Di quelle 358 intenzioni, **209 sono pesca
+sbagliata** e 149 bersaglio sbagliato. Erano 545 in 0.1.380: INFLUENZARE resta
+il verbo in sofferenza, ed è la moneta più votata del tavolo
+([D-442](DECISIONS.md#d-442)).
 
 ### Giocare rende, e di molto
 
 `cli/run_asking_probe.gd` gioca ogni anno due volte con lo stesso seme: una col
 tavolo vero, una col **tavolo di pietra** che non spende mai un'Occasione.
 
-| | oggi | in 0.1.353 |
+| | oggi | in 0.1.380 |
 |---|---|---|
-| obiettivi avverati giocando | **425 su 1.200** (35,4%) | 423 (35,2%) |
-| avverati dal tavolo di pietra | **116** | 115 |
-| **quanto rende giocare** | **+266,4%** | +267,8% |
-| di quelli avverati, **già veri all'apertura** | **48** (11,3%) | non misurato allora |
+| obiettivi avverati giocando | **374 su 1.200** (31,2%) | 425 (35,4%) |
+| avverati dal tavolo di pietra | **106** | 116 |
+| **quanto rende giocare** | **+252,8%** | +266,4% |
+| di quelli avverati, **già veri all'apertura** | **49** (13,1%) | 48 (11,3%) |
 
-Era **−1,1%** prima di D-255 e **+160,7%** prima di
-[D-386](DECISIONS.md#d-386). La regola di casa della ROADMAP §1.4 — *nessun
-traguardo vero all'apertura, nessuno che si avveri stando fermi* — regge, con la
-stessa coda di prima:
+Gli obiettivi erano 17 e sono **19** ([D-436](DECISIONS.md#d-436)); la quota
+scende perché due dei nuovi si pescano e non si avverano ancora. La regola di
+casa della ROADMAP §1.4 — *nessun traguardo vero all'apertura, nessuno che si
+avveri stando fermi* — regge:
 
-- **tre obiettivi su diciassette** rendono uguale o meglio stando fermi:
-  `MOST_STONE` (−5%), `A_STONE` (−4%), `A_WORK` (±0%);
-- gli altri quattordici rendono da **+3%** a **+100%**.
+- **due obiettivi su diciannove** rendono uguale o meglio stando fermi:
+  `MOST_STONE` (−3%), `FULL_HANDS` (±0%);
+- gli altri diciassette rendono da **+3%** a **+100%**.
 
-**I tre che restano sono tutti e tre di Pietra** — *Più Pietra di Tutti*,
-*Qualcosa che Resta in Piedi*, *L'Opera che Porta il Nome* — **e la causa è una
-sola**: nessuna Pietra sale per mano di un'Azione della plancia. È
-[ISSUES 123](ISSUES.md#123), e finché regge nessun obiettivo di Pietra può
-premiare il giocare, per quanto bene sia scritto.
+**I tre di Pietra non sono più tutti e tre fermi.** In 0.1.380 *Più Pietra di
+Tutti*, *Qualcosa che Resta in Piedi* e *L'Opera che Porta il Nome* rendevano
+uguale o peggio stando fermi, con una causa sola: nessuna Pietra saliva per mano
+di un'Azione. Da R1 ([D-412](DECISIONS.md#d-412)) una Pietra la alza
+ACQUISIRE — **254 Pietre alzate da un'Azione in cento anni, contro 0** — e
+*Qualcosa che Resta in Piedi* e *L'Opera* rendono **+27%**. Resta *Più Pietra
+di Tutti*, che è un confronto: chi sta fermo lo vince quando gli altri
+costruiscono per lui.
+
+**E fra i Destini uno solo si avvera da fermi**: *SHARED_QUIET* (0,78 giocando,
+0,96 fermi). Gli altri sedici chiedono di giocare.
 
 ---
 
@@ -144,50 +131,46 @@ premiare il giocare, per quanto bene sia scritto.
 | | |
 |---|---|
 | Temi | **6** — Potere, Sopravvivenza, Terra, Antico, Fede, Vie |
-| carte Asset con faccia fisica | **48 su 48** |
+| carte Asset con faccia fisica | **48 su 48**, ognuna col suo Eco |
 | Destini con faccia fisica | **23 su 23** |
-| carte Tensione, che portano le Domande | **60** — dieci per Tema |
-| tessere Regione | **10 nel parco, 6 pescate** ogni anno |
+| carte Domanda, che portano le Domande | **60** — dieci per Tema, **63×88** da [D-446](DECISIONS.md#d-446) |
+| schede Consiglio | **60**, una per Domanda |
+| carte Obiettivo | **19**, con una faccia da [D-445](DECISIONS.md#d-445) |
+| tessere Regione | **10 nel parco, 6 pescate** ogni anno; **0 pose** su 151.200 lasciano una tessera isolata |
+| i verbi | **7** — SEGNARE è il settimo ([D-423](DECISIONS.md#d-423)) |
 
 **Il motore esegue**: la Risonanza, il bersaglio a segni delle Azioni
 ([D-273](DECISIONS.md#d-273)), la scelta fra le due Azioni stampate
 ([D-283](DECISIONS.md#d-283)), le clausole dei Destini mirate a segni
 ([D-327](DECISIONS.md#d-327)), la pista del Calore, il Consiglio che si apre sul
-Tema più caldo, e **«SI ACCENDE QUANDO»** ([D-330](DECISIONS.md#d-330)): la
-Tensione stampa cosa le fa prendere Calore, e il Calore va alla questione che
-*quel gesto* riguarda.
-
-**E da 0.1.332 esegue anche la risoluzione con le caselle.** Era la voce più
-grossa del progetto — [ISSUES 89](ISSUES.md#89), *«642 Effetti d'autore che
-nessuna carta stampa»* — e [D-366](DECISIONS.md#d-366) l'ha chiusa scrivendo le
-otto caselle che mancavano e i due campi che mancavano di più: una casella
-adesso dice **cosa fa** (il verbo), **su chi** (`chi`) e **dove** (`dove`).
+Tema più caldo, **«SI ACCENDE QUANDO»** ([D-330](DECISIONS.md#d-330)) e **«SI
+DISCUTE DI»** ([D-432](DECISIONS.md#d-432)), la risoluzione con le caselle
+([D-366](DECISIONS.md#d-366)), **la pedina col nome della domanda** — *«la
+sceglie chi propone»*, [D-438](DECISIONS.md#d-438) — e chi siede l'anno
+prossimo, che è una regola scritta sulla Chronicle ([D-431](DECISIONS.md#d-431)).
 
 | il vocabolario delle caselle | distinti | applicazioni |
 |---|---|---|
-| **una casella lo sa dire** | **44 su 46** | **334 su 336** |
+| **una casella lo sa dire** | **45 su 46** | **285 su 287** |
 | verbo giusto, posto che non sa dire | 1 | 2 |
 | verbo che manca | **0** | **0** |
 
-Le due che restano non sono caselle da scrivere: `$conditioner` è un bersaglio
-che al Consiglio non esiste, e un `SET_GLOBAL_TAG` puntato su `$adjacent` è un
-difetto del dato.
+| la Risonanza, misurata | oggi | in 0.1.380 |
+|---|---|---|
+| Risonanze in 100 anni | **4.255 — 42,5 per anno** | 3.779 — 37,8 |
+| di quelle, aggravate | **24,7%** | 24,2% |
+| col ponte alla questione in gioco | 2.364 | 2.112 |
 
-| la Risonanza, misurata | |
-|---|---|
-| Risonanze in 100 anni | **3.779 — 37,8 per anno** |
-| di quelle, aggravate | **24,2%** |
-| col ponte alla questione in gioco | 2.112 |
+Dove finisce il Calore, che è la cosa che decide quale Tema si apre:
 
-Dove finisce il Calore, ed è qui che si vede il difetto che resta:
+| Antico | Sopravvivenza | Fede | Vie | Potere | Terra | min/max |
+|---|---|---|---|---|---|---|
+| 19,0% | 17,9% | 17,8% | 16,3% | 14,9% | **14,1%** | **0,74** |
 
-| Fede | **Antico** | Vie | Potere | Sopravvivenza | Terra |
-|---|---|---|---|---|---|
-| 23,0% | **21,0%** | 15,9% | 15,7% | 14,7% | 9,8% |
-
-**Era 0,9% fino alla 0.1.349**, e la causa non era sottile: l'Antico aveva
-**una carta su 48 e una copia nel mazzo**. Spostate otto Risonanze
-([D-382](DECISIONS.md#d-382)), tutti e sei i Temi si aprono.
+Era 23,0% Fede contro 9,8% Terra (0,43) in 0.1.380. **Nessun Tema apre meno
+della metà dei Consigli del più aperto**, su due semi: è il criterio ritagliato
+di [D-443](DECISIONS.md#d-443), e la cura è stata una Risonanza sola spostata
+dove la carta già contava.
 
 ---
 
@@ -199,114 +182,99 @@ invece di battersi le cifre a mano ([D-373](DECISIONS.md#d-373)).
 | | |
 |---|---|
 | Asset | **48** (132 copie), tutte con faccia fisica, ognuna col suo Eco |
-| carte Echo | **48** · Tensioni **60** · Destini **23** · Casate **26** |
-| Conseguenze | **65** · obiettivi 17 · azioni 6 |
+| carte Echo | **48** · Domande **60** · schede Consiglio **60** · Destini **23** · Obiettivi **19** · Casate **32** (8 case, una carta per vita) |
+| Conseguenze | **63** · azioni **7** |
 | Regioni 10 · Entità 8 · profili strategici 8 · Cronache **1** (CHR_00) | |
-| segni nel dizionario | **174** · regole del segno **53** · icone **124** |
+| segni nel dizionario | **177** · regole del segno **59** · icone **124** |
 | template di Consiglio | 12 |
-| **da stampare** | **49 fogli A4**, più quattro fogli-fustella |
-| **segnalini** | **119 tipi, 154 pezzi**, più le pedine dei seggi |
+| **da stampare** | **76 fogli A4**, più quattro fogli-fustella |
+| **segnalini** | **118 tipi, 152 pezzi**, più le pedine dei seggi |
+| **da illustrare** | **161 soggetti**, 11 disegnati, **150 ancora segnaposto** |
 
-**Il Consiglio adesso sta sulla carta.** Ogni Tensione porta **due domande sue e
-tre proposte sue**: 120 domande e 194 proposte, e i 194 testi sono 194 testi
-diversi ([D-378](DECISIONS.md#d-378)). Fino alla 0.1.344 sette testi generici
-coprivano ventotto carte.
+**Ogni pezzo ha una scheda, e il dato per generarlo.** Da
+[D-445](DECISIONS.md#d-445) [SCHEDE_CARTE](SCHEDE_CARTE.md) dice per ogni tipo
+cos'è, che immagine porta col prompt generale, e cosa c'è scritto sopra voce per
+voce; e `docs/schede/<tipo>.json` porta il record di ognuna delle **300 facce**
+col prompt già composto. I segnalini hanno la loro in
+[CATALOGO_PEDINE](CATALOGO_PEDINE.md).
+
+**Il Consiglio sta sulla carta.** Ogni Tensione porta le sue domande e le dodici
+caselle con cui il tavolo la risolve; la scheda Consiglio è un pezzo a parte
+perché su una carta sola non entrano ([D-338](DECISIONS.md#d-338)).
 
 E le tre misure che vengono prima della matrice (`MISURA_MATRICE.md`):
 
 | | |
 |---|---|
-| segni che qualcuno scrive | **170 su 174** |
-| **orfani senza una ragione scritta** | **11** |
+| segni che qualcuno scrive | **174 su 177** |
+| **orfani senza una ragione scritta** | **0** |
 | clausole impossibili | **0** |
 | Tensioni che nessun Destino incontra | **0** |
 | **carte che aprono ancora una domanda in prestito** | **0** |
-| livelli di Destino che non si indicano in nessun modo | **11 su 69**, tutti il `minimum` |
+| livelli di Destino che si reggono solo su conteggi | **11 su 69**, tutti il `minimum` |
 | coppie di case che hanno qualcosa per cui litigare | **13 su 28** |
 
-E le misure che prima non c'erano:
+E le misure che guardano il tavolo giocato:
 
 | | |
 |---|---|
-| segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | 50 su 174 |
+| segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | **53 su 177** |
 | **punti regalati** / **porte murate** (`MISURA_SEGNI`) | **1** / **0** |
-| vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 24** (0.1.404) |
-| testi che un giocatore può leggere (`REVISIONE_TESTI`) | **2.968** |
-| pezzi e legami del flusso disegnato (`flusso.html`) | **964 / 4.262** |
-| pezzi del disegno senza nemmeno una freccia | **7** (erano 12) |
+| vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 24** |
+| testi che un giocatore può leggere (`REVISIONE_TESTI`) | **4.233** |
+| pezzi e legami del flusso disegnato (`flusso.html`) | **1.050 / 4.381** |
+| pezzi del disegno senza nemmeno una freccia | **1** (erano 7) |
 | testi che vivono solo nel suggerimento del mouse (`MISURA_PAGINA`) | **2** |
+| bersagli più stretti di un dito / pannelli che dipingono | **0** / **0** (erano 0 / 2) |
+| quanto la pagina chiede su un tablet da 768 px | **678** (erano 788 in fila, senza la mappa) |
+
+**La pagina dell'app mostra il tavolo, non lo stato** ([D-444](DECISIONS.md#d-444)):
+mappa e mazzetti costruiscono nodi, la colonna di stato e il verbale sono pagine
+che si aprono al posto del tavolo, e le carte in mano si posano sulla domanda o
+sulla casa.
 
 ---
 
-## 5. Le voci aperte che posso chiudere io — **quattro**, rimisurato in 0.1.382
+## 5. Le voci aperte — **nove**, e nessuna è mia
 
-**29** voci aperte su 131, contate da `tools/issues_survey.py`. L'elenco che
-stava qui era del 0.1.353 e **tre delle sette voci che nominava sono chiuse da un
-pezzo** — la [96](ISSUES.md#96) in 0.1.363, la [88](ISSUES.md#88) in 0.1.372, la
-[53](ISSUES.md#53) in 0.1.355. Delle quattro rimaste, due sono del committente
-([123](ISSUES.md#123) e [100](ISSUES.md#100)) e una e' fuori dalla lista
-([91](ISSUES.md#91)): **di sette righe ne era rimasta vera una**, la
-[56](ISSUES.md#56). Ed e' per questo che adesso non c'e' piu' un elenco qui: **la lista viva e'
-[LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md)**, che si rigenera col suo cancello.
+**9** voci aperte su 132, contate da `tools/issues_survey.py`. La lista viva è
+[LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md), che si rigenera col suo cancello.
 
-Quello che va detto qui e' il numero, e non e' quello che sembrava:
+| chi la può muovere | quante | in 0.1.382 |
+|---|---|---|
+| il committente, con una parola | **0** | 15 |
+| una persona che gioca — [63](ISSUES.md#63), [67](ISSUES.md#67) | 2 | 2 |
+| **io, senza aspettare niente** | **0** | 4 |
+| io, ma dietro una rossa | 0 | 2 |
+| nessuno, finché non si gioca | 7 | 6 |
 
-| chi la puo' muovere | quante |
-|---|---|
-| il committente, con una parola | **15** |
-| una persona che gioca — [63](ISSUES.md#63), [67](ISSUES.md#67) | 2 |
-| **io, senza aspettare niente** — [56](ISSUES.md#56), [59](ISSUES.md#59), [60](ISSUES.md#60), [106](ISSUES.md#106) | **4** |
-| io, ma dietro una rossa — [111](ISSUES.md#111) e [4](ISSUES.md#4) | 2 |
-| nessuno, finche' non si gioca | 6 |
-
-**Quattro su ventinove.** Il giro non e' fermo sul lavoro: e' fermo su quindici
-parole ([D-411](DECISIONS.md#d-411)).
+**Il giro non è fermo su niente che si possa misurare.** Le quindici parole sono
+arrivate in una — *«sì a tutte»*, [D-427](DECISIONS.md#d-427) — e le quattordici
+righe di lavoro che ne sono nate sono percorse tutte, l'ultima in 0.1.414. Quello
+che resta aperto nomina una persona con l'app in mano: la [63](ISSUES.md#63)
+(*giocare un anno intero senza che nessuno spieghi i bottoni*) e la
+[67](ISSUES.md#67) (*la saga arriva al terzo anno su un tablet*), e sette voci
+che aspettano una partita vera prima di dire se sono ancora vere.
 
 ---
 
 ## 6. Le decisioni che sono tue e non mie
 
-**Stanno tutte e quindici in un foglio solo**, con una riga a testa, il numero
-che le motiva e la mia raccomandazione: [LE_TUE_DECISIONI.md](LE_TUE_DECISIONI.md).
+**Nessuna in attesa.** Le quindici che questo foglio elencava in 0.1.382 sono
+state prese in 0.1.397 ([D-427](DECISIONS.md#d-427)) e portate a termine una per
+una; le ultime due parole — la scheda per tipo di carta, e *«44x68 è troppo
+piccolo»* — sono [D-445](DECISIONS.md#d-445) e [D-446](DECISIONS.md#d-446).
 
-Erano dieci fino a 0.1.381, e non perche' ne siano nate cinque: **cinque voci
-dicevano nel loro «fatto quando» che aspettavano il committente e non avevano il
-cartellino** `da-decidere`, che e' quello che il conto legge. Adesso ce l'hanno
-([D-411](DECISIONS.md#d-411)).
+**Quello che resta tuo è l'occhio**, e nessuna misura lo copre (§5ter):
 
-Quattro sono state decise in 0.1.353, e sono scritte.
-
-**Decise e scritte:**
-
-| | |
-|---|---|
-| [ISSUES 84](ISSUES.md#84) — l'Eredità | *«+3 per ogni leggenda che porta il tuo nome»* → [D-385](DECISIONS.md#d-385) |
-| [ISSUES 120](ISSUES.md#120) — avere o fare | *«fai la cura proposta»* → [D-386](DECISIONS.md#d-386) |
-| [ISSUES 122](ISSUES.md#122) — la moneta del Consiglio | la regola dettata → [D-387](DECISIONS.md#d-387) |
-| [ISSUES 119](ISSUES.md#119) — i Consigli che non cadono | riscritta con gli esempi, la scelta resta |
-
-**Le quattro che pesano di piu', in ordine:**
-
-1. **[ISSUES 123](ISSUES.md#123) — nessuna Azione alza una Pietra**, e il
-   Consiglio paga meglio chi tace (199 Pietre contro 136). **Quaranta turni su
-   cento** un giocatore ha 22,1 mosse legali, 4,4 carte in mano e nessun motivo:
-   e' il numero piu' grosso che una parola del committente puo' muovere oggi.
-2. **[ISSUES 122](ISSUES.md#122) + [125](ISSUES.md#125) — quanto compra una
-   proposta.** Con un solo beneficio gratis le caselle vive per Consiglio sono
-   **una**, e i benefici comprati sono **scesi** da 1,71 a 1,40.
-3. **[ISSUES 120](ISSUES.md#120) — vincere nominando invece che contando.** E'
-   anche la cura della [91](ISSUES.md#91) — **46,2%** dei punti gia' veri
-   all'apertura in 0.1.405, era 48,4% — e la [4](ISSUES.md#4), che con lei si e'
-   chiusa ([D-436](DECISIONS.md#d-436)).
-4. **[ISSUES 119](ISSUES.md#119) — il Consiglio non cade quasi piu'.** Un
-   Consiglio su undici cade sul tavolo misto; `spoke_and_lost` si posa 8 volte
-   in cento partite.
-
-Le altre dieci, con la raccomandazione a testa, stanno nella lista.
-
-**E una cosa che non e' una voce**: PZ-8, §5ter — **il giro su un iPad vero**.
-La sonda della pagina misura quello che la pagina *chiede*; quello che una
-persona *vede*, no.
+1. **le carte stampate in mano** — 300 facce, 76 fogli, con la scheda e il dato
+   per generarle. La Domanda a 63×88 è una taglia che ho scelto io dentro la tua
+   parola: si cambia in un punto solo;
+2. **il giro su un iPad vero** — la pagina chiede 678 px su 768 e nessun
+   bersaglio è più stretto di un dito, ma quello che una persona *vede* non lo
+   dice nessuna sonda. È la [63](ISSUES.md#63);
+3. **l'arte**: 150 soggetti su 161 sono ancora segnaposto, e i prompt sono
+   pronti ([BRIEF_ARTE](BRIEF_ARTE.md), e in ogni JSON delle schede).
 
 ---
 
@@ -315,19 +283,17 @@ persona *vede*, no.
 - **`docs/RULES_V0_2.md` è fermo a 0.1.38** e rimanda a un file che non esiste
   più. Resta perché è l'unico posto dove le regole sono scritte per esteso, con
   l'avvertenza in cima.
-- **Tre sonde guardavano ancora la casa vecchia**, e sono cadute una per volta:
-  il catalogo dei Consigli (0.1.273), la revisione dei testi (0.1.345), il
-  disegno del flusso (0.1.347). Tutte e tre leggevano i **template** dopo che
-  le Domande e le Proposte erano passate **sulla carta**. Nessun cancello se
-  n'era accorto: controllano che il file combaci col generatore, non che il
-  generatore guardi dove il gioco è andato.
-- **Tre numeri di `COMPONENTI.md` mentivano**, e uno era un'istruzione per chi
-  stampa: sette pedine di presenza per casa di troppo
-  ([D-373](DECISIONS.md#d-373)). Adesso si ricavano, e una guardia pretende che
-  ogni cifra della prosa arrivi da un conto.
-- **Otto gettoni che nessuno potrà mai posare** stavano nel dizionario con posto
-  e cartone ([D-376](DECISIONS.md#d-376)): la guardia non li vedeva perché
-  **modellava il motore più generoso di com'è**.
+- **La traccia dei valori usciva dal foglio** — 223 mm su un A4 da 210 — e
+  nessuna prova lo vedeva: contava i rettangoli, non dove stavano
+  ([D-446](DECISIONS.md#d-446)). Adesso una prova chiede a ogni casella di
+  stare dentro.
+- **Diciannove carte Obiettivo non avevano una faccia**, e il censimento le
+  contava fra le cose «che non si stampano» ([D-445](DECISIONS.md#d-445)).
+- **La sonda dei «passa» contava il tavolo e non la mano**, da centoquaranta
+  versioni ([D-422](DECISIONS.md#d-422)): la frase su cui la voce era discussa
+  non diceva quello che sembrava.
+- **Questo foglio è rimasto fermo trentatré versioni**, la terza volta: ed è
+  la lezione 5, di nuovo.
 
 ---
 
@@ -350,8 +316,7 @@ Valgono più di metà del codice scritto.
    cadeva più, e nessuno l'aveva riprovata. Costo: sei clausole morte su tre
    Destini ([D-372](DECISIONS.md#d-372)).
 5. **Un documento fermo mente più di un documento che manca.** Questo foglio è
-   rimasto indietro due volte: settanta versioni la prima, cinquantaquattro la
-   seconda.
+   rimasto indietro tre volte: settanta versioni, cinquantaquattro, trentatré.
 6. **Un generato senza cancello è un generato fermo, e nessuno lo vede
    fermarsi.** `build_review.py` è morto all'avvio per dieci versioni e la CI è
    rimasta verde tutto il tempo.
@@ -364,3 +329,14 @@ Valgono più di metà del codice scritto.
 9. **Una regola scritta in due file diverge in silenzio.** Dove Python ha
    bisogno di sapere una cosa che il motore decide, la scrive **chi la esegue** —
    in fondo a un documento generato — e Python la legge di lì.
+10. **Un numero fermo dopo due modifiche diverse è qualcuno che guarda altrove.**
+    La sonda delle caselle diceva 700 offerte e 22 comprate dopo la catena
+    scritta e dopo il punteggio corretto, identico al centesimo: la pedina non
+    arrivava al motore ([D-438](DECISIONS.md#d-438)).
+11. **Una prova che conta i pezzi e non dove stanno non vede un foglio che
+    sborda.** La traccia dei valori aveva le caselle giuste, tredici millimetri
+    fuori dalla pagina ([D-446](DECISIONS.md#d-446)).
+12. **Una misura si dichiara, non si ottiene e basta.** Quindici bersagli larghi
+    il giusto sullo schermo risultavano stretti quanto un capello alla sonda,
+    perché chiedevano zero: un posto che chiede zero si stringe davvero dove lo
+    schermo è stretto ([D-444](DECISIONS.md#d-444)).
