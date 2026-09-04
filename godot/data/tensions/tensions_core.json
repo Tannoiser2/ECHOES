@@ -329,7 +329,7 @@
       "domain": "ANCIENT",
       "current_value": 2,
       "threshold": 6,
-      "visibility": "VEILED",
+      "visibility": "OPEN",
       "relevant_asset_families": [
         "KNOWLEDGE",
         "FORCE",
@@ -1035,7 +1035,7 @@
       "domain": "RESOURCE",
       "current_value": 1,
       "threshold": 5,
-      "visibility": "VEILED",
+      "visibility": "OPEN",
       "relevant_asset_families": [
         "WEALTH",
         "KNOWLEDGE",
@@ -1545,7 +1545,7 @@
       "domain": "SURVIVAL",
       "current_value": 1,
       "threshold": 5,
-      "visibility": "VEILED",
+      "visibility": "OPEN",
       "relevant_asset_families": [
         "WEALTH",
         "PEOPLE",
@@ -2253,7 +2253,7 @@
       "domain": "ANCIENT",
       "current_value": 2,
       "threshold": 6,
-      "visibility": "VEILED",
+      "visibility": "OPEN",
       "relevant_asset_families": [
         "KNOWLEDGE",
         "BONDS",
@@ -2798,7 +2798,7 @@
       "domain": "SURVIVAL",
       "current_value": 2,
       "threshold": 5,
-      "visibility": "VEILED",
+      "visibility": "OPEN",
       "relevant_asset_families": [
         "PEOPLE",
         "BONDS",
@@ -3021,7 +3021,7 @@
       "domain": "ANCIENT",
       "current_value": 2,
       "threshold": 4,
-      "visibility": "VEILED",
+      "visibility": "OPEN",
       "relevant_asset_families": [
         "FORCE",
         "KNOWLEDGE",

@@ -105,7 +105,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 	_hottest = 1
 	_leaders = 0
 	for tension_id in session.world["tensions"]:
-		var here: int = session.service.visible_tension_value(str(tension_id), viewer_id)
+		var here: int = _readable_value(session, str(tension_id), viewer_id)
 		if here > _hottest:
 			_hottest = here
 			_leaders = 1
@@ -198,9 +198,22 @@ func _add_row(title: String, field: String = "", key: String = "") -> Dictionary
 	return {"value": value, "bar": bar}
 
 
+## Quello che sulla traccia si legge di una Domanda: il punteggio che si vede,
+## o — coi mucchi coperti (D-450) — **quanti gettoni** ci sono sopra, che e'
+## l'unica altezza che il tavolo mostra a tutti. Fino alla 0.1.418 la scheda
+## scriveva il punteggio vero a tutti — la quarta finestra che ISSUES 49 non
+## aveva contato — mentre la mappa accanto lo copriva. Chi ha sbirciato legge
+## il valore in piu', nella riga, non qui: la barra e la classifica sono del
+## tavolo.
+func _readable_value(session: RefCounted, tension_id: String, viewer_id: String) -> int:
+	if session.tensions.piles_are_covered():
+		return session.tensions.tokens_on(tension_id)
+	return session.service.visible_tension_value(tension_id, viewer_id)
+
+
 func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewer_id: String) -> void:
 	var threshold: int = session.tensions.threshold(tension_id)
-	var visible_value: int = session.service.visible_tension_value(tension_id, viewer_id)
+	var visible_value: int = _readable_value(session, tension_id, viewer_id)
 	var bar: ProgressBar = row["bar"]
 	var value: Label = row["value"]
 	bar.max_value = float(maxi(threshold, 1))
@@ -209,6 +222,25 @@ func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewe
 		bar.value = 0.0
 		value.text = "velata"
 		value.add_theme_color_override("font_color", Color("#5f584c"))
+		return
+	if session.tensions.piles_are_covered():
+		# `visible_value` qui e' il conto dei gettoni. Il mucchio con piu'
+		# gettoni si vede da tutti e si dice; **non** e' detto che vada al
+		# Consiglio, perche' i gettoni pesano 0, 1 o 2 e si girano a fine Atto.
+		bar.max_value = float(maxi(_hottest, 1))
+		bar.value = float(visible_value)
+		var text: String = "%d %s coperti" % [visible_value, "gettone" if visible_value == 1 else "gettoni"]
+		var tint: Color = Color("#8a8172")
+		var leading: bool = visible_value >= _hottest and visible_value > 0
+		if leading:
+			text += "  ·  a pari" if _leaders > 1 else "  ·  il mucchio piu' alto"
+			tint = Color("#e8b563")
+		if session.service.knows_tension(viewer_id, tension_id):
+			text = "%s  ·  valgono %d" % [text, session.tensions.value(tension_id)]
+			tint = Color("#c9a14a")
+		value.text = text
+		value.add_theme_color_override("font_color", tint)
+		_paint_bar(bar, tint)
 		return
 	bar.value = float(visible_value)
 	if _at_end_of_act:

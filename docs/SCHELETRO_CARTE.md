@@ -88,20 +88,20 @@ Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno. **Sul retro, i
 |---|---|
 | il titolo | 60 su 60 |
 | il sottotitolo | 60 su 60 |
-| la cifra d'angolo | 60 su 60 |
 | una riga di testo libero | 60 su 60 |
 | **SI ACCENDE QUANDO** | 60 su 60 |
 | **SI RAFFREDDA** | 60 su 60 |
+| **SI DIBATTE** | 60 su 60 |
 | **AL CONSIGLIO VALGONO** | 60 su 60 |
 
 **Una carta vera**, come esce dal foglio di stampa:
 
 > **La Cenere che Sale**
-> domanda velata · l'antico
-> angolo: **4**
+> domanda · l'antico
 > SI DISCUTE DI  La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato? · E le bocche aperte sul fianco, si murano?
 > SI ACCENDE QUANDO  una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va
 > SI RAFFREDDA  Una Confluence risolta su chi tiene d'occhio la montagna.
+> SI DIBATTE  quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta.
 > AL CONSIGLIO VALGONO  forza, sapere, gente
 
 ## Il mazzo `council`

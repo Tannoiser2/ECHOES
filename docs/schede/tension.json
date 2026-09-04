@@ -11,10 +11,10 @@
   },
   "facce": 60,
   "pezzi": 60,
-  "cos_e": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. Se e' velata, la soglia si copre con un gettone: la carta resta in vista.",
+  "cos_e": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. **La carta non e' mai coperta: coperti sono i gettoni** che ci si posano sopra (D-450) — a fine Atto si girano, si sommano, e la Domanda col mucchio piu' alto si dibatte.",
   "immagine": "Nessuna: e' tutta testo, e il testo prende il posto del quadro.",
-  "sottotitolo": "«domanda» o «domanda velata» (`visibility`) e il Tema (`domain`)",
-  "angolo": "la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo",
+  "sottotitolo": "«domanda» e il Tema (`domain`)",
+  "angolo": "nessuna: la soglia col cancello del tavolo non decide niente (D-203), e si e' tolta dalla carta (D-450)",
   "scena": "nessuna",
   "retro": "council",
   "fronte": "",
@@ -86,6 +86,10 @@
       "da_dove": "`decrease_rules`"
     },
     {
+      "voce": "SI DIBATTE",
+      "da_dove": "il gesto di fine Atto, fisso: i gettoni coperti si girano e il mucchio piu' alto gira la carta (D-203, D-450)"
+    },
+    {
       "voce": "AL CONSIGLIO VALGONO",
       "da_dove": "le famiglie che pesano al voto: `relevant_asset_families`"
     }
@@ -95,8 +99,8 @@
       "id": "TEN_ASH",
       "tipo": "tension",
       "titolo": "La Cenere che Sale",
-      "sottotitolo": "domanda velata · l'antico",
-      "angolo": "4",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -112,6 +116,10 @@
           "testo": "Una Confluence risolta su chi tiene d'occhio la montagna."
         },
         {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
+        },
+        {
           "voce": "AL CONSIGLIO VALGONO",
           "testo": "forza, sapere, gente"
         }
@@ -125,8 +133,8 @@
       "id": "TEN_AWAKENING",
       "tipo": "tension",
       "titolo": "Il Risveglio",
-      "sottotitolo": "domanda velata · l'antico",
-      "angolo": "6",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -140,6 +148,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Sigillare le Miniere. Un patto che vincoli chi studia il Cristallo."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -156,7 +168,7 @@
       "tipo": "tension",
       "titolo": "Il Grano Guasto",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -170,6 +182,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una conta pubblica del granaio. Il grano guasto bruciato davanti a tutti."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -186,7 +202,7 @@
       "tipo": "tension",
       "titolo": "I Pedaggi Neri",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -200,6 +216,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una scorta armata decisa al Consiglio. La catena tolta e mostrata in piazza."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -216,7 +236,7 @@
       "tipo": "tension",
       "titolo": "Le Pietre di Confine",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -230,6 +250,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un confine camminato e giurato davanti a testimoni. Un catasto riscritto al Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -246,7 +270,7 @@
       "tipo": "tension",
       "titolo": "I Sepolti Senza Nome",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -260,6 +284,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un rito per i senza nome celebrato davanti a tutti. Un campo santo nuovo consacrato."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -276,7 +304,7 @@
       "tipo": "tension",
       "titolo": "La Carta",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "7",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -290,6 +318,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una Confluence risolta su chi scrive la regola. Una regola scritta e accettata anche da chi ci perde."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -306,7 +338,7 @@
       "tipo": "tension",
       "titolo": "Il Disboscamento",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -320,6 +352,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un limite di taglio deciso e sorvegliato. Una stagione senza fornaci."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -336,7 +372,7 @@
       "tipo": "tension",
       "titolo": "I Seggi del Consiglio",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -350,6 +386,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una regola dei seggi scritta e giurata. Un seggio nuovo assegnato senza sangue."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -366,7 +406,7 @@
       "tipo": "tension",
       "titolo": "Le Staffette",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -380,6 +420,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un servizio di staffette giurato al Consiglio. Una posta sigillata con pene scritte."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -396,7 +440,7 @@
       "tipo": "tension",
       "titolo": "Il Debito",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "7",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -410,6 +454,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una Confluence risolta sul registro. Un condono, per quanto parziale."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -426,7 +474,7 @@
       "tipo": "tension",
       "titolo": "L'Acqua Fonda",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -440,6 +488,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un divieto di pesca deciso e rispettato. Una spedizione fatta con giudizio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -456,7 +508,7 @@
       "tipo": "tension",
       "titolo": "Gli Echi nel Fondo",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -470,6 +522,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una veglia decisa e mantenuta. Il fondo sigillato per decisione del Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -486,7 +542,7 @@
       "tipo": "tension",
       "titolo": "Le Reti Vuote",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -500,6 +556,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Turni e banchi divisi per decisione del Consiglio. Il pesce tornato con la stagione."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -516,7 +576,7 @@
       "tipo": "tension",
       "titolo": "I Recinti",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -530,6 +590,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un Consiglio che decide di chi e' l'uso della terra. Un titolo scritto e letto in piazza."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -546,7 +610,7 @@
       "tipo": "tension",
       "titolo": "La Terra Stanca",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -560,6 +624,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un anno di maggese deciso e rispettato. Una rotazione scritta al Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -576,7 +644,7 @@
       "tipo": "tension",
       "titolo": "La Carestia",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -590,6 +658,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una Confluence risolta sulla distribuzione del grano. Carte Echo di RISOLUZIONE che spendono qualcosa di reale."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -606,7 +678,7 @@
       "tipo": "tension",
       "titolo": "Il Traghetto",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -620,6 +692,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una tariffa scritta al Consiglio. Una seconda barca messa in acqua."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -636,7 +712,7 @@
       "tipo": "tension",
       "titolo": "L'Acqua Alta",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -650,6 +726,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Argini rifatti per decisione del Consiglio. I canali vecchi riaperti."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -666,7 +746,7 @@
       "tipo": "tension",
       "titolo": "La Guerra delle Gilde",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -680,6 +760,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un arbitrato del Consiglio fra le gilde. Un mercato diviso con confini scritti."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -696,7 +780,7 @@
       "tipo": "tension",
       "titolo": "La Parola Storta",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -710,6 +794,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un Consiglio che decide cosa si puo' predicare. Una disputa pubblica con un vincitore."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -726,7 +814,7 @@
       "tipo": "tension",
       "titolo": "Gli Ostaggi di Corte",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -740,6 +828,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Uno scambio di ostaggi deciso al Consiglio. Un ritorno a casa concesso e festeggiato."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -756,7 +848,7 @@
       "tipo": "tension",
       "titolo": "Il Santuario dell'Isola",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -770,6 +862,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una custodia dell'altare decisa al Consiglio. Un rito nuovo scritto per il posto vecchio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -786,7 +882,7 @@
       "tipo": "tension",
       "titolo": "Il Silenzio dell'Isola",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -800,6 +896,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un presidio stabilito con un rito. Un divieto di sbarco deciso al Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -816,7 +916,7 @@
       "tipo": "tension",
       "titolo": "I Braccianti",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -830,6 +930,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un patto di lavoro deciso al Consiglio. Terra concessa a chi la lavora."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -846,7 +950,7 @@
       "tipo": "tension",
       "titolo": "Il Catasto",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -860,6 +964,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un catasto giurato dalle parti. Un Consiglio che decide chi misura."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -876,7 +984,7 @@
       "tipo": "tension",
       "titolo": "La Leva",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -890,6 +998,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una leva con regole scritte al Consiglio. Un anno senza chiamate."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -906,7 +1018,7 @@
       "tipo": "tension",
       "titolo": "Le Marche di Confine",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -920,6 +1032,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una marca concessa a un titolare scelto. Un giro d'ispezione del trono ai margini."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -936,7 +1052,7 @@
       "tipo": "tension",
       "titolo": "La Febbre delle Paludi",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -952,6 +1068,10 @@
           "testo": "Un cordone e cure decisi al Consiglio. I canali riaperti che muovono l'acqua."
         },
         {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
+        },
+        {
           "voce": "AL CONSIGLIO VALGONO",
           "testo": "sapere, gente"
         }
@@ -965,8 +1085,8 @@
       "id": "TEN_NAMELESS",
       "tipo": "tension",
       "titolo": "I Senza Città",
-      "sottotitolo": "domanda velata · la sopravvivenza",
-      "angolo": "5",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -980,6 +1100,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una Confluence risolta su chi ha diritto di restare."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -996,7 +1120,7 @@
       "tipo": "tension",
       "titolo": "Le Vie di Prima",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1010,6 +1134,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una mappa delle vie vecchie fatta e custodita. Un divieto di percorrerle deciso al Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1026,7 +1154,7 @@
       "tipo": "tension",
       "titolo": "La Vecchia Guardia",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1040,6 +1168,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un giuramento nuovo prestato dai vecchi. Una pensione decisa al Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1056,7 +1188,7 @@
       "tipo": "tension",
       "titolo": "I Nomi Vecchi",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1070,6 +1202,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una disputa dei dotti che stabilisca cosa significano. Un divieto o una riabilitazione decisi al Consiglio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1086,7 +1222,7 @@
       "tipo": "tension",
       "titolo": "Il Pascolo Conteso",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1100,6 +1236,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un calendario dei pascoli deciso al Consiglio. Una stagione divisa senza sangue."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1116,7 +1256,7 @@
       "tipo": "tension",
       "titolo": "I Pellegrini",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1130,6 +1270,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un cammino con tappe e granai decisi al Consiglio. Un anno santo dichiarato e organizzato."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1146,7 +1290,7 @@
       "tipo": "tension",
       "titolo": "La Febbre Bassa",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "5",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1160,6 +1304,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una divisione che tutti riescono a dire ad alta voce."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1176,7 +1324,7 @@
       "tipo": "tension",
       "titolo": "La Profezia Contata",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1190,6 +1338,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una disputa pubblica sulla lettura. Il Consiglio che fissa cosa si fa il giorno dopo la data."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1206,7 +1358,7 @@
       "tipo": "tension",
       "titolo": "Il Cordone",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1220,6 +1372,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un cordone con regole e termini scritti. Una quarantena finita senza contagio."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1236,7 +1392,7 @@
       "tipo": "tension",
       "titolo": "Chi Arriva da Fuori",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1250,6 +1406,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un'accoglienza con regole decisa al Consiglio. Terra o lavoro dati a chi arriva."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1266,7 +1426,7 @@
       "tipo": "tension",
       "titolo": "La Reggenza",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1282,6 +1442,10 @@
           "testo": "Un termine scritto e giurato al Consiglio. La consegna del sigillo davanti a testimoni."
         },
         {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
+        },
+        {
           "voce": "AL CONSIGLIO VALGONO",
           "testo": "autorità, legami"
         }
@@ -1295,8 +1459,8 @@
       "id": "TEN_RELIC",
       "tipo": "tension",
       "titolo": "La Reliquia",
-      "sottotitolo": "domanda velata · l'antico",
-      "angolo": "6",
+      "sottotitolo": "domanda · l'antico",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1312,6 +1476,10 @@
           "testo": "Una Confluence risolta su chi la custodisce. Sotterrarla di nuovo, e dirlo."
         },
         {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
+        },
+        {
           "voce": "AL CONSIGLIO VALGONO",
           "testo": "sapere, legami, forza"
         }
@@ -1325,8 +1493,8 @@
       "id": "TEN_ROADS",
       "tipo": "tension",
       "titolo": "Le Vie Interrotte",
-      "sottotitolo": "domanda velata · le risorse",
-      "angolo": "5",
+      "sottotitolo": "domanda · le risorse",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1340,6 +1508,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una scorta pagata da chi ci guadagna. Un pedaggio scritto e uguale per tutti."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1356,7 +1528,7 @@
       "tipo": "tension",
       "titolo": "I Campi di Sale",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1370,6 +1542,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un prezzo del sale deciso al Consiglio. Le vasche contate e scritte."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1386,7 +1562,7 @@
       "tipo": "tension",
       "titolo": "Il Diritto d'Asilo",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1400,6 +1576,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un Consiglio che decide i confini dell'asilo. Una consegna negoziata senza sangue."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1416,7 +1596,7 @@
       "tipo": "tension",
       "titolo": "I Sigilli Falsi",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1430,6 +1610,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un registro dei sigilli deciso al Consiglio. Un falsario preso e mostrato."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1446,7 +1630,7 @@
       "tipo": "tension",
       "titolo": "Le Campane Mute",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1460,6 +1644,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un Consiglio che decide chi suona, e per chi. Un lutto sciolto con un rito."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1476,7 +1664,7 @@
       "tipo": "tension",
       "titolo": "I Canali Interrati",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1490,6 +1678,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un cantiere diviso per decisione del Consiglio. Il primo tratto riaperto che paga il secondo."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1506,7 +1698,7 @@
       "tipo": "tension",
       "titolo": "I Dormienti",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1520,6 +1712,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un censimento dei racconti fatto sul serio. Una veglia istituita dove si dorme."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1536,7 +1732,7 @@
       "tipo": "tension",
       "titolo": "Il Contrabbando",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1550,6 +1746,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una dogana onesta pagata bene. Un condono che fa emergere i traffici."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1566,7 +1766,7 @@
       "tipo": "tension",
       "titolo": "La Successione",
       "sottotitolo": "domanda · il territorio",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1582,6 +1782,10 @@
           "testo": "Un erede riconosciuto davanti a testimoni. Un patto che leghi una casa al trono."
         },
         {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
+        },
+        {
           "voce": "AL CONSIGLIO VALGONO",
           "testo": "autorità, legami, forza"
         }
@@ -1595,8 +1799,8 @@
       "id": "TEN_THIRST",
       "tipo": "tension",
       "titolo": "I Pozzi Bassi",
-      "sottotitolo": "domanda velata · la sopravvivenza",
-      "angolo": "5",
+      "sottotitolo": "domanda · la sopravvivenza",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1610,6 +1814,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una divisione che tutti riescono a dire ad alta voce."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1626,7 +1834,7 @@
       "tipo": "tension",
       "titolo": "La Decima",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1640,6 +1848,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Registri della decima aperti al Consiglio. Una decima sospesa in un anno magro."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1656,7 +1868,7 @@
       "tipo": "tension",
       "titolo": "Il Tributo",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1670,6 +1882,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un tributo ridotto per l'anno magro. Un conto pubblico di dove va il tributo."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1686,7 +1902,7 @@
       "tipo": "tension",
       "titolo": "Il Dissotterrato",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1700,6 +1916,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una custodia decisa al Consiglio. Uno studio fatto con regole scritte."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1716,7 +1936,7 @@
       "tipo": "tension",
       "titolo": "I Voti Non Sciolti",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1730,6 +1950,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un rito di scioglimento celebrato per tutti. Un Consiglio che dice quali voti valgono ancora."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1746,7 +1970,7 @@
       "tipo": "tension",
       "titolo": "Le Pietre di Guardia",
       "sottotitolo": "domanda · l'antico",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1760,6 +1984,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Le pietre rialzate con il rito giusto. Un giro di guardia istituito sul margine."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1776,7 +2004,7 @@
       "tipo": "tension",
       "titolo": "L'Acqua Ferma",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1790,6 +2018,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una Confluence risolta su chi scava e chi paga. Carte Echo di RISOLUZIONE che spendono braccia vere."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1806,7 +2038,7 @@
       "tipo": "tension",
       "titolo": "I Pesi e le Misure",
       "sottotitolo": "domanda · le risorse",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1820,6 +2052,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Un campione dei pesi giurato al Consiglio. Un ispettore dei mercati nominato."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1836,7 +2072,7 @@
       "tipo": "tension",
       "titolo": "L'Inverno Lungo",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1850,6 +2086,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Legna e tetti divisi per decisione del Consiglio. Un disgelo arrivato in tempo."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",
@@ -1866,7 +2106,7 @@
       "tipo": "tension",
       "titolo": "I Lupi al Limitare",
       "sottotitolo": "domanda · la sopravvivenza",
-      "angolo": "6",
+      "angolo": "",
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
@@ -1880,6 +2120,10 @@
         {
           "voce": "SI RAFFREDDA",
           "testo": "Una battuta ordinata dal Consiglio. Recinti e guardiani pagati in comune."
+        },
+        {
+          "voce": "SI DIBATTE",
+          "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
         },
         {
           "voce": "AL CONSIGLIO VALGONO",

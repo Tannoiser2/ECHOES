@@ -5,12 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.419 — La carta non è velata: coperti sono i gettoni
+
+[D-450](docs/DECISIONS.md#d-450), parola del committente. Nessuna Domanda
+della scatola nasce velata: le sei `VEILED` passano a `OPEN`, e il velo resta
+al motore per l'Effetto che lo cala. La carta Domanda perde «velata» e la
+soglia nell'angolo e prende la riga SI DIBATTE, che dice il gesto di fine Atto;
+la mappa dell'app scrive la riga del registro pubblico invece di «v/soglia».
+Le prove che misurano il velo se lo fabbricano. **E TRAMARE sbircia**: le
+nove carte con quell'Azione cercavano una velata, e la scatola non ne ha più;
+coi mucchi coperti sbirciano i gettoni di una Domanda — una Scoperta, letta
+solo da chi ha tramato — come ISSUES 49 aveva previsto. La scheda di stato
+dell'app smette di scrivere il punteggio coperto. Cancello dei 100 semi, seme
+7000, 0.1.418 → 0.1.419: 0 seggi bloccati su 8 sui due tavoli; Consigli l'anno
+3,53 → 3,58 (misto) e 3,36 → 3,61 (uniforme); esiti falliti 30 → 33 e 10 → 23.
+
+---
+
 ## 0.1.418 — Una carta, due facce
 
 [D-449](docs/DECISIONS.md#d-449), parola del committente. L'Eco è stampato
 sulla carta Asset (D-359 lo diceva dalla 0.1.325, la stampa no) e il mazzo Eco
 non si stampa più; la Domanda è un tarocco fronte-retro col suo Consiglio
-dietro, su fogli specchiati; il velo diventa un gettone sulla soglia; «le
+dietro, su fogli specchiati; «le
 dodici caselle» sparisce dai testi (sono 18–25 per carta). Fogli 76 → 84.
 Costo sull'Asset: 24 su 48 col corpo rimpicciolito, illustrazione al 34%.
 

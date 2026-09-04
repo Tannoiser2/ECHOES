@@ -285,10 +285,17 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				"subject": {"tension": str(tension_id)},
 			})
 
+	# **Coi mucchi coperti, TRAMARE sbircia** (D-450 — la strada era scritta in
+	# ISSUES 49: *«sono tutte velate, e TRAMARE diventa "sbircio un
+	# segnalino"»*). Nessuna Domanda della scatola nasce velata: quello che una
+	# Domanda nasconde a un seggio sono i suoi gettoni coperti, e sbirciarli e'
+	# quello che una carta TRAMARE compra. Il velo calato da un Effetto resta
+	# la seconda ragione per offrirla.
+	var covered: bool = session.tensions.piles_are_covered()
 	for tension_id in _sorted(session.world["tensions"].keys()):
 		# Only what is actually hidden from you. An open Tension already shows its
 		# number, and offering to scout it is offering a wasted Action Opportunity.
-		if not session.tensions.is_veiled(str(tension_id)):
+		if not (covered or session.tensions.is_veiled(str(tension_id))):
 			continue
 		if service.knows_tension(entity_id, str(tension_id)):
 			continue
@@ -299,12 +306,13 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 			# offrire «scopri il numero» di una domanda il cui numero e' sul
 			# tavolo e' invitare qualcuno a buttare un'Occasione per sapere una
 			# cosa che sa gia'.
+			var verb: String = "Scopri il numero di %s"
+			if covered:
+				verb = "Sbircia i gettoni coperti di %s"
+			elif session.tensions.hides_threshold_only():
+				verb = "Scopri a quanto esplode %s"
 			out.append({
-				"label": (
-					"Scopri a quanto esplode %s"
-					if session.tensions.hides_threshold_only()
-					else "Scopri il numero di %s"
-				) % _tension(str(tension_id), session),
+				"label": verb % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": request,
 				"subject": {"tension": str(tension_id)},
 			})
@@ -992,7 +1000,12 @@ func _tension_reading(tension_id: String, viewer_id: String, session: RefCounted
 		# restasse scritto, coprire il verbale pubblico sarebbe teatro.
 		if session.tensions.piles_are_covered():
 			var pile: int = session.tensions.tokens_on(tension_id)
-			return "%d %s coperti" % [pile, "gettone" if pile == 1 else "gettoni"]
+			var coperti: String = "%d %s coperti" % [pile, "gettone" if pile == 1 else "gettoni"]
+			# Chi ha sbirciato (TRAMARE, D-450) legge quanto valgono: e' la
+			# cosa che l'Occasione ha comprato, e la sa solo lui.
+			if session.service.knows_tension(viewer_id, tension_id):
+				return "%s, sbirciati: valgono %d" % [coperti, value]
+			return coperti
 		return "%d%s" % [
 			value, " ← il più alto" if session.tensions.hottest_pile() == tension_id else ""
 		]

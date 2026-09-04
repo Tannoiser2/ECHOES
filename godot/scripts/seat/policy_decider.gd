@@ -1287,8 +1287,13 @@ func _scout(entity_id: String, session: RefCounted) -> Dictionary:
 	for condition in _conditions(entity_id, session):
 		if str(condition.get("type", "")) == "discovery_count":
 			wants_discovery = true
+	# Coi mucchi coperti (D-450) sbirciare e' una Scoperta come aprire un velo:
+	# la sedia lo fa solo se il Destino la manda a scoprire, perche' il numero
+	# che legge non lo usa — decide sui gettoni che tutti vedono.
+	var covered: bool = session.tensions.piles_are_covered()
 	for tension_id in _sorted(session.world["tensions"].keys()):
-		if not session.tensions.is_veiled(str(tension_id)):
+		var veiled: bool = session.tensions.is_veiled(str(tension_id))
+		if not (veiled or covered):
 			continue
 		if session.service.knows_tension(entity_id, str(tension_id)):
 			continue
@@ -1301,7 +1306,8 @@ func _scout(entity_id: String, session: RefCounted) -> Dictionary:
 		# Senza questa riga il cervello chiedeva SCOPRIRE per meta' delle
 		# Occasioni, e con otto carte su quarantotto che sanno dirlo, passava.
 		var worth_it: bool = wants_discovery or (
-			not session.tensions.hides_threshold_only()
+			veiled
+			and not session.tensions.hides_threshold_only()
 			and _tension_goals(entity_id, session).has(str(tension_id))
 		)
 		if worth_it:

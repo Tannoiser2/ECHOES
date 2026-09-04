@@ -68,18 +68,19 @@ const TYPES: Dictionary = {
 	},
 	"tension": {
 		"nome": "carta Domanda (la Tensione), fronte",
-		"cosa": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. Se e' velata, la soglia si copre con un gettone: la carta resta in vista.",
+		"cosa": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. **La carta non e' mai coperta: coperti sono i gettoni** che ci si posano sopra (D-450) — a fine Atto si girano, si sommano, e la Domanda col mucchio piu' alto si dibatte.",
 		"immagine": "Nessuna: e' tutta testo, e il testo prende il posto del quadro.",
-		"sottotitolo": "«domanda» o «domanda velata» (`visibility`) e il Tema (`domain`)",
-		"angolo": "la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo",
+		"sottotitolo": "«domanda» e il Tema (`domain`)",
+		"angolo": "nessuna: la soglia col cancello del tavolo non decide niente (D-203), e si e' tolta dalla carta (D-450)",
 		"scena": "nessuna",
 		"righe": [
 			["SI DISCUTE DI", "le domande che puo' aprire, nel corpo: `possible_questions`, col testo da `council.questions`"],
 			["SI ACCENDE QUANDO", "la regola a segni che la fa salire: `heats_when` (o `triggers`, dove la regola non c'e')"],
 			["SI RAFFREDDA", "`decrease_rules`"],
+			["SI DIBATTE", "il gesto di fine Atto, fisso: i gettoni coperti si girano e il mucchio piu' alto gira la carta (D-203, D-450)"],
 			["AL CONSIGLIO VALGONO", "le famiglie che pesano al voto: `relevant_asset_families`"],
 		],
-		"voci": ["SI ACCENDE QUANDO", "SI RAFFREDDA", "AL CONSIGLIO VALGONO"],
+		"voci": ["SI ACCENDE QUANDO", "SI RAFFREDDA", "SI DIBATTE", "AL CONSIGLIO VALGONO"],
 	},
 	"council": {
 		"nome": "carta Domanda, retro (il Consiglio)",

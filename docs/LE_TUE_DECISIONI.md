@@ -62,9 +62,14 @@ mano, e il giro su un iPad vero.
 **E in 0.1.418, guardando le schede, hai visto due cose che erano decise e non
 stampate** ([D-449](DECISIONS.md#d-449)): l'Eco va sulla carta Asset, e la
 Domanda e il suo Consiglio sono la stessa carta. Fatte: l'Eco è stampato, la
-Domanda è un tarocco col Consiglio sul retro, il velo è un gettone sulla soglia,
-e «le dodici caselle» non c'è più. Costo scritto: 84 fogli, e l'illustrazione
-dell'Asset al pavimento.
+Domanda è un tarocco col Consiglio sul retro, e «le dodici caselle» non c'è
+più. Costo scritto: 84 fogli, e l'illustrazione dell'Asset al pavimento.
+
+**E il giorno dopo, in 0.1.419, hai corretto il velo** ([D-450](DECISIONS.md#d-450)):
+*«quella non è velata, sono i segnalini che si mettono sopra che sono
+coperti»*. Fatto: nessuna Domanda nasce velata, la carta perde «velata» e la
+soglia e dice quando si dibatte, la mappa dell'app scrive quello che il tavolo
+sa.
 
 ---
 

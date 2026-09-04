@@ -10,6 +10,106 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-450 — La carta non e' velata: coperti sono i gettoni
+
+**implemented in 0.1.419.** Parola del committente, a un giorno da D-449:
+*«La faccia del concilio indica la domanda e il tema, quella non e' velata:
+sono i segnalini che si pescano e si mettono sopra che sono coperti e possono
+valere 0, 1 o 2. A fine Atto si girano e si sommano, la domanda con il valore
+piu' alto si dibatte — si gira la carta e ci sono le caselle inerenti alla
+domanda sull'altra faccia».*
+
+E' la regola di [D-203](#d-203) e [D-261](#d-261) detta per intero, e il
+motore la gioca gia' cosi': gettoni coperti `[0, 1, 1, 2]`, mucchio piu' alto
+a fine Atto, `visible_tension_threshold` a -1 per tutti col cancello del
+tavolo. **Quello che non tornava era la carta**, e con lei l'app:
+
+- la faccia stampava *«domanda velata»* su sei Domande su sessanta e la
+  soglia nell'angolo — una regola che il tavolo non gioca piu', e un numero
+  che col cancello non decide niente. D-449 aveva provato a salvare il velo
+  con un gettone sulla soglia: era un gesto in piu' per una cosa che non
+  esiste;
+- la mappa dell'app scriveva *«Il Risveglio · 2/6»* e *«velata»*, cioe' lo
+  stato del motore e non il tavolo — il contrario di [D-444](#d-444).
+
+**Cosa cambia.**
+
+- **Nessuna Tensione della scatola nasce velata**: le sei `VEILED` di
+  `tensions_core.json` (il Risveglio, le Strade, la Sete, la Reliquia, il
+  Senza Nome, la Cenere) passano a `OPEN`. Il campo `visibility` e il verbo
+  `SET_TENSION_VISIBILITY` restano al motore, perche' un Effetto puo' ancora
+  velare — *«il dogma vela»* del Culto della Misura, [D-126](#d-126) — e le
+  prove che misurano il velo **se lo fabbricano** con quell'Effetto, come vuole
+  la regola di casa, invece di cercarlo fra i dati.
+- **La carta Domanda** perde la parola «velata» e la cifra d'angolo, e prende
+  una riga che dice il gesto: *«SI DIBATTE quando a fine Atto i suoi gettoni,
+  girati, fanno il mucchio piu' alto: gira la carta»*. Il ponte fra le due
+  facce, che il committente chiedeva in D-449, ora e' scritto sulla faccia.
+- **La mappa dell'app** scrive per ogni Domanda la riga del registro pubblico
+  (`public_status`): i gettoni coperti finche' sono coperti, il mucchio e *«il
+  piu' alto»* quando si girano. Senza cancello del tavolo resta la forma
+  vecchia, che e' l'unica giusta per una Chronicle a soglia.
+
+**E TRAMARE sbircia.** Tolte le velate, la prima prova che e' andata rossa
+diceva la cosa vera: la mano di Vaerax al seme 4242 — *Voci di corridoio* e
+*Giuramento* — non portava piu' nessuna mossa. **Nove Asset su 48** hanno
+TRAMARE come Azione, e la loro modalita' sulla Domanda cercava una velata da
+scoprire: nella scatola non ce n'e' piu'. La strada era gia' scritta in
+[ISSUES 49](ISSUES.md#49): *«se tutti i valori sono coperti per costruzione,
+"velata" smette di essere una categoria speciale — sono tutte velate, e
+TRAMARE diventa "sbircio un segnalino"»*. Fatto cosi':
+
+- il menu offre **«Sbircia i gettoni coperti di …»** su ogni Domanda di cui il
+  seggio non conosce il valore, quando la Chronicle copre i mucchi; il motore
+  lo accettava gia' (`_check_scheme` non chiedeva il velo), era il menu a
+  tacerlo;
+- chi ha sbirciato legge sulla sua scheda *«2 gettoni coperti, sbirciati:
+  valgono 3»*; gli altri leggono i gettoni e basta; il verbale pubblico dice
+  *«trama in silenzio: ha sbirciato sotto un mucchio»* senza nominare la
+  Domanda ne' il valore;
+- **sbirciare e' una Scoperta** (`discovery:` sul seggio), come lo era aprire
+  un velo: e' quello che il Destino di Lyra conta per il suo Minimo;
+- le sedie automatiche sbirciano **solo se il Destino le manda a scoprire**:
+  il numero che leggono non lo usano, perche' decidono sui gettoni che tutti
+  vedono ([D-172](#d-172), il bot non sbircia);
+- la pagina d'aiuto lo dice: *«Tramare — sbirci i gettoni coperti di una
+  domanda. Lo sai solo tu»*.
+
+**E una quarta finestra si chiude.** ISSUES 49 copriva il mucchio in tre
+finestre — verbale, scheda del seggio, pagina d'aiuto — e la scheda di stato
+dell'app (`status_panel`) scriveva il punteggio vero a tutti, accanto alla
+mappa che da oggi lo copre. Ora scrive i gettoni, segna *«il mucchio piu'
+alto»* su quello con piu' gettoni — che si vede da tutti, e **non** e' detto
+che vada al Consiglio, perche' i gettoni pesano 0, 1 o 2 — e il valore solo a
+chi ha sbirciato. La prova della pagina posa un gettone prima di guardare la
+traccia: all'apertura nessuna domanda e' davanti, e la riga non lo inventa.
+
+**Costo, dichiarato.** Sei Domande cambiano dato e le sedie hanno una mossa
+in piu': il cancello dei 100 semi si e' rigirato sui due tavoli, e i numeri
+sono qui sotto, presi sullo stesso tavolo e nella stessa sessione. Il velo
+calato da un Effetto (*«il dogma vela»*) resta nel motore e nel menu, e la
+prova che lo misura se lo fabbrica. Il registro e il pannello d'aiuto parlano
+ancora di velo dove un Effetto puo' calarlo: non e' un testo morto, e' un
+caso raro.
+
+**Il cancello dei 100 semi**, seme 7000, misurato due volte nella stessa
+sessione: su 0.1.418 (il commit prima) e su questo codice. Le colonne degli
+esiti sono quelle che la sonda stampa (FAIL · SUCC · SUCC · DECI).
+
+| | 0.1.418, misto | **0.1.419, misto** | 0.1.418, uniforme | **0.1.419, uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,53 | **3,58** | 3,36 | **3,61** |
+| esiti FAIL · SUCC · SUCC · DECI | 30 · 64 · 155 · 104 | **33 · 46 · 176 · 103** | 10 · 31 · 171 · 124 | **23 · 36 · 172 · 130** |
+| Verita' scritte, diverse | 136, 113 | **124, 95** | 139, 107 | **144, 111** |
+
+Il tavolo uniforme tiene piu' Consigli (3,36 → 3,61) e piu' fallimenti (10 →
+23): le sedie che il Destino manda a scoprire spendono un'Occasione a
+sbirciare, un gettone in piu' cade, e qualche Consiglio in piu' si apre con
+meno carte impegnate. E' il costo della mossa nuova, e resta scritto.
+
+---
+
 ## D-449 — Una carta, due facce: l'Eco sull'Asset, il Consiglio sul retro della Domanda
 
 **implemented in 0.1.418.** Parola del committente, due volte: *«il mazzo
@@ -50,12 +150,12 @@ i fogli:
   caselle. `CardFace.BACKS` dice quale mazzo e' il retro di quale, e l'export
   scrive per ogni foglio `tension_NN` un foglio `tension_retro_NN` **specchiato**,
   cosi' stampando i due lati ogni retro finisce dietro la sua carta.
-- **Il velo cambia gesto.** [D-187](#d-187) diceva *«una carta girata a faccia
-  in giu' accanto al segnalino»*: con il Consiglio sul retro non si puo'. Da qui
-  una Domanda velata sta in vista come le altre e **la soglia si copre con un
-  gettone** — uno dei dodici gettoni di RIVENDICARE, che sono gia' nella
-  scatola — finche' qualcuno non la scopre. La regola del motore non cambia:
-  valore pubblico, soglia coperta.
+- **Il velo cambia gesto** — *rivisto il giorno dopo da [D-450](#d-450)*.
+  [D-187](#d-187) diceva *«una carta girata a faccia in giu' accanto al
+  segnalino»*: con il Consiglio sul retro non si puo'. Qui si era scritto che
+  la soglia si copre con un gettone. Il committente ha corretto: **la carta non
+  e' velata, coperti sono i gettoni** che ci si posano sopra. Il velo esce
+  dalla scatola.
 - **Via «le dodici caselle»**: era una frase rimasta da D-280. Una carta porta
   in media **8,6 SI OTTIENE, 8,9 SI PAGA e 2 SE CADE**, da 18 a 25 caselle,
   mai dodici. Corretta ovunque fosse viva; nei verbali vecchi resta.

@@ -112,6 +112,12 @@ func test_omens_fire_once_and_come_from_the_data() -> void:
 
 func _veil_rule(rule: String) -> void:
 	(session.data.chronicles["CHR_TEST"] as Dictionary)["veiled_tensions"] = rule
+	# **Nessuna Tensione della scatola nasce velata** (D-450): la prova si
+	# fabbrica la sua, come vuole la regola di casa, invece di cercarla nei dati.
+	session.applier.apply(Effect.make(
+		"SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "VEILED"},
+		Effect.source("test", "TEST", "", 1, 1, 0)
+	))
 
 
 ## Col velo che copre tutto, il numero non compare nel registro pubblico.

@@ -69,6 +69,8 @@ func test_tension_moves_use_the_title_and_the_applied_delta() -> void:
 
 
 func test_unveiling_a_tension_is_announced() -> void:
+	# Nessuna Tensione nasce velata (D-450): si vela prima, o svelare e' un no-op.
+	_narrated("SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "VEILED"})
 	var said: String = _narrated(
 		"SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "OPEN"}
 	)

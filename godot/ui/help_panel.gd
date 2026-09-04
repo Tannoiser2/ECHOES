@@ -130,14 +130,13 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		out.append("[b]Muovere[/b] — metti una presenza: clicchi una Regione cerchiata d'oro.")
 		out.append("[b]Acquisire[/b] — peschi una carta di una famiglia (ne escono due, ne tieni una).")
 		out.append("[b]Influenzare[/b] — alzi o abbassi di 1 una domanda dell'anno. Una sola volta per round, e ti serve una presenza in una Regione di quel dominio.")
-		out.append(
-			"[b]Tramare[/b] — %s. Lo sai solo tu."
-			% (
-				"leggi a quanto esplode una domanda velata"
-				if str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD"
-				else "leggi il numero di una domanda velata"
-			)
-		)
+		var peek: String = "leggi il numero di una domanda velata"
+		if not ((rules.get("tension_tokens", {}) as Dictionary).get("covered", []) as Array).is_empty():
+			# Coi mucchi coperti niente e' velato: si sbirciano i gettoni (D-450).
+			peek = "sbirci i gettoni coperti di una domanda"
+		elif str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD":
+			peek = "leggi a quanto esplode una domanda velata"
+		out.append("[b]Tramare[/b] — %s. Lo sai solo tu." % peek)
 		out.append("[b]Forgiare[/b] — muovi di un passo il rapporto con un altro giocatore.")
 		# La deroga a §10 (D-191) non dipende dalle carte: vale anche di qua.
 		var same_round: Dictionary = rules.get("claim_rules", {}) as Dictionary

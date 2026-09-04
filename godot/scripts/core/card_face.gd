@@ -381,18 +381,19 @@ static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
 	# dei valori le fa posto (`token_sheet`).
 	var face: Dictionary = _face("tension", str(tension["id"]), "TAROT")
 	face["title"] = str(tension["title"])
-	# La velatura e' una regola e sta nel dato `visibility`: la carta la
-	# dichiara da se', cosi' la descrizione resta racconto (D-099).
+	# **La carta non e' velata: coperti sono i gettoni** (D-450, parola del
+	# committente). Fino alla 0.1.418 la faccia diceva «domanda velata» e
+	# ripeteva la soglia nell'angolo: la prima era una regola che il tavolo
+	# non gioca piu' — i gettoni di fine Atto sono l'unica cosa nascosta,
+	# D-203 — e la seconda un numero che col cancello del tavolo non decide
+	# niente. Il dato `visibility` resta al motore (un Effetto puo' ancora
+	# velare, D-126): la carta stampata non lo dice, perche' nessuna carta
+	# della scatola nasce velata.
 	# **In italiano** (D-339): `domain` e `relevant_asset_families` sono enum, e
 	# stamparli minuscoli stampa inglese. Sulla Carestia si leggeva «domanda ·
 	# survival» e «al Consiglio valgono: wealth, people, authority».
-	face["subtitle"] = "domanda%s · %s" % [
-		"" if str(tension["visibility"]) == "OPEN" else " velata",
-		SignLabels.domain(str(tension["domain"])),
-	]
-	# La soglia e' il numero che sta sulla traccia: la carta la ripete perche' la
-	# traccia e' dall'altra parte del tavolo.
-	face["corner"] = str(int(tension["threshold"]))
+	face["subtitle"] = "domanda · %s" % SignLabels.domain(str(tension["domain"]))
+	face["corner"] = ""
 	# **Niente racconto sulla carta Domanda** (D-341). La `description` e' voce
 	# d'autore — *«Non e' ancora fame. E' il calcolo, fatto a voce bassa, di
 	# quanto manchi alla fame»* — ed e' il primo blocco che un giocatore incontra
@@ -424,6 +425,10 @@ static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
 	face["notes"] = [
 		rise,
 		"SI RAFFREDDA  %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
+		# Il gesto del tavolo (D-203, D-450): i gettoni pescati si posano
+		# coperti sulla carta; a fine Atto si girano, e la carta col mucchio
+		# piu' alto si gira sul suo Consiglio.
+		"SI DIBATTE  quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta.",
 		"AL CONSIGLIO VALGONO  %s" % ", ".join(PackedStringArray(
 			(tension["relevant_asset_families"] as Array).map(
 				func(f: Variant) -> String: return SignLabels.family(str(f))

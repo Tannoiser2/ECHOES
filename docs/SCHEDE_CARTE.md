@@ -180,7 +180,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 
 ## 2. carta Domanda (la Tensione), fronte — tarocco 70×120 mm · 60 facce · 60 pezzi
 
-**Cos'e'.** La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. Se e' velata, la soglia si copre con un gettone: la carta resta in vista.
+**Cos'e'.** La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. **La carta non e' mai coperta: coperti sono i gettoni** che ci si posano sopra (D-450) — a fine Atto si girano, si sommano, e la Domanda col mucchio piu' alto si dibatte.
 
 **L'immagine.** Nessuna: e' tutta testo, e il testo prende il posto del quadro.
 
@@ -189,11 +189,12 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 | posto | da dove viene |
 |---|---|
 | il titolo | `title` o `name` |
-| il sottotitolo | «domanda» o «domanda velata» (`visibility`) e il Tema (`domain`) |
-| la cifra d'angolo | la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo |
+| il sottotitolo | «domanda» e il Tema (`domain`) |
+| la cifra d'angolo | nessuna: la soglia col cancello del tavolo non decide niente (D-203), e si e' tolta dalla carta (D-450) |
 | **SI DISCUTE DI** | le domande che puo' aprire, nel corpo: `possible_questions`, col testo da `council.questions` |
 | **SI ACCENDE QUANDO** | la regola a segni che la fa salire: `heats_when` (o `triggers`, dove la regola non c'e') |
 | **SI RAFFREDDA** | `decrease_rules` |
+| **SI DIBATTE** | il gesto di fine Atto, fisso: i gettoni coperti si girano e il mucchio piu' alto gira la carta (D-203, D-450) |
 | **AL CONSIGLIO VALGONO** | le famiglie che pesano al voto: `relevant_asset_families` |
 
 **Una carta, per intero, com'e' nel JSON:**
@@ -203,8 +204,8 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "id": "TEN_ASH",
   "tipo": "tension",
   "titolo": "La Cenere che Sale",
-  "sottotitolo": "domanda velata · l'antico",
-  "angolo": "4",
+  "sottotitolo": "domanda · l'antico",
+  "angolo": "",
   "accento": "#8a8172",
   "famiglia": "",
   "corpo": [
@@ -218,6 +219,10 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "SI RAFFREDDA",
       "testo": "Una Confluence risolta su chi tiene d'occhio la montagna."
+    },
+    {
+      "voce": "SI DIBATTE",
+      "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
     },
     {
       "voce": "AL CONSIGLIO VALGONO",

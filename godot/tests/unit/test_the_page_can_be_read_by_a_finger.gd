@@ -10,6 +10,7 @@ extends "res://tests/test_case.gd"
 ##
 ## Il cancello non guarda lo schermo (§5ter). Queste prove lo guardano.
 
+const Effect := preload("res://scripts/core/effect.gd")
 const StatusPanel := preload("res://ui/status_panel.gd")
 const AssetCard := preload("res://ui/asset_card.gd")
 
@@ -113,6 +114,13 @@ func test_the_question_track_does_not_teach_a_dead_threshold() -> void:
 		bool((chronicle.get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)),
 		"questa Chronicle tiene il Consiglio a fine Atto"
 	)
+	# All'apertura nessun gettone e' caduto e nessuna domanda e' davanti:
+	# se ne posa uno, coperto, cosi' c'e' un davanti da vedere (D-450).
+	var first: String = str(live.world["tensions"].keys()[0])
+	live.applier.apply(Effect.make(
+		"ADJUST_TENSION", "tension", first, {"delta": 1},
+		Effect.source("system", "TENSION_TOKEN", "", 1, 1, 0)
+	))
 	var panel: Node = _panel()
 	var rows: Dictionary = panel.get("_rows")
 	assert_true(rows.size() >= 4, "le domande dell'anno ci sono: %d" % rows.size())
@@ -123,7 +131,10 @@ func test_the_question_track_does_not_teach_a_dead_threshold() -> void:
 			said.contains("/"),
 			"«%s» non promette piu' una soglia: «%s»" % [str(tension_id), said]
 		)
-		if said.contains("Consiglio") or said.contains("a pari"):
+		# Coi mucchi coperti (D-450) davanti c'e' il mucchio con piu' gettoni,
+		# e la riga lo dice cosi': dire «va al Consiglio» sarebbe una bugia,
+		# perche' i gettoni si girano a fine Atto e pesano 0, 1 o 2.
+		if said.contains("Consiglio") or said.contains("a pari") or said.contains("piu' alto"):
 			marked += 1
 	assert_true(marked >= 1, "e la domanda davanti si vede che e' davanti")
 	panel.free()
@@ -139,6 +150,12 @@ func test_where_the_threshold_still_opens_something_the_row_says_so() -> void:
 	var rules: Dictionary = chronicle["confluence_rules"] as Dictionary
 	var before: bool = bool(rules.get("at_end_of_act", false))
 	rules["at_end_of_act"] = false
+	# Una soglia viva con i gettoni coperti non esiste: nessuno puo' confrontare
+	# un punteggio che non vede con un numero (D-450). Qui si scoprono i mucchi
+	# insieme, e si rimettono com'erano: la DataSet e' condivisa.
+	var tokens: Dictionary = chronicle.get("tension_tokens", {}) as Dictionary
+	var covered_before: Variant = tokens.get("covered")
+	tokens.erase("covered")
 	var panel: Node = _panel()
 	var rows: Dictionary = panel.get("_rows")
 	var with_threshold: int = 0
@@ -147,6 +164,8 @@ func test_where_the_threshold_still_opens_something_the_row_says_so() -> void:
 			with_threshold += 1
 	panel.free()
 	rules["at_end_of_act"] = before
+	if covered_before != null:
+		tokens["covered"] = covered_before
 	assert_true(with_threshold >= 1, "senza il Consiglio a fine Atto la soglia torna a contare")
 
 

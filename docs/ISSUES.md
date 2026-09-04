@@ -364,7 +364,9 @@ tarocco, coperte come i Destini ([D-445](DECISIONS.md#d-445)).
 
 **E in 0.1.418 le facce si uniscono** ([D-449](DECISIONS.md#d-449)): l'Eco è
 stampato sulla carta Asset, come D-359 diceva; la Domanda torna tarocco e porta
-il suo Consiglio sul retro, su fogli specchiati. Fogli 76 → 84.
+il suo Consiglio sul retro, su fogli specchiati. Fogli 76 → 84. E in 0.1.419
+la Domanda perde il velo ([D-450](DECISIONS.md#d-450)): coperti sono i
+gettoni, non la carta.
 
 ---
 
@@ -2342,6 +2344,11 @@ si apre.
 E si copre in **tre finestre**, non una: il verbale pubblico, la scheda del
 seggio, e la pagina d'aiuto. Bastava lasciarne aperta una perché coprire fosse
 teatro — la lezione di §5ter, presa in anticipo invece che dopo.
+
+*In 0.1.419 la previsione qui sopra si è avverata* ([D-450](DECISIONS.md#d-450)):
+nessuna Domanda nasce velata, TRAMARE sbircia i gettoni coperti, e la quarta
+finestra — la scheda di stato dell'app, che scriveva il punteggio a tutti — si
+è chiusa.
 
 | | prima | dopo |
 |---|---|---|

@@ -191,6 +191,9 @@ func test_discovery_count_drives_lyra() -> void:
 	var result: Dictionary = session.destinies.evaluate("DST_LYRA")
 	assert_eq(str(result["level"]), "NONE", "senza Scoperte Lyra non raggiunge nemmeno il Minimum")
 
+	# Nessuna Tensione nasce velata (D-450): aprire un velo e' una Scoperta,
+	# e il velo la prova se lo fabbrica.
+	_apply("SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "VEILED"})
 	session.actions.execute(
 		"ENT_LYRA", {"template": "SCHEME", "params": {"mode": "TENSION", "tension_id": "TEN_AWAKENING"}}
 	)

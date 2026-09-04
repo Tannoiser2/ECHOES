@@ -90,7 +90,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | al centro, uno alla volta | 93 | 191 | 1825 |
+| colonna di stato | al centro, uno alla volta | 93 | 234 | 1660 |
 | mappa | sul tavolo | 21 | *si adatta* | |
 | il Consiglio | al centro, uno alla volta | 55 | 218 | 1670 |
 | il tavolo | nella stanza, prima di sedersi | 43 | *si adatta* | |
@@ -104,7 +104,7 @@ Tre misure, una per posto:
 | | chiede | ha | |
 |---|---|---|---|
 | **il tavolo con la colonna accanto** — il piu' largo dei suoi pannelli (402), la colonna (240), i margini (36) | **678** | 768 | ✓ ne avanzano 90 |
-| **al centro, uno alla volta** — il piu' largo e' «il Consiglio» | **218** | 492 | ✓ ne avanzano 274 |
+| **al centro, uno alla volta** — il piu' largo e' «colonna di stato» | **234** | 492 | ✓ ne avanzano 258 |
 | **sotto, la mano** | **342** | 744 | ✓ ne avanzano 402 |
 
 **La pagina sta dentro il tablet**, in tutti e tre i posti. Fino a D-444
