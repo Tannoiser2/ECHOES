@@ -1,0 +1,1033 @@
+{
+  "tipo": "entity",
+  "nome": "carta Casata",
+  "formato": {
+    "nome": "tarocco",
+    "sigla": "TAROT",
+    "mm": [
+      70,
+      120
+    ]
+  },
+  "facce": 32,
+  "pezzi": 32,
+  "cos_e": "La casa, in vista tutta la partita: **cosa sa fare e cosa vuole lasciare**. Una carta per vita (D-111): la stessa casa cambia nome e volto quando si trasforma.",
+  "immagine": "Un **ritratto**: una figura sola, ravvicinata, che guarda chi la guarda. Il taglio lo decide l'archetipo.",
+  "sottotitolo": "l'archetipo e il bisogno (`archetype`, `need`), in italiano",
+  "angolo": "nessuna",
+  "scena": "`description` della vita che siede",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "ECHOES — House card. Portrait of {SOGGETTO}.\nWho this is: {SITUAZIONE}\nDominant accent: {ACCENTO}, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\n{DESCRIZIONE}. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror.",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "SA FARE",
+      "da_dove": "i valori dei verbi: `action_values`"
+    },
+    {
+      "voce": "VUOI LASCIARE",
+      "da_dove": "i segni del profilo strategico: `entity_profiles[].wants`"
+    },
+    {
+      "voce": "SE NON CE LA FAI",
+      "da_dove": "la vita dopo e la sua porta: `incarnations[].also_enters`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "ENT_ALDRIC",
+      "tipo": "entity",
+      "titolo": "Re Aldric",
+      "sottotitolo": "sovrano · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: La Repubblica della Valle"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.aldric",
+        "scena": "Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome.",
+        "prompt": "ECHOES — House card. Portrait of Re Aldric.\nWho this is: Terzo della sua casa, primo a regnare su un raccolto che non basta. Sa che il trono è una promessa di pane con un altro nome.\nDominant accent: oro spento, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_ALDRIC",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_CENERE",
+      "tipo": "entity",
+      "titolo": "Kessa dei Fuochi",
+      "sottotitolo": "fazione · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 3 · muovere 3 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: Le Custodi della Cenere"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.cenere",
+        "scena": "Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più.",
+        "prompt": "ECHOES — House card. Portrait of Kessa dei Fuochi.\nWho this is: Parla per i Signori della Cenere, che tengono le Montagne Rosse e campano di quello che l'antica miniera ha lasciato indietro. Sanno che sotto c'è di più.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_CENERE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_LIBERE",
+      "tipo": "entity",
+      "titolo": "Le Città Libere",
+      "sottotitolo": "popolo · vuole la liberta'",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 3 · forgiare 3 · influenzare 4 · muovere 3 · tramare 1"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la Carta e' stata scritta · la Carta vale per tutti · l'acqua ha cambiato strada · il debito e' stato perdonato"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.libere",
+        "scena": "Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.",
+        "prompt": "ECHOES — House card. Portrait of Le Città Libere.\nWho this is: Sette città che si governano da sole e si riuniscono solo quando non possono evitarlo. Non hanno una capitale, e considerano questo il loro unico principio.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_LIBERE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_LYRA",
+      "tipo": "entity",
+      "titolo": "Lyra",
+      "sottotitolo": "individuo · vuole il sapere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 2 · influenzare 2 · muovere 2 · tramare 5"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "scoperta: il cristallo · quello che si e' saputo lo sanno tutti · il Cristallo e' stato misurato · Archivio"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: Il Culto della Misura"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.lyra",
+        "scena": "Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda.",
+        "prompt": "ECHOES — House card. Portrait of Lyra.\nWho this is: Studiosa senza patrono. È scesa nelle Miniere Antiche per misurare una pietra e ne è risalita con una domanda.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, lo strumento del proprio mestiere a portata di mano. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_LYRA",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_NAHR",
+      "tipo": "entity",
+      "titolo": "Popolo Nahr",
+      "sottotitolo": "popolo · vuole la sopravvivenza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 3 · muovere 4 · tramare 1"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "i Nahr si sono fermati · Villaggio · pascolo · il peso e' stato diviso"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: La Diaspora di Nahr"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.nahr",
+        "scena": "Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere.",
+        "prompt": "ECHOES — House card. Portrait of Popolo Nahr.\nWho this is: Non un esercito e non una folla: una lingua, un calendario e undicimila persone che si spostano quando la terra smette di rispondere.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_NAHR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_SALE",
+      "tipo": "entity",
+      "titolo": "Maestra Ilve",
+      "sottotitolo": "fazione · vuole la ricchezza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 4 · rivendicare 2 · forgiare 3 · influenzare 3 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il debito e' stato chiamato · il conto e' stato saldato · il pedaggio · i conti sono pubblici"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: La Compagnia del Sale"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.sale",
+        "scena": "Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.",
+        "prompt": "ECHOES — House card. Portrait of Maestra Ilve.\nWho this is: Alla testa della Gilda del Sale, che non possiede nessuna città e tiene il registro di tutte. Non chiede obbedienza: chiede una firma.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_SALE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_VAERAX",
+      "tipo": "entity",
+      "titolo": "Vaerax",
+      "sottotitolo": "creatura · vuole la protezione",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 1 · forgiare 1 · influenzare 4 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "le Miniere sono state sigillate · lo studio e' sotto sorveglianza · la montagna e' diventata racconto · Sito dormiente"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vaerax",
+        "scena": "Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola.",
+        "prompt": "ECHOES — House card. Portrait of Vaerax.\nWho this is: Dorme sotto le Montagne Rosse da prima che Eredan avesse un nome. Si sveglia raramente, e mai per una ragione piccola.\nDominant accent: grigio-rosso, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nnon un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_VAERAX",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ENT_VETRO",
+      "tipo": "entity",
+      "titolo": "Priore Anselmo",
+      "sottotitolo": "culto · vuole la fede",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 3 · forgiare 3 · influenzare 3 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la custodia riconosciuta · la fede ha avuto un posto · la reliquia e' stata sepolta · il sigillo"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: I Frati del Vetro"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vetro",
+        "scena": "Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione.",
+        "prompt": "ECHOES — House card. Portrait of Priore Anselmo.\nWho this is: Guida l'Ordine del Vetro, che discende da una scuola e si comporta da fede. Custodisce quello che fu misurato, e la regola dice che misurarlo di nuovo sarebbe rimetterlo in discussione.\nDominant accent: porpora tenue, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "ENT_VETRO",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_ALDRIC_02",
+      "tipo": "entity",
+      "titolo": "La Repubblica della Valle",
+      "sottotitolo": "sovrano · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 2 · forgiare 3 · influenzare 4 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.aldric_republic",
+        "scena": "Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme.",
+        "prompt": "ECHOES — House card. Portrait of La Repubblica della Valle.\nWho this is: Quando l'ultimo nome della casa si spense senza eredi, i magistrati che contavano il grano contavano già tutto il resto. Non serve un re a una valle che sa contare: serve un registro, e il registro ha più firme.\nDominant accent: oro spento, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_ALDRIC_02",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_ALDRIC_REGENCY",
+      "tipo": "entity",
+      "titolo": "La Reggenza del Granaio",
+      "sottotitolo": "sovrano · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 4 · rivendicare 1 · forgiare 2 · influenzare 4 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: La Repubblica della Valle"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.aldric_regency",
+        "scena": "Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore.",
+        "prompt": "ECHOES — House card. Portrait of La Reggenza del Granaio.\nWho this is: Quando la casa finì, il trono era già diventato una dispensa: il grano requisito aveva bisogno di firme più che di re. La Reggenza governa a razioni, e nessuno le ha mai giurato amore.\nDominant accent: oro spento, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_ALDRIC_REGENCY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_ALDRIC_RESTORED",
+      "tipo": "entity",
+      "titolo": "La Corona Restaurata",
+      "sottotitolo": "sovrano · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 3 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.aldric_restored",
+        "scena": "La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda.",
+        "prompt": "ECHOES — House card. Portrait of La Corona Restaurata.\nWho this is: La repubblica scrisse registri; un giorno un nome tornò a valere più delle firme. La Corona Restaurata porta il peso di due tradizioni: quella che conta e quella che comanda.\nDominant accent: oro spento, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, le insegne portate come un peso e mai in posa di trionfo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_ALDRIC_RESTORED",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_CENERE_02",
+      "tipo": "entity",
+      "titolo": "Le Custodi della Cenere",
+      "sottotitolo": "fazione · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 3 · forgiare 3 · influenzare 3 · muovere 3 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.cenere_keepers",
+        "scena": "L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo.",
+        "prompt": "ECHOES — House card. Portrait of Le Custodi della Cenere.\nWho this is: L'ultima dei Fuochi non lasciò figli: lasciò una veglia. Le custodi tengono il fuoco per mestiere e la montagna per giuramento, e nessuna di loro porta un nome suo.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_CENERE_02",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_CENERE_FURNACES",
+      "tipo": "entity",
+      "titolo": "I Forni Riaccesi",
+      "sottotitolo": "fazione · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 4 · rivendicare 3 · forgiare 3 · influenzare 3 · muovere 3 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: Le Custodi della Cenere"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.cenere_furnaces",
+        "scena": "La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro.",
+        "prompt": "ECHOES — House card. Portrait of I Forni Riaccesi.\nWho this is: La ferita della montagna torna a soffiare calore, e i Signori della Cenere smettono di vegliare: accendono. I forni pagano bene e mangiano molto - e quello che mangiano cresce nella Valle di qualcun altro.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_CENERE_FURNACES",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_CENERE_ROADS",
+      "tipo": "entity",
+      "titolo": "Le Strade della Cenere",
+      "sottotitolo": "fazione · vuole il potere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 2 · forgiare 3 · influenzare 2 · muovere 4 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.cenere_roads",
+        "scena": "Tagliata fuori una volta di troppo, la casa smise di aspettare che le strade tornassero e si mise a farle. Dove passano loro, passa tutto: e' il pedaggio a essere cambiato di mano.",
+        "prompt": "ECHOES — House card. Portrait of Le Strade della Cenere.\nWho this is: Tagliata fuori una volta di troppo, la casa smise di aspettare che le strade tornassero e si mise a farle. Dove passano loro, passa tutto: e' il pedaggio a essere cambiato di mano.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_CENERE_ROADS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_LIBERE_ASSEMBLY",
+      "tipo": "entity",
+      "titolo": "L'Assemblea Permanente",
+      "sottotitolo": "popolo · vuole la liberta'",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 2 · forgiare 4 · influenzare 4 · muovere 2 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la Carta e' stata scritta · la Carta vale per tutti · l'acqua ha cambiato strada · il debito e' stato perdonato"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.libere_assembly",
+        "scena": "La Carta valse per un tempo solo, e alla scadenza nessuno la richiuse. Non c'e' piu' una citta' che parla per le altre: c'e' una stanza che non si svuota mai, e chi ci entra vota.",
+        "prompt": "ECHOES — House card. Portrait of L'Assemblea Permanente.\nWho this is: La Carta valse per un tempo solo, e alla scadenza nessuno la richiuse. Non c'e' piu' una citta' che parla per le altre: c'e' una stanza che non si svuota mai, e chi ci entra vota.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_LIBERE_ASSEMBLY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_LIBERE_HEGEMONY",
+      "tipo": "entity",
+      "titolo": "L'Egemonia di Eredan",
+      "sottotitolo": "popolo · vuole la liberta'",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 5 · forgiare 2 · influenzare 4 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la Carta e' stata scritta · la Carta vale per tutti · l'acqua ha cambiato strada · il debito e' stato perdonato"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.libere_hegemony",
+        "scena": "Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari.",
+        "prompt": "ECHOES — House card. Portrait of L'Egemonia di Eredan.\nWho this is: Quando la Valle si è svuotata e una sola città è rimasta piena, il coro è diventato una voce. Eredan non vota più: mette all'ordine del giorno. E chi tratta con lei sa che un patto con l'egemone non è mai fra pari.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_LIBERE_HEGEMONY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_LIBERE_LEAGUE",
+      "tipo": "entity",
+      "titolo": "La Lega delle Sette",
+      "sottotitolo": "popolo · vuole la liberta'",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 3 · forgiare 4 · influenzare 4 · muovere 2 · tramare 1"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la Carta e' stata scritta · la Carta vale per tutti · l'acqua ha cambiato strada · il debito e' stato perdonato"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.libere_league",
+        "scena": "La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa.",
+        "prompt": "ECHOES — House card. Portrait of La Lega delle Sette.\nWho this is: La Carta firmata ha fatto delle sette città una cosa sola nei giorni dispari. La Lega delibera piano, ma quando una firma delle sette scende su un foglio, il foglio pesa.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_LIBERE_LEAGUE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_LYRA_02",
+      "tipo": "entity",
+      "titolo": "Il Culto della Misura",
+      "sottotitolo": "individuo · vuole il sapere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 3 · forgiare 2 · influenzare 3 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "scoperta: il cristallo · quello che si e' saputo lo sanno tutti · il Cristallo e' stato misurato · Archivio"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.lyra_cult",
+        "scena": "Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire.",
+        "prompt": "ECHOES — House card. Portrait of Il Culto della Misura.\nWho this is: Gli appunti divennero scritture, gli allievi custodi. Ciò che Lyra domandava, il Culto lo crede: la domanda si è fatta dogma, e il dogma porta il nome di lei come un sigillo che nessuno ha il permesso di aprire.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, lo strumento del proprio mestiere a portata di mano. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_LYRA_02",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_LYRA_ACADEMY",
+      "tipo": "entity",
+      "titolo": "L'Accademia delle Misure",
+      "sottotitolo": "individuo · vuole il sapere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 4 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "scoperta: il cristallo · quello che si e' saputo lo sanno tutti · il Cristallo e' stato misurato · Archivio"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: Il Culto della Misura"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.lyra_academy",
+        "scena": "Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle.",
+        "prompt": "ECHOES — House card. Portrait of L'Accademia delle Misure.\nWho this is: Dove la legge fu scritta, il sapere trovò un'istituzione e non un altare: le misure di Lyra si insegnano, non si venerano, e chiunque può rifarle.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, lo strumento del proprio mestiere a portata di mano. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_LYRA_ACADEMY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_LYRA_ARCHIVE",
+      "tipo": "entity",
+      "titolo": "L'Archivio Aperto",
+      "sottotitolo": "individuo · vuole il sapere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 4 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "scoperta: il cristallo · quello che si e' saputo lo sanno tutti · il Cristallo e' stato misurato · Archivio"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.lyra_archive",
+        "scena": "Il registro fu letto in piazza, e da allora non si richiuse. Lyra smette di sapere per prima e comincia a sapere per tutti: chi legge le deve una riga.",
+        "prompt": "ECHOES — House card. Portrait of L'Archivio Aperto.\nWho this is: Il registro fu letto in piazza, e da allora non si richiuse. Lyra smette di sapere per prima e comincia a sapere per tutti: chi legge le deve una riga.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna persona sola, lo strumento del proprio mestiere a portata di mano. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_LYRA_ARCHIVE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_NAHR_DIASPORA",
+      "tipo": "entity",
+      "titolo": "La Diaspora di Nahr",
+      "sottotitolo": "popolo · vuole la sopravvivenza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 3 · muovere 5 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "i Nahr si sono fermati · Villaggio · pascolo · il peso e' stato diviso"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.nahr_diaspora",
+        "scena": "Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro.",
+        "prompt": "ECHOES — House card. Portrait of La Diaspora di Nahr.\nWho this is: Cacciato due volte nello stesso anno, il popolo ha smesso di chiedere una terra: il centro adesso è la lingua, il calendario, e la strada. Non lo si può chiudere fuori — non c'è più un dentro.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_NAHR_DIASPORA",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_NAHR_HOSTS",
+      "tipo": "entity",
+      "titolo": "Gli Ospiti di Nahr",
+      "sottotitolo": "popolo · vuole la sopravvivenza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 1 · forgiare 4 · influenzare 4 · muovere 4 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "i Nahr si sono fermati · Villaggio · pascolo · il peso e' stato diviso"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.nahr_hosts",
+        "scena": "Il peso fu diviso, e chi lo divise si sedette. Non sono piu' un popolo che passa: sono quelli che ogni casa ha ospitato una volta, e a cui ogni casa deve mezza stagione.",
+        "prompt": "ECHOES — House card. Portrait of Gli Ospiti di Nahr.\nWho this is: Il peso fu diviso, e chi lo divise si sedette. Non sono piu' un popolo che passa: sono quelli che ogni casa ha ospitato una volta, e a cui ogni casa deve mezza stagione.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_NAHR_HOSTS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_NAHR_KINGDOM",
+      "tipo": "entity",
+      "titolo": "Il Regno di Nahr",
+      "sottotitolo": "popolo · vuole la sopravvivenza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 4 · forgiare 3 · influenzare 3 · muovere 2 · tramare 1"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "i Nahr si sono fermati · Villaggio · pascolo · il peso e' stato diviso"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: La Diaspora di Nahr"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.nahr_kingdom",
+        "scena": "La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere.",
+        "prompt": "ECHOES — House card. Portrait of Il Regno di Nahr.\nWho this is: La terra data a chi la lavora ha fatto quello che nessuna spada aveva fatto: il popolo si è seduto. Un regno giovane con un granaio vero — e per la prima volta, eredi da perdere.\nDominant accent: terracotta, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nuna figura sola davanti e la sua gente dietro, fuori fuoco: il ritratto di un popolo è il volto di uno. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_NAHR_KINGDOM",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_SALE_02",
+      "tipo": "entity",
+      "titolo": "La Compagnia del Sale",
+      "sottotitolo": "fazione · vuole la ricchezza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 4 · rivendicare 1 · forgiare 3 · influenzare 3 · muovere 3 · tramare 2"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il debito e' stato chiamato · il conto e' stato saldato · il pedaggio · i conti sono pubblici"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.sale_company",
+        "scena": "Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno.",
+        "prompt": "ECHOES — House card. Portrait of La Compagnia del Sale.\nWho this is: Morta l'ultima maestra senza allievi, i banchi si federarono. Nessuna mano sola tiene il registro: un sigillo solo, molte firme, e il credito non muore più con nessuno.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_SALE_02",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_SALE_BANK",
+      "tipo": "entity",
+      "titolo": "Il Banco Nero",
+      "sottotitolo": "fazione · vuole la ricchezza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 4 · rivendicare 1 · forgiare 2 · influenzare 3 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il debito e' stato chiamato · il conto e' stato saldato · il pedaggio · i conti sono pubblici"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: La Compagnia del Sale"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.sale_bank",
+        "scena": "Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita.",
+        "prompt": "ECHOES — House card. Portrait of Il Banco Nero.\nWho this is: Quando il debito fu chiamato, chi teneva il registro tenne anche i debitori. Il Banco Nero non chiede obbedienza e non la nomina mai: la addebita.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_SALE_BANK",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_SALE_FORGIVEN",
+      "tipo": "entity",
+      "titolo": "La Mano Rimessa",
+      "sottotitolo": "fazione · vuole la ricchezza",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 4 · influenzare 4 · muovere 2 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "il debito e' stato chiamato · il conto e' stato saldato · il pedaggio · i conti sono pubblici"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.sale_forgiven",
+        "scena": "Rimesso un debito grosso davanti a tutti, la Gilda scopri' che perdonare rende piu' del riscuotere. Adesso presta a chi non puo' rendere, e tiene il conto di chi lo sa.",
+        "prompt": "ECHOES — House card. Portrait of La Mano Rimessa.\nWho this is: Rimesso un debito grosso davanti a tutti, la Gilda scopri' che perdonare rende piu' del riscuotere. Adesso presta a chi non puo' rendere, e tiene il conto di chi lo sa.\nDominant accent: ambra, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi risponde per la casa: la persona che firma, non quella che possiede. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_SALE_FORGIVEN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_VAERAX_CULT",
+      "tipo": "entity",
+      "titolo": "Il Culto della Montagna",
+      "sottotitolo": "creatura · vuole la protezione",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 2 · forgiare 3 · influenzare 4 · muovere 2 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "le Miniere sono state sigillate · lo studio e' sotto sorveglianza · la montagna e' diventata racconto · Sito dormiente"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vaerax_cult",
+        "scena": "Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più.",
+        "prompt": "ECHOES — House card. Portrait of Il Culto della Montagna.\nWho this is: Il drago non c'è più; la paura è rimasta, e la paura organizzata si chiama fede. Custodiscono le cicatrici della montagna come reliquie, e parlano per ciò che non parla più.\nDominant accent: grigio-rosso, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nnon un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_VAERAX_CULT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_VAERAX_LEGEND",
+      "tipo": "entity",
+      "titolo": "La Leggenda della Montagna",
+      "sottotitolo": "creatura · vuole la protezione",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 2 · forgiare 3 · influenzare 5 · muovere 0 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "le Miniere sono state sigillate · lo studio e' sotto sorveglianza · la montagna e' diventata racconto · Sito dormiente"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vaerax_legend",
+        "scena": "Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori.",
+        "prompt": "ECHOES — House card. Portrait of La Leggenda della Montagna.\nWho this is: Il drago che nessuno vivo ha mai visto. Il sigillo ha retto tanto a lungo che la creatura è diventata la storia che si racconta di lei — e chi custodisce quella storia siede al tavolo senza un solo segnalino sulla mappa: non sta in nessun posto, e per questo nessuna porta lo tiene fuori.\nDominant accent: grigio-rosso, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nnon un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_VAERAX_LEGEND",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_VAERAX_RISEN",
+      "tipo": "entity",
+      "titolo": "Vaerax Ridestato",
+      "sottotitolo": "creatura · vuole la protezione",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 1 · rivendicare 4 · forgiare 1 · influenzare 4 · muovere 3 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "le Miniere sono state sigillate · lo studio e' sotto sorveglianza · la montagna e' diventata racconto · Sito dormiente"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vaerax_risen",
+        "scena": "Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui.",
+        "prompt": "ECHOES — House card. Portrait of Vaerax Ridestato.\nWho this is: Il Cristallo cavato dalla montagna ha tolto il sonno a ciò che dormiva. Non è arrabbiato: è sveglio, ed è peggio — perché adesso ascolta ogni Consiglio che parla di lui.\nDominant accent: grigio-rosso, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nnon un volto: una presenza ravvicinata — pietra, scaglia, respiro — inquadrata come si inquadra un volto. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_VAERAX_RISEN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_VETRO_02",
+      "tipo": "entity",
+      "titolo": "I Frati del Vetro",
+      "sottotitolo": "culto · vuole la fede",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 3 · forgiare 3 · influenzare 4 · muovere 2 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la custodia riconosciuta · la fede ha avuto un posto · la reliquia e' stata sepolta · il sigillo"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vetro_friars",
+        "scena": "Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia.",
+        "prompt": "ECHOES — House card. Portrait of I Frati del Vetro.\nWho this is: Il priorato è finito; i frati restano. Portano il nome di Anselmo come una reliquia e la sua regola come una misura: ciò che fu una scuola adesso è una fede, e le fedi non muoiono di vecchiaia.\nDominant accent: porpora tenue, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_VETRO_02",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_VETRO_INQUISITION",
+      "tipo": "entity",
+      "titolo": "L'Inquisizione del Vetro",
+      "sottotitolo": "culto · vuole la fede",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 2 · rivendicare 2 · forgiare 2 · influenzare 3 · muovere 3 · tramare 5"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la custodia riconosciuta · la fede ha avuto un posto · la reliquia e' stata sepolta · il sigillo"
+        },
+        {
+          "voce": "SE NON CE LA FAI",
+          "testo": "dopo 150 anni con meno di 1 di questi segni: I Frati del Vetro"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vetro_inquisition",
+        "scena": "Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze.",
+        "prompt": "ECHOES — House card. Portrait of L'Inquisizione del Vetro.\nWho this is: Mostrata la Reliquia, la custodia smise di custodire e cominciò a interrogare. L'Inquisizione misura le persone come l'Ordine misurava le pietre, e archivia le differenze.\nDominant accent: porpora tenue, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_VETRO_INQUISITION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "INC_VETRO_SCHOOL",
+      "tipo": "entity",
+      "titolo": "La Scuola del Vetro",
+      "sottotitolo": "culto · vuole la fede",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SA FARE",
+          "testo": "acquisire 3 · rivendicare 1 · forgiare 4 · influenzare 3 · muovere 3 · tramare 3"
+        },
+        {
+          "voce": "VUOI LASCIARE",
+          "testo": "la custodia riconosciuta · la fede ha avuto un posto · la reliquia e' stata sepolta · il sigillo"
+        }
+      ],
+      "arte": {
+        "chiave": "entity.vetro_school",
+        "scena": "Quando la scorta giurata torno' senza reliquia e senza morti, l'Ordine capi' che il segreto non era il tesoro. Insegnano quello che custodivano, e chiedono in cambio che venga ripetuto uguale.",
+        "prompt": "ECHOES — House card. Portrait of La Scuola del Vetro.\nWho this is: Quando la scorta giurata torno' senza reliquia e senza morti, l'Ordine capi' che il segreto non era il tesoro. Insegnano quello che custodivano, e chiedono in cambio che venga ripetuto uguale.\nDominant accent: porpora tenue, over the game's muted earth palette. One subject,\nclose, facing the viewer: this framing is what separates a House card from an\nAsset card, where a single centred figure looking out is forbidden.\nchi custodisce, ripreso da vicino, con quello che custodisce fuori campo. Low side lighting, shallow depth of field; the background says\nwhere they come from without telling a story of its own. Grounded\nmedieval-adjacent world, no invented heraldry, no glowing magic. Composition:\nhead and shoulders in the upper two thirds; the lower third is a calm,\nlow-detail area reserved for a text overlay. Vertical card framing, 2:3. No\ntext, no letters, no numerals, no logos, no frame, no border. Not gory, not\nhorror."
+      },
+      "pie": "INC_VETRO_SCHOOL",
+      "copie": 1,
+      "segreta": false
+    }
+  ]
+}

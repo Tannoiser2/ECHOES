@@ -3136,3 +3136,365 @@ is a calm, low-detail area reserved for a text overlay. Vertical card framing,
 not horror.
 ```
 
+## objective
+
+### `objective.a_garrison` — Il Muro che Tiene
+
+- **soggetto**: Il Muro che Tiene
+- **scena**: C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.
+- **id**: `OBJ_A_GARRISON`
+
+```
+ECHOES — Objective card. Emblematic scene of Il Muro che Tiene.
+What must be true at the end of the year: C'e' chi costruisce per essere ricordato e chi costruisce per non essere cacciato. Questo obiettivo e' del secondo tipo, e non conta il muro da solo: un presidio che non ha due terre dietro non protegge niente, protegge se stesso — e va alzato dove la terra si contende, non dove nessuno passa.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.a_high_house` — Pietra sopra Pietra
+
+- **soggetto**: Pietra sopra Pietra
+- **scena**: Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.
+- **id**: `OBJ_A_HIGH_HOUSE`
+
+```
+ECHOES — Objective card. Emblematic scene of Pietra sopra Pietra.
+What must be true at the end of the year: Una pietra che cresce e' una promessa mantenuta due volte. Ma cresce dove qualcuno la vede: in capitale, o dove il mondo tiene le sue cose vecchie. Una torre in mezzo al niente e' alta uguale e non la guarda nessuno.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.a_learned_house` — Le Cose che si Sanno
+
+- **soggetto**: Le Cose che si Sanno
+- **scena**: Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.
+- **id**: `OBJ_A_LEARNED_HOUSE`
+
+```
+ECHOES — Objective card. Emblematic scene of Le Cose che si Sanno.
+What must be true at the end of the year: Si impara leggendo e si impara andandoci, e la seconda lascia un segno sulla mappa. Questo obiettivo chiede tutt'e due: due cose sapute, e un piede in uno dei posti dove il mondo e' ancora da guardare — dove si scava, dove il cristallo affiora, l'isola, il bosco, la palude.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.a_stone` — Qualcosa che Resta in Piedi
+
+- **soggetto**: Qualcosa che Resta in Piedi
+- **scena**: Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: quello che conta non è quante ne hai, è che quest'anno ne sia salita una.
+- **id**: `OBJ_A_STONE`
+
+```
+ECHOES — Objective card. Emblematic scene of Qualcosa che Resta in Piedi.
+What must be true at the end of the year: Le parole si scordano, le pietre no. Ma la casa da cui parti è già in piedi: quello che conta non è quante ne hai, è che quest'anno ne sia salita una.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.a_work` — L'Opera che Porta il Nome
+
+- **soggetto**: L'Opera che Porta il Nome
+- **scena**: Non un presidio, non un insediamento: un'opera. E non una che era già lì quando l'anno è cominciato — una che quest'anno è salita, e tutti sanno di chi è.
+- **id**: `OBJ_A_WORK`
+
+```
+ECHOES — Objective card. Emblematic scene of L'Opera che Porta il Nome.
+What must be true at the end of the year: Non un presidio, non un insediamento: un'opera. E non una che era già lì quando l'anno è cominciato — una che quest'anno è salita, e tutti sanno di chi è.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.bound_house` — Le Corde che Tengono
+
+- **soggetto**: Le Corde che Tengono
+- **scena**: Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va **fatta**, e quest'anno: un legame ereditato non è una mano tesa, è un'abitudine.
+- **id**: `OBJ_BOUND_HOUSE`
+
+```
+ECHOES — Objective card. Emblematic scene of Le Corde che Tengono.
+What must be true at the end of the year: Chi arriva alla fine dell'anno con qualcuno dall'altra parte del tavolo che risponde non ha vinto niente da solo, e lo sa. La carta la tieni; l'alleanza va **fatta**, e quest'anno: un legame ereditato non è una mano tesa, è un'abitudine.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.full_hands` — Le Mani Piene
+
+- **soggetto**: Le Mani Piene
+- **scena**: Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.
+- **id**: `OBJ_FULL_HANDS`
+
+```
+ECHOES — Objective card. Emblematic scene of Le Mani Piene.
+What must be true at the end of the year: Le mani piene non vengono dal niente. Chi finisce l'anno con delle carte in mano e' rimasto dove la roba si fa: si guarda la tessera del dominio delle risorse, e ci si vede la sua pedina.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.most_stone` — Più Pietra di Tutti
+
+- **soggetto**: Più Pietra di Tutti
+- **scena**: Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**, e lo fa **quest'anno**. Arrivare primi senza aver alzato niente è essere rimasti primi, che è un'altra cosa.
+- **id**: `OBJ_MOST_STONE`
+
+```
+ECHOES — Objective card. Emblematic scene of Più Pietra di Tutti.
+What must be true at the end of the year: Chi costruisce di più non costruisce di più in assoluto: costruisce di più **degli altri**, e lo fa **quest'anno**. Arrivare primi senza aver alzato niente è essere rimasti primi, che è un'altra cosa.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.no_open_question` — Nessuna Domanda Lasciata Aperta
+
+- **soggetto**: Nessuna Domanda Lasciata Aperta
+- **scena**: Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso, e non gli importa chi li ha chiusi — ma chiuderli costa, e chi arriva a fine anno con la mano ancora piena non ha pagato niente.
+- **id**: `OBJ_NO_OPEN_QUESTION`
+
+```
+ECHOES — Objective card. Emblematic scene of Nessuna Domanda Lasciata Aperta.
+What must be true at the end of the year: Si può vincere prendendo, o si può vincere finendo. Questo obiettivo è di chi non sopporta i conti in sospeso, e non gli importa chi li ha chiusi — ma chiuderli costa, e chi arriva a fine anno con la mano ancora piena non ha pagato niente.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.quiet_world` — Un Mondo che si Può Ancora Usare
+
+- **soggetto**: Un Mondo che si Può Ancora Usare
+- **scena**: Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.
+- **id**: `OBJ_QUIET_WORLD`
+
+```
+ECHOES — Objective card. Emblematic scene of Un Mondo che si Può Ancora Usare.
+What must be true at the end of the year: Un mondo intero non lo lascia nessuno. Ma le terre dove la gente mangia e beve si possono guardare una per una, e contare le ferite che portano: due, e non di piu'. Non e' un totale a mente — sono le tessere del dominio della sopravvivenza, e si vedono.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.the_longest_reach` — La Mano Più Lunga
+
+- **soggetto**: La Mano Più Lunga
+- **scena**: Non «due Regioni»: **più di chiunque altro**, e non per eredità. Il numero che serve non lo decidi tu, lo decide chi ti sta davanti; la terra in più, quella devi essertela presa.
+- **id**: `OBJ_THE_LONGEST_REACH`
+
+```
+ECHOES — Objective card. Emblematic scene of La Mano Più Lunga.
+What must be true at the end of the year: Non «due Regioni»: **più di chiunque altro**, e non per eredità. Il numero che serve non lo decidi tu, lo decide chi ti sta davanti; la terra in più, quella devi essertela presa.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.the_name` — Il Nome che Pesa
+
+- **soggetto**: Il Nome che Pesa
+- **scena**: Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.
+- **id**: `OBJ_THE_NAME`
+
+```
+ECHOES — Objective card. Emblematic scene of Il Nome che Pesa.
+What must be true at the end of the year: Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La fama è un segno che il mondo scrive addosso, e non si compra.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.the_old_ground` — Il Fondo Antico
+
+- **soggetto**: Il Fondo Antico
+- **scena**: Le terre vecchie sono poche e non si moltiplicano: quello che c'e' sotto ci sta da prima di tutti, e ne risponde una casa sola alla volta. Tenerne due vuol dire che nessun altro ne tiene due, ed e' per questo che vale.
+- **id**: `OBJ_THE_OLD_GROUND`
+
+```
+ECHOES — Objective card. Emblematic scene of Il Fondo Antico.
+What must be true at the end of the year: Le terre vecchie sono poche e non si moltiplicano: quello che c'e' sotto ci sta da prima di tutti, e ne risponde una casa sola alla volta. Tenerne due vuol dire che nessun altro ne tiene due, ed e' per questo che vale.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.the_two_yields` — Le Due Rese
+
+- **soggetto**: Le Due Rese
+- **scena**: Non la roba: i posti dove la roba si fa. Un raccolto lo si divide, una terra che lo produce no — e chi ne tiene due ha messo la mano su meta' di quello che il tavolo mangia.
+- **id**: `OBJ_THE_TWO_YIELDS`
+
+```
+ECHOES — Objective card. Emblematic scene of Le Due Rese.
+What must be true at the end of the year: Non la roba: i posti dove la roba si fa. Un raccolto lo si divide, una terra che lo produce no — e chi ne tiene due ha messo la mano su meta' di quello che il tavolo mangia.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.the_useful_ruin` — Quello che si Prende
+
+- **soggetto**: Quello che si Prende
+- **scena**: Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.
+- **id**: `OBJ_THE_USEFUL_RUIN`
+
+```
+ECHOES — Objective card. Emblematic scene of Quello che si Prende.
+What must be true at the end of the year: Ogni casa scrive nel proprio Destino le terre che vuole intatte. Nessuna scrive quelle che vuole vuote, e per questo nessuna terra si svuota mai: il disastro resta una cosa che si teme e che non arriva. Questo obiettivo è di chi ha capito che una terra spolpata è una terra che non ti fa più concorrenza — purché sia quella di un altro.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.the_widest_spread` — La Gente più Sparsa
+
+- **soggetto**: La Gente più Sparsa
+- **scena**: Essere in più posti degli altri non è tenere: è **esserci**, e l'esserci si paga in pedine che quest'anno sono uscite dalla riserva. Chi non ne ha mossa nessuna non si è sparso: era già sparso.
+- **id**: `OBJ_THE_WIDEST_SPREAD`
+
+```
+ECHOES — Objective card. Emblematic scene of La Gente più Sparsa.
+What must be true at the end of the year: Essere in più posti degli altri non è tenere: è **esserci**, e l'esserci si paga in pedine che quest'anno sono uscite dalla riserva. Chi non ne ha mossa nessuna non si è sparso: era già sparso.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.two_lands` — Due Terre, una Voce
+
+- **soggetto**: Due Terre, una Voce
+- **scena**: Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.
+- **id**: `OBJ_TWO_LANDS`
+
+```
+ECHOES — Objective card. Emblematic scene of Due Terre, una Voce.
+What must be true at the end of the year: Non basta esserci, e non basta contare: bisogna che rispondano due posti **che il tavolo sa indicare**. Si guardano le tessere del dominio del territorio, e si guarda chi le tiene. E' l'ambizione piu' semplice del tavolo, e la piu' difficile da nascondere.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+### `objective.written_things` — Le Cose Scritte
+
+- **soggetto**: Le Cose Scritte
+- **scena**: Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.
+- **id**: `OBJ_WRITTEN_THINGS`
+
+```
+ECHOES — Objective card. Emblematic scene of Le Cose Scritte.
+What must be true at the end of the year: Le cose scritte si tengono in un posto, e quel posto e' sulla mappa. Non basta sapere: bisogna essere stati dove il mondo tiene la sua memoria.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+

@@ -1,0 +1,453 @@
+{
+  "tipo": "region",
+  "nome": "tessera Regione",
+  "formato": {
+    "nome": "tessera",
+    "sigla": "TILE",
+    "mm": [
+      80,
+      80
+    ]
+  },
+  "facce": 10,
+  "pezzi": 10,
+  "cos_e": "La tessera di mappa: **porta i segni** che ogni carta Azione bersaglia, e i varchi con cui si posa accanto alle altre.",
+  "immagine": "Il **terreno**, che prende tutta la tessera: il quadro e' il bioma, e il testo ci sta sopra in basso. I varchi si vedono sui lati.",
+  "sottotitolo": "il bioma e i posti (`biome`, `presence_slots`, `build_slots`)",
+  "angolo": "nessuna",
+  "scena": "`description`",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "ECHOES — Region tile. Top-down three-quarter painted map tile of {REGIONE}:\n{DESCRIZIONE}.\nWhat this land is right now: {SITUAZIONE}\nDominant accent: {ACCENTO}, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. {VARCHI} Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe.",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "VARCHI",
+      "da_dove": "i lati aperti: `edges`"
+    },
+    {
+      "voce": "SEGNI",
+      "da_dove": "il dominio e i #segni stampati: `tags`"
+    },
+    {
+      "voce": "CI STANNO",
+      "da_dove": "le Pietre che il bioma accetta: `structure_types[].biomes`"
+    },
+    {
+      "voce": "FONTI",
+      "da_dove": "le famiglie che la tessera da': `asset_sources`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "REG_BOSCO_CONFINI",
+      "tipo": "region",
+      "titolo": "Il Bosco dei Confini",
+      "sottotitolo": "foresta · 3 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: l'antico · #bosco"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "autorità, forza"
+        }
+      ],
+      "arte": {
+        "chiave": "region.bosco_confini",
+        "scena": "Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Il Bosco dei Confini:\nchiome, radure, sentieri stretti.\nWhat this land is right now: Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.\nDominant accent: verde profondo, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_BOSCO_CONFINI",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_EREDAN",
+      "tipo": "region",
+      "titolo": "Eredan",
+      "sottotitolo": "citta · 4 pedine · 3 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · dominio: il territorio · #capitale · dominio: le risorse"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "autorità, forza"
+        }
+      ],
+      "arte": {
+        "chiave": "region.eredan",
+        "scena": "La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Eredan:\ntetti fitti, mura, una piazza, magazzini sul lato.\nWhat this land is right now: La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.\nDominant accent: oro spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_EREDAN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_ISOLA_MUTA",
+      "tipo": "region",
+      "titolo": "L'Isola Muta",
+      "sottotitolo": "island · 2 pedine · 1 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: l'antico · #isola"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "sapere, forza"
+        }
+      ],
+      "arte": {
+        "chiave": "region.isola_muta",
+        "scena": "Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of L'Isola Muta:\nL'Isola Muta.\nWhat this land is right now: Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges: draw the way through on every side, including the right and bottom edges, which a landslide token covers once the tile is on the table. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_ISOLA_MUTA",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_MINIERE_ANTICHE",
+      "tipo": "region",
+      "titolo": "Miniere Antiche",
+      "sottotitolo": "sottosuolo · 4 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: l'antico · dominio: le risorse · #cristallo · #miniera"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "sapere, legami"
+        }
+      ],
+      "arte": {
+        "chiave": "region.miniere_antiche",
+        "scena": "Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Miniere Antiche:\nimbocchi di galleria, sterili, impalcature, buio calibrato.\nWhat this land is right now: Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.\nDominant accent: verde-azzurro, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_MINIERE_ANTICHE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_MONTAGNE_ROSSE",
+      "tipo": "region",
+      "titolo": "Montagne Rosse",
+      "sottotitolo": "montagna · 3 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: l'antico · #selvaggio · #cristallo"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "forza, legami"
+        }
+      ],
+      "arte": {
+        "chiave": "region.montagne_rosse",
+        "scena": "Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Montagne Rosse:\npietra rossa, creste, neve solo su un versante.\nWhat this land is right now: Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.\nDominant accent: grigio-rosso, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_MONTAGNE_ROSSE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_PALUDE_CANALI",
+      "tipo": "region",
+      "titolo": "La Palude dei Canali",
+      "sottotitolo": "marsh · 3 pedine · 1 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · dominio: l'antico · #palude"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "canale · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "gente, sapere"
+        }
+      ],
+      "arte": {
+        "chiave": "region.palude_canali",
+        "scena": "Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of La Palude dei Canali:\nLa Palude dei Canali.\nWhat this land is right now: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_PALUDE_CANALI",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_PORTO_CINERINO",
+      "tipo": "region",
+      "titolo": "Porto Cinerino",
+      "sottotitolo": "costa · 4 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: il territorio · dominio: le risorse · #porto"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "ricchezza, legami"
+        }
+      ],
+      "arte": {
+        "chiave": "region.porto_cinerino",
+        "scena": "Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Porto Cinerino:\nsecche, moli, barche in secca.\nWhat this land is right now: Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.\nDominant accent: azzurro spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_PORTO_CINERINO",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_STRADA_MERCANTI",
+      "tipo": "region",
+      "titolo": "Strada dei Mercanti",
+      "sottotitolo": "strada · 4 pedine · 3 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · #commercio · dominio: il territorio · dominio: le risorse"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "ricchezza, sapere"
+        }
+      ],
+      "arte": {
+        "chiave": "region.strada_mercanti",
+        "scena": "Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Strada dei Mercanti:\nuna strada che attraversa tutto, soste, ponti, carri.\nWhat this land is right now: Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri.\nDominant accent: ambra, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_STRADA_MERCANTI",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_TERRE_NAHR",
+      "tipo": "region",
+      "titolo": "Terre Nahr",
+      "sottotitolo": "steppa · 4 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · #pascolo · dominio: il territorio"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "autorità, gente"
+        }
+      ],
+      "arte": {
+        "chiave": "region.terre_nahr",
+        "scena": "Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Terre Nahr:\nerba bassa, piste, tende smontabili, orizzonte alto.\nWhat this land is right now: Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando.\nDominant accent: ocra chiaro, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_TERRE_NAHR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_VALLE_VERDE",
+      "tipo": "region",
+      "titolo": "Valle Verde",
+      "sottotitolo": "valle · 4 pedine · 3 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · destra · basso · sinistra"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · #granaio · dominio: il territorio · dominio: le risorse"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "gente, ricchezza"
+        }
+      ],
+      "arte": {
+        "chiave": "region.valle_verde",
+        "scena": "Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Valle Verde:\ncampi a strisce, un fiume, argini, fienili sparsi.\nWhat this land is right now: Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve.\nDominant accent: verde spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+      },
+      "pie": "REG_VALLE_VERDE",
+      "copie": 1,
+      "segreta": false
+    }
+  ]
+}

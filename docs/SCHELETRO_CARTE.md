@@ -10,9 +10,10 @@ che entra. Il numero accanto e' su quante facce del mazzo quel blocco c'e'.
 |---|---|---|---|
 | **asset** | 70x120 — il tarocco che resta in vista | 48 | 132 |
 | **echo** | 70x120 — il tarocco che resta in vista | 48 | 48 |
-| **tension** | 44x68 — la mini che sta accanto a una traccia | 60 | 60 |
+| **tension** | 63x88 — la carta da gioco che sta in mano | 60 | 60 |
 | **council** | 70x120 — il tarocco che resta in vista | 60 | 60 |
 | **destiny** | 70x120 — il tarocco che resta in vista | 23 | 23 |
+| **objective** | 70x120 — il tarocco che resta in vista | 19 | 19 |
 | **entity** | 70x120 — il tarocco che resta in vista | 32 | 32 |
 | **region** | 80x80 — la tessera quadrata della mappa | 10 | 10 |
 
@@ -28,9 +29,10 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 |---|---|---|---|---|
 | **asset** | 0 su 48 | 100% | 49% | 43% |
 | **echo** | 0 su 48 | 100% | 52% | 52% |
-| **tension** | 2 su 60 | 85% | — | — |
+| **tension** | 0 su 60 | 100% | — | — |
 | **council** | 7 su 60 | 89% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
+| **objective** | 0 su 19 | 100% | 52% | 52% |
 | **entity** | 0 su 32 | 100% | 52% | 52% |
 | **region** | 0 su 10 | 100% | 91% | 92% |
 
@@ -97,7 +99,7 @@ Due a testa a inizio Atto, dal sacchetto dell'Atto. Costa 1 Occasione.
 La domanda, appoggiata alla traccia dei valori: dice **quando si scalda**.
 Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno.
 
-**Lo scheletro** — 44x68 — la mini che sta accanto a una traccia, 60 facce, 60 pezzi:
+**Lo scheletro** — 63x88 — la carta da gioco che sta in mano, 60 facce, 60 pezzi:
 
 | blocco | su quante facce |
 |---|---|
@@ -189,6 +191,28 @@ Non si gioca: si guarda per sapere quanto manca.
 > SOGLIA  Il trono regge: Una pedina dove c'e' il #capitale, o su una terra di #territorio
 > VITTORIA  Il regno decide: La corona tiene ancora la sua terra · La Carestia non supera 4
 > TRIONFO  Un regno che non ha pagato il pane con il sangue: La terra col #capitale non e' in rivolta · E tre segni che la corona ha retto senza stringere
+
+## Il mazzo `objective`
+
+La promessa coperta che **qualunque casa puo' pescare**, dietro il paravento.
+Non si gioca: si conta a fine anno, clausola per clausola.
+
+**Lo scheletro** — 70x120 — il tarocco che resta in vista, 19 facce, 19 pezzi:
+
+| blocco | su quante facce |
+|---|---|
+| il titolo | 19 su 19 |
+| il sottotitolo | 19 su 19 |
+| l'illustrazione | 18 su 19 |
+| una riga di testo libero | 19 su 19 |
+| **CONTA** | 19 su 19 |
+
+**Una carta vera**, come esce dal foglio di stampa:
+
+> **Il Muro che Tiene**
+> obiettivo coperto · si conta a fine anno
+> Un presidio suo tiene una terra del territorio
+> CONTA  Almeno un presidio suo nel dominio del territorio · Controllo di almeno 2 Regioni
 
 ## Il mazzo `entity`
 

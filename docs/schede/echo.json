@@ -1,0 +1,1449 @@
+{
+  "tipo": "echo",
+  "nome": "carta Echo",
+  "formato": {
+    "nome": "tarocco",
+    "sigla": "TAROT",
+    "mm": [
+      70,
+      120
+    ]
+  },
+  "facce": 48,
+  "pezzi": 48,
+  "cos_e": "La faccia del Narratore stampata sulla carta Asset (D-359): una funzione di Propp, e **tu scegli solo quando**. Dove cade e cosa lascia lo decide il mondo. Costa 1 Occasione.",
+  "immagine": "Una scena della **famiglia drammatica** — pressione, rottura, svolta, risoluzione — col suo registro e il suo accento.",
+  "sottotitolo": "la famiglia drammatica e la funzione di Propp (`dramatic_family`, `function_id`), in italiano",
+  "angolo": "nessuna",
+  "scena": "`description`",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "ECHOES — Echo card. A narrative moment: {SOGGETTO}.\nWhat is happening: {SITUAZIONE}\nDominant accent: {ACCENTO}, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory.",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "QUANDO ESCE",
+      "da_dove": "le condizioni per calarla: `eligibility`, generate dai campi e non ricopiate"
+    },
+    {
+      "voce": "IL MONDO",
+      "da_dove": "cosa fa, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id)"
+    },
+    {
+      "voce": "CONVOCA IL CONSIGLIO",
+      "da_dove": "la domanda che apre, se ne apre una: `forces_confluence_on`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "ECH_AMNESTY",
+      "tipo": "echo",
+      "titolo": "Amnistia",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: liberazione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di conquest"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta non e' piu' #inquieta · nel luogo della carta non e' piu' #contesa · La Successione scende · il mondo registra: l'amnistia e' stata concessa"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.liberation",
+        "scena": "Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Amnistia.\nWhat is happening: Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_AMNESTY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_BETRAYAL",
+      "tipo": "echo",
+      "titolo": "Tradimento",
+      "sottotitolo": "ROTTURA · funzione di Propp: tradimento",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #contesa"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo registra: il tradimento e' stato detto ad alta voce · la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Carestia"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.betrayal",
+        "scena": "Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Tradimento.\nWhat is happening: Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_BETRAYAL",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_CALL_OF_ACCOUNTS",
+      "tipo": "echo",
+      "titolo": "La Chiamata",
+      "sottotitolo": "PRESSIONE · funzione di Propp: richiesta",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su Il Debito"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.call_of_accounts",
+        "scena": "La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Chiamata.\nWhat is happening: La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_CALL_OF_ACCOUNTS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_CARAVAN_LOST",
+      "tipo": "echo",
+      "titolo": "Carovana Perduta",
+      "sottotitolo": "ROTTURA · funzione di Propp: attacco",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta diventa #depredata · in una Regione confinante diventa tagliata fuori · La Carestia sale · e resta una Cicatrice: la razzia nel luogo della carta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.attack",
+        "scena": "Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Carovana Perduta.\nWhat is happening: Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_CARAVAN_LOST",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_CROWNING",
+      "tipo": "echo",
+      "titolo": "Chi Siede",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: successione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di threat oppure e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di conquest oppure e' gia' stata calata una carta Eco di separation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.succession",
+        "scena": "Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Chi Siede.\nWhat is happening: Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_CROWNING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_DISCOVERY",
+      "tipo": "echo",
+      "titolo": "Scoperta",
+      "sottotitolo": "SVOLTA · funzione di Propp: scoperta",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il Cristallo e' stato sfruttato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco si apre a tutti · il mondo registra: il Cristallo e' stato misurato · chi propone porta addosso: scoperta: la misura"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.discovery",
+        "scena": "Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Scoperta.\nWhat is happening: Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_DISCOVERY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_EMPTY_THRONE",
+      "tipo": "echo",
+      "titolo": "Sedia Vuota",
+      "sottotitolo": "PRESSIONE · funzione di Propp: minaccia",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #capitale diventa #contesa"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Successione"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.threat",
+        "scena": "Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Sedia Vuota.\nWhat is happening: Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_EMPTY_THRONE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_EXODUS",
+      "tipo": "echo",
+      "titolo": "La Partenza",
+      "sottotitolo": "ROTTURA · funzione di Propp: separazione",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #abbandonata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "chi propone se ne va nel luogo della carta · in una Regione con #pascolo diventa #svuotata · chi propone entra in una Regione confinante · la domanda in gioco sale · Foresta nel luogo della carta va al grado 3"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.separation",
+        "scena": "Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Partenza.\nWhat is happening: Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_EXODUS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_GOOD_YEAR",
+      "tipo": "echo",
+      "titolo": "Annata Buona",
+      "sottotitolo": "SVOLTA · funzione di Propp: dono",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "Un'annata buona si nota solo dopo una che non lo era"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta non e' piu' #affamata · nel luogo della carta non e' piu' #magra · La Carestia scende di 2"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.gift",
+        "scena": "Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Annata Buona.\nWhat is happening: Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_GOOD_YEAR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_HANDS_DOWN",
+      "tipo": "echo",
+      "titolo": "Le Mani Ferme",
+      "sottotitolo": "PRESSIONE · funzione di Propp: divieto",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #granaio diventa #inquieta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.hands_down",
+        "scena": "Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Le Mani Ferme.\nWhat is happening: Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_HANDS_DOWN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_LACK",
+      "tipo": "echo",
+      "titolo": "Mancanza",
+      "sottotitolo": "PRESSIONE · funzione di Propp: mancanza",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #granaio diventa #magra · viene giu' Granaio in una Regione con #granaio"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.lack",
+        "scena": "Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Mancanza.\nWhat is happening: Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_LACK",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_LEGEND_BROKEN_OATH",
+      "tipo": "echo",
+      "titolo": "Il Giuramento che Nessuno Sciolse",
+      "sottotitolo": "ROTTURA · funzione di Propp: tradimento",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta si racconta che il giuramento e' stato rotto oppure il mondo porta il tradimento e' stato detto ad alta voce"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Successione"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.memoria.the_broken_oath",
+        "scena": "Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Giuramento che Nessuno Sciolse.\nWhat is happening: Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_LEGEND_BROKEN_OATH",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_LEGEND_CALLED_DAY",
+      "tipo": "echo",
+      "titolo": "Il Giorno che la Gilda Chiese Tutto",
+      "sottotitolo": "PRESSIONE · funzione di Propp: minaccia",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta si racconta che il debito e' stato chiamato oppure il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su Il Debito"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.memoria.the_called_day",
+        "scena": "La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Giorno che la Gilda Chiese Tutto.\nWhat is happening: La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_LEGEND_CALLED_DAY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_LEGEND_GOOD_YEAR",
+      "tipo": "echo",
+      "titolo": "La Ballata dell'Anno Buono",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: ritorno",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta si racconta che l'ordine e' stato ristabilito oppure il mondo porta l'ordine e' stato ristabilito"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · in una Regione con #capitale non e' piu' #inquieta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.memoria.the_good_year",
+        "scena": "Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Ballata dell'Anno Buono.\nWhat is happening: Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_LEGEND_GOOD_YEAR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_LOSS",
+      "tipo": "echo",
+      "titolo": "Perdita",
+      "sottotitolo": "ROTTURA · funzione di Propp: perdita",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #inquieta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #pascolo diventa in lutto · il rivale se ne va in una Regione con #pascolo"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.loss",
+        "scena": "Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Perdita.\nWhat is happening: Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_LOSS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_OATH_BROKEN",
+      "tipo": "echo",
+      "titolo": "La Parola Data",
+      "sottotitolo": "ROTTURA · funzione di Propp: violazione",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di request"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo registra: il giuramento e' stato rotto · nel luogo della carta diventa #inquieta · il rapporto fra chi propone e il rivale cambia · e resta una Cicatrice: la parola rotta nel luogo della carta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.violation",
+        "scena": "La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Parola Data.\nWhat is happening: La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_OATH_BROKEN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_OATH_SWORN",
+      "tipo": "echo",
+      "titolo": "Giuramento Prestato",
+      "sottotitolo": "SVOLTA · funzione di Propp: trasformazione",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "Ci si lega quando qualcosa minaccia entrambi"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "chi propone porta addosso: la scorta giurata · nel luogo della carta non e' piu' tagliata fuori · Le Vie Interrotte scende di 2"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.transformation",
+        "scena": "Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Giuramento Prestato.\nWhat is happening: Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_OATH_SWORN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_OFFER",
+      "tipo": "echo",
+      "titolo": "L'Offerta",
+      "sottotitolo": "PRESSIONE · funzione di Propp: tentazione",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · nel luogo della carta diventa #indebitata · chi propone entra nel luogo della carta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.temptation",
+        "scena": "Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.",
+        "prompt": "ECHOES — Echo card. A narrative moment: L'Offerta.\nWhat is happening: Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_OFFER",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_OMEN",
+      "tipo": "echo",
+      "titolo": "Presagio",
+      "sottotitolo": "PRESSIONE · funzione di Propp: presagio",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta la voce corre"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · chi propone porta addosso: scoperta: il presagio"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.omen",
+        "scena": "Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Presagio.\nWhat is happening: Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_OMEN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_PARLEY",
+      "tipo": "echo",
+      "titolo": "L'Incontro",
+      "sottotitolo": "SVOLTA · funzione di Propp: incontro",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo registra: ci si e' parlato · la domanda in gioco scende"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.encounter",
+        "scena": "Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.",
+        "prompt": "ECHOES — Echo card. A narrative moment: L'Incontro.\nWhat is happening: Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_PARLEY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_PETITION",
+      "tipo": "echo",
+      "titolo": "La Supplica",
+      "sottotitolo": "PRESSIONE · funzione di Propp: richiesta",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · il mondo registra: la richiesta e' stata ascoltata"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Carestia"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.request",
+        "scena": "Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Supplica.\nWhat is happening: Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_PETITION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_RECKONING",
+      "tipo": "echo",
+      "titolo": "Il Conto",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: punizione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di violation oppure e' gia' stata calata una carta Eco di betrayal oppure e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di conquest"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco scende di 2"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.punishment",
+        "scena": "Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Conto.\nWhat is happening: Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_RECKONING",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_RECONCILIATION",
+      "tipo": "echo",
+      "titolo": "Riconciliazione",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: riconciliazione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di betrayal oppure e' gia' stata calata una carta Eco di violation oppure e' gia' stata calata una carta Eco di attack oppure e' gia' stata calata una carta Eco di separation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · in una Regione con #capitale non e' piu' #inquieta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.reconciliation",
+        "scena": "Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Riconciliazione.\nWhat is happening: Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_RECONCILIATION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_REVELATION",
+      "tipo": "echo",
+      "titolo": "Rivelazione",
+      "sottotitolo": "SVOLTA · funzione di Propp: rivelazione",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "Si rivela quello che qualcuno aveva già scoperto"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco si apre a tutti · la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su Il Risveglio"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.revelation",
+        "scena": "Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Rivelazione.\nWhat is happening: Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_REVELATION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_ROADS_OPEN",
+      "tipo": "echo",
+      "titolo": "Vie Riaperte",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: ritorno",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di separation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta non e' piu' tagliata fuori · nel luogo della carta non e' piu' #depredata · Le Vie Interrotte scende di 2"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.return",
+        "scena": "Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Vie Riaperte.\nWhat is happening: Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_ROADS_OPEN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_ROAD_CLOSED",
+      "tipo": "echo",
+      "titolo": "Strada Chiusa",
+      "sottotitolo": "PRESSIONE · funzione di Propp: divieto",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #sorvegliata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #commercio diventa tagliata fuori"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.prohibition",
+        "scena": "Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Strada Chiusa.\nWhat is happening: Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_ROAD_CLOSED",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_SACRIFICE",
+      "tipo": "echo",
+      "titolo": "Sacrificio",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: sacrificio",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · il mondo registra: qualcuno ha pagato · chi propone porta addosso: la fama"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.sacrifice",
+        "scena": "Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Sacrificio.\nWhat is happening: Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_SACRIFICE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_SEIZURE",
+      "tipo": "echo",
+      "titolo": "La Presa",
+      "sottotitolo": "SVOLTA · funzione di Propp: conquista",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di attack oppure e' gia' stata calata una carta Eco di threat oppure e' gia' stata calata una carta Eco di usurpation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nella capitale cambia padrone · il rivale se ne va nella capitale · nella capitale diventa #inquieta · il rivale perde: la corona · e resta una Cicatrice: passata di mano nella capitale"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.conquest",
+        "scena": "Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Presa.\nWhat is happening: Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_SEIZURE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_SILT",
+      "tipo": "echo",
+      "titolo": "Interramento",
+      "sottotitolo": "PRESSIONE · funzione di Propp: mancanza",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #granaio diventa #magra · viene giu' Canale in una Regione con #granaio"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.silt",
+        "scena": "Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Interramento.\nWhat is happening: Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_SILT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_CALLED_UP",
+      "tipo": "echo",
+      "titolo": "I Chiamati",
+      "sottotitolo": "SVOLTA · funzione di Propp: trasformazione",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #inquieta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · il mondo registra: il peso e' stato diviso"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.the_called_up",
+        "scena": "La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.",
+        "prompt": "ECHOES — Echo card. A narrative moment: I Chiamati.\nWhat is happening: La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_CALLED_UP",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_CLOSED_ROAD",
+      "tipo": "echo",
+      "titolo": "La Strada Chiusa a Chiave",
+      "sottotitolo": "ROTTURA · funzione di Propp: minaccia",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il pedaggio si divide"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #commercio diventa tagliata fuori"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.the_closed_road",
+        "scena": "Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Strada Chiusa a Chiave.\nWhat is happening: Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_CLOSED_ROAD",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_COPY",
+      "tipo": "echo",
+      "titolo": "La Copia",
+      "sottotitolo": "SVOLTA · funzione di Propp: scoperta",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta i conti sono pubblici"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · la domanda in gioco si apre a tutti · chi propone porta addosso: scoperta: la reliquia"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.the_copy",
+        "scena": "Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Copia.\nWhat is happening: Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_COPY",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_CRACK",
+      "tipo": "echo",
+      "titolo": "La Crepa",
+      "sottotitolo": "ROTTURA · funzione di Propp: minaccia",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #inquieta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #miniera diventa #inquieta · il rivale se ne va in una Regione con #miniera"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.the_crack",
+        "scena": "Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Crepa.\nWhat is happening: Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_CRACK",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_DUG_SEASON",
+      "tipo": "echo",
+      "titolo": "La Stagione Scavata",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: dono",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · si alza Canale in una Regione con #granaio · il mondo registra: l'acqua ha cambiato strada"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.the_dug_season",
+        "scena": "Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Stagione Scavata.\nWhat is happening: Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_DUG_SEASON",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_FIRES_OUTSIDE",
+      "tipo": "echo",
+      "titolo": "I Fuochi Fuori",
+      "sottotitolo": "ROTTURA · funzione di Propp: separazione",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #svuotata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #pascolo diventa #svuotata · in una Regione con #pascolo cambia padrone · Foresta nel luogo della carta va al grado 3"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.the_fires_outside",
+        "scena": "Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.",
+        "prompt": "ECHOES — Echo card. A narrative moment: I Fuochi Fuori.\nWhat is happening: Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_FIRES_OUTSIDE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_FORGIVEN_DEBT",
+      "tipo": "echo",
+      "titolo": "Il Debito Rimesso",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: dono",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · il mondo registra: il debito e' stato perdonato"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.the_forgiven_debt",
+        "scena": "Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Debito Rimesso.\nWhat is happening: Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_FORGIVEN_DEBT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_LONG_TABLE",
+      "tipo": "echo",
+      "titolo": "Il Tavolo Lungo",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: riconciliazione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il peso e' stato diviso"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · la domanda in gioco scende · il rapporto fra chi propone e il rivale cambia"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.the_long_table",
+        "scena": "Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Tavolo Lungo.\nWhat is happening: Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_LONG_TABLE",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_MET_ROAD",
+      "tipo": "echo",
+      "titolo": "L'Incontro sulla Strada",
+      "sottotitolo": "SVOLTA · funzione di Propp: incontro",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta tagliata fuori"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · il mondo registra: il peso e' stato diviso"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.the_met_road",
+        "scena": "Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.",
+        "prompt": "ECHOES — Echo card. A narrative moment: L'Incontro sulla Strada.\nWhat is happening: Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_MET_ROAD",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_OLD_ACCOUNT",
+      "tipo": "echo",
+      "titolo": "Il Conto Vecchio",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: punizione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · il mondo registra: il conto e' stato saldato"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.the_old_account",
+        "scena": "Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Conto Vecchio.\nWhat is happening: Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_OLD_ACCOUNT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_ONE_WHO_SAW",
+      "tipo": "echo",
+      "titolo": "Quello che c'Era",
+      "sottotitolo": "SVOLTA · funzione di Propp: rivelazione",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco si apre a tutti · il mondo registra: quello che si e' saputo lo sanno tutti"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.the_one_who_saw",
+        "scena": "Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Quello che c'Era.\nWhat is happening: Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_ONE_WHO_SAW",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_PRICE_OF_SALT",
+      "tipo": "echo",
+      "titolo": "Il Prezzo del Sale",
+      "sottotitolo": "PRESSIONE · funzione di Propp: tentazione",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta tagliata fuori"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.the_price_of_salt",
+        "scena": "Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Prezzo del Sale.\nWhat is happening: Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_PRICE_OF_SALT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_QUIET_SHAFT",
+      "tipo": "echo",
+      "titolo": "Il Pozzo Zitto",
+      "sottotitolo": "SVOLTA · funzione di Propp: ritorno",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · la domanda in gioco sale · chi propone entra in una Regione con #miniera"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.the_quiet_shaft",
+        "scena": "La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Il Pozzo Zitto.\nWhat is happening: La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_QUIET_SHAFT",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_SHORT_YEAR",
+      "tipo": "echo",
+      "titolo": "L'Anno Corto",
+      "sottotitolo": "SVOLTA · funzione di Propp: trasformazione",
+      "angolo": "",
+      "accento": "#7fa6c9",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #contesa"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · la domanda in gioco sale · in una Regione con #granaio diventa #affamata"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.turn.the_short_year",
+        "scena": "Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.",
+        "prompt": "ECHOES — Echo card. A narrative moment: L'Anno Corto.\nWhat is happening: Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.\nDominant accent: bianco freddo, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_SHORT_YEAR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_THE_WALKING_YEAR",
+      "tipo": "echo",
+      "titolo": "L'Anno a Piedi",
+      "sottotitolo": "ROTTURA · funzione di Propp: separazione",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #abbandonata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #pascolo diventa #svuotata"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.the_walking_year",
+        "scena": "Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.",
+        "prompt": "ECHOES — Echo card. A narrative moment: L'Anno a Piedi.\nWhat is happening: Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_THE_WALKING_YEAR",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_TWO_VERDICTS",
+      "tipo": "echo",
+      "titolo": "Due Sentenze",
+      "sottotitolo": "ROTTURA · funzione di Propp: violazione",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta i conti sono pubblici"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #capitale diventa #contesa"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Carta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.two_verdicts",
+        "scena": "Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Due Sentenze.\nWhat is happening: Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_TWO_VERDICTS",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_USURPATION",
+      "tipo": "echo",
+      "titolo": "Usurpazione",
+      "sottotitolo": "ROTTURA · funzione di Propp: usurpazione",
+      "angolo": "",
+      "accento": "#c8553d",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nella sede del rivale cambia padrone · nella capitale diventa #contesa · il mondo registra: la corona e' stata divisa · e resta una Cicatrice: il sigillo diviso nella capitale · la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Successione"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.rupture.usurpation",
+        "scena": "Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Usurpazione.\nWhat is happening: Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.\nDominant accent: rosso scuro, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_USURPATION",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_VIGIL_MOVED",
+      "tipo": "echo",
+      "titolo": "La Veglia Spostata",
+      "sottotitolo": "PRESSIONE · funzione di Propp: presagio",
+      "angolo": "",
+      "accento": "#c9a86a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta la voce corre"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · chi propone entra nel luogo della carta"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.pressure.vigil_moved",
+        "scena": "L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane.",
+        "prompt": "ECHOES — Echo card. A narrative moment: La Veglia Spostata.\nWhat is happening: L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane.\nDominant accent: grigio-ocra, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_VIGIL_MOVED",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "ECH_WRITTEN_DOWN",
+      "tipo": "echo",
+      "titolo": "Messo per Iscritto",
+      "sottotitolo": "RISOLUZIONE · funzione di Propp: liberazione",
+      "angolo": "",
+      "accento": "#6fa88a",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta quello che si e' saputo lo sanno tutti"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · il mondo registra: la Carta vale per un tempo solo · chi propone porta addosso: la fama"
+        }
+      ],
+      "arte": {
+        "chiave": "echo.resolution.written_down",
+        "scena": "Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.",
+        "prompt": "ECHOES — Echo card. A narrative moment: Messo per Iscritto.\nWhat is happening: Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
+      },
+      "pie": "ECH_WRITTEN_DOWN",
+      "copie": 1,
+      "segreta": false
+    }
+  ]
+}

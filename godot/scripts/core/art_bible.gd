@@ -20,7 +20,9 @@ extends RefCounted
 const CardFace := preload("res://scripts/core/card_face.gd")
 
 ## Quale MASTER PROMPT vale per quale mazzo, e con quale variazione.
-const PROMPT_FOR: Dictionary = {"asset": 1, "echo": 2, "region": 3, "entity": 4, "destiny": 5}
+const PROMPT_FOR: Dictionary = {
+	"asset": 1, "echo": 2, "region": 3, "entity": 4, "destiny": 5, "objective": 7,
+}
 
 ## Le intestazioni delle tabelle di variation key. Sono righe di tabella come le
 ## altre e vanno saltate: senza questo elenco la parola «archetipo» diventerebbe
@@ -175,6 +177,27 @@ func prompt_for(
 	return text
 
 
+## **Il prompt di una faccia, pronto** (D-445): lo stesso che il brief stampa,
+## chiesto da fuori — dalla scheda di ogni tipo di carta — senza rifare il giro
+## di soggetto, scena e accento. Vuoto se il mazzo non ha un MASTER PROMPT.
+func prompt_of(face: Dictionary, data: RefCounted) -> String:
+	var subject: String = _subject(face)
+	var situation: String = _situation(face, data).strip_edges()
+	return prompt_for(face, subject, situation, _accent_key(face, data))
+
+
+## La scena di una faccia, scritta dal suo autore: quello che il prompt manda.
+func scene_of(face: Dictionary, data: RefCounted) -> String:
+	return _situation(face, data).strip_edges()
+
+
+## Il MASTER PROMPT di un mazzo, coi segnaposto ancora dentro: e' il **prompt
+## generale** del tipo di carta, quello che una scheda stampa una volta sola.
+func template_of(deck: String) -> String:
+	var which: int = int(PROMPT_FOR.get(deck, 0))
+	return str(_prompts.get(which, ""))
+
+
 ## Ogni chiave d'arte in uso, con il suo prompt. Raggruppato per mazzo e in
 ## ordine di id, come tutto il resto dell'export.
 func brief(data: RefCounted) -> String:
@@ -206,7 +229,7 @@ func brief(data: RefCounted) -> String:
 		lines.append("```")
 		lines.append("")
 
-	for deck in ["asset", "echo", "region", "entity", "destiny"]:
+	for deck in ["asset", "echo", "region", "entity", "destiny", "objective"]:
 		var faces: Array = CardFace.deck_of(str(deck), data)
 		if faces.is_empty():
 			continue
@@ -281,6 +304,8 @@ func _situation(face: Dictionary, data: RefCounted) -> String:
 			return str((data.regions[id] as Dictionary).get("description", ""))
 		"destiny":
 			return str((data.destinies[id] as Dictionary).get("description", ""))
+		"objective":
+			return str((data.objectives[id] as Dictionary).get("description", ""))
 		"entity":
 			# Il mazzo delle Casate e' fatto di **vite**, non di case: la scena e'
 			# quella dell'incarnazione che siede, non quella della casata.

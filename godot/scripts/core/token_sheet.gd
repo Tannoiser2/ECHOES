@@ -78,49 +78,62 @@ static func tokens_svg(data: RefCounted, chronicle_id: String) -> String:
 	return "\n".join(PackedStringArray(out)) + "\n"
 
 
-## La plancia dei tracciati: quattro corsie 0-8 su cui camminano i rombi. La
-## carta mini della domanda si appoggia a sinistra della sua corsia; la soglia
-## sta sulla carta, perche' cambia da domanda a domanda.
-static func track_board_svg() -> String:
-	var out: Array = []
-	out.append(
-		'<svg xmlns="http://www.w3.org/2000/svg" width="%dmm" height="%dmm" viewBox="0 0 %d %d">'
-		% [int(PAGE_W), int(PAGE_H), int(PAGE_W), int(PAGE_H)]
-	)
-	out.append('<rect width="%d" height="%d" fill="#ffffff"/>' % [int(PAGE_W), int(PAGE_H)])
-	out.append(_text(MARGIN, MARGIN - 5.0,
-		"ECHOES · la traccia dei valori · una corsia per domanda in gioco", 3.0, "#999999", false))
-
-	var box: float = 17.0
-	var slot_w: float = 46.0
-	var y: float = MARGIN + 14.0
-	for lane in range(4):
-		out.append(_text(MARGIN, y - 3.0, "Domanda %s — la carta mini si appoggia qui:" % [
-			["I", "II", "III", "IV"][lane]
-		], 3.2, "#333333", true))
-		# Il posto della carta mini (44x68 in scala, sdraiata: 68x44 non serve -
-		# basta l'ingombro del titolo), poi le caselle 0-8.
+## La plancia dei tracciati: quattro corsie 0-8 su cui camminano i rombi, **due
+## per foglio**. La carta della domanda si appoggia a sinistra della sua corsia;
+## la soglia sta sulla carta, perche' cambia da domanda a domanda.
+##
+## **Due fogli da D-446.** La carta Domanda e' passata da mini (44x68) a carta
+## da gioco (63x88) — parola del committente, *«44x68 e' troppo piccolo»* — e
+## un posto-carta da 63x88 per quattro corsie non sta su un A4. Riscrivendola si
+## e' visto che il foglio di prima aveva gia' un difetto: nove caselle da 17 mm
+## dopo un posto da 46 finivano a **223 mm**, tredici oltre il bordo destro del
+## foglio. Adesso le caselle sono da 12 e l'ultima chiude a 197.
+static func track_board_pages() -> Array:
+	var pages: Array = []
+	var lanes: Array = ["I", "II", "III", "IV"]
+	var box: float = 12.0
+	var card: Vector2 = PrintSheet.cell_size("CARD")
+	var slot: Vector2 = card + Vector2(2.0, 2.0)
+	for page in range(2):
+		var out: Array = []
 		out.append(
-			'<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="none" stroke="#bbbbbb" stroke-width="0.3" stroke-dasharray="2,1.5"/>'
-			% [MARGIN, y, slot_w, box * 2.0]
+			'<svg xmlns="http://www.w3.org/2000/svg" width="%dmm" height="%dmm" viewBox="0 0 %d %d">'
+			% [int(PAGE_W), int(PAGE_H), int(PAGE_W), int(PAGE_H)]
 		)
-		for value in range(9):
-			var x: float = MARGIN + slot_w + 6.0 + float(value) * box
-			out.append(
-				'<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="none" stroke="#333333" stroke-width="0.4"/>'
-				% [x, y, box, box]
-			)
-			out.append(_text(x + box * 0.5 - 1.2, y + box * 0.62, str(value), 4.0, "#333333", false))
-		out.append(_text(MARGIN + slot_w + 6.0, y + box + 5.0,
-			"La soglia e' scritta sulla carta: raggiunta, si apre il Consiglio.",
-			2.6, "#666666", false))
-		y += box * 2.0 + 14.0
+		out.append('<rect width="%d" height="%d" fill="#ffffff"/>' % [int(PAGE_W), int(PAGE_H)])
+		out.append(_text(MARGIN, MARGIN - 5.0,
+			"ECHOES · la traccia dei valori · una corsia per domanda in gioco · foglio %d di 2"
+			% (page + 1), 3.0, "#999999", false))
 
-	out.append(_text(MARGIN, y + 2.0,
-		"Il quadrato del Drift avanza sulla corsia che il sacchetto nomina a ogni round.",
-		2.8, "#666666", false))
-	out.append("</svg>")
-	return "\n".join(PackedStringArray(out)) + "\n"
+		var y: float = MARGIN + 14.0
+		for lane in range(page * 2, page * 2 + 2):
+			out.append(_text(MARGIN, y - 3.0, "Domanda %s — la carta si appoggia qui:" % [
+				str(lanes[lane])
+			], 3.2, "#333333", true))
+			# Il posto della carta, 63x88 in scala e in piedi: la carta si legge,
+			# quindi sta dritta accanto alla sua corsia.
+			out.append(
+				'<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="none" stroke="#bbbbbb" stroke-width="0.3" stroke-dasharray="2,1.5"/>'
+				% [MARGIN, y, slot.x, slot.y]
+			)
+			for value in range(9):
+				var x: float = MARGIN + slot.x + 6.0 + float(value) * box
+				out.append(
+					'<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="none" stroke="#333333" stroke-width="0.4"/>'
+					% [x, y, box, box]
+				)
+				out.append(_text(x + box * 0.5 - 1.2, y + box * 0.62, str(value), 4.0, "#333333", false))
+			out.append(_text(MARGIN + slot.x + 6.0, y + box + 5.0,
+				"La soglia e' scritta sulla carta: raggiunta, si apre il Consiglio.",
+				2.6, "#666666", false))
+			y += slot.y + 16.0
+
+		out.append(_text(MARGIN, y + 2.0,
+			"Il quadrato del Drift avanza sulla corsia che il sacchetto nomina a ogni round.",
+			2.8, "#666666", false))
+		out.append("</svg>")
+		pages.append("\n".join(PackedStringArray(out)) + "\n")
+	return pages
 
 
 ## La fustella dei segni delle Regioni (ISSUES 22, D-107): un segnalino

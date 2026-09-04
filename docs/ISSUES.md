@@ -350,6 +350,18 @@ domande.
 (cairosvg + pypdf, dipendenze opzionali: servono solo a chi stampa). La CI
 continua a confrontare gli SVG, che restano la sorgente diffabile.
 
+
+### Rivista in 0.1.415: la Domanda passa a 63×88 ([D-446](DECISIONS.md#d-446))
+
+Parola del committente — *«44x68 è troppo piccolo»* — e la ragione era già
+misurata: da D-261 la Domanda si gira e si legge, e due mini su sessanta
+stampavano il corpo rimpicciolito. Adesso è una carta da gioco come le classiche
+di questa voce, 0 su 60 strette; la scheda Consiglio resta un pezzo a parte
+(D-338). La traccia dei valori le fa posto su due fogli, e riscrivendola si è
+visto che il foglio di prima usciva dal bordo di tredici millimetri. E le
+diciannove carte Obiettivo, che questa voce non contava, hanno un formato: il
+tarocco, coperte come i Destini ([D-445](DECISIONS.md#d-445)).
+
 ---
 
 ### 18. ✅ I fatti eterni strozzano i Destini di seconda rotazione — fatta in 0.1.40

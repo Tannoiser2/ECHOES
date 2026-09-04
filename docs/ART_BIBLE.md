@@ -303,6 +303,34 @@ d'arte.
 
 ---
 
+## MASTER PROMPT 7 — Objective card
+
+L'Obiettivo è l'altra carta che si guarda da soli, dietro il paravento
+([D-445](DECISIONS.md#d-445)). Non è l'ambizione di una casa — quella è il
+Destino, e porta il colore della casa — ma una promessa che **qualunque** casa
+può pescare. Quindi niente accento di famiglia e niente volti: la cosa
+promessa, vista come la prova da portare a fine anno.
+
+```
+ECHOES — Objective card. Emblematic scene of {SOGGETTO}.
+What must be true at the end of the year: {SITUAZIONE}
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
+Chiavi in uso: `objective.<nome>`. Una carta Obiettivo senza chiave (*Qualcosa
+Deve Rompersi*) si stampa senza illustrazione, come le Domande: il testo prende
+il posto del quadro.
+
+---
+
 ## Overlay e iconografia
 
 **Fatto in 0.1.20** (`scripts/core/icon_set.gd`, [D-058](DECISIONS.md#d-058)):

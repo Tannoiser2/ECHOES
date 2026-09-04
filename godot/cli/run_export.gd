@@ -91,13 +91,17 @@ func _initialize() -> void:
 			return
 		written.append(path)
 		print("  %-16s %6s %6s %7d" % ["segnalini %s" % str(chronicle_id), "-", "-", 1])
-	var track_path: String = "%s/fogli/traccia_valori.svg" % out_dir
-	if not _write(track_path, TokenSheet.track_board_svg()):
-		printerr("non riesco a scrivere %s" % track_path)
-		quit(4)
-		return
-	written.append(track_path)
-	print("  %-16s %6s %6s %7d" % ["traccia valori", "-", "-", 1])
+	# La traccia dei valori e' su due fogli da D-446: il posto della carta
+	# Domanda e' 63x88, e quattro corsie cosi' non stanno su un A4.
+	var track_pages: Array = TokenSheet.track_board_pages()
+	for number in range(track_pages.size()):
+		var track_path: String = "%s/fogli/traccia_valori_%02d.svg" % [out_dir, number + 1]
+		if not _write(track_path, str(track_pages[number])):
+			printerr("non riesco a scrivere %s" % track_path)
+			quit(4)
+			return
+		written.append(track_path)
+	print("  %-16s %6s %6s %7d" % ["traccia valori", "-", "-", track_pages.size()])
 	# I segni con un corpo (D-107): due fogli per tutta la saga - i segni si
 	# chiamano allo stesso modo in ogni eta', quindi la fustella e' una sola.
 	for entry in [

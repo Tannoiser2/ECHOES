@@ -1,0 +1,825 @@
+{
+  "tipo": "destiny",
+  "nome": "carta Destino",
+  "formato": {
+    "nome": "tarocco",
+    "sigla": "TAROT",
+    "mm": [
+      70,
+      120
+    ]
+  },
+  "facce": 23,
+  "pezzi": 23,
+  "cos_e": "L'ambizione di una casa, **dietro il paravento**: la scala per contare quanto manca. Non si gioca, si guarda.",
+  "immagine": "**Niente volti**: la cosa desiderata, non chi la desidera — un oggetto, un luogo, una soglia, composti come un'immagine votiva. L'accento e' quello dell'archetipo della casa.",
+  "sottotitolo": "la casa (`entity_id`), o «per chi lo giura» se e' condivisibile",
+  "angolo": "nessuna",
+  "scena": "`description`",
+  "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
+  "prompt_generale": "ECHOES — Destiny card. Emblematic scene of {SOGGETTO}.\nWhat is wanted: {SITUAZIONE}\nDominant accent: {ACCENTO}, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. {DESCRIZIONE}. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror.",
+  "campi": [
+    {
+      "posto": "il titolo",
+      "campo": "titolo",
+      "da_dove": "il nome stampato in cima"
+    },
+    {
+      "posto": "il sottotitolo",
+      "campo": "sottotitolo",
+      "da_dove": "la riga sotto il titolo: chi e' e di che genere"
+    },
+    {
+      "posto": "la cifra d'angolo",
+      "campo": "angolo",
+      "da_dove": "l'unico numero che si legge con la carta a ventaglio; vuoto se il tipo non ne ha"
+    },
+    {
+      "posto": "il colore del bordo",
+      "campo": "accento",
+      "da_dove": "un esadecimale: la carta si riconosce dal bordo prima che dal titolo"
+    },
+    {
+      "posto": "il corpo",
+      "campo": "corpo",
+      "da_dove": "righe di testo libero, quando il tipo ne ha"
+    },
+    {
+      "posto": "le righe meccaniche",
+      "campo": "righe",
+      "da_dove": "ognuna con la sua **voce** in maiuscolo e il testo: sono la carta che si gioca"
+    },
+    {
+      "posto": "l'illustrazione",
+      "campo": "arte",
+      "da_dove": "la chiave, la scena scritta dall'autore e **il prompt composto**, pronto; `null` se la carta e' tutta testo"
+    },
+    {
+      "posto": "il pie'",
+      "campo": "pie",
+      "da_dove": "l'id, per ritrovarla nei dati"
+    },
+    {
+      "posto": "quante copie",
+      "campo": "copie",
+      "da_dove": "quante volte si stampa"
+    },
+    {
+      "posto": "coperta",
+      "campo": "segreta",
+      "da_dove": "`true` se sta dietro il paravento e non va lasciata sul tavolo"
+    }
+  ],
+  "righe": [
+    {
+      "voce": "SOGLIA",
+      "da_dove": "il primo gradino: `minimum.label` e le sue clausole (`conditions[].label`)"
+    },
+    {
+      "voce": "VITTORIA",
+      "da_dove": "`victory`"
+    },
+    {
+      "voce": "TRIONFO",
+      "da_dove": "`triumph`"
+    }
+  ],
+  "carte": [
+    {
+      "id": "DST_ALDRIC",
+      "tipo": "destiny",
+      "titolo": "Il Regno che Resta",
+      "sottotitolo": "Re Aldric",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Il trono regge: Una pedina dove c'e' il #capitale, o su una terra di #territorio"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Il regno decide: La corona tiene ancora la sua terra · La Carestia non supera 4"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Un regno che non ha pagato il pane con il sangue: La terra col #capitale non e' in rivolta · E tre segni che la corona ha retto senza stringere"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.aldric",
+        "scena": "Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Il Regno che Resta.\nWhat is wanted: Tenere Eredan indipendente e raggiungere un controllo politico sufficiente, senza lasciare il regno in collasso.\nDominant accent: oro spento, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_ALDRIC",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_ALDRIC_RECORD",
+      "tipo": "destiny",
+      "titolo": "Il Regno che Ricorda",
+      "sottotitolo": "Re Aldric",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "La casa siede ancora: Una pedina dove c'e' il #capitale, o su una terra di #territorio"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Nessuno rilegge la stessa domanda: Nessuna questione lasciata aperta · E un segno che la corona tiene il suo registro"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Un regno che non ha dovuto dividersi per reggere: La corona non è stata spezzata · E due segni che si è retto per legge e non per forza"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.aldric.record",
+        "scena": "Il trono regge già. Quello che manca è che le sue decisioni restino scritte e nessuno debba riprenderle da capo.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Il Regno che Ricorda.\nWhat is wanted: Il trono regge già. Quello che manca è che le sue decisioni restino scritte e nessuno debba riprenderle da capo.\nDominant accent: oro spento, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si tiene: il sigillo, la sala vuota, la corona posata — mai indossata. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_ALDRIC_RECORD",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_CENERE",
+      "tipo": "destiny",
+      "titolo": "La Montagna è Nostra",
+      "sottotitolo": "Kessa dei Fuochi",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Restano sulla montagna: La terra col #selvaggio e' presidiata, non solo abitata"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Chi scava lo dicono loro: La montagna è ancora loro · E la veglia sulla montagna è affidata a loro, per atto e non per abitudine · E la terra della #miniera non e' stata murata"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E non solo quella: E la Cenere continua a salire: è quello che tiene la montagna nostra · E quattro segni che la montagna è loro davvero"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.cenere",
+        "scena": "I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of La Montagna è Nostra.\nWhat is wanted: I Signori della Cenere non discutono di reliquie: discutono di chi decide dove si scava. Vogliono che la risposta sia scritta e sia loro.\nDominant accent: ambra, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_CENERE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_CENERE_DEEP",
+      "tipo": "destiny",
+      "titolo": "Più a Fondo",
+      "sottotitolo": "Kessa dei Fuochi",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Non hanno lasciato la montagna: E qualcuno di loro e' rimasto sulla terra col #selvaggio"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "E hanno visto cosa c'è sotto: La terra della #miniera non e' stata murata · E sono scesi in due nella #miniera, non hanno solo guardato · E quello che c'è sotto l'hanno visto coi propri occhi"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E non devono più niente a nessuno: Tre segni che quello che hanno trovato è loro"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.cenere.deep",
+        "scena": "Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Più a Fondo.\nWhat is wanted: Chi ha ottenuto la montagna scopre di volere quello che c'è sotto la montagna. È lo stesso desiderio di prima, con meno margine.\nDominant accent: ambra, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_CENERE_DEEP",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_LIBERE",
+      "tipo": "destiny",
+      "titolo": "Una Legge Senza Corona",
+      "sottotitolo": "Le Città Libere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Le città esistono ancora: Una pedina dove c'e' il #capitale, o su una terra di #territorio"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "E c'è una Carta, e l'acqua non è di nessuno: La Carta è stata scritta · E l'acqua non è finita a prezzo"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E nessuno l'ha pagata più degli altri: E la Carta si scrive quando la domanda non si può più rimandare · E quattro segni che il conto è stato diviso"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.libere",
+        "scena": "Le città non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema è scriverne una che non diventi un trono.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Una Legge Senza Corona.\nWhat is wanted: Le città non vogliono un re e hanno smesso di poter fare a meno di una regola. Il loro problema è scriverne una che non diventi un trono.\nDominant accent: terracotta, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_LIBERE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_LIBERE_WATER",
+      "tipo": "destiny",
+      "titolo": "L'Acqua Torna a Muoversi",
+      "sottotitolo": "Le Città Libere",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Un'opera alzata: Le citta' hanno alzato almeno un'opera"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "E l'acqua si muove: I canali sono stati riaperti · Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza · E il mondo non è stato aperto in più di due punti: l'acqua non torna dove si è combattuto"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E non è di nessuno: L'acqua non è stata messa a prezzo · E due segni che l'hanno tenuta aperta per tutti"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.libere.water",
+        "scena": "Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of L'Acqua Torna a Muoversi.\nWhat is wanted: Scritta la regola, resta il motivo per cui serviva: la Valle non da più da mangiare a sette città. Questa volta l'obiettivo si vede da fuori.\nDominant accent: terracotta, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_LIBERE_WATER",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_LYRA",
+      "tipo": "destiny",
+      "titolo": "Sapere e Poter Tornare a Guardare",
+      "sottotitolo": "Lyra",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Ha capito qualcosa: Almeno una Scoperta"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Sa, ed è ancora nelle gallerie: Una pedina dove c'e' la #miniera, o su una terra d'#antico · E due segni che la strada per tornarci è ancora sua"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Il sapere è diventato pubblico e verificabile: Quattro Scoperte · E tre segni che si può ancora tornare a guardare"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.lyra",
+        "scena": "Scoprire le proprietà del Cristallo Rosso e conservare l'accesso a ciò che lo produce.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Sapere e Poter Tornare a Guardare.\nWhat is wanted: Scoprire le proprietà del Cristallo Rosso e conservare l'accesso a ciò che lo produce.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_LYRA",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_LYRA_TAUGHT",
+      "tipo": "destiny",
+      "titolo": "Quello che Resta Insegnato",
+      "sottotitolo": "Lyra",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Qualcosa è stato insegnato: Qualcuno ha imparato qualcosa"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Il sapere ha un posto suo: Almeno una scoperta all'attivo · Le gallerie non sono state sigillate · E un posto dove quel sapere sta"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Verificabile da chiunque, anche da chi non c'era: Le gallerie sono ancora aperte a chi vuole verificare · E c'è una scorta giurata per arrivarci · Nessuno ha messo una guardia allo studio"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.lyra.taught",
+        "scena": "Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Quello che Resta Insegnato.\nWhat is wanted: Il sapere è uscito dalle gallerie una volta. Chi viene dopo vuole che non ci torni dentro alla prima paura.\nDominant accent: verde-azzurro pallido, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si capisce: pagine aperte, strumenti, una porta socchiusa sul buio. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_LYRA_TAUGHT",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_NAHR",
+      "tipo": "destiny",
+      "titolo": "Una Terra dove Fermarsi",
+      "sottotitolo": "Popolo Nahr",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Il popolo sopravvive: Una pedina dove c'e' il #pascolo, o su una terra di #sopravvivenza"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Il popolo si ferma: L'insediamento è riconosciuto · Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza · E un segno che fermarsi è costato qualcosa"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Fermarsi senza smettere di essere Nahr: La Valle non è stata chiusa · E tre segni che fermarsi non è stato arrendersi"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.nahr",
+        "scena": "Ottenere una patria stabile conservando autonomia e cultura del popolo.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Una Terra dove Fermarsi.\nWhat is wanted: Ottenere una patria stabile conservando autonomia e cultura del popolo.\nDominant accent: terracotta, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_NAHR",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_NAHR_ROOTED",
+      "tipo": "destiny",
+      "titolo": "La Terra Sotto i Piedi",
+      "sottotitolo": "Popolo Nahr",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Qualcosa che resta, piantato: Il popolo ha piantato almeno una cosa che resta"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "La terra risponde a chi la lavora: Una pedina dove c'e' il #granaio, o su una terra di #sopravvivenza · E due segni che non sono di passaggio"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Radicati senza aver chiuso la porta a nessuno: La Valle non è stata chiusa · E due segni che la terra li ha accettati"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.nahr.rooted",
+        "scena": "Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of La Terra Sotto i Piedi.\nWhat is wanted: Il popolo si è fermato. Adesso la domanda è se il posto in cui si è fermato è suo, o solo prestato.\nDominant accent: terracotta, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si abita: la terra lavorata, il ponte, il fuoco tenuto acceso. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_NAHR_ROOTED",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SALE",
+      "tipo": "destiny",
+      "titolo": "Il Registro che Tiene",
+      "sottotitolo": "Maestra Ilve",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "La Gilda è ancora al tavolo: Una pedina dove c'e' il #commercio, o su una terra di #risorse"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Il debito è stato chiamato, e nessuno lo ha cancellato: Il debito è stato chiamato per intero · E chi lo doveva non le è diventato nemico"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E la firma vale ancora: Il registro non è finito sul muro: è ancora suo · E quattro segni che il registro pesa più della spada"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.sale",
+        "scena": "La Gilda non vuole comandare: vuole che quello che è scritto continui a valere, e che a scriverlo sia lei.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Il Registro che Tiene.\nWhat is wanted: La Gilda non vuole comandare: vuole che quello che è scritto continui a valere, e che a scriverlo sia lei.\nDominant accent: ambra, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SALE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SALE_OPEN",
+      "tipo": "destiny",
+      "titolo": "Il Registro Aperto",
+      "sottotitolo": "Maestra Ilve",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Una terra risponde alla Gilda: Almeno una terra risponde alla Gilda"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "E il registro si può leggere: Il registro è stato aperto · Almeno una Regione controllata · E i conti che il registro tiene sono chiusi tutti"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E vale lo stesso: Una pedina dove c'e' il #commercio, o su una terra di #risorse · E due segni che un registro aperto pesa uguale"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.sale.open",
+        "scena": "Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Il Registro Aperto.\nWhat is wanted: Una Gilda che ha già vinto una volta scopre che la firma tiene finché qualcuno si fida. Adesso vuole essere creduta, non solo dovuta.\nDominant accent: ambra, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si firma: il registro, le chiavi, il banco dove si conta. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SALE_OPEN",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SHARED_ACCOUNTS",
+      "tipo": "destiny",
+      "titolo": "I Conti Chiusi",
+      "sottotitolo": "per chi lo giura",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Due conti tenuti sotto controllo: Due questioni tenute sotto il punto di rottura"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Nessuna domanda lasciata aperta: Nessuna questione lasciata aperta"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Un mondo che non deve niente a nessuno: Nessun giuramento spezzato è rimasto scritto · E tre segni che i conti li ha chiusi lei"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.shared.accounts",
+        "scena": "Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of I Conti Chiusi.\nWhat is wanted: Vincere non è prendere: è una firma che vale, e finire la cronaca senza debiti a verbale. Nessuna proposta caduta, nessuna domanda lasciata aperta, nessun giuramento spezzato nel mondo che lasci.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. I Conti Chiusi. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SHARED_ACCOUNTS",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SHARED_HAND",
+      "tipo": "destiny",
+      "titolo": "Le Riserve",
+      "sottotitolo": "per chi lo giura",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Le mani non vuote: Tre carte in mano a fine anno"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Le riserve che diventano forma: Cinque carte in mano · E una cosa costruita · E sulla mappa c'e' una terra contesa: le riserve servono a decidere, non a guardare"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Quando gli altri chiedono, tu hai: Più riserve di chiunque altro, di due almeno · E la mappa ha ancora una terra contesa: chi ha le mani piene la decide l'anno prossimo"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.shared.hand",
+        "scena": "Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Le Riserve.\nWhat is wanted: Quando l'anno si chiude, chi ha le mani piene detta le condizioni del prossimo. Le riserve non fanno rumore: pesano.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. Le Riserve. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SHARED_HAND",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SHARED_LAND",
+      "tipo": "destiny",
+      "titolo": "La Terra che Risponde",
+      "sottotitolo": "per chi lo giura",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Un posto che risponde: Almeno una Regione controllata"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "La terra risponde, e non importa come: Due Regioni che rispondono, o due cose che stanno in piedi · E da qualche parte un villaggio ci sta sopra"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "La mappa parla la tua lingua: Controllo di almeno 3 Regioni · E l'anno lo dice: tre posti non si prendono in silenzio · E un posto e' rimasto vuoto: tanta terra non si prende senza che qualcuno se ne vada"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.shared.land",
+        "scena": "Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of La Terra che Risponde.\nWhat is wanted: Chiunque tu sia, la domanda è la stessa: quanta terra risponde quando chiami? Un'ambizione semplice e spietata - contare le Regioni, e contarle tue.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. La Terra che Risponde. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SHARED_LAND",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SHARED_LORE",
+      "tipo": "destiny",
+      "titolo": "Quello che si Sa",
+      "sottotitolo": "per chi lo giura",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Una cosa vista: Almeno una scoperta all'attivo"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "E un posto dove custodirla: Due scoperte all'attivo · E una pietra dove il sapere sta · E la pietra dove il sapere sta e' un Archivio"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Quello che sai lo sanno da te: Tre scoperte all'attivo · E quello che hai capito lo sa anche il tavolo"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.shared.lore",
+        "scena": "Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Quello che si Sa.\nWhat is wanted: Chiunque tu sia, quello che sai nessuno te lo toglie. Scendere, guardare, mettere a verbale: il sapere è l'unica terra che non si può occupare.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. Quello che si Sa. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SHARED_LORE",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SHARED_QUIET",
+      "tipo": "destiny",
+      "titolo": "La Quiete Tenuta",
+      "sottotitolo": "per chi lo giura",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Tre questioni tenute giù: Tre questioni sotto il punto di rottura"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "La quiete si vede: Quattro questioni tenute basse · E non più di due segni nuovi sul mondo · E il disordine si e' chiuso mentre eri in sala"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "La quiete non capita: si tiene: Quattro questioni a un filo dal silenzio · E al massimo un segno nuovo · E sulla mappa non e' rimasta una terra contesa"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.shared.quiet",
+        "scena": "Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of La Quiete Tenuta.\nWhat is wanted: Il mondo peggiora da solo: le questioni salgono per conto loro. Tenerle giù per un anno intero non è una cosa che capita — è una cosa che si fa.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. La Quiete Tenuta. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SHARED_QUIET",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_SHARED_RENOWN",
+      "tipo": "destiny",
+      "titolo": "Il Nome che Pesa",
+      "sottotitolo": "per chi lo giura",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "Un posto che risponde al tuo nome: Almeno una terra risponde al tuo nome"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Il nome è conosciuto: La casa porta il segno della fama"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Un nome che nessuno ha visto fallire: Nessuna proposta caduta a verbale · E tre segni che il nome ha un peso"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.shared.renown",
+        "scena": "Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Il Nome che Pesa.\nWhat is wanted: Non importa da dove vieni: importa che quando parli, il tavolo ascolta. La stessa ambizione per chiunque la giuri - la fama, e un posto da cui difenderla.\nDominant accent: l'accento della sua famiglia, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. Il Nome che Pesa. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_SHARED_RENOWN",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_VAERAX",
+      "tipo": "destiny",
+      "titolo": "Cio che Dorme Resti Addormentato",
+      "sottotitolo": "Vaerax",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "La montagna è ancora sua: Una pedina sulla terra col #selvaggio, o su una d'#antico"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Le gallerie sono chiuse, e il Cristallo non è uscito: Le Miniere sono state sigillate · Il Cristallo non è stato sfruttato"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E nessuno ci arriva più: E la terra della #miniera non e' stata svuotata · E quattro segni che la montagna è tornata lontana"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.vaerax",
+        "scena": "Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Cio che Dorme Resti Addormentato.\nWhat is wanted: Impedire lo sfruttamento incontrollato del Cristallo e preservare le Montagne Rosse.\nDominant accent: grigio-rosso, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_VAERAX",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_VAERAX_LEGEND",
+      "tipo": "destiny",
+      "titolo": "La Storia che si Racconta",
+      "sottotitolo": "Vaerax",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "La storia si racconta ancora: Il mondo dimentica ancora la montagna"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "La montagna tiene lontani gli uomini: Il sigillo regge · Il Risveglio resta quieto"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Nessuno ricorda com'era davvero: Il sigillo regge · Il Risveglio è un sussurro · E la voce corre: la versione che gira fuori dalla sala e' la sua"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.vaerax.legend",
+        "scena": "Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of La Storia che si Racconta.\nWhat is wanted: Non c'è più un corpo da difendere: c'è un racconto da tenere vivo. Finché il mondo dimentica cosa dorme davvero sotto la montagna, la montagna è di chi la racconta.\nDominant accent: grigio-rosso, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_VAERAX_LEGEND",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_VAERAX_WATCHED",
+      "tipo": "destiny",
+      "titolo": "Il Sonno Sorvegliato",
+      "sottotitolo": "Vaerax",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "La montagna è ancora sua: Una pedina sulla terra col #selvaggio, o su una d'#antico"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "Nessuno scava più: Il Cristallo non è stato messo a peso · Almeno una Regione controllata"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "Guardato da qualcuno che non lo vuole: Il Cristallo non è stato messo a peso · Chi studia la pietra non la vuole · La terra col #selvaggio non e' in rivolta"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.vaerax.watched",
+        "scena": "La montagna è ancora sua e il Cristallo è ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Il Sonno Sorvegliato.\nWhat is wanted: La montagna è ancora sua e il Cristallo è ancora dentro. Adesso vuole sapere chi lo guarda, e che continui a guardarlo senza toccarlo.\nDominant accent: grigio-rosso, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si veglia: la pietra vista da dentro, il cunicolo, il respiro della montagna. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_VAERAX_WATCHED",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_VETRO",
+      "tipo": "destiny",
+      "titolo": "Quello che Non si Deve Guardare",
+      "sottotitolo": "Priore Anselmo",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "L'Ordine tiene la sua casa: La terra della #miniera e' presidiata, non solo abitata"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "La custodia è un incarico, e la teca resta chiusa: La custodia è stata riconosciuta per atto · E nessuno ha aperto la teca"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E cosa ci sia dentro lo sa, e le gallerie sono ancora sue: E non e' stata abbandonata · E quattro segni che la custodia ha tenuto"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.vetro",
+        "scena": "L'Ordine custodisce un frammento e una regola. La regola è più importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of Quello che Non si Deve Guardare.\nWhat is wanted: L'Ordine custodisce un frammento e una regola. La regola è più importante del frammento, e va difesa proprio quando qualcuno chiede di vederlo.\nDominant accent: porpora tenue, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si custodisce: la teca, il velo, la soglia che non si passa. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_VETRO",
+      "copie": 1,
+      "segreta": true
+    },
+    {
+      "id": "DST_VETRO_SHOWN",
+      "tipo": "destiny",
+      "titolo": "La Reliquia Mostrata",
+      "sottotitolo": "Priore Anselmo",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "SOGLIA",
+          "testo": "L'Ordine tiene la sua casa: La terra della #miniera e' presidiata, non solo abitata"
+        },
+        {
+          "voce": "VITTORIA",
+          "testo": "E l'ha mostrata lui: La reliquia è stata mostrata · E a mostrarla è stato l'Ordine"
+        },
+        {
+          "voce": "TRIONFO",
+          "testo": "E la fede è diventata legge: C'è una Carta scritta · E nessuno l'ha rifiutata · E il mondo porta il segno di quel giorno: una teca aperta non si richiude"
+        }
+      ],
+      "arte": {
+        "chiave": "destiny.vetro.shown",
+        "scena": "Un Ordine che ha tenuto la teca chiusa è stato creduto sulla parola. Il passo dopo è più pericoloso: mostrarla, e restare creduto lo stesso.",
+        "prompt": "ECHOES — Destiny card. Emblematic scene of La Reliquia Mostrata.\nWhat is wanted: Un Ordine che ha tenuto la teca chiusa è stato creduto sulla parola. Il passo dopo è più pericoloso: mostrarla, e restare creduto lo stesso.\nDominant accent: porpora tenue, over the game's muted earth palette. No faces: a\nDestiny card shows the thing wanted, not the one who wants it — an object, a\nplace, a threshold, composed like a votive image. ciò che si custodisce: la teca, il velo, la soglia che non si passa. Seen close and\nslightly from below, the way an ambition is seen; one strong light source, deep\nquiet shadow around it. Grounded medieval-adjacent world, no invented heraldry,\nno glowing magic. Composition: subject in the upper two thirds; the lower third\nis a calm, low-detail area reserved for a text overlay. Vertical card framing,\n2:3. No text, no letters, no numerals, no logos, no frame, no border. Not gory,\nnot horror."
+      },
+      "pie": "DST_VETRO_SHOWN",
+      "copie": 1,
+      "segreta": true
+    }
+  ]
+}
