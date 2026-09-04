@@ -108,6 +108,16 @@ Il tavolo uniforme tiene piu' Consigli (3,36 → 3,61) e piu' fallimenti (10 →
 sbirciare, un gettone in piu' cade, e qualche Consiglio in piu' si apre con
 meno carte impegnate. E' il costo della mossa nuova, e resta scritto.
 
+**E la corsia lenta si e' mossa**, perche' le sedie giocano diverso: la CI
+l'ha detto per prima (`MISURA_VITE.md` vecchio), e le tre misure sono state
+rigirate. Le vite mai sedute in dodici saghe passano da **1 a 2**: *La
+Compagnia del Sale* non si siede piu' su nessuno dei due tavoli (era 1 e 0),
+e *L'Inquisizione del Vetro* resta a zero sull'uniforme. Le trasformazioni
+sedute salgono da 261 a 283. Sul tavolo (`MISURA_TAVOLO.md`) i segni che
+arrivano cambiano di uno o due per famiglia — 21 → 20, 10 → 12, 28 → 29,
+35 → 34 — dentro il rumore di dodici saghe. Nessuna di queste misure e' un
+cancello: sono numeri che si dichiarano.
+
 ---
 
 ## D-449 — Una carta, due facce: l'Eco sull'Asset, il Consiglio sul retro della Domanda

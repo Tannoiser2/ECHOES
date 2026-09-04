@@ -19,6 +19,9 @@ solo da chi ha tramato — come ISSUES 49 aveva previsto. La scheda di stato
 dell'app smette di scrivere il punteggio coperto. Cancello dei 100 semi, seme
 7000, 0.1.418 → 0.1.419: 0 seggi bloccati su 8 sui due tavoli; Consigli l'anno
 3,53 → 3,58 (misto) e 3,36 → 3,61 (uniforme); esiti falliti 30 → 33 e 10 → 23.
+Corsia lenta rigirata (le sedie giocano diverso): vite mai sedute 1 → 2, *La
+Compagnia del Sale* non si siede più; i segni sul tavolo si muovono di uno o
+due per famiglia.
 
 ---
 
