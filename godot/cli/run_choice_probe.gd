@@ -241,13 +241,18 @@ func _report(
 	var never_chosen: Array = []
 	var written: int = 0
 
-	for template_id in (data.chronicles[chronicle_id]["confluence_templates"] as Array):
-		if not data.confluence_templates.has(str(template_id)):
+	# **Domande e Proposte stanno sulla carta** (D-462): si leggono dalla
+	# scheda fusa di ogni Tensione, non dal template, che non le porta piu'.
+	var allowed: Array = data.chronicles[chronicle_id]["confluence_templates"] as Array
+	var tension_ids: Array = data.tensions.keys()
+	tension_ids.sort()
+	for tension_id in tension_ids:
+		var template: Dictionary = data.confluence_template_for(str(tension_id))
+		if template.is_empty() or not allowed.has(str(template.get("id", ""))):
 			continue
-		var template: Dictionary = data.confluence_templates[str(template_id)]
 		print("")
-		print("%s — %s" % [str(template["id"]), str(template["title"])])
-		for question in template["questions"]:
+		print("%s — %s" % [str(tension_id), str(data.tensions[tension_id].get("title", ""))])
+		for question in template.get("questions", []):
 			var question_id: String = str((question as Dictionary)["id"])
 			var times: int = int(asked.get(question_id, 0))
 			var open_times: int = int(open_questions.get(question_id, 0))
@@ -255,7 +260,7 @@ func _report(
 			if times == 0:
 				why = "  <- mai aperta dal mondo" if open_times == 0 else "  <- aperta e mai scelta"
 			print("  [%3dx su %3d aperte] %-26s%s" % [times, open_times, question_id, why])
-			for proposition in template["propositions"]:
+			for proposition in template.get("propositions", []):
 				var item: Dictionary = proposition
 				if str(item["question_id"]) != question_id:
 					continue

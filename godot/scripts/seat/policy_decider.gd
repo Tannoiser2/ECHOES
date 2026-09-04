@@ -380,25 +380,19 @@ func _tensions_offering(consequence_id: String, session: RefCounted) -> Array:
 		.get("confluence_templates", [])
 	)
 	var out: Array = []
-	for template in session.data.confluence_templates.values():
-		if not listed.has(str(template["id"])):
+	# **Le Proposte stanno sulla carta** (D-462): si legge la scheda fusa di ogni
+	# Tensione in gioco, e si tiene solo se il suo template e' di questa
+	# Chronicle. Prima si leggeva il template crudo, che portava le Proposte di
+	# sette carte su sessanta: per le altre la policy non vedeva nessuna
+	# Conseguenza in offerta.
+	for tension_id in session.world["tensions"]:
+		var sheet: Dictionary = session.data.confluence_template_for(str(tension_id))
+		if sheet.is_empty() or not listed.has(str(sheet.get("id", ""))):
 			continue
-		var offers: bool = false
-		for proposition in template["propositions"]:
-			if (proposition["success_consequences"] as Array).has(consequence_id):
-				offers = true
-		if not offers:
-			continue
-		# A Council bound to a whole domain serves every Tension of that domain
-		# in play, not one named Tension (D-028).
-		if template.has("tension_id"):
-			if session.world["tensions"].has(str(template["tension_id"])):
-				out.append(str(template["tension_id"]))
-			continue
-		for tension_id in session.world["tensions"]:
-			if str(session.data.tensions[str(tension_id)]["domain"]) == str(template["applies_to_domain"]):
-				if not out.has(str(tension_id)):
-					out.append(str(tension_id))
+		for proposition in sheet.get("propositions", []):
+			if ((proposition as Dictionary).get("success_consequences", []) as Array).has(consequence_id):
+				out.append(str(tension_id))
+				break
 	return out
 
 

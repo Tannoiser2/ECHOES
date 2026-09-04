@@ -167,17 +167,21 @@ func _check_references() -> void:
 	for template in confluence_templates.values():
 		if template.has("tension_id") and not tensions.has(template["tension_id"]):
 			errors.append("%s: unknown tension '%s'" % [template["id"], template["tension_id"]])
-		for proposition in template["propositions"]:
-			for consequence_id in proposition["success_consequences"]:
-				if not consequences.has(consequence_id):
-					errors.append(
-						"%s: unknown consequence '%s'" % [template["id"], consequence_id]
-					)
 		for pool_name in template["consequence_pools"]:
 			for consequence_id in template["consequence_pools"][pool_name]:
 				if not consequences.has(consequence_id):
 					errors.append(
 						"%s: unknown consequence '%s'" % [template["id"], consequence_id]
+					)
+	# **Le Proposte stanno sulla carta** (D-462): una Conseguenza scritta male
+	# su una carta passava ogni controllo, e il motore la saltava in silenzio.
+	for tension in tensions.values():
+		var council: Dictionary = tension.get("council", {}) as Dictionary
+		for proposition in council.get("propositions", []):
+			for consequence_id in (proposition as Dictionary).get("success_consequences", []):
+				if not consequences.has(consequence_id):
+					errors.append(
+						"%s: unknown consequence '%s'" % [tension["id"], consequence_id]
 					)
 	for chronicle in chronicles.values():
 		for entity_id in chronicle["entities"]:

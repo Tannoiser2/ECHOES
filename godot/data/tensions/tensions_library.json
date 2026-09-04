@@ -3261,7 +3261,8 @@
             "text": "Si scambino: ogni casa tenga un figlio di un'altra, e nessuna sia piu' sicura.",
             "eligibility": [],
             "success_consequences": [
-              "CNS_SHARED_BURDEN"
+              "CNS_SHARED_BURDEN",
+              "CNS_COST_GUARD"
             ],
             "echo_summary": "I figli si scambiarono da una corte all'altra, e nessuna casa dormì meglio."
           }

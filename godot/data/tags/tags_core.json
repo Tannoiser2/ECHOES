@@ -589,7 +589,6 @@
       "read_by": [
         "asset_physical",
         "chronicle",
-        "confluence_template",
         "destiny",
         "destiny_physical",
         "entity_strategic_profile",
@@ -608,7 +607,6 @@
         "entity"
       ],
       "read_by": [
-        "confluence_template",
         "consequence",
         "destiny_physical",
         "entity_strategic_profile",
@@ -631,7 +629,6 @@
       "read_by": [
         "asset_physical",
         "chronicle",
-        "confluence_template",
         "destiny",
         "destiny_physical",
         "echo_card",
@@ -927,7 +924,6 @@
         "echo_card"
       ],
       "read_by": [
-        "confluence_template",
         "destiny",
         "objective",
         "tension"
@@ -1300,7 +1296,6 @@
       ],
       "read_by": [
         "asset_physical",
-        "confluence_template",
         "entity",
         "tension"
       ],
@@ -1389,7 +1384,6 @@
       ],
       "read_by": [
         "chronicle",
-        "confluence_template",
         "echo_card",
         "tension"
       ],
@@ -1425,7 +1419,6 @@
       ],
       "read_by": [
         "chronicle",
-        "confluence_template",
         "echo_card",
         "tension"
       ],
@@ -1875,7 +1868,6 @@
       ],
       "read_by": [
         "chronicle",
-        "confluence_template",
         "consequence",
         "destiny",
         "destiny_physical",
@@ -2234,7 +2226,6 @@
       ],
       "read_by": [
         "asset_physical",
-        "confluence_template",
         "consequence",
         "destiny",
         "destiny_physical",

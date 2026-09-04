@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.431 — La copia cruda esce dal template, e chi la leggeva legge la carta
+
+[D-462](docs/DECISIONS.md#d-462), parola del committente. Domande e Proposte
+stanno sulla carta dal 0.1.272: la copia nel template esce dai dati e dallo
+schema, e quattordici lettori leggono la carta. Nel giro sono usciti quattro
+difetti che la copia nascondeva: il verbale dell'Eco senza il riassunto della
+proposta per 53 carte su 60, la policy che non vedeva le Conseguenze in
+offerta, due proposte gemelle sugli Ostaggi, e nessun validatore sulle
+Conseguenze scritte sulle carte. Cancello dei 100 semi: 0 seggi
+bloccati sui due tavoli.
+
+---
+
 ## 0.1.430 — Tre Conseguenze scritte nel foglio sbagliato, e la sonda che leggeva lo stesso foglio
 
 [D-461](docs/DECISIONS.md#d-461), parola del committente. La sonda delle

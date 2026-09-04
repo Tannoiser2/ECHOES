@@ -10,6 +10,59 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-462 — La copia cruda esce dal template, e chi la leggeva legge la carta
+
+**implemented in 0.1.431.** Parola del committente: *«mergia e vai»* dopo
+[D-461](#d-461), che chiudeva con *«la copia cruda delle Proposte nel
+template non serve a nessuna delle sessanta carte»*. Dal 0.1.272 ogni carta
+Tensione porta il suo blocco `council`; il template ne teneva una copia per
+sette carte, piu' dodici proposte generiche `P_ANY_*` che nessun Consiglio
+offriva piu'. La guardia di D-461 impediva la deriva; questa decisione toglie
+la cosa che derivava.
+
+**Quello che la copia cieca ha nascosto, contato prima di toglierla.**
+Girati i lettori sulla carta, sono usciti quattro difetti che nessuna sonda
+poteva vedere finche' leggeva il template:
+
+| chi leggeva il template crudo | cosa non vedeva |
+|---|---|
+| `echo_recorder.gd` | il riassunto della proposta nel verbale dell'Eco: per **53 carte su 60** non trovava la proposta e scriveva il riassunto generico |
+| `policy_decider._tensions_offering` | quali Tensioni offrono una Conseguenza: per 53 carte su 60, nessuna |
+| la guardia delle gemelle (`validate_physical`) | **P_HOSTAGES_HOME e P_HOSTAGES_TRADE** applicano la stessa catena di Effetti: gemelle da sempre, mai viste |
+| `test_price_pedina` | zittiva la frase d'autore nel template: un gesto a vuoto, e la prova credeva di aver fatto silenzio |
+| `validate_data`, `data_set.gd` | **nessuno controllava le Conseguenze scritte sulle carte**: un id sbagliato passava, e il motore lo saltava in silenzio |
+| `build_sign_registry`, `test_council_text`, `run_box_survey`, `run_era_probe`, `run_choice_probe`, `card_face.gd` | sette carte su sessanta |
+
+**Cosa cambia**:
+- `questions` e `propositions` escono dai dodici template e dallo schema
+  (`additionalProperties: false`: la copia non puo' tornare per
+  distrazione); i `$defs` restano, perche' la carta li usa.
+- Quattordici lettori leggono la scheda fusa (`confluence_template_for`) o il
+  blocco `council` della carta.
+- `validate_data` e `data_set.gd` controllano le Proposte **della carta**:
+  domanda esistente, condizioni di eleggibilita', Conseguenze note.
+- Le gemelle degli Ostaggi si separano come D-397 fece con le sue:
+  *Si scambino* porta anche *Gli Uomini alla Porta* — «nessuna sia piu'
+  sicura», e la Regione e' sorvegliata.
+- Nove segni nel dizionario cambiano lettore: li leggeva «il template», li
+  legge «la carta».
+- La guardia di D-461 esce con la copia: senza copia non c'e' deriva.
+
+**E una misura si e' allargata di colpo**: `MISURA_CASELLE.md` contava gli
+Effetti che un Consiglio puo' applicare leggendo il template — **266** usi,
+sette carte e dodici proposte generiche. Letta la carta, sono **704**: il
+documento diceva un terzo del tavolo e non falliva. Il vocabolario che una
+casella sa dire passa da 43 a 44 su quello che il Consiglio fa.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **134 · 55 · 77 · 77** sul misto e
+**119 · 54 · 87 · 91** sull'uniforme — la policy che vede le Conseguenze in
+offerta di tutte le carte fa cadere qualche Consiglio in meno. Suite 746
+prove verdi, dopo due prove che leggevano il template per nome. Corsia
+lenta rigirata.
+
+---
+
 ## D-461 — Tre Conseguenze scritte nel foglio sbagliato, e la sonda che leggeva lo stesso foglio
 
 **implemented in 0.1.430.** Parola del committente: *«mergia e vai»* dopo

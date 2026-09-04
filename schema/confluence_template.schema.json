@@ -32,8 +32,6 @@
       "required": [
         "id",
         "title",
-        "questions",
-        "propositions",
         "consequence_pools",
         "ripple"
       ],
@@ -54,22 +52,6 @@
         },
         "description": {
           "type": "string"
-        },
-        "questions": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "$ref": "#/$defs/question"
-          },
-          "description": "Le Domande che questa questione puo' aprire. Il ripiego per una carta che non porta il suo blocco `council`: la carta viene prima."
-        },
-        "propositions": {
-          "type": "array",
-          "minItems": 2,
-          "items": {
-            "$ref": "#/$defs/proposition"
-          },
-          "description": "Le Proposte votabili. Il ripiego per una carta che non porta il suo blocco `council`: la carta viene prima."
         },
         "consequence_pools": {
           "type": "object",

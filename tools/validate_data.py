@@ -86,12 +86,6 @@ def check_references(
     known_consequences = ids.get("consequence", set())
     known_echoes = ids.get("echo_card", set())
     known_templates = ids.get("confluence_template", set())
-    # Il blocco `council` di ogni carta Tensione: e' la casa vera di Domande e
-    # Proposte (0.1.272), e il template deve rispecchiarla o tacere (D-461).
-    known_councils = {
-        str(tension.get("id", "")): tension.get("council") or {}
-        for tension in documents.get("tension", [])
-    }
 
     def require(container: Set[str], value: str, kind: str, where: str) -> None:
         if value not in container:
@@ -256,40 +250,38 @@ def check_references(
                     where,
                     f"applies_to_domain '{template['applies_to_domain']}' matches no Tension",
                 )
-        question_ids = {q["id"] for q in template["questions"]}
-        for question in template["questions"]:
-            for condition in question["eligibility"]:
-                _check_condition(
-                    condition, known_entities, known_regions, known_tensions, report, where
-                )
-        # **La carta vince, e la copia cruda non deve divergere** (D-461). Dal
-        # 0.1.272 il motore legge Domande e Proposte dalla carta Tensione; il
-        # template le tiene solo come ripiego. Tre Conseguenze scritte nel
-        # template (D-397) non sono mai arrivate al tavolo, e tre verbali le
-        # hanno misurate su una sonda che leggeva la stessa copia cieca.
-        card_council = (known_councils or {}).get(str(template.get("tension_id", "")))
-        if card_council:
-            for field in ("questions", "propositions"):
-                if card_council.get(field) and template.get(field) != card_council.get(field):
-                    report.fail(
-                        where,
-                        f"{field} divergono dalla carta '{template['tension_id']}': "
-                        "la carta vince, riallinea o togli la copia nel template",
-                    )
-        for proposition in template["propositions"]:
-            for condition in proposition["eligibility"]:
-                _check_condition(
-                    condition, known_entities, known_regions, known_tensions, report, where
-                )
-            if proposition["question_id"] not in question_ids:
-                report.fail(where, f"proposition '{proposition['id']}' references unknown question")
-            for consequence_id in proposition["success_consequences"]:
-                require(known_consequences, consequence_id, "consequence", where)
+        # **Domande e Proposte stanno sulla carta** (D-462): il template non le
+        # porta piu', e lo schema lo vieta. Si controllano sotto, carta per carta.
         for pool_name, pool in template["consequence_pools"].items():
             for consequence_id in pool:
                 require(known_consequences, consequence_id, "consequence", f"{where}.{pool_name}")
         for target in template["ripple"]["targets"]:
             require(known_tensions, target, "tension", where)
+
+    # **Il blocco `council` di ogni carta Tensione** (D-462): e' la casa vera di
+    # Domande e Proposte dal 0.1.272, e nessun validatore la guardava — una
+    # Conseguenza scritta male su una carta passava, e il motore la saltava in
+    # silenzio. I controlli che stavano sul template si fanno qui.
+    for tension in documents.get("tension", []):
+        council = tension.get("council") or {}
+        if not council:
+            continue
+        where = f"{origins['tension']} [{tension['id']}.council]"
+        question_ids = {q["id"] for q in council.get("questions", []) or []}
+        for question in council.get("questions", []) or []:
+            for condition in question.get("eligibility", []) or []:
+                _check_condition(
+                    condition, known_entities, known_regions, known_tensions, report, where
+                )
+        for proposition in council.get("propositions", []) or []:
+            for condition in proposition.get("eligibility", []) or []:
+                _check_condition(
+                    condition, known_entities, known_regions, known_tensions, report, where
+                )
+            if proposition["question_id"] not in question_ids:
+                report.fail(where, f"proposition '{proposition['id']}' references unknown question")
+            for consequence_id in proposition.get("success_consequences", []) or []:
+                require(known_consequences, consequence_id, "consequence", where)
 
     for chronicle in documents.get("chronicle", []):
         where = f"{origins['chronicle']} [{chronicle['id']}]"

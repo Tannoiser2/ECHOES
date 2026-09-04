@@ -1300,7 +1300,11 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     # diverse possono applicare **la stessa identica catena di Effetti**. La
     # prosa lo nasconde: si vede solo confrontando gli Effetti, non i testi.
     conseguenze = {str(c["id"]): c for c in documenti.get("consequence", [])}
-    for template in documenti.get("confluence_template", []):
+    # **Le Proposte stanno sulla carta** (D-462): la guardia leggeva il template,
+    # che ne portava una copia per sette carte su sessanta, e le gemelle di
+    # D-397 sono restate gemelle al tavolo per trenta versioni.
+    for carta in documenti.get("tension", []):
+        template = carta.get("council") or {}
         catene: Dict[str, List[str]] = {}
         for proposta in (template.get("propositions") or []):
             righe: List[str] = []
@@ -1314,7 +1318,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 guai.append(
                     "due proposte che fanno la stessa cosa su %s: %s applicano la "
                     "stessa catena di Effetti — al voto sembrano due strade e sono "
-                    "una sola" % (template.get("id"), " e ".join(sorted(chi))))
+                    "una sola" % (carta.get("id"), " e ".join(sorted(chi))))
 
     return guai
 
@@ -1630,8 +1634,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # — appena i dati sono a posto, cercare una coppia gia' rotta
         # smetterebbe di provare senza dirlo, che in questo progetto e'
         # successo quattro volte.
-        template = next(t for t in prova["confluence_template"]
-                        if len(t.get("propositions") or []) > 1)
+        template = next((t.get("council") or {}) for t in prova["tension"]
+                        if len((t.get("council") or {}).get("propositions") or []) > 1)
         prima = template["propositions"][0]
         seconda = template["propositions"][1]
         seconda["success_consequences"] = list(prima.get("success_consequences") or [])

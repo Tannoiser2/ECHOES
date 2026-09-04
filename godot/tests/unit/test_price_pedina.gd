@@ -36,7 +36,7 @@ const DIE_FOR_FACTOR: Dictionary = {-2: 1, -1: 2, 0: 3, 1: 5, 2: 6}
 
 
 var _hushed: String = ""
-var _hushed_template: String = ""
+var _hushed_tension: String = ""
 var _hushed_said: Array = []
 
 
@@ -51,7 +51,7 @@ func after_each() -> void:
 	(chronicle["confluence_rules"] as Dictionary)["silence_support_bonus"] = 1
 	# E la frase d'autore zittita torna a parlare (D-305).
 	if _hushed != "":
-		for proposition in (data().confluence_templates[_hushed_template]["propositions"] as Array):
+		for proposition in (data().confluence_template_for(_hushed_tension)["propositions"] as Array):
 			if str((proposition as Dictionary)["id"]) == _hushed:
 				(proposition as Dictionary)["success_consequences"] = _hushed_said
 		_hushed = ""
@@ -69,9 +69,11 @@ func after_each() -> void:
 ## il silenzio, invece di sperare che la proposta pescata non duplichi il verbo:
 ## e' la regola di casa, e qui morde per la terza volta oggi.
 func _hush_the_authored_voice() -> void:
-	_hushed_template = str(session.confluence.current["template_id"])
+	# **La proposta sta sulla carta** (D-462): zittirla nel template crudo era
+	# un gesto a vuoto, e la prova credeva di aver fatto silenzio.
+	_hushed_tension = str(session.confluence.current["tension_id"])
 	_hushed = str(session.confluence.current["proposition_id"])
-	for proposition in (data().confluence_templates[_hushed_template]["propositions"] as Array):
+	for proposition in (data().confluence_template_for(_hushed_tension)["propositions"] as Array):
 		if str((proposition as Dictionary)["id"]) == _hushed:
 			_hushed_said = ((proposition as Dictionary)["success_consequences"] as Array).duplicate()
 			(proposition as Dictionary)["success_consequences"] = []
