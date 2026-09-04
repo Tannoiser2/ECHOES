@@ -731,7 +731,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la veglia della cenere
 
-`ash_watch` · categoria **ENTITY** · sta su entity · lo posa: confluence_template, consequence
+`ash_watch` · categoria **ENTITY** · sta su entity · lo posa: consequence
 
 **Cosa vuol dire.** La veglia sulla montagna: sanno cosa dorme sotto e non lo dicono.
 
@@ -785,7 +785,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: la reliquia
 
-`discovery:relic` · categoria **MEMORY** · sta su entity · lo posa: confluence_template, consequence, echo_card, tension
+`discovery:relic` · categoria **MEMORY** · sta su entity · lo posa: consequence, echo_card
 
 **Cosa vuol dire.** Hanno trovato la reliquia.
 
@@ -803,7 +803,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: il registro condiviso
 
-`discovery:shared_record` · categoria **MEMORY** · sta su entity · lo posa: confluence_template
+`discovery:shared_record` · categoria **MEMORY** · sta su entity
 
 **Cosa vuol dire.** Hanno trovato un registro che vale per tutti.
 
@@ -857,7 +857,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: il registro dei traffici
 
-`discovery:trade_ledger` · categoria **MEMORY** · sta su entity · lo posa: asset_physical, confluence_template
+`discovery:trade_ledger` · categoria **MEMORY** · sta su entity · lo posa: asset_physical
 
 **Cosa vuol dire.** Hanno trovato il registro dei traffici: chi deve a chi.
 
@@ -911,7 +911,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: il registro
 
-`discovery:the_ledger` · categoria **MEMORY** · sta su entity · lo posa: asset_physical, confluence_template, consequence
+`discovery:the_ledger` · categoria **MEMORY** · sta su entity · lo posa: asset_physical, consequence
 
 **Cosa vuol dire.** Hanno trovato il registro.
 
@@ -1019,7 +1019,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la fama
 
-`renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence, echo_card, tension
+`renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence, echo_card
 
 **Cosa vuol dire.** Di questa casa si parla, e la fama pesa nelle stanze.
 
@@ -1055,7 +1055,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la corona
 
-`crowned` · categoria **ENTITY** · sta su entity · lo posa: entity, tension
+`crowned` · categoria **ENTITY** · sta su entity · lo posa: entity
 
 **Cosa vuol dire.** Portano la corona, e si sa di chi e'.
 
@@ -1257,7 +1257,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### l'amnistia e' stata concessa
 
-`amnesty_granted` · categoria **MEMORY** · sta su global · lo posa: confluence_template, echo_card
+`amnesty_granted` · categoria **MEMORY** · sta su global · lo posa: echo_card
 
 **Cosa vuol dire.** Quello che era stato fatto non si conta piu': si riparte da zero.
 
@@ -1311,7 +1311,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la Carta vale per tutti
 
-`charter_for_all` · categoria **MEMORY** · sta su global · lo posa: confluence_template, tension
+`charter_for_all` · categoria **MEMORY** · sta su global · lo posa: tension
 
 **Cosa vuol dire.** La legge scritta vale per chiunque, senza eccezioni comprate.
 
@@ -1329,7 +1329,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la Carta vale per un tempo solo
 
-`charter_temporary` · categoria **MEMORY** · sta su global · lo posa: confluence_template, echo_card
+`charter_temporary` · categoria **MEMORY** · sta su global · lo posa: echo_card
 
 **Cosa vuol dire.** Vale adesso e non per sempre: qualcuno ci ha messo una scadenza.
 
@@ -1473,7 +1473,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il debito e' stato dilazionato
 
-`debt_staggered` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`debt_staggered` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** Non si paga tutto adesso: il conto e' stato spezzato in piu' volte.
 
@@ -1491,7 +1491,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la discesa e' stata fatta davanti a testimoni
 
-`descent_witnessed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`descent_witnessed` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** Qualcuno e' sceso sotto la pietra, e non lo ha fatto di nascosto.
 
@@ -1509,7 +1509,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la distribuzione e' stata contata
 
-`distribution_audited` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`distribution_audited` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** Qualcuno ha controllato chi ha ricevuto quanto.
 
@@ -1581,7 +1581,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### quello che si e' saputo lo sanno tutti
 
-`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, confluence_template, tension, echo_card
+`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, tension, echo_card
 
 **Cosa vuol dire.** Quello che sapeva uno lo sanno tutti, e non si vende piu'.
 
@@ -1599,7 +1599,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### i conti sono pubblici
 
-`ledger_public` · categoria **MEMORY** · sta su global · lo posa: asset, asset_physical, confluence_template, consequence, tension
+`ledger_public` · categoria **MEMORY** · sta su global · lo posa: asset, asset_physical, consequence, tension
 
 **Cosa vuol dire.** I conti si possono guardare: non sono piu' di chi li tiene.
 
@@ -1608,24 +1608,6 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
 Subject: un libro aperto su un leggio, e nessuno che lo tiene.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
-### la lista e' stata letta davanti a testimoni
-
-`list_witnessed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
-
-**Cosa vuol dire.** I nomi sono stati detti ad alta voce, e c'era gente ad ascoltare.
-
-**Cosa si vede.** un rotolo srotolato fino a terra
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: un rotolo srotolato fino a terra.
 Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
 Two or three strokes at most, closed silhouette, thick enough to survive at
 16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
@@ -1815,7 +1797,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### una quota e' garantita
 
-`quota_guaranteed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`quota_guaranteed` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** A qualcuno spetta una parte fissa, qualunque cosa succeda.
 
@@ -1851,7 +1833,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la reliquia e' a registro
 
-`relic_recorded` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`relic_recorded` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** Esiste, ed e' scritto dove sta e di chi e'.
 
@@ -1878,24 +1860,6 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
 Subject: due mani che sollevano un cofanetto aperto.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
-### il ritorno e' stato promesso
-
-`return_promised` · categoria **MEMORY** · sta su global · lo posa: confluence_template
-
-**Cosa vuol dire.** Qualcuno ha giurato che tornera', e il mondo se lo segna.
-
-**Cosa si vede.** una soglia di pietra con un solco consumato al centro
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: una soglia di pietra con un solco consumato al centro.
 Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
 Two or three strokes at most, closed silhouette, thick enough to survive at
 16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
@@ -1995,7 +1959,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la successione ha avuto testimoni
 
-`succession_witnessed` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`succession_witnessed` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** Il passaggio e' avvenuto davanti a gente che puo' ridirlo.
 
@@ -2013,7 +1977,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il pedaggio si divide
 
-`toll_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, confluence_template
+`toll_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical
 
 **Cosa vuol dire.** Chi passa paga, e l'incasso non e' di uno solo.
 
@@ -2085,7 +2049,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### l'acqua si divide
 
-`water_shared` · categoria **MEMORY** · sta su global · lo posa: confluence_template
+`water_shared` · categoria **MEMORY** · sta su global
 
 **Cosa vuol dire.** La sorgente e' di piu' d'uno, e la parte e' stabilita.
 

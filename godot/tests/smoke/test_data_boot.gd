@@ -209,7 +209,6 @@ func test_chronicle_matches_the_baseline_numbers() -> void:
 		"5 token presenza (D-227: tre di riserva — D-211 non aveva scelto «quattro», aveva scelto «tre affama la mappa»)"
 	)
 	assert_eq(int(chronicle["max_commit_assets"]), 3, "massimo 3 Asset impegnati")
-	assert_eq(int(chronicle["max_condition_commit_assets"]), 2, "massimo 2 per una Condition")
 
 	# Da D-207 CHR_01 pesca le sue domande, quindi non puo' piu' scrivere un
 	# sacchetto per nome: il sacchetto lo compone il motore sulla mano pescata.

@@ -553,6 +553,10 @@ def caselle_del_motore() -> Dict[str, set]:
     return caselle
 
 
+# Il tetto delle caselle per lato sulla carta Domanda (D-453).
+MAX_VOCI = 4
+
+
 def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai: List[str] = []
     conto = censimento(documenti)
@@ -880,6 +884,14 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             if len(voci_carta) < minimo:
                 guai.append("lista di %s troppo corta su %s: %d voce"
                             % (come, tensione.get("id"), len(voci_carta)))
+            # **Quattro per lato, non di piu'** (D-453, parola del committente:
+            # *«massimo ci potevano essere 4 benefici e 4 costi»*). Fino alla
+            # 0.1.421 la carta stampava il vocabolario intero del suo Tema, da
+            # 8 a 12 per lato, per far scegliere fra tre: un menu che nessuno
+            # legge. Il tetto vale per benefici e costi; il «se cade» ne ha due.
+            if lista != "failure" and len(voci_carta) > MAX_VOCI:
+                guai.append("lista di %s troppo lunga su %s: %d voci, il tetto e' %d"
+                            % (come, tensione.get("id"), len(voci_carta), MAX_VOCI))
             verbi = []
             for v in voci_carta:
                 verbo = str(v.get("verb", ""))
@@ -1500,21 +1512,22 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def segno_sulla_casa_sbagliato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Un segno della tessera posato addosso a una casa (D-366): ci finisce,
         # e nessuna regola lo va a leggere li'.
-        carta = next(t for t in prova["tension"]
-                     if any(v.get("verb") == "MARK_HOUSE"
-                            for v in (t.get("physical") or {}).get("benefits", [])))
-        voce_marchio = next(v for v in carta["physical"]["benefits"]
-                            if v.get("verb") == "MARK_HOUSE")
-        voce_marchio["tag"] = "condition:starving"
+        # Fabbricata, non cercata (regola di casa): da D-453 i menu sono a
+        # quattro e nessuna carta e' tenuta a portare MARCHIA LA CASA.
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("benefits"))
+        voce_marchio = {"id": "B_MARCHIO_PROVA", "verb": "MARK_HOUSE",
+                        "text": "Il rivale resta sotto osservazione.",
+                        "tag": "condition:starving"}
+        carta["physical"]["benefits"] = carta["physical"]["benefits"][:MAX_VOCI - 1] + [voce_marchio]
 
     def rapporto_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Un gradino che sulla pista dei rapporti non esiste.
-        carta = next(t for t in prova["tension"]
-                     if any(v.get("verb") == "BIND_HOUSES"
-                            for v in (t.get("physical") or {}).get("costs", [])))
-        voce_filo = next(v for v in carta["physical"]["costs"]
-                         if v.get("verb") == "BIND_HOUSES")
-        voce_filo["level"] = "AMICONI"
+        # Fabbricata, non cercata (regola di casa, D-453).
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
+        voce_filo = {"id": "C_FILO_PROVA", "verb": "BIND_HOUSES",
+                     "text": "Chi propone lega la sua casa a un'altra.",
+                     "level": "AMICONI"}
+        carta["physical"]["costs"] = carta["physical"]["costs"][:MAX_VOCI - 1] + [voce_filo]
 
     def anello_fuori_dal_dizionario(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Un anello della catena delle ere che il dizionario non conosce
@@ -1541,6 +1554,20 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # Una lista con una voce sola: non e' un menu, e' un destino.
         carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("costs"))
         carta["physical"]["costs"] = carta["physical"]["costs"][:1]
+
+    def lista_lunga(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Cinque benefici: uno oltre il tetto di D-453. Si fabbrica copiando
+        # una voce con id e testo nuovi, cosi' gli altri controlli tacciono.
+        carta = next(t for t in prova["tension"] if (t.get("physical") or {}).get("benefits"))
+        voci = carta["physical"]["benefits"]
+        while len(voci) <= MAX_VOCI:
+            quinta = dict(voci[-1])
+            quinta["id"] = "B_QUINTA_%d" % len(voci)
+            quinta["text"] = "Una voce in piu', la numero %d." % len(voci)
+            quinta["verb"] = "REOPEN" if quinta.get("verb") != "REOPEN" else "CLEAR_CONDITION"
+            quinta.pop("tag", None)
+            quinta.pop("structure", None)
+            voci.append(quinta)
 
     def porta_senza_profilo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # La porta del tempo su una casa che non ha dichiarato niente: la
@@ -1783,6 +1810,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                vita_fondatrice_col_segno, "voce morta nel dizionario"),
         pianta("lista di costi con una voce sola", lista_monca,
                "lista di costi troppo corta"),
+        pianta("cinque benefici su una carta, uno oltre il tetto", lista_lunga,
+               "lista di benefici troppo lunga"),
         pianta("una Pietra che non esiste sotto una pedina", pedina_muta,
                "Pietra inesistente"),
         pianta("Tensione senza domande sulla carta", tensione_muta,

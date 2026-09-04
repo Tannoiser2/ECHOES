@@ -585,14 +585,29 @@ func _forge(entity_id: String, session: RefCounted) -> Dictionary:
 
 
 ## Global and entity tags this Destiny wants present (+1) or absent (-1).
-func _tag_goals(entity_id: String, session: RefCounted) -> Dictionary:
+func _tag_goals(entity_id: String, session: RefCounted, with_profile: bool = true) -> Dictionary:
 	var goals: Dictionary = {}
+	# **La sedia legge il suo profilo** (D-457, parola del committente: *«il
+	# gioco si basa su obiettivi in contrasto, #tag che servono a me e
+	# danneggiano gli avversari»*). La matrice dei contrasti c'e' da D-171 —
+	# `entity_profiles`, cosa ogni casa vuole e cosa teme (D-288) — e
+	# MISURA_MATRICE la tiene; la sedia pero' leggeva solo le clausole del
+	# Destino dell'anno, e una proposta che scriveva un segno temuto dal
+	# profilo, ma non nominato dal Destino, valeva zero. Prima il profilo, poi
+	# il Destino, che sul segno che nomina vince.
+	var profile: Variant = session.data.entity_profiles.get(entity_id) if with_profile else null
+	if profile != null:
+		for want in ((profile as Dictionary).get("wants", []) as Array):
+			goals[str((want as Dictionary).get("tag", ""))] = 1
+		for fear in ((profile as Dictionary).get("fears", []) as Array):
+			goals[str((fear as Dictionary).get("tag", ""))] = -1
 	for condition in _conditions(entity_id, session):
 		var kind: String = str(condition.get("type", ""))
 		if kind == "state_tag_present":
 			goals[str(condition.get("tag", ""))] = 1
 		elif kind == "state_tag_absent":
 			goals[str(condition.get("tag", ""))] = -1
+	goals.erase("")
 	return goals
 
 
@@ -1287,8 +1302,13 @@ func _scout(entity_id: String, session: RefCounted) -> Dictionary:
 	for condition in _conditions(entity_id, session):
 		if str(condition.get("type", "")) == "discovery_count":
 			wants_discovery = true
+	# Coi mucchi coperti (D-450) sbirciare e' una Scoperta come aprire un velo:
+	# la sedia lo fa solo se il Destino la manda a scoprire, perche' il numero
+	# che legge non lo usa — decide sui gettoni che tutti vedono.
+	var covered: bool = session.tensions.piles_are_covered()
 	for tension_id in _sorted(session.world["tensions"].keys()):
-		if not session.tensions.is_veiled(str(tension_id)):
+		var veiled: bool = session.tensions.is_veiled(str(tension_id))
+		if not (veiled or covered):
 			continue
 		if session.service.knows_tension(entity_id, str(tension_id)):
 			continue
@@ -1301,7 +1321,8 @@ func _scout(entity_id: String, session: RefCounted) -> Dictionary:
 		# Senza questa riga il cervello chiedeva SCOPRIRE per meta' delle
 		# Occasioni, e con otto carte su quarantotto che sanno dirlo, passava.
 		var worth_it: bool = wants_discovery or (
-			not session.tensions.hides_threshold_only()
+			veiled
+			and not session.tensions.hides_threshold_only()
 			and _tension_goals(entity_id, session).has(str(tension_id))
 		)
 		if worth_it:
@@ -1489,8 +1510,8 @@ func choose_question(context: Dictionary, options: Array, session: RefCounted) -
 ## that is actually legal behind it. Eligibility is checked the same way the
 ## Council checks it, so the policy never picks a question it cannot use.
 func _best_proposition_score(question_id: String, context: Dictionary, session: RefCounted) -> int:
-	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
-	if template == null:
+	var template: Dictionary = _council_template(context, session)
+	if (template as Dictionary).is_empty():
 		return -999
 	var proponent: String = str(context["proponent"])
 	var bindings: Dictionary = session.confluence.effect_context()
@@ -1550,6 +1571,93 @@ func _score_proposition(
 	return score
 
 
+## Quanto una Regione e' mia: 2 se la tengo, 1 se ci ho una presenza o una
+## Pietra mia, 0 altrimenti. E' il peso con cui quello che le succede mi tocca.
+func _stake_in(entity_id: String, region_id: String, session: RefCounted) -> int:
+	var region: Variant = session.world["regions"].get(region_id)
+	if region == null:
+		return 0
+	if str((region as Dictionary).get("control", "")) == entity_id:
+		return 2
+	if (session.world["entities"][entity_id]["presence"] as Array).has(region_id):
+		return 1
+	for structure in ((region as Dictionary).get("structures", []) as Array):
+		if str((structure as Dictionary).get("owner", "")) == entity_id:
+			return 1
+	return 0
+
+
+## La Regione e' tenuta da un altro seggio del tavolo?
+func _held_by_a_rival(entity_id: String, region_id: String, session: RefCounted) -> bool:
+	var region: Variant = session.world["regions"].get(region_id)
+	if region == null:
+		return false
+	var holder: String = str((region as Dictionary).get("control", ""))
+	return holder != "" and holder != "null" and holder != entity_id
+
+
+## Un segno che fa male a una Regione: le condizioni e le Cicatrici. Il resto
+## — memorie, luoghi, Pietre — non e' un danno di per se'.
+static func _harms_a_region(tag: String) -> bool:
+	return tag.begins_with("condition:") or tag.begins_with("scar:") or tag == "structure:sealed"
+
+
+## Il grado che una Pietra ha oggi in una Regione, 0 se non c'e'.
+static func _grade_of(region: Dictionary, structure_type: String) -> int:
+	for structure in (region.get("structures", []) as Array):
+		if str((structure as Dictionary).get("type", (structure as Dictionary).get("structure_type", ""))) == structure_type:
+			return int((structure as Dictionary).get("grade", 1))
+	return 0
+
+
+## Quello che un Effetto fa **alla mappa dove sto** (D-456). Un danno su una
+## Regione mia costa 1 piu' quanto e' mia; lo stesso danno dove sta un
+## avversario rende 1. Una Pietra che sale da me rende 2, che scende costa 2;
+## da un avversario, il contrario e la meta'.
+func _score_on_the_map(
+	effect_type: String, target_id: String, payload: Dictionary, entity_id: String, session: RefCounted
+) -> int:
+	if not session.world["regions"].has(target_id):
+		return 0
+	var mine: int = _stake_in(entity_id, target_id, session)
+	var theirs: bool = _held_by_a_rival(entity_id, target_id, session)
+	var region: Dictionary = session.world["regions"][target_id] as Dictionary
+	match effect_type:
+		"SET_REGION_TAG":
+			if _harms_a_region(str(payload.get("tag", ""))):
+				if mine > 0:
+					return -(1 + mine)
+				if theirs:
+					return 1
+		"REMOVE_REGION_TAG":
+			if _harms_a_region(str(payload.get("tag", ""))):
+				if mine > 0:
+					return 1 + mine
+				if theirs:
+					return -1
+		"BUILD_STRUCTURE":
+			if mine > 0:
+				return 2
+			if theirs:
+				return -1
+		"RAZE_STRUCTURE":
+			if mine > 0:
+				return -2
+			if theirs:
+				return 1
+		"SET_STRUCTURE_GRADE":
+			var now: int = _grade_of(region, str(payload.get("structure_type", "")))
+			var wanted: int = int(payload.get("grade", now))
+			if wanted == now:
+				return 0
+			var up: bool = wanted > now
+			if mine > 0:
+				return 2 if up else -2
+			if theirs:
+				return -1 if up else 1
+	return 0
+
+
 ## Resolve an authored `$slot` to the id it will actually carry at K.
 ##
 ## The Council fixes its bindings at A, before a single stance is declared, so a
@@ -1591,12 +1699,24 @@ func _score_effect(
 	# Being pushed out of - or planted in - a Region your Destiny names. The
 	# target is always a $slot in the authored data ($rival, $proponent), so this
 	# only ever fires once the slot is resolved.
+	# **La sedia legge la mappa** (D-456, parola del committente: *«la sonda
+	# deve pesare tutto: non avere il controllo di una Regione che non mi fa
+	# pescare carte e' uno svantaggio; costruire una citta' e' un valore, che
+	# torni villaggio e' un costo»*). Fino alla 0.1.424 una presenza tolta, una
+	# Pietra costruita o abbattuta, un segno posato sulla Regione dove sto
+	# valevano zero se il Destino non li nominava: il 79% delle proposte valeva
+	# zero per chi non le proponeva, e l'unico Effetto che facesse litigare era
+	# il controllo. Qui pesa quello che tocca **dove sto**, e in senso inverso
+	# quello che tocca dove sta un avversario.
 	if effect_type == "REMOVE_PRESENCE" and target_id == entity_id:
+		score -= 1
 		if _needs_presence(entity_id, _resolve(payload.get("region_id", ""), bindings, session), session):
-			score -= 3
+			score -= 2
 	if effect_type == "ADD_PRESENCE" and target_id == entity_id:
+		score += 1
 		if _needs_presence(entity_id, _resolve(payload.get("region_id", ""), bindings, session), session):
-			score += 3
+			score += 2
+	score += _score_on_the_map(effect_type, target_id, payload, entity_id, session)
 
 	# A Tension your Destiny puts a ceiling or a floor on. This is the commonest
 	# Effect in the whole Consequence set and the commonest clause in the whole
@@ -1627,7 +1747,9 @@ func _score_effect(
 			score -= 6
 
 	# Control changing hands, for whoever counts Regions.
-	if effect_type == "SET_CONTROL" and _counts_control(entity_id, session):
+	# Il controllo pesa sempre (D-456): una Regione tenuta pesca carte, e
+	# perderla e' perdere la mano dell'anno dopo — Destino o no.
+	if effect_type == "SET_CONTROL":
 		if not session.world["regions"].has(target_id):
 			return score
 		var new_owner: Variant = payload.get("entity_id", null)
@@ -1759,6 +1881,11 @@ func _score_relation_move(
 			score -= 1
 		elif after > before:
 			score += 1
+	# Senza una clausola che lo nomini, un rapporto che sale con me rende un
+	# punto e uno che scende me lo costa (D-456): un alleato in meno e' una
+	# mano in meno al Consiglio.
+	if score == 0 and after != before:
+		score = 1 if after > before else -1
 	return score
 
 
@@ -1835,16 +1962,27 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	var score: int = _score_proposition(proposition, entity_id, str(context["proponent"]), session)
 	if score > 0:
 		return {"stance": "SUPPORT", "clause_id": ""}
-	# Something that really costs you is worth blocking. A clause is the answer
-	# to a mild dislike, not to losing half your Destiny.
-	if score <= -2:
-		return {"stance": "OPPOSE", "clause_id": ""}
+	# Quello che costa si blocca (D-454): la CONDITION non c'e' piu', e la
+	# condizione che un avversario pone e' il costo che sceglie (D-387).
 	if score < 0:
-		var clause: String = _best_clause(entity_id, context, session)
-		if clause != "":
-			return {"stance": "CONDITION", "clause_id": clause}
 		return {"stance": "OPPOSE", "clause_id": ""}
+	# **Se astenersi costa, non ci si astiene** (D-455): a chi la proposta non
+	# tocca conviene stare sul fronte che vince — quello di chi propone, che
+	# ha le carte e il silenzio-assenso dalla sua — con una carta in mano.
+	if _debate_points_active(session) and not session.service.hand(entity_id).is_empty():
+		return {"stance": "SUPPORT", "clause_id": ""}
 	return {"stance": "ABSTAIN", "clause_id": ""}
+
+
+## La Chronicle fa pagare l'astensione, o premia chi vince con le carte (D-455)?
+func _debate_points_active(session: RefCounted) -> bool:
+	var chronicle: Variant = session.data.chronicles.get(str(session.world.get("chronicle_id", "")))
+	if chronicle == null:
+		return false
+	var rules: Dictionary = (
+		((chronicle as Dictionary).get("confluence_rules", {}) as Dictionary).get("debate_points", {}) as Dictionary
+	)
+	return int(rules.get("winners_gain", 0)) > 0 or int(rules.get("silent_lose", 0)) > 0
 
 
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
@@ -1857,6 +1995,10 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	if entity_id == str(context["proponent"]):
 		stake = maxi(stake, 2)
 	var wanted: int = clampi(stake, 0, limit)
+	# Con l'astensione a prezzo (D-455) una carta si mette sempre: e' quella
+	# che vale il punto, o che evita di perderlo.
+	if wanted <= 0 and _debate_points_active(session):
+		wanted = 1
 	if wanted <= 0:
 		return []
 	var ranked: Array = session.service.ranked_hand_for_tension(
@@ -2008,7 +2150,7 @@ func choose_opposition_token(
 	# Chi ha dichiarato di stare dalla parte della proposta non paga per farla
 	# cadere: il motore lo rifiuterebbe, e una richiesta che si sa rifiutata e'
 	# un'azione illegale in piu' nel verbale.
-	if session.confluence.stance_of(entity_id) in ["SUPPORT", "CONDITION"]:
+	if session.confluence.stance_of(entity_id) == "SUPPORT":
 		return false
 
 	# Quanto guadagna il proponente da quello che ha gia' posato: e' il danno
@@ -2229,43 +2371,35 @@ func _price_gain(
 	)
 
 
+## Il template del Consiglio come lo vede il Consiglio (D-452): con la
+## Tensione in dibattito, quello fuso con la carta; senza — una prova che
+## fabbrica il contesto — il template crudo, che e' quello che c'era prima.
+func _council_template(context: Dictionary, session: RefCounted) -> Dictionary:
+	var tension_id: String = str(context.get("tension_id", ""))
+	if tension_id != "":
+		var fused: Dictionary = session.data.confluence_template_for(tension_id)
+		if not fused.is_empty():
+			return fused
+	var raw: Variant = session.data.confluence_templates.get(str(context.get("template_id", "")))
+	return {} if raw == null else raw as Dictionary
+
+
+## **Dove sta la proposta** (D-452). Da 0.1.272 le Domande e le Proposte
+## stanno sulla carta Tensione (ISSUES 80, «ogni carta sue proposte») e il
+## Consiglio le legge da `confluence_template_for`, che fonde template e carta.
+## Fino alla 0.1.420 questa funzione — e le due sorelle qui sopra e qui sotto —
+## le cercavano nel template crudo: la proposta non c'era mai, il punteggio
+## non si calcolava, e ogni sedia si asteneva **per cecita'**, non per scelta.
+## Centocinquanta versioni di Consigli a opposizione zero (D-451).
 func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionary:
-	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
-	if template == null:
+	var template: Dictionary = _council_template(context, session)
+	if template.is_empty():
 		return {}
 	for proposition in template["propositions"]:
 		if str(proposition["id"]) == str(context.get("proposition_id", "")):
 			return proposition
 	return {}
 
-
-## La clausola e' la meta' negoziale del Consiglio (§12.3), e fino alla 0.1.27
-## la policy prendeva sempre la prima della lista: la sonda delle posizioni ha
-## contato **zero** scelte della seconda clausola di ogni template, in tutt'e
-## due le saghe - meta' del contenuto negoziale era morto (D-035, D-070). Si
-## sceglie quella i cui Effect servono meglio il proprio Destino; a parita'
-## decide l'RNG di sessione, per la stessa ragione di choose_proposition.
-func _best_clause(entity_id: String, context: Dictionary, session: RefCounted) -> String:
-	var template: Variant = session.data.confluence_templates.get(str(context["template_id"]))
-	if template == null or (template["condition_clauses"] as Array).is_empty():
-		return ""
-	var goals: Dictionary = _tag_goals(entity_id, session)
-	var bindings: Dictionary = session.confluence.effect_context()
-	var proponent: String = str(context.get("proponent", ""))
-	var best_score: int = -999
-	var tied: Array = []
-	for clause in template["condition_clauses"]:
-		var score: int = 0
-		for effect in clause["effects"]:
-			score += _score_effect(effect, entity_id, proponent, goals, session, bindings)
-		if score > best_score:
-			best_score = score
-			tied = [str(clause["id"])]
-		elif score == best_score:
-			tied.append(str(clause["id"]))
-	if tied.size() == 1:
-		return str(tied[0])
-	return str(tied[session.rng.range_int(0, tied.size() - 1)])
 
 
 ## La carta del Narratore (ISSUES 23, D-118): la prima carta in mano che la

@@ -13,7 +13,6 @@ extends RefCounted
 ##   4. on_commit costs of the Assets spent    (H)
 ##   5. Outcome Consequences                   (H)
 ##   6. Cost / Decisive-bonus Consequence      (H)
-##   7. Qualified Condition clause             (H)
 ##   8. Asset disposition                      (I)
 ##   9. Echo Check                             (J)
 ##  10. Ripple                                 (K)
@@ -30,7 +29,11 @@ const NarrativeText := preload("res://scripts/chronicle/narrative_text.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
 
-const STANCES: Array = ["SUPPORT", "OPPOSE", "CONDITION", "ABSTAIN"]
+## **Tre posizioni, non quattro** (D-454). La CONDITION — «sono a favore, a una
+## condizione», con una clausola dal template — e' uscita: sulla carta la
+## condizione che un avversario pone e' il **costo** che sceglie (D-280,
+## D-387), e due grammatiche per la stessa cosa erano una contraddizione.
+const STANCES: Array = ["SUPPORT", "OPPOSE", "ABSTAIN"]
 
 signal step_changed(step: String, context: Dictionary)
 
@@ -310,7 +313,7 @@ func stance_order() -> Array:
 	return service.stance_order(str(current["proponent"])) if is_open() else []
 
 
-func declare_stance(entity_id: String, stance: String, clause_id: String = "") -> bool:
+func declare_stance(entity_id: String, stance: String, _clause_id: String = "") -> bool:
 	last_error = ""
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
 		last_error = "non e il momento di dichiarare una posizione"
@@ -323,28 +326,12 @@ func declare_stance(entity_id: String, stance: String, clause_id: String = "") -
 		return false
 
 	var record: Dictionary = {"stance": stance}
-	if stance == "CONDITION":
-		var clause: Dictionary = _find_clause(clause_id)
-		if clause.is_empty():
-			last_error = "clausola '%s' non presente nel template" % clause_id
-			return false
-		record["clause_id"] = clause_id
-		log.bullet("D. %s: Condition - %s" % [_name(entity_id), say(str(clause["text"]))])
-	else:
-		log.bullet("D. %s: %s" % [_name(entity_id), stance])
+	log.bullet("D. %s: %s" % [_name(entity_id), stance])
 
 	current["stances"][entity_id] = record
 	if stance != "ABSTAIN" and not (current["participants"] as Array).has(entity_id):
 		current["participants"].append(entity_id)
 	return true
-
-
-func _find_clause(clause_id: String) -> Dictionary:
-	var template: Dictionary = _template()
-	for clause in template["condition_clauses"]:
-		if str(clause["id"]) == clause_id:
-			return clause
-	return {}
 
 
 # --- D-bis: la pedina del prezzo (PZ-5, D-267) ------------------------------
@@ -480,9 +467,8 @@ func opposition_placed() -> int:
 ## contro. Una regola che non si puo' mai giocare e' la stessa cosa di una
 ## regola che non c'e'.
 ##
-## Quello che resta vietato e' l'incoerenza: chi ha dichiarato SUPPORT o
-## CONDITION sta dalla parte della proposta — *«sono a favore, a una
-## condizione»* — e non puo' pagare per farla cadere.
+## Quello che resta vietato e' l'incoerenza: chi ha dichiarato SUPPORT sta
+## dalla parte della proposta e non puo' pagare per farla cadere.
 func buy_opposition(entity_id: String) -> bool:
 	last_error = ""
 	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
@@ -497,7 +483,7 @@ func buy_opposition(entity_id: String) -> bool:
 	var stance: String = str(
 		(current["stances"] as Dictionary).get(entity_id, {}).get("stance", "ABSTAIN")
 	)
-	if stance == "SUPPORT" or stance == "CONDITION":
+	if stance == "SUPPORT":
 		last_error = "%s sta dalla parte della proposta" % _name(entity_id)
 		return false
 	var pedine: Array = (current.get("oppose_pedine", []) as Array)
@@ -915,8 +901,6 @@ func max_commit_for(entity_id: String) -> int:
 	if entity_id == str(current["proponent"]):
 		return int(_chronicle["max_commit_assets"])
 	var stance: String = str(current["stances"].get(entity_id, {}).get("stance", "ABSTAIN"))
-	if stance == "CONDITION":
-		return int(_chronicle["max_condition_commit_assets"])
 	if stance == "ABSTAIN":
 		return 0
 	return int(_chronicle["max_commit_assets"])
@@ -1049,16 +1033,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	if silence_bonus > 0 and table_is_silent:
 		support_bonus += silence_bonus
 
-	# La soglia della Condition che si sposta (D-125), mai sotto 1.
-	var condition_entities: Array = []
-	for entity_id in current["stances"]:
-		if str(current["stances"][entity_id].get("stance", "")) == "CONDITION":
-			condition_entities.append(str(entity_id))
-	var shifted: Dictionary = TagRules.condition_threshold_delta(data, world, condition_entities)
-	var threshold: int = maxi(
-		1, int(_chronicle["condition_qualified_threshold"]) + int(shifted["delta"])
-	)
-
 	# G. Resolution.
 	var result: Dictionary = ConfluenceResolution.resolve(
 		str(current["proponent"]),
@@ -1067,7 +1041,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		data.assets,
 		service.relevant_families(tension_id),
 		factor,
-		threshold,
 		support_bonus,
 		oppose_bonus,
 		opposition_placed() * opposition_weight()
@@ -1080,18 +1053,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		log.bullet("  Il segno pesa sul fronte: %s." % str(title))
 	if silence_bonus > 0 and table_is_silent:
 		log.bullet("  Il tavolo tace: il silenzio avvantaggia il proponente (+%d)." % silence_bonus)
-	for title in shifted["titles"]:
-		log.bullet("  Il segno sposta la soglia della Condition: %s." % str(title))
 	# A qualified Condition is part of the margin (D-055), so it is part of the one
 	# line a player reads to check the arithmetic - and an unqualified one is shown
 	# too, crossed out of the sum, because "you spent two cards for nothing" is
 	# exactly the thing that has to be visible.
-	var condition: String = ""
-	if int(result["condition_total"]) > 0:
-		condition = (
-			" C=%d" % int(result["condition_total"]) if bool(result["condition_qualified"])
-			else " C=%d non qualificata" % int(result["condition_total"])
-		)
 	# L'opposizione comprata entra nella riga che si legge per controllare
 	# l'aritmetica (D-419): un margine che scende di due senza che si veda
 	# perche' e' esattamente il modo in cui una regola nuova diventa magia.
@@ -1099,10 +1064,9 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	if int(result.get("bought_opposition", 0)) > 0:
 		bought = " G=%d" % int(result["bought_opposition"])
 	log.bullet(
-		"G. S=%d%s O=%d%s W=%+d -> M=%d -> %s"
+		"G. S=%d O=%d%s W=%+d -> M=%d -> %s"
 		% [
 			int(result["support_total"]),
-			condition,
 			int(result["oppose_total"]),
 			bought,
 			factor,
@@ -1225,29 +1189,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 			_bar_return(applied, effect, source)
 		_apply_scar(applied, str(consequence_id), source)
 		_narrate_applied(applied, first_effect)
-
-	# H.6 A qualified Condition rides along with any successful outcome (§12.3).
-	if bool(result["condition_qualified"]) and ConfluenceResolution.is_success(outcome):
-		for entity_id in current["stances"]:
-			var stance: Dictionary = current["stances"][entity_id]
-			if str(stance.get("stance", "")) != "CONDITION":
-				continue
-			var clause: Dictionary = _find_clause(str(stance.get("clause_id", "")))
-			if clause.is_empty():
-				continue
-			log.bullet("H. Clausola qualificata: %s" % say(str(clause["text"])))
-			var first_clause_effect: int = applied.size()
-			# Chi ha posto la condizione (D-213). Una clausola che nominava una
-			# casa per nome — «e allora Lyra ha il registro» — funzionava finche'
-			# quella casa era sempre al tavolo; col tavolo pescato parlava di
-			# un'assente, e l'Effetto cadeva in un push_error. E' anche piu'
-			# giusto cosi': quello che la condizione ottiene lo ottiene chi
-			# l'ha chiesto.
-			var clause_context: Dictionary = context.duplicate()
-			clause_context["conditioner"] = str(entity_id)
-			for spec in clause["effects"]:
-				_apply(applied, compiler.compile_spec(spec, clause_context, source))
-			_narrate_applied(applied, first_clause_effect)
 
 	# **L'economia della carta, per ultima** (D-280, ordine deciso da D-305).
 	#

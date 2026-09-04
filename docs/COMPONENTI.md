@@ -10,20 +10,20 @@ cosa manca perche' l'app dica **tutto** quello che dice il tavolo.
 | componente | pezzi diversi | copie in scatola | formato | faccia fisica | fogli A4 |
 |---|---|---|---|---|---|
 | Carte **Asset** (ognuna col suo Eco) | 48 | 132 | 70x120 mm | **tutte** | 33 |
-| Carte **Tensione** (le Domande) | 60 | 60 | 63x88 mm | **tutte** | 7 |
-| Schede **Consiglio** | 60 | 60 | 70x120 mm | **tutte** | 15 |
+| Carte **Domanda**, fronte | 60 | 60 | 70x120 mm | **tutte** | 15 |
+| Carte **Domanda**, retro (il Consiglio) | 60 | 60 | 70x120 mm | **tutte** | 15 |
 | Carte **Destino** | 23 | 23 | 70x120 mm | **tutte** | 6 |
 | Carte **Obiettivo** (coperte) | 19 | 19 | 70x120 mm | **tutte** | 5 |
 | Carte **Casata** (una per vita) | 32 | 32 | 70x120 mm | **nessuna** | 8 |
 | Tessere **Regione** | 10 | 10 | 80x80 mm | **nessuna** | 2 |
 
-**76 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
+**84 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
 delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 177 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 175 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa
@@ -33,12 +33,12 @@ dove sta quello che il mondo ricorda (D-351).
 |---|---|---|
 | **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | 33 | 50 |
 | **Segni delle case** — fama, scoperte, promesse | 33 | 39 |
-| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 51 | 51 |
+| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 49 | 49 |
 | Presenza e controllo | 2 | 5 per casa |
 | Rombi del Calore | 1 | uno per ognuno dei 6 Temi, piu' due di scorta |
 | **Gettoni RIVENDICARE** — la moneta del Consiglio | 1 | 12 |
 
-**118 tipi diversi, 152 pezzi** piu' le pedine dei seggi.
+**116 tipi diversi, 150 pezzi** piu' le pedine dei seggi.
 
 Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
 questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca
@@ -54,7 +54,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
 | Conseguenze | 63 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, proposte e clausole d'autore |
-| Regole dei segni | 59 | cosa un segno fa da solo |
+| Regole dei segni | 56 | cosa un segno fa da solo |
 | Azioni | 7 | i verbi del turno |
 | Chronicle | 1 | gli anni giocabili |
 
@@ -89,12 +89,11 @@ che le legge dalle facce vere; la colonna «d'autore» da questi dati.
 
 | componente | facce stampate | di cui col testo d'autore | com'e' fatta |
 |---|---|---|---|
-| Carte Asset | **48** | 48 su 48 | d'autore, piu' le righe ricavate |
-| Carte Tensione (le Domande) | **60** | 60 su 60 | d'autore |
-| Schede Consiglio | **60** | — | ricavata dalla Tensione |
+| Carte Asset (con l'Eco sulla faccia, D-359) | **48** | 48 su 48 | d'autore, piu' le righe ricavate |
+| Carte Domanda, fronte | **60** | 60 su 60 | d'autore |
+| Carte Domanda, retro (il Consiglio, D-449) | **60** | — | ricavata dalla Tensione |
 | Carte Destino | **23** | 23 su 23 | d'autore |
 | Carte Obiettivo | **19** | — | ricavata dai dati (D-445) |
-| Echi (stampati sulla carta Asset) | **48** | — | ricavata dai dati (D-344) |
 | Carte Casata | **32** | — | ricavata dai dati |
 | Tessere Regione | **10** | — | ricavata dai dati |
 

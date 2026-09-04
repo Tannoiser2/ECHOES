@@ -30,7 +30,6 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
         "echo_card"
       ],
       "read_by": [
@@ -94,7 +93,6 @@
         "ENTITY"
       ],
       "written_by": [
-        "confluence_template",
         "consequence"
       ],
       "read_by": [
@@ -171,7 +169,6 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
         "tension"
       ],
       "read_by": [
@@ -189,7 +186,6 @@
         "GLOBAL"
       ],
       "written_by": [
-        "confluence_template",
         "echo_card"
       ],
       "read_by": [
@@ -237,7 +233,6 @@
       ],
       "read_by": [
         "asset_physical",
-        "confluence_template",
         "destiny_physical",
         "tension",
         "chronicle",
@@ -524,7 +519,6 @@
       "read_by": [
         "asset",
         "asset_physical",
-        "confluence_template",
         "consequence",
         "destiny_physical",
         "tag_rule",
@@ -555,7 +549,6 @@
       "read_by": [
         "asset",
         "asset_physical",
-        "confluence_template",
         "consequence",
         "destiny",
         "destiny_physical",
@@ -612,8 +605,7 @@
         "ENTITY"
       ],
       "written_by": [
-        "entity",
-        "tension"
+        "entity"
       ],
       "read_by": [
         "confluence_template",
@@ -755,9 +747,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],
@@ -771,9 +761,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],
@@ -826,10 +814,8 @@
         "ENTITY"
       ],
       "written_by": [
-        "confluence_template",
         "consequence",
-        "echo_card",
-        "tension"
+        "echo_card"
       ],
       "read_by": [
         "destiny",
@@ -845,9 +831,7 @@
       "scope": [
         "ENTITY"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "destiny",
         "objective"
@@ -898,7 +882,6 @@
       ],
       "written_by": [
         "asset_physical",
-        "confluence_template",
         "consequence"
       ],
       "read_by": [
@@ -956,8 +939,7 @@
         "registro del commercio"
       ],
       "written_by": [
-        "asset_physical",
-        "confluence_template"
+        "asset_physical"
       ],
       "read_by": [
         "destiny",
@@ -991,9 +973,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],
@@ -1348,7 +1328,6 @@
       ],
       "written_by": [
         "asset_physical",
-        "confluence_template",
         "tension",
         "echo_card"
       ],
@@ -1376,7 +1355,6 @@
       "written_by": [
         "asset",
         "asset_physical",
-        "confluence_template",
         "consequence",
         "tension"
       ],
@@ -1631,9 +1609,7 @@
       "written_by": [
         "entity"
       ],
-      "read_by": [
-        "tag_rule"
-      ],
+      "read_by": [],
       "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
@@ -1823,24 +1799,8 @@
       "written_by": [
         "entity"
       ],
-      "read_by": [
-        "tag_rule"
-      ],
-      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
-    },
-    {
-      "id": "list_witnessed",
-      "title": "la lista e' stata letta davanti a testimoni",
-      "category": "MEMORY",
-      "table_place": "WORLD_MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "confluence_template"
-      ],
       "read_by": [],
-      "note": "memoria del mondo: narrata (D-103), ereditata"
+      "note": "la vita che la casa sta vivendo: sta stampata sulla sua scheda, e una regola del segno la legge alla successione"
     },
     {
       "id": "marsh",
@@ -1991,7 +1951,6 @@
         "asset_physical",
         "destiny_physical",
         "tension",
-        "confluence_template",
         "consequence",
         "echo_card",
         "entity_strategic_profile"
@@ -2284,9 +2243,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],
@@ -2319,9 +2276,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],
@@ -2360,8 +2315,7 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
-        "tension"
+        "echo_card"
       ],
       "read_by": [
         "asset_physical",
@@ -2370,20 +2324,6 @@
         "objective",
         "tag_rule"
       ]
-    },
-    {
-      "id": "return_promised",
-      "title": "il ritorno e' stato promesso",
-      "category": "MEMORY",
-      "table_place": "WORLD_MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "confluence_template"
-      ],
-      "read_by": [],
-      "note": "memoria del mondo: narrata (D-103), ereditata"
     },
     {
       "id": "rumour_running",
@@ -3070,9 +3010,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],
@@ -3091,8 +3029,7 @@
         "il pedaggio si divide"
       ],
       "written_by": [
-        "asset_physical",
-        "confluence_template"
+        "asset_physical"
       ],
       "read_by": [
         "asset_physical",
@@ -3267,9 +3204,7 @@
       "scope": [
         "GLOBAL"
       ],
-      "written_by": [
-        "confluence_template"
-      ],
+      "written_by": [],
       "read_by": [
         "chronicle"
       ],

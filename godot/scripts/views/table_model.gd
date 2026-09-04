@@ -78,7 +78,7 @@ static func build(session: RefCounted) -> Dictionary:
 		# di uno ancora aperto non c'e' niente qui, ed e' la ragione per cui
 		# `confluence_results` e' la sorgente giusta (D-145).
 		var played: Array = []
-		for front in ["support_assets", "oppose_assets", "condition_assets"]:
+		for front in ["support_assets", "oppose_assets"]:
 			for asset_id in (result as Dictionary).get(front, []):
 				var asset: Variant = data.assets.get(str(asset_id))
 				if asset != null:

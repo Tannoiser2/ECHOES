@@ -203,23 +203,6 @@ static func stance_bonus(
 	return {"delta": delta, "titles": titles}
 
 
-## CONDITION_THRESHOLD (D-125): lo scostamento della soglia di qualifica per
-## questo tavolo di Condition. Ogni regola morde una volta, se almeno uno dei
-## seggi in Condition porta i suoi segni; il chiamante non scende mai sotto 1.
-static func condition_threshold_delta(
-	data, world: Dictionary, condition_entities: Array
-) -> Dictionary:
-	var delta: int = 0
-	var titles: Array = []
-	for rule in active(data, "CONDITION_THRESHOLD", str(world.get("chronicle_id", ""))):
-		for entity_id in condition_entities:
-			if _all_present(world, rule, {"entity_id": str(entity_id)}):
-				delta += int(rule.get("threshold_delta", 0))
-				titles.append(str(rule["title"]))
-				break
-	return {"delta": delta, "titles": titles}
-
-
 ## ACTION_RIPPLE (D-129): l'azione che sfoga su una domanda. Quando chi porta
 ## il segno compie `template` con successo, la Tensione indicata si muove —
 ## i forni producono, e il grano lo paga la valle. Il chiamante applica.

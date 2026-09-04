@@ -681,11 +681,64 @@ func run_confluence(
 			controller.commit(str(entity_id), [])
 
 	var recovery: Dictionary = await decider.choose_recovery(context, session)
+	# Chi ha detto cosa e con quante carte, letto **prima** di `resolve()`, che
+	# svuota `current` (D-455): i punti del dibattito si contano su questo.
+	var debate_proponent: String = str(controller.current["proponent"])
+	var debate_stances: Dictionary = (controller.current["stances"] as Dictionary).duplicate(true)
+	var debate_commits: Dictionary = (controller.current["commits"] as Dictionary).duplicate(true)
 	var result: Dictionary = controller.resolve(recovery)
 	if not result.is_empty():
+		result["debate_points"] = _score_the_debate(
+			result, debate_proponent, debate_stances, debate_commits
+		)
 		confluence_results.append(result)
 		confluence_resolved.emit(result)
 	return result
+
+
+## **L'astensione ha un prezzo** (D-455, parola del committente: *«chi non
+## gioca carte, oltre a fare un favore a chi le gioca, potrebbe perdere punti
+## vittoria se perde un dibattito, oppure potrebbero guadagnarle chi li
+## vince»*). Due numeri nella Chronicle, `confluence_rules.debate_points`:
+## `winners_gain`, quanti punti di campagna prende chi sta sul fronte che ha
+## vinto **con almeno una carta impegnata**; `silent_lose`, quanti ne perde chi
+## non propone e non impegna niente. Zero e zero, e il Consiglio e' quello di
+## prima. Il punteggio di campagna e' un'eccezione dichiarata all'effect-
+## sourcing, come a fine anno: qui si scrive e si dice, non si registra.
+func _score_the_debate(
+	result: Dictionary, proponent: String, stances: Dictionary, commits: Dictionary
+) -> Dictionary:
+	var rules: Dictionary = (
+		(_chronicle.get("confluence_rules", {}) as Dictionary).get("debate_points", {}) as Dictionary
+	)
+	var winners_gain: int = int(rules.get("winners_gain", 0))
+	var silent_lose: int = int(rules.get("silent_lose", 0))
+	var deltas: Dictionary = {}
+	if winners_gain <= 0 and silent_lose <= 0:
+		return deltas
+	var won: bool = ConfluenceResolution.is_success(str(result["outcome"]))
+	for entity_id in world["turn_order"]:
+		var seat: String = str(entity_id)
+		var cards: int = (commits.get(seat, []) as Array).size()
+		var side: String = (
+			"SUPPORT" if seat == proponent
+			else str((stances.get(seat, {}) as Dictionary).get("stance", "ABSTAIN"))
+		)
+		var delta: int = 0
+		if winners_gain > 0 and cards > 0 and ((won and side == "SUPPORT") or (not won and side == "OPPOSE")):
+			delta += winners_gain
+		if silent_lose > 0 and seat != proponent and cards == 0:
+			delta -= silent_lose
+		if delta == 0:
+			continue
+		var who: Dictionary = world["entities"][seat] as Dictionary
+		who["saga_score"] = int(who.get("saga_score", 0)) + delta
+		deltas[seat] = delta
+		log.bullet("Punti del dibattito: %s %+d — %s." % [
+			_name(seat), delta,
+			"ha vinto con le carte in mano" if delta > 0 else "non ha giocato carte",
+		])
+	return deltas
 
 
 ## ISSUES 23 (D-118): la carta di Propp non si pesca piu' da sola a fine atto —

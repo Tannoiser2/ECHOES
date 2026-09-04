@@ -59,6 +59,51 @@ l'audit, e sono fatte ([D-445](DECISIONS.md#d-445), [D-446](DECISIONS.md#d-446))
 Quello che resta tuo è lo stesso di prima: **l'occhio** — le carte stampate in
 mano, e il giro su un iPad vero.
 
+**E in 0.1.418, guardando le schede, hai visto due cose che erano decise e non
+stampate** ([D-449](DECISIONS.md#d-449)): l'Eco va sulla carta Asset, e la
+Domanda e il suo Consiglio sono la stessa carta. Fatte: l'Eco è stampato, la
+Domanda è un tarocco col Consiglio sul retro, e «le dodici caselle» non c'è
+più. Costo scritto: 84 fogli, e l'illustrazione dell'Asset al pavimento.
+
+**E il giorno dopo, in 0.1.419, hai corretto il velo** ([D-450](DECISIONS.md#d-450)):
+*«quella non è velata, sono i segnalini che si mettono sopra che sono
+coperti»*. Fatto: nessuna Domanda nasce velata, la carta perde «velata» e la
+soglia e dice quando si dibatte, la mappa dell'app scrive quello che il tavolo
+sa.
+
+**E in 0.1.420 hai detto che il gioco fallisce sul Consiglio** ([D-451](DECISIONS.md#d-451)).
+Fatti la sonda e il cancello che chiedevi: `docs/MISURA_PARTECIPAZIONE.md` conta chi
+gioca davvero un Consiglio, e il cancello va rosso se un tavolo intero chiude
+ogni Consiglio senza opposizione. Il numero ti dà ragione — astensioni al 95% e
+al 99% — e la causa è una riga: le sedie cercavano la proposta nel posto
+vecchio, e non la vedevano.
+
+**E in 0.1.422 hai detto che una carta non può avere 25 caselle** ([D-453](DECISIONS.md#d-453)):
+quattro benefici e quattro costi al massimo. Fatto: le quattro più comprate in
+cento partite più la memoria della carta, con i bersagli suoi; 569 caselle
+tolte, e la guardia nel validatore. Le quattro sono le stesse su ogni carta:
+l'hai visto e l'hai scelto tu, contro le due proprie più due comprate.
+
+**E in 0.1.423 la CONDITION è uscita dal motore** ([D-454](DECISIONS.md#d-454)):
+i costi sono le condizioni che pongono gli altri, come dicevi. Restano tre
+posizioni; le ventiquattro clausole che nessuna carta stampava escono con la
+loro soglia. Costo scritto: otto memorie che le clausole scrivevano restano
+senza penna, in ISSUES 98.
+
+**E in 0.1.424 l'astensione ha un prezzo** ([D-455](DECISIONS.md#d-455)), come
+chiedevi: due numeri nella Chronicle, chi vince con le carte guadagna e chi non
+ne gioca perde. Misurata, fa il contrario: tutti salgono sul carro di chi
+propone, e il Consiglio diventa un plebiscito. È nei dati a zero, con tre forme
+alternative scritte nel verbale: la scelta è tua.
+
+**E in 0.1.425 hai detto che la sedia deve pesare tutto** ([D-456](DECISIONS.md#d-456)):
+il controllo che pesca carte, la città che vale, il villaggio che costa, la
+Regione affamata che è mia. Fatto: la sedia legge la mappa. Le proposte che
+valevano zero per chi non le propone passano dal 79% al 24%, i Consigli con
+almeno un no da uno su quattro a tre su quattro, e il tavolo dei quattro
+ottimizzatori si oppone nel margine in un Consiglio su due. Il quarto che
+resta a zero è contenuto: le carte, come dicevi.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

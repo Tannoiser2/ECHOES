@@ -102,41 +102,6 @@ func test_asset_value_modifiers() -> void:
 
 ## §12.3 (D-055): a Condition that is paid for argues *for* the proposition - its
 ## commits join S - and one that is not paid for argues for nothing.
-func test_a_qualified_condition_counts_as_support() -> void:
-	var assets: Dictionary = {
-		"AST_WEALTH_GRAIN": {
-			"family": "WEALTH", "strength": 1, "confluence_modifier": {"kind": "NONE", "value": 0}
-		},
-		"AST_WEALTH_CARAVAN": {
-			"family": "WEALTH", "strength": 2, "confluence_modifier": {"kind": "NONE", "value": 0}
-		},
-	}
-	var result: Dictionary = ConfluenceResolution.resolve(
-		"ENT_A",
-		{
-			"ENT_B": {"stance": "OPPOSE"},
-			"ENT_C": {"stance": "CONDITION", "clause_id": "C_X"},
-			"ENT_D": {"stance": "ABSTAIN"},
-		},
-		{
-			"ENT_A": ["AST_WEALTH_CARAVAN", "AST_WEALTH_GRAIN"],
-			"ENT_B": ["AST_WEALTH_GRAIN"],
-			"ENT_C": ["AST_WEALTH_CARAVAN"],
-			"ENT_D": ["AST_WEALTH_CARAVAN"],
-		},
-		assets,
-		["WEALTH"],
-		0,
-		2
-	)
-	assert_eq(result["support_total"], 3, "S resta il totale del solo fronte Support")
-	assert_eq(result["oppose_total"], 1, "O conta solo gli Oppose")
-	assert_eq(result["condition_total"], 2, "il Condition e contato a parte, e resta leggibile")
-	assert_true(bool(result["condition_qualified"]), "totale 2 >= soglia 2: qualificato")
-	assert_eq(result["margin"], 4, "M = (3 + 2) - 1 + 0: il Condition qualificato entra nel margine")
-	assert_eq(result["outcome"], ConfluenceResolution.SUCCESS, "M=4 e Success")
-
-
 func test_abstain_commits_are_ignored() -> void:
 	var assets: Dictionary = {
 		"AST_WEALTH_GRAIN": {
@@ -149,30 +114,9 @@ func test_abstain_commits_are_ignored() -> void:
 		{"ENT_A": ["AST_WEALTH_GRAIN"], "ENT_B": ["AST_WEALTH_GRAIN"]},
 		assets,
 		["WEALTH"],
-		0,
-		2
+		0
 	)
 	assert_eq(result["support_total"], 1, "chi si astiene non contribuisce")
 	assert_eq(result["oppose_total"], 0, "chi si astiene non contribuisce")
 
 
-func test_condition_below_threshold_is_not_qualified() -> void:
-	var assets: Dictionary = {
-		"AST_WEALTH_GRAIN": {
-			"family": "WEALTH", "strength": 1, "confluence_modifier": {"kind": "NONE", "value": 0}
-		},
-	}
-	var result: Dictionary = ConfluenceResolution.resolve(
-		"ENT_A",
-		{"ENT_B": {"stance": "CONDITION", "clause_id": "C_X"}},
-		{"ENT_A": [], "ENT_B": ["AST_WEALTH_GRAIN"]},
-		assets,
-		["WEALTH"],
-		0,
-		2
-	)
-	assert_eq(result["condition_total"], 1, "un solo Asset da 1")
-	assert_false(bool(result["condition_qualified"]), "sotto la soglia 2 la clausola non qualifica")
-	# E se non qualifica non vale niente: e' il prezzo del negoziato, ed e' quello
-	# che tiene la Condition una scelta invece di uno sconto (D-055).
-	assert_eq(result["margin"], 0, "M = 0 - 0 + 0: una condizione non pagata non sposta il margine")

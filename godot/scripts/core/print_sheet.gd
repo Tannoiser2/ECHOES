@@ -87,7 +87,12 @@ static func paginate(faces: Array, shape: String) -> Array:
 ## Una pagina intera. `label` finisce nell'intestazione fuori dall'area di
 ## taglio, insieme al numero di foglio: un mazzo stampato senza sapere quale
 ## foglio manca e' un mazzo da ristampare tutto.
-static func page_svg(faces: Array, shape: String, label: String, number: int, total: int) -> String:
+## **`mirrored` e' il foglio dei retri** (D-449): le colonne vanno da destra a
+## sinistra, cosi' stampando fronte e retro sullo stesso foglio ogni retro
+## finisce dietro la sua carta. Il numero di foglio e' lo stesso del fronte.
+static func page_svg(
+	faces: Array, shape: String, label: String, number: int, total: int, mirrored: bool = false
+) -> String:
 	var cell: Vector2 = cell_size(shape)
 	var cols: int = columns(shape)
 	var rows: int = per_page(shape) / cols
@@ -111,13 +116,15 @@ static func page_svg(faces: Array, shape: String, label: String, number: int, to
 	out.append('<rect width="%d" height="%d" fill="#ffffff"/>' % [int(PAGE_W), int(PAGE_H)])
 	out.append(
 		'<text x="%.1f" y="%.1f" font-family="sans-serif" font-size="3" fill="#999999">%s</text>'
-		% [left, top - 5.0, ArtPlaceholder.escape("ECHOES · %s · foglio %d di %d" % [
-			label, number, total
+		% [left, top - 5.0, ArtPlaceholder.escape("ECHOES · %s · foglio %d di %d%s" % [
+			label, number, total, " · RETRO, specchiato" if mirrored else ""
 		])]
 	)
 
 	for index in range(faces.size()):
 		var column: int = index % cols
+		if mirrored:
+			column = cols - 1 - column
 		var row: int = index / cols
 		var x: float = left + float(column) * cell.x
 		var y: float = top + float(row) * cell.y

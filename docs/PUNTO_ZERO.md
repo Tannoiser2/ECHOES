@@ -29,7 +29,7 @@ scatola.
 |---|---|---|
 | suite | **746 prove / 114 suite / 93.907 asserzioni** verdi | 690 / 102 / 86.390 |
 | il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme | uguale |
-| cancelli | **tutti e trentatré verdi** (vedi `CLAUDE.md`) | trentadue |
+| cancelli | **tutti e trentaquattro verdi** (vedi `CLAUDE.md`) | trentadue |
 | Consigli per anno | misto **3–6** (media 3,53) · uniforme **3–5** (media 3,36) | 3,58 · 3,49 |
 | Verità scritte | misto **136**, di cui 113 diverse · uniforme **139**, di cui 107 | 142/113 · 150/108 |
 
@@ -41,7 +41,7 @@ scritto verbale per verbale: due Conseguenze e un segno usciti dalla scatola
 ([D-443](DECISIONS.md#d-443)). Un numero peggiorato e scritto vale più di un
 numero nascosto.
 
-**I cancelli sono trentatré, e costano ventotto secondi.** Ventotto veloci — il
+**I cancelli sono trentaquattro, e costano ventotto secondi.** Ventotto veloci — il
 ventottesimo è la scheda di ogni tipo di carta ([D-445](DECISIONS.md#d-445)) —
 e cinque sonde lunghe, 881 secondi, che si girano una volta prima della PR.
 Un comando solo, [`tools/gates.py`](../tools/gates.py), in due corsie
@@ -131,10 +131,9 @@ costruiscono per lui.
 | | |
 |---|---|
 | Temi | **6** — Potere, Sopravvivenza, Terra, Antico, Fede, Vie |
-| carte Asset con faccia fisica | **48 su 48**, ognuna col suo Eco |
+| carte Asset con faccia fisica | **48 su 48**, ognuna col suo Eco **stampato sulla faccia** ([D-449](DECISIONS.md#d-449)) |
 | Destini con faccia fisica | **23 su 23** |
-| carte Domanda, che portano le Domande | **60** — dieci per Tema, **63×88** da [D-446](DECISIONS.md#d-446) |
-| schede Consiglio | **60**, una per Domanda |
+| carte Domanda | **60** — dieci per Tema, tarocchi **fronte-retro**: davanti la domanda, dietro il suo Consiglio ([D-449](DECISIONS.md#d-449)) |
 | carte Obiettivo | **19**, con una faccia da [D-445](DECISIONS.md#d-445) |
 | tessere Regione | **10 nel parco, 6 pescate** ogni anno; **0 pose** su 151.200 lasciano una tessera isolata |
 | i verbi | **7** — SEGNARE è il settimo ([D-423](DECISIONS.md#d-423)) |
@@ -182,12 +181,12 @@ invece di battersi le cifre a mano ([D-373](DECISIONS.md#d-373)).
 | | |
 |---|---|
 | Asset | **48** (132 copie), tutte con faccia fisica, ognuna col suo Eco |
-| carte Echo | **48** · Domande **60** · schede Consiglio **60** · Destini **23** · Obiettivi **19** · Casate **32** (8 case, una carta per vita) |
+| Echi | **48**, sulle carte Asset · Domande **60**, col Consiglio sul retro · Destini **23** · Obiettivi **19** · Casate **32** (8 case, una carta per vita) |
 | Conseguenze | **63** · azioni **7** |
 | Regioni 10 · Entità 8 · profili strategici 8 · Cronache **1** (CHR_00) | |
 | segni nel dizionario | **177** · regole del segno **59** · icone **124** |
 | template di Consiglio | 12 |
-| **da stampare** | **76 fogli A4**, più quattro fogli-fustella |
+| **da stampare** | **84 fogli A4**, più quattro fogli-fustella |
 | **segnalini** | **118 tipi, 152 pezzi**, più le pedine dei seggi |
 | **da illustrare** | **161 soggetti**, 11 disegnati, **150 ancora segnaposto** |
 
@@ -198,9 +197,9 @@ voce; e `docs/schede/<tipo>.json` porta il record di ognuna delle **300 facce**
 col prompt già composto. I segnalini hanno la loro in
 [CATALOGO_PEDINE](CATALOGO_PEDINE.md).
 
-**Il Consiglio sta sulla carta.** Ogni Tensione porta le sue domande e le dodici
-caselle con cui il tavolo la risolve; la scheda Consiglio è un pezzo a parte
-perché su una carta sola non entrano ([D-338](DECISIONS.md#d-338)).
+**Il Consiglio sta sulla carta, dietro.** Ogni Domanda porta sul fronte le sue
+domande e sul retro le caselle con cui il tavolo la risolve, da 18 a 25 per
+carta ([D-449](DECISIONS.md#d-449)).
 
 E le tre misure che vengono prima della matrice (`MISURA_MATRICE.md`):
 

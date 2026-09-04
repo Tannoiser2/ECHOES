@@ -17,12 +17,15 @@ che immagine porta, da dove viene ogni voce — sono controllate contro le
 facce vere: una voce stampata che la scheda tace, o promessa che nessuna
 faccia stampa, e questo documento non si scrive.
 
+Una carta puo' avere **due facce**: la Domanda porta il suo Consiglio sul
+retro (D-449), e l'Asset porta il suo Eco sotto le Azioni (D-359). Il JSON
+di un retro dice di che fronte e' (`fronte`), e viceversa (`retro`).
+
 | tipo | formato | facce | pezzi | immagine | il dato |
 |---|---|---|---|---|---|
 | **carta Asset** | tarocco 70×120 mm | 48 | 132 | si' | `schede/asset.json` |
-| **carta Echo** | tarocco 70×120 mm | 48 | 48 | si' | `schede/echo.json` |
-| **carta Domanda (la Tensione)** | carta da gioco 63×88 mm | 60 | 60 | no | `schede/tension.json` |
-| **scheda Consiglio** | tarocco 70×120 mm | 60 | 60 | no | `schede/council.json` |
+| **carta Domanda (la Tensione), fronte** | tarocco 70×120 mm | 60 | 60 | no | `schede/tension.json` |
+| **carta Domanda, retro (il Consiglio)** | tarocco 70×120 mm | 60 | 60 | no | `schede/council.json` |
 | **carta Destino** | tarocco 70×120 mm | 23 | 23 | si' | `schede/destiny.json` |
 | **carta Obiettivo** | tarocco 70×120 mm | 19 | 19 | si' | `schede/objective.json` |
 | **carta Casata** | tarocco 70×120 mm | 32 | 32 | si' | `schede/entity.json` |
@@ -64,7 +67,7 @@ Not photorealistic, not glossy 3D, not anime, not comic-book inked line art, not
 
 ## 1. carta Asset — tarocco 70×120 mm · 48 facce · 132 pezzi
 
-**Cos'e'.** La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. Il suo Eco e' l'altra faccia dello stesso pezzo.
+**Cos'e'.** La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Sotto le Azioni porta il suo Eco** (D-359): se le condizioni ci sono si cala quello al posto di un'Azione, e costa la carta.
 
 **L'immagine.** Una **scena** — un luogo, un gesto, persone dentro una cosa che sta succedendo — mai un ritratto singolo centrato. L'accento e' il colore della famiglia.
 
@@ -101,6 +104,10 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 | **AL CONSIGLIO** | quanto vale al voto e quando di piu': `physical.council_use`, `strength` |
 | **IMPEGNI** | cosa lascia se la impegni: `on_commit_effects`, `discard_or_retain_rule` |
 | **PRENDI** | come arriva in mano: `acquisition_rule` |
+| **ECO** | l'Eco della carta, la sua versione potenziata: `echo_id`, con titolo, famiglia drammatica e funzione di Propp |
+| **QUANDO ESCE** | le condizioni per calare l'Eco: `eligibility` dell'Eco, generate dai campi |
+| **IL MONDO** | cosa fa l'Eco, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id) |
+| **CONVOCA IL CONSIGLIO** | la domanda che l'Eco apre, se ne apre una: `forces_confluence_on` |
 
 **Una carta, per intero, com'e' nel JSON:**
 
@@ -142,6 +149,22 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "PRENDI",
       "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+    },
+    {
+      "voce": "ECO",
+      "testo": "La Chiamata · PRESSIONE · funzione di Propp: richiesta"
+    },
+    {
+      "voce": "QUANDO ESCE",
+      "testo": "il mondo porta il debito e' stato chiamato"
+    },
+    {
+      "voce": "IL MONDO",
+      "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
+    },
+    {
+      "voce": "CONVOCA IL CONSIGLIO",
+      "testo": "su Il Debito"
     }
   ],
   "arte": {
@@ -155,75 +178,9 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 2. carta Echo — tarocco 70×120 mm · 48 facce · 48 pezzi
+## 2. carta Domanda (la Tensione), fronte — tarocco 70×120 mm · 60 facce · 60 pezzi
 
-**Cos'e'.** La faccia del Narratore stampata sulla carta Asset (D-359): una funzione di Propp, e **tu scegli solo quando**. Dove cade e cosa lascia lo decide il mondo. Costa 1 Occasione.
-
-**L'immagine.** Una scena della **famiglia drammatica** — pressione, rottura, svolta, risoluzione — col suo registro e il suo accento.
-
-Il prompt generale del tipo, coi segnaposto che ogni carta riempie —
-`{SOGGETTO}` e' il titolo, `{SITUAZIONE}` la scena scritta dall'autore
-(`description`), `{ACCENTO}` e `{DESCRIZIONE}` la riga di variazione:
-
-```
-ECHOES — Echo card. A narrative moment: {SOGGETTO}.
-What is happening: {SITUAZIONE}
-Dominant accent: {ACCENTO}, over the game's muted earth palette.
-The image shows a turning point, not an action climax: the instant before or the
-instant after. Human scale, few figures, strong silhouette reading at small size.
-Composition: negative space along the top edge reserved for a title overlay; the
-focal event sits at the lower-left third. Vertical card framing, 2:3. No text, no
-letters, no numerals, no frame, no border. Not gory.
-```
-
-Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
-
-**Cosa c'e' scritto sopra**, in ordine di lettura:
-
-| posto | da dove viene |
-|---|---|
-| il titolo | `title` o `name` |
-| il sottotitolo | la famiglia drammatica e la funzione di Propp (`dramatic_family`, `function_id`), in italiano |
-| **QUANDO ESCE** | le condizioni per calarla: `eligibility`, generate dai campi e non ricopiate |
-| **IL MONDO** | cosa fa, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id) |
-| **CONVOCA IL CONSIGLIO** | la domanda che apre, se ne apre una: `forces_confluence_on` |
-
-**Una carta, per intero, com'e' nel JSON:**
-
-```json
-{
-  "id": "ECH_AMNESTY",
-  "tipo": "echo",
-  "titolo": "Amnistia",
-  "sottotitolo": "RISOLUZIONE · funzione di Propp: liberazione",
-  "angolo": "",
-  "accento": "#6fa88a",
-  "famiglia": "",
-  "corpo": [],
-  "righe": [
-    {
-      "voce": "QUANDO ESCE",
-      "testo": "e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di conquest"
-    },
-    {
-      "voce": "IL MONDO",
-      "testo": "nel luogo della carta non e' piu' #inquieta · nel luogo della carta non e' piu' #contesa · La Successione scende · il mondo registra: l'amnistia e' stata concessa"
-    }
-  ],
-  "arte": {
-    "chiave": "echo.resolution.liberation",
-    "scena": "Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.",
-    "prompt": "ECHOES — Echo card. A narrative moment: Amnistia.\nWhat is happening: Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.\nDominant accent: oro caldo basso, over the game's muted earth palette.\nThe image shows a turning point, not an action climax: the instant before or the\ninstant after. Human scale, few figures, strong silhouette reading at small size.\nComposition: negative space along the top edge reserved for a title overlay; the\nfocal event sits at the lower-left third. Vertical card framing, 2:3. No text, no\nletters, no numerals, no frame, no border. Not gory."
-  },
-  "pie": "ECH_AMNESTY",
-  "copie": 1,
-  "segreta": false
-}
-```
-
-## 3. carta Domanda (la Tensione) — carta da gioco 63×88 mm · 60 facce · 60 pezzi
-
-**Cos'e'.** La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano.
+**Cos'e'.** La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. **La carta non e' mai coperta: coperti sono i gettoni** che ci si posano sopra (D-450) — a fine Atto si girano, si sommano, e la Domanda col mucchio piu' alto si dibatte.
 
 **L'immagine.** Nessuna: e' tutta testo, e il testo prende il posto del quadro.
 
@@ -232,11 +189,12 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 | posto | da dove viene |
 |---|---|
 | il titolo | `title` o `name` |
-| il sottotitolo | «domanda» o «domanda velata» (`visibility`) e il Tema (`domain`) |
-| la cifra d'angolo | la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo |
+| il sottotitolo | «domanda» e il Tema (`domain`) |
+| la cifra d'angolo | nessuna: la soglia col cancello del tavolo non decide niente (D-203), e si e' tolta dalla carta (D-450) |
 | **SI DISCUTE DI** | le domande che puo' aprire, nel corpo: `possible_questions`, col testo da `council.questions` |
 | **SI ACCENDE QUANDO** | la regola a segni che la fa salire: `heats_when` (o `triggers`, dove la regola non c'e') |
 | **SI RAFFREDDA** | `decrease_rules` |
+| **SI DIBATTE** | il gesto di fine Atto, fisso: i gettoni coperti si girano e il mucchio piu' alto gira la carta (D-203, D-450) |
 | **AL CONSIGLIO VALGONO** | le famiglie che pesano al voto: `relevant_asset_families` |
 
 **Una carta, per intero, com'e' nel JSON:**
@@ -246,8 +204,8 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "id": "TEN_ASH",
   "tipo": "tension",
   "titolo": "La Cenere che Sale",
-  "sottotitolo": "domanda velata · l'antico",
-  "angolo": "4",
+  "sottotitolo": "domanda · l'antico",
+  "angolo": "",
   "accento": "#8a8172",
   "famiglia": "",
   "corpo": [
@@ -263,6 +221,10 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
       "testo": "Una Confluence risolta su chi tiene d'occhio la montagna."
     },
     {
+      "voce": "SI DIBATTE",
+      "testo": "quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta."
+    },
+    {
       "voce": "AL CONSIGLIO VALGONO",
       "testo": "forza, sapere, gente"
     }
@@ -274,9 +236,9 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 4. scheda Consiglio — tarocco 70×120 mm · 60 facce · 60 pezzi
+## 3. carta Domanda, retro (il Consiglio) — tarocco 70×120 mm · 60 facce · 60 pezzi
 
-**Cos'e'.** La scheda che si tira fuori quando il Consiglio si apre su una domanda: **le domande e le dodici caselle** con cui il tavolo la risolve (D-280, D-338). Una per Tensione.
+**Cos'e'.** **Il retro della carta Domanda**: si gira quando il Consiglio si apre, e porta le sue domande e le caselle con cui il tavolo la risolve — in media nove SI OTTIENE, nove SI PAGA e due SE CADE (D-280, D-449). Una per Tensione, nello stesso ordine del fronte.
 
 **L'immagine.** Nessuna: e' un elenco da cui si sceglie.
 
@@ -298,7 +260,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "id": "TEN_ASH",
   "tipo": "council",
   "titolo": "La Cenere che Sale",
-  "sottotitolo": "il Consiglio che questa domanda apre",
+  "sottotitolo": "il Consiglio che questa domanda apre — retro della carta",
   "angolo": "",
   "accento": "#8a8172",
   "famiglia": "",
@@ -310,14 +272,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "SI OTTIENE",
       "testo": ""
-    },
-    {
-      "voce": "·",
-      "testo": "Riapri l'accesso: il luogo torna raggiungibile."
-    },
-    {
-      "voce": "·",
-      "testo": "Il luogo torna raggiungibile."
     },
     {
       "voce": "·",
@@ -336,18 +290,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
       "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
     },
     {
-      "voce": "·",
-      "testo": "Sposta di 1 indietro il segnalino di La Cenere che Sale."
-    },
-    {
-      "voce": "·",
-      "testo": "Sposta di 1 indietro il segnalino di La Reliquia."
-    },
-    {
-      "voce": "·",
-      "testo": "Sito antico del luogo sale di 1 grado."
-    },
-    {
       "voce": "SI PAGA",
       "testo": ""
     },
@@ -357,15 +299,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "·",
-      "testo": "Il luogo ottiene #pedaggio."
-    },
-    {
-      "voce": "·",
       "testo": "Cedi il controllo del luogo."
-    },
-    {
-      "voce": "·",
-      "testo": "Scalda il Tema di 1."
     },
     {
       "voce": "·",
@@ -374,18 +308,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "·",
       "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
-    },
-    {
-      "voce": "·",
-      "testo": "Sposta di 1 avanti il segnalino di La Cenere che Sale."
-    },
-    {
-      "voce": "·",
-      "testo": "Sposta di 1 avanti il segnalino di La Reliquia."
-    },
-    {
-      "voce": "·",
-      "testo": "Sito antico del luogo scende di 1 grado."
     },
     {
       "voce": "SE CADE",
@@ -407,7 +329,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 5. carta Destino — tarocco 70×120 mm · 23 facce · 23 pezzi
+## 4. carta Destino — tarocco 70×120 mm · 23 facce · 23 pezzi
 
 **Cos'e'.** L'ambizione di una casa, **dietro il paravento**: la scala per contare quanto manca. Non si gioca, si guarda.
 
@@ -480,7 +402,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 6. carta Obiettivo — tarocco 70×120 mm · 19 facce · 19 pezzi
+## 5. carta Obiettivo — tarocco 70×120 mm · 19 facce · 19 pezzi
 
 **Cos'e'.** La promessa coperta che **qualunque casa puo' pescare**, dietro il paravento come il Destino. Non si gioca: si conta a fine anno, clausola per clausola.
 
@@ -546,7 +468,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 7. carta Casata — tarocco 70×120 mm · 32 facce · 32 pezzi
+## 6. carta Casata — tarocco 70×120 mm · 32 facce · 32 pezzi
 
 **Cos'e'.** La casa, in vista tutta la partita: **cosa sa fare e cosa vuole lasciare**. Una carta per vita (D-111): la stessa casa cambia nome e volto quando si trasforma.
 
@@ -620,7 +542,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 8. tessera Regione — tessera 80×80 mm · 10 facce · 10 pezzi
+## 7. tessera Regione — tessera 80×80 mm · 10 facce · 10 pezzi
 
 **Cos'e'.** La tessera di mappa: **porta i segni** che ogni carta Azione bersaglia, e i varchi con cui si posa accanto alle altre.
 

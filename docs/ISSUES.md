@@ -362,6 +362,12 @@ visto che il foglio di prima usciva dal bordo di tredici millimetri. E le
 diciannove carte Obiettivo, che questa voce non contava, hanno un formato: il
 tarocco, coperte come i Destini ([D-445](DECISIONS.md#d-445)).
 
+**E in 0.1.418 le facce si uniscono** ([D-449](DECISIONS.md#d-449)): l'Eco è
+stampato sulla carta Asset, come D-359 diceva; la Domanda torna tarocco e porta
+il suo Consiglio sul retro, su fogli specchiati. Fogli 76 → 84. E in 0.1.419
+la Domanda perde il velo ([D-450](DECISIONS.md#d-450)): coperti sono i
+gettoni, non la carta.
+
 ---
 
 ### 18. ✅ I fatti eterni strozzano i Destini di seconda rotazione — fatta in 0.1.40
@@ -2339,6 +2345,11 @@ E si copre in **tre finestre**, non una: il verbale pubblico, la scheda del
 seggio, e la pagina d'aiuto. Bastava lasciarne aperta una perché coprire fosse
 teatro — la lezione di §5ter, presa in anticipo invece che dopo.
 
+*In 0.1.419 la previsione qui sopra si è avverata* ([D-450](DECISIONS.md#d-450)):
+nessuna Domanda nasce velata, TRAMARE sbircia i gettoni coperti, e la quarta
+finestra — la scheda di stato dell'app, che scriveva il punteggio a tutti — si
+è chiusa.
+
 | | prima | dopo |
 |---|---|---|
 | Consigli l'anno, uniforme | 3,37 | **3,40** |
@@ -3417,6 +3428,14 @@ c'e', il conto «32 scattano» e' un **pavimento**, non un totale.
 **Il metro**: `tools/run_marks_survey.sh` e `docs/REGISTRO_SEGNI.md`.
 **Fatto quando** ogni segno dichiara il suo peso, nessun `pesa` resta senza
 scatti, e nessun `flavour` compare in una clausola di punteggio.
+
+*In 0.1.423, con la CONDITION fuori dal motore* ([D-454](DECISIONS.md#d-454)),
+**otto memorie restano chieste e non scritte**: `quota_guaranteed`,
+`relic_recorded`, `succession_witnessed`, `water_shared`, `debt_staggered`,
+`descent_witnessed`, `distribution_audited`, `charter_for_all`. Le scrivevano le
+clausole, le chiede la pesca delle domande della biblioteca. Sono dichiarate in
+`CHIESTI_NOTI` con la ragione, e vanno riscritte come casella o come
+Conseguenza: finché non lo sono, le domande che le aspettano non escono mai.
 
 ---
 
@@ -5390,6 +5409,14 @@ schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
 > essere il cuore del gioco.»* Aveva ragione: il meccanismo c'era da D-267,
 > il contenuto no — **il menu dei malus era la stessa coppia su tutte e 60 le
 > carte**, e 40 domande su 107 offrivano una sola proposta.
+
+*In 0.1.420 il committente lo ha richiamato una terza volta, davanti alla saga
+del seme 812* ([D-451](DECISIONS.md#d-451)): il cuore c'è, ma **nessuno lo
+gioca** — astensioni al 95% e 99% sui due tavoli, Consigli con opposizione nel
+margine 7 su 103 e 1 su 105. Da qui `docs/MISURA_PARTECIPAZIONE.md` e il suo
+cancello. La causa è una cecità delle sedie, corretta in D-452. *E in 0.1.422
+la carta torna a quattro più quattro* ([D-453](DECISIONS.md#d-453)): il menu da
+8–12 per lato era il vocabolario, non una scelta.
 
 **Fase A — i malus (fatta).** Le liste `costs` e `failures` sulla faccia della
 carta, 12 Conseguenze nuove, 240 testi diversi, il motore che legge il menu

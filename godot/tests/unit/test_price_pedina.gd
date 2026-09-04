@@ -361,13 +361,15 @@ func test_a_fact_the_world_already_holds_is_not_on_the_menu() -> void:
 ## la casella sparisca dal menu, e che comprarla si rifiuti anche nominandola
 ## per id.
 func test_a_casella_that_can_do_nothing_is_not_on_the_menu() -> void:
+	# **La casella si fabbrica** (regola di casa): da D-453 il menu e' a quattro
+	# e RIAPRI non sta piu' sulla Carestia. La regola che si prova — una
+	# casella che non farebbe niente non si offre — vale per qualunque casella,
+	# e RIAPRI e' quella con l'interruttore piu' semplice: un luogo chiuso.
+	var reopen: String = "B_REOPEN_PROVA"
+	var benefits: Array = data().tensions[TENSION]["physical"]["benefits"] as Array
+	benefits.append({"id": reopen, "verb": "REOPEN", "text": "Riapri l'accesso: il luogo torna raggiungibile."})
 	var context: Dictionary = _open_with_proposition()
 	var region_id: String = str(session.confluence.effect_context()["region_focus"])
-	var reopen: String = ""
-	for voice in (data().tensions[TENSION]["physical"]["benefits"] as Array):
-		if str((voice as Dictionary).get("verb", "")) == "REOPEN":
-			reopen = str((voice as Dictionary)["id"])
-	assert_ne(reopen, "", "la carta offre di riaprire l'accesso")
 
 	# Col luogo chiuso la casella e' viva: il mondo qui se l'e' fabbricato
 	# `_open_with_proposition`, e la prova lo verifica invece di darlo per buono.
@@ -390,6 +392,8 @@ func test_a_casella_that_can_do_nothing_is_not_on_the_menu() -> void:
 	assert_true(str(session.confluence.last_error) != "", "il rifiuto dice perche'")
 	# Il proponente non resta a mani vuote: le altre caselle sono ancora vive.
 	assert_true(session.confluence.benefit_menu().size() > 0, "il menu non si svuota")
+	# La DataSet e' condivisa: la casella fabbricata se ne va.
+	benefits.pop_back()
 
 
 ## **E non si compra piu' di quanto si possa pagare** (D-306). Il primo

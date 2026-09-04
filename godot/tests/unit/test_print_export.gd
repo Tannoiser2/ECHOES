@@ -263,12 +263,15 @@ func test_each_deck_has_the_size_of_its_table_role() -> void:
 		"le Asset portano regole e disegno: tarocco")
 	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "TAROT",
 		"e l'Eco sta sulla stessa carta, quindi la segue")
-	# **E la Domanda e' una carta da gioco da D-446**: era mini per la traccia dei
-	# valori, e il committente l'ha detto — *«44x68 e' troppo piccolo»* — perche'
-	# da D-261 si gira sul mazzetto e si legge, e da D-432 dice su cosa si
-	# discute. La traccia le fa posto su due fogli.
-	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "CARD",
-		"le domande sono carte da gioco: si leggono, e la traccia fa loro posto")
+	# **E la Domanda e' un tarocco col Consiglio sul retro** (D-449): era mini
+	# per la traccia dei valori, poi 63x88 per un giorno (D-446); con il
+	# Consiglio dietro serve il tarocco, ed e' misurato. Il retro e' un mazzo
+	# che si stampa dietro, nello stesso ordine.
+	assert_eq(str(CardFace.deck_of("tension", loaded)[0]["shape"]), "TAROT",
+		"le domande sono tarocchi: davanti la domanda, dietro il Consiglio")
+	assert_eq(str(CardFace.BACKS.get("tension", "")), "council", "il retro della Domanda e' il Consiglio")
+	assert_eq(CardFace.printed(), ["asset", "tension", "council", "destiny", "objective", "entity", "region"],
+		"i mazzi stampati, retri compresi, nell'ordine di stampa")
 	# **E la scheda del Consiglio e' un tarocco** (D-338). Due pezzi con due
 	# mestieri: la mini sta sulla traccia e dice quando la domanda si scalda; il
 	# tarocco dice cosa si puo' proporre e cosa costa, e si tira fuori quando il
@@ -327,10 +330,12 @@ func test_the_token_sheet_counts_its_pieces() -> void:
 		assert_eq(track.count("<rect"), 1 + 2 * 10, "il fondo, e per corsia un posto-carta e nove caselle")
 		assert_true(track.contains("si apre il Consiglio"), "la regola della soglia e' scritta sul foglio")
 		var regex := RegEx.new()
-		regex.compile('<rect x="([0-9.]+)" y="[0-9.]+" width="([0-9.]+)"')
+		regex.compile('<rect x="([0-9.]+)" y="([0-9.]+)" width="([0-9.]+)" height="([0-9.]+)"')
 		for found in regex.search_all(track):
-			var right: float = float(found.get_string(1)) + float(found.get_string(2))
+			var right: float = float(found.get_string(1)) + float(found.get_string(3))
+			var bottom: float = float(found.get_string(2)) + float(found.get_string(4))
 			assert_true(right <= 210.0, "ogni casella sta dentro il foglio: %.1f" % right)
+			assert_true(bottom <= 297.0, "e non esce dal fondo: %.1f" % bottom)
 
 
 ## D-101: la GUI mostra le carte fisiche. Una carta si rende da sola - stessa
@@ -736,10 +741,10 @@ func test_the_tension_card_prints_no_description() -> void:
 func test_the_echo_card_says_what_it_does() -> void:
 	var loaded: RefCounted = data()
 	var con_effetti: int = 0
-	for face in CardFace.every(loaded):
+	# Il mazzo Eco non si stampa da solo (D-359, D-449): la faccia si legge
+	# per nome, e la prova qui sotto chiede che finisca sulla carta Asset.
+	for face in CardFace.deck_of("echo", loaded):
 		var card: Dictionary = face as Dictionary
-		if str(card.get("deck", "")) != "echo":
-			continue
 		var written: Dictionary = loaded.echo_cards[str(card["id"])]
 		var printed: String = " ".join(PackedStringArray(card.get("notes", []) as Array))
 		var whole: String = printed + " " + " ".join(
@@ -761,6 +766,40 @@ func test_the_echo_card_says_what_it_does() -> void:
 		con_effetti, loaded.echo_cards.size(),
 		"ogni Eco stampa cosa fa: sono il terzo blocco della carta Asset (D-359)"
 	)
+
+
+## **E l'Eco sta sulla carta Asset, stampato** (D-359, fatto in D-449). Fino a
+## D-449 la decisione valeva per lo schermo e per la mano, e l'export stampava
+## ancora 48 carte Eco a parte: la faccia Asset non portava il blocco. Adesso
+## ogni Asset con un `echo_id` stampa ECO, e sotto le stesse righe della faccia
+## Eco — QUANDO ESCE, IL MONDO — confrontate una per una.
+func test_the_asset_card_carries_its_echo() -> void:
+	var loaded: RefCounted = data()
+	var echoes: Dictionary = {}
+	for face in CardFace.deck_of("echo", loaded):
+		echoes[str((face as Dictionary)["id"])] = face
+	var con_eco: int = 0
+	for face in CardFace.deck_of("asset", loaded):
+		var card: Dictionary = face as Dictionary
+		var echo_id: String = str(loaded.assets[str(card["id"])].get("echo_id", ""))
+		if not echoes.has(echo_id):
+			continue
+		con_eco += 1
+		var notes: Array = card["notes"]
+		var eco: Dictionary = echoes[echo_id]
+		var head: String = "ECO  %s" % str(eco["title"])
+		assert_true(
+			notes.any(func(n: Variant) -> bool: return str(n).begins_with(head)),
+			"%s stampa il suo Eco «%s»" % [str(card["id"]), str(eco["title"])]
+		)
+		for note in eco["notes"]:
+			assert_true(notes.has(str(note)), "%s porta la riga dell'Eco: %s" % [str(card["id"]), str(note).substr(0, 40)])
+		# E non il racconto dell'Eco: sulla faccia ogni riga e' una regola (D-344).
+		var prose: String = str(loaded.echo_cards[echo_id].get("description", ""))
+		if prose != "":
+			assert_false(" ".join(PackedStringArray(notes)).contains(prose), "%s non stampa il racconto dell'Eco" % str(card["id"]))
+	assert_eq(con_eco, loaded.echo_cards.size(), "ogni Eco sta su una carta Asset")
+	assert_false(CardFace.DECKS.has("echo"), "e non c'e' un mazzo Eco da stampare")
 
 
 ## **I segni della tessera** (D-344). Una carta Azione si gioca «su un luogo con
@@ -827,7 +866,9 @@ func test_no_face_prints_its_prose() -> void:
 			+ " " + " ".join(PackedStringArray(card.get("body", []) as Array))
 		assert_false(whole.contains(prose),
 			"%s/%s stampa ancora il racconto" % [deck, str(card["id"])])
-	assert_true(guardate > 150, "guardate %d facce con un testo d'autore" % guardate)
+	# Erano piu' di 150 con il mazzo Eco stampato a parte; da D-449 l'Eco sta
+	# sulla carta Asset, e il suo racconto lo guarda la prova dell'Eco.
+	assert_true(guardate > 140, "guardate %d facce con un testo d'autore" % guardate)
 
 
 ## **Ogni riga meccanica porta la sua intestazione** (D-345).

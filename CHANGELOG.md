@@ -5,6 +5,129 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.426 — La sedia legge il suo profilo, e la lista delle proposte piatte
+
+[D-457](docs/DECISIONS.md#d-457), parola del committente. Il profilo
+strategico di ogni casa (D-288: cosa vuole e cosa teme) entra in quello che
+la sedia pesa al Consiglio, prima del Destino. La sonda delle posizioni elenca
+le proposte piatte, carta per carta: 15 su 73, dodici del Tema Antico, che
+scrivono memorie che nessuno nomina. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli; Consigli falliti
+sull'uniforme 71 → 107. E dodici coppie di profili su ventotto condividono un
+desiderio o un timore: la lista da cui partire per polarizzarli.
+
+---
+
+## 0.1.425 — La sedia legge la mappa
+
+[D-456](docs/DECISIONS.md#d-456), parola del committente. La policy pesava una
+proposta solo coi segni che il Destino nomina: il 79% delle proposte valeva
+zero per chi non le proponeva. Ora pesa la mappa: un danno dove sto costa, una
+Pietra che sale da me rende, il controllo pesa sempre, una presenza tolta
+costa, un rapporto che scende costa. Proposte a zero 79% → 24%, Consigli con
+almeno un no 26% → 72%. Partecipazione a trenta anni: astensioni 65% → 32%
+(misto) e 82% → 29% (uniforme), opposizione nel margine 60% → 68% e 20% →
+55%. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
+## 0.1.424 — L'astensione ha un prezzo, misurato e spento
+
+[D-455](docs/DECISIONS.md#d-455), parola del committente. Due numeri nella
+Chronicle, `confluence_rules.debate_points`: chi vince con le carte in mano
+guadagna, chi non ne gioca perde. Motore, registro, verbale, pagina d'aiuto,
+prova e sonda (`--debate-points`). Misurata su trenta anni fa il contrario
+di quello che vuole: le astensioni scendono da 65% a 13% ma l'opposizione nel
+margine cade da 60% a 17% e i Consigli falliti da 46 a 9 — tutti salgono sul
+carro di chi propone. Per questo nei dati è a zero: si accende con due
+numeri, e la forma giusta è del committente.
+
+---
+
+## 0.1.423 — La CONDITION esce dal motore
+
+[D-454](docs/DECISIONS.md#d-454), parola del committente. La condizione che un
+avversario pone è il costo che sceglie sulla carta (D-280, D-387); la
+posizione CONDITION con le sue ventiquattro clausole, la soglia di qualifica
+e la regola CONDITION_THRESHOLD escono dal motore, dai dati e dagli schemi. Il
+margine è S − O − G + W; le posizioni sono tre. Costo: otto memorie chieste
+dalla pesca delle domande restano senza chi le scrive (ISSUES 98). Cancello
+dei 100 semi: 0 seggi bloccati sui due tavoli; opposizione nel margine 55% →
+60% (misto) e 10% → 20% (uniforme); Consigli falliti sull'uniforme 4 → 18.
+
+---
+
+## 0.1.422 — Il menu del Consiglio a quattro più quattro
+
+[D-453](docs/DECISIONS.md#d-453), parola del committente. La carta Domanda
+stampava da 8 a 12 caselle per lato per farne scegliere tre; ora ne porta
+quattro e quattro, le più comprate in cento partite più la memoria della
+carta, con i bersagli suoi. 569 caselle tolte da 60 carte, e la guardia nel
+validatore fisico. Le quattro sono le stesse su ogni carta: scritto in D-453.
+Cancello dei 100 semi: 0 seggi bloccati sui due tavoli, esiti invariati
+(falliti 135 → 140 misto, 43 → 42 uniforme). Caselle comprate 2,33 → 2,05 a
+Consiglio. Tre prove riscritte sulla regola nuova, e una era cieca da sempre.
+
+---
+
+## 0.1.421 — Le sedie vedono la proposta
+
+[D-452](docs/DECISIONS.md#d-452). Da 0.1.272 le Proposte stanno sulla carta
+Tensione; la policy delle sedie le cercava ancora nel template crudo, non le
+trovava mai, e si asteneva per cecità. Una riga, tre volte, e la sonda delle
+posizioni con lei. Nessuna regola cambia; cambia tutto quello che le sedie
+fanno al Consiglio. Partecipazione a trenta anni, misto: astensioni 95% → 63%,
+opposizione nel margine 7% → 55%, Consigli falliti 8 → 43; uniforme 99% → 83%,
+1% → 8%. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli, esiti falliti
+33 → 135 (misto) e 23 → 43 (uniforme). E l'esperimento chiesto dal committente,
+«non ci si può astenere», misurato in tre letture con `--no-abstain`: cambia le
+parole e non il peso — l'opposizione nel margine resta 55–58% e 8–10%.
+
+---
+
+## 0.1.420 — La misura della partecipazione
+
+[D-451](docs/DECISIONS.md#d-451), parola del committente. Una sonda nuova gioca
+trenta anni sui due tavoli e per ogni Consiglio guarda i tre che non
+propongono; `docs/MISURA_PARTECIPAZIONE.md` è il suo documento e
+`tools/run_participation_probe.sh --check` il suo cancello, rosso se un tavolo
+intero chiude ogni Consiglio senza opposizione nel margine. Cancelli 33 → 34.
+Il ritrovato: astensioni 95% (misto) e 99% (uniforme), Consigli con
+opposizione nel margine 7 su 103 e 1 su 105 — e la causa è una cecità delle
+sedie, che cercano la proposta nel template mentre da 0.1.272 sta sulla carta.
+
+---
+
+## 0.1.419 — La carta non è velata: coperti sono i gettoni
+
+[D-450](docs/DECISIONS.md#d-450), parola del committente. Nessuna Domanda
+della scatola nasce velata: le sei `VEILED` passano a `OPEN`, e il velo resta
+al motore per l'Effetto che lo cala. La carta Domanda perde «velata» e la
+soglia nell'angolo e prende la riga SI DIBATTE, che dice il gesto di fine Atto;
+la mappa dell'app scrive la riga del registro pubblico invece di «v/soglia».
+Le prove che misurano il velo se lo fabbricano. **E TRAMARE sbircia**: le
+nove carte con quell'Azione cercavano una velata, e la scatola non ne ha più;
+coi mucchi coperti sbirciano i gettoni di una Domanda — una Scoperta, letta
+solo da chi ha tramato — come ISSUES 49 aveva previsto. La scheda di stato
+dell'app smette di scrivere il punteggio coperto. Cancello dei 100 semi, seme
+7000, 0.1.418 → 0.1.419: 0 seggi bloccati su 8 sui due tavoli; Consigli l'anno
+3,53 → 3,58 (misto) e 3,36 → 3,61 (uniforme); esiti falliti 30 → 33 e 10 → 23.
+Corsia lenta rigirata (le sedie giocano diverso): vite mai sedute 1 → 2, *La
+Compagnia del Sale* non si siede più; i segni sul tavolo si muovono di uno o
+due per famiglia.
+
+---
+
+## 0.1.418 — Una carta, due facce
+
+[D-449](docs/DECISIONS.md#d-449), parola del committente. L'Eco è stampato
+sulla carta Asset (D-359 lo diceva dalla 0.1.325, la stampa no) e il mazzo Eco
+non si stampa più; la Domanda è un tarocco fronte-retro col suo Consiglio
+dietro, su fogli specchiati; «le
+dodici caselle» sparisce dai testi (sono 18–25 per carta). Fogli 76 → 84.
+Costo sull'Asset: 24 su 48 col corpo rimpicciolito, illustrazione al 34%.
+
+---
+
 ## 0.1.417 — Il flusso disegnato sul sito
 
 [D-448](docs/DECISIONS.md#d-448). Il lavoro `pages` pubblica anche

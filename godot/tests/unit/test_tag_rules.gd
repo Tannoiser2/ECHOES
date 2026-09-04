@@ -461,27 +461,6 @@ func test_stance_bonus_needs_the_sign_and_the_side() -> void:
 	)
 
 
-## La soglia della Condition si sposta una volta per regola, non una per seggio.
-func test_condition_threshold_moves_once_per_rule() -> void:
-	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
-	_rule("TGR_SOGLIA", {
-		"kind": "CONDITION_THRESHOLD", "threshold_delta": -1,
-		"when": {"scope": "ENTITY", "tag": "firma_leggera"},
-	})
-	var unsigned: Dictionary = TagRules.condition_threshold_delta(
-		session.data, session.world, ["ENT_ALDRIC", "ENT_NAHR"]
-	)
-	assert_eq(int(unsigned["delta"]), 0, "senza segno la soglia non si muove")
-	for entity_id in ["ENT_ALDRIC", "ENT_NAHR"]:
-		session.applier.apply(Effect.make(
-			"SET_ENTITY_TAG", "entity", entity_id, {"tag": "firma_leggera"}, source
-		))
-	var signed: Dictionary = TagRules.condition_threshold_delta(
-		session.data, session.world, ["ENT_ALDRIC", "ENT_NAHR"]
-	)
-	assert_eq(int(signed["delta"]), -1, "due firmatari, una regola: la soglia scende di 1")
-
-
 ## Il segno PASS attraversa i BLOCK delle regole - ma non la cacciata di D-067.
 func test_the_pass_sign_walks_through_rule_blocks() -> void:
 	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)

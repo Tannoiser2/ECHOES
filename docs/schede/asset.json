@@ -11,11 +11,13 @@
   },
   "facce": 48,
   "pezzi": 132,
-  "cos_e": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. Il suo Eco e' l'altra faccia dello stesso pezzo.",
+  "cos_e": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Sotto le Azioni porta il suo Eco** (D-359): se le condizioni ci sono si cala quello al posto di un'Azione, e costa la carta.",
   "immagine": "Una **scena** — un luogo, un gesto, persone dentro una cosa che sta succedendo — mai un ritratto singolo centrato. L'accento e' il colore della famiglia.",
   "sottotitolo": "famiglia e rarita' (`family`, `rarity`), in italiano",
   "angolo": "la forza (`strength`)",
   "scena": "`rules_text`, la voce d'autore che la faccia non stampa piu' da D-340",
+  "retro": "",
+  "fronte": "",
   "stile": "Painterly concept-art illustration style with bold, economical brushwork and simplified forms. Strong graphic composition, large readable silhouettes, and clear separation of light and shadow. Visible brush texture, opaque color blocking, and slightly rough hand-painted edges.\n\nThe image should feel like a high-end illustration or production painting, not photorealistic: selective detail, strong shape design, controlled abstraction, and emphasis on mood and composition over micro-detail.\n\nUse a limited but sophisticated palette, with broad dominant color areas and a few warm/cool contrasts. Atmospheric depth should be created through color simplification and soft loss of detail in the background.\n\nFigures, objects, and architecture should be rendered with confident painterly masses, not with sharp photographic precision. Surfaces are suggested rather than fully described. Lighting is dramatic but clean, with strong directional light and deep shadow masses.\n\nOverall aesthetic: stylized, elegant, cinematic, painterly, graphic, atmospheric, and evocative. The result should resemble a polished hand-painted illustration, somewhere between editorial illustration and classic concept art.\n\nNot photorealistic, not glossy 3D, not anime, not comic-book inked line art, not hyper-detailed, not overly textured, not cluttered.",
   "prompt_generale": "ECHOES — Asset card. Single evocative scene: {SOGGETTO}.\nWhat is happening: {SITUAZIONE}\nDominant accent: {ACCENTO}, over the game's muted earth palette. Low side\nlighting, late afternoon or candlelit interior.\nGrounded medieval-adjacent world, no heraldry invented, no glowing magic.\nA scene, not a portrait: figures may show their faces, but never a single centred\nfigure looking at the viewer - that framing belongs to the House cards.\nComposition: subject occupies the upper two thirds; the lower third is a calm,\nlow-detail area (ground, mist, cloth, stone) reserved for a text overlay.\nVertical card framing, 2:3. No text, no letters, no numerals, no logos, no frame,\nno border. Not gory, not horror.",
   "campi": [
@@ -94,6 +96,22 @@
     {
       "voce": "PRENDI",
       "da_dove": "come arriva in mano: `acquisition_rule`"
+    },
+    {
+      "voce": "ECO",
+      "da_dove": "l'Eco della carta, la sua versione potenziata: `echo_id`, con titolo, famiglia drammatica e funzione di Propp"
+    },
+    {
+      "voce": "QUANDO ESCE",
+      "da_dove": "le condizioni per calare l'Eco: `eligibility` dell'Eco, generate dai campi"
+    },
+    {
+      "voce": "IL MONDO",
+      "da_dove": "cosa fa l'Eco, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id)"
+    },
+    {
+      "voce": "CONVOCA IL CONSIGLIO",
+      "da_dove": "la domanda che l'Eco apre, se ne apre una: `forces_confluence_on`"
     }
   ],
   "carte": [
@@ -134,6 +152,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Chiamata · PRESSIONE · funzione di Propp: richiesta"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su Il Debito"
         }
       ],
       "arte": {
@@ -182,6 +216,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Usurpazione · ROTTURA · funzione di Propp: usurpazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nella sede del rivale cambia padrone · nella capitale diventa #contesa · il mondo registra: la corona e' stata divisa · e resta una Cicatrice: il sigillo diviso nella capitale · la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Successione"
         }
       ],
       "arte": {
@@ -230,6 +280,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Due Sentenze · ROTTURA · funzione di Propp: violazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta i conti sono pubblici"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #capitale diventa #contesa"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Carta"
         }
       ],
       "arte": {
@@ -278,6 +344,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Giuramento che Nessuno Sciolse · ROTTURA · funzione di Propp: tradimento"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta si racconta che il giuramento e' stato rotto oppure il mondo porta il tradimento e' stato detto ad alta voce"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Successione"
         }
       ],
       "arte": {
@@ -326,6 +408,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Chi Siede · RISOLUZIONE · funzione di Propp: successione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di threat oppure e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di conquest oppure e' gia' stata calata una carta Eco di separation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "chi propone porta addosso: l'erede e' stato nominato · Le Vie Interrotte scende · il mondo registra: la successione e' stata risolta · La Successione scende di 2"
         }
       ],
       "arte": {
@@ -374,6 +468,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Conto · RISOLUZIONE · funzione di Propp: punizione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di violation oppure e' gia' stata calata una carta Eco di betrayal oppure e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di conquest"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo dimentica: il giuramento e' stato rotto · il mondo registra: il conto e' stato saldato · la domanda in gioco scende di 2"
         }
       ],
       "arte": {
@@ -422,6 +528,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Messo per Iscritto · RISOLUZIONE · funzione di Propp: liberazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta quello che si e' saputo lo sanno tutti"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · il mondo registra: la Carta vale per un tempo solo · chi propone porta addosso: la fama"
         }
       ],
       "arte": {
@@ -470,6 +588,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Amnistia · RISOLUZIONE · funzione di Propp: liberazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di usurpation oppure e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di conquest"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta non e' piu' #inquieta · nel luogo della carta non e' piu' #contesa · La Successione scende · il mondo registra: l'amnistia e' stata concessa"
         }
       ],
       "arte": {
@@ -518,6 +648,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Tavolo Lungo · RISOLUZIONE · funzione di Propp: riconciliazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il peso e' stato diviso"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · la domanda in gioco scende · il rapporto fra chi propone e il rivale cambia"
         }
       ],
       "arte": {
@@ -566,6 +708,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Perdita · ROTTURA · funzione di Propp: perdita"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #inquieta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #pascolo diventa in lutto · il rivale se ne va in una Regione con #pascolo"
         }
       ],
       "arte": {
@@ -614,6 +768,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Riconciliazione · RISOLUZIONE · funzione di Propp: riconciliazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di betrayal oppure e' gia' stata calata una carta Eco di violation oppure e' gia' stata calata una carta Eco di attack oppure e' gia' stata calata una carta Eco di separation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · in una Regione con #capitale non e' piu' #inquieta"
         }
       ],
       "arte": {
@@ -662,6 +828,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Ballata dell'Anno Buono · RISOLUZIONE · funzione di Propp: ritorno"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta si racconta che l'ordine e' stato ristabilito oppure il mondo porta l'ordine e' stato ristabilito"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · in una Regione con #capitale non e' piu' #inquieta"
         }
       ],
       "arte": {
@@ -710,6 +888,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Giuramento Prestato · SVOLTA · funzione di Propp: trasformazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "Ci si lega quando qualcosa minaccia entrambi"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "chi propone porta addosso: la scorta giurata · nel luogo della carta non e' piu' tagliata fuori · Le Vie Interrotte scende di 2"
         }
       ],
       "arte": {
@@ -758,6 +948,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Tradimento · ROTTURA · funzione di Propp: tradimento"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #contesa"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo registra: il tradimento e' stato detto ad alta voce · la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Carestia"
         }
       ],
       "arte": {
@@ -806,6 +1012,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Parola Data · ROTTURA · funzione di Propp: violazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di request"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo registra: il giuramento e' stato rotto · nel luogo della carta diventa #inquieta · il rapporto fra chi propone e il rivale cambia · e resta una Cicatrice: la parola rotta nel luogo della carta"
         }
       ],
       "arte": {
@@ -854,6 +1072,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Conto Vecchio · RISOLUZIONE · funzione di Propp: punizione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · il mondo registra: il conto e' stato saldato"
         }
       ],
       "arte": {
@@ -902,6 +1132,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Strada Chiusa · PRESSIONE · funzione di Propp: divieto"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #sorvegliata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #commercio diventa tagliata fuori"
         }
       ],
       "arte": {
@@ -950,6 +1192,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Presa · SVOLTA · funzione di Propp: conquista"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di attack oppure e' gia' stata calata una carta Eco di threat oppure e' gia' stata calata una carta Eco di usurpation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nella capitale cambia padrone · il rivale se ne va nella capitale · nella capitale diventa #inquieta · il rivale perde: la corona · e resta una Cicatrice: passata di mano nella capitale"
         }
       ],
       "arte": {
@@ -998,6 +1252,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Mancanza · PRESSIONE · funzione di Propp: mancanza"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #granaio diventa #magra · viene giu' Granaio in una Regione con #granaio"
         }
       ],
       "arte": {
@@ -1046,6 +1312,14 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "L'Offerta · PRESSIONE · funzione di Propp: tentazione"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · nel luogo della carta diventa #indebitata · chi propone entra nel luogo della carta"
         }
       ],
       "arte": {
@@ -1094,6 +1368,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Sedia Vuota · PRESSIONE · funzione di Propp: minaccia"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #capitale diventa #contesa"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Successione"
         }
       ],
       "arte": {
@@ -1142,6 +1432,14 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Carovana Perduta · ROTTURA · funzione di Propp: attacco"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta diventa #depredata · in una Regione confinante diventa tagliata fuori · La Carestia sale · e resta una Cicatrice: la razzia nel luogo della carta"
         }
       ],
       "arte": {
@@ -1190,6 +1488,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "L'Anno Corto · SVOLTA · funzione di Propp: trasformazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #contesa"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · la domanda in gioco sale · in una Regione con #granaio diventa #affamata"
         }
       ],
       "arte": {
@@ -1238,6 +1548,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Crepa · ROTTURA · funzione di Propp: minaccia"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #inquieta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #miniera diventa #inquieta · il rivale se ne va in una Regione con #miniera"
         }
       ],
       "arte": {
@@ -1286,6 +1608,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Copia · SVOLTA · funzione di Propp: scoperta"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta i conti sono pubblici"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · la domanda in gioco si apre a tutti · chi propone porta addosso: scoperta: la reliquia"
         }
       ],
       "arte": {
@@ -1334,6 +1668,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Giorno che la Gilda Chiese Tutto · PRESSIONE · funzione di Propp: minaccia"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta si racconta che il debito e' stato chiamato oppure il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su Il Debito"
         }
       ],
       "arte": {
@@ -1382,6 +1732,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Vie Riaperte · RISOLUZIONE · funzione di Propp: ritorno"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "e' gia' stata calata una carta Eco di prohibition oppure e' gia' stata calata una carta Eco di separation"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta non e' piu' tagliata fuori · nel luogo della carta non e' piu' #depredata · Le Vie Interrotte scende di 2"
         }
       ],
       "arte": {
@@ -1430,6 +1792,22 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Rivelazione · SVOLTA · funzione di Propp: rivelazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "Si rivela quello che qualcuno aveva già scoperto"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco si apre a tutti · la domanda in gioco sale"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su Il Risveglio"
         }
       ],
       "arte": {
@@ -1478,6 +1856,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Scoperta · SVOLTA · funzione di Propp: scoperta"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il Cristallo e' stato sfruttato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco si apre a tutti · il mondo registra: il Cristallo e' stato misurato · chi propone porta addosso: scoperta: la misura"
         }
       ],
       "arte": {
@@ -1526,6 +1916,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Presagio · PRESSIONE · funzione di Propp: presagio"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta la voce corre"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · chi propone porta addosso: scoperta: il presagio"
         }
       ],
       "arte": {
@@ -1574,6 +1976,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Pozzo Zitto · SVOLTA · funzione di Propp: ritorno"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · la domanda in gioco sale · chi propone entra in una Regione con #miniera"
         }
       ],
       "arte": {
@@ -1622,6 +2036,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Quello che c'Era · SVOLTA · funzione di Propp: rivelazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta una domanda e' rimasta aperta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco si apre a tutti · il mondo registra: quello che si e' saputo lo sanno tutti"
         }
       ],
       "arte": {
@@ -1670,6 +2096,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Supplica · PRESSIONE · funzione di Propp: richiesta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · il mondo registra: la richiesta e' stata ascoltata"
+        },
+        {
+          "voce": "CONVOCA IL CONSIGLIO",
+          "testo": "su La Carestia"
         }
       ],
       "arte": {
@@ -1718,6 +2156,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Veglia Spostata · PRESSIONE · funzione di Propp: presagio"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta la voce corre"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · chi propone entra nel luogo della carta"
         }
       ],
       "arte": {
@@ -1766,6 +2216,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Partenza · ROTTURA · funzione di Propp: separazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #abbandonata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "chi propone se ne va nel luogo della carta · in una Regione con #pascolo diventa #svuotata · chi propone entra in una Regione confinante · la domanda in gioco sale · Foresta nel luogo della carta va al grado 3"
         }
       ],
       "arte": {
@@ -1814,6 +2276,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Annata Buona · SVOLTA · funzione di Propp: dono"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "Un'annata buona si nota solo dopo una che non lo era"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "nel luogo della carta non e' piu' #affamata · nel luogo della carta non e' piu' #magra · La Carestia scende di 2"
         }
       ],
       "arte": {
@@ -1862,6 +2336,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "L'Anno a Piedi · ROTTURA · funzione di Propp: separazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #abbandonata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #pascolo diventa #svuotata"
         }
       ],
       "arte": {
@@ -1910,6 +2396,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "I Chiamati · SVOLTA · funzione di Propp: trasformazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #inquieta"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · il mondo registra: il peso e' stato diviso"
         }
       ],
       "arte": {
@@ -1958,6 +2456,14 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "L'Incontro · SVOLTA · funzione di Propp: incontro"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "il mondo registra: ci si e' parlato · la domanda in gioco scende"
         }
       ],
       "arte": {
@@ -2006,6 +2512,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Gente. Fonti: Valle Verde, Terre Nahr, La Palude dei Canali."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Le Mani Ferme · PRESSIONE · funzione di Propp: divieto"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #granaio diventa #inquieta"
         }
       ],
       "arte": {
@@ -2054,6 +2572,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "L'Incontro sulla Strada · SVOLTA · funzione di Propp: incontro"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta tagliata fuori"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende · il mondo registra: il peso e' stato diviso"
         }
       ],
       "arte": {
@@ -2102,6 +2632,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Debito Rimesso · RISOLUZIONE · funzione di Propp: dono"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il debito e' stato chiamato"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · il mondo registra: il debito e' stato perdonato"
         }
       ],
       "arte": {
@@ -2150,6 +2692,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Interramento · PRESSIONE · funzione di Propp: mancanza"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #granaio diventa #magra · viene giu' Canale in una Regione con #granaio"
         }
       ],
       "arte": {
@@ -2198,6 +2752,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Stagione Scavata · RISOLUZIONE · funzione di Propp: dono"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #razionata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · si alza Canale in una Regione con #granaio · il mondo registra: l'acqua ha cambiato strada"
         }
       ],
       "arte": {
@@ -2246,6 +2812,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "I Fuochi Fuori · ROTTURA · funzione di Propp: separazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta #svuotata"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #pascolo diventa #svuotata · in una Regione con #pascolo cambia padrone · Foresta nel luogo della carta va al grado 3"
         }
       ],
       "arte": {
@@ -2294,6 +2872,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Il Prezzo del Sale · PRESSIONE · funzione di Propp: tentazione"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta tagliata fuori"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
         }
       ],
       "arte": {
@@ -2342,6 +2932,18 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "La Strada Chiusa a Chiave · ROTTURA · funzione di Propp: minaccia"
+        },
+        {
+          "voce": "QUANDO ESCE",
+          "testo": "il mondo porta il pedaggio si divide"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco sale di 2 · in una Regione con #commercio diventa tagliata fuori"
         }
       ],
       "arte": {
@@ -2390,6 +2992,14 @@
         {
           "voce": "PRENDI",
           "testo": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino."
+        },
+        {
+          "voce": "ECO",
+          "testo": "Sacrificio · RISOLUZIONE · funzione di Propp: sacrificio"
+        },
+        {
+          "voce": "IL MONDO",
+          "testo": "la domanda in gioco scende di 2 · il mondo registra: qualcuno ha pagato · chi propone porta addosso: la fama"
         }
       ],
       "arte": {

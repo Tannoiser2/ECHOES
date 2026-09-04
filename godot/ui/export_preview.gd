@@ -103,7 +103,7 @@ func step(by: int) -> void:
 func _build() -> void:
 	_faces = []
 	_printed = []
-	for deck in CardFace.DECKS + CardFace.TILES:
+	for deck in CardFace.printed():
 		var faces: Array = CardFace.deck_of(str(deck), _data)
 		if faces.is_empty():
 			continue

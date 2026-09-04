@@ -176,8 +176,8 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 ## Tension tracks (60)
 | id | titolo | dominio | iniziale | soglia | visibilita | presagi |
 |---|---|---|---|---|---|---|
-| TEN_ASH | La Cenere che Sale | ANCIENT | 2 | 4 | VEILED | 1 |
-| TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 6 | VEILED | 2 |
+| TEN_ASH | La Cenere che Sale | ANCIENT | 2 | 4 | OPEN | 1 |
+| TEN_AWAKENING | Il Risveglio | ANCIENT | 2 | 6 | OPEN | 2 |
 | TEN_BAD_GRAIN | Il Grano Guasto | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_BLACK_TOLLS | I Pedaggi Neri | RESOURCE | 2 | 6 | OPEN | 1 |
 | TEN_BOUNDARY_STONES | Le Pietre di Confine | TERRITORY | 2 | 6 | OPEN | 1 |
@@ -205,7 +205,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_LEVY | La Leva | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_MARCHES | Le Marche di Confine | TERRITORY | 2 | 6 | OPEN | 1 |
 | TEN_MARSH_FEVER | La Febbre delle Paludi | SURVIVAL | 2 | 6 | OPEN | 1 |
-| TEN_NAMELESS | I Senza Città | SURVIVAL | 2 | 5 | VEILED | 1 |
+| TEN_NAMELESS | I Senza Città | SURVIVAL | 2 | 5 | OPEN | 1 |
 | TEN_OLD_CHANNELS | Le Vie di Prima | ANCIENT | 2 | 6 | OPEN | 1 |
 | TEN_OLD_GUARD | La Vecchia Guardia | TERRITORY | 2 | 6 | OPEN | 1 |
 | TEN_OLD_NAMES | I Nomi Vecchi | ANCIENT | 2 | 6 | OPEN | 1 |
@@ -216,8 +216,8 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_QUARANTINE | Il Cordone | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_REFUGEES | Chi Arriva da Fuori | SURVIVAL | 2 | 6 | OPEN | 1 |
 | TEN_REGENCY | La Reggenza | TERRITORY | 2 | 6 | OPEN | 1 |
-| TEN_RELIC | La Reliquia | ANCIENT | 2 | 6 | VEILED | 2 |
-| TEN_ROADS | Le Vie Interrotte | RESOURCE | 1 | 5 | VEILED | 2 |
+| TEN_RELIC | La Reliquia | ANCIENT | 2 | 6 | OPEN | 2 |
+| TEN_ROADS | Le Vie Interrotte | RESOURCE | 1 | 5 | OPEN | 2 |
 | TEN_SALT_FIELDS | I Campi di Sale | RESOURCE | 2 | 6 | OPEN | 1 |
 | TEN_SANCTUARY | Il Diritto d'Asilo | TERRITORY | 2 | 6 | OPEN | 1 |
 | TEN_SEALS | I Sigilli Falsi | RESOURCE | 2 | 6 | OPEN | 1 |
@@ -226,7 +226,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | TEN_SLEEPERS | I Dormienti | ANCIENT | 2 | 6 | OPEN | 1 |
 | TEN_SMUGGLING | Il Contrabbando | RESOURCE | 2 | 6 | OPEN | 1 |
 | TEN_SUCCESSION | La Successione | TERRITORY | 2 | 6 | OPEN | 2 |
-| TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | VEILED | 2 |
+| TEN_THIRST | I Pozzi Bassi | SURVIVAL | 1 | 5 | OPEN | 2 |
 | TEN_TITHE | La Decima | RESOURCE | 2 | 6 | OPEN | 1 |
 | TEN_TRIBUTE | Il Tributo | RESOURCE | 2 | 6 | OPEN | 1 |
 | TEN_UNEARTHED | Il Dissotterrato | ANCIENT | 2 | 6 | OPEN | 1 |

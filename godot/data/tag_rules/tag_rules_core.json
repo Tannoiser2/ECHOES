@@ -28,18 +28,6 @@
       "note": "Il potere della vita (D-109): quando l'Accademia propone, la sua misura fa testo - World Factor +1. Vale solo finché quella vita siede al tavolo."
     },
     {
-      "id": "TGR_ARCHIVE_READ_ALOUD",
-      "title": "Si legge in piazza",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_LYRA_ARCHIVE"
-      },
-      "kind": "CONDITION_THRESHOLD",
-      "threshold_delta": -1,
-      "active": true,
-      "note": "Il potere della vita (D-126): quello che l'Archivio dichiara e' gia' pubblico, e una Condition qualifica con un impegno in meno. Mai sotto 1: qualcosa va sempre messo per iscritto."
-    },
-    {
       "id": "TGR_ASH_VIGIL",
       "title": "La veglia arma",
       "when": {
@@ -384,18 +372,6 @@
       "note": "Il potere della vita (D-109): quando il Regno di Nahr propone sulla Carestia, parla chi ha il granaio - World Factor +1. Prima forma (INFLUENCE +1) respinta coi numeri: scaldava la Carestia e l'anno-biblioteca decideva 7 Consigli contro la banda 3-6 della guardia."
     },
     {
-      "id": "TGR_LEAGUE_LIGHT_SIGNATURE",
-      "title": "La firma leggera delle Sette",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_LIBERE_LEAGUE"
-      },
-      "kind": "CONDITION_THRESHOLD",
-      "threshold_delta": -1,
-      "active": true,
-      "note": "La seduta sulle vite (D-126): per la Lega una Condition qualifica con un impegno in meno - sette citta' hanno gia' firmato, il tavolo deve solo prenderne atto. Mai sotto 1: una firma serve sempre."
-    },
-    {
       "id": "TGR_LEAGUE_SIGNATURE",
       "title": "La firma delle sette",
       "when": {
@@ -632,18 +608,6 @@
       "bias": "BONUS",
       "active": true,
       "note": "La seduta sulle vite (D-124, decisione A): la Compagnia del Sale ha il credito di tutte le case federate - quando pesca ricchezza guarda due carte e tiene la migliore. Il dente che la seconda vita di Ilve aspettava dal 0.1.70."
-    },
-    {
-      "id": "TGR_SCHOOL_REPEATED",
-      "title": "Si insegna ripetendolo uguale",
-      "when": {
-        "scope": "ENTITY",
-        "tag": "life:INC_VETRO_SCHOOL"
-      },
-      "kind": "CONDITION_THRESHOLD",
-      "threshold_delta": -1,
-      "active": true,
-      "note": "Il potere della vita (D-126): la Scuola ha gia' scritto la procedura, e una Condition qualifica con un impegno in meno. Mai sotto 1: qualcuno deve pur firmarla."
     },
     {
       "id": "TGR_SPRING_PEOPLE",

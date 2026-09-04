@@ -4,7 +4,7 @@ extends SceneTree
 ##   godot --headless --path godot --script res://cli/run_box_survey.gd -- \
 ##       --out=docs/MISURA_CASELLE.md
 ##
-## Il Consiglio cambia il mondo in **due modi che girano insieme**: le dodici
+## Il Consiglio cambia il mondo in **due modi che girano insieme**: le
 ## caselle di D-280, che il tavolo posa con le pedine, e le Conseguenze
 ## d'autore che la proposta porta con se'. Da D-341 la scheda stampa **solo le
 ## caselle**, e questa sonda dice quanto grande e' la differenza.
@@ -79,10 +79,6 @@ func _initialize() -> void:
 			if consequence == null:
 				continue
 			for effect_v in (consequence as Dictionary).get("effects", []):
-				_count(effect_v as Dictionary, seen, uses, order)
-		# Le clausole portano i loro Effetti addosso, non un id di Conseguenza.
-		for clause_v in template.get("condition_clauses", []):
-			for effect_v in (clause_v as Dictionary).get("effects", []):
 				_count(effect_v as Dictionary, seen, uses, order)
 
 	var groups: Dictionary = {"0": [], "2": [], "3": []}

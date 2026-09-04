@@ -303,14 +303,6 @@ def main() -> int:
                 review.entry("%s, esito %s" % (proposition["id"], outcome), text)
 
     # E le **clausole**: la controproposta che un avversario attacca a una
-    # proposta prima del voto. Vengono dal template — quello e' il pezzo che
-    # il template continua a dare (D-310) — e nessuna sezione le leggeva.
-    review.line("### Le clausole — quello che si aggiunge prima del voto")
-    review.line()
-    for template in templates:
-        for clause in template.get("condition_clauses", []) or []:
-            review.entry(str(clause["id"]), clause.get("text"))
-
     # **E il template ha ancora un testo suo** (ISSUES 105): dodici schede col
     # loro titolo, la loro descrizione e le domande e proposte che non stanno
     # (ancora) su una carta Tensione. Il motore le legge, quindi si leggono.

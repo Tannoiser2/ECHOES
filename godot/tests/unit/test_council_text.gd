@@ -32,11 +32,6 @@ func test_no_sentence_still_carries_a_slot() -> void:
 			for need in said["needs"]:
 				assert_false(str(need).contains("$"), "e nemmeno le sue condizioni")
 			checked += 1
-		for clause in CouncilText.clauses(template, loaded):
-			assert_false(
-				str((clause as Dictionary)["text"]).contains("$"),
-				"e nemmeno le clausole: %s" % str((clause as Dictionary)["text"])
-			)
 	assert_true(checked >= 40, "e vale per ogni proposta della scatola: %d" % checked)
 
 

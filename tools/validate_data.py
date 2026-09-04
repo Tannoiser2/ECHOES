@@ -496,10 +496,6 @@ def check_bindings(
 
     for consequence in documents.get("consequence", []):
         walk(consequence.get("effects", []), f"{origins['consequence']} [{consequence['id']}]")
-    for template in documents.get("confluence_template", []):
-        where = f"{origins['confluence_template']} [{template['id']}]"
-        for clause in template.get("condition_clauses", []):
-            walk(clause.get("effects", []), where)
 
 
 def _flatten_condition(condition: Dict[str, Any]) -> List[Dict[str, Any]]:

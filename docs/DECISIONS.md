@@ -10,6 +10,772 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-457 — La sedia legge il suo profilo, e la lista delle proposte piatte
+
+**implemented in 0.1.426.** Parola del committente, davanti al quarto che
+[D-456](#d-456) lasciava a zero: *«il gioco si basa su questo: obiettivi in
+contrasto, Consigli che vanno combattuti per far passare cose che mi danno
+punteggio, mettere #tag che servono a me e danneggiano gli avversari. Se
+non e' stata costruita una matrice di questo tipo e' stato fatto tutto
+lavoro inutile.»* E poi *«vai»* sulla lista carta per carta.
+
+**La matrice c'e', e la sedia non la leggeva.** [D-171](#d-171) l'ha
+scritta come rete di contrasti, [D-288](#d-288) l'ha messa nei dati come
+**profilo strategico** di ogni casa — cosa vuole lasciare nel mondo e cosa
+teme, segno per segno, con il perche' — e [MISURA_MATRICE](MISURA_MATRICE.md)
+la misura: 19 segni che aiutano una casa e ne danneggiano un'altra. Ma
+`_tag_goals`, la lista di quello che la sedia vuole, leggeva **solo le
+clausole del Destino dell'anno**: un segno temuto dal profilo e non nominato
+dal Destino valeva zero. Il Re temeva `condition:starving` sulla carta del
+profilo, e al Consiglio non se ne accorgeva. Da qui il profilo entra nei
+`goals`, prima del Destino, che sul segno che nomina vince.
+
+**La lista delle proposte piatte.** La sonda delle posizioni ha una sezione
+nuova: per ogni proposta messa ai voti, quante volte e' stata votata, quante
+e' rimasta **piatta** — nessun seggio ha mosso il punteggio — e gli Effetti
+che porta. Con la sola lettura della mappa (D-456), quaranta anni: **73
+proposte votate, 15 sempre piatte**, e tutte con la stessa firma — spostano
+la Domanda, scrivono un segno sulla casa o sul mondo, e nient'altro:
+
+| Tensione | proposta | votata | piatta | cosa fa |
+|---|---|---|---|---|
+| Il Santuario | P_SANCTUARY_WRITE | 3 | 3 | sposta la Domanda, segno sulla casa, segno sul mondo |
+| I Voti | P_VOWS_LIST | 3 | 3 | sposta la Domanda, segno sulla casa |
+| I Senza Citta' | P_NAMELESS_ROLL, P_NAMELESS_SETTLE | 2, 2 | 2, 2 | segni sulla casa, sul mondo, un rapporto |
+| I Voti · Le Pietre di Guardia | P_VOWS_RITE, P_WARDS_RITE | 2, 2 | 2, 2 | sposta la Domanda, segni |
+| Le Sepolture, La Guerra delle Gilde, L'Eresia, Il Santuario dell'Isola, Il Silenzio dell'Isola, I Vecchi Nomi, I Pellegrini, La Profezia, I Dormienti | una proposta ciascuna | 1 | 1 | sposta la Domanda, segni sulla casa o sul mondo |
+
+Dodici delle quindici sono carte del Tema **Antico**: quello dove le
+proposte scrivono memorie — `list_witnessed`, `rite_held` — che nessun
+profilo e nessun Destino nomina.
+
+**Cosa dice la sonda col profilo**, quaranta anni (145 Consigli): Consigli
+con almeno un no 72% → **69%**, posizioni OPPOSE · SUPPORT · ABSTAIN 47% ·
+29% · 24% → **43% · 27% · 31%**; proposte votate 75, **sempre piatte 14** —
+le stesse di prima, meno una. Il profilo pesa quello che le proposte scrivono
+**sulla casa e sul mondo** 41 volte su 480 (era 15 su 378): i segni che i
+profili nominano — `succession_by_law`, `crown_divided`, `crystal_exploited` —
+sono quelli delle Conseguenze grandi, e le proposte piatte scrivono altro:
+`rite_held`, `list_witnessed`, `names_disputed`. **Non e' un difetto della
+sedia: e' la matrice che non arriva a quelle carte.** La lista qui sopra e'
+quindi il lavoro sulle carte, e lo dice segno per segno: o quelle memorie
+entrano in un profilo che le vuole o le teme, o quelle proposte scrivono una
+cosa che sta sulla mappa.
+
+**E i profili stessi si somigliano piu' di quanto la rete di contrasti
+prometta.** La prova di D-171 pretende che due Destini non vogliano mai lo
+stesso segno nello stesso verso, e regge: ma i profili, letti alla stessa
+maniera, condividono un desiderio o un timore in **dodici coppie su
+ventotto** — la Cenere e Lyra vogliono tutt'e due `discovery:crystal` e
+temono `mine_sealed` e `study_supervised`; Nahr, le Citta' Libere e il Sale
+temono tutti `condition:cut_off`; la Cenere, Nahr e il Vetro
+`condition:emptied`. Sono i segni su cui al Consiglio si fa fronte comune
+invece che litigare. La prova di D-171 continua a misurare i Destini soli
+(`_tag_goals(..., false)`); i profili sono del committente, e questa e' la
+lista da cui partire per polarizzarli.
+
+**La partecipazione**, trenta anni, misto / uniforme: astensioni 32% / 29%
+→ **34% / 33%**, opposizione nel margine 68% / 55% → **72% / 56%**, carte
+degli altri tre per Consiglio 3,05 / 2,70, Consigli falliti 37 / 38 — un
+tavolo che litiga a un Consiglio su tre, su tutti e due i tavoli.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **128 · 63 · 72 · 86** sul misto e
+**107 · 39 · 99 · 102** sull'uniforme — un tavolo che si oppone con le carte
+fa cadere un Consiglio su tre anche fra gli ottimizzatori (era 43 su 350 in
+0.1.421, 107 adesso).
+
+**La corsia lenta**, rigirata: vite mai sedute 1 → 2, trasformazioni sedute
+277 → 273, i segni sul tavolo di uno o due per famiglia. Suite 746 prove
+verdi, 28 cancelli veloci e 6 lenti verdi.
+
+---
+
+## D-456 — La sedia legge la mappa
+
+**implemented in 0.1.425.** Parola del committente, davanti al plebiscito di
+[D-455](#d-455): *«le proposte che stanno sulle carte Tensione non si
+combattono abbastanza… se il Re affama una regione che mi serve non posso
+non oppormi. La sonda deve pesare tutto: anche non avere il controllo di una
+Regione che non mi fa pescare carte e' uno svantaggio da evitare. Costruire
+una citta' e' per me un valore, che torni villaggio e' un costo da evitare.»*
+
+**Cosa diceva la sonda delle posizioni prima**, quaranta anni, 152 Consigli,
+456 prese di posizione: il **79%** delle proposte valeva **esattamente zero**
+per chi non le proponeva, e un Consiglio su quattro aveva almeno un no. La
+sedia pesava una proposta con tre cose sole: i segni che il suo Destino
+nomina, il controllo di una Regione, e la presenza dove una clausola del
+Destino la chiede. Tutto il resto era letto e non pesato:
+
+| Effetto nelle proposte | letto | pesava |
+|---|---|---|
+| CAMBIA CONTROLLO | 81 | 56 |
+| segno sulla Regione | 180 | 19 |
+| sposta la Domanda | 390 | 5 |
+| COSTRUISCI PIETRA | 102 | **mai** |
+| togli o metti una presenza | 51 | **mai** |
+| alza o abbassa una Pietra | 27 | **mai** |
+| cambia un rapporto | 42 | **mai** |
+
+Il committente ha ragione due volte: la matrice dei contrasti c'e' da
+[D-171](#d-171) e la misura la tiene ([MISURA_MATRICE](MISURA_MATRICE.md):
+19 segni che aiutano una casa e ne danneggiano un'altra), ma la sedia
+**non leggeva la mappa**: un segno #affamata pesava solo se il Destino lo
+nominava, che la Regione fosse sua o no. Per questo il controllo era l'unico
+Effetto che facesse litigare: era l'unico collegato a «una Regione mia».
+
+**Cosa cambia**, in `policy_decider`, e vale per ogni sedia e per ogni
+carattere:
+
+- **quanto una Regione e' mia** (`_stake_in`): 2 se la tengo, 1 se ci ho una
+  presenza o una Pietra mia. E se la tiene un altro seggio, e' sua;
+- **un danno sulla Regione** — una condizione, una Cicatrice, una strada
+  chiusa — costa 1 piu' quanto e' mia, e rende 1 se e' di un avversario;
+  toglierlo, il contrario;
+- **una Pietra costruita da me rende 2**, abbattuta costa 2; **che sale rende
+  2, che scende costa 2**; da un avversario, il contrario e la meta';
+- **il controllo pesa sempre**, non solo se il Destino lo conta: una Regione
+  tenuta pesca carte, e perderla e' perdere la mano dell'anno dopo;
+- **una presenza mia tolta costa sempre 1** (3 se il Destino la chiede),
+  messa rende 1;
+- **un rapporto con me che sale rende 1, che scende costa 1**, anche senza una
+  clausola che lo nomini.
+
+**Cosa dice la sonda dopo**, stessi quaranta anni:
+
+| | prima | **dopo** |
+|---|---|---|
+| proposte che valgono zero per chi non propone | 79% | **24%** |
+| Consigli con almeno un no | 26% | **72%** |
+| OPPOSE · SUPPORT · ABSTAIN | 16% · 5% · 79% | **47% · 29% · 24%** |
+
+E gli Effetti che ora pesano, sugli stessi anni: COSTRUISCI PIETRA 81 su 81,
+segno tolto dalla Regione 332 su 333, segno posato 72 su 105, Pietra che
+sale o scende 9 su 9, controllo 40 su 42. Restano a zero **sposta la
+Domanda** (4 su 393) e i segni del mondo e delle case che nessun Destino
+nomina (20 su 426): quelli non sono della mappa, sono delle carte.
+
+**La partecipazione a trenta anni**, sedie corrette e menu a quattro, prima e
+dopo:
+
+| | 0.1.424 misto | **0.1.425 misto** | 0.1.424 uniforme | **0.1.425 uniforme** |
+|---|---|---|---|---|
+| astensioni fra i non proponenti | 65% | **32%** | 82% | **29%** |
+| SUPPORT · OPPOSE | 5% · 30% | **31% · 36%** | 4% · 14% | **31% · 40%** |
+| Consigli col tavolo in silenzio | 15% | **6%** | 69% | **19%** |
+| carte impegnate dagli altri tre, per Consiglio | 1,61 | **2,98** | 0,58 | **2,92** |
+| margine medio | 0,56 | **1,86** | 3,18 | **1,98** |
+| **Consigli con opposizione nel margine** | **60%** | **68%** | **20%** | **55%** |
+| esiti DECI · SUCC · COSTO · FAIL | 15 · 29 · 15 · 46 | **34 · 18 · 18 · 37** | 35 · 48 · 7 · 18 | **28 · 33 · 11 · 31** |
+
+Il tavolo uniforme, quello dei quattro ottimizzatori che si astenevano
+nell'82% dei casi, adesso si astiene nel 29% e si oppone nel margine in un
+Consiglio su due: era la tabella che il committente aveva davanti quando ha
+detto che il gioco falliva sul Consiglio. E le due posizioni si dividono —
+un terzo sostiene, un terzo si oppone, un terzo tace — invece del carro di
+D-455: il conflitto viene dalla mappa, non da un premio.
+
+**Il cancello dei 100 semi**, seme 7000, prima e dopo:
+
+| | 0.1.424 misto | **0.1.425 misto** | 0.1.424 uniforme | **0.1.425 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,50 | **3,47** | 3,59 | **3,46** |
+| esiti FAIL · SUCC · SUCC · DECI | 153 · 71 · 80 · 46 | **123 · 60 · 77 · 87** | 71 · 44 · 151 · 93 | **97 · 38 · 104 · 107** |
+
+Il vincolo tiene. Sull'uniforme i Consigli falliti passano da 71 a 97 e i
+decisivi da 93 a 107 insieme: si combatte di piu' nei due versi, che e' la
+forma di un Consiglio con due fronti. Una prova che diceva la regola vecchia
+— *«senza una clausola niente si muove»* sui rapporti — dice la nuova.
+
+**La corsia lenta**, rigirata: le vite mai sedute in dodici saghe scendono da
+2 a **1**, le trasformazioni sedute salgono da 256 a **277** — un tavolo che
+litiga cambia pelle piu' spesso; i segni sul tavolo di uno o due per
+famiglia. Suite 746 prove verdi, 28 cancelli veloci e 6 lenti verdi.
+
+**Quello che resta a zero, un quarto, e' contenuto.** Sono le proposte che
+non toccano niente di mio e niente di nessuno: segni che nessun Destino
+nomina, memorie senza casa, domande che si spostano e non contano. E' la
+seconda meta' che il committente chiedeva — *«costi e benefici non sono
+abbastanza polarizzati»* — e adesso si vede da sola, separata dalla prima.
+
+---
+
+## D-455 — L'astensione ha un prezzo: la regola c'e', e misurata fa il contrario di quello che vuole
+
+**implemented in 0.1.424, spenta nei dati.** Parola del committente: *«chi
+non gioca carte, oltre a fare un favore a chi le gioca, potrebbe perdere
+punti vittoria se perde un dibattito, oppure potrebbero guadagnarle chi li
+vince»*. La regola e' scritta come due numeri nella Chronicle,
+`confluence_rules.debate_points`: **`winners_gain`**, quanti punti di
+campagna prende a Consiglio chiuso chi sta sul fronte che ha vinto con
+almeno una carta impegnata, il proponente compreso; **`silent_lose`**, quanti
+ne perde chi non propone e non impegna nessuna carta. A zero e zero il
+Consiglio non tocca il punteggio. Il motore la applica dopo `resolve()`,
+scrive il verbale (*«Punti del dibattito: Lyra +1 — ha vinto con le carte in
+mano»*) e la mette nel registro del Consiglio (`debate_points`); la pagina
+d'aiuto la dice quando e' accesa; una prova la fabbrica nei due versi.
+
+**Le sedie la sentono.** A chi la proposta non tocca — punteggio zero, che
+prima voleva dire astenersi — conviene stare sul fronte che vince con una
+carta in mano: il fronte di chi propone, che ha le carte e il silenzio-
+assenso dalla sua. La policy fa esattamente questo, ed e' quello che una
+persona razionale farebbe.
+
+**La misura**, trenta anni per lettura, stessi semi, con `--debate-points`
+sulla sonda della partecipazione:
+
+| | spenta | vince +1 | astenuto −1 | tutt'e due |
+|---|---|---|---|---|
+| astensioni, misto / uniforme | 65% / 82% | **13% / 15%** | 13% / 15% | 13% / 15% |
+| SUPPORT fra i non proponenti | 5% / 4% | **72% / 67%** | 72% / 67% | 72% / 67% |
+| carte degli altri tre per Consiglio | 1,61 / 0,58 | 3,15 / 2,71 | 3,15 / 2,71 | 3,15 / 2,71 |
+| **opposizione nel margine** | **60% / 20%** | **17% / 25%** | 17% / 25% | 17% / 25% |
+| margine medio | 0,56 / 3,18 | 6,03 / 4,93 | 6,03 / 4,93 | 6,03 / 4,93 |
+| Consigli falliti | 46 / 18 | 9 / 12 | 9 / 12 | 9 / 12 |
+| esiti decisivi | 15 / 35 | 71 / 64 | 71 / 64 | 71 / 64 |
+
+**Il prezzo dell'astensione uccide l'astensione, e con lei l'opposizione.**
+Le tre letture giocano uguali, perche' la mossa razionale e' una sola:
+salire sul carro di chi propone. Le astensioni scendono da due terzi a un
+ottavo, ma i tre quarti delle prese di posizione diventano SUPPORT, il
+margine medio passa da mezzo punto a sei, i Consigli falliti da 46 a 9 e i
+successi decisivi da 15 a 71. Il Consiglio smette di essere un'astensione e
+diventa un plebiscito: la proposta passa sempre, e con le carte di tutti.
+Non e' quello che il committente chiedeva — voleva che chi sta a guardare
+pagasse, non che tutti votassero si'.
+
+**Per questo la regola e' nei dati a zero.** Il meccanismo c'e', si accende
+con due numeri, e la sonda lo misura con un'opzione. La forma che
+farebbe quello che il committente intende e' un'altra, ed e' sua da
+scegliere: un punto **solo a chi vince contro il proponente**, cosi' il carro
+non c'e'; oppure la penalita' a chi non impegna carte **e** la carta
+obbligatoria con la posizione, cosi' un SUPPORT vuoto non compra niente;
+oppure il gettone di opposizione di D-419 che pesa nel punteggio. Ognuna e'
+un numero in piu' nella stessa regola, e si misura con la stessa sonda.
+
+**E il cancello dei 100 semi, col prezzo acceso a uno e uno**, girato su una
+copia dei dati (seme 7000): 0 seggi bloccati su 8 sui due tavoli — il
+vincolo tiene — ma gli esiti dicono il plebiscito: falliti 153 → **25** e
+decisivi 46 → **221** sul misto, 71 → **37** e 93 → **208** sull'uniforme.
+Con la regola spenta, che e' quella spedita, i numeri di 0.1.423 restano
+quelli. Suite 746 prove verdi (due in piu': quelle della regola), 28
+cancelli veloci verdi; la misura della partecipazione porta la riga dei punti,
+a zero.
+
+---
+
+## D-454 — La CONDITION esce dal motore: la condizione e' il costo che l'avversario sceglie
+
+**implemented in 0.1.423.** Parola del committente, davanti alle caselle:
+*«caselle per i benefici e caselle per i costi, che dovevano essere le
+condizioni che ponevano gli altri giocatori»*. E' quello che la grammatica
+fisica dice da [D-280](#d-280) — *il proponente compra, gli avversari
+scelgono in che moneta paga* — e che il motore gia' gioca con la pedina del
+prezzo ([D-387](#d-387)). Accanto viveva la regola vecchia: la **CONDITION**,
+*«sono a favore, a una condizione»*, con una clausola presa da ventiquattro
+scritte nei dodici template, che nessuna carta stampava e nessun tavolo
+poteva leggere. Due grammatiche per la stessa cosa non si controllavano a
+vicenda: si contraddicevano. Una doveva uscire, ed e' uscita quella che non
+sta sulla carta.
+
+**Cosa esce.** La posizione CONDITION e le sue clausole
+(`condition_clauses` dai template e dallo schema), la soglia di qualifica
+(`condition_qualified_threshold`, `max_condition_commit_assets` dalla
+Chronicle), il passo H.6 che attaccava la clausola alla proposta passata, la
+regola dei segni `CONDITION_THRESHOLD` con le tre regole che la usavano
+(l'Archivio, la Lega, la Scuola: *«una Condition qualifica con un impegno in
+meno»*), la voce «sostieni a condizione che» nel menu della persona, la
+scelta della clausola nella policy e la lettura nei cataloghi, nel flusso,
+nel registro dei segni. Il margine torna `M = S − O − G + W`. Le tre
+posizioni sono SOSTIENI, OPPONITI, ASTIENITI.
+
+**Le sedie.** Chi vedeva la proposta come un danno piccolo poneva una
+condizione; ora si oppone. Il *prudente*, che non litiga, si astiene dove
+prima negoziava.
+
+**Il costo, dichiarato.** Ventiquattro clausole erano contenuto scritto, e
+otto memorie del mondo le scrivevano solo loro: `quota_guaranteed`,
+`relic_recorded`, `succession_witnessed`, `water_shared`, `debt_staggered`,
+`descent_witnessed`, `distribution_audited`, `charter_for_all`. Le chiede la
+pesca delle domande della biblioteca, e adesso niente le scrive: sono
+dichiarate in `CHIESTI_NOTI` con la ragione e stanno in ISSUES 98, da
+riscrivere come casella o come Conseguenza. Due segni che nessun dato tocca
+piu' (`list_witnessed`, `return_promised`) escono dal dizionario con i loro
+due segnalini. Sedici mani del dizionario perdono il template. Le prove della
+Condition — la qualifica, la soglia, la clausola migliore — escono con lei;
+`test_alliance_of_convenience` e le altre restano.
+
+**I numeri.** Cancello dei 100 semi, seme 7000, prima e dopo:
+
+| | 0.1.422 misto | **0.1.423 misto** | 0.1.422 uniforme | **0.1.423 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,50 | **3,50** | 3,54 | **3,59** |
+| esiti FAIL · SUCC · SUCC · DECI | 140 · 67 · 78 · 65 | **153 · 71 · 80 · 46** | 42 · 43 · 161 · 108 | **71 · 44 · 151 · 93** |
+
+Partecipazione a trenta anni: astensioni 62% → **65%** (misto) e 82% →
+**82%** (uniforme); Consigli con opposizione nel margine 55% → **60%** e 10%
+→ **20%**; Consigli falliti 43 → 46 e 4 → 18. Chi negoziava ora si oppone
+con le carte, e sul tavolo uniforme i Consigli caduti passano da quattro a
+diciotto: e' la seconda meta' del prezzo che il committente chiedeva.
+
+**La corsia lenta**, rigirata: trasformazioni sedute 261 → 256, vite mai
+sedute a 2, i segni sul tavolo di uno o due per famiglia. Suite 744 prove
+verdi (quattro in meno: quelle della Condition), 28 cancelli veloci e 6 lenti
+verdi, documenti generati rifatti — il catalogo dei Consigli senza le
+clausole, il flusso senza il nodo «clausola», il registro dei segni con le
+otto memorie dichiarate.
+
+---
+
+## D-453 — Il menu del Consiglio a quattro piu' quattro
+
+**implemented in 0.1.422.** Parola del committente, davanti alla carta con
+piu' caselle: *«non e' possibile che una carta abbia 25 caselle. Su una carta
+ci devono essere caselle per i benefici e caselle per i costi, che dovevano
+essere le condizioni che ponevano gli altri giocatori, ma massimo ci potevano
+essere 4 benefici e 4 costi. C'e' qualcosa di profondamente sbagliato nelle
+carte Tensione».* E poi, davanti alla misura: *«le quattro piu' comprate»*.
+
+**Cos'erano le 25.** Non quello che si compra: l'economia di [D-280](#d-280)
+limita gia' l'acquisto a tre benefici — quattro con una Cicatrice — e due
+costi. Erano il **menu**: la carta stampava tutto il vocabolario che il suo
+Tema raggiunge, da 8 a 12 voci per lato, per farne scegliere tre. La
+Successione ne aveva 11 e 12, il Debito 8 e 8. Un menu che nessuno legge, e
+che i numeri dicono morto per tre quarti.
+
+**La misura che ha deciso** (`run_boxes_probe --runs=100`, semi da 7000, 360
+Consigli, sedie corrette da D-452): 15 verbi su 32 comprati almeno una volta;
+i primi otto fanno il 95% degli acquisti; sei verbi offerti in tutto 620
+volte e comprati zero.
+
+| casella | offerta | comprata |
+|---|---|---|
+| COSTRUISCI PIETRA | 258 | 217 |
+| RAFFREDDA TEMA | 360 | 180 |
+| CAMBIA CONTROLLO | 172 | 172 |
+| RIMUOVI CONDIZIONE | 205 | 105 |
+| ABBASSA LA DOMANDA | 720 | 75 |
+| IL MONDO RICORDA | 284 | 55 |
+| CICATRICE (costo) | 122 | 56 |
+| CEDI CONTROLLO (costo) | 69 | 54 |
+| AGGIUNGI CONDIZIONE (costo) | 130 | 28 |
+| SCALDA DOMANDA · PEDAGGIO · CHIUDI STRADA · SCALDA TEMA · DIMENTICA · MUOVI DENTRO | 620 | **0** |
+
+**La regola del taglio**, in `tools/trim_council_menus.py`, girato una volta:
+per ogni carta restano **la casella della memoria** — IL MONDO RICORDA, la
+storia della carta ([D-308](#d-308)) — piu' le tre piu' comprate; fra i
+costi le quattro piu' posate; a parita' l'ordine d'autore; il «se cade» non si
+tocca. Ne escono **569 caselle** su 60 carte, e da qui la guardia sta in
+`validate_physical.py`: piu' di quattro per lato e' un difetto, con la sua
+prova piantata (*«cinque benefici su una carta»*).
+
+**Il costo, dichiarato per intero: le quattro sono le stesse su tutte le
+carte.** COSTRUISCI PIETRA, CAMBIA CONTROLLO, RAFFREDDA TEMA, IL MONDO RICORDA
+fra i benefici; AGGIUNGI CONDIZIONE, CEDI CONTROLLO, CICATRICE, PRENDI DEBITO
+fra i costi — con LEGA LE CASE o MARCHIA LA CASA al posto del debito sulle
+due carte che le portano. Cambiano i **bersagli**: la Pietra che si
+costruisce, il segno che si aggiunge, il luogo di cui si parla, e la memoria
+che si scrive, che e' di ogni carta la sua. Il committente l'ha visto e ha
+scelto cosi', contro l'alternativa *due proprie piu' due comprate* — che
+avrebbe tenuto la domanda collegata, i marchi e il dimentica, comprati in
+cento partite quasi mai. E' la stessa forma che ISSUES 72 aveva chiamato
+difetto nel 0.1.240 — *«la stessa coppia su tutte e 60 le carte»* — ma allora
+il menu era la stessa coppia **e basta**; adesso e' quattro verbi vivi con
+bersagli propri, ed e' quello che il tavolo compra. La casella
+SVELA LA DOMANDA, su due carte, esce con [D-450](#d-450): non c'e' piu'
+niente da svelare. ABBASSA LA DOMANDA, la prima casella di [D-343](#d-343),
+esce dal menu: offerta 720 volte, comprata 75.
+
+**Tre segni perdono una mano.** `crowned`, `discovery:relic` e `renowned`
+avevano fra chi li scrive la Tensione, attraverso le caselle tolte: il
+dizionario e' aggiornato, e restano scritti dalle Conseguenze, dagli Echi e
+dalle carte Asset.
+
+**Dopo il taglio, cento partite** (stessi semi): benefici comprati 2,33 →
+**2,05** a Consiglio, costi posati 0,39 → **0,42**, caselle diverse comprate
+15 → 8 su 32 — le sette che escono dal conto erano comprate 33 volte su 837.
+COSTRUISCI PIETRA passa da 217 a 256 acquisti, RAFFREDDA TEMA da 180 a 249:
+quello che prima si disperdeva su ABBASSA LA DOMANDA e RIMUOVI CONDIZIONE si
+posa sulle quattro che restano.
+
+**Il cancello dei 100 semi**, seme 7000, sui dati tagliati (sedie di D-452):
+
+| | 0.1.421 misto | **0.1.422 misto** | 0.1.421 uniforme | **0.1.422 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,50 | **3,50** | 3,54 | **3,54** |
+| esiti FAIL · SUCC · SUCC · DECI | 135 · 72 · 76 · 67 | **140 · 67 · 78 · 65** | 43 · 41 · 162 · 108 | **42 · 43 · 161 · 108** |
+| Verita' scritte, diverse | 148, 140 | **146, 138** | 145, 126 | **147, 127** |
+
+Il gioco non si accorge del taglio: quello che le sedie compravano stava gia'
+nelle quattro che restano.
+
+**Tre prove dicevano la regola vecchia, e sono riscritte.** `test_two_lists`
+pretendeva il vocabolario intero in gioco e sette costi vivi per carta: ora
+pretende al massimo quattro per lato e la memoria su ogni carta.
+`test_price_pedina` cercava RIAPRI sulla Carestia: ora la fabbrica, come vuole
+la regola di casa. E `test_alliance_of_convenience` contava cinque legami in
+cinque anni credendo di misurare l'alleanza di convenienza della policy:
+**li stringeva la casella LEGA LE CASE** sulle Vie Interrotte, e la regola
+che intendeva provare non era mai scattata. Ora fabbrica il caso — un seggio
+che ha votato con un altro, una carta BONDS in mano — e la regola risponde.
+E' la quinta prova cieca di questo progetto, e la si e' vista perche' il
+menu e' cambiato sotto.
+
+**La corsia lenta**, rigirata: partecipazione a trenta anni ferma — astensioni
+62% e 82%, opposizione nel margine 55% e 10% — trasformazioni sedute 268 →
+261, vite mai sedute a 2, i segni sul tavolo di uno o due per famiglia. Suite
+748 prove verdi, 28 cancelli veloci e 6 lenti verdi.
+
+---
+
+## D-452 — Le sedie vedono la proposta: centocinquanta versioni di astensione per cecita'
+
+**implemented in 0.1.421.** Segue [D-451](#d-451), che ha trovato la causa:
+da 0.1.272 le Proposte stanno sulla carta Tensione e il Consiglio le legge da
+`confluence_template_for(tension_id)`; la policy delle sedie — in tre punti:
+la proposta in dibattito, la clausola migliore, il punteggio della domanda da
+scegliere — le cercava ancora in `confluence_templates[template_id]`, il
+template crudo, dove non ci sono piu'. Risultato: `_current_proposition`
+vuoto a ogni presa di posizione, punteggio mai calcolato, **ABSTAIN sempre**,
+e `_best_proposition_score` a -999 su ogni domanda, cioe' la domanda scelta a
+caso. La sonda delle posizioni (`run_stance_probe`) leggeva nello stesso
+posto, e per questo non aveva mai visto niente.
+
+**La correzione e' una riga, tre volte**: le sedie leggono da
+`confluence_template_for`, come il Consiglio. Nessuna regola cambia. Cambia
+tutto quello che le sedie fanno al Consiglio, e quindi ogni numero preso da
+0.1.272 in poi su un tavolo di sedie automatiche va riletto sapendo che
+quelle sedie erano cieche. Non si riscrivono i verbali vecchi: si scrive
+qui che lo erano.
+
+**Il cancello dei 100 semi**, seme 7000, prima e dopo, nella stessa sessione:
+
+| | 0.1.420 misto | **0.1.421 misto** | 0.1.420 uniforme | **0.1.421 uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,58 | **3,50** | 3,61 | **3,54** |
+| esiti FAIL · SUCC · SUCC · DECI | 33 · 46 · 176 · 103 | **135 · 72 · 76 · 67** | 23 · 36 · 172 · 130 | **43 · 41 · 162 · 108** |
+| Verita' scritte, diverse | 124, 95 | **148, 140** | 144, 111 | **145, 126** |
+
+Sul tavolo misto i Consigli falliti passano da 33 a **135 su 350**: e' il
+tavolo dove siede l'*aggressivo*, che adesso vede la proposta e si oppone a
+tutto quello che non gli rende — 77 OPPOSE su 78 prese di posizione — con le
+carte in mano. Il cancello che non si negozia tiene: nessun seggio bloccato.
+Le Verita' diverse salgono da 95 a 140: un Consiglio che puo' cadere scrive
+storie diverse.
+
+**La partecipazione**, trenta anni, prima e dopo:
+
+| | cieche, misto | **corrette, misto** | cieche, uniforme | **corrette, uniforme** |
+|---|---|---|---|---|
+| astensioni fra i non proponenti | 95% | **63%** | 99% | **83%** |
+| Consigli col tavolo in silenzio | 90% | **17%** | 98% | **70%** |
+| carte impegnate dagli altri tre, per Consiglio | 0,24 | **1,71** | 0,05 | **0,56** |
+| margine medio | 3,50 | **1,03** | 4,01 | **4,11** |
+| Consigli falliti | 8 su 103 | **43 su 106** | 1 su 105 | **4 su 106** |
+| **Consigli con opposizione nel margine** | 7% | **55%** | 1% | **8%** |
+
+Il tavolo uniforme resta quasi muto anche vedendo: quattro ottimizzatori si
+astengono nell'83% dei casi, perche' una proposta che non tocca il loro
+Destino non vale una carta. E' una scelta, non piu' una cecita', ed e' la
+misura che dice quanto pesa davvero l'economia di D-280 fra sedie razionali.
+
+**L'esperimento chiesto dal committente**: *«la soluzione sarebbe che non ci
+si puo' astenere. Puoi verificare cosa cambierebbe?»*. La sonda ha un'opzione
+`--no-abstain` che sostituisce ogni ABSTAIN con SUPPORT, con OPPOSE, o con
+CONDITION sulla clausola migliore (e SUPPORT dove una clausola non c'e').
+Trenta anni per lettura, stessi semi, sedie corrette:
+
+| | com'e' | ABSTAIN → SUPPORT | ABSTAIN → OPPOSE | ABSTAIN → CONDITION |
+|---|---|---|---|---|
+| astensioni, misto / uniforme | 63% / 83% | 0 / 0 | 0 / 0 | 0 / 0 |
+| carte degli altri tre per Consiglio, misto | 1,71 | 1,77 | 1,65 | 1,76 |
+| carte degli altri tre per Consiglio, uniforme | 0,56 | 0,61 | 0,58 | 0,50 |
+| **opposizione nel margine, misto** | **55%** | 58% | 56% | 58% |
+| **opposizione nel margine, uniforme** | **8%** | 10% | 10% | 8% |
+| margine medio, misto / uniforme | 1,03 / 4,11 | 0,38 / 2,87 | 0,59 / 2,94 | 0,68 / 3,01 |
+| Consigli falliti, misto / uniforme | 43 / 4 | 44 / 10 | 46 / 10 | 46 / 6 |
+| gettoni di opposizione comprati | 0 | 0 | 0 | 0 |
+
+**Vietare l'astensione cambia le parole, non il peso.** L'opposizione nel
+margine resta la stessa in tutte e tre le letture, perche' una posizione
+dichiarata senza carte non pesa niente: un OPPOSE a mani vuote e'
+un'astensione con un altro nome, e le sedie che non hanno interesse non
+impegnano carte comunque (1,7 e 0,6 per Consiglio, uguali a prima). Quello
+che cambia e' il bonus del silenzio-assenso (D-267), che sparisce con il
+silenzio: il margine scende di mezzo punto sul misto e di un punto
+sull'uniforme, e qualche Consiglio in piu' cade. La leva che sposterebbe il
+margine e' il **peso**, non la voce: una carta o un gettone obbligatori con la
+posizione — e il gettone di opposizione di D-419, che in centoventi anni
+misurati nessuna sedia ha mai comprato. E' una decisione del committente, e
+qui non si prende.
+
+**La saga del seme 812, rigiocata** — quella da cui la domanda era partita,
+dieci anni, tavolo uniforme:
+
+| | sedie cieche | **sedie corrette** |
+|---|---|---|
+| Consigli | 33 | 34 |
+| prese di posizione | 99 ABSTAIN | **85 ABSTAIN · 7 SUPPORT · 6 OPPOSE** |
+| Consigli con opposizione | 0 | **6** |
+| esiti DECI · SUCC · COSTO · FAIL | 13 · 13 · 6 · 1 | **11 · 11 · 5 · 7** |
+| turni «passa» | 495 | **445** |
+| la campagna | Maestra Sadin 10 | **La Mano Rimessa 7**, e la casa vincitrice cambia |
+
+Stesso seme, stesso mondo: cambia chi vince la campagna. E' il tavolo
+uniforme, quello che anche corretto resta muto per quattro quinti: la saga
+dice quanto poco basta.
+
+**La corsia lenta** si e' mossa con le sedie, come in D-450: trasformazioni
+sedute 283 → 268, vite mai sedute ferme a 2; i segni sul tavolo di uno o due
+per famiglia. Rigenerata, e committata insieme.
+
+---
+
+## D-451 — La misura della partecipazione, e il cancello sull'opposizione zero
+
+**implemented in 0.1.420.** Parola del committente, davanti alla saga del
+seme 812: *«Quindi il gioco non va, fallisce sul suo punto forte che e' il
+Consiglio»*. Trentatre' Consigli in dieci anni, tutti chiusi a opposizione
+zero, novantanove astensioni su novantanove prese di posizione. E la risposta
+data: il cancello dei 100 semi conta i Consigli e i loro esiti, **non chi ci
+partecipa** — un Consiglio con tre astenuti conta verde quanto uno combattuto.
+Il punto forte del gioco era la parte meno misurata. Da qui: *«fai la sonda
+della partecipazione e il cancello sull'opposizione zero»*.
+
+**La sonda** (`run_participation_probe.gd`, documento
+[MISURA_PARTECIPAZIONE.md](MISURA_PARTECIPAZIONE.md)) gioca trenta anni
+pescati di CHR_00 sui due tavoli del cancello e per ogni Consiglio guarda i
+tre che non propongono: la posizione che dichiarano, le carte che impegnano,
+e se alla fine sul piatto c'e' un'**opposizione che pesa nel margine** —
+carte contro, o un gettone comprato contro (D-419). Un cane da guardia siede
+fra il cervello e il Consiglio e annota; i totali li dice il registro dei
+Consigli risolti. Il Consiglio si chiude sul segnale `confluence_resolved`,
+non sulla domanda scelta: con una sola domanda eleggibile il controllore non
+chiede niente a nessuno, e la prima stesura fondeva due Consigli in un record
+— cieca, come le quattro volte prima. Adesso conta i Consigli visti e quelli
+risolti, e se non combaciano lo dice ed esce 3.
+
+**Il cancello** (`tools/run_participation_probe.sh --check`, corsia lenta,
+45 s): il documento deve essere quello che il gioco produce, **e** un tavolo
+intero senza un solo Consiglio con opposizione nel margine e' rosso. Il
+pavimento e' uno per tavolo: e' scritto nella sonda (`quit(2)`), e si alza
+quando il committente lo dice.
+
+**Il ritrovato, su trenta anni** (seme 7000, prima di ogni correzione):
+
+| | misto | uniforme |
+|---|---|---|
+| Consigli | 103 | 105 |
+| astensioni fra i non proponenti | **95%** | **99%** |
+| Consigli col tavolo in silenzio | 90% | 98% |
+| carte impegnate dagli altri tre, per Consiglio | 0,24 | 0,05 |
+| gettoni di opposizione comprati | 0 | 0 |
+| **Consigli con opposizione nel margine** | **7 (7%)** | **1 (1%)** |
+
+Il cancello, a pavimento uno, e' verde: sette e uno non sono zero. Ma il
+numero e' quello che il committente aveva visto, e stavolta e' scritto dove
+si rilegge.
+
+**E la causa non e' la regola: e' una cecita'.** La sonda delle posizioni
+(`run_stance_probe`, O-6) girata sugli stessi anni contava *zero* posizioni
+dichiarate, cioe' era cieca anche lei, e per la stessa ragione delle sedie: la
+proposta in dibattito si cercava in `confluence_templates[template_id]`, e
+**da 0.1.272 le proposte stanno sulla carta Tensione** (ISSUES 80, taglio 2,
+*«ogni carta sue proposte»*): il Consiglio le legge da
+`confluence_template_for(tension_id)`, che fonde il template con la carta.
+Una sonda di debug l'ha provato su due anni: `_current_proposition` torna
+vuoto **a ogni presa di posizione**, il punteggio non si calcola, e la policy
+torna ABSTAIN — anche l'*aggressivo*, che si oppone a tutto quello che non
+gli rende, non trova niente a cui opporsi. Le poche opposizioni misurate
+vengono dai caratteri che decidono senza guardare la proposta. La correzione
+e' [D-452](#d-452), separata, perche' cambia le partite e va rimisurata.
+
+---
+
+## D-450 — La carta non e' velata: coperti sono i gettoni
+
+**implemented in 0.1.419.** Parola del committente, a un giorno da D-449:
+*«La faccia del concilio indica la domanda e il tema, quella non e' velata:
+sono i segnalini che si pescano e si mettono sopra che sono coperti e possono
+valere 0, 1 o 2. A fine Atto si girano e si sommano, la domanda con il valore
+piu' alto si dibatte — si gira la carta e ci sono le caselle inerenti alla
+domanda sull'altra faccia».*
+
+E' la regola di [D-203](#d-203) e [D-261](#d-261) detta per intero, e il
+motore la gioca gia' cosi': gettoni coperti `[0, 1, 1, 2]`, mucchio piu' alto
+a fine Atto, `visible_tension_threshold` a -1 per tutti col cancello del
+tavolo. **Quello che non tornava era la carta**, e con lei l'app:
+
+- la faccia stampava *«domanda velata»* su sei Domande su sessanta e la
+  soglia nell'angolo — una regola che il tavolo non gioca piu', e un numero
+  che col cancello non decide niente. D-449 aveva provato a salvare il velo
+  con un gettone sulla soglia: era un gesto in piu' per una cosa che non
+  esiste;
+- la mappa dell'app scriveva *«Il Risveglio · 2/6»* e *«velata»*, cioe' lo
+  stato del motore e non il tavolo — il contrario di [D-444](#d-444).
+
+**Cosa cambia.**
+
+- **Nessuna Tensione della scatola nasce velata**: le sei `VEILED` di
+  `tensions_core.json` (il Risveglio, le Strade, la Sete, la Reliquia, il
+  Senza Nome, la Cenere) passano a `OPEN`. Il campo `visibility` e il verbo
+  `SET_TENSION_VISIBILITY` restano al motore, perche' un Effetto puo' ancora
+  velare — *«il dogma vela»* del Culto della Misura, [D-126](#d-126) — e le
+  prove che misurano il velo **se lo fabbricano** con quell'Effetto, come vuole
+  la regola di casa, invece di cercarlo fra i dati.
+- **La carta Domanda** perde la parola «velata» e la cifra d'angolo, e prende
+  una riga che dice il gesto: *«SI DIBATTE quando a fine Atto i suoi gettoni,
+  girati, fanno il mucchio piu' alto: gira la carta»*. Il ponte fra le due
+  facce, che il committente chiedeva in D-449, ora e' scritto sulla faccia.
+- **La mappa dell'app** scrive per ogni Domanda la riga del registro pubblico
+  (`public_status`): i gettoni coperti finche' sono coperti, il mucchio e *«il
+  piu' alto»* quando si girano. Senza cancello del tavolo resta la forma
+  vecchia, che e' l'unica giusta per una Chronicle a soglia.
+
+**E TRAMARE sbircia.** Tolte le velate, la prima prova che e' andata rossa
+diceva la cosa vera: la mano di Vaerax al seme 4242 — *Voci di corridoio* e
+*Giuramento* — non portava piu' nessuna mossa. **Nove Asset su 48** hanno
+TRAMARE come Azione, e la loro modalita' sulla Domanda cercava una velata da
+scoprire: nella scatola non ce n'e' piu'. La strada era gia' scritta in
+[ISSUES 49](ISSUES.md#49): *«se tutti i valori sono coperti per costruzione,
+"velata" smette di essere una categoria speciale — sono tutte velate, e
+TRAMARE diventa "sbircio un segnalino"»*. Fatto cosi':
+
+- il menu offre **«Sbircia i gettoni coperti di …»** su ogni Domanda di cui il
+  seggio non conosce il valore, quando la Chronicle copre i mucchi; il motore
+  lo accettava gia' (`_check_scheme` non chiedeva il velo), era il menu a
+  tacerlo;
+- chi ha sbirciato legge sulla sua scheda *«2 gettoni coperti, sbirciati:
+  valgono 3»*; gli altri leggono i gettoni e basta; il verbale pubblico dice
+  *«trama in silenzio: ha sbirciato sotto un mucchio»* senza nominare la
+  Domanda ne' il valore;
+- **sbirciare e' una Scoperta** (`discovery:` sul seggio), come lo era aprire
+  un velo: e' quello che il Destino di Lyra conta per il suo Minimo;
+- le sedie automatiche sbirciano **solo se il Destino le manda a scoprire**:
+  il numero che leggono non lo usano, perche' decidono sui gettoni che tutti
+  vedono ([D-172](#d-172), il bot non sbircia);
+- la pagina d'aiuto lo dice: *«Tramare — sbirci i gettoni coperti di una
+  domanda. Lo sai solo tu»*.
+
+**E una quarta finestra si chiude.** ISSUES 49 copriva il mucchio in tre
+finestre — verbale, scheda del seggio, pagina d'aiuto — e la scheda di stato
+dell'app (`status_panel`) scriveva il punteggio vero a tutti, accanto alla
+mappa che da oggi lo copre. Ora scrive i gettoni, segna *«il mucchio piu'
+alto»* su quello con piu' gettoni — che si vede da tutti, e **non** e' detto
+che vada al Consiglio, perche' i gettoni pesano 0, 1 o 2 — e il valore solo a
+chi ha sbirciato. La prova della pagina posa un gettone prima di guardare la
+traccia: all'apertura nessuna domanda e' davanti, e la riga non lo inventa.
+
+**Costo, dichiarato.** Sei Domande cambiano dato e le sedie hanno una mossa
+in piu': il cancello dei 100 semi si e' rigirato sui due tavoli, e i numeri
+sono qui sotto, presi sullo stesso tavolo e nella stessa sessione. Il velo
+calato da un Effetto (*«il dogma vela»*) resta nel motore e nel menu, e la
+prova che lo misura se lo fabbrica. Il registro e il pannello d'aiuto parlano
+ancora di velo dove un Effetto puo' calarlo: non e' un testo morto, e' un
+caso raro.
+
+**Il cancello dei 100 semi**, seme 7000, misurato due volte nella stessa
+sessione: su 0.1.418 (il commit prima) e su questo codice. Le colonne degli
+esiti sono quelle che la sonda stampa (FAIL · SUCC · SUCC · DECI).
+
+| | 0.1.418, misto | **0.1.419, misto** | 0.1.418, uniforme | **0.1.419, uniforme** |
+|---|---|---|---|---|
+| seggi bloccati su un solo livello | 0 su 8 | **0 su 8** | 0 su 8 | **0 su 8** |
+| Consigli l'anno, media | 3,53 | **3,58** | 3,36 | **3,61** |
+| esiti FAIL · SUCC · SUCC · DECI | 30 · 64 · 155 · 104 | **33 · 46 · 176 · 103** | 10 · 31 · 171 · 124 | **23 · 36 · 172 · 130** |
+| Verita' scritte, diverse | 136, 113 | **124, 95** | 139, 107 | **144, 111** |
+
+Il tavolo uniforme tiene piu' Consigli (3,36 → 3,61) e piu' fallimenti (10 →
+23): le sedie che il Destino manda a scoprire spendono un'Occasione a
+sbirciare, un gettone in piu' cade, e qualche Consiglio in piu' si apre con
+meno carte impegnate. E' il costo della mossa nuova, e resta scritto.
+
+**E la corsia lenta si e' mossa**, perche' le sedie giocano diverso: la CI
+l'ha detto per prima (`MISURA_VITE.md` vecchio), e le tre misure sono state
+rigirate. Le vite mai sedute in dodici saghe passano da **1 a 2**: *La
+Compagnia del Sale* non si siede piu' su nessuno dei due tavoli (era 1 e 0),
+e *L'Inquisizione del Vetro* resta a zero sull'uniforme. Le trasformazioni
+sedute salgono da 261 a 283. Sul tavolo (`MISURA_TAVOLO.md`) i segni che
+arrivano cambiano di uno o due per famiglia — 21 → 20, 10 → 12, 28 → 29,
+35 → 34 — dentro il rumore di dodici saghe. Nessuna di queste misure e' un
+cancello: sono numeri che si dichiarano.
+
+---
+
+## D-449 — Una carta, due facce: l'Eco sull'Asset, il Consiglio sul retro della Domanda
+
+**implemented in 0.1.418.** Parola del committente, due volte: *«il mazzo
+Tension e il mazzo council sono ancora due cose separate, invece dovrebbe
+essere la stessa carta»* e *«anche il mazzo echo e quello asset dovrebbero
+essere unificati, questa cosa era gia' stata detta»*. Era stata detta:
+[D-359](#d-359).
+
+### Due decisioni prese e non stampate
+
+**L'Eco.** D-359 (0.1.325) dice che l'Eco e' il terzo blocco della carta Asset
+e che il mazzo del Narratore non esiste piu'. Il motore lo fa da allora, e la
+mano sullo schermo lo mostra. Ma la faccia Asset **non stampava il blocco**, e
+l'export stampava ancora **48 carte Eco a parte, su 12 fogli**, mentre il
+censimento scriveva «stampati sulla carta Asset». Il documento diceva la
+decisione, la stampa no.
+
+**Il Consiglio.** [D-338](#d-338) aveva separato la scheda dalla carta
+Domanda perche' insieme non stavano su una faccia — misurato, e giusto. Nessuno
+aveva misurato **il retro**: l'export non conosce il retro di una carta, ogni
+pezzo e' a faccia singola. Misurato adesso, con la stessa funzione che impagina
+i fogli:
+
+| il Consiglio sul retro di | sbordano | corpo rimpicciolito | la piu' stretta |
+|---|---|---|---|
+| una carta 63x88 | 13 su 60 | 60 su 60 | 74% |
+| un tarocco 70x120 | **0** | 8 su 60 | **87%** |
+
+### Cosa cambia
+
+- **La carta Asset stampa il suo Eco**: sotto PRENDI, la riga **ECO** col
+  titolo, la famiglia drammatica e la funzione di Propp, e poi le stesse
+  righe della faccia Eco — QUANDO ESCE, IL MONDO, CONVOCA IL CONSIGLIO — che la
+  prova confronta una per una. Il mazzo «echo» resta leggibile per lo schermo
+  (la carta calata a fine Atto) e per il brief, ma **non si stampa piu'**.
+- **La Domanda e' un tarocco fronte-retro**: davanti il Tema, quando si scalda,
+  la soglia, su cosa si discute; dietro il Consiglio che apre, con le sue
+  caselle. `CardFace.BACKS` dice quale mazzo e' il retro di quale, e l'export
+  scrive per ogni foglio `tension_NN` un foglio `tension_retro_NN` **specchiato**,
+  cosi' stampando i due lati ogni retro finisce dietro la sua carta.
+- **Il velo cambia gesto** — *rivisto il giorno dopo da [D-450](#d-450)*.
+  [D-187](#d-187) diceva *«una carta girata a faccia in giu' accanto al
+  segnalino»*: con il Consiglio sul retro non si puo'. Qui si era scritto che
+  la soglia si copre con un gettone. Il committente ha corretto: **la carta non
+  e' velata, coperti sono i gettoni** che ci si posano sopra. Il velo esce
+  dalla scatola.
+- **Via «le dodici caselle»**: era una frase rimasta da D-280. Una carta porta
+  in media **8,6 SI OTTIENE, 8,9 SI PAGA e 2 SE CADE**, da 18 a 25 caselle,
+  mai dodici. Corretta ovunque fosse viva; nei verbali vecchi resta.
+- **D-446 e' rivista dopo un giorno**: la Domanda era passata a 63x88 con la
+  tua parola *«44x68 e' troppo piccolo»*; col Consiglio dietro serve il
+  tarocco, che e' piu' grande ancora. La traccia dei valori ospita un posto da
+  72x122, due corsie per foglio, l'ultima chiude a 286 mm.
+
+### Il costo, dichiarato
+
+| | prima | dopo |
+|---|---|---|
+| fogli A4 di carte e tessere | 76 | **84** — Domande 7 → 15 fronti + 15 retri, Eco 12 → 0 |
+| carte Asset col corpo rimpicciolito | 0 su 48 | **24 su 48**, la piu' stretta 84% |
+| illustrazione media / minima sull'Asset | 49% / 43% | **37% / 34%**, il pavimento |
+| Consiglio, corpo rimpicciolito | 7 su 60 (89%) | 8 su 60 (87%) |
+
+Il prezzo vero e' sull'Asset: tre blocchi su una faccia, e l'illustrazione
+scende al minimo che D-421 ammette. E' il prezzo di una carta che dice tutto
+quello che fa, ed e' la direzione di casa: *un gioco da tavolo con un'app*.
+Nessun file del motore e' toccato: il cancello non si muove.
+
+---
+
 ## D-448 — Il flusso disegnato sta sul sito, accanto all'app
 
 **implemented in 0.1.417.** Parola del committente: *«aggiungi il grafo al

@@ -64,10 +64,22 @@ func test_every_card_carries_two_real_lists() -> void:
 					"le voci di %s di «%s» fanno cose diverse: una scelta finta non e' una scelta"
 					% [str(pair[0]), str(tension_id)]
 				)
-	# E la tavolozza e' larga: prima di D-278 era **una coppia sola** per tutte
-	# e sessanta le carte, e questa riga sarebbe stata 2 e 2.
-	assert_eq(costs_seen.size(), CouncilEconomy.COST_VERBS.size(), "tutti i verbi di costo sono in gioco")
-	assert_eq(vents_seen.size(), CouncilEconomy.BENEFIT_VERBS.size(), "e tutti quelli di beneficio")
+	# **Quattro per lato, non di piu'** (D-453, parola del committente). Fino
+	# alla 0.1.421 questa riga pretendeva il vocabolario intero in gioco —
+	# e il vocabolario intero stava su ogni carta, da 8 a 12 per lato: un menu
+	# che nessuno legge. Adesso la tavolozza in gioco e' quello che il tavolo
+	# compra, e la carta ne porta al massimo quattro.
+	for tension_id in data().tensions:
+		var face: Dictionary = (data().tensions[str(tension_id)] as Dictionary).get(
+			"physical", {}
+		) as Dictionary
+		for list_name in ["benefits", "costs"]:
+			assert_true(
+				(face.get(list_name, []) as Array).size() <= 4,
+				"«%s» porta al massimo quattro %s" % [str(tension_id), list_name]
+			)
+	assert_true(costs_seen.size() >= 4, "almeno quattro verbi di costo in gioco: %d" % costs_seen.size())
+	assert_true(vents_seen.size() >= 4, "e almeno quattro di beneficio: %d" % vents_seen.size())
 
 
 ## **Il menu del prezzo che il Consiglio offre e' quello scritto sulla carta.**
@@ -98,9 +110,11 @@ func test_the_council_offers_what_the_card_says() -> void:
 			"il Consiglio su «%s» offre i costi della sua carta, nel suo ordine"
 			% [str(tension_id)]
 		)
+		# Con quattro costi sulla carta (D-453) ne bastano due vivi per far
+		# pagare un secondo beneficio: era sette quando il menu era il vocabolario.
 		assert_true(
-			offered.size() >= 7,
-			"e su «%s» ne offre abbastanza da comprarci qualcosa" % [str(tension_id)]
+			offered.size() >= 2,
+			"e su «%s» ne offre abbastanza da comprarci qualcosa: %d" % [str(tension_id), offered.size()]
 		)
 		# E la voce si legge con le parole della carta.
 		assert_eq(
@@ -157,30 +171,26 @@ func _text_of(node: Node) -> String:
 ## diverse, e `ADJUST_TENSION` — 90 applicazioni su 336, un quarto di tutto
 ## quello che un Consiglio fa — non lo diceva nessuna casella.
 ##
-## La prova parte dai dati: ogni Tensione dev'essere la carta di una domanda che
-## si puo' abbassare e alzare, e la casella deve produrre l'Effetto giusto sulla
-## domanda in discussione — non su un'altra, non su un Tema.
+## **Riscritta in D-453**: la casella non sta piu' su ogni carta — offerta 720
+## volte in cento partite e comprata 75, e' uscita dal menu a quattro. Quello
+## che ogni carta porta adesso e' la **memoria** (IL MONDO RICORDA, D-308): la
+## storia della carta, che il taglio ha tenuto per regola. La seconda meta'
+## della prova resta: dove la casella c'e', muove la domanda in discussione.
 func test_a_question_can_be_moved_by_a_box() -> void:
 	var loaded: RefCounted = data()
-	var con_casella: int = 0
+	var con_memoria: int = 0
 	for tension_id in loaded.tensions:
 		var physical: Dictionary = (loaded.tensions[str(tension_id)] as Dictionary).get(
 			"physical", {}
 		)
 		if physical.is_empty():
 			continue
-		con_casella += 1
 		var verbi: Array = []
 		for voice in physical["benefits"] as Array:
 			verbi.append(str((voice as Dictionary)["verb"]))
-		assert_true(verbi.has("COOL_QUESTION"),
-			"%s non offre di abbassare la propria domanda" % str(tension_id))
-		verbi = []
-		for voice in physical["costs"] as Array:
-			verbi.append(str((voice as Dictionary)["verb"]))
-		assert_true(verbi.has("HEAT_QUESTION"),
-			"%s non fa pagare alzando la propria domanda" % str(tension_id))
-	assert_eq(con_casella, 60, "le carte Domanda con la casella")
+		if verbi.has("REMEMBER") or verbi.has("FORGET"):
+			con_memoria += 1
+	assert_eq(con_memoria, 60, "ogni carta Domanda porta la sua memoria fra i benefici")
 
 	# E la casella produce l'Effetto giusto, sulla domanda che si discute.
 	var context: Dictionary = {"tension": "TEN_FAMINE", "proponent": "ENT_ALDRIC"}

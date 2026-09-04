@@ -199,21 +199,32 @@ func _place_nodes() -> void:
 		# legge quello che un nodo chiede, e un posto che chiede zero di
 		# larghezza le risulta stretto quanto un capello.
 		slot.custom_minimum_size = slot.size
-		var threshold: int = _session.tensions.threshold(id)
-		var value: int = _session.service.visible_tension_value(id, _viewer)
-		var title: String = str(_session.data.tensions[id]["title"])
 		var line: Label = slot.get_child(0) as Label
 		var tint: Color = Color("#8a8172")
-		if value < 0:
-			line.text = "%s · velata" % title
-		else:
-			line.text = "%s · %d/%d" % [title, value, threshold]
-			var margin: int = threshold - value
-			tint = Color("#6fa88a")
-			if margin <= 0:
-				tint = Color("#c8553d")
-			elif margin <= 1:
+		# **Quello che il tavolo sa, non «v/soglia»** (D-450). Fino alla 0.1.418
+		# la mappa scriveva «Il Risveglio · 2/6» e «velata»: col cancello del
+		# tavolo la soglia non decide niente (D-203) e nessuna carta e' velata.
+		# La riga la scrive lo stesso registro pubblico che legge il tavolo:
+		# i gettoni coperti finche' sono coperti, il mucchio e chi e' il piu'
+		# alto quando si girano.
+		if _session.tensions.table_gate() > 0:
+			line.text = _session.tensions.public_status(id)
+			if not _session.tensions.piles_are_covered() and _session.tensions.hottest_pile() == id:
 				tint = Color("#e8b563")
+		else:
+			var threshold: int = _session.tensions.threshold(id)
+			var value: int = _session.service.visible_tension_value(id, _viewer)
+			var title: String = str(_session.data.tensions[id]["title"])
+			if value < 0:
+				line.text = "%s · velata" % title
+			else:
+				line.text = "%s · %d/%d" % [title, value, threshold]
+				var margin: int = threshold - value
+				tint = Color("#6fa88a")
+				if margin <= 0:
+					tint = Color("#c8553d")
+				elif margin <= 1:
+					tint = Color("#e8b563")
 		line.add_theme_color_override("font_color", tint)
 
 

@@ -15,6 +15,7 @@ extends "res://tests/test_case.gd"
 ## SeatDecider is shared with the browser (D-038), so everything asserted here is
 ## asserted about the web build too.
 
+const Effect := preload("res://scripts/core/effect.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
@@ -91,6 +92,14 @@ func test_every_action_offered_is_one_the_rules_allow() -> void:
 func test_the_menu_never_offers_to_scout_what_is_already_visible() -> void:
 	var decider: RefCounted = SeatDecider.new(SEATS, null)
 	new_session(4242, false)
+	# Nessuna Tensione della scatola nasce velata (D-450): quello che una
+	# Domanda nasconde sono i suoi gettoni coperti, e il menu offre di
+	# sbirciarli. Con una Chronicle senza sacchetto coperto la prova ne vela una.
+	if not session.tensions.piles_are_covered():
+		session.applier.apply(Effect.make(
+			"SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "VEILED"},
+			Effect.source("test", "TEST", "", 1, 1, 0)
+		))
 	var checked: Dictionary = {"scouts": 0}
 	for entity_id in SEATS:
 		for option in decider._action_options(str(entity_id), session):
@@ -101,7 +110,7 @@ func test_the_menu_never_offers_to_scout_what_is_already_visible() -> void:
 				continue
 			checked["scouts"] = int(checked["scouts"]) + 1
 			assert_true(
-				session.tensions.is_veiled(tension_id),
+				session.tensions.is_veiled(tension_id) or session.tensions.piles_are_covered(),
 				"il menu offre di scoprire %s, che e gia aperta" % tension_id
 			)
 			assert_false(

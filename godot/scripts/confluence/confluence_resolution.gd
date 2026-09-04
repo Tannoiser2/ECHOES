@@ -4,7 +4,7 @@ extends RefCounted
 ## Pure functions over plain data: no world access, no RNG, no side effects.
 ## Swapping this file for another Strategy changes the maths and nothing else.
 ##
-##   M = S + C - O + W   (C only when the Condition clause qualifies, D-055)
+##   M = S - O - G + W   (G: l'opposizione comprata, D-419; la Condition e' uscita con D-454)
 ##   M <= -1        Failure
 ##   0 <= M <= 1    Success with Cost
 ##   2 <= M <= 4    Success
@@ -71,7 +71,7 @@ static func is_success(outcome: String) -> bool:
 
 ## Resolve one Confluence.
 ##
-## `stances`: entity_id -> {stance, clause_id}
+## `stances`: entity_id -> {stance}
 ## `commits`: entity_id -> [asset_id, ...]
 ## Returns the full arithmetic so the UI and the log can show the working.
 static func resolve(
@@ -81,14 +81,12 @@ static func resolve(
 	assets: Dictionary,
 	relevant_families: Array,
 	factor: int,
-	condition_threshold: int,
 	support_bonus: int = 0,
 	oppose_bonus: int = 0,
 	bought_opposition: int = 0
 ) -> Dictionary:
 	var support_assets: Array = []
 	var oppose_assets: Array = []
-	var condition_assets: Array = []
 
 	# The proponent always argues for their own proposition (§12.3).
 	support_assets.append_array(commits.get(proponent_id, []))
@@ -102,8 +100,6 @@ static func resolve(
 				support_assets.append_array(committed)
 			"OPPOSE":
 				oppose_assets.append_array(committed)
-			"CONDITION":
-				condition_assets.append_array(committed)
 			_:
 				pass
 
@@ -116,21 +112,6 @@ static func resolve(
 		support_total += support_bonus
 	if oppose_total > 0:
 		oppose_total += oppose_bonus
-	# A Condition that is paid for is support - "I am for this, on one condition"
-	# - and one that is not paid for is nothing (D-055).
-	#
-	# Until 0.1.16 a Condition sat outside the arithmetic entirely: you spent up
-	# to two cards, moved the margin by zero, and got your clause attached only if
-	# the proposal passed anyway. Against OPPOSE - three cards, every point
-	# subtracting, and one card back if it falls - that is not a close call, it is
-	# strictly dominated, and a hundred measured Chronicles said so: the character
-	# that blocks everything finishes 29/63/8 and the one that negotiates 82/14/4,
-	# with more than half of all Councils falling.
-	var condition_total: int = front_total(
-		condition_assets, assets, relevant_families, "CONDITION"
-	)
-	var qualified: bool = condition_total >= condition_threshold
-
 	# **L'opposizione comprata** (D-419, ISSUES 119). Un gettone di
 	# rivendicazione speso *contro* la proposta pesa nel margine: al tavolo e'
 	# «questa non deve passare», e si paga per fermarla invece di sperare nel
@@ -142,7 +123,6 @@ static func resolve(
 	# non compra un costo. Chi paga ha diritto di pesare.
 	var margin: int = (
 		support_total
-		+ (condition_total if qualified else 0)
 		- oppose_total
 		- maxi(0, bought_opposition)
 		+ factor
@@ -153,12 +133,9 @@ static func resolve(
 		"support_total": support_total,
 		"oppose_total": oppose_total,
 		"bought_opposition": maxi(0, bought_opposition),
-		"condition_total": condition_total,
-		"condition_qualified": qualified,
 		"world_factor": factor,
 		"margin": margin,
 		"outcome": outcome_for(margin),
 		"support_assets": support_assets,
 		"oppose_assets": oppose_assets,
-		"condition_assets": condition_assets,
 	}

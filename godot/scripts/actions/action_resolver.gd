@@ -980,8 +980,9 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 					)
 				)
 			)
-			# Uncovering something the world was hiding is itself a Discovery.
-			if tensions.is_veiled(tension_id):
+			# Uncovering something the world was hiding is itself a Discovery —
+			# il velo, o i gettoni coperti che si sbirciano (D-450).
+			if tensions.is_veiled(tension_id) or tensions.piles_are_covered():
 				effects.append(
 					applier.apply(
 						Effect.make(
@@ -993,7 +994,11 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 						)
 					)
 				)
-			log.bullet("%s trama in silenzio: qualcosa di velato ora ha un numero." % _name(entity_id))
+			log.bullet((
+				"%s trama in silenzio: ha sbirciato sotto un mucchio."
+				if tensions.piles_are_covered()
+				else "%s trama in silenzio: qualcosa di velato ora ha un numero."
+			) % _name(entity_id))
 			return _ok(
 				"SCHEME",
 				effects,

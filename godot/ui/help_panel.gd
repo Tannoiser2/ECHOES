@@ -130,14 +130,13 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 		out.append("[b]Muovere[/b] — metti una presenza: clicchi una Regione cerchiata d'oro.")
 		out.append("[b]Acquisire[/b] — peschi una carta di una famiglia (ne escono due, ne tieni una).")
 		out.append("[b]Influenzare[/b] — alzi o abbassi di 1 una domanda dell'anno. Una sola volta per round, e ti serve una presenza in una Regione di quel dominio.")
-		out.append(
-			"[b]Tramare[/b] — %s. Lo sai solo tu."
-			% (
-				"leggi a quanto esplode una domanda velata"
-				if str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD"
-				else "leggi il numero di una domanda velata"
-			)
-		)
+		var peek: String = "leggi il numero di una domanda velata"
+		if not ((rules.get("tension_tokens", {}) as Dictionary).get("covered", []) as Array).is_empty():
+			# Coi mucchi coperti niente e' velato: si sbirciano i gettoni (D-450).
+			peek = "sbirci i gettoni coperti di una domanda"
+		elif str(rules.get("veiled_tensions", "HIDES_ALL")) == "HIDES_THRESHOLD":
+			peek = "leggi a quanto esplode una domanda velata"
+		out.append("[b]Tramare[/b] — %s. Lo sai solo tu." % peek)
 		out.append("[b]Forgiare[/b] — muovi di un passo il rapporto con un altro giocatore.")
 		# La deroga a §10 (D-191) non dipende dalle carte: vale anche di qua.
 		var same_round: Dictionary = rules.get("claim_rules", {}) as Dictionary
@@ -317,6 +316,20 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 				"Salgono da sole ogni round. [b]Quando una arriva alla sua soglia si apre "
 				+ "un Consiglio[/b], ed e li che il gioco decide qualcosa."
 			)
+
+		# **L'astensione ha un prezzo** (D-455): se la Chronicle lo dichiara,
+		# la pagina lo dice, e pende solo da quella dichiarazione.
+		var debate: Dictionary = (rules.get("confluence_rules", {}) as Dictionary).get("debate_points", {}) as Dictionary
+		var winners_gain: int = int(debate.get("winners_gain", 0))
+		var silent_lose: int = int(debate.get("silent_lose", 0))
+		if winners_gain > 0 or silent_lose > 0:
+			var said: Array = []
+			if winners_gain > 0:
+				said.append("chi sta sul fronte che vince con almeno una carta impegnata guadagna [b]%d punt%s di campagna[/b]" % [winners_gain, "o" if winners_gain == 1 else "i"])
+			if silent_lose > 0:
+				said.append("chi non propone e non impegna nessuna carta ne perde [b]%d[/b]" % silent_lose)
+			out.append("")
+			out.append("[b]ASTENERSI COSTA.[/b] A Consiglio chiuso, %s." % "; ".join(PackedStringArray(said)))
 
 		# I mucchi coperti (ISSUES 49 fase 3): se la Chronicle dichiara il
 		# sacchetto dei valori, la pagina lo deve dire — una persona che conta i

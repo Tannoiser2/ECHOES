@@ -116,12 +116,22 @@ func test_influence_by_discard_spends_a_relevant_asset() -> void:
 	assert_eq(session.service.hand_size("ENT_VAERAX"), hand_before - 1, "una carta e stata spesa")
 
 
+## Nessuna Tensione della scatola nasce velata (D-450): chi prova il velo se lo
+## fabbrica.
+func _veil(tension_id: String) -> void:
+	session.applier.apply(Effect.make(
+		"SET_TENSION_VISIBILITY", "tension", tension_id, {"visibility": "VEILED"},
+		Effect.source("test", "TEST", "", 1, 1, 0)
+	))
+
+
 ## Col velo che copre **tutto** (`HIDES_ALL`): la domanda e' fuori portata
 ## finche' non la si scopre.
 func test_influence_refuses_a_veiled_tension() -> void:
 	var chronicle: Dictionary = session.data.chronicles["CHR_TEST"] as Dictionary
 	var before_rule: Variant = chronicle.get("veiled_tensions")
 	chronicle["veiled_tensions"] = "HIDES_ALL"
+	_veil("TEN_AWAKENING")
 	var result: Dictionary = _do(
 		"ENT_VAERAX", "INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": -1}
 	)
@@ -148,6 +158,7 @@ func test_influence_reaches_a_tension_whose_only_secret_is_the_threshold() -> vo
 		"HIDES_THRESHOLD",
 		"CHR_01 gioca con la soglia coperta"
 	)
+	_veil("TEN_AWAKENING")
 	var result: Dictionary = _do(
 		"ENT_VAERAX", "INFLUENCE", {"tension_id": "TEN_AWAKENING", "delta": -1, "via": "PRESENCE"}
 	)
@@ -191,6 +202,7 @@ func test_forge_down_is_free_and_public() -> void:
 
 ## §10 SCHEME: three modes, each leaving an auditable trace and no public leak.
 func test_scheme_tension_grants_knowledge_and_a_discovery() -> void:
+	_veil("TEN_AWAKENING")
 	var result: Dictionary = _do(
 		"ENT_LYRA", "SCHEME", {"mode": "TENSION", "tension_id": "TEN_AWAKENING"}
 	)

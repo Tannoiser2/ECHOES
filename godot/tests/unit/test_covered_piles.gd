@@ -133,6 +133,41 @@ func test_the_seat_sheet_is_covered_too() -> void:
 	assert_false(reading.contains("più alto"), "e non dice chi è il più alto: '%s'" % reading)
 
 
+## **Sbirciare** (D-450): nessuna Domanda nasce velata, e quello che TRAMARE
+## compra e' il valore dei gettoni coperti — per chi ha tramato, e per nessun
+## altro. E sbirciare e' una Scoperta, come aprire un velo.
+func test_scheming_peeks_under_the_pile_for_the_scout_alone() -> void:
+	_covered()
+	_token("TEN_AWAKENING", 2)
+	var decider: RefCounted = load("res://scripts/seat/seat_decider.gd").new(
+		["ENT_LYRA", "ENT_ALDRIC"], session.log
+	)
+	var offered: bool = false
+	for option in decider._action_options("ENT_LYRA", session):
+		if str(option["template"]) == "SCHEME" and str(option["params"].get("tension_id", "")) == "TEN_AWAKENING":
+			offered = true
+			assert_true(str(option["label"]).contains("Sbircia"), "il menu dice il gesto: '%s'" % str(option["label"]))
+	assert_true(offered, "coi mucchi coperti il menu offre di sbirciare")
+	var said_before: int = session.log.lines.size()
+	var result: Dictionary = session.actions.execute(
+		"ENT_LYRA", {"template": "SCHEME", "params": {"mode": "TENSION", "tension_id": "TEN_AWAKENING"}}
+	)
+	assert_true(bool(result["ok"]), "si sbircia: %s" % str(result.get("error", "")))
+	var worth: int = session.tensions.value("TEN_AWAKENING")
+	var scout: String = decider._tension_reading("TEN_AWAKENING", "ENT_LYRA", session)
+	assert_true(scout.contains("valgono %d" % worth), "chi ha sbirciato legge il valore: '%s'" % scout)
+	var blind: String = decider._tension_reading("TEN_AWAKENING", "ENT_ALDRIC", session)
+	assert_false(blind.contains("valgono"), "gli altri no: '%s'" % blind)
+	assert_true(
+		(session.world["entities"]["ENT_LYRA"]["tags"] as Array).has("discovery:TEN_AWAKENING"),
+		"sbirciare e' una Scoperta"
+	)
+	# Il gettone dell'azione cade in pubblico, e lo si dice: e' il valore
+	# sbirciato che il verbale non deve scrivere.
+	for line in (session.log.lines as Array).slice(said_before):
+		assert_false(str(line).contains("valgono"), "il verbale non dice cosa vale il mucchio: '%s'" % str(line))
+
+
 ## E la terza finestra: la pagina d'aiuto. Una persona che conta i gettoni e
 ## crede di sapere l'altezza sta giocando un altro gioco, e la pagina glielo
 ## deve dire.

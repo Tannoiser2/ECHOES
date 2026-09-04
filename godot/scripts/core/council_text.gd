@@ -141,21 +141,6 @@ static func proposition(
 	return {}
 
 
-## Le clausole che gli altri possono attaccare a una proposta.
-static func clauses(
-	template: Dictionary, data = null, voice: Callable = Callable()
-) -> Array:
-	var out: Array = []
-	for entry in template.get("condition_clauses", []):
-		var clause: Dictionary = entry as Dictionary
-		out.append({
-			"id": str(clause["id"]),
-			"text": _voice(str(clause["text"]), voice),
-			"leaves": consequence_note(clause, data, voice),
-		})
-	return out
-
-
 ## Quando una proposta si puo' fare, in parole. Le condizioni portano gia' la
 ## propria `label` d'autore: e' scritta per chi gioca, e qui si usa quella.
 static func needs_of(eligibility: Array, voice: Callable = Callable()) -> Array:

@@ -285,10 +285,17 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				"subject": {"tension": str(tension_id)},
 			})
 
+	# **Coi mucchi coperti, TRAMARE sbircia** (D-450 — la strada era scritta in
+	# ISSUES 49: *«sono tutte velate, e TRAMARE diventa "sbircio un
+	# segnalino"»*). Nessuna Domanda della scatola nasce velata: quello che una
+	# Domanda nasconde a un seggio sono i suoi gettoni coperti, e sbirciarli e'
+	# quello che una carta TRAMARE compra. Il velo calato da un Effetto resta
+	# la seconda ragione per offrirla.
+	var covered: bool = session.tensions.piles_are_covered()
 	for tension_id in _sorted(session.world["tensions"].keys()):
 		# Only what is actually hidden from you. An open Tension already shows its
 		# number, and offering to scout it is offering a wasted Action Opportunity.
-		if not session.tensions.is_veiled(str(tension_id)):
+		if not (covered or session.tensions.is_veiled(str(tension_id))):
 			continue
 		if service.knows_tension(entity_id, str(tension_id)):
 			continue
@@ -299,12 +306,13 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 			# offrire «scopri il numero» di una domanda il cui numero e' sul
 			# tavolo e' invitare qualcuno a buttare un'Occasione per sapere una
 			# cosa che sa gia'.
+			var verb: String = "Scopri il numero di %s"
+			if covered:
+				verb = "Sbircia i gettoni coperti di %s"
+			elif session.tensions.hides_threshold_only():
+				verb = "Scopri a quanto esplode %s"
 			out.append({
-				"label": (
-					"Scopri a quanto esplode %s"
-					if session.tensions.hides_threshold_only()
-					else "Scopri il numero di %s"
-				) % _tension(str(tension_id), session),
+				"label": verb % _tension(str(tension_id), session),
 				"template": "SCHEME", "params": request,
 				"subject": {"tension": str(tension_id)},
 			})
@@ -556,41 +564,17 @@ func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) 
 	if not _is_human(entity_id):
 		return fallback.choose_stance(entity_id, context, session)
 	_speaking_to = entity_id
-	# **La scheda della carta, non il template grezzo** (D-310, D-378): le
-	# Domande e le Proposte stanno sulla carta Tensione, e quel dizionario
-	# tiene ancora quelle di ripiego. Leggerlo di li' faceva sparire la riga
-	# «se passa» — chi propone vedeva la frase e non cosa lasciava al mondo,
-	# che e' proprio quello che D-233 aveva messo li'.
-	var template: Dictionary = session.data.confluence_template_for(
-		str(context["tension_id"])
-	)
-	var clauses: Array = template["condition_clauses"]
-
+	# **Tre voci** (D-454): sostenere, opporsi, astenersi. La quarta —
+	# «sostieni a condizione che», con una clausola del template — e' uscita:
+	# la condizione che un avversario pone e' il costo che sceglie sulla carta.
 	var labels: Array = ["Sostieni", "Opponiti", "Astieniti"]
-	var clause_ids: Array = []
-	# Anche una clausola lascia qualcosa dietro, e anche quello stava solo nel
-	# database: si sceglieva di qualificare senza sapere cosa si scriveva.
-	var said_clauses: Array = CouncilText.clauses(
-		template, session.data, Callable(session.confluence, "say")
-	)
-	for i in range(clauses.size()):
-		var clause: Dictionary = clauses[i] as Dictionary
-		clause_ids.append(str(clause["id"]))
-		var leaves: String = "" if i >= said_clauses.size() else str(
-			(said_clauses[i] as Dictionary)["leaves"]
-		)
-		labels.append("Sostieni a condizione che: %s%s" % [
-			session.confluence.say(str(clause["text"])),
-			"" if leaves == "" else "\nSe qualificata: %s" % leaves,
-		])
 	var choice: int = await _choose("  %s, cosa dici?" % _name(entity_id, session), labels)
 	if choice < 0:
 		return fallback.choose_stance(entity_id, context, session)
 	match choice:
 		0: return {"stance": "SUPPORT", "clause_id": ""}
 		1: return {"stance": "OPPOSE", "clause_id": ""}
-		2: return {"stance": "ABSTAIN", "clause_id": ""}
-	return {"stance": "CONDITION", "clause_id": str(clause_ids[choice - 3])}
+	return {"stance": "ABSTAIN", "clause_id": ""}
 ## **Il proponente compra** (D-280): posa le pedine sui benefici della carta,
 ## sapendo che ogni beneficio oltre il primo lo fara' pagare — e che a scegliere
 ## la moneta saranno gli altri.
@@ -992,7 +976,12 @@ func _tension_reading(tension_id: String, viewer_id: String, session: RefCounted
 		# restasse scritto, coprire il verbale pubblico sarebbe teatro.
 		if session.tensions.piles_are_covered():
 			var pile: int = session.tensions.tokens_on(tension_id)
-			return "%d %s coperti" % [pile, "gettone" if pile == 1 else "gettoni"]
+			var coperti: String = "%d %s coperti" % [pile, "gettone" if pile == 1 else "gettoni"]
+			# Chi ha sbirciato (TRAMARE, D-450) legge quanto valgono: e' la
+			# cosa che l'Occasione ha comprato, e la sa solo lui.
+			if session.service.knows_tension(viewer_id, tension_id):
+				return "%s, sbirciati: valgono %d" % [coperti, value]
+			return coperti
 		return "%d%s" % [
 			value, " ← il più alto" if session.tensions.hottest_pile() == tension_id else ""
 		]

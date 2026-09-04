@@ -4,7 +4,7 @@ extends SceneTree
 ##   godot --headless --path godot --script res://cli/run_boxes_probe.gd -- --runs=20
 ##
 ## Il «fatto quando» di ISSUES 72 chiede una sonda che dica quanta scelta arriva
-## davvero al tavolo, e non c'era. Le dodici caselle del Consiglio si vedono
+## davvero al tavolo, e non c'era. Le caselle del Consiglio si vedono
 ## nella scheda stampata e nei cataloghi; quello che nessuno sapeva e' **quante
 ## volte una casella viene offerta e quante viene presa**.
 ##

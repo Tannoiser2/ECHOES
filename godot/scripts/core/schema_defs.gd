@@ -232,16 +232,6 @@ const DEFS := {
 				"min": 1,
 				"default": 3,
 			},
-			"max_condition_commit_assets": {
-				"type": "int",
-				"min": 1,
-				"default": 2,
-			},
-			"condition_qualified_threshold": {
-				"type": "int",
-				"min": 1,
-				"default": 2,
-			},
 			"minimum_confluences": {
 				"type": "int",
 				"min": 0,
@@ -417,7 +407,6 @@ const DEFS := {
 			"title",
 			"questions",
 			"propositions",
-			"condition_clauses",
 			"consequence_pools",
 			"ripple",
 		],
@@ -448,13 +437,6 @@ const DEFS := {
 			"propositions": {
 				"type": "Array",
 				"min_items": 2,
-				"element": {
-					"type": "Dictionary",
-				},
-			},
-			"condition_clauses": {
-				"type": "Array",
-				"min_items": 1,
 				"element": {
 					"type": "Dictionary",
 				},
@@ -1449,7 +1431,6 @@ const DEFS := {
 					"GRANT_ON_SET",
 					"RELATION_FLOOR",
 					"STANCE_MODIFIER",
-					"CONDITION_THRESHOLD",
 					"ACTION_GRANT",
 					"ACTION_RIPPLE",
 					"ACTION_DISCOUNT",
@@ -1563,11 +1544,6 @@ const DEFS := {
 				"type": "int",
 				"min": -2,
 				"max": 2,
-			},
-			"threshold_delta": {
-				"type": "int",
-				"min": -1,
-				"max": 1,
 			},
 			"grants": {
 				"type": "String",

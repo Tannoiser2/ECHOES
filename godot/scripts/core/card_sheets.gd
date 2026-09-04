@@ -47,7 +47,7 @@ const COMMON_FIELDS: Array = [
 const TYPES: Dictionary = {
 	"asset": {
 		"nome": "carta Asset",
-		"cosa": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. Il suo Eco e' l'altra faccia dello stesso pezzo.",
+		"cosa": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Sotto le Azioni porta il suo Eco** (D-359): se le condizioni ci sono si cala quello al posto di un'Azione, e costa la carta.",
 		"immagine": "Una **scena** — un luogo, un gesto, persone dentro una cosa che sta succedendo — mai un ritratto singolo centrato. L'accento e' il colore della famiglia.",
 		"sottotitolo": "famiglia e rarita' (`family`, `rarity`), in italiano",
 		"angolo": "la forza (`strength`)",
@@ -59,41 +59,32 @@ const TYPES: Dictionary = {
 			["AL CONSIGLIO", "quanto vale al voto e quando di piu': `physical.council_use`, `strength`"],
 			["IMPEGNI", "cosa lascia se la impegni: `on_commit_effects`, `discard_or_retain_rule`"],
 			["PRENDI", "come arriva in mano: `acquisition_rule`"],
+			["ECO", "l'Eco della carta, la sua versione potenziata: `echo_id`, con titolo, famiglia drammatica e funzione di Propp"],
+			["QUANDO ESCE", "le condizioni per calare l'Eco: `eligibility` dell'Eco, generate dai campi"],
+			["IL MONDO", "cosa fa l'Eco, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id)"],
+			["CONVOCA IL CONSIGLIO", "la domanda che l'Eco apre, se ne apre una: `forces_confluence_on`"],
 		],
-		"voci": ["DOVE", "①", "②", "SEMPRE", "AL CONSIGLIO", "IMPEGNI", "PRENDI"],
-	},
-	"echo": {
-		"nome": "carta Echo",
-		"cosa": "La faccia del Narratore stampata sulla carta Asset (D-359): una funzione di Propp, e **tu scegli solo quando**. Dove cade e cosa lascia lo decide il mondo. Costa 1 Occasione.",
-		"immagine": "Una scena della **famiglia drammatica** — pressione, rottura, svolta, risoluzione — col suo registro e il suo accento.",
-		"sottotitolo": "la famiglia drammatica e la funzione di Propp (`dramatic_family`, `function_id`), in italiano",
-		"angolo": "nessuna",
-		"scena": "`description`",
-		"righe": [
-			["QUANDO ESCE", "le condizioni per calarla: `eligibility`, generate dai campi e non ricopiate"],
-			["IL MONDO", "cosa fa, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id)"],
-			["CONVOCA IL CONSIGLIO", "la domanda che apre, se ne apre una: `forces_confluence_on`"],
-		],
-		"voci": ["QUANDO ESCE", "IL MONDO", "CONVOCA IL CONSIGLIO"],
+		"voci": ["DOVE", "①", "②", "SEMPRE", "AL CONSIGLIO", "IMPEGNI", "PRENDI", "ECO", "QUANDO ESCE", "IL MONDO", "CONVOCA IL CONSIGLIO"],
 	},
 	"tension": {
-		"nome": "carta Domanda (la Tensione)",
-		"cosa": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano.",
+		"nome": "carta Domanda (la Tensione), fronte",
+		"cosa": "La domanda in gioco: sta accanto alla traccia dei valori tutto l'anno, si gira sul Tema caldo e **dice quando si scalda e su cosa si discute**. Non si gioca e non si tiene in mano. **Sul retro c'e' il suo Consiglio** (D-449): la stessa carta, girata. **La carta non e' mai coperta: coperti sono i gettoni** che ci si posano sopra (D-450) — a fine Atto si girano, si sommano, e la Domanda col mucchio piu' alto si dibatte.",
 		"immagine": "Nessuna: e' tutta testo, e il testo prende il posto del quadro.",
-		"sottotitolo": "«domanda» o «domanda velata» (`visibility`) e il Tema (`domain`)",
-		"angolo": "la soglia (`threshold`), ripetuta perche' la traccia e' dall'altra parte del tavolo",
+		"sottotitolo": "«domanda» e il Tema (`domain`)",
+		"angolo": "nessuna: la soglia col cancello del tavolo non decide niente (D-203), e si e' tolta dalla carta (D-450)",
 		"scena": "nessuna",
 		"righe": [
 			["SI DISCUTE DI", "le domande che puo' aprire, nel corpo: `possible_questions`, col testo da `council.questions`"],
 			["SI ACCENDE QUANDO", "la regola a segni che la fa salire: `heats_when` (o `triggers`, dove la regola non c'e')"],
 			["SI RAFFREDDA", "`decrease_rules`"],
+			["SI DIBATTE", "il gesto di fine Atto, fisso: i gettoni coperti si girano e il mucchio piu' alto gira la carta (D-203, D-450)"],
 			["AL CONSIGLIO VALGONO", "le famiglie che pesano al voto: `relevant_asset_families`"],
 		],
-		"voci": ["SI ACCENDE QUANDO", "SI RAFFREDDA", "AL CONSIGLIO VALGONO"],
+		"voci": ["SI ACCENDE QUANDO", "SI RAFFREDDA", "SI DIBATTE", "AL CONSIGLIO VALGONO"],
 	},
 	"council": {
-		"nome": "scheda Consiglio",
-		"cosa": "La scheda che si tira fuori quando il Consiglio si apre su una domanda: **le domande e le dodici caselle** con cui il tavolo la risolve (D-280, D-338). Una per Tensione.",
+		"nome": "carta Domanda, retro (il Consiglio)",
+		"cosa": "**Il retro della carta Domanda**: si gira quando il Consiglio si apre, e porta le sue domande e le caselle con cui il tavolo la risolve — in media nove SI OTTIENE, nove SI PAGA e due SE CADE (D-280, D-449). Una per Tensione, nello stesso ordine del fronte.",
 		"immagine": "Nessuna: e' un elenco da cui si sceglie.",
 		"sottotitolo": "fissa: «il Consiglio che questa domanda apre»",
 		"angolo": "nessuna",
@@ -268,12 +259,22 @@ static func deck_of(deck: String, data: RefCounted, bible: RefCounted) -> Dictio
 		"sottotitolo": str(about.get("sottotitolo", "")),
 		"angolo": str(about.get("angolo", "")),
 		"scena": str(about.get("scena", "")),
+		"retro": str(CardFace.BACKS.get(deck, "")),
+		"fronte": _front_of(deck),
 		"stile": bible.style() if bible != null else "",
 		"prompt_generale": bible.template_of(deck) if bible != null else "",
 		"campi": campi,
 		"righe": righe,
 		"carte": carte,
 	}
+
+
+## Di quale mazzo questo e' il retro, se lo e'.
+static func _front_of(deck: String) -> String:
+	for front in CardFace.BACKS:
+		if str(CardFace.BACKS[front]) == deck:
+			return str(front)
+	return ""
 
 
 ## Il JSON di un mazzo, con le chiavi nell'ordine in cui si leggono e non in
@@ -286,7 +287,7 @@ static func deck_json(deck: String, data: RefCounted, bible: RefCounted) -> Stri
 ## nei due versi. `types` si puo' passare per provare che morda.
 static func complaints(data: RefCounted, types: Dictionary = TYPES) -> Array:
 	var out: Array = []
-	for deck in CardFace.DECKS + CardFace.TILES:
+	for deck in CardFace.printed():
 		var about: Variant = types.get(str(deck))
 		if about == null:
 			out.append("il mazzo «%s» non ha una scheda scritta" % str(deck))
@@ -331,10 +332,14 @@ static func document(data: RefCounted, bible: RefCounted, json_dir: String) -> S
 	lines.append("facce vere: una voce stampata che la scheda tace, o promessa che nessuna")
 	lines.append("faccia stampa, e questo documento non si scrive.")
 	lines.append("")
+	lines.append("Una carta puo' avere **due facce**: la Domanda porta il suo Consiglio sul")
+	lines.append("retro (D-449), e l'Asset porta il suo Eco sotto le Azioni (D-359). Il JSON")
+	lines.append("di un retro dice di che fronte e' (`fronte`), e viceversa (`retro`).")
+	lines.append("")
 	lines.append("| tipo | formato | facce | pezzi | immagine | il dato |")
 	lines.append("|---|---|---|---|---|---|")
 	var decks: Array = []
-	for deck in CardFace.DECKS + CardFace.TILES:
+	for deck in CardFace.printed():
 		var sheet: Dictionary = deck_of(str(deck), data, bible)
 		decks.append(sheet)
 		var formato: Dictionary = sheet["formato"]
