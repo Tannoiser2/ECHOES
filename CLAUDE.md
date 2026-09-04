@@ -48,11 +48,11 @@ E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
 
 Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 
-**Sono trentatré, e non si girano a mano uno per uno.** Li gira
+**Sono trentaquattro, e non si girano a mano uno per uno.** Li gira
 [`tools/gates.py`](tools/gates.py), in tre modi:
 
 - **senza argomenti** — i **28 veloci**, ventisette secondi in tutto: dopo ogni modifica;
-- **`--lenti`** — le **5 sonde lunghe**: una volta, prima di aprire la PR;
+- **`--lenti`** — le **6 sonde lunghe**: una volta, prima di aprire la PR;
 - **`--rigenera`** — rifà i documenti generati invece di controllarli, quando uno
   va rosso solo perché è vecchio. È il rosso che costa più tempo di tutti.
 
@@ -91,6 +91,7 @@ Linux, e serve solo a dire in quale corsia va un cancello.
 | `bash tools/run_marks_survey.sh --check` | 102 s | `docs/MISURA_SEGNI.md`: **quali segni il mondo scrive davvero, e chi li guarda** — quelli scritti spesso che nessuna clausola nomina, e quelli nominati che non escono mai |
 | `bash tools/run_table_survey.sh --check` | 105 s | `docs/MISURA_TAVOLO.md`: **quali segni arrivano sul tavolo, posto per posto** — tutti e 180, con l'ultima colonna che non passa dal registro degli Effetti ma guarda il tavolo a fine partita |
 | `bash tools/run_page_survey.sh --check` | 3 s | `docs/MISURA_PAGINA.md`: **cosa la pagina dell'app dice e con quale dito** — i testi che vivono solo nel suggerimento del mouse, i bersagli piu' stretti di un dito, i segni crudi finiti sotto gli occhi, e quanto la pagina chiede in confronto a un tablet |
+| `bash tools/run_participation_probe.sh --check` | 45 s | `docs/MISURA_PARTECIPAZIONE.md`: **chi gioca davvero un Consiglio** — sui due tavoli del cancello, per ogni Consiglio, che posizione prendono i tre che non propongono, quante carte impegnano e se sul piatto resta un'opposizione che pesa; e va **rosso** se un tavolo intero chiude ogni Consiglio senza opposizione nel margine |
 | `bash tools/run_export.sh --check-brief` | 4 s | `docs/BRIEF_ARTE.md` |
 | `python3 tools/issues_survey.py --check` | 0.1 s | **che il conto delle voci sia vero e che nessuna resti senza casa**: una voce chiusa porta il ✅ nel titolo, ogni voce aperta e' **ospitata** da una sezione a colore di [la lista](docs/LE_TUE_DECISIONI.md) — una sola, e del colore che il suo cartellino dice — e di quel foglio si rigenera **tutta la spina dorsale**: i numeri dei titoli (quelli in grassetto), la tabella dei colori, il ✔ sulle voci chiuse, i paragrafi del conto |
 | `python3 tools/issues_survey.py --self-test` | 0.1 s | che le otto guardie del foglio delle decisioni mordano, su condizioni **fabbricate** e non cercate fra i dati |

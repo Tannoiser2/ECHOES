@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.420 — La misura della partecipazione
+
+[D-451](docs/DECISIONS.md#d-451), parola del committente. Una sonda nuova gioca
+trenta anni sui due tavoli e per ogni Consiglio guarda i tre che non
+propongono; `docs/MISURA_PARTECIPAZIONE.md` è il suo documento e
+`tools/run_participation_probe.sh --check` il suo cancello, rosso se un tavolo
+intero chiude ogni Consiglio senza opposizione nel margine. Cancelli 33 → 34.
+Il ritrovato: astensioni 95% (misto) e 99% (uniforme), Consigli con
+opposizione nel margine 7 su 103 e 1 su 105 — e la causa è una cecità delle
+sedie, che cercano la proposta nel template mentre da 0.1.272 sta sulla carta.
+
+---
+
 ## 0.1.419 — La carta non è velata: coperti sono i gettoni
 
 [D-450](docs/DECISIONS.md#d-450), parola del committente. Nessuna Domanda

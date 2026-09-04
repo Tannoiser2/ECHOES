@@ -5402,6 +5402,12 @@ schermo — e nessuna di quelle prove passa costruendosi il carico da sé.
 > il contenuto no — **il menu dei malus era la stessa coppia su tutte e 60 le
 > carte**, e 40 domande su 107 offrivano una sola proposta.
 
+*In 0.1.420 il committente lo ha richiamato una terza volta, davanti alla saga
+del seme 812* ([D-451](DECISIONS.md#d-451)): il cuore c'è, ma **nessuno lo
+gioca** — astensioni al 95% e 99% sui due tavoli, Consigli con opposizione nel
+margine 7 su 103 e 1 su 105. Da qui `docs/MISURA_PARTECIPAZIONE.md` e il suo
+cancello. La causa è una cecità delle sedie, corretta in D-452.
+
 **Fase A — i malus (fatta).** Le liste `costs` e `failures` sulla faccia della
 carta, 12 Conseguenze nuove, 240 testi diversi, il motore che legge il menu
 dalla carta, la scheda che le mostra, la guardia (controllo 18) e la sonda.

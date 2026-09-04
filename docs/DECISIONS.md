@@ -10,6 +10,67 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-451 — La misura della partecipazione, e il cancello sull'opposizione zero
+
+**implemented in 0.1.420.** Parola del committente, davanti alla saga del
+seme 812: *«Quindi il gioco non va, fallisce sul suo punto forte che e' il
+Consiglio»*. Trentatre' Consigli in dieci anni, tutti chiusi a opposizione
+zero, novantanove astensioni su novantanove prese di posizione. E la risposta
+data: il cancello dei 100 semi conta i Consigli e i loro esiti, **non chi ci
+partecipa** — un Consiglio con tre astenuti conta verde quanto uno combattuto.
+Il punto forte del gioco era la parte meno misurata. Da qui: *«fai la sonda
+della partecipazione e il cancello sull'opposizione zero»*.
+
+**La sonda** (`run_participation_probe.gd`, documento
+[MISURA_PARTECIPAZIONE.md](MISURA_PARTECIPAZIONE.md)) gioca trenta anni
+pescati di CHR_00 sui due tavoli del cancello e per ogni Consiglio guarda i
+tre che non propongono: la posizione che dichiarano, le carte che impegnano,
+e se alla fine sul piatto c'e' un'**opposizione che pesa nel margine** —
+carte contro, o un gettone comprato contro (D-419). Un cane da guardia siede
+fra il cervello e il Consiglio e annota; i totali li dice il registro dei
+Consigli risolti. Il Consiglio si chiude sul segnale `confluence_resolved`,
+non sulla domanda scelta: con una sola domanda eleggibile il controllore non
+chiede niente a nessuno, e la prima stesura fondeva due Consigli in un record
+— cieca, come le quattro volte prima. Adesso conta i Consigli visti e quelli
+risolti, e se non combaciano lo dice ed esce 3.
+
+**Il cancello** (`tools/run_participation_probe.sh --check`, corsia lenta,
+45 s): il documento deve essere quello che il gioco produce, **e** un tavolo
+intero senza un solo Consiglio con opposizione nel margine e' rosso. Il
+pavimento e' uno per tavolo: e' scritto nella sonda (`quit(2)`), e si alza
+quando il committente lo dice.
+
+**Il ritrovato, su trenta anni** (seme 7000, prima di ogni correzione):
+
+| | misto | uniforme |
+|---|---|---|
+| Consigli | 103 | 105 |
+| astensioni fra i non proponenti | **95%** | **99%** |
+| Consigli col tavolo in silenzio | 90% | 98% |
+| carte impegnate dagli altri tre, per Consiglio | 0,24 | 0,05 |
+| gettoni di opposizione comprati | 0 | 0 |
+| **Consigli con opposizione nel margine** | **7 (7%)** | **1 (1%)** |
+
+Il cancello, a pavimento uno, e' verde: sette e uno non sono zero. Ma il
+numero e' quello che il committente aveva visto, e stavolta e' scritto dove
+si rilegge.
+
+**E la causa non e' la regola: e' una cecita'.** La sonda delle posizioni
+(`run_stance_probe`, O-6) girata sugli stessi anni contava *zero* posizioni
+dichiarate, cioe' era cieca anche lei, e per la stessa ragione delle sedie: la
+proposta in dibattito si cercava in `confluence_templates[template_id]`, e
+**da 0.1.272 le proposte stanno sulla carta Tensione** (ISSUES 80, taglio 2,
+*«ogni carta sue proposte»*): il Consiglio le legge da
+`confluence_template_for(tension_id)`, che fonde il template con la carta.
+Una sonda di debug l'ha provato su due anni: `_current_proposition` torna
+vuoto **a ogni presa di posizione**, il punteggio non si calcola, e la policy
+torna ABSTAIN — anche l'*aggressivo*, che si oppone a tutto quello che non
+gli rende, non trova niente a cui opporsi. Le poche opposizioni misurate
+vengono dai caratteri che decidono senza guardare la proposta. La correzione
+e' [D-452](#d-452), separata, perche' cambia le partite e va rimisurata.
+
+---
+
 ## D-450 — La carta non e' velata: coperti sono i gettoni
 
 **implemented in 0.1.419.** Parola del committente, a un giorno da D-449:

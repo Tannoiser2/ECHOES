@@ -29,7 +29,7 @@ scatola.
 |---|---|---|
 | suite | **746 prove / 114 suite / 93.907 asserzioni** verdi | 690 / 102 / 86.390 |
 | il vincolo che non si negozia | **0 seggi bloccati su 8**, misto *e* uniforme | uguale |
-| cancelli | **tutti e trentatré verdi** (vedi `CLAUDE.md`) | trentadue |
+| cancelli | **tutti e trentaquattro verdi** (vedi `CLAUDE.md`) | trentadue |
 | Consigli per anno | misto **3–6** (media 3,53) · uniforme **3–5** (media 3,36) | 3,58 · 3,49 |
 | Verità scritte | misto **136**, di cui 113 diverse · uniforme **139**, di cui 107 | 142/113 · 150/108 |
 
@@ -41,7 +41,7 @@ scritto verbale per verbale: due Conseguenze e un segno usciti dalla scatola
 ([D-443](DECISIONS.md#d-443)). Un numero peggiorato e scritto vale più di un
 numero nascosto.
 
-**I cancelli sono trentatré, e costano ventotto secondi.** Ventotto veloci — il
+**I cancelli sono trentaquattro, e costano ventotto secondi.** Ventotto veloci — il
 ventottesimo è la scheda di ogni tipo di carta ([D-445](DECISIONS.md#d-445)) —
 e cinque sonde lunghe, 881 secondi, che si girano una volta prima della PR.
 Un comando solo, [`tools/gates.py`](../tools/gates.py), in due corsie

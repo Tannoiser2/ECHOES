@@ -225,6 +225,12 @@ jobs:
       - name: Drift check - la misura della pagina
         run: GODOT=~/godot/godot tools/run_page_survey.sh --check
 
+      # Chi gioca davvero un Consiglio (D-451): il cancello dei 100 semi conta i
+      # Consigli e i loro esiti, non chi ci partecipa. Questo conta chi partecipa,
+      # e va rosso se un tavolo intero chiude ogni Consiglio senza opposizione.
+      - name: Drift check - la misura della partecipazione
+        run: GODOT=~/godot/godot tools/run_participation_probe.sh --check
+
       # Lo scheletro delle carte (D-333): cosa porta ogni faccia, ricavato dalle
       # facce vere. Se una faccia smette di stampare un blocco, il documento che
       # si manda a chi disegna lo dice ancora.

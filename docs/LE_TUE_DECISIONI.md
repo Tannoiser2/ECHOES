@@ -71,6 +71,13 @@ coperti»*. Fatto: nessuna Domanda nasce velata, la carta perde «velata» e la
 soglia e dice quando si dibatte, la mappa dell'app scrive quello che il tavolo
 sa.
 
+**E in 0.1.420 hai detto che il gioco fallisce sul Consiglio** ([D-451](DECISIONS.md#d-451)).
+Fatti la sonda e il cancello che chiedevi: `docs/MISURA_PARTECIPAZIONE.md` conta chi
+gioca davvero un Consiglio, e il cancello va rosso se un tavolo intero chiude
+ogni Consiglio senza opposizione. Il numero ti dà ragione — astensioni al 95% e
+al 99% — e la causa è una riga: le sedie cercavano la proposta nel posto
+vecchio, e non la vedevano.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
