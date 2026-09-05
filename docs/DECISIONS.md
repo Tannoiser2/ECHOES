@@ -10,6 +10,71 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-463 — La pagina vista con gli occhi: quattro difetti e una risposta
+
+**implemented in 0.1.432.** Parola del committente: *«Ricontrolla la GUI
+dell'app. E' giocabile? E' uguale al gioco fisico? Ha tutti i componenti?»*.
+La regola §5ter dice che **nessuna misura copre quello che una persona
+vede**, e da quando il sito e' su GitHub Pages nessuno l'aveva piu' aperto
+da qui. Stavolta si e' fatto: la pagina esportata per il web con gli stessi
+template della CI, aperta in Chromium con Playwright, giocata a 1600x900 e
+a 1920x1080 — un seggio a una persona e tre bot, poi quattro bot — e
+fotografata a ogni passo, dal titolo al «Consiglio ha deciso».
+
+**E' giocabile.** Si entra nella sala, si sceglie chi e' persona, si tocca
+una carta e la scheda dice il bersaglio, le due Azioni stampate e la
+Risonanza; i posti validi si accendono sulla mappa; «Lascia decidere alla
+policy» fa avanzare; l'Atto arriva al Consiglio, la carta girata mostra
+domanda, proposta, le due liste, chi propone e chi si oppone con quali
+carte, e l'esito. Con quattro bot la partita corre da sola fino al primo
+Consiglio, e li' aspetta un «Avanti»: e' chi ospita il tavolo che gira la
+pagina.
+
+**Quattro difetti visti, e chiusi qui:**
+
+| cosa si vedeva | dove | cosa si e' fatto |
+|---|---|---|
+| il nome ECHOES tagliato a meta' in cima, su ogni schermo largo: la copertina e' quadrata e `STRETCH_KEEP_ASPECT_COVERED` la centrava | `title_screen.gd` | la copertina riempie la larghezza e si appoggia in alto: il titolo si legge, il pannello dei seggi copre le citta' |
+| sul Consiglio deciso, «COSA RESTA», il conto finale e le posizioni si scrivevano **sopra** la striscia dei seggi e sul verbale, illeggibili tutti e tre | `confluence_board.gd` | il tabellone scorre in uno `ScrollContainer`; la domanda e i suoi bottoni restano in fondo, sempre in vista |
+| «proponent», «support», «oppose», «abstain», «hostile», «neutral» sotto gli occhi di chi gioca, in inglese | `confluence_board.gd`, `seats_strip.gd`, `status_panel.gd` | «propone», «a favore», «contro», «si astiene»; «ostile», «fredda», «neutrale», «calda», «alleata» — la sonda della pagina contava zero parole tecniche perche' cerca id e maiuscole, non l'inglese |
+| «Cedere il diritto» **tre volte**, tre bottoni identici: a chi? | `seat_decider.gd` | la voce porta la casa: «Cedere il diritto · a Lyra» |
+
+**E il numero c'era gia'**: [MISURA_PAGINA](MISURA_PAGINA.md) misura
+*«quanto la pagina chiede in confronto a un tablet»*, e per il Consiglio
+diceva **1241 px** di altezza chiesta, su una pagina da 900 — il trabocco,
+scritto in una tabella che nessuno ha letto come un allarme. Col
+tabellone che scorre chiede **40**. La sonda va rossa solo sui bersagli
+stretti; su un pannello che chiede piu' della pagina non dice niente, e
+questo e' il pezzo di misura che manca.
+
+**E' uguale al gioco fisico?** Quello che la carta stampata dice, la pagina
+lo dice: le due Azioni e la Risonanza sulla scheda, le due liste sul retro
+della Domanda, i sei mazzetti coi gettoni coperti, le tessere coi loro
+segni e le Pietre, la colonna con Destino, profilo e obiettivi coperti. Le
+differenze che restano sono di **forma**, non di regola: la mano e' una
+fila di carte piccole e le tessere sono 270 px su uno schermo da 1600; il
+verbale corre in mezzo alla pagina come testo crudo (`+-- ATTO 1, ROUND 1
+---`); il **Cruscotto** mostra a un tocco i Destini e gli obiettivi coperti
+di tutti i seggi — e' uno strumento di sviluppo, ma sta sulla pagina di
+chi gioca, accanto a «Scarica il log». Il giudizio sulla forma resta del
+committente, su un tavolo vero (§5ter): qui si e' tolto quello che era
+rotto, non quello che e' brutto.
+
+**Ha tutti i componenti?** Si', per [COMPONENTI.md](COMPONENTI.md) §6 — gli
+undici tipi hanno un posto sulla pagina — e con gli occhi: le carte Asset
+in mano, le Domande sui mazzetti e sulle tessere, il Consiglio sul retro,
+Destino, Casata e obiettivi nella colonna, le tessere, le Pietre, i segni,
+le pedine, i gettoni. Quello che manca e' l'**arte**: 150 soggetti su 161
+sono ancora segnaposto, e si vede.
+
+**Il metodo resta**: `scratchpad` non e' un cancello. La pagina si e'
+guardata a mano, come la regola dice; una sonda che apra la pagina
+esportata in un browser e la fotografi e' il prossimo pezzo di ISSUES 65,
+e costa un template di export nella CI. Cancello dei 100 semi: 0 seggi
+bloccati su 8 sui due tavoli; suite 746 prove verdi.
+
+---
+
 ## D-462 — La copia cruda esce dal template, e chi la leggeva legge la carta
 
 **implemented in 0.1.431.** Parola del committente: *«mergia e vai»* dopo

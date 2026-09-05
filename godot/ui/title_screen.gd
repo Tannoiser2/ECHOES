@@ -61,9 +61,20 @@ func _build() -> void:
 		var art := TextureRect.new()
 		art.texture = cover
 		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-		art.set_anchors_preset(Control.PRESET_FULL_RECT)
+		art.stretch_mode = TextureRect.STRETCH_SCALE
 		add_child(art)
+		# **La copertina si appoggia in alto** (D-463). E' quadrata, e una
+		# finestra larga la tagliava sopra e sotto in parti uguali: il nome del
+		# gioco usciva senza la meta' superiore delle lettere, su ogni schermo
+		# da tablet in orizzontale. Ora riempie la larghezza e mostra il bordo
+		# alto — il titolo — mentre a essere coperto dal pannello dei seggi
+		# resta il bordo basso, che sono le citta'.
+		var place := func() -> void:
+			var side: float = maxf(size.x, size.y * 0.75)
+			art.size = Vector2(side, side)
+			art.position = Vector2((size.x - side) * 0.5, 0.0)
+		place.call()
+		resized.connect(place)
 		# Un velo appena accennato: senza, il pannello dei seggi galleggia su
 		# un fondo troppo chiaro e il testo scompare.
 		var veil := ColorRect.new()

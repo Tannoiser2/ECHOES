@@ -16,6 +16,12 @@ extends HBoxContainer
 const DropSlot := preload("res://ui/drop_slot.gd")
 
 ## I cinque livelli di un rapporto, col loro colore: gli stessi della colonna.
+## I rapporti in parole: «hostile» e «neutral» stavano sotto gli occhi di chi
+## gioca, in inglese, nella striscia e nella colonna (D-463).
+const RELATION_WORDS: Dictionary = {
+	"HOSTILE": "ostile", "COLD": "fredda", "NEUTRAL": "neutrale",
+	"WARM": "calda", "ALLY": "alleata",
+}
 const RELATIONS: Dictionary = {
 	"HOSTILE": "#c8553d", "COLD": "#c99a4e", "NEUTRAL": "#8a8172",
 	"WARM": "#6fa88a", "ALLY": "#7fa6c9",
@@ -61,7 +67,7 @@ func render(session: RefCounted, viewer_id: String) -> void:
 			level.text = ""
 			continue
 		var relation: String = session.service.relation_level(viewer_id, other)
-		level.text = relation.to_lower()
+		level.text = str(RELATION_WORDS.get(relation, relation.to_lower()))
 		level.add_theme_color_override(
 			"font_color", Color(str(RELATIONS.get(relation, "#8a8172")))
 		)

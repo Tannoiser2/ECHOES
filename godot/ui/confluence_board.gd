@@ -23,6 +23,14 @@ const STANCE_COLOURS: Dictionary = {
 	"ABSTAIN": "#5f584c",
 }
 
+## Le posizioni in parole: i nomi del motore sono per il verbale, e sul
+## tabellone comparivano in inglese e minuscolo — «support», «oppose»,
+## «abstain», «proponent» — sotto gli occhi di chi gioca (D-463).
+const STANCE_WORDS: Dictionary = {
+	"PROPONENT": "propone", "SUPPORT": "a favore",
+	"OPPOSE": "contro", "ABSTAIN": "si astiene",
+}
+
 ## What the four outcomes are, in words. The engine's names are for the log; a
 ## table wants to know whether the thing passed.
 const OUTCOMES: Dictionary = {
@@ -63,9 +71,25 @@ func _build() -> void:
 	# La carta della domanda, posata al centro del tavolo (D-101): quando un
 	# Consiglio si apre, fisicamente si prende la carta mini dalla traccia dei
 	# valori e la si mette in mezzo. Qui fa lo stesso.
+	# **Il tabellone scorre, non trabocca** (D-463). Era un VBox a tutto
+	# rettangolo: su una finestra da 1600x900 la lista delle Conseguenze e il
+	# conto finale uscivano dal centro e si scrivevano sopra la striscia dei
+	# seggi e sul verbale, illeggibili tutti e due. Quello che si legge sta in
+	# uno scorrimento; la domanda del tabellone e le sue scelte restano in
+	# fondo, sempre in vista.
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(scroll)
+	var body := VBoxContainer.new()
+	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	body.add_theme_constant_override("separation", 10)
+	scroll.add_child(body)
+
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 18)
-	add_child(top)
+	body.add_child(top)
 
 	_card = TextureRect.new()
 	_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -91,7 +115,7 @@ func _build() -> void:
 	var rule := ColorRect.new()
 	rule.color = Color("#3a332a")
 	rule.custom_minimum_size = Vector2(0, 1)
-	add_child(rule)
+	body.add_child(rule)
 
 	# **La carta girata, con le sue due liste** (D-291). Il Consiglio si decide
 	# su quello che la carta offre e su quello che chiede in cambio: finche' le
@@ -100,25 +124,21 @@ func _build() -> void:
 	# l'app: *«il Concilio e' ancora quello vecchio»*.
 	_face = VBoxContainer.new()
 	_face.add_theme_constant_override("separation", 2)
-	add_child(_face)
+	body.add_child(_face)
 
 	_stances = VBoxContainer.new()
 	_stances.add_theme_constant_override("separation", 3)
-	add_child(_stances)
+	body.add_child(_stances)
 
 	_consequences_title = _label(12, "#8a8172")
-	add_child(_consequences_title)
+	body.add_child(_consequences_title)
 
 	_consequences = VBoxContainer.new()
 	_consequences.add_theme_constant_override("separation", 6)
-	add_child(_consequences)
+	body.add_child(_consequences)
 
 	_outcome = _label(15, "#efe7d8")
-	add_child(_outcome)
-
-	var spacer := Control.new()
-	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	add_child(spacer)
+	body.add_child(_outcome)
 
 	_prompt = _label(14, "#e8b563")
 	add_child(_prompt)
@@ -347,7 +367,7 @@ func _render_stances(session: RefCounted, current: Dictionary) -> void:
 		row.add_child(who)
 
 		var said := Label.new()
-		said.text = "…" if stance == "" else stance.to_lower()
+		said.text = "…" if stance == "" else str(STANCE_WORDS.get(stance, stance.to_lower()))
 		said.custom_minimum_size = Vector2(90, 0)
 		said.add_theme_font_size_override("font_size", 13)
 		said.add_theme_color_override(

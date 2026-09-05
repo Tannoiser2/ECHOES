@@ -435,12 +435,20 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 					var where: String = str(place)
 					if where != "":
 						here["mark_region_id"] = where
+					# **E a chi** (D-463): una faccia che cede o promette a
+					# un'altra casa usciva con tre bottoni identici — «Cedere
+					# il diritto» tre volte — e chi gioca non sapeva a chi.
+					var whom: String = str(here.get("target_entity_id", ""))
+					var to_whom: String = (
+						"" if whom == "" or where != "" else " · a %s" % _name(whom, session)
+					)
 					out.append({
-						"label": "«%s» — %s%s" % [
+						"label": "«%s» — %s%s%s" % [
 							str((card as Dictionary)["title"]),
 							str(face.get("label", (offer as Dictionary)["label"])),
 							"" if where == ""
 							else " · a %s" % _region(where, session),
+							to_whom,
 						],
 						"template": "PLAY_CARD", "params": here,
 					# **Di cosa parla la scelta, e con che carta** (D-230). Il

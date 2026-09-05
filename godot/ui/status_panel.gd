@@ -15,6 +15,7 @@ const RELATIONS: Dictionary = {
 }
 
 const CardArt := preload("res://ui/card_art.gd")
+const SeatsStrip := preload("res://ui/seats_strip.gd")
 const DropSlot := preload("res://ui/drop_slot.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
@@ -332,7 +333,7 @@ func _update_relations(session: RefCounted, viewer_id: String) -> void:
 		row.add_child(name)
 
 		var value := Label.new()
-		value.text = level.to_lower()
+		value.text = str(SeatsStrip.RELATION_WORDS.get(level, level.to_lower()))
 		value.add_theme_font_size_override("font_size", 12)
 		value.add_theme_color_override("font_color", Color(str(RELATIONS.get(level, "#8a8172"))))
 		row.add_child(value)

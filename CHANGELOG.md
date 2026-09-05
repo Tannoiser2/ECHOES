@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.432 — La pagina vista con gli occhi: quattro difetti e una risposta
+
+[D-463](docs/DECISIONS.md#d-463), parola del committente: *«è giocabile? è
+uguale al gioco fisico? ha tutti i componenti?»*. Pagina esportata per il web,
+aperta in Chromium e giocata fino al Consiglio deciso, fotografata a ogni
+passo. Quattro difetti chiusi: il titolo tagliato in cima, il tabellone del
+Consiglio che si scriveva sopra i seggi e il verbale, sei parole inglesi sotto
+gli occhi di chi gioca, tre «Cedere il diritto» identici. Cancello dei 100
+semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.431 — La copia cruda esce dal template, e chi la leggeva legge la carta
 
 [D-462](docs/DECISIONS.md#d-462), parola del committente. Domande e Proposte
