@@ -639,6 +639,7 @@ Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.
 > Gli ospiti di corte, quando possono tornare a casa?
 
 - **Se passa — Il Peso Diviso:** dove si discute non e' piu' #affamata · dove si discute non e' piu' #razionata · il mondo registra: il peso e' stato diviso · la domanda in gioco scende
+- **Se passa — Gli Uomini alla Porta:** dove si discute diventa #sorvegliata · chi propone porta addosso: sotto osservazione
 
 ---
 

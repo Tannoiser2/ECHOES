@@ -301,8 +301,10 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         readers(echo.get("eligibility"), "carta Echo")
     for consequence in items("consequence"):
         readers(consequence.get("eligibility"), "Conseguenza")
-    for template in items("confluence_template"):
-        for proposition in template.get("propositions", []) or []:
+    # **Le Proposte stanno sulla carta** (D-462): il registro leggeva quelle
+    # del template, sette carte su sessanta.
+    for card in items("tension"):
+        for proposition in (card.get("council") or {}).get("propositions", []) or []:
             readers(proposition.get("eligibility"), "proposta")
             readers(proposition.get("conditions"), "proposta")
         # **La penna del Consiglio** (D-286): una clausola vinta posa i

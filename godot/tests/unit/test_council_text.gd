@@ -18,8 +18,8 @@ const AssetText := preload("res://scripts/core/asset_text.gd")
 func test_no_sentence_still_carries_a_slot() -> void:
 	var loaded: RefCounted = data()
 	var checked: int = 0
-	for template_id in loaded.confluence_templates:
-		var template: Dictionary = loaded.confluence_templates[str(template_id)] as Dictionary
+	for tension_id in loaded.tensions:
+		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
 		for entry in template.get("propositions", []):
 			var said: Dictionary = CouncilText.proposition(
 				template, str((entry as Dictionary)["id"]), loaded
@@ -59,8 +59,8 @@ func test_no_consequence_speaks_in_effect_types() -> void:
 ## dal giocatore.
 func test_no_label_speaks_to_the_developer() -> void:
 	var loaded: RefCounted = data()
-	for template_id in loaded.confluence_templates:
-		var template: Dictionary = loaded.confluence_templates[str(template_id)] as Dictionary
+	for tension_id in loaded.tensions:
+		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
 		for entry in template.get("propositions", []):
 			for condition in (entry as Dictionary).get("eligibility", []):
 				var label: String = str((condition as Dictionary).get("label", ""))
@@ -75,7 +75,9 @@ func test_no_label_speaks_to_the_developer() -> void:
 ## giocatore deve vedere prima di votare, e che sullo schermo di oggi non c'e'.
 func test_a_proposition_says_what_it_leaves_behind() -> void:
 	var loaded: RefCounted = data()
-	var template: Dictionary = loaded.confluence_templates["CNF_AWAKENING_01"] as Dictionary
+	# La scheda fusa della carta, non il template crudo (D-462): le Proposte
+	# stanno sulla carta, e il template non le porta piu'.
+	var template: Dictionary = loaded.confluence_template_for("TEN_AWAKENING")
 	var said: Dictionary = CouncilText.proposition(template, "P_EXPLOIT", loaded)
 	assert_ne(str(said.get("text", "")), "", "la proposta si legge")
 	assert_true(
@@ -106,8 +108,8 @@ func test_a_proposition_offered_says_what_it_leaves() -> void:
 	var loaded: RefCounted = data()
 	var said_nothing: int = 0
 	var checked: int = 0
-	for template_id in loaded.confluence_templates:
-		var template: Dictionary = loaded.confluence_templates[str(template_id)] as Dictionary
+	for tension_id in loaded.tensions:
+		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
 		for entry in template.get("propositions", []):
 			var said: Dictionary = CouncilText.proposition(
 				template, str((entry as Dictionary)["id"]), loaded
@@ -189,16 +191,18 @@ func test_the_seat_is_offered_what_it_leaves() -> void:
 	new_session()
 	var seat: String = str(session.world["turn_order"][0])
 	var template_id: String = ""
-	for candidate in session.data.confluence_templates:
-		template_id = str(candidate)
+	var tension_id: String = ""
+	for candidate in session.data.tensions:
+		tension_id = str(candidate)
 		break
-	var template: Dictionary = session.data.confluence_templates[template_id] as Dictionary
+	var template: Dictionary = session.data.confluence_template_for(tension_id)
+	template_id = str(template["id"])
 
 	var io := ScriptedIo.new()
 	var decider: RefCounted = SeatDecider.new([seat], null)
 	decider.io = io
 	var chosen: String = await decider.choose_proposition(
-		{"template_id": template_id, "proponent": seat, "tension_id": str(template["tension_id"])},
+		{"template_id": template_id, "proponent": seat, "tension_id": tension_id},
 		template["propositions"],
 		session
 	)

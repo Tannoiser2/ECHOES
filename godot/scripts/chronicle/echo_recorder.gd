@@ -47,7 +47,10 @@ func should_record(result: Dictionary) -> bool:
 ## Writes the Echo and its Truth record. Returns the Effects applied.
 func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: Dictionary) -> Array:
 	var echo_id: String = Ids.echo_id(world["echo_log"].size() + 1)
-	var template: Dictionary = data.confluence_templates[str(context["template_id"])]
+	# **La proposta sta sulla carta** (D-462): letta dal template crudo, il
+	# riassunto della proposta non si trovava per le carte senza copia — e
+	# cinquantatre' su sessanta non ce l'avevano.
+	var template: Dictionary = data.confluence_template_for(str(context["tension_id"]))
 	var summary: String = _summary(template, context, result)
 
 	var echo: Dictionary = {
@@ -91,7 +94,7 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> String:
 	var outcome: String = str(result["outcome"])
 	var proposition_summary: String = ""
-	for proposition in template["propositions"]:
+	for proposition in template.get("propositions", []):
 		if str(proposition["id"]) != str(context.get("proposition_id", "")):
 			continue
 		# How a proposal falls reads nothing like how it triumphs, and the Truth

@@ -472,12 +472,6 @@ static func _questions_of(tension: Dictionary, data: RefCounted) -> Array:
 	for question in ((tension.get("council", {}) as Dictionary).get("questions", []) as Array):
 		var own: Dictionary = question as Dictionary
 		by_id[str(own.get("id", ""))] = str(own.get("text", ""))
-	for template_id in data.confluence_templates:
-		var template: Dictionary = data.confluence_templates[template_id] as Dictionary
-		for question in (template.get("questions", []) as Array):
-			var q: Dictionary = question as Dictionary
-			if not by_id.has(str(q.get("id", ""))):
-				by_id[str(q.get("id", ""))] = str(q.get("text", ""))
 	var said: Array = []
 	for question_id in wanted:
 		var text: String = str(by_id.get(str(question_id), ""))

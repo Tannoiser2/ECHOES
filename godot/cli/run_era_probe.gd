@@ -93,8 +93,8 @@ func _initialize() -> void:
 		if str(card["dramatic_family"]) == "MEMORIA":
 			memoria_cards.append(str(card["id"]))
 	var legend_propositions: Array = []
-	for template in data.confluence_templates.values():
-		for proposition in template["propositions"]:
+	for tension_id in data.tensions:
+		for proposition in data.confluence_template_for(str(tension_id)).get("propositions", []):
 			for condition in proposition.get("eligibility", []):
 				if str((condition as Dictionary).get("tag", "")).begins_with("legend:"):
 					legend_propositions.append(str(proposition["id"]))

@@ -405,8 +405,6 @@ const DEFS := {
 		"required": [
 			"id",
 			"title",
-			"questions",
-			"propositions",
 			"consequence_pools",
 			"ripple",
 		],
@@ -426,20 +424,6 @@ const DEFS := {
 			},
 			"description": {
 				"type": "String",
-			},
-			"questions": {
-				"type": "Array",
-				"min_items": 1,
-				"element": {
-					"type": "Dictionary",
-				},
-			},
-			"propositions": {
-				"type": "Array",
-				"min_items": 2,
-				"element": {
-					"type": "Dictionary",
-				},
 			},
 			"consequence_pools": {
 				"type": "Dictionary",

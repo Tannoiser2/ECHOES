@@ -139,6 +139,15 @@ carta. Leggendo il template ho trovato tre Conseguenze che una decisione di
 trenta versioni fa aveva scritto lì, e che non sono mai arrivate al tavolo: ora
 ci sono. E il validatore non lascia più divergere la copia dalla carta.
 
+**E in 0.1.431, «mergia e vai» un'altra volta** ([D-462](DECISIONS.md#d-462)):
+la copia cruda delle Proposte è uscita dal template e dallo schema, e chi la
+leggeva legge la carta. Nel giro sono usciti quattro difetti che la copia
+nascondeva da trenta versioni: il verbale dell'Eco senza il riassunto della
+proposta per 53 carte su 60, la policy che non vedeva le Conseguenze in
+offerta, due proposte gemelle sugli Ostaggi, e nessun validatore sulle
+Conseguenze scritte sulle carte. Adesso c'è una casa sola, e chi la legge la
+legge tutta.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
