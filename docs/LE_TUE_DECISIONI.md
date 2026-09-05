@@ -148,6 +148,15 @@ offerta, due proposte gemelle sugli Ostaggi, e nessun validatore sulle
 Conseguenze scritte sulle carte. Adesso c'è una casa sola, e chi la legge la
 legge tutta.
 
+**E in 0.1.432 hai chiesto se la pagina è giocabile, uguale al gioco fisico,
+completa** ([D-463](DECISIONS.md#d-463)). L'ho aperta in un browser e giocata
+fino al Consiglio deciso, con le foto. Giocabile sì; completa sì, tranne
+l'arte; uguale nella regola, diversa nella forma. Quattro cose rotte le ho
+chiuse: il titolo tagliato, il Consiglio che si scriveva sopra i seggi, sei
+parole inglesi, tre «Cedere il diritto» senza il nome. Quello che è brutto e
+non rotto — la mano piccola, il verbale crudo in mezzo, il Cruscotto che
+scopre le carte di tutti — è tuo da giudicare su un tavolo vero.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
