@@ -31,6 +31,7 @@ const MapView := preload("res://ui/map_view.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 const TableView := preload("res://ui/table_view.gd")
 const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
+const QuestionColumn := preload("res://ui/question_column.gd")
 const SeatsStrip := preload("res://ui/seats_strip.gd")
 const HelpPanel := preload("res://ui/help_panel.gd")
 const HandView := preload("res://ui/hand_view.gd")
@@ -234,6 +235,14 @@ func _build(session: RefCounted, data: RefCounted, viewer: String) -> Array:
 	_seat(seats)
 	seats.render(session, viewer)
 	out.append({"name": "chi siede", "node": seats, "where": "tavolo"})
+
+	# **La colonna delle domande** (D-464): i Temi coi gettoni coperti e le
+	# domande dell'anno, scoperte, a sinistra della mappa.
+	var column: Node = QuestionColumn.new()
+	_seat(column)
+	(column as Control).size = Vector2(250.0, 520.0)
+	column.render(session, viewer)
+	out.append({"name": "le domande", "node": column, "where": "tavolo"})
 
 	var help: Node = HelpPanel.new()
 	_seat(help)

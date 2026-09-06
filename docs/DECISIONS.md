@@ -10,6 +10,104 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-464 — Il tavolo come lo vuole il committente: 3x2, varchi, spazi, colonne
+
+**implemented in 0.1.433.** Parola del committente, davanti alla pagina su
+un iPad, *«per iniziare a migliorare la terribile GUI attuale»*:
+
+> *«La mappa deve essere un 3x2, e i lati di adiacenza comuni creano una
+> zona dove e' possibile capire che le tessere sono adiacenti e si possono
+> spostare cose. Sopra le tre tessere superiori ogni tessera deve avere
+> almeno sei spazi (tre a destra e tre a sinistra sul lato superiore) dove
+> mettere i token per lo stato di quella Regione, stessa cosa per le
+> tessere inferiori sul lato inferiore; ogni tessera poi deve avere spazi
+> quadrati per almeno quattro Pietre e spazi circolari per le Cicatrici.
+> Le Tensioni devono gia' essere scoperte, e sopra di esse devono finirci
+> coperti i token che scaldano, in una colonna a sinistra. Sotto, a
+> schede, la mano, la scheda dell'Entita' e la scheda degli obiettivi, via
+> tutto l'inutile testo prima delle carte. A destra la colonna con il log
+> che spiega cosa e' successo e cosa deve succedere. Sopra una barra di
+> stato che dice a chi tocca e quali sono le opzioni. Per il Consiglio ci
+> vuole una schermata a parte.»*
+
+E' la prima stesura, fatta per intero e guardata con gli occhi come in
+[D-463](#d-463): pagina esportata per il web, aperta in Chromium a
+1366x1024 e fotografata.
+
+### 1. La mappa e' un 3x2, e questo tocca il motore
+
+La posa di [D-390](#d-390) attaccava le tessere una all'altra attraverso
+un varco, in qualunque forma venisse: sull'iPad del committente la mappa
+era una L di 2-3-1. Ora `_lay_the_tiles` **non guarda una casella che
+farebbe uscire la posa da tre colonne e due righe**. La promessa di D-390
+si rifa' per enumerazione, tutte le pose che il gioco puo' produrre:
+
+| 151.200 pose, col rettangolo 3x2 | |
+|---|---|
+| pose che lasciano fuori una tessera | **0** |
+| pose che lasciano una tessera isolata | **0** |
+| confini per mappa | 6,80 (erano 6,80) |
+| tessere con un vicino solo | **3,3%** (erano 6,7%) |
+
+Il vincolo non costa niente: i varchi delle dieci tessere bastano a
+riempire il rettangolo in ogni ordine di ogni pescata. E una mappa
+compatta ha meno code: le tessere con un vicino solo si dimezzano.
+
+### 2. La tessera dice cosa porta, negli spazi stampati
+
+`map_view.gd` disegna una griglia fissa di tre per due, con una **fuga**
+fra le tessere dove il confine si vede: un **ponte** chiaro se il varco e'
+aperto su tutte e due, un **muro** scuro se no — e' il tavolo che legge
+`world.adjacency`, non una decorazione. Ogni tessera porta:
+
+- **sei spazi** sul lato esterno del tavolo — sopra nella riga alta, sotto
+  in quella bassa; tre a sinistra, tre a destra — per i segnalini di stato
+  della Regione (`condition:*`);
+- **quattro spazi quadrati** per le Pietre, col colore di chi le tiene e i
+  punti del grado, e **tre spazi tondi** per le Cicatrici, dentro la
+  tessera sopra il nome;
+- le parole dei pezzi dentro la tessera, non piu' sotto, dove coprivano la
+  striscia della riga di sotto.
+
+Uno spazio vuoto si vede: e' la casella stampata sul cartone, e dice
+quanto ci sta. Le domande **non abitano piu' la tessera**.
+
+### 3. La pagina, disposta come detto
+
+| dove | cosa |
+|---|---|
+| **sopra** | la barra di stato: a chi tocca, quante azioni, cosa sta per succedere; e la domanda in corso con il suo suggerimento |
+| **sinistra** | `question_column.gd`, nuovo: i sei Temi uno sotto l'altro, i gettoni **coperti** caduti su ognuno, e sotto ogni Tema le sue domande dell'anno, **scoperte** (D-450), ognuna un posto alto un dito dove una carta cade |
+| **centro** | la mappa 3x2 e, sotto, la striscia dei seggi |
+| **destra** | le scelte che non hanno un posto sul tavolo, il racconto, il **verbale sempre aperto** — senza le cornici da terminale — e in fondo gli strumenti |
+| **sotto, a schede** | *La mano*, *La mia casa*, *Obiettivi* (la stessa colonna, ridotta a Destino e profilo) |
+| **il Consiglio** | una schermata a parte, sopra tutto, che si apre quando il Consiglio si apre |
+
+Via i sei mazzetti in cima (`theme_decks_view.gd` resta un nodo che sa
+disegnarsi, per la sonda), via il registro crudo in mezzo alla pagina,
+via i due bottoni «La mia casa» e «Il verbale». E la finestra **riempie lo
+schermo** (`stretch/aspect = expand`): con `keep`, un iPad in 4:3 aveva
+due bande nere sopra e sotto.
+
+### Costi e cose lasciate
+
+- La pagina e' disegnata a 1920x1080 e scalata: su un iPad da 1366x1024
+  tutto e' a 0,71, e i testi da 12 diventano da 8. E' la taglia dei
+  caratteri della pagina, non di questo giro.
+- Le tre schede sotto tengono la mano in una riga sola che scorre.
+- Il Consiglio a schermo intero e' il tabellone di D-463 in una colonna
+  centrale: il disegno del Consiglio e' un'altra parola.
+- Il tabellone dei sei mazzetti non si vede piu': i gettoni stanno nella
+  colonna, accanto alla domanda che scaldano.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **135 · 50 · 77 · 74** sul misto e
+**116 · 60 · 83 · 93** sull'uniforme. Suite 746 prove verdi; 28 cancelli
+veloci e 5 lenti verdi, `MISURA_TESSERE.md` e `MISURA_PAGINA.md` rifatti
+(9 pannelli, 27 bersagli, nessuno piu' stretto di un dito).
+
+---
+
 ## D-463 — La pagina vista con gli occhi: quattro difetti e una risposta
 
 **implemented in 0.1.432.** Parola del committente: *«Ricontrolla la GUI

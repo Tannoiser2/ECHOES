@@ -9,6 +9,7 @@ extends "res://tests/test_case.gd"
 ## il mazzetto di ogni Tema, la casa di ogni seggio.
 
 const MapView := preload("res://ui/map_view.gd")
+const QuestionColumn := preload("res://ui/question_column.gd")
 const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
 const SeatsStrip := preload("res://ui/seats_strip.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
@@ -48,7 +49,13 @@ func test_the_map_names_its_tiles_and_seats_its_questions() -> void:
 			label.text, str(session.data.regions[str(region_id)]["name"]),
 			"e il nome e' quello stampato"
 		)
-	var questions: Dictionary = map.get("_questions")
+	_cleared(map)
+	# **Le domande abitano la colonna** (D-464, parola del committente):
+	# scoperte, sotto il loro Tema, coi gettoni coperti sopra. Ognuna e' un
+	# posto alto un dito, e dice il suo titolo.
+	var column: Control = _seated(QuestionColumn.new(), Vector2(250, 600))
+	column.render(session, seat)
+	var questions: Dictionary = column.get("_questions")
 	for tension_id in session.world["tensions"]:
 		assert_true(questions.has(str(tension_id)), "la domanda %s ha il suo posto" % tension_id)
 		var slot: Control = questions[str(tension_id)]
@@ -61,13 +68,16 @@ func test_the_map_names_its_tiles_and_seats_its_questions() -> void:
 			line.text.begins_with(str(session.data.tensions[str(tension_id)]["title"])),
 			"e dice il titolo della domanda: %s" % line.text
 		)
-	_cleared(map)
+	var themes: Dictionary = column.get("_themes")
+	assert_eq(themes.size(), session.data.themes.size(), "e tutti e sei i Temi hanno il loro mazzetto")
+	_cleared(column)
 
 
 ## **Tenere una carta accende solo la domanda dove puo' andare**, e posarla li'
-## risponde — lo stesso gesto della colonna (D-239), fatto sul tavolo.
+## risponde — lo stesso gesto della colonna (D-239), fatto sulla colonna delle
+## domande (D-464).
 func test_holding_a_card_lights_a_question_on_the_map_and_placing_answers() -> void:
-	var map: Control = _seated(MapView.new(), Vector2(700, 480))
+	var map: Control = _seated(QuestionColumn.new(), Vector2(250, 600))
 	var seat: String = str(session.world["turn_order"][0])
 	map.render(session, seat)
 	var ids: Array = (session.world["tensions"] as Dictionary).keys()

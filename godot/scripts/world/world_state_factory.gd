@@ -417,6 +417,11 @@ static func _where_it_fits(
 	var best: Dictionary = {}
 	var best_joins: int = 0
 	for spot in spots:
+		# **La mappa e' un 3x2** (D-464, parola del committente): sei tessere
+		# in tre colonne e due righe, come stanno sul tavolo e sullo schermo.
+		# Una casella che farebbe uscire la posa dal rettangolo non si guarda.
+		if not _stays_in_the_frame(spot as Vector2i, at):
+			continue
 		for turn in range(4):
 			var joins: int = 0
 			for side in QUARTERS:
@@ -434,6 +439,27 @@ static func _where_it_fits(
 				best_joins = joins
 				best = {"at": spot, "turn": turn}
 	return best
+
+
+## Il rettangolo del tavolo: tre colonne per due righe (D-464). La prima
+## tessera parte dall'origine e le altre crescono attorno, anche all'indietro:
+## quello che conta e' l'ingombro, non le coordinate.
+const MAP_COLUMNS: int = 3
+const MAP_ROWS: int = 2
+
+
+static func _stays_in_the_frame(spot: Vector2i, at: Dictionary) -> bool:
+	var min_x: int = spot.x
+	var max_x: int = spot.x
+	var min_y: int = spot.y
+	var max_y: int = spot.y
+	for tile in at:
+		var placed: Vector2i = at[tile] as Vector2i
+		min_x = mini(min_x, placed.x)
+		max_x = maxi(max_x, placed.x)
+		min_y = mini(min_y, placed.y)
+		max_y = maxi(max_y, placed.y)
+	return max_x - min_x + 1 <= MAP_COLUMNS and max_y - min_y + 1 <= MAP_ROWS
 
 
 static func _step_of(side: String) -> Vector2i:

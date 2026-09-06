@@ -35,6 +35,7 @@ const EchoCardView := preload("res://ui/echo_card_view.gd")
 const LogExport := preload("res://scripts/core/log_export.gd")
 const TableChoice := preload("res://scripts/core/table_choice.gd")
 const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
+const QuestionColumn := preload("res://ui/question_column.gd")
 const SeatsStrip := preload("res://ui/seats_strip.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
@@ -135,6 +136,12 @@ var _saga_saves: Array = []
 var _status: VBoxContainer
 ## I sei mazzetti dei Temi, in cima alla colonna di destra (D-279).
 var _decks: Control
+## **Il tavolo come lo vuole il committente** (D-464): la colonna delle
+## domande a sinistra, le schede in basso, il Consiglio a schermo intero.
+var _column: VBoxContainer
+var _tabs: TabContainer
+var _goals: VBoxContainer
+var _council: PanelContainer
 var _hand: HBoxContainer
 ## **Il tavolo, non il cruscotto** (D-444, ISSUES 65 — la terza rivista, parola
 ## del committente). La colonna di stato e il verbale non stanno piu' accanto
@@ -234,14 +241,6 @@ func _toggle_export(open: bool) -> void:
 func _close_pages() -> void:
 	_casa_open = false
 	_verbale_open = false
-	if _casa != null:
-		_casa.visible = false
-	if _verbale != null:
-		_verbale.visible = false
-	if _casa_button != null:
-		_casa_button.set_pressed_no_signal(false)
-	if _verbale_button != null:
-		_verbale_button.set_pressed_no_signal(false)
 
 
 ## La cronaca dell'anno finito (voce 10, D-086): le stesse pagine che il
@@ -290,24 +289,83 @@ func _build() -> void:
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for side in ["margin_left", "margin_right", "margin_top", "margin_bottom"]:
-		margin.add_theme_constant_override(side, 12)
+		margin.add_theme_constant_override(side, 8)
 	add_child(margin)
 
 	var rows := VBoxContainer.new()
-	rows.add_theme_constant_override("separation", 10)
+	rows.add_theme_constant_override("separation", 8)
 	margin.add_child(rows)
 
+	# **La pagina e' il tavolo, disposto come il committente l'ha chiesto**
+	# (D-464): *«sopra una barra di stato che dice a chi tocca e quali sono le
+	# opzioni disponibili; le domande scoperte in una colonna a sinistra, coi
+	# gettoni coperti sopra; la mappa 3x2 al centro; a destra il verbale che
+	# spiega cosa e' successo e cosa deve succedere; sotto, a schede, la mano,
+	# la scheda della casa e quella degli obiettivi; il Consiglio in una
+	# schermata a parte»*. Prima la mappa era stretta fra sei mazzetti in
+	# alto, un log crudo nel mezzo e una colonna che mischiava scelte,
+	# pagine e strumenti.
+
+	# 1. La barra di stato.
+	var bar := PanelContainer.new()
+	var bar_skin := StyleBoxFlat.new()
+	bar_skin.bg_color = Color("#1b1815")
+	bar_skin.border_color = Color("#3a332a")
+	bar_skin.set_border_width_all(1)
+	bar_skin.set_content_margin_all(10)
+	bar.add_theme_stylebox_override("panel", bar_skin)
+	rows.add_child(bar)
+	var bar_row := HBoxContainer.new()
+	bar_row.add_theme_constant_override("separation", 24)
+	bar.add_child(bar_row)
+	var who := VBoxContainer.new()
+	who.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	who.add_theme_constant_override("separation", 2)
+	bar_row.add_child(who)
+	_turn = Label.new()
+	_turn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_turn.add_theme_font_size_override("font_size", 16)
+	_turn.add_theme_color_override("font_color", Color("#e8dcc8"))
+	who.add_child(_turn)
+	_context = Label.new()
+	_context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_context.add_theme_font_size_override("font_size", 12)
+	_context.add_theme_color_override("font_color", Color("#8a8172"))
+	who.add_child(_context)
+	var what := VBoxContainer.new()
+	what.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	what.size_flags_stretch_ratio = 1.4
+	what.add_theme_constant_override("separation", 2)
+	bar_row.add_child(what)
+	_prompt = Label.new()
+	_prompt.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_prompt.add_theme_font_size_override("font_size", 16)
+	_prompt.add_theme_color_override("font_color", Color("#e8b563"))
+	what.add_child(_prompt)
+	_hint = Label.new()
+	_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_hint.add_theme_font_size_override("font_size", 12)
+	_hint.add_theme_color_override("font_color", Color("#c9bfae"))
+	what.add_child(_hint)
+
+	# 2. Le tre colonne: domande, tavolo, verbale.
 	var columns := HBoxContainer.new()
 	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	columns.add_theme_constant_override("separation", 12)
+	columns.add_theme_constant_override("separation", 10)
 	rows.add_child(columns)
 
-	# **Il tavolo prende il centro, e ci sta una cosa alla volta** (D-444).
-	# Fino alla 0.1.413 il centro era stretto fra il verbale a sinistra (300
-	# px) e la colonna di stato a destra (280): tre cose che si contendevano un
-	# tablet in verticale, e la mappa era quella che perdeva. Adesso a sinistra
-	# non c'e' niente, e a destra c'e' solo quello che serve per decidere
-	# adesso: a chi tocca, la domanda, le scelte.
+	var left := ScrollContainer.new()
+	left.custom_minimum_size = Vector2(250, 0)
+	left.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	columns.add_child(left)
+	_column = QuestionColumn.new()
+	_column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_column.tension_opened.connect(_on_tension_opened)
+	_column.card_dropped_on_question.connect(_on_subject_dropped)
+	_column.card_placed.connect(func(index: int) -> void: picked.emit(index))
+	_column.deck_pressed.connect(_on_deck_pressed)
+	left.add_child(_column)
+
 	var table := VBoxContainer.new()
 	table.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	table.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -315,11 +373,11 @@ func _build() -> void:
 	table.add_theme_constant_override("separation", 6)
 	columns.add_child(table)
 
-	# **I sei mazzetti, sempre tutti e sei** (D-279), in fila lungo il bordo
-	# alto del tavolo: sono la cosa che dice *di cosa si parlera'*.
+	# I sei mazzetti restano un nodo che sa disegnarsi (la sonda della pagina
+	# lo misura), ma sul tavolo nuovo i gettoni stanno nella colonna, accanto
+	# alle domande scoperte: qui non si vedono.
 	_decks = ThemeDecksView.new()
-	_decks.custom_minimum_size = Vector2(0, 96)
-	_decks.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_decks.visible = false
 	_decks.deck_pressed.connect(_on_deck_pressed)
 	table.add_child(_decks)
 
@@ -330,27 +388,17 @@ func _build() -> void:
 
 	_map = MapView.new()
 	_map.set_anchors_preset(Control.PRESET_FULL_RECT)
-	# Pressing a Region *is* choosing an action, so the map answers the question
-	# on screen. Which Regions may be pressed is set by whoever asked it.
 	_map.region_clicked.connect(_on_region_clicked)
-	# E lasciarci cadere una carta e' la stessa risposta, data con la mano
-	# invece che col dito (D-230): la mappa manda gia' l'indice della scelta,
-	# perche' l'ha trovato fra le offerte che quella carta portava.
 	_map.card_dropped.connect(func(index: int) -> void: picked.emit(index))
-	# **Le domande abitano la mappa** (D-444): la carta che influenza o trama
-	# si posa sulla domanda dove sta, sulla tessera, come al tavolo.
 	_map.card_dropped_on_question.connect(_on_subject_dropped)
 	_map.card_placed.connect(func(index: int) -> void: picked.emit(index))
 	_map.tension_opened.connect(_on_tension_opened)
 	_centre.add_child(_map)
 
+	# **Il Consiglio e' una schermata a parte** (D-464): sta sopra tutto,
+	# a schermo intero, e si apre quando il Consiglio si apre.
 	_board = ConfluenceBoard.new()
-	_board.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_board.visible = false
-	_centre.add_child(_board)
 
-	# Same piece of screen as the map and the Council: a player reading the rules
-	# is not looking at the board, and the board is where there is room to read.
 	_help = HelpPanel.new()
 	_help.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_centre.add_child(_help)
@@ -366,63 +414,20 @@ func _build() -> void:
 	_echo.visible = false
 	_centre.add_child(_echo)
 
-	# Il cruscotto (§25.14): stessa meta' di schermo di mappa, Consiglio e regole,
-	# perche' chi lo sta leggendo non sta guardando il tavolo. Sta dietro F3 e non
-	# dietro un bottone: mostra anche quello che al tavolo e coperto, e non e una
-	# cosa da premere per curiosita' in mezzo a una partita.
 	_dev = DevDashboard.new()
 	_dev.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_dev.visible = false
 	_centre.add_child(_dev)
 
-	# E l'anteprima di stampa (§25.15), stessa meta' di schermo: e' l'altra cosa
-	# che si guarda invece di guardare il tavolo.
 	_export = ExportPreview.new()
 	_export.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_export.visible = false
 	_centre.add_child(_export)
 
-	# E la cronaca dell'anno finito (voce 10), stessa meta' di schermo.
 	_cronaca = ChronicleBookView.new()
 	_cronaca.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_cronaca.visible = false
 	_centre.add_child(_cronaca)
-
-	# **La colonna di stato e' una pagina** (D-444): il proprio Destino, cosa si
-	# vuole lasciare, i rapporti, i diritti, i segni addosso. Al tavolo e' la
-	# carta della Casata che tieni davanti, e la si guarda quando serve: si apre
-	# col bottone «La mia casa» e copre il tavolo finche' la si chiude. Dentro un
-	# pannello che scorre, perche' e' piu' alta di una finestra (D-251).
-	_casa = ScrollContainer.new()
-	_casa.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_casa.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	_casa.visible = false
-	_centre.add_child(_casa)
-	_status = StatusPanel.new()
-	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	# Le domande e le case sono posti dove una carta puo' cadere, come le Regioni
-	# sulla mappa (D-231). Su un soggetto una carta puo' saper fare due cose
-	# opposte — alzare e abbassare una domanda, avvicinare e rompere un rapporto —
-	# e allora la caduta **restringe** e la scelta resta a chi gioca.
-	_status.card_dropped.connect(_on_subject_dropped)
-	_status.tension_opened.connect(_on_tension_opened)
-	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
-	_casa.add_child(_status)
-
-	# **E il verbale e' una pagina** (D-444). Resta il registro, con le stesse
-	# righe di sempre, ma non e' il gioco: sta dietro un bottone, come la
-	# cronaca. Quello che e' appena successo lo dice il racconto sotto la mappa.
-	_verbale = PanelContainer.new()
-	_verbale.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_verbale.visible = false
-	_centre.add_child(_verbale)
-	_transcript = RichTextLabel.new()
-	_transcript.bbcode_enabled = true
-	_transcript.scroll_following = true
-	_transcript.selection_enabled = true
-	_transcript.add_theme_font_size_override("normal_font_size", 13)
-	_transcript.add_theme_color_override("default_color", Color("#c9bfae"))
-	_verbale.add_child(_transcript)
 
 	# **Chi siede intorno al tavolo** (D-444): una striscia sotto la mappa, un
 	# posto per casa. La carta che parla a un'altra casa si posa li'.
@@ -432,62 +437,24 @@ func _build() -> void:
 	_seats_strip.card_placed.connect(func(index: int) -> void: picked.emit(index))
 	table.add_child(_seats_strip)
 
-	# **Il racconto** (D-444, parola del committente: *«quello che e' appena
-	# successo scritto come lo racconteresti a voce»*). Le ultime righe dette,
-	# in italiano da giocatore, sotto la mappa: non un elenco, un rigo.
-	_racconto = Label.new()
-	_racconto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_racconto.custom_minimum_size = Vector2(0, 52)
-	_racconto.add_theme_font_size_override("font_size", 13)
-	_racconto.add_theme_color_override("font_color", Color("#c9bfae"))
-	table.add_child(_racconto)
-
+	# 3. A destra: le scelte che non hanno un posto sul tavolo, il racconto,
+	# il verbale sempre aperto, e in fondo gli strumenti.
 	var right := VBoxContainer.new()
-	right.custom_minimum_size = Vector2(240, 0)
-	right.add_theme_constant_override("separation", 10)
+	right.custom_minimum_size = Vector2(300, 0)
+	right.add_theme_constant_override("separation", 8)
 	columns.add_child(right)
 
-	# **A che punto siamo, e a chi tocca** (D-247).
-	_turn = Label.new()
-	_turn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_turn.add_theme_font_size_override("font_size", 14)
-	_turn.add_theme_color_override("font_color", Color("#e8dcc8"))
-	right.add_child(_turn)
-
-	_context = Label.new()
-	_context.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_context.add_theme_font_size_override("font_size", 12)
-	_context.add_theme_color_override("font_color", Color("#8a8172"))
-	right.add_child(_context)
-
-	_prompt = Label.new()
-	_prompt.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_prompt.add_theme_font_size_override("font_size", 15)
-	_prompt.add_theme_color_override("font_color", Color("#e8b563"))
-	right.add_child(_prompt)
-
-	_hint = Label.new()
-	_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_hint.add_theme_font_size_override("font_size", 12)
-	_hint.add_theme_color_override("font_color", Color("#8a8172"))
-	right.add_child(_hint)
-
 	_scroll = ScrollContainer.new()
-	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	# Uno scorrimento non cresce col contenuto: senza un'altezza sua i
+	# bottoni della scelta sparivano dietro il verbale.
+	_scroll.custom_minimum_size = Vector2(0, 230)
 	right.add_child(_scroll)
-
 	_buttons = VBoxContainer.new()
 	_buttons.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_buttons.add_theme_constant_override("separation", 5)
 	_scroll.add_child(_buttons)
 
-	# Outside `_buttons` on purpose: the choices are cleared after every question
-	# and this must not go with them. It is the one control that is always there.
-	# **Via la schermata «Come si gioca»** (D-279, parola del committente): le
-	# regole si imparano al tavolo, non da una pagina che copre la mappa. Il
-	# nodo resta — mezza dozzina di posti lo spengono per aprire altro — ma non
-	# ha piu' un bottone, non si apre all'avvio, e non e' mai visibile.
 	_help_button = Button.new()
 	_help_button.toggle_mode = true
 	_help_button.button_pressed = false
@@ -495,34 +462,33 @@ func _build() -> void:
 	_help_button.toggled.connect(_on_help_toggled)
 	right.add_child(_help_button)
 
-	# **Le due pagine del seggio** (D-444): la propria casa e il verbale. Sono
-	# le due cose che al tavolo si guardano *invece* del tavolo, e stanno qui,
-	# sopra gli strumenti, perche' si aprono durante una partita.
-	var pages := HBoxContainer.new()
-	pages.add_theme_constant_override("separation", 5)
-	right.add_child(pages)
+	# **Il racconto** (D-444, parola del committente: *«quello che e' appena
+	# successo scritto come lo racconteresti a voce»*): le ultime righe dette.
+	_racconto = Label.new()
+	_racconto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_racconto.add_theme_font_size_override("font_size", 13)
+	_racconto.add_theme_color_override("font_color", Color("#e8dcc8"))
+	right.add_child(_racconto)
 
-	_casa_button = Button.new()
-	_casa_button.text = "La mia casa"
-	_casa_button.toggle_mode = true
-	_casa_button.custom_minimum_size = Vector2(0, 44)
-	_casa_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_casa_button.add_theme_font_size_override("font_size", 13)
-	_casa_button.toggled.connect(_toggle_casa)
-	pages.add_child(_casa_button)
+	# **Il verbale e' la colonna di destra** (D-464): il registro intero,
+	# sempre in vista, che spiega cosa e' successo e cosa deve succedere.
+	_verbale = PanelContainer.new()
+	_verbale.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var log_skin := StyleBoxFlat.new()
+	log_skin.bg_color = Color("#16130f")
+	log_skin.border_color = Color("#3a332a")
+	log_skin.set_border_width_all(1)
+	log_skin.set_content_margin_all(6)
+	_verbale.add_theme_stylebox_override("panel", log_skin)
+	right.add_child(_verbale)
+	_transcript = RichTextLabel.new()
+	_transcript.bbcode_enabled = true
+	_transcript.scroll_following = true
+	_transcript.selection_enabled = true
+	_transcript.add_theme_font_size_override("normal_font_size", 12)
+	_transcript.add_theme_color_override("default_color", Color("#c9bfae"))
+	_verbale.add_child(_transcript)
 
-	_verbale_button = Button.new()
-	_verbale_button.text = "Il verbale"
-	_verbale_button.toggle_mode = true
-	_verbale_button.custom_minimum_size = Vector2(0, 44)
-	_verbale_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_verbale_button.add_theme_font_size_override("font_size", 13)
-	_verbale_button.toggled.connect(_toggle_verbale)
-	pages.add_child(_verbale_button)
-
-	# Fuori dal flusso delle scelte e in fondo alla colonna: cose che non si
-	# fanno *durante* una decisione, ma che devono essere raggiungibili senza una
-	# tastiera. Piccole, e in una riga sola, perche' non competono con la partita.
 	var tools := HBoxContainer.new()
 	tools.add_theme_constant_override("separation", 5)
 	right.add_child(tools)
@@ -554,8 +520,6 @@ func _build() -> void:
 	_log_button.pressed.connect(_on_log_pressed)
 	tools.add_child(_log_button)
 
-	# La voce 12 (D-092): il salvataggio si porta via come il log. Nel browser
-	# e' l'unica rete quando lo storage non c'e'; altrove e' una copia in piu'.
 	_save_button = Button.new()
 	_save_button.text = "Scarica il salvataggio"
 	_save_button.tooltip_text = "La partita in corso come file JSON, da tenere o riportare"
@@ -564,15 +528,58 @@ func _build() -> void:
 	_save_button.pressed.connect(_on_save_pressed)
 	tools.add_child(_save_button)
 
+	# 4. Le schede in basso: la mano, la casa, gli obiettivi.
+	_tabs = TabContainer.new()
+	_tabs.custom_minimum_size = Vector2(0, AssetCard.wanted_height() + 44.0)
+	_tabs.add_theme_font_size_override("font_size", 13)
+	rows.add_child(_tabs)
+
+	var hand_scroll := ScrollContainer.new()
+	hand_scroll.name = "La mano"
+	hand_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_tabs.add_child(hand_scroll)
 	_hand = HandView.new()
-	# **Alta quanto la carta piu' alta, e non un pixel di meno** (D-246). La
-	# mano era alta 200 e la carta ne chiedeva 196: bastava un titolo su due
-	# righe perche' il fondo della carta — cioe' il testo — finisse fuori. Il
-	# numero adesso viene dalla carta, cosi' se domani la carta cresce la mano
-	# cresce con lei invece di tagliarla.
+	# **Alta quanto la carta piu' alta, e non un pixel di meno** (D-246).
 	_hand.custom_minimum_size = Vector2(0, AssetCard.wanted_height() + 14.0)
 	_hand.card_chosen.connect(_on_card_chosen)
-	rows.add_child(_hand)
+	hand_scroll.add_child(_hand)
+
+	# La scheda della casa scorre, perche' e' piu' alta di una finestra (D-251).
+	_casa = ScrollContainer.new()
+	_casa.name = "La mia casa"
+	_casa.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_tabs.add_child(_casa)
+	_status = StatusPanel.new()
+	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_status.card_dropped.connect(_on_subject_dropped)
+	_status.tension_opened.connect(_on_tension_opened)
+	_status.card_placed.connect(func(index: int) -> void: picked.emit(index))
+	_casa.add_child(_status)
+
+	var goals_scroll := ScrollContainer.new()
+	goals_scroll.name = "Obiettivi"
+	goals_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_tabs.add_child(goals_scroll)
+	_goals = StatusPanel.new()
+	_goals.only_goals = true
+	_goals.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	goals_scroll.add_child(_goals)
+
+	# 5. Il Consiglio, a schermo intero, sopra tutto.
+	_council = PanelContainer.new()
+	_council.set_anchors_preset(Control.PRESET_FULL_RECT)
+	var council_skin := StyleBoxFlat.new()
+	council_skin.bg_color = Color("#12100e")
+	council_skin.set_content_margin_all(24)
+	# Il tabellone legge meglio in una colonna: ai lati resta il tavolo scuro.
+	council_skin.content_margin_left = 96
+	council_skin.content_margin_right = 96
+	_council.add_theme_stylebox_override("panel", council_skin)
+	_council.visible = false
+	add_child(_council)
+	_board.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_board.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_council.add_child(_board)
 
 	_help.visible = false
 
@@ -582,54 +589,19 @@ func _build() -> void:
 ## il cruscotto — e aprirla chiude le altre pagine, perche' al centro ci sta
 ## una cosa alla volta.
 func _toggle_casa(open: bool) -> void:
+	# **La casa e' una scheda** (D-464): aprirla e' scegliere la scheda.
 	_casa_open = open and _session != null
-	if _casa_open:
-		_dev_open = false
-		if _dev_button != null:
-			_dev_button.set_pressed_no_signal(false)
-		_export_open = false
-		_export.visible = false
-		_cronaca_open = false
-		_cronaca.visible = false
-		if _cronaca_button != null:
-			_cronaca_button.set_pressed_no_signal(false)
-		_verbale_open = false
-		if _verbale_button != null:
-			_verbale_button.set_pressed_no_signal(false)
-		_help_button.button_pressed = false
-		_sheet.visible = false
-	if _casa_button != null:
-		_casa_button.set_pressed_no_signal(_casa_open)
-	_casa.visible = _casa_open
+	if _tabs != null:
+		_tabs.current_tab = 1 if _casa_open else 0
 	_refresh()
 
 
-## **La pagina del verbale** (D-444): il registro intero, dietro un bottone.
+## Il verbale e' la colonna di destra, sempre in vista (D-464): non si apre
+## e non si chiude.
 func _toggle_verbale(open: bool) -> void:
-	_verbale_open = open
-	if _verbale_open:
-		_dev_open = false
-		if _dev_button != null:
-			_dev_button.set_pressed_no_signal(false)
-		_export_open = false
-		_export.visible = false
-		_cronaca_open = false
-		_cronaca.visible = false
-		if _cronaca_button != null:
-			_cronaca_button.set_pressed_no_signal(false)
-		_casa_open = false
-		_casa.visible = false
-		if _casa_button != null:
-			_casa_button.set_pressed_no_signal(false)
-		_help_button.button_pressed = false
-		_sheet.visible = false
-	if _verbale_button != null:
-		_verbale_button.set_pressed_no_signal(_verbale_open)
-	_verbale.visible = _verbale_open
+	_verbale_open = false
 	if _session != null:
 		_refresh()
-	else:
-		_map.visible = not _verbale_open
 
 
 ## Redraw the board from the world. Called after every phase and before every
@@ -648,18 +620,18 @@ func _refresh() -> void:
 	var council_open: bool = _session.confluence.is_open()
 	var busy: bool = (
 		_help.visible or _echo.visible or _dev_open or _export_open or _cronaca_open
-		or _casa_open or _verbale_open
 	)
-	_board.visible = council_open and not busy
-	_map.visible = not council_open and not busy
-	_casa.visible = _casa_open
-	_verbale.visible = _verbale_open
+	# **Il Consiglio copre tutto** (D-464): quando e' aperto e' la sola cosa
+	# sullo schermo, e sotto il tavolo resta com'era.
+	_council.visible = council_open and not _echo.visible
+	_map.visible = not busy
 	if council_open:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
-	_decks.render(_session)
+	_column.render(_session, _viewer)
 	_seats_strip.render(_session, _viewer)
 	_status.render(_session, _viewer)
+	_goals.render(_session, _viewer)
 	_hand.render(_session, _viewer, _focus_tension, _offers)
 	_turn.text = _turn_line()
 	_context.text = _context_line()
@@ -857,7 +829,7 @@ func _on_help_toggled(pressed: bool) -> void:
 		_refresh()
 	else:
 		_map.visible = false
-		_board.visible = false
+		_council.visible = false
 
 
 ## The rules page opens before any Chronicle exists, so it loads its own copy of
@@ -884,8 +856,7 @@ func _beat() -> void:
 	var council: Dictionary = _closed_council
 	_closed_council = {}
 	_help_button.button_pressed = false
-	_board.visible = true
-	_map.visible = false
+	_council.visible = true
 	_echo.visible = false
 	_board.render_closed(_session, council)
 	_status.render(_session, _viewer)
@@ -904,7 +875,7 @@ func _echo_beat() -> void:
 	_pending_echo = {}
 	_help_button.button_pressed = false
 	_echo.visible = true
-	_board.visible = false
+	_council.visible = false
 	_map.visible = false
 	_echo.render(drawn["card"], drawn["applied"], _session.data)
 	_status.render(_session, _viewer)
@@ -964,7 +935,15 @@ func say(text: String) -> void:
 	if text.begins_with("=="):
 		_transcript.append_text("\n[color=#e8b563][b]%s[/b][/color]\n" % text.strip_edges())
 	else:
-		_transcript.append_text("%s\n" % text)
+		# **Il verbale parla, non disegna** (D-464): il cartiglio del turno
+		# arrivava con le sue cornici da terminale — «+-- ATTO 1, ROUND 1 ---»,
+		# «| In mano: ...» — e sulla pagina era rumore.
+		var line: String = text
+		if line.begins_with("+--"):
+			line = "[color=#e8b563]%s[/color]" % line.trim_prefix("+--").strip_edges(false, true).rstrip("-").strip_edges()
+		elif line.begins_with("| "):
+			line = line.trim_prefix("| ")
+		_transcript.append_text("%s\n" % line)
 	_tell(text)
 
 
@@ -1116,6 +1095,7 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	_hinted = ""
 	_status.hold({})
 	_map.hold({})
+	_column.hold({})
 	_seats_strip.hold({})
 	_hand.hold("")
 	_map.queue_redraw()
@@ -1184,6 +1164,7 @@ func _on_card_chosen(asset_id: String) -> void:
 	# la casa nella striscia dei seggi — e nella pagina della casa, se e' aperta.
 	_status.hold(places)
 	_map.hold(places)
+	_column.hold(places)
 	_seats_strip.hold(places)
 	_hand.hold(asset_id)
 	_prompt.text = "%s in mano." % _asset_title(asset_id)
@@ -1199,6 +1180,7 @@ func _release_hold() -> void:
 	_held = ""
 	_status.hold({})
 	_map.hold({})
+	_column.hold({})
 	_seats_strip.hold({})
 	_hand.hold("")
 	_map.highlighted = _regions_offered()
@@ -1398,7 +1380,15 @@ func _on_deck_pressed(theme_id: String) -> void:
 		return
 	var front: String = str(_session.tensions.theme_front(theme_id))
 	if front == "":
-		_hint.text = "Il mazzetto di %s e' ancora coperto." % str(
+		# **Le domande sono scoperte** (D-450, D-464): il Tema si legge dalla
+		# prima delle sue domande in gioco. Coperti sono i gettoni.
+		for tension_id in _session.world["tensions"]:
+			var about: Dictionary = _session.data.tensions.get(str(tension_id), {}) as Dictionary
+			if str(about.get("theme", "")) == theme_id:
+				front = str(tension_id)
+				break
+	if front == "":
+		_hint.text = "Nessuna domanda di %s sul tavolo quest'anno." % str(
 			(_session.data.themes[theme_id] as Dictionary).get("title", theme_id)
 		)
 		return

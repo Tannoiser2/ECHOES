@@ -157,6 +157,16 @@ parole inglesi, tre «Cedere il diritto» senza il nome. Quello che è brutto e
 non rotto — la mano piccola, il verbale crudo in mezzo, il Cruscotto che
 scopre le carte di tutti — è tuo da giudicare su un tavolo vero.
 
+**E in 0.1.433 hai detto come deve essere il tavolo** ([D-464](DECISIONS.md#d-464)):
+3x2 coi varchi che si vedono, sei spazi per i segnalini su ogni tessera,
+quattro per le Pietre e tre per le Cicatrici, le domande scoperte in una
+colonna a sinistra coi gettoni coperti sopra, il verbale a destra, mano e casa
+e obiettivi a schede sotto, la barra di stato sopra, il Consiglio in una
+schermata a parte. Fatto, per intero, come prima stesura: e il vincolo 3x2
+non costa niente al motore, 151.200 pose e nessuna tessera fuori. Il resto
+— la taglia dei caratteri, il disegno del Consiglio — è il giro dopo, con
+la pagina in mano.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una
