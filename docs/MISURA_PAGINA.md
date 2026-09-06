@@ -21,18 +21,18 @@ sta in una colonna sua.
 
 | | |
 |---|---|
-| pannelli guardati | 9 |
-| nodi in tutto | 268 |
-| testi sotto gli occhi | 142 |
+| pannelli guardati | 10 |
+| nodi in tutto | 338 |
+| testi sotto gli occhi | 180 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
 | bersagli che si toccano | 27 |
 | **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
-| testi con una taglia | 153 |
+| testi con una taglia | 191 |
 | **piu' piccoli di 11 punti sul tablet** | **0** |
-| sotto i 17 punti, che la guida chiama «corpo» | 151 |
+| sotto i 17 punti, che la guida chiama «corpo» | 189 |
 | il piu' piccolo, sul tablet | 11.0 punti |
 
 **Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`
@@ -79,14 +79,14 @@ Un id, uno slot o un segno crudo arrivato fino allo schermo: `$rival`,
 
 Nessuna: tutto quello che si legge e' in italiano da giocatore.
 
-## 4. Quanto la pagina chiede
+## 4. Quanto la pagina chiede, posto per posto
 
-Da [D-444](DECISIONS.md#d-444) la pagina e' **il tavolo, e una cosa alla
-volta**: a sinistra il tavolo — i mazzetti, la mappa, chi siede, il
-racconto — e accanto una colonna di **240 px** con quello che serve per
-decidere adesso. La colonna di stato, il Consiglio e l'aiuto non stanno
-piu' intorno al tavolo: si aprono **al suo posto**, uno alla volta. La
-mano sta sotto, per tutta la larghezza. Il tablet e' largo **768 px**.
+Da [D-464](DECISIONS.md#d-464) la pagina e' **il tavolo come lo vuole il
+committente**: a sinistra la colonna delle domande (**250** punti), al
+centro la mappa con chi siede sotto, a destra il verbale (**300**), e sotto
+le tre schede — la mano, la casa, gli obiettivi — per tutta la larghezza.
+Il Consiglio prende **lo schermo intero**, meno 24 punti di margine per
+lato. Il tablet e' largo **1366** punti e alto **1024** ([D-465](DECISIONS.md#d-465)).
 
 Una colonna fatta per scorrere chiede **tutta la sua lunghezza**: la
 colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».
@@ -95,27 +95,29 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | al centro, uno alla volta | 95 | 234 | 1840 |
-| mappa | sul tavolo | 13 | *si adatta* | |
-| il Consiglio | al centro, uno alla volta | 45 | 226 | 40 |
+| colonna di stato | sotto, in una scheda | 95 | 234 | 1840 |
+| mappa | al centro | 13 | *si adatta* | |
+| il Consiglio | a schermo intero | 70 | 974 | 182 |
 | il tavolo | nella stanza, prima di sedersi | 35 | *si adatta* | |
-| i mazzi dei Temi | sul tavolo | 13 | *si adatta* | |
-| chi siede | sul tavolo | 25 | 402 | 44 |
-| le domande | sul tavolo | 27 | 230 | 476 |
-| la pagina d'aiuto | al centro, uno alla volta | 2 | 37 | 28 |
-| la mano | sotto, tutta la larghezza | 13 | 342 | 246 |
+| i mazzi dei Temi | non sta sulla pagina (D-464) | 13 | *si adatta* | |
+| chi siede | al centro | 25 | 402 | 44 |
+| le domande | a sinistra, la colonna delle domande | 27 | 230 | 476 |
+| la pagina d'aiuto | al centro | 2 | 37 | 28 |
+| la mano | sotto, in una scheda | 13 | 342 | 246 |
+| gli obiettivi | sotto, in una scheda | 45 | 168 | 1455 |
 
-Tre misure, una per posto:
+Un posto per riga, col piu' largo dei pannelli che ci stanno — e, dove
+l'altezza e' una promessa, anche il piu' alto:
 
-| | chiede | ha | |
-|---|---|---|---|
-| **il tavolo con la colonna accanto** — il piu' largo dei suoi pannelli (402), la colonna (240), i margini (36) | **678** | 768 | ✓ ne avanzano 90 |
-| **al centro, uno alla volta** — il piu' largo e' «colonna di stato» | **234** | 492 | ✓ ne avanzano 258 |
-| **sotto, la mano** | **342** | 744 | ✓ ne avanzano 402 |
+| posto | ha | il piu' largo | chiede | |
+|---|---|---|---|---|
+| **a sinistra, la colonna delle domande** | 250 | le domande | **230** | ✓ ne avanzano 20 |
+| **al centro** | 780 | chi siede | **402** | ✓ ne avanzano 378 |
+| **sotto, in una scheda** | 1350 | la mano | **342** | ✓ ne avanzano 1008 |
+| **a schermo intero** | 1318 | il Consiglio | **974** | ✓ ne avanzano 344 |
+| a schermo intero, in altezza | 976 | il Consiglio | **182** | ✓ ne avanzano 794 |
 
-**La pagina sta dentro il tablet**, in tutti e tre i posti. Fino a D-444
-chiedeva 788 px in fila senza contare la mappa: non e' che i pannelli si
-sono stretti, e' che non stanno piu' in fila.
+**La pagina sta dentro il tablet**, in tutti i suoi posti.
 
 ## 5. I caratteri, misurati sul tablet
 
@@ -132,10 +134,10 @@ Quanti testi a ogni taglia, sul tablet:
 
 | punti | testi |
 |---|---|
-| 11 | 62 |
-| 12 | 53 |
+| 11 | 92 |
+| 12 | 60 |
 | 13 | 34 |
 | 14 | 1 |
-| 15 | 1 |
+| 15 | 2 |
 | 18 | 1 |
 | 19 | 1 |

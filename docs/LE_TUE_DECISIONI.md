@@ -176,6 +176,15 @@ e che ti dico: 151 testi stanno fra gli 11 e i 13 punti, leggibili ma non
 comodi, e su un iPad più piccolo del tuo il pavimento non tiene. Il verbale
 ha perso le cornici da terminale che in 0.1.433 avevo detto di aver tolto.
 
+**E in 0.1.435 il Consiglio ha la sua schermata disegnata** ([D-466](DECISIONS.md#d-466)):
+non più il tabellone vecchio in una colonna stretta, ma il tavolo quando un
+Consiglio si apre — la carta girata a sinistra con le tre liste e le pedine
+sopra, chi siede al centro con la posizione e le carte, il conto a destra in
+parole con l'esito grande e a colori, le scelte sotto. Fotografandolo ho
+visto che le pedine uscivano come quadratini vuoti, perché il carattere della
+pagina web non ha quei segni: ora sono disegnate. E la sonda della pagina
+misura ogni pannello contro il posto in cui sta nella pagina che hai chiesto.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

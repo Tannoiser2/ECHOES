@@ -6310,6 +6310,14 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
 > 11 e i 13: leggibili, non comodi, e il giudizio resta a chi tiene la
 > pagina in mano.
 
+> **Avanzamento in 0.1.435** ([D-466](DECISIONS.md#d-466)): il Consiglio a
+> schermo intero e' disegnato come il tavolo — la carta girata a sinistra,
+> chi siede al centro, il conto a destra in parole con l'esito grande — e
+> le pedine sono disegnate, non scritte con glifi che l'export web non ha.
+> La sonda della pagina misura ogni pannello contro il posto in cui sta
+> nella pagina di D-464. La voce resta aperta per la stessa ragione: che
+> una persona ci giochi lo verifica una persona.
+
 ### Le quattro mosse
 
 1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo

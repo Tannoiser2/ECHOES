@@ -122,7 +122,9 @@ func _the_two_lists(tension: Dictionary) -> void:
 		_gap()
 		_line(str(pair[1]), 12, "#8a8172")
 		for voice in voices:
-			_line("○ %s" % str((voice as Dictionary)["text"]), 12, "#d9d2c5")
+			# «·» e non «○»: il carattere dell'export web non ha il cerchietto
+			# (D-466), e una scheda stampata usa il punto.
+			_line("· %s" % str((voice as Dictionary)["text"]), 12, "#d9d2c5")
 	# La riga dell'economia, che e' la regola vera della carta (D-280).
 	_gap()
 	_line(

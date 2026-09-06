@@ -86,6 +86,21 @@ func _labels_of(node: Node, into: Array) -> void:
 		_labels_of(child, into)
 
 
+## Le voci della carta con la pedina posata sopra: la pedina e' un nodo
+## disegnato, non un segno nel testo (D-466), e la riga lo dice con `marked`.
+func _marked() -> Array:
+	var board: Node = ConfluenceBoard.new()
+	board.render(session, str(session.world["turn_order"][0]))
+	var out: Array = []
+	for row in board._face.get_children():
+		if (row as Node).has_meta("marked") and bool((row as Node).get_meta("marked")):
+			var said: Array = []
+			_labels_of(row, said)
+			out.append(" ".join(PackedStringArray(said)))
+	board.free()
+	return out
+
+
 ## Le due liste della carta stanno sul tabellone, tutte e due intere.
 func test_the_board_draws_both_lists() -> void:
 	_open()
@@ -127,14 +142,11 @@ func test_what_the_proponent_bought_is_marked() -> void:
 		column.contains("%d comprati con %d gettone" % [quante, quante - free]),
 		"il conto e' scritto: %s" % column
 	)
-	var marked: int = 0
-	for line in drawn:
-		if str(line).begins_with("●"):
-			marked += 1
-	assert_eq(marked, quante, "e le pedine sono posate, non una lista puntata")
+	var marked: Array = _marked()
+	assert_eq(marked.size(), quante, "e le pedine sono posate, non una lista puntata")
 	for i in range(quante):
 		assert_true(
-			drawn.has("● %s" % _text_of("benefits", str(benefits[i]))),
+			marked.has(_text_of("benefits", str(benefits[i]))),
 			"la pedina sta sulla voce comprata"
 		)
 
@@ -173,7 +185,7 @@ func test_the_board_says_who_chooses_the_currency() -> void:
 		"e adesso si sa chi l'ha scelta: %s" % column
 	)
 	assert_true(
-		drawn.has("● %s" % _text_of("costs", cost)),
+		_marked().has(_text_of("costs", cost)),
 		"con la pedina sulla voce che ha scelto"
 	)
 	assert_eq(
@@ -215,3 +227,29 @@ func test_the_board_says_what_happens_if_it_falls() -> void:
 			column.contains(str((voice as Dictionary)["text"])),
 			"e si legge intera"
 		)
+
+
+## **Il conto in parole** (D-466): «S 5 · O 3 · Mondo +3 -> M +5» era il
+## verbale del motore sotto gli occhi di chi gioca. Fabbricato: un Consiglio
+## gia' tirato, e si legge «a favore», «contro», «margine», e l'esito a parte.
+func test_the_count_is_in_player_words() -> void:
+	var board: Node = ConfluenceBoard.new()
+	board._ensure_built()
+	board._render_outcome({
+		"die": 6, "world_factor": 3,
+		"result": {
+			"outcome": "DECISIVE_SUCCESS", "support_total": 5, "oppose_total": 3,
+			"world_factor": 3, "margin": 5,
+		},
+	})
+	var count: String = str(board._outcome.text)
+	assert_true(count.contains("Fattore Mondo: 1d6 = 6"), "il dado si legge: %s" % count)
+	assert_true(count.contains("A favore 5"), "a favore, in parole")
+	assert_true(count.contains("contro 3"), "contro, in parole")
+	assert_true(count.contains("Margine +5"), "e il margine col suo nome")
+	assert_false(count.contains("S 5"), "niente sigle")
+	assert_eq(str(board._verdict.text), "Passa senza discussione", "l'esito sta a parte, grande")
+	board._render_outcome({"die": 0})
+	assert_eq(str(board._verdict.text), "", "prima del dado non c'e' un esito")
+	assert_true(str(board._outcome.text).contains("dado"), "e il conto dice che il dado non e' ancora tirato")
+	board.free()
