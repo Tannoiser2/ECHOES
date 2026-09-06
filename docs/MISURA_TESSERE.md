@@ -20,5 +20,5 @@ un campione; qui ci sono **tutte** le pose che il gioco puo' produrre.
 
   E com'e' fatta la mappa, su tutte le pose:
     confini per mappa      6.80
-    tessere con un vicino solo  6.7%
+    tessere con un vicino solo  3.3%
 ```

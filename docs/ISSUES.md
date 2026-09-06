@@ -6293,6 +6293,15 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
 > misurare per quello che la voce chiede, e questa voce **e' nata proprio da
 > quello scarto**.
 
+> **Avanzamento in 0.1.433** ([D-464](DECISIONS.md#d-464)): il committente
+> ha guardato la pagina su un iPad e ha detto com'e' fatto il tavolo — 3x2
+> coi varchi, sei spazi per i segnalini su ogni tessera, quattro per le
+> Pietre e tre per le Cicatrici, le domande scoperte in una colonna coi
+> gettoni coperti sopra, il verbale a destra, mano e casa e obiettivi a
+> schede, la barra di stato sopra, il Consiglio a parte. Fatto per intero
+> come prima stesura, e fotografato. La voce resta aperta per la stessa
+> ragione di sempre: che una persona ci giochi lo verifica una persona.
+
 ### Le quattro mosse
 
 1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo

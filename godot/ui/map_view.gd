@@ -19,6 +19,17 @@ const SignLabels := preload("res://scripts/core/sign_labels.gd")
 ## una mappa di sei bolli piccoli in mezzo al vuoto spreca l'unica vista che
 ## racconta dove sono le cose - e il terreno, che e' il motivo per cui la tessera
 ## e' disegnata, a 46 pixel non si vede.
+## La griglia del tavolo (D-464): tre colonne, due righe, una fuga fra le
+## tessere dove si vede il varco, e gli spazi dei segnalini.
+const GRID_COLUMNS: int = 3
+const GRID_ROWS: int = 2
+const SEAM: float = 14.0
+const SLOT: float = 26.0
+const SLOT_GAP: float = 6.0
+const STONE_SLOTS: int = 4
+const SCAR_SLOTS: int = 3
+var _grid_side: float = 0.0
+var _grid_origin: Vector2 = Vector2.ZERO
 const RADIUS_MIN: float = 42.0
 const RADIUS_MAX: float = 92.0
 var _radius: float = RADIUS_MIN
@@ -119,48 +130,9 @@ func _ensure_nodes() -> void:
 			add_child(words)
 			_words[id] = words
 		(_names[id] as Label).text = str(_session.data.regions[id]["name"])
-	var alive: Dictionary = {}
-	for tension_id in _session.world["tensions"]:
-		var id: String = str(tension_id)
-		alive[id] = true
-		if _questions.has(id):
-			continue
-		var slot: PanelContainer = DropSlot.new()
-		slot.field = "tension"
-		slot.key = id
-		# **Alto come un dito** (D-243): e' un bersaglio, e un bersaglio
-		# stretto e' una bugia per chi gioca sul tablet.
-		slot.custom_minimum_size = Vector2(0, 44)
-		# La domanda ferma il tocco: la tessera sotto non deve rispondere allo
-		# stesso dito che ha posato la carta sulla domanda.
-		slot.mouse_filter = Control.MOUSE_FILTER_STOP
-		var line := Label.new()
-		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		line.add_theme_font_size_override("font_size", 11)
-		line.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		line.clip_text = true
-		slot.add_child(line)
-		slot.card_dropped.connect(
-			func(indices: Array) -> void: card_dropped_on_question.emit(indices)
-		)
-		slot.gui_input.connect(func(event: InputEvent) -> void:
-			if not (event is InputEventMouseButton):
-				return
-			var press := event as InputEventMouseButton
-			if not press.pressed or press.button_index != MOUSE_BUTTON_LEFT:
-				return
-			var where: String = "tension:%s" % id
-			if held_places.has(where):
-				card_placed.emit(int(held_places[where]))
-			else:
-				tension_opened.emit(id)
-		)
-		add_child(slot)
-		_questions[id] = slot
-	for tension_id in _questions.keys():
-		if not alive.has(str(tension_id)):
-			(_questions[tension_id] as Node).queue_free()
-			_questions.erase(tension_id)
+	# **Le domande non abitano piu' la tessera** (D-464, parola del
+	# committente): stanno nella colonna a sinistra, scoperte, coi gettoni
+	# coperti sopra. La tessera porta solo quello che e' della Regione.
 
 
 ## Ogni nodo al suo posto sulla tessera, e con le parole giuste.
@@ -179,53 +151,11 @@ func _place_nodes() -> void:
 		var words: Label = _words[id]
 		words.text = _words_of(id)
 		words.visible = words.text != ""
-		words.position = Vector2(centre.x - half, centre.y + half + 10.0 + PIECE + 8.0)
-		words.size = Vector2(half * 2.0, 16.0)
-	var stacked: Dictionary = {}
-	for tension_id in _questions:
-		var id: String = str(tension_id)
-		var slot: Control = _questions[id]
-		var home: String = str(_session.confluence.narrative.focus_region(id))
-		if home == "" or not _points.has(home):
-			slot.visible = false
-			continue
-		slot.visible = true
-		var row: int = int(stacked.get(home, 0))
-		stacked[home] = row + 1
-		var centre: Vector2 = _points[home]
-		slot.position = Vector2(centre.x - half + 4.0, centre.y - half + 4.0 + float(row) * 46.0)
-		slot.size = Vector2(half * 2.0 - 8.0, 44.0)
-		# La misura si **dichiara**, non si ottiene e basta: la sonda della pagina
-		# legge quello che un nodo chiede, e un posto che chiede zero di
-		# larghezza le risulta stretto quanto un capello.
-		slot.custom_minimum_size = slot.size
-		var line: Label = slot.get_child(0) as Label
-		var tint: Color = Color("#8a8172")
-		# **Quello che il tavolo sa, non «v/soglia»** (D-450). Fino alla 0.1.418
-		# la mappa scriveva «Il Risveglio · 2/6» e «velata»: col cancello del
-		# tavolo la soglia non decide niente (D-203) e nessuna carta e' velata.
-		# La riga la scrive lo stesso registro pubblico che legge il tavolo:
-		# i gettoni coperti finche' sono coperti, il mucchio e chi e' il piu'
-		# alto quando si girano.
-		if _session.tensions.table_gate() > 0:
-			line.text = _session.tensions.public_status(id)
-			if not _session.tensions.piles_are_covered() and _session.tensions.hottest_pile() == id:
-				tint = Color("#e8b563")
-		else:
-			var threshold: int = _session.tensions.threshold(id)
-			var value: int = _session.service.visible_tension_value(id, _viewer)
-			var title: String = str(_session.data.tensions[id]["title"])
-			if value < 0:
-				line.text = "%s · velata" % title
-			else:
-				line.text = "%s · %d/%d" % [title, value, threshold]
-				var margin: int = threshold - value
-				tint = Color("#6fa88a")
-				if margin <= 0:
-					tint = Color("#c8553d")
-				elif margin <= 1:
-					tint = Color("#e8b563")
-		line.add_theme_color_override("font_color", tint)
+		# Le parole dei pezzi stanno **dentro** la tessera, sopra la fila degli
+		# spazi (D-464): fuori, sotto la tessera, coprivano la striscia dei
+		# segnalini della riga sotto.
+		words.position = Vector2(centre.x - half + 4.0, centre.y + half - 24.0 - SLOT - 8.0 - 16.0)
+		words.size = Vector2(half * 2.0 - 8.0, 16.0)
 
 
 ## Le parole dei pezzi di una tessera, in italiano da giocatore: quello che il
@@ -362,26 +292,33 @@ func _relayout() -> void:
 	# esattamente quello che la regola legge.
 	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
 	if not posa.is_empty():
-		var columns: int = 1
-		var rows: int = 1
-		for spot in posa.values():
-			columns = maxi(columns, int((spot as Array)[0]) + 1)
-			rows = maxi(rows, int((spot as Array)[1]) + 1)
-		# **Accostate, non distanziate** (D-279): sono tessere di cartone posate
-		# una accanto all'altra. Il lato e' il piu' grande che sta nello spazio
-		# con tre colonne e due righe, e il blocco si centra: fra una tessera e
-		# l'altra c'e' una fuga, non un prato.
-		var side: float = minf(size.x / float(columns), size.y / float(rows))
+		# **La mappa e' un 3x2** (D-464, parola del committente): tre colonne
+		# e due righe sempre, anche quando le tessere posate sono meno. Sopra
+		# la riga alta e sotto la riga bassa corre la striscia dei segnalini
+		# di stato della Regione — sei spazi per tessera — e la tessera e' il
+		# lato piu' grande che ci sta con quelle due strisce.
+		var columns: int = GRID_COLUMNS
+		var rows: int = GRID_ROWS
+		var strip: float = SLOT + SLOT_GAP * 2.0
+		var side: float = minf(
+			(size.x - SEAM * float(columns - 1)) / float(columns),
+			(size.y - strip * 2.0 - SEAM * float(rows - 1)) / float(rows)
+		)
 		_radius = side * 0.5
-		var block: Vector2 = Vector2(side * float(columns), side * float(rows))
-		var origin: Vector2 = (size - block) * 0.5
+		_grid_side = side
+		var block: Vector2 = Vector2(
+			side * float(columns) + SEAM * float(columns - 1),
+			side * float(rows) + SEAM * float(rows - 1) + strip * 2.0
+		)
+		var origin: Vector2 = (size - block) * 0.5 + Vector2(0.0, strip)
+		_grid_origin = origin
 		for region_id in _regions:
 			var spot: Variant = posa.get(str(region_id))
 			if spot == null:
 				continue
 			_points[str(region_id)] = origin + Vector2(
-				(float(int((spot as Array)[0])) + 0.5) * side,
-				(float(int((spot as Array)[1])) + 0.5) * side
+				(float(int((spot as Array)[0])) + 0.5) * side + SEAM * float(int((spot as Array)[0])),
+				(float(int((spot as Array)[1])) + 0.5) * side + SEAM * float(int((spot as Array)[1]))
 			)
 		return
 
@@ -513,6 +450,50 @@ func _draw() -> void:
 		_draw_roads()
 	for region_id in _regions:
 		_draw_region(str(region_id))
+	if not (_session.world.get("map_positions", {}) as Dictionary).is_empty():
+		_draw_seams()
+
+
+## **Il confine e' un varco** (D-390), e si vede (D-464, parola del
+## committente: *«i lati di adiacenza comuni creano una zona dove e'
+## possibile capire che le tessere sono adiacenti e si possono spostare
+## cose»*). Nella fuga fra due tessere accostate: un ponte chiaro se il varco
+## c'e' su tutte e due, un muro scuro se no.
+func _draw_seams() -> void:
+	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
+	var at: Dictionary = {}
+	for region_id in posa:
+		var spot: Array = posa[region_id] as Array
+		at["%d,%d" % [int(spot[0]), int(spot[1])]] = str(region_id)
+	var links: Dictionary = _session.world.get("adjacency", {}) as Dictionary
+	var half: float = _radius
+	for region_id in posa:
+		var here: String = str(region_id)
+		if not _points.has(here):
+			continue
+		var spot: Array = posa[here] as Array
+		var centre: Vector2 = _points[here]
+		for step in [Vector2i(1, 0), Vector2i(0, 1)]:
+			var key: String = "%d,%d" % [int(spot[0]) + step.x, int(spot[1]) + step.y]
+			if not at.has(key):
+				continue
+			var there: String = str(at[key])
+			var open: bool = (links.get(here, []) as Array).has(there)
+			var seam: Vector2 = centre + Vector2(
+				(half + SEAM * 0.5) if step.x == 1 else 0.0,
+				(half + SEAM * 0.5) if step.y == 1 else 0.0
+			)
+			var along: Vector2 = Vector2(0.0, half * 0.34) if step.x == 1 else Vector2(half * 0.34, 0.0)
+			var across: Vector2 = Vector2(SEAM * 0.5 + 6.0, 0.0) if step.x == 1 else Vector2(0.0, SEAM * 0.5 + 6.0)
+			if open:
+				var bridge: Rect2 = Rect2(seam - along - across, (along + across) * 2.0)
+				draw_rect(bridge, Color("#b08a4e"), true)
+				draw_rect(bridge, Color("#e8b563"), false, 1.5)
+			else:
+				# Il muro: un lato chiuso si vede quanto un varco aperto.
+				var wall: Vector2 = Vector2(0.0, half) if step.x == 1 else Vector2(half, 0.0)
+				draw_line(seam - wall, seam + wall, Color("#0b0a08"), SEAM - 2.0, false)
+				draw_line(seam - wall, seam + wall, Color("#5a2f27"), 3.0, true)
 
 
 ## Roads first, so the Regions sit on top of them. Drawn once per pair: the
@@ -674,7 +655,106 @@ func _draw_square_tile(
 
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
-	_draw_marks(centre, region_id, _session.world["regions"][region_id])
+	_draw_slots(centre, region_id, _session.world["regions"][region_id])
+
+
+## **Gli spazi della tessera** (D-464, parola del committente). Ogni tessera
+## ha, sul lato esterno del tavolo — sopra se sta nella riga alta, sotto se
+## sta in quella bassa — **sei spazi** per i segnalini di stato della
+## Regione, tre a sinistra e tre a destra; e dentro, sopra il nome, **quattro
+## spazi quadrati** per le Pietre e **tre tondi** per le Cicatrici. Uno spazio
+## vuoto si vede: e' la casella stampata sul cartone, e dice quanto ci sta.
+func _draw_slots(centre: Vector2, region_id: String, region: Dictionary) -> void:
+	var data: RefCounted = _session.data if _session != null else null
+	var half: float = _radius
+	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
+	var row: int = int(((posa.get(region_id, [0, 0])) as Array)[1])
+	var outer_y: float = (
+		centre.y - half - SLOT_GAP - SLOT * 0.5 if row == 0
+		else centre.y + half + SLOT_GAP + SLOT * 0.5
+	)
+
+	var conditions: Array = []
+	var scars: Array = []
+	for tag in region["tags"]:
+		var text: String = str(tag)
+		if text.begins_with("condition:"):
+			conditions.append(text)
+		elif text.begins_with("scar:"):
+			scars.append(text)
+	conditions.sort()
+	scars.sort()
+
+	# La striscia dei sei spazi: tre da un lato, tre dall'altro, con un vuoto
+	# in mezzo che e' il posto della pedina di controllo.
+	var pitch: float = SLOT + SLOT_GAP
+	var xs: Array = []
+	for i in range(3):
+		xs.append(centre.x - half + SLOT * 0.5 + 4.0 + float(i) * pitch)
+	for i in range(3):
+		xs.append(centre.x + half - SLOT * 0.5 - 4.0 - float(2 - i) * pitch)
+	for i in range(xs.size()):
+		var at: Vector2 = Vector2(float(xs[i]), outer_y)
+		var box: Rect2 = Rect2(at - Vector2(SLOT, SLOT) * 0.5, Vector2(SLOT, SLOT))
+		draw_rect(box, Color("#14110e"), true)
+		draw_rect(box, Color("#3a332a"), false, 1.0)
+		if i < conditions.size():
+			_draw_token(str(conditions[i]), box, data)
+
+	# Dentro la tessera, sopra il nome: le Pietre (quadrati) e le Cicatrici (tondi).
+	var inner_y: float = centre.y + half - 24.0 - SLOT_GAP - SLOT * 0.5
+	var stones: Array = []
+	for record in region.get("structures", []):
+		stones.append(record as Dictionary)
+	for i in range(STONE_SLOTS):
+		var at: Vector2 = Vector2(centre.x - half + 4.0 + SLOT * 0.5 + float(i) * pitch, inner_y)
+		var box: Rect2 = Rect2(at - Vector2(SLOT, SLOT) * 0.5, Vector2(SLOT, SLOT))
+		draw_rect(box, Color(0.08, 0.07, 0.05, 0.85), true)
+		draw_rect(box, Color("#4a4238"), false, 1.0)
+		if i < stones.size():
+			_draw_stone(stones[i] as Dictionary, box, data)
+	for i in range(SCAR_SLOTS):
+		var at: Vector2 = Vector2(centre.x + half - 4.0 - SLOT * 0.5 - float(SCAR_SLOTS - 1 - i) * pitch, inner_y)
+		draw_circle(at, SLOT * 0.5, Color(0.08, 0.07, 0.05, 0.85))
+		draw_arc(at, SLOT * 0.5, 0.0, TAU, 20, Color("#4a4238"), 1.0, true)
+		if i < scars.size():
+			_draw_token(str(scars[i]), Rect2(at - Vector2(SLOT, SLOT) * 0.5, Vector2(SLOT, SLOT)), data)
+
+
+## Un segnalino di condizione o di Cicatrice nel suo spazio.
+func _draw_token(tag: String, box: Rect2, data: RefCounted) -> void:
+	var piece: String = SignLabels.piece(tag, data)
+	if piece == "":
+		return
+	var tint: Color = Color(str(PIECE_COLOURS.get(piece, "#8a8172")))
+	draw_circle(box.get_center(), SLOT * 0.5 - 1.0, Color("#16130f"))
+	draw_arc(box.get_center(), SLOT * 0.5 - 1.0, 0.0, TAU, 20, tint, 1.4, true)
+	Glyph.paint(self, piece, box.grow(-4.0), tint)
+
+
+## Una Pietra nel suo spazio quadrato, col colore di chi la tiene e i punti
+## del grado.
+func _draw_stone(stone: Dictionary, box: Rect2, data: RefCounted) -> void:
+	var kind: String = str(stone.get("structure_type", ""))
+	var family: String = SignLabels.family_of(kind, data)
+	if family == "":
+		return
+	var holder: Variant = stone.get("owner", null)
+	var tint: Color = (
+		_entity_colour(str(holder)) if holder != null
+		else Color(str(PIECE_COLOURS.get(family, "#a8a294")))
+	)
+	draw_rect(box, Color("#16130f"), true)
+	draw_rect(box, tint, false, 1.4)
+	Glyph.paint(self, family, box.grow(-4.0), tint)
+	var grade: int = int(stone.get("grade", 1))
+	if grade > 1:
+		var pips: float = float(grade) * 5.0 - 1.5
+		for pip in range(grade):
+			draw_circle(
+				Vector2(box.get_center().x - pips * 0.5 + float(pip) * 5.0 + 1.5, box.end.y - 3.0),
+				1.8, tint
+			)
 
 
 ## I tratti del bioma dentro un rettangolo, senza la sagoma piena: la usa la

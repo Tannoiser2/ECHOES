@@ -89,9 +89,23 @@ func _ready() -> void:
 	add_theme_constant_override("separation", 4)
 
 
+## **La scheda degli obiettivi** (D-464): la stessa colonna, ma con solo il
+## Destino e il profilo — quello che si guarda per sapere cosa si vuole. La
+## scheda della casa tiene il resto: le domande aperte, i rapporti, i segni.
+var only_goals: bool = false
+
+
 func render(session: RefCounted, viewer_id: String) -> void:
 	if _title == null:
 		_build()
+	if only_goals:
+		_title.visible = false
+		for child in get_children():
+			if child is Label and child != _title and (child as Label).text.begins_with("Le domande gia'"):
+				(child as Label).visible = false
+		_update_destiny(session, viewer_id)
+		_update_profile(session, viewer_id)
+		return
 	# **Quale regola sta giocando questa Chronicle** (D-243). Col Consiglio a
 	# fine Atto la soglia non apre piu' niente ([D-214](DECISIONS.md#d-214)) e
 	# quello che conta e' **chi e' il mucchio piu alto**: e' quella domanda che

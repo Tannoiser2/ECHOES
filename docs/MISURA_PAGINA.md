@@ -20,12 +20,12 @@ sta in una colonna sua.
 
 | | |
 |---|---|
-| pannelli guardati | 8 |
-| nodi in tutto | 257 |
-| testi sotto gli occhi | 146 |
+| pannelli guardati | 9 |
+| nodi in tutto | 268 |
+| testi sotto gli occhi | 142 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
-| bersagli che si toccano | 25 |
+| bersagli che si toccano | 27 |
 | **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
@@ -91,11 +91,12 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
 | colonna di stato | al centro, uno alla volta | 95 | 234 | 1726 |
-| mappa | sul tavolo | 21 | *si adatta* | |
+| mappa | sul tavolo | 13 | *si adatta* | |
 | il Consiglio | al centro, uno alla volta | 45 | 226 | 40 |
-| il tavolo | nella stanza, prima di sedersi | 43 | *si adatta* | |
+| il tavolo | nella stanza, prima di sedersi | 35 | *si adatta* | |
 | i mazzi dei Temi | sul tavolo | 13 | *si adatta* | |
 | chi siede | sul tavolo | 25 | 402 | 44 |
+| le domande | sul tavolo | 27 | 230 | 476 |
 | la pagina d'aiuto | al centro, uno alla volta | 2 | 37 | 28 |
 | la mano | sotto, tutta la larghezza | 13 | 342 | 246 |
 

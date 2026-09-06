@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.433 — Il tavolo come lo vuole il committente: 3x2, varchi, spazi, colonne
+
+[D-464](docs/DECISIONS.md#d-464), parola del committente davanti all'iPad. La
+posa delle tessere sta in un rettangolo 3x2 (151.200 pose enumerate: 0 fuori,
+0 isolate); la mappa disegna i varchi fra le tessere, sei spazi per i
+segnalini di stato su ogni tessera, quattro per le Pietre e tre per le
+Cicatrici. La pagina si ridispone: barra di stato sopra, domande scoperte coi
+gettoni coperti in una colonna a sinistra, verbale a destra, mano, casa e
+obiettivi a schede sotto, il Consiglio in una schermata a parte. La finestra
+riempie lo schermo. Cancello dei 100 semi: 0 seggi
+bloccati sui due tavoli; tessere con un vicino solo 6,7% → 3,3%.
+
+---
+
 ## 0.1.432 — La pagina vista con gli occhi: quattro difetti e una risposta
 
 [D-463](docs/DECISIONS.md#d-463), parola del committente: *«è giocabile? è
