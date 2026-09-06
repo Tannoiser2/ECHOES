@@ -5,6 +5,19 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.434 — La pagina alla misura del tablet: un pixel e' un punto, e i caratteri si misurano
+
+[D-465](docs/DECISIONS.md#d-465), il costo lasciato scritto in D-464. La
+finestra di progetto e' 1366x1024, la misura di un iPad tenuto per il largo:
+un pixel della pagina e' un punto del tablet, dove prima tutto arrivava a
+0,71. Nove testi da 10 diventano da 11. La sonda della pagina legge la taglia
+di ogni testo per il fattore del tablet e va rossa sotto gli 11 punti:
+provata sulla finestra vecchia, 151 testi su 153. Il cartiglio del turno
+entra nel verbale senza le cornici da terminale, riga per riga. Cancello dei
+100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.433 — Il tavolo come lo vuole il committente: 3x2, varchi, spazi, colonne
 
 [D-464](docs/DECISIONS.md#d-464), parola del committente davanti all'iPad. La

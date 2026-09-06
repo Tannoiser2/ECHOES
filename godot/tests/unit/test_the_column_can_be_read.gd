@@ -17,9 +17,12 @@ extends "res://tests/test_case.gd"
 const StatusPanel := preload("res://ui/status_panel.gd")
 
 ## L'intestazione di un blocco e la sua spiegazione si distinguono per corpo:
-## 12 la prima, 10 la seconda. E' la stessa gerarchia di una carta stampata.
+## 12 la prima, 11 la seconda. E' la stessa gerarchia di una carta stampata.
+## Era 10 fino a D-464: da [D-465] un pixel della pagina e' un punto del
+## tablet, e 10 punti stanno sotto il pavimento degli 11 che la guida dei
+## sistemi a tocco da' per qualunque testo.
 const HEADER_SIZE: int = 12
-const NOTE_SIZE: int = 10
+const NOTE_SIZE: int = 11
 
 
 func before_each() -> void:

@@ -456,7 +456,7 @@ func _note(text: String) -> Label:
 	var line := Label.new()
 	line.text = text
 	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	line.add_theme_font_size_override("font_size", 10)
+	line.add_theme_font_size_override("font_size", 11)
 	line.add_theme_color_override("font_color", Color("#6c6457"))
 	return line
 
@@ -532,7 +532,7 @@ func _update_profile(session: RefCounted, viewer_id: String) -> void:
 				var motivo := Label.new()
 				motivo.text = perche
 				motivo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				motivo.add_theme_font_size_override("font_size", 10)
+				motivo.add_theme_font_size_override("font_size", 11)
 				motivo.add_theme_color_override("font_color", Color("#8a8172"))
 				_profile.add_child(motivo)
 
@@ -576,7 +576,7 @@ func _add_threshold(session: RefCounted, viewer_id: String, profile: Dictionary)
 			var racconto := Label.new()
 			racconto.text = che_vita
 			racconto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-			racconto.add_theme_font_size_override("font_size", 10)
+			racconto.add_theme_font_size_override("font_size", 11)
 			racconto.add_theme_color_override("font_color", Color("#8a8172"))
 			_profile.add_child(racconto)
 		var clock := Label.new()
@@ -741,7 +741,7 @@ func _titled(picture: TextureRect, label: String) -> Control:
 	var top := Label.new()
 	top.text = label
 	top.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	top.add_theme_font_size_override("font_size", 10)
+	top.add_theme_font_size_override("font_size", 11)
 	top.add_theme_color_override("font_color", Color("#8a8172"))
 	column.add_child(top)
 	column.add_child(picture)

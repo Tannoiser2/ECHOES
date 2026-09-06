@@ -163,7 +163,7 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefC
 		_verb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		_verb.max_lines_visible = 2
 		_verb.custom_minimum_size = Vector2(0, VERB_H)
-		_verb.add_theme_font_size_override("font_size", 10)
+		_verb.add_theme_font_size_override("font_size", 11)
 		_verb.add_theme_color_override("font_color", Color("#8a8172"))
 		box.add_child(_verb)
 		_footer = Label.new()
@@ -294,7 +294,7 @@ func _get_drag_data(_at: Vector2) -> Variant:
 	var name := Label.new()
 	name.text = str(asset.get("title", ""))
 	name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	name.add_theme_font_size_override("font_size", 10)
+	name.add_theme_font_size_override("font_size", 11)
 	name.add_theme_color_override("font_color", Color("#efe7d8"))
 	name.set_anchors_preset(Control.PRESET_FULL_RECT)
 	ghost.add_child(name)

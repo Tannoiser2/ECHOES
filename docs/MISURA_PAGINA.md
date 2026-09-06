@@ -8,7 +8,8 @@ questa pagina**, quindi ogni giro costa il pomeriggio di una persona con
 l'app in mano. Questa e' quella sonda.
 
 Misura le quattro cose che i sei difetti trovati su un tablet avevano in
-comune, cosi' ogni passata si giudica coi numeri. La rivista l'ha scelta il
+comune — e da [D-465](DECISIONS.md#d-465) la quinta, la taglia dei
+caratteri sul tablet — cosi' ogni passata si giudica coi numeri. La rivista l'ha scelta il
 committente — [D-427](DECISIONS.md#d-427), la terza: *l'app mostra il
 tavolo, non lo stato* — ed e' fatta in [D-444](DECISIONS.md#d-444): da li'
 questa pagina dice **se la pagina la segue**.
@@ -29,6 +30,10 @@ sta in una colonna sua.
 | **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
+| testi con una taglia | 153 |
+| **piu' piccoli di 11 punti sul tablet** | **0** |
+| sotto i 17 punti, che la guida chiama «corpo» | 151 |
+| il piu' piccolo, sul tablet | 11.0 punti |
 
 **Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`
 riempito con `append_text` tiene le parole in un albero che, senza un vero
@@ -90,7 +95,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | al centro, uno alla volta | 95 | 234 | 1726 |
+| colonna di stato | al centro, uno alla volta | 95 | 234 | 1840 |
 | mappa | sul tavolo | 13 | *si adatta* | |
 | il Consiglio | al centro, uno alla volta | 45 | 226 | 40 |
 | il tavolo | nella stanza, prima di sedersi | 35 | *si adatta* | |
@@ -111,3 +116,26 @@ Tre misure, una per posto:
 **La pagina sta dentro il tablet**, in tutti e tre i posti. Fino a D-444
 chiedeva 788 px in fila senza contare la mappa: non e' che i pannelli si
 sono stretti, e' che non stanno piu' in fila.
+
+## 5. I caratteri, misurati sul tablet
+
+La pagina e' disegnata a **1366x1024** e sul tablet da 1366x1024, tenuto per il
+largo, un suo pixel vale **1.00 punti** ([D-465](DECISIONS.md#d-465)).
+Ogni testo porta la taglia che dichiara, o quella del tema se non ne
+dichiara nessuna, per quel fattore. Sotto gli **11 punti** la guida dei
+sistemi a tocco dice che non si legge, e la sonda va rossa; **17** e' la
+taglia che chiama «corpo», e qui si conta e basta.
+
+Nessun testo sotto i 11 punti.
+
+Quanti testi a ogni taglia, sul tablet:
+
+| punti | testi |
+|---|---|
+| 11 | 62 |
+| 12 | 53 |
+| 13 | 34 |
+| 14 | 1 |
+| 15 | 1 |
+| 18 | 1 |
+| 19 | 1 |

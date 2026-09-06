@@ -10,6 +10,88 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-465 — La pagina alla misura del tablet: un pixel e' un punto, e i caratteri si misurano
+
+**implemented in 0.1.434.** Il costo scritto in fondo a [D-464](#d-464):
+*«la pagina e' disegnata a 1920x1080 e scalata: su un iPad da 1366x1024
+tutto e' a 0,71, e i testi da 12 diventano da 8»*. Nessuna misura lo
+diceva, e le foto lo mostravano. Qui si chiude in tre mosse, e la terza e'
+una guardia.
+
+### 1. La finestra e' il tablet
+
+`project.godot` dichiara **1366x1024**, la misura in punti di un iPad tenuto
+per il largo — quello di D-464 — invece di 1920x1080. Con `stretch/mode =
+canvas_items` e `aspect = expand` la pagina si scala allo schermo per il
+lato che stringe di piu': sul tablet il fattore e' **1,00**, un pixel della
+pagina e' un punto dello schermo; su un monitor da 1920x1080 e' 1,055 con
+1820x1024 punti di pagina; su 1600x900 e' 0,88. La pagina, fotografata a
+1366x1024 e a 1920x1080 dal titolo al «Consiglio ha deciso», sta dentro
+tutta: la mappa 3x2, la colonna delle domande, il verbale, le tre schede, il
+Consiglio a schermo intero. La tessera sul tablet passa da circa 192 punti
+di lato a circa 225.
+
+### 2. Nove testi da 10 diventano da 11
+
+Le note della colonna di stato (quattro), il verbo e il nome piccolo della
+carta, il credito in fondo al titolo, due righe della scheda della carta:
+tutti a 10, che alla misura del tablet e' sotto il pavimento. La prova
+`test_the_column_can_be_read` teneva la gerarchia *12 l'intestazione, 10
+la nota*: ora e' 12/11, con la ragione scritta accanto.
+
+### 3. La sonda della pagina misura i caratteri, e va rossa sotto gli 11
+
+`run_page_survey.gd` legge la finestra dal progetto — non ricopiata — e per
+ogni testo sotto gli occhi (etichetta con parole, bottone con scritta, blocco
+di testo ricco) la taglia dichiarata, o quella del tema se non ne dichiara
+nessuna, moltiplicata per il fattore del tablet. **Sotto gli 11 punti la
+sonda esce rossa**: e' il pavimento che la guida dei sistemi a tocco di Apple
+da' per qualunque testo, e 17 e' quello che chiama «corpo» — il secondo si
+conta e basta. La sezione 5 di [MISURA_PAGINA](MISURA_PAGINA.md) porta i
+testi sotto il pavimento e quanti testi a ogni taglia.
+
+**Provata prima di crederle**: rimessa la finestra a 1920x1080, la sonda
+dice **151 testi su 153 sotto gli 11 punti, il piu' piccolo a 7,8**, ed esce
+6. E quattro prove fabbricate — un'etichetta da 8, un testo ricco da 9, un
+bottone senza taglia, un nodo senza parole — tengono la guardia onesta
+(`test_the_page_is_drawn_at_the_size_of_a_tablet`).
+
+| sul tablet, 153 testi con una taglia | prima (1920x1080) | ora (1366x1024) |
+|---|---|---|
+| sotto gli 11 punti | **151** | **0** |
+| sotto i 17 punti, «corpo» | 153 | 151 |
+| il piu' piccolo | 7,8 | 11,0 |
+
+### E una cosa vista nelle foto
+
+Il cartiglio del turno arrivava al verbale ancora con le cornici da
+terminale — «+-- ATTO 1, ROUND 1 ---», «| In mano: ...» — che D-464 diceva
+di aver tolto: arriva **in un blocco solo** di piu' righe, e il filtro
+guardava la prima. `say()` ora guarda riga per riga (`_without_frames`,
+provata su un blocco fabbricato).
+
+### Costi e cose lasciate
+
+- **151 testi su 153 stanno fra gli 11 e i 13 punti**: leggibili, non
+  comodi. Alzare la scala fino ai 17 vuol dire ridisporre la pagina — la
+  mano, la colonna delle domande a riga singola, le parole dentro la
+  tessera — ed e' un altro giro, con la pagina in mano.
+- **Il pavimento e' misurato sul tablet di D-464.** Su un iPad da 11
+  pollici (1180x820 punti) il fattore e' 0,80 e un 11 diventa un 9; su uno
+  da 1024x768 e' 0,75. La sonda conosce un tablet solo, e lo dice.
+- La sezione 4 di MISURA_PAGINA confronta ancora le larghezze con un tablet
+  da 768 tenuto in verticale: con la finestra nuova, in verticale la pagina
+  ha 1366 punti a 0,75, e quel confronto e' pessimista. Non toccato qui.
+- Il disegno del Consiglio a schermo intero resta quello di D-463.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **135 · 50 · 77 · 74** sul misto e
+**116 · 60 · 83 · 93** sull'uniforme — gli stessi di D-464, il motore non
+e' toccato. Suite 750 prove verdi; 28 cancelli veloci e 5 lenti verdi,
+`MISURA_PAGINA.md` rifatto.
+
+---
+
 ## D-464 — Il tavolo come lo vuole il committente: 3x2, varchi, spazi, colonne
 
 **implemented in 0.1.433.** Parola del committente, davanti alla pagina su

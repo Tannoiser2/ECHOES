@@ -6302,6 +6302,14 @@ giocare.** Il cancello gioca solo con `PolicyDecider`, che non ha mani.
 > come prima stesura, e fotografato. La voce resta aperta per la stessa
 > ragione di sempre: che una persona ci giochi lo verifica una persona.
 
+> **Avanzamento in 0.1.434** ([D-465](DECISIONS.md#d-465)): la pagina e'
+> disegnata alla misura del tablet — 1366x1024, un pixel e' un punto — dove
+> prima era a 1920x1080 e sull'iPad arrivava a 0,71. La sonda della pagina
+> misura la taglia di ogni testo sul tablet e va rossa sotto gli 11 punti;
+> sulla finestra vecchia diceva 151 testi su 153. Restano 151 testi fra gli
+> 11 e i 13: leggibili, non comodi, e il giudizio resta a chi tiene la
+> pagina in mano.
+
 ### Le quattro mosse
 
 1. ✅ **La carta dice cosa fa** — [D-228](DECISIONS.md#d-228), 0.1.199. Il verbo

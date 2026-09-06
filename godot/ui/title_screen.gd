@@ -143,7 +143,7 @@ func _build_table_panel() -> void:
 	var credit := Label.new()
 	credit.text = "1–4 giocatori · 90–150 minuti · 14+   ·   Un gioco di Stefano Ancillai"
 	credit.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	credit.add_theme_font_size_override("font_size", 10)
+	credit.add_theme_font_size_override("font_size", 11)
 	credit.add_theme_color_override("font_color", Color("#8a8172"))
 	column.add_child(credit)
 
