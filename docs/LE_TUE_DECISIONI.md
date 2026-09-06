@@ -167,6 +167,15 @@ non costa niente al motore, 151.200 pose e nessuna tessera fuori. Il resto
 — la taglia dei caratteri, il disegno del Consiglio — è il giro dopo, con
 la pagina in mano.
 
+**E in 0.1.434 la taglia dei caratteri è arrivata** ([D-465](DECISIONS.md#d-465)):
+la pagina è disegnata alla misura del tuo iPad, 1366x1024, così un pixel è un
+punto e non più sette decimi di punto. Nove testi da 10 sono da 11, e la sonda
+della pagina adesso legge la taglia di ogni testo sul tablet e va rossa sotto
+gli 11 punti — sulla pagina vecchia ne contava 151 su 153. Quello che resta,
+e che ti dico: 151 testi stanno fra gli 11 e i 13 punti, leggibili ma non
+comodi, e su un iPad più piccolo del tuo il pavimento non tiene. Il verbale
+ha perso le cornici da terminale che in 0.1.433 avevo detto di aver tolto.
+
 ---
 
 ## 0.1.398–0.1.405 — le tredici «M» sono passate, e ne resta una

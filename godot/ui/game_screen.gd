@@ -934,17 +934,28 @@ func _on_save_pressed() -> void:
 func say(text: String) -> void:
 	if text.begins_with("=="):
 		_transcript.append_text("\n[color=#e8b563][b]%s[/b][/color]\n" % text.strip_edges())
-	else:
-		# **Il verbale parla, non disegna** (D-464): il cartiglio del turno
-		# arrivava con le sue cornici da terminale — «+-- ATTO 1, ROUND 1 ---»,
-		# «| In mano: ...» — e sulla pagina era rumore.
-		var line: String = text
+		_tell(text)
+		return
+	var said: String = _without_frames(text)
+	_transcript.append_text("%s\n" % said)
+	_tell(said)
+
+
+## **Il verbale parla, non disegna** (D-464): il cartiglio del turno arriva
+## con le sue cornici da terminale — «+-- ATTO 1, ROUND 1 ---», «| In mano:
+## ...» — e sulla pagina era rumore. Arriva **in un blocco solo** di piu'
+## righe, e il filtro di D-464 guardava la prima riga soltanto: le foto di
+## D-465 lo mostravano ancora intero. Si guarda riga per riga.
+static func _without_frames(text: String) -> String:
+	var spoken: Array = []
+	for line_v in text.split("\n"):
+		var line: String = str(line_v)
 		if line.begins_with("+--"):
 			line = "[color=#e8b563]%s[/color]" % line.trim_prefix("+--").strip_edges(false, true).rstrip("-").strip_edges()
 		elif line.begins_with("| "):
 			line = line.trim_prefix("| ")
-		_transcript.append_text("%s\n" % line)
-	_tell(text)
+		spoken.append(line)
+	return "\n".join(PackedStringArray(spoken))
 
 
 ## **Il racconto** (D-444): le ultime righe dette, sotto la mappa, come le
@@ -1249,7 +1260,7 @@ func _card_sheet(asset_id: String, indices: Array) -> void:
 
 	var target: String = str((face.get("target", {}) as Dictionary).get("text", ""))
 	if target != "":
-		_sheet_line("BERSAGLIO", 10, "#8a8172")
+		_sheet_line("BERSAGLIO", 11, "#8a8172")
 		_sheet_line(target, 12, "#c9bfae")
 
 	# Le scelte legali, raccolte per verbo: e' il ponte fra quello che il
@@ -1302,7 +1313,7 @@ func _card_sheet(asset_id: String, indices: Array) -> void:
 	var resonance: Dictionary = face.get("resonance", {}) as Dictionary
 	if not resonance.is_empty():
 		_gap_line()
-		_sheet_line("RISONANZA — avviene comunque", 10, "#8a8172")
+		_sheet_line("RISONANZA — avviene comunque", 11, "#8a8172")
 		_sheet_line(str(resonance.get("text", "")), 11, "#b06b46")
 
 

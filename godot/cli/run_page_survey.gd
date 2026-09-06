@@ -59,6 +59,21 @@ const TAVOLETTA: float = 768.0
 const COLONNA: float = 240.0
 const MARGINI: float = 36.0
 
+## **Il tablet su cui la pagina si gioca, tenuto per il largo** (D-465): un iPad
+## da 1366x1024 punti, quello davanti a cui il committente ha parlato in D-464.
+## La pagina e' disegnata a questa misura (`project.godot`), cosi' **un pixel
+## della pagina e' un punto del tablet**: prima era disegnata a 1920x1080 e
+## sul tablet arrivava a 0,71, e un testo da 12 si leggeva da 8.
+const TAVOLETTA_LARGA: float = 1366.0
+const TAVOLETTA_ALTA: float = 1024.0
+
+## Sotto gli 11 punti un testo non si legge. Non e' un numero inventato qui: e'
+## il pavimento che la guida dei sistemi a tocco di Apple da' per qualunque
+## testo, e **17** e' la taglia che la stessa guida chiama «corpo». La prima e'
+## un cancello, la seconda un numero da scrivere.
+const CARATTERE_MINIMO: float = 11.0
+const CARATTERE_COMODO: float = 17.0
+
 
 var _out_path: String = "docs/MISURA_PAGINA.md"
 var _pages: Array = []
@@ -74,6 +89,9 @@ var _dictionary: Dictionary = {}
 ## riempito con `append_text` non ha ancora un testo da leggere nello stesso
 ## giro in cui e' nato: la pagina d'aiuto risultava senza una parola.
 var _giro: int = 0
+
+## Quanto vale un pixel della pagina sul tablet, letto dal progetto in `_initialize`.
+var _scale: float = 0.0
 
 
 ## **Il lavoro si fa al primo giro dell'albero, non in `_initialize`.**
@@ -121,6 +139,11 @@ func _initialize() -> void:
 	_session = session
 	_data = data
 	_viewer = viewer
+	_scale = _tablet_scale(_project_viewport())
+	if _scale <= 0.0:
+		printerr("il progetto non dichiara una finestra: la sonda non sa quanto vale un pixel")
+		quit(4)
+		return
 
 
 ## Guardata la pagina, non costruita: qui i pannelli hanno gia' avuto il loro
@@ -137,6 +160,7 @@ func _survey() -> void:
 	var small: Array = []
 	var undeclared: Array = []
 	var technical: Array = []
+	var fonts: Array = []
 	var widths: Array = []
 	var nodes: int = 0
 	var targets: int = 0
@@ -147,7 +171,7 @@ func _survey() -> void:
 		var root: Node = page["node"] as Node
 		var name: String = str(page["name"])
 		var seen: Dictionary = {"nodes": 0, "targets": 0, "words": 0, "rich": 0}
-		_walk(root, name, seen, mouse, small, undeclared, technical)
+		_walk(root, name, seen, mouse, small, undeclared, technical, fonts)
 		nodes += int(seen["nodes"])
 		targets += int(seen["targets"])
 		words += int(seen["words"])
@@ -166,8 +190,14 @@ func _survey() -> void:
 		quit(4)
 		return
 
+	# Un testo con una taglia si e' visto? Se no, la sonda e' cieca lei.
+	if fonts.is_empty():
+		printerr("nessun testo con una taglia: la sonda non legge i caratteri")
+		quit(4)
+		return
+
 	var lines: Array = _write(
-		nodes, targets, words, rich, mouse, small, undeclared, technical, widths
+		nodes, targets, words, rich, mouse, small, undeclared, technical, widths, fonts
 	)
 	var file: FileAccess = FileAccess.open(out_path, FileAccess.WRITE)
 	if file == null:
@@ -179,6 +209,18 @@ func _survey() -> void:
 	print("Scritto: %s  (%d nodi, %d bersagli, %d parole)" % [
 		out_path, nodes, targets, words
 	])
+	# **Un testo sotto gli 11 punti sul tablet e' rosso** (D-465): il documento
+	# e' scritto lo stesso, cosi' si legge quale.
+	var tiny: int = 0
+	for entry_v in fonts:
+		if _too_small(int((entry_v as Dictionary)["font"]), _scale):
+			tiny += 1
+	if tiny > 0:
+		printerr("%d testi piu' piccoli di %d punti sul tablet: vedi %s" % [
+			tiny, int(CARATTERE_MINIMO), out_path
+		])
+		quit(6)
+		return
 	quit(0)
 
 
@@ -279,9 +321,18 @@ static func _open_a_council(session: RefCounted) -> void:
 
 func _walk(
 	node: Node, page: String, seen: Dictionary,
-	mouse: Array, small: Array, undeclared: Array, technical: Array
+	mouse: Array, small: Array, undeclared: Array, technical: Array, fonts: Array
 ) -> void:
 	seen["nodes"] = int(seen["nodes"]) + 1
+	# **Ogni testo porta la sua taglia, e la taglia si legge sul tablet**
+	# (D-465): quella dichiarata dal nodo — o del tema, se non ne dichiara
+	# nessuna — per quanto vale un pixel della pagina sullo schermo vero.
+	if _has_words(node):
+		var font: int = _font_of(node)
+		fonts.append({
+			"page": page, "who": _who(node), "font": font,
+			"tablet": _on_the_tablet(font, _scale),
+		})
 	if node is Control:
 		var control: Control = node as Control
 		var tip: String = str(control.tooltip_text).strip_edges()
@@ -318,7 +369,55 @@ func _walk(
 				technical.append({"page": page, "text": str(riga).strip_edges()})
 				break
 	for child in node.get_children():
-		_walk(child, page, seen, mouse, small, undeclared, technical)
+		_walk(child, page, seen, mouse, small, undeclared, technical, fonts)
+
+
+## Un nodo che ha parole sotto gli occhi: un'etichetta con un testo, un bottone
+## con una scritta, un blocco di testo ricco (le cui parole restano fuori, ma
+## la taglia no: quella e' dichiarata).
+static func _has_words(node: Node) -> bool:
+	if node is RichTextLabel:
+		return true
+	if node is Label:
+		return str((node as Label).text).strip_edges() != ""
+	if node is BaseButton and node.get("text") != null:
+		return str(node.get("text")).strip_edges() != ""
+	return false
+
+
+## La taglia del carattere che un nodo dichiara — o quella del tema, se non ne
+## dichiara nessuna: un testo senza taglia non e' per questo piccolo.
+static func _font_of(node: Node) -> int:
+	if node is RichTextLabel:
+		return (node as Control).get_theme_font_size("normal_font_size")
+	if node is Label or node is BaseButton:
+		return (node as Control).get_theme_font_size("font_size")
+	return 0
+
+
+## Quanto vale un pixel della pagina sul tablet: la pagina si disegna alla
+## misura della finestra di progetto e si scala allo schermo per il lato che
+## stringe di piu' (`stretch/mode = canvas_items`, `aspect = expand`).
+static func _tablet_scale(viewport: Vector2) -> float:
+	if viewport.x <= 0.0 or viewport.y <= 0.0:
+		return 0.0
+	return minf(TAVOLETTA_LARGA / viewport.x, TAVOLETTA_ALTA / viewport.y)
+
+
+## La finestra a cui la pagina e' disegnata, letta dal progetto e non ricopiata.
+static func _project_viewport() -> Vector2:
+	return Vector2(
+		float(ProjectSettings.get_setting("display/window/size/viewport_width", 0)),
+		float(ProjectSettings.get_setting("display/window/size/viewport_height", 0))
+	)
+
+
+static func _on_the_tablet(font: int, scale: float) -> float:
+	return float(font) * scale
+
+
+static func _too_small(font: int, scale: float) -> bool:
+	return _on_the_tablet(font, scale) < CARATTERE_MINIMO
 
 
 ## Un posto dove una carta puo' cadere e' un bersaglio quanto un bottone.
@@ -390,8 +489,25 @@ static func _who(node: Node) -> String:
 
 func _write(
 	nodes: int, targets: int, words: int, rich: int,
-	mouse: Array, small: Array, undeclared: Array, technical: Array, widths: Array
+	mouse: Array, small: Array, undeclared: Array, technical: Array, widths: Array,
+	fonts: Array
 ) -> Array:
+	var tiny: Array = []
+	var narrow: int = 0
+	var smallest: float = 0.0
+	var by_size: Dictionary = {}
+	for entry_v in fonts:
+		var entry: Dictionary = entry_v as Dictionary
+		var tablet: float = float(entry["tablet"])
+		if smallest <= 0.0 or tablet < smallest:
+			smallest = tablet
+		if _too_small(int(entry["font"]), _scale):
+			tiny.append(entry)
+		if tablet < CARATTERE_COMODO:
+			narrow += 1
+		var key: int = int(roundf(tablet))
+		by_size[key] = int(by_size.get(key, 0)) + 1
+	var viewport: Vector2 = _project_viewport()
 	var lines: Array = []
 	lines.append("# ECHOES — cosa la pagina dice, e con quale dito")
 	lines.append("")
@@ -403,7 +519,8 @@ func _write(
 	lines.append("l'app in mano. Questa e' quella sonda.")
 	lines.append("")
 	lines.append("Misura le quattro cose che i sei difetti trovati su un tablet avevano in")
-	lines.append("comune, cosi' ogni passata si giudica coi numeri. La rivista l'ha scelta il")
+	lines.append("comune — e da [D-465](DECISIONS.md#d-465) la quinta, la taglia dei")
+	lines.append("caratteri sul tablet — cosi' ogni passata si giudica coi numeri. La rivista l'ha scelta il")
 	lines.append("committente — [D-427](DECISIONS.md#d-427), la terza: *l'app mostra il")
 	lines.append("tavolo, non lo stato* — ed e' fatta in [D-444](DECISIONS.md#d-444): da li'")
 	lines.append("questa pagina dice **se la pagina la segue**.")
@@ -424,6 +541,10 @@ func _write(
 	lines.append("| **piu' stretti di un dito (%d px)** | **%d** |" % [int(DITO), small.size()])
 	lines.append("| di cui non dichiarano nessuna misura | %d |" % undeclared.size())
 	lines.append("| **parole tecniche sotto gli occhi** | **%d** |" % technical.size())
+	lines.append("| testi con una taglia | %d |" % fonts.size())
+	lines.append("| **piu' piccoli di %d punti sul tablet** | **%d** |" % [int(CARATTERE_MINIMO), tiny.size()])
+	lines.append("| sotto i %d punti, che la guida chiama «corpo» | %d |" % [int(CARATTERE_COMODO), narrow])
+	lines.append("| il piu' piccolo, sul tablet | %.1f punti |" % smallest)
 	lines.append("")
 	lines.append("**Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`")
 	lines.append("riempito con `append_text` tiene le parole in un albero che, senza un vero")
@@ -579,6 +700,39 @@ func _write(
 	else:
 		lines.append("**La pagina non sta nel tablet**, e la riga col ✗ dice dove. Non si")
 		lines.append("ripara stringendo un pannello: si guarda cosa ci sta accanto.")
+	lines.append("")
+
+	lines.append("## 5. I caratteri, misurati sul tablet")
+	lines.append("")
+	lines.append("La pagina e' disegnata a **%dx%d** e sul tablet da %dx%d, tenuto per il" % [
+		int(viewport.x), int(viewport.y), int(TAVOLETTA_LARGA), int(TAVOLETTA_ALTA),
+	])
+	lines.append("largo, un suo pixel vale **%.2f punti** ([D-465](DECISIONS.md#d-465))." % _scale)
+	lines.append("Ogni testo porta la taglia che dichiara, o quella del tema se non ne")
+	lines.append("dichiara nessuna, per quel fattore. Sotto gli **%d punti** la guida dei" % int(CARATTERE_MINIMO))
+	lines.append("sistemi a tocco dice che non si legge, e la sonda va rossa; **%d** e' la" % int(CARATTERE_COMODO))
+	lines.append("taglia che chiama «corpo», e qui si conta e basta.")
+	lines.append("")
+	if tiny.is_empty():
+		lines.append("Nessun testo sotto i %d punti." % int(CARATTERE_MINIMO))
+	else:
+		lines.append("| pannello | testo | dichiara | sul tablet |")
+		lines.append("|---|---|---|---|")
+		for entry_v in tiny:
+			var entry: Dictionary = entry_v as Dictionary
+			lines.append("| %s | %s | %d | **%.1f** |" % [
+				str(entry["page"]), str(entry["who"]).replace("\n", " ").replace("|", "/"),
+				int(entry["font"]), float(entry["tablet"]),
+			])
+	lines.append("")
+	lines.append("Quanti testi a ogni taglia, sul tablet:")
+	lines.append("")
+	lines.append("| punti | testi |")
+	lines.append("|---|---|")
+	var sizes: Array = by_size.keys()
+	sizes.sort()
+	for size_v in sizes:
+		lines.append("| %d | %d |" % [int(size_v), int(by_size[size_v])])
 	return lines
 
 
