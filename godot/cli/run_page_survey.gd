@@ -48,16 +48,16 @@ const CORNICE_FUORI: String = "ui/game_screen.gd (dipende da un autoload)"
 ## danno da anni, ed e' gia' quella che D-243 ha usato per le carte in mano.
 const DITO: float = 44.0
 
-## La larghezza di un tablet tenuto in verticale, che e' come il committente
-## l'ha provata. Serve solo a dire **quanto la pagina chiede in confronto**.
-const TAVOLETTA: float = 768.0
-
-## **La pagina di D-444, in due numeri presi da `ui/game_screen.gd`**: la colonna
-## delle scelte a destra del tavolo, e i margini — 12 per lato piu' i 12 fra le
-## due colonne. Sono ricopiati, non letti: la cornice non compila da qui (sopra),
-## e una cifra ricopiata e' la trappola nota. Se la cornice cambia, cambiano qui.
-const COLONNA: float = 240.0
-const MARGINI: float = 36.0
+## **La pagina di D-464, in cinque numeri presi da `ui/game_screen.gd`**: i
+## margini della pagina, la fuga fra le colonne, la colonna delle domande a
+## sinistra, quella del verbale a destra, e il margine del Consiglio a schermo
+## intero. Sono ricopiati, non letti: la cornice non compila da qui (sopra), e
+## una cifra ricopiata e' la trappola nota. Se la cornice cambia, cambiano qui.
+const MARGINE: float = 8.0
+const FUGA: float = 10.0
+const SINISTRA: float = 250.0
+const DESTRA: float = 300.0
+const CONSIGLIO: float = 24.0
 
 ## **Il tablet su cui la pagina si gioca, tenuto per il largo** (D-465): un iPad
 ## da 1366x1024 punti, quello davanti a cui il committente ha parlato in D-464.
@@ -225,25 +225,26 @@ func _survey() -> void:
 
 
 ## I pannelli che si costruiscono da soli, con una partita vera dietro. Ognuno
-## dice **dove sta** nella pagina di D-444: `tavolo` (in colonna a sinistra, con
-## la colonna delle scelte accanto), `centro` (al posto del tavolo, uno alla
-## volta), `sotto` (la mano, tutta la larghezza), `stanza` (la pagina della
-## stanza, prima di sedersi: non e' la pagina di gioco).
+## dice **dove sta** nella pagina di D-464: `sinistra` (la colonna delle
+## domande), `centro` (la mappa e chi siede, e l'aiuto che si apre sopra),
+## `sotto` (le tre schede: la mano, la casa, gli obiettivi), `schermo` (il
+## Consiglio, a schermo intero), `stanza` (la pagina della stanza, prima di
+## sedersi: non e' la pagina di gioco), `fuori` (non sta sulla pagina).
 func _build(session: RefCounted, data: RefCounted, viewer: String) -> Array:
 	var out: Array = []
 
 	var status: Node = StatusPanel.new()
 	_seat(status)
 	status.render(session, viewer)
-	out.append({"name": "colonna di stato", "node": status, "where": "centro"})
+	out.append({"name": "colonna di stato", "node": status, "where": "sotto"})
 
 	var map: Node = MapView.new()
 	_seat(map)
-	# La mappa dispone le tessere secondo lo spazio che ha: la misura di un
-	# tablet meno la colonna delle scelte, come nella pagina vera.
-	(map as Control).size = Vector2(TAVOLETTA - 240.0, 520.0)
+	# La mappa dispone le tessere secondo lo spazio che ha: il centro della
+	# pagina di D-464, fra le due colonne, come nella pagina vera.
+	(map as Control).size = Vector2(_room_for("centro"), 560.0)
 	map.render(session, viewer)
-	out.append({"name": "mappa", "node": map, "where": "tavolo"})
+	out.append({"name": "mappa", "node": map, "where": "centro"})
 
 	# **Il tabellone si guarda aperto.** `render` esce subito se non c'e' un
 	# Consiglio in corso, e una sonda che guarda un tabellone chiuso direbbe che
@@ -252,39 +253,39 @@ func _build(session: RefCounted, data: RefCounted, viewer: String) -> Array:
 	var board: Node = ConfluenceBoard.new()
 	_seat(board)
 	board.render(session, viewer)
-	out.append({"name": "il Consiglio", "node": board, "where": "centro"})
+	out.append({"name": "il Consiglio", "node": board, "where": "schermo"})
 
 	var table: Node = TableView.new()
 	_seat(table)
 	# Largo come la stanza che lo ospita: senza una misura la mappa che ha
 	# dentro si stringe a un raggio minimo, e i suoi posti risultano stretti
 	# quanto un capello — un difetto della sonda, non della pagina.
-	(table as Control).size = Vector2(TAVOLETTA, 520.0)
+	(table as Control).size = Vector2(TAVOLETTA_LARGA, 560.0)
 	table.render(session)
 	out.append({"name": "il tavolo", "node": table, "where": "stanza"})
 
 	var decks: Node = ThemeDecksView.new()
 	_seat(decks)
-	# **Larga come una striscia** (D-444): sul tavolo i sei mazzetti stanno in
-	# fila lungo il bordo alto della mappa, e la vista dispone i suoi nodi
-	# secondo lo spazio che ha. Senza una misura si disporrebbe come un
-	# riquadro vuoto, che non e' la pagina.
-	(decks as Control).size = Vector2(TAVOLETTA - 240.0, 96.0)
+	# **Larga come una striscia** (D-444): i sei mazzetti in fila, e la vista
+	# dispone i suoi nodi secondo lo spazio che ha. Da D-464 la striscia
+	# **non sta piu' sulla pagina** — i gettoni stanno nella colonna delle
+	# domande — e qui resta solo perche' e' un nodo che sa disegnarsi.
+	(decks as Control).size = Vector2(_room_for("centro"), 96.0)
 	decks.render(session)
-	out.append({"name": "i mazzi dei Temi", "node": decks, "where": "tavolo"})
+	out.append({"name": "i mazzi dei Temi", "node": decks, "where": "fuori"})
 
 	var seats: Node = SeatsStrip.new()
 	_seat(seats)
 	seats.render(session, viewer)
-	out.append({"name": "chi siede", "node": seats, "where": "tavolo"})
+	out.append({"name": "chi siede", "node": seats, "where": "centro"})
 
 	# **La colonna delle domande** (D-464): i Temi coi gettoni coperti e le
 	# domande dell'anno, scoperte, a sinistra della mappa.
 	var column: Node = QuestionColumn.new()
 	_seat(column)
-	(column as Control).size = Vector2(250.0, 520.0)
+	(column as Control).size = Vector2(SINISTRA, 600.0)
 	column.render(session, viewer)
-	out.append({"name": "le domande", "node": column, "where": "tavolo"})
+	out.append({"name": "le domande", "node": column, "where": "sinistra"})
 
 	var help: Node = HelpPanel.new()
 	_seat(help)
@@ -296,7 +297,45 @@ func _build(session: RefCounted, data: RefCounted, viewer: String) -> Array:
 	hand.render(session, viewer)
 	out.append({"name": "la mano", "node": hand, "where": "sotto"})
 
+	# **La scheda degli obiettivi** (D-464): la stessa colonna di stato,
+	# ridotta a Destino e profilo, nella terza scheda sotto.
+	var goals: Node = StatusPanel.new()
+	_seat(goals)
+	goals.only_goals = true
+	goals.render(session, viewer)
+	out.append({"name": "gli obiettivi", "node": goals, "where": "sotto"})
+
 	return out
+
+
+## Quanto e' largo un posto della pagina di D-464, sul tablet di D-465. Un
+## pannello che non sta sulla pagina («fuori») non ha un posto, e vale zero.
+static func _room_for(where: String) -> float:
+	match where:
+		"sinistra":
+			return SINISTRA
+		"centro":
+			return TAVOLETTA_LARGA - MARGINE * 2.0 - SINISTRA - DESTRA - FUGA * 2.0
+		"destra":
+			return DESTRA
+		"sotto":
+			return TAVOLETTA_LARGA - MARGINE * 2.0
+		"schermo":
+			return TAVOLETTA_LARGA - CONSIGLIO * 2.0
+		"stanza":
+			return TAVOLETTA_LARGA
+	return 0.0
+
+
+## Quanto e' alto un posto, dove l'altezza e' una promessa: a schermo intero
+## il Consiglio deve starci senza scorrere la pagina.
+static func _height_for(where: String) -> float:
+	match where:
+		"schermo":
+			return TAVOLETTA_ALTA - CONSIGLIO * 2.0
+		"stanza":
+			return TAVOLETTA_ALTA
+	return 0.0
 
 
 ## **`_ready()` non gira per un nodo costruito fuori dall'albero** — e' una
@@ -619,14 +658,16 @@ func _write(
 			])
 	lines.append("")
 
-	lines.append("## 4. Quanto la pagina chiede")
+	lines.append("## 4. Quanto la pagina chiede, posto per posto")
 	lines.append("")
-	lines.append("Da [D-444](DECISIONS.md#d-444) la pagina e' **il tavolo, e una cosa alla")
-	lines.append("volta**: a sinistra il tavolo — i mazzetti, la mappa, chi siede, il")
-	lines.append("racconto — e accanto una colonna di **%d px** con quello che serve per" % int(COLONNA))
-	lines.append("decidere adesso. La colonna di stato, il Consiglio e l'aiuto non stanno")
-	lines.append("piu' intorno al tavolo: si aprono **al suo posto**, uno alla volta. La")
-	lines.append("mano sta sotto, per tutta la larghezza. Il tablet e' largo **%d px**." % int(TAVOLETTA))
+	lines.append("Da [D-464](DECISIONS.md#d-464) la pagina e' **il tavolo come lo vuole il")
+	lines.append("committente**: a sinistra la colonna delle domande (**%d** punti), al" % int(SINISTRA))
+	lines.append("centro la mappa con chi siede sotto, a destra il verbale (**%d**), e sotto" % int(DESTRA))
+	lines.append("le tre schede — la mano, la casa, gli obiettivi — per tutta la larghezza.")
+	lines.append("Il Consiglio prende **lo schermo intero**, meno %d punti di margine per" % int(CONSIGLIO))
+	lines.append("lato. Il tablet e' largo **%d** punti e alto **%d** ([D-465](DECISIONS.md#d-465))." % [
+		int(TAVOLETTA_LARGA), int(TAVOLETTA_ALTA),
+	])
 	lines.append("")
 	lines.append("Una colonna fatta per scorrere chiede **tutta la sua lunghezza**: la")
 	lines.append("colonna d'altezza si legge cosi', non come «quanto e' alto lo schermo».")
@@ -635,16 +676,15 @@ func _write(
 	lines.append("")
 	lines.append("| pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |")
 	lines.append("|---|---|---|---|---|")
-	var tavolo: float = 0.0
-	var centro: float = 0.0
-	var centro_chi: String = ""
-	var sotto: float = 0.0
+	var widest: Dictionary = {}
+	var tallest: Dictionary = {}
 	var painted: Array = []
 	for entry_v in widths:
 		var entry: Dictionary = entry_v as Dictionary
 		var name: String = str(entry["name"])
 		var where: String = str(entry["where"])
 		var w: float = float(entry["w"])
+		var h: float = float(entry["h"])
 		if _paints(entry):
 			painted.append(name)
 			lines.append("| %s | %s | %d | *dipinge: non lo dichiara* | |" % [
@@ -657,17 +697,12 @@ func _write(
 			])
 			continue
 		lines.append("| %s | %s | %d | %.0f | %.0f |" % [
-			name, _where_said(where), int(entry["nodes"]), w, float(entry["h"]),
+			name, _where_said(where), int(entry["nodes"]), w, h,
 		])
-		match where:
-			"tavolo":
-				tavolo = maxf(tavolo, w)
-			"centro":
-				if w > centro:
-					centro = w
-					centro_chi = name
-			"sotto":
-				sotto = maxf(sotto, w)
+		if w > float((widest.get(where, {"w": 0.0}) as Dictionary)["w"]):
+			widest[where] = {"w": w, "who": name}
+		if h > float((tallest.get(where, {"h": 0.0}) as Dictionary)["h"]):
+			tallest[where] = {"h": h, "who": name}
 	lines.append("")
 	if not painted.is_empty():
 		lines.append("**%d pannelli tornano a dipingere**: %s. Una scritta dipinta non ha" % [
@@ -676,27 +711,34 @@ func _write(
 		lines.append("una misura, non e' un bersaglio, e nessun lettore di schermo la vede. Da")
 		lines.append("D-444 quello che si legge e si tocca e' un nodo: questo e' un passo indietro.")
 		lines.append("")
-	var pagina: float = tavolo + COLONNA + MARGINI
-	var posto: float = TAVOLETTA - COLONNA - MARGINI
-	var sotto_posto: float = TAVOLETTA - (MARGINI - 12.0)
-	lines.append("Tre misure, una per posto:")
+	lines.append("Un posto per riga, col piu' largo dei pannelli che ci stanno — e, dove")
+	lines.append("l'altezza e' una promessa, anche il piu' alto:")
 	lines.append("")
-	lines.append("| | chiede | ha | |")
-	lines.append("|---|---|---|---|")
-	lines.append("| **il tavolo con la colonna accanto** — il piu' largo dei suoi pannelli (%.0f), la colonna (%d), i margini (%d) | **%.0f** | %.0f | %s |" % [
-		tavolo, int(COLONNA), int(MARGINI), pagina, TAVOLETTA, _fits(pagina, TAVOLETTA),
-	])
-	lines.append("| **al centro, uno alla volta** — il piu' largo e' «%s» | **%.0f** | %.0f | %s |" % [
-		centro_chi, centro, posto, _fits(centro, posto),
-	])
-	lines.append("| **sotto, la mano** | **%.0f** | %.0f | %s |" % [
-		sotto, sotto_posto, _fits(sotto, sotto_posto),
-	])
+	lines.append("| posto | ha | il piu' largo | chiede | |")
+	lines.append("|---|---|---|---|---|")
+	var fits: bool = true
+	for where_v in ["sinistra", "centro", "sotto", "schermo", "stanza"]:
+		var where: String = str(where_v)
+		if not widest.has(where):
+			continue
+		var room: float = _room_for(where)
+		var top: Dictionary = widest[where] as Dictionary
+		lines.append("| **%s** | %.0f | %s | **%.0f** | %s |" % [
+			_where_said(where), room, str(top["who"]), float(top["w"]), _fits(float(top["w"]), room),
+		])
+		if float(top["w"]) > room:
+			fits = false
+		var height: float = _height_for(where)
+		if height > 0.0 and tallest.has(where):
+			var high: Dictionary = tallest[where] as Dictionary
+			lines.append("| %s, in altezza | %.0f | %s | **%.0f** | %s |" % [
+				_where_said(where), height, str(high["who"]), float(high["h"]), _fits(float(high["h"]), height),
+			])
+			if float(high["h"]) > height:
+				fits = false
 	lines.append("")
-	if pagina <= TAVOLETTA and centro <= posto and sotto <= sotto_posto:
-		lines.append("**La pagina sta dentro il tablet**, in tutti e tre i posti. Fino a D-444")
-		lines.append("chiedeva 788 px in fila senza contare la mappa: non e' che i pannelli si")
-		lines.append("sono stretti, e' che non stanno piu' in fila.")
+	if fits:
+		lines.append("**La pagina sta dentro il tablet**, in tutti i suoi posti.")
 	else:
 		lines.append("**La pagina non sta nel tablet**, e la riga col ✗ dice dove. Non si")
 		lines.append("ripara stringendo un pannello: si guarda cosa ci sta accanto.")
@@ -739,14 +781,20 @@ func _write(
 ## Dove sta un pannello, detto a parole.
 static func _where_said(where: String) -> String:
 	match where:
-		"tavolo":
-			return "sul tavolo"
+		"sinistra":
+			return "a sinistra, la colonna delle domande"
 		"centro":
-			return "al centro, uno alla volta"
+			return "al centro"
+		"destra":
+			return "a destra, il verbale"
 		"sotto":
-			return "sotto, tutta la larghezza"
+			return "sotto, in una scheda"
+		"schermo":
+			return "a schermo intero"
 		"stanza":
 			return "nella stanza, prima di sedersi"
+		"fuori":
+			return "non sta sulla pagina (D-464)"
 	return where
 
 

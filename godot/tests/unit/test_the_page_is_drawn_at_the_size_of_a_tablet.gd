@@ -87,3 +87,21 @@ func test_the_turn_card_reaches_the_transcript_without_its_frames() -> void:
 	assert_true(said.contains("ATTO 1, ROUND 1"), "resta quello che dice")
 	assert_true(said.contains("Le domande dell'anno: La Leva 2/6"), "riga per riga")
 	assert_true(said.ends_with("Una riga senza cornice resta com'e'."), "e chi non ha cornici non si tocca")
+
+
+## **Ogni posto della pagina ha una larghezza** (D-466): la sonda misura i
+## pannelli contro il posto in cui stanno — sinistra, centro, sotto, schermo
+## intero — e i posti, messi in fila coi margini, fanno il tablet. Un pannello
+## che non sta sulla pagina non ha un posto.
+func test_every_place_on_the_page_has_a_width() -> void:
+	for where_v in ["sinistra", "centro", "sotto", "schermo", "stanza"]:
+		assert_true(Survey._room_for(str(where_v)) > 0.0, "il posto «%s» ha una larghezza" % str(where_v))
+	assert_eq(Survey._room_for("fuori"), 0.0, "un pannello fuori dalla pagina non ha un posto")
+	var in_a_row: float = (
+		Survey.MARGINE * 2.0 + Survey.SINISTRA + Survey.FUGA * 2.0
+		+ Survey._room_for("centro") + Survey.DESTRA
+	)
+	assert_eq(in_a_row, Survey.TAVOLETTA_LARGA, "sinistra, centro, destra e i margini fanno il tablet")
+	assert_true(Survey._room_for("schermo") < Survey.TAVOLETTA_LARGA, "il Consiglio a schermo intero tiene un margine")
+	assert_true(Survey._height_for("schermo") > 0.0, "e promette un'altezza")
+	assert_eq(Survey._height_for("sinistra"), 0.0, "una colonna che scorre non ne promette nessuna")

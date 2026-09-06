@@ -5,6 +5,20 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.435 — Il Consiglio a schermo intero, disegnato come il tavolo
+
+[D-466](docs/DECISIONS.md#d-466), la cosa lasciata in fondo a D-464 e D-465.
+Il tabellone del Consiglio e' disposto in tre colonne come il tavolo: la
+carta girata a sinistra con le tre liste e le pedine, chi siede al centro con
+posizione e carte, il conto a destra in parole con l'esito grande e a colori;
+le scelte sotto, a tutta larghezza. Le pedine sono disegnate e non scritte,
+perche' il carattere dell'export web non ha «●» e «○»; escono anche le tre
+frecce e cerchietti a rischio. La sonda della pagina misura ogni pannello
+contro il posto in cui sta nella pagina di D-464, Consiglio a schermo intero
+compreso. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.434 — La pagina alla misura del tablet: un pixel e' un punto, e i caratteri si misurano
 
 [D-465](docs/DECISIONS.md#d-465), il costo lasciato scritto in D-464. La

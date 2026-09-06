@@ -10,6 +10,86 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-466 — Il Consiglio a schermo intero, disegnato come il tavolo
+
+**implemented in 0.1.435.** La cosa lasciata in fondo a [D-464](#d-464) e a
+[D-465](#d-465): *«il Consiglio a schermo intero e' il tabellone di D-463 in
+una colonna centrale: il disegno del Consiglio e' un'altra parola»*. Le foto
+di D-465 lo mostravano: una colonna stretta a sinistra, tre quarti di pagina
+vuoti, il riquadro della carta vuoto in alto (la carta Domanda e' tutta
+testo, e ThorVG il testo non lo disegna), e in fondo il conto in sigle:
+`S 5 · O 3 · Mondo +3 -> M +5`.
+
+### 1. La pagina del Consiglio e' il tavolo quando un Consiglio si apre
+
+`confluence_board.gd` dispone quello che gia' leggeva in tre colonne, come
+stanno le cose sul tavolo:
+
+| dove | cosa |
+|---|---|
+| **sinistra** | **la carta girata**: un pannello di cartone (420 punti, bordo e angoli) con la domanda grande, la proposta, e le tre liste — COSA SI COMPRA, IL PREZZO, SE CADE — con le pedine sopra |
+| **centro** | **chi siede**: ogni casa con la sua posizione a colori e le carte impegnate; sotto, SE PASSA / COSA RESTA |
+| **destra** | **il conto** (280 punti): il dado, le somme, e l'esito grande e a colori — verde se passa, ocra se passa ma si paga, rosso se cade |
+| **sotto** | la domanda del tabellone e le sue scelte, a tutta larghezza, sempre in vista |
+
+Ogni colonna scorre per conto suo, cosi' niente trabocca (D-463) e le scelte
+restano in fondo. Il conto e' **in parole**: *«A favore 5 · contro 3 · mondo
++3»*, *«Margine +5»*, e l'esito a parte; prima del dado dice che il dado si
+tira quando tutti hanno detto la loro. Il margine del Consiglio nella cornice
+passa da 96 a 24 per lato: il tabellone e' largo, non piu' una colonna.
+
+### 2. Le pedine si disegnano, non si scrivono
+
+Fotografato, il tabellone nuovo mostrava **quadratini vuoti** al posto di «●»
+e «○»: il carattere che l'export web porta non ha quei glifi — la stessa
+trappola delle frecce di D-463, che la prova non vedeva perche' headless il
+testo c'e'. Una voce della carta e' ora una riga con una **pedina disegnata**
+(tondo pieno se posata, bordo se libera) e la parola `marked` scritta sulla
+riga, cosi' la prova legge la pedina senza cercare un segno. Nello stesso
+giro sono usciti gli altri tre glifi a rischio sotto gli occhi di chi gioca:
+«←» sulla rivendicazione, «○» sulla scheda della domanda, «→» nella colonna
+di stato.
+
+### 3. La sonda misura la pagina vera, posto per posto
+
+La sezione 4 di [MISURA_PAGINA](MISURA_PAGINA.md) confrontava ancora la
+pagina di D-444 — il tavolo piu' una colonna da 240 su un tablet da 768 in
+verticale — e D-465 l'aveva dichiarata pessimista. Ora ogni pannello dice
+dove sta nella pagina di D-464 — *sinistra* (250), *centro* (780), *sotto*
+(le tre schede, 1350), *schermo* (il Consiglio, 1318 per 976), *stanza*,
+*fuori* (i sei mazzetti, che dalla pagina sono usciti) — e la sonda scrive,
+posto per posto, il piu' largo che ci sta e se ci sta; per lo schermo intero
+anche l'altezza. La scheda degli obiettivi entra fra i pannelli guardati.
+I cinque numeri della cornice sono ricopiati, con la stessa avvertenza di
+prima: la cornice non compila da una sonda.
+
+| posto | ha | chiede | |
+|---|---|---|---|
+| a sinistra, le domande | 250 | 230 | ✓ |
+| al centro, chi siede | 780 | 402 | ✓ |
+| sotto, la mano | 1350 | 342 | ✓ |
+| a schermo intero, il Consiglio | 1318 · 976 | 974 · 182 | ✓ |
+
+### Costi e cose lasciate
+
+- Il centro del Consiglio e' vuoto per meta' quando siedono in quattro: lo
+  spazio e' del tavolo, e si riempira' quando le carte impegnate saranno
+  carte e non nomi.
+- Il Consiglio e' stato fotografato con quattro bot, dal «propone» al
+  «Consiglio ha deciso»: le scelte di una persona (posizione, impegni,
+  prezzo) restano le carte di D-233 in fondo alla pagina, non rifatte qui.
+- La prova `test_the_council_shows_its_card` legge la pedina da `marked`
+  sulla riga: e' un accordo fra il tabellone e la prova, scritto sopra tutti
+  e due.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **135 · 50 · 77 · 74** sul misto e
+**116 · 60 · 83 · 93** sull'uniforme — il motore non e' toccato. Suite 752
+prove verdi; 28 cancelli veloci e 5 lenti verdi, `MISURA_PAGINA.md`
+rifatto (10 pannelli, tutti dentro il tablet, 0 testi sotto gli 11 punti).
+
+---
+
 ## D-465 — La pagina alla misura del tablet: un pixel e' un punto, e i caratteri si misurano
 
 **implemented in 0.1.434.** Il costo scritto in fondo a [D-464](#d-464):

@@ -570,10 +570,9 @@ func _build() -> void:
 	_council.set_anchors_preset(Control.PRESET_FULL_RECT)
 	var council_skin := StyleBoxFlat.new()
 	council_skin.bg_color = Color("#12100e")
+	# Il tabellone e' disposto in tre colonne (D-466): la carta girata, chi
+	# siede, il conto. Prende la pagina intera, meno un margine.
 	council_skin.set_content_margin_all(24)
-	# Il tabellone legge meglio in una colonna: ai lati resta il tavolo scuro.
-	council_skin.content_margin_left = 96
-	council_skin.content_margin_right = 96
 	_council.add_theme_stylebox_override("panel", council_skin)
 	_council.visible = false
 	add_child(_council)

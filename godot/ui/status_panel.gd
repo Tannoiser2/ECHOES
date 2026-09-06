@@ -182,7 +182,8 @@ func _render_heat(session: RefCounted) -> void:
 		var line: String = "%s ·%d" % [title, fallen]
 		var front: String = str(fronts.get(str(theme_id), ""))
 		if front != "" and session.data.tensions.has(front):
-			line += " → %s" % str(session.data.tensions[front]["title"])
+			# «:» e non una freccia: il carattere dell'export web non ha «→» (D-466).
+			line += ": %s" % str(session.data.tensions[front]["title"])
 		said.append(line)
 	_any_theme_hot = not said.is_empty()
 

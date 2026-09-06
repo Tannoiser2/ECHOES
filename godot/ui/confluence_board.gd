@@ -15,7 +15,6 @@ extends VBoxContainer
 ## Emitted by whichever card was pressed.
 signal picked(index: int)
 
-const CardArt := preload("res://ui/card_art.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 const STANCE_COLOURS: Dictionary = {
@@ -40,7 +39,24 @@ const OUTCOMES: Dictionary = {
 	"DECISIVE_SUCCESS": "Passa senza discussione",
 }
 
-var _card: TextureRect
+## L'esito a colori: verde quando passa, rosso quando cade, ocra quando passa
+## ma si paga.
+const VERDICT_COLOURS: Dictionary = {
+	"FAILURE": "#c8553d",
+	"SUCCESS_WITH_COST": "#e8b563",
+	"SUCCESS": "#6fa88a",
+	"DECISIVE_SUCCESS": "#6fa88a",
+}
+
+## La carta girata a sinistra e il conto a destra hanno una larghezza loro;
+## chi siede prende quello che resta. Sul tablet di D-465 (1366 punti, meno
+## i margini del Consiglio) restano circa 560 punti per il centro.
+const CARD_WIDTH: float = 420.0
+const COUNT_WIDTH: float = 280.0
+
+## Il lato della pedina disegnata accanto a una voce della carta.
+const PEDINA: float = 16.0
+
 var _header: Label
 var _question: Label
 var _proposition: Label
@@ -48,7 +64,9 @@ var _face: VBoxContainer
 var _stances: VBoxContainer
 var _consequences: VBoxContainer
 var _consequences_title: Label
+var _stances_title: Label
 var _outcome: Label
+var _verdict: Label
 var _choices: HFlowContainer
 var _prompt: Label
 
@@ -63,59 +81,64 @@ func _ready() -> void:
 ## e' la trappola di casa, e senza questa riga una prova che disegna il
 ## Consiglio muore a meta' invece di fallire.
 func _ensure_built() -> void:
-	if _card == null:
+	if _header == null:
 		_build()
 
 
 func _build() -> void:
-	# La carta della domanda, posata al centro del tavolo (D-101): quando un
-	# Consiglio si apre, fisicamente si prende la carta mini dalla traccia dei
-	# valori e la si mette in mezzo. Qui fa lo stesso.
-	# **Il tabellone scorre, non trabocca** (D-463). Era un VBox a tutto
-	# rettangolo: su una finestra da 1600x900 la lista delle Conseguenze e il
-	# conto finale uscivano dal centro e si scrivevano sopra la striscia dei
-	# seggi e sul verbale, illeggibili tutti e due. Quello che si legge sta in
-	# uno scorrimento; la domanda del tabellone e le sue scelte restano in
-	# fondo, sempre in vista.
-	var scroll := ScrollContainer.new()
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	add_child(scroll)
-	var body := VBoxContainer.new()
-	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 10)
-	scroll.add_child(body)
-
-	var top := HBoxContainer.new()
-	top.add_theme_constant_override("separation", 18)
-	body.add_child(top)
-
-	_card = TextureRect.new()
-	_card.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_card.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_card.custom_minimum_size = Vector2(44.0, 68.0) * 2.1
-	_card.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-	top.add_child(_card)
-
-	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation", 10)
-	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	top.add_child(column)
-
+	# **Il Consiglio a schermo intero, disegnato** (D-466). Da D-464 il
+	# Consiglio ha una schermata sua, ma il tabellone era ancora quello di
+	# D-463: una colonna stretta in mezzo a tre quarti di pagina vuoti. Ora
+	# la pagina e' disposta come il tavolo quando un Consiglio si apre:
+	#
+	#   sinistra — **la carta girata**, un pannello di cartone con la
+	#              domanda, la proposta e le tre liste (D-291, D-449);
+	#   centro   — **chi siede**: posizione e carte impegnate, e sotto cosa
+	#              lascia al mondo (SE PASSA / COSA RESTA);
+	#   destra   — **il conto**: il dado, le somme, l'esito — in parole;
+	#   sotto    — la domanda del tabellone e le sue scelte, a tutta
+	#              larghezza, sempre in vista.
+	#
+	# Ogni colonna scorre per conto suo: quello che si legge non trabocca
+	# (D-463), e le scelte restano in fondo.
 	_header = _label(15, "#e8b563")
-	column.add_child(_header)
+	add_child(_header)
+
+	var columns := HBoxContainer.new()
+	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	columns.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	columns.add_theme_constant_override("separation", 24)
+	add_child(columns)
+
+	# La carta della domanda, girata sul retro, posata al centro del tavolo
+	# (D-101): l'immagine non c'e' perche' la carta e' tutta testo (le sue
+	# schede lo dicono), quindi si disegna il cartone, non una figura.
+	var card := PanelContainer.new()
+	card.custom_minimum_size = Vector2(CARD_WIDTH, 0)
+	card.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	var skin := StyleBoxFlat.new()
+	skin.bg_color = Color("#1a1712")
+	skin.border_color = Color("#6b5a3a")
+	skin.set_border_width_all(1)
+	skin.set_corner_radius_all(6)
+	skin.set_content_margin_all(16)
+	card.add_theme_stylebox_override("panel", skin)
+	columns.add_child(card)
+	var card_scroll := _scroll()
+	card.add_child(card_scroll)
+	var face_column := _column(8)
+	card_scroll.add_child(face_column)
 
 	_question = _label(19, "#efe7d8")
-	column.add_child(_question)
+	face_column.add_child(_question)
 
 	_proposition = _label(14, "#c9bfae")
-	column.add_child(_proposition)
+	face_column.add_child(_proposition)
 
 	var rule := ColorRect.new()
 	rule.color = Color("#3a332a")
 	rule.custom_minimum_size = Vector2(0, 1)
-	body.add_child(rule)
+	face_column.add_child(rule)
 
 	# **La carta girata, con le sue due liste** (D-291). Il Consiglio si decide
 	# su quello che la carta offre e su quello che chiede in cambio: finche' le
@@ -124,21 +147,44 @@ func _build() -> void:
 	# l'app: *«il Concilio e' ancora quello vecchio»*.
 	_face = VBoxContainer.new()
 	_face.add_theme_constant_override("separation", 2)
-	body.add_child(_face)
+	face_column.add_child(_face)
+
+	# Chi siede, e cosa resta.
+	var middle := _scroll()
+	middle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	columns.add_child(middle)
+	var table := _column(10)
+	middle.add_child(table)
+
+	_stances_title = _label(11, "#8a8172")
+	_stances_title.text = "CHI SIEDE"
+	table.add_child(_stances_title)
 
 	_stances = VBoxContainer.new()
 	_stances.add_theme_constant_override("separation", 3)
-	body.add_child(_stances)
+	table.add_child(_stances)
 
 	_consequences_title = _label(12, "#8a8172")
-	body.add_child(_consequences_title)
+	table.add_child(_consequences_title)
 
 	_consequences = VBoxContainer.new()
 	_consequences.add_theme_constant_override("separation", 6)
-	body.add_child(_consequences)
+	table.add_child(_consequences)
+
+	# Il conto, in parole.
+	var count := _column(8)
+	count.custom_minimum_size = Vector2(COUNT_WIDTH, 0)
+	columns.add_child(count)
+
+	var count_title := _label(11, "#8a8172")
+	count_title.text = "IL CONTO"
+	count.add_child(count_title)
 
 	_outcome = _label(15, "#efe7d8")
-	body.add_child(_outcome)
+	count.add_child(_outcome)
+
+	_verdict = _label(22, "#efe7d8")
+	count.add_child(_verdict)
 
 	_prompt = _label(14, "#e8b563")
 	add_child(_prompt)
@@ -148,6 +194,19 @@ func _build() -> void:
 	_choices.add_theme_constant_override("v_separation", 8)
 	add_child(_choices)
 
+
+func _scroll() -> ScrollContainer:
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	return scroll
+
+
+func _column(separation: int) -> VBoxContainer:
+	var column := VBoxContainer.new()
+	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	column.add_theme_constant_override("separation", separation)
+	return column
 
 func _label(font_size: int, colour: String) -> Label:
 	var label := Label.new()
@@ -186,7 +245,6 @@ func _paint_council(session: RefCounted, council: Dictionary) -> void:
 	var template: Dictionary = session.data.confluence_template_for(
 		str(council["tension_id"])
 	)
-	_card.texture = CardArt.texture_for("tension", str(council["tension_id"]), session.data)
 	_header.text = "%s — %s propone" % [
 		str(session.data.tensions[str(council["tension_id"])]["title"]),
 		session.service.name_of(str(council["proponent"])),
@@ -264,7 +322,9 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 		var taken: bool = bought.has(voice_id)
 		var text: String = str((voice as Dictionary).get("text", ""))
 		if voice_id == claimed_voice and claimant != "":
-			text += "   ← la rivendica %s" % session.service.name_of(claimant)
+			# «—» e non una freccia: il carattere dell'export web non ha «←»,
+			# e disegna un quadratino (D-463, D-466).
+			text += "   — la rivendica %s" % session.service.name_of(claimant)
 		if not live.has(voice_id) and not taken:
 			text += "   — non qui: non cambierebbe niente"
 			_face.add_child(_face_voice(text, false, "#5f6b62"))
@@ -311,13 +371,39 @@ func _face_heading(text: String) -> Label:
 	return label
 
 
-## Una voce della carta: la pedina posata (●) o la casella libera (○). E' il
-## disegno del cartone, non una lista puntata: quello che si vede al tavolo e'
-## dove stanno le pedine.
-func _face_voice(text: String, marked: bool, colour: String) -> Label:
+## Una voce della carta: la pedina posata o la casella libera. E' il disegno
+## del cartone, non una lista puntata: quello che si vede al tavolo e' dove
+## stanno le pedine.
+##
+## **La pedina e' disegnata, non scritta** (D-466): «●» e «○» erano glifi che
+## il carattere dell'export web non ha, e sulla pagina uscivano quadratini
+## vuoti — la stessa trappola delle frecce di D-463. Una riga porta la pedina
+## come nodo, con `marked` scritto sopra, cosi' una prova la legge senza
+## cercare un segno.
+func _face_voice(text: String, marked: bool, colour: String) -> HBoxContainer:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 6)
+	row.set_meta("marked", marked)
+	var pedina := Control.new()
+	pedina.custom_minimum_size = Vector2(PEDINA, PEDINA)
+	pedina.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	pedina.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	pedina.draw.connect(_draw_pedina.bind(pedina, marked, Color(colour)))
+	row.add_child(pedina)
 	var label: Label = _label(12, colour if marked else "#5f584c")
-	label.text = "%s %s" % ["●" if marked else "○", text]
-	return label
+	label.text = text
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(label)
+	return row
+
+
+## La pedina: un tondo pieno se posata, il bordo della casella se libera.
+func _draw_pedina(node: Control, marked: bool, colour: Color) -> void:
+	var centre := Vector2(PEDINA * 0.5, PEDINA * 0.5 + 2.0)
+	var radius: float = PEDINA * 0.36
+	if marked:
+		node.draw_circle(centre, radius, colour)
+	node.draw_arc(centre, radius, 0.0, TAU, 24, colour if marked else Color("#5f584c"), 1.0, true)
 
 
 ## The narrative slots ($the_region, $rival...) filled from the bindings this
@@ -447,8 +533,9 @@ func _render_consequences(
 ## decides something, and a player should be able to check the arithmetic.
 func _render_outcome(council: Dictionary) -> void:
 	var die: int = int(council.get("die", 0))
+	_verdict.text = ""
 	if die <= 0:
-		_outcome.text = ""
+		_outcome.text = "Il dado del mondo si tira quando tutti hanno detto la loro."
 		return
 	# "->" and not an arrow glyph: the fallback font a Web export ships has no
 	# arrow, and a missing glyph draws as a tofu box in the middle of the one line
@@ -456,16 +543,20 @@ func _render_outcome(council: Dictionary) -> void:
 	var lines: Array = ["Fattore Mondo: 1d6 = %d -> %+d" % [die, int(council.get("world_factor", 0))]]
 	var result: Variant = council.get("result", null)
 	if result != null:
+		# **In parole, non in sigle** (D-466): «S 5 · O 3 · M +5» era il
+		# verbale del motore sotto gli occhi di chi gioca.
 		var outcome: String = str((result as Dictionary)["outcome"])
-		lines.append("S %d · O %d · Mondo %+d -> M %+d — %s" % [
+		lines.append("A favore %d · contro %d · mondo %+d" % [
 			int((result as Dictionary)["support_total"]),
 			int((result as Dictionary)["oppose_total"]),
 			int((result as Dictionary)["world_factor"]),
-			int((result as Dictionary)["margin"]),
-			str(OUTCOMES.get(outcome, outcome)),
 		])
+		lines.append("Margine %+d" % int((result as Dictionary)["margin"]))
+		_verdict.text = str(OUTCOMES.get(outcome, outcome))
+		_verdict.add_theme_color_override(
+			"font_color", Color(str(VERDICT_COLOURS.get(outcome, "#efe7d8")))
+		)
 	_outcome.text = "\n".join(PackedStringArray(lines))
-
 
 # --- asking ------------------------------------------------------------------
 
