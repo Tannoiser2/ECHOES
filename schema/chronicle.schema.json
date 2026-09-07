@@ -702,7 +702,11 @@
             "count": {
               "type": "integer",
               "minimum": 1,
-              "description": "How many to draw."
+              "description": "How many to draw. With per_theme the draw is one per Theme and this number is what the Chronicle expects that to add up to."
+            },
+            "per_theme": {
+              "type": "boolean",
+              "description": "Draw one Tension per Theme, so every Theme has its question on the table and a token always falls on something (D-467). The Theme's deck is then that one card, turned face up from the start."
             },
             "always": {
               "type": "array",

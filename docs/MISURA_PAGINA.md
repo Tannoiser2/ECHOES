@@ -22,17 +22,17 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 10 |
-| nodi in tutto | 338 |
-| testi sotto gli occhi | 180 |
+| nodi in tutto | 356 |
+| testi sotto gli occhi | 188 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
-| bersagli che si toccano | 27 |
+| bersagli che si toccano | 31 |
 | **piu' stretti di un dito (44 px)** | **0** |
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
-| testi con una taglia | 191 |
+| testi con una taglia | 199 |
 | **piu' piccoli di 11 punti sul tablet** | **0** |
-| sotto i 17 punti, che la guida chiama «corpo» | 189 |
+| sotto i 17 punti, che la guida chiama «corpo» | 197 |
 | il piu' piccolo, sul tablet | 11.0 punti |
 
 **Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`
@@ -95,13 +95,13 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | sotto, in una scheda | 95 | 234 | 1840 |
+| colonna di stato | sotto, in una scheda | 107 | 246 | 1859 |
 | mappa | al centro | 13 | *si adatta* | |
 | il Consiglio | a schermo intero | 70 | 974 | 182 |
-| il tavolo | nella stanza, prima di sedersi | 35 | *si adatta* | |
+| il tavolo | nella stanza, prima di sedersi | 37 | *si adatta* | |
 | i mazzi dei Temi | non sta sulla pagina (D-464) | 13 | *si adatta* | |
 | chi siede | al centro | 25 | 402 | 44 |
-| le domande | a sinistra, la colonna delle domande | 27 | 230 | 476 |
+| le domande | a sinistra, la colonna delle domande | 31 | 230 | 572 |
 | la pagina d'aiuto | al centro | 2 | 37 | 28 |
 | la mano | sotto, in una scheda | 13 | 342 | 246 |
 | gli obiettivi | sotto, in una scheda | 45 | 168 | 1455 |
@@ -135,8 +135,8 @@ Quanti testi a ogni taglia, sul tablet:
 | punti | testi |
 |---|---|
 | 11 | 92 |
-| 12 | 60 |
-| 13 | 34 |
+| 12 | 62 |
+| 13 | 40 |
 | 14 | 1 |
 | 15 | 2 |
 | 18 | 1 |

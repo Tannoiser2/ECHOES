@@ -5,6 +5,30 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.437 — Sei Tensioni, una per Tema: il primo giro di D-467
+
+[D-468](docs/DECISIONS.md#d-468). La Chronicle pesca una domanda per ogni
+Tema, e il mazzetto di ogni Tema e' la sua carta gia' girata. La sonda della
+partecipazione misura il mucchio dei gettoni contro le carte della parte piu'
+forte — la soglia del voto nuovo, prima di scriverla: la parte piu' forte
+arriva al mucchio in due Consigli su tre — e va rossa su un mucchio sempre a
+zero, com'era nata. Con sei domande i Consigli con opposizione nel margine
+salgono dal 69% al 78% sul misto. Cancello dei 100 semi: 0 seggi bloccati sui
+due tavoli.
+
+---
+
+## 0.1.436 — Il Consiglio a due domande: il disegno, deciso col committente
+
+[D-467](docs/DECISIONS.md#d-467), verbale di disegno senza codice. Parola del
+committente davanti alla scheda di una Tensione: sei Tensioni una per Tema; la
+carta con due domande in contrasto, ognuna col suo esito di base e le sue
+caselle, e un SE CADE comune; il giro a rilancio con posizione obbligata al
+primo passo; il voto a tre esiti contro il mucchio dei gettoni, senza dado. La
+voce [129](docs/ISSUES.md#129) tiene i quattro giri che lo costruiscono.
+
+---
+
 ## 0.1.435 — Il Consiglio a schermo intero, disegnato come il tavolo
 
 [D-466](docs/DECISIONS.md#d-466), la cosa lasciata in fondo a D-464 e D-465.

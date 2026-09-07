@@ -10029,3 +10029,30 @@ Bosco perché porta un segno che la carta vieta. È il «fatto quando».
 
 **Resta scritta, per il committente e non per questa voce**: il 63,9% della
 parete cade sulle diciotto carte con lo stesso verbo su tutte e due le facce.
+
+### 129. Il Consiglio a due domande: sei Tensioni, la carta, il rilancio, il voto contro il mucchio
+
+`regole` · `consiglio` · voluta dal committente · **aperta in 0.1.436**
+
+> «Una tensione ha una domanda e sotto ci sono i benefici che questa domanda
+> porta se il Concilio passa. Gli altri giocatori possono proporre una
+> condizione con dei costi.» E poi: «due domande in contrasto, ognuna con i
+> suoi costi e i suoi benefici, e poi sempre le conseguenze.»
+
+Il disegno e' deciso e scritto in [D-467](DECISIONS.md#d-467): sei Tensioni
+una per Tema; la carta con due domande in contrasto, ognuna col suo esito di
+base (le Conseguenze di oggi) e le sue caselle marcate, sei verbi per lato,
+un SE CADE comune; il giro a rilancio con posizione obbligata al primo passo
+e il prezzo contato per parte; il voto a tre esiti — A, B, nessuna — contro
+il mucchio dei gettoni, senza dado.
+
+**Fatto quando** i quattro giri di D-467 sono percorsi e misurati, ognuno col
+cancello dei 100 semi:
+
+1. ✔ sei Tensioni in gioco, una per Tema, e la misura del mucchio contro le
+   carte — **giro 1 fatto in 0.1.437** ([D-468](DECISIONS.md#d-468)): la parte
+   piu' forte arriva al mucchio in due Consigli su tre;
+2. la carta a due domande nei dati, col validatore che morde;
+3. il motore del Consiglio: rilancio, prezzo per parte, voto a tre esiti;
+4. il cervello dei bot e la pagina.
+

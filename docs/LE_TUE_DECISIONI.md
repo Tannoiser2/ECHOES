@@ -272,11 +272,11 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **132** |
+| voci scritte | **133** |
 | chiuse | **123** |
-| aperte | **9** |
+| aperte | **10** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **9** |
+| di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,9 +307,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **0** | **io**, da sola, senza aspettare niente |
+| 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
+**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
@@ -379,7 +381,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **nessuna**
+# 🟡 Sono mie, e non aspettano niente: **una**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -391,6 +393,24 @@ quattordicesima, quella che andava per ultima da sempre, si è chiusa in
 
 **Quello che resta: niente.** Delle quattordici righe di lavoro che la tua
 parola aveva creato in 0.1.397, quattordici sono percorse.
+
+**E in 0.1.436 ne e' nata una nuova, dalla tua parola davanti alla scheda di
+una Tensione.** Non e' una riparazione: e' la regola del Consiglio, decisa in
+cinque scambi e scritta in [D-467](DECISIONS.md#d-467). La muovo io, in
+quattro giri misurati.
+
+### M15. [129](ISSUES.md#129) — il Consiglio a due domande: **aperta in 0.1.436**
+
+Sei Tensioni una per Tema; la carta con due domande in contrasto, ognuna col
+suo esito di base e le sue caselle; il rilancio con posizione obbligata al
+primo giro; il voto a tre esiti contro il mucchio, senza dado. Il primo giro
+e' quello piccolo e misurabile: sei Tensioni in gioco.
+
+**Giro 1 fatto in 0.1.437** ([D-468](DECISIONS.md#d-468)): sei domande sul
+tavolo, una per Tema, ognuna gia' girata. E il mucchio misurato contro le
+carte: la parte piu' forte lo raggiunge in due Consigli su tre, quindi la
+soglia e' un rischio vero. Con sei domande i Consigli si fanno piu'
+combattuti da soli. Restano i giri 2, 3 e 4.
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
@@ -853,9 +873,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle nove voci aperte ne posso
-muovere **nessuna** da sola. Due le verifica una persona che gioca, sette
-stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
+muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

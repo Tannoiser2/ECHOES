@@ -10,6 +10,195 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-468 — Sei Tensioni, una per Tema: il primo giro, e il mucchio misurato contro le carte
+
+**implemented in 0.1.437.** Il giro 1 di [D-467](#d-467): *«ci devono essere
+6 tensioni, una per tema; altrimenti se ci sono 3 tensioni tutte di un tema
+quale viene scaldata?»*. Ed e' il giro in cui si misura, prima di scriverla,
+la soglia del voto nuovo.
+
+### 1. La pesca e' una per Tema
+
+Il mazzo della Chronicle dichiara `per_theme: true` (schema e
+`chronicle_00`, `count` da 4 a 6), e `resolve_tensions` — quando chi chiama
+gli passa la mappa `tension_id -> theme_id` — pesca **una domanda per ogni
+Tema**, nell'ordine dei Temi, coi pesi dei richiami di D-079 se ci sono.
+Le Chronicle di prova, che non passano la mappa, pescano come prima. Un Tema
+senza candidate sul tavolo pescato resterebbe senza domanda: la sonda della
+partecipazione conta quegli anni, e su 60 sono **zero**.
+
+Il mazzetto di ogni Tema e' **la sua carta, gia' girata** (D-450):
+`deal_theme_decks` mette la domanda pescata come fronte del Tema e non lascia
+niente sotto da girare. Prima il mazzetto teneva le dieci carte del Tema che
+stavano sulla mappa e ne girava una quando il Tema si scaldava — con quattro
+domande pescate e altre che si aprivano lungo l'anno, il tavolo non sapeva
+mai quante domande aveva.
+
+### 2. Il mucchio contro le carte, misurato
+
+La sonda della partecipazione legge, quando un Consiglio si apre, **il
+valore del mucchio** della domanda — il valore rivelato del suo Tema e i
+gettoni caduti — e lo confronta con le carte della parte piu' forte. E' il
+numero che D-467 chiedeva prima di fissare la soglia. 30 anni, semi da 7000:
+
+| | misto | uniforme |
+|---|---|---|
+| mucchio medio (valore) | 4,67 | 4,47 |
+| gettoni medi sul mucchio | 4,48 | 4,31 |
+| carte della parte piu' forte (media) | 5,60 | 5,99 |
+| **Consigli in cui la parte piu' forte arriva al mucchio** | **65%** | **63%** |
+| mucchio a 6, il valore piu' frequente | 41 su 101 | 38 su 105 |
+
+Letto: col mucchio come soglia, **un Consiglio su tre non passerebbe** coi
+cervelli di oggi, che non giocano ancora per raggiungerla. E' un rischio
+vero e non una formalita', che e' quello che il committente chiedeva; se
+diventi troppo, si tara al giro 3, dove la soglia entra nel motore. Il 6
+cosi' frequente sembra un tetto del mazzetto, e va guardato li'.
+
+**La sonda e' nata cieca, e la guardia lo dice.** La prima stesura leggeva
+`tension` nel contesto del Consiglio aperto, che porta `tension_id`, e
+misurava **zero su 206 Consigli**. Ora un mucchio a zero su venti Consigli o
+piu' manda la sonda in rosso: un tavolo cosi' freddo non esiste.
+
+### Cosa cambia con sei domande
+
+| 30 anni, semi da 7000 | quattro domande | **sei domande** |
+|---|---|---|
+| Consigli con opposizione nel margine, misto | 69% | **78%** |
+| Consigli con opposizione nel margine, uniforme | 72% | **77%** |
+| carte impegnate dagli altri tre, per Consiglio | 2,76 · 2,74 | **3,18 · 3,12** |
+| margine medio, misto · uniforme | 1,95 · 1,87 | **0,41 · 1,20** |
+
+Piu' domande sul tavolo, piu' Consigli combattuti: le astensioni scendono e
+il margine si stringe. E' la direzione di D-467 gia' prima del rilancio.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **142 · 54 · 89 · 73** sul misto
+(358 Consigli, erano 336 con quattro domande) e **134 · 62 · 74 · 90**
+sull'uniforme (360, erano 352). Suite 758 prove verdi, sei nuove su un mazzo
+fabbricato e sul tavolo vero; 28 cancelli veloci e 5 lenti verdi, i documenti
+lenti rifatti perche' il tavolo e' cambiato.
+
+---
+
+## D-467 — Il Consiglio a due domande: il disegno, deciso col committente
+
+**decided in 0.1.436 — verbale di disegno, senza codice.** Il committente ha
+guardato la colonna delle domande e la scheda di una Tensione sul suo iPad, e
+ha detto che non era il gioco: *«una tensione ha una domanda e sotto ci sono i
+benefici che questa domanda porta se il Concilio passa; gli altri giocatori
+possono proporre una condizione con dei costi»*. Ne e' venuta una
+conversazione in cinque passi, e questo verbale e' quello che ne e' uscito.
+E' la regola del Consiglio da qui in avanti; il codice la raggiunge in
+quattro giri misurati, elencati in fondo, e la voce [ISSUES 129](ISSUES.md#129)
+li tiene.
+
+### Quello che c'era, e perche' era sbagliato
+
+Sul tavolo si pescavano **quattro Tensioni su sei Temi**: due Temi senza
+domanda, e un gettone poteva cadere su un Tema che non aveva niente da
+scaldare. Ogni carta portava **due domande nel corpo e tre proposte**,
+ognuna con la sua Conseguenza — la macchina di prima di [D-280](#d-280) — e
+sopra, aggiunte in D-280, quattro caselle di beneficio e quattro di costo.
+La scheda mostrava tutto insieme, e non si capiva cosa fosse la domanda.
+Parola del committente: *«questa cosa non l'hai capita bene»*. Aveva
+ragione: erano due macchine una sopra l'altra.
+
+### 1. Sei Tensioni, una per Tema, sempre
+
+Il gettone cade sul Tema, e il Tema **e'** la sua domanda: nessuna
+ambiguita' su cosa si scalda. Il mazzetto di un Tema ha una carta sola,
+scoperta dall'inizio ([D-450](#d-450)).
+
+### 2. La carta: due domande in contrasto, un mucchio di caselle
+
+Tutte e 60 le carte hanno gia' due domande, dieci per Tema. Da qui in poi le
+due domande sono **le due risposte in contrasto allo stesso problema** —
+*Il Tributo*: «si paga intero, in un anno che ha reso a meta'?» contro «e in
+cambio di che cosa, esattamente?» — e ognuna porta:
+
+- **un esito di base**, che si ottiene se la domanda vince, a prescindere
+  dalle pedine: sono le Conseguenze gia' scritte sulle proposte vecchie
+  (*Il Pedaggio Scritto*, *Il Registro Aperto*), una per domanda; la terza
+  proposta di ogni carta si scioglie. Cosi' lo scontro e' vero anche a
+  pedine zero: le due domande cambiano il mondo in due modi diversi;
+- **le sue caselle**: il mucchio della carta e' uno, sei verbi di beneficio e
+  sei di costo tarati sul luogo (il vocabolario chiuso di D-280 e' proprio
+  sei e sei), ma **ogni casella dichiara a quale domanda serve** — A, B, o
+  tutte e due. Chi sostiene A posa solo su caselle di A o comuni, e una
+  casella presa non e' piu' libera per l'altra parte. E' quello che
+  impedisce di inseguire una domanda ed essere costretti a un costo che la
+  contraddice: i costi di «si paga intero» sono il prezzo di riscuotere
+  (#svuotato, la Cicatrice), quelli di «in cambio di cosa» il prezzo di
+  trattare (#indebitata, cedere il controllo);
+- **SE CADE**, comune alle due: quello che succede se non vince nessuna.
+
+Il validatore va rosso su una carta dove una domanda ha meno di tre
+benefici o tre costi suoi, o una casella non dice di chi e'.
+
+### 3. Il giro: un rilancio, con posizione obbligata al primo passo
+
+1. **A propone**: sceglie una delle due domande e posa una pedina della sua
+   parte su un beneficio libero. Gratis: e' il primo beneficio della parte.
+2. **B prende l'altra domanda** e posa una pedina sull'altro fronte, su un
+   beneficio libero. Gratis.
+3. **C e D, poi di nuovo A e B**, a giro: chi parla sostiene una parte e posa
+   una pedina su una casella libera di quella parte, beneficio o costo. Nel
+   **primo giro ogni seggio posa** — con quattro seggi e due domande una
+   parte di uno solo e' una parte morta, e il Consiglio e' dove il mondo
+   decide cosa ricordera'. Dal secondo giro in poi si puo' **passare**.
+4. Quando tutti passano, si vota.
+
+**Il prezzo si conta per parte, al voto**: una parte puo' avere al massimo un
+beneficio in piu' dei suoi costi. Posare un costo da solo e' una mossa vera —
+*«pago io per la nostra parte»* — e se al voto i benefici scoperti avanzano,
+si tolgono gli ultimi posati. Le pedine hanno il colore della parte, non del
+seggio: sul tavolo si vede quanto pesa ogni domanda.
+
+### 4. Il voto: tre esiti, contro il mucchio, senza dado
+
+Ogni seggio impegna carte per A, per B, o per nessuna — la posizione l'ha
+presa, il prezzo lo sceglie lui. **Il dado esce**: il committente ha voluto il
+Consiglio puro dibattito, e il rischio deve dipendere da chi siede, non
+dalla sorte. Al suo posto **la soglia e' il mucchio**: i gettoni caduti sulla
+domanda che si dibatte sono quanto il mondo l'ha scaldata, e per chiuderla
+la parte che vince deve batterli. Una parte vince se supera l'altra **e**
+arriva al mucchio. Se nessuna ci arriva, o se sono pari, **non passa
+nessuna** e scattano le conseguenze stampate. Cosi' le Azioni contano due
+volte: scaldare un Tema con la Risonanza alza il prezzo del suo Consiglio.
+
+La taratura della soglia non e' decisa qui: prima si misura, su 30 semi,
+quanto vale il mucchio quando un Consiglio si apre contro quanto valgono le
+carte impegnate. Se il mucchio e' sempre troppo basso o troppo alto, si tara
+con un numero scritto.
+
+Se vince A: l'esito di base di A, piu' le caselle con le pedine di A,
+benefici e costi insieme. Le pedine di B si tolgono e di B non succede
+niente.
+
+### I quattro giri, ognuno misurato sui 100 semi
+
+| giro | cosa | dove |
+|---|---|---|
+| 1 | sei Tensioni in gioco, una per Tema; e la misura del mucchio contro le carte | motore della pesca, sonda della partecipazione |
+| 2 | la carta a due domande nei dati: esito di base, caselle marcate, sei verbi per lato; il validatore che morde | 60 carte, `validate_physical`, cataloghi |
+| 3 | il motore del Consiglio: il rilancio, il prezzo per parte, il voto a tre esiti contro il mucchio | `confluence_controller`, `council_economy` |
+| 4 | il cervello dei bot, e la pagina: la carta girata con le due domande e le caselle sotto | `seat_decider`, `confluence_board`, la scheda |
+
+### Costi dichiarati
+
+- E' il cambio piu' grosso dopo D-280: le tre proposte e le 67 Conseguenze
+  cambiano posto, il cervello impara a scegliere una parte, e i numeri del
+  cancello — 0 seggi bloccati su 8 — vanno rimisurati a ogni giro.
+- Senza dado vince sempre la mano piu' forte: la sonda della partecipazione
+  dira' se i bot smettono di opporsi quando sanno di perdere.
+- Nelle due foto di D-466 le caselle vive erano **3 benefici e 1 costo** in
+  un Consiglio, **2 e nessuno** nell'altro: con quattro e quattro il
+  dibattito finiva prima di cominciare. I sei verbi per lato sono la
+  risposta, e la potatura del «non qui» ([D-306](#d-306)) resta.
+
+---
+
 ## D-466 — Il Consiglio a schermo intero, disegnato come il tavolo
 
 **implemented in 0.1.435.** La cosa lasciata in fondo a [D-464](#d-464) e a

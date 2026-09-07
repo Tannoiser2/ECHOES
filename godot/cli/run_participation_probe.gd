@@ -68,6 +68,22 @@ class Spy extends RefCounted:
 		if not councils.is_empty():
 			(councils.back() as Dictionary)["closed"] = "yes"
 
+	## **Il mucchio contro le carte** (D-467, giro 1): quanto vale il mucchio
+	## della domanda quando il Consiglio si apre — il valore rivelato del suo
+	## Tema e quanti gettoni — letto una volta per Consiglio, prima che i
+	## mazzetti si spendano. E' il numero che tara la soglia del voto nuovo.
+	func _note_the_pile(context: Dictionary, session: RefCounted) -> void:
+		var record: Dictionary = _current(context)
+		if record.has("pile"):
+			return
+		# Il contesto del Consiglio aperto porta `tension_id`; il contesto degli
+		# Effetti porta `tension`. La prima stesura leggeva il secondo nel primo
+		# e misurava zero su duecento Consigli: la guardia qui sotto lo dice.
+		var tension_id: String = str(context.get("tension_id", context.get("tension", "")))
+		var theme_id: String = str((session.data.tensions.get(tension_id, {}) as Dictionary).get("theme", ""))
+		record["pile"] = int((session.world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
+		record["tokens"] = session.tensions.theme_token_count(theme_id)
+
 	func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
 		return await inner.choose_question(context, options, session)
 
@@ -76,6 +92,7 @@ class Spy extends RefCounted:
 
 	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 		var declared: Dictionary = await inner.choose_stance(entity_id, context, session)
+		_note_the_pile(context, session)
 		if forced != "" and str(declared.get("stance", "ABSTAIN")) == "ABSTAIN":
 			forced_count += 1
 			match forced:
@@ -186,12 +203,19 @@ func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool, forced: St
 		"cards_proponent": 0, "cards_others": 0, "others_with_cards": 0, "others": 0,
 		"outcomes": {}, "margin_sum": 0, "bought": 0, "blind": false,
 		"points_won": 0, "points_lost": 0,
+		"years": 0, "short_years": 0,
+		"pile_sum": 0, "tokens_sum": 0, "strongest_sum": 0, "reaches": 0, "piles": {},
 	}
 	for index in range(runs):
 		var seed_value: int = first_seed + index
 		var session: RefCounted = GameSession.new(data)
 		var seats: Array = GameSession.seats_for(data, "CHR_00", seed_value)
 		session.setup("CHR_00", seats, seed_value)
+		# **Sei domande, una per Tema** (D-467): un anno che ne apre di meno ha
+		# un Tema senza candidate sul tavolo pescato, e si conta.
+		out["years"] = int(out["years"]) + 1
+		if (session.world["tensions"] as Dictionary).size() < (data.themes as Dictionary).size():
+			out["short_years"] = int(out["short_years"]) + 1
 		var table: RefCounted = null
 		var decider: RefCounted = null
 		if mixed:
@@ -216,6 +240,13 @@ func _play(data: RefCounted, runs: int, first_seed: int, mixed: bool, forced: St
 			_count(out, spy.councils[i] as Dictionary, results[i] as Dictionary, seats, table)
 		out["forced"] = int(out["forced"]) + spy.forced_count
 		session.dispose()
+	# **Una sonda che torna zero e' quasi sempre cieca lei** (regola di casa):
+	# un Consiglio di fine Atto si apre sul mazzetto piu' alto, e un mucchio
+	# sempre a zero su decine di Consigli non e' un tavolo freddo, e' una chiave
+	# sbagliata. E' successo alla prima stesura.
+	if int(out["councils"]) >= 20 and int(out["pile_sum"]) == 0:
+		printerr("sonda cieca: il mucchio vale zero su %d Consigli" % int(out["councils"]))
+		out["blind"] = true
 	return out
 
 
@@ -265,6 +296,16 @@ func _count(out: Dictionary, seen: Dictionary, result: Dictionary, seats: Array,
 		else:
 			out["points_lost"] = int(out["points_lost"]) - delta
 	out["margin_sum"] = int(out["margin_sum"]) + int(result.get("margin", 0))
+	# **Il mucchio contro le carte** (D-467): la parte piu' forte arriva al
+	# mucchio? E' la soglia del voto nuovo, misurata prima di scriverla.
+	var pile: int = int(seen.get("pile", 0))
+	var strongest: int = maxi(int(result.get("support_total", 0)), int(result.get("oppose_total", 0)))
+	out["pile_sum"] = int(out["pile_sum"]) + pile
+	out["tokens_sum"] = int(out["tokens_sum"]) + int(seen.get("tokens", 0))
+	out["strongest_sum"] = int(out["strongest_sum"]) + strongest
+	if strongest >= pile:
+		out["reaches"] = int(out["reaches"]) + 1
+	out["piles"][pile] = int(out["piles"].get(pile, 0)) + 1
 	var band: String = str(result.get("outcome", ""))
 	out["outcomes"][band] = int(out["outcomes"].get(band, 0)) + 1
 
@@ -400,6 +441,49 @@ func _document(runs: int, first_seed: int, mixed: Dictionary, same: Dictionary, 
 	lines.append("  Destino. L'economia di D-280 — gli avversari scelgono in che moneta paga il")
 	lines.append("  proponente — c'e' dalla 0.1.308 (ISSUES 72): questa misura dice quanto viene")
 	lines.append("  giocata davvero.")
+	lines.append("")
+	lines.append("## Il mucchio contro le carte (D-467, giro 1)")
+	lines.append("")
+	lines.append("Da [D-467](DECISIONS.md#d-467) il Consiglio si vota **senza dado, contro il")
+	lines.append("mucchio**: la parte che vince deve superare l'altra e arrivare ai gettoni")
+	lines.append("caduti sulla domanda. Prima di scrivere la soglia si misura: quanto vale il")
+	lines.append("mucchio quando un Consiglio si apre — il valore rivelato del suo Tema — e")
+	lines.append("quanto valgono le carte della parte piu' forte. Con la regola di oggi la")
+	lines.append("parte piu' forte e' quella che ha impegnato di piu' fra chi sostiene e chi")
+	lines.append("si oppone.")
+	lines.append("")
+	lines.append("| | misto | uniforme |")
+	lines.append("|---|---|---|")
+	lines.append("| anni giocati | %d | %d |" % [int(mixed["years"]), int(same["years"])])
+	lines.append("| **anni con meno di sei domande** | **%d** | **%d** |" % [int(mixed["short_years"]), int(same["short_years"])])
+	lines.append("| mucchio medio (valore) | %.2f | %.2f |" % [
+		_per(int(mixed["pile_sum"]), int(mixed["councils"])), _per(int(same["pile_sum"]), int(same["councils"])),
+	])
+	lines.append("| gettoni medi sul mucchio | %.2f | %.2f |" % [
+		_per(int(mixed["tokens_sum"]), int(mixed["councils"])), _per(int(same["tokens_sum"]), int(same["councils"])),
+	])
+	lines.append("| carte della parte piu' forte (media) | %.2f | %.2f |" % [
+		_per(int(mixed["strongest_sum"]), int(mixed["councils"])), _per(int(same["strongest_sum"]), int(same["councils"])),
+	])
+	lines.append("| **Consigli in cui la parte piu' forte arriva al mucchio** | **%s** | **%s** |" % [
+		_share(int(mixed["reaches"]), int(mixed["councils"])), _share(int(same["reaches"]), int(same["councils"])),
+	])
+	lines.append("")
+	lines.append("Quanti Consigli a ogni valore del mucchio:")
+	lines.append("")
+	lines.append("| mucchio | misto | uniforme |")
+	lines.append("|---|---|---|")
+	var values: Dictionary = {}
+	for pile in (mixed["piles"] as Dictionary):
+		values[int(pile)] = true
+	for pile in (same["piles"] as Dictionary):
+		values[int(pile)] = true
+	var sorted_values: Array = values.keys()
+	sorted_values.sort()
+	for pile in sorted_values:
+		lines.append("| %d | %d | %d |" % [
+			int(pile), int((mixed["piles"] as Dictionary).get(pile, 0)), int((same["piles"] as Dictionary).get(pile, 0)),
+		])
 	return lines
 
 
