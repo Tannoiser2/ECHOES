@@ -426,7 +426,12 @@ func test_the_board_shows_what_was_bought_and_at_what_price() -> void:
 	board.call("render", session, str(context["proponent"]))
 
 	var scritto: String = _text_of(board.get("_face"))
-	assert_true(scritto.contains("COSA SI COMPRA"), "la plancia dice cosa si compra: %s" % scritto)
+	# A due domande (D-471) la plancia intitola le liste come il cartone,
+	# «BENEFICI» e «COSTI»; sul giro di D-280 diceva «COSA SI COMPRA».
+	assert_true(
+		scritto.contains("COSA SI COMPRA") or scritto.contains("BENEFICI"),
+		"la plancia dice cosa si compra: %s" % scritto
+	)
 	var testo: String = str(session.confluence.call("_voice_text", "benefits", comprata))
 	assert_true(
 		scritto.contains(testo.substr(0, mini(24, testo.length()))),

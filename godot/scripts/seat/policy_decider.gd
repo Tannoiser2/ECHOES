@@ -21,6 +21,7 @@ extends RefCounted
 const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
+const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 
 ## Stop stockpiling and start acting once the hand is this full.
 const COMFORTABLE_HAND: int = 4
@@ -1982,6 +1983,8 @@ func _debate_points_active(session: RefCounted) -> bool:
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 	if limit <= 0:
 		return []
+	if session.confluence.sides_open():
+		return _commit_for_my_side(entity_id, context, limit, session)
 	var proposition: Dictionary = _current_proposition(context, session)
 	var stake: int = 1
 	if not proposition.is_empty():
@@ -1999,6 +2002,61 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 		entity_id, str(context["tension_id"])
 	)
 	return ranked.slice(0, wanted)
+
+
+## **Le carte per arrivare al mucchio** (D-467 §4, giro 4 in D-471).
+##
+## A due domande il voto e' contro il mucchio, e una parte che non ci arriva
+## non decide niente: coi cervelli di D-470, che impegnavano come prima,
+## quattro Consigli su dieci non decidevano. Qui ogni seggio di una parte
+## **fa la sua parte del mucchio**: divide la soglia per quanti sono dalla sua
+## parte e impegna carte finche' la sua quota e' coperta — una in piu' se la
+## parte gli vale molto, una sola se non gli vale niente. Non sbircia gli
+## impegni altrui, che al tavolo sono coperti: legge il mucchio, le pedine e
+## quanti seggi, che sono sul tavolo.
+func _commit_for_my_side(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
+	var side: String = session.confluence.side_of(entity_id)
+	if side == "":
+		return []
+	var tension_id: String = str(context.get("tension_id", ""))
+	var seats: int = maxi(1, session.confluence.side_seats(side).size())
+	var share: int = int(ceil(float(session.confluence.pile()) / float(seats)))
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var leader: String = session.confluence.side_leader(side)
+	if leader == "":
+		leader = entity_id
+	var spoken: Dictionary = bindings
+	if leader != str(bindings.get("proponent", "")):
+		spoken = bindings.duplicate()
+		spoken["proponent"] = leader
+	var worth: int = _side_base_score(side, entity_id, leader, goals, session, bindings)
+	for list_name in ["benefits", "costs"]:
+		for voice_id in session.confluence.side_boxes(side, list_name):
+			var voice: Dictionary = session.confluence._voice(list_name, str(voice_id))
+			if not voice.is_empty():
+				worth += _voice_score(voice, list_name, entity_id, leader, goals, session, spoken)
+	# Chi propone gioca sempre la sua quota: la domanda l'ha scelta lui. Chi
+	# sostiene una parte che non gli vale niente mette una carta sola.
+	var target: int = share
+	if worth >= 3:
+		target += 1
+	elif worth <= 0 and entity_id != str(context.get("proponent", "")) and not _debate_points_active(session):
+		target = mini(target, 1)
+	var ranked: Array = session.service.ranked_hand_for_tension(entity_id, tension_id)
+	var relevant: Array = session.service.relevant_families(tension_id)
+	var front: String = "SUPPORT" if side == "A" else "OPPOSE"
+	var chosen: Array = []
+	var total: int = 0
+	for asset_id in ranked:
+		if chosen.size() >= limit or total >= target:
+			break
+		var asset: Variant = session.data.assets.get(str(asset_id))
+		if asset == null:
+			continue
+		chosen.append(str(asset_id))
+		total += ConfluenceResolution.asset_value(asset as Dictionary, relevant, front)
+	return chosen
 
 
 func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:

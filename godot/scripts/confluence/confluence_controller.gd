@@ -422,6 +422,28 @@ func pile() -> int:
 	return int(current.get("pile", 0)) if is_open() else 0
 
 
+## Di che parte e' la pedina su una casella, "" se la casella e' libera.
+func box_side_of(voice_id: String) -> String:
+	if not sides_open():
+		return ""
+	for side in ["A", "B"]:
+		for box in ((current["sides"][side] as Dictionary)["boxes"] as Array):
+			if str((box as Dictionary)["voice"]) == voice_id:
+				return side
+	return ""
+
+
+## Chi ha posato la pedina su una casella, "" se nessuno.
+func box_owner_of(voice_id: String) -> String:
+	if not sides_open():
+		return ""
+	for side in ["A", "B"]:
+		for box in ((current["sides"][side] as Dictionary)["boxes"] as Array):
+			if str((box as Dictionary)["voice"]) == voice_id:
+				return str((box as Dictionary)["by"])
+	return ""
+
+
 func _box_taken(voice_id: String) -> bool:
 	for side in ["A", "B"]:
 		for box in ((current["sides"][side] as Dictionary)["boxes"] as Array):
@@ -1287,6 +1309,21 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	if sides_open():
 		# **Il voto a tre esiti, contro il mucchio** (D-467): A e' chi sostiene
 		# la domanda del proponente, B chi ha preso l'altra.
+		#
+		# **Le pedine pesano** (D-471, taratura scritta): una parte vale le sue
+		# carte **piu' le pedine che ha posato**, benefici e costi. Con le sole
+		# carte — due per seggio, tetto della Chronicle — una parte di due non
+		# arrivava a un mucchio da sei, e quattro Consigli su dieci non
+		# decidevano niente (D-470). Posare un costo e' sostenere: al tavolo
+		# si conta «carte e pedine della tua parte».
+		var a_pedine: int = side_boxes("A", "benefits").size() + side_boxes("A", "costs").size()
+		var b_pedine: int = side_boxes("B", "benefits").size() + side_boxes("B", "costs").size()
+		result["cards_a"] = int(result["support_total"])
+		result["cards_b"] = int(result["oppose_total"])
+		result["pedine_a"] = a_pedine
+		result["pedine_b"] = b_pedine
+		result["support_total"] = int(result["support_total"]) + a_pedine
+		result["oppose_total"] = int(result["oppose_total"]) + b_pedine
 		result["pile"] = pile()
 		result["outcome"] = ConfluenceResolution.two_sides_outcome(
 			int(result["support_total"]), int(result["oppose_total"]), pile()
@@ -1296,8 +1333,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		result["sides"] = (current["sides"] as Dictionary).duplicate(true)
 	_log_commitments()
 	if sides_open():
-		log.bullet("G. A=%d B=%d contro il mucchio %d -> %s" % [
-			int(result["support_total"]), int(result["oppose_total"]), pile(), str(result["outcome"]),
+		log.bullet("G. A=%d (carte %d, pedine %d) B=%d (carte %d, pedine %d) contro il mucchio %d -> %s" % [
+			int(result["support_total"]), int(result["cards_a"]), int(result["pedine_a"]),
+			int(result["oppose_total"]), int(result["cards_b"]), int(result["pedine_b"]),
+			pile(), str(result["outcome"]),
 		])
 	else:
 		log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])

@@ -208,3 +208,83 @@ func test_when_nobody_reaches_the_pile_nothing_passes() -> void:
 	assert_eq(str(result["outcome"]), ConfluenceResolution.FAILURE, "nessuna parte arriva a 99")
 	assert_eq(str(result["winner"]), "", "e non vince nessuno")
 	assert_eq(int(result["pile"]), 99, "il mucchio e' scritto nel risultato")
+
+
+const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const ConfluenceBoard := preload("res://ui/confluence_board.gd")
+
+
+## **Il cervello fa la sua parte del mucchio** (D-471): da solo su una parte
+## col mucchio a 4 impegna carte finche' vale almeno 4, o quante ne puo'; col
+## mucchio a zero ne mette una.
+func test_the_brain_commits_its_share_of_the_pile() -> void:
+	var live: RefCounted = _table()
+	var tension_id: String = _openable(live)
+	_heat(live, tension_id, 4)
+	var context: Dictionary = live.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	var proponent: String = str(context["proponent"])
+	var brain: PolicyDecider = PolicyDecider.new()
+	var limit: int = live.confluence.max_commit_for(proponent)
+	var chosen: Array = brain.choose_commit(proponent, context, limit, live)
+	assert_true(not chosen.is_empty(), "da solo con A impegna qualcosa")
+	var relevant: Array = live.service.relevant_families(tension_id)
+	var total: int = 0
+	for asset_id in chosen:
+		total += ConfluenceResolution.asset_value(live.data.assets[str(asset_id)], relevant, "SUPPORT")
+	assert_true(
+		total >= 4 or chosen.size() == limit or chosen.size() == (live.service.hand(proponent) as Array).size(),
+		"arriva al mucchio (%d) o da' tutto quello che puo' (%d carte)" % [total, chosen.size()]
+	)
+	live.confluence.current = {}
+	_heat(live, tension_id, 0)
+	context = live.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	var few: Array = brain.choose_commit(proponent, context, limit, live)
+	assert_true(few.size() <= 2, "col mucchio a zero non svuota la mano (%d)" % few.size())
+	live.confluence.current = {}
+
+
+## **Il tabellone dice le due parti** (D-471): le domande con la lettera, le
+## posizioni «propone A», «propone B», «con A», «con B», le caselle con la
+## marca e la pedina del colore della parte, e cosa resta se vince l'una o
+## l'altra.
+func test_the_board_shows_both_sides() -> void:
+	var live: RefCounted = _table()
+	var tension_id: String = _openable(live)
+	var context: Dictionary = live.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	var others: Array = live.confluence.stance_order()
+	assert_true(others.size() >= 2, "ci sono altri seggi")
+	live.confluence.join_side(str(others[0]), "B")
+	live.confluence.join_side(str(others[1]), "A")
+	var menu_b: Array = live.confluence.box_menu("B")
+	if not menu_b.is_empty():
+		live.confluence.place_box(str(others[0]), str((menu_b[0] as Dictionary)["id"]))
+	var board: Node = ConfluenceBoard.new()
+	board.render(live, str(context["proponent"]))
+	var said: Array = []
+	_labels_of(board, said)
+	var whole: String = " · ".join(PackedStringArray(said))
+	assert_true(whole.contains("A · "), "la domanda A porta la lettera: %s" % str(board._question.text))
+	assert_true(str(board._proposition.text).begins_with("B · "), "e la B la sua")
+	assert_true(whole.contains("propone A"), "chi propone propone A")
+	assert_true(whole.contains("propone B"), "chi ha preso la B la propone")
+	assert_true(whole.contains("con A"), "e chi sta con A lo dice")
+	assert_true(whole.contains("BENEFICI") and whole.contains("COSTI"), "le liste sono quelle del cartone")
+	assert_true(whole.contains("SE VINCE"), "e si legge cosa resta se vince l'una o l'altra")
+	var pedine: int = 0
+	for row in board._face.get_children():
+		if (row as Node).has_meta("marked") and bool((row as Node).get_meta("marked")):
+			pedine += 1
+	var placed: int = 0
+	for side in ["A", "B"]:
+		for list_name in ["benefits", "costs"]:
+			placed += live.confluence.side_boxes(side, list_name).size()
+	assert_eq(pedine, placed, "ogni pedina posata si vede sulla carta")
+	board.free()
+	live.confluence.current = {}
+
+
+func _labels_of(node: Node, into: Array) -> void:
+	for child in node.get_children():
+		if child is Label and (child as Label).visible:
+			into.append(str((child as Label).text))
+		_labels_of(child, into)

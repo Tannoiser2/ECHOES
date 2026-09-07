@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.440 — Il giro 4 di D-467: il cervello gioca per il mucchio, le pedine pesano, il tabellone a due colori
+
+[D-471](docs/DECISIONS.md#d-471). Ogni seggio di una parte impegna carte per
+la sua quota del mucchio; una parte vale le sue carte piu' le pedine posate,
+ed e' la taratura scritta della soglia: nessuna passa scende da quattro
+Consigli su dieci a meno di uno. Il tabellone dice le due parti nei colori
+delle pedine, ocra la A e azzurra la B, con le domande, le posizioni, le
+caselle marcate e cosa resta se vince l'una o l'altra. Cancello dei 100 semi:
+0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.439 — Il motore del Consiglio a due domande: il giro 3 di D-467
 
 [D-470](docs/DECISIONS.md#d-470). CHR_00 dichiara `two_questions`, e il
