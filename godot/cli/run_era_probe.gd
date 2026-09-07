@@ -85,19 +85,26 @@ func _initialize() -> void:
 	var legends_final: Array = []
 	var facts_final: Array = []
 
-	# Il contenuto che legge le leggende (D-076): le carte MEMORIA e le proposte
+	# Il contenuto che legge le leggende (D-076): le carte MEMORIA e le domande
 	# la cui eleggibilita' nomina un `legend:`. Se a fine misura sono a zero,
 	# sono contenuto che non esiste (D-035), e va detto qui, non scoperto poi.
+	#
+	# **Erano le proposte** (fino a D-472): il Consiglio a due domande (D-467)
+	# non vota proposte, e la lista `propositions` rimasta nei dati non la
+	# legge il motore. Quello che il tavolo puo' leggere e' la domanda, e
+	# quella che il mondo ricorda e' `winning_question_id`. Se nessuna domanda
+	# scritta nomina una leggenda, la riga sotto lo dice: e' un vuoto dei dati,
+	# non della misura.
 	var memoria_cards: Array = []
 	for card in data.echo_cards.values():
 		if str(card["dramatic_family"]) == "MEMORIA":
 			memoria_cards.append(str(card["id"]))
-	var legend_propositions: Array = []
+	var legend_questions: Array = []
 	for tension_id in data.tensions:
-		for proposition in data.confluence_template_for(str(tension_id)).get("propositions", []):
-			for condition in proposition.get("eligibility", []):
+		for question in data.confluence_template_for(str(tension_id)).get("questions", []):
+			for condition in question.get("eligibility", []):
 				if str((condition as Dictionary).get("tag", "")).begins_with("legend:"):
-					legend_propositions.append(str(proposition["id"]))
+					legend_questions.append(str(question["id"]))
 	var memory_read: Dictionary = {}
 	# La proposta del committente: dare un valore ai livelli e sommarli lungo la
 	# saga, per avere un vincitore di campagna. Prima di scriverla come regola si
@@ -204,8 +211,9 @@ func _initialize() -> void:
 				if memoria_cards.has(str(card_id)):
 					memory_read[str(card_id)] = int(memory_read.get(str(card_id), 0)) + 1
 			for result in report["confluences"]:
-				var voted: String = str((result as Dictionary).get("proposition_id", ""))
-				if legend_propositions.has(voted):
+				# La domanda che ha vinto il voto (D-467), non piu' la proposta.
+				var voted: String = str((result as Dictionary).get("winning_question_id", ""))
+				if legend_questions.has(voted):
 					memory_read[voted] = int(memory_read.get(voted, 0)) + 1
 
 			var tags: Array = (session.world["global_tags"] as Array).duplicate()
@@ -490,8 +498,12 @@ func _initialize() -> void:
 	print("")
 	print("  La memoria letta: quante volte il contenuto ha nominato una leggenda")
 	print("  (una voce a zero e' contenuto che non esiste, D-035):")
-	for id in memoria_cards + legend_propositions:
+	for id in memoria_cards + legend_questions:
 		print("    %-36s %3d" % [str(id), int(memory_read.get(str(id), 0))])
+	if legend_questions.is_empty():
+		print("    (nessuna domanda scritta nomina una leggenda nella sua eleggibilita':")
+		print("     dal Consiglio a due domande, D-467, e' la domanda che si vota, e il")
+		print("     contenuto che leggeva le leggende stava sulle proposte, uscite con D-472)")
 
 	quit(0)
 

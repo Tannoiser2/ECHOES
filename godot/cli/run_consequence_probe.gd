@@ -13,13 +13,24 @@ extends SceneTree
 ## > scelta, e se no perche' — **non idonea**, **mai proposta**, o **sempre
 ## > perdente**. Sono tre difetti diversi con tre rimedi diversi.
 ##
-## Il modo di saperlo e' guardare il Consiglio da dentro mentre succede: chi
-## decide riceve **le proposte idonee** e ne sceglie una. Un registratore si
-## siede in mezzo, non decide niente, e scrive quello che passa — e' la stessa
-## forma di `ConsoleIO`, che ascolta senza avere opinioni.
+## **Dal Consiglio a due domande (D-467, D-472) chi elenca una Conseguenza e'
+## una domanda, non una proposta**: l'esito di base sta in `questions[i].base`
+## sulla carta, e esce quando **quella domanda vince** il voto contro l'altra
+## (`winning_question_id` nel risultato). Le proposte e le loro
+## `success_consequences` sono uscite dal codice con il Consiglio di D-280, e
+## la lista rimasta nei dati non la legge nessuno. Le tre porte restano, con
+## nomi nuovi: la carta non arriva mai al Consiglio; la domanda non e' mai
+## eleggibile come A (sta ai voti solo come Contro); ai voti e mai vinta.
+##
+## Il modo di saperlo e' guardare il Consiglio da dentro mentre succede: il
+## Consiglio annuncia i suoi passi — QUESTION all'apertura, RESOLVED a voto
+## fatto — e un ascoltatore si mette in mezzo, non decide niente, e scrive
+## quello che passa. Fino a D-472 era un registratore seduto fra il tavolo e il
+## cervello (`choose_proposition`); ora la scelta non e' piu' una chiamata al
+## cervello, perche' le due domande vanno ai voti tutt'e due.
 ##
 ## E c'e' una quarta possibilita' che la voce non nomina, e i dati la dicono
-## prima di qualunque partita: **una Conseguenza che nessuna proposta elenca**.
+## prima di qualunque partita: **una Conseguenza che nessuna domanda elenca**.
 ## Quattro delle dieci arrivano da una carta Echo, non da un Consiglio, e per
 ## quelle la domanda giusta e' un'altra: la carta e' mai uscita?
 ##
@@ -38,82 +49,6 @@ const Characters := preload("res://scripts/seat/table_of_characters.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 
 
-## Chi ascolta il Consiglio senza parlarci.
-##
-## Inoltra ogni domanda a chi decide davvero e annota **cosa gli e' stato
-## offerto** e **cosa ha scelto**. Non tocca il risultato: la stessa partita con
-## e senza registratore finisce uguale, ed e' il motivo per cui i numeri di
-## questa sonda valgono per la partita vera.
-class Watcher extends RefCounted:
-	var inner: RefCounted
-	var offered: Dictionary = {}   # proposition_id -> volte offerta
-	var chosen: Dictionary = {}    # proposition_id -> volte scelta
-	var excluded: Dictionary = {}  # proposition_id -> volte esclusa con la sua domanda in tavola
-
-	func _init(who: RefCounted) -> void:
-		inner = who
-
-	func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dictionary:
-		return await inner.choose_action(entity_id, ao_index, session)
-
-	func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
-		return await inner.choose_question(context, options, session)
-
-	func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
-		var here: Dictionary = {}
-		for option in options:
-			var id: String = str((option as Dictionary)["id"])
-			here[id] = true
-			offered[id] = int(offered.get(id, 0)) + 1
-		# **Chi non e' stato offerto, e c'era il Consiglio giusto.** Sapere che
-		# una proposta non e' mai arrivata sul tavolo non dice ancora perche':
-		# il Consiglio non si e' mai tenuto, oppure si e' tenuto e lei e' stata
-		# esclusa. Sono due difetti diversi con due rimedi diversi, e qui si
-		# separano — contando solo le volte in cui **quella domanda** era sul
-		# tavolo, perche' una proposta che risponde a un'altra domanda non e'
-		# stata esclusa: non era in argomento.
-		# **Le Proposte vengono dalla carta** (0.1.272), e il motore le legge
-		# fuse col template: leggerle dal template crudo e' la nona volta di
-		# D-414, e qui e' costato un verdetto falso (D-461).
-		var template: Dictionary = session.data.confluence_template_for(
-			str(context["tension_id"])
-		) as Dictionary
-		var asked: String = str(context.get("question_id", ""))
-		for entry in template.get("propositions", []):
-			var candidate: Dictionary = entry as Dictionary
-			if here.has(str(candidate["id"])):
-				continue
-			if asked != "" and str(candidate.get("question_id", "")) != asked:
-				continue
-			var out: String = str(candidate["id"])
-			excluded[out] = int(excluded.get(out, 0)) + 1
-		var picked: String = await inner.choose_proposition(context, options, session)
-		if picked != "":
-			chosen[picked] = int(chosen.get(picked, 0)) + 1
-		return picked
-
-	# Le tre scelte del Consiglio a due domande (D-467): si inoltrano com'e'.
-	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
-		return await inner.choose_side(entity_id, context, offer, session)
-
-	func choose_box(entity_id: String, context: Dictionary, menu: Array, side: String, session: RefCounted) -> String:
-		return await inner.choose_box(entity_id, context, menu, side, session)
-
-	func choose_raise(entity_id: String, context: Dictionary, menu: Array, session: RefCounted) -> String:
-		return await inner.choose_raise(entity_id, context, menu, session)
-
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		return await inner.choose_stance(entity_id, context, session)
-
-	func choose_commit(
-		entity_id: String, context: Dictionary, limit: int, session: RefCounted
-	) -> Array:
-		return await inner.choose_commit(entity_id, context, limit, session)
-
-	func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
-		return await inner.choose_recovery(context, session)
-
-
 func _initialize() -> void:
 	var options: Dictionary = _parse_args(OS.get_cmdline_user_args())
 	var runs: int = int(options.get("runs", 100))
@@ -128,25 +63,26 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	# Chi elenca ogni Conseguenza, letto dai dati: una proposta, oppure niente.
-	var listed_by: Dictionary = {}  # consequence_id -> [proposition_id]
+	# Chi elenca ogni Conseguenza, letto dai dati: una domanda della carta
+	# (`questions[i].base`, D-467), oppure niente.
+	var listed_by: Dictionary = {}  # consequence_id -> [question_id]
 	# **E i sacchetti sono una casa diversa** (D-401): una Conseguenza pescata
 	# dal sacchetto del costo o del fallimento non si sceglie — capita. Il
 	# verdetto che vale per una proposta («offerta tante volte, presa zero») su
 	# di lei direbbe il falso, quindi si tiene separata.
 	var pooled_in: Dictionary = {}  # consequence_id -> ["CNF_X (failure)"]
 	# **Chi elenca si legge dalla carta, non dal template crudo** (D-461): dal
-	# 0.1.272 ogni carta porta le sue Proposte e il template e' solo il ripiego.
+	# 0.1.272 ogni carta porta le sue Domande e il template e' solo il ripiego.
 	# Letto crudo, il template diceva ancora le liste di allora — e chiamava
 	# «orfana» una Conseguenza che tre carte elencano.
 	for tension_id in data.tensions:
 		var sheet: Dictionary = data.confluence_template_for(str(tension_id)) as Dictionary
-		for entry in sheet.get("propositions", []):
-			var proposition: Dictionary = entry as Dictionary
-			for consequence_id in proposition.get("success_consequences", []):
+		for entry in sheet.get("questions", []):
+			var question: Dictionary = entry as Dictionary
+			for consequence_id in question.get("base", []):
 				var who: Array = listed_by.get(str(consequence_id), [])
-				if not who.has(str(proposition["id"])):
-					who.append(str(proposition["id"]))
+				if not who.has(str(question["id"])):
+					who.append(str(question["id"]))
 				listed_by[str(consequence_id)] = who
 	for template_id in data.confluence_templates:
 		var template: Dictionary = data.confluence_templates[str(template_id)] as Dictionary
@@ -177,8 +113,14 @@ func _initialize() -> void:
 				who.append(str(card_id))
 			carried_by[consequence_id] = who
 
+	# Le tre colonne di una domanda (D-467): quante volte era **eleggibile**
+	# all'apertura, quante volte e' stata **ai voti** (come A o come B — la B
+	# non passa dall'eligibility, sta sul tavolo perche' la carta la porta) e
+	# quante volte ha **vinto**. E le volte in cui la sua carta era al
+	# Consiglio e lei non era eleggibile: esclusa, ma ai voti come Contro.
 	var offered: Dictionary = {}
 	var chosen: Dictionary = {}
+	var won: Dictionary = {}
 	var excluded: Dictionary = {}
 	var played: Dictionary = {}      # echo_card_id -> volte calata sul tavolo
 	var drawn: Dictionary = {}       # echo_card_id -> volte uscita dal mazzo
@@ -217,8 +159,15 @@ func _initialize() -> void:
 					# prima e ci fa passare sopra il tempo. E' li' che nascono le
 					# leggende, e le leggende sono meta' della domanda.
 					session.inherit_from(previous, previous_results)
-				var watcher := Watcher.new(
-					Characters.deal(seats, RngService.new(seed_value * 31 + 7), session.log)
+				var table: RefCounted = Characters.deal(
+					seats, RngService.new(seed_value * 31 + 7), session.log
+				)
+				# L'ascoltatore (D-472): i passi del Consiglio, non le chiamate
+				# al cervello. I dizionari si catturano per riferimento, e i
+				# conti si leggono fuori dalla lambda (CLAUDE.md, le trappole).
+				session.confluence.step_changed.connect(
+					func(step: String, context: Dictionary) -> void:
+						_listen(session, step, context, offered, chosen, won, excluded)
 				)
 				# Una carta Echo non scatta perche' e' in mano: scatta quando
 				# qualcuno la **cala** (ISSUES 23, D-118). Pescata e calata sono
@@ -239,18 +188,12 @@ func _initialize() -> void:
 							if cid != "":
 								fired[cid] = int(fired.get(cid, 0)) + 1
 				)
-				var report: Dictionary = await session.run(watcher)
+				var report: Dictionary = await session.run(table)
 				if report.is_empty():
 					printerr("partita non conclusa al seme %d" % seed_value)
 					quit(3)
 					return
 				years_played += 1
-				for id in watcher.offered:
-					offered[id] = int(offered.get(id, 0)) + int(watcher.offered[id])
-				for id in watcher.chosen:
-					chosen[id] = int(chosen.get(id, 0)) + int(watcher.chosen[id])
-				for id in watcher.excluded:
-					excluded[id] = int(excluded.get(id, 0)) + int(watcher.excluded[id])
 				# Pescata e calata sono due numeri diversi, e la distanza fra i
 				# due e' la diagnosi: una carta che nessuno pesca e' un problema
 				# di mazzo, una che tutti pescano e nessuno cala e' un problema
@@ -297,7 +240,7 @@ func _initialize() -> void:
 			var cards: Array = carried_by.get(consequence_id, [])
 			if cards.is_empty():
 				by = "nessuno"
-				verdict = "ORFANA: nessuna proposta la elenca e nessuna carta la porta"
+				verdict = "ORFANA: nessuna domanda la elenca e nessuna carta la porta"
 			else:
 				var pulls: int = 0
 				var seen_in_hand: int = 0
@@ -316,42 +259,88 @@ func _initialize() -> void:
 		else:
 			var seen: int = 0
 			var taken: int = 0
-			for proposition_id in who:
-				seen += int(offered.get(str(proposition_id), 0))
-				taken += int(chosen.get(str(proposition_id), 0))
+			var victories: int = 0
+			for question_id in who:
+				seen += int(offered.get(str(question_id), 0))
+				taken += int(chosen.get(str(question_id), 0))
+				victories += int(won.get(str(question_id), 0))
 			by = ", ".join(PackedStringArray(who))
-			if seen == 0:
+			if taken == 0:
+				verdict = "FUORI PORTATA: la sua carta non e' mai arrivata al Consiglio"
+			elif seen == 0:
+				# Ai voti solo come Contro: mai eleggibile come A, e chi la
+				# prende non l'ha mai portata oltre il mucchio.
 				var barred: int = 0
-				for proposition_id in who:
-					barred += int(excluded.get(str(proposition_id), 0))
+				for question_id in who:
+					barred += int(excluded.get(str(question_id), 0))
 				verdict = (
-					"NON IDONEA: la sua domanda e' stata posta %d volte e lei e' stata esclusa tutte" % barred
-					if barred > 0
-					else "FUORI PORTATA: la sua domanda non e' mai arrivata al tavolo"
+					"NON IDONEA: al Consiglio %d volte solo come Contro, esclusa come A tutte, e non vince mai"
+					% barred
 				)
-			elif taken == 0:
-				verdict = "MAI SCELTA: offerta %d volte, presa zero" % seen
-			else:
-				verdict = "SEMPRE PERDENTE: scelta %d volte su %d offerte, e non passa mai" % [
+			elif victories == 0:
+				verdict = "SEMPRE PERDENTE: ai voti %d volte (eleggibile %d), e non vince mai" % [
 					taken, seen,
+				]
+			else:
+				# Ha vinto, ma la Conseguenza non e' scattata: o una clausola
+				# `requires_entity` l'ha fermata (D-213, D-262), o si legge il
+				# verbale. Detto invece che taciuto.
+				verdict = "VINTA %d volte su %d ai voti, e la Conseguenza non e' scattata lo stesso" % [
+					victories, taken,
 				]
 		print("  %-24s %-34s %s" % [consequence_id, by, verdict])
 	print("")
-	print("  Per confronto: le proposte mai offerte a nessuno, in %d Consigli." % councils)
-	var never_offered: Array = []
+	print("  Per confronto: le domande mai ai voti, in %d Consigli." % councils)
+	var never_voted: Array = []
 	for consequence_id in listed_by:
-		for proposition_id in listed_by[consequence_id]:
-			if int(offered.get(str(proposition_id), 0)) == 0 and not never_offered.has(str(proposition_id)):
-				never_offered.append(str(proposition_id))
-	never_offered.sort()
-	if never_offered.is_empty():
-		print("    nessuna: ogni proposta arriva prima o poi sul tavolo.")
+		for question_id in listed_by[consequence_id]:
+			if int(chosen.get(str(question_id), 0)) == 0 and not never_voted.has(str(question_id)):
+				never_voted.append(str(question_id))
+	never_voted.sort()
+	if never_voted.is_empty():
+		print("    nessuna: ogni domanda arriva prima o poi sul tavolo.")
 	else:
-		for proposition_id in never_offered:
-			print("    %-22s esclusa %d volte con la sua domanda in tavola" % [
-				str(proposition_id), int(excluded.get(str(proposition_id), 0)),
-			])
+		for question_id in never_voted:
+			print("    %-22s la sua carta non e' mai arrivata al Consiglio" % str(question_id))
 	quit(0)
+
+
+## L'ascoltatore del Consiglio a due domande (D-467, D-472). All'apertura
+## (QUESTION) si annota quali domande della carta erano eleggibili e quali no;
+## a voto fatto (RESOLVED) quali erano ai voti — la A del proponente e la B —
+## e quale ha vinto. Non tocca il risultato: la stessa partita con e senza
+## ascoltatore finisce uguale.
+func _listen(
+	session: RefCounted, step: String, context: Dictionary,
+	offered: Dictionary, chosen: Dictionary, won: Dictionary, excluded: Dictionary
+) -> void:
+	if step == "QUESTION":
+		var here: Dictionary = {}
+		for option in session.confluence.available_questions():
+			var id: String = str((option as Dictionary)["id"])
+			here[id] = true
+			offered[id] = int(offered.get(id, 0)) + 1
+		var template: Dictionary = session.data.confluence_template_for(
+			str(context["tension_id"])
+		) as Dictionary
+		for entry in template.get("questions", []):
+			var id: String = str((entry as Dictionary)["id"])
+			if not here.has(id):
+				excluded[id] = int(excluded.get(id, 0)) + 1
+		return
+	if step != "RESOLVED":
+		return
+	# Si legge a voto fatto e non all'apertura: il proponente puo' cambiare
+	# domanda dopo `open()`, e le parti si riaprono con lei.
+	for side in ["A", "B"]:
+		var id: String = str(
+			((context.get("sides", {}) as Dictionary).get(side, {}) as Dictionary).get("question_id", "")
+		)
+		if id != "":
+			chosen[id] = int(chosen.get(id, 0)) + 1
+	var winner: String = str((context.get("result", {}) as Dictionary).get("winning_question_id", ""))
+	if winner != "":
+		won[winner] = int(won.get(winner, 0)) + 1
 
 
 func _parse_args(args: PackedStringArray) -> Dictionary:

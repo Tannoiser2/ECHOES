@@ -6,10 +6,12 @@ extends SceneTree
 ##
 ## Un Consiglio che passa lascia due cose sul mondo, da due grammatiche diverse:
 ##
-## - le **Conseguenze della proposta** — `success_consequences` sulla frase
-##   d'autore scelta dal proponente, la grammatica della specifica v0.2;
-## - i **benefici e i costi della carta** — l'economia di D-280, quella che si
-##   legge sulla Tensione girata.
+## - le **Conseguenze della domanda che ha vinto** — l'esito di base scritto
+##   su `questions[i].base` della carta (D-467, D-469): la frase d'autore.
+##   Fino a D-472 erano le `success_consequences` della proposta scelta dal
+##   proponente; la proposta e' uscita dal codice con il Consiglio di D-280;
+## - i **benefici e i costi della carta** — le caselle posate dalla parte che
+##   ha vinto, quelle che si leggono sulla Tensione girata.
 ##
 ## Il taglio 2 propone di cancellare la prima. Prima di cancellare si conta:
 ## quante volte parla l'una e quante l'altra, **e quanti Effetti scrive
@@ -18,9 +20,10 @@ extends SceneTree
 ## doppione. La differenza fra le due cose e' un numero, non un'opinione.
 ##
 ## Si conta anche **quanta di quella roba d'autore il tavolo vede davvero**:
-## proposte diverse votate su proposte scritte, domande diverse poste su
-## domande scritte. Contenuto che esiste nei dati e non esiste al tavolo e' la
-## lezione di D-035.
+## domande diverse poste su domande scritte, e domande diverse **vinte** su
+## domande scritte — nel Consiglio a due domande (D-467) la carta mette sul
+## tavolo tutt'e due le sue domande, e il mondo ricorda quella che vince.
+## Contenuto che esiste nei dati e non esiste al tavolo e' la lezione di D-035.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -32,7 +35,9 @@ const BLOCKS: Dictionary = {
 	"H. Beneficio: ": "la carta: benefici",
 	"H. Prezzo: ": "la carta: prezzi",
 	"H. Il mondo non aspetta: ": "la carta: se cade",
-	"H. Clausola qualificata: ": "la clausola",
+	# «H. Clausola qualificata:» non e' piu' una riga che il motore scrive
+	# (D-472): tenerla qui era uno zero cieco, e uno zero in questo progetto
+	# e' quasi sempre la sonda.
 	"H. La carta parla - ": "gli Asset impegnati",
 }
 
@@ -64,7 +69,10 @@ func _initialize() -> void:
 	var wrote: Dictionary = {}    # blocco -> quanti Effetti ha narrato
 	var councils: int = 0
 	var questions_asked: Dictionary = {}
-	var propositions_voted: Dictionary = {}
+	# **La domanda che ha vinto** (D-467): il posto che era delle proposte
+	# votate. Il tavolo pone la domanda del proponente (A) contro l'altra
+	# della carta (B), e il mondo scrive l'esito di quella che vince.
+	var questions_won: Dictionary = {}
 	# **La differenza che ISSUES 88 chiede**: una Tensione che il tavolo non ha
 	# mai girato tiene la sua domanda nel mazzetto coperto, e non e' un difetto —
 	# e' rigiocabilita'. Una che il tavolo **ha girato** e la cui domanda non si
@@ -84,7 +92,6 @@ func _initialize() -> void:
 	# Consiglio elenca al passo, e il passo lo annuncia. Ci si mette in ascolto
 	# e si chiede al Consiglio, in quel momento, cosa avrebbe potuto scegliere.
 	var offered_questions: Dictionary = {}
-	var offered_propositions: Dictionary = {}
 
 	# Una saga tiene **lo stesso tavolo** dal primo anno all'ultimo (run_saga).
 	var previous: Dictionary = {}
@@ -110,16 +117,11 @@ func _initialize() -> void:
 		var ballot: Callable = func(step: String, _context: Dictionary) -> void:
 			# Al passo B la domanda di ripiego e' gia' posata e il cervello non
 			# ha ancora parlato: quello che il Consiglio elenca adesso e' la
-			# scheda. Al passo C la proposta e' scelta, ma la scheda da cui
-			# usciva e' la stessa — `available_propositions` non guarda la
-			# scelta, guarda la domanda e il mondo, e il mondo non e' ancora
-			# cambiato.
+			# scheda. Il passo PROPOSITION non c'e' piu' (D-472): la carta
+			# mette ai voti le sue due domande, non una proposta scelta.
 			if step == "QUESTION":
 				for question in session.confluence.available_questions():
 					offered_questions[str((question as Dictionary)["id"])] = true
-			elif step == "PROPOSITION":
-				for proposition in session.confluence.available_propositions():
-					offered_propositions[str((proposition as Dictionary)["id"])] = true
 		session.confluence.step_changed.connect(ballot)
 		# Il mazzetto com'e' stato distribuito, prima che qualcuno lo tocchi.
 		var dealt: Dictionary = {}
@@ -145,7 +147,12 @@ func _initialize() -> void:
 		for result in (report.get("confluences", []) as Array):
 			var record: Dictionary = result as Dictionary
 			questions_asked[str(record.get("question_id", ""))] = true
-			propositions_voted[str(record.get("proposition_id", ""))] = true
+			# `proposition_id` non esiste piu' nel risultato (D-472): quello che
+			# il mondo ricorda e' `winning_question_id`, vuoto se nessuna parte
+			# ha passato il mucchio.
+			var won: String = str(record.get("winning_question_id", ""))
+			if won != "":
+				questions_won[won] = true
 			hosted[str(record.get("tension_id", ""))] = true
 		# Le righe narrate stanno **sotto** la testata del loro blocco: si
 		# cammina il registro in ordine e si tiene a mente chi sta parlando.
@@ -182,24 +189,17 @@ func _initialize() -> void:
 	# sessanta carte il conto vero e' un altro — la misura diceva "36 su 49"
 	# mentre il tavolo ne aveva scritte 185. **Decima volta in questo progetto
 	# che una misura ferma era la sonda.**
+	#
+	# Le proposte non si contano piu' (D-472): il motore non le legge, e una
+	# lista `propositions` rimasta nei dati non e' contenuto che il tavolo
+	# possa vedere. Si contano le domande, due volte: poste e vinte.
 	var written_questions: Dictionary = {}
-	var written_propositions: Dictionary = {}
-	var proposition_question: Dictionary = {}
 	for tension_id in data.tensions:
 		var template: Dictionary = data.confluence_template_for(str(tension_id))
 		if template.is_empty():
 			continue
 		for question in (template.get("questions", []) as Array):
 			written_questions[str((question as Dictionary)["id"])] = str(tension_id)
-		for proposition in (template.get("propositions", []) as Array):
-			written_propositions[str((proposition as Dictionary)["id"])] = str(tension_id)
-			# Una proposta si vota **dentro** la sua domanda: se la domanda non
-			# e' mai stata posta, la proposta non e' stata scartata — non e'
-			# proprio arrivata sul tavolo. Senza questo passaggio il conto
-			# chiamerebbe difetto l'aritmetica del Consiglio.
-			proposition_question[str((proposition as Dictionary)["id"])] = str(
-				(proposition as Dictionary).get("question_id", "")
-			)
 
 	print("")
 	print("== CHI SCRIVE NEL MONDO - %d anni di %s, semi da %d%s ==" % [
@@ -233,8 +233,8 @@ func _initialize() -> void:
 	print("    domande poste     %d su %d scritte" % [
 		questions_asked.size(), written_questions.size()
 	])
-	print("    proposte votate   %d su %d scritte" % [
-		propositions_voted.size(), written_propositions.size()
+	print("    domande vinte     %d su %d scritte" % [
+		questions_won.size(), written_questions.size()
 	])
 	print("")
 	print("  == E DOVE FINISCE QUELLO CHE NON VEDE == (ISSUES 88)")
@@ -251,17 +251,19 @@ func _initialize() -> void:
 	if reshuffled > 0:
 		print("    ATTENZIONE: i mazzetti sono stati rimontati %d volte, il conto sotto non vale" % reshuffled)
 	_split(
-		"domande", written_questions, questions_asked, flipped, hosted, {}, {},
+		"domande poste", written_questions, questions_asked, flipped, hosted, {}, {},
 		offered_questions
 	)
+	# La seconda lettura e' sulla stessa lista, con un «usata» piu' stretto: la
+	# domanda deve aver **vinto** il voto (D-467), non solo essere stata posta.
 	_split(
-		"proposte", written_propositions, propositions_voted, flipped, hosted,
-		proposition_question, questions_asked, offered_propositions
+		"domande vinte", written_questions, questions_won, flipped, hosted, {}, {},
+		offered_questions
 	)
 	print("")
 	print("    La prima riga e' rigiocabilita': carte che il mazzetto non ha girato.")
-	print("    La seconda e' aritmetica: %d Consigli in %d anni, e ognuno apre" % [councils, runs])
-	print("      una domanda sola — il mazzetto gira piu' di quanto il tavolo discuta.")
+	print("    La seconda e' aritmetica: %d Consigli in %d anni, e ognuno mette ai voti" % [councils, runs])
+	print("      le due domande di una carta sola — il mazzetto gira piu' di quanto il tavolo discuta.")
 	print("    **La terza e' il difetto di D-035**: la Tensione e' arrivata al")
 	print("      Consiglio, e quella voce non e' stata scelta lo stesso.")
 	quit(0)

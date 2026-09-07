@@ -45,7 +45,10 @@ func _initialize() -> void:
 
 	var truths: Dictionary = {}
 	var questions: Dictionary = {}
-	var propositions: Dictionary = {}
+	# **Le domande vinte** (D-467, D-472): il posto che era delle proposte
+	# messe ai voti. Il tavolo vota la domanda del proponente contro l'altra
+	# della carta, e il testo che il mondo ricorda e' quello della vincitrice.
+	var decided: Dictionary = {}
 	var focus_regions: Dictionary = {}
 	# Quante Chronicle hanno scritto almeno una Truth due volte, e la peggiore.
 	var repeating: int = 0
@@ -61,7 +64,7 @@ func _initialize() -> void:
 			return
 		session.confluence.step_changed.connect(
 			func(step: String, context: Dictionary) -> void:
-				_collect(session, context, step, questions, propositions, focus_regions)
+				_collect(session, context, step, questions, decided, focus_regions)
 		)
 		await session.run(PolicyDecider.new(session.log))
 		var here: Dictionary = {}
@@ -96,7 +99,7 @@ func _initialize() -> void:
 	)
 
 	_dump("DOMANDE poste al tavolo", questions)
-	_dump("PROPOSTE messe ai voti", propositions)
+	_dump("DOMANDE vinte al voto", decided)
 	_dump("TRUTH - il registro permanente", truths)
 
 	print("")
@@ -128,7 +131,7 @@ func _collect(
 	context: Dictionary,
 	step: String,
 	questions: Dictionary,
-	propositions: Dictionary,
+	decided: Dictionary,
 	focus_regions: Dictionary
 ) -> void:
 	var controller: RefCounted = session.confluence
@@ -150,11 +153,18 @@ func _collect(
 			if str(question["id"]) == str(context["question_id"]):
 				var text: String = controller.say(str(question["text"]))
 				questions[text] = int(questions.get(text, 0)) + 1
-	elif step == "PROPOSITION":
-		for proposition in template["propositions"]:
-			if str(proposition["id"]) == str(context["proposition_id"]):
-				var text: String = controller.say(str(proposition["text"]))
-				propositions[text] = int(propositions.get(text, 0)) + 1
+	elif step == "RESOLVED":
+		# Il passo PROPOSITION non c'e' piu' (D-472): a voto fatto si raccoglie
+		# il testo della domanda che ha vinto — vuoto se nessuna parte ha
+		# passato il mucchio. `say` funziona ancora qui: le parti sono aperte
+		# finche' il passo non e' stato annunciato.
+		var winner: String = str((context.get("result", {}) as Dictionary).get("winning_question_id", ""))
+		if winner == "":
+			return
+		for question in template["questions"]:
+			if str(question["id"]) == winner:
+				var text: String = controller.say(str(question["text"]))
+				decided[text] = int(decided.get(text, 0)) + 1
 
 
 ## La frase dentro una riga di Truth: senza «Anno 1640, Atto 3: » davanti e senza
