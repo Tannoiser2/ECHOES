@@ -10,6 +10,81 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-471 — Il giro 4: il cervello gioca per il mucchio, le pedine pesano, il tabellone a due colori
+
+**implemented in 0.1.440.** L'ultimo dei quattro giri di [D-467](#d-467),
+parola del committente: *«mergia e vai»*. Tre cose, e la seconda e' la
+taratura che D-467 lasciava a un numero scritto.
+
+### 1. Il cervello fa la sua parte del mucchio
+
+A due domande il voto e' contro il mucchio, e in D-470 i cervelli
+impegnavano le carte come prima: quattro Consigli su dieci non decidevano
+niente. Ora ogni seggio di una parte **divide la soglia per quanti sono
+dalla sua parte** e impegna carte finche' la sua quota e' coperta — una in
+piu' se la parte gli vale molto, una sola se non gli vale niente e non e'
+lui a proporre. Non sbircia gli impegni altrui, che al tavolo sono coperti:
+legge il mucchio, le pedine e quanti seggi, che sono sul tavolo.
+
+Misurato da solo, su 30 anni: nessuna passa scende da 56 a **52** Consigli
+su 142. Non basta, e si vede perche': due carte per seggio e' il tetto della
+Chronicle, e una parte di due seggi con carte da uno o due punti non arriva
+a un mucchio da sei. Il cervello non puo' comprare quello che la mano non ha.
+
+### 2. Le pedine pesano: la taratura, scritta
+
+Una parte vale **le sue carte piu' le pedine che ha posato**, benefici e
+costi. E' la lettura che il committente aveva gia' dato al rilancio — *«C e
+D possono sostenere una o l'altra scegliendo un costo o un beneficio»* —
+posare un costo e' sostenere, e al tavolo si conta «carte e pedine della tua
+parte». Il verbale lo scrive: *A=8 (carte 4, pedine 4) B=7 (carte 4, pedine
+3) contro il mucchio 4*.
+
+| 30 anni, misto · uniforme | D-470, solo carte | col cervello | **con le pedine** |
+|---|---|---|---|
+| nessuna passa | 56 · 51 | 52 · 44 | **11 · 8** |
+| vince A | 48 · 58 | 49 · 60 | **73 · 82** |
+| vince B (COUNTER) | 40 · 35 | 41 · 41 | **58 · 55** |
+| la parte piu' forte arriva al mucchio | 65% · 63% | 68% · 77% | **97% · 99%** |
+| Consigli con opposizione nel margine | 84% · 86% | 83% · 85% | **96% · 94%** |
+
+Il mucchio morde ancora, ma dove deve: un proponente solo con una pedina e
+due carte da un punto non arriva a un mucchio da sei. **Le pedine contano
+piu' delle carte**, ed e' voluto: il Consiglio si decide sulle caselle, le
+carte sono il di piu'. Se al tavolo vero il peso sembrasse rovesciato, la
+riga da toccare e' una e la dice il verbale.
+
+### 3. Il tabellone a due colori
+
+Il Consiglio a schermo intero di [D-466](#d-466) dice le due parti: in
+testa «A: chi propone · B: chi la guida», le due domande con la loro
+lettera, le posizioni «propone A», «propone B», «con A», «con B» nei colori
+delle pedine — ocra la A, azzurra la B — le tre liste della carta con la
+marca davanti a ogni casella come sul cartone e la pedina del colore della
+parte che l'ha presa, «SE VINCE» con l'esito di base di ognuna prima del
+voto e «COSA RESTA» dopo, il conto «A · B · mucchio». Fotografato a
+1366x1024 con quattro bot. Chi gioca sceglie fra carte, come in D-233.
+
+### Cosa resta
+
+- **Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+  tavoli. Esiti FAIL · SUCC di misura · SUCC · DECI · **COUNTER**: **44 · 27
+  · 84 · 126 · 200** sul misto (481 Consigli) e **42 · 30 · 93 · 139 · 183**
+  sull'uniforme (487). I Consigli per anno restano 4,8: sono le sei domande
+  di D-468, non le cadute, e D-470 li leggeva male.
+- «Senza discussione» e' l'esito piu' frequente di A: con le pedine i margini
+  si allargano. Le fasce sul margine sono quelle di D-280, e a due domande
+  dicono meno: un'altra taratura, se servira', con un numero scritto.
+- Il giro vecchio resta nel codice sotto la dichiarazione: portare le prove
+  di D-280 alla regola nuova e toglierlo e' il debito di ISSUES 129.
+- Le marche delle caselle sono ancora la prima passata a regola di D-469: il
+  catalogo le mostra, il committente le corregge.
+
+Suite 768 prove verdi, due nuove sul cervello e sul tabellone; 28 cancelli
+veloci e 5 lenti verdi, documenti rifatti perche' il tavolo e' cambiato.
+
+---
+
 ## D-470 — Il motore del Consiglio a due domande: le parti, le caselle, il rilancio, il voto contro il mucchio
 
 **implemented in 0.1.439.** Il giro 3 di [D-467](#d-467), parola del

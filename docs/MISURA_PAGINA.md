@@ -22,7 +22,7 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 10 |
-| nodi in tutto | 370 |
+| nodi in tutto | 369 |
 | testi sotto gli occhi | 194 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
@@ -97,7 +97,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 |---|---|---|---|---|
 | colonna di stato | sotto, in una scheda | 107 | 246 | 1859 |
 | mappa | al centro | 13 | *si adatta* | |
-| il Consiglio | a schermo intero | 82 | 974 | 182 |
+| il Consiglio | a schermo intero | 81 | 974 | 182 |
 | il tavolo | nella stanza, prima di sedersi | 39 | *si adatta* | |
 | i mazzi dei Temi | non sta sulla pagina (D-464) | 13 | *si adatta* | |
 | chi siede | al centro | 25 | 402 | 44 |
@@ -134,9 +134,9 @@ Quanti testi a ogni taglia, sul tablet:
 
 | punti | testi |
 |---|---|
-| 11 | 92 |
+| 11 | 91 |
 | 12 | 68 |
-| 13 | 40 |
+| 13 | 41 |
 | 14 | 1 |
 | 15 | 2 |
 | 18 | 1 |

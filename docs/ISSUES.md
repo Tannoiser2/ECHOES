@@ -10060,6 +10060,15 @@ cancello dei 100 semi:
    dichiarazione `two_questions` della Chronicle; il giro vecchio resta nel
    codice per le prove di D-280, ed e' un debito: portarle alla regola nuova
    e toglierlo;
-4. il cervello dei bot e la pagina — e la taratura della soglia: coi cervelli
-   di oggi quattro Consigli su dieci non decidono niente.
+4. ✔ il cervello dei bot e la pagina, e la taratura della soglia — **giro 4
+   fatto in 0.1.440** ([D-471](DECISIONS.md#d-471)): il cervello gioca la
+   sua quota del mucchio, le pedine pesano nel voto, il tabellone a due
+   colori.
+
+**I quattro giri sono percorsi.** La voce resta aperta su quello che resta
+scritto in D-471: il giro vecchio di D-280 nel codice sotto la dichiarazione
+(portare le sue prove alla regola nuova e toglierlo), le marche delle caselle
+da rivedere carta per carta nel catalogo, le fasce dell'esito di A che a due
+domande dicono meno. E su quello che nessuna sonda misura: un Consiglio
+giocato da persone.
 

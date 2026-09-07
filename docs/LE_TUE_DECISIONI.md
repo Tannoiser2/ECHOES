@@ -428,6 +428,15 @@ Consigli su dieci non decidono niente perche' i cervelli non giocano ancora
 per arrivare al mucchio. E' il giro 4: il cervello, la pagina, e la soglia
 da tarare se resta cosi'.
 
+**Giro 4 fatto in 0.1.440** ([D-471](DECISIONS.md#d-471)): il cervello gioca
+la sua quota del mucchio, e le pedine pesano nel voto — e' la taratura, e ti
+dico com'e' andata: con le sole carte non decideva niente quattro Consigli su
+dieci, con carte e pedine meno di uno; A vince meta' delle volte, la
+controdomanda quattro su dieci. Il tabellone mostra le due parti nei colori
+delle pedine. **I quattro giri sono percorsi.** Quello che resta lo leggi
+nella voce: il giro vecchio da togliere, le marche da rivedere, e un
+Consiglio giocato da te.
+
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in
