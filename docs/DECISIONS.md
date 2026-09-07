@@ -10,6 +10,77 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-468 — Sei Tensioni, una per Tema: il primo giro, e il mucchio misurato contro le carte
+
+**implemented in 0.1.437.** Il giro 1 di [D-467](#d-467): *«ci devono essere
+6 tensioni, una per tema; altrimenti se ci sono 3 tensioni tutte di un tema
+quale viene scaldata?»*. Ed e' il giro in cui si misura, prima di scriverla,
+la soglia del voto nuovo.
+
+### 1. La pesca e' una per Tema
+
+Il mazzo della Chronicle dichiara `per_theme: true` (schema e
+`chronicle_00`, `count` da 4 a 6), e `resolve_tensions` — quando chi chiama
+gli passa la mappa `tension_id -> theme_id` — pesca **una domanda per ogni
+Tema**, nell'ordine dei Temi, coi pesi dei richiami di D-079 se ci sono.
+Le Chronicle di prova, che non passano la mappa, pescano come prima. Un Tema
+senza candidate sul tavolo pescato resterebbe senza domanda: la sonda della
+partecipazione conta quegli anni, e su 60 sono **zero**.
+
+Il mazzetto di ogni Tema e' **la sua carta, gia' girata** (D-450):
+`deal_theme_decks` mette la domanda pescata come fronte del Tema e non lascia
+niente sotto da girare. Prima il mazzetto teneva le dieci carte del Tema che
+stavano sulla mappa e ne girava una quando il Tema si scaldava — con quattro
+domande pescate e altre che si aprivano lungo l'anno, il tavolo non sapeva
+mai quante domande aveva.
+
+### 2. Il mucchio contro le carte, misurato
+
+La sonda della partecipazione legge, quando un Consiglio si apre, **il
+valore del mucchio** della domanda — il valore rivelato del suo Tema e i
+gettoni caduti — e lo confronta con le carte della parte piu' forte. E' il
+numero che D-467 chiedeva prima di fissare la soglia. 30 anni, semi da 7000:
+
+| | misto | uniforme |
+|---|---|---|
+| mucchio medio (valore) | 4,67 | 4,47 |
+| gettoni medi sul mucchio | 4,48 | 4,31 |
+| carte della parte piu' forte (media) | 5,60 | 5,99 |
+| **Consigli in cui la parte piu' forte arriva al mucchio** | **65%** | **63%** |
+| mucchio a 6, il valore piu' frequente | 41 su 101 | 38 su 105 |
+
+Letto: col mucchio come soglia, **un Consiglio su tre non passerebbe** coi
+cervelli di oggi, che non giocano ancora per raggiungerla. E' un rischio
+vero e non una formalita', che e' quello che il committente chiedeva; se
+diventi troppo, si tara al giro 3, dove la soglia entra nel motore. Il 6
+cosi' frequente sembra un tetto del mazzetto, e va guardato li'.
+
+**La sonda e' nata cieca, e la guardia lo dice.** La prima stesura leggeva
+`tension` nel contesto del Consiglio aperto, che porta `tension_id`, e
+misurava **zero su 206 Consigli**. Ora un mucchio a zero su venti Consigli o
+piu' manda la sonda in rosso: un tavolo cosi' freddo non esiste.
+
+### Cosa cambia con sei domande
+
+| 30 anni, semi da 7000 | quattro domande | **sei domande** |
+|---|---|---|
+| Consigli con opposizione nel margine, misto | 69% | **78%** |
+| Consigli con opposizione nel margine, uniforme | 72% | **77%** |
+| carte impegnate dagli altri tre, per Consiglio | 2,76 · 2,74 | **3,18 · 3,12** |
+| margine medio, misto · uniforme | 1,95 · 1,87 | **0,41 · 1,20** |
+
+Piu' domande sul tavolo, piu' Consigli combattuti: le astensioni scendono e
+il margine si stringe. E' la direzione di D-467 gia' prima del rilancio.
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **142 · 54 · 89 · 73** sul misto
+(358 Consigli, erano 336 con quattro domande) e **134 · 62 · 74 · 90**
+sull'uniforme (360, erano 352). Suite 758 prove verdi, sei nuove su un mazzo
+fabbricato e sul tavolo vero; 28 cancelli veloci e 5 lenti verdi, i documenti
+lenti rifatti perche' il tavolo e' cambiato.
+
+---
+
 ## D-467 — Il Consiglio a due domande: il disegno, deciso col committente
 
 **decided in 0.1.436 — verbale di disegno, senza codice.** Il committente ha

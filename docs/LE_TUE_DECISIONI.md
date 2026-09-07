@@ -406,6 +406,12 @@ suo esito di base e le sue caselle; il rilancio con posizione obbligata al
 primo giro; il voto a tre esiti contro il mucchio, senza dado. Il primo giro
 e' quello piccolo e misurabile: sei Tensioni in gioco.
 
+**Giro 1 fatto in 0.1.437** ([D-468](DECISIONS.md#d-468)): sei domande sul
+tavolo, una per Tema, ognuna gia' girata. E il mucchio misurato contro le
+carte: la parte piu' forte lo raggiunge in due Consigli su tre, quindi la
+soglia e' un rischio vero. Con sei domande i Consigli si fanno piu'
+combattuti da soli. Restano i giri 2, 3 e 4.
+
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in

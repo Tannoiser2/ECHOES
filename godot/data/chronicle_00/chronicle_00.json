@@ -164,7 +164,8 @@
           "TEN_WINTER",
           "TEN_WOLVES"
         ],
-        "count": 4,
+        "count": 6,
+        "per_theme": true,
         "always": [],
         "echoes": {
           "TEN_ASH": [

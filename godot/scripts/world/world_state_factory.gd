@@ -141,7 +141,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	# seat the first saga's houses at the second saga's table (D-049).
 	_build_map(world, chronicle, data)
 
-	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng):
+	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng, {}, {}, themes_of(data)):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
@@ -734,9 +734,15 @@ static func resolve_seats(chronicle: Dictionary, rng: RefCounted) -> Array:
 ## un tag di Regione - pesa il triplo. L'era dopo cresce da quella prima
 ## invece di essere pescata alla cieca; senza segni, o senza `previous`, la
 ## pesca resta quella uniforme di sempre.
+## **Una per Tema** (D-467, giro 1): se il mazzo dichiara `per_theme` e chi
+## chiama passa la mappa `tension_id -> theme_id` (`themes_of(data)`), si pesca
+## **una domanda per ogni Tema**, nell'ordine dei Temi, coi pesi dei richiami
+## se ci sono. Cosi' ogni Tema ha la sua domanda sul tavolo e un gettone cade
+## sempre su qualcosa. Un Tema senza nessuna candidata sul tavolo pescato resta
+## senza domanda, e la sonda della partecipazione conta quanti anni lo fanno.
 static func resolve_tensions(
 	chronicle: Dictionary, rng: RefCounted, previous: Dictionary = {},
-	previous_results: Dictionary = {}
+	previous_results: Dictionary = {}, themes: Dictionary = {}
 ) -> Array:
 	# Una biblioteca vuota **e'** l'assenza di biblioteca, come `hand_refill: {}`
 	# e' l'assenza di ripescaggio: e' cosi' che un piano scriptato dichiara di
@@ -754,20 +760,23 @@ static func resolve_tensions(
 
 	var echoes: Dictionary = pool.get("echoes", {})
 	var accounts: Dictionary = _open_accounts(previous_results)
-	if previous.is_empty() or (echoes.is_empty() and accounts.is_empty()):
+	var listening: bool = not (previous.is_empty() or (echoes.is_empty() and accounts.is_empty()))
+	var weights: Dictionary = {}
+	for tension_id in candidates:
+		var called: bool = listening and (
+			_era_carries_any(previous, echoes.get(str(tension_id), []))
+			or accounts.has(str(tension_id))
+		)
+		weights[str(tension_id)] = ECHO_WEIGHT if called else 1
+	if bool(pool.get("per_theme", false)) and not themes.is_empty():
+		return _one_per_theme(drawn, candidates, weights, themes, rng)
+	if not listening:
 		for tension_id in rng.shuffle(candidates):
 			if drawn.size() >= int(pool["count"]):
 				break
 			drawn.append(str(tension_id))
 		return drawn
 
-	var weights: Dictionary = {}
-	for tension_id in candidates:
-		var called: bool = (
-			_era_carries_any(previous, echoes.get(str(tension_id), []))
-			or accounts.has(str(tension_id))
-		)
-		weights[str(tension_id)] = ECHO_WEIGHT if called else 1
 	while drawn.size() < int(pool["count"]) and not candidates.is_empty():
 		var total: int = 0
 		for tension_id in candidates:
@@ -780,6 +789,50 @@ static func resolve_tensions(
 				candidates.remove_at(i)
 				break
 	return drawn
+
+
+## La pesca una per Tema: i Temi in ordine, e per ognuno un tiro pesato fra le
+## candidate di quel Tema. Un Tema gia' servito da `always` non pesca; uno
+## senza candidate resta senza domanda. L'ordine e' fisso perche' il seme
+## decida, non l'ordine con cui un Dictionary si lascia leggere.
+static func _one_per_theme(
+	drawn: Array, candidates: Array, weights: Dictionary, themes: Dictionary, rng: RefCounted
+) -> Array:
+	var theme_ids: Array = []
+	for tension_id in themes:
+		var theme_id: String = str(themes[tension_id])
+		if not theme_ids.has(theme_id):
+			theme_ids.append(theme_id)
+	theme_ids.sort()
+	var served: Dictionary = {}
+	for tension_id in drawn:
+		served[str(themes.get(str(tension_id), ""))] = true
+	for theme_id in theme_ids:
+		if served.has(str(theme_id)):
+			continue
+		var pile: Array = []
+		var total: int = 0
+		for tension_id in candidates:
+			if str(themes.get(str(tension_id), "")) == str(theme_id):
+				pile.append(str(tension_id))
+				total += int(weights[str(tension_id)])
+		if pile.is_empty():
+			continue
+		var roll: int = rng.range_int(1, total)
+		for tension_id in pile:
+			roll -= int(weights[str(tension_id)])
+			if roll <= 0:
+				drawn.append(str(tension_id))
+				break
+	return drawn
+
+
+## `tension_id -> theme_id`, per la pesca una per Tema.
+static func themes_of(data: RefCounted) -> Dictionary:
+	var out: Dictionary = {}
+	for tension_id in data.tensions:
+		out[str(tension_id)] = str((data.tensions[str(tension_id)] as Dictionary).get("theme", ""))
+	return out
 
 
 ## Il peso di una candidata richiamata da un segno (D-079). Tre a uno: un
@@ -1111,7 +1164,7 @@ static func redeal_tensions(
 			and _open_accounts(previous_results).is_empty():
 		return
 	(world["tensions"] as Dictionary).clear()
-	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng, previous, previous_results):
+	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng, previous, previous_results, themes_of(data)):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
@@ -1137,7 +1190,7 @@ static func rebuild_drawn_map(
 ) -> void:
 	_build_map(world, chronicle, data)
 	(world["tensions"] as Dictionary).clear()
-	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng):
+	for tension_id in resolve_tensions(filter_pool_for_map(chronicle, data, world), rng, {}, {}, themes_of(data)):
 		var definition: Dictionary = data.tensions[tension_id]
 		world["tensions"][tension_id] = {
 			"id": tension_id,
@@ -1173,7 +1226,20 @@ static func deal_theme_decks(
 			for tag in (world["regions"][str(region_id)].get("tags", []) as Array):
 				on_map[str(tag)] = true
 	var deck_rng: RefCounted = RngService.new(rng.get_seed() * 41 + 13)
+	var per_theme: bool = bool((chronicle.get("tension_pool", {}) as Dictionary).get("per_theme", false))
 	for theme_id in data.themes:
+		if per_theme:
+			# **Il mazzetto e' una carta, gia' girata** (D-467): la domanda
+			# pescata per questo Tema e' la sua, scoperta dall'inizio (D-450),
+			# e sotto non ce ne sono altre da girare.
+			var front: String = ""
+			for tension_id in world["tensions"]:
+				if str(data.tensions[str(tension_id)].get("theme", "")) == str(theme_id):
+					front = str(tension_id)
+					break
+			world["theme_decks"][str(theme_id)] = []
+			world["theme_front"][str(theme_id)] = front
+			continue
 		var pile: Array = []
 		if full:
 			var ids: Array = data.tensions.keys()

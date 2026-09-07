@@ -276,53 +276,42 @@ func test_the_saga_keeps_its_map() -> void:
 	second.dispose()
 
 
-## **Sul tavolo pescato il mazzetto e' pieno** (D-264): dentro ci sono tutte
-## le Tensioni del Tema che la mappa regge, non solo le aperte — e ognuna sta
-## nel mazzetto del suo Tema.
-func test_the_drawn_decks_hold_every_question_the_map_bears() -> void:
+## **Sul tavolo pescato il mazzetto e' una carta, gia' girata** (D-467,
+## D-468). Fino a 0.1.436 valeva D-264: il mazzetto teneva tutte le Tensioni
+## del Tema che la mappa reggeva, e ne girava una quando il Tema si scaldava,
+## cosi' il tavolo non sapeva mai quante domande aveva. Ora ogni Tema ha la
+## sua domanda pescata, scoperta dall'inizio, e sotto non c'e' altro. La regola
+## vecchia resta solo per le Chronicle senza `per_theme`.
+func test_the_drawn_decks_are_one_turned_card_per_theme() -> void:
 	var opened: RefCounted = _open(7000)
-	var in_decks: int = 0
 	for theme_id in opened.world["theme_decks"]:
-		for tension_id in (opened.world["theme_decks"][theme_id] as Array):
-			in_decks += 1
-			assert_eq(
-				str((data().tensions[str(tension_id)] as Dictionary).get("theme", "")),
-				str(theme_id), "«%s» sta nel mazzetto del suo Tema" % [str(tension_id)]
-			)
-	assert_true(
-		in_decks > (opened.world["tensions"] as Dictionary).size(),
-		"il mazzetto tiene piu' carte delle questioni aperte (%d > %d)"
-		% [in_decks, (opened.world["tensions"] as Dictionary).size()]
-	)
+		assert_true(
+			(opened.world["theme_decks"][theme_id] as Array).is_empty(),
+			"sotto la carta girata di %s non c'e' altro" % str(theme_id)
+		)
+		var front: String = str(opened.tensions.theme_front(str(theme_id)))
+		assert_ne(front, "", "%s ha la sua carta girata" % str(theme_id))
+		assert_eq(
+			str((data().tensions.get(front, {}) as Dictionary).get("theme", "")),
+			str(theme_id), "«%s» e' la carta del suo Tema" % front
+		)
+		assert_true(
+			(opened.world["tensions"] as Dictionary).has(front),
+			"e la questione e' gia' in gioco: girare non apre niente di nuovo"
+		)
 	opened.dispose()
 
 
-## **Girare apre la questione.** La carta del mazzetto che non era in gioco
-## entra con la forma del setup, e da li' il Consiglio la puo' dibattere.
-func test_flipping_a_new_card_opens_its_question() -> void:
+## **Girare un mazzetto vuoto non inventa una domanda.** Il fronte resta la
+## carta pescata, e le questioni in gioco restano quelle.
+func test_flipping_an_empty_deck_opens_nothing() -> void:
 	var opened: RefCounted = _open(7000)
-	var fresh: String = ""
-	var theme: String = ""
+	var before: int = (opened.world["tensions"] as Dictionary).size()
 	for theme_id in opened.world["theme_decks"]:
-		for tension_id in (opened.world["theme_decks"][theme_id] as Array):
-			if not (opened.world["tensions"] as Dictionary).has(str(tension_id)):
-				fresh = str(tension_id)
-				theme = str(theme_id)
-				break
-		if fresh != "":
-			break
-	assert_ne(fresh, "", "nel mazzetto c'e' una questione non ancora aperta")
-	while str(opened.tensions.theme_front(theme)) != fresh:
-		assert_ne(str(opened.tensions.flip_theme_front(theme)), "", "il mazzetto gira")
-	assert_true(
-		(opened.world["tensions"] as Dictionary).has(fresh),
-		"la questione girata e' entrata in gioco"
-	)
-	assert_eq(
-		int(opened.world["tensions"][fresh]["current_value"]),
-		int((data().tensions[fresh] as Dictionary)["current_value"]),
-		"col valore d'apertura scritto sul dato"
-	)
+		var front: String = str(opened.tensions.theme_front(str(theme_id)))
+		assert_eq(str(opened.tensions.flip_theme_front(str(theme_id))), "", "il mazzetto di %s non gira" % str(theme_id))
+		assert_eq(str(opened.tensions.theme_front(str(theme_id))), front, "e il fronte resta la carta pescata")
+	assert_eq((opened.world["tensions"] as Dictionary).size(), before, "le questioni in gioco sono le stesse")
 	opened.dispose()
 
 
