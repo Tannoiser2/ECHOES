@@ -5,6 +5,17 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.436 — Il Consiglio a due domande: il disegno, deciso col committente
+
+[D-467](docs/DECISIONS.md#d-467), verbale di disegno senza codice. Parola del
+committente davanti alla scheda di una Tensione: sei Tensioni una per Tema; la
+carta con due domande in contrasto, ognuna col suo esito di base e le sue
+caselle, e un SE CADE comune; il giro a rilancio con posizione obbligata al
+primo passo; il voto a tre esiti contro il mucchio dei gettoni, senza dado. La
+voce [129](docs/ISSUES.md#129) tiene i quattro giri che lo costruiscono.
+
+---
+
 ## 0.1.435 — Il Consiglio a schermo intero, disegnato come il tavolo
 
 [D-466](docs/DECISIONS.md#d-466), la cosa lasciata in fondo a D-464 e D-465.
