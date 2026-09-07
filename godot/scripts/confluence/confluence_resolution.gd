@@ -1,14 +1,17 @@
 extends RefCounted
-## Confluence resolution maths - Strategy "baseline_v0" (§12.3, appendix A5).
+## Confluence resolution maths - Strategy "baseline_v0" (§12.3, appendix A5),
+## riscritta a due domande (D-467, D-472).
 ##
 ## Pure functions over plain data: no world access, no RNG, no side effects.
 ## Swapping this file for another Strategy changes the maths and nothing else.
 ##
-##   M = S - O - G + W   (G: l'opposizione comprata, D-419; la Condition e' uscita con D-454)
-##   M <= -1        Failure
-##   0 <= M <= 1    Success with Cost
+## Il voto e' **contro il mucchio**, senza dado: una parte vince se supera
+## l'altra *e* arriva ai gettoni caduti sulla domanda. Le fasce di A sul
+## margine su B sono quelle di sempre:
+##   M <= 1         Success with Cost
 ##   2 <= M <= 4    Success
 ##   M >= 5         Decisive Success
+## B che vince e' una fascia sua (COUNTER); nessuna che arriva e' FAILURE.
 
 const STRATEGY_ID: String = "baseline_v0"
 
@@ -20,13 +23,6 @@ const DECISIVE: String = "DECISIVE_SUCCESS"
 ## il mucchio. Per chi propone e' una sconfitta, per il mondo e' una decisione:
 ## si applicano l'esito di base e le caselle della domanda B.
 const COUNTER: String = "COUNTER"
-
-## §12.2 F: 1d6 mapped to the World Factor.
-const WORLD_FACTOR_TABLE: Array = [-2, -1, 0, 0, 1, 2]
-
-
-static func world_factor(die: int) -> int:
-	return int(WORLD_FACTOR_TABLE[clampi(die - 1, 0, WORLD_FACTOR_TABLE.size() - 1)])
 
 
 ## The value one committed Asset contributes.
@@ -57,16 +53,6 @@ static func front_total(asset_ids: Array, assets: Dictionary, relevant: Array, f
 		if asset != null:
 			total += asset_value(asset, relevant, front)
 	return total
-
-
-static func outcome_for(margin: int) -> String:
-	if margin <= -1:
-		return FAILURE
-	if margin <= 1:
-		return SUCCESS_WITH_COST
-	if margin <= 4:
-		return SUCCESS
-	return DECISIVE
 
 
 ## Il successo di **chi propone**: la sua domanda e' passata. La controdomanda
@@ -100,26 +86,26 @@ static func winner_of(outcome: String) -> String:
 	return "A" if is_success(outcome) else ""
 
 
-## Resolve one Confluence.
+## **Le carte delle due parti, contate** (§12.3). Il proponente argomenta
+## sempre per la sua domanda; chi sta con A sostiene, chi sta con B si
+## oppone; chi non ha preso posizione non conta. L'esito lo dice
+## `two_sides_outcome`, col mucchio: qui solo i totali, cosi' l'aritmetica si
+## legge — e il chiamante ci somma le pedine (D-471).
 ##
 ## `stances`: entity_id -> {stance}
 ## `commits`: entity_id -> [asset_id, ...]
-## Returns the full arithmetic so the UI and the log can show the working.
 static func resolve(
 	proponent_id: String,
 	stances: Dictionary,
 	commits: Dictionary,
 	assets: Dictionary,
 	relevant_families: Array,
-	factor: int,
 	support_bonus: int = 0,
-	oppose_bonus: int = 0,
-	bought_opposition: int = 0
+	oppose_bonus: int = 0
 ) -> Dictionary:
 	var support_assets: Array = []
 	var oppose_assets: Array = []
 
-	# The proponent always argues for their own proposition (§12.3).
 	support_assets.append_array(commits.get(proponent_id, []))
 
 	for entity_id in stances:
@@ -143,30 +129,11 @@ static func resolve(
 		support_total += support_bonus
 	if oppose_total > 0:
 		oppose_total += oppose_bonus
-	# **L'opposizione comprata** (D-419, ISSUES 119). Un gettone di
-	# rivendicazione speso *contro* la proposta pesa nel margine: al tavolo e'
-	# «questa non deve passare», e si paga per fermarla invece di sperare nel
-	# dado.
-	#
-	# Entra **anche su zero carte impegnate**, ed e' la differenza che conta con
-	# i bonus dei segni qui sopra: quelli sono gratis, e un +1 dal nulla sarebbe
-	# un voto regalato; questo e' comprato, e un gettone speso e' un gettone che
-	# non compra un costo. Chi paga ha diritto di pesare.
-	var margin: int = (
-		support_total
-		- oppose_total
-		- maxi(0, bought_opposition)
-		+ factor
-	)
 
 	return {
 		"strategy": STRATEGY_ID,
 		"support_total": support_total,
 		"oppose_total": oppose_total,
-		"bought_opposition": maxi(0, bought_opposition),
-		"world_factor": factor,
-		"margin": margin,
-		"outcome": outcome_for(margin),
 		"support_assets": support_assets,
 		"oppose_assets": oppose_assets,
 	}

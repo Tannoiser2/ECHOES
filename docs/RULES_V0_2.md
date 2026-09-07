@@ -12,7 +12,11 @@
 > e ogni seme pesca la sua mappa), **la Domanda sta sulla carta Tensione** e non
 > nei template (D-266), **il Calore è una pista per Tema** che decide quale
 > Consiglio si apre (D-260/D-261), e **il bersaglio di una carta si dice a
-> segni**, mai col nome di una Regione (D-273, D-327).
+> segni**, mai col nome di una Regione (D-273, D-327). E **il Consiglio
+> descritto in §12 non esiste più**: da D-467 la carta offre due domande in
+> contrasto, il tavolo si divide in due parti che posano pedine sulle caselle
+> della carta, e si vota **senza dado** contro il mucchio dei gettoni; il giro
+> con la proposta, il World Factor e il margine è uscito dal codice in D-472.
 
 Il testo di riferimento è la specifica esecutiva v0.2. Questo documento descrive
 **cosa faceva il codice a 0.1.38**: i numeri che erano davvero in gioco, le

@@ -9,13 +9,12 @@ extends VBoxContainer
 ## the same dictionary the log renders and the 0.0 terminal printed - and it
 ## decides nothing. Choices arrive as `ask(prompt, labels)`, already formatted by
 ## SeatDecider, and are drawn as cards. The board does not know whether it is
-## showing propositions, stances or Assets, and it must not: that is what keeps
+## showing questions, sides or Assets, and it must not: that is what keeps
 ## the browser and the terminal offering the same options.
 
 ## Emitted by whichever card was pressed.
 signal picked(index: int)
 
-const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 ## I colori delle due parti (D-467, giro 4): A ocra come chi propone, B
 ## azzurra come l'altra domanda. Sono le pedine sul cartone.
@@ -252,28 +251,20 @@ func _paint_council(session: RefCounted, council: Dictionary) -> void:
 		str(council["tension_id"])
 	)
 	var title: String = str(session.data.tensions[str(council["tension_id"])]["title"])
-	if council.has("sides"):
-		# **Le due domande** (D-467, giro 4): A e' quella presa da chi propone,
-		# B l'altra, con chi la guida — o «nessuno», finche' nessuno la prende.
-		var sides: Dictionary = council["sides"] as Dictionary
-		var leader_b: String = str((sides["B"] as Dictionary).get("leader", ""))
-		_header.text = "%s — A: %s · B: %s" % [
-			title, session.service.name_of(str(council["proponent"])),
-			"nessuno" if leader_b == "" else session.service.name_of(leader_b),
-		]
-		_question.text = "A · %s" % _fill(
-			session, council, _question_text(template, str((sides["A"] as Dictionary)["question_id"]))
-		)
-		_proposition.text = "B · %s" % _fill(
-			session, council, _question_text(template, str((sides["B"] as Dictionary)["question_id"]))
-		)
-	else:
-		_header.text = "%s — %s propone" % [title, session.service.name_of(str(council["proponent"]))]
-		_question.text = _fill(session, council, _question_text(template, str(council["question_id"])))
-		_proposition.text = ""
-		for proposition in template["propositions"]:
-			if str(proposition["id"]) == str(council.get("proposition_id", "")):
-				_proposition.text = _fill(session, council, str(proposition["text"]))
+	# **Le due domande** (D-467, giro 4): A e' quella presa da chi propone, B
+	# l'altra, con chi la guida — o «nessuno», finche' nessuno la prende.
+	var sides: Dictionary = council["sides"] as Dictionary
+	var leader_b: String = str((sides["B"] as Dictionary).get("leader", ""))
+	_header.text = "%s — A: %s · B: %s" % [
+		title, session.service.name_of(str(council["proponent"])),
+		"nessuno" if leader_b == "" else session.service.name_of(leader_b),
+	]
+	_question.text = "A · %s" % _fill(
+		session, council, _question_text(template, str((sides["A"] as Dictionary)["question_id"]))
+	)
+	_proposition.text = "B · %s" % _fill(
+		session, council, _question_text(template, str((sides["B"] as Dictionary)["question_id"]))
+	)
 
 	_render_face(session, council)
 	_render_stances(session, council)
@@ -281,16 +272,10 @@ func _paint_council(session: RefCounted, council: Dictionary) -> void:
 	_render_outcome(council)
 
 
-## **Le due liste della carta**, come stanno stampate (D-291).
-##
-## Il proponente compra i benefici — uno e' gratis, ogni altro costa un costo,
-## al massimo tre — e **gli avversari scelgono in che moneta paga** (D-280). Il motore lo faceva gia'; qui lo si vede: la
-## pedina posata accanto alla voce comprata, il prezzo dovuto in cifre, e chi
-## tiene la pedina del prezzo.
-##
-## Si legge dallo stesso dizionario che il registro rende — e dalla faccia
-## stampata della Tensione, non dal template — cosi' vale identico su un
-## Consiglio aperto e su uno gia' chiuso, dove `current` non c'e' piu'.
+## **Le due liste della carta**, come stanno stampate (D-291), con le pedine
+## delle due parti sopra (D-467). Si legge dalla faccia stampata della
+## Tensione, non dal template, cosi' vale identico su un Consiglio aperto e su
+## uno gia' chiuso, dove `current` non c'e' piu'.
 func _render_face(session: RefCounted, council: Dictionary) -> void:
 	for child in _face.get_children():
 		child.queue_free()
@@ -301,76 +286,7 @@ func _render_face(session: RefCounted, council: Dictionary) -> void:
 	var face: Dictionary = (tension as Dictionary).get("physical", {}) as Dictionary
 	if face.is_empty():
 		return
-	if council.has("sides"):
-		_render_sides_face(session, council, face)
-		return
-
-	var bought: Array = council.get("benefits", []) as Array
-	# **La moneta si vede** (D-387): quanti gettoni ha speso chi propone, e
-	# quante pedine di costo gli avversari hanno pagato per posare.
-	var spent: int = CouncilEconomy.tokens_due(bought.size())
-	var paid: Array = []
-	var placed_by: Dictionary = {}
-	for posata in (council.get("cost_pedine", []) as Array):
-		paid.append(str((posata as Dictionary)["cost"]))
-		placed_by[str((posata as Dictionary)["cost"])] = str((posata as Dictionary)["by"])
-
-	_face.add_child(_face_heading(
-		"COSA SI COMPRA — %s" % (
-			"il primo beneficio e' gratis, ogni altro costa un gettone RIVENDICARE"
-			if bought.is_empty() else
-			"%d comprat%s con %d gettone%s" % [
-				bought.size(), "o" if bought.size() == 1 else "i",
-				spent, "" if spent == 1 else "i",
-			]
-		)
-	))
-	# **E chi la tiene, se non e' il proponente** (D-304): la pedina della
-	# controproposta sta su una casella comprata, e sul tabellone si deve
-	# vedere accanto a quella, non in una riga a parte.
-	var claimed: Dictionary = council.get("benefit_pedina", {}) as Dictionary
-	var claimed_voice: String = str(claimed.get("voice_id", ""))
-	var claimant: String = str(claimed.get("by", ""))
-	# **E quali caselle sono vive** (D-306): una che qui non farebbe niente si
-	# vede spenta, invece di stare li' a sembrare una scelta. E' quello che al
-	# tavolo si legge guardando la mappa.
-	var live: Dictionary = {}
-	for voice in session.confluence.benefit_menu():
-		live[str((voice as Dictionary)["id"])] = true
-	var live_costs: Dictionary = {}
-	for voice_id in (session.confluence.price_menu()["cost"] as Array):
-		live_costs[str(voice_id)] = true
-	for voice in (face.get("benefits", []) as Array):
-		var voice_id: String = str((voice as Dictionary)["id"])
-		var taken: bool = bought.has(voice_id)
-		var text: String = str((voice as Dictionary).get("text", ""))
-		if voice_id == claimed_voice and claimant != "":
-			# «—» e non una freccia: il carattere dell'export web non ha «←»,
-			# e disegna un quadratino (D-463, D-466).
-			text += "   — la rivendica %s" % session.service.name_of(claimant)
-		if not live.has(voice_id) and not taken:
-			text += "   — non qui: non cambierebbe niente"
-			_face.add_child(_face_voice(text, false, "#5f6b62"))
-			continue
-		_face.add_child(_face_voice(text, taken, "#6fa88a"))
-
-	_face.add_child(_face_heading(_price_heading(session, placed_by)))
-	for voice in (face.get("costs", []) as Array):
-		var cost_id: String = str((voice as Dictionary)["id"])
-		var chosen: bool = paid.has(cost_id)
-		var cost_text: String = str((voice as Dictionary).get("text", ""))
-		if not live_costs.has(cost_id) and not chosen:
-			_face.add_child(_face_voice(
-				cost_text + "   — non qui: non toglierebbe niente", false, "#7a5a52"
-			))
-			continue
-		_face.add_child(_face_voice(cost_text, chosen, "#c8553d"))
-
-	var falls: Array = face.get("failure", []) as Array
-	if not falls.is_empty():
-		_face.add_child(_face_heading("SE CADE — non lo sceglie nessuno"))
-		for voice in falls:
-			_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), false, "#8a8172"))
+	_render_sides_face(session, council, face)
 
 
 ## **La carta a due domande sul tabellone** (D-467, giro 4): le tre liste con
@@ -390,10 +306,9 @@ func _render_sides_face(session: RefCounted, council: Dictionary, face: Dictiona
 			taken[str((box as Dictionary)["voice"])] = side
 	var live: Dictionary = {}
 	if session.confluence.is_open():
-		for voice in session.confluence.benefit_menu():
-			live[str((voice as Dictionary)["id"])] = true
-		for voice_id in (session.confluence.price_menu()["cost"] as Array):
-			live[str(voice_id)] = true
+		for list_name in ["benefits", "costs"]:
+			for voice in session.confluence.live_voices(list_name):
+				live[str((voice as Dictionary)["id"])] = true
 	for pair in [["benefits", "BENEFICI", "#6fa88a", "#5f6b62"], ["costs", "COSTI", "#c8553d", "#7a5a52"]]:
 		_face.add_child(_face_heading(str(pair[1])))
 		for voice in (face.get(str(pair[0]), []) as Array):
@@ -414,21 +329,6 @@ func _render_sides_face(session: RefCounted, council: Dictionary, face: Dictiona
 		_face.add_child(_face_heading("SE CADE — se non passa nessuna delle due"))
 		for voice in falls:
 			_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), false, "#8a8172"))
-
-
-## Chi ha pagato per far pagare (D-387). Due situazioni, e sono due cose
-## diverse al tavolo: **nessuno ha speso un gettone**, e allora la proposta
-## passa gratis — cosa che l'aritmetica di D-280 non permetteva — oppure
-## qualcuno l'ha speso, e allora si vede chi e su cosa.
-func _price_heading(session: RefCounted, placed_by: Dictionary) -> String:
-	if placed_by.is_empty():
-		return "IL PREZZO — nessuno ha speso un gettone: la proposta passa gratis"
-	var names: PackedStringArray = PackedStringArray()
-	for cost_id in placed_by:
-		names.append(session.service.name_of(str(placed_by[cost_id])))
-	return "IL PREZZO — lo fa pagare %s, con un gettone di rivendicazione" % [
-		" e ".join(names)
-	]
 
 
 func _face_heading(text: String) -> Label:
@@ -577,7 +477,7 @@ func _render_consequences(
 	if result != null:
 		ids = (result as Dictionary).get("consequence_ids", [])
 		_consequences_title.text = "COSA RESTA"
-	elif council.has("sides"):
+	else:
 		# **Se vince A, se vince B** (D-467, giro 4): l'esito di base di ognuna
 		# delle due domande, cosi' si sa per cosa si posa una pedina.
 		_consequences_title.text = "SE VINCE"
@@ -595,11 +495,6 @@ func _render_consequences(
 				line.text = "%s · %s" % [side, " · ".join(names) if not names.is_empty() else "niente di scritto"]
 				_consequences.add_child(line)
 		return
-	else:
-		for proposition in template["propositions"]:
-			if str(proposition["id"]) == str(council.get("proposition_id", "")):
-				ids = proposition["success_consequences"]
-		_consequences_title.text = "SE PASSA"
 	if ids.is_empty():
 		_consequences_title.text = ""
 		return
@@ -628,51 +523,27 @@ func _render_consequences(
 ## The maths in the clear, once F has rolled. §12.2 G is the moment the game
 ## decides something, and a player should be able to check the arithmetic.
 func _render_outcome(council: Dictionary) -> void:
-	var die: int = int(council.get("die", 0))
 	_verdict.text = ""
-	# **A due domande** (D-467): niente dado, il mucchio e' la soglia.
-	if council.has("sides"):
-		var pile: int = int(council.get("pile", 0))
-		var result_v: Variant = council.get("result", null)
-		if result_v == null:
-			_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
-			return
-		var settled: Dictionary = result_v as Dictionary
-		var outcome_two: String = str(settled["outcome"])
-		_outcome.text = "\n".join(PackedStringArray([
-			"A %d · B %d · mucchio %d" % [
-				int(settled["support_total"]), int(settled["oppose_total"]), pile,
-			],
-			"Margine %+d" % int(settled["margin"]),
-		]))
-		_verdict.text = str(OUTCOMES.get(outcome_two, outcome_two))
-		_verdict.add_theme_color_override(
-			"font_color", Color(str(VERDICT_COLOURS.get(outcome_two, "#efe7d8")))
-		)
+	# **Senza dado** (D-467): il mucchio e' la soglia, e il conto si legge in
+	# parole (D-466).
+	var pile: int = int(council.get("pile", 0))
+	var result_v: Variant = council.get("result", null)
+	if result_v == null:
+		_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
 		return
-	if die <= 0:
-		_outcome.text = "Il dado del mondo si tira quando tutti hanno detto la loro."
-		return
-	# "->" and not an arrow glyph: the fallback font a Web export ships has no
-	# arrow, and a missing glyph draws as a tofu box in the middle of the one line
-	# a player reads to check the arithmetic. Same reason as the destiny ladder.
-	var lines: Array = ["Fattore Mondo: 1d6 = %d -> %+d" % [die, int(council.get("world_factor", 0))]]
-	var result: Variant = council.get("result", null)
-	if result != null:
-		# **In parole, non in sigle** (D-466): «S 5 · O 3 · M +5» era il
-		# verbale del motore sotto gli occhi di chi gioca.
-		var outcome: String = str((result as Dictionary)["outcome"])
-		lines.append("A favore %d · contro %d · mondo %+d" % [
-			int((result as Dictionary)["support_total"]),
-			int((result as Dictionary)["oppose_total"]),
-			int((result as Dictionary)["world_factor"]),
-		])
-		lines.append("Margine %+d" % int((result as Dictionary)["margin"]))
-		_verdict.text = str(OUTCOMES.get(outcome, outcome))
-		_verdict.add_theme_color_override(
-			"font_color", Color(str(VERDICT_COLOURS.get(outcome, "#efe7d8")))
-		)
-	_outcome.text = "\n".join(PackedStringArray(lines))
+	var settled: Dictionary = result_v as Dictionary
+	var outcome: String = str(settled["outcome"])
+	_outcome.text = "
+".join(PackedStringArray([
+		"A %d · B %d · mucchio %d" % [
+			int(settled["support_total"]), int(settled["oppose_total"]), pile,
+		],
+		"Margine %+d" % int(settled["margin"]),
+	]))
+	_verdict.text = str(OUTCOMES.get(outcome, outcome))
+	_verdict.add_theme_color_override(
+		"font_color", Color(str(VERDICT_COLOURS.get(outcome, "#efe7d8")))
+	)
 
 # --- asking ------------------------------------------------------------------
 

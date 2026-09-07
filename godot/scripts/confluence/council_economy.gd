@@ -12,12 +12,13 @@ extends RefCounted
 ##    ogni carta — come le caselle di un tabellone. Quello che cambia da carta
 ##    a carta e' la Domanda, i segni che chiede sul tavolo, e i **parametri**:
 ##    quale condizione lascia, quale Pietra alza, quale Cicatrice incide.
-## 2. **Un'economia**: *un beneficio e' gratis; ogni beneficio in piu' costa un
-##    costo.* Massimo tre benefici, massimo due costi — e il tetto non si
-##    sfonda: la Cicatrice e' un costo come gli altri (D-303).
-## 3. **Due mani**: il proponente compra i benefici, **gli avversari scelgono in
-##    che moneta paga** (parola del committente, scelta fra tre). Lui sa
-##    *quanto* paga; non sa *in cosa*.
+## 2. **Un'economia**: da D-467 il prezzo si conta **per parte, al voto** —
+##    una parte puo' avere al massimo un beneficio in piu' dei suoi costi
+##    (`ConfluenceController.settle_prices`). L'aritmetica di D-280 — un
+##    beneficio gratis, ogni altro un costo, poi un gettone (D-387) — e'
+##    uscita con D-472.
+## 3. **Due parti**: chi sta con una domanda posa benefici e costi della sua
+##    parte; posare un costo e' sostenere (D-471).
 ##
 ## I verbi stanno qui e non nei dati perche' ognuno **produce Effetti**: e'
 ## codice, e il codice si prova. La carta li nomina e li parametrizza; questo
@@ -33,21 +34,6 @@ extends RefCounted
 ## era un muro: era un campo che mancava.
 
 const Effect := preload("res://scripts/core/effect.gd")
-
-## Quante pedine stanno sulla carta, se la carta non dice altro.
-const MAX_BENEFITS: int = 3
-const MAX_COSTS: int = 2
-
-## **Quanti benefici sono gratis** (D-417, ISSUES 122 + 125, parola del
-## committente: *«due acquisti liberi»*).
-##
-## Era **uno**, ed era la [D-280](../../../docs/DECISIONS.md#d-280) alla lettera.
-## Misurato, con un solo acquisto libero il numero di caselle **vive** per
-## Consiglio era **uno**: le altre ventitre' esistevano per quando la prima non
-## si poteva comprare, e i benefici comprati per Consiglio erano scesi a 1,22.
-## Un menu di ventiquattro voci di cui se ne sceglie una non e' un menu: e' una
-## voce con ventitre' ripieghi.
-const FREE_BENEFITS: int = 2
 
 ## Il tetto del Calore, per sapere se SCALDA TEMA ha ancora spazio (D-306).
 ## E' lo stesso numero di `EffectApplier.HEAT_MAX`, e la prova lo verifica.
@@ -196,36 +182,6 @@ const CLOSED_TAG: String = "condition:cut_off"
 ## I livelli di un rapporto, nell'ordine in cui stanno sulla pista. E' la stessa
 ## lista che `EffectApplier._set_relation` accetta, e la prova lo verifica.
 const RELATION_LEVELS: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
-
-
-## **Il prezzo di un carrello di benefici.** Uno e' gratis; ogni altro costa un
-## costo. Il tetto e' tre, e non si sfonda: **la Cicatrice non compra niente**
-## (D-303, parola del committente: *«io a questo punto toglierei la cicatrice,
-## la lascerei come effetto malus o passivo»*). Resta uno dei sei costi, che e'
-## quello che al tavolo era gia' — misurato, si posava 17 volte in 40 anni
-## **come prezzo**, e mai come moneta d'acquisto: il quarto beneficio valeva
-## uno e costava quattro (D-302), e nessun seggio sano lo comprava.
-static func tokens_due(benefits: int) -> int:
-	return maxi(0, benefits - FREE_BENEFITS)
-
-
-## **Quanti benefici puo' comprare chi ha quei gettoni** (D-387, ISSUES 122).
-##
-## Il primo e' gratis; ogni altro vuole **un gettone di rivendicazione** —
-## preso giocando una carta Asset dalla sua faccia RIVENDICARE. Il tetto resta
-## tre, che sono le pedine che stanno sulla carta.
-##
-## **Perche' e' cambiata la moneta.** Fino a D-386 il secondo beneficio si
-## pagava con un costo, e il costo lo sceglievano gli avversari: sembrava
-## un'economia, ma il proponente non spendeva niente di suo — quindi prendeva
-## sempre e solo **quello che valeva di piu'**, e le altre ventitre' caselle
-## esistevano per quando la prima non si poteva comprare (ISSUES 122, misurato
-## su cento saghe in quattro mosse consecutive). Adesso il secondo beneficio
-## costa una cosa che il proponente **ha dovuto guadagnarsi un turno prima**, e
-## il costo non e' piu' il suo prezzo: e' quello che gli avversari decidono di
-## fargli pagare, spendendo a loro volta.
-static func benefits_affordable(tokens: int) -> int:
-	return mini(MAX_BENEFITS, FREE_BENEFITS + maxi(0, tokens))
 
 
 # --- dove e su chi ---------------------------------------------------------

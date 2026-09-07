@@ -518,13 +518,8 @@ func _bring_the_year_to_a_head() -> String:
 	return closest
 
 
-## Drive one Confluence through A-K with the decider answering C, D, E.
-## `claimant` (D-268): il seggio che ha consumato un RIVENDICARE nell'Atto e
-## puo' spendere qui il diritto come controproposta invece che nel secondo
-## dibattito. Vuoto, il Consiglio e' quello di sempre.
-func run_confluence(
-	tension_id: String, trigger: Dictionary, decider: Object, claimant: String = ""
-) -> Dictionary:
+## Drive one Confluence through A-K with the decider answering B, D, E.
+func run_confluence(tension_id: String, trigger: Dictionary, decider: Object) -> Dictionary:
 	# §6.3: a snapshot before every Confluence is what makes undo possible past
 	# the irreversible CREATE_ECHO / APPEND_TRUTH that may follow.
 	session.take_snapshot("pre-confluence")
@@ -543,152 +538,16 @@ func run_confluence(
 				log.bullet("Domanda non valida (%s): si mantiene quella di default." % controller.last_error)
 				illegal_actions += 1
 
-	# **Il Consiglio a due domande** (D-467, giro 3): niente proposta, niente
-	# prezzo comprato coi gettoni, niente dado. Due parti, le caselle, il
-	# rilancio, il voto contro il mucchio.
-	if controller.two_questions():
-		return await _run_two_questions(controller, context, decider)
-
-	var options: Array = controller.available_propositions()
-	if options.is_empty():
-		log.bullet("Confluence senza proposte disponibili: annullata.")
-		controller.current = {}
-		return {}
-	var proposition_id: String = str(await decider.choose_proposition(context, options, session))
-	if not controller.set_proposition(proposition_id):
-		# A scripted plan that names an unavailable proposition must not stall
-		# the Chronicle: fall back to the first legal option and say so.
-		log.bullet("Proposta non valida (%s): si ripiega sulla prima disponibile." % controller.last_error)
-		illegal_actions += 1
-		controller.set_proposition(str(options[0]["id"]))
-
-	# **Il proponente compra** (D-280): posa le pedine sui benefici della carta,
-	# e con esse decide **quanto** pagera' — un costo per ogni beneficio oltre
-	# il primo. Un cervello che non sa comprare (has_method) compra il primo
-	# beneficio, che e' gratis: nessuna proposta esce dal tavolo a mani vuote
-	# senza che qualcuno l'abbia deciso.
-	var offered: Array = controller.benefit_menu()
-	if not offered.is_empty():
-		var bought: Array = []
-		if decider.has_method("choose_benefits"):
-			bought = await decider.choose_benefits(
-				str(context["proponent"]), context, offered, session
-			)
-		if bought.is_empty():
-			bought = [str((offered[0] as Dictionary)["id"])]
-		if not controller.set_benefits(bought):
-			log.bullet("Acquisto rifiutato (%s): si compra il primo beneficio." % controller.last_error)
-			illegal_actions += 1
-			controller.set_benefits([str((offered[0] as Dictionary)["id"])])
-
-	for entity_id in controller.stance_order():
-		var declaration: Dictionary = await decider.choose_stance(str(entity_id), context, session)
-		if not controller.declare_stance(
-			str(entity_id), str(declaration.get("stance", "ABSTAIN")), str(declaration.get("clause_id", ""))
-		):
-			log.bullet("Posizione rifiutata (%s): %s si astiene." % [controller.last_error, _name(str(entity_id))])
-			illegal_actions += 1
-			controller.declare_stance(str(entity_id), "ABSTAIN")
-
-	# La controproposta del RIVENDICARE (D-268): prima della pedina del
-	# prezzo, perche' il diritto pagato con l'azione batte l'ordine delle
-	# dichiarazioni. Il rivendicante sceglie: prendersi la pedina del prezzo,
-	# rivendicare una voce del beneficio, o tenersi il secondo dibattito.
-	var counterclaimed: String = ""
-	if claimant != "" and claimant != str(context["proponent"]) \
-			and decider.has_method("choose_counterclaim"):
-		var offer: Dictionary = {
-			"price": controller.price_menu(),
-			"benefits": controller.claimable_benefits(),
-		}
-		var counter: Dictionary = await decider.choose_counterclaim(claimant, context, offer, session)
-		var mode: String = str(counter.get("mode", ""))
-		if mode == "price":
-			if controller.place_counterclaim(
-				claimant, "price", str(counter.get("cost", "")), str(counter.get("failure", ""))
-			):
-				counterclaimed = mode
-			else:
-				log.bullet("Controproposta rifiutata (%s): resta il secondo dibattito." % controller.last_error)
-				illegal_actions += 1
-		elif mode == "benefit":
-			if controller.place_counterclaim(claimant, "benefit", str(counter.get("voice_id", ""))):
-				counterclaimed = mode
-			else:
-				log.bullet("Controproposta rifiutata (%s): resta il secondo dibattito." % controller.last_error)
-				illegal_actions += 1
-
-	# La pedina del prezzo (PZ-5, D-267): a posizioni dichiarate e **prima**
-	# degli impegni - che restano segreti - il primo seggio del fronte avverso
-	# sceglie dal menu quale voce paghera' chi vince. Un cervello che non sa
-	# scegliere (has_method) lascia decidere il mondo: la prima voce, com'era.
-	# Se la controproposta si e' presa la pedina, il fronte avverso non sceglie.
-	# **Gli avversari scelgono in che moneta paga** (D-280): il conto lo ha
-	# fatto l'economia — un costo per ogni beneficio oltre il primo — e il primo
-	# seggio del fronte avverso sceglie **quali** costi, fra quelli stampati.
-	# Se non sceglie, il mondo prende dall'alto della lista: una carta muta non
-	# esce senza prezzo. Se la controproposta si e' presa la pedina, il fronte
-	# avverso non sceglie.
-	# **Ogni avversario decide se pagare per far pagare** (D-387, ISSUES 122):
-	# spende un gettone di rivendicazione e posa una pedina su un costo, oppure
-	# si astiene. Nessuno spende, nessun prezzo — e la proposta passa gratis,
-	# che e' la cosa che l'aritmetica di D-280 non permetteva.
-	if counterclaimed != "price" and decider.has_method("choose_cost_token"):
-		for entity_id in controller.stance_order():
-			if str(entity_id) == str(context["proponent"]):
-				continue
-			if controller.claim_tokens(str(entity_id)) <= 0:
-				continue
-			# **Prima la domanda che chiude l'altra** (D-419, ISSUES 119): lo
-			# stesso gettone puo' comprare un costo o l'opposizione, e sono uno
-			# la rinuncia dell'altro. Chi lo spende contro non posa nessun
-			# prezzo, e la sua riga finisce qui.
-			if (
-				controller.opposition_weight() > 0
-				and decider.has_method("choose_opposition_token")
-				and await decider.choose_opposition_token(str(entity_id), context, session)
-			):
-				if controller.buy_opposition(str(entity_id)):
-					continue
-				log.bullet("Opposizione rifiutata (%s): %s si astiene." % [
-					controller.last_error, _name(str(entity_id))
-				])
-				illegal_actions += 1
-			if controller.costs_placed() >= CouncilEconomy.MAX_COSTS:
-				break
-			# **Il menu si accorcia** man mano che le pedine si posano: una
-			# pedina per voce, e chi arriva dopo sceglie fra quelle libere.
-			# Senza questa riga il secondo avversario chiedeva la stessa
-			# casella del primo — la piu' dolorosa per il proponente e' sempre
-			# la stessa — e il Consiglio lo rifiutava come scelta illegale.
-			var menu: Array = []
-			for voice_id in (controller.price_menu()["cost"] as Array):
-				if not controller.priced_costs().has(str(voice_id)):
-					menu.append(str(voice_id))
-			if menu.is_empty():
-				break
-			var picked: String = await decider.choose_cost_token(
-				str(entity_id), context, menu, session
-			)
-			if picked != "" and not controller.place_cost(str(entity_id), picked):
-				log.bullet("Prezzo rifiutato (%s): %s si astiene." % [
-					controller.last_error, _name(str(entity_id))
-				])
-				illegal_actions += 1
-
-	return await _close_the_council(controller, context, decider)
-
-
-## **Il giro a due domande** (D-467 §3). A ha scelto la sua domanda e posa una
-## pedina su un beneficio libero, gratis. Poi ogni seggio, nell'ordine di
-## sempre, **prende posizione** — con A o con l'altra domanda — e posa una
-## pedina su una casella libera della sua parte, beneficio o costo: al primo
-## giro si posa, non si passa, se c'e' dove. Poi si rilancia a giro, e chi
-## non ha piu' niente da posare passa; quando tutti passano, il prezzo si
-## conta per parte e si vota. Un cervello che non sa scegliere (has_method)
-## prende la prima casella e passa al secondo giro: nessun tavolo si ferma
-## perche' un decisore e' vecchio.
-func _run_two_questions(controller: RefCounted, context: Dictionary, decider: Object) -> Dictionary:
+	# **Il giro a due domande** (D-467 §3). A ha scelto la sua domanda e posa
+	# una pedina su un beneficio libero, gratis. Poi ogni seggio, nell'ordine
+	# di sempre, **prende posizione** — con A o con l'altra domanda — e posa
+	# una pedina su una casella libera della sua parte, beneficio o costo: al
+	# primo giro si posa, non si passa, se c'e' dove. Poi si rilancia a giro,
+	# e chi non ha piu' niente da posare passa; quando tutti passano, il
+	# prezzo si conta per parte e si vota. Un cervello che non sa scegliere
+	# (has_method) prende la prima casella e passa al secondo giro: nessun
+	# tavolo si ferma perche' un decisore e' vecchio. E' l'unico giro del
+	# Consiglio da D-472: quello di D-280 e' uscito dal codice.
 	var proponent: String = str(context["proponent"])
 	var first: Array = []
 	for entry in controller.box_menu("A"):
@@ -778,8 +637,7 @@ func _pick_raise(decider: Object, entity_id: String, context: Dictionary, menu: 
 	return ""
 
 
-## Gli impegni, il recupero, la risoluzione e i punti del dibattito: la coda
-## comune ai due giri del Consiglio.
+## Gli impegni, il recupero, la risoluzione e i punti del dibattito.
 func _close_the_council(controller: RefCounted, context: Dictionary, decider: Object) -> Dictionary:
 	for entity_id in world["turn_order"]:
 		var limit: int = controller.max_commit_for(str(entity_id))
@@ -913,18 +771,10 @@ func _council_closing_the_act(act: int, decider: Object) -> void:
 	else:
 		log.section("IL CONSIGLIO DI FINE ATTO %d" % act)
 		_set_phase(act, int(_chronicle["rounds_per_act"]), "CONFLUENCE")
-		# Il diritto del RIVENDICARE entra nel primo Consiglio (D-268): il suo
-		# titolare puo' spenderlo li' come controproposta. Se lo fa, il secondo
-		# dibattito non si apre - un'azione, un uso.
-		var claimant: String = "" if forced == null else str((forced as Dictionary).get("entity_id", ""))
-		var first_result: Dictionary = await run_confluence(
-			tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider, claimant
-		)
-		if str(first_result.get("counterclaim", "")) != "":
-			log.bullet(
-				"Il diritto del RIVENDICARE si e' speso in controproposta: nessun secondo dibattito."
-			)
-			forced = null
+		# La controproposta del RIVENDICARE dentro il primo Consiglio (D-268) e'
+		# uscita con D-472: a due domande la controproposta **e'** la parte B,
+		# e il diritto rivendicato apre il secondo dibattito, come in D-261.
+		await run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
 	await _second_council_of_the_act(act, first_theme, forced, decider)
 	_spend_the_piles(act)
 

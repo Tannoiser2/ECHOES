@@ -83,14 +83,6 @@ func choose_question(_context: Dictionary, _options: Array, _session: RefCounted
 	return ""
 
 
-func choose_proposition(_context: Dictionary, options: Array, _session: RefCounted) -> String:
-	return str(options[0]["id"])
-
-
-func choose_stance(_entity_id: String, _context: Dictionary, _session: RefCounted) -> Dictionary:
-	return {"stance": "ABSTAIN", "clause_id": ""}
-
-
 func choose_commit(_entity_id: String, _context: Dictionary, _limit: int, _session: RefCounted) -> Array:
 	return []
 

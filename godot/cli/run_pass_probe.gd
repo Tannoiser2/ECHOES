@@ -372,8 +372,6 @@ class Witness extends RefCounted:
 	func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
 		return await inner.choose_question(context, options, session)
 
-	func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
-		return await inner.choose_proposition(context, options, session)
 
 	# Le tre scelte del Consiglio a due domande (D-467): si inoltrano com'e'.
 	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
@@ -385,8 +383,6 @@ class Witness extends RefCounted:
 	func choose_raise(entity_id: String, context: Dictionary, menu: Array, session: RefCounted) -> String:
 		return await inner.choose_raise(entity_id, context, menu, session)
 
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		return await inner.choose_stance(entity_id, context, session)
 
 	func choose_commit(
 		entity_id: String, context: Dictionary, limit: int, session: RefCounted

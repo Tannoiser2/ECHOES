@@ -52,13 +52,14 @@ static func make(character: String, log: RefCounted) -> RefCounted:
 ## E' il giocatore che al tavolo dice "va bene" per non litigare, e che a fine
 ## anno ha una mano bellissima e niente di deciso.
 class Prudente extends PolicyDecider:
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		var declared: Dictionary = super.choose_stance(entity_id, context, session)
-		if str(declared["stance"]) != "OPPOSE":
-			return declared
-		# Senza la CONDITION (D-454) chi non litiga si astiene: non c'e' piu'
-		# una via di mezzo con le carte in mano.
-		return {"stance": "ABSTAIN", "clause_id": ""}
+	## Non prende l'altra domanda se puo' stare con chi propone: a due domande
+	## (D-467) non ci si astiene al primo giro, e chi non litiga sta con A.
+	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
+		var choice: Dictionary = super.choose_side(entity_id, context, offer, session)
+		var menu_a: Array = offer.get("A", []) as Array
+		if str(choice.get("side", "")) != "B" or menu_a.is_empty():
+			return choice
+		return {"side": "A", "voice_id": str((menu_a[0] as Dictionary)["id"])}
 
 	## Tiene le carte in mano - una in meno di quante ne spenderebbe la policy.
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
@@ -69,17 +70,21 @@ class Prudente extends PolicyDecider:
 ## Blocca tutto quello che non lo aiuta, anche quando gli costa poco, e impegna
 ## tutto quello che ha. Non contratta: una proposta o e sua o e contro di lui.
 class Aggressivo extends PolicyDecider:
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		var declared: Dictionary = super.choose_stance(entity_id, context, session)
-		if str(declared["stance"]) == "ABSTAIN":
-			var proposition: Dictionary = _current_proposition(context, session)
-			if not proposition.is_empty():
-				var score: int = _score_proposition(
-					proposition, entity_id, str(context["proponent"]), session
-				)
-				if score <= 0:
-					return {"stance": "OPPOSE", "clause_id": ""}
-		return declared
+	## Se la domanda di chi propone non gli vale niente, prende l'altra (D-467):
+	## una domanda o e' sua o e' contro di lui.
+	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
+		var choice: Dictionary = super.choose_side(entity_id, context, offer, session)
+		var menu_b: Array = offer.get("B", []) as Array
+		if str(choice.get("side", "")) != "A" or menu_b.is_empty():
+			return choice
+		var goals: Dictionary = _tag_goals(entity_id, session)
+		var bindings: Dictionary = session.confluence.effect_context()
+		var worth: int = _side_base_score(
+			"A", entity_id, str(context["proponent"]), goals, session, bindings
+		)
+		if worth > 0:
+			return choice
+		return {"side": "B", "voice_id": str((menu_b[0] as Dictionary)["id"])}
 
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 		return session.service.ranked_hand_for_tension(
@@ -156,12 +161,6 @@ class Table extends RefCounted:
 	func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
 		return _who(str(context["proponent"])).choose_question(context, options, session)
 
-	func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
-		return _who(str(context["proponent"])).choose_proposition(context, options, session)
-
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		return _who(entity_id).choose_stance(entity_id, context, session)
-
 	# Le tre scelte del Consiglio a due domande (D-467): ognuno con la sua sedia.
 	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
 		return _who(entity_id).choose_side(entity_id, context, offer, session)
@@ -177,37 +176,3 @@ class Table extends RefCounted:
 
 	func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 		return _who(str(context["proponent"])).choose_recovery(context, session)
-
-	# La pedina del prezzo e la controproposta (D-267/D-268) nominano un seggio:
-	# risponde il carattere che ci siede. Senza questi inoltri la guardia
-	# `has_method` del controller saltava le due domande **in silenzio** - il
-	# tavolo misto del cancello ha giocato la Fase A senza pedina, e i numeri
-	# identici prima/dopo l'hanno detto. Un router che non inoltra e' un
-	# cervello che non sa scegliere, e nessuno se ne accorge.
-	# L'economia (D-280) nomina due seggi: il proponente che compra e il primo
-	# del fronte avverso che sceglie il prezzo. Stessa ragione dell'inoltro qui
-	# sopra, e stessa trappola se manca.
-	func choose_benefits(
-		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-	) -> Array:
-		return await _who(entity_id).choose_benefits(entity_id, context, menu, session)
-
-	func choose_costs(
-		entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
-	) -> Array:
-		return await _who(entity_id).choose_costs(entity_id, context, menu, due, session)
-
-	func choose_cost_token(
-		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-	) -> String:
-		return await _who(entity_id).choose_cost_token(entity_id, context, menu, session)
-
-	func choose_opposition_token(
-		entity_id: String, context: Dictionary, session: RefCounted
-	) -> bool:
-		return await _who(entity_id).choose_opposition_token(entity_id, context, session)
-
-	func choose_counterclaim(
-		entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
-	) -> Dictionary:
-		return _who(entity_id).choose_counterclaim(entity_id, context, offer, session)
