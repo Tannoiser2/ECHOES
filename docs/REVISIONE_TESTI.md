@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3453 testi in lettura.
+possono spostare nella frase, non togliere. 3693 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -517,6 +517,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: della montagna si e' smesso di parlare.
 
 
+**`TEN_ASH, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_ASH, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_ASH, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -531,6 +539,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_ASH, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ASH, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_ASH, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ASH, se cade — F_CONDITION`**
@@ -599,6 +615,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il Cristallo e' stato messo a rendere.
 
 
+**`TEN_AWAKENING, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_AWAKENING, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_AWAKENING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -613,6 +637,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_AWAKENING, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_AWAKENING, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_AWAKENING, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_AWAKENING, se cade — F_CONDITION`**
@@ -673,6 +705,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_BAD_GRAIN, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_BAD_GRAIN, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_BAD_GRAIN, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -687,6 +727,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_BAD_GRAIN, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_BAD_GRAIN, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_BAD_GRAIN, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_BAD_GRAIN, se cade — F_CONDITION`**
@@ -747,6 +795,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato chiamato.
 
 
+**`TEN_BLACK_TOLLS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_BLACK_TOLLS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_BLACK_TOLLS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -761,6 +817,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_BLACK_TOLLS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_BLACK_TOLLS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_BLACK_TOLLS, se cade — F_CONDITION`**
@@ -825,6 +889,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 
 
+**`TEN_BOUNDARY_STONES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_BOUNDARY_STONES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_BOUNDARY_STONES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -839,6 +911,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_BOUNDARY_STONES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_BOUNDARY_STONES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_BOUNDARY_STONES, se cade — F_CONDITION`**
@@ -903,6 +983,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la reliquia e' tornata sottoterra.
 
 
+**`TEN_BURIALS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_BURIALS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_BURIALS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -917,6 +1005,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_BURIALS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_BURIALS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_BURIALS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_BURIALS, se cade — F_CONDITION`**
@@ -985,6 +1081,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la Carta e' stata scritta.
 
 
+**`TEN_CHARTER, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_CHARTER, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_CHARTER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -999,6 +1103,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_CHARTER, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_CHARTER, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_CHARTER, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_CHARTER, se cade — F_CONDITION`**
@@ -1059,6 +1171,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il Cristallo e' stato messo a rendere.
 
 
+**`TEN_CLEARING, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_CLEARING, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_CLEARING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -1073,6 +1193,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_CLEARING, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_CLEARING, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_CLEARING, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_CLEARING, se cade — F_CONDITION`**
@@ -1133,6 +1261,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la Carta vale anche per chi non siede.
 
 
+**`TEN_COUNCIL_SEATS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_COUNCIL_SEATS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_COUNCIL_SEATS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -1147,6 +1283,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_COUNCIL_SEATS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_COUNCIL_SEATS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_COUNCIL_SEATS, se cade — F_CONDITION`**
@@ -1211,6 +1355,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: quello che si e' capito resta scritto.
 
 
+**`TEN_COURIERS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_COURIERS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_COURIERS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -1225,6 +1377,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_COURIERS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_COURIERS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_COURIERS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_COURIERS, se cade — F_CONDITION`**
@@ -1293,6 +1453,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato rimesso.
 
 
+**`TEN_DEBT, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_DEBT, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_DEBT, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -1307,6 +1475,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_DEBT, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_DEBT, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_DEBT, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_DEBT, se cade — F_CONDITION`**
@@ -1367,6 +1543,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_DEEP_WATER, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_DEEP_WATER, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_DEEP_WATER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1381,6 +1565,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_DEEP_WATER, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_DEEP_WATER, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_DEEP_WATER, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_DEEP_WATER, se cade — F_CONDITION`**
@@ -1441,6 +1633,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la miniera e' stata chiusa.
 
 
+**`TEN_ECHOES_BELOW, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_ECHOES_BELOW, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_ECHOES_BELOW, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -1455,6 +1655,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_ECHOES_BELOW, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_ECHOES_BELOW, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ECHOES_BELOW, se cade — F_CONDITION`**
@@ -1515,6 +1723,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato rimesso.
 
 
+**`TEN_EMPTY_NETS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_EMPTY_NETS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_EMPTY_NETS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1529,6 +1745,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_EMPTY_NETS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_EMPTY_NETS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_EMPTY_NETS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_EMPTY_NETS, se cade — F_CONDITION`**
@@ -1601,6 +1825,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la Carta e' stata scritta.
 
 
+**`TEN_ENCLOSURE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_ENCLOSURE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_ENCLOSURE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -1615,6 +1847,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_ENCLOSURE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_ENCLOSURE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_ENCLOSURE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ENCLOSURE, se cade — F_CONDITION`**
@@ -1679,6 +1919,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato rimesso.
 
 
+**`TEN_FALLOW, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_FALLOW, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_FALLOW, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1693,6 +1941,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_FALLOW, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_FALLOW, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_FALLOW, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_FALLOW, se cade — F_CONDITION`**
@@ -1761,6 +2017,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato rimesso.
 
 
+**`TEN_FAMINE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_FAMINE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_FAMINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -1775,6 +2039,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_FAMINE, si paga — C_BIND`**
 > Il filo con il rivale scende a nemico.
+
+
+**`TEN_FAMINE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_FAMINE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_FAMINE, se cade — F_CONDITION`**
@@ -1835,6 +2107,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_FERRY, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_FERRY, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_FERRY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -1849,6 +2129,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_FERRY, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_FERRY, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_FERRY, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_FERRY, se cade — F_CONDITION`**
@@ -1909,6 +2197,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_FLOOD, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_FLOOD, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_FLOOD, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -1923,6 +2219,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_FLOOD, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_FLOOD, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_FLOOD, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_FLOOD, se cade — F_CONDITION`**
@@ -1983,6 +2287,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_GUILD_WAR, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_GUILD_WAR, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_GUILD_WAR, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -1997,6 +2309,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_GUILD_WAR, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_GUILD_WAR, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_GUILD_WAR, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_GUILD_WAR, se cade — F_CONDITION`**
@@ -2057,6 +2377,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la fede ha una casa riconosciuta.
 
 
+**`TEN_HERESY, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_HERESY, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_HERESY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2071,6 +2399,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_HERESY, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_HERESY, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_HERESY, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_HERESY, se cade — F_CONDITION`**
@@ -2131,6 +2467,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'ordine e' stato rimesso in piedi.
 
 
+**`TEN_HOSTAGES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_HOSTAGES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_HOSTAGES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2145,6 +2489,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_HOSTAGES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_HOSTAGES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_HOSTAGES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_HOSTAGES, se cade — F_CONDITION`**
@@ -2205,6 +2557,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la fede ha una casa riconosciuta.
 
 
+**`TEN_ISLAND_SHRINE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_ISLAND_SHRINE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_ISLAND_SHRINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2219,6 +2579,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_ISLAND_SHRINE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_ISLAND_SHRINE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ISLAND_SHRINE, se cade — F_CONDITION`**
@@ -2279,6 +2647,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: della montagna si e' smesso di parlare.
 
 
+**`TEN_ISLAND_SILENCE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_ISLAND_SILENCE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_ISLAND_SILENCE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2293,6 +2669,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_ISLAND_SILENCE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_ISLAND_SILENCE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ISLAND_SILENCE, se cade — F_CONDITION`**
@@ -2357,6 +2741,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la Carta e' stata scritta.
 
 
+**`TEN_LANDLESS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_LANDLESS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_LANDLESS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -2371,6 +2763,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_LANDLESS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_LANDLESS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_LANDLESS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_LANDLESS, se cade — F_CONDITION`**
@@ -2431,6 +2831,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_LAND_REGISTER, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_LAND_REGISTER, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_LAND_REGISTER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2445,6 +2853,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_LAND_REGISTER, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_LAND_REGISTER, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_LAND_REGISTER, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_LAND_REGISTER, se cade — F_CONDITION`**
@@ -2509,6 +2925,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'ordine e' stato rimesso in piedi.
 
 
+**`TEN_LEVY, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_LEVY, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_LEVY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -2523,6 +2947,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_LEVY, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_LEVY, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_LEVY, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_LEVY, se cade — F_CONDITION`**
@@ -2587,6 +3019,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la corona e' stata divisa.
 
 
+**`TEN_MARCHES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_MARCHES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_MARCHES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2601,6 +3041,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_MARCHES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_MARCHES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_MARCHES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_MARCHES, se cade — F_CONDITION`**
@@ -2665,6 +3113,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_MARSH_FEVER, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_MARSH_FEVER, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_MARSH_FEVER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -2679,6 +3135,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_MARSH_FEVER, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_MARSH_FEVER, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_MARSH_FEVER, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_MARSH_FEVER, se cade — F_CONDITION`**
@@ -2739,6 +3203,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 
 
+**`TEN_NAMELESS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_NAMELESS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_NAMELESS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2753,6 +3225,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_NAMELESS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_NAMELESS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_NAMELESS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_NAMELESS, se cade — F_CONDITION`**
@@ -2813,6 +3293,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_OLD_CHANNELS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_OLD_CHANNELS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_OLD_CHANNELS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2827,6 +3315,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_OLD_CHANNELS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_OLD_CHANNELS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_OLD_CHANNELS, se cade — F_CONDITION`**
@@ -2891,6 +3387,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la successione e' scritta in una legge.
 
 
+**`TEN_OLD_GUARD, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_OLD_GUARD, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_OLD_GUARD, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2905,6 +3409,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_OLD_GUARD, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_OLD_GUARD, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_OLD_GUARD, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_OLD_GUARD, se cade — F_CONDITION`**
@@ -2969,6 +3481,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: quello che si e' capito resta scritto.
 
 
+**`TEN_OLD_NAMES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_OLD_NAMES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_OLD_NAMES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -2983,6 +3503,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_OLD_NAMES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_OLD_NAMES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_OLD_NAMES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_OLD_NAMES, se cade — F_CONDITION`**
@@ -3047,6 +3575,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 
 
+**`TEN_PASTURE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_PASTURE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_PASTURE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -3061,6 +3597,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_PASTURE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_PASTURE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_PASTURE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_PASTURE, se cade — F_CONDITION`**
@@ -3125,6 +3669,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la reliquia e' tornata sottoterra.
 
 
+**`TEN_PILGRIMS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_PILGRIMS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_PILGRIMS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -3139,6 +3691,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_PILGRIMS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_PILGRIMS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_PILGRIMS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_PILGRIMS, se cade — F_CONDITION`**
@@ -3199,6 +3759,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato rimesso.
 
 
+**`TEN_PLAGUE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_PLAGUE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_PLAGUE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -3213,6 +3781,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_PLAGUE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_PLAGUE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_PLAGUE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_PLAGUE, se cade — F_CONDITION`**
@@ -3273,6 +3849,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il Cristallo e' stato misurato.
 
 
+**`TEN_PROPHECY, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_PROPHECY, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_PROPHECY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -3287,6 +3871,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_PROPHECY, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_PROPHECY, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_PROPHECY, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_PROPHECY, se cade — F_CONDITION`**
@@ -3347,6 +3939,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 
 
+**`TEN_QUARANTINE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_QUARANTINE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_QUARANTINE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3361,6 +3961,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_QUARANTINE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_QUARANTINE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_QUARANTINE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_QUARANTINE, se cade — F_CONDITION`**
@@ -3425,6 +4033,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 
 
+**`TEN_REFUGEES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_REFUGEES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_REFUGEES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #malcontento.
 
@@ -3439,6 +4055,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_REFUGEES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_REFUGEES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_REFUGEES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_REFUGEES, se cade — F_CONDITION`**
@@ -3503,6 +4127,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la corona e' stata divisa.
 
 
+**`TEN_REGENCY, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_REGENCY, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_REGENCY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3517,6 +4149,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_REGENCY, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_REGENCY, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_REGENCY, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_REGENCY, se cade — F_CONDITION`**
@@ -3589,6 +4229,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la reliquia e' tornata sottoterra.
 
 
+**`TEN_RELIC, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_RELIC, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_RELIC, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3603,6 +4251,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_RELIC, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_RELIC, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_RELIC, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_RELIC, se cade — F_CONDITION`**
@@ -3671,6 +4327,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato chiamato.
 
 
+**`TEN_ROADS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_ROADS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_ROADS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3685,6 +4349,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_ROADS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_ROADS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_ROADS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_ROADS, se cade — F_CONDITION`**
@@ -3745,6 +4417,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i conti sono stati chiusi.
 
 
+**`TEN_SALT_FIELDS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SALT_FIELDS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SALT_FIELDS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sfruttato.
 
@@ -3759,6 +4439,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SALT_FIELDS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SALT_FIELDS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SALT_FIELDS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SALT_FIELDS, se cade — F_CONDITION`**
@@ -3823,6 +4511,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la Carta e' stata scritta.
 
 
+**`TEN_SANCTUARY, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SANCTUARY, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SANCTUARY, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3837,6 +4533,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SANCTUARY, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SANCTUARY, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SANCTUARY, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SANCTUARY, se cade — F_CONDITION`**
@@ -3897,6 +4601,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_SEALS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SEALS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SEALS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3911,6 +4623,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SEALS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SEALS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SEALS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SEALS, se cade — F_CONDITION`**
@@ -3975,6 +4695,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la fede ha una casa riconosciuta.
 
 
+**`TEN_SILENT_BELLS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SILENT_BELLS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SILENT_BELLS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -3989,6 +4717,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SILENT_BELLS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_SILENT_BELLS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SILENT_BELLS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SILENT_BELLS, se cade — F_CONDITION`**
@@ -4049,6 +4785,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_SILTED_CANALS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SILTED_CANALS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SILTED_CANALS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4063,6 +4807,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SILTED_CANALS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_SILTED_CANALS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SILTED_CANALS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SILTED_CANALS, se cade — F_CONDITION`**
@@ -4127,6 +4879,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la miniera e' stata chiusa.
 
 
+**`TEN_SLEEPERS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SLEEPERS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SLEEPERS, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -4141,6 +4901,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SLEEPERS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_SLEEPERS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SLEEPERS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SLEEPERS, se cade — F_CONDITION`**
@@ -4201,6 +4969,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_SMUGGLING, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SMUGGLING, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SMUGGLING, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4215,6 +4991,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SMUGGLING, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_SMUGGLING, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SMUGGLING, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SMUGGLING, se cade — F_CONDITION`**
@@ -4283,6 +5067,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la successione e' scritta in una legge.
 
 
+**`TEN_SUCCESSION, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_SUCCESSION, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_SUCCESSION, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4297,6 +5089,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_SUCCESSION, si paga — C_MARK`**
 > Chi propone resta sotto osservazione.
+
+
+**`TEN_SUCCESSION, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_SUCCESSION, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_SUCCESSION, se cade — F_CONDITION`**
@@ -4357,6 +5157,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_THIRST, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_THIRST, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_THIRST, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4371,6 +5179,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_THIRST, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_THIRST, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_THIRST, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_THIRST, se cade — F_CONDITION`**
@@ -4431,6 +5247,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_TITHE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_TITHE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_TITHE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4445,6 +5269,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_TITHE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_TITHE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_TITHE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_TITHE, se cade — F_CONDITION`**
@@ -4505,6 +5337,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i conti sono stati chiusi.
 
 
+**`TEN_TRIBUTE, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_TRIBUTE, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_TRIBUTE, si paga — C_CONDITION`**
 > Al luogo si aggiunge #svuotato.
 
@@ -4519,6 +5359,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_TRIBUTE, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_TRIBUTE, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_TRIBUTE, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_TRIBUTE, se cade — F_CONDITION`**
@@ -4579,6 +5427,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il Cristallo e' stato misurato.
 
 
+**`TEN_UNEARTHED, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_UNEARTHED, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_UNEARTHED, si paga — C_CONDITION`**
 > Il luogo viene murato: quello che sta sotto resta sotto.
 
@@ -4593,6 +5449,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_UNEARTHED, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_UNEARTHED, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_UNEARTHED, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_UNEARTHED, se cade — F_CONDITION`**
@@ -4657,6 +5521,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: quello che si e' capito resta scritto.
 
 
+**`TEN_VOWS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_VOWS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_VOWS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -4671,6 +5543,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_VOWS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la domanda sul muro.
+
+
+**`TEN_VOWS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_VOWS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_VOWS, se cade — F_CONDITION`**
@@ -4731,6 +5611,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: la reliquia e' tornata sottoterra.
 
 
+**`TEN_WARD_STONES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_WARD_STONES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_WARD_STONES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #lutto.
 
@@ -4745,6 +5633,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_WARD_STONES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_WARD_STONES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_WARD_STONES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WARD_STONES, se cade — F_CONDITION`**
@@ -4813,6 +5709,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: l'acqua torna a muoversi.
 
 
+**`TEN_WATER, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_WATER, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_WATER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4827,6 +5731,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_WATER, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: l'abbandono.
+
+
+**`TEN_WATER, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_WATER, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WATER, se cade — F_CONDITION`**
@@ -4887,6 +5799,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 
 
+**`TEN_WEIGHTS, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_WEIGHTS, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_WEIGHTS, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -4901,6 +5821,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_WEIGHTS, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: passata di mano.
+
+
+**`TEN_WEIGHTS, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_WEIGHTS, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WEIGHTS, se cade — F_CONDITION`**
@@ -4965,6 +5893,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: il debito e' stato rimesso.
 
 
+**`TEN_WINTER, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_WINTER, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_WINTER, si paga — C_CONDITION`**
 > Al luogo si aggiunge #razionato.
 
@@ -4979,6 +5915,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_WINTER, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: il confine sigillato.
+
+
+**`TEN_WINTER, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_WINTER, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WINTER, se cade — F_CONDITION`**
@@ -5043,6 +5987,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 > Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 
 
+**`TEN_WOLVES, si ottiene — B_REOPEN`**
+> Riapri il luogo: via il #tagliato_fuori.
+
+
+**`TEN_WOLVES, si ottiene — B_CLEAR`**
+> Togli una condizione dal luogo.
+
+
 **`TEN_WOLVES, si paga — C_CONDITION`**
 > Al luogo si aggiunge #sorvegliata.
 
@@ -5057,6 +6009,14 @@ possono spostare nella frase, non togliere. 3453 testi in lettura.
 
 **`TEN_WOLVES, si paga — C_SCAR`**
 > Accetta 1 Cicatrice permanente: la razzia.
+
+
+**`TEN_WOLVES, si paga — C_TOLL`**
+> Sul luogo si alza un pedaggio.
+
+
+**`TEN_WOLVES, si paga — C_HEAT`**
+> Il Tema di questa domanda si scalda di 1.
 
 
 **`TEN_WOLVES, se cade — F_CONDITION`**

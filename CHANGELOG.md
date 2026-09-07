@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.438 — La carta a due domande nei dati: il giro 2 di D-467
+
+[D-469](docs/DECISIONS.md#d-469). Le 60 carte portano l'esito di base di ogni
+domanda, sei benefici e sei costi, e ogni casella marcata per la domanda che
+serve — riscritte una volta da `tools/two_questions.py` con la regola scritta.
+Il validatore fisico morde su tre difetti nuovi; il tetto di quattro caselle
+di D-453 passa a sei con la ragione scritta; il retro stampato della Domanda
+dice A e B, cosa vince e di chi e' ogni casella. Il motore leggera' la forma
+nuova al giro 3. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.437 — Sei Tensioni, una per Tema: il primo giro di D-467
 
 [D-468](docs/DECISIONS.md#d-468). La Chronicle pesca una domanda per ogni

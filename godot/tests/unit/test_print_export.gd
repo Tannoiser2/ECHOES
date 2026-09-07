@@ -666,7 +666,14 @@ func test_the_council_sheet_is_the_boxes_not_the_prose() -> void:
 		for group in ["benefits", "costs", "failure"]:
 			for voice in tension.get("physical", {}).get(group, []) as Array:
 				var text: String = str((voice as Dictionary).get("text", ""))
-				assert_true(notes.has("· %s" % text),
+				# La riga puo' portare la marca della domanda dopo il punto
+				# (D-467): «· A · testo». Il punto apre, il testo chiude.
+				var found: bool = false
+				for note in notes:
+					if str(note).begins_with("· ") and str(note).ends_with("· %s" % text):
+						found = true
+						break
+				assert_true(found,
 					"%s: la casella «%s» non ha una riga sua" % [str(card["id"]), text])
 		# E nessuna proposta in prosa: due grammatiche sulla stessa scheda sono
 		# la ragione per cui le caselle stavano in fondo, e la misura dice che
@@ -936,3 +943,41 @@ func test_every_mechanical_line_has_a_headword() -> void:
 	assert_eq(mute.size(), 0, "righe senza intestazione: %s" % " | ".join(
 		PackedStringArray(mute.slice(0, 3))
 	))
+
+
+## **Il retro della Domanda dice le due domande, cosa vince, e di chi e' ogni
+## casella** (D-467, giro 2): «A ·» e «B ·» davanti alle domande, «se vince:»
+## sotto ognuna con le Conseguenze dell'esito di base, e ogni beneficio e ogni
+## costo con la marca della domanda che serve — A, B o AB — dopo il punto.
+func test_the_council_back_marks_each_box_and_says_what_wins() -> void:
+	var loaded: RefCounted = data()
+	var backs: int = 0
+	for face in CardFace.every(loaded):
+		var card: Dictionary = face as Dictionary
+		if str(card.get("deck", "")) != "council":
+			continue
+		backs += 1
+		var body: Array = card.get("body", []) as Array
+		var letters: Dictionary = {"A": 0, "B": 0, "wins": 0}
+		for line in body:
+			if str(line).begins_with("A · "):
+				letters["A"] = int(letters["A"]) + 1
+			elif str(line).begins_with("B · "):
+				letters["B"] = int(letters["B"]) + 1
+			elif str(line).strip_edges().begins_with("se vince:"):
+				letters["wins"] = int(letters["wins"]) + 1
+		assert_eq(int(letters["A"]), 1, "%s: la domanda A c'e'" % str(card["id"]))
+		assert_eq(int(letters["B"]), 1, "%s: e la B" % str(card["id"]))
+		assert_eq(int(letters["wins"]), 2, "%s: ognuna dice cosa vince" % str(card["id"]))
+		var tension: Dictionary = loaded.tensions[str(card["id"])]
+		var marked: int = 0
+		for note in (card.get("notes", []) as Array):
+			var row: String = str(note)
+			if row.begins_with("· A · ") or row.begins_with("· B · ") or row.begins_with("· AB · "):
+				marked += 1
+		var boxes: int = (
+			(tension["physical"]["benefits"] as Array).size()
+			+ (tension["physical"]["costs"] as Array).size()
+		)
+		assert_eq(marked, boxes, "%s: ogni beneficio e ogni costo porta la sua marca" % str(card["id"]))
+	assert_eq(backs, loaded.tensions.size(), "un retro per carta")

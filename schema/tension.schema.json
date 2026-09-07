@@ -136,7 +136,7 @@
             "benefits": {
               "type": "array",
               "minItems": 2,
-              "description": "Cosa la proposta puo' ottenere sul tavolo. Il proponente ne posa fino a tre (quattro accettando una Cicatrice).",
+              "description": "Cosa la proposta puo' ottenere sul tavolo. Il proponente ne posa fino a tre (quattro accettando una Cicatrice). Da D-467 sei per lato, marcate per domanda.",
               "items": {
                 "type": "object",
                 "required": [
@@ -249,6 +249,15 @@
                       "BOUND"
                     ],
                     "description": "Il livello a cui MUOVI UN RAPPORTO porta il filo fra chi propone e la casa nominata."
+                  },
+                  "for": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "A quale domanda della carta serve questa casella (D-467): gli id di council.questions, una o tutte e due. Chi sostiene una domanda posa solo sulle sue caselle o su quelle comuni. Obbligatorio sulla carta, e lo pretende validate_physical."
                   }
                 }
               }
@@ -256,7 +265,7 @@
             "costs": {
               "type": "array",
               "minItems": 2,
-              "description": "Il prezzo che la proposta lascia sulla mappa. Lo scelgono gli avversari, uno per ogni beneficio oltre il primo (massimo due).",
+              "description": "Il prezzo che la proposta lascia sulla mappa. Lo scelgono gli avversari, uno per ogni beneficio oltre il primo (massimo due). Da D-467 sei per lato, marcate per domanda.",
               "items": {
                 "type": "object",
                 "required": [
@@ -371,6 +380,15 @@
                       "BOUND"
                     ],
                     "description": "Il livello a cui MUOVI UN RAPPORTO porta il filo fra chi propone e la casa nominata."
+                  },
+                  "for": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "A quale domanda della carta serve questa casella (D-467): gli id di council.questions, una o tutte e due. Chi sostiene una domanda posa solo sulle sue caselle o su quelle comuni. Obbligatorio sulla carta, e lo pretende validate_physical."
                   }
                 }
               }

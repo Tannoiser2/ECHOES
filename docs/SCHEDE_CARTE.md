@@ -265,8 +265,10 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "accento": "#8a8172",
   "famiglia": "",
   "corpo": [
-    "La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?",
-    "E le bocche aperte sul fianco, si murano?"
+    "A · La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?",
+    "   se vince: La Veglia sulla Montagna",
+    "B · E le bocche aperte sul fianco, si murano?",
+    "   se vince: Le Miniere Sigillate"
   ],
   "righe": [
     {
@@ -275,19 +277,27 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "·",
-      "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+      "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
     },
     {
       "voce": "·",
-      "testo": "Assegna o trasferisci il controllo del luogo."
+      "testo": "A · Assegna o trasferisci il controllo del luogo."
     },
     {
       "voce": "·",
-      "testo": "Raffredda il Tema di 1 (minimo 0)."
+      "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
     },
     {
       "voce": "·",
-      "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
+      "testo": "AB · Il mondo ricorda: della montagna si e' smesso di parlare."
+    },
+    {
+      "voce": "·",
+      "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+    },
+    {
+      "voce": "·",
+      "testo": "B · Togli una condizione dal luogo."
     },
     {
       "voce": "SI PAGA",
@@ -295,19 +305,27 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "·",
-      "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+      "testo": "A · Il luogo viene murato: quello che sta sotto resta sotto."
     },
     {
       "voce": "·",
-      "testo": "Cedi il controllo del luogo."
+      "testo": "B · Cedi il controllo del luogo."
     },
     {
       "voce": "·",
-      "testo": "Al luogo si aggiunge #indebitata."
+      "testo": "B · Al luogo si aggiunge #indebitata."
     },
     {
       "voce": "·",
-      "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+      "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+    },
+    {
+      "voce": "·",
+      "testo": "B · Sul luogo si alza un pedaggio."
+    },
+    {
+      "voce": "·",
+      "testo": "AB · Il Tema di questa domanda si scalda di 1."
     },
     {
       "voce": "SE CADE",

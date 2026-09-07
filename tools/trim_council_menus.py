@@ -10,6 +10,10 @@ Tema raggiunge, non un menu. Questo strumento taglia una volta, con una regola
 scritta, e da qui in poi la guardia sta in `validate_physical.py`: piu' di
 quattro per lato e' un difetto.
 
+**Da D-467 il tetto e' sei** (`tools/two_questions.py`): con due domande in
+contrasto e quattro seggi, quattro caselle finivano prima del primo giro.
+Questo strumento resta per la regola con cui ha scelto le quattro d'autore.
+
 La regola, per ogni carta:
 
 - **benefici**: resta la casella della memoria della carta — IL MONDO RICORDA

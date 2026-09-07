@@ -412,6 +412,14 @@ carte: la parte piu' forte lo raggiunge in due Consigli su tre, quindi la
 soglia e' un rischio vero. Con sei domande i Consigli si fanno piu'
 combattuti da soli. Restano i giri 2, 3 e 4.
 
+**Giro 2 fatto in 0.1.438** ([D-469](DECISIONS.md#d-469)): le carte hanno la
+forma della regola — l'esito di base di ogni domanda, sei caselle per lato,
+ogni casella marcata per la domanda che serve — e il retro stampato lo dice.
+Le marche sono una prima passata a regola, non una lettura carta per carta:
+nel catalogo dei Consigli le vedi per ogni domanda, e dove la carta dice
+altro le correggi tu. Il tetto di quattro caselle che avevi dato in D-453 e'
+passato a sei, e la ragione e' scritta. Restano i giri 3 e 4.
+
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in

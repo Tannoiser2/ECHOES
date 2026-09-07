@@ -74,6 +74,36 @@ func _initialize() -> void:
 		lines.append(CouncilText.speak(str(about.get("description", ""))))
 		lines.append("")
 
+		# **Le due domande e le loro caselle** (D-467): la lettera, l'esito di
+		# base, e quali caselle ognuna puo' sostenere. Le marche sono la prima
+		# passata a regola di `tools/two_questions.py`: si leggono qui per
+		# correggerle dove la carta dice altro.
+		var council: Dictionary = about.get("council", {}) as Dictionary
+		var physical: Dictionary = about.get("physical", {}) as Dictionary
+		var index: int = 0
+		for entry in council.get("questions", []) as Array:
+			var question: Dictionary = entry as Dictionary
+			var letter: String = char(65 + index)
+			index += 1
+			lines.append("### %s · %s" % [letter, CouncilText.speak(str(question.get("text", "")))])
+			lines.append("")
+			var wins: Array = []
+			for consequence_id in (question.get("base", []) as Array):
+				var consequence: Dictionary = data.consequences.get(str(consequence_id), {}) as Dictionary
+				wins.append(str(consequence.get("title", consequence_id)))
+			lines.append("- **Se vince, a prescindere dalle pedine:** %s" % (
+				" · ".join(PackedStringArray(wins)) if not wins.is_empty() else "*(niente)*"
+			))
+			for pair in [["benefits", "benefici"], ["costs", "costi"]]:
+				var mine: Array = []
+				for voice in (physical.get(str(pair[0]), []) as Array):
+					if ((voice as Dictionary).get("for", []) as Array).has(str(question.get("id", ""))):
+						mine.append(str((voice as Dictionary).get("text", "")))
+				lines.append("- **%s che puo' sostenere (%d):** %s" % [
+					str(pair[1]).capitalize(), mine.size(), " · ".join(PackedStringArray(mine)),
+				])
+			lines.append("")
+
 		for entry in template.get("propositions", []):
 			var said: Dictionary = CouncilText.proposition(
 				template, str((entry as Dictionary)["id"]), data

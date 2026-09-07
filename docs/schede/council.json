@@ -100,8 +100,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?",
-        "E le bocche aperte sul fianco, si murano?"
+        "A · La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?",
+        "   se vince: La Veglia sulla Montagna",
+        "B · E le bocche aperte sul fianco, si murano?",
+        "   se vince: Le Miniere Sigillate"
       ],
       "righe": [
         {
@@ -110,19 +112,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
+          "testo": "AB · Il mondo ricorda: della montagna si e' smesso di parlare."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -130,19 +140,27 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+          "testo": "A · Il luogo viene murato: quello che sta sotto resta sotto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -171,8 +189,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?",
-        "A chi appartiene ciò che dorme sotto la Regione di cui si discute?  — solo se: Il Risveglio è vicino"
+        "A · Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?",
+        "   se vince: La Miniera Aperta · La Miniera di Stato",
+        "B · A chi appartiene ciò che dorme sotto la Regione di cui si discute?  — solo se: Il Risveglio è vicino",
+        "   se vince: Studio sotto Custodia"
       ],
       "righe": [
         {
@@ -181,19 +201,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il Cristallo e' stato messo a rendere."
+          "testo": "AB · Il mondo ricorda: il Cristallo e' stato messo a rendere."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -201,19 +229,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sfruttato."
+          "testo": "A · Al luogo si aggiunge #sfruttato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -242,8 +278,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi apre i sili e guarda dentro?",
-        "E del raccolto marcito, chi risponde?"
+        "A · Nella Regione di cui si discute, chi apre i sili e guarda dentro?",
+        "   se vince: La Razione Imposta",
+        "B · E del raccolto marcito, chi risponde?",
+        "   se vince: Il Registro Aperto · La Distribuzione Verificata"
       ],
       "righe": [
         {
@@ -252,19 +290,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -272,19 +318,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -313,8 +367,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi ha teso la catena sulla strada, e con che diritto?",
-        "E i carri che passano domani, chi li accompagna?"
+        "A · Chi ha teso la catena sulla strada, e con che diritto?",
+        "   se vince: Il Pedaggio Scritto",
+        "B · E i carri che passano domani, chi li accompagna?",
+        "   se vince: La Scorta Giurata"
       ],
       "righe": [
         {
@@ -323,19 +379,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato chiamato."
+          "testo": "AB · Il mondo ricorda: il debito e' stato chiamato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -343,19 +407,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -384,8 +456,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?",
-        "E chi le ha spostate, si cerca?"
+        "A · Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?",
+        "   se vince: Il Conto Saldato",
+        "B · E chi le ha spostate, si cerca?",
+        "   se vince: La Parola Fredda"
       ],
       "righe": [
         {
@@ -394,19 +468,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+          "testo": "AB · Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -414,19 +496,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -455,8 +545,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?",
-        "E l'acqua che li ha scoperti, si rimanda dov'era?"
+        "A · La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?",
+        "   se vince: La Custodia Riconosciuta",
+        "B · E l'acqua che li ha scoperti, si rimanda dov'era?",
+        "   se vince: I Canali Riaperti"
       ],
       "righe": [
         {
@@ -465,19 +557,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+          "testo": "AB · Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -485,19 +585,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #lutto."
+          "testo": "A · Al luogo si aggiunge #lutto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -526,8 +634,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi scrive la regola che vale nella Regione di cui si discute?",
-        "E chi si siede, quando non si è d'accordo?  — solo se: La Carta è al limite"
+        "A · Chi scrive la regola che vale nella Regione di cui si discute?",
+        "   se vince: La Carta Scritta",
+        "B · E chi si siede, quando non si è d'accordo?  — solo se: La Carta è al limite",
+        "   se vince: Il Seggio Preso"
       ],
       "righe": [
         {
@@ -536,19 +646,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+          "testo": "AB · Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -556,19 +674,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "A · Al luogo si aggiunge #malcontento."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -597,8 +723,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?",
-        "E le fornaci, si fermano una stagione?"
+        "A · Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?",
+        "   se vince: La Razione Imposta",
+        "B · E le fornaci, si fermano una stagione?",
+        "   se vince: Il Mercato Spostato"
       ],
       "righe": [
         {
@@ -607,19 +735,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il Cristallo e' stato messo a rendere."
+          "testo": "AB · Il mondo ricorda: il Cristallo e' stato messo a rendere."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -627,19 +763,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sfruttato."
+          "testo": "A · Al luogo si aggiunge #sfruttato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -668,8 +812,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi si siede al tavolo, e chi lo decide?",
-        "E un veto, quanto vale?"
+        "A · Chi si siede al tavolo, e chi lo decide?",
+        "   se vince: Il Seggio Preso",
+        "B · E un veto, quanto vale?",
+        "   se vince: Il Registro Aperto"
       ],
       "righe": [
         {
@@ -678,19 +824,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la Carta vale anche per chi non siede."
+          "testo": "AB · Il mondo ricorda: la Carta vale anche per chi non siede."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -698,19 +852,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "A · Al luogo si aggiunge #malcontento."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -739,8 +901,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi paga le staffette, e cosa compra davvero?",
-        "E le lettere che arrivano aperte, per le mani di chi sono passate?"
+        "A · Chi paga le staffette, e cosa compra davvero?",
+        "   se vince: La Scorta Giurata",
+        "B · E le lettere che arrivano aperte, per le mani di chi sono passate?",
+        "   se vince: Il Conto Saldato"
       ],
       "righe": [
         {
@@ -749,19 +913,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
+          "testo": "AB · Il mondo ricorda: quello che si e' capito resta scritto."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -769,19 +941,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -810,8 +990,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi tiene il registro, e chi può leggerlo?",
-        "E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?  — solo se: Il Debito è al limite"
+        "A · Chi tiene il registro, e chi può leggerlo?",
+        "   se vince: Il Registro Aperto",
+        "B · E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?  — solo se: Il Debito è al limite",
+        "   se vince: Il Debito Rimesso"
       ],
       "righe": [
         {
@@ -820,19 +1002,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+          "testo": "AB · Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -840,19 +1030,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "A · Al luogo si aggiunge #malcontento."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -881,8 +1079,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?",
-        "E andare a vedere cosa c'è sotto, conviene a qualcuno?"
+        "A · Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?",
+        "   se vince: La Razione Imposta",
+        "B · E andare a vedere cosa c'è sotto, conviene a qualcuno?",
+        "   se vince: Studio sotto Custodia"
       ],
       "righe": [
         {
@@ -891,19 +1091,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -911,19 +1119,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -952,8 +1168,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?",
-        "E il turno lungo, chi lo fa adesso?"
+        "A · In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?",
+        "   se vince: Studio sotto Custodia",
+        "B · E il turno lungo, chi lo fa adesso?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -962,19 +1180,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la miniera e' stata chiusa."
+          "testo": "AB · Il mondo ricorda: la miniera e' stata chiusa."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -982,19 +1208,27 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+          "testo": "A · Il luogo viene murato: quello che sta sotto resta sotto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1023,8 +1257,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi pesca nella Regione di cui si discute, adesso che le reti tornano vuote?",
-        "E le barche ferme, di chi restano?"
+        "A · Chi pesca nella Regione di cui si discute, adesso che le reti tornano vuote?",
+        "   se vince: La Razione Imposta",
+        "B · E le barche ferme, di chi restano?",
+        "   se vince: Il Luogo Abbandonato"
       ],
       "righe": [
         {
@@ -1033,19 +1269,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+          "testo": "AB · Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1053,19 +1297,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1094,8 +1346,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?",
-        "E l'uso della terra, a chi resta?"
+        "A · I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?",
+        "   se vince: La Carta Scritta",
+        "B · E l'uso della terra, a chi resta?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -1104,19 +1358,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+          "testo": "AB · Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1124,19 +1386,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1165,8 +1435,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?",
-        "E chi non può permetterselo, come semina?"
+        "A · I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?",
+        "   se vince: Il Raccolto Torna",
+        "B · E chi non può permetterselo, come semina?",
+        "   se vince: Il Granaio del Trono"
       ],
       "righe": [
         {
@@ -1175,19 +1447,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+          "testo": "AB · Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1195,19 +1475,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1236,8 +1524,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi nutre la Regione di cui si discute quando i granai si svuotano?",
-        "Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?  — solo se: La Carestia è al limite"
+        "A · Chi nutre la Regione di cui si discute quando i granai si svuotano?",
+        "   se vince: Il Granaio del Trono · La Distribuzione Verificata",
+        "B · Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?  — solo se: La Carestia è al limite",
+        "   se vince: La Valle Chiusa"
       ],
       "righe": [
         {
@@ -1246,19 +1536,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+          "testo": "AB · Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1266,19 +1564,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
         },
         {
           "voce": "·",
-          "testo": "Il filo con il rivale scende a nemico."
+          "testo": "A · Il filo con il rivale scende a nemico."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1307,8 +1613,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?",
-        "E se una barca sola non basta piu'?"
+        "A · La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?",
+        "   se vince: Il Pedaggio Scritto",
+        "B · E se una barca sola non basta piu'?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -1317,19 +1625,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1337,19 +1653,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #svuotato."
+          "testo": "A · Al luogo si aggiunge #svuotato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1378,8 +1702,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?",
-        "E i canali vecchi, si riaprono?"
+        "A · La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?",
+        "   se vince: Il Peso Diviso",
+        "B · E i canali vecchi, si riaprono?",
+        "   se vince: I Canali Riaperti"
       ],
       "righe": [
         {
@@ -1388,19 +1714,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1408,19 +1742,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #svuotato."
+          "testo": "A · Al luogo si aggiunge #svuotato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1449,8 +1791,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Le vie sono strette: di chi sono?",
-        "E del magazzino bruciato, chi risponde?"
+        "A · Le vie sono strette: di chi sono?",
+        "   se vince: Il Mercato Spostato",
+        "B · E del magazzino bruciato, chi risponde?",
+        "   se vince: Il Conto Saldato"
       ],
       "righe": [
         {
@@ -1459,19 +1803,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1479,19 +1831,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1520,8 +1880,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire?",
-        "E a chi la ascolta, cosa si fa?"
+        "A · Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire?",
+        "   se vince: La Leggenda Messa per Iscritto",
+        "B · E a chi la ascolta, cosa si fa?",
+        "   se vince: La Voce Gira Lo Stesso"
       ],
       "righe": [
         {
@@ -1530,19 +1892,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
+          "testo": "AB · Il mondo ricorda: la fede ha una casa riconosciuta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1550,19 +1920,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1591,8 +1969,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Gli ospiti di corte, quando possono tornare a casa?",
-        "E chi risponde di loro?"
+        "A · Gli ospiti di corte, quando possono tornare a casa?",
+        "   se vince: Il Peso Diviso",
+        "B · E chi risponde di loro?",
+        "   se vince: Il Seggio Preso"
       ],
       "righe": [
         {
@@ -1601,19 +1981,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'ordine e' stato rimesso in piedi."
+          "testo": "AB · Il mondo ricorda: l'ordine e' stato rimesso in piedi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1621,19 +2009,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1662,8 +2058,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?",
-        "E il rito, si scrive nuovo o si copia il vecchio?"
+        "A · Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?",
+        "   se vince: La Custodia Riconosciuta",
+        "B · E il rito, si scrive nuovo o si copia il vecchio?",
+        "   se vince: La Leggenda Messa per Iscritto"
       ],
       "righe": [
         {
@@ -1672,19 +2070,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
+          "testo": "AB · Il mondo ricorda: la fede ha una casa riconosciuta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1692,19 +2098,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1733,8 +2147,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?",
-        "E a chi ci ha già passato la notte, cosa si chiede?"
+        "A · Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?",
+        "   se vince: La Custodia Riconosciuta",
+        "B · E a chi ci ha già passato la notte, cosa si chiede?",
+        "   se vince: Studio sotto Custodia"
       ],
       "righe": [
         {
@@ -1743,19 +2159,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: della montagna si e' smesso di parlare."
+          "testo": "AB · Il mondo ricorda: della montagna si e' smesso di parlare."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1763,19 +2187,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1804,8 +2236,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?",
-        "E dare terra a chi la lavora, si può?"
+        "A · Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?",
+        "   se vince: La Carta Scritta",
+        "B · E dare terra a chi la lavora, si può?",
+        "   se vince: La Marca Concessa"
       ],
       "righe": [
         {
@@ -1814,19 +2248,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+          "testo": "AB · Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1834,19 +2276,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #svuotato."
+          "testo": "A · Al luogo si aggiunge #svuotato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1875,8 +2325,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Il trono vuole un registro delle terre: chi misura?",
-        "E chi non si fa scrivere?"
+        "A · Il trono vuole un registro delle terre: chi misura?",
+        "   se vince: La Carta Scritta",
+        "B · E chi non si fa scrivere?",
+        "   se vince: La Carta Rifiutata"
       ],
       "righe": [
         {
@@ -1885,19 +2337,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1905,19 +2365,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -1946,8 +2414,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi decide quante braccia vanno alle armi?",
-        "E il raccolto che resta indietro, chi lo perde?"
+        "A · Nella Regione di cui si discute, chi decide quante braccia vanno alle armi?",
+        "   se vince: La Razione Imposta · La Quota Garantita",
+        "B · E il raccolto che resta indietro, chi lo perde?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -1956,19 +2426,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'ordine e' stato rimesso in piedi."
+          "testo": "AB · Il mondo ricorda: l'ordine e' stato rimesso in piedi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -1976,19 +2454,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2017,8 +2503,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Ai margini della Regione di cui si discute, a chi si obbedisce davvero?",
-        "E i titoli che si danno da soli, valgono?"
+        "A · Ai margini della Regione di cui si discute, a chi si obbedisce davvero?",
+        "   se vince: Il Prezzo del Consenso",
+        "B · E i titoli che si danno da soli, valgono?",
+        "   se vince: Il Seggio Preso"
       ],
       "righe": [
         {
@@ -2027,19 +2515,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la corona e' stata divisa."
+          "testo": "AB · Il mondo ricorda: la corona e' stata divisa."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2047,19 +2543,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2088,8 +2592,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi manda gli uomini a prosciugare?",
-        "E i malati, chi se li tiene?"
+        "A · Nella Regione di cui si discute, chi manda gli uomini a prosciugare?",
+        "   se vince: Il Seggio Preso",
+        "B · E i malati, chi se li tiene?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -2098,19 +2604,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2118,19 +2632,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #lutto."
+          "testo": "A · Al luogo si aggiunge #lutto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2159,8 +2681,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?",
-        "E contarli, conviene a qualcuno?"
+        "A · Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?",
+        "   se vince: Chi Lavora Mangia",
+        "B · E contarli, conviene a qualcuno?",
+        "   se vince: Il Registro Aperto"
       ],
       "righe": [
         {
@@ -2169,19 +2693,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Villaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+          "testo": "AB · Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2189,19 +2721,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2230,8 +2770,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?",
-        "E dove finiscono, cosa ci si fa?"
+        "A · Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?",
+        "   se vince: La Leggenda Messa per Iscritto",
+        "B · E dove finiscono, cosa ci si fa?",
+        "   se vince: I Canali Riaperti"
       ],
       "righe": [
         {
@@ -2240,19 +2782,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2260,19 +2810,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2301,8 +2859,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Le insegne del vecchio ordine, si portano ancora?",
-        "E chi comanda i veterani?"
+        "A · Le insegne del vecchio ordine, si portano ancora?",
+        "   se vince: Il Peso Diviso",
+        "B · E chi comanda i veterani?",
+        "   se vince: Il Seggio Preso"
       ],
       "righe": [
         {
@@ -2311,19 +2871,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la successione e' scritta in una legge."
+          "testo": "AB · Il mondo ricorda: la successione e' scritta in una legge."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2331,19 +2899,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2372,8 +2948,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?",
-        "E dirli, si può?"
+        "A · I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?",
+        "   se vince: La Leggenda Messa per Iscritto",
+        "B · E dirli, si può?",
+        "   se vince: La Carta Scritta"
       ],
       "righe": [
         {
@@ -2382,19 +2960,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Archivio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
+          "testo": "AB · Il mondo ricorda: quello che si e' capito resta scritto."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2402,19 +2988,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2443,8 +3037,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba?",
-        "E il margine, si divide?"
+        "A · Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba?",
+        "   se vince: Il Peso Diviso",
+        "B · E il margine, si divide?",
+        "   se vince: La Marca Concessa"
       ],
       "righe": [
         {
@@ -2453,19 +3049,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Villaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+          "testo": "AB · Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2473,19 +3077,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2514,8 +3126,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?",
-        "E l'anno santo, lo dichiara qualcuno?"
+        "A · I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?",
+        "   se vince: Il Granaio del Trono",
+        "B · E l'anno santo, lo dichiara qualcuno?",
+        "   se vince: La Custodia Riconosciuta"
       ],
       "righe": [
         {
@@ -2524,19 +3138,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+          "testo": "AB · Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2544,19 +3166,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2585,8 +3215,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi decide quali porte restano aperte?",
-        "E chi tiene il conto dei morti?"
+        "A · Nella Regione di cui si discute, chi decide quali porte restano aperte?",
+        "   se vince: La Razione Imposta",
+        "B · E chi tiene il conto dei morti?",
+        "   se vince: Il Registro Aperto"
       ],
       "righe": [
         {
@@ -2595,19 +3227,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Villaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Villaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+          "testo": "AB · Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2615,19 +3255,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #lutto."
+          "testo": "A · Al luogo si aggiunge #lutto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2656,8 +3304,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?",
-        "E il giorno dopo la data, cosa si fa?"
+        "A · Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?",
+        "   se vince: La Leggenda Messa per Iscritto",
+        "B · E il giorno dopo la data, cosa si fa?",
+        "   se vince: La Carta Scritta"
       ],
       "righe": [
         {
@@ -2666,19 +3316,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il Cristallo e' stato misurato."
+          "testo": "AB · Il mondo ricorda: il Cristallo e' stato misurato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2686,19 +3344,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2727,8 +3393,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi traccia il cordone nella Regione di cui si discute, e dove passa?",
-        "E chi resta fuori, dove va?"
+        "A · Chi traccia il cordone nella Regione di cui si discute, e dove passa?",
+        "   se vince: Il Seggio Preso",
+        "B · E chi resta fuori, dove va?",
+        "   se vince: Il Luogo Abbandonato"
       ],
       "righe": [
         {
@@ -2737,19 +3405,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+          "testo": "AB · Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2757,19 +3433,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2798,8 +3482,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?",
-        "E chi paga il pane in piu'?"
+        "A · Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?",
+        "   se vince: Il Seggio Preso",
+        "B · E chi paga il pane in piu'?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -2808,19 +3494,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+          "testo": "AB · Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2828,19 +3522,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "A · Al luogo si aggiunge #malcontento."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2869,8 +3571,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Il sigillo, fino a quando lo tiene il reggente?",
-        "E dopo, a chi torna?"
+        "A · Il sigillo, fino a quando lo tiene il reggente?",
+        "   se vince: Il Registro Aperto",
+        "B · E dopo, a chi torna?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -2879,19 +3583,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la corona e' stata divisa."
+          "testo": "AB · Il mondo ricorda: la corona e' stata divisa."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2899,19 +3611,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -2940,8 +3660,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "E chi ha diritto di vederlo?  — solo se: La Reliquia è al limite",
-        "Chi risponde di quello che c'è nella teca?"
+        "A · E chi ha diritto di vederlo?  — solo se: La Reliquia è al limite",
+        "   se vince: La Teca Aperta",
+        "B · Chi risponde di quello che c'è nella teca?",
+        "   se vince: La Custodia Riconosciuta"
       ],
       "righe": [
         {
@@ -2950,19 +3672,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+          "testo": "AB · Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -2970,19 +3700,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3011,8 +3749,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi riscuote su quello che passa nella Regione di cui si discute?",
-        "Chi risponde di un carico che non arriva?  — solo se: Le Vie Interrotte sono al limite"
+        "A · Chi riscuote su quello che passa nella Regione di cui si discute?",
+        "   se vince: Il Pedaggio Scritto",
+        "B · Chi risponde di un carico che non arriva?  — solo se: Le Vie Interrotte sono al limite",
+        "   se vince: La Scorta Giurata · Le Vie Riaperte"
       ],
       "righe": [
         {
@@ -3021,19 +3761,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato chiamato."
+          "testo": "AB · Il mondo ricorda: il debito e' stato chiamato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3041,19 +3789,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3082,8 +3838,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale?",
-        "E le vasche, si contano?"
+        "A · Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale?",
+        "   se vince: La Carta Scritta",
+        "B · E le vasche, si contano?",
+        "   se vince: Il Registro Aperto"
       ],
       "righe": [
         {
@@ -3092,19 +3850,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i conti sono stati chiusi."
+          "testo": "AB · Il mondo ricorda: i conti sono stati chiusi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3112,19 +3878,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sfruttato."
+          "testo": "A · Al luogo si aggiunge #sfruttato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3153,8 +3927,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo?",
-        "E gli armati davanti alla porta, chi li manda via?"
+        "A · Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo?",
+        "   se vince: La Carta Scritta",
+        "B · E gli armati davanti alla porta, chi li manda via?",
+        "   se vince: Gli Uomini alla Porta"
       ],
       "righe": [
         {
@@ -3163,19 +3939,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la Carta e' stata scritta."
+          "testo": "AB · Il mondo ricorda: la Carta e' stata scritta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3183,19 +3967,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3224,8 +4016,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi controlla la mano che preme il sigillo?",
-        "E gli ordini gia' partiti, valgono?"
+        "A · Chi controlla la mano che preme il sigillo?",
+        "   se vince: Il Registro Aperto",
+        "B · E gli ordini gia' partiti, valgono?",
+        "   se vince: Il Prezzo del Consenso"
       ],
       "righe": [
         {
@@ -3234,19 +4028,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3254,19 +4056,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3295,8 +4105,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi?",
-        "E chi ha deciso il silenzio, si scopre?"
+        "A · Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi?",
+        "   se vince: L'Ordine Rimesso in Piedi",
+        "B · E chi ha deciso il silenzio, si scopre?",
+        "   se vince: La Leggenda Messa per Iscritto"
       ],
       "righe": [
         {
@@ -3305,19 +4117,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la fede ha una casa riconosciuta."
+          "testo": "AB · Il mondo ricorda: la fede ha una casa riconosciuta."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3325,19 +4145,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3366,8 +4194,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi manda le braccia a scavare, e per quante stagioni?",
-        "E quando l'acqua torna a correre, di chi e'?"
+        "A · Chi manda le braccia a scavare, e per quante stagioni?",
+        "   se vince: I Canali Riaperti",
+        "B · E quando l'acqua torna a correre, di chi e'?",
+        "   se vince: L'Acqua a Prezzo"
       ],
       "righe": [
         {
@@ -3376,19 +4206,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Canale."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Canale."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3396,19 +4234,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3437,8 +4283,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?",
-        "E dove si dorme, chi veglia?"
+        "A · I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?",
+        "   se vince: La Leggenda Messa per Iscritto",
+        "B · E dove si dorme, chi veglia?",
+        "   se vince: Gli Uomini alla Porta"
       ],
       "righe": [
         {
@@ -3447,19 +4295,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Archivio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la miniera e' stata chiusa."
+          "testo": "AB · Il mondo ricorda: la miniera e' stata chiusa."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3467,19 +4323,27 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+          "testo": "A · Il luogo viene murato: quello che sta sotto resta sotto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3508,8 +4372,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "La cala vecchia scarica di notte: si chiude, o si apre?",
-        "E i doganieri che guardano il mare sbagliato?"
+        "A · La cala vecchia scarica di notte: si chiude, o si apre?",
+        "   se vince: Il Debito Rimesso",
+        "B · E i doganieri che guardano il mare sbagliato?",
+        "   se vince: Gli Uomini alla Porta"
       ],
       "righe": [
         {
@@ -3518,19 +4384,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3538,19 +4412,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3579,8 +4461,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi siede sul trono quando questo si alza?",
-        "Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?  — solo se: La Successione è al limite"
+        "A · Chi siede sul trono quando questo si alza?",
+        "   se vince: L'Erede Nominato · L'Ordine Rimesso in Piedi",
+        "B · Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?  — solo se: La Successione è al limite",
+        "   se vince: La Legge Scritta"
       ],
       "righe": [
         {
@@ -3589,19 +4473,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Torre di veglia."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Torre di veglia."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la successione e' scritta in una legge."
+          "testo": "AB · Il mondo ricorda: la successione e' scritta in una legge."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3609,19 +4501,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
         },
         {
           "voce": "·",
-          "testo": "Chi propone resta sotto osservazione."
+          "testo": "A · Chi propone resta sotto osservazione."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3650,8 +4550,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi apre i pozzi e a che ora?",
-        "E l'acqua, si paga?"
+        "A · Nella Regione di cui si discute, chi apre i pozzi e a che ora?",
+        "   se vince: La Razione Imposta",
+        "B · E l'acqua, si paga?",
+        "   se vince: Il Pedaggio Scritto"
       ],
       "righe": [
         {
@@ -3660,19 +4562,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3680,19 +4590,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3721,8 +4639,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?",
-        "E in un anno magro, si paga lo stesso?"
+        "A · Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?",
+        "   se vince: Il Registro Aperto",
+        "B · E in un anno magro, si paga lo stesso?",
+        "   se vince: La Razione Imposta · Il Debito a Rate"
       ],
       "righe": [
         {
@@ -3731,19 +4651,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3751,19 +4679,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3792,8 +4728,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Il tributo si paga intero, in un anno che ha reso a meta'?",
-        "E in cambio di che cosa, esattamente?"
+        "A · Il tributo si paga intero, in un anno che ha reso a meta'?",
+        "   se vince: Il Pedaggio Scritto",
+        "B · E in cambio di che cosa, esattamente?",
+        "   se vince: Il Registro Aperto"
       ],
       "righe": [
         {
@@ -3802,19 +4740,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i conti sono stati chiusi."
+          "testo": "AB · Il mondo ricorda: i conti sono stati chiusi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3822,19 +4768,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #svuotato."
+          "testo": "A · Al luogo si aggiunge #svuotato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3863,8 +4817,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?",
-        "E studiarlo, con quali regole?"
+        "A · È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?",
+        "   se vince: La Teca Aperta",
+        "B · E studiarlo, con quali regole?",
+        "   se vince: Studio sotto Custodia"
       ],
       "righe": [
         {
@@ -3873,19 +4829,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Sito dormiente."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Sito dormiente."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il Cristallo e' stato misurato."
+          "testo": "AB · Il mondo ricorda: il Cristallo e' stato misurato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3893,19 +4857,27 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo viene murato: quello che sta sotto resta sotto."
+          "testo": "A · Il luogo viene murato: quello che sta sotto resta sotto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -3934,8 +4906,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?",
-        "E chi non lo scioglie, si conta?"
+        "A · Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?",
+        "   se vince: La Custodia Riconosciuta",
+        "B · E chi non lo scioglie, si conta?",
+        "   se vince: Il Conto in Vite"
       ],
       "righe": [
         {
@@ -3944,19 +4918,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Archivio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: quello che si e' capito resta scritto."
+          "testo": "AB · Il mondo ricorda: quello che si e' capito resta scritto."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -3964,19 +4946,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #lutto."
+          "testo": "A · Al luogo si aggiunge #lutto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -4005,8 +4995,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Una delle pietre incise è a terra: si rialza, e chi la tocca?",
-        "E il margine, chi lo gira?"
+        "A · Una delle pietre incise è a terra: si rialza, e chi la tocca?",
+        "   se vince: La Custodia Riconosciuta",
+        "B · E il margine, chi lo gira?",
+        "   se vince: Gli Uomini alla Porta"
       ],
       "righe": [
         {
@@ -4015,19 +5007,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: la reliquia e' tornata sottoterra."
+          "testo": "AB · Il mondo ricorda: la reliquia e' tornata sottoterra."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -4035,19 +5035,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #lutto."
+          "testo": "A · Al luogo si aggiunge #lutto."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -4076,8 +5084,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi manda gli uomini a scavare nella Regione di cui si discute?",
-        "E l'acqua, dopo, di chi e?  — solo se: L'Acqua Ferma è al limite"
+        "A · Chi manda gli uomini a scavare nella Regione di cui si discute?",
+        "   se vince: I Canali Riaperti · L'Acqua di Tutti",
+        "B · E l'acqua, dopo, di chi e?  — solo se: L'Acqua Ferma è al limite",
+        "   se vince: I Canali Riaperti · L'Acqua di Tutti · Il Debito Contratto"
       ],
       "righe": [
         {
@@ -4086,19 +5096,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: l'acqua torna a muoversi."
+          "testo": "AB · Il mondo ricorda: l'acqua torna a muoversi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -4106,19 +5124,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -4147,8 +5173,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Di chi e' il braccio con cui si misura?",
-        "E chi guarda le bilance quando il mercato e' pieno?"
+        "A · Di chi e' il braccio con cui si misura?",
+        "   se vince: La Carta Scritta",
+        "B · E chi guarda le bilance quando il mercato e' pieno?",
+        "   se vince: Il Registro Aperto"
       ],
       "righe": [
         {
@@ -4157,19 +5185,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+          "testo": "AB · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -4177,19 +5213,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -4218,8 +5262,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Nella Regione di cui si discute, chi distribuisce la legna quando gela?",
-        "E i debiti dell'inverno, si contano a primavera?"
+        "A · Nella Regione di cui si discute, chi distribuisce la legna quando gela?",
+        "   se vince: La Razione Imposta",
+        "B · E i debiti dell'inverno, si contano a primavera?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -4228,19 +5274,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: il debito e' stato rimesso."
+          "testo": "AB · Il mondo ricorda: il debito e' stato rimesso."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -4248,19 +5302,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",
@@ -4293,8 +5355,10 @@
       "accento": "#8a8172",
       "famiglia": "",
       "corpo": [
-        "Chi veglia il limitare nella Regione di cui si discute?",
-        "E le bestie perse, chi le rimette?"
+        "A · Chi veglia il limitare nella Regione di cui si discute?",
+        "   se vince: La Veglia sulla Montagna",
+        "B · E le bestie perse, chi le rimette?",
+        "   se vince: Il Peso Diviso"
       ],
       "righe": [
         {
@@ -4303,19 +5367,27 @@
         },
         {
           "voce": "·",
-          "testo": "Costruisci 1 Pietra nel luogo: Foresta."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Foresta."
         },
         {
           "voce": "·",
-          "testo": "Assegna o trasferisci il controllo del luogo."
+          "testo": "A · Assegna o trasferisci il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
         },
         {
           "voce": "·",
-          "testo": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+          "testo": "AB · Il mondo ricorda: i Nahr hanno un posto dove fermarsi."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Togli una condizione dal luogo."
         },
         {
           "voce": "SI PAGA",
@@ -4323,19 +5395,27 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata."
         },
         {
           "voce": "·",
-          "testo": "Cedi il controllo del luogo."
+          "testo": "B · Cedi il controllo del luogo."
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata."
         },
         {
           "voce": "·",
-          "testo": "Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+        },
+        {
+          "voce": "·",
+          "testo": "B · Sul luogo si alza un pedaggio."
+        },
+        {
+          "voce": "·",
+          "testo": "AB · Il Tema di questa domanda si scalda di 1."
         },
         {
           "voce": "SE CADE",

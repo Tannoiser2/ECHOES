@@ -10,6 +10,87 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-469 — La carta a due domande nei dati: esito di base, sei caselle per lato, marcate
+
+**implemented in 0.1.438.** Il giro 2 di [D-467](#d-467), parola del
+committente: *«vai col giro 2»*. La carta prende la forma della regola,
+**nei dati e sul cartone**; il motore la leggera' al giro 3.
+
+### 1. Cosa porta la carta adesso
+
+`tools/two_questions.py` ha riscritto le 60 carte una volta, con la regola
+scritta in testa allo strumento, e da qui in poi la guardia sta nel
+validatore. Ogni carta porta:
+
+- **due domande**, che c'erano gia', e ognuna il suo **esito di base**
+  (`base`): le Conseguenze della sua prima proposta d'autore — *Il Tributo*:
+  «si paga intero?» vince con *Il Pedaggio Scritto*, «in cambio di che
+  cosa?» con *Il Registro Aperto*. Le altre proposte restano scritte e le
+  esegue ancora il motore fino al giro 3; il catalogo dice quali;
+- **sei benefici e sei costi**: ai quattro di D-453 si aggiungono RIAPRI e
+  RIMUOVI CONDIZIONE da una parte, PEDAGGIO e SCALDA TEMA dall'altra — i sei
+  e sei del vocabolario di [D-280](#d-280), a testo di formula perche' non
+  chiedono parametri;
+- **ogni casella dice a quale domanda serve** (`for`): A, B, o tutte e due.
+
+**Le marche sono una prima passata a regola, per verbo**, e lo dichiaro: la
+domanda A e' la risposta dritta, la B la controdomanda; costruire, prendere
+il controllo, una condizione e una Cicatrice stanno con A; riaprire,
+ripulire, cedere, indebitarsi e il pedaggio con B; raffreddare, ricordare e
+scaldare con tutte e due. Non e' una lettura carta per carta: il
+[catalogo dei Consigli](CATALOGO_CONSIGLI.md) mostra per ogni domanda
+l'esito di base e le caselle che puo' sostenere, ed e' li' che il
+committente le corregge dove la carta dice altro.
+
+**Le sessanta coppie sono domanda e controdomanda**, non due risposte
+contrapposte: «chi nutre la Regione?» e «a chi appartiene la terra che
+ancora produce?». Il contrasto sta in *quale* domanda il tavolo risponde
+quest'anno, e l'esito di base lo rende vero. Riscrivere le coppie come due
+risposte secche allo stesso problema e' lavoro d'autore, e resta al
+committente.
+
+### 2. Il tetto di quattro caselle si rovescia, e si dice perche'
+
+[D-453](#d-453), parola del committente: *«massimo ci potevano essere 4
+benefici e 4 costi»*, perche' otto-dodici per lato erano un menu che
+nessuno legge. Con due domande in contrasto e quattro seggi, quattro
+caselle finivano prima del primo giro di rilancio, e la potatura del «non
+qui» ([D-306](#d-306)) ne lasciava vive due o tre — le foto di D-466. Il
+tetto passa a **sei** (`MAX_VOCI`), e ogni domanda deve averne **almeno
+tre** sue o comuni per lato (`MIN_PER_DOMANDA`): non e' un menu, sono le
+caselle di due parti.
+
+### 3. La guardia, lo schema, il cartone
+
+- `validate_physical.py`: una domanda senza esito di base, un esito che
+  nomina una Conseguenza inesistente, una casella senza domanda o su una
+  domanda che la carta non ha, una domanda con meno di tre caselle per lato
+  — tutto rosso, e **tre difetti piantati** in piu' (50 in tutto) provano
+  che morde. `validate_data.py` riscontra le Conseguenze dell'esito di base.
+- Lo schema conosce `base` sulla domanda e `for` sulla casella.
+- **Il retro stampato della Domanda** dice «A ·» e «B ·» davanti alle
+  domande, «se vince:» sotto ognuna con le Conseguenze, e ogni casella con
+  la sua marca dopo il punto — «· A · Costruisci 1 Pietra…». Quattordici
+  righe di caselle piu' le due dell'esito: la prova della stampa dice che
+  stanno nel bordo, leggibili. Il catalogo dei Consigli e le schede sono
+  rifatti.
+
+### Cosa il motore gia' fa di diverso, e cosa no
+
+Il motore non legge ancora `base` ne' `for`: quello e' il giro 3. Legge
+pero' le sei caselle nei menu del proponente e del fronte avverso, potate
+dal «non qui». Misurato:
+
+**Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+tavoli; esiti FAIL · SUCC · SUCC · DECI **139 · 52 · 91 · 69** sul misto
+(351 Consigli, erano 358 con quattro caselle) e **130 · 60 · 76 · 91**
+sull'uniforme (357, erano 360). La partecipazione non si muove: Consigli
+con opposizione nel margine **78%** e **75%** (erano 78% e 77%), mucchio medio
+4,68 e 4,43. Suite 759 prove verdi, una nuova sul retro marcato; 28 cancelli
+veloci e 5 lenti verdi, documenti rifatti.
+
+---
+
 ## D-468 — Sei Tensioni, una per Tema: il primo giro, e il mucchio misurato contro le carte
 
 **implemented in 0.1.437.** Il giro 1 di [D-467](#d-467): *«ci devono essere

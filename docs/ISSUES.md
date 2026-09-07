@@ -10052,7 +10052,9 @@ cancello dei 100 semi:
 1. ✔ sei Tensioni in gioco, una per Tema, e la misura del mucchio contro le
    carte — **giro 1 fatto in 0.1.437** ([D-468](DECISIONS.md#d-468)): la parte
    piu' forte arriva al mucchio in due Consigli su tre;
-2. la carta a due domande nei dati, col validatore che morde;
+2. ✔ la carta a due domande nei dati, col validatore che morde — **giro 2
+   fatto in 0.1.438** ([D-469](DECISIONS.md#d-469)): esito di base, sei
+   caselle per lato marcate a regola, il retro stampato che le dice;
 3. il motore del Consiglio: rilancio, prezzo per parte, voto a tre esiti;
 4. il cervello dei bot e la pagina.
 

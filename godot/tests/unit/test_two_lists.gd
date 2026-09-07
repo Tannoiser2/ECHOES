@@ -64,19 +64,19 @@ func test_every_card_carries_two_real_lists() -> void:
 					"le voci di %s di «%s» fanno cose diverse: una scelta finta non e' una scelta"
 					% [str(pair[0]), str(tension_id)]
 				)
-	# **Quattro per lato, non di piu'** (D-453, parola del committente). Fino
-	# alla 0.1.421 questa riga pretendeva il vocabolario intero in gioco —
-	# e il vocabolario intero stava su ogni carta, da 8 a 12 per lato: un menu
-	# che nessuno legge. Adesso la tavolozza in gioco e' quello che il tavolo
-	# compra, e la carta ne porta al massimo quattro.
+	# **Sei per lato, non di piu'** (D-467, D-469). Quattro in D-453, parola
+	# del committente — fino alla 0.1.421 questa riga pretendeva il vocabolario
+	# intero, da 8 a 12 per lato: un menu che nessuno legge. Con due domande in
+	# contrasto e quattro seggi, quattro finivano prima del primo giro di
+	# rilancio: sei sono le caselle di due parti, e il tetto e' questo.
 	for tension_id in data().tensions:
 		var face: Dictionary = (data().tensions[str(tension_id)] as Dictionary).get(
 			"physical", {}
 		) as Dictionary
 		for list_name in ["benefits", "costs"]:
 			assert_true(
-				(face.get(list_name, []) as Array).size() <= 4,
-				"«%s» porta al massimo quattro %s" % [str(tension_id), list_name]
+				(face.get(list_name, []) as Array).size() <= 6,
+				"«%s» porta al massimo sei %s" % [str(tension_id), list_name]
 			)
 	assert_true(costs_seen.size() >= 4, "almeno quattro verbi di costo in gioco: %d" % costs_seen.size())
 	assert_true(vents_seen.size() >= 4, "e almeno quattro di beneficio: %d" % vents_seen.size())
