@@ -90,6 +90,26 @@ class Spy extends RefCounted:
 	func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
 		return await inner.choose_proposition(context, options, session)
 
+	# Le tre scelte del Consiglio a due domande (D-467): si inoltrano com'e'.
+	## **A due domande la posizione e' la parte** (D-467): chi sta con A
+	## sostiene, chi prende la B si oppone. Il giro nuovo non chiede piu'
+	## `choose_stance`, e un cane che annotava solo li' vedeva zero Consigli.
+	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
+		var choice: Dictionary = await inner.choose_side(entity_id, context, offer, session)
+		_note_the_pile(context, session)
+		var record: Dictionary = _current(context)
+		var side: String = str(choice.get("side", ""))
+		if not offer.has(side) or (offer.get(side, []) as Array).is_empty():
+			side = "A" if not (offer.get("A", []) as Array).is_empty() else "B"
+		(record["stances"] as Dictionary)[entity_id] = "SUPPORT" if side == "A" else "OPPOSE"
+		return choice
+
+	func choose_box(entity_id: String, context: Dictionary, menu: Array, side: String, session: RefCounted) -> String:
+		return await inner.choose_box(entity_id, context, menu, side, session)
+
+	func choose_raise(entity_id: String, context: Dictionary, menu: Array, session: RefCounted) -> String:
+		return await inner.choose_raise(entity_id, context, menu, session)
+
 	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 		var declared: Dictionary = await inner.choose_stance(entity_id, context, session)
 		_note_the_pile(context, session)

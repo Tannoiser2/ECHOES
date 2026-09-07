@@ -10,6 +10,110 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-470 — Il motore del Consiglio a due domande: le parti, le caselle, il rilancio, il voto contro il mucchio
+
+**implemented in 0.1.439.** Il giro 3 di [D-467](#d-467), parola del
+committente: *«mergia e vai col giro 3»*. Da qui il tavolo spedito gioca il
+Consiglio della regola nuova; la Chronicle di prova gioca ancora quello di
+[D-280](#d-280), e lo dichiara.
+
+### 1. La Chronicle lo dichiara, e il motore lo gioca
+
+`confluence_rules.two_questions: true` su CHR_00 (schema compreso). Con la
+dichiarazione, `run_confluence` prende un'altra strada — `_run_two_questions`
+— e il controllore del Consiglio apre **due parti**:
+
+- **A** e' la domanda che il proponente ha preso, **B** l'altra della carta;
+  il **mucchio** e' il valore rivelato del Tema quando il Consiglio si apre,
+  ed e' la soglia del voto;
+- A posa una pedina su un **beneficio libero della sua domanda**, gratis;
+- ogni seggio, nell'ordine di sempre, **prende posizione** — con A o con B —
+  e posa una pedina su una casella libera della sua parte, beneficio o costo;
+  al primo giro si posa, se c'e' dove. Il primo che prende la B la guida: e'
+  lui che propone l'altra domanda, e le caselle e l'esito di B parlano di lui;
+- poi si **rilancia** a giro; chi non ha piu' niente da posare passa, e
+  quando tutti passano il **prezzo si conta per parte**: al massimo un
+  beneficio in piu' dei costi, gli ultimi scoperti si tolgono e si dice;
+- gli impegni delle carte come sempre, per la propria parte o per nessuno;
+- **il voto e' a tre esiti, senza dado**: A vince se supera B e arriva al
+  mucchio (le fasce di sempre sul margine: di misura, passa, senza
+  discussione); B vince allo stesso modo, ed e' l'esito nuovo **COUNTER**;
+  a parita', o sotto il mucchio, **non passa nessuna**;
+- si applicano **l'esito di base della domanda che ha vinto** e le pedine
+  della sua parte, benefici e costi insieme; le pedine dell'altra si
+  tolgono; se non passa nessuna, gli effetti stampati e il segno della
+  domanda caduta, come prima.
+
+Per il tavolo chi sta con A **sostiene** e chi sta con B **si oppone**: le
+sonde, il tabellone, gli obiettivi leggono quello che leggevano. In questa
+strada non si chiamano piu' la proposta, l'acquisto coi gettoni, la pedina
+del prezzo, l'opposizione comprata, la controproposta, il dado e il dente
+dei segni sul dado.
+
+### 2. Chi decide
+
+- **Il cervello** (`policy_decider`): sta dalla parte che vale di piu' —
+  l'esito di base della domanda, letto come una Conseguenza, piu' la casella
+  migliore che puo' posarci — a parita' con A se il proponente e' amico;
+  posa il beneficio che gli vale, o il costo meno doloroso; rilancia con un
+  beneficio se la parte puo' ancora coprirlo, con un costo se ha un
+  beneficio scoperto, altrimenti passa. Cosi' non lascia mai una pedina che
+  il prezzo togliera' al voto.
+- **Una persona** sceglie fra carte: «Con A — domanda / Beneficio: ...», «Con
+  B — ...», e al rilancio «Passa». E' la pagina di D-233, non ancora quella
+  del giro 4.
+- I cani da guardia delle otto sonde e il tavolo dei caratteri inoltrano
+  le tre scelte nuove; quello della partecipazione annota la posizione da
+  li', perche' `choose_stance` in questa strada non si chiama piu' — e alla
+  prima stesura vedeva zero Consigli, e lo diceva.
+
+### 3. Cosa fa il tavolo, misurato
+
+**Il cancello dei 100 semi**, seme 7000: **0 seggi bloccati su 8** sui due
+tavoli. Gli esiti, con la colonna nuova che la sonda non aveva (131 Consigli
+su 484 sparivano dalla riga):
+
+| 100 anni | Consigli | FAIL | SUCC di misura | SUCC | DECI | **COUNTER** |
+|---|---|---|---|---|---|---|
+| misto | 484 (erano 351) | 193 | 24 | 72 | 64 | **131** |
+| uniforme | 481 (erano 357) | 207 | 33 | 90 | 46 | **105** |
+
+La partecipazione, 30 anni:
+
+| | quattro domande, D-280 | **due domande, D-470** |
+|---|---|---|
+| Consigli | 102 · 104 | **144 · 144** |
+| astensioni | 28% · 26% | **0** |
+| Consigli con opposizione nel margine | 78% · 75% | **84% · 86%** |
+| esiti: nessuna passa · vince A · vince B, misto | — | **56 · 48 · 40** |
+
+Tre cose si leggono. **Il Consiglio e' un contrasto vero**: nessuno si
+astiene, la B vince una volta su quattro. **La soglia morde**: quattro
+Consigli su dieci non decidono niente, perche' i cervelli non giocano ancora
+per arrivare al mucchio — impegnano le carte come prima. **E una domanda
+caduta resta sul tavolo**: i Consigli per anno salgono da 3,5 a 4,8. Sono i
+numeri del giro 4, dove il cervello imparera' il mucchio; se restassero
+cosi', la soglia si tara con un numero scritto (D-467).
+
+### Costi e cose lasciate
+
+- **Il giro vecchio resta nel codice, sotto la dichiarazione**: le prove di
+  D-280 giocano la Chronicle di prova, che non dichiara. Toglierlo vuol dire
+  portare quelle prove alla regola nuova: e' un debito scritto in ISSUES 129.
+- I gettoni di rivendicazione non comprano piu' il prezzo ne' l'opposizione
+  al Consiglio; restano per il secondo dibattito. Il RIVENDICARE al Consiglio
+  e' un'altra parola.
+- Gli obiettivi e i Destini che leggono «Consiglio vinto» leggono la vittoria
+  di A: la B che vince e' per loro una sconfitta del proponente.
+- Il tabellone mostra le pedine di tutte e due le parti senza il colore
+  della parte, e il conto dice «A · B · mucchio»: il disegno e' del giro 4.
+
+Suite 766 prove verdi, sette nuove sul Consiglio a due domande con un
+decisore scritto; 28 cancelli veloci e 5 lenti verdi, documenti rifatti
+perche' il tavolo e' cambiato.
+
+---
+
 ## D-469 — La carta a due domande nei dati: esito di base, sei caselle per lato, marcate
 
 **implemented in 0.1.438.** Il giro 2 di [D-467](#d-467), parola del

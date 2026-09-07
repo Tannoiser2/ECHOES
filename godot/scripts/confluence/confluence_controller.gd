@@ -129,6 +129,8 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 		"act": int(world["act"]),
 		"round": int(world["round"]),
 	}
+	if two_questions():
+		_open_the_sides(template, question_id)
 
 	# **L'intestazione senza l'id** (ISSUES 63): `confluence_id` e'
 	# «CNF_ANY_ANCIENT#3», e finiva in cima al verbale che sta sullo schermo. Il
@@ -177,6 +179,8 @@ func set_question(question_id: String) -> bool:
 			current["question_id"] = question_id
 			current["proposition_id"] = ""
 			log.bullet("B. Domanda scelta: %s" % say(str(question["text"])))
+			if two_questions():
+				_open_the_sides(_template(), question_id)
 			return true
 	last_error = "domanda '%s' non disponibile" % question_id
 	return false
@@ -334,6 +338,223 @@ func declare_stance(entity_id: String, stance: String, _clause_id: String = "") 
 	return true
 
 
+# --- D-467: il Consiglio a due domande (giro 3) ------------------------------
+
+## **La Chronicle lo dichiara** (`confluence_rules.two_questions`). Senza, il
+## Consiglio e' quello di D-280: proposta, acquisto, prezzo, dado. Le prove
+## scritte su quella grammatica giocano la Chronicle di prova, che non lo
+## dichiara; il tavolo spedito si'.
+func two_questions() -> bool:
+	return bool((_chronicle.get("confluence_rules", {}) as Dictionary).get("two_questions", false))
+
+
+## Le due parti: la domanda che il proponente ha preso e' la **A**, l'altra
+## della carta e' la **B**. Ogni parte tiene chi la sostiene e le pedine che
+## ha posato; il mucchio e' il valore rivelato del Tema quando il Consiglio si
+## apre, ed e' la soglia del voto. Chi guida la B e' il primo che la prende.
+func _open_the_sides(template: Dictionary, question_id: String) -> void:
+	var other: String = ""
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) != question_id:
+			other = str((entry as Dictionary).get("id", ""))
+			break
+	var theme_id: String = str(
+		(data.tensions.get(str(current["tension_id"]), {}) as Dictionary).get("theme", "")
+	)
+	current["sides"] = {
+		"A": {
+			"question_id": question_id, "leader": str(current["proponent"]),
+			"seats": [str(current["proponent"])], "boxes": [],
+		},
+		"B": {"question_id": other, "leader": "", "seats": [], "boxes": []},
+	}
+	current["pile"] = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
+	current["passed"] = {}
+	current["proposition_id"] = ""
+	current["step"] = "STANCE"
+	log.bullet("B. Contro: %s" % say(_question_text(template, other)))
+	log.bullet("B. Il mucchio sulla domanda vale %d." % int(current["pile"]))
+
+
+func sides_open() -> bool:
+	return is_open() and current.has("sides")
+
+
+func side_of(entity_id: String) -> String:
+	if not sides_open():
+		return ""
+	for side in ["A", "B"]:
+		if ((current["sides"][side] as Dictionary)["seats"] as Array).has(entity_id):
+			return side
+	return ""
+
+
+func side_question(side: String) -> String:
+	if not sides_open():
+		return ""
+	return str((current["sides"].get(side, {}) as Dictionary).get("question_id", ""))
+
+
+func side_leader(side: String) -> String:
+	if not sides_open():
+		return ""
+	return str((current["sides"].get(side, {}) as Dictionary).get("leader", ""))
+
+
+func side_seats(side: String) -> Array:
+	if not sides_open():
+		return []
+	return ((current["sides"].get(side, {}) as Dictionary).get("seats", []) as Array).duplicate()
+
+
+## Le pedine di una parte, per lista: gli id delle caselle.
+func side_boxes(side: String, list_name: String) -> Array:
+	var out: Array = []
+	if not sides_open():
+		return out
+	for box in ((current["sides"].get(side, {}) as Dictionary).get("boxes", []) as Array):
+		if str((box as Dictionary)["list"]) == list_name:
+			out.append(str((box as Dictionary)["voice"]))
+	return out
+
+
+func pile() -> int:
+	return int(current.get("pile", 0)) if is_open() else 0
+
+
+func _box_taken(voice_id: String) -> bool:
+	for side in ["A", "B"]:
+		for box in ((current["sides"][side] as Dictionary)["boxes"] as Array):
+			if str((box as Dictionary)["voice"]) == voice_id:
+				return true
+	return false
+
+
+## **Le caselle libere di una parte**: benefici e costi della carta che
+## servono la sua domanda (`for`), che qui farebbero qualcosa (D-306), e su cui
+## nessuno ha ancora posato. Ogni voce porta `list` per dire da che lista
+## viene.
+func box_menu(side: String) -> Array:
+	var out: Array = []
+	if not sides_open():
+		return out
+	var question_id: String = side_question(side)
+	if question_id == "":
+		return out
+	for list_name in ["benefits", "costs"]:
+		for voice in _live_voices(list_name):
+			var marked: Array = (voice as Dictionary).get("for", []) as Array
+			if not marked.has(question_id):
+				continue
+			if _box_taken(str((voice as Dictionary)["id"])):
+				continue
+			var entry: Dictionary = (voice as Dictionary).duplicate()
+			entry["list"] = list_name
+			out.append(entry)
+	return out
+
+
+## **Prendere posizione** (D-467 §3): un seggio entra in una parte, una volta.
+## Per il tavolo e' la posizione di sempre — chi sta con A sostiene, chi sta
+## con B si oppone — cosi' sonde, tabellone e obiettivi leggono quello che
+## leggevano. Il primo che prende la B la guida: e' lui che «propone l'altra
+## domanda».
+func join_side(entity_id: String, side: String) -> bool:
+	last_error = ""
+	if not sides_open():
+		last_error = "il Consiglio non ha due parti"
+		return false
+	if side != "A" and side != "B":
+		last_error = "parte sconosciuta '%s'" % side
+		return false
+	if side_of(entity_id) != "":
+		last_error = "%s ha gia' preso posizione" % _name(entity_id)
+		return false
+	if entity_id == str(current["proponent"]):
+		last_error = "chi propone sta con la sua domanda"
+		return false
+	if side_question(side) == "":
+		last_error = "la parte %s non ha una domanda" % side
+		return false
+	var part: Dictionary = current["sides"][side] as Dictionary
+	(part["seats"] as Array).append(entity_id)
+	if side == "B" and str(part["leader"]) == "":
+		part["leader"] = entity_id
+		log.bullet("D. %s prende l'altra domanda: %s" % [
+			_name(entity_id), say(_question_text(_template(), str(part["question_id"]))),
+		])
+	return declare_stance(entity_id, "SUPPORT" if side == "A" else "OPPOSE")
+
+
+## **Posare una pedina** sulla casella libera della propria parte.
+func place_box(entity_id: String, voice_id: String) -> bool:
+	last_error = ""
+	var side: String = side_of(entity_id)
+	if side == "":
+		last_error = "%s non ha preso posizione" % _name(entity_id)
+		return false
+	for entry in box_menu(side):
+		if str((entry as Dictionary)["id"]) != voice_id:
+			continue
+		var part: Dictionary = current["sides"][side] as Dictionary
+		(part["boxes"] as Array).append({
+			"by": entity_id, "voice": voice_id, "list": str((entry as Dictionary)["list"]),
+		})
+		if not (current["participants"] as Array).has(entity_id):
+			current["participants"].append(entity_id)
+		log.bullet("D. %s posa per %s — %s: %s" % [
+			_name(entity_id), side,
+			"beneficio" if str((entry as Dictionary)["list"]) == "benefits" else "costo",
+			_price_said(str((entry as Dictionary)["list"]), voice_id),
+		])
+		return true
+	last_error = "«%s» non e' una casella libera della parte %s" % [voice_id, side]
+	return false
+
+
+func pass_turn(entity_id: String) -> void:
+	if not sides_open():
+		return
+	(current["passed"] as Dictionary)[entity_id] = true
+	log.bullet("D. %s passa." % _name(entity_id))
+
+
+func has_passed(entity_id: String) -> bool:
+	return sides_open() and bool((current["passed"] as Dictionary).get(entity_id, false))
+
+
+## **Il prezzo si conta per parte, al voto** (D-467 §3): una parte puo' avere
+## al massimo un beneficio in piu' dei suoi costi. Se i benefici scoperti
+## avanzano, si tolgono gli ultimi posati, e si dice.
+func settle_prices() -> Array:
+	var removed: Array = []
+	if not sides_open():
+		return removed
+	for side in ["A", "B"]:
+		var part: Dictionary = current["sides"][side] as Dictionary
+		var boxes: Array = part["boxes"] as Array
+		while true:
+			var benefits: int = 0
+			var costs: int = 0
+			for box in boxes:
+				if str((box as Dictionary)["list"]) == "benefits":
+					benefits += 1
+				else:
+					costs += 1
+			if benefits <= costs + 1:
+				break
+			for i in range(boxes.size() - 1, -1, -1):
+				if str((boxes[i] as Dictionary)["list"]) == "benefits":
+					var gone: Dictionary = boxes[i] as Dictionary
+					boxes.remove_at(i)
+					removed.append(str(gone["voice"]))
+					log.bullet("D. La parte %s ha piu' benefici che costi: la pedina di %s su «%s» si toglie." % [
+						side, _name(str(gone["by"])), _price_said("benefits", str(gone["voice"])),
+					])
+					break
+	return removed
+
+
 # --- D-bis: la pedina del prezzo (PZ-5, D-267) ------------------------------
 
 ## Il menu del prezzo: fra quali voci il fronte avverso puo' scegliere - il
@@ -408,6 +629,14 @@ func costs_placed() -> int:
 ## tabella da tenere allineata.
 func placed_benefit_voices() -> Array:
 	var out: Array = []
+	if sides_open():
+		# Le pedine di tutte e due le parti (D-467): il tabellone le mostra.
+		for side in ["A", "B"]:
+			for voice_id in side_boxes(side, "benefits"):
+				var placed: Dictionary = _voice("benefits", str(voice_id))
+				if not placed.is_empty():
+					out.append(placed)
+		return out
 	for entry in claimable_benefits():
 		var voice: Dictionary = _voice("benefits", _voice_id_of(entry))
 		if not voice.is_empty():
@@ -778,6 +1007,10 @@ func priced_costs() -> Array:
 	# scelgono in che moneta paga*, con la differenza che adesso anche loro
 	# pagano per scegliere.
 	var chosen: Array = []
+	if sides_open():
+		for side in ["A", "B"]:
+			chosen.append_array(side_boxes(side, "costs"))
+		return chosen
 	for posata in (current.get("cost_pedine", []) as Array):
 		chosen.append(str((posata as Dictionary)["cost"]))
 	return chosen
@@ -942,7 +1175,7 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	if current.is_empty():
 		last_error = "nessuna Confluence aperta"
 		return {}
-	if str(current["proposition_id"]) == "":
+	if str(current["proposition_id"]) == "" and not sides_open():
 		last_error = "nessuna proposta scelta"
 		return {}
 
@@ -957,15 +1190,21 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		int(world["effect_sequence"])
 	)
 
-	# F. World Factor.
-	var die: int = rng.roll_d6()
-	var factor: int = ConfluenceResolution.world_factor(die)
-	# ISSUES 24: i segni con un dente pesano sul mondo prima che sul tavolo.
-	# Il dado resta il dado; è il World Factor che un mondo segnato piega.
-	var bite: Dictionary = TagRules.council_world_factor(
-		data, world, tension_id, str(current["proponent"])
-	)
-	factor += int(bite["delta"])
+	# F. World Factor. **Senza dado a due domande** (D-467): il mondo ha gia'
+	# parlato col mucchio, che e' la soglia; il dente dei segni sul dado non
+	# ha piu' un dado su cui pesare.
+	var die: int = 0
+	var factor: int = 0
+	var bite: Dictionary = {"delta": 0, "titles": []}
+	if not sides_open():
+		die = rng.roll_d6()
+		factor = ConfluenceResolution.world_factor(die)
+		# ISSUES 24: i segni con un dente pesano sul mondo prima che sul tavolo.
+		# Il dado resta il dado; è il World Factor che un mondo segnato piega.
+		bite = TagRules.council_world_factor(
+			data, world, tension_id, str(current["proponent"])
+		)
+		factor += int(bite["delta"])
 	current["die"] = die
 	current["world_factor"] = factor
 
@@ -1045,8 +1284,23 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		oppose_bonus,
 		opposition_placed() * opposition_weight()
 	)
+	if sides_open():
+		# **Il voto a tre esiti, contro il mucchio** (D-467): A e' chi sostiene
+		# la domanda del proponente, B chi ha preso l'altra.
+		result["pile"] = pile()
+		result["outcome"] = ConfluenceResolution.two_sides_outcome(
+			int(result["support_total"]), int(result["oppose_total"]), pile()
+		)
+		result["margin"] = int(result["support_total"]) - int(result["oppose_total"])
+		result["winner"] = ConfluenceResolution.winner_of(str(result["outcome"]))
+		result["sides"] = (current["sides"] as Dictionary).duplicate(true)
 	_log_commitments()
-	log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
+	if sides_open():
+		log.bullet("G. A=%d B=%d contro il mucchio %d -> %s" % [
+			int(result["support_total"]), int(result["oppose_total"]), pile(), str(result["outcome"]),
+		])
+	else:
+		log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
 	for title in bite["titles"]:
 		log.bullet("  Il segno pesa sul Consiglio: %s." % str(title))
 	for title in stance_titles:
@@ -1063,7 +1317,8 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	var bought: String = ""
 	if int(result.get("bought_opposition", 0)) > 0:
 		bought = " G=%d" % int(result["bought_opposition"])
-	log.bullet(
+	if not sides_open():
+		log.bullet(
 		"G. S=%d O=%d%s W=%+d -> M=%d -> %s"
 		% [
 			int(result["support_total"]),
@@ -1129,7 +1384,16 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# se nessuno ha parlato. Fino a 0.1.228 scattava il pool intero - con una
 	# voce sola era la stessa cosa, e il pool era quasi sempre una voce sola.
 	var consequence_ids: Array = []
-	if ConfluenceResolution.is_success(outcome):
+	if sides_open() and str(result["winner"]) != "":
+		# **L'esito di base della domanda che ha vinto** (D-467, D-469): le
+		# Conseguenze scritte sulla domanda, a prescindere dalle pedine. Se
+		# vince la B, le sue frasi parlano di chi la guida.
+		var winner: String = str(result["winner"])
+		consequence_ids.append_array(_question_base(template, side_question(winner)))
+		if winner == "B":
+			context = context.duplicate()
+			context["proponent"] = side_leader("B")
+	elif not sides_open() and ConfluenceResolution.is_success(outcome):
 		consequence_ids.append_array(_proposition()["success_consequences"])
 		if outcome == ConfluenceResolution.DECISIVE:
 			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
@@ -1291,7 +1555,11 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# questione, e la domanda resta sul tavolo - quello che non torna mai e'
 	# ridecidere una cosa decisa (D-077).
 	if outcome != ConfluenceResolution.FAILURE:
-		_mark_asked(tension_id, str(current["question_id"]))
+		# A due domande vale come posta quella che ha vinto (D-467).
+		var asked: String = str(current["question_id"])
+		if sides_open() and str(result.get("winner", "")) == "B":
+			asked = side_question("B")
+		_mark_asked(tension_id, asked)
 
 	result["echo_created"] = echo_created
 	# La controproposta spesa qui (D-268): il chiamante deve sapere che il
@@ -1303,6 +1571,10 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	result["proponent"] = str(current["proponent"])
 	result["proposition_id"] = str(current["proposition_id"])
 	result["question_id"] = str(current["question_id"])
+	if sides_open():
+		result["winning_question_id"] = (
+			side_question(str(result["winner"])) if str(result["winner"]) != "" else ""
+		)
 	# What actually landed, by id. The log has printed this line since 0.0; the
 	# result carries it too so a front-end can show the table what it just did
 	# without re-deriving which pool applied - which would be the resolution
@@ -1453,7 +1725,23 @@ func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> voi
 	)
 	var context: Dictionary = effect_context()
 	var spent: Array = []
-	if ConfluenceResolution.is_success(outcome):
+	if sides_open():
+		# **Le pedine della parte che ha vinto, benefici e costi insieme**
+		# (D-467 §4); se non passa nessuna, gli effetti stampati. Le pedine
+		# dell'altra parte si tolgono e non fanno niente. Se vince la B, le
+		# sue caselle parlano di chi la guida.
+		var winner: String = ConfluenceResolution.winner_of(outcome)
+		if winner == "":
+			for voice in (face.get("failure", []) as Array):
+				spent.append(["failure", voice as Dictionary])
+		else:
+			if winner == "B":
+				context = context.duplicate()
+				context["proponent"] = side_leader("B")
+			for list_name in ["benefits", "costs"]:
+				for voice_id in side_boxes(winner, list_name):
+					spent.append([list_name, _voice(list_name, str(voice_id))])
+	elif ConfluenceResolution.is_success(outcome):
 		for entry in (current.get("benefits", []) as Array):
 			var voice: Dictionary = _voice("benefits", _voice_id_of(entry)).duplicate()
 			# La domanda scelta viaggia dentro la voce, cosi' `question_of` la
@@ -1811,6 +2099,14 @@ func effect_context() -> Dictionary:
 ## records have to be the same string.
 func say(text: String) -> String:
 	return narrative.fill(text, current.get("text_bindings", {}))
+
+
+## L'esito di base scritto sulla domanda (D-469): gli id delle Conseguenze.
+func _question_base(template: Dictionary, question_id: String) -> Array:
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) == question_id:
+			return ((entry as Dictionary).get("base", []) as Array).duplicate()
+	return []
 
 
 func _question_text(template: Dictionary, question_id: String) -> String:

@@ -5,6 +5,21 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.439 — Il motore del Consiglio a due domande: il giro 3 di D-467
+
+[D-470](docs/DECISIONS.md#d-470). CHR_00 dichiara `two_questions`, e il
+Consiglio si gioca in due parti: chi propone prende una domanda e posa un
+beneficio gratis, gli altri prendono posizione e posano sulle caselle
+marcate della loro parte, si rilancia, il prezzo si conta per parte, e si
+vota senza dado contro il mucchio — A, B (l'esito nuovo COUNTER), o nessuna.
+Si applicano l'esito di base della domanda che ha vinto e le pedine della
+sua parte. Il cervello sceglie parte, casella e rilancio; una persona sceglie
+fra carte. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli; nessuna
+astensione, la B vince una volta su quattro, quattro Consigli su dieci non
+decidono niente.
+
+---
+
 ## 0.1.438 — La carta a due domande nei dati: il giro 2 di D-467
 
 [D-469](docs/DECISIONS.md#d-469). Le 60 carte portano l'esito di base di ogni

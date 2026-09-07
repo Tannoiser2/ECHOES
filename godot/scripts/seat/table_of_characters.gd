@@ -162,6 +162,16 @@ class Table extends RefCounted:
 	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 		return _who(entity_id).choose_stance(entity_id, context, session)
 
+	# Le tre scelte del Consiglio a due domande (D-467): ognuno con la sua sedia.
+	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
+		return _who(entity_id).choose_side(entity_id, context, offer, session)
+
+	func choose_box(entity_id: String, context: Dictionary, menu: Array, side: String, session: RefCounted) -> String:
+		return _who(entity_id).choose_box(entity_id, context, menu, side, session)
+
+	func choose_raise(entity_id: String, context: Dictionary, menu: Array, session: RefCounted) -> String:
+		return _who(entity_id).choose_raise(entity_id, context, menu, session)
+
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 		return _who(entity_id).choose_commit(entity_id, context, limit, session)
 
