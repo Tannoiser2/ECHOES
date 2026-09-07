@@ -553,8 +553,13 @@ def caselle_del_motore() -> Dict[str, set]:
     return caselle
 
 
-# Il tetto delle caselle per lato sulla carta Domanda (D-453).
-MAX_VOCI = 4
+# Il tetto delle caselle per lato sulla carta Domanda: quattro in D-453, **sei
+# da D-467** — con due domande in contrasto e quattro seggi, quattro caselle
+# finivano prima del primo giro di rilancio, e la potatura del «non qui» (D-306)
+# ne lasciava vive due o tre. Il pavimento per domanda sta in `MIN_PER_DOMANDA`.
+MAX_VOCI = 6
+# Quante caselle sue — o comuni — deve avere ogni domanda della carta, per lato.
+MIN_PER_DOMANDA = 3
 
 
 def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
@@ -1320,6 +1325,57 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "stessa catena di Effetti — al voto sembrano due strade e sono "
                     "una sola" % (carta.get("id"), " e ".join(sorted(chi))))
 
+    guai.extend(due_domande(documenti))
+    return guai
+
+
+def due_domande(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**La carta a due domande** (D-467, giro 2).
+
+    Ogni carta porta due domande, e ognuna il suo **esito di base** — le
+    Conseguenze che si applicano se vince, a prescindere dalle pedine — e le sue
+    caselle: ogni beneficio e ogni costo dice a quale domanda serve (`for`), e
+    una domanda con meno di tre caselle sue o comuni per lato e' una domanda che
+    al tavolo non si puo' sostenere. Una casella senza `for` e' una pedina che
+    non sa da che parte cade; un esito di base che nomina una Conseguenza
+    inesistente si applica in silenzio a niente."""
+    guai: List[str] = []
+    conseguenze = {str(c.get("id")) for c in documenti.get("consequence", [])}
+    for tensione in documenti.get("tension", []):
+        chi = str(tensione.get("id"))
+        consiglio = tensione.get("council") or {}
+        domande = consiglio.get("questions") or []
+        ids = [str(q.get("id")) for q in domande]
+        if len(ids) != 2:
+            guai.append("carta con %d domande invece di due: %s" % (len(ids), chi))
+        for q in domande:
+            base = q.get("base")
+            if not base:
+                guai.append("domanda senza esito di base su %s: «%s»" % (chi, q.get("id")))
+                continue
+            for cns in base:
+                if str(cns) not in conseguenze:
+                    guai.append("esito di base inesistente su %s: «%s» nomina %s"
+                                % (chi, q.get("id"), cns))
+        faccia = tensione.get("physical") or {}
+        for lista, come in (("benefits", "benefici"), ("costs", "costi")):
+            serviti = {qid: 0 for qid in ids}
+            for v in faccia.get(lista) or []:
+                per = v.get("for")
+                if not per:
+                    guai.append("casella senza domanda su %s: «%s» fra i %s"
+                                % (chi, v.get("id"), come))
+                    continue
+                for qid in per:
+                    if str(qid) not in serviti:
+                        guai.append("casella su una domanda che la carta non ha: %s «%s» -> %s"
+                                    % (chi, v.get("id"), qid))
+                    else:
+                        serviti[str(qid)] += 1
+            for qid, quante in serviti.items():
+                if quante < MIN_PER_DOMANDA:
+                    guai.append("domanda con pochi %s su %s: «%s» ne ha %d, ne servono %d"
+                                % (come, chi, qid, quante, MIN_PER_DOMANDA))
     return guai
 
 
@@ -1417,6 +1473,18 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         voce(prova, bersaglio)["table_place"] = "HOUSE_SHEET"
 
     # I sei di PZ-9 (D-272): ogni controllo nuovo si vede mordere una volta.
+    def senza_esito(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        prova["tension"][0]["council"]["questions"][0]["base"] = []
+
+    def casella_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        prova["tension"][0]["physical"]["benefits"][0].pop("for", None)
+
+    def domanda_scoperta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        carta = prova["tension"][0]
+        prima = str(carta["council"]["questions"][0]["id"])
+        for v in carta["physical"]["costs"]:
+            v["for"] = [q for q in v["for"] if q != prima] or [str(carta["council"]["questions"][1]["id"])]
+
     def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["region"][0]["tags"] = []
 
@@ -1868,6 +1936,13 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "posto che non combacia col catalogo"),
         pianta("segno della scheda di casa messo sulla tessera", posto_contro_ambito,
                "posto che non combacia con l'ambito"),
+        # **La carta a due domande** (D-467): tre difetti fabbricati sulla
+        # prima carta, non cercati fra i dati.
+        pianta("domanda senza esito di base", senza_esito, "domanda senza esito di base"),
+        pianta("casella che non dice a quale domanda serve", casella_muta,
+               "casella senza domanda"),
+        pianta("domanda con meno di tre caselle sue", domanda_scoperta,
+               "domanda con pochi"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

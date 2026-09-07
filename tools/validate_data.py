@@ -273,6 +273,10 @@ def check_references(
                 _check_condition(
                     condition, known_entities, known_regions, known_tensions, report, where
                 )
+        # **L'esito di base di una domanda** (D-467): Conseguenze che esistono.
+        for question in council.get("questions", []) or []:
+            for consequence_id in question.get("base", []) or []:
+                require(known_consequences, consequence_id, "consequence", where)
         for proposition in council.get("propositions", []) or []:
             for condition in proposition.get("eligibility", []) or []:
                 _check_condition(

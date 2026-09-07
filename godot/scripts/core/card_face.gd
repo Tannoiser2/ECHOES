@@ -496,13 +496,26 @@ static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 	# quando fare.
 	var council: Dictionary = tension.get("council", {}) as Dictionary
 	var body: Array = []
+	# **Due domande in contrasto, con la lettera e l'esito di base** (D-467):
+	# «A» e «B» sono le marche che le caselle portano, e «se vince» e' quello
+	# che succede a prescindere dalle pedine — le Conseguenze scritte.
+	var letters: Dictionary = _question_letters(council)
 	for entry in council.get("questions", []) as Array:
 		var question: Dictionary = entry
-		var asked: String = CouncilText.speak(str(question.get("text", "")))
+		var asked: String = "%s · %s" % [
+			str(letters.get(str(question.get("id", "")), "")),
+			CouncilText.speak(str(question.get("text", ""))),
+		]
 		var needs: Array = CouncilText.needs_of(question.get("eligibility", []) as Array)
 		if not needs.is_empty():
 			asked += "  — solo se: %s" % " e ".join(PackedStringArray(needs))
 		body.append(asked)
+		var wins: Array = []
+		for consequence_id in (question.get("base", []) as Array):
+			var consequence: Variant = null if data == null else data.consequences.get(str(consequence_id))
+			wins.append(str(consequence_id) if consequence == null else str((consequence as Dictionary).get("title", consequence_id)))
+		if not wins.is_empty():
+			body.append("   se vince: %s" % " · ".join(PackedStringArray(wins)))
 	face["body"] = body
 
 	# **Le caselle, una per riga, e sono tutta la scheda.**
@@ -532,9 +545,26 @@ static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 			continue
 		face["notes"].append(str(pair[1]))
 		for voice in voices:
-			face["notes"].append("· %s" % str((voice as Dictionary).get("text", "")))
+			# La marca della casella (D-467): A, B, o AB se serve a tutte e due,
+			# dopo il punto che apre ogni riga meccanica e prima del testo.
+			var marks: String = ""
+			for question_id in ((voice as Dictionary).get("for", []) as Array):
+				marks += str(letters.get(str(question_id), ""))
+			face["notes"].append("· %s%s" % [
+				"" if marks == "" else "%s · " % marks, str((voice as Dictionary).get("text", "")),
+			])
 	face["footer"] = str(tension["id"])
 	return face
+
+
+## `question_id -> "A" | "B"`, nell'ordine in cui la carta scrive le domande.
+static func _question_letters(council: Dictionary) -> Dictionary:
+	var out: Dictionary = {}
+	var index: int = 0
+	for entry in council.get("questions", []) as Array:
+		out[str((entry as Dictionary).get("id", ""))] = char(65 + index)
+		index += 1
+	return out
 
 
 static func _destiny(destiny: Dictionary, data: RefCounted) -> Dictionary:

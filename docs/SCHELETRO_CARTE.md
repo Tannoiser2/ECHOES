@@ -115,9 +115,9 @@ Dice le domande e le caselle con cui il tavolo la risolve.
 |---|---|
 | il titolo | 60 su 60 |
 | il sottotitolo | 60 su 60 |
-| una riga di testo libero | 120 su 60 |
+| una riga di testo libero | 240 su 60 |
 | **SI OTTIENE** | 60 su 60 |
-| una casella, una per riga | 601 su 60 |
+| una casella, una per riga | 841 su 60 |
 | **SI PAGA** | 60 su 60 |
 | **SE CADE** | 60 su 60 |
 
@@ -125,18 +125,24 @@ Dice le domande e le caselle con cui il tavolo la risolve.
 
 > **La Cenere che Sale**
 > il Consiglio che questa domanda apre — retro della carta
-> La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
-> E le bocche aperte sul fianco, si murano?
+> A · La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato?
+>    se vince: La Veglia sulla Montagna
+> B · E le bocche aperte sul fianco, si murano?
+>    se vince: Le Miniere Sigillate
 > SI OTTIENE
-> · Costruisci 1 Pietra nel luogo: Sito dormiente.
-> · Assegna o trasferisci il controllo del luogo.
-> · Raffredda il Tema di 1 (minimo 0).
-> · Il mondo ricorda: della montagna si e' smesso di parlare.
+> · A · Costruisci 1 Pietra nel luogo: Sito dormiente.
+> · A · Assegna o trasferisci il controllo del luogo.
+> · AB · Raffredda il Tema di 1 (minimo 0).
+> · AB · Il mondo ricorda: della montagna si e' smesso di parlare.
+> · B · Riapri il luogo: via il #tagliato_fuori.
+> · B · Togli una condizione dal luogo.
 > SI PAGA
-> · Il luogo viene murato: quello che sta sotto resta sotto.
-> · Cedi il controllo del luogo.
-> · Al luogo si aggiunge #indebitata.
-> · Accetta 1 Cicatrice permanente: la domanda sul muro.
+> · A · Il luogo viene murato: quello che sta sotto resta sotto.
+> · B · Cedi il controllo del luogo.
+> · B · Al luogo si aggiunge #indebitata.
+> · A · Accetta 1 Cicatrice permanente: la domanda sul muro.
+> · B · Sul luogo si alza un pedaggio.
+> · AB · Il Tema di questa domanda si scalda di 1.
 > SE CADE
 > · Al luogo si aggiunge #malcontento.
 > · Il Tema di questa domanda si scalda di 1.

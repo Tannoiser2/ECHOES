@@ -208,6 +208,14 @@
           "items": {
             "$ref": "destiny.schema.json#/$defs/condition"
           }
+        },
+        "base": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CNS_[A-Z0-9_]+$"
+          },
+          "description": "L'esito di base della domanda (D-467): le Conseguenze che si applicano se questa domanda vince il Consiglio, a prescindere dalle pedine posate. Sulla carta Tensione e' obbligatorio, e lo pretende validate_physical; qui resta facoltativo perche' la forma e' condivisa."
         }
       },
       "description": "Una Domanda del Consiglio. Da 0.1.272 vive sulla carta Tensione (blocco `council`): qui resta la forma, perche' la carta e il template la scrivono uguale."

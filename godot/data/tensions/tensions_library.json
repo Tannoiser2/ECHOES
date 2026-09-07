@@ -30,23 +30,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_ENCLOSURE_POSTS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_ENCLOSURE_POSTS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_ENCLOSURE_POSTS",
+              "Q_ENCLOSURE_USE"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
-            "tag": "charter_written"
+            "tag": "charter_written",
+            "for": [
+              "Q_ENCLOSURE_POSTS",
+              "Q_ENCLOSURE_USE"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_ENCLOSURE_USE"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_ENCLOSURE_USE"
+            ]
           }
         ],
         "costs": [
@@ -54,23 +84,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_ENCLOSURE_POSTS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_ENCLOSURE_USE"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_ENCLOSURE_USE"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_ENCLOSURE_POSTS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_ENCLOSURE_USE"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_ENCLOSURE_POSTS",
+              "Q_ENCLOSURE_USE"
+            ]
           }
         ],
         "failure": [
@@ -110,12 +169,18 @@
           {
             "id": "Q_ENCLOSURE_POSTS",
             "text": "I pali sono spuntati di notte $in_region: si tolgono, o si scrive chi li ha piantati?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           },
           {
             "id": "Q_ENCLOSURE_USE",
             "text": "E l'uso della terra, a chi resta?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -218,23 +283,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_FALLOW_REST"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_FALLOW_REST"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_FALLOW_REST",
+              "Q_FALLOW_LEAN"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
-            "tag": "debt_forgiven"
+            "tag": "debt_forgiven",
+            "for": [
+              "Q_FALLOW_REST",
+              "Q_FALLOW_LEAN"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_FALLOW_LEAN"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_FALLOW_LEAN"
+            ]
           }
         ],
         "costs": [
@@ -242,23 +337,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_FALLOW_REST"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_FALLOW_LEAN"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_FALLOW_LEAN"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_FALLOW_REST"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_FALLOW_LEAN"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_FALLOW_REST",
+              "Q_FALLOW_LEAN"
+            ]
           }
         ],
         "failure": [
@@ -299,12 +423,18 @@
           {
             "id": "Q_FALLOW_REST",
             "text": "I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_HARVEST_RETURNS"
+            ]
           },
           {
             "id": "Q_FALLOW_LEAN",
             "text": "E chi non può permetterselo, come semina?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ROYAL_GRANARY"
+            ]
           }
         ],
         "propositions": [
@@ -386,23 +516,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_LANDLESS_PACT"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_LANDLESS_PACT"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_LANDLESS_PACT",
+              "Q_LANDLESS_LAND"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
-            "tag": "charter_written"
+            "tag": "charter_written",
+            "for": [
+              "Q_LANDLESS_PACT",
+              "Q_LANDLESS_LAND"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_LANDLESS_LAND"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_LANDLESS_LAND"
+            ]
           }
         ],
         "costs": [
@@ -410,23 +570,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #svuotato.",
-            "tag": "condition:emptied"
+            "tag": "condition:emptied",
+            "for": [
+              "Q_LANDLESS_PACT"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_LANDLESS_LAND"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_LANDLESS_LAND"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_LANDLESS_PACT"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_LANDLESS_LAND"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_LANDLESS_PACT",
+              "Q_LANDLESS_LAND"
+            ]
           }
         ],
         "failure": [
@@ -463,12 +652,18 @@
           {
             "id": "Q_LANDLESS_PACT",
             "text": "Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           },
           {
             "id": "Q_LANDLESS_LAND",
             "text": "E dare terra a chi la lavora, si può?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_MARCH_GRANTED"
+            ]
           }
         ],
         "propositions": [
@@ -549,23 +744,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_FLOOD_DIKES"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_FLOOD_DIKES"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_FLOOD_DIKES",
+              "Q_FLOOD_CANALS"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
-            "tag": "water_moves"
+            "tag": "water_moves",
+            "for": [
+              "Q_FLOOD_DIKES",
+              "Q_FLOOD_CANALS"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_FLOOD_CANALS"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_FLOOD_CANALS"
+            ]
           }
         ],
         "costs": [
@@ -573,23 +798,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #svuotato.",
-            "tag": "condition:emptied"
+            "tag": "condition:emptied",
+            "for": [
+              "Q_FLOOD_DIKES"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_FLOOD_CANALS"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_FLOOD_CANALS"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
-            "tag": "scar:sealed_border"
+            "tag": "scar:sealed_border",
+            "for": [
+              "Q_FLOOD_DIKES"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_FLOOD_CANALS"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_FLOOD_DIKES",
+              "Q_FLOOD_CANALS"
+            ]
           }
         ],
         "failure": [
@@ -628,12 +882,18 @@
           {
             "id": "Q_FLOOD_DIKES",
             "text": "La palude è salita di un palmo $in_region: si rifanno gli argini, o si arretra?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           },
           {
             "id": "Q_FLOOD_CANALS",
             "text": "E i canali vecchi, si riaprono?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CANALS_DUG"
+            ]
           }
         ],
         "propositions": [
@@ -708,23 +968,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Foresta.",
-            "structure": "STR_FOREST"
+            "structure": "STR_FOREST",
+            "for": [
+              "Q_CLEARING_LIMIT"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_CLEARING_LIMIT"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_CLEARING_LIMIT",
+              "Q_CLEARING_KILNS"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato messo a rendere.",
-            "tag": "crystal_exploited"
+            "tag": "crystal_exploited",
+            "for": [
+              "Q_CLEARING_LIMIT",
+              "Q_CLEARING_KILNS"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_CLEARING_KILNS"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_CLEARING_KILNS"
+            ]
           }
         ],
         "costs": [
@@ -732,23 +1022,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sfruttato.",
-            "tag": "condition:exploited"
+            "tag": "condition:exploited",
+            "for": [
+              "Q_CLEARING_LIMIT"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_CLEARING_KILNS"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_CLEARING_KILNS"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_CLEARING_LIMIT"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_CLEARING_KILNS"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_CLEARING_LIMIT",
+              "Q_CLEARING_KILNS"
+            ]
           }
         ],
         "failure": [
@@ -787,12 +1106,18 @@
           {
             "id": "Q_CLEARING_LIMIT",
             "text": "Il bosco arretra di un campo all'anno $in_region: si mette un limite al taglio?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED"
+            ]
           },
           {
             "id": "Q_CLEARING_KILNS",
             "text": "E le fornaci, si fermano una stagione?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_MARKET_MOVED"
+            ]
           }
         ],
         "propositions": [
@@ -867,23 +1192,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_STONES_WALK"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_STONES_WALK"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_STONES_WALK",
+              "Q_STONES_WHO"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
-            "tag": "nahr_settled"
+            "tag": "nahr_settled",
+            "for": [
+              "Q_STONES_WALK",
+              "Q_STONES_WHO"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_STONES_WHO"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_STONES_WHO"
+            ]
           }
         ],
         "costs": [
@@ -891,23 +1246,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_STONES_WALK"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_STONES_WHO"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_STONES_WHO"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_STONES_WALK"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_STONES_WHO"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_STONES_WALK",
+              "Q_STONES_WHO"
+            ]
           }
         ],
         "failure": [
@@ -944,12 +1328,18 @@
           {
             "id": "Q_STONES_WALK",
             "text": "Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ACCOUNT_SETTLED"
+            ]
           },
           {
             "id": "Q_STONES_WHO",
             "text": "E chi le ha spostate, si cerca?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_COLD_WORD"
+            ]
           }
         ],
         "propositions": [
@@ -1026,23 +1416,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Villaggio.",
-            "structure": "STR_SETTLEMENT"
+            "structure": "STR_SETTLEMENT",
+            "for": [
+              "Q_PASTURE_CALENDAR"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_PASTURE_CALENDAR"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_PASTURE_CALENDAR",
+              "Q_PASTURE_SEASON"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
-            "tag": "nahr_settled"
+            "tag": "nahr_settled",
+            "for": [
+              "Q_PASTURE_CALENDAR",
+              "Q_PASTURE_SEASON"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_PASTURE_SEASON"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_PASTURE_SEASON"
+            ]
           }
         ],
         "costs": [
@@ -1050,23 +1470,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_PASTURE_CALENDAR"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_PASTURE_SEASON"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_PASTURE_SEASON"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_PASTURE_CALENDAR"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_PASTURE_SEASON"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_PASTURE_CALENDAR",
+              "Q_PASTURE_SEASON"
+            ]
           }
         ],
         "failure": [
@@ -1106,12 +1555,18 @@
           {
             "id": "Q_PASTURE_CALENDAR",
             "text": "Due greggi sullo stesso pascolo $in_region: si fa un calendario, o decide l'erba?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           },
           {
             "id": "Q_PASTURE_SEASON",
             "text": "E il margine, si divide?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_MARCH_GRANTED"
+            ]
           }
         ],
         "propositions": [
@@ -1195,23 +1650,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_SALT_PRICE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SALT_PRICE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SALT_PRICE",
+              "Q_SALT_COUNT"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i conti sono stati chiusi.",
-            "tag": "account_settled"
+            "tag": "account_settled",
+            "for": [
+              "Q_SALT_PRICE",
+              "Q_SALT_COUNT"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SALT_COUNT"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SALT_COUNT"
+            ]
           }
         ],
         "costs": [
@@ -1219,23 +1704,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sfruttato.",
-            "tag": "condition:exploited"
+            "tag": "condition:exploited",
+            "for": [
+              "Q_SALT_PRICE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SALT_COUNT"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SALT_COUNT"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_SALT_PRICE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SALT_COUNT"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SALT_PRICE",
+              "Q_SALT_COUNT"
+            ]
           }
         ],
         "failure": [
@@ -1275,12 +1789,18 @@
           {
             "id": "Q_SALT_PRICE",
             "text": "Le vasche rendono come un raccolto $in_region: chi fissa il prezzo del sale?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           },
           {
             "id": "Q_SALT_COUNT",
             "text": "E le vasche, si contano?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           }
         ],
         "propositions": [
@@ -1356,23 +1876,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_REGISTER_MEASURE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_REGISTER_MEASURE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_REGISTER_MEASURE",
+              "Q_REGISTER_REFUSE"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_REGISTER_MEASURE",
+              "Q_REGISTER_REFUSE"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_REGISTER_REFUSE"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_REGISTER_REFUSE"
+            ]
           }
         ],
         "costs": [
@@ -1380,23 +1930,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_REGISTER_MEASURE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_REGISTER_REFUSE"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_REGISTER_REFUSE"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_REGISTER_MEASURE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_REGISTER_REFUSE"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_REGISTER_MEASURE",
+              "Q_REGISTER_REFUSE"
+            ]
           }
         ],
         "failure": [
@@ -1435,12 +2014,18 @@
           {
             "id": "Q_REGISTER_MEASURE",
             "text": "Il trono vuole un registro delle terre: chi misura?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           },
           {
             "id": "Q_REGISTER_REFUSE",
             "text": "E chi non si fa scrivere?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_REFUSED"
+            ]
           }
         ],
         "propositions": [
@@ -1515,23 +2100,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_PILGRIMS_FEED"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_PILGRIMS_FEED"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_PILGRIMS_FEED",
+              "Q_PILGRIMS_YEAR"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
-            "tag": "relic_buried"
+            "tag": "relic_buried",
+            "for": [
+              "Q_PILGRIMS_FEED",
+              "Q_PILGRIMS_YEAR"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_PILGRIMS_YEAR"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_PILGRIMS_YEAR"
+            ]
           }
         ],
         "costs": [
@@ -1539,23 +2154,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_PILGRIMS_FEED"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_PILGRIMS_YEAR"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_PILGRIMS_YEAR"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_PILGRIMS_FEED"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_PILGRIMS_YEAR"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_PILGRIMS_FEED",
+              "Q_PILGRIMS_YEAR"
+            ]
           }
         ],
         "failure": [
@@ -1592,12 +2236,18 @@
           {
             "id": "Q_PILGRIMS_FEED",
             "text": "I pellegrini continuano ad arrivare $in_region: si dà loro da mangiare, o si chiude la strada?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ROYAL_GRANARY"
+            ]
           },
           {
             "id": "Q_PILGRIMS_YEAR",
             "text": "E l'anno santo, lo dichiara qualcuno?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_ANOINTED"
+            ]
           }
         ],
         "propositions": [
@@ -1680,23 +2330,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_HERESY_PREACH"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_HERESY_PREACH"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_HERESY_PREACH",
+              "Q_HERESY_LISTEN"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la fede ha una casa riconosciuta.",
-            "tag": "faith_established"
+            "tag": "faith_established",
+            "for": [
+              "Q_HERESY_PREACH",
+              "Q_HERESY_LISTEN"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_HERESY_LISTEN"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_HERESY_LISTEN"
+            ]
           }
         ],
         "costs": [
@@ -1704,23 +2384,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_HERESY_PREACH"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_HERESY_LISTEN"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_HERESY_LISTEN"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_HERESY_PREACH"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_HERESY_LISTEN"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_HERESY_PREACH",
+              "Q_HERESY_LISTEN"
+            ]
           }
         ],
         "failure": [
@@ -1759,12 +2468,18 @@
           {
             "id": "Q_HERESY_PREACH",
             "text": "Si predica una parola nuova $in_region: si stabilisce cosa si può dire, o si lascia dire?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           },
           {
             "id": "Q_HERESY_LISTEN",
             "text": "E a chi la ascolta, cosa si fa?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_WORD_GOES_ROUND"
+            ]
           }
         ],
         "propositions": [
@@ -1842,23 +2557,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Archivio.",
-            "structure": "STR_ARCHIVE"
+            "structure": "STR_ARCHIVE",
+            "for": [
+              "Q_VOWS_RELEASE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_VOWS_RELEASE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_VOWS_RELEASE",
+              "Q_VOWS_WHO"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: quello che si e' capito resta scritto.",
-            "tag": "knowledge_shared"
+            "tag": "knowledge_shared",
+            "for": [
+              "Q_VOWS_RELEASE",
+              "Q_VOWS_WHO"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_VOWS_WHO"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_VOWS_WHO"
+            ]
           }
         ],
         "costs": [
@@ -1866,23 +2611,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #lutto.",
-            "tag": "condition:mourning"
+            "tag": "condition:mourning",
+            "for": [
+              "Q_VOWS_RELEASE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_VOWS_WHO"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_VOWS_WHO"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_VOWS_RELEASE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_VOWS_WHO"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_VOWS_RELEASE",
+              "Q_VOWS_WHO"
+            ]
           }
         ],
         "failure": [
@@ -1919,12 +2693,18 @@
           {
             "id": "Q_VOWS_RELEASE",
             "text": "Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_ANOINTED"
+            ]
           },
           {
             "id": "Q_VOWS_WHO",
             "text": "E chi non lo scioglie, si conta?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_MOURNING"
+            ]
           }
         ],
         "propositions": [
@@ -2005,23 +2785,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_BELLS_RING"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_BELLS_RING"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_BELLS_RING",
+              "Q_BELLS_WHO"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la fede ha una casa riconosciuta.",
-            "tag": "faith_established"
+            "tag": "faith_established",
+            "for": [
+              "Q_BELLS_RING",
+              "Q_BELLS_WHO"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_BELLS_WHO"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_BELLS_WHO"
+            ]
           }
         ],
         "costs": [
@@ -2029,23 +2839,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_BELLS_RING"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_BELLS_WHO"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_BELLS_WHO"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_BELLS_RING"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_BELLS_WHO"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_BELLS_RING",
+              "Q_BELLS_WHO"
+            ]
           }
         ],
         "failure": [
@@ -2085,12 +2924,18 @@
           {
             "id": "Q_BELLS_RING",
             "text": "Le campane tacciono da tre lune $in_region: si torna a suonarle, e per chi?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_RESTORED"
+            ]
           },
           {
             "id": "Q_BELLS_WHO",
             "text": "E chi ha deciso il silenzio, si scopre?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           }
         ],
         "propositions": [
@@ -2171,23 +3016,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
-            "structure": "STR_OLD_SITE"
+            "structure": "STR_OLD_SITE",
+            "for": [
+              "Q_SHRINE_KEEP"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SHRINE_KEEP"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SHRINE_KEEP",
+              "Q_SHRINE_RITE"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la fede ha una casa riconosciuta.",
-            "tag": "faith_established"
+            "tag": "faith_established",
+            "for": [
+              "Q_SHRINE_KEEP",
+              "Q_SHRINE_RITE"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SHRINE_RITE"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SHRINE_RITE"
+            ]
           }
         ],
         "costs": [
@@ -2195,23 +3070,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_SHRINE_KEEP"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SHRINE_RITE"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SHRINE_RITE"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_SHRINE_KEEP"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SHRINE_RITE"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SHRINE_KEEP",
+              "Q_SHRINE_RITE"
+            ]
           }
         ],
         "failure": [
@@ -2250,12 +3154,18 @@
           {
             "id": "Q_SHRINE_KEEP",
             "text": "Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_ANOINTED"
+            ]
           },
           {
             "id": "Q_SHRINE_RITE",
             "text": "E il rito, si scrive nuovo o si copia il vecchio?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           }
         ],
         "propositions": [
@@ -2330,23 +3240,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_TITHE_LEDGER"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_TITHE_LEDGER"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_TITHE_LEDGER",
+              "Q_TITHE_LEAN"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_TITHE_LEDGER",
+              "Q_TITHE_LEAN"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_TITHE_LEAN"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_TITHE_LEAN"
+            ]
           }
         ],
         "costs": [
@@ -2354,23 +3294,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_TITHE_LEDGER"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_TITHE_LEAN"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_TITHE_LEAN"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_TITHE_LEDGER"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_TITHE_LEAN"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_TITHE_LEDGER",
+              "Q_TITHE_LEAN"
+            ]
           }
         ],
         "failure": [
@@ -2411,12 +3380,19 @@
           {
             "id": "Q_TITHE_LEDGER",
             "text": "Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           },
           {
             "id": "Q_TITHE_LEAN",
             "text": "E in un anno magro, si paga lo stesso?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED",
+              "CNS_DEBT_STAGGERED"
+            ]
           }
         ],
         "propositions": [
@@ -2494,23 +3470,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_BURIALS_RITE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_BURIALS_RITE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_BURIALS_RITE",
+              "Q_BURIALS_WATER"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
-            "tag": "relic_buried"
+            "tag": "relic_buried",
+            "for": [
+              "Q_BURIALS_RITE",
+              "Q_BURIALS_WATER"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_BURIALS_WATER"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_BURIALS_WATER"
+            ]
           }
         ],
         "costs": [
@@ -2518,23 +3524,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #lutto.",
-            "tag": "condition:mourning"
+            "tag": "condition:mourning",
+            "for": [
+              "Q_BURIALS_RITE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_BURIALS_WATER"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_BURIALS_WATER"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
-            "tag": "scar:abandoned"
+            "tag": "scar:abandoned",
+            "for": [
+              "Q_BURIALS_RITE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_BURIALS_WATER"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_BURIALS_RITE",
+              "Q_BURIALS_WATER"
+            ]
           }
         ],
         "failure": [
@@ -2574,12 +3609,18 @@
           {
             "id": "Q_BURIALS_RITE",
             "text": "La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_ANOINTED"
+            ]
           },
           {
             "id": "Q_BURIALS_WATER",
             "text": "E l'acqua che li ha scoperti, si rimanda dov'era?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CANALS_DUG"
+            ]
           }
         ],
         "propositions": [
@@ -2660,23 +3701,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
-            "structure": "STR_OLD_SITE"
+            "structure": "STR_OLD_SITE",
+            "for": [
+              "Q_PROPHECY_READ"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_PROPHECY_READ"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_PROPHECY_READ",
+              "Q_PROPHECY_AFTER"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato misurato.",
-            "tag": "crystal_measured"
+            "tag": "crystal_measured",
+            "for": [
+              "Q_PROPHECY_READ",
+              "Q_PROPHECY_AFTER"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_PROPHECY_AFTER"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_PROPHECY_AFTER"
+            ]
           }
         ],
         "costs": [
@@ -2684,23 +3755,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_PROPHECY_READ"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_PROPHECY_AFTER"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_PROPHECY_AFTER"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_PROPHECY_READ"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_PROPHECY_AFTER"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_PROPHECY_READ",
+              "Q_PROPHECY_AFTER"
+            ]
           }
         ],
         "failure": [
@@ -2739,12 +3839,18 @@
           {
             "id": "Q_PROPHECY_READ",
             "text": "Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           },
           {
             "id": "Q_PROPHECY_AFTER",
             "text": "E il giorno dopo la data, cosa si fa?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           }
         ],
         "propositions": [
@@ -2819,23 +3925,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_SANCTUARY_LIMITS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SANCTUARY_LIMITS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SANCTUARY_LIMITS",
+              "Q_SANCTUARY_DOOR"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta e' stata scritta.",
-            "tag": "charter_written"
+            "tag": "charter_written",
+            "for": [
+              "Q_SANCTUARY_LIMITS",
+              "Q_SANCTUARY_DOOR"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SANCTUARY_DOOR"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SANCTUARY_DOOR"
+            ]
           }
         ],
         "costs": [
@@ -2843,23 +3979,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_SANCTUARY_LIMITS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SANCTUARY_DOOR"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SANCTUARY_DOOR"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_SANCTUARY_LIMITS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SANCTUARY_DOOR"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SANCTUARY_LIMITS",
+              "Q_SANCTUARY_DOOR"
+            ]
           }
         ],
         "failure": [
@@ -2896,12 +4061,18 @@
           {
             "id": "Q_SANCTUARY_LIMITS",
             "text": "Un ricercato tiene l'altare $in_region: dove finisce l'asilo?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           },
           {
             "id": "Q_SANCTUARY_DOOR",
             "text": "E gli armati davanti alla porta, chi li manda via?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_GUARD"
+            ]
           }
         ],
         "propositions": [
@@ -2987,23 +4158,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_REGENCY_SEAL"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_REGENCY_SEAL"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_REGENCY_SEAL",
+              "Q_REGENCY_AFTER"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la corona e' stata divisa.",
-            "tag": "crown_divided"
+            "tag": "crown_divided",
+            "for": [
+              "Q_REGENCY_SEAL",
+              "Q_REGENCY_AFTER"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_REGENCY_AFTER"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_REGENCY_AFTER"
+            ]
           }
         ],
         "costs": [
@@ -3011,23 +4212,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_REGENCY_SEAL"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_REGENCY_AFTER"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_REGENCY_AFTER"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_REGENCY_SEAL"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_REGENCY_AFTER"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_REGENCY_SEAL",
+              "Q_REGENCY_AFTER"
+            ]
           }
         ],
         "failure": [
@@ -3064,12 +4294,18 @@
           {
             "id": "Q_REGENCY_SEAL",
             "text": "Il sigillo, fino a quando lo tiene il reggente?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           },
           {
             "id": "Q_REGENCY_AFTER",
             "text": "E dopo, a chi torna?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -3147,23 +4383,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_HOSTAGES_GUEST"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_HOSTAGES_GUEST"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_HOSTAGES_GUEST",
+              "Q_HOSTAGES_WHO"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'ordine e' stato rimesso in piedi.",
-            "tag": "order_restored"
+            "tag": "order_restored",
+            "for": [
+              "Q_HOSTAGES_GUEST",
+              "Q_HOSTAGES_WHO"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_HOSTAGES_WHO"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_HOSTAGES_WHO"
+            ]
           }
         ],
         "costs": [
@@ -3171,23 +4437,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_HOSTAGES_GUEST"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_HOSTAGES_WHO"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_HOSTAGES_WHO"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_HOSTAGES_GUEST"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_HOSTAGES_WHO"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_HOSTAGES_GUEST",
+              "Q_HOSTAGES_WHO"
+            ]
           }
         ],
         "failure": [
@@ -3226,12 +4521,18 @@
           {
             "id": "Q_HOSTAGES_GUEST",
             "text": "Gli ospiti di corte, quando possono tornare a casa?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           },
           {
             "id": "Q_HOSTAGES_WHO",
             "text": "E chi risponde di loro?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           }
         ],
         "propositions": [
@@ -3307,23 +4608,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_LEVY_ARMS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_LEVY_ARMS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_LEVY_ARMS",
+              "Q_LEVY_HARVEST"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'ordine e' stato rimesso in piedi.",
-            "tag": "order_restored"
+            "tag": "order_restored",
+            "for": [
+              "Q_LEVY_ARMS",
+              "Q_LEVY_HARVEST"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_LEVY_HARVEST"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_LEVY_HARVEST"
+            ]
           }
         ],
         "costs": [
@@ -3331,23 +4662,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_LEVY_ARMS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_LEVY_HARVEST"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_LEVY_HARVEST"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_LEVY_ARMS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_LEVY_HARVEST"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_LEVY_ARMS",
+              "Q_LEVY_HARVEST"
+            ]
           }
         ],
         "failure": [
@@ -3384,12 +4744,19 @@
           {
             "id": "Q_LEVY_ARMS",
             "text": "$in_region, chi decide quante braccia vanno alle armi?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED",
+              "CNS_QUOTA_GUARANTEED"
+            ]
           },
           {
             "id": "Q_LEVY_HARVEST",
             "text": "E il raccolto che resta indietro, chi lo perde?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -3471,23 +4838,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_SEALS_HAND"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SEALS_HAND"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SEALS_HAND",
+              "Q_SEALS_ORDERS"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_SEALS_HAND",
+              "Q_SEALS_ORDERS"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SEALS_ORDERS"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SEALS_ORDERS"
+            ]
           }
         ],
         "costs": [
@@ -3495,23 +4892,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_SEALS_HAND"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SEALS_ORDERS"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SEALS_ORDERS"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_SEALS_HAND"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SEALS_ORDERS"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SEALS_HAND",
+              "Q_SEALS_ORDERS"
+            ]
           }
         ],
         "failure": [
@@ -3551,12 +4977,18 @@
           {
             "id": "Q_SEALS_HAND",
             "text": "Chi controlla la mano che preme il sigillo?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           },
           {
             "id": "Q_SEALS_ORDERS",
             "text": "E gli ordini gia' partiti, valgono?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_UNREST"
+            ]
           }
         ],
         "propositions": [
@@ -3632,23 +5064,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Foresta.",
-            "structure": "STR_FOREST"
+            "structure": "STR_FOREST",
+            "for": [
+              "Q_MARCHES_EDGE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_MARCHES_EDGE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_MARCHES_EDGE",
+              "Q_MARCHES_TITLE"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la corona e' stata divisa.",
-            "tag": "crown_divided"
+            "tag": "crown_divided",
+            "for": [
+              "Q_MARCHES_EDGE",
+              "Q_MARCHES_TITLE"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_MARCHES_TITLE"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_MARCHES_TITLE"
+            ]
           }
         ],
         "costs": [
@@ -3656,23 +5118,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_MARCHES_EDGE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_MARCHES_TITLE"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_MARCHES_TITLE"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_MARCHES_EDGE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_MARCHES_TITLE"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_MARCHES_EDGE",
+              "Q_MARCHES_TITLE"
+            ]
           }
         ],
         "failure": [
@@ -3712,12 +5203,18 @@
           {
             "id": "Q_MARCHES_EDGE",
             "text": "Ai margini $of_region, a chi si obbedisce davvero?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_UNREST"
+            ]
           },
           {
             "id": "Q_MARCHES_TITLE",
             "text": "E i titoli che si danno da soli, valgono?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           }
         ],
         "propositions": [
@@ -3798,23 +5295,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO",
+              "Q_COUNCIL_SEATS_VETO"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la Carta vale anche per chi non siede.",
-            "tag": "charter_for_all"
+            "tag": "charter_for_all",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO",
+              "Q_COUNCIL_SEATS_VETO"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_COUNCIL_SEATS_VETO"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_COUNCIL_SEATS_VETO"
+            ]
           }
         ],
         "costs": [
@@ -3822,23 +5349,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #malcontento.",
-            "tag": "condition:unrest"
+            "tag": "condition:unrest",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_COUNCIL_SEATS_VETO"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_COUNCIL_SEATS_VETO"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_COUNCIL_SEATS_VETO"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_COUNCIL_SEATS_WHO",
+              "Q_COUNCIL_SEATS_VETO"
+            ]
           }
         ],
         "failure": [
@@ -3877,12 +5433,18 @@
           {
             "id": "Q_COUNCIL_SEATS_WHO",
             "text": "Chi si siede al tavolo, e chi lo decide?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           },
           {
             "id": "Q_COUNCIL_SEATS_VETO",
             "text": "E un veto, quanto vale?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           }
         ],
         "propositions": [
@@ -3957,23 +5519,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA",
+              "Q_OLD_GUARD_COMMAND"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la successione e' scritta in una legge.",
-            "tag": "succession_by_law"
+            "tag": "succession_by_law",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA",
+              "Q_OLD_GUARD_COMMAND"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_OLD_GUARD_COMMAND"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_OLD_GUARD_COMMAND"
+            ]
           }
         ],
         "costs": [
@@ -3981,23 +5573,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_OLD_GUARD_COMMAND"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_OLD_GUARD_COMMAND"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_OLD_GUARD_COMMAND"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_OLD_GUARD_INSIGNIA",
+              "Q_OLD_GUARD_COMMAND"
+            ]
           }
         ],
         "failure": [
@@ -4034,12 +5655,18 @@
           {
             "id": "Q_OLD_GUARD_INSIGNIA",
             "text": "Le insegne del vecchio ordine, si portano ancora?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           },
           {
             "id": "Q_OLD_GUARD_COMMAND",
             "text": "E chi comanda i veterani?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           }
         ],
         "propositions": [
@@ -4116,23 +5743,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_TRIBUTE_FULL"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_TRIBUTE_FULL"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_TRIBUTE_FULL",
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i conti sono stati chiusi.",
-            "tag": "account_settled"
+            "tag": "account_settled",
+            "for": [
+              "Q_TRIBUTE_FULL",
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
           }
         ],
         "costs": [
@@ -4140,23 +5797,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #svuotato.",
-            "tag": "condition:emptied"
+            "tag": "condition:emptied",
+            "for": [
+              "Q_TRIBUTE_FULL"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_TRIBUTE_FULL"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_TRIBUTE_FULL",
+              "Q_TRIBUTE_WHAT_FOR"
+            ]
           }
         ],
         "failure": [
@@ -4196,12 +5882,18 @@
           {
             "id": "Q_TRIBUTE_FULL",
             "text": "Il tributo si paga intero, in un anno che ha reso a meta'?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_TOLL_ESTABLISHED"
+            ]
           },
           {
             "id": "Q_TRIBUTE_WHAT_FOR",
             "text": "E in cambio di che cosa, esattamente?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           }
         ],
         "propositions": [
@@ -4278,23 +5970,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
-            "structure": "STR_OLD_SITE"
+            "structure": "STR_OLD_SITE",
+            "for": [
+              "Q_ECHOES_WHO"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_ECHOES_WHO"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_ECHOES_WHO",
+              "Q_ECHOES_SHIFT"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la miniera e' stata chiusa.",
-            "tag": "mine_sealed"
+            "tag": "mine_sealed",
+            "for": [
+              "Q_ECHOES_WHO",
+              "Q_ECHOES_SHIFT"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_ECHOES_SHIFT"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_ECHOES_SHIFT"
+            ]
           }
         ],
         "costs": [
@@ -4302,23 +6024,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
-            "tag": "structure:sealed"
+            "tag": "structure:sealed",
+            "for": [
+              "Q_ECHOES_WHO"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_ECHOES_SHIFT"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_ECHOES_SHIFT"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_ECHOES_WHO"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_ECHOES_SHIFT"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_ECHOES_WHO",
+              "Q_ECHOES_SHIFT"
+            ]
           }
         ],
         "failure": [
@@ -4357,12 +6108,18 @@
           {
             "id": "Q_ECHOES_WHO",
             "text": "In fondo qualcosa risponde ai colpi $in_region: si scende a vedere chi, o si smette di battere?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_STUDY_UNDER_GUARD"
+            ]
           },
           {
             "id": "Q_ECHOES_SHIFT",
             "text": "E il turno lungo, chi lo fa adesso?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -4440,23 +6197,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_CHANNELS_MAP"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_CHANNELS_MAP"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_CHANNELS_MAP",
+              "Q_CHANNELS_END"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
-            "tag": "water_moves"
+            "tag": "water_moves",
+            "for": [
+              "Q_CHANNELS_MAP",
+              "Q_CHANNELS_END"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_CHANNELS_END"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_CHANNELS_END"
+            ]
           }
         ],
         "costs": [
@@ -4464,23 +6251,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_CHANNELS_MAP"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_CHANNELS_END"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_CHANNELS_END"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_CHANNELS_MAP"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_CHANNELS_END"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_CHANNELS_MAP",
+              "Q_CHANNELS_END"
+            ]
           }
         ],
         "failure": [
@@ -4520,12 +6336,18 @@
           {
             "id": "Q_CHANNELS_MAP",
             "text": "Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           },
           {
             "id": "Q_CHANNELS_END",
             "text": "E dove finiscono, cosa ci si fa?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CANALS_DUG"
+            ]
           }
         ],
         "propositions": [
@@ -4601,23 +6423,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Archivio.",
-            "structure": "STR_ARCHIVE"
+            "structure": "STR_ARCHIVE",
+            "for": [
+              "Q_SLEEPERS_COUNT"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SLEEPERS_COUNT"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SLEEPERS_COUNT",
+              "Q_SLEEPERS_WATCH"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la miniera e' stata chiusa.",
-            "tag": "mine_sealed"
+            "tag": "mine_sealed",
+            "for": [
+              "Q_SLEEPERS_COUNT",
+              "Q_SLEEPERS_WATCH"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SLEEPERS_WATCH"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SLEEPERS_WATCH"
+            ]
           }
         ],
         "costs": [
@@ -4625,23 +6477,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
-            "tag": "structure:sealed"
+            "tag": "structure:sealed",
+            "for": [
+              "Q_SLEEPERS_COUNT"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SLEEPERS_WATCH"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SLEEPERS_WATCH"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_SLEEPERS_COUNT"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SLEEPERS_WATCH"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SLEEPERS_COUNT",
+              "Q_SLEEPERS_WATCH"
+            ]
           }
         ],
         "failure": [
@@ -4678,12 +6559,18 @@
           {
             "id": "Q_SLEEPERS_COUNT",
             "text": "I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           },
           {
             "id": "Q_SLEEPERS_WATCH",
             "text": "E dove si dorme, chi veglia?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_GUARD"
+            ]
           }
         ],
         "propositions": [
@@ -4765,23 +6652,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
-            "structure": "STR_OLD_SITE"
+            "structure": "STR_OLD_SITE",
+            "for": [
+              "Q_SILENCE_LAND"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SILENCE_LAND"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SILENCE_LAND",
+              "Q_SILENCE_NIGHT"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: della montagna si e' smesso di parlare.",
-            "tag": "mountain_forgotten"
+            "tag": "mountain_forgotten",
+            "for": [
+              "Q_SILENCE_LAND",
+              "Q_SILENCE_NIGHT"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SILENCE_NIGHT"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SILENCE_NIGHT"
+            ]
           }
         ],
         "costs": [
@@ -4789,23 +6706,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_SILENCE_LAND"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SILENCE_NIGHT"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SILENCE_NIGHT"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_SILENCE_LAND"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SILENCE_NIGHT"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SILENCE_LAND",
+              "Q_SILENCE_NIGHT"
+            ]
           }
         ],
         "failure": [
@@ -4844,12 +6790,18 @@
           {
             "id": "Q_SILENCE_LAND",
             "text": "Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_ANOINTED"
+            ]
           },
           {
             "id": "Q_SILENCE_NIGHT",
             "text": "E a chi ci ha già passato la notte, cosa si chiede?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_STUDY_UNDER_GUARD"
+            ]
           }
         ],
         "propositions": [
@@ -4924,23 +6876,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
-            "structure": "STR_OLD_SITE"
+            "structure": "STR_OLD_SITE",
+            "for": [
+              "Q_UNEARTHED_KEEP"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_UNEARTHED_KEEP"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_UNEARTHED_KEEP",
+              "Q_UNEARTHED_STUDY"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il Cristallo e' stato misurato.",
-            "tag": "crystal_measured"
+            "tag": "crystal_measured",
+            "for": [
+              "Q_UNEARTHED_KEEP",
+              "Q_UNEARTHED_STUDY"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_UNEARTHED_STUDY"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_UNEARTHED_STUDY"
+            ]
           }
         ],
         "costs": [
@@ -4948,23 +6930,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
-            "tag": "structure:sealed"
+            "tag": "structure:sealed",
+            "for": [
+              "Q_UNEARTHED_KEEP"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_UNEARTHED_STUDY"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_UNEARTHED_STUDY"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_UNEARTHED_KEEP"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_UNEARTHED_STUDY"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_UNEARTHED_KEEP",
+              "Q_UNEARTHED_STUDY"
+            ]
           }
         ],
         "failure": [
@@ -5004,12 +7015,18 @@
           {
             "id": "Q_UNEARTHED_KEEP",
             "text": "È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RELIC_SHOWN"
+            ]
           },
           {
             "id": "Q_UNEARTHED_STUDY",
             "text": "E studiarlo, con quali regole?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_STUDY_UNDER_GUARD"
+            ]
           }
         ],
         "propositions": [
@@ -5088,23 +7105,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Archivio.",
-            "structure": "STR_ARCHIVE"
+            "structure": "STR_ARCHIVE",
+            "for": [
+              "Q_NAMES_MEAN"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_NAMES_MEAN"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_NAMES_MEAN",
+              "Q_NAMES_USE"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: quello che si e' capito resta scritto.",
-            "tag": "knowledge_shared"
+            "tag": "knowledge_shared",
+            "for": [
+              "Q_NAMES_MEAN",
+              "Q_NAMES_USE"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_NAMES_USE"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_NAMES_USE"
+            ]
           }
         ],
         "costs": [
@@ -5112,23 +7159,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_NAMES_MEAN"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_NAMES_USE"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_NAMES_USE"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_NAMES_MEAN"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_NAMES_USE"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_NAMES_MEAN",
+              "Q_NAMES_USE"
+            ]
           }
         ],
         "failure": [
@@ -5165,12 +7241,18 @@
           {
             "id": "Q_NAMES_MEAN",
             "text": "I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEGEND_RETOLD"
+            ]
           },
           {
             "id": "Q_NAMES_USE",
             "text": "E dirli, si può?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           }
         ],
         "propositions": [
@@ -5254,23 +7336,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Foresta.",
-            "structure": "STR_FOREST"
+            "structure": "STR_FOREST",
+            "for": [
+              "Q_WARDS_RAISE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_WARDS_RAISE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_WARDS_RAISE",
+              "Q_WARDS_MARGIN"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: la reliquia e' tornata sottoterra.",
-            "tag": "relic_buried"
+            "tag": "relic_buried",
+            "for": [
+              "Q_WARDS_RAISE",
+              "Q_WARDS_MARGIN"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_WARDS_MARGIN"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_WARDS_MARGIN"
+            ]
           }
         ],
         "costs": [
@@ -5278,23 +7390,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #lutto.",
-            "tag": "condition:mourning"
+            "tag": "condition:mourning",
+            "for": [
+              "Q_WARDS_RAISE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_WARDS_MARGIN"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_WARDS_MARGIN"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
-            "tag": "scar:abandoned"
+            "tag": "scar:abandoned",
+            "for": [
+              "Q_WARDS_RAISE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_WARDS_MARGIN"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_WARDS_RAISE",
+              "Q_WARDS_MARGIN"
+            ]
           }
         ],
         "failure": [
@@ -5334,12 +7475,18 @@
           {
             "id": "Q_WARDS_RAISE",
             "text": "Una delle pietre incise è a terra: si rialza, e chi la tocca?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ORDER_ANOINTED"
+            ]
           },
           {
             "id": "Q_WARDS_MARGIN",
             "text": "E il margine, chi lo gira?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_GUARD"
+            ]
           }
         ],
         "propositions": [
@@ -5415,23 +7562,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_DEEP_NETS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_DEEP_NETS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_DEEP_NETS",
+              "Q_DEEP_LOOK"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
-            "tag": "water_moves"
+            "tag": "water_moves",
+            "for": [
+              "Q_DEEP_NETS",
+              "Q_DEEP_LOOK"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_DEEP_LOOK"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_DEEP_LOOK"
+            ]
           }
         ],
         "costs": [
@@ -5439,23 +7616,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_DEEP_NETS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_DEEP_LOOK"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_DEEP_LOOK"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_DEEP_NETS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_DEEP_LOOK"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_DEEP_NETS",
+              "Q_DEEP_LOOK"
+            ]
           }
         ],
         "failure": [
@@ -5495,12 +7701,18 @@
           {
             "id": "Q_DEEP_NETS",
             "text": "Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED"
+            ]
           },
           {
             "id": "Q_DEEP_LOOK",
             "text": "E andare a vedere cosa c'è sotto, conviene a qualcuno?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_STUDY_UNDER_GUARD"
+            ]
           }
         ],
         "propositions": [
@@ -5576,23 +7788,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_WINTER_WOOD"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_WINTER_WOOD"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_WINTER_WOOD",
+              "Q_WINTER_DEBT"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
-            "tag": "debt_forgiven"
+            "tag": "debt_forgiven",
+            "for": [
+              "Q_WINTER_WOOD",
+              "Q_WINTER_DEBT"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_WINTER_DEBT"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_WINTER_DEBT"
+            ]
           }
         ],
         "costs": [
@@ -5600,23 +7842,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_WINTER_WOOD"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_WINTER_DEBT"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_WINTER_DEBT"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
-            "tag": "scar:sealed_border"
+            "tag": "scar:sealed_border",
+            "for": [
+              "Q_WINTER_WOOD"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_WINTER_DEBT"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_WINTER_WOOD",
+              "Q_WINTER_DEBT"
+            ]
           }
         ],
         "failure": [
@@ -5659,12 +7930,18 @@
           {
             "id": "Q_WINTER_WOOD",
             "text": "$in_region, chi distribuisce la legna quando gela?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED"
+            ]
           },
           {
             "id": "Q_WINTER_DEBT",
             "text": "E i debiti dell'inverno, si contano a primavera?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -5748,23 +8025,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_MARSH_FEVER_WATER"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_MARSH_FEVER_WATER"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_MARSH_FEVER_WATER",
+              "Q_MARSH_FEVER_SICK"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
-            "tag": "water_moves"
+            "tag": "water_moves",
+            "for": [
+              "Q_MARSH_FEVER_WATER",
+              "Q_MARSH_FEVER_SICK"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_MARSH_FEVER_SICK"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_MARSH_FEVER_SICK"
+            ]
           }
         ],
         "costs": [
@@ -5772,23 +8079,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #lutto.",
-            "tag": "condition:mourning"
+            "tag": "condition:mourning",
+            "for": [
+              "Q_MARSH_FEVER_WATER"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_MARSH_FEVER_SICK"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_MARSH_FEVER_SICK"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
-            "tag": "scar:abandoned"
+            "tag": "scar:abandoned",
+            "for": [
+              "Q_MARSH_FEVER_WATER"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_MARSH_FEVER_SICK"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_MARSH_FEVER_WATER",
+              "Q_MARSH_FEVER_SICK"
+            ]
           }
         ],
         "failure": [
@@ -5827,12 +8163,18 @@
           {
             "id": "Q_MARSH_FEVER_WATER",
             "text": "$in_region, chi manda gli uomini a prosciugare?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           },
           {
             "id": "Q_MARSH_FEVER_SICK",
             "text": "E i malati, chi se li tiene?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -5914,23 +8256,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_EMPTY_NETS_WATER"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_EMPTY_NETS_WATER"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_EMPTY_NETS_WATER",
+              "Q_EMPTY_NETS_BOATS"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato rimesso.",
-            "tag": "debt_forgiven"
+            "tag": "debt_forgiven",
+            "for": [
+              "Q_EMPTY_NETS_WATER",
+              "Q_EMPTY_NETS_BOATS"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_EMPTY_NETS_BOATS"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_EMPTY_NETS_BOATS"
+            ]
           }
         ],
         "costs": [
@@ -5938,23 +8310,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_EMPTY_NETS_WATER"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_EMPTY_NETS_BOATS"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_EMPTY_NETS_BOATS"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_EMPTY_NETS_WATER"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_EMPTY_NETS_BOATS"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_EMPTY_NETS_WATER",
+              "Q_EMPTY_NETS_BOATS"
+            ]
           }
         ],
         "failure": [
@@ -5993,12 +8394,18 @@
           {
             "id": "Q_EMPTY_NETS_WATER",
             "text": "Chi pesca $in_region, adesso che le reti tornano vuote?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED"
+            ]
           },
           {
             "id": "Q_EMPTY_NETS_BOATS",
             "text": "E le barche ferme, di chi restano?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ABANDONED"
+            ]
           }
         ],
         "propositions": [
@@ -6073,23 +8480,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_REFUGEES_ROOM"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_REFUGEES_ROOM"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_REFUGEES_ROOM",
+              "Q_REFUGEES_COST"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
-            "tag": "nahr_settled"
+            "tag": "nahr_settled",
+            "for": [
+              "Q_REFUGEES_ROOM",
+              "Q_REFUGEES_COST"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_REFUGEES_COST"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_REFUGEES_COST"
+            ]
           }
         ],
         "costs": [
@@ -6097,23 +8534,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #malcontento.",
-            "tag": "condition:unrest"
+            "tag": "condition:unrest",
+            "for": [
+              "Q_REFUGEES_ROOM"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_REFUGEES_COST"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_REFUGEES_COST"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_REFUGEES_ROOM"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_REFUGEES_COST"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_REFUGEES_ROOM",
+              "Q_REFUGEES_COST"
+            ]
           }
         ],
         "failure": [
@@ -6150,12 +8616,18 @@
           {
             "id": "Q_REFUGEES_ROOM",
             "text": "$in_region, chi decide dove si fermano quelli che arrivano?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           },
           {
             "id": "Q_REFUGEES_COST",
             "text": "E chi paga il pane in piu'?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -6234,23 +8706,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Foresta.",
-            "structure": "STR_FOREST"
+            "structure": "STR_FOREST",
+            "for": [
+              "Q_WOLVES_WATCH"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_WOLVES_WATCH"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_WOLVES_WATCH",
+              "Q_WOLVES_FLOCK"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
-            "tag": "nahr_settled"
+            "tag": "nahr_settled",
+            "for": [
+              "Q_WOLVES_WATCH",
+              "Q_WOLVES_FLOCK"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_WOLVES_FLOCK"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_WOLVES_FLOCK"
+            ]
           }
         ],
         "costs": [
@@ -6258,23 +8760,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_WOLVES_WATCH"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_WOLVES_FLOCK"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_WOLVES_FLOCK"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_WOLVES_WATCH"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_WOLVES_FLOCK"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_WOLVES_WATCH",
+              "Q_WOLVES_FLOCK"
+            ]
           }
         ],
         "failure": [
@@ -6314,12 +8845,18 @@
           {
             "id": "Q_WOLVES_WATCH",
             "text": "Chi veglia il limitare $in_region?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ASH_WATCH"
+            ]
           },
           {
             "id": "Q_WOLVES_FLOCK",
             "text": "E le bestie perse, chi le rimette?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -6395,23 +8932,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Granaio.",
-            "structure": "STR_GRANARY"
+            "structure": "STR_GRANARY",
+            "for": [
+              "Q_BAD_GRAIN_SILO"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_BAD_GRAIN_SILO"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_BAD_GRAIN_SILO",
+              "Q_BAD_GRAIN_BLAME"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_BAD_GRAIN_SILO",
+              "Q_BAD_GRAIN_BLAME"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_BAD_GRAIN_BLAME"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_BAD_GRAIN_BLAME"
+            ]
           }
         ],
         "costs": [
@@ -6419,23 +8986,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_BAD_GRAIN_SILO"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_BAD_GRAIN_BLAME"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_BAD_GRAIN_BLAME"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_BAD_GRAIN_SILO"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_BAD_GRAIN_BLAME"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_BAD_GRAIN_SILO",
+              "Q_BAD_GRAIN_BLAME"
+            ]
           }
         ],
         "failure": [
@@ -6475,12 +9071,19 @@
           {
             "id": "Q_BAD_GRAIN_SILO",
             "text": "$in_region, chi apre i sili e guarda dentro?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_RATIONED"
+            ]
           },
           {
             "id": "Q_BAD_GRAIN_BLAME",
             "text": "E del raccolto marcito, chi risponde?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED",
+              "CNS_DISTRIBUTION_AUDITED"
+            ]
           }
         ],
         "propositions": [
@@ -6557,23 +9160,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_QUARANTINE_LINE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_QUARANTINE_LINE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_QUARANTINE_LINE",
+              "Q_QUARANTINE_OUT"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: i Nahr hanno un posto dove fermarsi.",
-            "tag": "nahr_settled"
+            "tag": "nahr_settled",
+            "for": [
+              "Q_QUARANTINE_LINE",
+              "Q_QUARANTINE_OUT"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_QUARANTINE_OUT"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_QUARANTINE_OUT"
+            ]
           }
         ],
         "costs": [
@@ -6581,23 +9214,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_QUARANTINE_LINE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_QUARANTINE_OUT"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_QUARANTINE_OUT"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
-            "tag": "scar:sealed_border"
+            "tag": "scar:sealed_border",
+            "for": [
+              "Q_QUARANTINE_LINE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_QUARANTINE_OUT"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_QUARANTINE_LINE",
+              "Q_QUARANTINE_OUT"
+            ]
           }
         ],
         "failure": [
@@ -6637,12 +9299,18 @@
           {
             "id": "Q_QUARANTINE_LINE",
             "text": "Chi traccia il cordone $in_region, e dove passa?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SEAT_CLAIMED"
+            ]
           },
           {
             "id": "Q_QUARANTINE_OUT",
             "text": "E chi resta fuori, dove va?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ABANDONED"
+            ]
           }
         ],
         "propositions": [
@@ -6718,23 +9386,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_FERRY_TARIFF"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_FERRY_TARIFF"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_FERRY_TARIFF",
+              "Q_FERRY_SECOND"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
-            "tag": "water_moves"
+            "tag": "water_moves",
+            "for": [
+              "Q_FERRY_TARIFF",
+              "Q_FERRY_SECOND"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_FERRY_SECOND"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_FERRY_SECOND"
+            ]
           }
         ],
         "costs": [
@@ -6742,23 +9440,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #svuotato.",
-            "tag": "condition:emptied"
+            "tag": "condition:emptied",
+            "for": [
+              "Q_FERRY_TARIFF"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_FERRY_SECOND"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_FERRY_SECOND"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_FERRY_TARIFF"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_FERRY_SECOND"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_FERRY_TARIFF",
+              "Q_FERRY_SECOND"
+            ]
           }
         ],
         "failure": [
@@ -6798,12 +9525,18 @@
           {
             "id": "Q_FERRY_TARIFF",
             "text": "La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_TOLL_ESTABLISHED"
+            ]
           },
           {
             "id": "Q_FERRY_SECOND",
             "text": "E se una barca sola non basta piu'?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_SHARED_BURDEN"
+            ]
           }
         ],
         "propositions": [
@@ -6882,23 +9615,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_TOLLS_CHAIN"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_TOLLS_CHAIN"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_TOLLS_CHAIN",
+              "Q_TOLLS_CONVOY"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il debito e' stato chiamato.",
-            "tag": "debt_called"
+            "tag": "debt_called",
+            "for": [
+              "Q_TOLLS_CHAIN",
+              "Q_TOLLS_CONVOY"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_TOLLS_CONVOY"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_TOLLS_CONVOY"
+            ]
           }
         ],
         "costs": [
@@ -6906,23 +9669,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_TOLLS_CHAIN"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_TOLLS_CONVOY"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_TOLLS_CONVOY"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_TOLLS_CHAIN"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_TOLLS_CONVOY"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_TOLLS_CHAIN",
+              "Q_TOLLS_CONVOY"
+            ]
           }
         ],
         "failure": [
@@ -6962,12 +9754,18 @@
           {
             "id": "Q_TOLLS_CHAIN",
             "text": "Chi ha teso la catena sulla strada, e con che diritto?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_TOLL_ESTABLISHED"
+            ]
           },
           {
             "id": "Q_TOLLS_CONVOY",
             "text": "E i carri che passano domani, chi li accompagna?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ESCORT_SWORN"
+            ]
           }
         ],
         "propositions": [
@@ -7046,23 +9844,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_WEIGHTS_ARM"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_WEIGHTS_ARM"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_WEIGHTS_ARM",
+              "Q_WEIGHTS_WATCH"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_WEIGHTS_ARM",
+              "Q_WEIGHTS_WATCH"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_WEIGHTS_WATCH"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_WEIGHTS_WATCH"
+            ]
           }
         ],
         "costs": [
@@ -7070,23 +9898,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_WEIGHTS_ARM"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_WEIGHTS_WATCH"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_WEIGHTS_WATCH"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_WEIGHTS_ARM"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_WEIGHTS_WATCH"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_WEIGHTS_ARM",
+              "Q_WEIGHTS_WATCH"
+            ]
           }
         ],
         "failure": [
@@ -7125,12 +9982,18 @@
           {
             "id": "Q_WEIGHTS_ARM",
             "text": "Di chi e' il braccio con cui si misura?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CHARTER_WRITTEN"
+            ]
           },
           {
             "id": "Q_WEIGHTS_WATCH",
             "text": "E chi guarda le bilance quando il mercato e' pieno?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_LEDGER_OPENED"
+            ]
           }
         ],
         "propositions": [
@@ -7205,23 +10068,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
-            "structure": "STR_KEEP"
+            "structure": "STR_KEEP",
+            "for": [
+              "Q_COURIERS_PAYS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_COURIERS_PAYS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_COURIERS_PAYS",
+              "Q_COURIERS_SEAL"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: quello che si e' capito resta scritto.",
-            "tag": "knowledge_shared"
+            "tag": "knowledge_shared",
+            "for": [
+              "Q_COURIERS_PAYS",
+              "Q_COURIERS_SEAL"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_COURIERS_SEAL"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_COURIERS_SEAL"
+            ]
           }
         ],
         "costs": [
@@ -7229,23 +10122,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_COURIERS_PAYS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_COURIERS_SEAL"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_COURIERS_SEAL"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
-            "tag": "scar:unanswered"
+            "tag": "scar:unanswered",
+            "for": [
+              "Q_COURIERS_PAYS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_COURIERS_SEAL"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_COURIERS_PAYS",
+              "Q_COURIERS_SEAL"
+            ]
           }
         ],
         "failure": [
@@ -7282,12 +10204,18 @@
           {
             "id": "Q_COURIERS_PAYS",
             "text": "Chi paga le staffette, e cosa compra davvero?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ESCORT_SWORN"
+            ]
           },
           {
             "id": "Q_COURIERS_SEAL",
             "text": "E le lettere che arrivano aperte, per le mani di chi sono passate?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ACCOUNT_SETTLED"
+            ]
           }
         ],
         "propositions": [
@@ -7367,23 +10295,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
-            "structure": "STR_CANAL"
+            "structure": "STR_CANAL",
+            "for": [
+              "Q_CANALS_ARMS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_CANALS_ARMS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_CANALS_ARMS",
+              "Q_CANALS_WATER"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: l'acqua torna a muoversi.",
-            "tag": "water_moves"
+            "tag": "water_moves",
+            "for": [
+              "Q_CANALS_ARMS",
+              "Q_CANALS_WATER"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_CANALS_WATER"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_CANALS_WATER"
+            ]
           }
         ],
         "costs": [
@@ -7391,23 +10349,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #razionato.",
-            "tag": "condition:rationed"
+            "tag": "condition:rationed",
+            "for": [
+              "Q_CANALS_ARMS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_CANALS_WATER"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_CANALS_WATER"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
-            "tag": "scar:abandoned"
+            "tag": "scar:abandoned",
+            "for": [
+              "Q_CANALS_ARMS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_CANALS_WATER"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_CANALS_ARMS",
+              "Q_CANALS_WATER"
+            ]
           }
         ],
         "failure": [
@@ -7446,12 +10433,18 @@
           {
             "id": "Q_CANALS_ARMS",
             "text": "Chi manda le braccia a scavare, e per quante stagioni?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_CANALS_DUG"
+            ]
           },
           {
             "id": "Q_CANALS_WATER",
             "text": "E quando l'acqua torna a correre, di chi e'?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_WATER_PRICED"
+            ]
           }
         ],
         "propositions": [
@@ -7529,23 +10522,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_GUILDS_STREETS"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_GUILDS_STREETS"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_GUILDS_STREETS",
+              "Q_GUILDS_FIRE"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_GUILDS_STREETS",
+              "Q_GUILDS_FIRE"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_GUILDS_FIRE"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_GUILDS_FIRE"
+            ]
           }
         ],
         "costs": [
@@ -7553,23 +10576,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_GUILDS_STREETS"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_GUILDS_FIRE"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_GUILDS_FIRE"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: la razzia.",
-            "tag": "scar:plundered"
+            "tag": "scar:plundered",
+            "for": [
+              "Q_GUILDS_STREETS"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_GUILDS_FIRE"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_GUILDS_STREETS",
+              "Q_GUILDS_FIRE"
+            ]
           }
         ],
         "failure": [
@@ -7609,12 +10661,18 @@
           {
             "id": "Q_GUILDS_STREETS",
             "text": "Le vie sono strette: di chi sono?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_MARKET_MOVED"
+            ]
           },
           {
             "id": "Q_GUILDS_FIRE",
             "text": "E del magazzino bruciato, chi risponde?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_ACCOUNT_SETTLED"
+            ]
           }
         ],
         "propositions": [
@@ -7690,23 +10748,53 @@
             "id": "B_STONE",
             "verb": "BUILD_STONE",
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
-            "structure": "STR_TOLLGATE"
+            "structure": "STR_TOLLGATE",
+            "for": [
+              "Q_SMUGGLING_COVE"
+            ]
           },
           {
             "id": "B_CONTROL",
             "verb": "TAKE_CONTROL",
-            "text": "Assegna o trasferisci il controllo del luogo."
+            "text": "Assegna o trasferisci il controllo del luogo.",
+            "for": [
+              "Q_SMUGGLING_COVE"
+            ]
           },
           {
             "id": "B_COOL",
             "verb": "COOL_THEME",
-            "text": "Raffredda il Tema di 1 (minimo 0)."
+            "text": "Raffredda il Tema di 1 (minimo 0).",
+            "for": [
+              "Q_SMUGGLING_COVE",
+              "Q_SMUGGLING_CUSTOMS"
+            ]
           },
           {
             "id": "B_REMEMBER",
             "verb": "REMEMBER",
             "text": "Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.",
-            "tag": "ledger_public"
+            "tag": "ledger_public",
+            "for": [
+              "Q_SMUGGLING_COVE",
+              "Q_SMUGGLING_CUSTOMS"
+            ]
+          },
+          {
+            "id": "B_REOPEN",
+            "verb": "REOPEN",
+            "text": "Riapri il luogo: via il #tagliato_fuori.",
+            "for": [
+              "Q_SMUGGLING_CUSTOMS"
+            ]
+          },
+          {
+            "id": "B_CLEAR",
+            "verb": "CLEAR_CONDITION",
+            "text": "Togli una condizione dal luogo.",
+            "for": [
+              "Q_SMUGGLING_CUSTOMS"
+            ]
           }
         ],
         "costs": [
@@ -7714,23 +10802,52 @@
             "id": "C_CONDITION",
             "verb": "ADD_CONDITION",
             "text": "Al luogo si aggiunge #sorvegliata.",
-            "tag": "condition:guarded"
+            "tag": "condition:guarded",
+            "for": [
+              "Q_SMUGGLING_COVE"
+            ]
           },
           {
             "id": "C_YIELD",
             "verb": "YIELD_CONTROL",
-            "text": "Cedi il controllo del luogo."
+            "text": "Cedi il controllo del luogo.",
+            "for": [
+              "Q_SMUGGLING_CUSTOMS"
+            ]
           },
           {
             "id": "C_DEBT",
             "verb": "TAKE_DEBT",
-            "text": "Al luogo si aggiunge #indebitata."
+            "text": "Al luogo si aggiunge #indebitata.",
+            "for": [
+              "Q_SMUGGLING_CUSTOMS"
+            ]
           },
           {
             "id": "C_SCAR",
             "verb": "SCAR",
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
-            "tag": "scar:changed_hands"
+            "tag": "scar:changed_hands",
+            "for": [
+              "Q_SMUGGLING_COVE"
+            ]
+          },
+          {
+            "id": "C_TOLL",
+            "verb": "TOLL",
+            "text": "Sul luogo si alza un pedaggio.",
+            "for": [
+              "Q_SMUGGLING_CUSTOMS"
+            ]
+          },
+          {
+            "id": "C_HEAT",
+            "verb": "HEAT_THEME",
+            "text": "Il Tema di questa domanda si scalda di 1.",
+            "for": [
+              "Q_SMUGGLING_COVE",
+              "Q_SMUGGLING_CUSTOMS"
+            ]
           }
         ],
         "failure": [
@@ -7769,12 +10886,18 @@
           {
             "id": "Q_SMUGGLING_COVE",
             "text": "La cala vecchia scarica di notte: si chiude, o si apre?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_DEBT_FORGIVEN"
+            ]
           },
           {
             "id": "Q_SMUGGLING_CUSTOMS",
             "text": "E i doganieri che guardano il mare sbagliato?",
-            "eligibility": []
+            "eligibility": [],
+            "base": [
+              "CNS_COST_GUARD"
+            ]
           }
         ],
         "propositions": [
