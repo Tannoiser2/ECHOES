@@ -37,6 +37,7 @@ const OUTCOMES: Dictionary = {
 	"SUCCESS_WITH_COST": "Passa, ma si paga",
 	"SUCCESS": "Passa",
 	"DECISIVE_SUCCESS": "Passa senza discussione",
+	"COUNTER": "Vince l'altra domanda",
 }
 
 ## L'esito a colori: verde quando passa, rosso quando cade, ocra quando passa
@@ -46,6 +47,7 @@ const VERDICT_COLOURS: Dictionary = {
 	"SUCCESS_WITH_COST": "#e8b563",
 	"SUCCESS": "#6fa88a",
 	"DECISIVE_SUCCESS": "#6fa88a",
+	"COUNTER": "#7fa6c9",
 }
 
 ## La carta girata a sinistra e il conto a destra hanno una larghezza loro;
@@ -534,6 +536,26 @@ func _render_consequences(
 func _render_outcome(council: Dictionary) -> void:
 	var die: int = int(council.get("die", 0))
 	_verdict.text = ""
+	# **A due domande** (D-467): niente dado, il mucchio e' la soglia.
+	if council.has("sides"):
+		var pile: int = int(council.get("pile", 0))
+		var result_v: Variant = council.get("result", null)
+		if result_v == null:
+			_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
+			return
+		var settled: Dictionary = result_v as Dictionary
+		var outcome_two: String = str(settled["outcome"])
+		_outcome.text = "\n".join(PackedStringArray([
+			"A %d · B %d · mucchio %d" % [
+				int(settled["support_total"]), int(settled["oppose_total"]), pile,
+			],
+			"Margine %+d" % int(settled["margin"]),
+		]))
+		_verdict.text = str(OUTCOMES.get(outcome_two, outcome_two))
+		_verdict.add_theme_color_override(
+			"font_color", Color(str(VERDICT_COLOURS.get(outcome_two, "#efe7d8")))
+		)
+		return
 	if die <= 0:
 		_outcome.text = "Il dado del mondo si tira quando tutti hanno detto la loro."
 		return

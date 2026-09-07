@@ -416,6 +416,10 @@
                   "default": 0
                 }
               }
+            },
+            "two_questions": {
+              "type": "boolean",
+              "description": "Il Consiglio a due domande (D-467, giro 3): la carta girata offre le sue due domande in contrasto, il proponente ne prende una e il tavolo si divide in due parti che posano pedine sulle caselle marcate; niente proposta scelta, niente dado. Il voto e' a tre esiti contro il mucchio: una parte vince se supera l'altra e arriva ai gettoni caduti sulla domanda, se no non passa nessuna. Senza questa dichiarazione il Consiglio e' quello di D-280."
             }
           }
         },

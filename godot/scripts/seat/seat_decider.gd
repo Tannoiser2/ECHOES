@@ -568,6 +568,83 @@ static func _proposition_label(said: Dictionary, fallback_text: String) -> Strin
 	return "%s\nSe passa: %s" % [str(said["text"]), " · ".join(PackedStringArray(leaves))]
 
 
+## **Da che parte stare, e cosa posare** (D-467, giro 3), per una persona: le
+## caselle libere delle due parti, una per riga, con la domanda che servono.
+## La scelta e' una sola — la parte la dice la casella.
+func choose_side(
+	entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
+) -> Dictionary:
+	if not _is_human(entity_id):
+		return fallback.choose_side(entity_id, context, offer, session)
+	_speaking_to = entity_id
+	var labels: Array = []
+	var choices: Array = []
+	for side in ["A", "B"]:
+		var question: String = session.confluence.say(_side_question_text(side, session))
+		for voice in (offer.get(side, []) as Array):
+			labels.append("Con %s — %s\n%s" % [side, question, _box_label(voice as Dictionary)])
+			choices.append({"side": side, "voice_id": str((voice as Dictionary)["id"])})
+	var choice: int = await _choose(
+		"  %s, da che parte stai, e cosa posi?" % _name(entity_id, session), labels
+	)
+	if choice < 0:
+		return fallback.choose_side(entity_id, context, offer, session)
+	return choices[choice] as Dictionary
+
+
+## La prima pedina di chi propone: un beneficio libero della sua domanda.
+func choose_box(
+	entity_id: String, context: Dictionary, menu: Array, side: String, session: RefCounted
+) -> String:
+	if not _is_human(entity_id):
+		return fallback.choose_box(entity_id, context, menu, side, session)
+	_speaking_to = entity_id
+	var labels: Array = []
+	for voice in menu:
+		labels.append(_box_label(voice as Dictionary))
+	var choice: int = await _choose("  %s, cosa posi per prima?" % _name(entity_id, session), labels)
+	if choice < 0:
+		return fallback.choose_box(entity_id, context, menu, side, session)
+	return str((menu[choice] as Dictionary)["id"])
+
+
+## Rilanciare o passare: le caselle libere della propria parte, e «Passa».
+func choose_raise(
+	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+) -> String:
+	if not _is_human(entity_id):
+		return fallback.choose_raise(entity_id, context, menu, session)
+	_speaking_to = entity_id
+	var labels: Array = []
+	for voice in menu:
+		labels.append(_box_label(voice as Dictionary))
+	labels.append("Passa")
+	var choice: int = await _choose("  %s, rilanci?" % _name(entity_id, session), labels)
+	if choice < 0:
+		return fallback.choose_raise(entity_id, context, menu, session)
+	if choice >= menu.size():
+		return ""
+	return str((menu[choice] as Dictionary)["id"])
+
+
+static func _box_label(voice: Dictionary) -> String:
+	return "%s: %s" % [
+		"Beneficio" if str(voice.get("list", "benefits")) == "benefits" else "Costo",
+		str(voice.get("text", "")),
+	]
+
+
+func _side_question_text(side: String, session: RefCounted) -> String:
+	var template: Dictionary = session.data.confluence_template_for(
+		str(session.confluence.current.get("tension_id", ""))
+	)
+	var question_id: String = session.confluence.side_question(side)
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) == question_id:
+			return str((entry as Dictionary).get("text", ""))
+	return question_id
+
+
 func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
 	if not _is_human(entity_id):
 		return fallback.choose_stance(entity_id, context, session)

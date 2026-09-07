@@ -177,7 +177,9 @@ func _report(title: String, run: Dictionary, data: RefCounted) -> void:
 		int(councils[councils.size() / 2]), int(councils[0]),
 		int(councils[councils.size() - 1]),
 	])
-	var bands: Array = ["FAILURE", "SUCCESS_WITH_COST", "SUCCESS", "DECISIVE_SUCCESS"]
+	# **COUNTER** e' l'esito nuovo di D-467: vince l'altra domanda. Senza questa
+	# colonna 131 Consigli su 484 sparivano dalla riga.
+	var bands: Array = ["FAILURE", "SUCCESS_WITH_COST", "SUCCESS", "DECISIVE_SUCCESS", "COUNTER"]
 	var line: Array = []
 	for band in bands:
 		line.append("%s %d" % [str(band).substr(0, 4), int(run["outcomes"].get(band, 0))])

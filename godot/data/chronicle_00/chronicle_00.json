@@ -20,6 +20,7 @@
         "displacement_on_decrease": 1
       },
       "confluence_rules": {
+        "two_questions": true,
         "opposer_recovers_on_failure": false,
         "failure_delta": -1,
         "alliance_weight": {

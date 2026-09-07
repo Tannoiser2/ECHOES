@@ -543,6 +543,12 @@ func run_confluence(
 				log.bullet("Domanda non valida (%s): si mantiene quella di default." % controller.last_error)
 				illegal_actions += 1
 
+	# **Il Consiglio a due domande** (D-467, giro 3): niente proposta, niente
+	# prezzo comprato coi gettoni, niente dado. Due parti, le caselle, il
+	# rilancio, il voto contro il mucchio.
+	if controller.two_questions():
+		return await _run_two_questions(controller, context, decider)
+
 	var options: Array = controller.available_propositions()
 	if options.is_empty():
 		log.bullet("Confluence senza proposte disponibili: annullata.")
@@ -670,6 +676,111 @@ func run_confluence(
 				])
 				illegal_actions += 1
 
+	return await _close_the_council(controller, context, decider)
+
+
+## **Il giro a due domande** (D-467 §3). A ha scelto la sua domanda e posa una
+## pedina su un beneficio libero, gratis. Poi ogni seggio, nell'ordine di
+## sempre, **prende posizione** — con A o con l'altra domanda — e posa una
+## pedina su una casella libera della sua parte, beneficio o costo: al primo
+## giro si posa, non si passa, se c'e' dove. Poi si rilancia a giro, e chi
+## non ha piu' niente da posare passa; quando tutti passano, il prezzo si
+## conta per parte e si vota. Un cervello che non sa scegliere (has_method)
+## prende la prima casella e passa al secondo giro: nessun tavolo si ferma
+## perche' un decisore e' vecchio.
+func _run_two_questions(controller: RefCounted, context: Dictionary, decider: Object) -> Dictionary:
+	var proponent: String = str(context["proponent"])
+	var first: Array = []
+	for entry in controller.box_menu("A"):
+		if str((entry as Dictionary)["list"]) == "benefits":
+			first.append(entry)
+	if first.is_empty():
+		log.bullet("D. %s non ha un beneficio libero da posare: propone a mani vuote." % _name(proponent))
+	else:
+		var picked: String = await _pick_box(decider, proponent, context, first, "A")
+		if not controller.place_box(proponent, picked):
+			log.bullet("Pedina rifiutata (%s): si posa la prima." % controller.last_error)
+			illegal_actions += 1
+			controller.place_box(proponent, str((first[0] as Dictionary)["id"]))
+
+	for entity_id in controller.stance_order():
+		var seat: String = str(entity_id)
+		var offer: Dictionary = {"A": controller.box_menu("A"), "B": controller.box_menu("B")}
+		if (offer["A"] as Array).is_empty() and (offer["B"] as Array).is_empty():
+			controller.pass_turn(seat)
+			continue
+		var choice: Dictionary = await _pick_side(decider, seat, context, offer)
+		var side: String = str(choice.get("side", ""))
+		if not offer.has(side) or (offer[side] as Array).is_empty():
+			side = "A" if not (offer["A"] as Array).is_empty() else "B"
+		if not controller.join_side(seat, side):
+			log.bullet("Posizione rifiutata (%s): %s si astiene." % [controller.last_error, _name(seat)])
+			illegal_actions += 1
+			controller.pass_turn(seat)
+			continue
+		var voice_id: String = str(choice.get("voice_id", ""))
+		if not controller.place_box(seat, voice_id):
+			if voice_id != "":
+				log.bullet("Pedina rifiutata (%s): si posa la prima." % controller.last_error)
+				illegal_actions += 1
+			controller.place_box(seat, str(((offer[side] as Array)[0] as Dictionary)["id"]))
+
+	var order: Array = [proponent]
+	order.append_array(controller.stance_order())
+	var rounds: int = 0
+	while rounds < 12:
+		rounds += 1
+		var moved: bool = false
+		for entity_id in order:
+			var seat: String = str(entity_id)
+			var side: String = controller.side_of(seat)
+			if side == "" or controller.has_passed(seat):
+				continue
+			var menu: Array = controller.box_menu(side)
+			if menu.is_empty():
+				controller.pass_turn(seat)
+				continue
+			var raise: String = await _pick_raise(decider, seat, context, menu)
+			if raise == "":
+				controller.pass_turn(seat)
+			elif controller.place_box(seat, raise):
+				moved = true
+			else:
+				log.bullet("Rilancio rifiutato (%s): %s passa." % [controller.last_error, _name(seat)])
+				illegal_actions += 1
+				controller.pass_turn(seat)
+		if not moved:
+			break
+	controller.settle_prices()
+	return await _close_the_council(controller, context, decider)
+
+
+func _pick_box(decider: Object, entity_id: String, context: Dictionary, menu: Array, side: String) -> String:
+	if decider.has_method("choose_box"):
+		var picked: String = str(await decider.choose_box(entity_id, context, menu, side, session))
+		if picked != "":
+			return picked
+	return "" if menu.is_empty() else str((menu[0] as Dictionary)["id"])
+
+
+func _pick_side(decider: Object, entity_id: String, context: Dictionary, offer: Dictionary) -> Dictionary:
+	if decider.has_method("choose_side"):
+		var choice: Dictionary = await decider.choose_side(entity_id, context, offer, session)
+		if choice.has("side"):
+			return choice
+	var side: String = "A" if not (offer["A"] as Array).is_empty() else "B"
+	return {"side": side, "voice_id": str(((offer[side] as Array)[0] as Dictionary)["id"])}
+
+
+func _pick_raise(decider: Object, entity_id: String, context: Dictionary, menu: Array) -> String:
+	if decider.has_method("choose_raise"):
+		return str(await decider.choose_raise(entity_id, context, menu, session))
+	return ""
+
+
+## Gli impegni, il recupero, la risoluzione e i punti del dibattito: la coda
+## comune ai due giri del Consiglio.
+func _close_the_council(controller: RefCounted, context: Dictionary, decider: Object) -> Dictionary:
 	for entity_id in world["turn_order"]:
 		var limit: int = controller.max_commit_for(str(entity_id))
 		if limit <= 0:
@@ -717,6 +828,12 @@ func _score_the_debate(
 	if winners_gain <= 0 and silent_lose <= 0:
 		return deltas
 	var won: bool = ConfluenceResolution.is_success(str(result["outcome"]))
+	# A due domande vince una parte, e la parte e' un fronte (D-467): A e'
+	# «sostiene», B e' «si oppone»; se non passa nessuna non vince nessuno.
+	var winning_front: String = "SUPPORT" if won else "OPPOSE"
+	if result.has("winner"):
+		var side_won: String = str(result["winner"])
+		winning_front = "SUPPORT" if side_won == "A" else ("OPPOSE" if side_won == "B" else "")
 	for entity_id in world["turn_order"]:
 		var seat: String = str(entity_id)
 		var cards: int = (commits.get(seat, []) as Array).size()
@@ -725,7 +842,7 @@ func _score_the_debate(
 			else str((stances.get(seat, {}) as Dictionary).get("stance", "ABSTAIN"))
 		)
 		var delta: int = 0
-		if winners_gain > 0 and cards > 0 and ((won and side == "SUPPORT") or (not won and side == "OPPOSE")):
+		if winners_gain > 0 and cards > 0 and winning_front != "" and side == winning_front:
 			delta += winners_gain
 		if silent_lose > 0 and seat != proponent and cards == 0:
 			delta -= silent_lose

@@ -2119,6 +2119,133 @@ static func _names_a_question(voice: Dictionary) -> bool:
 	return str(voice.get("dove", "FOCUS")) != "QUESTION"
 
 
+## **Da che parte stare, e su quale casella** (D-467, giro 3).
+##
+## Una parte vale quello che la sua domanda lascia al mondo se vince — l'esito
+## di base, letto come una Conseguenza — piu' la casella migliore che posso
+## posarci sopra. Si sta dove il conto e' piu' alto; a parita' con A se il
+## proponente e' amico, con B se no. La casella e' la migliore della parte:
+## un beneficio se ne ho uno che vale, un costo altrimenti — e un costo qui
+## non e' un prezzo imposto a un altro, e' il dolore che accetto per la mia
+## parte, quindi il meno doloroso.
+func choose_side(
+	entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
+) -> Dictionary:
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var best: Dictionary = {"side": "", "voice_id": "", "score": -1000000}
+	for side in ["A", "B"]:
+		var menu: Array = offer.get(side, []) as Array
+		if menu.is_empty():
+			continue
+		var leader: String = session.confluence.side_leader(side)
+		if leader == "":
+			leader = entity_id
+		var value: int = _side_base_score(side, entity_id, leader, goals, session, bindings)
+		var box: Dictionary = _best_box(menu, entity_id, leader, goals, session, bindings)
+		var score: int = value + int(box["score"])
+		if score > int(best["score"]) or (
+			score == int(best["score"]) and side == "A" == _is_friend(entity_id, str(context["proponent"]), session)
+		):
+			best = {"side": side, "voice_id": str(box["id"]), "score": score}
+	return {"side": str(best["side"]), "voice_id": str(best["voice_id"])}
+
+
+## La prima pedina di chi propone: il beneficio che gli vale di piu'.
+func choose_box(
+	entity_id: String, context: Dictionary, menu: Array, side: String, session: RefCounted
+) -> String:
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var leader: String = session.confluence.side_leader(side)
+	if leader == "":
+		leader = entity_id
+	return str(_best_box(menu, entity_id, leader, goals, session, bindings)["id"])
+
+
+## **Rilanciare o passare.** Si posa un beneficio se ce n'e' uno che vale e la
+## parte puo' ancora coprirlo; se la parte ha un beneficio scoperto si posa il
+## costo meno doloroso; altrimenti si passa. Cosi' un cervello non lascia mai
+## una pedina che il prezzo togliera' al voto.
+func choose_raise(
+	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
+) -> String:
+	var side: String = session.confluence.side_of(entity_id)
+	if side == "" or menu.is_empty():
+		return ""
+	var goals: Dictionary = _tag_goals(entity_id, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var leader: String = session.confluence.side_leader(side)
+	var benefits: int = session.confluence.side_boxes(side, "benefits").size()
+	var costs: int = session.confluence.side_boxes(side, "costs").size()
+	var best_benefit: Dictionary = {"id": "", "score": 0}
+	var best_cost: Dictionary = {"id": "", "score": -1000000}
+	for voice in menu:
+		var kind: String = str((voice as Dictionary).get("list", "benefits"))
+		var score: int = _voice_score(voice as Dictionary, kind, entity_id, leader, goals, session, bindings)
+		if kind == "benefits":
+			if score > int(best_benefit["score"]):
+				best_benefit = {"id": str((voice as Dictionary)["id"]), "score": score}
+		elif score > int(best_cost["score"]):
+			best_cost = {"id": str((voice as Dictionary)["id"]), "score": score}
+	if benefits > costs and str(best_cost["id"]) != "":
+		return str(best_cost["id"])
+	if str(best_benefit["id"]) != "" and benefits <= costs:
+		return str(best_benefit["id"])
+	return ""
+
+
+## Quanto vale, per questo seggio, l'esito di base della domanda di una parte.
+func _side_base_score(
+	side: String, entity_id: String, leader: String, goals: Dictionary,
+	session: RefCounted, bindings: Dictionary
+) -> int:
+	var template: Dictionary = session.data.confluence_template_for(
+		str(session.confluence.current.get("tension_id", ""))
+	)
+	var question_id: String = session.confluence.side_question(side)
+	var spoken: Dictionary = bindings
+	if leader != str(bindings.get("proponent", "")):
+		spoken = bindings.duplicate()
+		spoken["proponent"] = leader
+	var score: int = 0
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) != question_id:
+			continue
+		for consequence_id in ((entry as Dictionary).get("base", []) as Array):
+			score += _consequence_score(str(consequence_id), entity_id, leader, goals, session, spoken)
+	return score
+
+
+## La casella migliore di un menu per questo seggio, con la parte che parla di
+## chi la guida: un beneficio che vale, o il costo meno doloroso.
+func _best_box(
+	menu: Array, entity_id: String, leader: String, goals: Dictionary,
+	session: RefCounted, bindings: Dictionary
+) -> Dictionary:
+	var spoken: Dictionary = bindings
+	if leader != str(bindings.get("proponent", "")):
+		spoken = bindings.duplicate()
+		spoken["proponent"] = leader
+	var best: Dictionary = {"id": "", "score": -1000000}
+	for voice in menu:
+		var kind: String = str((voice as Dictionary).get("list", "benefits"))
+		var score: int = _voice_score(voice as Dictionary, kind, entity_id, leader, goals, session, spoken)
+		if kind == "costs":
+			# Un costo si posa solo se non c'e' un beneficio che valga: lo si
+			# tiene sotto lo zero, cosi' un beneficio a zero lo batte.
+			score = mini(score, -1)
+		if score > int(best["score"]):
+			best = {"id": str((voice as Dictionary)["id"]), "score": score}
+	return best
+
+
+## Amico e' chi sta dal lato buono della pista dei rapporti.
+func _is_friend(entity_id: String, other: String, session: RefCounted) -> bool:
+	var level: String = str(session.service.relation_level(entity_id, other)) if session.service.has_method("relation_level") else "NEUTRAL"
+	return level == "ALLY" or level == "BOUND"
+
+
 ## **E decide, prima, se pagare per far cadere** (D-419, ISSUES 119).
 ##
 ## Lo stesso gettone ha due usi, e sono uno la rinuncia dell'altro: su un costo

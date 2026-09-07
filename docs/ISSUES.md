@@ -10055,6 +10055,11 @@ cancello dei 100 semi:
 2. ✔ la carta a due domande nei dati, col validatore che morde — **giro 2
    fatto in 0.1.438** ([D-469](DECISIONS.md#d-469)): esito di base, sei
    caselle per lato marcate a regola, il retro stampato che le dice;
-3. il motore del Consiglio: rilancio, prezzo per parte, voto a tre esiti;
-4. il cervello dei bot e la pagina.
+3. ✔ il motore del Consiglio: rilancio, prezzo per parte, voto a tre esiti —
+   **giro 3 fatto in 0.1.439** ([D-470](DECISIONS.md#d-470)), sotto la
+   dichiarazione `two_questions` della Chronicle; il giro vecchio resta nel
+   codice per le prove di D-280, ed e' un debito: portarle alla regola nuova
+   e toglierlo;
+4. il cervello dei bot e la pagina — e la taratura della soglia: coi cervelli
+   di oggi quattro Consigli su dieci non decidono niente.
 

@@ -93,6 +93,23 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 
 func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> String:
 	var outcome: String = str(result["outcome"])
+	# **A due domande** (D-467): il registro tiene la domanda che ha vinto, o
+	# che nessuna e' arrivata al mucchio. Niente proposta, niente dado.
+	if context.has("sides"):
+		var winner: String = str(result.get("winner", ""))
+		var count: String = "A%d B%d, mucchio %d" % [
+			int(result["support_total"]), int(result["oppose_total"]), int(result.get("pile", 0)),
+		]
+		if winner == "":
+			return "%s: nessuna delle due domande arrivo' al mucchio (%s)." % [str(template["title"]), count]
+		var question_id: String = str(((context["sides"] as Dictionary)[winner] as Dictionary).get("question_id", ""))
+		var asked: String = str(template["title"])
+		for entry in template.get("questions", []) as Array:
+			if str((entry as Dictionary).get("id", "")) == question_id:
+				asked = str((entry as Dictionary).get("text", ""))
+		if narrative != null:
+			asked = narrative.fill(asked, context.get("text_bindings", {}))
+		return "Il Consiglio rispose: %s (%s)." % [asked, count]
 	var proposition_summary: String = ""
 	for proposition in template.get("propositions", []):
 		if str(proposition["id"]) != str(context.get("proposition_id", "")):

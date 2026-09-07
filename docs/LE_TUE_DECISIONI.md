@@ -420,6 +420,14 @@ nel catalogo dei Consigli le vedi per ogni domanda, e dove la carta dice
 altro le correggi tu. Il tetto di quattro caselle che avevi dato in D-453 e'
 passato a sei, e la ragione e' scritta. Restano i giri 3 e 4.
 
+**Giro 3 fatto in 0.1.439** ([D-470](DECISIONS.md#d-470)): il tavolo gioca il
+Consiglio della regola — due parti, le caselle, il rilancio, il prezzo per
+parte, il voto senza dado contro il mucchio. Misurato su cento anni: nessuno
+si astiene piu', la controdomanda vince una volta su quattro, e quattro
+Consigli su dieci non decidono niente perche' i cervelli non giocano ancora
+per arrivare al mucchio. E' il giro 4: il cervello, la pagina, e la soglia
+da tarare se resta cosi'.
+
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in

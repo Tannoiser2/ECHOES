@@ -16,6 +16,10 @@ const FAILURE: String = "FAILURE"
 const SUCCESS_WITH_COST: String = "SUCCESS_WITH_COST"
 const SUCCESS: String = "SUCCESS"
 const DECISIVE: String = "DECISIVE_SUCCESS"
+## **Vince la controdomanda** (D-467, giro 3): la parte B ha superato la A e
+## il mucchio. Per chi propone e' una sconfitta, per il mondo e' una decisione:
+## si applicano l'esito di base e le caselle della domanda B.
+const COUNTER: String = "COUNTER"
 
 ## §12.2 F: 1d6 mapped to the World Factor.
 const WORLD_FACTOR_TABLE: Array = [-2, -1, 0, 0, 1, 2]
@@ -65,8 +69,35 @@ static func outcome_for(margin: int) -> String:
 	return DECISIVE
 
 
+## Il successo di **chi propone**: la sua domanda e' passata. La controdomanda
+## che vince (COUNTER) e' una decisione del tavolo, non un successo di A.
 static func is_success(outcome: String) -> bool:
-	return outcome != FAILURE
+	return outcome != FAILURE and outcome != COUNTER
+
+
+## **Il voto a tre esiti, contro il mucchio** (D-467). Niente dado: una parte
+## vince se supera l'altra **e** arriva al mucchio dei gettoni caduti sulla
+## domanda; a parita', o se nessuna ci arriva, non passa nessuna. Le fasce di
+## A restano quelle di sempre sul margine su B, cosi' il conto degli esiti si
+## legge come prima; B che vince e' una fascia sua.
+static func two_sides_outcome(a_total: int, b_total: int, pile: int) -> String:
+	if a_total > b_total and a_total >= pile:
+		var margin: int = a_total - b_total
+		if margin >= 5:
+			return DECISIVE
+		if margin >= 2:
+			return SUCCESS
+		return SUCCESS_WITH_COST
+	if b_total > a_total and b_total >= pile:
+		return COUNTER
+	return FAILURE
+
+
+## Quale parte ha vinto: "A", "B", o "" se non e' passata nessuna.
+static func winner_of(outcome: String) -> String:
+	if outcome == COUNTER:
+		return "B"
+	return "A" if is_success(outcome) else ""
 
 
 ## Resolve one Confluence.
