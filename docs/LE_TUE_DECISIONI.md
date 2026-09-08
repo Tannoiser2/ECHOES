@@ -272,11 +272,11 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **133** |
+| voci scritte | **134** |
 | chiuse | **123** |
-| aperte | **10** |
+| aperte | **11** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **10** |
+| di cui sono mie da fare | **11** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,10 +307,10 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **1** | **io**, da sola, senza aspettare niente |
+| 🟡 | **2** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
+**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
 numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
@@ -381,7 +381,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **una**
+# 🟡 Sono mie, e non aspettano niente: **due**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -445,6 +445,34 @@ Tre cose restano da decidere, e sono tue: **i gettoni del RIVENDICARE**, che
 la carta da' ancora e il Consiglio non chiede piu' — si tolgono, o servono
 a qualcos'altro?; **le proposte stampate sulle carte**, che la scheda mostra
 e nessuno vota piu'; e il segno che pesava sul dado, senza piu' un dado.
+
+### M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **aperta in 0.1.442**
+
+Hai giocato un anno e mi hai scritto sette cose. Le ho cercate tutte nel
+codice prima di risponderti, e stanno in [D-473](DECISIONS.md#d-473):
+
+- **«19 mosse»** era il conto dei posti del tavolo che accettano quella carta.
+  Un numero che al tavolo non tiene nessuno. **Via**: adesso la riga porta i
+  nomi delle due Azioni stampate sulla carta.
+- **la carta di Propp**: le carte Eco ci sono ancora — le cali tu da D-360 —
+  ma la riga «funzione di Propp» era il nome che l'autore da' alla carta
+  mentre la scrive. **Via**.
+- **i doppioni della scheda della casa**: avevi ragione tre volte. Le domande
+  e i sei Temi stanno nella colonna a sinistra, i rapporti nella riga dei
+  seggi. **Via da qui**, restano dove il dito li tocca.
+- **le tre carte Obiettivo**: c'erano da sempre e le scrivevo come tre righe.
+  **Adesso sono tre carte.**
+- **le adiacenze**: cambiano col seme, tessere comprese. Fissa e' solo la
+  cornice 3x2. L'Isola Muta porta **due** varchi stampati, non uno: se ne deve
+  avere uno solo e' una riga nei dati, e la parola e' tua.
+- **la terza Chronicle**: non l'ho riprodotta. Il motore gioca dieci anni, la
+  logica della porta ne offre dieci, e nel browser ho fatto giocare l'app fino
+  in fondo — **dieci anni, dall'800 al 2020**, e si chiude da sola. Ti chiedo
+  cosa vedevi: la partita si bloccava, o l'offerta non compariva?
+- **«troppo testo»**: e' la riga che tiene tutte le altre, ed e' la regola
+  nuova. *Sulla pagina c'e' quello che sta sul tavolo, e nella forma in cui ci
+  sta.* Il testo resta in due posti: la riga che racconta cosa e' successo, e
+  il verbale. Tre giri, e il conto dei testi della pagina deve scendere.
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
@@ -907,8 +935,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
-muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

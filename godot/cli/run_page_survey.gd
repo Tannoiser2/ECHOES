@@ -74,6 +74,10 @@ const TAVOLETTA_ALTA: float = 1024.0
 const CARATTERE_MINIMO: float = 11.0
 const CARATTERE_COMODO: float = 17.0
 
+## Quanto e' lunga una **frase** (D-473): sotto questa misura un testo e' un
+## nome, e un nome ripetuto sulla pagina e' il tavolo, non un doppione.
+const FRASE: int = 25
+
 
 var _out_path: String = "docs/MISURA_PAGINA.md"
 var _pages: Array = []
@@ -161,6 +165,7 @@ func _survey() -> void:
 	var undeclared: Array = []
 	var technical: Array = []
 	var fonts: Array = []
+	var said: Array = []
 	var widths: Array = []
 	var nodes: int = 0
 	var targets: int = 0
@@ -171,7 +176,7 @@ func _survey() -> void:
 		var root: Node = page["node"] as Node
 		var name: String = str(page["name"])
 		var seen: Dictionary = {"nodes": 0, "targets": 0, "words": 0, "rich": 0}
-		_walk(root, name, seen, mouse, small, undeclared, technical, fonts)
+		_walk(root, name, seen, mouse, small, undeclared, technical, fonts, said)
 		nodes += int(seen["nodes"])
 		targets += int(seen["targets"])
 		words += int(seen["words"])
@@ -196,8 +201,10 @@ func _survey() -> void:
 		quit(4)
 		return
 
+	var doppioni: Array = _doubled(said)
 	var lines: Array = _write(
-		nodes, targets, words, rich, mouse, small, undeclared, technical, widths, fonts
+		nodes, targets, words, rich, mouse, small, undeclared, technical, widths, fonts,
+		doppioni
 	)
 	var file: FileAccess = FileAccess.open(out_path, FileAccess.WRITE)
 	if file == null:
@@ -356,9 +363,15 @@ static func _open_a_council(session: RefCounted) -> void:
 
 func _walk(
 	node: Node, page: String, seen: Dictionary,
-	mouse: Array, small: Array, undeclared: Array, technical: Array, fonts: Array
+	mouse: Array, small: Array, undeclared: Array, technical: Array, fonts: Array,
+	said: Array = []
 ) -> void:
 	seen["nodes"] = int(seen["nodes"]) + 1
+	# **Quello che si legge, con il pannello che lo dice** (D-473): serve al
+	# conto dei doppioni, che e' il cancello di quel giro.
+	var words: String = _words_of(node)
+	if words != "":
+		said.append({"page": page, "text": words})
 	# **Ogni testo porta la sua taglia, e la taglia si legge sul tablet**
 	# (D-465): quella dichiarata dal nodo — o del tema, se non ne dichiara
 	# nessuna — per quanto vale un pixel della pagina sullo schermo vero.
@@ -410,6 +423,43 @@ func _walk(
 ## Un nodo che ha parole sotto gli occhi: un'etichetta con un testo, un bottone
 ## con una scritta, un blocco di testo ricco (le cui parole restano fuori, ma
 ## la taglia no: quella e' dichiarata).
+## La sezione dei doppioni, in coda alle altre.
+static func _doubled_section(doppioni: Array) -> Array:
+	var lines: Array = []
+	lines.append("")
+	lines.append("## Quello che la pagina dice in due punti")
+	lines.append("")
+	lines.append(
+		"Un fatto detto in due posti e' due posti da tenere allineati, e due"
+		+ " occasioni di dire due cose diverse ([D-473](DECISIONS.md#d-473))."
+		+ " Si contano le **frasi** — sopra i %d caratteri — perche' un nome" % FRASE
+		+ " ripetuto e' il tavolo: la stessa casa ha una pedina, un posto nella"
+		+ " riga dei seggi e una carta."
+	)
+	lines.append("")
+	if doppioni.is_empty():
+		lines.append("**Nessuna.** Ogni frase della pagina si legge in un posto solo.")
+		return lines
+	lines.append("| la frase | detta in |")
+	lines.append("|---|---|")
+	for entry_v in doppioni:
+		var entry: Dictionary = entry_v as Dictionary
+		lines.append("| %s | %s |" % [
+			str(entry["text"]).substr(0, 90).replace("|", "/").replace("\n", " "),
+			" · ".join(PackedStringArray(entry["pages"] as Array)),
+		])
+	return lines
+
+
+## Il testo che un nodo mette sotto gli occhi, ripulito. Vuoto se non ne ha.
+static func _words_of(node: Node) -> String:
+	if node is Label:
+		return str((node as Label).text).strip_edges()
+	if node is BaseButton and node.get("text") != null:
+		return str(node.get("text")).strip_edges()
+	return ""
+
+
 static func _has_words(node: Node) -> bool:
 	if node is RichTextLabel:
 		return true
@@ -522,10 +572,43 @@ static func _who(node: Node) -> String:
 	return node.get_class()
 
 
+## **Quello che la pagina dice due volte** (D-473).
+##
+## Un fatto detto in due punti della pagina e' due punti da tenere allineati e
+## due occasioni di dire due cose diverse: e' il difetto che il committente ha
+## trovato nella scheda della propria casa, che ripeteva le domande della
+## colonna e i rapporti della riga dei seggi.
+##
+## Si contano le **frasi**, non i nomi: sopra i venticinque caratteri. Un nome
+## che compare due volte e' il tavolo — la stessa casa ha una pedina, un posto
+## nella riga dei seggi e una carta — mentre una frase ripetuta e' un pezzo di
+## pagina scritto due volte.
+static func _doubled(said: Array) -> Array:
+	var where: Dictionary = {}
+	for entry_v in said:
+		var entry: Dictionary = entry_v as Dictionary
+		var text: String = str(entry["text"])
+		if text.length() <= FRASE:
+			continue
+		if not where.has(text):
+			where[text] = {}
+		(where[text] as Dictionary)[str(entry["page"])] = true
+	var out: Array = []
+	var texts: Array = where.keys()
+	texts.sort()
+	for text in texts:
+		var pages: Array = (where[text] as Dictionary).keys()
+		if pages.size() < 2:
+			continue
+		pages.sort()
+		out.append({"text": str(text), "pages": pages})
+	return out
+
+
 func _write(
 	nodes: int, targets: int, words: int, rich: int,
 	mouse: Array, small: Array, undeclared: Array, technical: Array, widths: Array,
-	fonts: Array
+	fonts: Array, doppioni: Array = []
 ) -> Array:
 	var tiny: Array = []
 	var narrow: int = 0
@@ -576,6 +659,7 @@ func _write(
 	lines.append("| **piu' stretti di un dito (%d px)** | **%d** |" % [int(DITO), small.size()])
 	lines.append("| di cui non dichiarano nessuna misura | %d |" % undeclared.size())
 	lines.append("| **parole tecniche sotto gli occhi** | **%d** |" % technical.size())
+	lines.append("| **frasi che la pagina dice in due punti** | **%d** |" % doppioni.size())
 	lines.append("| testi con una taglia | %d |" % fonts.size())
 	lines.append("| **piu' piccoli di %d punti sul tablet** | **%d** |" % [int(CARATTERE_MINIMO), tiny.size()])
 	lines.append("| sotto i %d punti, che la guida chiama «corpo» | %d |" % [int(CARATTERE_COMODO), narrow])
@@ -771,6 +855,7 @@ func _write(
 	sizes.sort()
 	for size_v in sizes:
 		lines.append("| %d | %d |" % [int(size_v), int(by_size[size_v])])
+	lines.append_array(_doubled_section(doppioni))
 	return lines
 
 

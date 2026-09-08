@@ -86,10 +86,16 @@ func test_no_explanation_outlives_the_thing_it_explains() -> void:
 	panel.free()
 
 
-## **E la stessa cosa non si dice due volte.** La riga «CALORE» ripeteva a
-## parole i sei mazzetti che stanno disegnati sopra, e le quattro questioni si
-## chiamavano «le domande dell'anno» come se fossero *le* domande — mentre le
-## domande, da D-261, sono i mazzetti.
+## **E la stessa cosa non si dice due volte** — ne' qui dentro, ne' con quello
+## che sta gia' da un'altra parte della pagina (D-473, parola del committente:
+## *«nella scheda La mia casa ci sono anche informazioni ripetute (come le
+## tensioni), anche i rapporti sono visualizzati doppi»*).
+##
+## Tre doppioni, e ognuno aveva il suo posto vero altrove: le **domande**
+## stanno nella colonna di sinistra (`question_column.gd`), che e' anche il
+## posto dove ci cade INFLUENZARE; i **sei Temi** nella stessa colonna; i
+## **rapporti** nella riga dei seggi (`seats_strip.gd`), che e' anche il posto
+## dove cade FORGIARE. Qui resta la plancia della propria casa.
 func test_the_column_does_not_say_the_same_thing_twice() -> void:
 	var panel: Node = _panel()
 	var said: Array = []
@@ -100,10 +106,15 @@ func test_the_column_does_not_say_the_same_thing_twice() -> void:
 		column.contains("LE DOMANDE DELL'ANNO"),
 		"e le quattro questioni non si spacciano per le domande: %s" % column
 	)
-	assert_true(
-		column.contains("LE QUESTIONI GIA' APERTE"),
-		"si chiamano per quello che sono: %s" % column
-	)
+	assert_true(column.contains("LA TUA PLANCIA"), "la plancia dice cos'e': %s" % column)
+	assert_false(column.contains("I RAPPORTI"), "i rapporti stanno sotto la mappa: %s" % column)
+	# E nessuna delle domande in gioco e' nominata: quelle sono della colonna.
+	for tension_id in session.world["tensions"]:
+		var title: String = str(session.data.tensions[str(tension_id)]["title"])
+		assert_false(
+			column.contains(title),
+			"«%s» si legge nella colonna delle domande, non qui" % title
+		)
 	panel.free()
 
 

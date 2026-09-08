@@ -10078,3 +10078,40 @@ da rivedere carta per carta nel catalogo; le fasce dell'esito di A che a due
 domande dicono meno; e quello che nessuna sonda misura: un Consiglio giocato
 da persone.
 
+
+### 130. La pagina e' fatta di carte, non di righe
+
+`ux` · voluta dal committente · **aperta in 0.1.442**
+
+> «Devi un po' rivedere tutta la GUI, troppo testo app e poco fedele al gioco
+> fisico che dovrebbe prevedere solo Carte.»
+
+Il committente ha giocato un anno e ha mandato sette osservazioni: il numero
+delle «mosse» che al tavolo non esiste, la carta che vuole vedere a destra, le
+sei Tensioni come sei schede, i doppioni della scheda della casa, le tre carte
+Obiettivo che mancano, la partita che sembrava fermarsi al terzo anno, e la
+riga di Propp rimasta su una carta. Ognuna e' stata cercata nel codice prima
+di rispondere, e le risposte stanno in [D-473](DECISIONS.md#d-473): quattro
+erano difetti, una un'idea di disegno, una una regola ricordata diversa, e una
+non si riproduce — nel browser la saga arriva a **dieci anni**, che e' la
+regola scritta.
+
+La regola nuova e' una riga: **sulla pagina c'e' quello che sta sul tavolo, e
+nella forma in cui ci sta.** Il testo resta in due posti soli: la riga che
+racconta cosa e' appena successo, e il verbale.
+
+**Fatto quando** i tre giri di D-473 sono percorsi, e il conto dei testi della
+[misura della pagina](MISURA_PAGINA.md) e' sceso:
+
+1. le quattro cose piccole e certe — via «N mosse», via «funzione di Propp», i
+   doppioni della scheda della casa, le tre carte Obiettivo al posto delle
+   righe;
+2. la colonna dei sei Temi come sei dorsi di carta, e la carta grande a destra;
+3. la sonda che conta i doppioni, e il conto dei testi rimisurato.
+
+**Cosa resta da decidere, e lo decide il committente:** se l'Isola Muta deve
+avere **un solo varco** invece dei due che porta stampati (oggi le adiacenze
+le fa il varco, non una lista scritta: [D-390](DECISIONS.md#d-390)); e cosa
+fermasse la sua partita al terzo anno, visto che tre misure diverse dicono
+dieci.
+

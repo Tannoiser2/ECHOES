@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.442 — La pagina e' fatta di carte: il disegno, e il primo giro
+
+[D-473](docs/DECISIONS.md#d-473), [ISSUES 130](docs/ISSUES.md#130). Sette
+osservazioni del committente davanti alla pagina, cercate una per una nel
+codice: quattro erano difetti, una un'idea di disegno, una una regola
+ricordata diversa, e una non si riproduce — la saga arriva a **dieci anni**
+nel motore, nella logica della porta e nell'app vera nel browser.
+
+Il primo giro toglie quello che il tavolo non ha: la riga della carta dice i
+nomi delle sue due Azioni invece di «19 mosse» (che era il conto dei posti);
+la carta Eco perde la riga «funzione di Propp»; la scheda della propria casa
+smette di ripetere le domande, i sei Temi e i rapporti, che stanno gia' nella
+colonna e nella riga dei seggi — **centocinquanta righe di codice in meno**;
+i tre Obiettivi pescati diventano **tre carte**, disegnate dalla stessa faccia
+che va in stampa (`ui/face_card.gd`, nuovo).
+
+Il secondo giro fa la stessa cosa col tavolo: la **colonna delle domande e'
+fatta di sei carte**, una per Tema, con la faccia stampata della Tensione e i
+gettoni coperti accanto; e la **carta che stai guardando** — quella toccata,
+o quella che hai in mano — si vede grande nella colonna di destra.
+
+Costo dichiarato, e correzione: i testi sotto gli occhi **salgono da 193 a
+233**. Il verbale prometteva che scendessero, e la misura ha detto che il
+numero era quello sbagliato — una carta dice quattro cose dove una riga ne
+diceva una, ed e' proprio quello che il committente ha chiesto. Il numero che
+questo giro deve far scendere e' quello dei **doppioni**, e il terzo giro e' la
+sonda che li conta: la misura della pagina ha adesso una sezione che elenca le
+frasi lette in due punti, e oggi ne trova **zero**. Lo zero e' provato su casi
+fabbricati, perche' in questo progetto uno zero e' quasi sempre la sonda cieca.
+
+---
+
 ## 0.1.441 — Il giro 5 di D-467: un motore solo, il Consiglio di D-280 esce dal codice
 
 [D-472](docs/DECISIONS.md#d-472). Il Consiglio con la proposta, i benefici
