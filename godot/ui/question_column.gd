@@ -193,6 +193,15 @@ func _say() -> void:
 		if fallen > 0:
 			face = face.duplicate()
 			face["corner"] = "%d gettoni" % fallen if fallen > 1 else "1 gettone"
+		# **E dove la soglia conta ancora, l'angolo dice il punteggio** — una
+		# Chronicle che non tiene il Consiglio a fine Atto apre a soglia, e
+		# allora quanto manca e' la cosa che si guarda. Coi mucchi coperti
+		# (D-450) il punteggio non si vede, e restano i gettoni.
+		if not _session.tensions.piles_are_covered():
+			var value: int = _session.service.visible_tension_value(id, _viewer)
+			if value >= 0:
+				face = face.duplicate()
+				face["corner"] = "%d/%d" % [value, _session.tensions.threshold(id)]
 		card.render(face, _session.data)
 		# La carta del mucchio piu' alto porta il bordo acceso: al tavolo e' il
 		# mazzetto che sta per andare al Consiglio, e si vede da lontano.

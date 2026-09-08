@@ -12,6 +12,7 @@ extends "res://tests/test_case.gd"
 
 const Effect := preload("res://scripts/core/effect.gd")
 const StatusPanel := preload("res://ui/status_panel.gd")
+const QuestionColumn := preload("res://ui/question_column.gd")
 const AssetCard := preload("res://ui/asset_card.gd")
 
 
@@ -47,6 +48,25 @@ func _panel() -> Node:
 	var panel: Node = StatusPanel.new()
 	panel.render(live, str(live.world["turn_order"][0]))
 	return panel
+
+
+## **Le domande stanno nella colonna** (D-473): la scheda della casa ha smesso
+## di ripeterle, e con loro se n'e' andata la riga col punteggio. Quello che
+## una domanda dice si legge sulla sua carta, e l'angolo della carta e' dove
+## sta il numero — i gettoni coperti, o il punteggio dove la soglia conta
+## ancora.
+func _questions_column(live: RefCounted) -> Node:
+	var column: Node = QuestionColumn.new()
+	column.render(live, str(live.world["turn_order"][0]))
+	return column
+
+
+## Tutto quello che si legge su un nodo e dentro di lui.
+func _said_by(node: Node, into: Array) -> void:
+	for child in node.get_children():
+		if child is Label:
+			into.append(str((child as Label).text))
+		_said_by(child, into)
 
 
 func _labels_of(node: Node, into: Array) -> void:
@@ -121,12 +141,14 @@ func test_the_question_track_does_not_teach_a_dead_threshold() -> void:
 		"ADJUST_TENSION", "tension", first, {"delta": 1},
 		Effect.source("system", "TENSION_TOKEN", "", 1, 1, 0)
 	))
-	var panel: Node = _panel()
-	var rows: Dictionary = panel.get("_rows")
-	assert_true(rows.size() >= 4, "le domande dell'anno ci sono: %d" % rows.size())
+	var column: Node = _questions_column(live)
+	var places: Dictionary = column.get("slots")
+	assert_true(places.size() >= 4, "le domande dell'anno ci sono: %d" % places.size())
 	var marked: int = 0
-	for tension_id in rows:
-		var said: String = str(((rows[tension_id] as Dictionary)["value"] as Label).text)
+	for tension_id in live.world["tensions"]:
+		var lines: Array = []
+		_said_by(places["tension:%s" % str(tension_id)] as Node, lines)
+		var said: String = " · ".join(PackedStringArray(lines))
 		assert_false(
 			said.contains("/"),
 			"«%s» non promette piu' una soglia: «%s»" % [str(tension_id), said]
@@ -134,10 +156,10 @@ func test_the_question_track_does_not_teach_a_dead_threshold() -> void:
 		# Coi mucchi coperti (D-450) davanti c'e' il mucchio con piu' gettoni,
 		# e la riga lo dice cosi': dire «va al Consiglio» sarebbe una bugia,
 		# perche' i gettoni si girano a fine Atto e pesano 0, 1 o 2.
-		if said.contains("Consiglio") or said.contains("a pari") or said.contains("piu' alto"):
+		if said.contains("gettone") or said.contains("gettoni"):
 			marked += 1
-	assert_true(marked >= 1, "e la domanda davanti si vede che e' davanti")
-	panel.free()
+	assert_true(marked >= 1, "e la domanda davanti porta i suoi gettoni sull'angolo")
+	column.free()
 
 
 ## Con la soglia ancora viva, invece, la riga la dice: la regola sta nei dati e
@@ -156,13 +178,15 @@ func test_where_the_threshold_still_opens_something_the_row_says_so() -> void:
 	var tokens: Dictionary = chronicle.get("tension_tokens", {}) as Dictionary
 	var covered_before: Variant = tokens.get("covered")
 	tokens.erase("covered")
-	var panel: Node = _panel()
-	var rows: Dictionary = panel.get("_rows")
+	var column: Node = _questions_column(live)
+	var places: Dictionary = column.get("slots")
 	var with_threshold: int = 0
-	for tension_id in rows:
-		if str(((rows[tension_id] as Dictionary)["value"] as Label).text).contains("/"):
+	for tension_id in live.world["tensions"]:
+		var lines: Array = []
+		_said_by(places["tension:%s" % str(tension_id)] as Node, lines)
+		if " · ".join(PackedStringArray(lines)).contains("/"):
 			with_threshold += 1
-	panel.free()
+	column.free()
 	rules["at_end_of_act"] = before
 	if covered_before != null:
 		tokens["covered"] = covered_before

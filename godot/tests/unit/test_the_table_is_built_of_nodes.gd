@@ -63,10 +63,20 @@ func test_the_map_names_its_tiles_and_seats_its_questions() -> void:
 			slot.custom_minimum_size.y >= 44.0,
 			"e il posto e' alto almeno un dito (D-243): %.0f" % slot.custom_minimum_size.y
 		)
-		var line: Label = slot.get_child(0) as Label
+		# **Dentro il posto c'e' la carta** (D-473): la faccia stampata della
+		# Tensione, non una riga di testo. Il titolo si legge su di lei.
+		var card: Control = slot.get_child(0)
+		assert_eq(
+			str(card.get("shown_id")), str(tension_id),
+			"e dentro c'e' la sua carta"
+		)
+		var said: Array = []
+		_labels_of(card, said)
 		assert_true(
-			line.text.begins_with(str(session.data.tensions[str(tension_id)]["title"])),
-			"e dice il titolo della domanda: %s" % line.text
+			" · ".join(PackedStringArray(said)).contains(
+				str(session.data.tensions[str(tension_id)]["title"])
+			),
+			"e la carta dice il titolo della domanda: %s" % " · ".join(PackedStringArray(said))
 		)
 	var themes: Dictionary = column.get("_themes")
 	assert_eq(themes.size(), session.data.themes.size(), "e tutti e sei i Temi hanno il loro mazzetto")
@@ -182,3 +192,11 @@ func test_every_seat_has_a_place_on_the_table() -> void:
 	(slots["entity:%s" % other] as Node).emit_signal("gui_input", tap)
 	assert_eq(answered, [3], "e posare la carta li' risponde")
 	_cleared(strip)
+
+
+## I testi di un nodo e di tutto quello che ci sta dentro.
+func _labels_of(node: Node, into: Array) -> void:
+	for child in node.get_children():
+		if child is Label:
+			into.append(str((child as Label).text))
+		_labels_of(child, into)
