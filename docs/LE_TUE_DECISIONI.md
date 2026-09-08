@@ -273,9 +273,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **138** |
-| chiuse | **127** |
-| aperte | **11** |
-| di cui **aspettano una tua decisione** | **1** |
+| chiuse | **128** |
+| aperte | **10** |
+| di cui **aspettano una tua decisione** | **0** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,19 +305,19 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **1** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle undici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su una tua parola.**
+**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **una**
+# 🔴 Aspettano te: **nessuna**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
 sono state quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai
@@ -557,7 +557,7 @@ Quattro cose da decidere:
    32 caselle, e la voce è la tua.
 4. **Le 19 caselle mai comprate.**
 
-### R17. [134](ISSUES.md#134) — i segni che non servono a niente: **aperta in 0.1.449**
+### ✔ R17. [134](ISSUES.md#134) — i segni che non servono a niente: **aperta in 0.1.449**
 
 *«Fammi un audit di tutti i TAG che non servono a un cazzo […] perché se un tag
 viene letto una volta da qualcuno, questo tag non serve a nulla.»*
@@ -619,6 +619,27 @@ Quattro cose da decidere:
    scritto invece di nasconderlo.
 
 Cancello **0 su 8**, Verita' 292 → 285 sul misto e 244 → **251** sull'uniforme.
+
+**E la tua parola e' arrivata**: *«via in ordine R14 in poi»*. **Chiusa in
+0.1.457** ([D-487](DECISIONS.md#d-487)).
+
+1. **Tre Scoperte hanno un nome.** Fra le due strade ho preso quella che
+   aggiunge: **Il Registro che Tiene** chiede il *Registro dei Traffici*, **Una
+   Legge Senza Corona** la *Legge Scritta*, **La Storia che si Racconta**
+   l'*Auspicio* — tutte e tre al Trionfo, e tutte e tre le piu' scritte del
+   gruppo. Le altre sei restano contate a peso: scrivere sei clausole per far
+   quadrare un audit sarebbe il modo peggiore di scrivere contenuto.
+2. **I dodici gettoni della pesca adesso lo dicono**: 48 frasi riscritte — *«Il
+   mondo ricorda: …, e l'anno prossimo la sua questione torna piu'
+   facilmente.»* La regola c'era; adesso e' stampata.
+3. **I quattro di un Destino solo restano**: sono contenuto di un tarocco, e
+   allargarli vorrebbe dire togliere loro la ragione di esistere.
+4. **Le cicatrici**: risposta gia' data nella R16 — pesano perche' sono
+   Cicatrici, e adesso la carta lo dice.
+
+**Il numero si e' mosso da solo, perche' l'audit e' generato:** i segni che
+guarda una mano sola o nessuna passano da **44 su 103** a **41 su 103**, e le
+fustelle che li servono da 42 a **39**. Cancello 0 su 8.
 
 
 ---
@@ -1325,9 +1346,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **una aspettano una tua parola**.
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

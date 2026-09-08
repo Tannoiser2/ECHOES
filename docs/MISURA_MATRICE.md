@@ -9,7 +9,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 |---|---|
 | segni nel dizionario | 175 |
 | di cui qualcuno scrive | 171 |
-| orfani in tutto | 51 |
+| orfani in tutto | 48 |
 | **di cui senza una ragione scritta** | **0** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -35,7 +35,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **51 su 51 portano gia' la loro
+Non tutti gli orfani sono un difetto: **48 su 48 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -45,7 +45,7 @@ la matrice deve prendere per primi.
 
 Nessuno.
 
-### Orfani dichiarati: 51
+### Orfani dichiarati: 48
 
 | segno | la ragione che porta scritta |
 |---|---|
@@ -55,9 +55,6 @@ Nessuno.
 | `crystal_site` | luogo stampato sulla tessera: la fonte del cristallo e' un **posto**, e serve da bersaglio a carte, Tensioni e Conseguen |
 | `discovery:supervised_record` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `discovery:the_measure` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
-| `discovery:the_omen` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
-| `discovery:trade_ledger` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
-| `discovery:written_law` | una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — |
 | `domain:ANCIENT` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
 | `domain:RESOURCE` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
 | `domain:SURVIVAL` | il dominio della Regione: e' il segno che dice quale Tensione guarda quale posto, e si legge cercandolo col dito sulla m |
