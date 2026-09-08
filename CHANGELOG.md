@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.446 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
+
+[D-476](docs/DECISIONS.md#d-476), [ISSUES 129](docs/ISSUES.md#129). Parola del
+committente: *«il Rivendicare dovrebbe sempre dare i gettoni con cui "comprare"
+benefici e costi»*. Li dava gia' — da D-387, con parole sue — e da D-472 non
+avevano piu' dove spendersi.
+
+**Il cambio e' stato misurato prima di scriverlo**, con una sonda nuova
+(`run_claim_probe`): su 100 anni il RIVENDICARE conia **220 gettoni**, 2,20
+l'anno su tutto il tavolo, contro **3.055 pedine posate** nei Consigli. Un
+gettone dovrebbe comprarne quattordici perche' il tavolo resti pieno: far
+pagare ogni pedina non e' un'economia, e' un Consiglio spento.
+
+Quindi il gettone fa la cosa che il tetto non permette: **ne alza il bordo di
+uno**. Una parte puo' avere al massimo un beneficio in piu' dei suoi costi;
+ogni gettone speso ne aggiunge uno. E' l'aritmetica di D-280 — *«una Cicatrice
+ne compra uno oltre il limite»* — col gettone al posto della Cicatrice. Si
+spende da se' al conto del prezzo, perche' nessuno preferirebbe perdere il
+beneficio tenendosi la moneta.
+
+**E il cervello ha dovuto impararlo, o la regola non esisteva.** Scritta la
+regola e misurata: **25 gettoni spesi su 223, l'11%**, e quei venticinque erano
+incidenti. La causa era una riga del decisore — *non si posa mai una pedina che
+il prezzo togliera'* — che non arriva mai al punto di doverla pagare.
+Insegnata la moneta al decisore: **106 su 220, il 48%**. È la differenza fra una
+regola che esiste e una che conta.
+
+Il tabellone stampa **GETTONI — ognuno compra un beneficio oltre il tetto** con
+quanti ne ha ogni parte, e la scheda dice l'economia intera.
+
+Cancello dei 100 semi: 0 seggi bloccati su un solo livello su 8 sui due
+tavoli. Suite 771 prove, zero `SCRIPT ERROR`.
+
+Costi dichiarati, e non sono piccoli: **le vittorie nette scendono e con loro
+gli Echi** — DECISIVE da 145 a 114 sul tavolo misto, Verita' scritte da 316 a
+273 — perche' posare un **costo** e' sostenere (D-471), e un cervello con una
+moneta posa un **beneficio** dove prima posava un costo: meno peso nel voto,
+piu' controdomande che passano (COUNTER da 150 a 179). Il TRIUMPH torna da 0 a
+1. E **il 52% dei gettoni muore ancora in mano**: aprire il rubinetto e' una
+taratura piu' grossa, ed e' una decisione del committente.
+
+---
+
 ## 0.1.445 — Le sedici Conseguenze tornano: la domanda respinta lascia il suo segno
 
 [D-475](docs/DECISIONS.md#d-475), [ISSUES 129](docs/ISSUES.md#129). Parola del

@@ -10,6 +10,108 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-476 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
+
+**implemented in 0.1.446.** Parola del committente:
+
+> *«Questo RIVENDICARE e' un'azione che sta sulle carte… il Rivendicare
+> dovrebbe sempre dare i gettoni con cui "comprare" benefici e costi.»*
+
+La faccia RIVENDICARE conia il gettone da [D-387](#d-387) — *«io intendo
+l'azione rivendicare sulla carta come la carta che ti da' i Token da utilizzare
+proprio in questa occasione»*, e la citazione e' sua di allora. Da
+[D-472](#d-472) il gettone non aveva piu' dove spendersi: il Consiglio a due
+domande conta il prezzo per parte, e la moneta non entrava da nessuna parte.
+
+### 1. Il cambio, misurato prima di scriverlo
+
+La lettura diretta — *una pedina, un gettone* — non regge, e non e' un'opinione.
+`run_claim_probe` (nuova, 100 anni, seme 7000):
+
+| | |
+|---|---|
+| gettoni coniati | **220** — 2,20 l'anno su **tutto** il tavolo |
+| pedine posate nei Consigli | **3.055** — 30,55 l'anno |
+| il cambio che servirebbe | **un gettone ogni 14 pedine** |
+
+Far pagare **ogni** pedina non e' un'economia: e' un Consiglio spento. Quello
+che il gettone puo' fare senza spegnere niente e' la cosa che il tetto non
+permette.
+
+### 2. La regola
+
+> **Un gettone di rivendicazione alza di uno il tetto dei benefici della sua
+> parte.** Una parte puo' avere al massimo un beneficio in piu' dei suoi costi
+> (D-467 §3); ogni gettone speso ne aggiunge uno.
+
+E' l'aritmetica di [D-280](#d-280) — *«una Cicatrice ne compra uno oltre il
+limite»* — col gettone al posto della Cicatrice.
+
+Si spende **da se'**, al conto del prezzo: nessuno preferirebbe perdere il
+beneficio tenendosi la moneta, e al tavolo e' il gesto di posare il gettone per
+non ritirare la pedina. Paga chi ha posato la pedina di troppo; se non ne ha,
+paga chiunque altro stia dalla sua parte — la parte e' una, e la moneta di chi
+la sostiene vale per lei.
+
+**Un gettone compra una pedina, non un lasciapassare**, e la prima stesura
+sbagliava proprio qui: la pedina comprata restava contata fra i **costi**, e il
+tetto saliva di due invece che di uno — con tre benefici e una moneta restavano
+tutti e tre. La pedina comprata adesso non conta da nessuna parte, e c'e' una
+prova che lo tiene.
+
+### 3. Il cervello doveva impararlo, o la regola non esisteva
+
+Scritta la regola, misurata: **25 gettoni spesi su 223 coniati, l'11%**. E
+quei venticinque erano incidenti, non scelte. La ragione sta in una riga del
+decisore: *«non si posa mai una pedina che il prezzo togliera' al voto»* —
+`benefits <= costs`. Un cervello che non va mai oltre il tetto non arriva mai a
+doverlo pagare.
+
+Insegnata la moneta al decisore — `benefits <= costs + gettoni della parte` —
+**106 su 220, il 48%**. E' la differenza fra una regola che esiste e una regola
+che conta.
+
+### 4. Cosa la porta al tavolo
+
+- Il tabellone del Consiglio stampa **GETTONI — ognuno compra un beneficio
+  oltre il tetto**, con quanti ne ha ogni parte. Non si stampa se il tavolo non
+  ne ha nessuno, che e' quasi sempre.
+- La scheda della domanda dice l'economia intera: *«1 beneficio e' gratis. Ogni
+  beneficio in piu' richiede 1 costo, oppure un gettone di rivendicazione.»*
+
+### 5. I numeri
+
+- **Il cancello dei 100 semi, seme 7000: 0 seggi bloccati su un solo livello
+  su 8**, tavolo misto e uniforme.
+- Gli esiti si spostano, e parecchio. FAIL · SUCC di misura · SUCC · DECI ·
+  COUNTER passano da **50 · 39 · 103 · 145 · 150** a **61 · 35 · 97 · 114 ·
+  179** sul misto, e da **51 · 42 · 91 · 113 · 180** a **44 · 32 · 108 · 105 ·
+  187** sull'uniforme.
+- Suite **771 prove in 120 suite**, zero `SCRIPT ERROR`; 28 cancelli veloci
+  verdi.
+
+### Costi dichiarati
+
+- **Le vittorie nette scendono, e con loro gli Echi.** DECISIVE da 145 a 114
+  sul tavolo misto, e le Verita' scritte da 316 a 273. La ragione e'
+  meccanica e va detta: posare un **costo** e' sostenere (D-471), e un
+  cervello che ha una moneta posa un **beneficio** dove prima posava un costo
+  — meno peso nel voto, margini piu' stretti, piu' controdomande che passano
+  (COUNTER da 150 a 179). Il gettone rende piu' ricca la parte che lo ha e
+  piu' incerto il Consiglio: e' un prezzo, e sta scritto.
+- **Il TRIUMPH torna da 0 a 1** su 800 anni-seggio: D-475 lo aveva portato a
+  zero, questo giro ne rimette uno. Resta il gradino piu' raro della scatola.
+- **Il 52% dei gettoni muore ancora in mano.** Meta' delle monete coniate non
+  trova mai una parte che sia sopra il tetto quando serve. Aprire il rubinetto
+  — il RIVENDICARE che ne conia piu' d'uno, o un gettone a testa per Atto — e'
+  una taratura piu' grossa, ed e' una decisione del committente: sta in
+  [ISSUES 129](ISSUES.md#129).
+- **La sonda contava i gettoni come «quelli in mano a fine anno»**, che era
+  vero solo finche' nessuno li spendeva. Corretta: coniati = rimasti + spesi,
+  e le monete spese si contano dal verbale.
+
+---
+
 ## D-475 — Le sedici Conseguenze tornano: la domanda respinta lascia il suo segno
 
 **implemented in 0.1.445.** Parola del committente, davanti alle tre voci che

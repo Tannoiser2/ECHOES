@@ -167,6 +167,77 @@ func test_the_price_is_settled_per_side_at_the_vote() -> void:
 	live.confluence.current = {}
 
 
+## **Il gettone del RIVENDICARE compra il beneficio di troppo**
+## ([D-476](DECISIONS.md#d-476), parola del committente: *«il Rivendicare
+## dovrebbe sempre dare i gettoni con cui comprare benefici e costi»*).
+##
+## Il caso e' **fabbricato**, e deve esserlo: il gettone si conia due volte
+## l'anno su tutto il tavolo (`run_claim_probe`), e cercare in partita una parte
+## che ne abbia uno **e** sia sopra il tetto vorrebbe dire una prova che smette
+## di provare appena il seme cambia.
+func test_a_claim_token_buys_the_benefit_over_the_ceiling() -> void:
+	var live: RefCounted = _table()
+	var context: Dictionary = live.confluence.open(_openable(live), {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "il Consiglio si apre")
+	var who: String = str(live.confluence.current["proponent"])
+	var part: Dictionary = (live.confluence.current["sides"] as Dictionary)["A"] as Dictionary
+	var boxes: Array = [
+		{"by": who, "voice": "B_1", "list": "benefits"},
+		{"by": who, "voice": "B_2", "list": "benefits"},
+	]
+
+	# Senza moneta: due benefici e nessun costo, il secondo si ritira.
+	part["boxes"] = boxes.duplicate(true)
+	(live.world["entities"][who] as Dictionary)["claim_tokens"] = 0
+	assert_eq(
+		live.confluence.settle_prices(), ["B_2"],
+		"senza gettone il beneficio di troppo si toglie"
+	)
+
+	# Con la moneta in mano: la pedina resta, e il gettone se ne va.
+	part["boxes"] = boxes.duplicate(true)
+	(live.world["entities"][who] as Dictionary)["claim_tokens"] = 1
+	assert_true(
+		live.confluence.settle_prices().is_empty(),
+		"col gettone non si toglie niente"
+	)
+	assert_eq(
+		live.confluence.side_boxes("A", "benefits"), ["B_1", "B_2"],
+		"e restano tutt'e due i benefici"
+	)
+	assert_eq(
+		int((live.world["entities"][who] as Dictionary).get("claim_tokens", -1)), 0,
+		"il gettone e' stato speso"
+	)
+	live.confluence.current = {}
+
+
+## E **un gettone compra una pedina sola**: non e' un lasciapassare, e' una
+## moneta. Con tre benefici, nessun costo e una moneta, una pedina resta e
+## l'altra si ritira lo stesso.
+func test_one_token_buys_one_piece_and_no_more() -> void:
+	var live: RefCounted = _table()
+	var context: Dictionary = live.confluence.open(_openable(live), {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "il Consiglio si apre")
+	var who: String = str(live.confluence.current["proponent"])
+	var part: Dictionary = (live.confluence.current["sides"] as Dictionary)["A"] as Dictionary
+	part["boxes"] = [
+		{"by": who, "voice": "B_1", "list": "benefits"},
+		{"by": who, "voice": "B_2", "list": "benefits"},
+		{"by": who, "voice": "B_3", "list": "benefits"},
+	]
+	(live.world["entities"][who] as Dictionary)["claim_tokens"] = 1
+	assert_eq(
+		live.confluence.settle_prices().size(), 1,
+		"col tetto a uno e una moneta, di tre benefici se ne ritira uno"
+	)
+	assert_eq(
+		int((live.world["entities"][who] as Dictionary).get("claim_tokens", -1)), 0,
+		"e la moneta e' finita"
+	)
+	live.confluence.current = {}
+
+
 func test_three_outcomes_against_the_pile() -> void:
 	assert_eq(ConfluenceResolution.two_sides_outcome(5, 3, 4), ConfluenceResolution.SUCCESS, "A batte B e il mucchio")
 	assert_eq(ConfluenceResolution.two_sides_outcome(9, 3, 4), ConfluenceResolution.DECISIVE, "di molto")

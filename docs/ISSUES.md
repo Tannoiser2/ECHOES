@@ -10081,8 +10081,15 @@ sposta una virgola della partita, che era il punto.
 
 **Cosa resta aperto, e sono tutte decisioni del committente:**
 
-- **i gettoni di rivendicazione** che la faccia RIVENDICARE conia ancora e che
-  il Consiglio non spende piu': toglierli, o dargli un uso;
+- ✔ **i gettoni di rivendicazione** — **fatto in 0.1.446**
+  ([D-476](DECISIONS.md#d-476)), parola del committente: *«il Rivendicare
+  dovrebbe sempre dare i gettoni con cui comprare benefici e costi»*. Un
+  gettone **alza di uno il tetto dei benefici della sua parte**: non «una
+  pedina, un gettone», che a 220 gettoni contro 3.055 pedine avrebbe spento il
+  Consiglio. Insegnata la moneta anche al cervello, si spende nel **48%** dei
+  casi contro l'11% di prima. **Resta da decidere il rubinetto**: il
+  RIVENDICARE che ne conia piu' d'uno, o un gettone a testa per Atto — oggi il
+  52% muore ancora in mano;
 - ✔ **sedici Conseguenze senza strada** — **fatto in 0.1.445**
   ([D-475](DECISIONS.md#d-475)), parola del committente: *«tornano come esito,
   io non vorrei perderle»*. Erano gli esiti delle proposte contrarie, e sono

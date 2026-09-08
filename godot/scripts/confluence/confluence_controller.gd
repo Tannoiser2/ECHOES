@@ -491,7 +491,30 @@ func has_passed(entity_id: String) -> bool:
 ## **Il prezzo si conta per parte, al voto** (D-467 §3): una parte puo' avere
 ## al massimo un beneficio in piu' dei suoi costi. Se i benefici scoperti
 ## avanzano, si tolgono gli ultimi posati, e si dice.
-func settle_prices() -> Array:
+##
+## **E il gettone del RIVENDICARE compra quello di troppo** ([D-476](../../docs/DECISIONS.md#d-476),
+## parola del committente: *«il Rivendicare dovrebbe sempre dare i gettoni con
+## cui comprare benefici e costi»*). La faccia RIVENDICARE conia il gettone da
+## [D-387](../../docs/DECISIONS.md#d-387), e da [D-472](../../docs/DECISIONS.md#d-472)
+## non aveva piu' dove spendersi: il Consiglio a due domande conta il prezzo
+## per parte, e il gettone non entrava da nessuna parte.
+##
+## Il cambio non e' «una pedina, un gettone», ed e' una misura e non un gusto:
+## il RIVENDICARE conia **2,21 gettoni l'anno su tutto il tavolo** contro
+## **34,56 pedine posate** (`run_claim_probe`, 100 anni). A quel prezzo un
+## gettone dovrebbe comprare quindici pedine perche' il tavolo resti pieno:
+## far pagare ogni pedina non e' un'economia, e' un Consiglio spento. Il
+## gettone fa la cosa che il tetto non permette — **ne alza il bordo di uno**,
+## che e' l'aritmetica di [D-280](../../docs/DECISIONS.md#d-280) (*«una
+## Cicatrice ne compra uno oltre il limite»*) col gettone al posto della
+## Cicatrice.
+##
+## Si spende **da se'**: nessuno preferirebbe perdere il beneficio tenendosi il
+## gettone, e al tavolo e' il gesto di posare la moneta per non ritirare la
+## pedina. Lo spende chi ha posato la pedina di troppo; se lui non ne ha, ne
+## cerca uno chiunque altro stia dalla sua parte — la parte e' una, e la moneta
+## di chi la sostiene vale per lei.
+func settle_prices(source: Dictionary = {}) -> Array:
 	var removed: Array = []
 	if not sides_open():
 		return removed
@@ -502,22 +525,76 @@ func settle_prices() -> Array:
 			var benefits: int = 0
 			var costs: int = 0
 			for box in boxes:
-				if str((box as Dictionary)["list"]) == "benefits":
-					benefits += 1
-				else:
-					costs += 1
+				match str((box as Dictionary)["list"]):
+					"benefits":
+						benefits += 1
+					# **La pedina gia' comprata col gettone non conta da
+					# nessuna parte.** Contarla fra i costi — che e' quello che
+					# faceva la prima stesura, perche' il ramo era un `else` —
+					# alzava il tetto di **due** invece che di uno: con tre
+					# benefici e una moneta restavano tutti e tre. Un gettone
+					# compra una pedina, non un lasciapassare.
+					"benefits_paid":
+						pass
+					_:
+						costs += 1
 			if benefits <= costs + 1:
 				break
 			for i in range(boxes.size() - 1, -1, -1):
-				if str((boxes[i] as Dictionary)["list"]) == "benefits":
-					var gone: Dictionary = boxes[i] as Dictionary
-					boxes.remove_at(i)
-					removed.append(str(gone["voice"]))
-					log.bullet("D. La parte %s ha piu' benefici che costi: la pedina di %s su «%s» si toglie." % [
-						side, _name(str(gone["by"])), _voice_text("benefits", str(gone["voice"])),
+				if str((boxes[i] as Dictionary)["list"]) != "benefits":
+					continue
+				var gone: Dictionary = boxes[i] as Dictionary
+				var paid: String = _spend_a_claim_token(side, str(gone["by"]), source)
+				if paid != "":
+					# Comprata: la pedina resta, e il tetto di questa parte
+					# sale di uno. Si segna sulla pedina, cosi' il conto non
+					# la guarda piu' e il giro non si ripete su di lei.
+					gone["list"] = "benefits_paid"
+					log.bullet("D. %s spende un gettone di rivendicazione: la pedina su «%s» resta." % [
+						_name(paid), _voice_text("benefits", str(gone["voice"])),
 					])
 					break
+				boxes.remove_at(i)
+				removed.append(str(gone["voice"]))
+				log.bullet("D. La parte %s ha piu' benefici che costi: la pedina di %s su «%s» si toglie." % [
+					side, _name(str(gone["by"])), _voice_text("benefits", str(gone["voice"])),
+				])
+				break
+	# Le pedine comprate tornano benefici: il segno serviva solo al conto.
+	for side in ["A", "B"]:
+		for box in ((current["sides"][side] as Dictionary)["boxes"] as Array):
+			if str((box as Dictionary)["list"]) == "benefits_paid":
+				(box as Dictionary)["list"] = "benefits"
 	return removed
+
+
+## Chi, da questa parte, paga un gettone di rivendicazione per tenere la pedina.
+## Prima chi l'ha posata, poi chiunque altro sostenga la stessa parte, in ordine
+## di seggio perche' il risultato non dipenda dall'ordine di un Dictionary.
+## Torna l'id di chi ha pagato, o "" se da questa parte non c'e' una moneta.
+func _spend_a_claim_token(side: String, placed_by: String, source: Dictionary) -> String:
+	var payers: Array = [placed_by]
+	for entity_id in (current["sides"][side] as Dictionary).get("seats", []) as Array:
+		if not payers.has(str(entity_id)):
+			payers.append(str(entity_id))
+	var leader: String = side_leader(side)
+	if leader != "" and not payers.has(leader):
+		payers.append(leader)
+	for entity_id in payers:
+		var entity: Variant = (world["entities"] as Dictionary).get(str(entity_id))
+		if entity == null or int((entity as Dictionary).get("claim_tokens", 0)) <= 0:
+			continue
+		var spent: Dictionary = applier.apply(Effect.make(
+			"SPEND_CLAIM_TOKEN", "entity", str(entity_id), {},
+			source if not source.is_empty() else Effect.source(
+				"confluence", str(current.get("confluence_id", "")), str(entity_id),
+				int(world["act"]), int(world["round"]), int(world["effect_sequence"])
+			)
+		))
+		if spent.is_empty():
+			continue
+		return str(entity_id)
+	return ""
 
 
 ## Cosa ha dichiarato un seggio in questo Consiglio, o "ABSTAIN" se non ha

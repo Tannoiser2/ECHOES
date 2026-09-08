@@ -134,8 +134,8 @@ func _the_two_lists(tension: Dictionary) -> void:
 	# La riga dell'economia, che e' la regola vera della carta (D-280).
 	_gap()
 	_line(
-		"1 beneficio e' gratis. Ogni beneficio in piu' richiede 1 costo."
-		+ "  Al massimo 3: il tetto non si sfonda.",
+		"1 beneficio e' gratis. Ogni beneficio in piu' richiede 1 costo,"
+		+ " oppure un gettone di rivendicazione.",
 		11, "#c9a14a"
 	)
 

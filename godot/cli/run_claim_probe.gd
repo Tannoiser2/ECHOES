@@ -21,8 +21,12 @@ extends SceneTree
 ## gettone non e' un'economia: e' un Consiglio spento. Il numero che si cerca e'
 ## quante pedine un gettone deve comprare perche' il tavolo resti pieno.
 ##
-## Nessuna regola cambia: la sonda gioca le partite come sono e conta. I gettoni
-## non si spendono, quindi quelli in mano a fine anno **sono** quelli coniati.
+## Nessuna regola cambia: la sonda gioca le partite come sono e conta. Da
+## [D-476](../../docs/DECISIONS.md#d-476) il gettone **si spende**, e la sonda
+## conta anche quello: coniati = rimasti in mano + spesi. La riga che conta
+## davvero e' **quante volte una moneta ha salvato una pedina**, perche' un
+## gettone che nessuno spende e' identico, per il gioco, a un gettone che non
+## esiste.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -91,7 +95,8 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var minted: int = 0
+	var held: int = 0
+	var spent: int = 0
 	var councils: int = 0
 	var years_without: int = 0
 	var most: int = 0
@@ -110,20 +115,31 @@ func _initialize() -> void:
 		)
 		await session.run(Spy.new(brain, self))
 		councils += int(session.world.get("confluence_count", 0))
-		# Nessuno li spende: quelli in mano a fine anno sono quelli coniati.
 		var year: int = 0
 		for entity_id in session.world["entities"]:
 			year += int((session.world["entities"][entity_id] as Dictionary).get("claim_tokens", 0))
-		minted += year
-		if year == 0:
+		held += year
+		# Le monete spese si contano dal verbale, che e' l'unico posto dove il
+		# gesto lascia una riga: il gettone e' gia' sparito dal mondo.
+		var paid: int = 0
+		for line in session.log.lines:
+			if str(line).contains("spende un gettone di rivendicazione"):
+				paid += 1
+		spent += paid
+		if year + paid == 0:
 			years_without += 1
-		most = maxi(most, year)
+		most = maxi(most, year + paid)
 
 	print("LA MONETA DEL RIVENDICARE - %d anni, semi da %d" % [runs, first])
 	print("")
+	var minted: int = held + spent
 	print("  gettoni coniati        %d   (%.2f l'anno su tutto il tavolo)" % [
 		minted, float(minted) / float(runs)
 	])
+	print("  ...spesi al Consiglio  %d   (%.0f%% di quelli coniati)" % [
+		spent, 0.0 if minted == 0 else 100.0 * float(spent) / float(minted)
+	])
+	print("  ...rimasti in mano     %d" % held)
 	print("  anni senza un gettone  %d su %d" % [years_without, runs])
 	print("  l'anno piu' ricco      %d gettoni" % most)
 	print("")

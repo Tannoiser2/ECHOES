@@ -493,17 +493,38 @@ profili delle case (Aldric la vuole, le Citta' Libere la temono, e questo pesa
 sulle scelte), un Destino, e quella Conseguenza. Se vuoi che una **regola** la
 interroghi, e' un'altra decisione tua.
 
-**3. I gettoni del RIVENDICARE — in corso, e il numero cambia quello che mi hai
-chiesto.** *«Dovrebbe sempre dare i gettoni con cui comprare benefici e
-costi»*. Ho scritto una sonda e misurato su 100 anni: il RIVENDICARE conia
-**2,21 gettoni all'anno su tutto il tavolo**, contro **34,56 pedine posate**
+**3. I gettoni del RIVENDICARE — fatto in 0.1.446**
+([D-476](DECISIONS.md#d-476)), ma il numero ha cambiato quello che mi hai
+chiesto, e te lo racconto perche' e' interessante.
+
+*«Dovrebbe sempre dare i gettoni con cui comprare benefici e costi.»* Prima di
+toccarlo ho scritto una sonda: su 100 anni il RIVENDICARE conia **220
+gettoni** — 2,2 l'anno su **tutto** il tavolo — contro **3.055 pedine posate**
 nei Consigli. Se una pedina costasse un gettone, un gettone dovrebbe comprarne
-**quindici** perche' il tavolo resti pieno: far pagare ogni pedina non e'
-un'economia, e' un Consiglio spento. Quindi faccio la cosa che rende vera la
-tua regola senza spegnere il tavolo — **il gettone alza di uno il tetto dei
-benefici della tua parte**, che e' l'aritmetica di D-280 col gettone al posto
-della Cicatrice. Se invece volevi il rubinetto aperto (il RIVENDICARE che conia
-di piu', o un gettone a testa per Atto), dimmelo: e' una taratura piu' grossa.
+**quattordici** perche' il tavolo resti pieno com'e'. Far pagare ogni pedina
+non sarebbe un'economia: sarebbe un Consiglio spento.
+
+Quindi il gettone fa la cosa che il tetto non permette: **ne alza il bordo di
+uno**. Una parte puo' avere al massimo un beneficio in piu' dei suoi costi;
+ogni gettone speso te ne fa comprare uno in piu'. E' esattamente l'aritmetica
+che avevi scritto tu in D-280 — *«una Cicatrice ne compra uno oltre il
+limite»* — col gettone al posto della Cicatrice. Si spende da solo: nessuno
+preferirebbe perdere il beneficio tenendosi la moneta.
+
+**E poi ho scoperto che non bastava.** Scritta la regola, l'ho misurata: si
+spendeva **11 volte su 100**. La causa era il cervello — non posa mai una
+pedina che il prezzo gli toglierebbe, quindi non arriva mai al punto di doverla
+pagare. Insegnata la moneta anche a lui: **48 volte su 100**. La differenza fra
+una regola che c'e' e una regola che conta.
+
+Due cose te le devo, e sono un prezzo vero. **Le vittorie nette scendono, e con
+loro gli Echi**: da 145 a 114 sul tavolo misto, e le Verita' scritte da 316 a
+273. La ragione e' meccanica: posare un **costo** e' sostenere, e chi ha una
+moneta posa un **beneficio** dove prima posava un costo — meno peso nel voto,
+piu' controdomande che passano. Il Consiglio diventa piu' ricco e piu'
+incerto. E **il 52% dei gettoni muore ancora in mano**: se vuoi il rubinetto
+aperto — il RIVENDICARE che ne conia piu' d'uno, o un gettone a testa per Atto
+— dimmelo, che e' una taratura piu' grossa e la faccio.
 
 **4. Il segno che pesava sul dado — mi hai chiesto che vuol dire, ed e' giusto
 chiederlo.** Non e' il dado. Sono **21 regole scritte** nei dati che dicono
