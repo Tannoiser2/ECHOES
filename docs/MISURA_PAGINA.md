@@ -22,7 +22,7 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 10 |
-| nodi in tutto | 450 |
+| nodi in tutto | 438 |
 | testi sotto gli occhi | 233 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
@@ -96,16 +96,16 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | sotto, in una scheda | 86 | 408 | 1425 |
+| colonna di stato | sotto, in una scheda | 83 | 408 | 1336 |
 | mappa | al centro | 13 | *si adatta* | |
 | il Consiglio | a schermo intero | 81 | 974 | 182 |
 | il tavolo | nella stanza, prima di sedersi | 38 | *si adatta* | |
 | i mazzi dei Temi | non sta sulla pagina (D-464) | 13 | *si adatta* | |
 | chi siede | al centro | 25 | 402 | 44 |
-| le domande | a sinistra, la colonna delle domande | 103 | 230 | 1938 |
+| le domande | a sinistra, la colonna delle domande | 97 | 230 | 690 |
 | la pagina d'aiuto | al centro | 2 | 37 | 28 |
 | la mano | sotto, in una scheda | 13 | 342 | 246 |
-| gli obiettivi | sotto, in una scheda | 76 | 408 | 1273 |
+| gli obiettivi | sotto, in una scheda | 73 | 408 | 1184 |
 
 Un posto per riga, col piu' largo dei pannelli che ci stanno — e, dove
 l'altezza e' una promessa, anche il piu' alto:

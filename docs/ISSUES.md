@@ -10100,14 +10100,21 @@ La regola nuova e' una riga: **sulla pagina c'e' quello che sta sul tavolo, e
 nella forma in cui ci sta.** Il testo resta in due posti soli: la riga che
 racconta cosa e' appena successo, e il verbale.
 
-**Fatto quando** i tre giri di D-473 sono percorsi, e il conto dei testi della
-[misura della pagina](MISURA_PAGINA.md) e' sceso:
+**Fatto quando** i tre giri di D-473 sono percorsi, e il conto dei doppioni
+della [misura della pagina](MISURA_PAGINA.md) e' a zero:
 
-1. le quattro cose piccole e certe — via «N mosse», via «funzione di Propp», i
-   doppioni della scheda della casa, le tre carte Obiettivo al posto delle
-   righe;
-2. la colonna dei sei Temi come sei dorsi di carta, e la carta grande a destra;
-3. la sonda che conta i doppioni, e il conto dei testi rimisurato.
+1. ✔ le quattro cose piccole e certe — **fatte in 0.1.442**: via «N mosse»
+   (adesso la riga porta i nomi delle due Azioni stampate), via «funzione di
+   Propp», via i doppioni della scheda della casa (150 righe in meno), e le
+   tre carte Obiettivo al posto delle righe;
+2. ✔ la colonna dei sei Temi come sei carte, col conto dei gettoni nell'angolo
+   di ognuna, e la carta che si guarda grande a destra — **fatte in 0.1.442**;
+3. ✔ la sonda che conta i doppioni — **fatta in 0.1.442**: zero, con la
+   guardia provata su casi fabbricati.
+
+**Il conto dei testi non era il numero giusto**, e sta scritto in D-473: e'
+salito da 193 a 233, perche' una carta dice quattro cose dove una riga ne
+diceva una. Quello che si tiene a zero sono le frasi lette in due punti.
 
 **Cosa resta da decidere, e lo decide il committente:** se l'Isola Muta deve
 avere **un solo varco** invece dei due che porta stampati (oggi le adiacenze

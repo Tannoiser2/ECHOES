@@ -14,17 +14,20 @@ extends PanelContainer
 ##
 ## Non decide niente e non legge una regola. Chi la usa le passa la faccia.
 
-const CardArt := preload("res://ui/card_art.gd")
-
-## Le proporzioni di una carta vera (63x88), in tre taglie: quella della mano,
-## quella che si guarda, e quella grande di una scheda.
+## Le proporzioni di una carta vera (63x88), in tre taglie: quella del
+## mazzetto, quella che si guarda, e quella grande di una scheda.
 const WIDTHS: Dictionary = {"piccola": 132.0, "media": 190.0, "grande": 250.0}
-const RATIO: float = 88.0 / 63.0
 
-## L'immagine si prende la meta' alta della carta, come sul cartone.
-const ART_SHARE: float = 0.46
+## **L'illustrazione non c'e' ancora, e non si finge** (D-473).
+##
+## `CardArt.texture_for` non da' l'illustrazione di una carta: da' **la carta
+## stampata intera**, disegnata in SVG per i fogli di stampa — e ThorVG non
+## disegna il testo negli SVG (provato: 0 pixel su 200941, trappola di casa).
+## Metterla qui dentro come immagine faceva un rettangolo quasi nero alto meta'
+## carta, con sotto la stessa carta riscritta a parole: un doppione che si
+## vede. Quando le illustrazioni ci saranno, questa carta le mostrera'; finche'
+## non ci sono, mostra quello che c'e' — il cartoncino, il titolo, le righe.
 
-var _picture: TextureRect
 var _title: Label
 var _subtitle: Label
 var _body: VBoxContainer
@@ -64,8 +67,10 @@ func set_size_name(size: String) -> void:
 
 func _apply_size() -> void:
 	var wide: float = float(WIDTHS[_size])
-	custom_minimum_size = Vector2(wide, wide * RATIO)
-	_picture.custom_minimum_size = Vector2(0, wide * RATIO * ART_SHARE)
+	# Larga quanto la sua taglia; **alta quanto quello che ci sta scritto**, e
+	# non piu': una carta di testo che riservasse l'altezza dell'illustrazione
+	# sarebbe mezza carta vuota.
+	custom_minimum_size = Vector2(wide, 0)
 
 
 func _build() -> void:
@@ -85,11 +90,6 @@ func _build() -> void:
 	_corner = _label(13, "#e8b563")
 	_corner.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	column.add_child(_corner)
-
-	_picture = TextureRect.new()
-	_picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	column.add_child(_picture)
 
 	_title = _label(15, "#e8dcc8")
 	column.add_child(_title)
@@ -115,8 +115,9 @@ func _label(font_size: int, colour: String) -> Label:
 	return label
 
 
-## Disegna una faccia. `data` serve solo per l'immagine.
-func render(face: Dictionary, data: RefCounted = null) -> void:
+## Disegna una faccia. `data` resta nella firma per il giorno in cui la carta
+## avra' la sua illustrazione da mostrare.
+func render(face: Dictionary, _data: RefCounted = null) -> void:
 	if _title == null:
 		_build()
 	if face.is_empty():
@@ -133,12 +134,6 @@ func render(face: Dictionary, data: RefCounted = null) -> void:
 	_subtitle.visible = _subtitle.text != ""
 	_corner.text = str(face.get("corner", ""))
 	_corner.visible = _corner.text != ""
-	if data != null:
-		_picture.texture = CardArt.texture_for(
-			str(face.get("deck", "")), str(face.get("id", "")), data
-		)
-	_picture.visible = _picture.texture != null
-
 	_fill(_body, face.get("body", []) as Array, 12, "#c9bfae")
 	_fill(_notes, face.get("notes", []) as Array, 11, "#8a8172")
 	_body.visible = not compact

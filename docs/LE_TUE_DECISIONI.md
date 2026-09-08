@@ -472,7 +472,20 @@ codice prima di risponderti, e stanno in [D-473](DECISIONS.md#d-473):
 - **«troppo testo»**: e' la riga che tiene tutte le altre, ed e' la regola
   nuova. *Sulla pagina c'e' quello che sta sul tavolo, e nella forma in cui ci
   sta.* Il testo resta in due posti: la riga che racconta cosa e' successo, e
-  il verbale. Tre giri, e il conto dei testi della pagina deve scendere.
+  il verbale.
+
+**I tre giri sono percorsi in 0.1.442.** La colonna a sinistra e' fatta di sei
+carte, una per Tema, col conto dei gettoni nell'angolo di ognuna; la carta che
+tocchi si vede grande a destra; gli Obiettivi sono tre carte.
+
+E una cosa te la devo dire, perche' e' un numero peggiorato: **il conto dei
+testi della pagina e' salito, da 193 a 233**. Avevo scritto che sarebbe sceso,
+e la misura ha detto che era il numero sbagliato — una carta dice quattro cose
+dove una riga ne diceva una, ed e' esattamente quello che mi hai chiesto. Il
+numero che tengo a zero adesso e' un altro: **le frasi che la pagina dice in
+due punti diversi**, che era il difetto vero della scheda della casa. Oggi
+sono zero, e la guardia la provo su casi finti perche' uno zero, qui, e' quasi
+sempre la sonda cieca.
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 

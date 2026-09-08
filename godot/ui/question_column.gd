@@ -137,7 +137,7 @@ func _build_card(theme_id: String, tension_id: String) -> Control:
 
 	var card := FaceCard.new()
 	card.compact = true
-	card.set_size_name("media")
+	card.set_size_name("piccola")
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	slot.add_child(card)
 
@@ -182,6 +182,17 @@ func _say() -> void:
 		var slot: Control = _questions[id]
 		var card: FaceCard = slot.get_child(0) as FaceCard
 		var face: Dictionary = CardFace.of("tension", id, _session.data)
+		# **Quanti gettoni ci sono, sulla scheda** (D-473, parola del
+		# committente: *«sulla scheda potrebbe apparire quanti token ci
+		# sono»*). Nell'angolo, dove una carta porta il suo numero: sono i
+		# gettoni **coperti** caduti sul mazzetto di quel Tema, quindi si
+		# contano e non si leggono (D-261).
+		var counts: Dictionary = _session.world.get("theme_tokens", {}) as Dictionary
+		var about: Dictionary = _session.data.tensions.get(id, {}) as Dictionary
+		var fallen: int = int(counts.get(str(about.get("theme", "")), 0))
+		if fallen > 0:
+			face = face.duplicate()
+			face["corner"] = "%d gettoni" % fallen if fallen > 1 else "1 gettone"
 		card.render(face, _session.data)
 		# La carta del mucchio piu' alto porta il bordo acceso: al tavolo e' il
 		# mazzetto che sta per andare al Consiglio, e si vede da lontano.
