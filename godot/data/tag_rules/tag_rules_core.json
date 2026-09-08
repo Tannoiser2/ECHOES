@@ -131,6 +131,19 @@
       "note": "Il terzo grado (D-160): dove c'e' una citta', il mondo ascolta. Non e' un bonus a chi la tiene — e' il Fattore Mondo che pende dalla parte di chi propone, perche' una citta' rende una decisione piu' facile da far applicare."
     },
     {
+      "id": "TGR_CONTESTED_TABLE",
+      "title": "Dove due mani tengono lo stesso lembo, decidere costa di piu'",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:contested"
+      },
+      "focus": true,
+      "kind": "COUNCIL_MODIFIER",
+      "pile_delta": 1,
+      "active": true,
+      "note": "D-483: il segno piu' scritto del mondo (370 volte in cento anni) non era nominato da nessuna delle ventun regole. Guarda il luogo di cui si discute, non la mappa intera: un luogo conteso rende piu' difficile chiudere la sua questione."
+    },
+    {
       "id": "TGR_CURSED_WOOD_HAND",
       "title": "Dalla selva si torna con meno",
       "when": {
@@ -346,6 +359,19 @@
       "note": "Il potere della vita (D-109): ogni casa ha ospitato gli Ospiti una volta, e nessuna vuole ricordarselo ad alta voce - World Factor +1 quando propongono."
     },
     {
+      "id": "TGR_INDEBTED_TABLE",
+      "title": "Chi e' indebitato ha meno voce per opporsi",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:indebted"
+      },
+      "focus": true,
+      "kind": "COUNCIL_MODIFIER",
+      "pile_delta": -1,
+      "active": true,
+      "note": "D-483: 304 scritture, zero regole. Il verso e' d'autore e dichiarato: un luogo indebitato non ha la forza di tenere aperta la sua questione, e la decisione passa prima."
+    },
+    {
       "id": "TGR_INQUISITION_EYE",
       "title": "L'occhio dell'Inquisizione",
       "when": {
@@ -506,6 +532,19 @@
       "movement": "BLOCK",
       "active": true,
       "note": "Dove è passata la razzia non si entra, finché Le Vie Riaperte non tolgono il segno: la cura esiste già nei dati (D-105)."
+    },
+    {
+      "id": "TGR_RATIONED_TABLE",
+      "title": "Dove si raziona, si decide in fretta",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:rationed"
+      },
+      "focus": true,
+      "kind": "COUNCIL_MODIFIER",
+      "pile_delta": -1,
+      "active": true,
+      "note": "D-483: 203 scritture, zero regole. L'urgenza spinge la decisione: chi conta i sacchi non ha tempo di discutere."
     },
     {
       "id": "TGR_REGENCY_RATIONS",
@@ -696,6 +735,19 @@
       "hand_limit_delta": 1,
       "active": true,
       "note": "Il secondo grado (D-160): un borgo ha magazzini, e chi ci sta tiene una carta in piu'. E' l'inverso esatto della fame, che una carta la toglie."
+    },
+    {
+      "id": "TGR_UNREST_TABLE",
+      "title": "Col malcontento in piazza il tavolo fatica",
+      "when": {
+        "scope": "REGION",
+        "tag": "condition:unrest"
+      },
+      "focus": true,
+      "kind": "COUNCIL_MODIFIER",
+      "pile_delta": 1,
+      "active": true,
+      "note": "D-483: 333 scritture in cento anni e nessuna regola del Consiglio lo nominava. Chi decide col malcontento sotto le finestre trova la soglia piu' alta."
     },
     {
       "id": "TGR_VILLAGE_PEOPLE",

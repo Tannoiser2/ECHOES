@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.453 — Il mucchio guarda il luogo di cui si discute (R15, punto 4)
+
+[D-483](docs/DECISIONS.md#d-483), [ISSUES 132](docs/ISSUES.md#132) punto 4.
+
+D-477 aveva rimesso in vita le ventun regole del Consiglio, e la misura aveva
+detto che non bastava: toccavano il **9%** dei Consigli, perche' **nessuno dei
+dieci segni piu' scritti dal mondo era nominato da nessuna di loro**.
+
+**Adesso quattro regole nuove nominano i quattro piu' scritti**, coi versi
+dichiarati: *«Dove due mani tengono lo stesso lembo, decidere costa di piu'»*
+(conteso, **+1**), *«Col malcontento in piazza il tavolo fatica»* (**+1**),
+*«Chi e' indebitato ha meno voce per opporsi»* (**−1**), *«Dove si raziona, si
+decide in fretta»* (**−1**).
+
+**E guardano il luogo di cui si discute**, non una Regione qualsiasi della
+mappa: un segno che il mondo scrive 370 volte in cento anni, letto su tutta la
+mappa, sarebbe una costante — e una costante non e' una regola. E' anche la
+frase giusta al tavolo: *«dove due mani tengono lo stesso lembo»* parla di quel
+posto li'.
+
+**Misurato** (`run_pile_probe`, 100 anni): i Consigli col mucchio mosso passano
+dal **9% al 51%** (264 su 516), lo spostamento medio da 1,0 a **1,22**, le
+regole che mordono almeno una volta da 5 su 21 a **9 su 25**. Sedici delle
+vecchie restano mute e restano dichiarate: chiedono una vita precisa al tavolo.
+
+**Il costo:** cancello **0 su 8**, Verita' 283 → **276** sul misto e 235 →
+**234** sull'uniforme, Consigli caduti 60 → 61 e 58 → 61. Un mondo che rende
+piu' difficile decidere fa cadere qualche domanda in piu'.
+
+---
+
 ## 0.1.452 — Il mondo risponde dove dici tu (R15, prima delle quattro)
 
 [D-482](docs/DECISIONS.md#d-482), [ISSUES 132](docs/ISSUES.md#132) punto 1.

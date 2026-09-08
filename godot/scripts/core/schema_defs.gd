@@ -1540,6 +1540,9 @@ const DEFS := {
 				"min": -2,
 				"max": 2,
 			},
+			"focus": {
+				"type": "bool",
+			},
 		},
 	},
 	"tension": {

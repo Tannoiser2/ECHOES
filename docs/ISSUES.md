@@ -10395,6 +10395,22 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    `condition:indebted` (304), `condition:rationed` (203) — e con quale verso
    ognuna.
 
+   **Scritte in 0.1.453** ([D-483](DECISIONS.md#d-483)): quattro regole, una per
+   segno, coi versi dichiarati — conteso e malcontento **alzano** la soglia,
+   indebitato e razionato la **abbassano**. E guardano **il luogo di cui si
+   discute**, non una Regione qualsiasi: un segno scritto 370 volte, letto su
+   tutta la mappa, sarebbe una costante, e una costante non e' una regola.
+
+   Misurato (`run_pile_probe`, 100 anni): i Consigli col mucchio mosso passano
+   dal **9%** al **51%** (264 su 516), lo spostamento medio da 1,0 a **1,22**, e
+   le regole che mordono almeno una volta da 5 su 21 a **9 su 25**. Le quattro
+   nuove sono anche le quattro che mordono di piu'. **Sedici delle ventun
+   vecchie restano mute** e restano dichiarate: chiedono una vita precisa seduta
+   al tavolo.
+
+   **Il costo:** cancello 0 su 8, Verita' 283 → **276** sul misto e 235 →
+   **234** sull'uniforme.
+
 
 ### 133. Le caselle del Consiglio: una su cinque non fa niente, e le frasi non dicono cosa cambia
 

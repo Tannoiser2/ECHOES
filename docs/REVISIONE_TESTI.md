@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3246 testi in lettura.
+possono spostare nella frase, non togliere. 3250 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -11255,6 +11255,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > La citta' parla piu' forte al Consiglio
 
 
+**`TGR_CONTESTED_TABLE`**
+> Dove due mani tengono lo stesso lembo, decidere costa di piu'
+
+
 **`TGR_CURSED_WOOD_HAND`**
 > Dalla selva si torna con meno
 
@@ -11319,6 +11323,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > Il debito di mezza stagione
 
 
+**`TGR_INDEBTED_TABLE`**
+> Chi e' indebitato ha meno voce per opporsi
+
+
 **`TGR_INQUISITION_EYE`**
 > L'occhio dell'Inquisizione
 
@@ -11365,6 +11373,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_PLUNDERED_GATE`**
 > La strada depredata
+
+
+**`TGR_RATIONED_TABLE`**
+> Dove si raziona, si decide in fretta
 
 
 **`TGR_REGENCY_RATIONS`**
@@ -11425,6 +11437,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_TOWN_HAND`**
 > Nel borgo si tiene qualcosa da parte
+
+
+**`TGR_UNREST_TABLE`**
+> Col malcontento in piazza il tavolo fatica
 
 
 **`TGR_VILLAGE_PEOPLE`**

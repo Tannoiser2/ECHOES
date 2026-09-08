@@ -147,18 +147,18 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `charter_temporary` | carta Echo | — | chi siede l'anno prossimo, pesca delle domande |
 | `charter_written` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
 | `condition:abandoned` | Conseguenza | — | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
-| `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute |
+| `condition:contested` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, regola del segno |
 | `condition:cut_off` | Azione stampata, Conseguenza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset | Destino, bersaglio a segni, carta Echo, chi siede l'anno prossimo, la Regione di cui si discute, pesca delle domande |
 | `condition:emptied` | Azione stampata, Conseguenza, carta Echo | — | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:exploited` | Conseguenza, Risonanza | — | Destino, la Regione di cui si discute, obiettivo, pesca delle domande |
 | `condition:guarded` | Conseguenza | — | carta Echo, regola del segno |
-| `condition:indebted` | Conseguenza, carta Asset, carta Echo | Conseguenza | la Regione di cui si discute, pesca delle domande |
+| `condition:indebted` | Conseguenza, carta Asset, carta Echo | Conseguenza | la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:lean` | Azione stampata, Conseguenza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute |
 | `condition:mourning` | Conseguenza, carta Echo | Azione stampata, carta Asset | bersaglio a segni, la Regione di cui si discute, pesca delle domande |
 | `condition:plundered` | Azione stampata, Conseguenza | Conseguenza | Risonanza, la Regione di cui si discute, pesca delle domande, regola del segno |
-| `condition:rationed` | Azione stampata, Conseguenza, carta Asset | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
+| `condition:rationed` | Azione stampata, Conseguenza, carta Asset | Azione stampata, Conseguenza, carta Asset | bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:starving` | Azione stampata, Conseguenza, Risonanza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute, pesca delle domande, regola del segno |
-| `condition:unrest` | Azione stampata, Conseguenza, Risonanza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset, carta Echo | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
+| `condition:unrest` | Azione stampata, Conseguenza, Risonanza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset, carta Echo | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande, regola del segno |
 | `crown_dispossessed` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
 | `crown_divided` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, fatto che dura, pesca delle domande |
 | `crystal_exploited` | Azione stampata, Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande |

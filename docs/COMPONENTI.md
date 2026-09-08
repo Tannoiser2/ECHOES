@@ -54,7 +54,7 @@ centodiciotto simboli, si impara quello che si vede.
 | Temi | 6 | i mazzetti che scaldano e aprono la Domanda |
 | Conseguenze | 67 | cosa una proposta scrive sul mondo se passa |
 | Modelli di Consiglio | 12 | domande, clausole e sacchetti d'autore |
-| Regole dei segni | 56 | cosa un segno fa da solo |
+| Regole dei segni | 60 | cosa un segno fa da solo |
 | Azioni | 7 | i verbi del turno |
 | Chronicle | 1 | gli anni giocabili |
 

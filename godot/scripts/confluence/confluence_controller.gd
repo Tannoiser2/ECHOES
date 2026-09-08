@@ -318,7 +318,8 @@ func _open_the_sides(template: Dictionary, question_id: String) -> void:
 	# esiste.
 	var heat: int = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
 	var world_says: Dictionary = TagRules.council_pile_shift(
-		data, world, str(current["tension_id"]), str(current["proponent"])
+		data, world, str(current["tension_id"]), str(current["proponent"]),
+		narrative.focus_region(str(current["tension_id"]))
 	)
 	var shift: int = int(world_says.get("delta", 0))
 	current["pile"] = maxi(heat + shift, 0)

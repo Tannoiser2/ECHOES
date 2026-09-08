@@ -45,6 +45,79 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-483 — Le regole del Consiglio guardano il luogo di cui si discute
+
+**implemented in 0.1.453.** Seconda mossa della R15 ([ISSUES
+132](ISSUES.md#132), punto 4), sulla parola *«via in ordine R14 in poi»*.
+
+### 1. Il difetto, gia' misurato
+
+[D-477](DECISIONS.md#d-477) aveva puntato sul mucchio le ventun regole
+`COUNCIL_MODIFIER` rimaste senza mestiere. Rimetterle in vita non era bastato:
+toccavano il **9%** dei Consigli, 41 su 46 da una regola sola, e sedici su
+ventuno non mordevano mai. La causa stava scritta nella misura stessa:
+**nessuno dei dieci segni piu' scritti dal mondo era nominato da nessuna delle
+ventuno**. Quattordici di quelle regole chiedono una `life:` — quella casa, in
+quella vita, seduta a quel tavolo — e le altre segni rari.
+
+### 2. La mossa: quattro regole sui quattro segni piu' scritti
+
+| segno | scritto in 100 anni | la regola | verso |
+|---|---|---|---|
+| `condition:contested` | 370 | *Dove due mani tengono lo stesso lembo, decidere costa di piu'* | **+1** |
+| `condition:unrest` | 333 | *Col malcontento in piazza il tavolo fatica* | **+1** |
+| `condition:indebted` | 304 | *Chi e' indebitato ha meno voce per opporsi* | **−1** |
+| `condition:rationed` | 203 | *Dove si raziona, si decide in fretta* | **−1** |
+
+I versi sono **d'autore e dichiarati**, come chiedeva la voce: due segni pesano
+sulla decisione, due la spingono. Un luogo conteso o in rivolta rende piu'
+difficile chiudere la sua questione; un luogo indebitato o razionato non ha la
+forza — o il tempo — di tenerla aperta.
+
+### 3. E guardano **il luogo di cui si discute**
+
+Una regola di Regione, fino a qui, chiedeva *«esiste da qualche parte sulla
+mappa una Regione con questo segno?»*. Per un segno che il mondo scrive **370
+volte in cento anni** quella domanda ha quasi sempre la stessa risposta: sarebbe
+una **costante**, e una costante non e' una regola.
+
+Le quattro nuove portano `focus: true`, e allora la regola guarda la **Regione
+della domanda** — quella che il Consiglio ha davanti. E' anche la frase giusta
+da leggere al tavolo: *«dove due mani tengono lo stesso lembo»* parla di quel
+posto li', non della mappa. Le diciassette vecchie restano come stavano.
+
+### 4. Misurato
+
+`cli/run_pile_probe.gd`, 100 anni, semi da 7000:
+
+| | prima (D-477) | dopo |
+|---|---|---|
+| Consigli col mucchio mosso | **9%** (46 su 513) | **51%** (264 su 516) |
+| soglia alzata / abbassata | — | 161 / 103 |
+| spostamento medio quando si muove | 1,0 | **1,22** |
+| regole che mordono almeno una volta | 5 su 21 | **9 su 25** |
+
+Le quattro nuove sono anche le quattro che mordono di piu': 137, 106, 96, 52
+Consigli. **Sedici delle ventun vecchie restano mute**, e restano dichiarate:
+chiedono una vita precisa seduta al tavolo, e quel giorno la regola c'e'.
+
+### 5. Il costo, che si scrive
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** sui due tavoli.
+
+| | prima | dopo |
+|---|---|---|
+| Verita', misto | 283 | **276** |
+| Verita', uniforme | 235 | **234** |
+| Consigli caduti, misto | 60 | **61** |
+| Consigli caduti, uniforme | 58 | **61** |
+
+Sette Verita' in meno sul misto: un mondo che rende piu' difficile decidere fa
+cadere qualche domanda in piu'. E' il prezzo di una regola che morde davvero, e
+adesso morde in un Consiglio su due invece che in uno su undici.
+
+---
+
 ## D-482 — La Risonanza avviene comunque, ma il Tema lo scegli tu
 
 **implemented in 0.1.452.** Parola del committente: *«via in ordine R14 in

@@ -86,7 +86,8 @@ static func action_bonus(
 ## qualsiasi che porti il segno (se da qualche parte si muore di fame, la fame
 ## siede al tavolo).
 static func council_pile_shift(
-	data, world: Dictionary, tension_id: String, proponent_id: String
+	data, world: Dictionary, tension_id: String, proponent_id: String,
+	region_focus: String = ""
 ) -> Dictionary:
 	var delta: int = 0
 	var titles: Array = []
@@ -97,7 +98,19 @@ static func council_pile_shift(
 		var present: bool = true
 		for when in _signs_of(rule):
 			if str(when.get("scope", "")) == "REGION":
-				present = _any_region_has(world, str(when.get("tag", "")))
+				# **Il luogo di cui si discute, non un luogo qualsiasi**
+				# (D-483). Una regola con `focus: true` guarda la Regione della
+				# domanda: «dove due mani tengono lo stesso lembo, decidere
+				# costa di piu'» e' una frase sul posto in questione, non sul
+				# fatto che da qualche parte sulla mappa ci sia un contestato.
+				# Senza questa distinzione un segno che il mondo scrive spesso
+				# diventa una costante, e una costante non e' una regola.
+				if bool(rule.get("focus", false)):
+					present = region_focus != "" and _region_has(
+						world, region_focus, str(when.get("tag", ""))
+					)
+				else:
+					present = _any_region_has(world, str(when.get("tag", "")))
 			else:
 				present = _sign_present(world, when, {"entity_id": proponent_id})
 			if not present:
