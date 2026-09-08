@@ -83,23 +83,32 @@ func _ready() -> void:
 	add_theme_constant_override("separation", 4)
 
 
-## **La scheda degli obiettivi** (D-464, rifatta da D-473): le carte che dicono
-## a che gioco stai giocando — Casata, Destino, e i tre Obiettivi pescati.
+## **La scheda degli obiettivi** (D-464, rifatta da D-473 e divisa da D-478):
+## le carte che dicono a che gioco stai giocando — Casata, Destino, e i tre
+## Obiettivi pescati. Solo quelle: quello che **tieni** sta sull'altra scheda.
 var only_goals: bool = false
 
 
 func render(session: RefCounted, viewer_id: String) -> void:
 	if _title == null:
 		_build()
+	# **Le due schede non dicono le stesse cose** (D-478, parola del
+	# committente: *«la mia casa e obiettivi mostrano le stesse cose»*). Fino
+	# alla 0.1.447 «Obiettivi» e «La mia casa» chiamavano tutt'e due il Destino
+	# **e** il profilo: due terzi della scheda erano identici, e chi la guardava
+	# vedeva due volte «chi sei e cosa vuoi». Adesso ognuna ha il suo mestiere:
+	#
+	# - **Obiettivi** — a che gioco stai giocando quest'anno: Casata, Destino,
+	#   e le tre carte Obiettivo pescate;
+	# - **La tua plancia** — quello che tieni tu: i Diritti pronti, i segni che
+	#   porti addosso, e i segni che la tua casa vuole vedere a fine anno.
 	if only_goals:
 		_title.visible = false
 		_update_destiny(session, viewer_id)
-		_update_profile(session, viewer_id)
 		return
 	_title.visible = true
 	_update_claims(session, viewer_id)
 	_update_signs(session, viewer_id)
-	_update_destiny(session, viewer_id)
 	_update_profile(session, viewer_id)
 
 

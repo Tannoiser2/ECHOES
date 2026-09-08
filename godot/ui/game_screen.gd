@@ -142,6 +142,8 @@ var _decks: Control
 ## domande a sinistra, le schede in basso, il Consiglio a schermo intero.
 var _column: VBoxContainer
 var _tabs: TabContainer
+## Il bottone che apre e chiude la fascia delle schede (D-478).
+var _tabs_button: Button
 var _goals: VBoxContainer
 var _council: PanelContainer
 var _hand: HBoxContainer
@@ -545,10 +547,33 @@ func _build() -> void:
 	tools.add_child(_save_button)
 
 	# 4. Le schede in basso: la mano, la casa, gli obiettivi.
+	#
+	# **Si chiudono, e aperte sono alte almeno una carta** (D-478, parola del
+	# committente: *«la finestra e' piccolissima in altezza e non si legge
+	# nulla, falla collassabile, ma quando e' aperta deve avere almeno
+	# l'altezza di una carta»*).
+	#
+	# Al tavolo e' il gesto di scostare la mano per guardare la mappa, e di
+	# riprenderla in mano quando tocca a te. Chiusa lascia tutto lo spazio alla
+	# mappa; aperta non scende **mai** sotto l'altezza di una carta, che e' il
+	# minimo perche' una carta si legga (D-246) — e su una finestra bassa era
+	# proprio quello che veniva schiacciato.
+	_tabs_button = Button.new()
+	_tabs_button.toggle_mode = true
+	_tabs_button.button_pressed = true
+	_tabs_button.focus_mode = Control.FOCUS_NONE
+	_tabs_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	# Alto un dito (D-243): si tocca, non si punta.
+	_tabs_button.custom_minimum_size = Vector2(0, 44)
+	_tabs_button.add_theme_font_size_override("font_size", 12)
+	_tabs_button.toggled.connect(_toggle_tabs)
+	rows.add_child(_tabs_button)
+
 	_tabs = TabContainer.new()
 	_tabs.custom_minimum_size = Vector2(0, AssetCard.wanted_height() + 44.0)
 	_tabs.add_theme_font_size_override("font_size", 13)
 	rows.add_child(_tabs)
+	_toggle_tabs(true)
 
 	var hand_scroll := ScrollContainer.new()
 	hand_scroll.name = "La mano"
@@ -1621,6 +1646,23 @@ static func _inherit_seats(humans: Array, before: Array, now: Array) -> Array:
 		if where >= 0 and where < now.size() and not out.has(str(now[where])):
 			out.append(str(now[where]))
 	return out
+
+
+## **Apre e chiude la fascia delle schede** (D-478). Aperta, il minimo e'
+## l'altezza di una carta piu' la linguetta; chiusa, resta il solo bottone che
+## dice come riaprirla — una fascia che sparisce senza lasciare la maniglia e'
+## una cosa che il tavolo ha perso.
+func _toggle_tabs(open: bool) -> void:
+	if _tabs == null or _tabs_button == null:
+		return
+	_tabs.visible = open
+	_tabs.custom_minimum_size = Vector2(
+		0, AssetCard.wanted_height() + 44.0 if open else 0.0
+	)
+	_tabs_button.text = (
+		"▾  La mano, la tua plancia, gli obiettivi — tocca per chiudere" if open
+		else "▸  La mano, la tua plancia, gli obiettivi — tocca per aprire"
+	)
 
 
 func _seats_of(chronicle_id: String) -> Array:
