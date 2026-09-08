@@ -702,7 +702,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_REOPEN`**
@@ -792,7 +792,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il debito e' stato chiamato.
+> Il mondo ricorda: il debito e' stato chiamato, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_REOPEN`**
@@ -886,7 +886,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BOUNDARY_STONES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_BOUNDARY_STONES, si ottiene — B_REOPEN`**
@@ -980,7 +980,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BURIALS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la reliquia e' tornata sottoterra.
+> Il mondo ricorda: la reliquia e' tornata sottoterra, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_BURIALS, si ottiene — B_REOPEN`**
@@ -1168,7 +1168,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_CLEARING, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il Cristallo e' stato messo a rendere.
+> Il mondo ricorda: il Cristallo e' stato messo a rendere, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_CLEARING, si ottiene — B_REOPEN`**
@@ -1258,7 +1258,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COUNCIL_SEATS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la Carta vale anche per chi non siede.
+> Il mondo ricorda: la Carta vale anche per chi non siede, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_COUNCIL_SEATS, si ottiene — B_REOPEN`**
@@ -1352,7 +1352,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COURIERS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: quello che si e' capito resta scritto.
+> Il mondo ricorda: quello che si e' capito resta scritto, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_COURIERS, si ottiene — B_REOPEN`**
@@ -1540,7 +1540,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_DEEP_WATER, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'acqua torna a muoversi.
+> Il mondo ricorda: l'acqua torna a muoversi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_DEEP_WATER, si ottiene — B_REOPEN`**
@@ -1630,7 +1630,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ECHOES_BELOW, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la miniera e' stata chiusa.
+> Il mondo ricorda: la miniera e' stata chiusa, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_ECHOES_BELOW, si ottiene — B_REOPEN`**
@@ -1720,7 +1720,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il debito e' stato rimesso.
+> Il mondo ricorda: il debito e' stato rimesso, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_REOPEN`**
@@ -1822,7 +1822,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la Carta e' stata scritta.
+> Il mondo ricorda: la Carta e' stata scritta, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_REOPEN`**
@@ -1916,7 +1916,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FALLOW, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il debito e' stato rimesso.
+> Il mondo ricorda: il debito e' stato rimesso, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_FALLOW, si ottiene — B_REOPEN`**
@@ -2104,7 +2104,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FERRY, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'acqua torna a muoversi.
+> Il mondo ricorda: l'acqua torna a muoversi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_FERRY, si ottiene — B_REOPEN`**
@@ -2194,7 +2194,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FLOOD, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'acqua torna a muoversi.
+> Il mondo ricorda: l'acqua torna a muoversi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_FLOOD, si ottiene — B_REOPEN`**
@@ -2284,7 +2284,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_REOPEN`**
@@ -2374,7 +2374,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HERESY, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la fede ha una casa riconosciuta.
+> Il mondo ricorda: la fede ha una casa riconosciuta, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_HERESY, si ottiene — B_REOPEN`**
@@ -2464,7 +2464,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HOSTAGES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'ordine e' stato rimesso in piedi.
+> Il mondo ricorda: l'ordine e' stato rimesso in piedi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_HOSTAGES, si ottiene — B_REOPEN`**
@@ -2554,7 +2554,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SHRINE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la fede ha una casa riconosciuta.
+> Il mondo ricorda: la fede ha una casa riconosciuta, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_ISLAND_SHRINE, si ottiene — B_REOPEN`**
@@ -2644,7 +2644,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SILENCE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: della montagna si e' smesso di parlare.
+> Il mondo ricorda: della montagna si e' smesso di parlare, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_ISLAND_SILENCE, si ottiene — B_REOPEN`**
@@ -2738,7 +2738,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LANDLESS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la Carta e' stata scritta.
+> Il mondo ricorda: la Carta e' stata scritta, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_LANDLESS, si ottiene — B_REOPEN`**
@@ -2828,7 +2828,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LAND_REGISTER, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_LAND_REGISTER, si ottiene — B_REOPEN`**
@@ -2922,7 +2922,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LEVY, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'ordine e' stato rimesso in piedi.
+> Il mondo ricorda: l'ordine e' stato rimesso in piedi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_LEVY, si ottiene — B_REOPEN`**
@@ -3016,7 +3016,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARCHES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la corona e' stata divisa.
+> Il mondo ricorda: la corona e' stata divisa, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_MARCHES, si ottiene — B_REOPEN`**
@@ -3110,7 +3110,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARSH_FEVER, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'acqua torna a muoversi.
+> Il mondo ricorda: l'acqua torna a muoversi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_MARSH_FEVER, si ottiene — B_REOPEN`**
@@ -3290,7 +3290,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'acqua torna a muoversi.
+> Il mondo ricorda: l'acqua torna a muoversi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_OLD_CHANNELS, si ottiene — B_REOPEN`**
@@ -3384,7 +3384,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_GUARD, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la successione e' scritta in una legge.
+> Il mondo ricorda: la successione e' scritta in una legge, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_OLD_GUARD, si ottiene — B_REOPEN`**
@@ -3478,7 +3478,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: quello che si e' capito resta scritto.
+> Il mondo ricorda: quello che si e' capito resta scritto, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_REOPEN`**
@@ -3572,7 +3572,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PASTURE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_PASTURE, si ottiene — B_REOPEN`**
@@ -3666,7 +3666,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PILGRIMS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la reliquia e' tornata sottoterra.
+> Il mondo ricorda: la reliquia e' tornata sottoterra, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_PILGRIMS, si ottiene — B_REOPEN`**
@@ -3846,7 +3846,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PROPHECY, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il Cristallo e' stato misurato.
+> Il mondo ricorda: il Cristallo e' stato misurato, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_PROPHECY, si ottiene — B_REOPEN`**
@@ -3936,7 +3936,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_QUARANTINE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_QUARANTINE, si ottiene — B_REOPEN`**
@@ -4030,7 +4030,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REFUGEES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_REFUGEES, si ottiene — B_REOPEN`**
@@ -4124,7 +4124,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REGENCY, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la corona e' stata divisa.
+> Il mondo ricorda: la corona e' stata divisa, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_REGENCY, si ottiene — B_REOPEN`**
@@ -4414,7 +4414,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SALT_FIELDS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i conti sono stati chiusi.
+> Il mondo ricorda: i conti sono stati chiusi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SALT_FIELDS, si ottiene — B_REOPEN`**
@@ -4508,7 +4508,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SANCTUARY, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la Carta e' stata scritta.
+> Il mondo ricorda: la Carta e' stata scritta, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SANCTUARY, si ottiene — B_REOPEN`**
@@ -4598,7 +4598,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SEALS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SEALS, si ottiene — B_REOPEN`**
@@ -4692,7 +4692,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILENT_BELLS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la fede ha una casa riconosciuta.
+> Il mondo ricorda: la fede ha una casa riconosciuta, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SILENT_BELLS, si ottiene — B_REOPEN`**
@@ -4782,7 +4782,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: l'acqua torna a muoversi.
+> Il mondo ricorda: l'acqua torna a muoversi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SILTED_CANALS, si ottiene — B_REOPEN`**
@@ -4876,7 +4876,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SLEEPERS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la miniera e' stata chiusa.
+> Il mondo ricorda: la miniera e' stata chiusa, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SLEEPERS, si ottiene — B_REOPEN`**
@@ -4966,7 +4966,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SMUGGLING, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_SMUGGLING, si ottiene — B_REOPEN`**
@@ -5244,7 +5244,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_TITHE, si ottiene — B_REOPEN`**
@@ -5334,7 +5334,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TRIBUTE, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i conti sono stati chiusi.
+> Il mondo ricorda: i conti sono stati chiusi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_TRIBUTE, si ottiene — B_REOPEN`**
@@ -5424,7 +5424,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_UNEARTHED, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il Cristallo e' stato misurato.
+> Il mondo ricorda: il Cristallo e' stato misurato, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_UNEARTHED, si ottiene — B_REOPEN`**
@@ -5518,7 +5518,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_VOWS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: quello che si e' capito resta scritto.
+> Il mondo ricorda: quello che si e' capito resta scritto, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_VOWS, si ottiene — B_REOPEN`**
@@ -5608,7 +5608,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WARD_STONES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: la reliquia e' tornata sottoterra.
+> Il mondo ricorda: la reliquia e' tornata sottoterra, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_WARD_STONES, si ottiene — B_REOPEN`**
@@ -5796,7 +5796,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WEIGHTS, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+> Il mondo ricorda: il registro e' aperto a chi vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_WEIGHTS, si ottiene — B_REOPEN`**
@@ -5890,7 +5890,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: il debito e' stato rimesso.
+> Il mondo ricorda: il debito e' stato rimesso, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_WINTER, si ottiene — B_REOPEN`**
@@ -5984,7 +5984,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WOLVES, si ottiene — B_REMEMBER`**
-> Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+> Il mondo ricorda: i Nahr hanno un posto dove fermarsi, e l'anno prossimo la sua questione torna piu' facilmente.
 
 
 **`TEN_WOLVES, si ottiene — B_REOPEN`**
@@ -9184,7 +9184,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`DST_LIBERE, triumph`**
 > E nessuno l'ha pagata più degli altri
 
-> E la Carta si scrive quando la domanda non si può più rimandare · E quattro segni che il conto è stato diviso · Il debito è stato rimesso · E la Gilda non è diventata un nemico delle città · La terra col #capitale non e' in rivolta · E il Debito resta la domanda che nessuno può fingere di non vedere · E le città hanno costruito, non solo discusso · E l'anno ha lasciato segni: una Carta scritta in un anno tranquillo non serviva a nessuno
+> E la Carta si scrive quando la domanda non si può più rimandare · E quattro segni che il conto è stato diviso · Il debito è stato rimesso · E la Gilda non è diventata un nemico delle città · La terra col #capitale non e' in rivolta · E il Debito resta la domanda che nessuno può fingere di non vedere · E le città hanno costruito, non solo discusso · E l'anno ha lasciato segni: una Carta scritta in un anno tranquillo non serviva a nessuno · E la Legge Scritta e' fra le loro carte
 
 
 **`DST_LIBERE, si legge minimum`**
@@ -9400,7 +9400,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`DST_SALE, triumph`**
 > E la firma vale ancora
 
-> Il registro non è finito sul muro: è ancora suo · E quattro segni che il registro pesa più della spada · Il patto con i Signori della Cenere regge · E il Debito non ha spaccato la Strada · Il registro ha più di una casa · La via del #commercio e' uscita pulita · E ci sono due cose murate che portano il suo nome · E nessuna strada si e' chiusa: un registro vale quanto le vie che copre
+> Il registro non è finito sul muro: è ancora suo · E quattro segni che il registro pesa più della spada · Il patto con i Signori della Cenere regge · E il Debito non ha spaccato la Strada · Il registro ha più di una casa · La via del #commercio e' uscita pulita · E ci sono due cose murate che portano il suo nome · E nessuna strada si e' chiusa: un registro vale quanto le vie che copre · E il Registro dei Traffici e' nelle sue mani
 
 
 **`DST_SALE, si legge minimum`**
@@ -9724,7 +9724,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`DST_VAERAX_LEGEND, triumph`**
 > Nessuno ricorda com'era davvero
 
-> Il sigillo regge · Il Risveglio è un sussurro · E la voce corre: la versione che gira fuori dalla sala e' la sua
+> Il sigillo regge · Il Risveglio è un sussurro · E la voce corre: la versione che gira fuori dalla sala e' la sua · E l'Auspicio lo tiene lei: la storia la racconta chi l'ha visto
 
 
 **`DST_VAERAX_LEGEND, si legge minimum`**

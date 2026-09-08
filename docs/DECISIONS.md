@@ -45,6 +45,92 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-487 — Tre Scoperte hanno un nome, e la memoria dice cosa fa
+
+**implemented in 0.1.457.** La R17 ([ISSUES 134](ISSUES.md#134)), sulla parola
+*«via in ordine R14 in poi»*. La voce era l'audit dei segni che il committente
+aveva chiesto: *«fammi un audit di tutti i TAG che non servono a un cazzo»*.
+
+### 1. Le nove Scoperte: tre hanno un nome
+
+Erano il gruppo piu' grosso: nove Scoperte che **nessuna clausola nominava una
+per una** — Destini e obiettivi chiedono *«tre scoperte»*, mai *«l'Auspicio»* —
+e valevano 1.258 scritture su 4.822 in cento anni, il 26% di tutto quello che il
+mondo scrive, per un contenuto in cui una Scoperta valeva l'altra.
+
+Delle due strade che la voce metteva davanti — **un gettone solo ×9** oppure
+**qualcuno che le nomini** — si e' presa la seconda, che e' quella che aggiunge
+gioco invece di toglierne. Tre Destini adesso chiedono **una Scoperta precisa**,
+al Trionfo, dove la richiesta e' d'autore e non di conto:
+
+| Destino | chiede | perche' e' sua |
+|---|---|---|
+| **Il Registro che Tiene** (Sale) | `discovery:trade_ledger` | il Banco vive di traffici scritti |
+| **Una Legge Senza Corona** (Libere) | `discovery:written_law` | una legge senza corona e' una legge scritta |
+| **La Storia che si Racconta** (Vaerax) | `discovery:the_omen` | *la storia la racconta chi l'ha visto* |
+
+Sono le tre **piu' scritte** del gruppo (206, 165, 345 volte in cento anni): le
+piu' facili da trovare in mano, quindi le piu' giuste da chiedere.
+
+Le altre sei restano contate a peso, e restano dichiarate: fare lo stesso lavoro
+su tutte e nove vorrebbe dire scrivere sei clausole per far quadrare un audit,
+che e' il modo peggiore di scrivere contenuto.
+
+### 2. I dodici della pesca: la carta lo dice
+
+Dodici gettoni non cambiano niente di quello che puoi fare adesso: pesano
+**quali domande escono l'anno dopo**. Non e' un difetto — e' memoria, ed e' il
+mestiere della Cronaca — ma chi gioca non aveva modo di saperlo.
+
+**Quarantotto frasi riscritte**: *«Il mondo ricorda: il registro e' aperto a chi
+vuole leggerlo, e l'anno prossimo la sua questione torna piu' facilmente.»* La
+regola era gia' li'; adesso e' stampata.
+
+### 3. I quattro di un Destino solo, e le cinque Cicatrici
+
+Restano, e restano dichiarati.
+
+I quattro (`anointed`, `ash_watch`, `failed_proposal`, `water_moves`) sono
+contenuto di **un tarocco**: chi non ha quel Destino non li guarda, ed e' il
+senso di avere Destini diversi. Allargarli vorrebbe dire farli contare per
+tutti, cioe' togliere loro la ragione di esistere.
+
+Le cinque Cicatrici sono la risposta gia' data in
+[D-486](DECISIONS.md#d-486): una Cicatrice pesa **perche' e' una Cicatrice** —
+`scar_count`, che 22 clausole interrogano — e il nome non lo legge nessuno di
+proposito. Adesso la carta lo dice: *«resta fino a fine partita, e chi conta le
+Cicatrici la conta»*.
+
+### 4. E una guardia che modellava il motore meno generoso di com'e'
+
+Le tre clausole nuove hanno fatto andare rossa `test_data_boot`: *«DST_SALE
+chiede `discovery:trade_ledger`, che niente al mondo puo' scrivere»*. Non era
+vero — quella Scoperta la scrive **l'Azione stampata di una carta** (D-283), 206
+volte in cento anni — ed e' la **terza volta** che quella guardia si accorge di
+non conoscere una bocca del motore (D-376, D-383). Adesso conosce anche le
+facce delle carte, `puts_tag` e il segno della Risonanza aggravata.
+
+*Una guardia che modella il motore meno generoso di com'e' non protegge: vieta
+una clausola vera.*
+
+### 5. Misurato
+
+L'audit e' generato, quindi il numero si e' mosso da solo:
+
+| | 0.1.449 | adesso |
+|---|---|---|
+| segni scritti sul mondo | 103 | 103 |
+| li guarda **una mano sola** | 34 | **31** |
+| **0 o 1 mano** | 44 (43%) | **41 (40%)** |
+| di quelli, con un gettone stampato | 42 | **39** |
+
+Cancello dei 100 semi: **0 seggi bloccati su 8**, Verita' 285 sul misto (ferme)
+e 251 → **252** sull'uniforme. Tre clausole di Trionfo e quarantotto frasi non
+spostano una partita, e non dovevano: spostano **cosa vuol dire** quello che c'e'
+sul tavolo.
+
+---
+
 ## D-486 — Le caselle del Consiglio dicono cosa cambia, e scaldare il Tema costa davvero
 
 **implemented in 0.1.456.** La R16 ([ISSUES 133](ISSUES.md#133)), sulla parola

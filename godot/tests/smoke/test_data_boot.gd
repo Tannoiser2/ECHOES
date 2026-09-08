@@ -360,6 +360,21 @@ func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
 			var tag: String = str((grade as Dictionary).get("tag", ""))
 			if tag != "":
 				writable[tag] = str((structure as Dictionary)["id"])
+	# **E la terza bocca: le Azioni stampate sulle carte** (D-283, trovata da
+	# D-487). Da quando il motore esegue `puts_tag` e `clears_tag` della faccia
+	# scelta, una carta calata scrive sul mondo come una Conseguenza — e' cosi'
+	# che `discovery:trade_ledger` finisce sulla scheda di casa, 206 volte in
+	# cento anni. Questa guardia non lo sapeva, e il giorno in cui un Destino ha
+	# chiesto quella Scoperta ha chiamato irraggiungibile una clausola vera.
+	# Terza volta che modella il motore meno generoso di com'e' (D-376, D-383).
+	for card in loaded.assets.values():
+		var face: Dictionary = (card as Dictionary).get("physical", {}) as Dictionary
+		for action in (face.get("actions", []) as Array):
+			for tag in ((action as Dictionary).get("puts_tag", []) as Array):
+				writable[str(tag)] = str((card as Dictionary)["id"])
+		var echo: Dictionary = face.get("resonance", {}) as Dictionary
+		if str(echo.get("extra_tag", "")) != "":
+			writable[str(echo["extra_tag"])] = str((card as Dictionary)["id"])
 	for tag in writable.keys().duplicate():
 		var fact: String = str(tag)
 		if fact.begins_with("legend:") or fact.begins_with("function:"):

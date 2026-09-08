@@ -23,7 +23,7 @@ lettori: disegnare non e' mordere.
 
 **E 0 segni li chiede qualcuno senza che niente li scriva.**
 
-**E 34 li guarda una mano sola: contando i muti, 44 su 103 — il 43%.**
+**E 31 li guarda una mano sola: contando i muti, 41 su 103 — il 40%.**
 
 ---
 
@@ -57,12 +57,12 @@ non ha nessun motivo per posarlo o evitarlo, se non quell'unico.
 L'ultima colonna e' il costo vero: la fustella che quel segno si porta
 nella scatola comunque.
 
-**44 segni su 103 scritti sul mondo — il 43% — li guarda una mano sola (34) o nessuna (10), e 42 di loro hanno un gettone stampato.**
+**41 segni su 103 scritti sul mondo — il 40% — li guarda una mano sola (31) o nessuna (10), e 39 di loro hanno un gettone stampato.**
 
 | l'unica mano che legge | segni | quali |
 |---|---|---|
 | pesca delle domande | **12** | `amnesty_granted`, `charter_for_all`, `crystal_measured`, `debt_staggered`, `descent_witnessed`, `distribution_audited`, `quota_guaranteed`, `relic_recorded`, `succession_settled`, `succession_witnessed`, `water_rights`, `water_shared` |
-| codice (condition_evaluator.gd, policy_decider.gd) | **9** | `discovery:crystal`, `discovery:legend`, `discovery:supervised_record`, `discovery:the_charter`, `discovery:the_ledger`, `discovery:the_measure`, `discovery:the_omen`, `discovery:trade_ledger`, `discovery:written_law` |
+| codice (condition_evaluator.gd, policy_decider.gd) | **6** | `discovery:crystal`, `discovery:legend`, `discovery:supervised_record`, `discovery:the_charter`, `discovery:the_ledger`, `discovery:the_measure` |
 | conteggio delle cicatrici (`scar_count`) | **5** | `scar:divided_seal`, `scar:dragonfall`, `scar:plundered`, `scar:sealed_border`, `scar:unanswered` |
 | Destino | **4** | `anointed`, `ash_watch`, `failed_proposal`, `water_moves` |
 | Risonanza | **2** | `parley_held`, `petition_heard` |
@@ -84,9 +84,6 @@ nella scatola comunque.
 | `discovery:the_charter` | sulla scheda della casa | Conseguenza | codice (condition_evaluator.gd, policy_decider.gd) | `TOK_DISCOVERY_THE_CHARTER` |
 | `discovery:the_ledger` | sulla scheda della casa | Azione stampata, Conseguenza | codice (condition_evaluator.gd, policy_decider.gd) | `TOK_DISCOVERY_THE_LEDGER` |
 | `discovery:the_measure` | sulla scheda della casa | carta Echo | codice (condition_evaluator.gd, policy_decider.gd) | `TOK_DISCOVERY_THE_MEASURE` |
-| `discovery:the_omen` | sulla scheda della casa | Azione stampata, carta Echo | codice (condition_evaluator.gd, policy_decider.gd) | `TOK_DISCOVERY_THE_OMEN` |
-| `discovery:trade_ledger` | sulla scheda della casa | Azione stampata | codice (condition_evaluator.gd, policy_decider.gd) | `TOK_DISCOVERY_TRADE_LEDGER` |
-| `discovery:written_law` | sulla scheda della casa | Azione stampata, Conseguenza | codice (condition_evaluator.gd, policy_decider.gd) | `TOK_DISCOVERY_WRITTEN_LAW` |
 | `distribution_audited` | un gettone sul bordo della mappa | Conseguenza | pesca delle domande | `TOK_DISTRIBUTION_AUDITED` |
 | `evicted:$region_focus` | sulla scheda della casa | carta Asset | codice (chronicle_controller.gd) | — |
 | `failed_proposal` | sulla scheda della casa | Conseguenza | Destino | `TOK_FAILED_PROPOSAL` |
@@ -174,9 +171,9 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `discovery:the_charter` | Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:the_ledger` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:the_measure` | carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd) |
-| `discovery:the_omen` | Azione stampata, carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd) |
-| `discovery:trade_ledger` | Azione stampata | — | codice (condition_evaluator.gd, policy_decider.gd) |
-| `discovery:written_law` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
+| `discovery:the_omen` | Azione stampata, carta Echo | — | Destino, codice (condition_evaluator.gd, policy_decider.gd) |
+| `discovery:trade_ledger` | Azione stampata | — | Destino, codice (condition_evaluator.gd, policy_decider.gd) |
+| `discovery:written_law` | Azione stampata, Conseguenza | — | Destino, codice (condition_evaluator.gd, policy_decider.gd) |
 | `distribution_audited` | Conseguenza | — | pesca delle domande |
 | `escort_sworn` | Azione stampata, Conseguenza | Azione stampata | Destino, Risonanza, chi siede l'anno prossimo |
 | `evicted:$region_focus` | — | carta Asset | codice (chronicle_controller.gd) |

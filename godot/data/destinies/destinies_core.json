@@ -1033,6 +1033,13 @@
             "scope": "GLOBAL",
             "tag": "rumour_running",
             "label": "E la voce corre: la versione che gira fuori dalla sala e' la sua"
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_VAERAX",
+            "tag": "discovery:the_omen",
+            "label": "E l'Auspicio lo tiene lei: la storia la racconta chi l'ha visto"
           }
         ]
       },
@@ -1149,6 +1156,13 @@
                 "label": "E nessuna strada si e' chiusa: un registro vale quanto le vie che copre"
               }
             ]
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_SALE",
+            "tag": "discovery:trade_ledger",
+            "label": "E il Registro dei Traffici e' nelle sue mani"
           }
         ]
       },
@@ -1810,6 +1824,13 @@
                 "min": 2
               }
             ]
+          },
+          {
+            "type": "state_tag_present",
+            "scope": "ENTITY",
+            "entity_id": "ENT_LIBERE",
+            "tag": "discovery:written_law",
+            "label": "E la Legge Scritta e' fra le loro carte"
           }
         ]
       },

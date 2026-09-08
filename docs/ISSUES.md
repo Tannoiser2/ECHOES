@@ -10538,7 +10538,7 @@ sull'uniforme.
 
 
 
-### 134. I segni che li guarda una mano sola: 44 su 103, e 42 hanno una fustella
+### 134. ✅ I segni che li guarda una mano sola: 44 su 103, e 42 hanno una fustella — CHIUSA in 0.1.457: tre Scoperte hanno un nome, e la memoria dice cosa fa
 
 `contenuto` · `regole` · `da-decidere` · voluta dal committente · **aperta in 0.1.449**
 
@@ -10591,13 +10591,27 @@ separati.
 3. **42 fustelle su 122 servono un segno che nessuno o quasi interroga**: e'
    un terzo della fustellatura della scatola.
 
-**Cosa resta da decidere, e lo decide il committente:**
+**Chiusa in 0.1.457** ([D-487](DECISIONS.md#d-487)), sulla parola *«via in
+ordine R14 in poi»*. Le quattro risposte:
 
-1. **Le nove Scoperte**: un gettone solo ×9, oppure qualcuno che le nomini una
-   per una?
-2. **I dodici della pesca**: restano memoria pura — e allora la carta lo dice
-   («questo peserà sull'anno prossimo») — o si fanno mordere adesso?
-3. **I quattro letti da un Destino solo**: si allargano ad altre clausole, o si
-   accetta che siano contenuto di un tarocco solo?
-4. **Le cinque Cicatrici**: e' la stessa domanda di ISSUES 133 punto 2, e la
-   risposta e' una sola per tutt'e due.
+1. ✔ **Tre Scoperte hanno un nome.** Delle due strade — un gettone solo ×9 o
+   qualcuno che le nomini — si e' presa la seconda, che aggiunge gioco invece di
+   toglierne: **Il Registro che Tiene** chiede il *Registro dei Traffici*,
+   **Una Legge Senza Corona** la *Legge Scritta*, **La Storia che si Racconta**
+   l'*Auspicio*, tutte e tre al Trionfo. Sono le tre piu' scritte del gruppo
+   (206, 165, 345 volte). Le altre sei restano contate a peso e restano
+   dichiarate: sei clausole scritte per far quadrare un audit sarebbero il modo
+   peggiore di scrivere contenuto.
+2. ✔ **I dodici della pesca lo dicono adesso**: **48 frasi riscritte** — *«Il
+   mondo ricorda: …, e l'anno prossimo la sua questione torna piu'
+   facilmente.»* La regola era gia' li'; adesso e' stampata.
+3. ✔ **I quattro di un Destino solo restano**, e restano dichiarati: sono
+   contenuto di **un tarocco**, e allargarli vorrebbe dire togliere loro la
+   ragione di esistere.
+4. ✔ **Le cinque Cicatrici**: risposta gia' data in
+   [D-486](DECISIONS.md#d-486) — una Cicatrice pesa perche' e' una Cicatrice
+   (`scar_count`, 22 clausole), e adesso la carta lo dice.
+
+**E il numero si e' mosso da solo, perche' l'audit e' generato:** i segni che
+guarda una mano sola o nessuna passano da **44 su 103 (43%)** a **41 su 103
+(40%)**, e le fustelle che li servono da 42 a **39**. Cancello 0 su 8.

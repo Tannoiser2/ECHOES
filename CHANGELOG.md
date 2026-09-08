@@ -5,6 +5,49 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.457 — Tre Scoperte hanno un nome, e la memoria dice cosa fa (R17)
+
+[D-487](docs/DECISIONS.md#d-487), [ISSUES 134](docs/ISSUES.md#134) **chiusa**.
+
+Le **nove Scoperte** erano il gruppo piu' grosso dell'audit: nessuna clausola ne
+nominava una — Destini e obiettivi chiedono *«tre scoperte»*, mai *«l'Auspicio»*
+— e valevano 1.258 scritture su 4.822 in cento anni. Delle due strade — un
+gettone solo ×9, oppure qualcuno che le nomini — si e' presa **quella che
+aggiunge gioco**: tre Destini adesso chiedono una Scoperta precisa, al Trionfo.
+
+| Destino | chiede |
+|---|---|
+| Il Registro che Tiene | il **Registro dei Traffici** |
+| Una Legge Senza Corona | la **Legge Scritta** |
+| La Storia che si Racconta | l'**Auspicio** |
+
+Sono le tre piu' scritte del gruppo. Le altre sei restano contate a peso e
+restano dichiarate: sei clausole scritte per far quadrare un audit sarebbero il
+modo peggiore di scrivere contenuto.
+
+**I dodici gettoni che pesano solo la pesca dell'anno dopo adesso lo dicono**:
+48 frasi riscritte — *«Il mondo ricorda: …, e l'anno prossimo la sua questione
+torna piu' facilmente.»* La regola era gia' li'; adesso e' stampata.
+
+**I quattro letti da un Destino solo restano**, e restano dichiarati: sono
+contenuto di un tarocco, e allargarli vorrebbe dire togliere loro la ragione di
+esistere. **Le cinque Cicatrici** avevano gia' risposta in D-486.
+
+**E il numero si e' mosso da solo, perche' l'audit e' generato:** i segni che
+guarda una mano sola o nessuna passano da **44 su 103 (43%)** a **41 su 103
+(40%)**, le fustelle che li servono da 42 a **39**.
+
+**E una guardia ha imparato una bocca che non conosceva:** le tre clausole nuove
+hanno fatto andare rossa `test_data_boot` — *«chiede una Scoperta che niente al
+mondo puo' scrivere»* — e non era vero: quella Scoperta la scrive l'**Azione
+stampata di una carta**, 206 volte in cento anni. Terza volta che quella guardia
+modellava il motore meno generoso di com'e' (D-376, D-383).
+
+**Cancello 0 su 8**, Verita' 285 sul misto (ferme) e 251 → **252**
+sull'uniforme.
+
+---
+
 ## 0.1.456 — Le caselle dicono cosa cambia, e scaldare il Tema costa davvero (R16)
 
 [D-486](docs/DECISIONS.md#d-486), [ISSUES 133](docs/ISSUES.md#133) **chiusa**.
