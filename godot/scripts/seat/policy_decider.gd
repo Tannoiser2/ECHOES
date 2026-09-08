@@ -671,11 +671,34 @@ func _ally_of_convenience(entity_id: String, session: RefCounted) -> Dictionary:
 func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dictionary:
 	var intent: Dictionary = _choose_intent(entity_id, ao_index, session)
 	if not _cards_are_the_coin(session):
-		return intent
+		return _with_a_theme(entity_id, intent, session)
 	var play: Dictionary = _as_card_play(entity_id, intent, session)
 	if str(play.get("template", "PASS")) != "PASS":
-		return play
-	return _rather_than_nothing(entity_id, session)
+		return _with_a_theme(entity_id, play, session)
+	return _with_a_theme(entity_id, _rather_than_nothing(entity_id, session), session)
+
+
+## **Dove far rispondere il mondo** (D-482), scritto sulla mossa **appena prima
+## di darla**: la carta stampa due Temi e la Risonanza ne scalda uno solo.
+##
+## Sta qui e non nei tre posti che costruiscono una giocata — l'intento, il
+## ripiego, la carta che dice quel verbo — perche' una scelta scritta in tre
+## posti la si dimentica nel quarto. E' la stessa lezione di D-343: tre copie
+## della stessa lista, e la terza si e' vista il giorno che qualcosa e'
+## cambiato nelle altre due.
+func _with_a_theme(
+	entity_id: String, request: Dictionary, session: RefCounted
+) -> Dictionary:
+	if str(request.get("template", "")) != "PLAY_CARD":
+		return request
+	var params: Dictionary = request.get("params", {}) as Dictionary
+	var card: Variant = session.data.assets.get(str(params.get("asset_id", "")))
+	if card == null:
+		return request
+	var theme_id: String = _resonance_theme(entity_id, card as Dictionary, session)
+	if theme_id != "":
+		params["resonance_theme"] = theme_id
+	return request
 
 
 ## **Un'Occasione non si butta** (D-285, passo 4 del brief del Punto Zero).
@@ -983,6 +1006,48 @@ func _card_that_says(
 				"mark_region_id": best_place,
 			}
 	return {}
+
+
+## **Quale Tema far scaldare alla Risonanza** (D-482).
+##
+## La regola e' quella che il gioco e': *«di cosa si parlera', e chi ci arriva
+## con le carte in mano?»* ([ISSUES 132](../../../docs/ISSUES.md#132)). Fra i
+## due Temi stampati si sceglie **quello dove si hanno piu' carte**, perche' il
+## Tema piu' caldo decide quale domanda va al Consiglio e al Consiglio pesano
+## le carte tenute in mano: portare il tavolo dove si e' forti e' la mossa, e
+## non c'e' bisogno di insegnarne un'altra.
+##
+## A parita' vince il Tema **stampato per primo**, che e' quello che la carta
+## dice per prima e quello che il gioco faceva prima di questa decisione.
+func _resonance_theme(
+	entity_id: String, card: Dictionary, session: RefCounted
+) -> String:
+	var echo: Dictionary = (card.get("physical", {}) as Dictionary).get(
+		"resonance", {}
+	) as Dictionary
+	var first: String = str(echo.get("theme", ""))
+	var second: String = str(echo.get("or_theme", ""))
+	if first == "" or second == "" or first == second:
+		return first
+	return first if _hand_weight(entity_id, first, session) \
+		>= _hand_weight(entity_id, second, session) else second
+
+
+## Quanto pesa la mano di questo seggio su un Tema: le carte che al Consiglio
+## di quel Tema valgono di piu' (`council_use.bonus_if_theme`).
+func _hand_weight(entity_id: String, theme_id: String, session: RefCounted) -> int:
+	var weight: int = 0
+	for asset_id in (session.service.hand(entity_id) as Array):
+		var card: Variant = session.data.assets.get(str(asset_id))
+		if card == null:
+			continue
+		var use: Dictionary = (
+			((card as Dictionary).get("physical", {}) as Dictionary).get("council_use", {})
+			as Dictionary
+		)
+		if (use.get("bonus_if_theme", []) as Array).has(theme_id):
+			weight += 1
+	return weight
 
 
 ## I posti fra cui scegliere per i segni di questa meta': `[""]` quando non

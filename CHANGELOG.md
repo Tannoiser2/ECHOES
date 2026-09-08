@@ -5,6 +5,41 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.452 — Il mondo risponde dove dici tu (R15, prima delle quattro)
+
+[D-482](docs/DECISIONS.md#d-482), [ISSUES 132](docs/ISSUES.md#132) punto 1.
+
+*«Quali sono le effettive scelte che fa un giocatore? […] quale il meccanismo di
+gioco di echoes?»* Il meccanismo c'e' ed e' **l'agenda**: il Tema piu' caldo
+decide quale domanda va al Consiglio. Ma quella leva si muoveva **alla cieca**,
+perche' la Risonanza scaldava il Tema stampato e basta.
+
+**Adesso la Risonanza avviene sempre, e il Tema lo scegli tu.** Fra i due che la
+carta gia' stampava: nessun Tema nuovo, nessun sistema in piu'. La faccia lo
+dice — *«Scalda Potere **oppure** Vie +1, scegli tu»* — su **39 carte su 48**;
+le nove che di Temi ne portano uno restano obbligate. Il cervello sceglie
+**dove ha piu' carte in mano**, perche' al Consiglio pesano le carte tenute;
+alla persona, dopo la mossa, il gioco chiede una cosa sola: *«Il mondo risponde:
+quale Tema scaldi?»*
+
+**Misurato** (`cli/run_agenda_probe.gd`, sonda nuova, 100 anni): su **2.636**
+carte calate con una Risonanza, **2.180 (82,7%)** offrono la scelta, e **1.136
+volte — il 52,1% delle volte che poteva — la scelta sposta il gettone**. Prima
+era zero per costruzione.
+
+**Il costo, scritto:** cancello **0 su 8** sui due tavoli, ma sull'**uniforme**
+le Verita' scendono da 257 a **235** e i Consigli caduti salgono da 44 a **58**
+— quattro ottimizzatori identici scelgono lo stesso Tema e concentrano
+l'agenda. Sul **misto**, dove i caratteri vogliono cose diverse, la stessa leva
+fa il contrario: 278 → **283**. E' il prezzo di una leva vera: se scegliere non
+cambiasse gli esiti, non sarebbe una scelta.
+
+**E due guardie nuove**: una Risonanza cieca (due Temi stampati e nessuna
+scelta) e un secondo Tema inventato mandano rosso `validate_physical.py` — 54
+difetti piantati, erano 52.
+
+---
+
 ## 0.1.451 — Le due Azioni della stessa carta lasciano cose diverse (R14)
 
 [D-481](docs/DECISIONS.md#d-481), [ISSUES 131](docs/ISSUES.md#131) **chiusa**.

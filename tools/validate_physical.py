@@ -1361,6 +1361,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             )
 
     guai.extend(due_facce_uguali(documenti))
+    guai.extend(la_scelta_del_tema(documenti))
     guai.extend(due_domande(documenti))
     return guai
 
@@ -1373,6 +1374,45 @@ FACCE_GEMELLE_NOTE: Dict[str, str] = {
         "lo stesso segno va a due soggetti diversi: «Investirla» mette #fama su "
         "di lei, «Farsi investire» su di te, e il dato non ha modo di dirlo",
 }
+
+
+def la_scelta_del_tema(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Una carta con due Temi offre la scelta** (D-482).
+
+    La Risonanza avviene comunque (D-257) — questo non cambia — ma **quale** dei
+    due Temi prende il Calore lo dice chi cala la carta: e' l'unica leva sul
+    tavolo che sposta l'agenda, perche' il Tema piu' caldo decide quale domanda
+    va al Consiglio (D-260).
+
+    Una carta che stampa due Temi e non offre `or_theme` e' la leva vecchia,
+    quella cieca. E un `or_theme` che nomina un Tema inesistente, o lo stesso
+    Tema stampato, e' una scelta finta.
+    """
+    guai: List[str] = []
+    temi = {str(t["id"]) for t in documenti.get("theme", [])}
+    for carta in documenti.get("asset", []):
+        fisica = carta.get("physical") or {}
+        if not fisica:
+            continue
+        eco = fisica.get("resonance") or {}
+        primo = str(eco.get("theme", ""))
+        secondo = str(eco.get("or_theme", ""))
+        carta_id = str(carta.get("id", ""))
+        if len(fisica.get("themes") or []) >= 2 and secondo == "":
+            guai.append(
+                "Risonanza cieca: %s stampa due Temi e ne scalda uno solo — "
+                "manca `or_theme`, e chi gioca non ha nessuna leva sull'agenda"
+                % carta_id
+            )
+        if secondo == "":
+            continue
+        if secondo not in temi:
+            guai.append("secondo Tema che non esiste: %s offre «%s»"
+                        % (carta_id, secondo))
+        if secondo == primo:
+            guai.append("scelta finta: %s offre due volte lo stesso Tema (%s)"
+                        % (carta_id, primo))
+    return guai
 
 
 def due_facce_uguali(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
@@ -1552,6 +1592,21 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def mano_taciuta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         voce(prova, bersaglio)["read_by"] = [
             m for m in voce(prova, bersaglio)["read_by"] if m != "tension"]
+
+    def risonanza_cieca(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Alla prima carta con due Temi si toglie la scelta."""
+        for carta in prova.get("asset", []):
+            fisica = carta.get("physical") or {}
+            if len(fisica.get("themes") or []) >= 2 and (fisica.get("resonance") or {}).get("or_theme"):
+                fisica["resonance"].pop("or_theme")
+                return
+
+    def tema_inventato(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        for carta in prova.get("asset", []):
+            eco = (carta.get("physical") or {}).get("resonance") or {}
+            if eco.get("or_theme"):
+                eco["or_theme"] = "THM_SEMINATO_APPOSTA"
+                return
 
     def facce_gemelle(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         """Due Azioni identiche nel verbo e nei segni, sulla prima carta utile."""
@@ -2074,6 +2129,12 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # provare senza dirlo.
         pianta("due Azioni con lo stesso verbo e gli stessi segni", facce_gemelle,
                "due facce gemelle"),
+        # **La Risonanza cieca** (D-482), fabbricata sulla prima carta a due
+        # Temi: le 39 che avevano il difetto sono state riparate.
+        pianta("carta con due Temi e nessuna scelta", risonanza_cieca,
+               "Risonanza cieca"),
+        pianta("secondo Tema che non esiste", tema_inventato,
+               "secondo Tema che non esiste"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

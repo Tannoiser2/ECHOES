@@ -45,6 +45,89 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-482 — La Risonanza avviene comunque, ma il Tema lo scegli tu
+
+**implemented in 0.1.452.** Parola del committente: *«via in ordine R14 in
+poi»*. Questa e' la **prima** delle quattro decisioni di
+[ISSUES 132](ISSUES.md#132) — *«quali sono le effettive scelte che fa un
+giocatore? […] quale il meccanismo di gioco di echoes?»*
+
+### 1. Il difetto, detto come lo diceva la misura
+
+Il meccanismo di ECHOES c'e' ed e' **l'agenda**: ogni Azione fa due cose
+insieme — un fatto nel mondo e un voto su cosa il tavolo discutera', perche' la
+Risonanza scalda un Tema e il Tema piu' caldo decide quale domanda va al
+Consiglio (D-260, D-261).
+
+Ma **quella leva si muoveva alla cieca**: la Risonanza avviene comunque (D-257)
+e scaldava il Tema stampato, punto. La cosa piu' interessante del gioco era un
+effetto collaterale della carta calata.
+
+### 2. La regola nuova, in una riga
+
+> **La Risonanza avviene sempre. Quale dei due Temi stampati scalda, lo dice
+> chi cala la carta.**
+
+L'obbligo resta — non si puo' non far rispondere il mondo — e la scelta e'
+fra i **due Temi che la carta gia' portava stampati**: nessun Tema nuovo,
+nessuna carta nuova, nessun sistema in piu'.
+
+- il dato: `resonance.or_theme` sulle **39** carte che stampano due Temi (le 9
+  che ne portano uno solo restano obbligate, e va bene: non tutte le carte
+  danno la stessa liberta');
+- la faccia: la prima frase della Risonanza adesso dice *«Scalda Potere
+  **oppure** Vie +1, scegli tu»*;
+- il motore: `resonance_theme` viaggia coi parametri della giocata, e un Tema
+  che la carta non stampa **non vale** — si ricade su quello stampato per
+  primo, che e' quello che fanno i salvataggi vecchi;
+- il cervello: fra i due sceglie **quello dove ha piu' carte in mano**, perche'
+  al Consiglio pesano le carte tenute — *portare il tavolo dove si e' forti* e'
+  la mossa, e non c'e' bisogno di insegnargliene un'altra;
+- la persona: dopo aver scelto la mossa, una domanda sola — *«Il mondo
+  risponde: quale Tema scaldi?»*
+- la guardia: `validate_physical.py` va rosso su una **Risonanza cieca** (due
+  Temi stampati e nessuna scelta) e su un secondo Tema inventato (54 difetti
+  piantati, erano 52).
+
+### 3. Misurato
+
+`cli/run_agenda_probe.gd` (nuova), 100 anni, tavolo misto, semi da 7000:
+
+| | |
+|---|---|
+| carte calate con una Risonanza | 2.636 |
+| di quelle, con **due Temi da scegliere** | **2.180 (82,7%)** |
+| e la scelta ha **spostato il gettone** | **1.136 — il 52,1% delle volte che poteva** |
+
+Prima di questa decisione quel numero era **zero per costruzione**. Il Potere
+prende 918 gettoni, e **537 di quelli sono scelti** al posto del Tema stampato:
+il tavolo tira la leva, e la tira spesso.
+
+### 4. Il costo, che si scrive
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** sui due tavoli. Ma i due tavoli
+si comportano in modo diverso, e il secondo peggiora:
+
+| | prima | dopo |
+|---|---|---|
+| Verita', tavolo misto | 278 | **283** |
+| Verita', tavolo uniforme | 257 | **235** |
+| Consigli caduti (FAIL), misto | 48 | **60** |
+| Consigli caduti (FAIL), uniforme | 44 | **58** |
+| COUNTER, uniforme | 196 | **206** |
+
+**La causa e' la regola stessa.** Quattro ottimizzatori identici scelgono lo
+stesso Tema — quello dove hanno piu' carte — e concentrano l'agenda su pochi
+Temi: piu' Consigli sullo stesso tavolo, piu' opposizione, piu' domande che
+cadono. Sul tavolo **misto**, dove i quattro caratteri vogliono cose diverse, la
+stessa leva fa il contrario e le Verita' salgono.
+
+E' il costo di una leva vera: se scegliere non cambiasse gli esiti, non sarebbe
+una scelta. **Ventidue Verita' in meno sul tavolo uniforme sono il prezzo, ed e'
+scritto qui invece che nascosto.**
+
+---
+
 ## D-481 — Due Azioni con lo stesso verbo devono lasciare segni diversi
 
 **implemented in 0.1.451.** Parola del committente: *«via in ordine R14 in

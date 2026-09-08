@@ -313,7 +313,7 @@
         },
         "resonance": {
           "type": "object",
-          "description": "**Avviene sempre**, dopo l'Azione, e non si sceglie. E' la reazione del mondo: scalda un Tema, e spesso lascia qualcosa che non volevi.",
+          "description": "**Avviene sempre**, dopo l'Azione. Il Tema che scalda pero' si sceglie, quando la carta ne offre due (D-482): `theme` e' quello stampato per primo, `or_theme` l'altro. E' l'unica leva che chi gioca ha sull'agenda del tavolo — il Tema piu' caldo decide quale domanda va al Consiglio.",
           "required": [
             "theme",
             "heat",
@@ -346,6 +346,11 @@
             "extra_tag": {
               "type": "string",
               "description": "Il segno che la parte aggravata lascia sul bersaglio."
+            },
+            "or_theme": {
+              "type": "string",
+              "pattern": "^THM_[A-Z_]+$",
+              "description": "L'altro Tema che questa Risonanza puo' scaldare: chi gioca la carta sceglie fra questo e `theme` (D-482)."
             }
           }
         },
