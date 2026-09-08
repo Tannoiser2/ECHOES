@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **136** |
+| voci scritte | **137** |
 | chiuse | **124** |
-| aperte | **12** |
-| di cui **aspettano una tua decisione** | **2** |
+| aperte | **13** |
+| di cui **aspettano una tua decisione** | **3** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,24 +305,24 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **2** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **3** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dodici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su due tue parole.**
+**Una.** Delle tredici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su tre tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **due**
+# 🔴 Aspettano te: **tre**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
-sono due: la **R14** e la **R15**, e le hai fatte nascere tutt'e due tu — la
-prima chiedendo l'audit delle Azioni, la seconda chiedendo qual è il
-meccanismo di ECHOES. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
+sono tre: la **R14**, la **R15** e la **R16**, e le hai fatte nascere tutte tu
+— chiedendo l'audit delle Azioni, chiedendo qual è il meccanismo di ECHOES, e
+guardando le caselle del Consiglio. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
 svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
 tutte»* — e questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
@@ -469,6 +469,45 @@ e sono tue:
    cinque regole sui segni che escono davvero. Ma **con quale verso** — se
    `#conteso` renda piu' difficile decidere o piu' facile — e' una scelta
    d'autore, e la faccio solo se me la dici tu.
+
+### R16. [133](ISSUES.md#133) — le caselle del Consiglio: **aperta in 0.1.448**
+
+*«Continua a non convincermi scaldare il tema che si sta dibattendo, non ha
+senso, a cosa serve. Poi non si capisce cosa vuol dire "Sul luogo si alza un
+pedaggio" oppure "la domanda sul muro" […] non ti dicono cosa succede e cosa
+cambia per il gioco.»*
+
+Avevi ragione su tutt'e due, e tutt'e due hanno un numero.
+
+**Scaldare il Tema in dibattito è un costo che non costa.** Il Consiglio si
+tiene a fine Atto, e subito dopo il motore **azzera tutti i mucchi**: la pedina
+che hai posato lì viene cancellata due minuti dopo, nello stesso Atto. Fa
+qualcosa **solo** quando nell'Atto c'è un secondo Consiglio comprato col
+RIVENDICARE — 1,86 volte l'anno. Misurato: quella casella è **offerta 2.331
+volte e comprata 287** in cento anni.
+
+**E quarantaquattro caselle su 242 posano un segno che nessuno legge — il
+18%.** Il peggiore è proprio il tuo esempio: `scar:unanswered`, «la domanda sul
+muro», sta su **16 caselle** e non lo interroga nessuna regola. Quando la carta
+ti dice *«Accetta 1 Cicatrice permanente: la domanda sul muro»*, la frase è
+oscura **e** la Cicatrice non fa niente: è una penalità che non penalizza.
+
+Il pedaggio è il caso opposto e più insidioso: `toll` **è** letto, quindi
+qualcosa fa — ma la frase dice il **gesto** e non l'**effetto**, e tu non hai
+modo di sapere cosa cambia.
+
+E una terza cosa che la sonda dice da sé: delle **32 caselle** del vocabolario
+il tavolo ne compra **13**. Diciannove non escono mai.
+
+Quattro cose da decidere:
+
+1. **Scaldare il Tema in dibattito**: si toglie, o gli si dà un effetto che
+   sopravviva all'Atto (il Calore non speso che passa all'Atto dopo)?
+2. **Le 44 caselle mute**: si fanno mordere, o si tolgono? È la stessa regola
+   che oggi abbiamo applicato alle Conseguenze senza strada.
+3. **Le frasi**: devono dire l'effetto, non il gesto. È riscrittura di testo su
+   32 caselle, e la voce è la tua.
+4. **Le 19 caselle mai comprate.**
 
 ---
 
@@ -1174,9 +1213,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **due aspettano una tua parola**.
+fuori dalla lista, e **tre aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

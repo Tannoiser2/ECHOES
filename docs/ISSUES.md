@@ -10356,3 +10356,75 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    `condition:indebted` (304), `condition:rationed` (203) — e con quale verso
    ognuna.
 
+
+### 133. Le caselle del Consiglio: una su cinque non fa niente, e le frasi non dicono cosa cambia
+
+`regole` · `ux` · `da-decidere` · voluta dal committente · **aperta in 0.1.448**
+
+> «Continua a non convincermi scaldare il tema che si sta dibattendo, non ha
+> senso, a cosa serve. Poi non si capisce cosa vuol dire per esempio "Sul luogo
+> si alza un pedaggio" oppure accetti la cicatrice "la domanda sul muro", sono
+> frasi che per i giocatori non hanno senso e non ti dicono cosa succede e cosa
+> cambia per il gioco.»
+
+Due difetti diversi, tutt'e due misurati, tutt'e due veri.
+
+**1. Scaldare il Tema in dibattito e' un costo che non costa.** Il Consiglio si
+tiene **a fine Atto** (D-214), e subito dopo `_spend_the_piles` **azzera tutti
+i mucchi**. Una pedina su «Il Tema di questa domanda si scalda di 1» viene
+cancellata due minuti dopo, nello stesso Atto. L'unica finestra in cui fa
+qualcosa e' quando nell'Atto c'e' un **secondo** Consiglio comprato col
+RIVENDICARE — 1,86 volte l'anno — perche' li' il calore aggiunto puo' cambiare
+quale mazzetto si apre per secondo.
+
+Misurato (`run_boxes_probe`, 100 anni, 513 Consigli): **HEAT_THEME offerta
+2.331 volte e comprata 287**. Duecentottantasette pedine posate su un costo che
+per la stragrande maggioranza delle volte non cambia niente.
+
+**2. Quarantaquattro caselle su 242 posano un segno che nessuno legge.**
+Incrociate le caselle coi lettori — clausole di Destini, Obiettivi, carte,
+Conseguenze e `tag_rules`:
+
+| | |
+|---|---|
+| segni distinti posati dalle caselle | **37**, su **242** caselle |
+| di quelli, **non letti da nessuna clausola** | **10** segni, su **44** caselle (**18%**) |
+
+I muti, per quante caselle li posano:
+
+| segno | caselle |
+|---|---|
+| `scar:unanswered` — *«la domanda sul muro»* | **16** |
+| `scar:plundered` | 7 |
+| `scar:sealed_border` | 5 |
+| `condition:mourning` | 5 |
+| `faith_established` | 3 |
+| `account_settled`, `crystal_measured`, `condition:lean` | 2 ciascuno |
+| `charter_for_all`, `watched` | 1 ciascuno |
+
+Quindi quando la carta dice *«Accetta 1 Cicatrice permanente: la domanda sul
+muro»*, la frase e' oscura **e** la Cicatrice non fa niente: e' una penalita'
+che non penalizza, ed e' la casella SCAR — **offerta 2.581 volte e comprata
+236**.
+
+Il pedaggio e' il caso opposto e piu' insidioso: `toll` **e'** letto, quindi la
+casella fa qualcosa — ma la frase dice il **gesto** e non l'**effetto**, e chi
+gioca non ha modo di sapere cosa cambia. TOLL: offerta 1.866, comprata 149.
+
+**E una terza cosa che la sonda dice da se':** delle 32 caselle del vocabolario
+ne vengono comprate **13**. Diciannove non escono mai.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **Scaldare il Tema in dibattito**: si toglie dalle liste, o gli si da' un
+   effetto che sopravviva all'Atto (per esempio: il Calore non speso passa
+   all'Atto dopo, che ROADMAP §4.1 chiama gia' «taratura d'autore»)?
+2. **Le 44 caselle mute**: si fanno mordere — una regola che legga
+   `scar:unanswered` e le altre — o si tolgono? E' la stessa regola che D-475
+   ha applicato alle Conseguenze senza strada, e si puo' mettere sotto la
+   stessa guardia.
+3. **Le frasi**: la casella dice il gesto (*«Sul luogo si alza un pedaggio»*) e
+   deve dire l'effetto (*«chi entra qui paga»*). E' riscrittura di testo su 32
+   caselle, e la voce di chi scrive e' del committente.
+4. **Le 19 caselle mai comprate**: contenuto che il tavolo non sceglie mai.
+

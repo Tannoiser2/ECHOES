@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.448 — Le due schede si dividono, la fascia si chiude, e le caselle si misurano
+
+[D-478](docs/DECISIONS.md#d-478), [ISSUES 133](docs/ISSUES.md#133).
+
+**Le due schede non dicono piu' le stesse cose.** *«La mia casa e obiettivi
+mostrano le stesse cose»*: era vero e misurabile — chiamavano tutt'e due il
+Destino e il profilo, quindi due terzi erano identici. Adesso **Obiettivi**
+dice a che gioco stai giocando (Casata, Destino, le tre carte Obiettivo) e
+**la plancia** quello che tieni tu (i Diritti, i segni che porti addosso, i
+segni che la tua casa vuole vedere a fine anno).
+
+**E la fascia delle schede si apre e si chiude.** *«La finestra e'
+piccolissima in altezza e non si legge nulla, falla collassabile, ma quando e'
+aperta deve avere almeno l'altezza di una carta»*: chiusa lascia tutto lo
+spazio alla mappa, aperta non scende mai sotto l'altezza di una carta (D-246).
+La maniglia resta anche da chiusa e dice come riaprirla.
+
+**E due misure nuove, chieste guardando il tabellone** ([ISSUES 133](docs/ISSUES.md#133)):
+
+- **scaldare il Tema in dibattito e' un costo che non costa.** Il Consiglio si
+  tiene a fine Atto e subito dopo il motore azzera tutti i mucchi: la pedina
+  viene cancellata nello stesso Atto. Fa qualcosa solo quando c'e' un secondo
+  Consiglio comprato col RIVENDICARE, 1,86 volte l'anno. Offerta **2.331**
+  volte, comprata **287**;
+- **44 caselle su 242 posano un segno che nessuna clausola legge** — il 18%.
+  Il peggiore e' `scar:unanswered`, «la domanda sul muro», su **16 caselle**:
+  una penalita' che non penalizza. E delle 32 caselle del vocabolario il tavolo
+  ne compra **13**.
+
+Suite 778 prove in 122 suite, zero `SCRIPT ERROR`; 28 cancelli veloci verdi e i
+documenti rigenerati con `--rigenera --tutti`.
+
+---
+
 ## 0.1.447 — Le ventuno regole morte puntate sul mucchio
 
 [D-477](docs/DECISIONS.md#d-477), [ISSUES 132](docs/ISSUES.md#132). Parola del
