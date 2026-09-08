@@ -564,10 +564,9 @@
         },
         "council": {
           "type": "object",
-          "description": "**Il Consiglio che questa carta apre** (0.1.272, taglio 2 di ISSUES 80, parola del committente: «ogni carta sue proposte»). Le Domande e le Proposte stanno sulla carta, non in un template condiviso: al tavolo la carta girata deve bastare a se stessa. Il template resta per quello che non e' della singola carta — le clausole, i pool, la Risonanza del titolo.",
+          "description": "**Il Consiglio che questa carta apre** (0.1.272, taglio 2 di ISSUES 80, parola del committente: «ogni carta sue proposte»; dalla 0.1.444 le Proposte non ci sono piu', e restano le Domande). **Le Domande stanno sulla carta**, non in un template condiviso: al tavolo la carta girata deve bastare a se stessa. Il template resta per quello che non e' della singola carta — le clausole, i pool, la Risonanza del titolo.",
           "required": [
-            "questions",
-            "propositions"
+            "questions"
           ],
           "additionalProperties": false,
           "properties": {
@@ -576,13 +575,6 @@
               "minItems": 1,
               "items": {
                 "$ref": "confluence_template.schema.json#/$defs/question"
-              }
-            },
-            "propositions": {
-              "type": "array",
-              "minItems": 2,
-              "items": {
-                "$ref": "confluence_template.schema.json#/$defs/proposition"
               }
             }
           }

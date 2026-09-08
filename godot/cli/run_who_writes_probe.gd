@@ -190,9 +190,9 @@ func _initialize() -> void:
 	# mentre il tavolo ne aveva scritte 185. **Decima volta in questo progetto
 	# che una misura ferma era la sonda.**
 	#
-	# Le proposte non si contano piu' (D-472): il motore non le legge, e una
-	# lista `propositions` rimasta nei dati non e' contenuto che il tavolo
-	# possa vedere. Si contano le domande, due volte: poste e vinte.
+	# Le proposte non si contano piu' (D-472, e da D-474 non sono nemmeno piu'
+	# nei dati): il Consiglio a due domande non le vota. Si contano le domande,
+	# due volte: poste e vinte.
 	var written_questions: Dictionary = {}
 	for tension_id in data.tensions:
 		var template: Dictionary = data.confluence_template_for(str(tension_id))

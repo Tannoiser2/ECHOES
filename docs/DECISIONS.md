@@ -10,6 +10,119 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-474 — Il giro 6: le Proposte escono dai dati
+
+**implemented in 0.1.444.** [D-472](#d-472) lo lasciava scritto in fondo:
+*«Le proposte restano stampate sulle carte (`council.propositions` in
+`tensions_*.json`, con i loro `echo_summaries`): nessun motore le legge piu';
+le legge la scheda, il catalogo e la revisione dei testi. E' contenuto che
+esiste nei dati e non esiste al tavolo (D-035): toglierle e' il giro dopo.»*
+E' il giro dopo.
+
+### 1. Cosa e' uscito
+
+**194 proposte su 60 carte Tensione**, con le loro clausole d'idoneita', i
+loro `success_consequences` e **51 gruppi di `echo_summaries`** — la prosa per
+esito che il registro delle Verita' teneva quando una proposta passava. Con
+loro:
+
+- il `$defs/proposition` dallo schema del Consiglio, e `propositions` dal
+  blocco `council` della carta Tensione (che adesso chiede solo `questions`);
+- `proposition_id` dallo schema dei piani di simulazione: nessuna sonda lo
+  leggeva piu';
+- `CouncilText.proposition()`, diventata `CouncilText.question()` — la stessa
+  funzione, sulla cosa che il Consiglio chiede davvero;
+- `tools/two_questions.py`, la migrazione di [D-469](#d-469) che aveva ricavato
+  l'esito di base delle domande **dalle proposte**: e' spesa, e senza proposte
+  non potrebbe piu' girare.
+
+### 2. Cosa e' rimasto, e dove si legge adesso
+
+| chi le leggeva | cosa legge adesso |
+|---|---|
+| la scheda del Consiglio (`council_sheet.gd`) | **le due domande**, quando ognuna si apre, e cosa lascia al mondo chi risponde di si' |
+| il catalogo (`CATALOGO_CONSIGLI.md`) | le due domande con le loro caselle: **60 carte, 120 domande** invece di 60 carte e 194 proposte |
+| la revisione dei testi (`REVISIONE_TESTI.md`) | 2.238 righe in meno: erano i testi delle proposte e i loro esiti |
+| il disegno del flusso (`flusso.html`) | la catena e' **carta -> scheda -> domanda -> Conseguenza**, senza il gradino in mezzo |
+| il registro dei segni | le clausole delle **domande**, non delle proposte |
+| la misura delle caselle | quello che una domanda applica: il suo esito di base |
+
+### 3. Le due guardie che si sono spostate invece di sparire
+
+Erano scritte sulle proposte, e la regola che dicono vale al Consiglio a due
+domande piu' di prima:
+
+- **«una domanda senza risposte»** diventa **«una domanda che non lascia
+  niente al mondo»**: il Consiglio a due domande non fa proporre, chiede — e
+  una domanda con l'esito di base vuoto si vota e il mondo resta com'era.
+  Misurata: **0 su 120**.
+- **«due proposte che fanno la stessa cosa»** ([ISSUES 104](ISSUES.md#104))
+  diventa **«due domande che fanno la stessa cosa»**, e al Consiglio a due
+  domande pesa il doppio: la carta ne mette in contrasto **due**, e se portano
+  allo stesso mondo il voto non decide niente. Misurata: **0 coppie**.
+
+E la guardia di [D-462](#d-462) dentro `DataSet` — *«una Conseguenza scritta
+male su una carta passava ogni controllo, e il motore la saltava in silenzio»*
+— adesso guarda l'esito di base, che e' quello che il Consiglio applica.
+
+Anche la prova **«nessuna proposta e' murata»** ([ISSUES 56](ISSUES.md#56),
+[D-414](#d-414)) si e' spostata: e' diventata *nessuna **domanda** e' murata*.
+Al Consiglio a due domande una porta murata ha una forma sola — un gradino
+`tension_limit` piu' alto della soglia della sua questione, che non si
+scavalca mai perche' il Consiglio si tiene **a** soglia. Sono otto gradini su
+120 domande, tutti a portata; la guardia e' stata provata piantandone uno a
+99, e ha detto *«Q_FAMINE_LAND chiede 99 e TEN_FAMINE arriva a 6»*.
+
+### 4. I numeri
+
+- **Il cancello dei 100 semi, seme 7000: 0 seggi bloccati su un solo livello
+  su 8**, tavolo misto e uniforme. Gli esiti sono **identici** a quelli di
+  D-472 — 46 · 36 · 102 · 146 · 156 sul misto, 45 · 45 · 91 · 112 · 185
+  sull'uniforme — ed e' la prova che si voleva: **togliere le proposte non
+  sposta una virgola della partita**, perche' il motore non le leggeva gia'
+  piu'. Se un numero si fosse mosso, avrebbe voluto dire che qualcuno le
+  leggeva ancora.
+- Suite **768 prove in 120 suite**, zero `SCRIPT ERROR`. Le asserzioni
+  **scendono da 80.162 a 76.330**: erano le 194 proposte girate una per una
+  da tre prove, e non c'e' piu' niente da girare.
+- I 28 cancelli veloci e le 6 sonde lunghe: verdi.
+
+### Costi dichiarati
+
+- **Sedici Conseguenze restano senza strada.** Delle 67 della scatola, 41
+  stanno nell'esito di base di una domanda e 10 nei sacchetti del template;
+  le altre 16 — *la corona divisa*, *il drago abbattuto*, *l'esodo*, *la
+  miniera riaperta* fra loro — erano nominate **solo** dalle proposte. Non
+  e' un guasto di questo giro: sono irraggiungibili da D-472, quando il
+  motore ha smesso di votare proposte; toglierle e' l'unica cosa che questo
+  giro ha fatto, e ha reso visibile una cosa che era gia' vera. Se debbano
+  tornare — come esito di una domanda, o dentro un sacchetto — e' una
+  decisione, e sta in [ISSUES 129](ISSUES.md#129). **Non sono state
+  cancellate**: restano nella scatola, pronte per una domanda che le chiami.
+- **La misura delle caselle scende da 44 a 34 distinti e da 704 a 433
+  applicazioni.** E' lo stesso fatto contato da un'altra parte: il documento
+  misurava quello che un Consiglio poteva applicare *comprese le proposte che
+  nessuno votava*. Il conto che restava importante — *«verbo giusto, posto che
+  la casella non sa dire»* e *«verbo che manca»* — resta **0 e 0**.
+- **La corona non morde piu'.** `crowned` era interrogato da una clausola di
+  proposta — *«solo chi porta la corona puo' requisire»* — ed e' l'unico segno
+  che questo giro lascia muto: lo scrive il setup, lo toglie una Conseguenza,
+  lo guardano la faccia di un Destino e tre profili di casa, e nessuna regola
+  del motore lo legge. E' dichiarato, con la sua ragione nel dizionario
+  (D-399) e la sua riga in `MUTI_NOTI`. La ragione vera merita di essere
+  scritta: **al Consiglio a due domande non c'e' un posto dove una condizione
+  valga per una sola risposta**, perche' non ci sono risposte — ci sono due
+  domande, e una condizione li' chiude la domanda intera. Rimettere la corona
+  a mordere e' una decisione del committente, e sta in ISSUES 129.
+- **La prosa degli esiti se ne va con le proposte.** I 51 `echo_summaries` —
+  *«Il grano passo' sotto il sigillo di chi propone, e la prima razione arrivo'
+  con nove giorni di ritardo»* — non li leggeva nessuno da D-472: l'Echo scrive
+  gia' la domanda che ha vinto col conto delle pedine. Il registro delle
+  Verita' e' **piu' asciutto di prima**, ed e' cosi' da due versioni, non da
+  questa. Rendergli una voce — per esito, sulla domanda — e' un giro suo.
+
+---
+
 ## D-473 — La pagina e' fatta di carte: il disegno, deciso col committente
 
 **decided in 0.1.442 — verbale di disegno, senza codice.** Il committente ha

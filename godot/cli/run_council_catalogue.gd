@@ -4,10 +4,10 @@ extends SceneTree
 ##   godot --headless --path godot --script res://cli/run_council_catalogue.gd \
 ##       -- --out=../docs/CATALOGO_CONSIGLI.md
 ##
-## ISSUES 62: le 10 domande, le 43 proposte, le 19 clausole e le 52 Conseguenze
-## esistono **solo come database**. Zero fogli di stampa su 39 ne portano una, e
-## sullo schermo la proposta si legge una riga alla volta mentre il Consiglio e'
-## gia' aperto.
+## ISSUES 62: le domande, le clausole e le Conseguenze esistono **solo come
+## database**. Zero fogli di stampa su 39 ne portano una, e sullo schermo quello
+## che il Consiglio chiedera' si legge una riga alla volta mentre il Consiglio
+## e' gia' aperto.
 ##
 ## Questo e' il pezzo che serve a **tutte e tre** le forme che il committente
 ## deve ancora scegliere — scheda per Tensione, libretto dei Consigli, o app come
@@ -35,9 +35,9 @@ func _initialize() -> void:
 		"",
 		"<!-- FILE GENERATO — si rifa' con `tools/run_council_catalogue.sh`. -->",
 		"",
-		"Ogni Consiglio della scatola: la domanda che apre, le proposte fra cui",
-		"sceglie chi propone, le clausole che gli altri possono attaccare, e **cosa",
-		"resta al mondo** se una proposta passa.",
+		"Ogni Consiglio della scatola: le **due domande** che la carta mette in",
+		"contrasto, quando ognuna si apre, le caselle che puo' sostenere, e **cosa",
+		"resta al mondo** se il tavolo le risponde di si'.",
 		"",
 		"Le frasi d'autore hanno dei buchi — `$proponent`, `$region_focus` — che al",
 		"tavolo li riempie la partita. Qui sono **spiegati** invece che riempiti: una",
@@ -59,7 +59,7 @@ func _initialize() -> void:
 		ids.append(str(tension_id))
 	ids.sort()
 
-	var propositions: int = 0
+	var questions: int = 0
 	for tension_id in ids:
 		var about: Dictionary = data.tensions[tension_id] as Dictionary
 		var template: Dictionary = data.confluence_template_for(str(tension_id))
@@ -74,10 +74,10 @@ func _initialize() -> void:
 		lines.append(CouncilText.speak(str(about.get("description", ""))))
 		lines.append("")
 
-		# **Le due domande e le loro caselle** (D-467): la lettera, l'esito di
-		# base, e quali caselle ognuna puo' sostenere. Le marche sono la prima
-		# passata a regola di `tools/two_questions.py`: si leggono qui per
-		# correggerle dove la carta dice altro.
+		# **Le due domande e le loro caselle** (D-467): la lettera, quando la
+		# domanda si apre, l'esito di base, e quali caselle ognuna puo'
+		# sostenere. E' l'unico blocco rimasto: fino alla 0.1.443 sotto ci
+		# stavano anche le proposte, uscite dai dati con D-474.
 		var council: Dictionary = about.get("council", {}) as Dictionary
 		var physical: Dictionary = about.get("physical", {}) as Dictionary
 		var index: int = 0
@@ -87,6 +87,9 @@ func _initialize() -> void:
 			index += 1
 			lines.append("### %s · %s" % [letter, CouncilText.speak(str(question.get("text", "")))])
 			lines.append("")
+			questions += 1
+			for need in CouncilText.needs_of(question.get("eligibility", []) as Array):
+				lines.append("- **Si apre solo se:** %s" % str(need))
 			var wins: Array = []
 			for consequence_id in (question.get("base", []) as Array):
 				var consequence: Dictionary = data.consequences.get(str(consequence_id), {}) as Dictionary
@@ -104,32 +107,10 @@ func _initialize() -> void:
 				])
 			lines.append("")
 
-		for entry in template.get("propositions", []):
-			var said: Dictionary = CouncilText.proposition(
-				template, str((entry as Dictionary)["id"]), data
-			)
-			if said.is_empty():
-				continue
-			propositions += 1
-			lines.append("### %s" % str(said["text"]))
-			lines.append("")
-			lines.append("> %s" % str(said["question"]))
-			lines.append("")
-			for need in said["needs"]:
-				lines.append("- **Si puo' proporre solo se:** %s" % str(need))
-			for leaf in said["consequences"]:
-				var record: Dictionary = leaf as Dictionary
-				lines.append("- **Se passa — %s:** %s" % [
-					str(record["title"]), str(record["leaves"]),
-				])
-			if said["needs"].is_empty() and (said["consequences"] as Array).is_empty():
-				lines.append("- *(nessuna condizione, e non lascia segni al mondo)*")
-			lines.append("")
-
 
 	lines.append("---")
 	lines.append("")
-	lines.append("*%d carte, %d proposte.*" % [ids.size(), propositions])
+	lines.append("*%d carte, %d domande.*" % [ids.size(), questions])
 	lines.append("")
 
 	# **Il ponte per il disegno del flusso.**
@@ -169,7 +150,7 @@ func _initialize() -> void:
 		return
 	handle.store_string(text)
 	handle.close()
-	print("scritto %s — %d carte, %d proposte" % [out, ids.size(), propositions])
+	print("scritto %s — %d carte, %d domande" % [out, ids.size(), questions])
 	quit(0)
 
 

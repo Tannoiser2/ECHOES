@@ -326,7 +326,7 @@ def survey() -> str:
         len(profiles), len(entities)))
     add("| Temi | %d | i mazzetti che scaldano e aprono la Domanda |" % len(themes))
     add("| Conseguenze | %d | cosa una proposta scrive sul mondo se passa |" % len(consequences))
-    add("| Modelli di Consiglio | %d | domande, proposte e clausole d'autore |" % len(templates))
+    add("| Modelli di Consiglio | %d | domande, clausole e sacchetti d'autore |" % len(templates))
     add("| Regole dei segni | %d | cosa un segno fa da solo |" % len(rules))
     add("| Azioni | %d | i verbi del turno |" % len(actions))
     add("| Chronicle | %d | gli anni giocabili |" % len(chronicles))

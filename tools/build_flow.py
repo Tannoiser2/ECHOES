@@ -195,7 +195,7 @@ def segni_della_cacciata(pezzi, perche):
 def letture(o, src, why):
     """I segni che una condizione nomina: leggerli e' quello che fa la clausola.
 
-    Un blocco di eleggibilita' — su una domanda, su una proposta — dice quando
+    Un blocco di eleggibilita' — su una domanda, su una casella — dice quando
     quella cosa si puo' fare. Nel disegno e' una **lettura**, e girata risponde
     alla domanda vera del tavolo: *«#malcontento, chi lo guarda e per farci
     cosa»*.
@@ -605,7 +605,7 @@ if not SERVITA_DA:
 # D-387), e il sacchetto del template era una seconda copia che nessun codice
 # leggeva — quindi il disegno ci tirava frecce verso Conseguenze che nessun
 # Consiglio poteva pescare da li'.
-SACCHETTI = {"failure": ("se_cade", "quello che resta se la proposta cade"),
+SACCHETTI = {"failure": ("se_cade", "quello che resta se nessuna domanda passa"),
              "decisive_bonus": ("se_stravince", "il di piu' di una vittoria netta")}
 
 for tpl in load("confluences/*.json"):
@@ -624,17 +624,17 @@ for tpl in load("confluences/*.json"):
 # tre Proposte (D-378). Le Domande pendevano dalla carta e la scheda non
 # esisteva, quindi chi contava i Consigli nel grafo ne trovava dodici e chi li
 # contava nella scatola sessanta. Adesso la scheda c'e', e la catena si legge
-# per intero: **carta Tensione -> Scheda Consiglio -> Domanda -> Proposta ->
-# Conseguenza**, e la scheda si tiene col template per le clausole e i sacchetti.
+# per intero: **carta Tensione -> Scheda Consiglio -> Domanda -> Conseguenza**,
+# e la scheda si tiene col template per le clausole e i sacchetti. Le Proposte
+# stavano fra la Domanda e la Conseguenza fino alla 0.1.443: uscite dal motore
+# in D-472 e dai dati in D-474, adesso la domanda porta il suo esito di base.
 for t in load("tensions/*.json"):
     council = t.get("council") or {}
     scheda = "scheda:%s" % str(t["id"])
     node(scheda, "scheda",
          t="Consiglio — %s" % str(t.get("title", t["id"])),
          d=("La scheda che si gira accanto alla carta quando la domanda arriva ai voti:"
-            " %d domande e %d proposte stampate."
-            % (len(council.get("questions", []) or []),
-               len(council.get("propositions", []) or []))),
+            " %d domande stampate." % len(council.get("questions", []) or [])),
          posto="TILE_PRINTED")
     edge(t["id"], scheda, "accompagna",
          "la scheda che si gira accanto alla carta quando si va ai voti")
@@ -642,9 +642,6 @@ for t in load("tensions/*.json"):
     if consiglio:
         edge(scheda, consiglio, "si_tiene_con",
              "le clausole e i sacchetti li mette il Consiglio; le domande le mette la carta")
-    risposte = defaultdict(list)
-    for prop in council.get("propositions", []) or []:
-        risposte[str(prop.get("question_id", ""))].append(prop)
     for q in council.get("questions", []) or []:
         qid = str(q.get("id", ""))
         if not qid:
@@ -653,16 +650,10 @@ for t in load("tensions/*.json"):
         edge(scheda, qid, "apre", "la domanda che questa carta mette ai voti")
         # Una domanda che si apre solo a certe condizioni **legge** il tavolo.
         letture(q.get("eligibility"), qid, "la domanda si apre solo se")
-        for prop in risposte.get(qid, []):
-            pid = str(prop.get("id", ""))
-            if not pid:
-                continue
-            node(pid, "proposta", t=str(prop.get("text", ""))[:70],
-                 d=str(prop.get("text", "")))
-            edge(qid, pid, "si_risponde", "una delle risposte stampate sulla carta")
-            letture(prop.get("eligibility"), pid, "si puo' proporre solo se")
-            for cns in prop.get("success_consequences", []) or []:
-                edge(pid, str(cns), "porta", "se passa, questo resta al mondo")
+        # **L'esito di base della domanda** (D-467): se il tavolo risponde di
+        # si', questo resta al mondo.
+        for cns in q.get("base", []) or []:
+            edge(qid, str(cns), "porta", "se il tavolo risponde di si', questo resta al mondo")
 
 
 # ---------- LA CATENA DELLE ERE ----------

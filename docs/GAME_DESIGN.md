@@ -1,5 +1,17 @@
 # ECHOES — Game Design
 
+> ⚠️ **Il Consiglio descritto qui sotto non esiste più.** Il proponente che
+> formula una proposta, il Support/Oppose/Condition, il World Factor col dado:
+> da [D-467](DECISIONS.md#d-467) la carta Tensione offre **due domande in
+> contrasto**, il tavolo si divide in due parti che posano pedine sulle caselle
+> della carta, e si vota **senza dado** contro il mucchio dei gettoni. Quel giro
+> è uscito dal codice in [D-472](DECISIONS.md#d-472) e dai dati in
+> [D-474](DECISIONS.md#d-474): sulle carte non ci sono più proposte.
+>
+> Il documento resta perché spiega **perché** il gioco è fatto così, e quella
+> parte vale ancora. Per com'è fatto oggi: [PUNTO_ZERO.md](PUNTO_ZERO.md) e
+> [DECISIONS.md](DECISIONS.md) da D-460 in avanti.
+
 ECHOES è un boardgame/GDR narrativo-strategico a Chronicle. Ogni Chronicle è una
 storia completa ambientata nello stesso mondo persistente. I giocatori controllano
 Entità di scala differente — un sovrano, un popolo, una creatura antica, un

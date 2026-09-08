@@ -110,18 +110,23 @@ static func consequence_note(
 	return " · ".join(PackedStringArray(said))
 
 
-## Una proposta, come si legge su una scheda: la domanda a cui risponde, quello
-## che chiede, e cosa lascia al mondo se passa.
-static func proposition(
-	template: Dictionary, proposition_id: String, data = null,
+## Una domanda, come si legge su una scheda: cosa il Consiglio chiede, quando
+## si puo' chiedere, e cosa lascia al mondo se il tavolo risponde di si'.
+##
+## **Prima della 0.1.444 questa funzione leggeva le proposte** — la forma
+## vecchia del Consiglio, tolta dal motore in [D-472](../../docs/DECISIONS.md#d-472)
+## e dai dati in [D-474](../../docs/DECISIONS.md#d-474). Il Consiglio a due
+## domande non propone: chiede, e le due domande stanno sulla carta.
+static func question(
+	template: Dictionary, question_id: String, data = null,
 	voice: Callable = Callable()
 ) -> Dictionary:
-	for entry in template.get("propositions", []):
+	for entry in template.get("questions", []):
 		var found: Dictionary = entry as Dictionary
-		if str(found["id"]) != proposition_id:
+		if str(found["id"]) != question_id:
 			continue
 		var leaves: Array = []
-		for consequence_id in found.get("success_consequences", []):
+		for consequence_id in found.get("base", []):
 			var consequence: Variant = null if data == null else data.consequences.get(
 				str(consequence_id)
 			)
@@ -132,8 +137,7 @@ static func proposition(
 				"leaves": consequence_note(consequence as Dictionary, data, voice),
 			})
 		return {
-			"id": proposition_id,
-			"question": _voice(_question_of(template, str(found.get("question_id", ""))), voice),
+			"id": question_id,
 			"text": _voice(str(found["text"]), voice),
 			"needs": _needs(found.get("eligibility", []), voice),
 			"consequences": leaves,
@@ -141,7 +145,7 @@ static func proposition(
 	return {}
 
 
-## Quando una proposta si puo' fare, in parole. Le condizioni portano gia' la
+## Quando una domanda si puo' fare, in parole. Le condizioni portano gia' la
 ## propria `label` d'autore: e' scritta per chi gioca, e qui si usa quella.
 static func needs_of(eligibility: Array, voice: Callable = Callable()) -> Array:
 	return _needs(eligibility, voice)
@@ -155,9 +159,3 @@ static func _needs(eligibility: Array, voice: Callable = Callable()) -> Array:
 			out.append(_voice(said, voice))
 	return out
 
-
-static func _question_of(template: Dictionary, question_id: String) -> String:
-	for question in template.get("questions", []):
-		if str((question as Dictionary)["id"]) == question_id:
-			return str((question as Dictionary)["text"])
-	return ""

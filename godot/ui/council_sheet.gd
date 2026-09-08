@@ -1,5 +1,5 @@
 extends PanelContainer
-## La scheda di una domanda: cosa si potra' proporre, e cosa lascia al mondo.
+## La scheda di una domanda: cosa il Consiglio chiedera', e cosa lascia al mondo.
 ##
 ## Il committente ha deciso che **per adesso si gioca all'app** e il cartone si
 ## vedra' poi ([D-236](../../docs/DECISIONS.md#d-236)). Quella decisione ha una
@@ -7,14 +7,15 @@ extends PanelContainer
 ## documento che si legge fuori dal gioco. Se lo schermo e' il tavolo, quello che
 ## al tavolo staresti a guardare mentre pensi deve stare **sullo schermo**.
 ##
-## Fino a qui le proposte comparivano una riga alla volta **a Consiglio gia'
-## aperto**, cioe' quando decidere e' tardi: chi scalda una domanda non poteva
-## sapere cosa ci sarebbe stato da proporre. Questa scheda si apre quando vuoi,
-## sulla domanda che vuoi, e dice le stesse cose che direbbe una scheda stampata
-## — con i nomi veri, perche' qui la partita c'e'.
+## Fino a qui quello che il Consiglio avrebbe messo sul tavolo si vedeva una
+## riga alla volta **a Consiglio gia' aperto**, cioe' quando decidere e' tardi:
+## chi scalda una domanda non poteva sapere cosa le sarebbe stato chiesto.
+## Questa scheda si apre quando vuoi, sulla domanda che vuoi, e dice le stesse
+## cose che direbbe una scheda stampata — con i nomi veri, perche' qui la
+## partita c'e'.
 ##
 ## Nessuna logica: legge `CouncilText` ([D-232](../../docs/DECISIONS.md#d-232)),
-## che e' l'unico posto dove una proposta diventa italiano. La scheda stampata e
+## che e' l'unico posto dove il Consiglio diventa italiano. La scheda stampata e
 ## questa pagina non possono dire due cose diverse, perche' escono dalla stessa
 ## funzione (D-233).
 
@@ -61,7 +62,7 @@ func show_tension(tension_id: String, data: RefCounted, session: RefCounted = nu
 	var voice: Callable = _voice_for(tension_id, session)
 
 	_line(str((tension as Dictionary)["title"]).to_upper(), 15, "#e8dcc8")
-	_line("Se questa domanda arriva al Consiglio, ecco cosa si potra' proporre.", 11, "#8a8172")
+	_line("Se questa domanda arriva al Consiglio, ecco cosa verra' chiesto.", 11, "#8a8172")
 
 	# **Il Consiglio di una domanda si trova come lo trova il motore** (D-278):
 	# 52 carte su 60 non nominano un template proprio e giocano su quello
@@ -74,18 +75,23 @@ func show_tension(tension_id: String, data: RefCounted, session: RefCounted = nu
 		_close_button()
 		return
 
-	for entry in (template as Dictionary).get("propositions", []):
-		var said: Dictionary = CouncilText.proposition(
+	# **Le due domande, non le proposte** (D-474). Fino alla 0.1.443 questa
+	# scheda leggeva le proposte: la forma vecchia del Consiglio, uscita dal
+	# motore in D-472 e dai dati adesso. Il Consiglio a due domande non fa
+	# proporre, chiede — e quello che al tavolo si legge prima di scaldare una
+	# questione e' **cosa verra' chiesto**, con quello che ogni risposta lascia
+	# al mondo.
+	for entry in (template as Dictionary).get("questions", []):
+		var said: Dictionary = CouncilText.question(
 			template as Dictionary, str((entry as Dictionary)["id"]), data, voice
 		)
 		if said.is_empty():
 			continue
 		_gap()
-		_line(str(said["question"]), 11, "#7f8f7a")
 		_line(str(said["text"]), 13, "#d9d2c5")
 		for need in said["needs"]:
 			_line("Solo se: %s" % str(need), 11, "#c9a14a")
-		# Una riga per Conseguenza, col suo nome. Una proposta puo' portarne
+		# Una riga per Conseguenza, col suo nome. Una domanda puo' portarne
 		# due, e fonderle in una riga sola faceva una filza di nove cose senza
 		# dire che erano **due esiti diversi** — al tavolo quella distinzione e'
 		# tutto: sapere che «passa» vuol dire questo *oppure* quello.

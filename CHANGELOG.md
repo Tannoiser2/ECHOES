@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.444 — Il giro 6: le Proposte escono dai dati
+
+[D-474](docs/DECISIONS.md#d-474), [ISSUES 129](docs/ISSUES.md#129). D-472 lo
+lasciava scritto in fondo — *«toglierle e' il giro dopo»* — ed e' il giro dopo.
+
+Escono **194 proposte** da 60 carte Tensione, con le loro clausole, i loro
+esiti e **51 gruppi di prosa per esito**; con loro il pezzo di schema che le
+descriveva, `proposition_id` dai piani di simulazione, e
+`tools/two_questions.py`, la migrazione che aveva ricavato l'esito di base
+delle domande proprio dalle proposte. `CouncilText.proposition()` diventa
+`CouncilText.question()`: la stessa funzione, sulla cosa che il Consiglio
+chiede davvero. La scheda, il catalogo, il disegno del flusso, il registro dei
+segni e la misura delle caselle leggono le **domande**.
+
+**Due guardie si sono spostate invece di sparire.** *«Una domanda senza
+risposte»* diventa *«una domanda che non lascia niente al mondo»* — si vota e
+il mondo resta com'era: 0 su 120. *«Due proposte che fanno la stessa cosa»*
+diventa *«due domande che fanno la stessa cosa»*, e a due domande pesa il
+doppio, perche' la carta ne mette in contrasto due: 0 coppie. E *«nessuna
+proposta e' murata»* diventa *«nessuna domanda e' murata»*: al Consiglio a due
+domande una porta murata e' un gradino di calore piu' alto della soglia della
+sua questione, e la guardia e' stata provata piantandone uno.
+
+**Il cancello dei 100 semi da' gli stessi identici esiti di D-472** — 46 · 36 ·
+102 · 146 · 156 sul misto, 45 · 45 · 91 · 112 · 185 sull'uniforme, 0 seggi
+bloccati su 8 — ed e' la prova che si voleva: il motore non le leggeva gia'
+piu', e toglierle non sposta una virgola della partita.
+
+Costi dichiarati: **sedici Conseguenze restano senza strada** (le nominavano
+solo le proposte, e sono irraggiungibili da D-472 — restano nella scatola, e
+se tornano lo decide il committente); la misura delle caselle scende da 44 a
+34 distinti perche' contava anche quello che nessuno votava; e **la corona
+(`crowned`) resta muta**, dichiarata con la sua ragione — al Consiglio a due
+domande non c'e' un posto dove una condizione valga per **una sola risposta**.
+Le asserzioni della suite scendono da 80.162 a 76.330: erano le 194 proposte
+girate una per una.
+
+---
+
 ## 0.1.443 — La saga cambia tavolo: il terzo anno smette di sembrare il primo
 
 [D-473](docs/DECISIONS.md#d-473), [ISSUES 130](docs/ISSUES.md#130), che si

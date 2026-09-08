@@ -173,12 +173,15 @@ func _check_references() -> void:
 					errors.append(
 						"%s: unknown consequence '%s'" % [template["id"], consequence_id]
 					)
-	# **Le Proposte stanno sulla carta** (D-462): una Conseguenza scritta male
-	# su una carta passava ogni controllo, e il motore la saltava in silenzio.
+	# **Le Domande stanno sulla carta** (D-462, portata alle domande in D-474):
+	# una Conseguenza scritta male su una carta passava ogni controllo, e il
+	# motore la saltava in silenzio. La guardia era sulle proposte, che dalla
+	# 0.1.444 non esistono piu': adesso e' sull'esito di base della domanda,
+	# che e' quello che il Consiglio applica davvero.
 	for tension in tensions.values():
 		var council: Dictionary = tension.get("council", {}) as Dictionary
-		for proposition in council.get("propositions", []):
-			for consequence_id in (proposition as Dictionary).get("success_consequences", []):
+		for question in council.get("questions", []):
+			for consequence_id in (question as Dictionary).get("base", []):
 				if not consequences.has(consequence_id):
 					errors.append(
 						"%s: unknown consequence '%s'" % [tension["id"], consequence_id]
@@ -217,11 +220,12 @@ func confluence_template_for(tension_id: String) -> Dictionary:
 	var base: Dictionary = _council_base_for(tension_id, tension)
 	if base.is_empty() or tension == null:
 		return base
-	# **Le Domande e le Proposte vengono dalla carta** (0.1.272, taglio 2 di
-	# ISSUES 80, parola del committente: «ogni carta sue proposte»).
+	# **Le Domande vengono dalla carta** (0.1.272, taglio 2 di ISSUES 80,
+	# parola del committente: «ogni carta sue proposte»; le Proposte sono
+	# uscite dai dati in D-474, e restano le Domande).
 	#
-	# Al tavolo la carta girata deve bastare a se stessa: chi la legge vede la
-	# sua domanda e le sue proposte, non quelle di un mazzetto condiviso. Prima
+	# Al tavolo la carta girata deve bastare a se stessa: chi la legge vede le
+	# sue domande, non quelle di un mazzetto condiviso. Prima
 	# di questa decisione **sette domande generiche coprivano cinquantadue
 	# carte** — «chi decide a chi non ne tocca?» era la domanda di quindici
 	# questioni diverse.
@@ -234,13 +238,12 @@ func confluence_template_for(tension_id: String) -> Dictionary:
 		return base
 	var merged: Dictionary = base.duplicate()
 	merged["questions"] = (council["questions"] as Array)
-	merged["propositions"] = (council["propositions"] as Array)
 	return merged
 
 
 ## Il template che fa da base a questa questione: quello scritto per lei, o
-## quello del suo dominio. Da qui vengono le clausole e i pool; le Domande e le
-## Proposte le mette la carta.
+## quello del suo dominio. Da qui vengono le clausole e i pool; le Domande le
+## mette la carta.
 func _council_base_for(tension_id: String, tension: Variant) -> Dictionary:
 	for template in confluence_templates.values():
 		if str(template.get("tension_id", "")) == tension_id:

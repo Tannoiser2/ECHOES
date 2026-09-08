@@ -10068,15 +10068,32 @@ cancello dei 100 semi:
 **I quattro giri sono percorsi, e il quinto ha tolto il giro vecchio** —
 **fatto in 0.1.441** ([D-472](DECISIONS.md#d-472)): il Consiglio di D-280 e'
 uscito dal codice, le sue prove sono portate alla regola nuova o tolte con
-verbale, le sonde contano domande invece di proposte. La voce resta aperta
-su quello che D-472 lascia scritto: **i gettoni di rivendicazione** che la
-faccia RIVENDICARE conia ancora e che il Consiglio non spende piu' (toglierli
-o dargli un uso e' una decisione del committente); **le proposte stampate
-sulle carte**, che nessun motore legge e la scheda mostra ancora; **il dente
-dei segni sul dado** (ISSUES 24) rimasto senza dado; le marche delle caselle
-da rivedere carta per carta nel catalogo; le fasce dell'esito di A che a due
-domande dicono meno; e quello che nessuna sonda misura: un Consiglio giocato
-da persone.
+verbale, le sonde contano domande invece di proposte.
+
+**E il sesto le ha tolte dai dati** — **fatto in 0.1.444**
+([D-474](DECISIONS.md#d-474)): 194 proposte, 51 gruppi di prosa per esito, il
+loro pezzo di schema e la migrazione che le aveva lette. Due guardie si sono
+spostate invece di sparire — *«una domanda che non lascia niente al mondo»* e
+*«due domande che fanno la stessa cosa»*, 0 e 0 su 120 domande — e la prova
+delle porte murate adesso guarda i gradini delle domande. Il cancello dei 100
+semi da' **gli stessi identici esiti di D-472**: togliere le proposte non
+sposta una virgola della partita, che era il punto.
+
+**Cosa resta aperto, e sono tutte decisioni del committente:**
+
+- **i gettoni di rivendicazione** che la faccia RIVENDICARE conia ancora e che
+  il Consiglio non spende piu': toglierli, o dargli un uso;
+- **sedici Conseguenze senza strada** — la corona divisa, il drago abbattuto,
+  l'esodo, la miniera riaperta fra loro: le nominavano solo le proposte, sono
+  irraggiungibili da D-472 e adesso si vede. Restano nella scatola: tornano
+  come esito di una domanda, o in un sacchetto, o escono;
+- **la corona che non morde** (`crowned`): la interrogava una clausola di
+  proposta, e al Consiglio a due domande non c'e' un posto dove una condizione
+  valga per **una sola risposta**. Dichiarata muta, con la ragione scritta;
+- **il dente dei segni sul dado** (ISSUES 24) rimasto senza dado;
+- le marche delle caselle da rivedere carta per carta nel catalogo; le fasce
+  dell'esito di A che a due domande dicono meno; e quello che nessuna sonda
+  misura: **un Consiglio giocato da persone**.
 
 
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo

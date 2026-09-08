@@ -441,10 +441,31 @@ Consiglio giocato da te.
 un Consiglio solo, il tuo. Il giro vecchio — la proposta, i gettoni, il
 prezzo scelto dagli altri, il dado — non c'e' piu'; le prove che lo
 custodivano sono passate alla regola nuova, o tolte con la ragione scritta.
-Tre cose restano da decidere, e sono tue: **i gettoni del RIVENDICARE**, che
-la carta da' ancora e il Consiglio non chiede piu' — si tolgono, o servono
-a qualcos'altro?; **le proposte stampate sulle carte**, che la scheda mostra
-e nessuno vota piu'; e il segno che pesava sul dado, senza piu' un dado.
+
+**Giro 6 fatto in 0.1.444** ([D-474](DECISIONS.md#d-474)): le proposte non
+sono piu' nemmeno **sulle carte**. Erano 194, scritte a mano, e nessun motore
+le leggeva da due versioni: la scheda te le mostrava ancora, e leggere una
+cosa che il gioco non fa e' peggio che non leggerla. Adesso la scheda dice le
+**due domande**, quando ognuna si apre e cosa lascia al mondo chi risponde di
+si'. Il catalogo conta 60 carte e 120 domande. E la partita non si e' mossa di
+niente: sui 100 semi escono **gli stessi identici numeri** di prima, che era
+esattamente la prova da fare.
+
+Quattro cose restano da decidere, e sono tue:
+
+1. **I gettoni del RIVENDICARE**, che la carta da' ancora e il Consiglio non
+   chiede piu': si tolgono, o servono a qualcos'altro?
+2. **Sedici Conseguenze sono rimaste senza strada** — la corona divisa, il
+   drago abbattuto, l'esodo, la miniera riaperta. Le nominavano solo le
+   proposte, quindi erano gia' irraggiungibili da due versioni: adesso si
+   vede. Non le ho cancellate: stanno nella scatola. Tornano come esito di una
+   domanda, finiscono in un sacchetto, o escono?
+3. **La corona non morde piu'.** C'era una riga che diceva *«solo chi porta la
+   corona puo' requisire»*, e stava su una proposta. Al Consiglio a due domande
+   una condizione del genere non ha dove stare: se la metti sulla domanda,
+   chiudi la domanda intera a chi non ha la corona, che e' un'altra cosa. Te lo
+   scrivo perche' e' una regola che hai perso, non un dettaglio tecnico.
+4. **Il segno che pesava sul dado**, senza piu' un dado.
 
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 

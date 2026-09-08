@@ -124,68 +124,6 @@
         }
       ]
     },
-    "proposition": {
-      "type": "object",
-      "required": [
-        "id",
-        "question_id",
-        "text",
-        "eligibility",
-        "success_consequences"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "type": "string",
-          "minLength": 1
-        },
-        "question_id": {
-          "type": "string",
-          "minLength": 1
-        },
-        "text": {
-          "type": "string",
-          "minLength": 1
-        },
-        "eligibility": {
-          "type": "array",
-          "items": {
-            "$ref": "destiny.schema.json#/$defs/condition"
-          }
-        },
-        "success_consequences": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "string",
-            "pattern": "^CNS_[A-Z0-9_]+$"
-          }
-        },
-        "echo_summary": {
-          "type": "string",
-          "description": "The sentence the Truth register keeps when this proposition carries. Used for every outcome unless echo_summaries names a different one."
-        },
-        "echo_summaries": {
-          "type": "object",
-          "description": "Per-outcome variants of echo_summary. How a proposal falls reads nothing like how it triumphs, and the register is where a Chronicle is reread: any band left out falls back to echo_summary (D-032).",
-          "additionalProperties": false,
-          "properties": {
-            "FAILURE": {
-              "type": "string"
-            },
-            "SUCCESS_WITH_COST": {
-              "type": "string"
-            },
-            "SUCCESS": {
-              "type": "string"
-            },
-            "DECISIVE_SUCCESS": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
     "question": {
       "type": "object",
       "required": [

@@ -19,7 +19,7 @@ Le viste che si limitano a **stampare** un segno sullo schermo non contano come
 lettori: disegnare non e' mordere.
 
 
-**103 segni scritti sul mondo: 94 li legge qualcosa, 9 no.**
+**103 segni scritti sul mondo: 93 li legge qualcosa, 10 no.**
 
 **E 0 segni li chiede qualcuno senza che niente li scriva.**
 
@@ -37,7 +37,7 @@ nessuno legge**, contati posto per posto.
 | **uno spazio sulla tessera** | 25 | 9 | **1** | dove si posa una Pietra, e i gradi che la degradano: bosco, bosco rado, selva maledetta. |
 | **un gettone accanto alla tessera** | 13 | 13 | — | lo stato di adesso: affamata, chiusa, in rivolta. Si mette e si toglie. |
 | **un dischetto rotondo** | 13 | 12 | — | le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo. |
-| **sulla scheda della casa** | 57 | 22 | **4** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
+| **sulla scheda della casa** | 57 | 22 | **5** | chi sei adesso: incoronato, dormiente, decaduto, e la vita che stai vivendo. |
 | **un gettone sul bordo della mappa** | 52 | 47 | **4** | quello che il mondo ricorda: sta dove sta il mondo, non su un luogo (D-351). |
 | **il tavolo non lo mostra** | 0 | 0 | — | contabilita' che il motore usa e nessuna fustella taglia. |
 
@@ -53,6 +53,7 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 | segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |
 |---|---|---|---|
 | `account_settled` | un gettone sul bordo della mappa | Conseguenza, carta Echo, casella IL MONDO RICORDA | memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399) — 4 volte in 100 anni |
+| `crowned` | sulla scheda della casa | Conseguenza | la corona: sta addosso a chi la porta dal setup, e una Conseguenza puo' togliergliela. Fino alla 0.1.443 la interrogava la clausola di una proposta — «solo chi porta la corona puo' requisire» — e le proposte sono uscite dai dati (D-474): il Consiglio a due domande non ha un posto dove una condizione valga per **una sola risposta**, perche' non ci sono risposte, ci sono due domande. La guardano la faccia di un Destino e tre profili di casa; il motore no. Rimetterla a mordere e' una decisione, ed e' in ISSUES 129. — in ogni partita, dal setup |
 | `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | memoria del mondo: narrata (D-103), ereditata — non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
 | `hard_bargain` | sulla scheda della casa | Conseguenza | marchio di memoria (D-278): ha ottenuto cedendo poco, e il tavolo se lo ricorda — il motore non lo interroga |
 | `price_in_lives` | un gettone sul bordo della mappa | Conseguenza | memoria del mondo (D-278): una decisione passata al prezzo di qualcuno che non c'e' piu' — si legge al centro del tavolo |
@@ -96,9 +97,8 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `condition:starving` | Azione stampata, Conseguenza, Risonanza, carta Echo | Azione stampata, Conseguenza, carta Asset | Risonanza, bersaglio a segni, la Regione di cui si discute, pesca delle domande, regola del segno |
 | `condition:unrest` | Azione stampata, Conseguenza, Risonanza, carta Asset, carta Echo | Azione stampata, Conseguenza, carta Asset, carta Echo | Destino, bersaglio a segni, carta Echo, la Regione di cui si discute, pesca delle domande |
 | `crown_dispossessed` | Conseguenza | — | Risonanza, fatto che dura, pesca delle domande |
-| `crown_divided` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, fatto che dura, pesca delle domande, proposta |
-| `crowned` | — | Conseguenza | proposta |
-| `crystal_exploited` | Azione stampata, Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande, proposta |
+| `crown_divided` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, fatto che dura, pesca delle domande |
+| `crystal_exploited` | Azione stampata, Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, carta Echo, catena delle ere, chi **non** siede l'anno prossimo, chi siede l'anno prossimo, pesca delle domande |
 | `crystal_measured` | Azione stampata, carta Echo, casella IL MONDO RICORDA | — | pesca delle domande |
 | `debt_called` | Azione stampata, Conseguenza, carta Asset, casella IL MONDO RICORDA | — | Destino, Risonanza, carta Echo, chi siede l'anno prossimo, leggenda (un'era dopo), pesca delle domande, regola del segno |
 | `debt_forgiven` | Azione stampata, Conseguenza, carta Echo, casella IL MONDO RICORDA | — | Destino, chi siede l'anno prossimo |
@@ -111,7 +111,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `discovery:the_charter` | Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:the_ledger` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:the_measure` | carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd) |
-| `discovery:the_omen` | Azione stampata, carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd), proposta |
+| `discovery:the_omen` | Azione stampata, carta Echo | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:trade_ledger` | Azione stampata | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:written_law` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `distribution_audited` | Conseguenza | — | pesca delle domande |
@@ -120,10 +120,10 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `failed_proposal` | Conseguenza | — | Destino |
 | `faith_established` | Conseguenza, casella IL MONDO RICORDA | — | Risonanza, pesca delle domande |
 | `grain_requisitioned` | Azione stampata, Conseguenza | — | Risonanza, chi siede l'anno prossimo, pesca delle domande |
-| `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo, proposta |
+| `heir_named` | Azione stampata, Conseguenza, carta Asset | — | Risonanza, chi siede l'anno prossimo |
 | `knowledge_shared` | Azione stampata, carta Echo, casella IL MONDO RICORDA | — | Destino, Risonanza, carta Echo, pesca delle domande |
 | `ledger_public` | Azione stampata, Conseguenza, carta Asset, casella IL MONDO RICORDA | — | Destino, Risonanza, carta Echo, chi siede l'anno prossimo, fatto che dura |
-| `mine_sealed` | Conseguenza, casella IL MONDO RICORDA | Conseguenza | Destino, catena delle ere, fatto che dura, pesca delle domande, proposta |
+| `mine_sealed` | Conseguenza, casella IL MONDO RICORDA | Conseguenza | Destino, catena delle ere, fatto che dura, pesca delle domande |
 | `mountain_forgotten` | casella IL MONDO RICORDA | — | Destino, chi siede l'anno prossimo |
 | `nahr_settled` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura |
 | `no_charter` | Conseguenza | — | Destino, Risonanza, pesca delle domande |
@@ -131,7 +131,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `order_restored` | Conseguenza, casella IL MONDO RICORDA | — | Destino, carta Echo, leggenda (un'era dopo) |
 | `parley_held` | carta Echo | — | Risonanza |
 | `petition_heard` | carta Echo | — | Risonanza |
-| `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, carta Echo, obiettivo, proposta |
+| `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, carta Echo, obiettivo |
 | `quota_guaranteed` | Conseguenza | — | pesca delle domande |
 | `relic_buried` | Conseguenza, casella IL MONDO RICORDA | — | Destino, pesca delle domande |
 | `relic_recorded` | Conseguenza | — | pesca delle domande |

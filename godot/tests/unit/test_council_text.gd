@@ -18,14 +18,11 @@ const AssetText := preload("res://scripts/core/asset_text.gd")
 ##
 ## A due domande (D-467, D-472) quello che si legge sulla carta girata sono
 ## **le due domande** e quello che ognuna lascia se vince (`base`): si guarda
-## quello. Le Proposte stampate (`propositions`) sono **un residuo**: nessun
-## motore le legge piu', ma finche' stanno sulle carte le legge una persona,
-## e il giro dopo le togliera' dai dati. Fino ad allora la riga vale anche
-## per loro.
+## quello, e da [D-474](../../docs/DECISIONS.md#d-474) non c'e' altro — le
+## Proposte stampate sono uscite dai dati insieme al Consiglio che le votava.
 func test_no_sentence_still_carries_a_slot() -> void:
 	var loaded: RefCounted = data()
 	var questions: int = 0
-	var propositions: int = 0
 	for tension_id in loaded.tensions:
 		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
 		for entry in template.get("questions", []):
@@ -45,20 +42,17 @@ func test_no_sentence_still_carries_a_slot() -> void:
 				var leaves: String = CouncilText.consequence_note(consequence as Dictionary, loaded)
 				assert_false(leaves.contains("$"), "e quello che lascia non porta buchi: %s" % leaves)
 			questions += 1
-		for entry in template.get("propositions", []):
-			var said: Dictionary = CouncilText.proposition(
-				template, str((entry as Dictionary)["id"]), loaded
-			)
-			for field in ["question", "text"]:
-				assert_false(
-					str(said[field]).contains("$"),
-					"«%s» porta ancora un buco: %s" % [str((entry as Dictionary)["id"]), str(said[field])]
-				)
-			for need in said["needs"]:
-				assert_false(str(need).contains("$"), "e nemmeno le sue condizioni")
-			propositions += 1
 	assert_true(questions >= 100, "e vale per ogni domanda della scatola: %d" % questions)
-	assert_true(propositions >= 40, "e per ogni Proposta rimasta stampata: %d" % propositions)
+	# **E le Proposte non ci sono piu'** (D-474): se una tornasse nei dati, la
+	# scheda ricomincerebbe a stamparne il testo senza che nessun motore la
+	# voti, ed e' esattamente il residuo che questo giro ha tolto.
+	var leftovers: int = 0
+	for tension_id in loaded.tensions:
+		var council: Dictionary = (loaded.tensions[str(tension_id)] as Dictionary).get(
+			"council", {}
+		) as Dictionary
+		leftovers += (council.get("propositions", []) as Array).size()
+	assert_eq(leftovers, 0, "nessuna carta porta piu' una proposta stampata")
 
 
 ## E nessuna Conseguenza racconta quello che lascia al mondo con un tipo di
@@ -82,25 +76,24 @@ func test_no_consequence_speaks_in_effect_types() -> void:
 
 ## E nessuna etichetta d'autore parla a me invece che a chi gioca. Ce n'era una
 ## che citava un verbale e una carta di Propp: scritta per lo sviluppatore, letta
-## dal giocatore. Vale per le condizioni delle domande, e per quelle delle
-## Proposte finche' restano stampate (residuo di D-280, da togliere).
+## dal giocatore. Vale per le condizioni delle domande, che da D-474 sono
+## l'unica cosa che una carta Tensione porta stampata sul suo Consiglio.
 func test_no_label_speaks_to_the_developer() -> void:
 	var loaded: RefCounted = data()
 	var labels: int = 0
 	for tension_id in loaded.tensions:
 		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
-		for list_name in ["questions", "propositions"]:
-			for entry in template.get(list_name, []):
-				for condition in (entry as Dictionary).get("eligibility", []):
-					var label: String = str((condition as Dictionary).get("label", ""))
-					if label == "":
-						continue
-					labels += 1
-					assert_false(
-						label.contains("(D-") or label.contains("ISSUES"),
-						"«%s» nomina un verbale a chi sta giocando: %s"
-						% [str((entry as Dictionary)["id"]), label]
-					)
+		for entry in template.get("questions", []):
+			for condition in (entry as Dictionary).get("eligibility", []):
+				var label: String = str((condition as Dictionary).get("label", ""))
+				if label == "":
+					continue
+				labels += 1
+				assert_false(
+					label.contains("(D-") or label.contains("ISSUES"),
+					"«%s» nomina un verbale a chi sta giocando: %s"
+					% [str((entry as Dictionary)["id"]), label]
+				)
 	assert_true(labels > 0, "nessuna condizione ha un'etichetta: la prova e' cieca")
 
 
