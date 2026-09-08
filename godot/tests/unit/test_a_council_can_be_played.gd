@@ -30,6 +30,7 @@ extends "res://tests/test_case.gd"
 
 const GameScreen := preload("res://ui/game_screen.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
+const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 
 ## Gli id che al tavolo non si leggono mai. `AST_` sta gia' in
 ## `test_a_turn_can_be_played`; qui contano quelli del Consiglio.
@@ -151,9 +152,33 @@ func _text_of(node: Node) -> String:
 	return "\n".join(PackedStringArray(pezzi))
 
 
+## **E da D-480 le caselle non stanno sotto: stanno sulla carta.**
+##
+## Quello che si tocca a un passo del Consiglio sono le carte-scelta **piu' le
+## caselle accese** sulla carta girata: una casella offerta si accende e si
+## prende toccandola, e non si ristampa sotto. Una prova che guardasse solo le
+## carte-scelta troverebbe zero dove lo schermo offre tutto — la stessa trappola
+## di prima, dall'altra parte.
+func _touchable(screen: Node) -> Array:
+	var said: Array = _buttons(screen)
+	for row in screen.get("_board").get("_face").get_children():
+		if (row as Node).has_meta("offered") and bool((row as Node).get_meta("offered")):
+			said.append(_text_of(row))
+	return said
+
+
+## Le caselle accese, e basta: il testo stampato di ognuna.
+func _lit_boxes(screen: Node) -> Array:
+	var said: Array = []
+	for row in screen.get("_board").get("_face").get_children():
+		if (row as Node).has_meta("offered") and bool((row as Node).get_meta("offered")):
+			said.append(_text_of(row))
+	return said
+
+
 ## Le due domande che si fanno a ogni passo, in un posto solo.
 func _the_step_can_be_answered(screen: Node, passo: String) -> void:
-	var said: Array = _buttons(screen)
+	var said: Array = _touchable(screen)
 	assert_true(said.size() > 0, "«%s» offre qualcosa da toccare" % passo)
 	var column: String = " · ".join(PackedStringArray(said))
 	for id in IDS:
@@ -213,9 +238,16 @@ func test_the_proponent_puts_down_the_first_pedina() -> void:
 	decider.choose_box(proponent, context, menu, "A", session)
 
 	_the_step_can_be_answered(screen, "Cosa posi per prima?")
-	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
-	assert_true(column.contains("Beneficio: "), "e ogni casella dice cos'e': %s" % column)
-	assert_false(column.contains("Costo: "), "solo benefici, per la prima pedina")
+	# **Le caselle si accendono sulla carta** (D-480): si contano li', non fra
+	# le carte-scelta, e sono esattamente quelle che il motore ha offerto.
+	var lit: Array = _lit_boxes(screen)
+	assert_eq(lit.size(), menu.size(), "una casella accesa per ogni beneficio libero della A")
+	var column: String = " · ".join(PackedStringArray(lit))
+	for voice in menu:
+		assert_true(
+			column.contains(str((voice as Dictionary).get("text", ""))),
+			"«%s» si tocca sulla carta: %s" % [str((voice as Dictionary)["id"]), column]
+		)
 	_finish(screen)
 
 
@@ -241,12 +273,33 @@ func test_a_seat_can_take_a_side() -> void:
 	decider.choose_side(voter, context, offer, session)
 
 	_the_step_can_be_answered(screen, "Da che parte stai, e cosa posi?")
-	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
-	assert_true(column.contains("Con A — "), "si puo' stare con A: %s" % column)
-	assert_true(column.contains("Con B — "), "e con B")
-	assert_true(column.contains("Beneficio: ") or column.contains("Costo: "), "e ogni carta dice la casella")
+	# Da D-480 le caselle delle due parti si accendono sulla carta, ognuna con
+	# la marca della domanda che serve (D-469). La parte si dice toccandola: una
+	# casella che serve tutt'e due apre le sue due scelte, «con A» e «con B».
+	var lit: Array = _lit_boxes(screen)
+	assert_true(lit.size() > 0, "le caselle delle due parti si accendono sulla carta")
+	var column: String = " · ".join(PackedStringArray(lit))
 	assert_false(column.contains("SUPPORT") or column.contains("OPPOSE"), "senza le sigle del motore")
+	var shared: Array = []
+	for voice in (offer["A"] as Array):
+		for other in (offer["B"] as Array):
+			if str((voice as Dictionary)["id"]) == str((other as Dictionary)["id"]):
+				shared.append(str((voice as Dictionary)["id"]))
+	var offered: Dictionary = ConfluenceBoard._boxes_offered(_subjects_of(offer))
+	for voice_id in shared:
+		assert_eq((offered.get(voice_id, []) as Array).size(), 2,
+			"«%s» serve tutt'e due le domande e porta le sue due scelte" % voice_id)
 	_finish(screen)
+
+
+## Le scelte di `choose_side`, come il decider le dice al tabellone: una per
+## casella e per parte.
+func _subjects_of(offer: Dictionary) -> Array:
+	var subjects: Array = []
+	for side in ["A", "B"]:
+		for voice in (offer.get(side, []) as Array):
+			subjects.append({"box": str((voice as Dictionary)["id"]), "side": side})
+	return subjects
 
 
 ## **Rilanciare o passare** (D-470): le caselle libere della propria parte, e
@@ -266,8 +319,12 @@ func test_a_seat_can_raise_or_pass() -> void:
 	decider.choose_raise(voter, context, menu, session)
 
 	_the_step_can_be_answered(screen, "Rilanci?")
+	# Da D-480 le caselle si toccano sulla carta e «Passa» resta scritto sotto:
+	# smettere non e' una casella, e senza quella carta non si potrebbe piu'
+	# passare.
+	assert_eq(_lit_boxes(screen).size(), menu.size(), "una casella accesa per ogni rilancio")
 	var said: Array = _buttons(screen)
-	assert_eq(said.find("Passa"), menu.size(), "«Passa» sta in fondo alle caselle: %s" % str(said))
+	assert_true(said.has("Passa"), "«Passa» resta fra le carte-scelta: %s" % str(said))
 	_finish(screen)
 
 

@@ -1052,7 +1052,7 @@ func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	await _beat()
 	_refresh()
 	if _session != null and _session.confluence.is_open():
-		return await _board.ask(prompt, labels)
+		return await _board.ask(prompt, labels, subjects)
 
 	var on_map: Dictionary = {}
 	for i in range(labels.size()):
@@ -1334,6 +1334,18 @@ func _card_sheet(asset_id: String, indices: Array) -> void:
 		list.append(int(index))
 		by_verb[verb] = list
 
+	# **Un'Azione che ha i suoi posti accesi non e' anche una lista di bottoni**
+	# (D-480, parola del committente davanti al tabellone: *«perche' mi ripeti
+	# le opzioni della carta sotto? Basterebbe che io scelgo un cerchietto per
+	# scegliere cosa fare, e' una ripetizione inutile»*).
+	#
+	# E' la stessa regola di D-238 — una scelta che ha un posto dove cadere non
+	# e' anche un bottone — che qui non era mai arrivata: la scheda della carta
+	# ristampava **tutte** le scelte, comprese quelle gia' cerchiate sulla
+	# mappa. Adesso resta un bottone solo quello che il tavolo non sa chiedere
+	# da solo.
+	var alone: Dictionary = _places_with_one_offer(_offers.get(asset_id, []) as Array)
+
 	var actions: Array = face.get("actions", []) as Array
 	if actions.is_empty():
 		_narrow_to(indices, _asset_reading(asset_id))
@@ -1352,11 +1364,17 @@ func _card_sheet(asset_id: String, indices: Array) -> void:
 				11, "#8a8172"
 			)
 			continue
+		var lit: PackedStringArray = PackedStringArray()
 		for index in offers:
+			if alone.has(int(index)):
+				lit.append(_place_name(str(alone[int(index)])))
+				continue
 			var label: String = (
 				str(_labels[int(index)]) if int(index) < _labels.size() else "?"
 			)
 			_sheet_button(_shorter(label), int(index))
+		if not lit.is_empty():
+			_sheet_line("— toccala dove si accende: %s" % " · ".join(lit), 11, "#8a8172")
 
 	# Le scelte che nessuna Azione stampata rivendica (il motore ne concede di
 	# sue): restano in fondo, invece di sparire.
@@ -1367,6 +1385,8 @@ func _card_sheet(asset_id: String, indices: Array) -> void:
 		if claimed.has(str(verb)):
 			continue
 		for index in (by_verb[verb] as Array):
+			if alone.has(int(index)):
+				continue
 			_sheet_button(str(_labels[int(index)]), int(index))
 
 	var resonance: Dictionary = face.get("resonance", {}) as Dictionary
@@ -1374,6 +1394,63 @@ func _card_sheet(asset_id: String, indices: Array) -> void:
 		_gap_line()
 		_sheet_line("RISONANZA — avviene comunque", 11, "#8a8172")
 		_sheet_line(str(resonance.get("text", "")), 11, "#b06b46")
+
+
+## I posti accesi che portano **una sola** scelta (D-480).
+##
+## Cliccarli **e'** gia' la risposta — `card_placed` porta quell'unico indice —
+## quindi ripeterli come bottone e' la ripetizione che il committente ha visto.
+## Un posto che ne porta due — la stessa domanda alzata o abbassata — non e'
+## una risposta: cliccarlo non saprebbe quale delle due, e le sue scelte
+## restano bottoni. E' lo stesso patto di D-238: **nessuna scelta legale resta
+## irraggiungibile.**
+static func _places_with_one_offer(carried: Array) -> Dictionary:
+	var by_place: Dictionary = {}
+	for entry in carried:
+		var offer: Dictionary = entry as Dictionary
+		var where: String = _place_of(offer)
+		if where == "":
+			continue
+		var seen: Array = by_place.get(where, []) as Array
+		seen.append(int(offer["index"]))
+		by_place[where] = seen
+	var alone: Dictionary = {}
+	for where in by_place:
+		var seen: Array = by_place[where] as Array
+		if seen.size() == 1:
+			alone[int(seen[0])] = str(where)
+	return alone
+
+
+## Dove si posa questa scelta, detto come lo dice `_take_hold`: la Regione
+## viene prima, poi la domanda, poi la casa. Le due funzioni devono dire la
+## stessa cosa, se no la scheda toglie un bottone che nessun posto sostituisce.
+static func _place_of(offer: Dictionary) -> String:
+	var region_id: String = str(offer.get("region", ""))
+	if region_id != "":
+		return "region:%s" % region_id
+	for field in ["tension", "entity"]:
+		var about: String = str(offer.get(field, ""))
+		if about != "":
+			return "%s:%s" % [field, about]
+	return ""
+
+
+## Il nome del posto, come sta scritto sul tavolo: il nome della Regione, il
+## titolo della domanda, il nome della casa. Mai l'id.
+func _place_name(where: String) -> String:
+	var parts: PackedStringArray = where.split(":", false)
+	if parts.size() < 2 or _session == null:
+		return where
+	var kind: String = str(parts[0])
+	var key: String = str(parts[1])
+	if kind == "region":
+		var region: Variant = _session.data.regions.get(key)
+		return key if region == null else str((region as Dictionary)["name"])
+	if kind == "tension":
+		var tension: Variant = _session.data.tensions.get(key)
+		return key if tension == null else str((tension as Dictionary)["title"])
+	return _session.service.name_of(key)
 
 
 ## L'etichetta del motore, alleggerita del nome della carta: sulla scheda il

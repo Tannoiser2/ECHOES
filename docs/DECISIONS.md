@@ -45,6 +45,73 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-480 — La scheda della carta non ristampa i posti gia' accesi
+
+**implemented in 0.1.450.** Parola del committente, guardando il tabellone:
+*«perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo un
+cerchietto per scegliere cosa fare, e' una ripetizione inutile.»*
+
+### Il difetto, e perche' era gia' stato deciso una volta
+
+[D-238](DECISIONS.md#d-238) dice: *una scelta che ha un posto dove cadere non e'
+anche un bottone*. Era stata applicata alla **colonna** delle scelte, e nella
+**scheda della carta in mano** (D-279) non era mai arrivata: `_card_sheet`
+ristampava un bottone per ogni scelta legale, comprese quelle che in quel
+momento erano gia' cerchiate d'oro sulla mappa o accese sulla riga di una
+domanda. Lo schermo diceva due volte la stessa cosa — una col cerchietto e una
+col bottone — e il committente ha visto esattamente questo.
+
+### La regola, e il suo limite
+
+Un posto acceso che porta **una sola** scelta non ha bisogno del bottone:
+cliccarlo **e'** gia' la risposta, perche' `card_placed` porta quell'unico
+indice e `picked` lo emette. La scheda mette al suo posto una riga che nomina
+il posto — *«— toccala dove si accende: Valle Verde»* — col nome scritto sul
+tavolo, mai l'id.
+
+**Ma un posto che ne porta due non e' una risposta.** Sulla stessa domanda una
+carta puo' sapere fare due cose opposte — alzarla o abbassarla — e toccarla non
+direbbe quale: quelle due restano bottoni. E' il patto di D-238 tenuto per
+intero: **nessuna scelta legale resta irraggiungibile**, e quattro prove nuove
+in `test_drag_and_drop.gd` lo tengono, compresa quella che obbliga
+`_place_of` e `_take_hold` a leggere i posti nello stesso ordine — se
+divergessero, la scheda toglierebbe un bottone che nessun posto acceso
+sostituisce.
+
+### E la stessa cosa nel Consiglio, che e' dove il committente guardava
+
+Il tabellone disegnava le due liste della carta girata con **il cerchietto di
+ogni casella** (D-466), e sotto ristampava le stesse caselle come carte-scelta:
+*«Con A — <la domanda> · Beneficio: <il testo>»*. Due volte la stessa cosa, e la
+seconda con parole del motore.
+
+Adesso **la casella sulla carta e' la scelta**:
+
+- `SeatDecider` dice, per ogni scelta, **quale casella e'** — `{"box": id,
+  "side": "A"}` — nel campo `subjects` che il ponte `_choose → ask` portava gia'
+  per le Regioni (D-230). Il decisore non impara niente di nuovo: dice quello
+  che gia' sapeva;
+- il tabellone accende quelle caselle sulla carta girata — **alte un dito**
+  (D-243) — e non le ristampa sotto;
+- quello che non e' una casella resta una carta-scelta: **«Passa»**, e ogni
+  scelta che il cartone non porta.
+
+E la casella che serve **tutt'e due le domande** non e' un'eccezione da
+lasciare fuori: toccarla non dice da che parte stai, ma **ha tolto di mezzo
+tutto il resto** — restano le sue due scelte, «con A» e «con B», e niente
+altro. E' il gesto che D-231 ha gia' scritto per le carte: posi la pedina, e
+*poi* dici per quale domanda.
+
+Cinque prove in `test_the_council_shows_its_card.gd` tengono i casi: la casella
+accesa e non ristampata, «Passa» che resta scritto, la casella condivisa che
+porta le sue due scelte, il restringimento quando la si tocca, e il colore che
+dice che si puo' prendere. Le tre prove di `test_a_council_can_be_played.gd`
+adesso guardano **dove si tocca davvero** — le caselle accese piu' le
+carte-scelta — perche' una prova che guardasse solo le seconde troverebbe zero
+dove lo schermo offre tutto: e' la stessa trappola di casa, dall'altra parte.
+
+---
+
 ## D-479 — L'audit dei segni lo conta il registro, non io
 
 **implemented in 0.1.449.** Domanda del committente: *«fammi un audit di tutti

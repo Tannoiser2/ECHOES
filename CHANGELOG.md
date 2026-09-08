@@ -5,6 +5,39 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.450 — Il cerchietto e' la scelta: la scheda non ripete i posti accesi
+
+[D-480](docs/DECISIONS.md#d-480).
+
+*«Perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo un
+cerchietto per scegliere cosa fare, e' una ripetizione inutile.»* Aveva ragione,
+ed era una regola gia' presa: [D-238](docs/DECISIONS.md#d-238) aveva tolto dalla
+colonna le scelte che hanno un posto dove cadere, e nella **scheda della carta
+in mano** non era mai arrivata.
+
+**Adesso una scelta con un posto acceso tutto suo non e' anche un bottone**: al
+suo posto la scheda scrive dove si posa, col nome del tavolo — *«— toccala dove
+si accende: Valle Verde»* — e la si prende toccando il cerchietto.
+
+**E nel Consiglio, che e' dove guardava.** Il tabellone disegnava le due liste
+della carta girata col cerchietto di ogni casella, e sotto le ristampava tutte
+come carte-scelta. Adesso **la casella offerta si accende sulla carta** — alta
+un dito — e si tocca; sotto resta solo quello che il cartone non porta, a
+cominciare da **«Passa»**.
+
+**E una casella che serve tutt'e due le domande?** Toccarla non dice da che
+parte stai, ma toglie di mezzo tutto il resto: restano le sue due scelte, «con
+A» e «con B». E' il gesto del tavolo — posi la pedina, e *poi* dici per quale
+domanda.
+
+**Quello che resta una scelta scritta, e perche':** sulla mappa, un posto che
+porta due scelte — la stessa domanda alzata o abbassata — non e' una risposta,
+e toccarlo non saprebbe quale delle due; e sotto il Consiglio restano «Passa» e
+tutto quello che il cartone non porta. Nove prove nuove tengono il patto:
+**nessuna scelta legale resta irraggiungibile.**
+
+---
+
 ## 0.1.449 — L'audit dei segni: 44 su 103 li guarda una mano sola
 
 [D-479](docs/DECISIONS.md#d-479), [ISSUES 134](docs/ISSUES.md#134). E

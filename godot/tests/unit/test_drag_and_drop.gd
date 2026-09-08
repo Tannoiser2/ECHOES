@@ -467,3 +467,65 @@ func test_the_held_card_looks_held() -> void:
 	assert_eq(card.position.y, 0.0, "e rimessa giu' torna in fila")
 	card.free()
 
+
+
+## --- e la scheda della carta non ristampa i posti accesi (D-480) ------------
+
+
+## **La ripetizione che il committente ha visto guardando il tabellone**:
+## *«perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo
+## un cerchietto per scegliere cosa fare, e' una ripetizione inutile.»*
+##
+## Una scelta che ha un posto acceso tutto suo si prende toccando quel posto: il
+## bottone che la ripete sotto la carta e' rumore, ed e' lo stesso difetto che
+## D-238 aveva tolto dalla colonna e che nella scheda della carta era rimasto.
+func test_a_place_that_carries_one_choice_needs_no_button() -> void:
+	var alone: Dictionary = GameScreen._places_with_one_offer([
+		{"index": 0, "region": HERE},
+		{"index": 1, "entity": "ENT_ALDRIC"},
+	])
+	assert_true(alone.has(0), "la Regione porta una scelta sola: si tocca")
+	assert_true(alone.has(1), "la casa porta una scelta sola: si tocca")
+	assert_eq(str(alone[0]), "region:%s" % HERE, "e il posto e' quello giusto")
+
+
+## **Ma un posto che ne porta due non e' una risposta.** Sulla stessa domanda
+## una carta puo' sapere fare due cose opposte — alzarla o abbassarla — e
+## toccarla non direbbe quale: quelle due restano bottoni, se no una mossa
+## legale resterebbe senza modo di farla. E' il patto di D-238, tenuto.
+func test_a_place_that_carries_two_choices_keeps_its_buttons() -> void:
+	var alone: Dictionary = GameScreen._places_with_one_offer([
+		{"index": 0, "tension": "TEN_FAMINE"},
+		{"index": 1, "tension": "TEN_FAMINE"},
+		{"index": 2, "region": HERE},
+	])
+	assert_false(alone.has(0), "la domanda ne porta due: il bottone resta")
+	assert_false(alone.has(1), "e resta anche per l'altra")
+	assert_true(alone.has(2), "la Regione invece ne porta una sola")
+
+
+## E una scelta che non si posa da nessuna parte non compare fra i posti: il suo
+## bottone e' l'unica strada che ha.
+func test_a_choice_with_nowhere_to_go_is_not_a_place() -> void:
+	var alone: Dictionary = GameScreen._places_with_one_offer([
+		{"index": 0},
+		{"index": 1, "asset": CARD},
+	])
+	assert_true(alone.is_empty(), "niente posto, niente scorciatoia")
+
+
+## La scheda e la mano devono dire lo stesso posto: se `_place_of` mettesse la
+## domanda prima della Regione, la scheda toglierebbe un bottone che nessun
+## posto acceso sostituisce. Sono due funzioni, e l'ordine e' uno solo.
+func test_the_place_is_read_in_the_same_order_as_the_hand() -> void:
+	assert_eq(
+		GameScreen._place_of({"region": HERE, "tension": "TEN_FAMINE"}),
+		"region:%s" % HERE,
+		"la Regione viene prima, come in _take_hold"
+	)
+	assert_eq(
+		GameScreen._place_of({"tension": "TEN_FAMINE", "entity": "ENT_ALDRIC"}),
+		"tension:TEN_FAMINE",
+		"poi la domanda"
+	)
+	assert_eq(GameScreen._place_of({"asset": CARD}), "", "e la carta sola non e' un posto")

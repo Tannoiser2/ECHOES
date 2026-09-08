@@ -278,3 +278,108 @@ func test_the_count_is_in_player_words() -> void:
 	assert_true(str(board._outcome.text).contains("mucchio"), "e il conto dice quanto vale il mucchio")
 	assert_true(str(board._outcome.text).contains("3"), "col suo numero")
 	board.free()
+
+
+## --- e la casella sulla carta e' la scelta (D-480) --------------------------
+
+
+## **La ripetizione che il committente ha visto guardando il tabellone**:
+## *«perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo un
+## cerchietto per scegliere cosa fare, e' una ripetizione inutile.»*
+##
+## Le caselle stavano gia' disegnate sulla carta girata, ognuna col suo
+## cerchietto, e sotto tornavano tutte come carte-scelta. Adesso una casella
+## offerta si **accende sulla carta** — alta un dito (D-243), e risponde al
+## tocco — e non si ristampa sotto.
+func test_an_offered_box_lights_up_on_the_card_and_is_not_reprinted() -> void:
+	_open()
+	var menu: Array = session.confluence.box_menu("A")
+	assert_true(menu.size() >= 2, "la A ha almeno due caselle libere")
+	var first: String = str((menu[0] as Dictionary)["id"])
+	var second: String = str((menu[1] as Dictionary)["id"])
+
+	var board: Node = _board()
+	board.ask("cosa posi?", ["la prima", "la seconda"],
+		[{"box": first, "side": "A"}, {"box": second, "side": "A"}])
+	assert_eq(board._choices.get_child_count(), 0,
+		"nessuna carta-scelta: le due caselle si toccano sulla carta")
+
+	var lit: int = 0
+	for row in board._face.get_children():
+		if (row as Node).has_meta("offered") and bool((row as Node).get_meta("offered")):
+			lit += 1
+			assert_eq((row as Control).custom_minimum_size.y, 44.0,
+				"una casella che si tocca e' alta un dito")
+			assert_ne((row as Control).mouse_filter, Control.MOUSE_FILTER_IGNORE,
+				"e risponde al tocco")
+	assert_eq(lit, 2, "due caselle offerte, due caselle accese")
+	board.picked.emit(0)
+	board.free()
+
+
+## **Quello che non e' una casella resta una carta-scelta**, se no non si
+## potrebbe piu' scegliere: «Passa» non sta sulla carta.
+func test_what_is_not_a_box_stays_a_choice_card() -> void:
+	_open()
+	var menu: Array = session.confluence.box_menu("A")
+	var first: String = str((menu[0] as Dictionary)["id"])
+	var board: Node = _board()
+	board.ask("rilanci?", ["la prima", "Passa"], [{"box": first}, {}])
+	assert_eq(board._choices.get_child_count(), 1, "resta solo «Passa»")
+	board.picked.emit(1)
+	board.free()
+
+
+## **E una casella che serve tutt'e due le domande porta con se' due scelte.**
+## La stessa casella compare «con A» e «con B»: toccarla non dice da che parte
+## stai, ma ha tolto di mezzo tutto il resto — restano quelle due, ed e' il
+## gesto del tavolo (D-231). Il patto di D-238 e' intero: nessuna scelta legale
+## resta irraggiungibile.
+func test_a_box_two_questions_share_carries_both_choices() -> void:
+	var subjects: Array = [
+		{"box": "B_ONE", "side": "A"}, {"box": "B_ONE", "side": "B"},
+		{"box": "B_TWO", "side": "A"},
+	]
+	var offered: Dictionary = ConfluenceBoard._boxes_offered(subjects)
+	assert_eq((offered.get("B_ONE", []) as Array).size(), 2,
+		"la casella condivisa porta le due scelte")
+	assert_eq((offered.get("B_TWO", []) as Array), [2],
+		"quella di una parte sola ne porta una, ed e' quella giusta")
+
+
+## E toccata, la casella condivisa lascia sotto **solo** le sue due scelte.
+func test_touching_a_shared_box_narrows_to_its_two_choices() -> void:
+	_open()
+	var board: Node = _board()
+	board.ask("da che parte stai?", ["con A", "con B", "altro"],
+		[{"box": "B_X", "side": "A"}, {"box": "B_X", "side": "B"}, {}])
+	assert_eq(board._choices.get_child_count(), 1, "sotto resta solo quello che non e' una casella")
+	board._only_these(["con A", "con B", "altro"], [0, 1])
+	assert_eq(board._choices.get_child_count(), 2, "toccata la casella, restano le sue due")
+	board.picked.emit(0)
+	board.free()
+
+
+## E si **vede** che si puo' prendere: la riga accesa e il suo cerchietto
+## passano all'ocra di chi sceglie. Un bersaglio grande e invisibile non e' un
+## bersaglio.
+func test_an_offered_box_is_painted_as_offered() -> void:
+	_open()
+	var first: String = str((session.confluence.box_menu("A")[0] as Dictionary)["id"])
+	var board: Node = _board()
+	board.ask("cosa posi?", ["la prima"], [{"box": first, "side": "A"}])
+	var painted: int = 0
+	for row in board._face.get_children():
+		if not ((row as Node).has_meta("offered") and bool((row as Node).get_meta("offered"))):
+			continue
+		for child in (row as Node).get_children():
+			if child is Label:
+				painted += 1
+				assert_eq(
+					(child as Label).get_theme_color("font_color"),
+					Color(ConfluenceBoard.OFFER_COLOUR),
+					"la casella offerta si vede offerta"
+				)
+	assert_eq(painted, 1, "una casella offerta, una riga dipinta")
+	board.picked.emit(0)
+	board.free()
