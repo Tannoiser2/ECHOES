@@ -10164,3 +10164,73 @@ Chronicle» — che e' il titolo giusto, perche' CHR_00 e' il seguito di se
 stessa, ed e' esattamente la frase che si legge come «si torna al primo anno».
 Adesso il tavolo si ripesca e il bottone dice **che anno si gioca**.
 
+
+### 131. Il verbo doppio: una carta su tre porta due volte lo stesso verbo, e il tavolo la gioca meta'
+
+`regole` · `bilanciamento` · `da-decidere` · voluta dal committente · **aperta in 0.1.446**
+
+> «Mmm… in una partita mi fai un audit di quante azioni e di che tipo vengono
+> giocate? Che poi lo stesso verbo sia sulla stessa carta nelle due azioni non
+> mi va troppo a genio.»
+
+L'audit e' fatto, con `cli/run_card_ledger.gd` su **100 anni, seme 7000, tavolo
+misto**: 5.419 carte pescate, **2.636 Azioni calate** (48,6%), 2.173 impegnate
+al voto (40,1%). Nessuna carta e' muta — zero mai in mano, zero mai calate,
+zero mai impegnate.
+
+**Le Azioni giocate, per verbo:**
+
+| verbo | volte | quota |
+|---|---|---|
+| TRAMARE | 803 | **30,5%** |
+| MUOVERE | 538 | 20,4% |
+| FORGIARE | 528 | 20,0% |
+| INFLUENZARE | 271 | 10,3% |
+| RIVENDICARE | 190 | 7,2% |
+| ACQUISIRE | 184 | 7,0% |
+| SEGNARE | 122 | **4,6%** |
+
+Fra il primo e l'ultimo ci sono **6,6 volte**. E il conto per azione dichiarata
+dice la stessa cosa dall'altro lato: TRAMARE si cala il **67,3%** delle volte
+che e' in mano, MUOVERE il 66,7%, RIVENDICARE il 45,1%, FORGIARE il 41,8%, e
+**INFLUENZARE il 24,3%**.
+
+**E il verbo doppio, che e' la parte che il committente ha guardato.** Le carte
+che portano lo stesso verbo su tutt'e due le Azioni sono **18 su 48** — 9
+INFLUENZARE, 8 FORGIARE, 1 TRAMARE — e si comportano in un altro modo:
+
+| | carte | in mano | **calate** | al voto |
+|---|---|---|---|---|
+| **verbo doppio** | 18 | 1.891 | **29,1%** | **53,9%** |
+| **due verbi diversi** | 30 | 3.528 | **59,1%** | 32,7% |
+
+**Una carta col verbo doppio si cala la meta' delle volte, e finisce al voto il
+doppio**: quando le due facce portano lo stesso verbo il tavolo smette di
+giocarla come Azione e la spende come **moneta** al Consiglio. Non e' un
+sospetto, e' due a uno.
+
+**Sette delle diciotto non posano nessun segno su nessuna delle due facce**, e
+li' la differenza fra le due Azioni e' solo il **verso** — «Sigillare in alto»
+contro «Sigillare in basso», «Portare la folla sotto le finestre» contro
+«Mandare la folla a casa». E' una scelta vera, ma dentro lo stesso gesto:
+cambia il segno del numero, non cosa fai. Le altre undici posano almeno segni
+diversi su una faccia.
+
+Le due meta' dell'audit sono la stessa cosa vista da due lati: **il verbo
+doppio si concentra proprio sui due verbi che il tavolo cala meno** —
+INFLUENZARE, che e' il fondo, e FORGIARE.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **Le sette senza segni** (Sigillo, Folla, Mobilitazione, Braccia Ferme,
+   Favore, Ostaggio, Mercenari): la seconda faccia prende un verbo diverso, o
+   almeno un segno che la distingua?
+2. **Le altre undici col verbo doppio**: restano, visto che i segni le
+   distinguono gia'?
+3. **SEGNARE al 4,6% e sette facce su 96**: il verbo nuovo di D-423 e' il meno
+   giocato della scatola. E' poco stampato, o poco appetibile?
+4. **INFLUENZARE al 24,3% di calate** e' una voce vecchia
+   ([59](#59), chiusa in 0.1.412) che il numero riapre da un'altra parte: non
+   e' contenuto morto — va al voto piu' di tutti — ma come **Azione** e' il
+   fondo del tavolo.
+

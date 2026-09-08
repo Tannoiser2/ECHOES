@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **134** |
+| voci scritte | **135** |
 | chiuse | **124** |
-| aperte | **10** |
-| di cui **aspettano una tua decisione** | **0** |
+| aperte | **11** |
+| di cui **aspettano una tua decisione** | **1** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,23 +305,25 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
+| 🔴 | **1** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
+**Una.** Delle undici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su una tua parola.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **nessuna**
+# 🔴 Aspettano te: **una**
 
-**Per la prima volta da quando questa lista esiste, non c'è niente di rosso.** In
-0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a tutte»* — e
-questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
+**Per centoquarantanove versioni qui non c'è stato niente**, e adesso c'è una
+riga sola: la **R14**, che hai fatto nascere tu chiedendo l'audit delle Azioni.
+Sta in fondo a questa sezione. Prima, la storia di come questo posto si era
+svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
+tutte»* — e questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
 | | voce | cosa hai detto | dov'è finita |
 |---|---|---|---|
@@ -342,10 +344,52 @@ questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 suo colore, e da 0.1.397 lo strumento va rosso se una voce prova ad abitare in due
 posti — vedi [D-427](DECISIONS.md#d-427).)*
 
-**Quello che questo cambia, ed è la cosa che chiedevi:** il giro non è più fermo
-su di te. Delle diciassette voci ancora aperte non ce n'è **nessuna** che aspetti
-una tua parola — le due 🔵 aspettano una partita, non una decisione. Se una rossa
-nasce di nuovo, nasce qui.
+**Quello che questo cambiava, allora:** il giro non era più fermo su di te.
+Delle voci aperte non ce n'era **nessuna** che aspettasse una tua parola — le
+due 🔵 aspettano una partita, non una decisione. *«Se una rossa nasce di nuovo,
+nasce qui»*, dicevo. Eccola.
+
+### R14. [131](ISSUES.md#131) — il verbo doppio: **aperta in 0.1.446**
+
+Ed eccola, la prima rossa nuova, e l'hai fatta nascere tu: *«mi fai un audit di
+quante azioni e di che tipo vengono giocate? Che poi lo stesso verbo sia sulla
+stessa carta nelle due azioni non mi va troppo a genio.»*
+
+L'audit su cento anni: **2.636 Azioni calate** su 5.419 carte pescate. Per
+verbo, TRAMARE **30,5%**, MUOVERE 20,4%, FORGIARE 20,0%, INFLUENZARE 10,3%,
+RIVENDICARE 7,2%, ACQUISIRE 7,0%, **SEGNARE 4,6%** — fra il primo e l'ultimo
+ci sono **6,6 volte**. Nessuna carta è muta.
+
+**E sul verbo doppio avevi ragione, e si misura.** Le carte che portano lo
+stesso verbo su tutt'e due le Azioni sono **18 su 48** (una correzione: ti
+avevo detto 29, e veniva da un commento vecchio nel codice — ricontate dai
+dati sono 18: 9 INFLUENZARE, 8 FORGIARE, 1 TRAMARE).
+
+| | carte | calate | al voto |
+|---|---|---|---|
+| **verbo doppio** | 18 | **29,1%** | **53,9%** |
+| **due verbi diversi** | 30 | **59,1%** | 32,7% |
+
+**Una carta col verbo doppio si cala la metà delle volte, e finisce al voto il
+doppio.** Quando le due facce portano lo stesso verbo il tavolo smette di
+giocarla come Azione e la spende come **moneta** al Consiglio. Due a uno.
+
+E **sette delle diciotto non posano nessun segno su nessuna delle due facce**:
+lì la differenza fra le due Azioni è solo il *verso* — «Sigillare in alto»
+contro «Sigillare in basso», «Portare la folla sotto le finestre» contro
+«Mandare la folla a casa». È una scelta vera, ma dentro lo stesso gesto.
+
+Quattro cose da decidere, e sono tue:
+
+1. **Le sette senza segni** — Sigillo, Folla, Mobilitazione, Braccia Ferme,
+   Favore, Ostaggio, Mercenari: la seconda faccia prende un verbo diverso, o
+   almeno un segno che la distingua?
+2. **Le altre undici col verbo doppio**: restano così, visto che i segni le
+   distinguono già?
+3. **SEGNARE al 4,6%**, con sette facce su 96: il verbo più nuovo è il meno
+   giocato. È poco stampato, o poco appetibile?
+4. **INFLUENZARE al 24,3% di calate** è il fondo del tavolo come Azione, ma la
+   moneta più votata al Consiglio. Va bene così, o è da riequilibrare?
 
 ---
 
@@ -1051,9 +1095,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+fuori dalla lista, e **una aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 
