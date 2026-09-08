@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.449 — L'audit dei segni: 44 su 103 li guarda una mano sola
+
+[D-479](docs/DECISIONS.md#d-479), [ISSUES 134](docs/ISSUES.md#134). E
+[D-478](docs/DECISIONS.md#d-478), il verbale di 0.1.448 arrivato con una
+versione di ritardo.
+
+**Il criterio del committente e' diventato un cancello.** *«Se un tag viene
+letto una volta da qualcuno, questo tag non serve a nulla»*: il registro dei
+segni ha una sezione nuova — **«I segni che li guarda una mano sola»** — e
+`build_sign_registry.py --check` va rosso se invecchia. L'audit non e' scritto
+a mano da nessuna parte: si rifa' dai dati.
+
+**Quello che dice, a oggi:** dei **103 segni** che qualcosa scrive sul mondo,
+**44 — il 43% — li guarda una mano sola (34) o nessuna (10)**, e **42 di quei
+44 hanno un gettone stampato**: un terzo della fustellatura della scatola. In
+cento anni di mondo quei 44 si prendono **1.454 scritture su 4.822, il 30%** di
+tutto quello che il mondo scrive.
+
+**E il gruppo piu' grosso e' uno solo: le nove Scoperte.** Nessuna clausola ne
+nomina una — Destini e obiettivi chiedono *«tre scoperte»*, mai *«l'Auspicio»*.
+Sono **1.258 scritture su 4.822, il 26% di tutto**, per un contenuto in cui una
+Scoperta vale l'altra. Gli altri quattro gruppi: dodici gettoni che pesano solo
+la pesca dell'anno dopo, cinque Cicatrici lette solo dal loro conteggio (fra
+cui `scar:unanswered`, la «domanda sul muro»), quattro letti da un Destino
+solo, quattro sparsi.
+
+**Niente e' stato tolto e niente e' stato fatto mordere**: le quattro decisioni
+che ne escono sono del committente e stanno in ISSUES 134 e nella **R17** del
+foglio delle decisioni. Il cancello dei 100 semi non e' stato rimisurato
+perche' **il gioco non e' cambiato**: la modifica e' un documento generato in
+piu'.
+
+---
+
 ## 0.1.448 — Le due schede si dividono, la fascia si chiude, e le caselle si misurano
 
 [D-478](docs/DECISIONS.md#d-478), [ISSUES 133](docs/ISSUES.md#133).

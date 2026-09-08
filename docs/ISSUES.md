@@ -10428,3 +10428,68 @@ ne vengono comprate **13**. Diciannove non escono mai.
    caselle, e la voce di chi scrive e' del committente.
 4. **Le 19 caselle mai comprate**: contenuto che il tavolo non sceglie mai.
 
+
+
+### 134. I segni che li guarda una mano sola: 44 su 103, e 42 hanno una fustella
+
+`contenuto` · `regole` · `da-decidere` · voluta dal committente · **aperta in 0.1.449**
+
+> «Fammi un audit di tutti i TAG che non servono a un cazzo, e che praticamente
+> sono inutili ai fini del gioco, perche' se un tag viene letto una volta da
+> qualcuno, questo tag non serve a nulla.»
+
+L'audit c'e', ed e' **generato**: da 0.1.449 il registro dei segni ha una
+sezione sua — [«I segni che li guarda una mano sola»](REGISTRO_SEGNI.md) — che
+il cancello `build_sign_registry.py --check` tiene aggiornata. I numeri qui
+sotto non sono scritti a mano: si rifanno da soli.
+
+**Il conto.** Dei **103 segni che qualcosa scrive sul mondo**:
+
+| | |
+|---|---|
+| li legge **piu' di una mano** | 59 |
+| li guarda **una mano sola** | **34** |
+| non li guarda **nessuno** (i muti gia' dichiarati) | **10** |
+| **col criterio del committente (0 o 1)** | **44 su 103 = 43%** |
+| di quei 44, con **un gettone stampato** nella scatola | **42** |
+
+E incrociando col mondo che gira (`docs/MISURA_SEGNI.md`, 100 anni): quei 44
+segni si prendono **1.454 scritture su 4.822 — il 30% di tutto quello che il
+mondo scrive in cento anni**.
+
+**Ma non sono un difetto solo: sono cinque difetti diversi**, e vanno decisi
+separati.
+
+| l'unica mano | segni | cos'e' davvero |
+|---|---|---|
+| **la pesca delle domande** | 12 | pesano quali Tensioni escono l'anno dopo, e **niente di quello che puoi fare adesso**. Il gettone si posa e non cambia una mossa |
+| **il codice che conta le Scoperte** | 9 | nove Scoperte diverse, e nessuna clausola ne nomina una: il gioco conta solo **quante**. Sono 1.258 scritture su 4.822 — **il 26% di tutto** — per un contenuto in cui `discovery:the_omen` e `discovery:trade_ledger` sono la stessa cosa |
+| **il conteggio delle Cicatrici** | 5 | e' voluto e dichiarato: una Cicatrice pesa **perche' e' una Cicatrice**, il nome non lo legge nessuno. Ma e' proprio il caso che il committente ha nominato guardando il tabellone (ISSUES 133): «la domanda sul muro» e' `scar:unanswered`, e non fa niente di suo |
+| **un Destino** | 4 | `anointed`, `ash_watch`, `failed_proposal`, `water_moves`: una clausola sola su un tarocco solo. Chi non ha quel Destino non ha motivo di guardarli |
+| **una Risonanza, una regola, il motore** | 4 | `parley_held`, `petition_heard`, `settlement:march`, `evicted:$region_focus` |
+
+**Le tre cose che questo dice, e che nessuna misura di prima diceva:**
+
+1. **Le nove Scoperte sono un gettone solo.** Al tavolo, oggi, tenere nove
+   fustelle diverse per una cosa che il gioco conta a peso e' spesa pura: la
+   stessa scatola direbbe le stesse regole con **un gettone «Scoperta» ×9**.
+   L'alternativa opposta e' altrettanto legittima e piu' interessante: far
+   nominare le Scoperte da qualcuno — un Destino che vuole *l'Auspicio*, non
+   «tre scoperte».
+2. **Dodici gettoni servono solo a pesare la pesca dell'anno dopo.** Nessuno di
+   loro cambia una mossa: sono memoria pura. Il tavolo li posa, li guarda, e
+   non ci fa niente fino al prossimo anno — e la persona che gioca non ha modo
+   di saperlo.
+3. **42 fustelle su 122 servono un segno che nessuno o quasi interroga**: e'
+   un terzo della fustellatura della scatola.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **Le nove Scoperte**: un gettone solo ×9, oppure qualcuno che le nomini una
+   per una?
+2. **I dodici della pesca**: restano memoria pura — e allora la carta lo dice
+   («questo peserà sull'anno prossimo») — o si fanno mordere adesso?
+3. **I quattro letti da un Destino solo**: si allargano ad altre clausole, o si
+   accetta che siano contenuto di un tarocco solo?
+4. **Le cinque Cicatrici**: e' la stessa domanda di ISSUES 133 punto 2, e la
+   risposta e' una sola per tutt'e due.

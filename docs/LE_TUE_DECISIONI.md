@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **137** |
+| voci scritte | **138** |
 | chiuse | **124** |
-| aperte | **13** |
-| di cui **aspettano una tua decisione** | **3** |
+| aperte | **14** |
+| di cui **aspettano una tua decisione** | **4** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,24 +305,25 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **3** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **4** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle tredici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su tre tue parole.**
+**Una.** Delle quattordici voci aperte, una le posso muovere senza di te — ed è
+il numero che va detto per primo. **Il giro è fermo su quattro tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **tre**
+# 🔴 Aspettano te: **quattro**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
-sono tre: la **R14**, la **R15** e la **R16**, e le hai fatte nascere tutte tu
-— chiedendo l'audit delle Azioni, chiedendo qual è il meccanismo di ECHOES, e
-guardando le caselle del Consiglio. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
+sono quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai fatte
+nascere tutte tu — chiedendo l'audit delle Azioni, chiedendo qual è il
+meccanismo di ECHOES, guardando le caselle del Consiglio, e chiedendo l'audit
+dei segni che non servono a niente. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
 svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
 tutte»* — e questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
@@ -508,6 +509,48 @@ Quattro cose da decidere:
 3. **Le frasi**: devono dire l'effetto, non il gesto. È riscrittura di testo su
    32 caselle, e la voce è la tua.
 4. **Le 19 caselle mai comprate.**
+
+### R17. [134](ISSUES.md#134) — i segni che non servono a niente: **aperta in 0.1.449**
+
+*«Fammi un audit di tutti i TAG che non servono a un cazzo […] perché se un tag
+viene letto una volta da qualcuno, questo tag non serve a nulla.»*
+
+L'audit c'è, e da adesso **si rifà da solo**: il registro dei segni ha una
+sezione sua, e un cancello va rosso se invecchia. Il tuo criterio, applicato
+alla lettera:
+
+**Dei 103 segni che qualcosa scrive sul mondo, 44 — il 43% — li guarda una mano
+sola (34) o nessuna (10). E 42 di quei 44 hanno un gettone stampato nella
+scatola: un terzo della fustellatura.** In cento anni di mondo quei 44 si
+prendono **1.454 scritture su 4.822, il 30%** di tutto quello che il mondo
+scrive.
+
+Ma non è un difetto solo, sono cinque, e il più grosso è questo:
+
+**Le nove Scoperte sono lo stesso gettone.** Nessuna clausola ne nomina una:
+Destini e obiettivi chiedono *«tre scoperte»*, mai *«l'Auspicio»*. Sono
+**1.258 scritture su 4.822 — il 26% di tutto quello che il mondo scrive** — per
+un contenuto in cui l'Auspicio e il Registro dei Traffici sono, per il gioco,
+la stessa cosa. Al tavolo, oggi, sono nove fustelle diverse per una cosa che si
+conta a peso.
+
+Gli altri quattro gruppi: **dodici** gettoni che pesano solo quali domande
+escono l'anno dopo e non cambiano niente di quello che puoi fare adesso;
+**cinque** Cicatrici lette solo dal loro conteggio — fra cui `scar:unanswered`,
+la «domanda sul muro» di cui parlavi guardando il tabellone; **quattro** letti
+da un Destino solo; **quattro** sparsi.
+
+Quattro cose da decidere:
+
+1. **Le nove Scoperte**: un gettone «Scoperta» ×9, o qualcuno che le nomini una
+   per una — un Destino che vuole *l'Auspicio*, non «tre scoperte»?
+2. **I dodici della pesca**: restano memoria pura — e allora la carta lo dice,
+   *«questo peserà sull'anno prossimo»* — o si fanno mordere adesso?
+3. **I quattro di un Destino solo**: si allargano, o è contenuto di un tarocco
+   solo e va bene così?
+4. **Le cinque Cicatrici**: è la stessa domanda della R16 punto 2, e la
+   risposta vale per tutt'e due.
+
 
 ---
 
@@ -1213,9 +1256,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
-muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **tre aspettano una tua parola**.
+**Quello che resta da dire in una riga:** delle quattordici voci aperte ne
+posso muovere **una** da sola. Due le verifica una persona che gioca, sette
+stanno fuori dalla lista, e **quattro aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

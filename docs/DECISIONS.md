@@ -10,6 +10,86 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-478 — Le due schede si dividono il mestiere, e la fascia si chiude
+
+**implemented in 0.1.448.** Parola del committente, davanti alla pagina: *«la
+mia casa e obiettivi mostrano le stesse cose e poi la finestra e' piccolissima
+in altezza e non si legge nulla, falla collassabile, ma quando e' aperta deve
+avere almeno l'altezza di una carta»*.
+
+*(Questo verbale e' arrivato con una versione di ritardo: il codice e' di
+0.1.448, la pagina di DECISIONS no. Scriverlo adesso e' meno peggio che
+lasciarlo mancare — la regola di casa e' che una decisione senza verbale non e'
+stata presa.)*
+
+### 1. Le due schede dicevano le stesse cose, e si poteva contare
+
+**La mia plancia** e **Obiettivi** chiamavano tutt'e due `_update_destiny` e il
+profilo della casa: due terzi del contenuto erano lo stesso testo, disegnato
+due volte. Adesso il mestiere e' diviso e non si sovrappone:
+
+- **Obiettivi** dice **a che gioco stai giocando**: la Casata, il Destino coi
+  suoi tre gradini, le tre carte Obiettivo.
+- **La mia plancia** dice **quello che tieni tu**: i Diritti, i segni che porti
+  addosso, i segni che la tua casa vuole vedere a fine anno.
+
+La divisione ha una prova che la tiene: `test_the_two_sheets_say_different_things.gd`
+va rossa se un blocco ricompare su tutt'e due.
+
+### 2. La fascia si apre e si chiude, e aperta e' alta almeno una carta
+
+`_toggle_tabs(open)` in `game_screen.gd`: chiusa, la fascia lascia tutto lo
+spazio alla mappa e la maniglia resta li' a dire come riaprirla; aperta, il
+minimo e' `AssetCard.wanted_height() + 44` — **l'altezza di una carta** (D-246)
+piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
+
+---
+
+## D-479 — L'audit dei segni lo conta il registro, non io
+
+**implemented in 0.1.449.** Domanda del committente: *«fammi un audit di tutti
+i TAG che non servono a un cazzo […] perche' se un tag viene letto una volta da
+qualcuno, questo tag non serve a nulla»*.
+
+### La forma della risposta, prima del contenuto
+
+Un audit scritto a mano nei verbali e' un numero che invecchia dal giorno dopo,
+e questo progetto ha gia' pagato tre volte quel difetto (D-338, D-398,
+ISSUES 105: elenchi paralleli che nessuno tiene allineati). Quindi il criterio
+del committente e' entrato **nel generatore**: `tools/build_sign_registry.py`
+ha una sezione nuova, «I segni che li guarda una mano sola», e il cancello
+`--check` va rosso se il documento non e' piu' quello che i dati producono.
+
+Sono due conti soli, e li fa il registro:
+
+- un segno **scritto sul mondo** i cui lettori sono **esattamente uno**;
+- di quelli, quanti hanno **una fustella** nel catalogo delle pedine — perche'
+  al tavolo il costo di un segno che nessuno interroga e' un gettone stampato.
+
+I lettori sono quelli che il registro conosceva gia' — Destini, obiettivi,
+regole del segno, la pesca delle domande, le facce fisiche, il codice che legge
+per prefisso — quindi la sezione non introduce un secondo modello di lettura:
+guarda gli stessi dati dell'unica colonna che il registro aveva sempre avuto.
+
+### Cosa dice, a oggi
+
+**44 segni su 103 — il 43% — li guarda una mano sola (34) o nessuna (10), e 42
+di loro hanno un gettone stampato.** Il gruppo piu' grosso sono le **nove
+Scoperte**, che nessuna clausola nomina una per una: valgono **1.258 scritture
+su 4.822** in cento anni (`docs/MISURA_SEGNI.md`), il 26% di tutto quello che
+il mondo scrive, per un contenuto in cui una Scoperta vale l'altra.
+
+Il resto e' in [ISSUES 134](ISSUES.md#134), e le quattro decisioni che ne
+escono sono del committente: e' contenuto, non motore.
+
+### Cosa questo verbale **non** decide
+
+Niente e' stato tolto e niente e' stato fatto mordere. Il cancello dei 100 semi
+non e' stato rimisurato perche' **il gioco non e' cambiato**: la modifica e' un
+documento generato in piu' e la sezione che lo genera.
+
+---
+
 ## D-477 — Le ventuno regole morte puntate sul mucchio: un mondo segnato cambia quanto e' difficile decidere
 
 **implemented in 0.1.447.** Parola del committente: *«mergia e vai»*, sulla
