@@ -804,7 +804,19 @@ static func effects_for(
 		"HEAT_THEME":
 			if theme_id == "":
 				return out
+			# **Il Calore posato qui sopravvive all'Atto** (D-486, parola del
+			# committente: *«continua a non convincermi scaldare il tema che si
+			# sta dibattendo, non ha senso, a cosa serve»*).
+			#
+			# Aveva ragione, ed era misurato: il Consiglio si tiene a fine Atto
+			# e subito dopo `_spend_the_piles` azzera tutti i mucchi, quindi
+			# questa pedina veniva cancellata due minuti dopo averla posata —
+			# 287 pedine su un costo che non costava. Adesso il Calore di
+			# **questa** casella si segna a parte e resta sul tavolo quando i
+			# mucchi si spendono: e' la sola cosa che attraversa l'Atto, ed e'
+			# la taratura d'autore che ROADMAP §4.1 lasciava aperta.
 			out.append(Effect.make("ADJUST_THEME_HEAT", "theme", theme_id, {"delta": 1}, source))
+			out.append(Effect.make("KEEP_THEME_HEAT", "theme", theme_id, {"delta": 1}, source))
 		"TAKE_DEBT":
 			if region == "":
 				return out

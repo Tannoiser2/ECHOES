@@ -33,7 +33,7 @@ e' stata girata una volta per ogni posto che accetta, e la colonna
 | **ADD_CONDITION** — AGGIUNGI CONDIZIONE | costi | SET_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
 | **TOLL** — PEDAGGIO | costi | SET_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
 | **YIELD_CONTROL** — CEDI CONTROLLO | costi | SET_CONTROL | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
-| **HEAT_THEME** — SCALDA TEMA | costi | ADJUST_THEME_HEAT | `THM_POTERE` |
+| **HEAT_THEME** — SCALDA TEMA | costi | ADJUST_THEME_HEAT, KEEP_THEME_HEAT | `THM_POTERE` |
 | **TAKE_DEBT** — PRENDI DEBITO | costi | SET_REGION_TAG | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
 | **SCAR** — CICATRICE | costi | ADD_SCAR | `$adjacent`, `$capital`, `$region_focus`, `$region_with:`, `$rival_seat` |
 | **HEAT_QUESTION** — ALZA LA DOMANDA | costi | ADJUST_TENSION | `$region_focus`, `TEN_` |

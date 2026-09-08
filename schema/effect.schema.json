@@ -9,37 +9,38 @@
     "effect_type": {
       "type": "string",
       "enum": [
+        "ADD_PRESENCE",
+        "ADD_SCAR",
         "ADJUST_TENSION",
         "ADJUST_THEME_HEAT",
-        "SET_TENSION_VISIBILITY",
-        "ADD_PRESENCE",
-        "REMOVE_PRESENCE",
-        "SET_CONTROL",
-        "SET_REGION_TAG",
-        "REMOVE_REGION_TAG",
-        "SET_GLOBAL_TAG",
-        "REMOVE_GLOBAL_TAG",
-        "SET_RELATION",
-        "GRANT_ASSET",
-        "REMOVE_ASSET",
-        "TRANSFER_ASSET",
-        "CREATE_CLAIM",
-        "CONSUME_CLAIM",
-        "GRANT_CLAIM_TOKEN",
-        "SPEND_CLAIM_TOKEN",
-        "ADD_SCAR",
-        "REMOVE_SCAR",
-        "SET_ENTITY_TAG",
-        "REMOVE_ENTITY_TAG",
-        "SET_ENTITY_ACTIVE",
+        "APPEND_TRUTH",
         "BUILD_STRUCTURE",
+        "CLOSE_PASSAGE",
+        "CONSUME_CLAIM",
+        "CREATE_CLAIM",
+        "CREATE_ECHO",
+        "GRANT_ASSET",
+        "GRANT_CLAIM_TOKEN",
+        "KEEP_THEME_HEAT",
+        "OPEN_PASSAGE",
         "RAZE_STRUCTURE",
+        "REMOVE_ASSET",
+        "REMOVE_ENTITY_TAG",
+        "REMOVE_GLOBAL_TAG",
+        "REMOVE_PRESENCE",
+        "REMOVE_REGION_TAG",
+        "REMOVE_SCAR",
+        "SET_CONTROL",
+        "SET_ENTITY_ACTIVE",
+        "SET_ENTITY_TAG",
+        "SET_GLOBAL_TAG",
+        "SET_REGION_TAG",
+        "SET_RELATION",
         "SET_STRUCTURE_GRADE",
         "SET_STRUCTURE_OWNER",
-        "CLOSE_PASSAGE",
-        "OPEN_PASSAGE",
-        "CREATE_ECHO",
-        "APPEND_TRUTH"
+        "SET_TENSION_VISIBILITY",
+        "SPEND_CLAIM_TOKEN",
+        "TRANSFER_ASSET"
       ]
     },
     "target": {
@@ -894,6 +895,28 @@
                     "const": "WORLD",
                     "description": "Un fatto del mondo si posa sul mondo. Il motore scrive in `global_tags` **qualunque** bersaglio gli si dia, quindi un bersaglio diverso non rompe niente e non lo vede nessuno: mente e basta, a chi legge il dato e a ogni misura che lo conta. Trovato una volta su 68 (D-370)."
                   }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "KEEP_THEME_HEAT"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "delta": true
                 }
               }
             }

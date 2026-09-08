@@ -179,6 +179,8 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _adjust_tension(target, payload)
 		"ADJUST_THEME_HEAT":
 			return _adjust_theme_heat(target, payload)
+		"KEEP_THEME_HEAT":
+			return _keep_theme_heat(target, payload)
 		"SET_TENSION_VISIBILITY":
 			return _set_tension_visibility(target, payload)
 		"ADD_PRESENCE":
@@ -280,6 +282,26 @@ func _adjust_theme_heat(target: Dictionary, payload: Dictionary) -> Variant:
 	var before: int = int(track.get(theme_id, 0))
 	var after: int = clampi(before + int(payload.get("delta", 0)), 0, HEAT_MAX)
 	track[theme_id] = after
+	return {"delta": before - after}
+
+
+## **Il Calore che attraversa l'Atto** (D-486).
+##
+## I mazzetti si spendono a fine Atto e ogni Tema torna freddo (D-261). Una
+## sola cosa sopravvive: il Calore posato sulla casella «il Tema di questa
+## domanda si scalda», che e' un **costo** del Consiglio e fino alla 0.1.455
+## veniva cancellato due minuti dopo essere stato pagato. Qui si segna quanto,
+## e `_spend_the_piles` lo rimette sul tavolo dopo aver spento tutto.
+func _keep_theme_heat(target: Dictionary, payload: Dictionary) -> Variant:
+	var theme_id: String = str(target.get("id", ""))
+	if data != null and not data.themes.has(theme_id):
+		return _fail("unknown theme '%s'" % theme_id)
+	if not world.has("theme_heat_kept"):
+		world["theme_heat_kept"] = {}
+	var kept: Dictionary = world["theme_heat_kept"]
+	var before: int = int(kept.get(theme_id, 0))
+	var after: int = maxi(before + int(payload.get("delta", 0)), 0)
+	kept[theme_id] = after
 	return {"delta": before - after}
 
 

@@ -74,8 +74,15 @@ func test_a_fallen_council_lands_the_consequence_of_its_own_sheet() -> void:
 				(sheet.get("consequence_pools", {}) as Dictionary).get("failure", []) as Array
 			).duplicate()
 			# Le due domande della carta sono state respinte tutt'e due: cio'
-			# che ognuna lascia si aggiunge, senza doppioni e nell'ordine in cui
-			# le domande stanno sulla carta.
+			# che ognuna lascia si aggiunge, senza doppioni.
+			#
+			# **L'ordine e' quello del tavolo, non quello della stampa** (D-486):
+			# il motore le mette nell'ordine delle due parti — A e poi B — e
+			# quale domanda finisce da che parte lo decide il Consiglio, non la
+			# carta. Fino a 0.1.455 le due coincidevano per caso, e questa riga
+			# e' andata rossa il giorno in cui il Calore che attraversa l'Atto
+			# ha cambiato quale domanda si apre per prima. Si confrontano gli
+			# insiemi: quello che conta e' che ci sia tutto, una volta sola.
 			var refusals: int = 0
 			for question in (sheet.get("questions", []) as Array):
 				for consequence_id in ((question as Dictionary).get("refused", []) as Array):
@@ -84,8 +91,11 @@ func test_a_fallen_council_lands_the_consequence_of_its_own_sheet() -> void:
 						expected.append(consequence_id)
 			if refusals > 0:
 				with_a_refusal += 1
+			var landed: Array = (result["consequence_ids"] as Array).duplicate()
+			landed.sort()
+			expected.sort()
 			assert_eq(
-				result["consequence_ids"], expected,
+				landed, expected,
 				"la domanda %s e' caduta: doveva lasciare %s" % [
 					str(result["tension_id"]), str(expected)
 				]

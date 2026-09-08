@@ -44,6 +44,11 @@ func test_round_trip_every_reversible_type() -> void:
 	_round_trip(
 		"ADJUST_THEME_HEAT", _make("ADJUST_THEME_HEAT", "theme", "THM_POTERE", {"delta": 2})
 	)
+	# **Il Calore che attraversa l'Atto** (D-486): stesso contratto della
+	# traccia — sale e scende su se stesso, col delta davvero applicato.
+	_round_trip(
+		"KEEP_THEME_HEAT", _make("KEEP_THEME_HEAT", "theme", "THM_POTERE", {"delta": 1})
+	)
 	_round_trip(
 		"SET_TENSION_VISIBILITY",
 		_make("SET_TENSION_VISIBILITY", "tension", "TEN_AWAKENING", {"visibility": "OPEN"})
@@ -259,7 +264,8 @@ func test_round_trip_every_reversible_type() -> void:
 
 	# Guard: every reversible type in the generated enum is covered above.
 	var covered: Array = [
-		"ADJUST_TENSION", "ADJUST_THEME_HEAT", "SET_TENSION_VISIBILITY", "ADD_PRESENCE", "REMOVE_PRESENCE",
+		"ADJUST_TENSION", "ADJUST_THEME_HEAT", "KEEP_THEME_HEAT",
+		"SET_TENSION_VISIBILITY", "ADD_PRESENCE", "REMOVE_PRESENCE",
 		"SET_CONTROL", "SET_REGION_TAG", "REMOVE_REGION_TAG", "SET_GLOBAL_TAG",
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
 		"CREATE_CLAIM", "CONSUME_CLAIM", "GRANT_CLAIM_TOKEN", "SPEND_CLAIM_TOKEN",

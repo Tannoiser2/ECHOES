@@ -5,6 +5,44 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.456 — Le caselle dicono cosa cambia, e scaldare il Tema costa davvero (R16)
+
+[D-486](docs/DECISIONS.md#d-486), [ISSUES 133](docs/ISSUES.md#133) **chiusa**.
+
+*«Continua a non convincermi scaldare il tema che si sta dibattendo […] poi non
+si capisce cosa vuol dire "Sul luogo si alza un pedaggio".»* Aveva ragione su
+tutt'e due, e adesso hanno una risposta.
+
+**Il Calore posato dal Consiglio attraversa l'Atto.** Il Consiglio si tiene a
+fine Atto e subito dopo i mucchi si spendono: quella pedina veniva cancellata
+due minuti dopo, 287 volte in cento anni su un costo che non costava. Adesso il
+Calore di quella casella si segna a parte (`KEEP_THEME_HEAT`, Effetto nuovo col
+suo inverso) e torna sul tavolo appena i mucchi sono spenti — **e' la sola cosa
+che attraversa l'Atto**, e vale una volta sola. Il tavolo se n'e' accorto: la
+compra **244** volte invece di 287.
+
+**427 frasi riscritte** su 18 modelli, coi numeri veri: *«Sul luogo si alza un
+pedaggio: da qui in poi chi ci passa paga chi lo controlla»*, *«Accetta 1
+Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi
+conta le Cicatrici la conta»*, `#conteso` e `#malcontento` che alzano la soglia
+di 1, `#indebitata` e `#razionato` che la abbassano, il Granaio che fa firmare i
+patti senza pagare il Legame.
+
+**Le 44 caselle mute sono otto**, e le otto sono due segni: una Cicatrice (che
+pesa nel conteggio) e un muto dichiarato. Non e' stato un lavoro a parte: le
+quattro regole di D-483 e i segni delle sette carte di D-481 hanno fatto mordere
+quasi tutto.
+
+**E le 19 mai comprate hanno una causa diversa da quella che sembrava:** delle
+25 caselle del vocabolario, **13 non sono stampate su nessuna carta Tensione**.
+Il motore le esegue tutte; nessuna carta le offre. E' contenuto da scrivere, e
+resta dichiarato.
+
+**Cancello 0 su 8**, Verita' 292 → **285** sul misto e 244 → **251**
+sull'uniforme.
+
+---
+
 ## 0.1.455 — Ogni carta si punta dove hai segnato, e la R15 si chiude
 
 [D-485](docs/DECISIONS.md#d-485), [ISSUES 132](docs/ISSUES.md#132) **chiusa**.

@@ -45,6 +45,89 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-486 — Le caselle del Consiglio dicono cosa cambia, e scaldare il Tema costa davvero
+
+**implemented in 0.1.456.** La R16 ([ISSUES 133](ISSUES.md#133)), sulla parola
+*«via in ordine R14 in poi»*. Parole del committente:
+
+> *«Continua a non convincermi scaldare il tema che si sta dibattendo, non ha
+> senso, a cosa serve. Poi non si capisce cosa vuol dire per esempio "Sul luogo
+> si alza un pedaggio" oppure accetti la cicatrice "la domanda sul muro", sono
+> frasi che per i giocatori non hanno senso e non ti dicono cosa succede e cosa
+> cambia per il gioco.»*
+
+### 1. Scaldare il Tema: adesso il Calore attraversa l'Atto
+
+Aveva ragione ed era misurato: il Consiglio si tiene a fine Atto e subito dopo
+`_spend_the_piles` azzera tutti i mucchi, quindi quella pedina veniva cancellata
+due minuti dopo essere stata posata — **287 pedine in cento anni su un costo che
+non costava**.
+
+Adesso il Calore posato da **quella casella** si segna a parte
+(`KEEP_THEME_HEAT`, Effetto nuovo col suo inverso) e torna sul tavolo appena i
+mucchi sono spenti: **e' la sola cosa che attraversa l'Atto**, e vale una volta
+sola. E' la taratura d'autore che ROADMAP §4.1 aveva lasciato aperta, decisa nel
+modo piu' piccolo possibile.
+
+La frase sulla carta adesso lo dice: *«Il Tema di questa domanda si scalda di 1,
+e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna
+prima.»*
+
+### 2. Le frasi dicono l'effetto, non il gesto
+
+**427 frasi riscritte** su 18 modelli. Le due che il committente ha nominato:
+
+| prima | adesso |
+|---|---|
+| *«Sul luogo si alza un pedaggio.»* | *«…: da qui in poi chi ci passa paga chi lo controlla.»* |
+| *«Accetta 1 Cicatrice permanente: la domanda sul muro.»* | *«… — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.»* |
+
+E le altre dicono quello che il motore fa davvero, **coi numeri veri**:
+`#conteso` e `#malcontento` alzano la soglia del Consiglio di 1 (D-483),
+`#indebitata` e `#razionato` la abbassano, `#sorvegliata` vieta di tramare li',
+il Granaio fa firmare i patti senza pagare il Legame (D-484). Nessuna frase
+promette piu' di quello che succede, e nessuna tace quello che succede.
+
+### 3. Le 44 caselle mute sono otto
+
+Rimisurato adesso: dei **37 segni** che le caselle posano, quelli che nessuno
+legge sono **due** — `scar:plundered` (7 caselle, ed e' una Cicatrice: pesa nel
+conteggio che 22 clausole interrogano) e `watched` (1 casella, muto dichiarato
+nel dizionario). **Erano 10 segni su 44 caselle.**
+
+Non e' stato un lavoro a parte: le quattro regole di D-483 e i segni delle sette
+carte di D-481 hanno fatto mordere quasi tutto quello che era muto. E' la prova
+che il difetto era uno solo, visto da tre voci diverse.
+
+### 4. Le 19 caselle mai comprate: non e' il tavolo, sono le carte
+
+Delle **25** caselle del vocabolario del motore, **13 non sono stampate su
+nessuna carta Tensione**: COOL_QUESTION, MARK_HOUSE, UNMARK_HOUSE, BIND_HOUSES,
+MOVE_IN, MOVE_OUT, RAISE_STONE, FORGET, UNVEIL_QUESTION, HEAT_QUESTION,
+LOWER_STONE, SEAL_ROAD, LEAVE_TABLE.
+
+**Non e' che il tavolo non le compra: e' che nessuna carta le offre.** Il motore
+le esegue — `MISURA_CASELLE.md` lo verifica chiamandole una per una — e le carte
+non le nominano. E' contenuto da scrivere, non un difetto da riparare, e resta
+dichiarato qui e nella voce.
+
+### 5. Misurato
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** sui due tavoli.
+
+| | prima | dopo |
+|---|---|---|
+| Verita', misto | 292 | **285** |
+| Verita', uniforme | 244 | **251** |
+| HEAT_THEME comprata | 287 | **244** |
+| caselle mute | 44 | **8** |
+
+Il Calore che sopravvive rende quel costo piu' caro, e il tavolo lo compra
+meno: 287 → 244. E' quello che deve succedere quando un costo comincia a
+costare.
+
+---
+
 ## D-485 — Ogni carta a bersaglio puo' essere puntata su un posto che qualcuno ha segnato
 
 **implemented in 0.1.455.** Ultima delle quattro mosse della R15 ([ISSUES

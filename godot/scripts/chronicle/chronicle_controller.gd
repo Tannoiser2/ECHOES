@@ -887,12 +887,34 @@ func _spend_the_piles(act: int) -> void:
 	var source: Dictionary = Effect.source(
 		"system", "ACT_END", "", act, int(world["round"]), 0
 	)
+	var kept: Dictionary = world.get("theme_heat_kept", {}) as Dictionary
 	for theme_id in data.themes:
 		var heat: int = int(track.get(str(theme_id), 0))
 		if heat > 0:
 			session.applier.apply(Effect.make(
 				"ADJUST_THEME_HEAT", "theme", str(theme_id), {"delta": -heat}, source
 			))
+		# **Quello che il Consiglio ha scaldato resta** (D-486): la pedina
+		# posata sulla casella «il Tema di questa domanda si scalda» e' un
+		# costo, e un costo cancellato due minuti dopo non e' un costo. Il
+		# Calore segnato da quella casella torna sul tavolo appena i mucchi
+		# sono spenti, e il registro si azzera: vale per l'Atto dopo, una
+		# volta sola.
+		var saved: int = int(kept.get(str(theme_id), 0))
+		if saved > 0:
+			session.applier.apply(Effect.make(
+				"ADJUST_THEME_HEAT", "theme", str(theme_id), {"delta": saved}, source
+			))
+			session.applier.apply(Effect.make(
+				"KEEP_THEME_HEAT", "theme", str(theme_id), {"delta": -saved}, source
+			))
+			# Il nome del Tema, mai il suo id: un verbale che dice THM_POTERE
+			# e' un verbale che nessuno legge al tavolo (D-463).
+			var theme: Variant = data.themes.get(str(theme_id))
+			log.bullet("  Il Consiglio ha lasciato %d di Calore su %s: l'Atto nuovo comincia caldo." % [
+				saved,
+				str(theme_id) if theme == null else str((theme as Dictionary).get("title", theme_id)),
+			])
 		counts[str(theme_id)] = 0
 
 

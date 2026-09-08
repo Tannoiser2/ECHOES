@@ -290,7 +290,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -298,7 +298,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -306,7 +306,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -318,7 +318,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -326,19 +326,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -350,7 +350,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -379,7 +379,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -387,7 +387,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -395,7 +395,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -407,7 +407,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -415,19 +415,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -439,7 +439,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -476,7 +476,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -484,7 +484,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -496,7 +496,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -504,19 +504,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -524,11 +524,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -565,7 +565,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -573,7 +573,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -593,19 +593,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -617,7 +617,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -743,7 +743,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -751,7 +751,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -771,19 +771,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -795,7 +795,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -832,7 +832,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -840,7 +840,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -852,7 +852,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #malcontento."
+          "testo": "A · Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
@@ -860,19 +860,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -880,11 +880,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -921,7 +921,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -929,7 +929,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -941,7 +941,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -949,19 +949,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -969,11 +969,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1099,7 +1099,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1107,7 +1107,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1119,7 +1119,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -1127,19 +1127,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1151,7 +1151,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1188,7 +1188,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1196,7 +1196,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1216,19 +1216,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1236,11 +1236,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1269,7 +1269,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -1277,7 +1277,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1285,7 +1285,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1297,7 +1297,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -1305,19 +1305,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1329,7 +1329,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1358,7 +1358,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -1366,7 +1366,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1374,7 +1374,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1386,7 +1386,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -1394,19 +1394,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1414,11 +1414,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1447,7 +1447,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -1455,7 +1455,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1463,7 +1463,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1475,7 +1475,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -1483,19 +1483,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1503,11 +1503,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1625,7 +1625,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -1633,7 +1633,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1641,7 +1641,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1661,19 +1661,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1681,11 +1681,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1722,7 +1722,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1730,7 +1730,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1750,19 +1750,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1770,11 +1770,11 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo resta tagliato fuori."
+          "testo": "Il luogo resta tagliato fuori: muovere una presenza dentro o fuori costa 1 carta in piu'."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1803,7 +1803,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -1811,7 +1811,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1819,7 +1819,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1831,7 +1831,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -1839,19 +1839,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1863,7 +1863,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1900,7 +1900,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1908,7 +1908,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -1920,7 +1920,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -1928,19 +1928,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -1948,11 +1948,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -1989,7 +1989,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -1997,7 +1997,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2009,7 +2009,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2017,19 +2017,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2037,11 +2037,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2078,7 +2078,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2086,7 +2086,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2098,7 +2098,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2106,19 +2106,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2126,11 +2126,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2167,7 +2167,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2175,7 +2175,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2187,7 +2187,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2195,19 +2195,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2215,11 +2215,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2248,7 +2248,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -2256,7 +2256,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2264,7 +2264,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2284,19 +2284,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2304,11 +2304,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2345,7 +2345,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2353,7 +2353,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2365,7 +2365,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2373,19 +2373,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2393,11 +2393,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2426,7 +2426,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -2434,7 +2434,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2442,7 +2442,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2454,7 +2454,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -2462,19 +2462,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2482,11 +2482,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2523,7 +2523,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2531,7 +2531,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2543,7 +2543,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2551,19 +2551,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2571,11 +2571,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2612,7 +2612,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2620,7 +2620,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2640,19 +2640,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2664,7 +2664,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2790,7 +2790,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2798,7 +2798,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2810,7 +2810,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2818,19 +2818,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2842,7 +2842,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2879,7 +2879,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2887,7 +2887,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2899,7 +2899,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2907,19 +2907,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -2927,11 +2927,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -2960,7 +2960,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta."
         },
         {
           "voce": "·",
@@ -2968,7 +2968,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -2976,7 +2976,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -2988,7 +2988,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -2996,19 +2996,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3016,11 +3016,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3057,7 +3057,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3065,7 +3065,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3077,7 +3077,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -3085,19 +3085,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3105,11 +3105,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3138,7 +3138,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -3146,7 +3146,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3154,7 +3154,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3166,7 +3166,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -3174,19 +3174,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3194,11 +3194,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3324,7 +3324,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3332,7 +3332,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3344,7 +3344,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -3352,19 +3352,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3372,11 +3372,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3405,7 +3405,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -3413,7 +3413,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3421,7 +3421,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3433,7 +3433,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -3441,19 +3441,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3461,11 +3461,11 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo resta tagliato fuori."
+          "testo": "Il luogo resta tagliato fuori: muovere una presenza dentro o fuori costa 1 carta in piu'."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3494,7 +3494,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -3502,7 +3502,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3510,7 +3510,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3522,7 +3522,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #malcontento."
+          "testo": "A · Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
@@ -3530,19 +3530,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3550,11 +3550,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3591,7 +3591,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3599,7 +3599,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3611,7 +3611,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -3619,19 +3619,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3639,11 +3639,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3858,7 +3858,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3866,7 +3866,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3886,19 +3886,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3906,11 +3906,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -3947,7 +3947,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -3955,7 +3955,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -3967,7 +3967,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -3975,19 +3975,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -3995,11 +3995,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4028,7 +4028,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -4036,7 +4036,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4044,7 +4044,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4056,7 +4056,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -4064,19 +4064,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4084,11 +4084,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4125,7 +4125,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4133,7 +4133,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4145,7 +4145,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -4153,19 +4153,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4173,11 +4173,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4214,7 +4214,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4222,7 +4222,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4234,7 +4234,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -4242,19 +4242,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4266,7 +4266,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4295,7 +4295,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta."
         },
         {
           "voce": "·",
@@ -4303,7 +4303,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4311,7 +4311,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4331,19 +4331,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4351,11 +4351,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4384,7 +4384,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -4392,7 +4392,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4400,7 +4400,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4412,7 +4412,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -4420,19 +4420,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4440,11 +4440,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4651,7 +4651,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -4659,7 +4659,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4667,7 +4667,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4679,7 +4679,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -4687,19 +4687,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4711,7 +4711,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4740,7 +4740,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -4748,7 +4748,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4756,7 +4756,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4776,19 +4776,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4796,11 +4796,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4837,7 +4837,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4845,7 +4845,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4865,19 +4865,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4885,11 +4885,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -4918,7 +4918,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta."
         },
         {
           "voce": "·",
@@ -4926,7 +4926,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -4934,7 +4934,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -4954,19 +4954,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la domanda sul muro."
+          "testo": "A · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -4974,11 +4974,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #malcontento."
+          "testo": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -5015,7 +5015,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -5023,7 +5023,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -5043,19 +5043,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: l'abbandono."
+          "testo": "A · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -5067,7 +5067,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -5185,7 +5185,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'."
         },
         {
           "voce": "·",
@@ -5193,7 +5193,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -5201,7 +5201,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -5213,7 +5213,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -5221,19 +5221,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: passata di mano."
+          "testo": "A · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -5241,11 +5241,11 @@
         },
         {
           "voce": "·",
-          "testo": "Al luogo si aggiunge #conteso."
+          "testo": "Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1."
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -5274,7 +5274,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio."
+          "testo": "A · Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame."
         },
         {
           "voce": "·",
@@ -5282,7 +5282,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -5290,7 +5290,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -5302,7 +5302,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #razionato."
+          "testo": "A · Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
@@ -5310,19 +5310,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: il confine sigillato."
+          "testo": "A · Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -5330,7 +5330,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il luogo resta tagliato fuori."
+          "testo": "Il luogo resta tagliato fuori: muovere una presenza dentro o fuori costa 1 carta in piu'."
         },
         {
           "voce": "·",
@@ -5338,7 +5338,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
@@ -5375,7 +5375,7 @@
         },
         {
           "voce": "·",
-          "testo": "AB · Raffredda il Tema di 1 (minimo 0)."
+          "testo": "AB · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo."
         },
         {
           "voce": "·",
@@ -5383,7 +5383,7 @@
         },
         {
           "voce": "·",
-          "testo": "B · Riapri il luogo: via il #tagliato_fuori."
+          "testo": "B · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola."
         },
         {
           "voce": "·",
@@ -5395,7 +5395,7 @@
         },
         {
           "voce": "·",
-          "testo": "A · Al luogo si aggiunge #sorvegliata."
+          "testo": "A · Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama."
         },
         {
           "voce": "·",
@@ -5403,19 +5403,19 @@
         },
         {
           "voce": "·",
-          "testo": "B · Al luogo si aggiunge #indebitata."
+          "testo": "B · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1."
         },
         {
           "voce": "·",
-          "testo": "A · Accetta 1 Cicatrice permanente: la razzia."
+          "testo": "A · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta."
         },
         {
           "voce": "·",
-          "testo": "B · Sul luogo si alza un pedaggio."
+          "testo": "B · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla."
         },
         {
           "voce": "·",
-          "testo": "AB · Il Tema di questa domanda si scalda di 1."
+          "testo": "AB · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         },
         {
           "voce": "SE CADE",
@@ -5427,7 +5427,7 @@
         },
         {
           "voce": "·",
-          "testo": "Il Tema di questa domanda si scalda di 1."
+          "testo": "Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima."
         }
       ],
       "arte": null,
