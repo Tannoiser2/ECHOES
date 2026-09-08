@@ -272,8 +272,8 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **133** |
-| chiuse | **123** |
+| voci scritte | **134** |
+| chiuse | **124** |
 | aperte | **10** |
 | di cui **aspettano una tua decisione** | **0** |
 | di cui sono mie da fare | **10** |
@@ -445,6 +445,61 @@ Tre cose restano da decidere, e sono tue: **i gettoni del RIVENDICARE**, che
 la carta da' ancora e il Consiglio non chiede piu' — si tolgono, o servono
 a qualcos'altro?; **le proposte stampate sulle carte**, che la scheda mostra
 e nessuno vota piu'; e il segno che pesava sul dado, senza piu' un dado.
+
+### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
+
+Hai giocato un anno e mi hai scritto sette cose. Le ho cercate tutte nel
+codice prima di risponderti, e stanno in [D-473](DECISIONS.md#d-473):
+
+- **«19 mosse»** era il conto dei posti del tavolo che accettano quella carta.
+  Un numero che al tavolo non tiene nessuno. **Via**: adesso la riga porta i
+  nomi delle due Azioni stampate sulla carta.
+- **la carta di Propp**: le carte Eco ci sono ancora — le cali tu da D-360 —
+  ma la riga «funzione di Propp» era il nome che l'autore da' alla carta
+  mentre la scrive. **Via**.
+- **i doppioni della scheda della casa**: avevi ragione tre volte. Le domande
+  e i sei Temi stanno nella colonna a sinistra, i rapporti nella riga dei
+  seggi. **Via da qui**, restano dove il dito li tocca.
+- **le tre carte Obiettivo**: c'erano da sempre e le scrivevo come tre righe.
+  **Adesso sono tre carte.**
+- **le adiacenze**: cambiano col seme, tessere comprese. Fissa e' solo la
+  cornice 3x2. L'Isola Muta porta **due** varchi stampati, e mi hai risposto
+  che *«va bene con due»*: chiusa.
+- **la terza Chronicle**: la prima volta non l'ho riprodotta, perche' la
+  partita non si ferma affatto — nel browser ho fatto giocare l'app dall'800
+  al 2020. Poi mi hai detto la cosa esatta che vedevi, *«ripartiva dalla prima
+  quando chiedevo di andare avanti»*, e la causa era li'. Guarda sotto.
+- **«troppo testo»**: e' la riga che tiene tutte le altre, ed e' la regola
+  nuova. *Sulla pagina c'e' quello che sta sul tavolo, e nella forma in cui ci
+  sta.* Il testo resta in due posti: la riga che racconta cosa e' successo, e
+  il verbale.
+
+**I tre giri sono percorsi in 0.1.442.** La colonna a sinistra e' fatta di sei
+carte, una per Tema, col conto dei gettoni nell'angolo di ognuna; la carta che
+tocchi si vede grande a destra; gli Obiettivi sono tre carte.
+
+E una cosa te la devo dire, perche' e' un numero peggiorato: **il conto dei
+testi della pagina e' salito, da 193 a 233**. Avevo scritto che sarebbe sceso,
+e la misura ha detto che era il numero sbagliato — una carta dice quattro cose
+dove una riga ne diceva una, ed e' esattamente quello che mi hai chiesto. Il
+numero che tengo a zero adesso e' un altro: **le frasi che la pagina dice in
+due punti diversi**, che era il difetto vero della scheda della casa. Oggi
+sono zero, e la guardia la provo su casi finti perche' uno zero, qui, e' quasi
+sempre la sonda cieca.
+
+**Il quarto giro, in 0.1.443: la saga cambia tavolo.** Il terzo anno sembrava
+il primo perche' lo era: la pagina rimetteva a sedere le **stesse quattro
+case** — Aldric, Nahr, Lyra, Vaerax — a ogni era, mentre la Chronicle dice da
+cento versioni che fra un'era e l'altra il tavolo si **ripesca**
+([D-431](DECISIONS.md#d-431): *«le case passano, il mondo resta»*). Le prove e
+le sonde ripescavano; solo la pagina no. E il bottone ti scriveva alla lettera
+«Gioca l'era successiva — **La Prima Chronicle**», perche' la Prima Chronicle
+e' il seguito di se stessa: leggerlo come «si torna al primo anno» era la cosa
+giusta da capire.
+
+Adesso dal secondo anno siedono case diverse, e **tu tieni il posto, non la
+casa**: se la casata che giocavi e' passata, prendi quella che si siede al tuo
+seggio. Il bottone dice *«Gioca l'anno dopo — il 3° dei 10 della saga»*.
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 

@@ -10,6 +10,127 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-473 — La pagina e' fatta di carte: il disegno, deciso col committente
+
+**decided in 0.1.442 — verbale di disegno, senza codice.** Il committente ha
+giocato un anno sul suo schermo, ha mandato la fotografia e ha scritto sette
+cose. L'ultima le tiene tutte:
+
+> *«Devi un po' rivedere tutta la GUI, troppo testo app e poco fedele al gioco
+> fisico che dovrebbe prevedere solo Carte.»*
+
+E' la quarta volta che questa pagina viene rivista, e le prime tre hanno
+lasciato ognuna un pezzo di regola giusta e un pezzo di cruscotto: D-427
+(*«l'app mostra il tavolo, non lo stato»*), [D-444](#d-444) (la colonna di
+stato diventa una pagina che si apre), [D-464](#d-464) (le domande a
+sinistra, le schede in basso, il Consiglio a schermo intero). Il difetto che
+resta e' sempre lo stesso, e ha un numero: **193 testi sotto gli occhi**
+([MISURA_PAGINA.md](MISURA_PAGINA.md)). Su un tavolo vero non ci sono 193
+frasi: ci sono carte, tessere e pedine.
+
+### 1. Le sette cose, e cosa c'era sotto ognuna
+
+Ogni riga e' stata cercata nel codice prima di rispondere: quattro erano
+difetti veri, una era un'idea di disegno, una era una regola che il
+committente ricordava diversa, e una non si riproduce.
+
+| cosa ha visto | cosa c'era sotto |
+|---|---|
+| *«Riserva di Grano ha 19 mosse??? e Prova 14?»* | **Difetto.** La colonna scrive «N mosse» dove N e' quanti **posti sul tavolo** accettano quella carta (`_redraw_choices`). INFLUENZARE arriva a sei domande per due versi piu' le Regioni: 19. Non e' un conto sbagliato, e' un numero che al tavolo non esiste. |
+| *«sulla destra vorrei proprio la carta visualizzata»* e le sei schede delle Tensioni | **Disegno, e si fa.** Oggi a destra c'e' il verbale (testo scorrevole) e a sinistra una colonna di righe con le barre. La scheda della carta Tensione esiste gia' (`council_sheet.gd`) e nessuno la apre di suo. |
+| *«Le adiacenze della mappa sono casuali?... l'isola muta non aveva una sola adiacenza?»* | **No, e no.** Misurato su cinque semi: cambiano sia **quali** sei tessere escono su dieci, sia **chi confina con chi** — al seme 7001 l'Isola Muta tocca il Porto e le Terre Nahr, al 12345 le Miniere e la Valle Verde. Fissa e' solo la **cornice 3x2** (D-464). E l'Isola Muta porta **due** varchi stampati (`edges: N, O`), non uno: la lista scritta a mano di prima non la legge piu' nessuno da [D-390](#d-390), dove l'adiacenza e' diventata il varco e non l'accostamento. La parola del committente e' arrivata: *«l'isola muta va bene con due»*, e la voce si chiude qui. |
+| *«Nella scheda La mia casa ci sono informazioni ripetute»* | **Difetto.** `StatusPanel` ridisegna i sei Temi, le domande con le barre, i rapporti, i segni: i Temi e le domande stanno gia' nella colonna di sinistra, i rapporti nella riga dei seggi sotto la mappa. |
+| *«La scheda Obiettivi... dovrebbero esserci le tre carte obiettivo pescate»* | **Difetto, e la carta esiste gia'.** La scheda mostra Casata, Destino e il profilo, e i tre obiettivi coperti li scrive come righe di testo. I tre sono pescati per saga (D-237) e stanno in `entities[id].objectives`; il mazzo delle 19 carte Obiettivo si stampa gia' dall'export. |
+| *«la partita non va oltre la terza chronicle»* | **Difetto, e la causa e' arrivata col secondo messaggio.** Dal codice non si riproduceva: il motore gioca dieci anni (`run_saga --chronicles=10`, exit 0), la logica della porta ne offre dieci, e l'app nel browser con quattro bot ha giocato dall'anno 800 al 2020 chiudendosi da sola. Poi il committente ha detto la cosa esatta che vedeva — *«la terza Chronicle ripartiva dalla prima quando chiedevo di andare avanti»* — e allora si trova: la pagina rimetteva a sedere le **quattro case scritte** sulla Chronicle a ogni era (`_seats_of`), invece di ripescare il tavolo come dice [D-431](#d-431) (`seats_between_eras: REDRAW`). Dieci anni di saga erano dieci volte lo stesso tavolo, e il bottone ci scriveva sopra alla lettera «Gioca l'era successiva — La Prima Chronicle», perche' CHR_00 e' il seguito di se stessa (D-263). Non era la partita che si fermava: era il terzo anno che sembrava il primo. |
+| *«appare ancora la carta di propp che doveva essere sparita»* | **Mezza regola e mezzo difetto.** Le carte Eco esistono ancora — 48 nel mazzo — ma da [D-360](#d-360) non si pescano da sole: le cala un giocatore. Quello che appare a schermo intero e' la loro vista (`echo_card_view.gd`), che porta stampata la riga **«funzione di Propp: ...»**: Propp e' l'impalcatura con cui il mazzo e' stato scritto (D-030), non una parola del tavolo, e su una carta in mano non ci va. |
+
+### 2. La regola, da qui in avanti
+
+> **Sulla pagina c'e' quello che sta sul tavolo, e nella forma in cui ci sta.**
+> Se una cosa al tavolo e' una carta, sullo schermo e' una carta — non una
+> riga, non una barra, non un numero.
+
+Da cui, in concreto:
+
+- **niente doppioni**: ogni fatto ha **un** posto dove si legge. La stessa
+  domanda scritta nella colonna, nella scheda della casa e nel verbale sono
+  tre posti da tenere allineati e due occasioni di dire due cose diverse;
+- **niente numeri che al tavolo non esistono**: «19 mosse» e' il piu' evidente,
+  ma vale per ogni conto che nessuno tiene con le mani;
+- **niente parole d'autore**: «funzione di Propp», «SUPPORT», i nomi interni;
+- **il testo resta in due posti**, e sono due: **la riga che racconta cosa e'
+  appena successo** sotto la mappa, e **il verbale**, che e' il libro della
+  partita e si scarica. Il verbale non si accorcia: non e' la pagina, e'
+  la memoria.
+
+### 3. La pagina, pezzo per pezzo
+
+| dove | cosa c'e' | invece di |
+|---|---|---|
+| **centro** | la mappa: sei tessere, le pedine, le Pietre, i varchi | (resta) |
+| **sinistra** | i **sei mazzetti dei Temi** come sei dorsi di carta, coi gettoni coperti sopra e la carta girata quando c'e' | la colonna di righe con le barre |
+| **destra** | **la carta che stai guardando**, grande: la Tensione toccata, la carta della mano, la casella del Consiglio | il verbale scorrevole (che resta, sotto un bottone) |
+| **basso** | la mano a ventaglio | (resta) |
+| **la mia casa** | tre carte: **Casata**, **Destino**, e le **tre carte Obiettivo** pescate | due schede di righe con dentro le domande e i rapporti gia' detti altrove |
+| **chi siede** | la riga dei quattro seggi coi loro colori | (resta) |
+| **il Consiglio** | il tabellone a schermo intero (D-466, D-471) | (resta) |
+
+### 4. Come si misura che e' fatto — e il numero che si e' rivelato sbagliato
+
+La sonda della pagina ([MISURA_PAGINA.md](MISURA_PAGINA.md)) conta gia' i
+testi, i bersagli e le taglie, e la prima stesura di questo verbale prometteva
+che **il conto dei testi sarebbe sceso**. Misurato: **e' salito, da 193 a
+233**, ed e' giusto cosi'.
+
+La ragione e' che il numero non misurava quello che il committente ha chiesto.
+Una riga dice una cosa; **una carta ne dice quattro** — il titolo, la riga che
+dice cos'e', cosa fa, cosa lascia — perche' e' una carta, e su una carta c'e'
+scritto. Sostituire sei righe con sei carte fa salire il conto dei testi *e*
+avvicina la pagina al tavolo: il numero e la richiesta andavano in due
+direzioni diverse, e a tenere il numero si sarebbe fatto il contrario del
+lavoro.
+
+Quello che si misura invece e' **quante volte la pagina dice la stessa cosa in
+due posti**. Un fatto detto due volte e' un doppione: due punti da tenere
+allineati, due occasioni di dire due cose diverse, e la ragione per cui la
+scheda della casa ripeteva la colonna. **Il conto dei doppioni e' il cancello
+di questo giro**, e il conto dei testi resta scritto accanto, come costo.
+
+Misurato a giro finito: **zero frasi dette in due punti**. Si contano le frasi
+sopra i venticinque caratteri e non i nomi, perche' un nome ripetuto e' il
+tavolo — la stessa casa ha una pedina sulla mappa, un posto nella riga dei
+seggi e una carta. E siccome *«uno zero e' quasi sempre la sonda cieca»*, la
+guardia si prova su casi **fabbricati**: la stessa frase in due pannelli deve
+contare uno, due volte nello stesso pannello zero, un nome in due posti zero.
+
+### 5. I giri
+
+| giro | cosa |
+|---|---|
+| 1 | le quattro cose piccole e certe: via «N mosse», via «funzione di Propp», i doppioni della scheda della casa, le tre carte Obiettivo al posto delle righe |
+| 2 | la colonna dei sei Temi come sei dorsi di carta; la carta grande a destra |
+| 3 | la sonda che conta i doppioni, e il cancello che li tiene a zero — **fatto**: zero, con la guardia provata |
+| 4 | **la saga cambia tavolo davvero**: la pagina ripesca i seggi fra un'era e l'altra come le sonde, e chi gioca tiene il posto invece della casa — **fatto** |
+
+### Costi dichiarati
+
+- **Il verbale non si tocca**, ed e' voluto: e' l'unico posto dove la partita
+  si rilegge, e D-030 vale ancora — quello che succede si dice.
+- Una pagina fatta di carte **occupa piu' spazio** di una fatta di righe: sul
+  tablet di [D-465](#d-465) la colonna delle sei domande scorre, ed e' il
+  primo posto dove si scorre da quando la pagina e' il tavolo.
+- E **dice piu' parole**: 233 testi contro 193. Il costo e' scritto qui sopra,
+  col perche' il numero non e' quello da guardare.
+- **Chi gioca cambia casa fra un'era e l'altra**, ed e' la regola che si e'
+  smesso di ignorare: la persona tiene il **posto**, non la casata. Una casa
+  che resta al tavolo si porta dietro la sua persona; per le altre conta
+  l'ordine dei seggi, che e' il giro del tavolo. Al tavolo fisico e' il gesto
+  di passare le plance a chi resta seduto.
+- Le carte Eco restano nel mazzo. Se il committente le vuole via del tutto e'
+  un'altra decisione, e non e' questa.
+
+---
+
 ## D-472 — Il giro 5: un motore solo, il Consiglio di D-280 esce dal codice
 
 **implemented in 0.1.441.** Parola del committente: *«vai col giro 5»*. D-467

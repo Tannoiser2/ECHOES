@@ -1,29 +1,32 @@
 extends VBoxContainer
-## The year's questions, and where the seat stands on its own ladder.
+## **La plancia della propria casa**: i Diritti, i segni, e cosa si vuole
+## lasciare. Stesso contratto della mappa: `render(session, viewer_id)`.
 ##
-## Same contract as the map: `render(session, viewer_id)` and nothing else. A
-## Tension shows a number only to a seat entitled to read it, so a veiled
-## question the viewer has not scouted is drawn as a bar with no fill and the
-## word "velata" - present, unreadable, and clearly *there*, which is the whole
-## point of a veiled Tension.
-
-## The five levels a relation can sit at, warmest last, with the colour each one
-## is drawn in. FORGE moves a relation one step along this list.
-const RELATIONS: Dictionary = {
-	"ENEMY": "#c8553d", "HOSTILE": "#b06b8f", "NEUTRAL": "#8a8172",
-	"ALLY": "#6fa88a", "BOUND": "#e8b563",
-}
+## **E niente di quello che sta gia' da un'altra parte** (D-473, parola del
+## committente: *«nella scheda La mia casa ci sono anche informazioni ripetute
+## (come le tensioni), anche i rapporti sono visualizzati doppi»*). Aveva
+## ragione, e i doppioni erano tre:
+##
+## - le **sei piste dei Temi**, che stanno gia' nella colonna a sinistra;
+## - le **domande dell'anno** con le barre e il mucchio piu' alto, che stanno
+##   nella stessa colonna, dove sono anche il posto in cui una carta cade;
+## - i **rapporti con le altre case**, che stanno nella riga dei seggi sotto la
+##   mappa (`seats_strip.gd`) — e li' sono anche il posto dove cade FORGIARE.
+##
+## Erano centocinquanta righe di codice e tre occasioni di dire due cose
+## diverse sullo stesso fatto. Qui resta quello che al tavolo sta davvero
+## davanti a chi gioca, e da nessun'altra parte.
 
 const CardArt := preload("res://ui/card_art.gd")
+const CardFace := preload("res://scripts/core/card_face.gd")
+const FaceCard := preload("res://ui/face_card.gd")
 const SeatsStrip := preload("res://ui/seats_strip.gd")
 const DropSlot := preload("res://ui/drop_slot.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
-var _rows: Dictionary = {}
 var _destiny: VBoxContainer
 var _casata_card: TextureRect
 var _destiny_card: TextureRect
-var _relations: VBoxContainer
 
 ## I posti dove una carta puo' cadere: `"tension:ID"` e `"entity:ID"` ->
 ## `DropSlot`. Lo schermo li collega una volta sola, quando nascono (D-231).
@@ -53,15 +56,6 @@ signal card_placed(index: int)
 ## quello che erano: un clic sulla domanda apre la sua scheda.
 var held_places: Dictionary = {}
 
-## La regola che questa Chronicle gioca, e il mucchio piu alto fra le domande
-## che il seggio puo' leggere. Ricalcolati a ogni `render`.
-var _at_end_of_act: bool = false
-var _hottest: int = 1
-var _leaders: int = 0
-## La pista del Calore (PZ-1): se un Tema e' caldo, e' lei che sceglie la
-## Domanda di fine Atto, e il mucchio piu' alto torna a essere una classifica.
-var _any_theme_hot: bool = false
-
 
 ## Accende i posti dove la carta tenuta in mano puo' andare, e spegne gli altri.
 ## Chiamata da chi tiene la carta; il pannello non sa cosa sia una carta.
@@ -89,9 +83,8 @@ func _ready() -> void:
 	add_theme_constant_override("separation", 4)
 
 
-## **La scheda degli obiettivi** (D-464): la stessa colonna, ma con solo il
-## Destino e il profilo — quello che si guarda per sapere cosa si vuole. La
-## scheda della casa tiene il resto: le domande aperte, i rapporti, i segni.
+## **La scheda degli obiettivi** (D-464, rifatta da D-473): le carte che dicono
+## a che gioco stai giocando — Casata, Destino, e i tre Obiettivi pescati.
 var only_goals: bool = false
 
 
@@ -100,258 +93,30 @@ func render(session: RefCounted, viewer_id: String) -> void:
 		_build()
 	if only_goals:
 		_title.visible = false
-		for child in get_children():
-			if child is Label and child != _title and (child as Label).text.begins_with("Le domande gia'"):
-				(child as Label).visible = false
 		_update_destiny(session, viewer_id)
 		_update_profile(session, viewer_id)
 		return
-	# **Quale regola sta giocando questa Chronicle** (D-243). Col Consiglio a
-	# fine Atto la soglia non apre piu' niente ([D-214](DECISIONS.md#d-214)) e
-	# quello che conta e' **chi e' il mucchio piu alto**: e' quella domanda che
-	# va al tavolo. La traccia continuava a dire «12/18», cioe' insegnava una
-	# regola che questo gioco non ha piu'.
-	_at_end_of_act = bool(
-		((session.data.chronicles.get(
-			str(session.world.get("chronicle_id", "")), {}
-		) as Dictionary).get("confluence_rules", {}) as Dictionary).get("at_end_of_act", false)
-	)
-	_render_heat(session)
-	_hottest = 1
-	_leaders = 0
-	for tension_id in session.world["tensions"]:
-		var here: int = _readable_value(session, str(tension_id), viewer_id)
-		if here > _hottest:
-			_hottest = here
-			_leaders = 1
-		elif here == _hottest and here > 0:
-			_leaders += 1
-	for tension_id in _sorted(session.world["tensions"].keys()):
-		var id: String = str(tension_id)
-		if not _rows.has(id):
-			_rows[id] = _add_row(str(session.data.tensions[id]["title"]), "tension", id)
-		_update_row(_rows[id], session, id, viewer_id)
-	_update_relations(session, viewer_id)
+	_title.visible = true
 	_update_claims(session, viewer_id)
 	_update_signs(session, viewer_id)
 	_update_destiny(session, viewer_id)
 	_update_profile(session, viewer_id)
 
 
+## **Ogni blocco dice cosa e', in una riga** (D-282, parola del committente:
+## *«sulla colonna di destra non si capisce nulla»*). Al tavolo non serve —
+## una plancia ha le sue caselle stampate accanto; sullo schermo la riga sotto
+## l'intestazione **e' quella stampa**.
 func _build() -> void:
 	_title = Label.new()
-	_title.text = "LE QUESTIONI GIA' APERTE"
+	_title.text = "LA TUA PLANCIA"
 	_title.add_theme_font_size_override("font_size", 12)
 	_title.add_theme_color_override("font_color", Color("#8a8172"))
 	add_child(_title)
-	# **Ogni blocco della colonna dice cosa e', in una riga** (D-282).
-	#
-	# Parola del committente: *«sulla colonna di destra non si capisce nulla»*,
-	# seguita dall'elenco di quello che ci trovava — i mazzetti, «le domande
-	# dell'anno (?)», i rapporti, i segni, il Destino, «poi ancora quattro
-	# tensioni (?)». Aveva ragione due volte: **le stesse informazioni erano
-	# li' tre volte** (i sei mazzetti disegnati, la riga CALORE che li
-	# ripeteva a parole, le quattro barre), e nessun blocco diceva a cosa
-	# servisse. Al tavolo non serve: una plancia ha le sue caselle stampate
-	# accanto. Sullo schermo la riga sotto l'intestazione **e' quella stampa**.
 	add_child(_note(
-		"Le domande gia' sul tavolo quest'anno. INFLUENZARE e TRAMARE ne muovono"
-		+ " la pressione; se a fine Atto nessun mazzetto e' caldo, il Consiglio"
-		+ " si apre sulla piu' alta di queste."
+		"Quello che tieni tu: i Diritti pronti a forzare un Consiglio, i segni"
+		+ " che porti addosso, e cosa vuoi lasciare nel mondo."
 	))
-
-
-## I mazzetti dei Temi, in una riga (D-261): quanti gettoni **coperti** ha
-## ognuno, e la carta girata dove c'e'. I valori non si dicono — si scoprono a
-## fine Atto, quando i mazzetti si girano — quindi lo schermo mostra quello che
-## il tavolo vede: «CALORE  Potere ·2 → La Successione   Vie ·1». I Temi a
-## zero non si elencano: sul tavolo si vede il mazzetto fermo, sullo schermo
-## sarebbe solo rumore.
-func _render_heat(session: RefCounted) -> void:
-	_any_theme_hot = false
-	if not _at_end_of_act:
-		return
-	var counts: Dictionary = session.world.get("theme_tokens", {}) as Dictionary
-	var fronts: Dictionary = session.world.get("theme_front", {}) as Dictionary
-	var said: PackedStringArray = PackedStringArray()
-	for theme_id in session.data.themes:
-		var fallen: int = int(counts.get(str(theme_id), 0))
-		if fallen <= 0:
-			continue
-		var title: String = str(session.data.themes[str(theme_id)]["title"])
-		var line: String = "%s ·%d" % [title, fallen]
-		var front: String = str(fronts.get(str(theme_id), ""))
-		if front != "" and session.data.tensions.has(front):
-			# «:» e non una freccia: il carattere dell'export web non ha «→» (D-466).
-			line += ": %s" % str(session.data.tensions[front]["title"])
-		said.append(line)
-	_any_theme_hot = not said.is_empty()
-
-
-## La riga di una domanda, dentro il suo posto: da D-231 una carta che
-## influenza o trama ci puo' cadere sopra, invece di essere un bottone.
-func _add_row(title: String, field: String = "", key: String = "") -> Dictionary:
-	var box := VBoxContainer.new()
-	box.add_theme_constant_override("separation", 1)
-	add_child(_wrapped(box, field, key))
-
-	var header := HBoxContainer.new()
-	box.add_child(header)
-	var name := Label.new()
-	name.text = title
-	name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	name.add_theme_font_size_override("font_size", 13)
-	name.add_theme_color_override("font_color", Color("#d9d2c5"))
-	header.add_child(name)
-	var value := Label.new()
-	value.add_theme_font_size_override("font_size", 13)
-	header.add_child(value)
-
-	var bar := ProgressBar.new()
-	bar.show_percentage = false
-	bar.custom_minimum_size = Vector2(0, 8)
-	box.add_child(bar)
-	return {"value": value, "bar": bar}
-
-
-## Quello che sulla traccia si legge di una Domanda: il punteggio che si vede,
-## o — coi mucchi coperti (D-450) — **quanti gettoni** ci sono sopra, che e'
-## l'unica altezza che il tavolo mostra a tutti. Fino alla 0.1.418 la scheda
-## scriveva il punteggio vero a tutti — la quarta finestra che ISSUES 49 non
-## aveva contato — mentre la mappa accanto lo copriva. Chi ha sbirciato legge
-## il valore in piu', nella riga, non qui: la barra e la classifica sono del
-## tavolo.
-func _readable_value(session: RefCounted, tension_id: String, viewer_id: String) -> int:
-	if session.tensions.piles_are_covered():
-		return session.tensions.tokens_on(tension_id)
-	return session.service.visible_tension_value(tension_id, viewer_id)
-
-
-func _update_row(row: Dictionary, session: RefCounted, tension_id: String, viewer_id: String) -> void:
-	var threshold: int = session.tensions.threshold(tension_id)
-	var visible_value: int = _readable_value(session, tension_id, viewer_id)
-	var bar: ProgressBar = row["bar"]
-	var value: Label = row["value"]
-	bar.max_value = float(maxi(threshold, 1))
-
-	if visible_value < 0:
-		bar.value = 0.0
-		value.text = "velata"
-		value.add_theme_color_override("font_color", Color("#5f584c"))
-		return
-	if session.tensions.piles_are_covered():
-		# `visible_value` qui e' il conto dei gettoni. Il mucchio con piu'
-		# gettoni si vede da tutti e si dice; **non** e' detto che vada al
-		# Consiglio, perche' i gettoni pesano 0, 1 o 2 e si girano a fine Atto.
-		bar.max_value = float(maxi(_hottest, 1))
-		bar.value = float(visible_value)
-		var text: String = "%d %s coperti" % [visible_value, "gettone" if visible_value == 1 else "gettoni"]
-		var tint: Color = Color("#8a8172")
-		var leading: bool = visible_value >= _hottest and visible_value > 0
-		if leading:
-			text += "  ·  a pari" if _leaders > 1 else "  ·  il mucchio piu' alto"
-			tint = Color("#e8b563")
-		if session.service.knows_tension(viewer_id, tension_id):
-			text = "%s  ·  valgono %d" % [text, session.tensions.value(tension_id)]
-			tint = Color("#c9a14a")
-		value.text = text
-		value.add_theme_color_override("font_color", tint)
-		_paint_bar(bar, tint)
-		return
-	bar.value = float(visible_value)
-	if _at_end_of_act:
-		# **Il conto e' relativo, non assoluto.** Nessun numero da raggiungere:
-		# c'e' una gara fra quattro domande, e a fine Atto va al Consiglio quella
-		# davanti. La barra si misura sul mucchio piu alto, cosi' le quattro
-		# righe insieme dicono *la classifica* invece di quattro percentuali di
-		# una soglia che non apre niente.
-		bar.max_value = float(maxi(_hottest, 1))
-		var leading: bool = visible_value >= _hottest and visible_value > 0
-		# Con la pista calda la Domanda dell'Atto la sceglie il Tema (PZ-1):
-		# il mucchio piu' alto resta una classifica, e dirgli «va al
-		# Consiglio» sarebbe insegnare la regola vecchia.
-		var crown: String = "  ·  a pari" if _leaders > 1 else "  ·  va al Consiglio"
-		if _any_theme_hot:
-			crown = "  ·  il mucchio piu' alto"
-		value.text = "%d%s" % [visible_value, crown if leading else ""]
-		var hot: Color = Color("#6fa88a")
-		if leading:
-			hot = Color("#e8b563") if _leaders > 1 else Color("#c8553d")
-		elif visible_value >= _hottest - 1 and _hottest > 1:
-			hot = Color("#c9a14a")
-		value.add_theme_color_override("font_color", hot)
-		_paint_bar(bar, hot)
-		return
-	value.text = "%d/%d" % [visible_value, threshold]
-	# The colour is the warning: a question one step from its threshold is the
-	# one worth spending an action on, and it should be findable at a glance.
-	var margin: int = threshold - visible_value
-	var tint: Color = Color("#6fa88a")
-	if margin <= 0:
-		tint = Color("#c8553d")
-	elif margin <= 1:
-		tint = Color("#e8b563")
-	value.add_theme_color_override("font_color", tint)
-	_paint_bar(bar, tint)
-
-
-## Il colore della barra di una domanda. Estratto perche' adesso lo chiedono in
-## due, e due copie della stessa riga sono due posti dove smettere di essere
-## d'accordo.
-func _paint_bar(bar: ProgressBar, tint: Color) -> void:
-	var fill := StyleBoxFlat.new()
-	fill.bg_color = tint
-	bar.add_theme_stylebox_override("fill", fill)
-
-
-## Where you stand with the other three. Public information - FORGE announces
-## itself and the terminal has printed the level inside its own action labels
-## since 0.0 - but until 0.1.6 the only way to read it in the browser was to
-## look at a button offering to break it. Destinies count these levels, so a
-## player who cannot see them is being scored on something invisible.
-func _update_relations(session: RefCounted, viewer_id: String) -> void:
-	if _relations == null:
-		add_child(_spacer())
-		var header := Label.new()
-		header.text = "I RAPPORTI"
-		header.add_theme_font_size_override("font_size", 12)
-		header.add_theme_color_override("font_color", Color("#8a8172"))
-		add_child(header)
-		add_child(_note(
-			"Come stai con le altre case. FORGIARE sposta un rapporto di un passo, e i Destini li contano."
-		))
-		_relations = VBoxContainer.new()
-		_relations.add_theme_constant_override("separation", 1)
-		add_child(_relations)
-
-	for child in _relations.get_children():
-		child.queue_free()
-		_relations.remove_child(child)
-	if viewer_id == "":
-		return
-
-	for entity_id in session.world["turn_order"]:
-		var other: String = str(entity_id)
-		if other == viewer_id:
-			continue
-		var level: String = session.service.relation_level(viewer_id, other)
-		var row := HBoxContainer.new()
-		# Anche la riga di un rapporto e' un posto: FORGIARE parla a una casa,
-		# e questa e' la casa (D-231).
-		_relations.add_child(_wrapped(row, "entity", other))
-
-		var name := Label.new()
-		name.text = session.service.name_of(other)
-		name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		name.add_theme_font_size_override("font_size", 12)
-		name.add_theme_color_override("font_color", Color("#c9bfae"))
-		row.add_child(name)
-
-		var value := Label.new()
-		value.text = str(SeatsStrip.RELATION_WORDS.get(level, level.to_lower()))
-		value.add_theme_font_size_override("font_size", 12)
-		value.add_theme_color_override("font_color", Color(str(RELATIONS.get(level, "#8a8172"))))
-		row.add_child(value)
 
 
 ## I Diritti sul tavolo (l'inventario dell'app, ISSUES 22): un Claim creato e'
@@ -687,20 +452,48 @@ func _update_destiny(session: RefCounted, viewer_id: String) -> void:
 	# difetto piu' facile da introdurre qui.
 	var taken: Array = session.destinies.objectives_of(viewer_id)
 	if not taken.is_empty():
-		for entry in taken:
-			var record: Dictionary = entry as Dictionary
-			_rung_line(
-				"%s%s" % [
-					"" if bool(record["public"]) else "(coperto) ", str(record["label"])
-				],
-				bool(record["met"])
-			)
+		_draw_objectives(session, taken)
 		return
 	for level in ["minimum", "victory", "triumph"]:
 		_rung_line(
 			rung_text(destiny, str(level)),
 			session.destinies.conditions.all_hold(destiny[level]["conditions"], {"self": viewer_id})
 		)
+
+
+## **Le carte Obiettivo, come carte** (D-473, parola del committente: *«nella
+## scheda Obiettivi dovrebbero esserci le tre carte obiettivo pescate che ti
+## danno punti alla fine della chronicle»*).
+##
+## Ci sono sempre state — si pescano per saga (D-237), stanno in
+## `entities[id].objectives`, e il mazzo delle diciannove si stampa gia' dai
+## fogli — ma sullo schermo erano tre righe di testo sotto il Destino: la
+## stessa cosa che al tavolo tieni in mano coperta, ridotta a un elenco.
+##
+## La prima voce che `objectives_of` torna e' il **Destino**, che ha gia' il
+## suo tarocco qui sopra: qui si disegnano le altre, e sotto ognuna si dice se
+## a oggi e' raggiunta.
+func _draw_objectives(session: RefCounted, taken: Array) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 6)
+	_destiny.add_child(row)
+	for entry in taken:
+		var record: Dictionary = entry as Dictionary
+		if bool(record["public"]):
+			# Il Destino: la sua carta sta gia' qui sopra, grande.
+			continue
+		var face: Dictionary = CardFace.of("objective", str(record["id"]), session.data)
+		if face.is_empty():
+			continue
+		var card := FaceCard.new()
+		card.set_size_name("piccola")
+		row.add_child(card)
+		card.render(face, session.data)
+	# E sotto le carte, in una riga sola, quali sono gia' raggiunte: al tavolo
+	# e' la carta girata dalla parte giusta, qui e' la spunta di sempre.
+	for entry in taken:
+		var record: Dictionary = entry as Dictionary
+		_rung_line(str(record["label"]), bool(record["met"]))
 
 
 ## La riga di un gradino, come si legge **al tavolo** (PZ-8, D-271): se il

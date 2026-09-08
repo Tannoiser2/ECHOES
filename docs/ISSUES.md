@@ -10078,3 +10078,53 @@ da rivedere carta per carta nel catalogo; le fasce dell'esito di A che a due
 domande dicono meno; e quello che nessuna sonda misura: un Consiglio giocato
 da persone.
 
+
+### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo
+
+`ux` · voluta dal committente · **aperta in 0.1.442**
+
+> «Devi un po' rivedere tutta la GUI, troppo testo app e poco fedele al gioco
+> fisico che dovrebbe prevedere solo Carte.»
+
+Il committente ha giocato un anno e ha mandato sette osservazioni: il numero
+delle «mosse» che al tavolo non esiste, la carta che vuole vedere a destra, le
+sei Tensioni come sei schede, i doppioni della scheda della casa, le tre carte
+Obiettivo che mancano, la partita che sembrava fermarsi al terzo anno, e la
+riga di Propp rimasta su una carta. Ognuna e' stata cercata nel codice prima
+di rispondere, e le risposte stanno in [D-473](DECISIONS.md#d-473): **cinque**
+erano difetti, una un'idea di disegno, una una regola ricordata diversa.
+
+La regola nuova e' una riga: **sulla pagina c'e' quello che sta sul tavolo, e
+nella forma in cui ci sta.** Il testo resta in due posti soli: la riga che
+racconta cosa e' appena successo, e il verbale.
+
+**Fatto quando** i giri di D-473 sono percorsi, e il conto dei doppioni
+della [misura della pagina](MISURA_PAGINA.md) e' a zero:
+
+1. ✔ le quattro cose piccole e certe — **fatte in 0.1.442**: via «N mosse»
+   (adesso la riga porta i nomi delle due Azioni stampate), via «funzione di
+   Propp», via i doppioni della scheda della casa (150 righe in meno), e le
+   tre carte Obiettivo al posto delle righe;
+2. ✔ la colonna dei sei Temi come sei carte, col conto dei gettoni nell'angolo
+   di ognuna, e la carta che si guarda grande a destra — **fatte in 0.1.442**;
+3. ✔ la sonda che conta i doppioni — **fatta in 0.1.442**: zero, con la
+   guardia provata su casi fabbricati;
+4. ✔ la saga che cambia tavolo davvero — **fatta in 0.1.443**: la pagina
+   ripesca i seggi fra un'era e l'altra come dice la Chronicle, e chi gioca
+   tiene il posto invece della casa.
+
+**Il conto dei testi non era il numero giusto**, e sta scritto in D-473: e'
+salito da 193 a 233, perche' una carta dice quattro cose dove una riga ne
+diceva una. Quello che si tiene a zero sono le frasi lette in due punti.
+
+**Le due voci lasciate al committente sono tornate, e le chiudono entrambe.**
+L'Isola Muta tiene i suoi due varchi: *«l'isola muta va bene con due»*. E la
+terza Chronicle aveva una causa vera, che dal codice non si vedeva perche' la
+partita non si fermava affatto: *«ripartiva dalla prima quando chiedevo di
+andare avanti»*. La pagina rimetteva a sedere le quattro case **scritte** sulla
+Chronicle a ogni era invece di ripescare il tavolo ([D-431](DECISIONS.md#d-431),
+`seats_between_eras: REDRAW`), e il bottone ci scriveva sopra «La Prima
+Chronicle» — che e' il titolo giusto, perche' CHR_00 e' il seguito di se
+stessa, ed e' esattamente la frase che si legge come «si torna al primo anno».
+Adesso il tavolo si ripesca e il bottone dice **che anno si gioca**.
+

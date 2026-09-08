@@ -3,7 +3,14 @@ extends PanelContainer
 ##
 ## One is drawn at the end of every Act from the pool that Act allows - Act I
 ## only PRESSURE, Act III mostly RESOLUTION - so the shape of a story is in the
-## deck rather than in a narrator's head (§15). Each one is a function of Propp,
+## deck rather than in a narrator's head (§15).
+##
+## **Propp resta l'impalcatura, e non si stampa** (D-473, parola del
+## committente: *«appare ancora la carta di propp»*). Le ventiquattro funzioni
+## ordinano il mazzo da D-030 e restano nel dato, ma «funzione di Propp:
+## presagio» e' il nome che l'autore da' alla carta mentre la scrive: al tavolo
+## si legge il titolo e il colore della famiglia, stampato sul bordo.
+## Ogni carta e' una funzione di Propp,
 ## it moves the world, and two of the twenty-four force a Council on the spot.
 ##
 ## Until 0.1.7 the whole of that was a title and a paragraph scrolling past in
@@ -24,17 +31,11 @@ const CardFace := preload("res://scripts/core/card_face.gd")
 ## si tingono dello stesso colore perche' leggono la stessa riga (D-056).
 const FAMILIES: Dictionary = CardFace.DRAMA
 
-## Propp's functions have English names in the data because that is where the
-## morphology comes from; the table reads Italian. Same table as the printed
-## card: see `card_face.gd`.
-const FUNCTIONS: Dictionary = CardFace.PROPP
-
 signal picked(index: int)
 
 var _picture: TextureRect
 var _family: Label
 var _title: Label
-var _function: Label
 var _body: Label
 var _did_title: Label
 var _did: VBoxContainer
@@ -75,8 +76,6 @@ func _ready() -> void:
 	box.add_child(_family)
 	_title = _label(26, "#efe7d8")
 	box.add_child(_title)
-	_function = _label(12, "#8a8172")
-	box.add_child(_function)
 	_body = _label(15, "#c9bfae")
 	box.add_child(_body)
 
@@ -124,8 +123,6 @@ func render(card: Dictionary, applied: Array, data: RefCounted) -> void:
 	_family.text = str(described["label"])
 	_family.add_theme_color_override("font_color", Color(str(described["colour"])))
 	_title.text = str(card["title"])
-	var function_id: String = str(card["function_id"])
-	_function.text = "funzione di Propp: %s" % str(FUNCTIONS.get(function_id, function_id.to_lower()))
 	_body.text = str(card["description"])
 	# Two of the twenty-four convene a Council on the spot (§12.1 b): that is the
 	# card taking the table over, and it should not arrive as a surprise.

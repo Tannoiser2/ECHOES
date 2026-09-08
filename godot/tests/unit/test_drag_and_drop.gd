@@ -233,26 +233,38 @@ func test_a_slot_without_a_subject_takes_nothing() -> void:
 ## casa. Se domani nasce un verbo che parla a una domanda e nessuno apre il
 ## posto, la carta torna a essere un bottone **in silenzio** — ed e' il modo in
 ## cui questa mossa si disferebbe senza che nessuno se ne accorga.
+## **E il posto sta dove la cosa si guarda** (D-473). Fino a 0.1.441 le domande
+## e le case avevano un posto anche dentro la scheda della propria casa, che le
+## ridisegnava tutte: erano gli stessi soggetti in due punti della pagina, e
+## quindi due posti per la stessa mossa. La scheda ha smesso di ripeterli; il
+## posto e' rimasto dove al tavolo si tocca — **la domanda nella colonna**, e
+## **la casa nella riga dei seggi**.
 func test_every_subject_a_card_speaks_to_has_a_place() -> void:
-	var StatusPanel := preload("res://ui/status_panel.gd")
-	var panel: Node = StatusPanel.new()
+	var QuestionColumn := preload("res://ui/question_column.gd")
+	var SeatsStrip := preload("res://ui/seats_strip.gd")
 	var viewer: String = str(session.world["turn_order"][0])
-	panel.render(session, viewer)
 
-	var places: Dictionary = panel.get("slots")
+	var column: Node = QuestionColumn.new()
+	column.render(session, viewer)
+	var on_the_column: Dictionary = column.get("slots")
 	for tension_id in session.world["tensions"]:
 		assert_true(
-			places.has("tension:%s" % str(tension_id)),
+			on_the_column.has("tension:%s" % str(tension_id)),
 			"la domanda %s ha un posto dove far cadere una carta" % str(tension_id)
 		)
+	column.free()
+
+	var seats: Node = SeatsStrip.new()
+	seats.render(session, viewer)
+	var among_the_seats: Dictionary = seats.get("slots")
 	for entity_id in session.world["turn_order"]:
 		if str(entity_id) == viewer:
 			continue
 		assert_true(
-			places.has("entity:%s" % str(entity_id)),
+			among_the_seats.has("entity:%s" % str(entity_id)),
 			"la casa %s ha un posto dove far cadere una carta" % str(entity_id)
 		)
-	panel.free()
+	seats.free()
 
 
 ## --- e la colonna non rifà quello che la mano già fa (D-238) ----------------
@@ -343,8 +355,13 @@ func test_a_card_can_be_chosen_with_a_click() -> void:
 const StatusPanel := preload("res://ui/status_panel.gd")
 
 
+## **Il posto di una domanda e' la sua carta nella colonna** (D-473): fino a
+## 0.1.441 le domande erano disegnate anche nella scheda della propria casa, e
+## queste prove guardavano quella. La scheda ha smesso di ripeterle; la colonna
+## e' rimasta dov'era, e adesso ogni domanda li' e' una carta.
 func _panel() -> Node:
-	var panel: Node = StatusPanel.new()
+	var QuestionColumn := preload("res://ui/question_column.gd")
+	var panel: Node = QuestionColumn.new()
 	panel.render(session, str(session.world["turn_order"][0]))
 	return panel
 

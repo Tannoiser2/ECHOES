@@ -36,6 +36,8 @@ const LogExport := preload("res://scripts/core/log_export.gd")
 const TableChoice := preload("res://scripts/core/table_choice.gd")
 const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
 const QuestionColumn := preload("res://ui/question_column.gd")
+const FaceCard := preload("res://ui/face_card.gd")
+const CardFace := preload("res://scripts/core/card_face.gd")
 const SeatsStrip := preload("res://ui/seats_strip.gd")
 
 ## Who is at the table is a property of the Chronicle, not of this screen
@@ -150,6 +152,10 @@ var _hand: HBoxContainer
 ## i sei mazzetti, la mappa con le pedine, chi siede intorno, e un rigo che
 ## racconta a voce quello che e' appena successo.
 var _seats_strip: HBoxContainer
+## La carta grande di destra: quello che chi gioca sta guardando adesso (D-473).
+var _look: PanelContainer
+## Cosa c'e' appoggiato li': `["tension", id]`, `["asset", id]`, o vuoto.
+var _looked_at: Array = []
 var _racconto: Label
 var _casa: ScrollContainer
 var _casa_open: bool = false
@@ -444,6 +450,16 @@ func _build() -> void:
 	right.add_theme_constant_override("separation", 8)
 	columns.add_child(right)
 
+	# **La carta che stai guardando** (D-473, parola del committente: *«sulla
+	# destra vorrei proprio la carta visualizzata»*). Al tavolo, quando prendi
+	# in mano una carta o giri la Tensione di un mazzetto, quella carta la
+	# tieni davanti: qui e' la colonna di destra. Vuota finche' non guardi
+	# niente — non e' un pannello di stato, e' un posto dove appoggiare.
+	_look = FaceCard.new()
+	_look.set_size_name("grande")
+	_look.visible = false
+	right.add_child(_look)
+
 	_scroll = ScrollContainer.new()
 	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	# Uno scorrimento non cresce col contenuto: senza un'altezza sua i
@@ -627,6 +643,7 @@ func _refresh() -> void:
 	if council_open:
 		_board.render(_session, _viewer)
 	_map.render(_session, _viewer)
+	_look_again()
 	_column.render(_session, _viewer)
 	_seats_strip.render(_session, _viewer)
 	_status.render(_session, _viewer)
@@ -1230,6 +1247,24 @@ func _on_subject_dropped(indices: Array) -> void:
 ## E' il testo che fino a D-242 viveva solo nel suggerimento del mouse — cioe'
 ## da nessuna parte, per chi gioca col dito. Quando una carta e' in mano, questo
 ## e' il momento in cui serve: **si e' scelto cosa, si sta decidendo come.**
+## **I nomi delle due Azioni stampate sulla carta** (D-473), per la riga della
+## colonna: «Chiamare la leva · Tenerli a casa». Sono le etichette del blocco
+## fisico — quello che si legge davvero tenendo la carta — e non il conto dei
+## posti dove cadrebbe.
+func _asset_actions(asset_id: String) -> String:
+	if _session == null:
+		return ""
+	var asset: Variant = _session.data.assets.get(asset_id)
+	if asset == null:
+		return ""
+	var said: PackedStringArray = PackedStringArray()
+	for action in (((asset as Dictionary).get("physical", {}) as Dictionary).get("actions", []) as Array):
+		var label: String = str((action as Dictionary).get("label", ""))
+		if label != "":
+			said.append(label)
+	return " · ".join(said)
+
+
 func _asset_reading(asset_id: String) -> String:
 	if _session == null:
 		return ""
@@ -1405,16 +1440,41 @@ func _on_deck_pressed(theme_id: String) -> void:
 	_on_tension_opened(front)
 
 
+## **Toccare una domanda la mette davanti** (D-473): la carta girata si vede
+## grande nella colonna di destra, che e' il gesto di prenderla in mano per
+## leggerla. Toccarla di nuovo la rimette giu'.
+##
+## La scheda a schermo intero (`CouncilSheet`, D-236) resta per il tocco sul
+## nome del Tema: e' la lettura lunga, quella che al tavolo fai col foglio
+## delle regole accanto.
 func _on_tension_opened(tension_id: String) -> void:
 	if _session == null or _session.confluence.is_open():
 		return
-	if _sheet.visible:
-		_sheet.visible = false
+	if _looked_at.size() == 2 and str(_looked_at[1]) == tension_id:
+		_looked_at = []
+	else:
+		_looked_at = ["tension", tension_id]
+	_look_again()
+
+
+## Rimette a fuoco la carta di destra: quella che si ha in mano vince su quella
+## che si e' toccata, perche' se stai per giocare una carta e' quella che
+## conta.
+func _look_again() -> void:
+	if _look == null or _session == null:
 		return
-	_sheet.show_tension(tension_id, _session.data, _session)
-	_sheet.visible = true
-	_help.visible = false
-	_help_button.button_pressed = false
+	var deck: String = ""
+	var id: String = ""
+	if _held != "":
+		deck = "asset"
+		id = _held
+	elif _looked_at.size() == 2:
+		deck = str(_looked_at[0])
+		id = str(_looked_at[1])
+	if id == "":
+		_look.visible = false
+		return
+	_look.render(CardFace.of(deck, id, _session.data), _session.data)
 
 
 ## La colonna delle scelte, ridisegnata da capo.
@@ -1427,18 +1487,23 @@ func _on_tension_opened(tension_id: String) -> void:
 ## ogni scelta con un posto dove cadere, e quando tutte ce l'avevano la colonna
 ## restava vuota: chi non sapeva gia' di dover toccare una carta si trovava
 ## davanti a un turno senza niente da premere. Adesso in cima c'e' una riga per
-## carta giocabile, che dice **quante mosse porta**; premerla e' lo stesso
-## gesto di toccarla nella mano — si accendono i posti sul tavolo e la colonna
-## diventa la scheda di quella carta. Il ventaglio resta il modo bello di
-## giocare; questa e' la strada che nessuno puo' non vedere.
+## carta giocabile; premerla e' lo stesso gesto di toccarla nella mano — si
+## accendono i posti sul tavolo e la colonna diventa la scheda di quella
+## carta. Il ventaglio resta il modo bello di giocare; questa e' la strada che
+## nessuno puo' non vedere.
+##
+## **E la riga dice quello che c'e' stampato sulla carta** (D-473, parola del
+## committente: *«Riserva di Grano ha 19 mosse??? e Prova 14?»*). Fino a qui
+## diceva **quanti posti del tavolo accettano quella carta**: per una carta
+## che INFLUENZA sono le sei domande per due versi piu' le Regioni, cioe'
+## diciannove, e al tavolo nessuno conta niente del genere. Adesso porta i
+## **nomi delle sue due Azioni**, che e' quello che si legge tenendola in mano.
 func _redraw_choices() -> void:
 	_clear_buttons()
 	for asset_id in _playable_cards():
-		var carried: Array = _offers.get(str(asset_id), []) as Array
 		var row := Button.new()
 		row.text = "%s — %s" % [
-			_asset_title(str(asset_id)),
-			"1 mossa" if carried.size() == 1 else "%d mosse" % carried.size(),
+			_asset_title(str(asset_id)), _asset_actions(str(asset_id)),
 		]
 		row.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		row.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -1540,6 +1605,24 @@ func _menu() -> void:
 ## non e' piu' una domanda da fare a chi apre l'app.
 func _a_world_at_random() -> int:
 	return int(Time.get_unix_time_from_system()) % 100000
+## **Le persone restano ai loro posti** quando il tavolo si ripesca (D-473).
+##
+## Chi giocava il secondo seggio gioca il secondo seggio anche l'anno dopo,
+## qualunque casa ci si sieda. Una casa che resta al tavolo tiene la sua
+## persona; per le altre conta l'ordine, che e' il giro del tavolo.
+static func _inherit_seats(humans: Array, before: Array, now: Array) -> Array:
+	var out: Array = []
+	for seat in humans:
+		var who: String = str(seat)
+		if now.has(who):
+			out.append(who)
+			continue
+		var where: int = before.find(who)
+		if where >= 0 and where < now.size() and not out.has(str(now[where])):
+			out.append(str(now[where]))
+	return out
+
+
 func _seats_of(chronicle_id: String) -> Array:
 	var data: RefCounted = _load_help_data()
 	if data == null or not data.chronicles.has(chronicle_id):
@@ -1793,10 +1876,17 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 		say("dieci anni si apre col bottone «La cronaca».")
 		sequel = ""
 	if sequel != "":
+		# **Il bottone dice che anno si gioca, non come si chiama la Chronicle**
+		# (D-473, parola del committente: *«la terza Chronicle ripartiva dalla
+		# prima quando chiedevo di andare avanti»*). CHR_00 e' il seguito di se
+		# stessa (D-263), quindi il titolo e' sempre «La Prima Chronicle»: al
+		# terzo anno il bottone diceva alla lettera che si tornava al primo.
+		# Quello che cambia, e che si vuole sapere, e' **quanti anni passano** e
+		# a che punto della saga si e'.
 		var choice: int = await ask(
 			"L'anno e' chiuso, ma il mondo no. Il tempo passa.",
 			[
-				"Gioca l'era successiva — %s" % str(data.chronicles[sequel]["title"]),
+				"Gioca l'anno dopo — il %d° dei %d della saga" % [played + 1, enough],
 				"Basta cosi: la saga si ferma qui",
 			]
 		)
@@ -1807,7 +1897,20 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 			_toggle_cronaca(false)
 			_session = GameSession.new(data)
 			_last_seed = _last_seed + 97
-			_seats = _seats_of(sequel)
+			# **E il tavolo si ripesca, come dice la Chronicle** (D-431,
+			# `seats_between_eras`: *«le case passano, il mondo resta»*).
+			# Fino a qui la pagina rimetteva a sedere le quattro case
+			# **scritte** — Aldric, Nahr, Lyra, Vaerax — a ogni era, mentre le
+			# sonde ripescavano: nell'app una saga di dieci anni era dieci
+			# volte lo stesso tavolo, ed e' la ragione per cui il terzo anno
+			# sembrava il primo.
+			var seated_before: Array = _seats.duplicate()
+			_seats = GameSession.seats_for_next_era(data, sequel, _last_seed, seated_before)
+			# **Chi gioca tiene il posto, non la casa.** Se la casa che sedeva
+			# li' e' passata, chi giocava quel posto prende quella che ci si
+			# siede adesso: al tavolo la sedia e' la stessa, cambia chi ci
+			# arriva.
+			humans = _inherit_seats(humans, seated_before, _seats)
 			# **Se l'anno dopo non si apre, si dice.** Questa riga ignorava il
 			# `false` che `setup` puo' tornare, e una saga che non prosegue
 			# restava una schermata che non fa niente — senza una parola su
