@@ -32,8 +32,8 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `condition:rationed` | 203 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `echo_card` |  |
 | `condition:starving` | 85 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tag_rule`, `tension`, `chronicle`, `entity_strategic_profile` |  |
 | `condition:unrest` | 333 | 5 | 0 | `asset`, `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `echo_card`, `tension`, `chronicle`, `entity_strategic_profile` |  |
-| `crown_divided` | 11 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` |  |
-| `crystal_exploited` | 20 | 3 | 0 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile`, `tension` |  |
+| `crown_divided` | 11 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
+| `crystal_exploited` | 20 | 3 | 0 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile` |  |
 | `crystal_measured` | 16 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
 | `debt_called` | 236 | 0 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `tag_rule`, `chronicle`, `entity_strategic_profile`, `echo_card` |  |
 | `debt_forgiven` | 134 | 0 | 1 | `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
@@ -45,7 +45,7 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `discovery:supervised_record` | 21 | 0 | 0 | `destiny`, `objective` |  |
 | `discovery:the_charter` | 40 | 0 | 0 | `destiny`, `entity_strategic_profile`, `objective` |  |
 | `discovery:the_ledger` | 276 | 0 | 0 | `destiny`, `entity_strategic_profile`, `objective` |  |
-| `discovery:the_omen` | 333 | 0 | 0 | `destiny`, `objective`, `tension` |  |
+| `discovery:the_omen` | 333 | 0 | 0 | `destiny`, `objective` |  |
 | `discovery:trade_ledger` | 183 | 0 | 0 | `destiny`, `objective` |  |
 | `discovery:written_law` | 165 | 0 | 0 | `destiny`, `objective` |  |
 | `distribution_audited` | 9 | 0 | 0 | `chronicle` |  |
@@ -54,17 +54,17 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `faith_established` | 36 | 0 | 0 | `asset_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `grain_requisitioned` | 14 | 0 | 0 | `asset_physical`, `entity`, `chronicle` |  |
 | `hard_bargain` | 5 | 0 | 0 | — |  |
-| `heir_named` | 118 | 0 | 0 | `asset_physical`, `entity`, `tension` |  |
+| `heir_named` | 118 | 0 | 0 | `asset_physical`, `entity` |  |
 | `knowledge_shared` | 169 | 0 | 1 | `asset_physical`, `destiny_physical`, `chronicle`, `entity_strategic_profile`, `echo_card`, `destiny` |  |
 | `ledger_public` | 188 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile` |  |
-| `mine_sealed` | 8 | 3 | 3 | `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tension` |  |
+| `mine_sealed` | 8 | 3 | 3 | `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
 | `mountain_forgotten` | 8 | 0 | 1 | `chronicle`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule` |  |
 | `nahr_settled` | 25 | 0 | 2 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
 | `no_charter` | 5 | 1 | 0 | `asset_physical`, `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `oath_broken` | 5 | 1 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule` |  |
 | `order_restored` | 9 | 0 | 2 | `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
 | `price_in_lives` | 5 | 0 | 0 | — |  |
-| `question_unresolved` | 36 | 5 | 0 | `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
+| `question_unresolved` | 36 | 5 | 0 | `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `echo_card` |  |
 | `quota_guaranteed` | 5 | 0 | 0 | `chronicle` |  |
 | `relic_buried` | 12 | 1 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `relic_shown` | 4 | 1 | 1 | `destiny`, `entity`, `destiny_physical`, `chronicle` |  |
