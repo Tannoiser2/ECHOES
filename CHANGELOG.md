@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.458 — La fascia e' del vincitore, e un Consiglio su tre torna a lasciare memoria
+
+[D-488](docs/DECISIONS.md#d-488), una riga di
+[ISSUES 129](docs/ISSUES.md#129). E' la taratura che
+[D-471](docs/DECISIONS.md#d-471) aveva promesso diciassette versioni fa — *«le
+fasce a due domande dicono meno: un'altra taratura, se servira', con un numero
+scritto»* — e il numero e' peggiore della frase.
+
+**Un Consiglio su tre non lasciava ricordare niente.** La porta dell'Eco
+guardava l'esito di **A**: la controdomanda che vince non e' un successo di A e
+non e' un Fallimento, quindi cadeva fuori da tutti e tre i rami. Misurato su
+cento anni: **zero Echi su 166 Consigli decisi dalla B**, per qualunque
+margine. E la B non aveva nemmeno le tre parole — vincere per uno e vincere per
+quattordici si dicevano uguale.
+
+Sotto, altre due cose. Il pool **`decisive_bonus`** — il di piu' di una
+vittoria netta, scritto d'autore su tutti e dodici i template, con dentro
+*Ordine Ristabilito* — **non lo leggeva nessuno**: e' la stessa forma che il
+pool `failure` aveva fino al 0.1.285, trovata due volte nello stesso posto. E
+la porta dell'Eco chiedeva **6** alle due parti insieme, scritto quando i
+totali erano solo le carte: oggi le due parti ne muovono **12,7**, e quella
+porta lasciava passare **273 Consigli su 274**.
+
+Adesso **la fascia e' di chi ha vinto** — stesso taglio di sempre, letto sul
+margine del vincitore — la porta chiede **dodici** alle due parti, e una
+decisione passata per uno non lascia storia. Il tabellone dice le tre parole
+anche per la controdomanda.
+
+**Il costo, per intero.** Cancello dei 100 semi, seme 7000: **0 seggi bloccati
+su 8** sui due tavoli. Le Verita' scritte passano da 285 a **325** sul misto e
+da 252 a **328** sull'uniforme: il mondo ricorda +14% e +30%, e ricorda **cose
+diverse** — 108 Echi su 329 vengono da Consigli che prima non ne lasciavano
+nessuno, e i vinti di misura non ne lasciano piu'. Chiudere il buco **senza**
+tarare la porta faceva +62% e +73%, ed e' scritto nel verbale perche' e' la
+misura che ha deciso la taratura.
+
+Due segni che il mondo quasi non scriveva si accendono: *Ordine Ristabilito* da
+18 a **230** scritture in cento anni, *la fama* da 86 a **300** — e «La fama
+precede», che alza il mucchio, smette di essere una regola senza penna.
+
+**La sonda dei margini e' rifatta alla regola nuova** (sapeva ancora di dado) e
+legge le fasce dove vanno lette: fra i Consigli che quella parte ha vinto.
+Quattro prove nuove sulla porta dell'Eco, che **non ne aveva nessuna**: e' cosi'
+che un buco da un Consiglio su tre e' rimasto verde per venti versioni. Suite
+806 prove; 28 cancelli veloci e 6 lenti verdi.
+
+---
+
 ## 0.1.457 — Tre Scoperte hanno un nome, e la memoria dice cosa fa (R17)
 
 [D-487](docs/DECISIONS.md#d-487), [ISSUES 134](docs/ISSUES.md#134) **chiusa**.

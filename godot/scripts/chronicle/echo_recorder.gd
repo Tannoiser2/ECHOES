@@ -2,10 +2,11 @@ extends RefCounted
 ## Echo Check and the Truth register (§12.4, §16).
 ##
 ## An Echo is written when the table produced something worth remembering:
-##   - a Decisive Success, or
-##   - a Success where both fronts spent heavily (S + O >= 6), or
-##   - a Failure that cost the opposition dearly (O >= 6) - a memorable defeat
+##   - a decision won in the wide band (D-488), whichever question won, or
+##   - a decision won clearly where both fronts spent heavily (A + B >= 12), or
+##   - a Failure that cost the opposition dearly (B >= 6) - a memorable defeat
 ##     is still history.
+## A decision won by one or two - the narrow band - leaves no Echo.
 ##
 ## CREATE_ECHO and APPEND_TRUTH are irreversible Effects (§6.3).
 
@@ -13,7 +14,19 @@ const Effect := preload("res://scripts/core/effect.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 
-const HEAVY_COMMITMENT: int = 6
+## **Quanto deve pesare un Consiglio perche' il mondo se lo ricordi.**
+##
+## `HEAVY_FRONT` e' una parte sola, e non si e' mosso: e' la porta del
+## Fallimento costato caro, e sei e' ancora tanto per un fronte (la parte B
+## media 5,5 gettoni). `HEAVY_TABLE` sono le **due parti insieme**, ed e'
+## passato da 6 a 12 in D-488: sei era la soglia di quando i totali erano solo
+## le carte impegnate, e da quando ci sono le pedine (D-471) A+B fa **12,7 di
+## media** su cento anni. Misurata, quella porta lasciava passare **273 dei 274
+## Consigli decisi da A**, e zero dei 166 decisi dalla B: una porta sempre
+## aperta non e' una porta, ed e' per questo che le fasce «dicevano meno»
+## (D-471). Dodici e' la mediana misurata, non un numero tondo.
+const HEAVY_FRONT: int = 6
+const HEAVY_TABLE: int = 12
 
 var world: Dictionary
 var data: RefCounted
@@ -31,15 +44,27 @@ func _init(p_world: Dictionary, p_data: RefCounted, p_applier: RefCounted, p_log
 	log = p_log
 
 
+## **Il Consiglio decide cosa il mondo ricordera'**, e questa e' la porta.
+##
+## Fino al 0.1.457 la porta guardava l'esito di **A**: un Decisivo entrava
+## sempre, un Successo con le due parti che avevano speso, un Fallimento
+## costato caro. La controdomanda che vince — **un Consiglio su tre**, misurato
+## — non entrava mai, per nessun margine: `COUNTER` non e' un successo di A e
+## non e' un Fallimento, e cadeva fuori da tutti e tre i rami. Da D-488 la
+## porta guarda **chi ha vinto**: la fascia e' del vincitore, e per A non
+## cambia niente perche' la fascia larga e il Decisivo sono lo stesso taglio.
 func should_record(result: Dictionary) -> bool:
 	var outcome: String = str(result["outcome"])
 	var support: int = int(result["support_total"])
 	var oppose: int = int(result["oppose_total"])
-	if outcome == ConfluenceResolution.DECISIVE:
+	var band: String = ConfluenceResolution.band_of(support, oppose, outcome)
+	if band == ConfluenceResolution.WIDE:
 		return true
-	if ConfluenceResolution.is_success(outcome) and support + oppose >= HEAVY_COMMITMENT:
+	if band == ConfluenceResolution.CLEAR and support + oppose >= HEAVY_TABLE:
 		return true
-	if outcome == ConfluenceResolution.FAILURE and oppose >= HEAVY_COMMITMENT:
+	# La fascia di misura non lascia storia: e' la decisione che passa per uno,
+	# e la parola che le tocca — «passa, ma si paga» — lo dice da sempre.
+	if outcome == ConfluenceResolution.FAILURE and oppose >= HEAVY_FRONT:
 		return true
 	return false
 

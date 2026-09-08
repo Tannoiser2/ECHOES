@@ -830,6 +830,46 @@ vuoto. La domanda vera e': **un mondo segnato deve pesare sul mucchio dei
 gettoni?** Se si', quelle 21 righe tornano vive puntandole sul mucchio; se no,
 escono. E' una regola di gioco, e la decidi tu.
 
+**Quella riga e' vecchia, e la risposta c'e'.** Non l'hai data tu: l'ho presa
+io sulla parola *«via in ordine R14 in poi»*, ed e' **si'**. Le ventun regole
+sono puntate sul mucchio in 0.1.452 ([D-477](DECISIONS.md#d-477)), e in
+0.1.453 quattro nuove — sui quattro segni che il mondo scrive di piu' —
+guardano **il luogo di cui si discute** e non la mappa intera
+([D-483](DECISIONS.md#d-483)). Oggi un mondo segnato muove la soglia in **un
+Consiglio su due**. Se il verso di una di quelle righe non ti torna, quella si'
+che e' tua.
+
+**E in 0.1.458 ho pagato una promessa vecchia di diciassette versioni**
+([D-488](DECISIONS.md#d-488)). Al giro 4 avevo scritto: *«le fasce sul margine
+sono quelle di D-280, e a due domande dicono meno: un'altra taratura, se
+servira', con un numero scritto»*. Servivano, e il numero e' peggiore di
+com'era la frase.
+
+**Un Consiglio su tre non lasciava ricordare niente.** Quando vince la
+controdomanda — 166 Consigli su 513, misurati — la porta dell'Eco non se ne
+accorgeva: guardava l'esito di **A**, e «vince la B» non e' un successo di A e
+non e' un Fallimento, quindi cadeva fuori da tutti e tre i rami. Zero Echi su
+166, per qualunque margine. E la B non aveva nemmeno le tre parole: che
+vincesse per uno o per quattordici, il tabellone diceva la stessa cosa.
+
+Sotto ci ho trovato altre due cose. Il **di piu' di una vittoria netta** — un
+pool scritto d'autore su tutti e dodici i template, con dentro *Ordine
+Ristabilito*, la rinomanza — **non lo leggeva nessuno**, ed e' la seconda volta
+che succede nello stesso posto (la prima nel 0.1.285). E la porta dell'Eco
+chiedeva *sei* alle due parti insieme: un numero scritto quando i totali erano
+solo le carte, mentre oggi le due parti ne muovono **12,7**. Una porta che
+lascia passare 273 Consigli su 274 non e' una porta — ed e' esattamente perche'
+le fasce «dicevano meno».
+
+Adesso **la fascia e' di chi ha vinto**, la porta chiede dodici, e la decisione
+passata per uno non lascia storia. Il costo, per intero: il mondo ricorda
+**+14%** e **+30%** — e ricorda **cose diverse**, perche' 108 Echi su 329
+vengono da Consigli che prima non ne lasciavano nessuno, e i vinti di misura
+non ne lasciano piu'. Cancello **0 su 8** sui due tavoli. Due segni che il
+mondo quasi non scriveva — *Ordine Ristabilito* e *la fama* — passano da 18 e
+86 scritture a **230 e 300**, e «La fama precede» smette di essere una regola
+senza penna.
+
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
 Hai giocato un anno e mi hai scritto sette cose. Le ho cercate tutte nel

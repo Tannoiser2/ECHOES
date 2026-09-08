@@ -834,6 +834,12 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	)
 	result["margin"] = int(result["support_total"]) - int(result["oppose_total"])
 	result["winner"] = ConfluenceResolution.winner_of(str(result["outcome"]))
+	# **La fascia e' del vincitore** (D-488): quanto nettamente ha vinto chi ha
+	# vinto, sul suo margine e non su quello di A. E' quello che decide se il
+	# mondo se lo ricorda.
+	result["band"] = ConfluenceResolution.band_of(
+		int(result["support_total"]), int(result["oppose_total"]), str(result["outcome"])
+	)
 	result["sides"] = (current["sides"] as Dictionary).duplicate(true)
 	_log_commitments()
 	log.bullet("G. A=%d (carte %d, pedine %d) B=%d (carte %d, pedine %d) contro il mucchio %d -> %s" % [
@@ -906,6 +912,19 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		if winner == "B":
 			context = context.duplicate()
 			context["proponent"] = side_leader("B")
+		# **Il di piu' di una vittoria netta** (D-488). Il pool `decisive_bonus`
+		# stava nei dodici template, nello schema e nel flusso disegnato, e non
+		# lo leggeva **nessuno**: misurato, `CNS_DECISIVE_RENOWN` usciva zero
+		# volte in cento anni. E' la stessa forma che il pool `failure` aveva
+		# fino al 0.1.285 (D-323), trovata due volte nello stesso posto. Ne
+		# porta una sola, come il prezzo (D-267), e va a **chi ha vinto**:
+		# quando vince la B, il `$proponent` e' gia' chi la guida.
+		if str(result.get("band", "")) == ConfluenceResolution.WIDE:
+			var when_it_wins: Array = (
+				(template.get("consequence_pools", {}) as Dictionary).get("decisive_bonus", []) as Array
+			)
+			if not when_it_wins.is_empty():
+				consequence_ids.append(str(when_it_wins[0]))
 	elif outcome == ConfluenceResolution.FAILURE:
 		# **Una domanda caduta lascia il segno che quella domanda lascia**
 		# (D-323, [ISSUES 95](../../docs/ISSUES.md)). Fino a 0.1.285 il pool

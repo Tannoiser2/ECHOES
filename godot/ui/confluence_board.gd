@@ -43,6 +43,16 @@ const OUTCOMES: Dictionary = {
 	"COUNTER": "Vince l'altra domanda",
 }
 
+## **Quanto nettamente vince l'altra domanda** (D-488). Le tre parole di A —
+## «ma si paga», «passa», «senza discussione» — sono l'esito stesso; la B
+## vinceva con una parola sola per qualunque margine, e a un Consiglio su tre
+## il tavolo non sapeva se era stata una battaglia o una valanga.
+const COUNTER_WORDS: Dictionary = {
+	"DI_MISURA": "Vince l'altra domanda, per un soffio",
+	"PASSA": "Vince l'altra domanda",
+	"SENZA_DISCUSSIONE": "Vince l'altra domanda, senza discussione",
+}
+
 ## L'esito a colori: verde quando passa, rosso quando cade, ocra quando passa
 ## ma si paga.
 const VERDICT_COLOURS: Dictionary = {
@@ -596,6 +606,8 @@ func _render_outcome(council: Dictionary) -> void:
 		"Margine %+d" % int(settled["margin"]),
 	]))
 	_verdict.text = str(OUTCOMES.get(outcome, outcome))
+	if outcome == "COUNTER":
+		_verdict.text = str(COUNTER_WORDS.get(str(settled.get("band", "")), _verdict.text))
 	_verdict.add_theme_color_override(
 		"font_color", Color(str(VERDICT_COLOURS.get(outcome, "#efe7d8")))
 	)
