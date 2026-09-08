@@ -10,6 +10,116 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-472 — Il giro 5: un motore solo, il Consiglio di D-280 esce dal codice
+
+**implemented in 0.1.441.** Parola del committente: *«vai col giro 5»*. D-467
+ne aveva scritti quattro; il quinto era il debito che D-470 e D-471 lasciavano
+in fondo: *«il giro vecchio resta nel codice sotto la dichiarazione: portare
+le prove di D-280 alla regola nuova e toglierlo»*. E' fatto.
+
+### 1. Quello che e' uscito
+
+Il Consiglio di [D-280](#d-280) — la proposta scelta fra tre, i benefici
+comprati coi gettoni di rivendicazione (D-387, D-417), il prezzo scelto
+dagli avversari (D-267), l'opposizione comprata (D-419), la controproposta
+del RIVENDICARE dentro il Consiglio (D-268, D-304), la pedina che porta il
+nome di un'altra domanda (D-416), il dado e il World Factor con il dente dei
+segni (ISSUES 24) — non esiste piu' nel codice. La dichiarazione
+`confluence_rules.two_questions` e `opposition_token_weight` escono dallo
+schema: il Consiglio e' uno, ed e' quello di D-467.
+
+Nel motore, nei decisori, nel tabellone e nelle sonde: **2.766 righe tolte e 720 messe** in 29 file, contro main. `ConfluenceResolution`
+non tira piu' un dado e non calcola piu' un margine: conta le carte delle due
+parti, e l'esito lo dice `two_sides_outcome` contro il mucchio. Il cervello
+sceglie la domanda sul suo **esito di base** (`_question_base_score`) invece
+che sulla proposta migliore dietro di lei; il *Prudente* non prende la B se
+puo' stare con A, l'*Aggressivo* prende la B quando la A non gli vale niente.
+
+### 2. Le prove, portate o tolte con verbale
+
+Quindici file di prova erano scritti sulla grammatica di D-280. Sono stati
+letti uno per uno, e ogni prova e' finita in una di tre caselle:
+
+- **portata**, quando l'intento esiste ancora nella regola nuova: la carta
+  offre le sue caselle vive e non quelle morte (D-306); su una vittoria si
+  applicano l'esito di base e **tutte le pedine della parte**, benefici e
+  costi; su una caduta gli effetti stampati; la Cicatrice e' un costo come
+  gli altri (D-303); la memoria delle domande poste e' della domanda che
+  **ha vinto** (D-061, D-077, D-094); i punti del dibattito vanno alla parte
+  che vince (D-455), con una prova nuova per la B; il silenzio col numero
+  scritto; il Consiglio giocato da una persona attraverso le sette domande
+  dello schermo (ISSUES 73), con una prova nuova sul rilancio; il tabellone
+  con le pedine delle due parti e la casella spenta (D-306) — due prove
+  nuove; i testi delle domande e del loro esito; il drago che muore e si
+  difende (D-127); l'aritmetica a due parti contro il mucchio, sei prove
+  nuove di bordo;
+- **tolta con la ragione scritta nel file**, quando l'intento non c'e' piu':
+  il gettone che compra il secondo beneficio (D-387), la pedina del prezzo
+  posata da chi paga (D-267), «un beneficio gratis e ogni altro costa» (D-280),
+  «non si compra piu' di quanto si paga», il dado truccato, la controproposta
+  del RIVENDICARE (`test_counterclaim.gd`, tolto intero: la controproposta
+  **e'** la parte B), l'opposizione comprata (`test_the_failure_is_bought.gd`,
+  tolto intero: la B e' l'opposizione), la pedina che porta il nome di
+  un'altra domanda (D-416: `place_box` prende solo la casella, che agisce
+  sulla domanda in discussione), la porta di Propp sulla caccia al drago (era
+  l'eleggibilita' di una proposta), la proposta che dice cosa lascia (ora lo
+  dice la domanda);
+- **residuo dichiarato**: le prove sui testi delle proposte stampate restano
+  come prove dei dati, col commento che le proposte sono un residuo.
+
+Un altro file, `test_balance`, ascoltava il passo «PROPOSITION» che non viene
+piu' emesso: e' la prova che il taglio non ha lasciato zeri ciechi solo per
+caso — quella era una prova cieca, e lo ha detto.
+
+### 3. Le sonde
+
+Sei sonde CLI contavano proposte: **erano gia' cieche** prima di questo giro,
+perche' il passo `PROPOSITION` non veniva piu' emesso e `proposition_id` non
+c'era piu' nel risultato — «Consigli osservati 0», «mai ai voti 66 su 66»,
+con exit 0. Ora contano domande: `run_choice_probe` dice per ogni domanda
+quante volte e' stata A, B, vinta, eleggibile; `run_stance_probe` misura
+perche' un seggio prende la B (`_side_base_score` delle due domande);
+`run_consequence_probe` dice di ogni Conseguenza muta se sta fuori portata,
+se la sua domanda e' ai voti solo come Contro, se perde sempre;
+`run_who_writes_probe`, `run_text_probe` e `run_era_probe` leggono
+`winning_question_id`. `run_boxes_probe` ascolta i tre momenti in cui una
+casella si posa. `run_price_probe` e' tolta: misurava la pedina del prezzo e
+la controproposta. Due cose viste passando e non toccate: nessuna domanda
+scritta nomina un `legend:` (le due clausole stavano su proposte), e
+`run_who_writes_probe` conta «Tensioni girate 0 su 60» sui mazzetti, che da
+D-468 sono vuoti per costruzione.
+
+### Cosa resta scritto
+
+- **I gettoni di rivendicazione non hanno piu' dove spendersi.** La faccia
+  RIVENDICARE li conia ancora (`GRANT_CLAIM_TOKEN`), il Consiglio a due
+  domande non li chiede: il rilancio e' gratis e il prezzo si conta per
+  parte. Toglierli, o dargli un uso, e' una decisione del committente e sta
+  in [ISSUES 129](ISSUES.md#129). Il secondo dibattito di fine Atto (D-261)
+  resta.
+- **Le proposte restano stampate sulle carte** (`council.propositions` in
+  `tensions_*.json`, con i loro `echo_summaries`): nessun motore le legge
+  piu'; le legge la scheda, il catalogo e la revisione dei testi. E'
+  contenuto che esiste nei dati e non esiste al tavolo (D-035): toglierle e'
+  il giro dopo.
+- **Il dente dei segni sul dado** (`TagRules.council_world_factor`, ISSUES 24)
+  resta come regola pura con le sue prove, e nessun motore la chiama: un
+  mondo segnato non piega piu' niente, perche' non c'e' un dado da piegare.
+  Se deve pesare sul mucchio, e' una taratura da scrivere.
+- **Il cancello dei 100 semi**, seme 7000: 0 seggi bloccati su 8 sui due
+  tavoli. Esiti FAIL · SUCC di misura · SUCC · DECI · COUNTER: **46 · 36 ·
+  102 · 146 · 156** sul misto (486 Consigli) e **45 · 45 · 91 · 112 · 185**
+  sull'uniforme (478). Contro D-471 (44 · 27 · 84 · 126 · 200 e 42 · 30 · 93
+  · 139 · 183) il motore e' lo stesso e i numeri lo dicono: quello che si
+  sposta e' il tavolo misto, dove la A vince di piu' e la B di meno, perche'
+  il *Prudente* ora sta con chi propone quando puo' e l'*Aggressivo* prende
+  la B solo quando la A non gli vale niente — prima entrambi ragionavano
+  sulla proposta, che non c'e' piu'.
+- Suite **753 prove in 116 suite**, 79.972 asserzioni, nessun errore di
+  script; 28 cancelli veloci e 6 lenti verdi, documenti rifatti.
+
+---
+
 ## D-471 — Il giro 4: il cervello gioca per il mucchio, le pedine pesano, il tabellone a due colori
 
 **implemented in 0.1.440.** L'ultimo dei quattro giri di [D-467](#d-467),

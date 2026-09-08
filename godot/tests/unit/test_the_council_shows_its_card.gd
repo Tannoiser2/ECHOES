@@ -1,17 +1,20 @@
 extends "res://tests/test_case.gd"
-
-const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
-## **Il tabellone del Consiglio mostra la carta girata** (D-291, taglio 1).
+## **Il tabellone del Consiglio mostra la carta girata** (D-291, taglio 1),
+## a due domande (D-467, D-471, D-472).
 ##
 ## Parola del committente davanti all'app: *«il Concilio e' ancora quello
 ## vecchio, mi sa che va cambiato tutto»*. Aveva ragione su quello che vedeva:
-## lo schermo disegnava la carta, la Domanda, la Proposta, le pose e le
-## Conseguenze — cioe' **solo la meta' vecchia**. Dei benefici comprati, del
-## prezzo dovuto, della pedina posata dal fronte avverso e della controproposta
-## (D-267, D-268, D-280) non mostrava niente, mentre il motore li eseguiva.
+## lo schermo disegnava la meta' vecchia e taceva l'economia che il motore
+## eseguiva. Un'economia che gira e non si vede non e' un'economia: e' un
+## conto che fa qualcun altro.
 ##
-## Un'economia che gira e non si vede non e' un'economia: e' un conto che fa
-## qualcun altro. Queste prove tengono le due liste sullo schermo.
+## Da D-472 l'economia e' quella delle **due parti**: le due liste della carta
+## con la marca della domanda davanti a ogni casella, la pedina del colore
+## della parte che l'ha posata, cosa resta se vince l'una o l'altra, cosa
+## succede se cade, e il conto in parole contro il mucchio — senza dado.
+## `test_the_council_of_two_questions` guarda lo stesso tabellone sul tavolo
+## spedito, con le lettere e le posizioni; qui si fabbrica tutto su
+## `TEN_FAMINE`, casella per casella.
 
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
 
@@ -36,15 +39,19 @@ func _text_of(list_name: String, voice_id: String) -> String:
 	return ""
 
 
+## Il Consiglio aperto col mucchio a 3 — fissato **prima** di aprire, perche'
+## il mucchio si legge all'apertura (D-470) — e ogni casella della carta viva.
 func _open() -> void:
+	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
+	if not session.world.has("theme_heat"):
+		session.world["theme_heat"] = {}
+	(session.world["theme_heat"] as Dictionary)[theme_id] = 3
 	session.confluence.open(TENSION, {"kind": "THRESHOLD"})
-	var options: Array = session.confluence.available_propositions()
-	session.confluence.set_proposition(str(options[0]["id"]))
 	_make_every_casella_live()
 
 
 ## **Il tavolo in cui ogni casella della carta puo' fare qualcosa** (D-306).
-## Da D-306 una casella che qui non farebbe niente non si compra; una prova che
+## Da D-306 una casella che qui non farebbe niente non si posa; una prova che
 ## guarda il **tabellone** vuole la carta intera, quindi se la fabbrica.
 func _make_every_casella_live() -> void:
 	var context: Dictionary = session.confluence.effect_context()
@@ -63,16 +70,23 @@ func _make_every_casella_live() -> void:
 		if str(entity_id) != proponent and str(entity_id) != rival:
 			region["control"] = str(entity_id)
 			break
-	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
-	if theme_id != "":
-		if not session.world.has("theme_heat"):
-			session.world["theme_heat"] = {}
-		(session.world["theme_heat"] as Dictionary)[theme_id] = 3
+
+
+## Un seggio che non propone.
+func _other() -> String:
+	for entity_id in session.confluence.stance_order():
+		return str(entity_id)
+	return ""
+
+
+func _board() -> Node:
+	var board: Node = ConfluenceBoard.new()
+	board.render(session, str(session.world["turn_order"][0]))
+	return board
 
 
 func _drawn() -> Array:
-	var board: Node = ConfluenceBoard.new()
-	board.render(session, str(session.world["turn_order"][0]))
+	var board: Node = _board()
 	var said: Array = []
 	_labels_of(board, said)
 	board.free()
@@ -86,140 +100,146 @@ func _labels_of(node: Node, into: Array) -> void:
 		_labels_of(child, into)
 
 
-## Le voci della carta con la pedina posata sopra: la pedina e' un nodo
-## disegnato, non un segno nel testo (D-466), e la riga lo dice con `marked`.
-func _marked() -> Array:
-	var board: Node = ConfluenceBoard.new()
-	board.render(session, str(session.world["turn_order"][0]))
+## Le righe della carta sul tabellone: `{text, marked, colour}` per ognuna.
+## La pedina e' un nodo disegnato, non un segno nel testo (D-466), e la riga
+## lo dice con `marked`; il colore e' quello dell'etichetta accanto.
+func _rows() -> Array:
+	var board: Node = _board()
 	var out: Array = []
 	for row in board._face.get_children():
-		if (row as Node).has_meta("marked") and bool((row as Node).get_meta("marked")):
-			var said: Array = []
-			_labels_of(row, said)
-			out.append(" ".join(PackedStringArray(said)))
+		if not (row as Node).has_meta("marked"):
+			continue
+		var label: Label = null
+		for child in (row as Node).get_children():
+			if child is Label:
+				label = child as Label
+		out.append({
+			"text": "" if label == null else str(label.text),
+			"marked": bool((row as Node).get_meta("marked")),
+			"colour": Color("#000000") if label == null else label.get_theme_color("font_color"),
+		})
 	board.free()
 	return out
 
 
-## Le due liste della carta stanno sul tabellone, tutte e due intere.
+func _row_of(list_name: String, voice_id: String) -> Dictionary:
+	var text: String = _text_of(list_name, voice_id)
+	for row in _rows():
+		if str((row as Dictionary)["text"]).contains(text):
+			return row as Dictionary
+	return {}
+
+
+## Le due liste della carta stanno sul tabellone, tutte e due intere e coi
+## titoli del cartone, e ogni casella porta davanti la lettera della domanda
+## che serve — A, B, o tutt'e due — come stampato (D-469).
 func test_the_board_draws_both_lists() -> void:
 	_open()
 	var column: String = " · ".join(PackedStringArray(_drawn()))
-	assert_true(column.contains("COSA SI COMPRA"), "la lista dei benefici c'e': %s" % column)
-	assert_true(column.contains("IL PREZZO"), "e quella dei costi")
-	for voice_id in _voices("benefits"):
-		assert_true(
-			column.contains(_text_of("benefits", str(voice_id))),
-			"il beneficio «%s» si legge" % str(voice_id)
-		)
-	for voice_id in _voices("costs"):
-		assert_true(
-			column.contains(_text_of("costs", str(voice_id))),
-			"il costo «%s» si legge" % str(voice_id)
-		)
+	assert_true(column.contains("BENEFICI"), "la lista dei benefici c'e': %s" % column)
+	assert_true(column.contains("COSTI"), "e quella dei costi")
+	assert_false(column.contains("COSA SI COMPRA") or column.contains("IL PREZZO"), "coi titoli di D-280 usciti")
+	var a_question: String = session.confluence.side_question("A")
+	var b_question: String = session.confluence.side_question("B")
+	assert_ne(a_question, b_question, "le due parti hanno due domande")
+	for list_name in ["benefits", "costs"]:
+		for voice in ((data().tensions[TENSION]["physical"] as Dictionary)[list_name] as Array):
+			var voice_id: String = str((voice as Dictionary)["id"])
+			var row: Dictionary = _row_of(list_name, voice_id)
+			assert_false(row.is_empty(), "«%s» si legge" % voice_id)
+			if row.is_empty():
+				continue
+			var served: Array = (voice as Dictionary).get("for", []) as Array
+			var marks: String = str(row["text"]).split(" · ")[0]
+			var expected: String = ""
+			for question_id in served:
+				expected += "A" if str(question_id) == a_question else ("B" if str(question_id) == b_question else "")
+			assert_eq(marks, expected, "«%s» porta la marca della domanda che serve" % voice_id)
 
 
-## **La pedina comprata si vede posata**, e il prezzo e' in cifre: e' la riga
-## che rende il Consiglio una decisione invece di un menu.
-func test_what_the_proponent_bought_is_marked() -> void:
+## **La pedina posata si vede sulla casella**, del colore della parte che
+## l'ha posata: e' la riga che rende il Consiglio una decisione invece di un
+## menu. Fabbricato: chi propone posa un beneficio della A, un altro seggio
+## prende la B e posa una casella sua.
+func test_what_each_side_placed_is_marked_in_its_colour() -> void:
 	_open()
-	var benefits: Array = _voices("benefits")
-	# **Il primo acquisto che costa si paga** (D-417): si compra uno oltre i
-	# gratis, cosi' la scheda deve scrivere **due cose** — quante pedine e
-	# quanti gettoni — e la prova le vede tutt'e due. Il numero dei gratis si
-	# legge dalla regola: cambiarlo non deve far fallire questa prova per il
-	# motivo sbagliato.
-	var free: int = CouncilEconomy.FREE_BENEFITS
-	var quante: int = mini(free + 1, benefits.size())
-	_give_tokens(str(session.confluence.current["proponent"]), quante - free)
-	assert_true(
-		session.confluence.set_benefits(benefits.slice(0, quante)),
-		"compra %d benefici" % quante
-	)
-	var drawn: Array = _drawn()
-	var column: String = " · ".join(PackedStringArray(drawn))
-	assert_true(
-		column.contains("%d comprati con %d gettone" % [quante, quante - free]),
-		"il conto e' scritto: %s" % column
-	)
-	var marked: Array = _marked()
-	assert_eq(marked.size(), quante, "e le pedine sono posate, non una lista puntata")
-	for i in range(quante):
-		assert_true(
-			marked.has(_text_of("benefits", str(benefits[i]))),
-			"la pedina sta sulla voce comprata"
-		)
-
-
-## Chi sceglie la moneta si legge per nome — e finche' non ha scelto, lo
-## schermo dice **che sta aspettando lui**, invece di tacere.
-func test_the_board_says_who_chooses_the_currency() -> void:
-	_open()
-	session.confluence.set_benefits(_voices("benefits").slice(0, 1))
-	var waiting: String = " · ".join(PackedStringArray(_drawn()))
-	assert_true(
-		waiting.contains("nessuno ha speso un gettone"),
-		"finche' nessuno paga, la proposta passa gratis: %s" % waiting
-	)
 	var proponent: String = str(session.confluence.current["proponent"])
-	var opposer: String = ""
-	for entity_id in session.confluence.stance_order():
-		if str(entity_id) != proponent:
-			session.confluence.declare_stance(str(entity_id), "OPPOSE")
-			if opposer == "":
-				opposer = str(entity_id)
-	assert_true(opposer != "", "c'e' un fronte avverso")
-	var cost: String = str(_voices("costs")[1])
-	# **Senza gettone non si posa niente** (D-387): e' la riga che rende il
-	# prezzo una scelta pagata invece di un'aritmetica subita.
-	assert_false(
-		session.confluence.place_cost(opposer, cost),
-		"senza gettone la pedina non si posa"
-	)
-	_give_tokens(opposer, 1)
-	assert_true(session.confluence.place_cost(opposer, cost), "col gettone si'")
-	var drawn: Array = _drawn()
-	var column: String = " · ".join(PackedStringArray(drawn))
-	assert_true(
-		column.contains("lo fa pagare %s" % session.service.name_of(opposer)),
-		"e adesso si sa chi l'ha scelta: %s" % column
-	)
-	assert_true(
-		_marked().has(_text_of("costs", cost)),
-		"con la pedina sulla voce che ha scelto"
-	)
-	assert_eq(
-		session.confluence.claim_tokens(opposer), 0, "e il gettone e' stato speso"
-	)
+	var menu_a: Array = session.confluence.box_menu("A")
+	assert_true(not menu_a.is_empty(), "la A ha caselle libere")
+	var voice_a: Dictionary = menu_a[0] as Dictionary
+	assert_true(session.confluence.place_box(proponent, str(voice_a["id"])), "chi propone posa")
+	var other: String = _other()
+	assert_true(session.confluence.join_side(other, "B"), "un altro prende la B")
+	var menu_b: Array = session.confluence.box_menu("B")
+	assert_true(not menu_b.is_empty(), "e la B ha caselle libere")
+	var voice_b: Dictionary = menu_b[0] as Dictionary
+	assert_true(session.confluence.place_box(other, str(voice_b["id"])), "e posa")
+
+	var marked: Array = []
+	for row in _rows():
+		if bool((row as Dictionary)["marked"]):
+			marked.append(row)
+	assert_eq(marked.size(), 2, "due pedine posate, due pedine disegnate — non una lista puntata")
+	var row_a: Dictionary = _row_of(str(voice_a["list"]), str(voice_a["id"]))
+	assert_true(bool(row_a.get("marked", false)), "la pedina sta sulla casella che A ha preso")
+	assert_eq(row_a.get("colour"), Color(str(ConfluenceBoard.SIDE_COLOURS["A"])), "del colore della A")
+	var row_b: Dictionary = _row_of(str(voice_b["list"]), str(voice_b["id"]))
+	assert_true(bool(row_b.get("marked", false)), "e su quella che B ha preso")
+	assert_eq(row_b.get("colour"), Color(str(ConfluenceBoard.SIDE_COLOURS["B"])), "del colore della B")
 
 
-## Senza niente comprato non si paga, e lo schermo lo dice invece di lasciare
-## una lista di costi senza spiegazione.
-func test_nothing_bought_nothing_paid() -> void:
+## **Una casella che qui non farebbe niente si vede spenta** (D-306), e lo
+## dice. Fabbricato: col Tema gia' a zero, «Raffredda il Tema» non morde.
+func test_a_box_that_would_do_nothing_is_shown_off() -> void:
 	_open()
-	session.confluence.set_benefits([])
-	var column: String = " · ".join(PackedStringArray(_drawn()))
-	assert_true(
-		column.contains("nessuno ha speso un gettone"),
-		"lo schermo dice perche' i costi sono spenti: %s" % column
-	)
+	var lit: Dictionary = _row_of("benefits", "B_COOL")
+	assert_false(lit.is_empty(), "«Raffredda il Tema» si legge")
+	assert_false(str(lit.get("text", "")).contains("non qui"), "col Tema caldo e' viva: %s" % str(lit.get("text", "")))
+	var theme_id: String = str(data().tensions[TENSION].get("theme", ""))
+	(session.world["theme_heat"] as Dictionary)[theme_id] = 0
+	var off: Dictionary = _row_of("benefits", "B_COOL")
+	assert_true(str(off.get("text", "")).contains("non qui: non cambierebbe niente"), "col Tema a zero e' spenta, e lo dice: %s" % str(off.get("text", "")))
+	assert_false(bool(off.get("marked", true)), "e senza pedina")
 
 
-## I gettoni di rivendicazione in mano a una casa, senza passare dal turno:
-## qui si prova la pagina, non da dove arriva la moneta.
-func _give_tokens(entity_id: String, quanti: int) -> void:
-	var effect: GDScript = load("res://scripts/core/effect.gd")
-	for i in range(quanti):
-		session.applier.apply(effect.make(
-			"GRANT_CLAIM_TOKEN", "entity", entity_id, {},
-			effect.source("system", "TEST", "", 1, 1, 0)
-		))
-
-
-## E cosa succede se cade: e' l'informazione che rende «opponiti» una scelta e
-## non un gesto. La carta ce l'ha stampata, e nessuno la sceglie.
-func test_the_board_says_what_happens_if_it_falls() -> void:
+## L'intestazione dice chi guida le due parti: la B e' di «nessuno» finche'
+## nessuno la prende, poi di chi l'ha presa per primo (D-470).
+func test_the_header_says_who_leads_each_side() -> void:
 	_open()
+	var proponent: String = str(session.confluence.current["proponent"])
+	var before: String = " · ".join(PackedStringArray(_drawn()))
+	assert_true(before.contains("A: %s" % session.service.name_of(proponent)), "la A e' di chi propone: %s" % before)
+	assert_true(before.contains("B: nessuno"), "e la B ancora di nessuno")
+	var other: String = _other()
+	assert_true(session.confluence.join_side(other, "B"), "un seggio prende la B")
+	var after: String = " · ".join(PackedStringArray(_drawn()))
+	assert_true(after.contains("B: %s" % session.service.name_of(other)), "e adesso la B e' sua: %s" % after)
+	assert_false(after.contains("B: nessuno"), "non piu' di nessuno")
+
+
+## E cosa resta se vince l'una o l'altra (D-471), e cosa succede se cade: e'
+## l'informazione che rende «con B» una scelta e non un gesto. La carta ce
+## l'ha stampata, e prima nessuno la sceglieva.
+func test_the_board_says_what_each_side_leaves_and_what_happens_if_it_falls() -> void:
+	_open()
+	var board: Node = _board()
+	assert_eq(str(board._consequences_title.text), "SE VINCE", "prima del voto si legge cosa resta se vince")
+	var lines: Array = []
+	_labels_of(board._consequences, lines)
+	assert_eq(lines.size(), 2, "una riga per parte")
+	var template: Dictionary = session.data.confluence_template_for(TENSION)
+	for i in range(mini(2, lines.size())):
+		var side: String = ["A", "B"][i]
+		var line: String = str(lines[i])
+		assert_true(line.begins_with("%s · " % side), "la riga porta la lettera: %s" % line)
+		var question_id: String = session.confluence.side_question(side)
+		for entry in (template.get("questions", []) as Array):
+			if str((entry as Dictionary)["id"]) != question_id:
+				continue
+			for consequence_id in ((entry as Dictionary).get("base", []) as Array):
+				var title: String = str((session.data.consequences[str(consequence_id)] as Dictionary)["title"])
+				assert_true(line.contains(title), "e nomina «%s», l'esito di base della %s" % [title, side])
+	board.free()
 	var column: String = " · ".join(PackedStringArray(_drawn()))
 	assert_true(column.contains("SE CADE"), "c'e' la terza lista: %s" % column)
 	for voice in (data().tensions[TENSION]["physical"]["failure"] as Array):
@@ -229,27 +249,32 @@ func test_the_board_says_what_happens_if_it_falls() -> void:
 		)
 
 
-## **Il conto in parole** (D-466): «S 5 · O 3 · Mondo +3 -> M +5» era il
-## verbale del motore sotto gli occhi di chi gioca. Fabbricato: un Consiglio
-## gia' tirato, e si legge «a favore», «contro», «margine», e l'esito a parte.
+## **Il conto in parole, contro il mucchio** (D-466, D-472): «S 5 · O 3 ·
+## Mondo +3» era il verbale del motore sotto gli occhi di chi gioca, e il
+## dado non c'e' piu'. Fabbricato: un Consiglio gia' votato, e si legge
+## «A … · B … · mucchio …», il margine col suo nome, e l'esito a parte.
 func test_the_count_is_in_player_words() -> void:
 	var board: Node = ConfluenceBoard.new()
 	board._ensure_built()
 	board._render_outcome({
-		"die": 6, "world_factor": 3,
+		"pile": 3,
 		"result": {
-			"outcome": "DECISIVE_SUCCESS", "support_total": 5, "oppose_total": 3,
-			"world_factor": 3, "margin": 5,
+			"outcome": "DECISIVE_SUCCESS", "support_total": 9, "oppose_total": 3, "margin": 6,
 		},
 	})
 	var count: String = str(board._outcome.text)
-	assert_true(count.contains("Fattore Mondo: 1d6 = 6"), "il dado si legge: %s" % count)
-	assert_true(count.contains("A favore 5"), "a favore, in parole")
-	assert_true(count.contains("contro 3"), "contro, in parole")
-	assert_true(count.contains("Margine +5"), "e il margine col suo nome")
-	assert_false(count.contains("S 5"), "niente sigle")
+	assert_true(count.contains("A 9 · B 3 · mucchio 3"), "le due parti e il mucchio, in parole: %s" % count)
+	assert_true(count.contains("Margine +6"), "e il margine col suo nome")
+	assert_false(count.contains("S 9") or count.contains("O 3"), "niente sigle")
+	assert_false(count.to_lower().contains("dado") or count.contains("1d6"), "e niente dado")
 	assert_eq(str(board._verdict.text), "Passa senza discussione", "l'esito sta a parte, grande")
-	board._render_outcome({"die": 0})
-	assert_eq(str(board._verdict.text), "", "prima del dado non c'e' un esito")
-	assert_true(str(board._outcome.text).contains("dado"), "e il conto dice che il dado non e' ancora tirato")
+	board._render_outcome({
+		"pile": 3,
+		"result": {"outcome": "COUNTER", "support_total": 2, "oppose_total": 4, "margin": -2},
+	})
+	assert_eq(str(board._verdict.text), "Vince l'altra domanda", "e la B che vince ha il suo nome")
+	board._render_outcome({"pile": 3})
+	assert_eq(str(board._verdict.text), "", "prima del voto non c'e' un esito")
+	assert_true(str(board._outcome.text).contains("mucchio"), "e il conto dice quanto vale il mucchio")
+	assert_true(str(board._outcome.text).contains("3"), "col suo numero")
 	board.free()

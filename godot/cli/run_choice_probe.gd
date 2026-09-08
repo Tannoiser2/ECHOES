@@ -10,18 +10,22 @@ extends SceneTree
 ## sonda di testo dice quali frasi il motore ha prodotto; questa dice quali non
 ## ha prodotto, e - la parte che serve per decidere cosa fare - **perche'**.
 ##
-## Tre modi diversi per cui una proposta non arriva ai voti, e vogliono tre
-## rimedi diversi:
+## Dal Consiglio a due domande (D-467, D-472) il tavolo non vota una proposta:
+## la carta mette ai voti **le sue due domande** — quella che il proponente
+## prende (A) contro l'altra (B) — e il mondo ricorda quella che vince. Le
+## proposte sono uscite dal codice con il Consiglio di D-280, e questa sonda
+## non le legge piu'. Tre modi diversi per cui una domanda scritta non decide
+## mai niente, e vogliono tre rimedi diversi:
 ##
-##   - **la sua domanda non viene mai posta**: e' un problema di domande, e si
-##     cura sulla domanda (e' quello che ha curato D-061);
-##   - **la domanda si pone ma la proposta non e' mai eleggibile**: la clausola
-##     di eligibility non si avvera nei mondi che il gioco produce davvero, e va
-##     riscritta o tolta;
-##   - **e' eleggibile e non viene mai scelta**: la policy la giudica sempre
-##     peggiore. O e' scritta male, o e' scritta per un tavolo di persone che
-##     hanno ragioni che un ottimizzatore non ha - e allora la si misura con
-##     `run_playtest.gd`, non qui.
+##   - **la sua carta non arriva mai al Consiglio**: e' un problema di mazzetto
+##     o di soglia, non della domanda;
+##   - **arriva, ma non e' mai eleggibile come A**: la clausola di eligibility
+##     non si avvera nei mondi che il gioco produce davvero, e la domanda sta
+##     sul tavolo solo come Contro;
+##   - **e' sul tavolo e non vince mai**: nessuna parte la porta oltre il
+##     mucchio, o la porta sempre l'altra. O e' scritta male, o e' scritta per
+##     un tavolo di persone che hanno ragioni che un ottimizzatore non ha - e
+##     allora la si misura con `run_playtest.gd`, non qui.
 ##
 ## La sonda non decide quale dei tre sia: li separa, che e' quello che serve per
 ## non tirare a indovinare.
@@ -55,10 +59,13 @@ func _initialize() -> void:
 		quit(4)
 		return
 
-	var asked: Dictionary = {}     # question_id -> volte posta
-	var open_questions: Dictionary = {}  # question_id -> volte sul tavolo
-	var offered: Dictionary = {}   # proposition_id -> volte disponibile
-	var chosen: Dictionary = {}    # proposition_id -> volte messa ai voti
+	var asked: Dictionary = {}     # question_id -> volte presa dal proponente (A)
+	var open_questions: Dictionary = {}  # question_id -> volte eleggibile sul tavolo
+	# Le due colonne del Consiglio a due domande (D-467), al posto delle
+	# proposte offerte e scelte: quante volte la domanda e' stata la **Contro**
+	# (B) e quante volte ha **vinto** il voto.
+	var countered: Dictionary = {}   # question_id -> volte messa ai voti come B
+	var won: Dictionary = {}         # question_id -> volte vinta
 	# Il diritto di proporre (issue #22): quante volte un seggio se lo e' preso
 	# con CLAIM invece di riceverlo dal posto (D-036, D-063).
 	var claims_laid: Dictionary = {}    # entity_id -> Claim creati
@@ -91,7 +98,7 @@ func _initialize() -> void:
 			return
 		session.confluence.step_changed.connect(
 			func(step: String, context: Dictionary) -> void:
-				_collect(session, step, context, asked, open_questions, offered, chosen)
+				_collect(session, step, context, asked, open_questions, countered, won)
 		)
 		var table: RefCounted = PolicyDecider.new(session.log)
 		if mixed:
@@ -139,7 +146,7 @@ func _initialize() -> void:
 			]
 		)
 	)
-	_report(data, chronicle_id, asked, open_questions, offered, chosen)
+	_report(data, chronicle_id, asked, open_questions, countered, won)
 	_report_claims(claims_laid, claims_forced, int(seized["n"]), died, int(spoken["n"]), int(spent["n"]), int(lost["n"]))
 	quit(0)
 
@@ -200,32 +207,37 @@ func _collect(
 	context: Dictionary,
 	asked: Dictionary,
 	open_questions: Dictionary,
-	offered: Dictionary,
-	chosen: Dictionary
+	countered: Dictionary,
+	won: Dictionary
 ) -> void:
-	if step != "PROPOSITION":
+	# Il passo PROPOSITION non esiste piu' (D-472): i passi che il Consiglio
+	# annuncia sono QUESTION, all'apertura, e RESOLVED, a voto fatto.
+	if step == "QUESTION":
+		# Quali domande erano eleggibili sul tavolo in quel momento, non solo
+		# quella scelta: senza questo, «mai posta» non distingue una domanda
+		# che il mondo non apre mai da una che il proponente scarta sempre.
+		for question in session.confluence.available_questions():
+			var id: String = str((question as Dictionary)["id"])
+			open_questions[id] = int(open_questions.get(id, 0)) + 1
+		return
+	if step != "RESOLVED":
 		return
 	# La domanda si conta **qui** e non all'apertura: `open()` sceglie un default
 	# e poi il proponente puo' cambiarlo (§12.2 B). Contata all'apertura, questa
-	# sonda ha detto per un giro che una domanda non veniva mai posta mentre le
-	# sue proposte venivano votate quindici volte.
+	# sonda ha detto per un giro che una domanda non veniva mai posta mentre
+	# veniva votata quindici volte.
 	var question_id: String = str(context["question_id"])
 	asked[question_id] = int(asked.get(question_id, 0)) + 1
-	# E quali domande erano sul tavolo in quel momento, non solo quella scelta:
-	# senza questo, «mai posta» non distingue una domanda che il mondo non apre
-	# mai da una che il proponente scarta sempre.
-	for question in session.confluence.available_questions():
-		var id: String = str((question as Dictionary)["id"])
-		open_questions[id] = int(open_questions.get(id, 0)) + 1
-	# Le proposte disponibili si leggono **qui** e non dai dati: `eligibility` si
-	# valuta contro il mondo di questo momento, ed e' esattamente la differenza
-	# fra «scritta» e «offerta» che questa sonda esiste per misurare.
-	for proposition in session.confluence.available_propositions():
-		var id: String = str((proposition as Dictionary)["id"])
-		offered[id] = int(offered.get(id, 0)) + 1
-	var picked: String = str(context.get("proposition_id", ""))
-	if picked != "":
-		chosen[picked] = int(chosen.get(picked, 0)) + 1
+	# L'altra domanda della carta e' la B (D-467): sta ai voti anche lei, e
+	# non passa dall'eligibility — e' sul tavolo perche' la carta la porta.
+	var other: String = str(
+		((context.get("sides", {}) as Dictionary).get("B", {}) as Dictionary).get("question_id", "")
+	)
+	if other != "":
+		countered[other] = int(countered.get(other, 0)) + 1
+	var winner: String = str((context.get("result", {}) as Dictionary).get("winning_question_id", ""))
+	if winner != "":
+		won[winner] = int(won.get(winner, 0)) + 1
 
 
 func _report(
@@ -233,16 +245,17 @@ func _report(
 	chronicle_id: String,
 	asked: Dictionary,
 	open_questions: Dictionary,
-	offered: Dictionary,
-	chosen: Dictionary
+	countered: Dictionary,
+	won: Dictionary
 ) -> void:
-	var never_asked: Array = []
-	var never_offered: Array = []
-	var never_chosen: Array = []
+	var never_on_table: Array = []
+	var never_eligible: Array = []
+	var never_won: Array = []
 	var written: int = 0
 
-	# **Domande e Proposte stanno sulla carta** (D-462): si leggono dalla
-	# scheda fusa di ogni Tensione, non dal template, che non le porta piu'.
+	# **Le Domande stanno sulla carta** (D-462): si leggono dalla scheda fusa
+	# di ogni Tensione, non dal template, che non le porta piu'. Le proposte
+	# rimaste nei dati non si leggono: il motore non le vota (D-472).
 	var allowed: Array = data.chronicles[chronicle_id]["confluence_templates"] as Array
 	var tension_ids: Array = data.tensions.keys()
 	tension_ids.sort()
@@ -254,47 +267,38 @@ func _report(
 		print("%s — %s" % [str(tension_id), str(data.tensions[tension_id].get("title", ""))])
 		for question in template.get("questions", []):
 			var question_id: String = str((question as Dictionary)["id"])
+			written += 1
 			var times: int = int(asked.get(question_id, 0))
 			var open_times: int = int(open_questions.get(question_id, 0))
+			var against: int = int(countered.get(question_id, 0))
+			var victories: int = int(won.get(question_id, 0))
+			# Le tre porte, dalla piu' stretta: mai sul tavolo, mai eleggibile
+			# come A (sta ai voti solo come Contro), ai voti e mai vinta.
 			var why: String = ""
-			if times == 0:
-				why = "  <- mai aperta dal mondo" if open_times == 0 else "  <- aperta e mai scelta"
-			print("  [%3dx su %3d aperte] %-26s%s" % [times, open_times, question_id, why])
-			for proposition in template.get("propositions", []):
-				var item: Dictionary = proposition
-				if str(item["question_id"]) != question_id:
-					continue
-				written += 1
-				var up: int = int(offered.get(str(item["id"]), 0))
-				var picked: int = int(chosen.get(str(item["id"]), 0))
-				var note: String = ""
-				if times == 0:
-					note = (
-						"  <- la sua domanda non si pone mai"
-						if open_times > 0
-						else "  <- la sua domanda non si apre mai"
-					)
-					never_asked.append(str(item["id"]))
-				elif up == 0:
-					note = "  <- mai eleggibile"
-					never_offered.append(str(item["id"]))
-				elif picked == 0:
-					note = "  <- offerta e mai scelta"
-					never_chosen.append(str(item["id"]))
-				print(
-					"        offerta %3d  scelta %3d   %-28s%s"
-					% [up, picked, str(item["id"]), note]
-				)
+			if times + against == 0:
+				why = "  <- la sua carta non arriva mai al Consiglio"
+				never_on_table.append(question_id)
+			elif open_times == 0:
+				why = "  <- mai eleggibile: ai voti solo come Contro"
+				never_eligible.append(question_id)
+				if victories == 0:
+					never_won.append(question_id)
+			elif victories == 0:
+				why = "  <- ai voti e mai vinta"
+				never_won.append(question_id)
+			print("  [A %3dx  B %3dx  vinta %3dx  su %3d eleggibili] %-26s%s" % [
+				times, against, victories, open_times, question_id, why
+			])
 
 	print("")
 	print("== PERCHE' NON SUCCEDE ==")
-	print("  proposte scritte: %d" % written)
-	_list("la domanda non si pone mai", never_asked)
-	_list("mai eleggibile", never_offered)
-	_list("offerta e mai scelta", never_chosen)
-	var dead: int = never_asked.size() + never_offered.size() + never_chosen.size()
+	print("  domande scritte: %d" % written)
+	_list("la sua carta non arriva mai al Consiglio", never_on_table)
+	_list("mai eleggibile come A", never_eligible)
+	_list("ai voti e mai vinta", never_won)
+	var dead: int = never_on_table.size() + never_won.size()
 	print("")
-	print("  mai ai voti: %d su %d" % [dead, written])
+	print("  mai decise: %d su %d" % [dead, written])
 
 
 func _list(title: String, ids: Array) -> void:

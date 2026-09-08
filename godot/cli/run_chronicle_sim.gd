@@ -206,13 +206,13 @@ func _print_summary(
 	print("  Confluence: %d" % int(session.world["confluence_count"]))
 	for result in report["confluences"]:
 		print(
-			"    %s  %s  S%d O%d W%+d M%d%s"
+			"    %s  %s  A%d B%d mucchio %d M%d%s"
 			% [
 				str(result["confluence_id"]),
 				str(result["outcome"]),
 				int(result["support_total"]),
 				int(result["oppose_total"]),
-				int(result["world_factor"]),
+				int(result.get("pile", 0)),
 				int(result["margin"]),
 				"  (Echo)" if bool(result["echo_created"]) else "",
 			]

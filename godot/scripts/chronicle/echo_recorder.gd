@@ -92,50 +92,19 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 
 
 func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> String:
-	var outcome: String = str(result["outcome"])
-	# **A due domande** (D-467): il registro tiene la domanda che ha vinto, o
-	# che nessuna e' arrivata al mucchio. Niente proposta, niente dado.
-	if context.has("sides"):
-		var winner: String = str(result.get("winner", ""))
-		var count: String = "A%d B%d, mucchio %d" % [
-			int(result["support_total"]), int(result["oppose_total"]), int(result.get("pile", 0)),
-		]
-		if winner == "":
-			return "%s: nessuna delle due domande arrivo' al mucchio (%s)." % [str(template["title"]), count]
-		var question_id: String = str(((context["sides"] as Dictionary)[winner] as Dictionary).get("question_id", ""))
-		var asked: String = str(template["title"])
-		for entry in template.get("questions", []) as Array:
-			if str((entry as Dictionary).get("id", "")) == question_id:
-				asked = str((entry as Dictionary).get("text", ""))
-		if narrative != null:
-			asked = narrative.fill(asked, context.get("text_bindings", {}))
-		return "Il Consiglio rispose: %s (%s)." % [asked, count]
-	var proposition_summary: String = ""
-	for proposition in template.get("propositions", []):
-		if str(proposition["id"]) != str(context.get("proposition_id", "")):
-			continue
-		# How a proposal falls reads nothing like how it triumphs, and the Truth
-		# register is where a Chronicle gets reread. A band with no variant of its
-		# own falls back to the single summary (D-032).
-		var variants: Dictionary = proposition.get("echo_summaries", {})
-		proposition_summary = str(
-			variants.get(outcome, proposition.get("echo_summary", proposition["text"]))
-		)
-		break
-	if proposition_summary == "":
-		proposition_summary = str(template["title"])
-	if narrative != null:
-		proposition_summary = narrative.fill(proposition_summary, context.get("text_bindings", {}))
-	if outcome == ConfluenceResolution.FAILURE:
-		return "%s La proposta cadde (S%d O%d M%d)." % [
-			proposition_summary,
-			int(result["support_total"]),
-			int(result["oppose_total"]),
-			int(result["margin"]),
-		]
-	return "%s (S%d O%d M%d)." % [
-		proposition_summary,
-		int(result["support_total"]),
-		int(result["oppose_total"]),
-		int(result["margin"]),
+	# Il registro tiene la domanda che ha vinto, o che nessuna e' arrivata al
+	# mucchio (D-467). Niente proposta, niente dado: da D-472 e' l'unico giro.
+	var winner: String = str(result.get("winner", ""))
+	var count: String = "A%d B%d, mucchio %d" % [
+		int(result["support_total"]), int(result["oppose_total"]), int(result.get("pile", 0)),
 	]
+	if winner == "":
+		return "%s: nessuna delle due domande arrivo' al mucchio (%s)." % [str(template["title"]), count]
+	var question_id: String = str(((context["sides"] as Dictionary)[winner] as Dictionary).get("question_id", ""))
+	var asked: String = str(template["title"])
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) == question_id:
+			asked = str((entry as Dictionary).get("text", ""))
+	if narrative != null:
+		asked = narrative.fill(asked, context.get("text_bindings", {}))
+	return "Il Consiglio rispose: %s (%s)." % [asked, count]

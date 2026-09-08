@@ -87,18 +87,22 @@ class Spy extends RefCounted:
 	func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
 		return await inner.choose_question(context, options, session)
 
-	func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
-		return await inner.choose_proposition(context, options, session)
 
-	# Le tre scelte del Consiglio a due domande (D-467): si inoltrano com'e'.
-	## **A due domande la posizione e' la parte** (D-467): chi sta con A
-	## sostiene, chi prende la B si oppone. Il giro nuovo non chiede piu'
-	## `choose_stance`, e un cane che annotava solo li' vedeva zero Consigli.
+	## **La posizione e' la parte** (D-467): chi sta con A sostiene, chi prende
+	## la B si oppone. Il giro non chiede piu' `choose_stance` (D-472), e un
+	## cane che annotava solo li' vedeva zero Consigli.
 	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
 		var choice: Dictionary = await inner.choose_side(entity_id, context, offer, session)
 		_note_the_pile(context, session)
 		var record: Dictionary = _current(context)
 		var side: String = str(choice.get("side", ""))
+		# `--no-abstain=support|oppose`: la parte forzata, se ha caselle.
+		if forced != "":
+			var wanted: String = "A" if forced == "support" else "B"
+			if not (offer.get(wanted, []) as Array).is_empty() and wanted != side:
+				forced_count += 1
+				side = wanted
+				choice = {"side": side, "voice_id": str(((offer[side] as Array)[0] as Dictionary)["id"])}
 		if not offer.has(side) or (offer.get(side, []) as Array).is_empty():
 			side = "A" if not (offer.get("A", []) as Array).is_empty() else "B"
 		(record["stances"] as Dictionary)[entity_id] = "SUPPORT" if side == "A" else "OPPOSE"
@@ -110,19 +114,6 @@ class Spy extends RefCounted:
 	func choose_raise(entity_id: String, context: Dictionary, menu: Array, session: RefCounted) -> String:
 		return await inner.choose_raise(entity_id, context, menu, session)
 
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		var declared: Dictionary = await inner.choose_stance(entity_id, context, session)
-		_note_the_pile(context, session)
-		if forced != "" and str(declared.get("stance", "ABSTAIN")) == "ABSTAIN":
-			forced_count += 1
-			match forced:
-				"support":
-					declared = {"stance": "SUPPORT", "clause_id": ""}
-				"oppose":
-					declared = {"stance": "OPPOSE", "clause_id": ""}
-		var record: Dictionary = _current(context)
-		(record["stances"] as Dictionary)[entity_id] = str(declared.get("stance", "ABSTAIN"))
-		return declared
 
 	func choose_commit(
 		entity_id: String, context: Dictionary, limit: int, session: RefCounted
@@ -134,26 +125,6 @@ class Spy extends RefCounted:
 
 	func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 		return await inner.choose_recovery(context, session)
-
-	func choose_benefits(
-		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-	) -> Array:
-		return await inner.choose_benefits(entity_id, context, menu, session)
-
-	func choose_costs(
-		entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
-	) -> Array:
-		return await inner.choose_costs(entity_id, context, menu, due, session)
-
-	func choose_cost_token(
-		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-	) -> String:
-		return await inner.choose_cost_token(entity_id, context, menu, session)
-
-	func choose_counterclaim(
-		entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
-	) -> Dictionary:
-		return await inner.choose_counterclaim(entity_id, context, offer, session)
 
 
 func _initialize() -> void:

@@ -402,7 +402,9 @@ func test_an_open_council_can_always_resolve_its_slots() -> void:
 		new_session(FIRST_SEED + i, false)
 		session.confluence.step_changed.connect(
 			func(step: String, _context: Dictionary) -> void:
-				if step != "PROPOSITION":
+				# Il passo «PROPOSITION» e' uscito con la proposta (D-472): un
+				# Consiglio aperto dice «QUESTION», con le due parti gia' fatte.
+				if step != "QUESTION":
 					return
 				seen["councils"] = int(seen["councils"]) + 1
 				var bindings: Dictionary = session.confluence.effect_context()

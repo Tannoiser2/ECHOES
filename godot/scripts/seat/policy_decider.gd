@@ -10,12 +10,13 @@ extends RefCounted
 ## no hand-written per-Entity AI - and plays them: it scouts what it needs to
 ## know, occupies the Regions its Destiny names, stocks the Assets that will be
 ## relevant, and steers the Tensions it cares about when they get close to the
-## edge. In a Confluence it scores every proposition against its own Destiny and
-## supports, opposes or abstains accordingly.
+## edge. In a Confluence it scores the two questions of the card and their
+## boxes against its own Destiny, takes a side and places pedine accordingly
+## (D-467).
 ##
 ## Deterministic, but not RNG-free: it breaks a tie between equally useful
-## propositions with the session RNG, because always taking the first option on
-## the list left two thirds of the authored propositions unplayable. Same seed,
+## questions with the session RNG, because always taking the first option on
+## the list left two thirds of the authored content unplayable. Same seed,
 ## same run.
 
 const Ids := preload("res://scripts/core/ids.gd")
@@ -368,8 +369,8 @@ func _consequences_satisfying(condition: Dictionary, entity_id: String, session:
 	return out
 
 
-## Which Tensions can produce that Consequence, through a proposition of their
-## own Confluence template.
+## Which Tensions can produce that Consequence, through the base outcome of
+## one of the two questions on their card (D-469).
 ##
 ## Solo i template che QUESTA Chronicle elenca: la biblioteca ne porta anche
 ## per altre ere - la proposta che legge una leggenda sta in un template che il
@@ -381,17 +382,17 @@ func _tensions_offering(consequence_id: String, session: RefCounted) -> Array:
 		.get("confluence_templates", [])
 	)
 	var out: Array = []
-	# **Le Proposte stanno sulla carta** (D-462): si legge la scheda fusa di ogni
-	# Tensione in gioco, e si tiene solo se il suo template e' di questa
-	# Chronicle. Prima si leggeva il template crudo, che portava le Proposte di
-	# sette carte su sessanta: per le altre la policy non vedeva nessuna
-	# Conseguenza in offerta.
+	# **Le domande stanno sulla carta** (D-462, D-469): si legge la scheda fusa
+	# di ogni Tensione in gioco, e si tiene solo se il suo template e' di
+	# questa Chronicle. Prima si leggeva il template crudo, che portava le
+	# domande di sette carte su sessanta: per le altre la policy non vedeva
+	# nessuna Conseguenza in offerta.
 	for tension_id in session.world["tensions"]:
 		var sheet: Dictionary = session.data.confluence_template_for(str(tension_id))
 		if sheet.is_empty() or not listed.has(str(sheet.get("id", ""))):
 			continue
-		for proposition in sheet.get("propositions", []):
-			if ((proposition as Dictionary).get("success_consequences", []) as Array).has(consequence_id):
+		for question in sheet.get("questions", []):
+			if ((question as Dictionary).get("base", []) as Array).has(consequence_id):
 				out.append(str(tension_id))
 				break
 	return out
@@ -814,7 +815,6 @@ func _choose_intent(entity_id: String, _ao_index: int, session: RefCounted) -> D
 	return {"template": "PASS", "params": {}}
 
 
-
 ## L'intenzione diventa una carta. La regola di spesa e' quella che il
 ## committente ha chiesto — «un bilanciamento di come usare le cose che la carta
 ## ti permette di fare» — e qui prende la forma piu' semplice che si possa
@@ -1230,26 +1230,14 @@ func _targets_for(
 				if domain == "" or seen.has(domain):
 					continue
 				seen[domain] = true
-				# **E si prenota solo se non c'e' niente da strappare** — questo
-				# era vero **finche' il gettone non serviva a niente**. In questa
-				# Chronicle la parola si prende in un colpo, quindi con una
-				# domanda gia' matura sul tavolo prenotarne un'altra sembrava
-				# spendere l'Azione per un diritto inutile.
-				#
-				# **Da D-417 il gettone e' moneta** (ISSUES 122 + 125): i primi
-				# due benefici sono gratis, il terzo lo compra un gettone di
-				# rivendicazione, e i gettoni si coniano solo cosi'. Prenotare
-				# non e' piu' «un diritto che non serve»: e' **mettere da parte
-				# quello con cui si comprera' al prossimo Consiglio**.
-				#
-				# Quindi si prenota lo stesso quando la borsa e' vuota — che e'
-				# la condizione in cui una carta RIVENDICARE in mano era una
-				# carta che non serviva a niente, e faceva passare il turno.
-				if (
-					matura
-					and _claim_in_one_move(session)
-					and session.confluence.claim_tokens(entity_id) > 0
-				):
+				# **E si prenota solo se non c'e' niente da strappare.** In
+				# questa Chronicle la parola si prende in un colpo, quindi con
+				# una domanda gia' matura sul tavolo prenotarne un'altra e'
+				# spendere l'Azione per un diritto che non serve. Fra D-417 e
+				# D-471 il gettone di rivendicazione era la moneta del
+				# Consiglio e si prenotava per coniarlo; a due domande il
+				# Consiglio non spende gettoni (D-472), e la ragione e' caduta.
+				if matura and _claim_in_one_move(session):
 					continue
 				out.append({"mode": "CREATE", "domain": domain})
 		"FORGE":
@@ -1481,14 +1469,16 @@ func _deck_has_cards(family: String, session: RefCounted) -> bool:
 ## forty Chronicles**. Its propositions could not be voted, and their Consequences
 ## could not fire: that is the whole of O-8.
 ##
-## A question is worth what the best proposition behind it is worth. Ties break
-## on the session RNG, for the same reason they do in `choose_proposition`.
+## Pick the question whose base outcome serves this Destiny best (D-467): a
+## question is worth what it leaves on the world if it wins. Ties are broken
+## with the session RNG, so the choice stays deterministic per seed and the
+## first question on the card is not always the one asked (D-021).
 func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
 	var proponent: String = str(context["proponent"])
 	var best_score: int = -999
 	var tied: Array = []
 	for question in options:
-		var score: int = _best_proposition_score(str(question["id"]), context, session)
+		var score: int = _question_base_score(str(question["id"]), context, session)
 		if score > best_score:
 			best_score = score
 			tied = [str(question["id"])]
@@ -1499,71 +1489,6 @@ func choose_question(context: Dictionary, options: Array, session: RefCounted) -
 	if tied.size() == 1:
 		return str(tied[0])
 	return str(tied[session.rng.range_int(0, tied.size() - 1)])
-
-
-## The best a proponent can do with a question: the highest-scoring proposition
-## that is actually legal behind it. Eligibility is checked the same way the
-## Council checks it, so the policy never picks a question it cannot use.
-func _best_proposition_score(question_id: String, context: Dictionary, session: RefCounted) -> int:
-	var template: Dictionary = _council_template(context, session)
-	if (template as Dictionary).is_empty():
-		return -999
-	var proponent: String = str(context["proponent"])
-	var bindings: Dictionary = session.confluence.effect_context()
-	var best: int = -999
-	for proposition in template["propositions"]:
-		if str(proposition["question_id"]) != question_id:
-			continue
-		if not session.confluence.conditions.all_hold(proposition["eligibility"], bindings):
-			continue
-		best = maxi(best, _score_proposition(proposition, proponent, proponent, session))
-	return best
-
-
-## Pick the proposition whose world changes serve this Destiny best.
-## Pick what serves your Destiny best - and when nothing does, do not always pick
-## the first thing on the list.
-##
-## Most propositions score 0 against most Destinies, so taking `options[0]` on a
-## tie meant twelve of the eighteen authored propositions were never chosen once
-## in forty Chronicles, and their Consequences never fired. That is the measuring
-## instrument being wrong, not the rules - the same lesson as D-021. The tie is
-## broken with the session RNG, so it stays deterministic per seed.
-func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
-	var proponent: String = str(context["proponent"])
-	var best_score: int = -999
-	var tied: Array = []
-	for option in options:
-		var score: int = _score_proposition(option, proponent, proponent, session)
-		if score > best_score:
-			best_score = score
-			tied = [str(option["id"])]
-		elif score == best_score:
-			tied.append(str(option["id"]))
-	if tied.size() == 1:
-		return str(tied[0])
-	return str(tied[session.rng.range_int(0, tied.size() - 1)])
-
-
-## How much a proposition's consequences help (+) or hurt (-) `entity_id`.
-##
-## Reads the Consequence Effects against that Entity's own Destiny conditions:
-## a tag it needs, a Region it must stand in, a Region it must control. This is
-## what turns "the throne requisitions the grain" into "and it clears my people
-## out of the Valley, which is half my Victory" - and therefore into a fight.
-func _score_proposition(
-	proposition: Dictionary, entity_id: String, proponent_id: String, session: RefCounted
-) -> int:
-	var goals: Dictionary = _tag_goals(entity_id, session)
-	var bindings: Dictionary = session.confluence.effect_context()
-	var score: int = 0
-	for consequence_id in proposition["success_consequences"]:
-		var consequence: Variant = session.data.consequences.get(str(consequence_id))
-		if consequence == null:
-			continue
-		for effect in consequence["effects"]:
-			score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
-	return score
 
 
 ## Quanto una Regione e' mia: 2 se la tengo, 1 se ci ho una presenza o una
@@ -1949,26 +1874,6 @@ func _counts_control(entity_id: String, session: RefCounted) -> bool:
 	return false
 
 
-## Support what helps you, block what hurts you, sit out what does neither.
-func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-	var proposition: Dictionary = _current_proposition(context, session)
-	if proposition.is_empty():
-		return {"stance": "ABSTAIN", "clause_id": ""}
-	var score: int = _score_proposition(proposition, entity_id, str(context["proponent"]), session)
-	if score > 0:
-		return {"stance": "SUPPORT", "clause_id": ""}
-	# Quello che costa si blocca (D-454): la CONDITION non c'e' piu', e la
-	# condizione che un avversario pone e' il costo che sceglie (D-387).
-	if score < 0:
-		return {"stance": "OPPOSE", "clause_id": ""}
-	# **Se astenersi costa, non ci si astiene** (D-455): a chi la proposta non
-	# tocca conviene stare sul fronte che vince — quello di chi propone, che
-	# ha le carte e il silenzio-assenso dalla sua — con una carta in mano.
-	if _debate_points_active(session) and not session.service.hand(entity_id).is_empty():
-		return {"stance": "SUPPORT", "clause_id": ""}
-	return {"stance": "ABSTAIN", "clause_id": ""}
-
-
 ## La Chronicle fa pagare l'astensione, o premia chi vince con le carte (D-455)?
 func _debate_points_active(session: RefCounted) -> bool:
 	var chronicle: Variant = session.data.chronicles.get(str(session.world.get("chronicle_id", "")))
@@ -1983,25 +1888,25 @@ func _debate_points_active(session: RefCounted) -> bool:
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 	if limit <= 0:
 		return []
-	if session.confluence.sides_open():
-		return _commit_for_my_side(entity_id, context, limit, session)
-	var proposition: Dictionary = _current_proposition(context, session)
-	var stake: int = 1
-	if not proposition.is_empty():
-		stake = absi(_score_proposition(proposition, entity_id, str(context["proponent"]), session))
-	if entity_id == str(context["proponent"]):
-		stake = maxi(stake, 2)
-	var wanted: int = clampi(stake, 0, limit)
-	# Con l'astensione a prezzo (D-455) una carta si mette sempre: e' quella
-	# che vale il punto, o che evita di perderlo.
-	if wanted <= 0 and _debate_points_active(session):
-		wanted = 1
-	if wanted <= 0:
-		return []
-	var ranked: Array = session.service.ranked_hand_for_tension(
-		entity_id, str(context["tension_id"])
-	)
-	return ranked.slice(0, wanted)
+	return _commit_for_my_side(entity_id, context, limit, session)
+
+
+## Quanto vale, per chi propone, l'esito di base di una domanda della carta:
+## le Conseguenze scritte sulla domanda, lette come al voto (D-469).
+func _question_base_score(question_id: String, context: Dictionary, session: RefCounted) -> int:
+	var template: Dictionary = session.data.confluence_template_for(str(context.get("tension_id", "")))
+	if template.is_empty():
+		return -999
+	var proponent: String = str(context["proponent"])
+	var goals: Dictionary = _tag_goals(proponent, session)
+	var bindings: Dictionary = session.confluence.effect_context()
+	var score: int = 0
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) != question_id:
+			continue
+		for consequence_id in ((entry as Dictionary).get("base", []) as Array):
+			score += _consequence_score(str(consequence_id), proponent, proponent, goals, session, bindings)
+	return score
 
 
 ## **Le carte per arrivare al mucchio** (D-467 §4, giro 4 in D-471).
@@ -2061,120 +1966,6 @@ func _commit_for_my_side(entity_id: String, context: Dictionary, limit: int, ses
 
 func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:
 	return {}
-
-
-## **L'economia del Consiglio, giocata dal cervello** (D-387).
-##
-## Comprare non e' gratis: il primo beneficio lo e', ogni altro costa **un
-## gettone di rivendicazione** — una moneta che si guadagna un turno prima,
-## giocando una carta Asset dalla sua faccia RIVENDICARE. Quindi il conto e'
-## cambiato, ed e' piu' semplice di prima: *questo beneficio in piu' vale il
-## gettone che mi costa?* Il prezzo che gli avversari sceglieranno non entra
-## piu' nel conto, perche' non e' piu' il prezzo di quello che compro — e'
-## quello che loro decidono di pagare per farmelo pagare.
-func choose_benefits(
-	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-) -> Array:
-	if menu.is_empty():
-		return []
-	var goals: Dictionary = _tag_goals(entity_id, session)
-	var bindings: Dictionary = session.confluence.effect_context()
-	var ranked: Array = []
-	for voice in menu:
-		# **La pedina la posa dove gli conviene** (D-438, ISSUES 106): una
-		# casella che muove una domanda si pesa su ogni segnalino in tavola, e
-		# si compra sul migliore. Il punteggio e' quello di sempre; cambia solo
-		# dove si guarda.
-		var placed: Dictionary = _best_placement(
-			voice as Dictionary, entity_id, goals, session, bindings
-		)
-		ranked.append({
-			"id": str((voice as Dictionary)["id"]),
-			"score": int(placed["score"]),
-			"question": str(placed["question"]),
-		})
-	ranked.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		return int(a["score"]) > int(b["score"])
-	)
-	# **Il tetto lo dicono i gettoni** (D-387): il primo beneficio e' gratis,
-	# e oltre quello si arriva fin dove la borsa arriva. Il tetto di tre resta,
-	# perche' sono le pedine che stanno sulla carta.
-	var ceiling: int = mini(ranked.size(), session.confluence.benefit_ceiling())
-	var bought: Array = [_pedina(ranked[0] as Dictionary)]
-	for i in range(1, ceiling):
-		var entry: Dictionary = ranked[i] as Dictionary
-		# **Un gettone si spende per qualcosa che serve.** Non c'e' piu' un
-		# prezzo da pareggiare: c'e' una moneta da non buttare. Una casella che
-		# non porta niente a chi propone non vale il gettone, e il gettone
-		# aspetta il Consiglio dopo.
-		if int(entry["score"]) <= 0:
-			break
-		bought.append(_pedina(entry))
-	return bought
-
-
-## La pedina come la riceve il motore: un id secco quando parla della domanda
-## in discussione, «questa voce, su quella domanda» quando il proponente ne ha
-## indicata un'altra col dito (D-416).
-static func _pedina(entry: Dictionary) -> Variant:
-	if str(entry.get("question", "")) != "":
-		return {"id": str(entry["id"]), "question": str(entry["question"])}
-	return str(entry["id"])
-
-
-## L'id di una pedina, comunque sia posata.
-static func _pedina_id(entry: Variant) -> String:
-	if entry is Dictionary:
-		return str((entry as Dictionary).get("id", ""))
-	return str(entry)
-
-
-## **«La sceglie chi propone»** (parola del committente, ISSUES 106). Una
-## casella che agisce su una domanda — ABBASSA LA DOMANDA, UNA DOMANDA VELATA
-## SI SCOPRE — di suo parla di quella in discussione. Ma i segnalini stanno
-## tutti sul tavolo, e il proponente puo' posare la pedina su quello che gli
-## serve: qui si pesa la voce su ogni domanda in gioco e si tiene la migliore.
-##
-## A parita' vince quella in discussione, che e' la pedina senza nome: cosi'
-## la partita non cambia dove il nome non aggiunge niente, e il verbale dice
-## «su ...» solo quando il dito ha indicato davvero un altro segnalino. Una
-## domanda gia' a terra non si indica: abbassarla non e' un gesto.
-func _best_placement(
-	voice: Dictionary, entity_id: String, goals: Dictionary, session: RefCounted,
-	bindings: Dictionary
-) -> Dictionary:
-	var best: Dictionary = {
-		"score": _voice_score(voice, "benefits", entity_id, entity_id, goals, session, bindings),
-		"question": "",
-	}
-	if not _names_a_question(voice):
-		return best
-	var discussed: String = str(session.confluence.current.get("tension_id", ""))
-	var ids: Array = (session.world["tensions"] as Dictionary).keys()
-	ids.sort()
-	for tension_id in ids:
-		if str(tension_id) == discussed:
-			continue
-		if session.tensions.value(str(tension_id)) <= 0:
-			continue
-		var named: Dictionary = voice.duplicate()
-		named["dove"] = "QUESTION"
-		named["question"] = str(tension_id)
-		var score: int = _voice_score(
-			named, "benefits", entity_id, entity_id, goals, session, bindings
-		)
-		if score > int(best["score"]):
-			best = {"score": score, "question": str(tension_id)}
-	return best
-
-
-## Una voce che agisce su una domanda e non ne chiama gia' una per nome sulla
-## carta: e' l'unica su cui il dito del proponente ha qualcosa da scegliere.
-static func _names_a_question(voice: Dictionary) -> bool:
-	var spec: Dictionary = CouncilEconomy.BENEFIT_VERBS.get(str(voice.get("verb", "")), {})
-	if str(spec.get("on", "")) != "tension":
-		return false
-	return str(voice.get("dove", "FOCUS")) != "QUESTION"
 
 
 ## **Da che parte stare, e su quale casella** (D-467, giro 3).
@@ -2304,122 +2095,6 @@ func _is_friend(entity_id: String, other: String, session: RefCounted) -> bool:
 	return level == "ALLY" or level == "BOUND"
 
 
-## **E decide, prima, se pagare per far cadere** (D-419, ISSUES 119).
-##
-## Lo stesso gettone ha due usi, e sono uno la rinuncia dell'altro: su un costo
-## dice *«passi, ma paghi»*, contro dice *«questa non deve passare»*. Il
-## cervello sceglie il secondo quando **la proposta gli fa piu' male di quanto
-## un costo gliene possa togliere**, e quando il gettone puo' davvero cambiare
-## l'esito.
-##
-## Il metro e' quello di sempre, e non ce n'e' uno nuovo: quanto vale al
-## proponente quello che sta comprando. Se i benefici che ha posato gli valgono
-## piu' del costo piu' doloroso che gli si puo' mettere addosso, farlo pagare
-## non serve: bisogna fermarlo.
-func choose_opposition_token(
-	entity_id: String, context: Dictionary, session: RefCounted
-) -> bool:
-	if session.confluence.opposition_weight() <= 0:
-		return false
-	if session.confluence.claim_tokens(entity_id) <= 0:
-		return false
-	var proponent: String = str(context.get("proponent", ""))
-	if proponent == "" or proponent == entity_id:
-		return false
-	# Chi ha dichiarato di stare dalla parte della proposta non paga per farla
-	# cadere: il motore lo rifiuterebbe, e una richiesta che si sa rifiutata e'
-	# un'azione illegale in piu' nel verbale.
-	if session.confluence.stance_of(entity_id) == "SUPPORT":
-		return false
-
-	# Quanto guadagna il proponente da quello che ha gia' posato: e' il danno
-	# che si sta cercando di evitare.
-	var goals: Dictionary = _tag_goals(proponent, session)
-	var bindings: Dictionary = session.confluence.effect_context()
-	var guadagno: int = 0
-	for voice in (session.confluence.placed_benefit_voices() as Array):
-		guadagno += _voice_score(
-			voice, "benefits", proponent, proponent, goals, session, bindings
-		)
-	if guadagno <= 0:
-		return false
-
-	# E quanto potrei togliergli col gettone speso sull'altro fronte: il costo
-	# piu' doloroso ancora libero. Se fermarla vale meno che farla pagare, si
-	# posa il costo — e lo fa `choose_cost_token`, dopo.
-	var peggiore: int = 0
-	for voice_id in (session.confluence.price_menu()["cost"] as Array):
-		if session.confluence.priced_costs().has(str(voice_id)):
-			continue
-		var costo: Dictionary = session.confluence._voice("costs", str(voice_id))
-		if costo.is_empty():
-			continue
-		peggiore = mini(peggiore, _voice_score(
-			costo, "costs", proponent, proponent, goals, session, bindings
-		))
-	return guadagno > -peggiore
-
-
-## **Un avversario decide se pagare per far pagare** (D-387).
-##
-## La domanda non e' piu' *«quale prezzo, fra quelli dovuti»* — non e' piu'
-## dovuto niente. E': *ho un gettone, e c'e' un costo che fa abbastanza male al
-## proponente da valere la spesa?* Se no, ci si astiene, e la proposta passa
-## gratis: e' la cosa che prima non poteva succedere.
-func choose_cost_token(
-	entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-) -> String:
-	if menu.is_empty() or session.confluence.claim_tokens(entity_id) <= 0:
-		return ""
-	var chosen: Array = choose_costs(entity_id, context, menu, 1, session)
-	if chosen.is_empty():
-		return ""
-	# Un costo che al proponente non toglie niente non vale un gettone: si
-	# spende per fare male, non per posare una pedina.
-	var proponent: String = str(context.get("proponent", ""))
-	var voice: Dictionary = session.confluence._voice("costs", str(chosen[0]))
-	if voice.is_empty():
-		return ""
-	var score: int = _voice_score(
-		voice, "costs", proponent, proponent, _tag_goals(proponent, session), session,
-		session.confluence.effect_context()
-	)
-	return "" if score >= 0 else str(chosen[0])
-
-
-## **E il prezzo lo sceglie chi lo subisce**: fra i costi stampati, il fronte
-## avverso posa quelli che pesano di piu' **al proponente**. Non e' cattiveria:
-## e' l'unica lettura che rende la scelta una scelta.
-func choose_costs(
-	entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
-) -> Array:
-	if due <= 0 or menu.is_empty():
-		return []
-	var proponent: String = str(context.get("proponent", ""))
-	var goals: Dictionary = _tag_goals(proponent, session)
-	var bindings: Dictionary = session.confluence.effect_context()
-	var ranked: Array = []
-	for voice_id in menu:
-		var voice: Dictionary = session.confluence._voice("costs", str(voice_id))
-		if voice.is_empty():
-			continue
-		ranked.append({
-			"id": str(voice_id),
-			"score": _voice_score(
-				voice, "costs", proponent, proponent, goals, session, bindings
-			),
-		})
-	ranked.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		return int(a["score"]) < int(b["score"])
-	)
-	var chosen: Array = []
-	for entry in ranked:
-		if chosen.size() >= due:
-			break
-		chosen.append(str((entry as Dictionary)["id"]))
-	return chosen
-
-
 ## Quanto vale una voce della carta per un seggio: si costruiscono i suoi
 ## Effetti col vocabolario (D-280) e si leggono con lo stesso metro delle
 ## Conseguenze. Cosi' il cervello non ha una seconda tabella di valori da
@@ -2452,8 +2127,8 @@ func _voice_score(
 	return score
 
 
-## Quanto valgono, per questo seggio, gli Effect di una Conseguenza: la stessa
-## lettura di _score_proposition, voce per voce.
+## Quanto valgono, per questo seggio, gli Effect di una Conseguenza, voce per
+## voce.
 func _consequence_score(
 	consequence_id: String,
 	entity_id: String,
@@ -2469,116 +2144,6 @@ func _consequence_score(
 	for effect in consequence["effects"]:
 		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
 	return score
-
-
-## La controproposta del RIVENDICARE (D-268): spendere il diritto qui - sulla
-## pedina del prezzo o su una casella comprata sulla carta (D-304) - oppure
-## tenerselo per il secondo dibattito. Si rivendica il beneficio se, parlando
-## di te invece che del proponente, serve il tuo Destino; si prende la pedina se sposta il
-## prezzo a tuo favore piu' di quanto farebbe il fronte avverso da solo;
-## altrimenti niente: il secondo dibattito vale l'azione che e' costato.
-func choose_counterclaim(
-	entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
-) -> Dictionary:
-	var goals: Dictionary = _tag_goals(entity_id, session)
-	var bindings: Dictionary = session.confluence.effect_context()
-	var proponent: String = str(context["proponent"])
-	# La voce rivendicata parla di te: si valuta con te al posto del proponente,
-	# e vale il **guadagno** del dirottamento, non la voce in se'.
-	var redirected: Dictionary = bindings.duplicate()
-	redirected["proponent"] = entity_id
-	var best_benefit: String = ""
-	var benefit_gain: int = 0
-	for entry in (offer.get("benefits", []) as Array):
-		# **Le caselle comprate sulla carta** (D-304), non le Conseguenze del
-		# template: si rivendica quello che sta sul tavolo, e la pedina si posa
-		# su una pedina gia' posata — che da D-416 puo' portare il nome di una
-		# domanda, e allora l'id sta dentro.
-		var voice_id: String = _pedina_id(entry)
-		var voice: Dictionary = session.confluence._voice("benefits", voice_id)
-		if voice.is_empty():
-			continue
-		var mine: int = _voice_score(
-			voice, "benefits", entity_id, entity_id, goals, session, redirected
-		)
-		var theirs: int = _voice_score(
-			voice, "benefits", entity_id, proponent, goals, session, bindings
-		)
-		if mine - theirs > benefit_gain:
-			benefit_gain = mine - theirs
-			best_benefit = str(voice_id)
-	# **Prendersi la scelta del prezzo** (D-268, riscritta da D-387) vale
-	# adesso quanto il danno che quel costo fa al proponente — tutto intero,
-	# perche' senza la controproposta quel costo non ci sarebbe: il prezzo non
-	# e' piu' dovuto, se lo compra chi lo vuole spendendo un gettone, e questa
-	# e' la strada che lo posa **senza spenderne uno**.
-	var price: Dictionary = offer.get("price", {})
-	var costs: Array = price.get("cost", []) as Array
-	var mine_costs: Array = choose_costs(entity_id, context, costs, 1, session)
-	var price_gain: int = 0
-	if not mine_costs.is_empty():
-		var mine_voice: Dictionary = session.confluence._voice("costs", str(mine_costs[0]))
-		price_gain = -_voice_score(
-			mine_voice, "costs", entity_id, proponent, goals, session, bindings
-		)
-	if benefit_gain > 0 and benefit_gain >= price_gain:
-		return {"mode": "benefit", "voice_id": best_benefit}
-	if price_gain > 0:
-		return {
-			"mode": "price",
-			"cost": "" if mine_costs.is_empty() else str(mine_costs[0]),
-			"failure": "" if mine_costs.size() < 2 else str(mine_costs[1]),
-		}
-	return {}
-func _price_gain(
-	pool: Array,
-	entity_id: String,
-	proponent: String,
-	goals: Dictionary,
-	session: RefCounted,
-	bindings: Dictionary
-) -> int:
-	if pool.size() <= 1:
-		return 0
-	var best: int = -999
-	for consequence_id in pool:
-		best = maxi(best, _consequence_score(
-			str(consequence_id), entity_id, proponent, goals, session, bindings
-		))
-	return best - _consequence_score(
-		str(pool[0]), entity_id, proponent, goals, session, bindings
-	)
-
-
-## Il template del Consiglio come lo vede il Consiglio (D-452): con la
-## Tensione in dibattito, quello fuso con la carta; senza — una prova che
-## fabbrica il contesto — il template crudo, che e' quello che c'era prima.
-func _council_template(context: Dictionary, session: RefCounted) -> Dictionary:
-	var tension_id: String = str(context.get("tension_id", ""))
-	if tension_id != "":
-		var fused: Dictionary = session.data.confluence_template_for(tension_id)
-		if not fused.is_empty():
-			return fused
-	var raw: Variant = session.data.confluence_templates.get(str(context.get("template_id", "")))
-	return {} if raw == null else raw as Dictionary
-
-
-## **Dove sta la proposta** (D-452). Da 0.1.272 le Domande e le Proposte
-## stanno sulla carta Tensione (ISSUES 80, «ogni carta sue proposte») e il
-## Consiglio le legge da `confluence_template_for`, che fonde template e carta.
-## Fino alla 0.1.420 questa funzione — e le due sorelle qui sopra e qui sotto —
-## le cercavano nel template crudo: la proposta non c'era mai, il punteggio
-## non si calcolava, e ogni sedia si asteneva **per cecita'**, non per scelta.
-## Centocinquanta versioni di Consigli a opposizione zero (D-451).
-func _current_proposition(context: Dictionary, session: RefCounted) -> Dictionary:
-	var template: Dictionary = _council_template(context, session)
-	if template.is_empty():
-		return {}
-	for proposition in template["propositions"]:
-		if str(proposition["id"]) == str(context.get("proposition_id", "")):
-			return proposition
-	return {}
-
 
 
 ## La carta del Narratore (ISSUES 23, D-118): la prima carta in mano che la

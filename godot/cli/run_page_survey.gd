@@ -351,10 +351,6 @@ static func _open_a_council(session: RefCounted) -> void:
 	for tension_id in session.world["tensions"]:
 		if not session.confluence.open(str(tension_id), {"kind": "THRESHOLD"}):
 			continue
-		var options: Array = session.confluence.available_propositions()
-		if options.is_empty():
-			continue
-		session.confluence.set_proposition(str((options[0] as Dictionary)["id"]))
 		return
 
 

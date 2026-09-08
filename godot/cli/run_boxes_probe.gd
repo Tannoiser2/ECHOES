@@ -52,21 +52,27 @@ class Spy extends RefCounted:
 	func choose_question(context: Dictionary, options: Array, session: RefCounted) -> String:
 		return await inner.choose_question(context, options, session)
 
-	func choose_proposition(context: Dictionary, options: Array, session: RefCounted) -> String:
-		return await inner.choose_proposition(context, options, session)
 
-	# Le tre scelte del Consiglio a due domande (D-467): si inoltrano com'e'.
+	# **Le tre scelte del Consiglio a due domande** (D-467, D-472): la sonda
+	# conta le caselle offerte in ognuna e quelle prese.
 	func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
-		return await inner.choose_side(entity_id, context, offer, session)
+		var menu: Array = (offer.get("A", []) as Array) + (offer.get("B", []) as Array)
+		_note(menu, "offerto")
+		var choice: Dictionary = await inner.choose_side(entity_id, context, offer, session)
+		_taken(menu, [str(choice.get("voice_id", ""))])
+		return choice
 
 	func choose_box(entity_id: String, context: Dictionary, menu: Array, side: String, session: RefCounted) -> String:
-		return await inner.choose_box(entity_id, context, menu, side, session)
+		_note(menu, "offerto")
+		var picked: String = await inner.choose_box(entity_id, context, menu, side, session)
+		_taken(menu, [picked])
+		return picked
 
 	func choose_raise(entity_id: String, context: Dictionary, menu: Array, session: RefCounted) -> String:
-		return await inner.choose_raise(entity_id, context, menu, session)
-
-	func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
-		return await inner.choose_stance(entity_id, context, session)
+		_note(menu, "offerto")
+		var picked: String = await inner.choose_raise(entity_id, context, menu, session)
+		_taken(menu, [] if picked == "" else [picked])
+		return picked
 
 	func choose_commit(
 		entity_id: String, context: Dictionary, limit: int, session: RefCounted
@@ -75,48 +81,6 @@ class Spy extends RefCounted:
 
 	func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 		return await inner.choose_recovery(context, session)
-
-	func choose_benefits(
-		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-	) -> Array:
-		_note(menu, "offerto")
-		var picked: Array = await inner.choose_benefits(entity_id, context, menu, session)
-		_taken(menu, picked)
-		return picked
-
-	func choose_costs(
-		entity_id: String, context: Dictionary, menu: Array, due: int, session: RefCounted
-	) -> Array:
-		# Il menu dei costi e' una lista di **id**, non di voci: si risolve
-		# sulla faccia della carta in dibattito.
-		var voci: Array = _cost_voices(session, menu)
-		_note(voci, "offerto")
-		var picked: Array = await inner.choose_costs(entity_id, context, menu, due, session)
-		_taken(voci, picked)
-		return picked
-
-	## Il gettone del costo (D-387): un avversario alla volta, uno per pedina.
-	func choose_cost_token(
-		entity_id: String, context: Dictionary, menu: Array, session: RefCounted
-	) -> String:
-		var voci: Array = _cost_voices(session, menu)
-		_note(voci, "offerto")
-		var picked: String = await inner.choose_cost_token(entity_id, context, menu, session)
-		_taken(voci, [] if picked == "" else [picked])
-		return picked
-
-	func _cost_voices(session: RefCounted, menu: Array) -> Array:
-		var faccia: Dictionary = session.confluence.card_face()
-		var out: Array = []
-		for voice in (faccia.get("costs", []) as Array):
-			if menu.has(str((voice as Dictionary).get("id", ""))):
-				out.append(voice)
-		return out
-
-	func choose_counterclaim(
-		entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted
-	) -> Dictionary:
-		return await inner.choose_counterclaim(entity_id, context, offer, session)
 
 	func _note(menu: Array, _why: String) -> void:
 		for voice in menu:
@@ -132,12 +96,6 @@ class Spy extends RefCounted:
 					var verb: String = _verb_of(voice)
 					if verb != "":
 						bought[verb] = int(bought.get(verb, 0)) + 1
-						# **E su quale domanda** (D-438, ISSUES 106): una pedina
-						# che porta il nome di un'altra domanda e' il dito del
-						# proponente, e si conta a parte — e' il pezzo del
-						# criterio che la sonda non sapeva vedere.
-						if scelta is Dictionary and str((scelta as Dictionary).get("question", "")) != "":
-							named[verb] = int(named.get(verb, 0)) + 1
 
 	func _verb_of(voice: Variant) -> String:
 		return str((voice as Dictionary).get("verb", "")) if voice is Dictionary else ""
@@ -194,11 +152,9 @@ func _initialize() -> void:
 			totale_benefici += quante
 		else:
 			totale_costi += quante
-		print("%-18s %8d %8d   %s%s" % [
+		print("%-18s %8d %8d   %s" % [
 			str(verb), int(offered[verb]), quante,
 			"beneficio" if e_beneficio else "costo",
-			"" if int(named.get(verb, 0)) == 0
-				else "  · %d su un'altra domanda, indicata col dito" % int(named[verb]),
 		])
 	print("")
 	print("  Consigli aperti in %d partite: %d" % [runs, consigli])

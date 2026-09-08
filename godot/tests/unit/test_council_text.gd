@@ -1,7 +1,7 @@
 extends "res://tests/test_case.gd"
 ## Un Consiglio, in parole che una persona legge (D-232).
 ##
-## Le domande, le proposte e le clausole vivono nei dati scritte con dei buchi —
+## Le domande, le clausole e le Conseguenze vivono nei dati scritte con dei buchi —
 ## `$proponent`, `$region_focus`, `$rival` — che al tavolo li riempie la partita.
 ## Fuori dal tavolo non si possono riempire e non si devono: **si spiegano**.
 ##
@@ -15,11 +15,36 @@ const AssetText := preload("res://scripts/core/asset_text.gd")
 
 ## Nessuna frase che una persona legge porta ancora un buco. Un `$rival` su una
 ## scheda stampata non e' un nome mancante: e' una riga che nessuno sa leggere.
+##
+## A due domande (D-467, D-472) quello che si legge sulla carta girata sono
+## **le due domande** e quello che ognuna lascia se vince (`base`): si guarda
+## quello. Le Proposte stampate (`propositions`) sono **un residuo**: nessun
+## motore le legge piu', ma finche' stanno sulle carte le legge una persona,
+## e il giro dopo le togliera' dai dati. Fino ad allora la riga vale anche
+## per loro.
 func test_no_sentence_still_carries_a_slot() -> void:
 	var loaded: RefCounted = data()
-	var checked: int = 0
+	var questions: int = 0
+	var propositions: int = 0
 	for tension_id in loaded.tensions:
 		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
+		for entry in template.get("questions", []):
+			var question: Dictionary = entry as Dictionary
+			var said: String = CouncilText.speak(str(question["text"]))
+			assert_false(
+				said.contains("$"),
+				"«%s» porta ancora un buco: %s" % [str(question["id"]), said]
+			)
+			for need in CouncilText.needs_of(question.get("eligibility", []) as Array):
+				assert_false(str(need).contains("$"), "e nemmeno le sue condizioni: %s" % str(need))
+			for consequence_id in (question.get("base", []) as Array):
+				var consequence: Variant = loaded.consequences.get(str(consequence_id))
+				assert_true(consequence != null, "«%s» lascia una Conseguenza che esiste: %s" % [str(question["id"]), str(consequence_id)])
+				if consequence == null:
+					continue
+				var leaves: String = CouncilText.consequence_note(consequence as Dictionary, loaded)
+				assert_false(leaves.contains("$"), "e quello che lascia non porta buchi: %s" % leaves)
+			questions += 1
 		for entry in template.get("propositions", []):
 			var said: Dictionary = CouncilText.proposition(
 				template, str((entry as Dictionary)["id"]), loaded
@@ -31,8 +56,9 @@ func test_no_sentence_still_carries_a_slot() -> void:
 				)
 			for need in said["needs"]:
 				assert_false(str(need).contains("$"), "e nemmeno le sue condizioni")
-			checked += 1
-	assert_true(checked >= 40, "e vale per ogni proposta della scatola: %d" % checked)
+			propositions += 1
+	assert_true(questions >= 100, "e vale per ogni domanda della scatola: %d" % questions)
+	assert_true(propositions >= 40, "e per ogni Proposta rimasta stampata: %d" % propositions)
 
 
 ## E nessuna Conseguenza racconta quello che lascia al mondo con un tipo di
@@ -56,91 +82,55 @@ func test_no_consequence_speaks_in_effect_types() -> void:
 
 ## E nessuna etichetta d'autore parla a me invece che a chi gioca. Ce n'era una
 ## che citava un verbale e una carta di Propp: scritta per lo sviluppatore, letta
-## dal giocatore.
+## dal giocatore. Vale per le condizioni delle domande, e per quelle delle
+## Proposte finche' restano stampate (residuo di D-280, da togliere).
 func test_no_label_speaks_to_the_developer() -> void:
 	var loaded: RefCounted = data()
+	var labels: int = 0
 	for tension_id in loaded.tensions:
 		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
-		for entry in template.get("propositions", []):
-			for condition in (entry as Dictionary).get("eligibility", []):
-				var label: String = str((condition as Dictionary).get("label", ""))
-				assert_false(
-					label.contains("(D-") or label.contains("ISSUES"),
-					"«%s» nomina un verbale a chi sta giocando: %s"
-					% [str((entry as Dictionary)["id"]), label]
-				)
+		for list_name in ["questions", "propositions"]:
+			for entry in template.get(list_name, []):
+				for condition in (entry as Dictionary).get("eligibility", []):
+					var label: String = str((condition as Dictionary).get("label", ""))
+					if label == "":
+						continue
+					labels += 1
+					assert_false(
+						label.contains("(D-") or label.contains("ISSUES"),
+						"«%s» nomina un verbale a chi sta giocando: %s"
+						% [str((entry as Dictionary)["id"]), label]
+					)
+	assert_true(labels > 0, "nessuna condizione ha un'etichetta: la prova e' cieca")
 
 
-## E una proposta dice **cosa lascia al mondo se passa**: e' la meta' che un
-## giocatore deve vedere prima di votare, e che sullo schermo di oggi non c'e'.
-func test_a_proposition_says_what_it_leaves_behind() -> void:
+## E una domanda dice **cosa lascia al mondo se vince** (D-469, D-472): e'
+## il suo `base`, la meta' che un giocatore deve vedere prima di posare una
+## pedina. La riga la scrive `consequence_note`, in parole e non in tipi.
+func test_a_question_says_what_it_leaves_behind() -> void:
 	var loaded: RefCounted = data()
-	# La scheda fusa della carta, non il template crudo (D-462): le Proposte
-	# stanno sulla carta, e il template non le porta piu'.
+	# La scheda fusa della carta, non il template crudo (D-462): le domande
+	# stanno sulla carta, e il template porta solo quelle di ripiego.
 	var template: Dictionary = loaded.confluence_template_for("TEN_AWAKENING")
-	var said: Dictionary = CouncilText.proposition(template, "P_EXPLOIT", loaded)
-	assert_ne(str(said.get("text", "")), "", "la proposta si legge")
-	assert_true(
-		(said["consequences"] as Array).size() >= 1,
-		"e dice cosa lascia al mondo se passa"
-	)
-	var first: Dictionary = (said["consequences"] as Array)[0] as Dictionary
-	assert_ne(str(first["leaves"]), "", "con parole, non con tipi: %s" % str(first["leaves"]))
+	var seen: int = 0
+	for entry in (template.get("questions", []) as Array):
+		var question: Dictionary = entry as Dictionary
+		assert_ne(CouncilText.speak(str(question["text"])), "", "la domanda si legge")
+		var base: Array = question.get("base", []) as Array
+		assert_true(base.size() >= 1, "«%s» dice cosa lascia al mondo se vince" % str(question["id"]))
+		for consequence_id in base:
+			var consequence: Dictionary = loaded.consequences[str(consequence_id)] as Dictionary
+			var leaves: String = CouncilText.consequence_note(consequence, loaded)
+			assert_ne(leaves, "", "con parole, non con tipi: %s" % str(consequence_id))
+			assert_false(leaves.contains("$"), "e senza buchi: %s" % leaves)
+		seen += 1
+	assert_eq(seen, 2, "la carta ha due domande")
 
 
 ## --- e quello che arriva a chi sta scegliendo (D-233) -----------------------
 
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
-
-
-## **La decisione centrale del gioco si prendeva al buio.**
-##
-## Chi propone sceglie fra tre o quattro frasi d'autore. Cosa scrivevano sul
-## mondo — una torre, una cicatrice, una Regione che cambia padrone — stava in
-## `success_consequences`, cioe' in un file che chi gioca non apre. Le frasi sono
-## belle e si somigliano; quello che lasciano dietro no.
-##
-## Adesso l'etichetta porta la seconda riga, e questa prova la tiene per **ogni**
-## proposta della scatola: o dice cosa resta, o dichiara che non resta niente.
-## Il silenzio non e' una terza possibilita': si legge come «non lo so».
-func test_a_proposition_offered_says_what_it_leaves() -> void:
-	var loaded: RefCounted = data()
-	var said_nothing: int = 0
-	var checked: int = 0
-	for tension_id in loaded.tensions:
-		var template: Dictionary = loaded.confluence_template_for(str(tension_id))
-		for entry in template.get("propositions", []):
-			var said: Dictionary = CouncilText.proposition(
-				template, str((entry as Dictionary)["id"]), loaded
-			)
-			var label: String = SeatDecider._proposition_label(said, str((entry as Dictionary)["text"]))
-			var parts: PackedStringArray = label.split("\n", false)
-			assert_true(
-				parts.size() >= 2,
-				"«%s» arriva a chi sceglie senza dire cosa lascia" % str((entry as Dictionary)["id"])
-			)
-			var small: String = str(parts[1])
-			assert_true(
-				small.begins_with("Se passa: ") or small == "Non lascia segni sul mondo.",
-				"e lo dice in un modo solo: %s" % small
-			)
-			assert_false(small.contains("$"), "senza buchi: %s" % small)
-			assert_false(small.contains("_"), "e senza id: %s" % small)
-			if small != "Non lascia segni sul mondo.":
-				assert_true(small.length() > 12, "e con qualcosa dentro: %s" % small)
-			else:
-				said_nothing += 1
-			checked += 1
-	assert_true(checked >= 40, "per ogni proposta della scatola: %d" % checked)
-	# Un numero scritto vale piu' di un numero nascosto: se domani meta' delle
-	# proposte non lascia piu' niente, questo non e' un dettaglio d'interfaccia.
-	assert_true(
-		said_nothing <= checked / 4,
-		"e la maggioranza lascia davvero qualcosa: %d su %d non lasciano niente" % [
-			said_nothing, checked,
-		]
-	)
 
 
 ## E la seconda riga si **vede** che e' lettera piccola.
@@ -183,39 +173,33 @@ class ScriptedIo extends RefCounted:
 
 ## E il filo regge fino a chi sta seduto.
 ##
-## Le due prove sopra guardano la funzione che scrive la riga e il pezzo di
+## Le prove sopra guardano la funzione che scrive la riga e il pezzo di
 ## schermo che la disegna. Restava scoperto il tratto in mezzo — che
 ## `SeatDecider` la chiami davvero — e un tratto scoperto in mezzo e' come non
 ## averlo fatto: e' il buco di [D-224](DECISIONS.md#d-224) ripetuto.
-func test_the_seat_is_offered_what_it_leaves() -> void:
+##
+## A due domande (D-472) chi propone sceglie **la domanda**, non la proposta:
+## quello che gli si offre sono le domande della carta, dette con i nomi
+## veri della partita — niente buchi, niente id.
+func test_the_seat_is_offered_the_questions_in_words() -> void:
 	new_session()
-	var seat: String = str(session.world["turn_order"][0])
-	var template_id: String = ""
-	var tension_id: String = ""
-	for candidate in session.data.tensions:
-		tension_id = str(candidate)
-		break
-	var template: Dictionary = session.data.confluence_template_for(tension_id)
-	template_id = str(template["id"])
+	var context: Dictionary = session.confluence.open("TEN_FAMINE", {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "il Consiglio si apre")
+	var seat: String = str(context["proponent"])
+	var questions: Array = session.confluence.available_questions()
+	assert_true(questions.size() >= 1, "la carta offre almeno una domanda")
 
 	var io := ScriptedIo.new()
 	var decider: RefCounted = SeatDecider.new([seat], null)
 	decider.io = io
-	var chosen: String = await decider.choose_proposition(
-		{"template_id": template_id, "proponent": seat, "tension_id": tension_id},
-		template["propositions"],
-		session
-	)
-	assert_eq(chosen, str((template["propositions"][0] as Dictionary)["id"]), "la scelta torna intera")
+	var chosen: String = await decider.choose_question(context, questions, session)
+	assert_eq(chosen, str((questions[0] as Dictionary)["id"]), "la scelta torna intera")
 	assert_eq(io.asks.size(), 1, "e chi siede e' stato interrogato una volta")
+	assert_eq((io.asks[0] as Array).size(), questions.size(), "con una riga per domanda")
 	for label in (io.asks[0] as Array):
-		var parts: PackedStringArray = str(label).split("\n", false)
-		assert_true(parts.size() >= 2, "ogni proposta offerta porta la sua seconda riga: %s" % str(label))
-		assert_true(
-			str(parts[1]).begins_with("Se passa: ")
-			or str(parts[1]) == "Non lascia segni sul mondo.",
-			"che dice cosa resta al mondo: %s" % str(parts[1])
-		)
+		assert_false(str(label).contains("$"), "ogni domanda offerta e' riempita: %s" % str(label))
+		assert_false(str(label).begins_with("Q_"), "e non parla per id: %s" % str(label))
+	session.confluence.current = {}
 
 
 

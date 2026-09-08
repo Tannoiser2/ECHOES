@@ -82,50 +82,68 @@ func test_every_card_carries_two_real_lists() -> void:
 	assert_true(vents_seen.size() >= 4, "e almeno quattro di beneficio: %d" % vents_seen.size())
 
 
-## **Il menu del prezzo che il Consiglio offre e' quello scritto sulla carta.**
-## Non il pool del template: la carta comanda, il template e' il ripiego.
+## **Le caselle che il Consiglio offre sono quelle scritte sulla carta.**
+## Non il pool del template: la carta comanda, il template e' il ripiego. Da
+## D-472 l'offerta e' `box_menu(parte)`: per ogni parte, le caselle della
+## carta marcate per la sua domanda — benefici e costi insieme — che qui
+## farebbero qualcosa (D-306), nell'ordine della carta e con le sue parole.
 func test_the_council_offers_what_the_card_says() -> void:
 	var checked: int = 0
+	var boxes_seen: int = 0
 	for tension_id in session.world["tensions"]:
 		var context: Dictionary = session.confluence.open(str(tension_id), {"kind": "THRESHOLD"})
 		if context.is_empty():
 			continue
+		assert_true(session.confluence.sides_open(), "«%s» apre con due parti" % [str(tension_id)])
 		var face: Dictionary = (data().tensions[str(tension_id)] as Dictionary)["physical"]
+		# La carta, nell'ordine in cui si legge: prima i benefici, poi i costi.
 		var written: Array = []
-		for voice in (face["costs"] as Array):
-			written.append(str((voice as Dictionary)["id"]))
-		# **Nell'ordine della carta, e solo le caselle vive** (D-306): il menu
-		# e' la lista stampata meno quelle che qui e adesso non farebbero
-		# niente. Fino a D-366 le sette caselle di allora mordevano sempre in
-		# questo scenario, e la prova poteva pretendere le due liste identiche;
-		# adesso una carta puo' offrire «la Foresta scende di 1 grado» dove
-		# nessuna Foresta sta in piedi, e quella pedina non si posa.
-		var offered: Array = session.confluence.price_menu()["cost"] as Array
-		var expected: Array = []
-		for voice_id in written:
-			if offered.has(str(voice_id)):
-				expected.append(str(voice_id))
-		assert_eq(
-			offered, expected,
-			"il Consiglio su «%s» offre i costi della sua carta, nel suo ordine"
-			% [str(tension_id)]
-		)
-		# Con quattro costi sulla carta (D-453) ne bastano due vivi per far
-		# pagare un secondo beneficio: era sette quando il menu era il vocabolario.
-		assert_true(
-			offered.size() >= 2,
-			"e su «%s» ne offre abbastanza da comprarci qualcosa: %d" % [str(tension_id), offered.size()]
-		)
-		# E la voce si legge con le parole della carta.
-		assert_eq(
-			session.confluence.price_voice_text("costs", str(offered[0])),
-			str(_voice_by_id(face["costs"] as Array, str(offered[0])).get("text", "")),
-			"e le legge com'e' scritto"
-		)
+		for list_name in ["benefits", "costs"]:
+			for voice in (face[list_name] as Array):
+				written.append(str((voice as Dictionary)["id"]))
+		for side in ["A", "B"]:
+			var question_id: String = session.confluence.side_question(side)
+			var offered: Array = []
+			for entry in session.confluence.box_menu(side):
+				var box: Dictionary = entry as Dictionary
+				offered.append(str(box["id"]))
+				# Ogni casella offerta sta sulla carta, e' marcata per la
+				# domanda di questa parte, e dice da che lista viene.
+				var voice: Dictionary = _voice_by_id(
+					face[str(box["list"])] as Array, str(box["id"])
+				)
+				assert_false(
+					voice.is_empty(),
+					"«%s» e' una %s stampata su «%s»" % [str(box["id"]), str(box["list"]), str(tension_id)]
+				)
+				assert_true(
+					(box.get("for", []) as Array).has(question_id),
+					"e serve la domanda %s" % side
+				)
+				# E la voce si legge con le parole della carta.
+				assert_eq(
+					str(box.get("text", "")), str(voice.get("text", "")),
+					"e si legge com'e' scritta"
+				)
+			# **Nell'ordine della carta, e solo le caselle vive** (D-306): il
+			# menu e' la lista stampata meno quelle che qui e adesso non
+			# farebbero niente.
+			var expected: Array = []
+			for voice_id in written:
+				if offered.has(str(voice_id)):
+					expected.append(str(voice_id))
+			assert_eq(
+				offered, expected,
+				"la parte %s su «%s» ha le caselle della carta, nel suo ordine" % [side, str(tension_id)]
+			)
+			boxes_seen += offered.size()
 		# Si chiude la questione a mano: la prova apre e guarda, non gioca.
 		session.confluence.current = {}
 		checked += 1
 	assert_true(checked > 0, "almeno una questione aperta da provare")
+	# Prima di credere a un menu vuoto: su tutte le questioni aperte, almeno
+	# una parte ha avuto qualcosa da posare.
+	assert_true(boxes_seen > 0, "e almeno una casella e' stata offerta: %d" % boxes_seen)
 
 
 ## **La scheda della domanda le mostra**, e le mostra per tutte: 52 carte su 60
@@ -175,7 +193,10 @@ func _text_of(node: Node) -> String:
 ## volte in cento partite e comprata 75, e' uscita dal menu a quattro. Quello
 ## che ogni carta porta adesso e' la **memoria** (IL MONDO RICORDA, D-308): la
 ## storia della carta, che il taglio ha tenuto per regola. La seconda meta'
-## della prova resta: dove la casella c'e', muove la domanda in discussione.
+## della prova resta, **giocata sulla regola nuova** (D-472): la casella si
+## fabbrica sulla Carestia, marcata per la domanda A; chi propone la posa con
+## `place_box`, il Consiglio si vota col mucchio a zero, e nel registro degli
+## Effetti c'e' la domanda in discussione mossa di un passo in giu'.
 func test_a_question_can_be_moved_by_a_box() -> void:
 	var loaded: RefCounted = data()
 	var con_memoria: int = 0
@@ -192,42 +213,72 @@ func test_a_question_can_be_moved_by_a_box() -> void:
 			con_memoria += 1
 	assert_eq(con_memoria, 60, "ogni carta Domanda porta la sua memoria fra i benefici")
 
-	# E la casella produce l'Effetto giusto, sulla domanda che si discute.
-	var context: Dictionary = {"tension": "TEN_FAMINE", "proponent": "ENT_ALDRIC"}
-	var world: Dictionary = {"tensions": {"TEN_FAMINE": {"current_value": 3}}}
-	for pair in [["COOL_QUESTION", "benefits", -1], ["HEAT_QUESTION", "costs", 1]]:
-		var effects: Array = CouncilEconomy.effects_for(
-			{"id": "V", "verb": str(pair[0]), "text": ""}, str(pair[1]),
-			context, world, "THM_SOPRAVVIVENZA", {}
-		)
-		assert_eq(effects.size(), 1, "%s produce un Effetto solo" % str(pair[0]))
-		var effect: Dictionary = effects[0]
-		assert_eq(str(effect["type"]), "ADJUST_TENSION", "%s muove una domanda" % str(pair[0]))
-		assert_eq(str((effect["target"] as Dictionary)["id"]), "TEN_FAMINE",
-			"%s muove la domanda in discussione" % str(pair[0]))
-		assert_eq(int((effect["payload"] as Dictionary)["delta"]), int(pair[2]),
-			"%s muove di un passo" % str(pair[0]))
+	# E la casella, posata sulla parte giusta, muove la domanda che si discute.
+	var tension_id: String = "TEN_FAMINE"
+	var box_id: String = "B_COOL_Q_PROVA"
+	var benefits: Array = (loaded.tensions[tension_id] as Dictionary)["physical"]["benefits"] as Array
+	_pile(tension_id, 0)
+	var context: Dictionary = session.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "la Carestia apre il suo Consiglio")
+	benefits.append({
+		"id": box_id, "verb": "COOL_QUESTION", "text": "Abbassa la domanda.",
+		"for": [session.confluence.side_question("A")],
+	})
+	# L'esito di base della domanda A abbassa la Carestia da solo (CNS_DISTRIBUTION_AUDITED):
+	# si zittisce, cosi' il passo in giu' che si conta e' quello della pedina.
+	var hushed: Array = _hush_the_base(tension_id)
+	(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 3
+	var proponent: String = str(context["proponent"])
+	assert_true(session.confluence.place_box(proponent, box_id), "chi propone posa la casella sulla A")
+	var before: int = (session.world["effect_log"] as Array).size()
+	var result: Dictionary = session.confluence.resolve()
+	assert_eq(str(result["winner"]), "A", "una pedina contro nessuna sopra un mucchio a zero: vince la A")
+	var moved: int = 0
+	for i in range(before, (session.world["effect_log"] as Array).size()):
+		var effect: Dictionary = (session.world["effect_log"] as Array)[i] as Dictionary
+		if str(effect["type"]) != "ADJUST_TENSION":
+			continue
+		if str((effect["target"] as Dictionary)["id"]) != tension_id:
+			continue
+		if int((effect["payload"] as Dictionary).get("delta", 0)) == -1:
+			moved += 1
+	assert_eq(moved, 1, "la casella muove la domanda in discussione di un passo in giu'")
+	assert_true(
+		_log_says("H. Beneficio: Abbassa la domanda."), "e il verbale legge la casella posata"
+	)
+	# La DataSet e' condivisa: la casella fabbricata se ne va, e la base torna.
+	benefits.pop_back()
+	_restore_the_base(tension_id, hushed)
 
 
 ## **E non si posa una pedina su una traccia che non si puo' muovere** (D-306).
 ##
 ## Una domanda gia' a zero non si abbassa: al tavolo il segnalino e' in fondo e
 ## si vede. Senza questa prova la casella sarebbe una scelta finta nel caso in
-## cui serve di piu' — quando la domanda e' gia' risolta.
+## cui serve di piu' — quando la domanda e' gia' risolta. Prima di credere al
+## menu che non la offre, la stessa casella si vede offerta con la traccia
+## alta.
 func test_a_question_at_zero_is_not_offered() -> void:
-	var context: Dictionary = {"tension": "TEN_FAMINE", "proponent": "ENT_ALDRIC"}
-	for pair in [[3, true], [0, false]]:
-		var world: Dictionary = {"tensions": {"TEN_FAMINE": {"current_value": int(pair[0])}}}
-		assert_eq(
-			CouncilEconomy.voice_bites(
-				{"id": "V", "verb": "COOL_QUESTION", "text": ""}, "benefits",
-				context, world, "THM_SOPRAVVIVENZA", null
-			),
-			bool(pair[1]),
-			"con la traccia a %d, abbassare %s" % [
-				int(pair[0]), "morde" if bool(pair[1]) else "non morde",
-			]
-		)
+	var tension_id: String = "TEN_FAMINE"
+	var box_id: String = "B_COOL_Q_PROVA"
+	var benefits: Array = (data().tensions[tension_id] as Dictionary)["physical"]["benefits"] as Array
+	var context: Dictionary = session.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "la Carestia apre il suo Consiglio")
+	benefits.append({
+		"id": box_id, "verb": "COOL_QUESTION", "text": "Abbassa la domanda.",
+		"for": [session.confluence.side_question("A")],
+	})
+	var proponent: String = str(context["proponent"])
+	(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 3
+	assert_true(_offered("A").has(box_id), "con la traccia a 3, abbassare e' sul menu")
+	(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 0
+	assert_false(_offered("A").has(box_id), "con la traccia a 0, non e' piu' offerta")
+	assert_false(
+		session.confluence.place_box(proponent, box_id),
+		"e non si posa nemmeno chiamandola per nome"
+	)
+	benefits.pop_back()
+	session.confluence.current = {}
 	# E una domanda che questa Cronaca non ha pescata non si muove affatto.
 	assert_false(
 		CouncilEconomy.voice_bites(
@@ -236,6 +287,49 @@ func test_a_question_at_zero_is_not_offered() -> void:
 		),
 		"una domanda che non e al tavolo non si abbassa"
 	)
+
+
+## Gli id offerti a una parte, nell'ordine del menu.
+func _offered(side: String) -> Array:
+	var out: Array = []
+	for entry in session.confluence.box_menu(side):
+		out.append(str((entry as Dictionary)["id"]))
+	return out
+
+
+## Il mucchio che il Consiglio leggera' all'apertura: il Calore del Tema.
+func _pile(tension_id: String, value: int) -> void:
+	var theme_id: String = str((data().tensions[tension_id] as Dictionary).get("theme", ""))
+	if not session.world.has("theme_heat"):
+		session.world["theme_heat"] = {}
+	(session.world["theme_heat"] as Dictionary)[theme_id] = value
+
+
+## Zittisce l'esito di base della domanda A sulla carta, e torna quello che
+## c'era: il DataSet e' condiviso, e chi zittisce rimette.
+func _hush_the_base(tension_id: String) -> Array:
+	var question_id: String = session.confluence.side_question("A")
+	for entry in (data().confluence_template_for(tension_id)["questions"] as Array):
+		if str((entry as Dictionary)["id"]) == question_id:
+			var said: Array = ((entry as Dictionary)["base"] as Array).duplicate()
+			(entry as Dictionary)["base"] = []
+			return [question_id, said]
+	return []
+
+
+func _restore_the_base(tension_id: String, hushed: Array) -> void:
+	if hushed.is_empty():
+		return
+	for entry in (data().confluence_template_for(tension_id)["questions"] as Array):
+		if str((entry as Dictionary)["id"]) == str(hushed[0]):
+			(entry as Dictionary)["base"] = hushed[1]
+
+
+func _log_says(needle: String) -> bool:
+	for line in session.log.lines:
+		if str(line).contains(needle):
+			return true
+	return false
 
 
 ## Quello che una casella fa davvero, in una riga: il verbo, il posto e la casa.

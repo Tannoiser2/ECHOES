@@ -1,102 +1,109 @@
 extends "res://tests/test_case.gd"
-## **La pedina porta con se\' il nome della domanda** (ISSUES 106, D-416).
+## **La casella su una domanda agisce sulla domanda in discussione** (D-343,
+## riletta da D-472).
 ##
-## Parola del committente sulla casella che muove una domanda: *«la sceglie chi
-## propone»* — non quella stampata sull\'autore, ma quella che il proponente
-## indica col dito fra i segnalini che stanno tutti sul tavolo.
+## Questo file nasce con D-416 (ISSUES 106): la pedina posata su ABBASSA LA
+## DOMANDA portava con se' il nome di un'altra domanda — *«la sceglie chi
+## propone»* — e le prove guardavano che il nome arrivasse al motore e che il
+## cervello lo scegliesse quando gli conviene. Quel pezzo e' uscito col giro
+## di D-280 (D-472): nel Consiglio a due domande `place_box` prende **solo
+## l'id della casella**, e la casella agisce sulla domanda che si sta
+## discutendo. Le prove sul nome portato dalla pedina e sul cervello che lo
+## sceglie non hanno un equivalente e sono tolte; resta quello che ha ancora
+## un senso al tavolo — la pedina secca, e la domanda che muove e' questa.
 ##
-## Questa prova esiste perche\' la misura non si muoveva. Dopo la catena scritta
-## e dopo il punteggio corretto, la sonda delle caselle diceva **700 offerte, 22
-## comprate** tutt\'e due le volte, identico al centesimo. Un numero fermo dopo
-## due modifiche diverse non e\' un rimedio debole: e\' qualcuno che guarda
-## altrove, e in questo progetto e\' successo undici volte prima di questa.
-##
-## Quindi qui non si misura *quanto* la casella diventa attraente — quello lo
-## dice la sonda — si prova **che il pezzo funzioni**: che una pedina posata su
-## una domanda nominata arrivi al motore, muova quella e non un\'altra, e si
-## legga a verbale.
+## La prova esiste anche per una ragione di metodo: due volte la sonda delle
+## caselle ha detto lo stesso numero dopo due modifiche diverse, e un numero
+## fermo e' qualcuno che guarda altrove. Qui non si misura *quanto* la casella
+## e' attraente — quello lo dice la sonda — si prova **che il pezzo funzioni**:
+## una pedina posata con l'id secco arriva al motore, muove la domanda in
+## discussione e non un'altra, e si legge a verbale.
 
-const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
+
+const TENSION: String = "TEN_FAMINE"
 
 
 func before_each() -> void:
 	new_session()
 
 
-## **Il motore accetta la pedina con la domanda, e muove quella.**
-func test_a_named_question_is_the_one_that_moves() -> void:
+## **Di suo, la casella muove la domanda in discussione.** La funzione pura
+## che risolve la domanda di una voce resta, e senza indicazioni sulla carta
+## risponde con quella che si discute.
+func test_a_bare_box_names_the_question_in_discussion() -> void:
 	var ids: Array = (session.world["tensions"] as Dictionary).keys()
 	assert_true(ids.size() >= 2, "ci sono almeno due domande in tavola")
-	var elsewhere: String = ""
-	for tension_id in ids:
-		elsewhere = str(tension_id)
-		break
-
-	var voice: Dictionary = {
-		"id": "V_TEST_COOL", "verb": "COOL_QUESTION", "text": "Abbassa la domanda",
-	}
+	var voice: Dictionary = {"id": "V_TEST_COOL", "verb": "COOL_QUESTION", "text": "Abbassa la domanda"}
 	var context: Dictionary = {"tension": str(ids[ids.size() - 1])}
-	assert_ne(
-		elsewhere, str(context["tension"]),
-		"la domanda indicata e\' un\'altra da quella in discussione"
-	)
-
-	# Senza indicazione: muove quella di cui si sta discutendo.
-	var here: String = CouncilEconomy.question_of(voice, context, session.world)
-	assert_eq(here, str(context["tension"]), "di suo muove la domanda in discussione")
-
-	# Con l\'indicazione: muove quella.
-	var named: Dictionary = voice.duplicate()
-	named["dove"] = "QUESTION"
-	named["question"] = elsewhere
 	assert_eq(
-		CouncilEconomy.question_of(named, context, session.world), elsewhere,
-		"e con la domanda indicata muove quella"
+		CouncilEconomy.question_of(voice, context, session.world), str(context["tension"]),
+		"di suo muove la domanda in discussione"
 	)
 
 
-## **E il cervello la indica, quando gli conviene** (D-438). Fino alla 0.1.407
-## questa prova asseriva il contrario — *«oggi non ne nomina nessuna»* — come
-## misura dello stato, non come promessa. Adesso il cervello pesa la casella su
-## ogni segnalino in tavola e posa la pedina sul migliore: qui la domanda
-## migliore e' costruita apposta — una sola e' alta, e non e' quella di cui si
-## discute — e la pedina deve uscire col suo nome.
-func test_the_brain_names_the_question_that_serves_it() -> void:
-	var seat: String = str(session.world["turn_order"][0])
-	var ids: Array = (session.world["tensions"] as Dictionary).keys()
-	ids.sort()
-	assert_true(ids.size() >= 2, "ci sono almeno due domande in tavola")
-	# Tutte a terra tranne una, alta: abbassare quella vale 2, le altre 0.
-	for tension_id in ids:
-		(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 0
-	var alta: String = str(ids[ids.size() - 1])
-	(session.world["tensions"][alta] as Dictionary)["current_value"] = 5
-	var brain: RefCounted = PolicyDecider.new(session.log)
-	var menu: Array = [
-		{"id": "V_TEST_COOL", "verb": "COOL_QUESTION", "text": "Abbassa la domanda"},
-	]
-	var chosen: Array = brain.choose_benefits(seat, {}, menu, session)
-	assert_false(chosen.is_empty(), "il cervello compra la casella offerta")
-	var first: Variant = chosen[0]
-	assert_true(first is Dictionary, "la pedina porta il nome della domanda: %s" % str(chosen))
-	if first is Dictionary:
-		assert_eq(
-			str((first as Dictionary).get("question", "")), alta,
-			"ed e' la domanda alta, non quella in discussione"
-		)
-
-
-## **E a parita' non indica niente.** Con tutte le domande uguali la pedina
-## esce come un id secco: il nome si dice solo quando il dito ha scelto davvero.
-func test_with_nothing_to_gain_the_token_stays_bare() -> void:
-	var seat: String = str(session.world["turn_order"][0])
+## **E posata con l'id secco, muove quella e non un'altra.** La casella si
+## fabbrica sulla Carestia, marcata per la domanda A; chi propone la posa con
+## `place_box(seggio, id)`; mucchio a zero, una pedina contro nessuna, la A
+## vince; e nel registro degli Effetti la sola domanda mossa di un passo in
+## giu' dalla pedina e' la Carestia.
+func test_a_box_placed_by_id_moves_the_question_in_discussion() -> void:
+	var loaded: RefCounted = data()
+	var theme_id: String = str((loaded.tensions[TENSION] as Dictionary).get("theme", ""))
+	if not session.world.has("theme_heat"):
+		session.world["theme_heat"] = {}
+	(session.world["theme_heat"] as Dictionary)[theme_id] = 0
+	var context: Dictionary = session.confluence.open(TENSION, {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "la Carestia apre il suo Consiglio")
+	assert_eq(session.confluence.pile(), 0, "col mucchio a zero")
+	var others: Array = []
 	for tension_id in (session.world["tensions"] as Dictionary):
-		(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 0
-	var brain: RefCounted = PolicyDecider.new(session.log)
-	var menu: Array = [
-		{"id": "V_TEST_COOL", "verb": "COOL_QUESTION", "text": "Abbassa la domanda"},
-	]
-	var chosen: Array = brain.choose_benefits(seat, {}, menu, session)
-	assert_false(chosen.is_empty(), "il cervello compra la casella offerta")
-	assert_true(chosen[0] is String, "e la pedina e' un id secco: %s" % str(chosen))
+		if str(tension_id) != TENSION:
+			others.append(str(tension_id))
+	assert_true(others.size() >= 1, "e c'e' almeno un'altra domanda sul tavolo")
+
+	var box_id: String = "B_COOL_Q_PROVA"
+	var benefits: Array = (loaded.tensions[TENSION] as Dictionary)["physical"]["benefits"] as Array
+	benefits.append({
+		"id": box_id, "verb": "COOL_QUESTION", "text": "Abbassa la domanda.",
+		"for": [session.confluence.side_question("A")],
+	})
+	# L'esito di base della domanda A abbassa la Carestia da solo: si zittisce,
+	# cosi' il passo in giu' che si conta e' quello della pedina.
+	var question_id: String = session.confluence.side_question("A")
+	var said: Array = []
+	for entry in (loaded.confluence_template_for(TENSION)["questions"] as Array):
+		if str((entry as Dictionary)["id"]) == question_id:
+			said = ((entry as Dictionary)["base"] as Array).duplicate()
+			(entry as Dictionary)["base"] = []
+	(session.world["tensions"][TENSION] as Dictionary)["current_value"] = 3
+	for tension_id in others:
+		(session.world["tensions"][tension_id] as Dictionary)["current_value"] = 3
+
+	var proponent: String = str(context["proponent"])
+	assert_true(session.confluence.place_box(proponent, box_id), "la pedina si posa con l'id secco")
+	var before: int = (session.world["effect_log"] as Array).size()
+	var result: Dictionary = session.confluence.resolve()
+	assert_eq(str(result["winner"]), "A", "una pedina contro nessuna: vince la A")
+
+	# Gli Effetti della pedina: ADJUST_TENSION di -1. Il passo del voto (H.1) e
+	# il Ripple hanno altri delta, quindi il -1 e' solo della casella.
+	var lowered: Array = []
+	for i in range(before, (session.world["effect_log"] as Array).size()):
+		var effect: Dictionary = (session.world["effect_log"] as Array)[i] as Dictionary
+		if str(effect["type"]) != "ADJUST_TENSION":
+			continue
+		if int((effect["payload"] as Dictionary).get("delta", 0)) == -1:
+			lowered.append(str((effect["target"] as Dictionary)["id"]))
+	assert_eq(lowered, [TENSION], "e la sola domanda abbassata dalla pedina e' quella in discussione")
+	var spoken: bool = false
+	for line in session.log.lines:
+		if str(line).contains("H. Beneficio: Abbassa la domanda."):
+			spoken = true
+	assert_true(spoken, "e il verbale legge la casella posata")
+
+	# La DataSet e' condivisa: la casella fabbricata se ne va, e la base torna.
+	benefits.pop_back()
+	for entry in (loaded.confluence_template_for(TENSION)["questions"] as Array):
+		if str((entry as Dictionary)["id"]) == question_id:
+			(entry as Dictionary)["base"] = said

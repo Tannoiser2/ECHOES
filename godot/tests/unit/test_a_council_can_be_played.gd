@@ -1,24 +1,30 @@
 extends "res://tests/test_case.gd"
-## **Il Consiglio si puo' giocare** (ISSUES 73).
+## **Il Consiglio si puo' giocare** (ISSUES 73), a due domande (D-467, D-472).
 ##
 ## `test_a_turn_can_be_played` copre la fase delle Azioni: quando tocca a una
 ## persona, sullo schermo c'e' una strada visibile e le carte si prendono.
 ## Restava scoperto **il giro del Consiglio visto da chi siede**, e la voce lo
-## diceva per nome: *«la proposta, i benefici comprati, il prezzo scelto, gli
-## impegni. Ognuno e' una domanda che passa dallo stesso `io`, e ognuno puo'
-## essere morto senza che un cancello se ne accorga.»*
+## diceva per nome: ogni passo *«e' una domanda che passa dallo stesso `io`, e
+## ognuno puo' essere morto senza che un cancello se ne accorga.»*
 ##
 ## Il buco era proprio questo: fra una prova del motore, che chiede al
 ## `PolicyDecider` (che non ha mani), e una prova dello schermo, che disegna
 ## senza che nessuno chieda niente, ci stava un Consiglio che non si poteva
 ## giocare — verde da tutt'e due le parti.
 ##
+## I passi sono quelli di D-472: la domanda da porre, la prima pedina di chi
+## propone, la parte da prendere con la casella da posare, il rilancio o il
+## passo, le carte da impegnare, cosa salvare se cade. I passi di D-280 — la
+## proposta, i benefici comprati coi gettoni, il prezzo scelto dagli
+## avversari, la controproposta, i costi del rivendicante — sono usciti dal
+## motore e da qui.
+##
 ## Qui ogni prova parte **dal decider** — lo stesso che guida il terminale — e
 ## finisce **su quello che si puo' toccare**. E chiede due cose a ogni passo:
 ##
 ##   1. che ci sia almeno un bottone (una domanda senza risposte visibili e' un
 ##      Consiglio fermo);
-##   2. che nessun bottone parli per id (`TEN_`, `P_`, `CNS_`, `B_`, `C_`) —
+##   2. che nessun bottone parli per id (`TEN_`, `Q_`, `CNS_`, `B_`, `C_`) —
 ##      *«carte che spiegano esattamente cosa fanno e non tag o testi tecnici»*,
 ##      parola del committente in [ISSUES 63](../../docs/ISSUES.md#63).
 
@@ -59,7 +65,7 @@ func _screen(seat: String) -> Node:
 
 ## **Un Consiglio vero, aperto sulla partita vera.** Non una Confluence
 ## fabbricata: si prende la prima Tensione che il Consiglio sa aprire, cosi' la
-## scheda, le proposte e le caselle sono quelle che il tavolo ha davanti.
+## scheda, le domande e le caselle sono quelle che il tavolo ha davanti.
 func _open_a_council() -> Dictionary:
 	for tension_id in session.world["tensions"]:
 		var context: Dictionary = session.confluence.open(
@@ -76,7 +82,8 @@ func _open_a_council() -> Dictionary:
 ## smettere di provare senza dirlo, se quella condizione sparisce.
 ## Fabbricatela.»* Qui la condizione non si fabbrica — sarebbe un Consiglio
 ## finto — ma si **cerca su tutte le Tensioni in gioco**, e se non c'e' la prova
-## lo dice invece di passare in silenzio.
+## lo dice invece di passare in silenzio. Il Consiglio si apre gia' con le
+## due parti (D-470): non c'e' niente da scegliere prima di guardarlo.
 func _a_council_where(condizione: Callable) -> Dictionary:
 	for tension_id in session.world["tensions"]:
 		var aperto: Dictionary = session.confluence.open(
@@ -84,13 +91,26 @@ func _a_council_where(condizione: Callable) -> Dictionary:
 		)
 		if aperto.is_empty():
 			continue
-		var proposte: Array = session.confluence.available_propositions()
-		if proposte.is_empty():
-			continue
-		session.confluence.set_proposition(str((proposte[0] as Dictionary)["id"]))
 		if condizione.call(aperto):
 			return aperto
 	return {}
+
+
+## Il primo seggio che non propone.
+func _someone_else(context: Dictionary) -> String:
+	for entity_id in session.world["turn_order"]:
+		if str(entity_id) != str(context["proponent"]):
+			return str(entity_id)
+	return ""
+
+
+## I benefici liberi della parte A: la prima pedina di chi propone (D-470).
+func _first_benefits() -> Array:
+	var out: Array = []
+	for entry in session.confluence.box_menu("A"):
+		if str((entry as Dictionary)["list"]) == "benefits":
+			out.append(entry)
+	return out
 
 
 ## **Le scelte di un Consiglio non stanno nella colonna: stanno sulla plancia.**
@@ -148,76 +168,106 @@ func _finish(screen: Node) -> void:
 	screen.free()
 
 
-## **Il proponente vede cosa sta proponendo, e cosa lascera' al mondo.**
+## **La domanda si sceglie, quando la carta ne offre piu' d'una.**
 ##
-## E' la decisione centrale del gioco (D-233): senza la riga «se passa», si
-## sceglie fra tre frasi belle senza sapere quale alza una torre e quale lascia
-## una cicatrice.
-func test_the_proponent_can_choose_a_proposition() -> void:
-	var context: Dictionary = _open_a_council()
-	assert_false(context.is_empty(), "un Consiglio si apre")
+## Il passo B esiste solo se la Tensione ha aperto piu' di una domanda: quando
+## ce n'e' una sola il Consiglio non chiede niente, ed e' giusto. La prova si
+## cerca il caso invece di sperarlo — **una prova che smette di provare
+## quando i dati cambiano non lo dice** (CLAUDE.md).
+func test_the_proponent_can_choose_the_question() -> void:
+	# Le domande si leggono **dopo** la ricerca: una lambda cattura per valore
+	# (CLAUDE.md), e riempirle dentro la condizione lascerebbe vuota la lista
+	# qui fuori — e un decider con niente da offrire non chiede niente.
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool: return session.confluence.available_questions().size() > 1
+	)
+	assert_false(context.is_empty(), "una carta con due domande aperte esiste")
+	var options: Array = session.confluence.available_questions()
+	assert_true(options.size() > 1, "e le sue domande sono piu' d'una: %d" % options.size())
+
+	var screen: Node = _screen(str(context["proponent"]))
+	var decider: RefCounted = SeatDecider.new([str(context["proponent"])], null)
+	decider.io = screen
+	# Senza `await`: la chiamata corre fino a dove lo schermo aspetta, ed e'
+	# esattamente li' che si guarda.
+	decider.choose_question(context, options, session)
+
+	_the_step_can_be_answered(screen, "Quale domanda poni?")
+	assert_eq(_buttons(screen).size(), options.size() + 1, "una carta per domanda, piu' «lascia decidere»")
+	_finish(screen)
+
+
+## **Chi propone posa la prima pedina, gratis** (D-470): un beneficio libero
+## della sua domanda, e la casella si legge con la parola stampata.
+func test_the_proponent_puts_down_the_first_pedina() -> void:
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool: return not _first_benefits().is_empty()
+	)
+	assert_false(context.is_empty(), "un Consiglio con un beneficio libero per la A esiste")
+	var menu: Array = _first_benefits()
 	var proponent: String = str(context["proponent"])
-	var options: Array = session.confluence.available_propositions()
-	assert_true(options.size() > 0, "e ha delle proposte: %d" % options.size())
 
 	var screen: Node = _screen(proponent)
 	var decider: RefCounted = SeatDecider.new([proponent], null)
 	decider.io = screen
-	# Senza `await`: la chiamata corre fino a dove lo schermo aspetta, ed e'
-	# esattamente li' che si guarda.
-	decider.choose_proposition(context, options, session)
+	decider.choose_box(proponent, context, menu, "A", session)
 
-	_the_step_can_be_answered(screen, "Cosa proponi?")
+	_the_step_can_be_answered(screen, "Cosa posi per prima?")
 	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
-	assert_true(
-		column.contains("Se passa") or column.contains("Non lascia segni"),
-		"e ogni proposta dice cosa lascia: %s" % column
-	)
+	assert_true(column.contains("Beneficio: "), "e ogni casella dice cos'e': %s" % column)
+	assert_false(column.contains("Costo: "), "solo benefici, per la prima pedina")
 	_finish(screen)
 
 
-## **Chi siede puo' dichiarare la sua posizione**, e le pose sono quattro
-## parole, non quattro sigle.
-func test_a_seat_can_declare_its_stance() -> void:
-	var context: Dictionary = _open_a_council()
-	assert_false(context.is_empty(), "un Consiglio si apre")
-	session.confluence.set_proposition(
-		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
+## **Chi siede prende parte, e posa** (D-470): con A o con B, e la scelta e'
+## la casella — la parte la dice lei, con la domanda che serve. Le pose sono
+## parole, non sigle.
+func test_a_seat_can_take_a_side() -> void:
+	var context: Dictionary = _a_council_where(
+		func(_c: Dictionary) -> bool:
+			return not session.confluence.box_menu("A").is_empty() \
+				and not session.confluence.box_menu("B").is_empty()
 	)
-	var voter: String = ""
-	for entity_id in session.world["turn_order"]:
-		if str(entity_id) != str(context["proponent"]):
-			voter = str(entity_id)
-			break
+	assert_false(context.is_empty(), "un Consiglio con caselle libere da tutt'e due le parti esiste")
+	var voter: String = _someone_else(context)
 	assert_ne(voter, "", "c'e' qualcuno che non ha proposto")
+	var offer: Dictionary = {
+		"A": session.confluence.box_menu("A"), "B": session.confluence.box_menu("B"),
+	}
 
 	var screen: Node = _screen(voter)
 	var decider: RefCounted = SeatDecider.new([voter], null)
 	decider.io = screen
-	decider.choose_stance(voter, context, session)
+	decider.choose_side(voter, context, offer, session)
 
-	_the_step_can_be_answered(screen, "Che posizione prendi?")
+	_the_step_can_be_answered(screen, "Da che parte stai, e cosa posi?")
+	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
+	assert_true(column.contains("Con A — "), "si puo' stare con A: %s" % column)
+	assert_true(column.contains("Con B — "), "e con B")
+	assert_true(column.contains("Beneficio: ") or column.contains("Costo: "), "e ogni carta dice la casella")
+	assert_false(column.contains("SUPPORT") or column.contains("OPPOSE"), "senza le sigle del motore")
 	_finish(screen)
 
 
-## **Il proponente compra** (D-280): le caselle della carta si toccano, e
-## dicono cosa fanno con la parola stampata.
-func test_the_proponent_can_buy_what_the_card_sells() -> void:
+## **Rilanciare o passare** (D-470): le caselle libere della propria parte, e
+## «Passa» in fondo — perche' smettere e' una scelta come posare.
+func test_a_seat_can_raise_or_pass() -> void:
 	var context: Dictionary = _a_council_where(
-		func(_c: Dictionary) -> bool: return not session.confluence.benefit_menu().is_empty()
+		func(_c: Dictionary) -> bool: return session.confluence.box_menu("A").size() >= 2
 	)
-	assert_false(context.is_empty(), "un Consiglio con delle caselle vive esiste")
-	var menu: Array = session.confluence.benefit_menu()
-	var proponent: String = str(context["proponent"])
+	assert_false(context.is_empty(), "un Consiglio con caselle da rilanciare esiste")
+	var voter: String = _someone_else(context)
+	assert_true(session.confluence.join_side(voter, "A"), "un seggio sta con A")
+	var menu: Array = session.confluence.box_menu("A")
 
-	var screen: Node = _screen(proponent)
-	var decider: RefCounted = SeatDecider.new([proponent], null)
+	var screen: Node = _screen(voter)
+	var decider: RefCounted = SeatDecider.new([voter], null)
 	decider.io = screen
-	decider.choose_benefits(proponent, context, menu, session)
+	decider.choose_raise(voter, context, menu, session)
 
-	_the_step_can_be_answered(screen, "Cosa ottieni?")
-	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
-	assert_true(column.contains("Basta cosi"), "e si puo' smettere di comprare: %s" % column)
+	_the_step_can_be_answered(screen, "Rilanci?")
+	var said: Array = _buttons(screen)
+	assert_eq(said.find("Passa"), menu.size(), "«Passa» sta in fondo alle caselle: %s" % str(said))
 	_finish(screen)
 
 
@@ -241,80 +291,17 @@ func test_a_seat_can_commit_assets_to_the_vote() -> void:
 	_finish(screen)
 
 
-## **La domanda si sceglie, quando la carta ne offre piu' d'una.**
-##
-## Il passo B esiste solo se la Tensione ha aperto piu' di una domanda: quando
-## ce n'e' una sola il Consiglio non chiede niente, ed e' giusto. La prova si
-## fabbrica il caso invece di sperarlo — **una prova che smette di provare
-## quando i dati cambiano non lo dice** (CLAUDE.md).
-func test_the_proponent_can_choose_the_question() -> void:
-	var context: Dictionary = {}
-	var options: Array = []
-	for tension_id in session.world["tensions"]:
-		var aperto: Dictionary = session.confluence.open(
-			str(tension_id), {"kind": "THRESHOLD", "entity_id": ""}
-		)
-		if aperto.is_empty():
-			continue
-		options = session.confluence.available_questions()
-		if options.size() > 1:
-			context = aperto
-			break
-	assert_false(context.is_empty(), "una carta con due domande aperte esiste")
-
-	var screen: Node = _screen(str(context["proponent"]))
-	var decider: RefCounted = SeatDecider.new([str(context["proponent"])], null)
-	decider.io = screen
-	decider.choose_question(context, options, session)
-
-	_the_step_can_be_answered(screen, "Su cosa si decide?")
-	_finish(screen)
-
-
-## **Gli avversari scelgono in che moneta paga** (D-280, D-387): la pedina del
-## prezzo si posa su una casella stampata, e la casella si legge.
-func test_the_other_side_can_name_the_price() -> void:
-	var context: Dictionary = _a_council_where(
-		func(_c: Dictionary) -> bool:
-			return not (session.confluence.price_menu()["cost"] as Array).is_empty()
-	)
-	assert_false(context.is_empty(), "un Consiglio con un prezzo da posare esiste")
-	var menu: Array = (session.confluence.price_menu()["cost"] as Array)
-	var avversario: String = ""
-	for entity_id in session.world["turn_order"]:
-		if str(entity_id) != str(context["proponent"]):
-			avversario = str(entity_id)
-			break
-	# **Il gettone e\' la condizione della domanda** (D-387): senza, il Consiglio
-	# non chiede niente e la prova misurerebbe un silenzio legittimo.
-	session.world["entities"][avversario]["claim_tokens"] = 1
-
-	var screen: Node = _screen(avversario)
-	var decider: RefCounted = SeatDecider.new([avversario], null)
-	decider.io = screen
-	decider.choose_cost_token(avversario, context, menu, session)
-
-	_the_step_can_be_answered(screen, "Chi paga, e con che moneta?")
-	_finish(screen)
-
-
-## **E chi si oppone dice cosa salverebbe da una sconfitta che non c\'e' ancora**
+## **E chi sta con B dice cosa salverebbe da una sconfitta che non c'e' ancora**
 ## (§12.3). E' l'ultima decisione che le regole danno a chi gioca, e per
-## duecento versioni non la chiedeva nessuno.
+## duecento versioni non la chiedeva nessuno. A due domande chi si oppone e'
+## chi sta con B (D-470).
 func test_the_losing_side_can_name_what_it_saves() -> void:
 	var context: Dictionary = _open_a_council()
 	assert_false(context.is_empty(), "un Consiglio si apre")
-	session.confluence.set_proposition(
-		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
-	)
-	var avversario: String = ""
-	for entity_id in session.world["turn_order"]:
-		if str(entity_id) != str(context["proponent"]):
-			avversario = str(entity_id)
-			break
 	# La domanda si fa solo a chi si e' opposto **con almeno due carte da
 	# salvare**: una carta sola non e' una scelta. Se la mano pescata non ne ha
 	# due, si cerca un altro seggio invece di lasciar cadere la prova.
+	var avversario: String = ""
 	var tenute: Array = []
 	for entity_id in session.world["turn_order"]:
 		if str(entity_id) == str(context["proponent"]):
@@ -329,8 +316,9 @@ func test_the_losing_side_can_name_what_it_saves() -> void:
 			tenute = [possibili[0], possibili[1]]
 			break
 	assert_true(tenute.size() >= 2, "un seggio con due carte da salvare esiste")
+	assert_true(session.confluence.join_side(avversario, "B"), "e sta con B")
+	assert_eq(session.confluence.stance_of(avversario), "OPPOSE", "che per il tavolo e' opporsi")
 	var vivo: Dictionary = session.confluence.current
-	vivo["stances"][avversario] = {"stance": "OPPOSE", "clause_id": ""}
 	vivo["commits"][avversario] = tenute
 
 	var screen: Node = _screen(avversario)
@@ -342,102 +330,49 @@ func test_the_losing_side_can_name_what_it_saves() -> void:
 	_finish(screen)
 
 
-## **La controproposta del RIVENDICARE** (D-268), che e' la strada piu' battuta
-## di tutte: su cento anni le prese di parola si spendono qui **153 volte su
-## 204** ([D-404](../../docs/DECISIONS.md#d-404)). Chi ha il diritto sceglie fra
-## tenerselo, prendersi la pedina del prezzo, o rivendicare una casella che il
-## proponente ha appena comprato.
-func test_the_claimant_can_counter() -> void:
-	var context: Dictionary = _open_a_council()
-	assert_false(context.is_empty(), "un Consiglio si apre")
-	session.confluence.set_proposition(
-		str((session.confluence.available_propositions()[0] as Dictionary)["id"])
-	)
-	var rivendicante: String = ""
-	for entity_id in session.world["turn_order"]:
-		if str(entity_id) != str(context["proponent"]):
-			rivendicante = str(entity_id)
-			break
-	var offer: Dictionary = {
-		"price": session.confluence.price_menu(),
-		"benefits": session.confluence.claimable_benefits(),
-	}
-
-	var screen: Node = _screen(rivendicante)
-	var decider: RefCounted = SeatDecider.new([rivendicante], null)
-	decider.io = screen
-	decider.choose_counterclaim(rivendicante, context, offer, session)
-
-	_the_step_can_be_answered(screen, "Controproposta?")
-	var column: String = " · ".join(PackedStringArray(_buttons(screen)))
-	assert_true(
-		column.contains("secondo dibattito"),
-		"e si puo' tenere il diritto invece di spenderlo: %s" % column
-	)
-	_finish(screen)
-
-
-## **E chi si prende la pedina del prezzo sceglie le voci, una per una.**
-##
-## `choose_costs` e' l'unica domanda annidata: ci si arriva solo dicendo di si'
-## alla controproposta. Sta qui perche' il criterio della voce dice **ogni
-## passo in cui il motore chiede qualcosa a una persona**, e questo lo e'.
-func test_the_claimant_can_pick_the_costs() -> void:
-	var context: Dictionary = _a_council_where(
-		func(_c: Dictionary) -> bool:
-			return not (session.confluence.price_menu()["cost"] as Array).is_empty()
-	)
-	assert_false(context.is_empty(), "un Consiglio con un prezzo da posare esiste")
-	var menu: Array = (session.confluence.price_menu()["cost"] as Array)
-	var rivendicante: String = ""
-	for entity_id in session.world["turn_order"]:
-		if str(entity_id) != str(context["proponent"]):
-			rivendicante = str(entity_id)
-			break
-
-	var screen: Node = _screen(rivendicante)
-	var decider: RefCounted = SeatDecider.new([rivendicante], null)
-	decider.io = screen
-	decider.choose_costs(rivendicante, context, menu, 1, session)
-
-	_the_step_can_be_answered(screen, "Quali costi paga chi vince?")
-	_finish(screen)
-
-
 ## **La plancia mostra quello che il Consiglio fa gia'** — il passo 1 di
 ## [ISSUES 80](../../docs/ISSUES.md#80).
 ##
-## La voce, scritta in 0.1.253, dice: *«dei benefici comprati, del prezzo, della
-## pedina e della controproposta non mostra niente»*. Era vero allora. D-291,
-## D-304 e D-387 hanno scritto quel pezzo, e da allora nessuno era tornato a
-## verificarlo: questa prova lo tiene, cosi' la riga non torna a marcire.
-func test_the_board_shows_what_was_bought_and_at_what_price() -> void:
+## La voce, scritta in 0.1.253, diceva: *«dei benefici comprati, del prezzo,
+## della pedina e della controproposta non mostra niente»*. Era vero allora.
+## A due domande (D-471) quello che si vede sono **le pedine delle due
+## parti** sulle caselle della carta, le liste coi titoli del cartone, cosa
+## resta se vince l'una o l'altra e cosa succede se cade: questa prova lo
+## tiene, cosi' la riga non torna a marcire.
+func test_the_board_shows_the_pedine_of_both_sides() -> void:
 	var context: Dictionary = _a_council_where(
-		func(_c: Dictionary) -> bool: return not session.confluence.benefit_menu().is_empty()
+		func(_c: Dictionary) -> bool:
+			return not _first_benefits().is_empty() and not session.confluence.box_menu("B").is_empty()
 	)
-	assert_false(context.is_empty(), "un Consiglio con delle caselle vive esiste")
-	var comprata: String = str(
-		(session.confluence.benefit_menu()[0] as Dictionary)["id"]
-	)
-	assert_true(session.confluence.set_benefits([comprata]), "il proponente compra la prima")
+	assert_false(context.is_empty(), "un Consiglio con caselle vive da tutt'e due le parti esiste")
+	var proponent: String = str(context["proponent"])
+	var posata_a: Dictionary = _first_benefits()[0] as Dictionary
+	assert_true(session.confluence.place_box(proponent, str(posata_a["id"])), "chi propone posa la prima")
+	var other: String = _someone_else(context)
+	assert_true(session.confluence.join_side(other, "B"), "un altro prende la B")
+	var posata_b: Dictionary = session.confluence.box_menu("B")[0] as Dictionary
+	assert_true(session.confluence.place_box(other, str(posata_b["id"])), "e posa una casella sua")
 
-	var screen: Node = _screen(str(context["proponent"]))
+	var screen: Node = _screen(proponent)
 	var board: Node = screen.get("_board")
-	board.call("render", session, str(context["proponent"]))
+	board.call("render", session, proponent)
 
 	var scritto: String = _text_of(board.get("_face"))
-	# A due domande (D-471) la plancia intitola le liste come il cartone,
-	# «BENEFICI» e «COSTI»; sul giro di D-280 diceva «COSA SI COMPRA».
-	assert_true(
-		scritto.contains("COSA SI COMPRA") or scritto.contains("BENEFICI"),
-		"la plancia dice cosa si compra: %s" % scritto
-	)
-	var testo: String = str(session.confluence.call("_voice_text", "benefits", comprata))
-	assert_true(
-		scritto.contains(testo.substr(0, mini(24, testo.length()))),
-		"e nomina la casella comprata «%s»: %s" % [testo, scritto]
-	)
+	assert_true(scritto.contains("BENEFICI") and scritto.contains("COSTI"), "le liste hanno i titoli del cartone: %s" % scritto)
+	assert_true(scritto.contains("SE CADE"), "e si legge cosa succede se cade")
+	assert_eq(str(board.get("_consequences_title").text), "SE VINCE", "e cosa resta se vince l'una o l'altra")
+	var pedine: Array = []
+	for row in board.get("_face").get_children():
+		if (row as Node).has_meta("marked") and bool((row as Node).get_meta("marked")):
+			pedine.append(_text_of(row))
+	assert_eq(pedine.size(), 2, "due pedine posate, due pedine sulla carta")
+	for posata in [posata_a, posata_b]:
+		var testo: String = str((posata as Dictionary)["text"])
+		var trovata: bool = false
+		for riga in pedine:
+			if str(riga).contains(testo.substr(0, mini(24, testo.length()))):
+				trovata = true
+		assert_true(trovata, "la pedina sta sulla casella posata «%s»: %s" % [testo, str(pedine)])
 	for id in IDS:
 		assert_false(scritto.contains(str(id)), "e non parla per id (%s): %s" % [str(id), scritto])
 	_finish(screen)
-

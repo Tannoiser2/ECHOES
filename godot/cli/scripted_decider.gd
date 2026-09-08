@@ -173,32 +173,34 @@ func choose_question(context: Dictionary, options: Array, _session: RefCounted) 
 	return ""
 
 
-func choose_proposition(context: Dictionary, options: Array, _session: RefCounted) -> String:
-	var directive: Dictionary = _directive(context)
-	var wanted: String = str(directive.get("proposition_id", ""))
-	for option in options:
-		if str(option["id"]) == wanted:
-			return wanted
-	return str(options[0]["id"])
-
-
-func choose_stance(entity_id: String, context: Dictionary, session: RefCounted) -> Dictionary:
+## **Da che parte stare** (D-467, D-472). Il piano dice `stances`
+## (SUPPORT/OPPOSE per seggio): chi sostiene sta con A, chi si oppone prende
+## la B; se la parte voluta non ha caselle libere si sta dove si puo'. Senza
+## direttiva: si sta con gli amici e contro i nemici, e chi e' neutrale con A.
+func choose_side(entity_id: String, context: Dictionary, offer: Dictionary, session: RefCounted) -> Dictionary:
 	var directive: Dictionary = _directive(context)
 	var stances: Dictionary = directive.get("stances", {})
+	var side: String = ""
 	if stances.has(entity_id):
-		return {
-			"stance": str(stances[entity_id]["stance"]),
-			"clause_id": str(stances[entity_id].get("clause_id", "")),
-		}
-	# Default: you back your friends and block your enemies. Everyone else
-	# waits to see how it lands.
-	var rank: int = session.service.relation_rank(entity_id, str(context["proponent"]))
-	var neutral: int = WorldStateService.RELATION_ORDER.find("NEUTRAL")
-	if rank > neutral:
-		return {"stance": "SUPPORT", "clause_id": ""}
-	if rank < neutral:
-		return {"stance": "OPPOSE", "clause_id": ""}
-	return {"stance": "ABSTAIN", "clause_id": ""}
+		side = "B" if str(stances[entity_id]["stance"]) == "OPPOSE" else "A"
+	else:
+		var rank: int = session.service.relation_rank(entity_id, str(context["proponent"]))
+		var neutral: int = WorldStateService.RELATION_ORDER.find("NEUTRAL")
+		side = "B" if rank < neutral else "A"
+	if (offer.get(side, []) as Array).is_empty():
+		side = "A" if not (offer.get("A", []) as Array).is_empty() else "B"
+	var menu: Array = offer.get(side, []) as Array
+	return {"side": side, "voice_id": "" if menu.is_empty() else str((menu[0] as Dictionary)["id"])}
+
+
+func choose_box(_entity_id: String, _context: Dictionary, menu: Array, _side: String, _session: RefCounted) -> String:
+	return "" if menu.is_empty() else str((menu[0] as Dictionary)["id"])
+
+
+## Il decisore scritto non rilancia: le pedine del primo giro bastano a dire
+## chi sta dove, e un piano che non parla non deve cambiare l'esito.
+func choose_raise(_entity_id: String, _context: Dictionary, _menu: Array, _session: RefCounted) -> String:
+	return ""
 
 
 func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:

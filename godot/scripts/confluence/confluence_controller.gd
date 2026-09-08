@@ -1,21 +1,26 @@
 extends RefCounted
 ## The Confluence sequence A-K (§12.2).
 ##
-## A state machine, not a script: open() runs A-C, the table then declares
-## stances (D) and commits (E), and resolve() runs F-K in one atomic pass. The
-## same object drives a headless simulation and, in 0.1, the Confluence Board.
+## A state machine, not a script: open() runs A-C and opens the two sides,
+## the table then takes sides, places pedine and commits (D-E), and resolve()
+## runs G-K in one atomic pass. The same object drives a headless simulation
+## and, in 0.1, the Confluence Board.
+##
+## **Un motore solo** (D-472): il Consiglio e' quello a due domande di D-467.
+## Il giro di D-280 — proposta, acquisto coi gettoni, prezzo scelto dagli
+## avversari, dado — e' uscito dal codice; le sue prove sono passate alla
+## regola nuova o sono state tolte con verbale.
 ##
 ## Resolution order inside resolve() - fixed, and documented in
 ## docs/RULES_V0_2.md so a Strategy swap cannot quietly change it:
-##   1. World Factor roll                      (F)
-##   2. Resolution maths                       (G)
-##   3. Tension outcome (set to 1 / -2)        (H)
-##   4. on_commit costs of the Assets spent    (H)
-##   5. Outcome Consequences                   (H)
-##   6. Cost / Decisive-bonus Consequence      (H)
-##   8. Asset disposition                      (I)
-##   9. Echo Check                             (J)
-##  10. Ripple                                 (K)
+##   1. Resolution maths against the pile     (G)
+##   2. Tension outcome (set to 1 / -2)        (H)
+##   3. on_commit costs of the Assets spent    (H)
+##   4. Base outcome of the winning question   (H)
+##   5. The winning side's pedine              (H)
+##   6. Asset disposition                      (I)
+##   7. Echo Check                             (J)
+##   8. Ripple                                 (K)
 
 const Effect := preload("res://scripts/core/effect.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
@@ -119,18 +124,14 @@ func open(tension_id: String, trigger: Dictionary) -> Dictionary:
 		# Regione di cui si discute (D-154) si misura sulla Regione dichiarata
 		# ad A, non su quella che il mondo avra' a G.
 		"focus_region": narrative.focus_region(tension_id),
-		"proposition_id": "",
 		"stances": {},
 		"commits": {},
-		"world_factor": 0,
-		"die": 0,
 		"participants": [proponent],
-		"step": "PROPOSITION",
+		"step": "STANCE",
 		"act": int(world["act"]),
 		"round": int(world["round"]),
 	}
-	if two_questions():
-		_open_the_sides(template, question_id)
+	_open_the_sides(template, question_id)
 
 	# **L'intestazione senza l'id** (ISSUES 63): `confluence_id` e'
 	# «CNF_ANY_ANCIENT#3», e finiva in cima al verbale che sta sullo schermo. Il
@@ -177,10 +178,8 @@ func set_question(question_id: String) -> bool:
 	for question in available_questions():
 		if str(question["id"]) == question_id:
 			current["question_id"] = question_id
-			current["proposition_id"] = ""
 			log.bullet("B. Domanda scelta: %s" % say(str(question["text"])))
-			if two_questions():
-				_open_the_sides(_template(), question_id)
+			_open_the_sides(_template(), question_id)
 			return true
 	last_error = "domanda '%s' non disponibile" % question_id
 	return false
@@ -277,39 +276,6 @@ func _select_question(template: Dictionary, proponent: String, tension_id: Strin
 	return str(eligible[eligible.size() - 1]["id"])
 
 
-## Propositions the proponent may legally choose (C).
-func available_propositions() -> Array:
-	if current.is_empty():
-		return []
-	var template: Dictionary = _template()
-	var context: Dictionary = effect_context()
-	var out: Array = []
-	for proposition in template["propositions"]:
-		if str(proposition["question_id"]) != str(current["question_id"]):
-			continue
-		if conditions.all_hold(proposition["eligibility"], context):
-			out.append(proposition)
-	return out
-
-
-## Step C: the proponent picks one of the structured options (appendix A9 -
-## free text returns with the Narrative Model in 0.4).
-func set_proposition(proposition_id: String) -> bool:
-	last_error = ""
-	if current.is_empty():
-		last_error = "nessuna Confluence aperta"
-		return false
-	for proposition in available_propositions():
-		if str(proposition["id"]) == proposition_id:
-			current["proposition_id"] = proposition_id
-			current["step"] = "STANCE"
-			log.bullet("C. Proposta: %s" % say(str(proposition["text"])))
-			step_changed.emit("PROPOSITION", current)
-			return true
-	last_error = "proposta '%s' non disponibile" % proposition_id
-	return false
-
-
 # --- D: Stance -------------------------------------------------------------
 
 ## §12.2 D: public, in turn order from the proponent's left.
@@ -317,35 +283,7 @@ func stance_order() -> Array:
 	return service.stance_order(str(current["proponent"])) if is_open() else []
 
 
-func declare_stance(entity_id: String, stance: String, _clause_id: String = "") -> bool:
-	last_error = ""
-	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
-		last_error = "non e il momento di dichiarare una posizione"
-		return false
-	if entity_id == str(current["proponent"]):
-		last_error = "il proponente non dichiara una posizione"
-		return false
-	if not STANCES.has(stance):
-		last_error = "posizione non valida '%s'" % stance
-		return false
-
-	var record: Dictionary = {"stance": stance}
-	log.bullet("D. %s: %s" % [_name(entity_id), stance])
-
-	current["stances"][entity_id] = record
-	if stance != "ABSTAIN" and not (current["participants"] as Array).has(entity_id):
-		current["participants"].append(entity_id)
-	return true
-
-
-# --- D-467: il Consiglio a due domande (giro 3) ------------------------------
-
-## **La Chronicle lo dichiara** (`confluence_rules.two_questions`). Senza, il
-## Consiglio e' quello di D-280: proposta, acquisto, prezzo, dado. Le prove
-## scritte su quella grammatica giocano la Chronicle di prova, che non lo
-## dichiara; il tavolo spedito si'.
-func two_questions() -> bool:
-	return bool((_chronicle.get("confluence_rules", {}) as Dictionary).get("two_questions", false))
+# --- D: le due parti, le caselle, il rilancio (D-467) -----------------------
 
 
 ## Le due parti: la domanda che il proponente ha preso e' la **A**, l'altra
@@ -370,8 +308,6 @@ func _open_the_sides(template: Dictionary, question_id: String) -> void:
 	}
 	current["pile"] = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
 	current["passed"] = {}
-	current["proposition_id"] = ""
-	current["step"] = "STANCE"
 	log.bullet("B. Contro: %s" % say(_question_text(template, other)))
 	log.bullet("B. Il mucchio sulla domanda vale %d." % int(current["pile"]))
 
@@ -464,7 +400,7 @@ func box_menu(side: String) -> Array:
 	if question_id == "":
 		return out
 	for list_name in ["benefits", "costs"]:
-		for voice in _live_voices(list_name):
+		for voice in live_voices(list_name):
 			var marked: Array = (voice as Dictionary).get("for", []) as Array
 			if not marked.has(question_id):
 				continue
@@ -505,7 +441,14 @@ func join_side(entity_id: String, side: String) -> bool:
 		log.bullet("D. %s prende l'altra domanda: %s" % [
 			_name(entity_id), say(_question_text(_template(), str(part["question_id"]))),
 		])
-	return declare_stance(entity_id, "SUPPORT" if side == "A" else "OPPOSE")
+	# Per il tavolo e' la posizione di sempre: chi sta con A sostiene, chi
+	# sta con B si oppone — sonde, tabellone e obiettivi leggono quello.
+	var stance: String = "SUPPORT" if side == "A" else "OPPOSE"
+	(current["stances"] as Dictionary)[entity_id] = {"stance": stance}
+	if not (current["participants"] as Array).has(entity_id):
+		(current["participants"] as Array).append(entity_id)
+	log.bullet("D. %s: %s" % [_name(entity_id), stance])
+	return true
 
 
 ## **Posare una pedina** sulla casella libera della propria parte.
@@ -527,7 +470,7 @@ func place_box(entity_id: String, voice_id: String) -> bool:
 		log.bullet("D. %s posa per %s — %s: %s" % [
 			_name(entity_id), side,
 			"beneficio" if str((entry as Dictionary)["list"]) == "benefits" else "costo",
-			_price_said(str((entry as Dictionary)["list"]), voice_id),
+			_voice_text(str((entry as Dictionary)["list"]), voice_id),
 		])
 		return true
 	last_error = "«%s» non e' una casella libera della parte %s" % [voice_id, side]
@@ -571,99 +514,10 @@ func settle_prices() -> Array:
 					boxes.remove_at(i)
 					removed.append(str(gone["voice"]))
 					log.bullet("D. La parte %s ha piu' benefici che costi: la pedina di %s su «%s» si toglie." % [
-						side, _name(str(gone["by"])), _price_said("benefits", str(gone["voice"])),
+						side, _name(str(gone["by"])), _voice_text("benefits", str(gone["voice"])),
 					])
 					break
 	return removed
-
-
-# --- D-bis: la pedina del prezzo (PZ-5, D-267) ------------------------------
-
-## Il menu del prezzo: fra quali voci il fronte avverso puo' scegliere - il
-## costo se la proposta passa pagando, lo sfogo se cade.
-##
-## **Le voci stanno sulla carta Tensione** (D-278, parola del committente: «nelle
-## tensioni ci dovrebbero essere anche i vantaggi e gli svantaggi che possono
-## essere scelti e proposti durante il consiglio»). La carta girata sul tavolo
-## porta le sue due liste, e sono quelle che il fronte avverso legge: il pool
-## del template resta il ripiego per le questioni che una faccia non ce l'hanno
-## ancora. Prima di questa decisione il menu veniva **solo** dal template, e
-## siccome 52 carte su 60 ne condividono quattro generici, il malus era la
-## stessa coppia per tutto il gioco.
-func price_menu() -> Dictionary:
-	if current.is_empty():
-		return {"cost": [], "failure": []}
-	# **E solo i costi che mordono** (D-306): un prezzo che non toglie niente
-	# non e' un prezzo, e il beneficio comprato sarebbe uscito gratis. Misurato
-	# prima della regola: 21 costi su 92 scattavano a vuoto.
-	var costs: Array = []
-	for voice in _live_voices("costs"):
-		costs.append(str((voice as Dictionary)["id"]))
-	return {"cost": costs, "failure": []}
-
-
-## **I gettoni di rivendicazione di una casa** (D-387, ISSUES 122): la moneta
-## del Consiglio. Se ne prende uno giocando una carta Asset dalla sua faccia
-## RIVENDICARE, e si spendono qui.
-func claim_tokens(entity_id: String) -> int:
-	return int(
-		((world.get("entities", {}) as Dictionary).get(entity_id, {}) as Dictionary
-		).get("claim_tokens", 0)
-	)
-
-
-## **Quanti benefici il proponente puo' posare, qui e adesso** (D-387): il
-## primo e' gratis, ogni altro vuole un gettone suo — e non piu' di quante
-## caselle vive la carta abbia.
-func benefit_ceiling() -> int:
-	if current.is_empty():
-		return 0
-	return mini(CouncilEconomy.benefits_affordable(_purse()), benefit_menu().size())
-
-
-## **La borsa del proponente, per questo Consiglio**: i gettoni che ha in mano
-## piu' quelli che ha gia' posato su questa carta. Le pedine si rialzano finche'
-## il Consiglio non si chiude, quindi quelle posate sono ancora sue — senza
-## questa riga, comprare due benefici e poi ripensarci per comprarne tre non si
-## potrebbe, e il tetto scenderebbe man mano che si compra.
-func _purse() -> int:
-	return (
-		claim_tokens(str(current["proponent"])) + int(current.get("benefit_tokens_spent", 0))
-	)
-
-
-## Quanti costi sono stati posati sulla carta: uno per ogni avversario che ha
-## speso un gettone. **Non e' piu' un conto** (D-387): fino a D-386 il numero
-## usciva dall'aritmetica — un costo per ogni beneficio oltre il primo — e il
-## fronte avverso lo subiva. Adesso e' una scelta, e si paga.
-func costs_placed() -> int:
-	return (
-		(current.get("cost_pedine", []) as Array) if not current.is_empty() else []
-	).size()
-
-
-## **Le voci dei benefici che il proponente ha posato**, gia' aperte.
-##
-## `claimable_benefits()` da' le pedine — che da [D-416](../../../docs/DECISIONS.md#d-416)
-## possono portare anche il nome di una domanda; questa da' le **voci**, che e'
-## quello che serve a chi deve pesare cosa il proponente sta comprando. Senza,
-## chi legge dovrebbe conoscere la forma della pedina, e sarebbe una seconda
-## tabella da tenere allineata.
-func placed_benefit_voices() -> Array:
-	var out: Array = []
-	if sides_open():
-		# Le pedine di tutte e due le parti (D-467): il tabellone le mostra.
-		for side in ["A", "B"]:
-			for voice_id in side_boxes(side, "benefits"):
-				var placed: Dictionary = _voice("benefits", str(voice_id))
-				if not placed.is_empty():
-					out.append(placed)
-		return out
-	for entry in claimable_benefits():
-		var voice: Dictionary = _voice("benefits", _voice_id_of(entry))
-		if not voice.is_empty():
-			out.append(voice)
-	return out
 
 
 ## Cosa ha dichiarato un seggio in questo Consiglio, o "ABSTAIN" se non ha
@@ -678,94 +532,9 @@ func stance_of(entity_id: String) -> String:
 	)
 
 
-## **Quanto pesa un gettone speso contro** (D-419, ISSUES 119): zero se questa
-## Chronicle non compra opposizione, e allora il gettone compra solo costi —
-## il comportamento fino alla 0.1.390.
-func opposition_weight() -> int:
-	return int(
-		(_chronicle.get("confluence_rules", {}) as Dictionary).get("opposition_token_weight", 0)
-	)
-
-
-## Quante pedine di opposizione stanno sulla carta: una per ogni avversario che
-## ha speso il gettone per far cadere la proposta invece che per farla pagare.
-func opposition_placed() -> int:
-	return (
-		(current.get("oppose_pedine", []) as Array) if not current.is_empty() else []
-	).size()
-
-
-## **Un avversario compra opposizione** (D-419, ISSUES 119, la strada (b) della
-## voce: *«il fallimento si compra»*).
-##
-## Fino a qui un Consiglio cadeva quando i numeri non tornavano: in cento
-## partite il segno di chi ha parlato e perso si posava **8 volte**, su otto
-## case e trecento Consigli. Una minaccia che si vede una volta ogni dodici
-## partite non e' una minaccia, ed e' la ragione per cui il tavolo che tace
-## veniva premiato.
-##
-## Adesso lo stesso gettone di [D-387](../../../docs/DECISIONS.md#d-387) ha
-## **due usi, e sono uno la rinuncia dell'altro**: posarlo su un costo dice
-## *«passi, ma paghi»*; spenderlo contro dice *«questa non deve passare»*. E'
-## la scelta che rende il fronte avverso una posizione invece che un'attesa.
-##
-## **Comprare opposizione e' opporsi**, e non chiede di averlo gia' dichiarato:
-## al tavolo pagare per far cadere una proposta *e'* la presa di posizione, e
-## la pedina si posa in chiaro come tutte le altre. Chiederla solo a chi ha
-## gia' detto OPPOSE l'avrebbe resa quasi impossibile — misurato: in dodici
-## saghe la richiesta arrivava **cinque volte** e veniva rifiutata **cinque
-## volte**, perche' chi aveva il gettone quasi mai aveva anche impegnato carte
-## contro. Una regola che non si puo' mai giocare e' la stessa cosa di una
-## regola che non c'e'.
-##
-## Quello che resta vietato e' l'incoerenza: chi ha dichiarato SUPPORT sta
-## dalla parte della proposta e non puo' pagare per farla cadere.
-func buy_opposition(entity_id: String) -> bool:
-	last_error = ""
-	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
-		last_error = "non e' il momento di comprare opposizione"
-		return false
-	if opposition_weight() <= 0:
-		last_error = "in questa Chronicle il gettone non compra opposizione"
-		return false
-	if entity_id == "" or entity_id == str(current["proponent"]):
-		last_error = "chi propone non si oppone alla sua proposta"
-		return false
-	var stance: String = str(
-		(current["stances"] as Dictionary).get(entity_id, {}).get("stance", "ABSTAIN")
-	)
-	if stance == "SUPPORT":
-		last_error = "%s sta dalla parte della proposta" % _name(entity_id)
-		return false
-	var pedine: Array = (current.get("oppose_pedine", []) as Array)
-	for posata in pedine:
-		if str(posata) == entity_id:
-			last_error = "%s ha gia' comprato opposizione" % _name(entity_id)
-			return false
-	if not _move_tokens(entity_id, -1):
-		return false
-	pedine.append(entity_id)
-	current["oppose_pedine"] = pedine
-	log.bullet("D. %s spende un gettone contro la proposta (%+d al margine)." % [
-		_name(entity_id), -opposition_weight()
-	])
-	return true
-
-
-## **I benefici che il proponente puo' comprare: le caselle vive** (D-306).
-##
-## Le voci stampate sulla carta, meno quelle che qui e adesso non farebbero
-## niente — «Riapri l'accesso» dove non c'e' niente di chiuso, «Cambia
-## controllo» verso chi il luogo lo tiene gia'. Misurato prima della regola: il
-## **44%** dei benefici comprati non lasciava niente, e si pagava lo stesso.
-##
-## Al tavolo si guarda la mappa: sulla casella morta la pedina non ci va.
-func benefit_menu() -> Array:
-	return _live_voices("benefits")
-
-
-## Le caselle di una lista che possono davvero fare qualcosa, adesso (D-306).
-func _live_voices(list_name: String) -> Array:
+## Le caselle di una lista che possono davvero fare qualcosa, adesso (D-306):
+## e' quello che il tabellone spegne, e da cui `box_menu` toglie le prese.
+func live_voices(list_name: String) -> Array:
 	var out: Array = []
 	if current.is_empty():
 		return out
@@ -779,115 +548,6 @@ func _live_voices(list_name: String) -> Array:
 		):
 			out.append(voice)
 	return out
-
-
-## **Il proponente compra** (D-280). Fino a tre, che sono le pedine che stanno
-## sulla carta: il tetto non si sfonda (D-303). Comprare zero benefici e'
-## legittimo: e' una proposta che chiede al tavolo di dire una cosa e basta, e
-## non paga niente.
-func set_benefits(chosen: Array) -> bool:
-	last_error = ""
-	if current.is_empty() or str(current["step"]) not in ["STANCE", "PROPOSITION"]:
-		last_error = "non e' il momento di comprare i benefici"
-		return false
-	# **E non si compra piu' di quanto si possa pagare** (D-387): il primo
-	# beneficio e' gratis, ogni altro vuole **un gettone di rivendicazione**,
-	# preso un turno prima giocando una carta dalla sua faccia RIVENDICARE.
-	var ceiling: int = mini(
-		CouncilEconomy.benefits_affordable(_purse()), CouncilEconomy.MAX_BENEFITS
-	)
-	if chosen.size() > ceiling:
-		last_error = (
-			"con %d gettoni si posano %d pedine di beneficio" % [_purse(), ceiling]
-		)
-		return false
-	var known: Dictionary = {}
-	for voice in benefit_menu():
-		known[str((voice as Dictionary)["id"])] = true
-	var taken: Dictionary = {}
-	for entry in chosen:
-		var voice_id: String = _voice_id_of(entry)
-		if not known.has(voice_id):
-			last_error = "«%s» non e' un beneficio di questa carta" % voice_id
-			return false
-		if taken.has(voice_id):
-			last_error = "una pedina per voce: «%s» e' gia' posata" % voice_id
-			return false
-		# **La pedina porta con se' il nome della domanda** (D-416, ISSUES 106).
-		# Parola del committente sulla casella che muove una domanda: *«la
-		# sceglie chi propone»*. Una pedina si posa su **due** cose — la voce e
-		# il segnalino che indica — e la voce puo' arrivare come un id secco,
-		# che vuol dire «la domanda di cui si sta discutendo», o come «questa
-		# voce, su quella domanda».
-		var asked: String = _question_asked_of(entry)
-		if asked != "" and not (world["tensions"] as Dictionary).has(asked):
-			last_error = "«%s» non e' una domanda in tavola" % asked
-			return false
-		taken[voice_id] = true
-	# **Le pedine si posano adesso**, e i gettoni con loro. Se questa chiamata
-	# ne cambia il numero — succede quando la prima e' stata rifiutata e il
-	# mondo ripiega sul primo beneficio — il conto si aggiusta nei due versi:
-	# quello che non si compra piu' torna in mano.
-	var need: int = CouncilEconomy.tokens_due(chosen.size())
-	var already: int = int(current.get("benefit_tokens_spent", 0))
-	if not _move_tokens(str(current["proponent"]), already - need):
-		return false
-	current["benefit_tokens_spent"] = need
-	current["benefits"] = chosen.duplicate()
-	if not chosen.is_empty():
-		var said: PackedStringArray = PackedStringArray()
-		for entry in chosen:
-			var line: String = _voice_text("benefits", _voice_id_of(entry))
-			# **E il verbale dice quale**, che e' meta' del criterio della voce:
-			# una pedina posata su una domanda che non e' quella in discussione
-			# e' un gesto che al tavolo si vede, e a verbale deve leggersi.
-			var asked: String = _question_asked_of(entry)
-			if asked != "":
-				line += " — su %s" % _tension_name(asked)
-			said.append(line)
-		log.bullet("C. %s compra: %s  (%s)" % [
-			_name(str(current["proponent"])), " · ".join(said),
-			"i primi %d sono gratis" % CouncilEconomy.FREE_BENEFITS if need == 0
-				else "%d gettoni di rivendicazione" % need,
-		])
-	return true
-
-
-## L'id della voce, comunque la pedina sia stata posata: un id secco, oppure
-## «questa voce, su quella domanda».
-static func _voice_id_of(entry: Variant) -> String:
-	if entry is Dictionary:
-		return str((entry as Dictionary).get("id", ""))
-	return str(entry)
-
-
-## La domanda che chi propone ha indicato col dito, o "" se non ne ha indicata
-## nessuna — e allora vale quella di cui si sta discutendo, com'e' sempre stato.
-static func _question_asked_of(entry: Variant) -> String:
-	if entry is Dictionary:
-		return str((entry as Dictionary).get("question", ""))
-	return ""
-
-
-## **Il gettone si muove come tutto il resto**: un Effetto con un inverso, cosi'
-## il verbale lo racconta e un annullamento lo rimette dov'era. `delta` positivo
-## lo rende, negativo lo spende. Zero non scrive niente.
-func _move_tokens(entity_id: String, delta: int) -> bool:
-	if delta == 0:
-		return true
-	if delta < 0 and claim_tokens(entity_id) < -delta:
-		last_error = "%s non ha abbastanza gettoni di rivendicazione" % _name(entity_id)
-		return false
-	var source: Dictionary = Effect.source(
-		"confluence", str(current.get("confluence_id", "")), entity_id,
-		int(world["act"]), int(world["round"]), int(world["effect_sequence"])
-	)
-	for i in range(absi(delta)):
-		applier.apply(Effect.make(
-			"GRANT_CLAIM_TOKEN" if delta > 0 else "SPEND_CLAIM_TOKEN",
-			"entity", entity_id, {}, source
-		))
-	return true
 
 
 ## La faccia fisica della carta in dibattito, o {} se non ne ha una.
@@ -912,242 +572,6 @@ func _voice(list_name: String, voice_id: String) -> Dictionary:
 func _voice_text(list_name: String, voice_id: String) -> String:
 	var voice: Dictionary = _voice(list_name, voice_id)
 	return str(voice.get("text", voice_id))
-
-
-## Il testo di una voce del prezzo, per chi la deve scegliere.
-func price_voice_text(list_name: String, voice_id: String) -> String:
-	var voice: Dictionary = _voice(list_name, voice_id)
-	return str(voice.get("text", ""))
-
-
-## Quello che il verbale scrive di una voce scelta.
-func _price_said(list_name: String, voice_id: String) -> String:
-	return _voice_text(list_name, voice_id)
-
-
-## Chi parla per il fronte avverso: il primo seggio, nell'ordine delle
-## dichiarazioni, che ha detto OPPOSE. E' informazione pubblica - la pedina si
-## posa a posizioni dichiarate e **prima** degli impegni, che restano segreti:
-## sceglierla su chi ha impegnato di piu' rivelerebbe gli impegni.
-func first_opposer() -> String:
-	if current.is_empty():
-		return ""
-	for entity_id in stance_order():
-		if str((current["stances"] as Dictionary).get(str(entity_id), {}).get("stance", "")) == "OPPOSE":
-			return str(entity_id)
-	return ""
-
-
-## La pedina del prezzo (D-267, parola del committente: «scegliendo dagli
-## avversari i malus»): il fronte avverso dichiara prima del dado quale voce
-## del menu paghera' chi vince - il costo se la proposta passa con un costo,
-## lo sfogo se cade. Senza pedina decide il mondo: la prima voce del pool.
-func place_price(entity_id: String, cost_id: String, failure_id: String) -> bool:
-	var chosen: Array = [] if cost_id == "" else [cost_id]
-	# `failure_id` non esiste piu' come scelta (D-280): se la proposta cade,
-	# scattano gli effetti **stampati** sulla carta. Il parametro resta nella
-	# firma perche' la controproposta del RIVENDICARE (D-268) la chiama cosi',
-	# e cambiarla sotto i suoi override e' la trappola di casa.
-	if failure_id != "":
-		chosen.append(failure_id)
-	return place_costs(entity_id, chosen)
-
-
-## **Gli avversari scelgono in che moneta paga** (D-280, parola del
-## committente). Il proponente ha comprato i benefici; qui il fronte avverso
-## posa **quanti costi l'economia impone** — uno per ogni beneficio oltre il
-## primo — scegliendo quali fra quelli stampati sulla carta.
-##
-## Le pedine si posano a posizioni dichiarate e **prima** degli impegni, che
-## restano segreti: sceglierle su chi ha impegnato di piu' rivelerebbe gli
-## impegni (D-267, e la ragione non e' cambiata).
-func place_costs(entity_id: String, chosen: Array) -> bool:
-	last_error = ""
-	for voice_id in chosen:
-		if not place_cost(entity_id, str(voice_id)):
-			return false
-	return true
-
-
-## **Un avversario posa un costo** (D-387, ISSUES 122, parola del committente:
-## *«gli altri giocatori possono astenersi oppure mettere un token su un
-## costo»*).
-##
-## Fino a D-386 il prezzo era un'aritmetica: tanti costi quanti benefici oltre
-## il primo, e a sceglierli era **solo** il primo seggio del fronte avverso.
-## Adesso ogni casa che non propone puo' posarne uno, e per farlo **spende un
-## gettone di rivendicazione**. Chi non ce l'ha, o non vuole, si astiene: e
-## allora la proposta passa senza prezzo, che e' una cosa che prima non poteva
-## succedere.
-##
-## La pedina si posa a posizioni dichiarate e **prima** degli impegni, che
-## restano segreti (D-267, e la ragione non e' cambiata).
-func place_cost(entity_id: String, cost_id: String) -> bool:
-	last_error = ""
-	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
-		last_error = "non e' il momento di posare il prezzo"
-		return false
-	if entity_id == "" or entity_id == str(current["proponent"]):
-		last_error = "il prezzo lo posa chi non propone"
-		return false
-	if cost_id == "":
-		return true
-	var pedine: Array = (current.get("cost_pedine", []) as Array)
-	if pedine.size() >= CouncilEconomy.MAX_COSTS:
-		last_error = "sulla carta ci stanno %d pedine di costo" % CouncilEconomy.MAX_COSTS
-		return false
-	for posata in pedine:
-		if str((posata as Dictionary)["cost"]) == cost_id:
-			last_error = "una pedina per voce: «%s» e' gia' posata" % cost_id
-			return false
-		if str((posata as Dictionary)["by"]) == entity_id:
-			last_error = "%s ha gia' posato la sua pedina" % _name(entity_id)
-			return false
-	if not (price_menu()["cost"] as Array).has(cost_id):
-		last_error = "«%s» non e' un costo di questa carta" % cost_id
-		return false
-	if not _move_tokens(entity_id, -1):
-		return false
-	pedine.append({"by": entity_id, "cost": cost_id})
-	current["cost_pedine"] = pedine
-	log.bullet("D. %s spende un gettone e posa il prezzo: %s." % [
-		_name(entity_id), _price_said("costs", cost_id)
-	])
-	return true
-
-
-## Il prezzo che scattera' se la proposta passa: quello posato dal fronte
-## avverso, completato dal mondo se il fronte non ha parlato o ha parlato a
-## meta'. **Il mondo prende dall'alto della lista** — la prima voce stampata —
-## perche' una carta che resta muta non deve poter uscire senza prezzo.
-func priced_costs() -> Array:
-	# **Nessun ripiego** (D-387). Fino a D-386, se il fronte avverso non
-	# sceglieva, il mondo prendeva dall'alto della lista: il prezzo era dovuto,
-	# e qualcuno doveva pagarlo. Adesso il prezzo lo **compra** chi lo vuole,
-	# spendendo un gettone — e una proposta che nessuno vuole far pagare passa
-	# gratis. E' la forma piena di D-280: *il proponente compra, gli avversari
-	# scelgono in che moneta paga*, con la differenza che adesso anche loro
-	# pagano per scegliere.
-	var chosen: Array = []
-	if sides_open():
-		for side in ["A", "B"]:
-			chosen.append_array(side_boxes(side, "costs"))
-		return chosen
-	for posata in (current.get("cost_pedine", []) as Array):
-		chosen.append(str((posata as Dictionary)["cost"]))
-	return chosen
-
-
-# --- D-ter: la controproposta del RIVENDICARE (PZ-5 Fase B, D-268) ---------
-
-## **Le voci del beneficio che una controproposta puo' rivendicare: quelle che
-## il proponente ha comprato** (D-304).
-##
-## Prima questa lista tornava le Conseguenze di successo del *template*, che e'
-## la grammatica vecchia: il proponente comprava dalla faccia della carta e il
-## rivendicante posava la pedina su tutt'altro elenco. Due meta' dello stesso
-## Consiglio che parlavano due lingue diverse — ed e' esattamente la confusione
-## che il committente ha segnalato (*«non ho capito come si scelgono i benefici
-## o i malus»*).
-##
-## Adesso e' una pedina su una pedina: le caselle sono quelle occupate sulla
-## carta, e si posa solo dove il proponente ha gia' posato. Il momento e'
-## giusto — la controproposta arriva dopo l'acquisto e prima del prezzo.
-func claimable_benefits() -> Array:
-	if current.is_empty():
-		return []
-	return (current.get("benefits", []) as Array).duplicate()
-
-
-## La controproposta (D-261, parola del committente: il RIVENDICARE *«puo'
-## servire in primis per fare una controproposta sulla Tensione che si va
-## dibattendo - mettere una pedina su un beneficio o su un costo»*). Chi ha
-## consumato un RIVENDICARE nell'Atto puo' spendere qui il suo diritto invece
-## che nel secondo dibattito:
-##
-## - **su un costo** (`mode = "price"`): si prende la pedina del prezzo,
-##   scavalcando il primo OPPOSE - il diritto pagato con l'azione batte
-##   l'ordine delle dichiarazioni;
-## - **su un beneficio** (`mode = "benefit"`): posa la pedina su una delle voci
-##   che il proponente ha comprato sulla carta (D-304) - se la proposta passa,
-##   **quella voce parla di lui**, non del proponente. Le altre restano del
-##   proponente: la controproposta prende una casella, non la carta.
-##
-## Spendersi qui consuma il diritto: il secondo dibattito non si apre.
-func place_counterclaim(entity_id: String, mode: String, first: String, second: String = "") -> bool:
-	last_error = ""
-	if current.is_empty() or str(current["step"]) not in ["STANCE", "COMMIT"]:
-		last_error = "non e' il momento di una controproposta"
-		return false
-	if entity_id == "" or entity_id == str(current["proponent"]):
-		last_error = "il proponente non controproppone a se stesso"
-		return false
-	match mode:
-		"price":
-			# **Il rivendicante si prende la scelta del prezzo** (D-268), che da
-			# D-280 vuol dire: decide lui **quali costi** paghera' chi vince,
-			# scavalcando il primo OPPOSE. I due parametri restano due perche'
-			# la firma e' quella dei suoi chiamanti; sono due voci di costo.
-			#
-			# **E le posa gratis** (D-387): il gettone di rivendicazione lo
-			# paga chi non ha speso l'Azione, e lui l'ha spesa — il diritto
-			# pagato col turno batte la moneta, come batteva l'ordine delle
-			# dichiarazioni.
-			var menu: Array = price_menu()["cost"] as Array
-			var chosen: Array = []
-			var pedine: Array = (current.get("cost_pedine", []) as Array)
-			for voice_id in [first, second]:
-				if str(voice_id) == "":
-					continue
-				if not menu.has(str(voice_id)):
-					last_error = "«%s» non e' un costo di questa carta" % str(voice_id)
-					return false
-				if pedine.size() + chosen.size() >= CouncilEconomy.MAX_COSTS:
-					last_error = (
-						"sulla carta ci stanno %d pedine di costo" % CouncilEconomy.MAX_COSTS
-					)
-					return false
-				chosen.append(str(voice_id))
-			for voice_id in chosen:
-				pedine.append({"by": entity_id, "cost": str(voice_id)})
-			current["cost_pedine"] = pedine
-			current["counterclaim"] = "price"
-			var said: PackedStringArray = PackedStringArray()
-			for voice_id in chosen:
-				said.append(_price_said("costs", str(voice_id)))
-			log.bullet("D. La controproposta di %s: sceglie lui il prezzo%s." % [
-				_name(entity_id),
-				"" if said.is_empty() else " - %s" % " · ".join(said),
-			])
-			return true
-		"benefit":
-			# Le pedine possono portare il nome di una domanda (D-416): si
-			# confronta l'id, non la forma.
-			var posate: Array = []
-			for entry in claimable_benefits():
-				posate.append(_voice_id_of(entry))
-			if not posate.has(first):
-				last_error = "«%s» non e' un beneficio comprato su questa carta" % first
-				return false
-			current["benefit_pedina"] = {"by": entity_id, "voice_id": first}
-			current["counterclaim"] = "benefit"
-			log.bullet(
-				"D. La controproposta di %s: rivendica «%s» - se la proposta passa, quella voce parla di %s."
-				% [_name(entity_id), _voice_text("benefits", first), _name(entity_id)]
-			)
-			return true
-	last_error = "controproposta '%s' sconosciuta" % mode
-	return false
-
-
-## Una voce sola dal pool (D-267): quella della pedina, o la prima. Il mondo
-## decide solo quando il fronte avverso non ha posato niente.
-func _priced(pool: Array, chosen: String) -> String:
-	if pool.is_empty():
-		return ""
-	if chosen != "" and pool.has(chosen):
-		return chosen
-	return str(pool[0])
 
 
 # --- E: Commit -------------------------------------------------------------
@@ -1197,10 +621,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	if current.is_empty():
 		last_error = "nessuna Confluence aperta"
 		return {}
-	if str(current["proposition_id"]) == "" and not sides_open():
-		last_error = "nessuna proposta scelta"
-		return {}
-
 	var template: Dictionary = _template()
 	var tension_id: String = str(current["tension_id"])
 	var source: Dictionary = Effect.source(
@@ -1212,23 +632,9 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		int(world["effect_sequence"])
 	)
 
-	# F. World Factor. **Senza dado a due domande** (D-467): il mondo ha gia'
-	# parlato col mucchio, che e' la soglia; il dente dei segni sul dado non
-	# ha piu' un dado su cui pesare.
-	var die: int = 0
-	var factor: int = 0
-	var bite: Dictionary = {"delta": 0, "titles": []}
-	if not sides_open():
-		die = rng.roll_d6()
-		factor = ConfluenceResolution.world_factor(die)
-		# ISSUES 24: i segni con un dente pesano sul mondo prima che sul tavolo.
-		# Il dado resta il dado; è il World Factor che un mondo segnato piega.
-		bite = TagRules.council_world_factor(
-			data, world, tension_id, str(current["proponent"])
-		)
-		factor += int(bite["delta"])
-	current["die"] = die
-	current["world_factor"] = factor
+	# **Senza dado** (D-467): il mondo ha gia' parlato col mucchio, che e' la
+	# soglia del voto. Il dente dei segni sul dado (ISSUES 24) non ha piu' un
+	# dado su cui pesare, e resta scritto come voce aperta in D-472.
 
 	# I fronti che valgono di più (D-125): il segno rinforza il fronte di chi
 	# lo porta, ma solo se quel seggio ha messo almeno una carta sul tavolo -
@@ -1301,73 +707,43 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		current["commits"],
 		data.assets,
 		service.relevant_families(tension_id),
-		factor,
 		support_bonus,
-		oppose_bonus,
-		opposition_placed() * opposition_weight()
+		oppose_bonus
 	)
-	if sides_open():
-		# **Il voto a tre esiti, contro il mucchio** (D-467): A e' chi sostiene
-		# la domanda del proponente, B chi ha preso l'altra.
-		#
-		# **Le pedine pesano** (D-471, taratura scritta): una parte vale le sue
-		# carte **piu' le pedine che ha posato**, benefici e costi. Con le sole
-		# carte — due per seggio, tetto della Chronicle — una parte di due non
-		# arrivava a un mucchio da sei, e quattro Consigli su dieci non
-		# decidevano niente (D-470). Posare un costo e' sostenere: al tavolo
-		# si conta «carte e pedine della tua parte».
-		var a_pedine: int = side_boxes("A", "benefits").size() + side_boxes("A", "costs").size()
-		var b_pedine: int = side_boxes("B", "benefits").size() + side_boxes("B", "costs").size()
-		result["cards_a"] = int(result["support_total"])
-		result["cards_b"] = int(result["oppose_total"])
-		result["pedine_a"] = a_pedine
-		result["pedine_b"] = b_pedine
-		result["support_total"] = int(result["support_total"]) + a_pedine
-		result["oppose_total"] = int(result["oppose_total"]) + b_pedine
-		result["pile"] = pile()
-		result["outcome"] = ConfluenceResolution.two_sides_outcome(
-			int(result["support_total"]), int(result["oppose_total"]), pile()
-		)
-		result["margin"] = int(result["support_total"]) - int(result["oppose_total"])
-		result["winner"] = ConfluenceResolution.winner_of(str(result["outcome"]))
-		result["sides"] = (current["sides"] as Dictionary).duplicate(true)
+	# **Il voto a tre esiti, contro il mucchio** (D-467): A e' chi sostiene la
+	# domanda del proponente, B chi ha preso l'altra.
+	#
+	# **Le pedine pesano** (D-471, taratura scritta): una parte vale le sue
+	# carte **piu' le pedine che ha posato**, benefici e costi. Con le sole
+	# carte — due per seggio, tetto della Chronicle — una parte di due non
+	# arrivava a un mucchio da sei, e quattro Consigli su dieci non decidevano
+	# niente (D-470). Posare un costo e' sostenere: al tavolo si conta «carte
+	# e pedine della tua parte».
+	var a_pedine: int = side_boxes("A", "benefits").size() + side_boxes("A", "costs").size()
+	var b_pedine: int = side_boxes("B", "benefits").size() + side_boxes("B", "costs").size()
+	result["cards_a"] = int(result["support_total"])
+	result["cards_b"] = int(result["oppose_total"])
+	result["pedine_a"] = a_pedine
+	result["pedine_b"] = b_pedine
+	result["support_total"] = int(result["support_total"]) + a_pedine
+	result["oppose_total"] = int(result["oppose_total"]) + b_pedine
+	result["pile"] = pile()
+	result["outcome"] = ConfluenceResolution.two_sides_outcome(
+		int(result["support_total"]), int(result["oppose_total"]), pile()
+	)
+	result["margin"] = int(result["support_total"]) - int(result["oppose_total"])
+	result["winner"] = ConfluenceResolution.winner_of(str(result["outcome"]))
+	result["sides"] = (current["sides"] as Dictionary).duplicate(true)
 	_log_commitments()
-	if sides_open():
-		log.bullet("G. A=%d (carte %d, pedine %d) B=%d (carte %d, pedine %d) contro il mucchio %d -> %s" % [
-			int(result["support_total"]), int(result["cards_a"]), int(result["pedine_a"]),
-			int(result["oppose_total"]), int(result["cards_b"]), int(result["pedine_b"]),
-			pile(), str(result["outcome"]),
-		])
-	else:
-		log.bullet("F. World Factor: 1d6 = %d -> %+d" % [die, factor])
-	for title in bite["titles"]:
-		log.bullet("  Il segno pesa sul Consiglio: %s." % str(title))
+	log.bullet("G. A=%d (carte %d, pedine %d) B=%d (carte %d, pedine %d) contro il mucchio %d -> %s" % [
+		int(result["support_total"]), int(result["cards_a"]), int(result["pedine_a"]),
+		int(result["oppose_total"]), int(result["cards_b"]), int(result["pedine_b"]),
+		pile(), str(result["outcome"]),
+	])
 	for title in stance_titles:
 		log.bullet("  Il segno pesa sul fronte: %s." % str(title))
 	if silence_bonus > 0 and table_is_silent:
 		log.bullet("  Il tavolo tace: il silenzio avvantaggia il proponente (+%d)." % silence_bonus)
-	# A qualified Condition is part of the margin (D-055), so it is part of the one
-	# line a player reads to check the arithmetic - and an unqualified one is shown
-	# too, crossed out of the sum, because "you spent two cards for nothing" is
-	# exactly the thing that has to be visible.
-	# L'opposizione comprata entra nella riga che si legge per controllare
-	# l'aritmetica (D-419): un margine che scende di due senza che si veda
-	# perche' e' esattamente il modo in cui una regola nuova diventa magia.
-	var bought: String = ""
-	if int(result.get("bought_opposition", 0)) > 0:
-		bought = " G=%d" % int(result["bought_opposition"])
-	if not sides_open():
-		log.bullet(
-		"G. S=%d O=%d%s W=%+d -> M=%d -> %s"
-		% [
-			int(result["support_total"]),
-			int(result["oppose_total"]),
-			bought,
-			factor,
-			int(result["margin"]),
-			str(result["outcome"]),
-		]
-	)
 
 	var applied: Array = []
 	var outcome: String = str(result["outcome"])
@@ -1418,12 +794,9 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 				for said in spoken:
 					log.bullet("  %s" % said)
 
-	# H.3-H.5 Outcome consequences. Dal pool del prezzo scatta **una voce sola**
-	# (D-267): quella su cui il fronte avverso ha posato la pedina, o la prima
-	# se nessuno ha parlato. Fino a 0.1.228 scattava il pool intero - con una
-	# voce sola era la stessa cosa, e il pool era quasi sempre una voce sola.
+	# H.3-H.5 Outcome consequences.
 	var consequence_ids: Array = []
-	if sides_open() and str(result["winner"]) != "":
+	if str(result["winner"]) != "":
 		# **L'esito di base della domanda che ha vinto** (D-467, D-469): le
 		# Conseguenze scritte sulla domanda, a prescindere dalle pedine. Se
 		# vince la B, le sue frasi parlano di chi la guida.
@@ -1432,10 +805,6 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		if winner == "B":
 			context = context.duplicate()
 			context["proponent"] = side_leader("B")
-	elif not sides_open() and ConfluenceResolution.is_success(outcome):
-		consequence_ids.append_array(_proposition()["success_consequences"])
-		if outcome == ConfluenceResolution.DECISIVE:
-			consequence_ids.append_array(template["consequence_pools"]["decisive_bonus"])
 	elif outcome == ConfluenceResolution.FAILURE:
 		# **Una domanda caduta lascia il segno che quella domanda lascia**
 		# (D-323, [ISSUES 95](../../docs/ISSUES.md)). Fino a 0.1.285 il pool
@@ -1594,26 +963,17 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 	# questione, e la domanda resta sul tavolo - quello che non torna mai e'
 	# ridecidere una cosa decisa (D-077).
 	if outcome != ConfluenceResolution.FAILURE:
-		# A due domande vale come posta quella che ha vinto (D-467).
-		var asked: String = str(current["question_id"])
-		if sides_open() and str(result.get("winner", "")) == "B":
-			asked = side_question("B")
-		_mark_asked(tension_id, asked)
+		# Vale come posta la domanda che ha vinto (D-467).
+		_mark_asked(tension_id, side_question(str(result["winner"])))
 
 	result["echo_created"] = echo_created
-	# La controproposta spesa qui (D-268): il chiamante deve sapere che il
-	# diritto del RIVENDICARE e' consumato, o aprirebbe anche il secondo
-	# dibattito - due usi per un'azione sola.
-	result["counterclaim"] = str(current.get("counterclaim", ""))
 	result["confluence_id"] = str(current["confluence_id"])
 	result["tension_id"] = tension_id
 	result["proponent"] = str(current["proponent"])
-	result["proposition_id"] = str(current["proposition_id"])
 	result["question_id"] = str(current["question_id"])
-	if sides_open():
-		result["winning_question_id"] = (
-			side_question(str(result["winner"])) if str(result["winner"]) != "" else ""
-		)
+	result["winning_question_id"] = (
+		side_question(str(result["winner"])) if str(result["winner"]) != "" else ""
+	)
 	# What actually landed, by id. The log has printed this line since 0.0; the
 	# result carries it too so a front-end can show the table what it just did
 	# without re-deriving which pool applied - which would be the resolution
@@ -1764,65 +1124,31 @@ func _spend_the_card(applied: Array, outcome: String, source: Dictionary) -> voi
 	)
 	var context: Dictionary = effect_context()
 	var spent: Array = []
-	if sides_open():
-		# **Le pedine della parte che ha vinto, benefici e costi insieme**
-		# (D-467 §4); se non passa nessuna, gli effetti stampati. Le pedine
-		# dell'altra parte si tolgono e non fanno niente. Se vince la B, le
-		# sue caselle parlano di chi la guida.
-		var winner: String = ConfluenceResolution.winner_of(outcome)
-		if winner == "":
-			for voice in (face.get("failure", []) as Array):
-				spent.append(["failure", voice as Dictionary])
-		else:
-			if winner == "B":
-				context = context.duplicate()
-				context["proponent"] = side_leader("B")
-			for list_name in ["benefits", "costs"]:
-				for voice_id in side_boxes(winner, list_name):
-					spent.append([list_name, _voice(list_name, str(voice_id))])
-	elif ConfluenceResolution.is_success(outcome):
-		for entry in (current.get("benefits", []) as Array):
-			var voice: Dictionary = _voice("benefits", _voice_id_of(entry)).duplicate()
-			# La domanda scelta viaggia dentro la voce, cosi' `question_of` la
-			# trova senza che l'economia debba conoscere la forma della pedina.
-			var asked: String = _question_asked_of(entry)
-			if asked != "":
-				voice["dove"] = "QUESTION"
-				voice["question"] = asked
-			spent.append(["benefits", voice])
-		for voice_id in priced_costs():
-			spent.append(["costs", _voice("costs", str(voice_id))])
-	else:
+	# **Le pedine della parte che ha vinto, benefici e costi insieme** (D-467
+	# §4); se non passa nessuna, gli effetti stampati. Le pedine dell'altra
+	# parte si tolgono e non fanno niente. Se vince la B, le sue caselle
+	# parlano di chi la guida.
+	var winner: String = ConfluenceResolution.winner_of(outcome)
+	if winner == "":
 		for voice in (face.get("failure", []) as Array):
 			spent.append(["failure", voice as Dictionary])
-	# **La voce rivendicata parla del rivendicante** (D-268, riscritta da D-304).
-	# La controproposta ha posato la pedina su una casella comprata: quella
-	# voce compila con lui al posto del proponente — la Pietra la costruisce
-	# lui, il controllo lo prende lui. Le altre restano del proponente: la
-	# controproposta prende una casella, non la carta.
-	var claimed: Dictionary = current.get("benefit_pedina", {}) as Dictionary
-	var claimant: String = str(claimed.get("by", ""))
-	var claimed_voice: String = str(claimed.get("voice_id", ""))
+	else:
+		if winner == "B":
+			context = context.duplicate()
+			context["proponent"] = side_leader("B")
+		for list_name in ["benefits", "costs"]:
+			for voice_id in side_boxes(winner, list_name):
+				spent.append([list_name, _voice(list_name, str(voice_id))])
 	for entry in spent:
 		var kind: String = str((entry as Array)[0])
 		var voice: Dictionary = (entry as Array)[1] as Dictionary
 		if voice.is_empty():
 			continue
-		var speaks_for: Dictionary = context
-		var redirected: bool = (
-			kind == "benefits" and claimant != ""
-			and str(voice.get("id", "")) == claimed_voice
-		)
-		if redirected:
-			speaks_for = context.duplicate()
-			speaks_for["proponent"] = claimant
 		var effects: Array = CouncilEconomy.effects_for(
-			voice, kind, speaks_for, world, theme_id, source
+			voice, kind, context, world, theme_id, source
 		)
 		if effects.is_empty():
 			continue
-		if redirected:
-			log.bullet("H. La voce rivendicata parla di %s:" % _name(claimant))
 		log.bullet("H. %s %s" % [
 			"Beneficio:" if kind == "benefits" else (
 				"Prezzo:" if kind == "costs" else "Il mondo non aspetta:"
@@ -2088,14 +1414,6 @@ func _stance_of(entity_id: String) -> String:
 	if entity_id == str(current["proponent"]):
 		return "PROPONENT"
 	return str(current["stances"].get(entity_id, {}).get("stance", "ABSTAIN"))
-
-
-func _proposition() -> Dictionary:
-	var template: Dictionary = _template()
-	for proposition in template["propositions"]:
-		if str(proposition["id"]) == str(current["proposition_id"]):
-			return proposition
-	return {}
 
 
 ## The slots an authored Effect may name, resolved to *ids* against the world as

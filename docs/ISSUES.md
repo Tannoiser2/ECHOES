@@ -10065,10 +10065,16 @@ cancello dei 100 semi:
    sua quota del mucchio, le pedine pesano nel voto, il tabellone a due
    colori.
 
-**I quattro giri sono percorsi.** La voce resta aperta su quello che resta
-scritto in D-471: il giro vecchio di D-280 nel codice sotto la dichiarazione
-(portare le sue prove alla regola nuova e toglierlo), le marche delle caselle
-da rivedere carta per carta nel catalogo, le fasce dell'esito di A che a due
-domande dicono meno. E su quello che nessuna sonda misura: un Consiglio
-giocato da persone.
+**I quattro giri sono percorsi, e il quinto ha tolto il giro vecchio** —
+**fatto in 0.1.441** ([D-472](DECISIONS.md#d-472)): il Consiglio di D-280 e'
+uscito dal codice, le sue prove sono portate alla regola nuova o tolte con
+verbale, le sonde contano domande invece di proposte. La voce resta aperta
+su quello che D-472 lascia scritto: **i gettoni di rivendicazione** che la
+faccia RIVENDICARE conia ancora e che il Consiglio non spende piu' (toglierli
+o dargli un uso e' una decisione del committente); **le proposte stampate
+sulle carte**, che nessun motore legge e la scheda mostra ancora; **il dente
+dei segni sul dado** (ISSUES 24) rimasto senza dado; le marche delle caselle
+da rivedere carta per carta nel catalogo; le fasce dell'esito di A che a due
+domande dicono meno; e quello che nessuna sonda misura: un Consiglio giocato
+da persone.
 

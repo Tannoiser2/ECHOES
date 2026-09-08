@@ -16,30 +16,30 @@ se su un tavolo intero e' zero, il cancello e' rosso.
 
 | | misto | uniforme |
 |---|---|---|
-| Consigli | 142 | 145 |
-| prese di posizione dei non proponenti | 426 | 435 |
-| — SUPPORT | 172 (40%) | 180 (41%) |
-| — OPPOSE | 254 (60%) | 255 (59%) |
+| Consigli | 138 | 138 |
+| prese di posizione dei non proponenti | 414 | 414 |
+| — SUPPORT | 208 (50%) | 159 (38%) |
+| — OPPOSE | 206 (50%) | 255 (62%) |
 | — ABSTAIN | 0 (0%) | 0 (0%) |
 | Consigli col tavolo in silenzio (tutti astenuti) | 0 (0%) | 0 (0%) |
-| Consigli con un OPPOSE dichiarato | 137 (96%) | 137 (94%) |
-| carte impegnate dal proponente, per Consiglio | 1.20 | 1.41 |
-| carte impegnate dagli altri tre, per Consiglio | 3.28 | 3.16 |
-| non proponenti che impegnano almeno una carta | 311 (73%) | 331 (76%) |
+| Consigli con un OPPOSE dichiarato | 131 (95%) | 132 (96%) |
+| carte impegnate dal proponente, per Consiglio | 1.31 | 1.40 |
+| carte impegnate dagli altri tre, per Consiglio | 3.46 | 3.42 |
+| non proponenti che impegnano almeno una carta | 321 (78%) | 330 (80%) |
 | gettoni di opposizione comprati (D-419) | 0 | 0 |
 | punti del dibattito guadagnati · persi (D-455) | 0 · 0 | 0 · 0 |
-| margine medio | 0.89 | 1.40 |
-| **Consigli con opposizione nel margine** | **137 (96%)** | **137 (94%)** |
+| margine medio | 2.46 | 0.65 |
+| **Consigli con opposizione nel margine** | **131 (95%)** | **132 (96%)** |
 
 ## Gli esiti
 
 | esito | misto | uniforme |
 |---|---|---|
-| COUNTER | 58 | 55 |
-| DECISIVE_SUCCESS | 36 | 40 |
-| FAILURE | 11 | 8 |
-| SUCCESS | 29 | 31 |
-| SUCCESS_WITH_COST | 8 | 11 |
+| COUNTER | 40 | 60 |
+| DECISIVE_SUCCESS | 51 | 31 |
+| FAILURE | 10 | 4 |
+| SUCCESS | 29 | 26 |
+| SUCCESS_WITH_COST | 8 | 17 |
 
 ## Chi si astiene, seggio per seggio
 
@@ -47,31 +47,31 @@ Le posizioni di ogni casa quando non propone, sui due tavoli.
 
 | casa | tavolo | SUPPORT | OPPOSE | ABSTAIN |
 |---|---|---|---|---|
-| Re Aldric | misto | 29 | 29 | 0 |
-| Re Aldric | uniforme | 23 | 28 | 0 |
-| Kessa dei Fuochi | misto | 32 | 40 | 0 |
-| Kessa dei Fuochi | uniforme | 35 | 35 | 0 |
-| Le Città Libere | misto | 11 | 29 | 0 |
-| Le Città Libere | uniforme | 14 | 31 | 0 |
-| Lyra | misto | 19 | 30 | 0 |
-| Lyra | uniforme | 25 | 34 | 0 |
-| Popolo Nahr | misto | 27 | 37 | 0 |
-| Popolo Nahr | uniforme | 27 | 39 | 0 |
-| Maestra Ilve | misto | 21 | 33 | 0 |
-| Maestra Ilve | uniforme | 18 | 37 | 0 |
-| Vaerax | misto | 17 | 28 | 0 |
-| Vaerax | uniforme | 16 | 32 | 0 |
-| Priore Anselmo | misto | 16 | 28 | 0 |
-| Priore Anselmo | uniforme | 22 | 19 | 0 |
+| Re Aldric | misto | 27 | 25 | 0 |
+| Re Aldric | uniforme | 18 | 31 | 0 |
+| Kessa dei Fuochi | misto | 36 | 34 | 0 |
+| Kessa dei Fuochi | uniforme | 24 | 44 | 0 |
+| Le Città Libere | misto | 28 | 13 | 0 |
+| Le Città Libere | uniforme | 18 | 29 | 0 |
+| Lyra | misto | 26 | 28 | 0 |
+| Lyra | uniforme | 19 | 36 | 0 |
+| Popolo Nahr | misto | 20 | 39 | 0 |
+| Popolo Nahr | uniforme | 25 | 36 | 0 |
+| Maestra Ilve | misto | 28 | 22 | 0 |
+| Maestra Ilve | uniforme | 18 | 27 | 0 |
+| Vaerax | misto | 22 | 21 | 0 |
+| Vaerax | uniforme | 16 | 31 | 0 |
+| Priore Anselmo | misto | 21 | 24 | 0 |
+| Priore Anselmo | uniforme | 21 | 21 | 0 |
 
 ## E carattere per carattere, sul tavolo misto
 
 | carattere | SUPPORT | OPPOSE | ABSTAIN |
 |---|---|---|---|
-| prudente | 45 | 57 | 0 |
-| aggressivo | 41 | 67 | 0 |
-| distratto | 39 | 64 | 0 |
-| ostinato | 47 | 66 | 0 |
+| prudente | 110 | 0 | 0 |
+| aggressivo | 23 | 72 | 0 |
+| distratto | 36 | 65 | 0 |
+| ostinato | 39 | 69 | 0 |
 
 ## Come leggerla
 
@@ -99,19 +99,19 @@ si oppone.
 |---|---|---|
 | anni giocati | 30 | 30 |
 | **anni con meno di sei domande** | **0** | **0** |
-| mucchio medio (valore) | 4.37 | 4.06 |
-| gettoni medi sul mucchio | 4.17 | 3.97 |
-| carte della parte piu' forte (media) | 9.30 | 9.36 |
-| **Consigli in cui la parte piu' forte arriva al mucchio** | **138 (97%)** | **143 (99%)** |
+| mucchio medio (valore) | 4.15 | 4.10 |
+| gettoni medi sul mucchio | 3.94 | 3.85 |
+| carte della parte piu' forte (media) | 9.51 | 9.72 |
+| **Consigli in cui la parte piu' forte arriva al mucchio** | **135 (98%)** | **138 (100%)** |
 
 Quanti Consigli a ogni valore del mucchio:
 
 | mucchio | misto | uniforme |
 |---|---|---|
-| 0 | 0 | 2 |
-| 1 | 3 | 6 |
-| 2 | 19 | 14 |
-| 3 | 23 | 33 |
-| 4 | 27 | 34 |
-| 5 | 17 | 16 |
-| 6 | 53 | 40 |
+| 0 | 1 | 1 |
+| 1 | 5 | 7 |
+| 2 | 20 | 15 |
+| 3 | 26 | 27 |
+| 4 | 19 | 31 |
+| 5 | 28 | 18 |
+| 6 | 39 | 39 |
