@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **135** |
+| voci scritte | **136** |
 | chiuse | **124** |
-| aperte | **11** |
-| di cui **aspettano una tua decisione** | **1** |
+| aperte | **12** |
+| di cui **aspettano una tua decisione** | **2** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,23 +305,24 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **1** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **2** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle undici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su una tua parola.**
+**Una.** Delle dodici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su due tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **una**
+# 🔴 Aspettano te: **due**
 
-**Per centoquarantanove versioni qui non c'è stato niente**, e adesso c'è una
-riga sola: la **R14**, che hai fatto nascere tu chiedendo l'audit delle Azioni.
-Sta in fondo a questa sezione. Prima, la storia di come questo posto si era
+**Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
+sono due: la **R14** e la **R15**, e le hai fatte nascere tutt'e due tu — la
+prima chiedendo l'audit delle Azioni, la seconda chiedendo qual è il
+meccanismo di ECHOES. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
 svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
 tutte»* — e questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
@@ -390,6 +391,62 @@ Quattro cose da decidere, e sono tue:
    giocato. È poco stampato, o poco appetibile?
 4. **INFLUENZARE al 24,3% di calate** è il fondo del tavolo come Azione, ma la
    moneta più votata al Consiglio. Va bene così, o è da riequilibrare?
+
+### R15. [132](ISSUES.md#132) — quali sono le scelte vere: **aperta in 0.1.447**
+
+*«Il gioco forse è troppo semplificato, quali sono le effettive scelte che fa
+un giocatore? E non ci sono meccanismi di combo che danno soddisfazione né un
+deck building o un piazzamento laboratori, quindi qual è il meccanismo di gioco
+di ECHOES?»*
+
+Ho misurato invece di rispondere a sentimento, e la risposta non è quella che
+la domanda si aspetta.
+
+**Le scelte ci sono: 147 all'anno sul tavolo, 36,8 a testa** — 14.703 in cento
+anni. Il menu dell'Azione è largo (46 voci in media, fino a 194) ma sono
+**3,07 verbi distinti su 7**: dieci modi di fare la stessa cosa non sono dieci
+scelte. **Il numero non è il difetto. Il difetto è che non si accumulano.**
+
+**Il meccanismo c'è, ed è tuo: ECHOES è un gioco di agenda.** Ogni Azione fa
+due cose insieme — un fatto nel mondo, *e* un voto su cosa il tavolo discuterà,
+perché la Risonanza scalda un Tema e il Tema più caldo decide quale domanda va
+al Consiglio. Poi le carte tenute in mano diventano peso al voto, e le pedine
+comprano cosa resta al mondo. La domanda vera del gioco è: **di cosa si
+parlerà, e chi ci arriva con le carte in mano?**
+
+Tre punti deboli, misurati:
+
+1. **L'agenda non si sceglie.** La Risonanza avviene comunque e scalda il Tema
+   stampato: la leva più interessante del gioco la muovi **alla cieca**.
+2. **Il motore che ti costruisci pesa un quarto.** Le carte puntano a segni:
+   **112 richieste su 154 (73%) puntano terreno stampato** che nessuno può
+   creare — capitale, commercio, granaio, porto. Solo **42 (27%)** puntano
+   segni che tu o il Consiglio potete posare. La combo *«segno adesso, ci gioco
+   sopra dopo»* esiste, ma è la minoranza.
+3. **Niente resta che sia tuo.** Le Pietre sono l'unica cosa persistente e di
+   proprietà: **13,85 alzate a partita, di cui 1,80 da un'Azione di un
+   giocatore** — le altre le mette l'apertura o il Consiglio. A fine anno una
+   casa ne ha **1,2 sue**.
+
+**E qui c'è la cosa che conta più di tutte: il telaio del motore c'è già ed è
+quasi spento.** Le `tag_rules` legano un segno a una regola meccanica, e sono
+**56**. Di quelle **21 sono morte** (spingevano il dado che non c'è più), 14
+decidono cosa peschi, e **solo 8 toccano quello che un'Azione può fare**. Una
+Pietra che desse una *capacità* invece di un +1 — «finché tieni il Granaio, le
+tue carte Sopravvivenza costano meno» — è già la forma di `ACTION_DISCOUNT`, e
+in tutta la scatola **ce n'è una sola**.
+
+Non serve un meccanismo nuovo. Serve accendere quello che c'è. Quattro strade,
+e sono tue:
+
+1. **La Risonanza diventa una scelta?** Due Temi sulla faccia, tu scegli quale
+   scaldare: ogni Azione diventa anche una mossa sull'agenda. È una riga sui
+   dati e una scelta in più al turno.
+2. **Sposto il rapporto 27/73?** Più bersagli su segni posabili: è lavoro di
+   contenuto, e fa crescere la combo che già c'è.
+3. **Le Pietre diventano capacità?** Il telaio c'è e ha quattro regole in
+   tutto.
+4. **Le 21 regole morte**: puntate sul mucchio dei gettoni, o tolte?
 
 ---
 
@@ -1095,9 +1152,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **una aspettano una tua parola**.
+fuori dalla lista, e **due aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

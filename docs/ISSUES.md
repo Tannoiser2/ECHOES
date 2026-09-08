@@ -10234,3 +10234,117 @@ INFLUENZARE, che e' il fondo, e FORGIARE.
    e' contenuto morto — va al voto piu' di tutti — ma come **Azione** e' il
    fondo del tavolo.
 
+
+### 132. Le scelte ci sono e non si accumulano: qual e' il meccanismo di ECHOES
+
+`regole` · `bilanciamento` · `da-decidere` · voluta dal committente · **aperta in 0.1.447**
+
+> «Il gioco forse e' troppo semplificato, quali sono le effettive scelte che fa
+> un giocatore? E non ci sono meccanismi di combo che danno soddisfazione ne un
+> deck building o un piazzamento laboratori, quindi quale il meccanismo di
+> gioco di echoes?»
+
+Quattro misure, e la risposta non e' quella che la domanda si aspetta.
+
+**1. Le scelte, contate.**
+
+`cli/run_agency_probe.gd` (nuova) siede fra il cervello e il motore e conta
+**quante volte il gioco si ferma a chiedere** e **quanto e' largo il menu**. Su
+100 anni, quattro seggi, seme 7000:
+
+| il gioco chiede | volte | l'anno | alternative | max |
+|---|---|---|---|---|
+| **quale carta, quale faccia, su cosa** | 7.176 | 71,8 | **46,3** | 194 |
+| rilanci o passi | 2.530 | 25,3 | 2,9 | 6 |
+| quante carte impegni al voto | 2.043 | 20,4 | 4,0 | 4 |
+| con quale parte stai, e con quale pedina | 1.530 | 15,3 | 8,6 | 15 |
+| quale casella posi | 513 | 5,1 | 2,7 | 4 |
+| quale carta ti riprendi | 513 | 5,1 | 2,0 | 2 |
+| quale domanda porti al Consiglio | 398 | 4,0 | 2,0 | 2 |
+
+**14.703 scelte in cento anni: 147 l'anno sul tavolo, 36,8 a testa.** Il menu
+dell'Azione e' largo — 46 voci in media — ma quelle 46 voci sono **3,07 verbi
+distinti su 7**: dieci modi di fare la stessa cosa non sono dieci scelte. Solo
+il 3% delle volte non c'e' nessuna scelta vera, e il 12% c'e' un verbo solo.
+
+**Il numero delle scelte non e' il difetto.** Il difetto e' che non si
+accumulano.
+
+**2. Il meccanismo, detto per quello che e'.**
+
+Non e' deckbuilding: il mazzo e' dato e la mano si rinnova. Non e' piazzamento.
+E' un **gioco di agenda**, e la catena e' questa:
+
+> Ogni Azione fa **due cose insieme** — un fatto nel mondo, e un voto su cosa
+> il tavolo discutera', perche' la Risonanza scalda un Tema e **il Tema piu'
+> caldo decide quale domanda va al Consiglio** (D-260, D-261). Al Consiglio le
+> carte tenute in mano diventano peso, e le pedine comprano cosa resta al
+> mondo.
+
+La domanda vera del gioco e': *di cosa si parlera', e chi ci arriva con le
+carte in mano?* E' un meccanismo, ed e' suo. Ha tre punti deboli, e sono
+misurati.
+
+**3. I tre punti deboli.**
+
+**(a) L'agenda non si sceglie.** La Risonanza avviene **comunque** (D-257) e
+scalda il Tema stampato sulla faccia: la leva piu' interessante del gioco si
+muove alla cieca, come effetto collaterale della carta calata.
+
+**(b) Il motore che ti costruisci pesa un quarto.** Le carte puntano il
+bersaglio **a segni** (D-273): 154 richieste su 36 segni distinti.
+
+| dove puntano le 154 richieste | | |
+|---|---|---|
+| terreno stampato che nessuno puo' creare — capitale, commercio, granaio, porto, pascolo | **112** | **73%** |
+| segni che una faccia o una casella possono posare | **42** | **27%** |
+
+La combo *«segno il posto adesso, ci gioco sopra dopo»* **esiste** — 15 segni
+su 36 si possono creare — ma e' la minoranza, e la maggioranza e' il terreno
+che il seme ti ha dato.
+
+**(c) Niente resta che sia tuo.** Le Pietre sono l'unica cosa persistente e di
+proprieta' (`run_stone_probe`, 40 anni): **13,85 alzate a partita**, di cui
+**1,80 da un'Azione di chi gioca** — le altre le mette l'apertura (8,95) o il
+Consiglio (3,10). A fine anno una casa ne ha **1,2 sue**, e di 10,7 in piedi
+solo **1,4** arrivano al grado 2.
+
+**4. E il telaio del motore c'e' gia', quasi spento.**
+
+Le `tag_rules` sono il posto dove un segno diventa una **regola meccanica**:
+56 regole. Di quelle:
+
+| gancio | quante | cosa fanno |
+|---|---|---|
+| `COUNCIL_MODIFIER` | **21** | **morte**: spingevano il World Factor, e il dado non c'e' piu' (D-472) |
+| `DRAW_BIAS` | 14 | cosa peschi |
+| `ACTION_GATE` | 3 | sbarrano un'Azione |
+| `GATE` | 3 | sbarrano il movimento |
+| `HAND_LIMIT` | 3 | il limite di mano |
+| `RELATION_FLOOR` / `RELATION_CAP` | 2 + 2 | i rapporti |
+| `STANCE_MODIFIER` | 2 | il peso al voto |
+| `ACTION_MODIFIER` | 2 | un'Azione vale di piu' |
+| `ACTION_GRANT` | 1 | un'Azione concessa |
+| `ACTION_DISCOUNT` | 1 | un'Azione che non paga |
+| `ACTION_RIPPLE` | 1 | un'Azione che si propaga |
+| `GRANT_ON_SET` | 1 | un segno che consegna una carta |
+
+**Otto regole su cinquantasei toccano quello che un'Azione puo' fare**
+(`ACTION_*`). Una Pietra che desse una **capacita'** invece di un +1 — *«finche'
+tieni il Granaio, le tue carte Sopravvivenza costano meno»* — e' esattamente la
+forma di `ACTION_DISCOUNT`, e ce n'e' **una sola** in tutta la scatola.
+
+Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **La Risonanza diventa una scelta?** Se la faccia offrisse due Temi e tu
+   scegliessi quale scaldare, ogni Azione diventerebbe anche una mossa
+   sull'agenda. E' una riga sui dati e una scelta in piu' al turno.
+2. **Il rapporto 27/73 si sposta?** Scrivere piu' bersagli su segni posabili e'
+   lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
+3. **Le Pietre diventano capacita'?** Il telaio (`ACTION_DISCOUNT`,
+   `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in tutto.
+4. **Le 21 regole morte** (`COUNCIL_MODIFIER`): puntate sul mucchio dei
+   gettoni, o tolte? E' la stessa voce aperta in [129](#129).
+
