@@ -9,7 +9,7 @@ piano, misurate sui dati di oggi **prima** di scrivere un file nuovo.
 |---|---|
 | segni nel dizionario | 175 |
 | di cui qualcuno scrive | 171 |
-| orfani in tutto | 53 |
+| orfani in tutto | 51 |
 | **di cui senza una ragione scritta** | **0** |
 | livelli di Destino (minimo/vittoria/trionfo) | 69 |
 | **clausole impossibili** (chiedono un segno che niente scrive) | **0** |
@@ -35,7 +35,7 @@ desidera o lo teme (Destini **e** obiettivi), nessuna Tensione lo mette
 o lo toglie, e nessuna regola del segno lo usa: si posa sul tavolo e non
 entra in nessuna partita.
 
-Non tutti gli orfani sono un difetto: **53 su 53 portano gia' la loro
+Non tutti gli orfani sono un difetto: **51 su 51 portano gia' la loro
 ragione scritta** nel dizionario — memorie narrate (D-103), etichette di
 famiglia, gradi di pietra, domini che si cercano col dito. Restano fuori
 quelli **senza una riga che spieghi perche' esistono**: sono questi che
@@ -45,7 +45,7 @@ la matrice deve prendere per primi.
 
 Nessuno.
 
-### Orfani dichiarati: 53
+### Orfani dichiarati: 51
 
 | segno | la ragione che porta scritta |
 |---|---|
@@ -95,8 +95,6 @@ Nessuno.
 | `sleeping` | era etichetta di famiglia muta; da D-262 la legge la grammatica adattiva ($entity_with e requires_entity_tag): dice chi  |
 | `someone_paid` | memoria del mondo: narrata (D-103), ereditata |
 | `spoke_and_lost` | marchio di memoria (D-278): ha proposto e la proposta e' caduta — si legge sulla carta del casato |
-| `structure:castle` | secondo grado della Torre (STR_KEEP). Arriva sul tavolo — 92 volte in cento partite, e a fine partita ci sta in 65 — e l |
-| `structure:library` | secondo grado dell'Archivio (STR_ARCHIVE), la Grande Biblioteca. Arriva 14 volte in cento partite e le facce la nominano |
 | `structure:palace` | terzo grado della Torre (STR_KEEP). **Oggi non arriva mai**, e quello e' un difetto vero — ma e' il difetto delle Pietre |
 | `took_by_hand` | marchio di memoria (D-278): non ha aspettato la decisione, ha preso — si legge sulla carta del casato |
 | `trade` | funzione stampata sulla tessera: il commercio e' uno dei segni con cui le carte dicono **dove**, ed e' letto da carte, D |

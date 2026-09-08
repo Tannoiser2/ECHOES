@@ -10382,8 +10382,20 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    l'agenda. Sul tavolo **misto** la stessa leva fa il contrario: 278 → **283**.
 2. **Il rapporto 27/73 si sposta?** Scrivere piu' bersagli su segni posabili e'
    lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
-3. **Le Pietre diventano capacita'?** Il telaio (`ACTION_DISCOUNT`,
-   `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in tutto.
+3. ✔ **Le Pietre sono diventate capacita'** — **fatto in 0.1.454**
+   ([D-484](DECISIONS.md#d-484)). Il telaio non si poteva usare: lo sconto lo
+   leggeva **solo** RIVENDICARE, quindi una regola scritta sugli altri verbi
+   sarebbe stata inchiostro. Adesso i tre verbi che pagano una carta lo chiedono
+   tutti, e cinque Pietre danno cinque capacita': **Archivio** (INFLUENZARE non
+   spende la carta), **Granaio** (FORGIARE non paga il Legame), **Dogana**
+   (RIVENDICARE non paga l'Autorita'), **Biblioteca** (+1 al limite di mano) e
+   **Castello** (INFLUENZARE pesa +1 su ogni domanda). Le ultime due stanno sul
+   **secondo grado**: e' la prima volta che alzare una Pietra da' qualcosa che
+   il primo grado non da'.
+
+   Misurato, cancello 0 su 8 e i numeri salgono: Verita' 276 → **293** sul misto
+   e 234 → **244** sull'uniforme, Consigli 4,88 → **5,10** e 4,70 → **4,98**.
+   Una carta non spesa resta in mano, e una mano piu' piena apre piu' Consigli.
 4. ✔ **Le 21 regole morte** (`COUNCIL_MODIFIER`) — **puntate sul mucchio in
    0.1.447** ([D-477](DECISIONS.md#d-477)): un segno del mondo alza o abbassa
    la soglia che le due parti devono battere. **Ma il numero e' 9%**: su 513

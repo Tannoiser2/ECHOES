@@ -216,7 +216,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `settlement:march` | Conseguenza | — | regola del segno |
 | `settlement:market` | Conseguenza | — | bersaglio a segni, regola del segno |
 | `settlement:village` | Azione stampata | — | Destino, bersaglio a segni, regola del segno |
-| `structure:archive` | Azione stampata | — | Destino, bersaglio a segni |
+| `structure:archive` | Azione stampata | — | Destino, bersaglio a segni, regola del segno |
 | `structure:granary` | Azione stampata | — | bersaglio a segni, la Regione di cui si discute, regola del segno |
 | `structure:sealed` | Conseguenza | Azione stampata, Conseguenza | Destino, bersaglio a segni, chi **non** siede l'anno prossimo, la Regione di cui si discute |
 | `structure:tollgate` | Azione stampata | — | bersaglio a segni, la Regione di cui si discute, regola del segno |

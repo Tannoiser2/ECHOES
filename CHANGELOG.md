@@ -5,6 +5,37 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.454 — Una Pietra e' una capacita', non un +1 (R15, punto 3)
+
+[D-484](docs/DECISIONS.md#d-484), [ISSUES 132](docs/ISSUES.md#132) punto 3.
+
+Il telaio delle capacita' c'era e **non si poteva usare**: `ACTION_DISCOUNT` lo
+leggeva **solo** RIVENDICARE, quindi una regola di sconto scritta su un altro
+verbo sarebbe stata inchiostro — e infatti in tutta la scatola ce n'era **una**.
+
+**Adesso i tre verbi che pagano una carta lo chiedono tutti** (INFLUENZARE senza
+presenza, FORGIARE in su, RIVENDICARE), nel controllo e nell'esecuzione, e lo
+sconto si nomina a verbale.
+
+**Cinque Pietre, cinque capacita':** l'**Archivio** fa parlare senza spendere la
+carta, il **Granaio** fa firmare i patti senza pagare il Legame, la **Dogana**
+fa rivendicare per parola propria, la **Biblioteca** tiene **una carta in piu'**
+in mano, il **Castello** pesa **+1 su ogni domanda**. Le ultime due sono di
+**secondo grado**: e' la prima volta che alzare una Pietra da' qualcosa che il
+primo grado non da'.
+
+**Misurato:** cancello **0 su 8**, e i numeri salgono da tutte le parti —
+Verita' 276 → **293** sul misto e 234 → **244** sull'uniforme, Consigli l'anno
+4,88 → **5,10** e 4,70 → **4,98**. Una carta non spesa resta in mano, e una mano
+piu' piena apre piu' Consigli (e ne fa cadere qualcuno in piu': 61 → 71 e 61 →
+75).
+
+**Quello che non fa:** non aumenta quante Pietre si alzano — restano **2,10 a
+partita** da un'Azione contro 8,95 dall'apertura. Ma adesso alzarne una serve a
+qualcosa, ed e' la condizione perche' quel numero possa salire.
+
+---
+
 ## 0.1.453 — Il mucchio guarda il luogo di cui si discute (R15, punto 4)
 
 [D-483](docs/DECISIONS.md#d-483), [ISSUES 132](docs/ISSUES.md#132) punto 4.

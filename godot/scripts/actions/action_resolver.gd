@@ -373,7 +373,14 @@ func _check_influence(entity_id: String, params: Dictionary) -> String:
 		return ""
 	if by_presence:
 		return ""
-	if _pick_relevant_asset(entity_id, tension_id, params) == "":
+	# **Lo sconto vale per ogni verbo che paga una carta** (D-484). Fino a qui
+	# `ACTION_DISCOUNT` lo leggeva **solo** RIVENDICARE, e le altre due strade
+	# che costano un Asset — INFLUENZARE senza presenza e FORGIARE in su
+	# (D-188) — non lo guardavano nemmeno. Un telaio che esiste per un verbo
+	# solo e' un telaio che non si puo' usare: e' la ragione per cui in tutta
+	# la scatola c'era **una** regola di sconto.
+	if _pick_relevant_asset(entity_id, tension_id, params) == "" \
+			and TagRules.action_discount(data, world, entity_id, "INFLUENCE") == "":
 		return "serve presenza utile nel dominio %s o 1 Asset di famiglia rilevante" % domain
 	return ""
 
@@ -399,7 +406,8 @@ func _check_forge(entity_id: String, params: Dictionary) -> String:
 			return "salire di un passo richiede il consenso di %s" % other
 		if WorldStateService.shift_relation(current, 1) == current:
 			return "la relazione e gia al massimo"
-		if _pick_bond(entity_id, params) == "":
+		if _pick_bond(entity_id, params) == "" \
+				and TagRules.action_discount(data, world, entity_id, "FORGE") == "":
 			return "serve 1 Asset BONDS da scartare"
 		return ""
 	if direction != "DOWN":
@@ -812,9 +820,16 @@ func _influence(entity_id: String, params: Dictionary, source: Dictionary) -> Di
 
 	var spent: String = ""
 	if via != "PRESENCE":
-		spent = _pick_relevant_asset(entity_id, tension_id, params)
-		effects.append_array(_discard(entity_id, spent, source))
-		via = "DISCARD"
+		# La Pietra che parla al posto della carta (D-484): con lo sconto,
+		# influenzare non spende niente, e lo sconto si nomina a verbale.
+		var waived: String = TagRules.action_discount(data, world, entity_id, "INFLUENCE")
+		if waived == "":
+			spent = _pick_relevant_asset(entity_id, tension_id, params)
+			effects.append_array(_discard(entity_id, spent, source))
+			via = "DISCARD"
+		else:
+			via = "WAIVED"
+			log.bullet("  %s parla senza spendere: %s." % [_name(entity_id), waived])
 
 	var applied: Dictionary = applier.apply(
 		Effect.make("ADJUST_TENSION", "tension", tension_id, {"delta": delta}, source)
@@ -922,9 +937,16 @@ func _forge(entity_id: String, params: Dictionary, source: Dictionary) -> Dictio
 	var effects: Array = []
 
 	if direction == "UP":
-		# Going up needs the other player's agreement and a Bond spent (§10).
+		# Going up needs the other player's agreement and a Bond spent (§10) -
+		# **a meno che una Pietra non paghi al posto tuo** (D-484).
 		var next_up: String = WorldStateService.shift_relation(current, 1)
-		effects.append_array(_discard(entity_id, _pick_bond(entity_id, params), source))
+		var forge_waived: String = TagRules.action_discount(data, world, entity_id, "FORGE")
+		if forge_waived == "":
+			effects.append_array(_discard(entity_id, _pick_bond(entity_id, params), source))
+		else:
+			log.bullet("  %s stringe il patto senza pagarlo: %s." % [
+				_name(entity_id), forge_waived
+			])
 		effects.append(
 			applier.apply(
 				Effect.make(

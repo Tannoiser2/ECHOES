@@ -45,6 +45,75 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-484 — Una Pietra e' una capacita', non un +1
+
+**implemented in 0.1.454.** Terza mossa della R15 ([ISSUES
+132](ISSUES.md#132), punto 3): *«Le Pietre diventano capacita'? Il telaio
+(`ACTION_DISCOUNT`, `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in
+tutto.»*
+
+### 1. Perche' erano quattro
+
+Il telaio c'era e **non si poteva usare**: `ACTION_DISCOUNT` lo leggeva **solo**
+RIVENDICARE. Le altre due strade che costano una carta — INFLUENZARE senza
+presenza e FORGIARE in su (D-188) — non lo guardavano nemmeno, quindi una regola
+di sconto scritta su di loro sarebbe stata inchiostro. Un telaio che vale per un
+verbo solo non e' un telaio: e' un caso particolare, e infatti in tutta la
+scatola c'era **una** regola di sconto.
+
+Adesso i tre verbi che pagano una carta lo chiedono tutti, nel controllo **e**
+nell'esecuzione, e lo sconto si nomina a verbale come gia' faceva il RIVENDICARE
+(D-131): *«parla senza spendere: Chi tiene l'Archivio parla senza spendere»*.
+
+### 2. Cinque Pietre, cinque capacita'
+
+| Pietra | cosa da', mentre la tieni |
+|---|---|
+| **Archivio** (`structure:archive`) | INFLUENZARE non spende la carta |
+| **Granaio** (`structure:granary`) | FORGIARE in su non paga il Legame |
+| **Dogana** (`structure:tollgate`) | RIVENDICARE non paga l'Autorita' |
+| **Biblioteca** (`structure:library`, grado 2) | **+1 al limite di mano** |
+| **Castello** (`structure:castle`, grado 2) | INFLUENZARE pesa **+1 su ogni domanda** |
+
+Le prime tre sono il primo grado: costruire una Pietra adesso cambia **cosa
+puoi fare**, non quanto vali. Le ultime due stanno sul **secondo grado**, ed e'
+la prima volta che alzare una Pietra da' qualcosa che il primo grado non da' —
+ISSUES 111 aveva misurato che di 10,7 Pietre in piedi solo 1,4 arrivano al
+grado 2, e non c'era nessuna ragione per portarcele.
+
+Il Granaio e' anche lo specchio di una regola che c'era gia': *«i patti non si
+firmano a stomaco vuoto»* (`condition:starving` sbarra FORGIARE). Col granaio in
+piedi i patti si firmano gratis.
+
+### 3. Misurato
+
+Cancello dei 100 semi, **0 seggi bloccati su 8** sui due tavoli, e stavolta i
+numeri salgono da tutte le parti:
+
+| | prima | dopo |
+|---|---|---|
+| Verita', misto | 276 | **293** |
+| Verita', uniforme | 234 | **244** |
+| Consigli l'anno, misto | 4,88 | **5,10** |
+| Consigli l'anno, uniforme | 4,70 | **4,98** |
+| Consigli caduti, misto | 61 | 71 |
+| Consigli caduti, uniforme | 61 | 75 |
+
+La ragione e' diretta: una carta non spesa e' una carta che resta in mano, e una
+mano piu' piena apre piu' Consigli e ne fa cadere qualcuno in piu'. **Diciassette
+Verita' in piu' sul misto** e dieci sull'uniforme: e' il contrario del prezzo
+pagato in D-482 e D-483, ed e' giusto che sia cosi' — questa mossa da' potere a
+chi costruisce, quelle due lo toglievano a chi decide.
+
+### 4. Quello che questa mossa **non** fa
+
+Non aumenta quante Pietre si alzano: quello e' un altro difetto misurato
+(`run_stone_probe`: **2,10 alzate da un'Azione** a partita, contro 8,95
+dall'apertura). Adesso pero' alzarne una **serve a qualcosa**, ed e' la
+condizione perche' quel numero possa salire.
+
+---
+
 ## D-483 — Le regole del Consiglio guardano il luogo di cui si discute
 
 **implemented in 0.1.453.** Seconda mossa della R15 ([ISSUES
