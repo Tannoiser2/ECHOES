@@ -10083,14 +10083,26 @@ sposta una virgola della partita, che era il punto.
 
 - **i gettoni di rivendicazione** che la faccia RIVENDICARE conia ancora e che
   il Consiglio non spende piu': toglierli, o dargli un uso;
-- **sedici Conseguenze senza strada** — la corona divisa, il drago abbattuto,
-  l'esodo, la miniera riaperta fra loro: le nominavano solo le proposte, sono
-  irraggiungibili da D-472 e adesso si vede. Restano nella scatola: tornano
-  come esito di una domanda, o in un sacchetto, o escono;
-- **la corona che non morde** (`crowned`): la interrogava una clausola di
-  proposta, e al Consiglio a due domande non c'e' un posto dove una condizione
-  valga per **una sola risposta**. Dichiarata muta, con la ragione scritta;
-- **il dente dei segni sul dado** (ISSUES 24) rimasto senza dado;
+- ✔ **sedici Conseguenze senza strada** — **fatto in 0.1.445**
+  ([D-475](DECISIONS.md#d-475)), parola del committente: *«tornano come esito,
+  io non vorrei perderle»*. Erano gli esiti delle proposte contrarie, e sono
+  tornate come **rifiuto della domanda**: cosa resta al mondo se il tavolo la
+  respinge. Le Conseguenze che non escono mai passano da **20 su 67 a 9 su
+  67**, e una guardia nuova tiene a zero quelle senza nessuna strada;
+- ✔ **la corona che non morde** (`crowned`) — **spiegata in 0.1.445**: l'unica
+  cosa che la toglie dalla testa di qualcuno e' *La Capitale Presa*, una delle
+  sedici, e finche' era irraggiungibile la corona non poteva cambiare di mano.
+  Resta dichiarata muta perche' nessuna **clausola** la interroga — la guardano
+  i profili delle case, un Destino e quella Conseguenza. Rimetterle una
+  clausola resta una decisione;
+- **il dente dei segni sul dado** (ISSUES 24) rimasto senza dado. Chiesto dal
+  committente *«che vuol dire?»*, e la risposta e' che non e' il dado: sono
+  **21 regole scritte** (`tag_rules`, gancio `COUNCIL_MODIFIER`) che dicono
+  *«un mondo segnato pesa sul Consiglio»* — «La fame siede al tavolo» −1, «La
+  citta' parla piu' forte» +1, «Il seggio vuoto pesa sulla Carta» −1.
+  Spingevano il World Factor; senza dado spingono il vuoto. La domanda vera e'
+  **se un mondo segnato debba pesare sul mucchio dei gettoni**: se si', quelle
+  21 righe tornano vive con un cambio di destinazione; se no, escono;
 - le marche delle caselle da rivedere carta per carta nel catalogo; le fasce
   dell'esito di A che a due domande dicono meno; e quello che nessuna sonda
   misura: **un Consiglio giocato da persone**.

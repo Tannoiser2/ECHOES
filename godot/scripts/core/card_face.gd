@@ -484,6 +484,21 @@ static func _questions_of(tension: Dictionary, data: RefCounted) -> Array:
 ## apre — le sue domande e le caselle con cui il tavolo lo risolve, in media
 ## nove SI OTTIENE, nove SI PAGA e due SE CADE. Fino a D-449 era una scheda a
 ## parte, e «le dodici caselle» era una frase rimasta da D-280.
+## I titoli d'autore di una lista di Conseguenze: e' quello che si stampa, non
+## l'id. Senza i dati resta l'id, che e' meglio di una riga vuota.
+static func _consequence_titles(ids: Array, data: RefCounted) -> Array:
+	var out: Array = []
+	for consequence_id in ids:
+		var consequence: Variant = null if data == null else data.consequences.get(
+			str(consequence_id)
+		)
+		out.append(
+			str(consequence_id) if consequence == null
+			else str((consequence as Dictionary).get("title", consequence_id))
+		)
+	return out
+
+
 static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 	var face: Dictionary = _face("council", str(tension["id"]), "TAROT")
 	face["title"] = str(tension["title"])
@@ -496,9 +511,14 @@ static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 	# quando fare.
 	var council: Dictionary = tension.get("council", {}) as Dictionary
 	var body: Array = []
-	# **Due domande in contrasto, con la lettera e l'esito di base** (D-467):
-	# «A» e «B» sono le marche che le caselle portano, e «se vince» e' quello
-	# che succede a prescindere dalle pedine — le Conseguenze scritte.
+	# **Due domande in contrasto, con la lettera e i due esiti** (D-467, D-475):
+	# «A» e «B» sono le marche che le caselle portano, «se vince» e' quello che
+	# succede a prescindere dalle pedine, e «se cade» quello che resta al mondo
+	# se il tavolo la respinge — le Conseguenze scritte.
+	#
+	# I due esiti stanno **sulla stessa riga**, e non e' un vezzo: la scheda e'
+	# gia' al limite (due su dodici sfondavano il bordo quando ci stavano anche
+	# le proposte), e una riga in piu' per domanda la rimetterebbe fuori.
 	var letters: Dictionary = _question_letters(council)
 	for entry in council.get("questions", []) as Array:
 		var question: Dictionary = entry
@@ -510,12 +530,17 @@ static func _council(tension: Dictionary, data: RefCounted) -> Dictionary:
 		if not needs.is_empty():
 			asked += "  — solo se: %s" % " e ".join(PackedStringArray(needs))
 		body.append(asked)
-		var wins: Array = []
-		for consequence_id in (question.get("base", []) as Array):
-			var consequence: Variant = null if data == null else data.consequences.get(str(consequence_id))
-			wins.append(str(consequence_id) if consequence == null else str((consequence as Dictionary).get("title", consequence_id)))
+		var wins: Array = _consequence_titles(question.get("base", []) as Array, data)
+		var falls: Array = _consequence_titles(question.get("refused", []) as Array, data)
+		var said: String = ""
 		if not wins.is_empty():
-			body.append("   se vince: %s" % " · ".join(PackedStringArray(wins)))
+			said = "   se vince: %s" % " · ".join(PackedStringArray(wins))
+		if not falls.is_empty():
+			said += "%sse cade: %s" % [
+				"   " if said == "" else "  —  ", " · ".join(PackedStringArray(falls)),
+			]
+		if said != "":
+			body.append(said)
 	face["body"] = body
 
 	# **Le caselle, una per riga, e sono tutta la scheda.**

@@ -42,6 +42,7 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 ### A · Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?
 
 - **Se vince, a prescindere dalle pedine:** La Miniera Aperta · La Miniera di Stato
+- **Se il tavolo la respinge:** Le Gallerie Riaperte
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato messo a rendere.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #sfruttato. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
 
@@ -49,6 +50,7 @@ Qualcosa si è mosso sotto le Miniere, e nessuno sa dire quanto manca. Si vedono
 
 - **Si apre solo se:** Il Risveglio è vicino
 - **Se vince, a prescindere dalle pedine:** Studio sotto Custodia
+- **Se il tavolo la respinge:** Il Drago Abbattuto
 - **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato messo a rendere. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
 - **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
 
@@ -123,6 +125,7 @@ La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcu
 ### A · La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
+- **Se il tavolo la respinge:** La Teca Murata
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente: l'abbandono. · Il Tema di questa domanda si scalda di 1.
 
@@ -164,6 +167,7 @@ Il bosco rende: legna, carbone, terra nuova. Rende una volta sola.
 ### A · Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta
+- **Se il tavolo la respinge:** Si Spreme Quello Che C'e'
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato messo a rendere.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #sfruttato. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
 
@@ -224,6 +228,7 @@ Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi:
 ### A · Chi tiene il registro, e chi può leggerlo?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
+- **Se il tavolo la respinge:** Il Debito Chiamato
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #malcontento. · Accetta 1 Cicatrice permanente: il confine sigillato. · Il Tema di questa domanda si scalda di 1.
 
@@ -231,6 +236,7 @@ Nessuno ha mai dichiarato guerra alla Gilda del Sale. Le devono tutti dei soldi:
 
 - **Si apre solo se:** Il Debito è al limite
 - **Se vince, a prescindere dalle pedine:** Il Debito Rimesso
+- **Se il tavolo la respinge:** Il Debito Chiamato
 - **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
 - **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
 
@@ -305,6 +311,7 @@ I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un pad
 ### A · I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
+- **Se il tavolo la respinge:** La Domanda Ripresa
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
 
@@ -325,6 +332,7 @@ I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli ripo
 ### A · I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?
 
 - **Se vince, a prescindere dalle pedine:** Il Raccolto Torna
+- **Se il tavolo la respinge:** Si Spreme Quello Che C'e'
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
 
@@ -345,6 +353,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 ### A · Chi nutre la Regione di cui si discute quando i granai si svuotano?
 
 - **Se vince, a prescindere dalle pedine:** Il Granaio del Trono · La Distribuzione Verificata
+- **Se il tavolo la respinge:** Il Titolo che non Vale più
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso.
 - **Costi che puo' sostenere (4):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il filo con il rivale scende a nemico. · Il Tema di questa domanda si scalda di 1.
 
@@ -352,6 +361,7 @@ Non è ancora fame. È il calcolo, fatto a voce bassa, di quanto manchi alla fam
 
 - **Si apre solo se:** La Carestia è al limite
 - **Se vince, a prescindere dalle pedine:** La Valle Chiusa
+- **Se il tavolo la respinge:** Il Titolo che non Vale più · Chi Puo', Se Ne Va
 - **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
 - **Costi che puo' sostenere (3):** Cedi il controllo del luogo. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
 
@@ -606,6 +616,7 @@ Non sono nemici e non sono poveri: sono persone che non risultano da nessuna par
 ### A · Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?
 
 - **Se vince, a prescindere dalle pedine:** Chi Lavora Mangia
+- **Se il tavolo la respinge:** La Partenza
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Villaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
 
@@ -706,6 +717,7 @@ Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arri
 ### A · I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?
 
 - **Se vince, a prescindere dalle pedine:** Il Granaio del Trono
+- **Se il tavolo la respinge:** La Cinghia Stretta
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
 
@@ -827,12 +839,14 @@ Un frammento del Cristallo Rosso, dentro una teca, dentro una regola: si custodi
 
 - **Si apre solo se:** La Reliquia è al limite
 - **Se vince, a prescindere dalle pedine:** La Teca Aperta
+- **Se il tavolo la respinge:** La Teca Murata
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
 
 ### B · Chi risponde di quello che c'è nella teca?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
+- **Se il tavolo la respinge:** Le Gallerie Lasciate · La Roccia che Cede
 - **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
 - **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
 
@@ -854,6 +868,7 @@ Si vede il prezzo del sale, non chi lo fa salire.
 
 - **Si apre solo se:** Le Vie Interrotte sono al limite
 - **Se vince, a prescindere dalle pedine:** La Scorta Giurata · Le Vie Riaperte
+- **Se il tavolo la respinge:** La Strada Spogliata · La Via delle Miniere Tagliata
 - **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato chiamato. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
 - **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
 
@@ -1008,6 +1023,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 ### A · Chi siede sul trono quando questo si alza?
 
 - **Se vince, a prescindere dalle pedine:** L'Erede Nominato · L'Ordine Rimesso in Piedi
+- **Se il tavolo la respinge:** La Corona Divisa
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la successione e' scritta in una legge.
 - **Costi che puo' sostenere (4):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Chi propone resta sotto osservazione. · Il Tema di questa domanda si scalda di 1.
 
@@ -1015,6 +1031,7 @@ Aperta: tutti sanno che Aldric non ha erede. Nessuno sa ancora chi lo dirà per 
 
 - **Si apre solo se:** La Successione è al limite
 - **Se vince, a prescindere dalle pedine:** La Legge Scritta
+- **Se il tavolo la respinge:** La Capitale Presa · La Domanda Ripresa
 - **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la successione e' scritta in una legge. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
 - **Costi che puo' sostenere (3):** Cedi il controllo del luogo. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
 
@@ -1049,6 +1066,7 @@ Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene
 ### A · Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
+- **Se il tavolo la respinge:** Si Spreme Quello Che C'e'
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
 
@@ -1089,6 +1107,7 @@ Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbrica
 ### A · È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?
 
 - **Se vince, a prescindere dalle pedine:** La Teca Aperta
+- **Se il tavolo la respinge:** La Teca Murata
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato misurato.
 - **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
 
@@ -1129,6 +1148,7 @@ Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' c
 ### A · Una delle pietre incise è a terra: si rialza, e chi la tocca?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
+- **Se il tavolo la respinge:** La Teca Murata
 - **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
 - **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente: l'abbandono. · Il Tema di questa domanda si scalda di 1.
 

@@ -1326,6 +1326,40 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "stessa catena di Effetti — al voto sembrano due strade e sono "
                     "una sola" % (carta.get("id"), " e ".join(sorted(chi))))
 
+    # **Nessuna Conseguenza senza strada** (D-475, parola del committente: *«le
+    # 16 conseguenze tornano come esito, io non vorrei perderle»*). Una
+    # Conseguenza che nessuno puo' pescare e' contenuto che non esiste (D-035),
+    # e la differenza fra le due non si vede leggendo il file: si vede solo
+    # contando **da dove ci si arriva**.
+    #
+    # Le strade sono quattro, e sono tutte: l'esito di base di una domanda, il
+    # suo rifiuto, un sacchetto del template, il gancio di una carta Eco. Le
+    # sedici che questo giro rimette in strada erano l'esito delle proposte
+    # contrarie, e per due versioni non ne hanno avuta nessuna senza che niente
+    # lo dicesse.
+    strade: Dict[str, Set[str]] = defaultdict(set)
+    for carta in documenti.get("tension", []):
+        for domanda in ((carta.get("council") or {}).get("questions") or []):
+            for cid in (domanda.get("base") or []):
+                strade[str(cid)].add("l'esito di una domanda")
+            for cid in (domanda.get("refused") or []):
+                strade[str(cid)].add("il rifiuto di una domanda")
+    for template in documenti.get("confluence_template", []):
+        for _nome, sacchetto in (template.get("consequence_pools") or {}).items():
+            for cid in sacchetto or []:
+                strade[str(cid)].add("un sacchetto del Consiglio")
+    for eco in documenti.get("echo_card", []):
+        for gancio in (eco.get("effect_hooks") or []):
+            if str(gancio.get("kind", "")) == "CONSEQUENCE":
+                strade[str(gancio.get("consequence_id", ""))].add("una carta Eco")
+    for conseguenza in documenti.get("consequence", []):
+        if not strade.get(str(conseguenza.get("id", ""))):
+            guai.append(
+                "Conseguenza senza strada: %s — nessuna domanda la porta, nessun "
+                "rifiuto, nessun sacchetto, nessuna carta Eco: il tavolo non "
+                "puo' vederla" % conseguenza.get("id")
+            )
+
     guai.extend(due_domande(documenti))
     return guai
 
@@ -1693,6 +1727,17 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                      if (t.get("council") or {}).get("questions"))
         carta["council"]["questions"][0]["base"] = []
 
+    def conseguenza_senza_strada(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una Conseguenza che nessuno puo' pescare: il tavolo non la vedra' mai.
+        # **Si fabbrica** togliendo tutte le strade di una che ce le ha —
+        # cercarne una gia' orfana smetterebbe di provare il giorno in cui i
+        # dati sono a posto, che e' oggi.
+        muta = "CNS_SENZA_STRADA"
+        prova["consequence"].append({
+            "id": muta, "title": "Una che non si puo' pescare",
+            "description": "Fabbricata: nessuna domanda la porta.", "effects": [],
+        })
+
     def domande_gemelle(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Due domande dello stesso Consiglio che applicano la stessa catena di
         # Effetti: al voto sembrano due strade e sono una sola. **Si fabbrica**
@@ -1907,6 +1952,8 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                frase_che_ruba_la_casella, "la frase fa il mestiere della casella"),
         pianta("due domande dello stesso Consiglio con la stessa catena",
                domande_gemelle, "due domande che fanno la stessa cosa"),
+        pianta("una Conseguenza che nessuna strada porta al tavolo",
+               conseguenza_senza_strada, "Conseguenza senza strada"),
         pianta("IL MONDO RICORDA che nomina un segno del luogo, non del mondo",
                memoria_sbagliata, "posa un segno che non e' del mondo"),
         pianta("carta che apre una Domanda che non lascia niente al mondo",

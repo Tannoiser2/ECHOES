@@ -181,6 +181,9 @@
             "base": [
               "CNS_ROYAL_GRANARY",
               "CNS_DISTRIBUTION_AUDITED"
+            ],
+            "refused": [
+              "CNS_CROWN_DISPOSSESSED"
             ]
           },
           {
@@ -196,6 +199,10 @@
             ],
             "base": [
               "CNS_SEALED_VALLEY"
+            ],
+            "refused": [
+              "CNS_CROWN_DISPOSSESSED",
+              "CNS_COST_EMPTIED"
             ]
           }
         ]
@@ -399,6 +406,9 @@
             "base": [
               "CNS_CRYSTAL_EXPLOITED",
               "CNS_MINE_TAKEN"
+            ],
+            "refused": [
+              "CNS_MINE_REOPENED"
             ]
           },
           {
@@ -414,6 +424,9 @@
             ],
             "base": [
               "CNS_STUDY_UNDER_GUARD"
+            ],
+            "refused": [
+              "CNS_DRAGON_SLAIN"
             ]
           }
         ]
@@ -619,6 +632,9 @@
             "base": [
               "CNS_HEIR_NAMED",
               "CNS_ORDER_RESTORED"
+            ],
+            "refused": [
+              "CNS_CROWN_DIVIDED"
             ]
           },
           {
@@ -634,6 +650,10 @@
             ],
             "base": [
               "CNS_LAW_OF_SUCCESSION"
+            ],
+            "refused": [
+              "CNS_CAPITAL_TAKEN",
+              "CNS_QUESTION_RETAKEN"
             ]
           }
         ]
@@ -853,6 +873,10 @@
             "base": [
               "CNS_ESCORT_SWORN",
               "CNS_ROADS_REOPENED"
+            ],
+            "refused": [
+              "CNS_ROADS_PLUNDERED",
+              "CNS_MINE_ROAD_CUT"
             ]
           }
         ]
@@ -1687,6 +1711,9 @@
             "eligibility": [],
             "base": [
               "CNS_LEDGER_OPENED"
+            ],
+            "refused": [
+              "CNS_DEBT_CALLED"
             ]
           },
           {
@@ -1702,6 +1729,9 @@
             ],
             "base": [
               "CNS_DEBT_FORGIVEN"
+            ],
+            "refused": [
+              "CNS_DEBT_CALLED"
             ]
           }
         ]
@@ -1911,6 +1941,9 @@
             ],
             "base": [
               "CNS_RELIC_SHOWN"
+            ],
+            "refused": [
+              "CNS_RELIC_BURIED"
             ]
           },
           {
@@ -1919,6 +1952,10 @@
             "eligibility": [],
             "base": [
               "CNS_ORDER_ANOINTED"
+            ],
+            "refused": [
+              "CNS_ASH_ABANDONED",
+              "CNS_MOUNTAIN_WOUNDED"
             ]
           }
         ]
@@ -2324,6 +2361,9 @@
             "eligibility": [],
             "base": [
               "CNS_NAHR_SETTLEMENT"
+            ],
+            "refused": [
+              "CNS_EXODUS"
             ]
           },
           {

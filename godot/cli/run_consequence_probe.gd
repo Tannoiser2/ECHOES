@@ -15,6 +15,7 @@ extends SceneTree
 ##
 ## **Dal Consiglio a due domande (D-467, D-472) chi elenca una Conseguenza e'
 ## una domanda, non una proposta**: l'esito di base sta in `questions[i].base`
+## e quello del rifiuto in `questions[i].refused` (D-475),
 ## sulla carta, e esce quando **quella domanda vince** il voto contro l'altra
 ## (`winning_question_id` nel risultato). Le proposte e le loro
 ## `success_consequences` sono uscite dal codice con il Consiglio di D-280, e
@@ -75,15 +76,35 @@ func _initialize() -> void:
 	# 0.1.272 ogni carta porta le sue Domande e il template e' solo il ripiego.
 	# Letto crudo, il template diceva ancora le liste di allora — e chiamava
 	# «orfana» una Conseguenza che tre carte elencano.
+	# Quali Conseguenze hanno una strada che passa dal **rifiuto** (D-475), e
+	# quali dalla vittoria di una domanda: cambia il verdetto, perche' una che
+	# esce solo quando il tavolo **non** decide non e' «sempre perdente».
+	var only_refused: Dictionary = {}
+	var reached_by_winning: Dictionary = {}
 	for tension_id in data.tensions:
 		var sheet: Dictionary = data.confluence_template_for(str(tension_id)) as Dictionary
 		for entry in sheet.get("questions", []):
 			var question: Dictionary = entry as Dictionary
-			for consequence_id in question.get("base", []):
-				var who: Array = listed_by.get(str(consequence_id), [])
-				if not who.has(str(question["id"])):
-					who.append(str(question["id"]))
-				listed_by[str(consequence_id)] = who
+			# **E il rifiuto della domanda** (D-475): cosa resta al mondo se il
+			# tavolo la respinge. Senza questa riga la sonda chiamava «orfane»
+			# quattro Conseguenze che una domanda elenca — la corona che perde
+			# il titolo, il debito chiamato, la cinghia stretta, chi se ne va —
+			# ed e' la forma di cecita' che questo file ha gia' avuto due volte.
+			for list_name in ["base", "refused"]:
+				for consequence_id in question.get(list_name, []):
+					var who: Array = listed_by.get(str(consequence_id), [])
+					if not who.has(str(question["id"])):
+						who.append(str(question["id"]))
+					listed_by[str(consequence_id)] = who
+					# **L'id resta quello vero**, o le due tabelle che seguono
+					# — quante volte quella domanda e' stata offerta, presa,
+					# vinta — non lo trovano piu' e la sonda direbbe «mai
+					# arrivata al Consiglio» di una domanda che ci arriva ogni
+					# anno. La strada la ricorda questa mappa, a parte.
+					if list_name == "refused":
+						only_refused[str(consequence_id)] = true
+					else:
+						reached_by_winning[str(consequence_id)] = true
 	for template_id in data.confluence_templates:
 		var template: Dictionary = data.confluence_templates[str(template_id)] as Dictionary
 		# **E i sacchetti del Consiglio** (D-401). Una Conseguenza puo' avere una
@@ -256,6 +277,12 @@ func _initialize() -> void:
 					verdict = (
 						"NESSUNA RAGIONE PER GIOCARLA: pescata %d volte, calata zero" % seen_in_hand
 					)
+		elif only_refused.has(consequence_id) and not reached_by_winning.has(consequence_id):
+			by = ", ".join(PackedStringArray(who))
+			verdict = (
+				"LA PORTA IL RIFIUTO (D-475): esce quando quella domanda e' "
+				+ "respinta e non passa nessuna delle due — in %d Consigli non e' capitato" % councils
+			)
 		else:
 			var seen: int = 0
 			var taken: int = 0

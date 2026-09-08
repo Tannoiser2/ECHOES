@@ -172,6 +172,9 @@
             "eligibility": [],
             "base": [
               "CNS_CHARTER_WRITTEN"
+            ],
+            "refused": [
+              "CNS_QUESTION_RETAKEN"
             ]
           },
           {
@@ -394,6 +397,9 @@
             "eligibility": [],
             "base": [
               "CNS_HARVEST_RETURNS"
+            ],
+            "refused": [
+              "CNS_COST_EXPLOITED"
             ]
           },
           {
@@ -981,6 +987,9 @@
             "eligibility": [],
             "base": [
               "CNS_RATIONED"
+            ],
+            "refused": [
+              "CNS_COST_EXPLOITED"
             ]
           },
           {
@@ -1948,6 +1957,9 @@
             "eligibility": [],
             "base": [
               "CNS_ROYAL_GRANARY"
+            ],
+            "refused": [
+              "CNS_COST_RATION"
             ]
           },
           {
@@ -2929,6 +2941,9 @@
             "eligibility": [],
             "base": [
               "CNS_LEDGER_OPENED"
+            ],
+            "refused": [
+              "CNS_COST_EXPLOITED"
             ]
           },
           {
@@ -3125,6 +3140,9 @@
             "eligibility": [],
             "base": [
               "CNS_ORDER_ANOINTED"
+            ],
+            "refused": [
+              "CNS_RELIC_BURIED"
             ]
           },
           {
@@ -6042,6 +6060,9 @@
             "eligibility": [],
             "base": [
               "CNS_RELIC_SHOWN"
+            ],
+            "refused": [
+              "CNS_RELIC_BURIED"
             ]
           },
           {
@@ -6434,6 +6455,9 @@
             "eligibility": [],
             "base": [
               "CNS_ORDER_ANOINTED"
+            ],
+            "refused": [
+              "CNS_RELIC_BURIED"
             ]
           },
           {

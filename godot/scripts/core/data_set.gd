@@ -176,16 +176,17 @@ func _check_references() -> void:
 	# **Le Domande stanno sulla carta** (D-462, portata alle domande in D-474):
 	# una Conseguenza scritta male su una carta passava ogni controllo, e il
 	# motore la saltava in silenzio. La guardia era sulle proposte, che dalla
-	# 0.1.444 non esistono piu': adesso e' sull'esito di base della domanda,
-	# che e' quello che il Consiglio applica davvero.
+	# 0.1.444 non esistono piu': adesso e' sull'esito di base della domanda e su
+	# quello del suo rifiuto (D-475), che e' quello che il Consiglio applica.
 	for tension in tensions.values():
 		var council: Dictionary = tension.get("council", {}) as Dictionary
 		for question in council.get("questions", []):
-			for consequence_id in (question as Dictionary).get("base", []):
-				if not consequences.has(consequence_id):
-					errors.append(
-						"%s: unknown consequence '%s'" % [tension["id"], consequence_id]
-					)
+			for list_name in ["base", "refused"]:
+				for consequence_id in (question as Dictionary).get(list_name, []):
+					if not consequences.has(consequence_id):
+						errors.append(
+							"%s: unknown consequence '%s'" % [tension["id"], consequence_id]
+						)
 	for chronicle in chronicles.values():
 		for entity_id in chronicle["entities"]:
 			if not entities.has(entity_id):

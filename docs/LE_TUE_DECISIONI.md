@@ -451,21 +451,68 @@ si'. Il catalogo conta 60 carte e 120 domande. E la partita non si e' mossa di
 niente: sui 100 semi escono **gli stessi identici numeri** di prima, che era
 esattamente la prova da fare.
 
-Quattro cose restano da decidere, e sono tue:
+Quattro cose ti avevo lasciato, e mi hai risposto su tutte. **Due sono
+fatte in 0.1.445** ([D-475](DECISIONS.md#d-475)), una e' in corso, e la
+quarta era una domanda a me.
 
-1. **I gettoni del RIVENDICARE**, che la carta da' ancora e il Consiglio non
-   chiede piu': si tolgono, o servono a qualcos'altro?
-2. **Sedici Conseguenze sono rimaste senza strada** — la corona divisa, il
-   drago abbattuto, l'esodo, la miniera riaperta. Le nominavano solo le
-   proposte, quindi erano gia' irraggiungibili da due versioni: adesso si
-   vede. Non le ho cancellate: stanno nella scatola. Tornano come esito di una
-   domanda, finiscono in un sacchetto, o escono?
-3. **La corona non morde piu'.** C'era una riga che diceva *«solo chi porta la
-   corona puo' requisire»*, e stava su una proposta. Al Consiglio a due domande
-   una condizione del genere non ha dove stare: se la metti sulla domanda,
-   chiudi la domanda intera a chi non ha la corona, che e' un'altra cosa. Te lo
-   scrivo perche' e' una regola che hai perso, non un dettaglio tecnico.
-4. **Il segno che pesava sul dado**, senza piu' un dado.
+**1. Le sedici Conseguenze — fatto.** *«Tornano come esito, io non vorrei
+perderle.»* Le ho guardate una per una e dicono da sole dove vanno: erano
+l'esito della **proposta contraria**. La domanda teneva il si', l'orfana era
+il no.
+
+| la domanda | se passa | se il tavolo la respinge |
+|---|---|---|
+| nominare l'erede | l'erede e' nominato | **la corona si divide** |
+| giurare la scorta alle vie | scorta giurata, vie riaperte | **le vie saccheggiate** |
+| mostrare la reliquia | la reliquia e' mostrata | **la teca murata** |
+| rimettere il debito | il debito e' rimesso | **il debito chiamato** |
+
+Adesso ogni domanda puo' portare **cosa lascia se la respingi**, e la carta
+stampata lo dice. Una cosa te la devo dire perche' l'ho corretta in corsa:
+al primo giro il segno del rifiuto arrivava **anche quando l'altra domanda
+passava** — mi sembrava giusto, *dire di no e' una decisione* — e la misura mi
+ha smentito. I Consigli su un tavolo a quattro domande scendevano da 5 a 3, e
+soprattutto *Il Drago Abbattuto* usciva **senza che nessuno lo avesse
+proposto**. Queste sedici erano l'esito di una proposta che il tavolo votava:
+regalarle a chi perde e' un'altra cosa. Adesso: **se una passa hai deciso; se
+non passa nessuna, le hai respinte tutt'e due.**
+
+Il numero: le Conseguenze che non escono mai in 100 anni passano da **20 a 9**
+su 67, e **undici delle sedici escono davvero**. Cinque hanno la strada e non
+la percorrono, perche' le loro carte non cadono mai in quel modo: te lo scrivo
+perche' e' meta' lavoro, non tutto.
+
+**2. La corona — non c'era niente da eliminare.** *«Se non e' possibile
+inserirla o cambiarla la possiamo eliminare»*: e' possibile, ed e' successo da
+solo. L'unica cosa in tutta la scatola che toglie la corona dalla testa di
+qualcuno e' *La Capitale Presa* — una delle sedici. Finche' era
+irraggiungibile, la corona non poteva cambiare di mano in tutta la partita.
+Resta segnata come «muta» in un documento, e la ragione e' tecnica: il registro
+chiama «lettore» solo una **clausola**, e la corona non ne ha. La guardano i
+profili delle case (Aldric la vuole, le Citta' Libere la temono, e questo pesa
+sulle scelte), un Destino, e quella Conseguenza. Se vuoi che una **regola** la
+interroghi, e' un'altra decisione tua.
+
+**3. I gettoni del RIVENDICARE — in corso, e il numero cambia quello che mi hai
+chiesto.** *«Dovrebbe sempre dare i gettoni con cui comprare benefici e
+costi»*. Ho scritto una sonda e misurato su 100 anni: il RIVENDICARE conia
+**2,21 gettoni all'anno su tutto il tavolo**, contro **34,56 pedine posate**
+nei Consigli. Se una pedina costasse un gettone, un gettone dovrebbe comprarne
+**quindici** perche' il tavolo resti pieno: far pagare ogni pedina non e'
+un'economia, e' un Consiglio spento. Quindi faccio la cosa che rende vera la
+tua regola senza spegnere il tavolo — **il gettone alza di uno il tetto dei
+benefici della tua parte**, che e' l'aritmetica di D-280 col gettone al posto
+della Cicatrice. Se invece volevi il rubinetto aperto (il RIVENDICARE che conia
+di piu', o un gettone a testa per Atto), dimmelo: e' una taratura piu' grossa.
+
+**4. Il segno che pesava sul dado — mi hai chiesto che vuol dire, ed e' giusto
+chiederlo.** Non e' il dado. Sono **21 regole scritte** nei dati che dicono
+*«un mondo segnato pesa sul Consiglio»*: «La fame siede al tavolo» −1, «La
+citta' parla piu' forte al Consiglio» +1, «Il seggio vuoto pesa sulla Carta»
+−1. Spingevano il World Factor, cioe' il dado. Tolto il dado, spingono il
+vuoto. La domanda vera e': **un mondo segnato deve pesare sul mucchio dei
+gettoni?** Se si', quelle 21 righe tornano vive puntandole sul mucchio; se no,
+escono. E' una regola di gioco, e la decidi tu.
 
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 

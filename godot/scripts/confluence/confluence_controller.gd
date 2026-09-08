@@ -825,6 +825,28 @@ func resolve(recovery: Dictionary = {}) -> Dictionary:
 		)
 		if not when_it_falls.is_empty():
 			consequence_ids.append(when_it_falls[0])
+		# **Nessuna delle due passa: sono respinte tutt'e due** (D-475, parola
+		# del committente: *«le 16 conseguenze tornano come esito, io non vorrei
+		# perderle»*). Sono le sedici che stavano sulla proposta contraria,
+		# uscita coi Consigli di D-280 e coi dati in D-474: il loro posto e'
+		# qui, e solo qui.
+		#
+		# **Solo qui, e non quando una delle due passa**, ed e' una correzione
+		# fatta in corsa contro la misura. Il primo giro le applicava anche alla
+		# domanda perdente di un Consiglio riuscito — *«dire di no e' una
+		# decisione»* — e sembrava giusto finche' i numeri non hanno detto due
+		# cose: la mediana dei Consigli su un tavolo a quattro domande e' scesa
+		# **da 5 a 3**, perche' ogni Consiglio raffreddava due questioni invece
+		# di una; e soprattutto *Il Drago Abbattuto* (TEN_AWAKENING −6) arrivava
+		# **senza che nessuno lo avesse proposto**. Queste sedici erano l'esito
+		# di una proposta che il tavolo votava: regalarle a chi perde e' un'altra
+		# cosa. Se una delle due passa, il tavolo **ha deciso**, e il mondo
+		# prende quello che ha deciso. Se non passa nessuna, allora si', sono
+		# state respinte tutt'e due.
+		for side in ["A", "B"]:
+			for consequence_id in _question_refused(template, side_question(side)):
+				if not consequence_ids.has(consequence_id):
+					consequence_ids.append(consequence_id)
 	# ISSUES 22 (Fase 1): the Consequence speaks with its title, and every
 	# Effect it lands gets its own spoken line — the crown losing the Valle
 	# Verde must be a sentence at the table, not a silent SET_CONTROL.
@@ -1463,6 +1485,16 @@ func _question_base(template: Dictionary, question_id: String) -> Array:
 	for entry in template.get("questions", []) as Array:
 		if str((entry as Dictionary).get("id", "")) == question_id:
 			return ((entry as Dictionary).get("base", []) as Array).duplicate()
+	return []
+
+
+## **Cosa resta al mondo se il tavolo respinge questa domanda** (D-475): gli id
+## delle Conseguenze scritte sulla domanda accanto al suo esito di base. Una
+## domanda che non lo scrive, respinta, non lascia niente — e sono le piu'.
+func _question_refused(template: Dictionary, question_id: String) -> Array:
+	for entry in template.get("questions", []) as Array:
+		if str((entry as Dictionary).get("id", "")) == question_id:
+			return ((entry as Dictionary).get("refused", []) as Array).duplicate()
 	return []
 
 

@@ -97,6 +97,15 @@ func _initialize() -> void:
 			lines.append("- **Se vince, a prescindere dalle pedine:** %s" % (
 				" · ".join(PackedStringArray(wins)) if not wins.is_empty() else "*(niente)*"
 			))
+			# **E cosa resta se il tavolo la respinge** (D-475): la riga esiste
+			# solo dove la carta la scrive, e sono le venti domande su cui sono
+			# tornate le sedici Conseguenze delle proposte contrarie.
+			var falls: Array = []
+			for consequence_id in (question.get("refused", []) as Array):
+				var refused: Dictionary = data.consequences.get(str(consequence_id), {}) as Dictionary
+				falls.append(str(refused.get("title", consequence_id)))
+			if not falls.is_empty():
+				lines.append("- **Se il tavolo la respinge:** %s" % " · ".join(PackedStringArray(falls)))
 			for pair in [["benefits", "benefici"], ["costs", "costi"]]:
 				var mine: Array = []
 				for voice in (physical.get(str(pair[0]), []) as Array):

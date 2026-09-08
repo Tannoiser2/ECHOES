@@ -654,6 +654,12 @@ for t in load("tensions/*.json"):
         # si', questo resta al mondo.
         for cns in q.get("base", []) or []:
             edge(qid, str(cns), "porta", "se il tavolo risponde di si', questo resta al mondo")
+        # **E quello del rifiuto** (D-475): se non passa nessuna delle due, la
+        # domanda respinta lascia il suo segno. E' la strada con cui le sedici
+        # Conseguenze delle proposte contrarie sono tornate raggiungibili.
+        for cns in q.get("refused", []) or []:
+            edge(qid, str(cns), "lascia_se_respinta",
+                 "se il tavolo non decide, questo resta al mondo")
 
 
 # ---------- LA CATENA DELLE ERE ----------
