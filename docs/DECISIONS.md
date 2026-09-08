@@ -45,6 +45,53 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-485 — Ogni carta a bersaglio puo' essere puntata su un posto che qualcuno ha segnato
+
+**implemented in 0.1.455.** Ultima delle quattro mosse della R15 ([ISSUES
+132](ISSUES.md#132), punto 2): *«Il rapporto 27/73 si sposta? Scrivere piu'
+bersagli su segni posabili e' lavoro di contenuto, non di motore, e fa crescere
+la combo che gia' esiste.»*
+
+### 1. Il numero contava le alternative, non le occasioni
+
+La misura di ISSUES 132 diceva: **154 richieste di bersaglio su 36 segni, e il
+73% punta terreno stampato che nessuno puo' creare**. Rimisurata oggi era
+62/38, ma il numero — per come e' costruito — **conta le alternative scritte
+sulle carte**, non le carte. Una carta che dice *«un luogo con #capitale,
+#commercio o #conteso»* porta tre richieste, due delle quali su terreno: il
+rapporto peggiora, e intanto quella carta la si puo' puntare dove si vuole,
+segnando prima.
+
+La domanda giusta e' **per carta**: quante delle carte a bersaglio si possono
+puntare su un posto che qualcuno ha segnato? Erano **26 su 28**.
+
+### 2. Le due che restavano
+
+- **Atto di Successione** — solo `capital` e il dominio del territorio: adesso
+  vale anche un luogo **conteso**, che e' il segno piu' scritto del mondo (370
+  volte in cento anni) e che una carta o una casella possono posare. Al tavolo:
+  *«si scrive il nome dell'erede dove due mani tengono lo stesso lembo»*.
+- **Il Tesoro** — capitale, commercio, miniera, cristallo: adesso vale anche un
+  luogo con una **Dogana**, che e' una Pietra che si costruisce. *«Il tesoro si
+  tiene dove si incassa.»*
+
+**Adesso sono 28 su 28.** La combo *«segno il posto adesso, ci gioco sopra
+dopo»* non e' piu' la minoranza: e' la regola, e vale per ogni carta che dice
+dove va.
+
+### 3. Misurato
+
+Cancello dei 100 semi, **0 seggi bloccati su 8**. Gli esiti restano dov'erano
+(292 Verita' sul misto contro 293, 244 sull'uniforme identiche): due bersagli in
+piu' su 162 richieste non spostano una partita, e **non dovevano** — spostano
+quello che si **puo'** fare, non quello che il cervello fa.
+
+Il rapporto delle richieste resta **38%**, ed e' giusto lasciarlo li' e
+dichiararlo: allargarlo vorrebbe dire togliere il terreno stampato dalle carte,
+cioe' togliere alla mappa il suo mestiere.
+
+---
+
 ## D-484 — Una Pietra e' una capacita', non un +1
 
 **implemented in 0.1.454.** Terza mossa della R15 ([ISSUES

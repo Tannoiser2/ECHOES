@@ -10261,7 +10261,7 @@ voto. Le sette finiscono al voto il **61,1%** delle volte: non sono carte
 deboli, sono **monete**. Il seguito e' la [132](#132), che e' la domanda giusta.
 
 
-### 132. Le scelte ci sono e non si accumulano: qual e' il meccanismo di ECHOES
+### 132. ✅ Le scelte ci sono e non si accumulano: qual e' il meccanismo di ECHOES — CHIUSA in 0.1.455: quattro mosse, quattro misure
 
 `regole` · `bilanciamento` · `da-decidere` · voluta dal committente · **aperta in 0.1.447**
 
@@ -10362,7 +10362,22 @@ forma di `ACTION_DISCOUNT`, e ce n'e' **una sola** in tutta la scatola.
 
 Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
 
-**Cosa resta da decidere, e lo decide il committente:**
+**Chiusa in 0.1.455** sulla parola *«via in ordine R14 in poi»*: tutte e quattro
+le mosse sono state fatte e misurate — [D-482](DECISIONS.md#d-482) (la
+Risonanza sceglie il Tema), [D-483](DECISIONS.md#d-483) (il mucchio guarda il
+luogo), [D-484](DECISIONS.md#d-484) (le Pietre sono capacita'),
+[D-485](DECISIONS.md#d-485) (ogni carta a bersaglio si punta su un posto
+segnabile).
+
+**Il meccanismo di ECHOES, adesso che le quattro leve sono accese:** *ogni
+Azione fa due cose insieme — un fatto nel mondo, e **una mossa sull'agenda**,
+perche' scegli tu quale Tema scaldare. Il Tema piu' caldo decide di cosa il
+tavolo discutera'. Al Consiglio le carte tenute in mano diventano peso, il mondo
+segnato alza o abbassa la soglia, e le Pietre che hai costruito ti fanno agire
+senza spendere.* Le scelte adesso **si accumulano**: quello che segni oggi e'
+dove puoi giocare domani, e quello che costruisci cambia cosa puoi fare.
+
+**Cosa restava da decidere, e la risposta:**
 
 1. ✔ **La Risonanza e' diventata una scelta** — **fatta in 0.1.452**
    ([D-482](DECISIONS.md#d-482)). La Risonanza avviene sempre; **quale dei due
@@ -10380,8 +10395,20 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    scendono da 257 a **235** e i Consigli caduti salgono da 44 a **58** —
    quattro ottimizzatori identici scelgono lo stesso Tema e concentrano
    l'agenda. Sul tavolo **misto** la stessa leva fa il contrario: 278 → **283**.
-2. **Il rapporto 27/73 si sposta?** Scrivere piu' bersagli su segni posabili e'
-   lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
+2. ✔ **Il rapporto si e' spostato dove contava** — **fatto in 0.1.455**
+   ([D-485](DECISIONS.md#d-485)). Il numero 27/73 conta le **alternative**
+   scritte sulle carte, non le carte: una carta che dice «#capitale, #commercio
+   o #conteso» porta tre richieste, due su terreno, e intanto la si puo' puntare
+   dove si vuole segnando prima. Per **carta** erano **26 su 28**; le due che
+   restavano — Atto di Successione e Il Tesoro — adesso valgono anche su un
+   luogo **conteso** e su una **Dogana**. **Sono 28 su 28**: la combo «segno il
+   posto adesso, ci gioco sopra dopo» non e' piu' la minoranza.
+
+   Il rapporto delle richieste resta **38%** ed e' dichiarato: allargarlo
+   vorrebbe dire togliere il terreno stampato dalle carte, cioe' togliere alla
+   mappa il suo mestiere. Cancello 0 su 8, esiti fermi (292 Verita' contro 293)
+   — due bersagli in piu' spostano quello che si **puo'** fare, non quello che
+   il cervello fa.
 3. ✔ **Le Pietre sono diventate capacita'** — **fatto in 0.1.454**
    ([D-484](DECISIONS.md#d-484)). Il telaio non si poteva usare: lo sconto lo
    leggeva **solo** RIVENDICARE, quindi una regola scritta sugli altri verbi

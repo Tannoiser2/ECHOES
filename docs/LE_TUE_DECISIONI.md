@@ -273,9 +273,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **138** |
-| chiuse | **125** |
-| aperte | **13** |
-| di cui **aspettano una tua decisione** | **3** |
+| chiuse | **126** |
+| aperte | **12** |
+| di cui **aspettano una tua decisione** | **2** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,19 +305,19 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **3** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **2** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle tredici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su tre tue parole.**
+**Una.** Delle dodici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su due tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **tre**
+# 🔴 Aspettano te: **due**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
 sono state quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai
@@ -410,7 +410,7 @@ moneta che da Azione, la domanda non e' la carta: e' il meccanismo del gioco.
 Che e' esattamente la **R15**, qui sotto.
 
 
-### R15. [132](ISSUES.md#132) — quali sono le scelte vere: **aperta in 0.1.447**
+### ✔ R15. [132](ISSUES.md#132) — quali sono le scelte vere: **aperta in 0.1.447**
 
 *«Il gioco forse è troppo semplificato, quali sono le effettive scelte che fa
 un giocatore? E non ci sono meccanismi di combo che danno soddisfazione né un
@@ -487,6 +487,36 @@ e sono tue:
    cinque regole sui segni che escono davvero. Ma **con quale verso** — se
    `#conteso` renda piu' difficile decidere o piu' facile — e' una scelta
    d'autore, e la faccio solo se me la dici tu.
+
+**E la tua parola e' arrivata**: *«via in ordine R14 in poi»*. **Chiusa in
+0.1.455**, con quattro mosse e quattro misure.
+
+1. **La Risonanza sceglie il Tema** ([D-482](DECISIONS.md#d-482)): 39 carte su
+   48 ne stampano due e adesso decidi tu quale scaldare. Su cento anni la scelta
+   c'e' l'**82,7%** delle volte e **sposta il gettone il 52,1%** delle volte che
+   puo'. Prima era zero per costruzione.
+2. **Il mucchio guarda il luogo di cui si discute**
+   ([D-483](DECISIONS.md#d-483)): quattro regole nuove sui quattro segni piu'
+   scritti del mondo. I Consigli in cui il mondo muove la soglia passano dal
+   **9% al 51%**.
+3. **Le Pietre sono capacita'** ([D-484](DECISIONS.md#d-484)): Archivio, Granaio
+   e Dogana ti fanno agire **senza spendere la carta**; Biblioteca e Castello —
+   di **secondo grado** — danno una carta in piu' in mano e +1 su ogni domanda.
+   E' la prima volta che alzare una Pietra serve a qualcosa.
+4. **Ogni carta a bersaglio si punta dove hai segnato**
+   ([D-485](DECISIONS.md#d-485)): erano 26 su 28, adesso **28 su 28**.
+
+**Il meccanismo, detto in una riga:** *ogni Azione fa un fatto nel mondo **e**
+una mossa sull'agenda; il Tema piu' caldo decide di cosa si parla; al Consiglio
+pesano le carte che hai tenuto, il mondo che hai segnato e le Pietre che hai
+costruito.* Le scelte adesso **si accumulano**.
+
+**E i costi sono scritti**: la scelta del Tema costa 22 Verita' sul tavolo
+uniforme (257 → 235) perche' quattro ottimizzatori identici concentrano
+l'agenda; le regole del mucchio ne costano altre 7 sul misto; le Pietre le
+restituiscono tutte e diciassette (276 → 293). Cancello **0 su 8** dopo ognuna
+delle quattro.
+
 
 ### R16. [133](ISSUES.md#133) — le caselle del Consiglio: **aperta in 0.1.448**
 
@@ -1273,9 +1303,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **tre aspettano una tua parola**.
+fuori dalla lista, e **due aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

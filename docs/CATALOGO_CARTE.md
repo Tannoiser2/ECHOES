@@ -83,7 +83,7 @@ no border. Not gory, not horror.
 
 **Temi:** Potere
 
-**BERSAGLIO** — Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio.
+**BERSAGLIO** — Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio.
 
 **AZIONE — scegli 1**
 
@@ -1990,7 +1990,7 @@ no border. Not gory, not horror.
 
 **Temi:** Potere · Vie
 
-**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse.
+**BERSAGLIO** — Scegli un luogo con #capitale, #commercio, #miniera, #cristallo o una #dogana. Vale anche ogni luogo del dominio delle #risorse.
 
 **AZIONE — scegli 1**
 

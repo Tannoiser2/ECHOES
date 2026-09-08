@@ -7878,7 +7878,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT, bersaglio`**
-> Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio.
+> Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT, azione 1`**
@@ -8998,7 +8998,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`AST_WEALTH_TREASURY, bersaglio`**
-> Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse.
+> Scegli un luogo con #capitale, #commercio, #miniera, #cristallo o una #dogana. Vale anche ogni luogo del dominio delle #risorse.
 
 
 **`AST_WEALTH_TREASURY, azione 1`**

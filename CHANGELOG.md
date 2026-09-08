@@ -5,6 +5,38 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.455 — Ogni carta si punta dove hai segnato, e la R15 si chiude
+
+[D-485](docs/DECISIONS.md#d-485), [ISSUES 132](docs/ISSUES.md#132) **chiusa**.
+
+Il numero della voce — *«il 73% dei bersagli punta terreno che nessuno puo'
+creare»* — conta le **alternative** scritte sulle carte, non le carte: una carta
+che dice «#capitale, #commercio o #conteso» porta tre richieste, due su terreno,
+e intanto la si puo' puntare dove si vuole segnando prima.
+
+**Per carta erano 26 su 28. Adesso sono 28 su 28.** Le due che restavano:
+l'**Atto di Successione** vale anche su un luogo **conteso** — il segno piu'
+scritto del mondo — e **Il Tesoro** anche su un luogo con una **Dogana**, che e'
+una Pietra che si costruisce. La combo *«segno il posto adesso, ci gioco sopra
+domani»* non e' piu' la minoranza.
+
+Il rapporto delle richieste resta **38%** ed e' dichiarato: allargarlo vorrebbe
+dire togliere il terreno stampato dalle carte, cioe' togliere alla mappa il suo
+mestiere. Cancello **0 su 8**, esiti fermi (292 Verita' contro 293): due
+bersagli in piu' spostano quello che si **puo'** fare, non quello che il
+cervello fa.
+
+**E con questo la R15 si chiude**, quattro mosse e quattro misure: la Risonanza
+sceglie il Tema (D-482), il mucchio guarda il luogo (D-483), le Pietre sono
+capacita' (D-484), ogni carta si punta dove hai segnato (D-485).
+
+**Il meccanismo di ECHOES, in una riga:** *ogni Azione fa un fatto nel mondo **e**
+una mossa sull'agenda; il Tema piu' caldo decide di cosa si parla; al Consiglio
+pesano le carte che hai tenuto, il mondo che hai segnato e le Pietre che hai
+costruito.* Le scelte adesso **si accumulano**.
+
+---
+
 ## 0.1.454 — Una Pietra e' una capacita', non un +1 (R15, punto 3)
 
 [D-484](docs/DECISIONS.md#d-484), [ISSUES 132](docs/ISSUES.md#132) punto 3.

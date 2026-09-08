@@ -563,7 +563,7 @@
       "righe": [
         {
           "voce": "DOVE",
-          "testo": "Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio."
+          "testo": "Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio."
         },
         {
           "voce": "①",
@@ -2967,7 +2967,7 @@
       "righe": [
         {
           "voce": "DOVE",
-          "testo": "Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse."
+          "testo": "Scegli un luogo con #capitale, #commercio, #miniera, #cristallo o una #dogana. Vale anche ogni luogo del dominio delle #risorse."
         },
         {
           "voce": "①",

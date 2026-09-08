@@ -1359,9 +1359,10 @@
           "scope": "REGION",
           "any_tag": [
             "capital",
-            "domain:TERRITORY"
+            "domain:TERRITORY",
+            "condition:contested"
           ],
-          "text": "Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio."
+          "text": "Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio."
         },
         "actions": [
           {
@@ -3379,9 +3380,10 @@
             "trade",
             "domain:RESOURCE",
             "mine",
-            "crystal_site"
+            "crystal_site",
+            "structure:tollgate"
           ],
-          "text": "Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse."
+          "text": "Scegli un luogo con #capitale, #commercio, #miniera, #cristallo o una #dogana. Vale anche ogni luogo del dominio delle #risorse."
         },
         "actions": [
           {
