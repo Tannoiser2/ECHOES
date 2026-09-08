@@ -10068,15 +10068,51 @@ cancello dei 100 semi:
 **I quattro giri sono percorsi, e il quinto ha tolto il giro vecchio** —
 **fatto in 0.1.441** ([D-472](DECISIONS.md#d-472)): il Consiglio di D-280 e'
 uscito dal codice, le sue prove sono portate alla regola nuova o tolte con
-verbale, le sonde contano domande invece di proposte. La voce resta aperta
-su quello che D-472 lascia scritto: **i gettoni di rivendicazione** che la
-faccia RIVENDICARE conia ancora e che il Consiglio non spende piu' (toglierli
-o dargli un uso e' una decisione del committente); **le proposte stampate
-sulle carte**, che nessun motore legge e la scheda mostra ancora; **il dente
-dei segni sul dado** (ISSUES 24) rimasto senza dado; le marche delle caselle
-da rivedere carta per carta nel catalogo; le fasce dell'esito di A che a due
-domande dicono meno; e quello che nessuna sonda misura: un Consiglio giocato
-da persone.
+verbale, le sonde contano domande invece di proposte.
+
+**E il sesto le ha tolte dai dati** — **fatto in 0.1.444**
+([D-474](DECISIONS.md#d-474)): 194 proposte, 51 gruppi di prosa per esito, il
+loro pezzo di schema e la migrazione che le aveva lette. Due guardie si sono
+spostate invece di sparire — *«una domanda che non lascia niente al mondo»* e
+*«due domande che fanno la stessa cosa»*, 0 e 0 su 120 domande — e la prova
+delle porte murate adesso guarda i gradini delle domande. Il cancello dei 100
+semi da' **gli stessi identici esiti di D-472**: togliere le proposte non
+sposta una virgola della partita, che era il punto.
+
+**Cosa resta aperto, e sono tutte decisioni del committente:**
+
+- ✔ **i gettoni di rivendicazione** — **fatto in 0.1.446**
+  ([D-476](DECISIONS.md#d-476)), parola del committente: *«il Rivendicare
+  dovrebbe sempre dare i gettoni con cui comprare benefici e costi»*. Un
+  gettone **alza di uno il tetto dei benefici della sua parte**: non «una
+  pedina, un gettone», che a 220 gettoni contro 3.055 pedine avrebbe spento il
+  Consiglio. Insegnata la moneta anche al cervello, si spende nel **48%** dei
+  casi contro l'11% di prima. **Resta da decidere il rubinetto**: il
+  RIVENDICARE che ne conia piu' d'uno, o un gettone a testa per Atto — oggi il
+  52% muore ancora in mano;
+- ✔ **sedici Conseguenze senza strada** — **fatto in 0.1.445**
+  ([D-475](DECISIONS.md#d-475)), parola del committente: *«tornano come esito,
+  io non vorrei perderle»*. Erano gli esiti delle proposte contrarie, e sono
+  tornate come **rifiuto della domanda**: cosa resta al mondo se il tavolo la
+  respinge. Le Conseguenze che non escono mai passano da **20 su 67 a 9 su
+  67**, e una guardia nuova tiene a zero quelle senza nessuna strada;
+- ✔ **la corona che non morde** (`crowned`) — **spiegata in 0.1.445**: l'unica
+  cosa che la toglie dalla testa di qualcuno e' *La Capitale Presa*, una delle
+  sedici, e finche' era irraggiungibile la corona non poteva cambiare di mano.
+  Resta dichiarata muta perche' nessuna **clausola** la interroga — la guardano
+  i profili delle case, un Destino e quella Conseguenza. Rimetterle una
+  clausola resta una decisione;
+- **il dente dei segni sul dado** (ISSUES 24) rimasto senza dado. Chiesto dal
+  committente *«che vuol dire?»*, e la risposta e' che non e' il dado: sono
+  **21 regole scritte** (`tag_rules`, gancio `COUNCIL_MODIFIER`) che dicono
+  *«un mondo segnato pesa sul Consiglio»* — «La fame siede al tavolo» −1, «La
+  citta' parla piu' forte» +1, «Il seggio vuoto pesa sulla Carta» −1.
+  Spingevano il World Factor; senza dado spingono il vuoto. La domanda vera e'
+  **se un mondo segnato debba pesare sul mucchio dei gettoni**: se si', quelle
+  21 righe tornano vive con un cambio di destinazione; se no, escono;
+- le marche delle caselle da rivedere carta per carta nel catalogo; le fasce
+  dell'esito di A che a due domande dicono meno; e quello che nessuna sonda
+  misura: **un Consiglio giocato da persone**.
 
 
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo
@@ -10127,4 +10163,188 @@ Chronicle a ogni era invece di ripescare il tavolo ([D-431](DECISIONS.md#d-431),
 Chronicle» — che e' il titolo giusto, perche' CHR_00 e' il seguito di se
 stessa, ed e' esattamente la frase che si legge come «si torna al primo anno».
 Adesso il tavolo si ripesca e il bottone dice **che anno si gioca**.
+
+
+### 131. Il verbo doppio: una carta su tre porta due volte lo stesso verbo, e il tavolo la gioca meta'
+
+`regole` · `bilanciamento` · `da-decidere` · voluta dal committente · **aperta in 0.1.446**
+
+> «Mmm… in una partita mi fai un audit di quante azioni e di che tipo vengono
+> giocate? Che poi lo stesso verbo sia sulla stessa carta nelle due azioni non
+> mi va troppo a genio.»
+
+L'audit e' fatto, con `cli/run_card_ledger.gd` su **100 anni, seme 7000, tavolo
+misto**: 5.419 carte pescate, **2.636 Azioni calate** (48,6%), 2.173 impegnate
+al voto (40,1%). Nessuna carta e' muta — zero mai in mano, zero mai calate,
+zero mai impegnate.
+
+**Le Azioni giocate, per verbo:**
+
+| verbo | volte | quota |
+|---|---|---|
+| TRAMARE | 803 | **30,5%** |
+| MUOVERE | 538 | 20,4% |
+| FORGIARE | 528 | 20,0% |
+| INFLUENZARE | 271 | 10,3% |
+| RIVENDICARE | 190 | 7,2% |
+| ACQUISIRE | 184 | 7,0% |
+| SEGNARE | 122 | **4,6%** |
+
+Fra il primo e l'ultimo ci sono **6,6 volte**. E il conto per azione dichiarata
+dice la stessa cosa dall'altro lato: TRAMARE si cala il **67,3%** delle volte
+che e' in mano, MUOVERE il 66,7%, RIVENDICARE il 45,1%, FORGIARE il 41,8%, e
+**INFLUENZARE il 24,3%**.
+
+**E il verbo doppio, che e' la parte che il committente ha guardato.** Le carte
+che portano lo stesso verbo su tutt'e due le Azioni sono **18 su 48** — 9
+INFLUENZARE, 8 FORGIARE, 1 TRAMARE — e si comportano in un altro modo:
+
+| | carte | in mano | **calate** | al voto |
+|---|---|---|---|---|
+| **verbo doppio** | 18 | 1.891 | **29,1%** | **53,9%** |
+| **due verbi diversi** | 30 | 3.528 | **59,1%** | 32,7% |
+
+**Una carta col verbo doppio si cala la meta' delle volte, e finisce al voto il
+doppio**: quando le due facce portano lo stesso verbo il tavolo smette di
+giocarla come Azione e la spende come **moneta** al Consiglio. Non e' un
+sospetto, e' due a uno.
+
+**Sette delle diciotto non posano nessun segno su nessuna delle due facce**, e
+li' la differenza fra le due Azioni e' solo il **verso** — «Sigillare in alto»
+contro «Sigillare in basso», «Portare la folla sotto le finestre» contro
+«Mandare la folla a casa». E' una scelta vera, ma dentro lo stesso gesto:
+cambia il segno del numero, non cosa fai. Le altre undici posano almeno segni
+diversi su una faccia.
+
+Le due meta' dell'audit sono la stessa cosa vista da due lati: **il verbo
+doppio si concentra proprio sui due verbi che il tavolo cala meno** —
+INFLUENZARE, che e' il fondo, e FORGIARE.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **Le sette senza segni** (Sigillo, Folla, Mobilitazione, Braccia Ferme,
+   Favore, Ostaggio, Mercenari): la seconda faccia prende un verbo diverso, o
+   almeno un segno che la distingua?
+2. **Le altre undici col verbo doppio**: restano, visto che i segni le
+   distinguono gia'?
+3. **SEGNARE al 4,6% e sette facce su 96**: il verbo nuovo di D-423 e' il meno
+   giocato della scatola. E' poco stampato, o poco appetibile?
+4. **INFLUENZARE al 24,3% di calate** e' una voce vecchia
+   ([59](#59), chiusa in 0.1.412) che il numero riapre da un'altra parte: non
+   e' contenuto morto — va al voto piu' di tutti — ma come **Azione** e' il
+   fondo del tavolo.
+
+
+### 132. Le scelte ci sono e non si accumulano: qual e' il meccanismo di ECHOES
+
+`regole` · `bilanciamento` · `da-decidere` · voluta dal committente · **aperta in 0.1.447**
+
+> «Il gioco forse e' troppo semplificato, quali sono le effettive scelte che fa
+> un giocatore? E non ci sono meccanismi di combo che danno soddisfazione ne un
+> deck building o un piazzamento laboratori, quindi quale il meccanismo di
+> gioco di echoes?»
+
+Quattro misure, e la risposta non e' quella che la domanda si aspetta.
+
+**1. Le scelte, contate.**
+
+`cli/run_agency_probe.gd` (nuova) siede fra il cervello e il motore e conta
+**quante volte il gioco si ferma a chiedere** e **quanto e' largo il menu**. Su
+100 anni, quattro seggi, seme 7000:
+
+| il gioco chiede | volte | l'anno | alternative | max |
+|---|---|---|---|---|
+| **quale carta, quale faccia, su cosa** | 7.176 | 71,8 | **46,3** | 194 |
+| rilanci o passi | 2.530 | 25,3 | 2,9 | 6 |
+| quante carte impegni al voto | 2.043 | 20,4 | 4,0 | 4 |
+| con quale parte stai, e con quale pedina | 1.530 | 15,3 | 8,6 | 15 |
+| quale casella posi | 513 | 5,1 | 2,7 | 4 |
+| quale carta ti riprendi | 513 | 5,1 | 2,0 | 2 |
+| quale domanda porti al Consiglio | 398 | 4,0 | 2,0 | 2 |
+
+**14.703 scelte in cento anni: 147 l'anno sul tavolo, 36,8 a testa.** Il menu
+dell'Azione e' largo — 46 voci in media — ma quelle 46 voci sono **3,07 verbi
+distinti su 7**: dieci modi di fare la stessa cosa non sono dieci scelte. Solo
+il 3% delle volte non c'e' nessuna scelta vera, e il 12% c'e' un verbo solo.
+
+**Il numero delle scelte non e' il difetto.** Il difetto e' che non si
+accumulano.
+
+**2. Il meccanismo, detto per quello che e'.**
+
+Non e' deckbuilding: il mazzo e' dato e la mano si rinnova. Non e' piazzamento.
+E' un **gioco di agenda**, e la catena e' questa:
+
+> Ogni Azione fa **due cose insieme** — un fatto nel mondo, e un voto su cosa
+> il tavolo discutera', perche' la Risonanza scalda un Tema e **il Tema piu'
+> caldo decide quale domanda va al Consiglio** (D-260, D-261). Al Consiglio le
+> carte tenute in mano diventano peso, e le pedine comprano cosa resta al
+> mondo.
+
+La domanda vera del gioco e': *di cosa si parlera', e chi ci arriva con le
+carte in mano?* E' un meccanismo, ed e' suo. Ha tre punti deboli, e sono
+misurati.
+
+**3. I tre punti deboli.**
+
+**(a) L'agenda non si sceglie.** La Risonanza avviene **comunque** (D-257) e
+scalda il Tema stampato sulla faccia: la leva piu' interessante del gioco si
+muove alla cieca, come effetto collaterale della carta calata.
+
+**(b) Il motore che ti costruisci pesa un quarto.** Le carte puntano il
+bersaglio **a segni** (D-273): 154 richieste su 36 segni distinti.
+
+| dove puntano le 154 richieste | | |
+|---|---|---|
+| terreno stampato che nessuno puo' creare — capitale, commercio, granaio, porto, pascolo | **112** | **73%** |
+| segni che una faccia o una casella possono posare | **42** | **27%** |
+
+La combo *«segno il posto adesso, ci gioco sopra dopo»* **esiste** — 15 segni
+su 36 si possono creare — ma e' la minoranza, e la maggioranza e' il terreno
+che il seme ti ha dato.
+
+**(c) Niente resta che sia tuo.** Le Pietre sono l'unica cosa persistente e di
+proprieta' (`run_stone_probe`, 40 anni): **13,85 alzate a partita**, di cui
+**1,80 da un'Azione di chi gioca** — le altre le mette l'apertura (8,95) o il
+Consiglio (3,10). A fine anno una casa ne ha **1,2 sue**, e di 10,7 in piedi
+solo **1,4** arrivano al grado 2.
+
+**4. E il telaio del motore c'e' gia', quasi spento.**
+
+Le `tag_rules` sono il posto dove un segno diventa una **regola meccanica**:
+56 regole. Di quelle:
+
+| gancio | quante | cosa fanno |
+|---|---|---|
+| `COUNCIL_MODIFIER` | **21** | **morte**: spingevano il World Factor, e il dado non c'e' piu' (D-472) |
+| `DRAW_BIAS` | 14 | cosa peschi |
+| `ACTION_GATE` | 3 | sbarrano un'Azione |
+| `GATE` | 3 | sbarrano il movimento |
+| `HAND_LIMIT` | 3 | il limite di mano |
+| `RELATION_FLOOR` / `RELATION_CAP` | 2 + 2 | i rapporti |
+| `STANCE_MODIFIER` | 2 | il peso al voto |
+| `ACTION_MODIFIER` | 2 | un'Azione vale di piu' |
+| `ACTION_GRANT` | 1 | un'Azione concessa |
+| `ACTION_DISCOUNT` | 1 | un'Azione che non paga |
+| `ACTION_RIPPLE` | 1 | un'Azione che si propaga |
+| `GRANT_ON_SET` | 1 | un segno che consegna una carta |
+
+**Otto regole su cinquantasei toccano quello che un'Azione puo' fare**
+(`ACTION_*`). Una Pietra che desse una **capacita'** invece di un +1 — *«finche'
+tieni il Granaio, le tue carte Sopravvivenza costano meno»* — e' esattamente la
+forma di `ACTION_DISCOUNT`, e ce n'e' **una sola** in tutta la scatola.
+
+Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **La Risonanza diventa una scelta?** Se la faccia offrisse due Temi e tu
+   scegliessi quale scaldare, ogni Azione diventerebbe anche una mossa
+   sull'agenda. E' una riga sui dati e una scelta in piu' al turno.
+2. **Il rapporto 27/73 si sposta?** Scrivere piu' bersagli su segni posabili e'
+   lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
+3. **Le Pietre diventano capacita'?** Il telaio (`ACTION_DISCOUNT`,
+   `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in tutto.
+4. **Le 21 regole morte** (`COUNCIL_MODIFIER`): puntate sul mucchio dei
+   gettoni, o tolte? E' la stessa voce aperta in [129](#129).
 

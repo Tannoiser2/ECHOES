@@ -675,16 +675,12 @@ func test_the_council_sheet_is_the_boxes_not_the_prose() -> void:
 						break
 				assert_true(found,
 					"%s: la casella «%s» non ha una riga sua" % [str(card["id"]), text])
-		# E nessuna proposta in prosa: due grammatiche sulla stessa scheda sono
-		# la ragione per cui le caselle stavano in fondo, e la misura dice che
-		# non ci stanno insieme — due schede su dodici sfondavano il bordo.
-		var whole: String = " ".join(PackedStringArray(notes)) + " " + " ".join(
-			PackedStringArray(card.get("body", []) as Array)
-		)
-		for proposal in (tension.get("council", {}) as Dictionary).get("propositions", []) as Array:
-			var said: String = str((proposal as Dictionary).get("text", ""))
-			assert_false(whole.contains(said),
-				"%s stampa ancora una proposta in prosa" % str(card["id"]))
+		# **E niente proposte in prosa**: due grammatiche sulla stessa scheda
+		# erano la ragione per cui le caselle stavano in fondo — due schede su
+		# dodici sfondavano il bordo. Da [D-474](../../docs/DECISIONS.md#d-474)
+		# le proposte non sono piu' nei dati, e la guardia che tiene chiusa
+		# quella porta e' in `test_council_text`: se una tornasse sulle carte,
+		# quella prova lo dice prima che questa la veda stampata.
 	assert_eq(sheets, 60, "le schede del Consiglio")
 
 
@@ -692,8 +688,8 @@ func test_the_council_sheet_is_the_boxes_not_the_prose() -> void:
 ##
 ## *«Due domande? Perche' due.»* La ragione era scritta e buttata via: undici
 ## domande su ventitre' portano una `eligibility` con la sua `label` — «La
-## Carestia e' al limite» — che `CouncilText.proposition` calcolava gia' e che
-## la scheda non stampava.
+## Carestia e' al limite» — che `CouncilText` calcolava gia' e che la scheda
+## non stampava.
 func test_a_question_that_needs_a_condition_prints_it() -> void:
 	var loaded: RefCounted = data()
 	var conditioned: int = 0

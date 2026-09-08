@@ -5,6 +5,140 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.446 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
+
+[D-476](docs/DECISIONS.md#d-476), [ISSUES 129](docs/ISSUES.md#129). Parola del
+committente: *«il Rivendicare dovrebbe sempre dare i gettoni con cui "comprare"
+benefici e costi»*. Li dava gia' — da D-387, con parole sue — e da D-472 non
+avevano piu' dove spendersi.
+
+**Il cambio e' stato misurato prima di scriverlo**, con una sonda nuova
+(`run_claim_probe`): su 100 anni il RIVENDICARE conia **220 gettoni**, 2,20
+l'anno su tutto il tavolo, contro **3.055 pedine posate** nei Consigli. Un
+gettone dovrebbe comprarne quattordici perche' il tavolo resti pieno: far
+pagare ogni pedina non e' un'economia, e' un Consiglio spento.
+
+Quindi il gettone fa la cosa che il tetto non permette: **ne alza il bordo di
+uno**. Una parte puo' avere al massimo un beneficio in piu' dei suoi costi;
+ogni gettone speso ne aggiunge uno. E' l'aritmetica di D-280 — *«una Cicatrice
+ne compra uno oltre il limite»* — col gettone al posto della Cicatrice. Si
+spende da se' al conto del prezzo, perche' nessuno preferirebbe perdere il
+beneficio tenendosi la moneta.
+
+**E il cervello ha dovuto impararlo, o la regola non esisteva.** Scritta la
+regola e misurata: **25 gettoni spesi su 223, l'11%**, e quei venticinque erano
+incidenti. La causa era una riga del decisore — *non si posa mai una pedina che
+il prezzo togliera'* — che non arriva mai al punto di doverla pagare.
+Insegnata la moneta al decisore: **106 su 220, il 48%**. È la differenza fra una
+regola che esiste e una che conta.
+
+Il tabellone stampa **GETTONI — ognuno compra un beneficio oltre il tetto** con
+quanti ne ha ogni parte, e la scheda dice l'economia intera.
+
+Cancello dei 100 semi: 0 seggi bloccati su un solo livello su 8 sui due
+tavoli. Suite 771 prove, zero `SCRIPT ERROR`.
+
+Costi dichiarati, e non sono piccoli: **le vittorie nette scendono e con loro
+gli Echi** — DECISIVE da 145 a 114 sul tavolo misto, Verita' scritte da 316 a
+273 — perche' posare un **costo** e' sostenere (D-471), e un cervello con una
+moneta posa un **beneficio** dove prima posava un costo: meno peso nel voto,
+piu' controdomande che passano (COUNTER da 150 a 179). Il TRIUMPH torna da 0 a
+1. E **il 52% dei gettoni muore ancora in mano**: aprire il rubinetto e' una
+taratura piu' grossa, ed e' una decisione del committente.
+
+---
+
+## 0.1.445 — Le sedici Conseguenze tornano: la domanda respinta lascia il suo segno
+
+[D-475](docs/DECISIONS.md#d-475), [ISSUES 129](docs/ISSUES.md#129). Parola del
+committente: *«le 16 conseguenze tornano come esito, io non vorrei perderle»*.
+
+Erano gli esiti delle **proposte contrarie**, e guardate una per una dicono da
+sole dove vanno: la domanda teneva l'esito del si', l'orfana era l'esito del
+no — nominare l'erede o **la corona si divide**, giurare la scorta o **le vie
+saccheggiate**, mostrare la reliquia o **la teca murata**. Non nel `base` della
+domanda, che sarebbe il si' e il no insieme: in un campo loro, **`refused`**.
+
+**La regola e' stata corretta in corsa contro la misura.** Il primo giro
+faceva lasciare il segno alla domanda perdente **anche quando l'altra
+passava** — *«dire di no e' una decisione»* — e i numeri hanno detto due cose:
+la mediana dei Consigli su un tavolo a quattro domande scendeva **da 5 a 3**, e
+*Il Drago Abbattuto* (−6 sul Risveglio) arrivava senza che nessuno lo avesse
+proposto. Queste sedici erano l'esito di una proposta **votata**: regalarle a
+chi perde e' un'altra cosa. Regola definitiva: **se una delle due passa il
+tavolo ha deciso; se non passa nessuna, sono respinte tutt'e due.** Le tre
+prove andate rosse avevano ragione loro, e sono tornate verdi da sole.
+
+La carta stampata lo dice — `se vince: … — se cade: …` sulla stessa riga, che
+la scheda e' gia' al limite — e cosi' il catalogo dei Consigli e il disegno del
+flusso.
+
+**Il numero, misurato su 100 anni e 504 Consigli: le Conseguenze che non escono
+mai passano da 20 su 67 a 9 su 67**, e delle sedici **undici escono davvero**.
+Cancello dei 100 semi: 0 seggi bloccati su un solo livello su 8 sui due tavoli.
+
+Guardia nuova, perche' non ricapiti in silenzio: `validate_physical` conta **da
+dove si arriva** a ogni Conseguenza — l'esito di una domanda, il suo rifiuto,
+un sacchetto, una carta Eco — e va rossa su una che non ha nessuna delle
+quattro. Oggi **67 su 67** hanno una strada; erano 51. Provata su un difetto
+fabbricato.
+
+E la **corona**: non serviva ne' inserirla ne' eliminarla. L'unica cosa che
+toglie `crowned` dalla testa di qualcuno e' *La Capitale Presa*, una delle
+sedici: finche' era irraggiungibile la corona non poteva cambiare di mano.
+Resta dichiarata muta, perche' nessuna **clausola** la interroga — la guardano
+i profili delle case, un Destino e quella Conseguenza — e la differenza fra
+*«nessuno lo guarda»* e *«nessuna regola lo interroga»* sta scritta nel
+dizionario.
+
+Costi dichiarati: il **TRIUMPH scende da 2 a 0** su 800 anni-seggio (era gia'
+rarissimo, e un mondo che si sporca di piu' rende l'ultimo gradino piu' duro);
+**cinque delle sedici hanno una strada e non la percorrono** in 100 anni,
+perche' le loro carte non cadono mai in quel modo; e **cento domande su
+centoventi** non dicono ancora cosa lasciano se le respingi. La sonda delle
+Conseguenze era cieca al rifiuto ed e' stata corretta.
+
+---
+
+## 0.1.444 — Il giro 6: le Proposte escono dai dati
+
+[D-474](docs/DECISIONS.md#d-474), [ISSUES 129](docs/ISSUES.md#129). D-472 lo
+lasciava scritto in fondo — *«toglierle e' il giro dopo»* — ed e' il giro dopo.
+
+Escono **194 proposte** da 60 carte Tensione, con le loro clausole, i loro
+esiti e **51 gruppi di prosa per esito**; con loro il pezzo di schema che le
+descriveva, `proposition_id` dai piani di simulazione, e
+`tools/two_questions.py`, la migrazione che aveva ricavato l'esito di base
+delle domande proprio dalle proposte. `CouncilText.proposition()` diventa
+`CouncilText.question()`: la stessa funzione, sulla cosa che il Consiglio
+chiede davvero. La scheda, il catalogo, il disegno del flusso, il registro dei
+segni e la misura delle caselle leggono le **domande**.
+
+**Due guardie si sono spostate invece di sparire.** *«Una domanda senza
+risposte»* diventa *«una domanda che non lascia niente al mondo»* — si vota e
+il mondo resta com'era: 0 su 120. *«Due proposte che fanno la stessa cosa»*
+diventa *«due domande che fanno la stessa cosa»*, e a due domande pesa il
+doppio, perche' la carta ne mette in contrasto due: 0 coppie. E *«nessuna
+proposta e' murata»* diventa *«nessuna domanda e' murata»*: al Consiglio a due
+domande una porta murata e' un gradino di calore piu' alto della soglia della
+sua questione, e la guardia e' stata provata piantandone uno.
+
+**Il cancello dei 100 semi da' gli stessi identici esiti di D-472** — 46 · 36 ·
+102 · 146 · 156 sul misto, 45 · 45 · 91 · 112 · 185 sull'uniforme, 0 seggi
+bloccati su 8 — ed e' la prova che si voleva: il motore non le leggeva gia'
+piu', e toglierle non sposta una virgola della partita.
+
+Costi dichiarati: **sedici Conseguenze restano senza strada** (le nominavano
+solo le proposte, e sono irraggiungibili da D-472 — restano nella scatola, e
+se tornano lo decide il committente); la misura delle caselle scende da 44 a
+34 distinti perche' contava anche quello che nessuno votava; e **la corona
+(`crowned`) resta muta**, dichiarata con la sua ragione — al Consiglio a due
+domande non c'e' un posto dove una condizione valga per **una sola risposta**.
+Le asserzioni della suite scendono da 80.162 a 76.330: erano le 194 proposte
+girate una per una.
+
+---
+
 ## 0.1.443 — La saga cambia tavolo: il terzo anno smette di sembrare il primo
 
 [D-473](docs/DECISIONS.md#d-473), [ISSUES 130](docs/ISSUES.md#130), che si

@@ -746,8 +746,12 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     # un template, che e' il ripiego finche' tutte le carte non hanno il loro.
     # Senza questo la carta promette un dibattito che il motore non sa aprire.
     #
-    # E la domanda che la carta apre deve avere **almeno una proposta**: una
-    # domanda senza risposte e' un Consiglio che si ferma prima di cominciare.
+    # E la domanda che la carta apre deve **lasciare qualcosa al mondo**: fino
+    # alla 0.1.443 la guardia chiedeva almeno una proposta per domanda, e le
+    # proposte sono uscite dai dati (D-474). Il Consiglio a due domande non fa
+    # proporre: chiede, e se il tavolo risponde di si' applica l'**esito di
+    # base** della domanda. Una domanda senza esito di base e' un Consiglio che
+    # si vota e non muove niente.
     quesiti_noti: Set[str] = set()
     for template in documenti.get("confluence_template", []):
         for quesito in template.get("questions", []):
@@ -755,18 +759,15 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     for tensione in documenti.get("tension", []):
         consiglio = tensione.get("council") or {}
         propri = {str(q.get("id")) for q in consiglio.get("questions", []) or []}
-        risposte: Dict[str, int] = defaultdict(int)
-        for proposta in consiglio.get("propositions", []) or []:
-            risposte[str(proposta.get("question_id"))] += 1
         for quesito in tensione.get("possible_questions", []):
             if str(quesito) not in propri | quesiti_noti:
                 guai.append("ponte delle domande rotto su %s: «%s» non sta ne' sulla "
                             "carta ne' in un template di Consiglio"
                             % (tensione.get("id"), quesito))
-        for quesito in propri:
-            if risposte.get(quesito, 0) < 1:
-                guai.append("domanda senza risposte su %s: «%s» si apre e nessuno "
-                            "puo' proporre niente" % (tensione.get("id"), quesito))
+        for quesito in consiglio.get("questions", []) or []:
+            if not (quesito.get("base") or []):
+                guai.append("domanda che non lascia niente su %s: «%s» si vota e il "
+                            "mondo resta com'era" % (tensione.get("id"), quesito.get("id")))
 
     # 15. Destini che osservano un segno fuori dal dizionario: la faccia dice
     # dove guardare (D-270), e deve indicare un segno che esiste. Il censimento
@@ -1298,32 +1299,66 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                     "CouncilEconomy fra i %s e non sta nell'enum dello schema"
                     % (verbo, come))
 
-    # **Due proposte che portano allo stesso mondo non sono due strade**
-    # (ISSUES 104, chiuso in 0.1.365). La regola c'era gia' per le due liste
-    # della carta Tensione — «due pedine che fanno la stessa cosa non sono una
-    # scelta» — e non era mai stata portata sui Consigli, dove al voto due frasi
-    # diverse possono applicare **la stessa identica catena di Effetti**. La
-    # prosa lo nasconde: si vede solo confrontando gli Effetti, non i testi.
+    # **Due domande che portano allo stesso mondo non sono due strade**
+    # (ISSUES 104, chiuso in 0.1.365; portata dalle proposte alle domande in
+    # D-474). La regola c'era gia' per le due liste della carta Tensione —
+    # «due pedine che fanno la stessa cosa non sono una scelta» — e vale al
+    # Consiglio, dove due domande scritte diverse possono applicare **la stessa
+    # identica catena di Effetti**. La prosa lo nasconde: si vede solo
+    # confrontando gli Effetti, non i testi. E al Consiglio a due domande pesa
+    # il doppio: la carta ne mette in contrasto **due**, e se portano allo
+    # stesso mondo il voto non decide niente.
     conseguenze = {str(c["id"]): c for c in documenti.get("consequence", [])}
-    # **Le Proposte stanno sulla carta** (D-462): la guardia leggeva il template,
-    # che ne portava una copia per sette carte su sessanta, e le gemelle di
-    # D-397 sono restate gemelle al tavolo per trenta versioni.
     for carta in documenti.get("tension", []):
         template = carta.get("council") or {}
         catene: Dict[str, List[str]] = {}
-        for proposta in (template.get("propositions") or []):
+        for domanda in (template.get("questions") or []):
             righe: List[str] = []
-            for cid in (proposta.get("success_consequences") or []):
+            for cid in (domanda.get("base") or []):
                 for effetto in (conseguenze.get(str(cid), {}).get("effects") or []):
                     righe.append(json.dumps(effetto, sort_keys=True, ensure_ascii=False))
             firma = "\n".join(sorted(righe))
-            catene.setdefault(firma, []).append(str(proposta.get("id", "?")))
+            catene.setdefault(firma, []).append(str(domanda.get("id", "?")))
         for firma, chi in sorted(catene.items()):
             if len(chi) > 1:
                 guai.append(
-                    "due proposte che fanno la stessa cosa su %s: %s applicano la "
+                    "due domande che fanno la stessa cosa su %s: %s applicano la "
                     "stessa catena di Effetti — al voto sembrano due strade e sono "
                     "una sola" % (carta.get("id"), " e ".join(sorted(chi))))
+
+    # **Nessuna Conseguenza senza strada** (D-475, parola del committente: *«le
+    # 16 conseguenze tornano come esito, io non vorrei perderle»*). Una
+    # Conseguenza che nessuno puo' pescare e' contenuto che non esiste (D-035),
+    # e la differenza fra le due non si vede leggendo il file: si vede solo
+    # contando **da dove ci si arriva**.
+    #
+    # Le strade sono quattro, e sono tutte: l'esito di base di una domanda, il
+    # suo rifiuto, un sacchetto del template, il gancio di una carta Eco. Le
+    # sedici che questo giro rimette in strada erano l'esito delle proposte
+    # contrarie, e per due versioni non ne hanno avuta nessuna senza che niente
+    # lo dicesse.
+    strade: Dict[str, Set[str]] = defaultdict(set)
+    for carta in documenti.get("tension", []):
+        for domanda in ((carta.get("council") or {}).get("questions") or []):
+            for cid in (domanda.get("base") or []):
+                strade[str(cid)].add("l'esito di una domanda")
+            for cid in (domanda.get("refused") or []):
+                strade[str(cid)].add("il rifiuto di una domanda")
+    for template in documenti.get("confluence_template", []):
+        for _nome, sacchetto in (template.get("consequence_pools") or {}).items():
+            for cid in sacchetto or []:
+                strade[str(cid)].add("un sacchetto del Consiglio")
+    for eco in documenti.get("echo_card", []):
+        for gancio in (eco.get("effect_hooks") or []):
+            if str(gancio.get("kind", "")) == "CONSEQUENCE":
+                strade[str(gancio.get("consequence_id", ""))].add("una carta Eco")
+    for conseguenza in documenti.get("consequence", []):
+        if not strade.get(str(conseguenza.get("id", ""))):
+            guai.append(
+                "Conseguenza senza strada: %s — nessuna domanda la porta, nessun "
+                "rifiuto, nessun sacchetto, nessuna carta Eco: il tavolo non "
+                "puo' vederla" % conseguenza.get("id")
+            )
 
     guai.extend(due_domande(documenti))
     return guai
@@ -1685,28 +1720,35 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                 voce["structure"] = "STR_INVENTATA"
 
     def domanda_muta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        # Una carta che apre una Domanda a cui nessuno puo' rispondere: il
-        # Consiglio si ferma prima di cominciare. Si fabbrica togliendo le
-        # proposte di una domanda, invece di cercarne una gia' rotta.
+        # Una carta che apre una Domanda che non lascia niente al mondo: si
+        # vota, e il mondo resta com'era. Si fabbrica svuotando l'esito di base
+        # di una domanda, invece di cercarne una gia' rotta.
         carta = next(t for t in prova["tension"]
                      if (t.get("council") or {}).get("questions"))
-        muta = str(carta["council"]["questions"][0]["id"])
-        carta["council"]["propositions"] = [
-            p for p in carta["council"]["propositions"]
-            if str(p.get("question_id")) != muta
-        ]
+        carta["council"]["questions"][0]["base"] = []
 
-    def proposte_gemelle(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        # Due proposte dello stesso Consiglio che applicano la stessa catena di
+    def conseguenza_senza_strada(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una Conseguenza che nessuno puo' pescare: il tavolo non la vedra' mai.
+        # **Si fabbrica** togliendo tutte le strade di una che ce le ha —
+        # cercarne una gia' orfana smetterebbe di provare il giorno in cui i
+        # dati sono a posto, che e' oggi.
+        muta = "CNS_SENZA_STRADA"
+        prova["consequence"].append({
+            "id": muta, "title": "Una che non si puo' pescare",
+            "description": "Fabbricata: nessuna domanda la porta.", "effects": [],
+        })
+
+    def domande_gemelle(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Due domande dello stesso Consiglio che applicano la stessa catena di
         # Effetti: al voto sembrano due strade e sono una sola. **Si fabbrica**
         # — appena i dati sono a posto, cercare una coppia gia' rotta
         # smetterebbe di provare senza dirlo, che in questo progetto e'
         # successo quattro volte.
-        template = next((t.get("council") or {}) for t in prova["tension"]
-                        if len((t.get("council") or {}).get("propositions") or []) > 1)
-        prima = template["propositions"][0]
-        seconda = template["propositions"][1]
-        seconda["success_consequences"] = list(prima.get("success_consequences") or [])
+        consiglio = next((t.get("council") or {}) for t in prova["tension"]
+                         if len((t.get("council") or {}).get("questions") or []) > 1)
+        prima = consiglio["questions"][0]
+        seconda = consiglio["questions"][1]
+        seconda["base"] = list(prima.get("base") or [])
 
     def memoria_sbagliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # IL MONDO RICORDA che nomina un segno del **luogo** invece che del
@@ -1908,12 +1950,14 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "porta del tempo murata"),
         pianta("frase d'autore che consegna il luogo che la carta vende",
                frase_che_ruba_la_casella, "la frase fa il mestiere della casella"),
-        pianta("due proposte dello stesso Consiglio con la stessa catena",
-               proposte_gemelle, "due proposte che fanno la stessa cosa"),
+        pianta("due domande dello stesso Consiglio con la stessa catena",
+               domande_gemelle, "due domande che fanno la stessa cosa"),
+        pianta("una Conseguenza che nessuna strada porta al tavolo",
+               conseguenza_senza_strada, "Conseguenza senza strada"),
         pianta("IL MONDO RICORDA che nomina un segno del luogo, non del mondo",
                memoria_sbagliata, "posa un segno che non e' del mondo"),
-        pianta("carta che apre una Domanda a cui nessuno puo' rispondere",
-               domanda_muta, "domanda senza risposte"),
+        pianta("carta che apre una Domanda che non lascia niente al mondo",
+               domanda_muta, "domanda che non lascia niente"),
         pianta("si accende quando: un segno che nessuno scrive",
                accende_segno_inventato, "non sta nel dizionario"),
         pianta("si accende quando: una Pietra che non esiste",

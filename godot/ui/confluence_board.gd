@@ -329,6 +329,36 @@ func _render_sides_face(session: RefCounted, council: Dictionary, face: Dictiona
 		_face.add_child(_face_heading("SE CADE — se non passa nessuna delle due"))
 		for voice in falls:
 			_face.add_child(_face_voice(str((voice as Dictionary).get("text", "")), false, "#8a8172"))
+	# **Le monete che le due parti hanno in mano** (D-476). Un gettone di
+	# rivendicazione alza di uno il tetto dei benefici della sua parte, e una
+	# regola che non si vede non e' una regola del tavolo: al cartone la moneta
+	# sta davanti a chi la porta, e qui sta sotto le due liste, dove si guarda
+	# prima di posare la pedina di troppo. Non si stampa se il tavolo non ne ha
+	# nessuna, che e' quasi sempre.
+	var purses: Array = []
+	for side in ["A", "B"]:
+		var purse: int = _claim_tokens_of_side(session, sides, side)
+		if purse > 0:
+			purses.append("%s: %d" % [side, purse])
+	if not purses.is_empty():
+		_face.add_child(_face_heading("GETTONI — ognuno compra un beneficio oltre il tetto"))
+		_face.add_child(_face_voice(" · ".join(PackedStringArray(purses)), false, "#c9a14a"))
+
+
+## Le monete di rivendicazione di una parte: la parte e' una, e il gettone di
+## chi la sostiene vale per lei (D-476).
+func _claim_tokens_of_side(session: RefCounted, sides: Dictionary, side: String) -> int:
+	var part: Dictionary = sides.get(side, {}) as Dictionary
+	var seats: Array = (part.get("seats", []) as Array).duplicate()
+	var leader: String = str(part.get("leader", ""))
+	if leader != "" and not seats.has(leader):
+		seats.append(leader)
+	var purse: int = 0
+	for entity_id in seats:
+		var entity: Variant = (session.world["entities"] as Dictionary).get(str(entity_id))
+		if entity != null:
+			purse += int((entity as Dictionary).get("claim_tokens", 0))
+	return purse
 
 
 func _face_heading(text: String) -> Label:

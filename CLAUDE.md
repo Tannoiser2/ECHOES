@@ -55,6 +55,12 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 - **`--lenti`** — le **6 sonde lunghe**: una volta, prima di aprire la PR;
 - **`--rigenera`** — rifà i documenti generati invece di controllarli, quando uno
   va rosso solo perché è vecchio. È il rosso che costa più tempo di tutti.
+  **Da solo rifà i veloci e basta**: se hai toccato il mondo — una regola del
+  Consiglio, una Conseguenza, un segno — quelli lenti restano vecchi e la CI va
+  rossa mezz'ora dopo, su `MISURA_VITE`, `MISURA_SEGNI` o `MISURA_TAVOLO`.
+  Prima della PR si gira **`--rigenera --tutti`**, e sono quindici minuti spesi
+  una volta invece di due giri di CI. *(Questa riga è costata due rossi nella
+  stessa sessione.)*
 
 La corsia lenta **non è facoltativa**: è quella che si gira una volta invece che
 venti. La CI le gira tutte comunque, e

@@ -46,10 +46,18 @@ func test_every_council_sheet_says_what_happens_if_it_falls() -> void:
 	assert_true(checked > 0, "la prova ha guardato almeno una scheda")
 
 
-## E in partita: ogni Consiglio caduto porta con se' la Conseguenza della sua
-## scheda, non una generica e non nessuna.
+## E in partita: ogni Consiglio caduto porta con se' la riga della sua scheda —
+## non una generica e non nessuna — **e quello che le sue due domande lasciano
+## se il tavolo le respinge** ([D-475](DECISIONS.md#d-475)).
+##
+## La seconda meta' e' nuova, e la prova la chiedeva gia' senza saperlo: prima
+## di D-475 asseriva **solo** il sacchetto, e il giorno in cui le sedici
+## Conseguenze sono tornate questa riga e' andata rossa per prima. Adesso
+## controlla tutt'e due le cose, in ordine: prima la riga del sacchetto, poi i
+## rifiuti delle due domande.
 func test_a_fallen_council_lands_the_consequence_of_its_own_sheet() -> void:
 	var fallen: int = 0
+	var with_a_refusal: int = 0
 	for seed_value in SEMI:
 		if session != null:
 			session.dispose()
@@ -64,16 +72,82 @@ func test_a_fallen_council_lands_the_consequence_of_its_own_sheet() -> void:
 			var sheet: Dictionary = data().confluence_template_for(str(result["tension_id"]))
 			var expected: Array = (
 				(sheet.get("consequence_pools", {}) as Dictionary).get("failure", []) as Array
-			)
+			).duplicate()
+			# Le due domande della carta sono state respinte tutt'e due: cio'
+			# che ognuna lascia si aggiunge, senza doppioni e nell'ordine in cui
+			# le domande stanno sulla carta.
+			var refusals: int = 0
+			for question in (sheet.get("questions", []) as Array):
+				for consequence_id in ((question as Dictionary).get("refused", []) as Array):
+					refusals += 1
+					if not expected.has(consequence_id):
+						expected.append(consequence_id)
+			if refusals > 0:
+				with_a_refusal += 1
 			assert_eq(
 				result["consequence_ids"], expected,
 				"la domanda %s e' caduta: doveva lasciare %s" % [
 					str(result["tension_id"]), str(expected)
 				]
 			)
-	# **La riga che tiene onesta la prova.** Se un giorno nessuno di questi semi
-	# fa cadere piu' niente, questa prova smetterebbe di provare in silenzio.
+	# **Le due righe che tengono onesta la prova.** Se un giorno nessuno di
+	# questi semi fa cadere piu' niente, o se nessuna delle carte che cadono
+	# porta un rifiuto scritto, questa prova smetterebbe di provare in silenzio
+	# — la seconda meta' passerebbe senza aver mai guardato una Conseguenza
+	# rimessa in strada da D-475.
 	assert_true(fallen > 0, "su %d semi non e' caduta nemmeno una domanda: la prova non prova niente" % SEMI.size())
+	# Su questi semi cade poco, e quel poco puo' capitare su una carta che non
+	# scrive nessun rifiuto: `with_a_refusal` si legge, non si pretende. La
+	# meta' nuova la prova il caso **fabbricato** qui sotto, che e' la regola di
+	# casa — una condizione cercata fra i dati puo' smettere di esserci.
+	assert_true(with_a_refusal >= 0, "il conto delle cadute con un rifiuto si legge")
+
+
+## **E il rifiuto arriva davvero al mondo** (D-475), su un caso **fabbricato**:
+## si apre il Consiglio della Carestia col mucchio alto e non si impegna
+## niente, cosi' nessuna delle due domande lo scavalca e cadono tutt'e due.
+##
+## Fabbricato e non cercato, per la ragione che questo file dice in testa: la
+## prova sopra gira sei semi e su quei sei cade **una** domanda sola, su una
+## carta che non scrive nessun rifiuto. Lasciare li' la meta' nuova voleva dire
+## una prova verde che non guarda niente — che in questo progetto e' successo
+## cinque volte.
+func test_a_refused_question_lands_what_it_says_it_leaves() -> void:
+	new_session()
+	var tension_id: String = "TEN_FAMINE"
+	var sheet: Dictionary = data().confluence_template_for(tension_id)
+	var written: Array = []
+	for question in (sheet.get("questions", []) as Array):
+		for consequence_id in ((question as Dictionary).get("refused", []) as Array):
+			if not written.has(consequence_id):
+				written.append(consequence_id)
+	assert_false(
+		written.is_empty(),
+		"la Carestia scrive cosa resta se le sue domande sono respinte"
+	)
+
+	# **Nessuno impegna niente**: le due parti restano a zero, nessuna supera
+	# l'altra, e il voto e' FAILURE per costruzione (D-467). Non serve gonfiare
+	# il mucchio — a parita' non passa nessuna delle due, ed e' la condizione
+	# che si vuole.
+	var theme_id: String = str(data().tensions[tension_id].get("theme", ""))
+	if not session.world.has("theme_heat"):
+		session.world["theme_heat"] = {}
+	(session.world["theme_heat"] as Dictionary)[theme_id] = 0
+	var context: Dictionary = session.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "il Consiglio della Carestia si apre")
+
+	var result: Dictionary = session.confluence.resolve()
+	assert_false(result.is_empty(), "e si risolve: %s" % session.confluence.last_error)
+	assert_eq(
+		str(result.get("outcome", "")), ConfluenceResolution.FAILURE,
+		"senza un impegno non passa nessuna delle due"
+	)
+	for consequence_id in written:
+		assert_true(
+			(result["consequence_ids"] as Array).has(consequence_id),
+			"la domanda respinta lascia %s" % str(consequence_id)
+		)
 
 
 ## E il segno arriva **al mondo**, non solo nel verbale: una Conseguenza

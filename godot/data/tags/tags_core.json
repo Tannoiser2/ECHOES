@@ -591,8 +591,7 @@
         "chronicle",
         "destiny",
         "destiny_physical",
-        "entity_strategic_profile",
-        "tension"
+        "entity_strategic_profile"
       ]
     },
     {
@@ -609,9 +608,9 @@
       "read_by": [
         "consequence",
         "destiny_physical",
-        "entity_strategic_profile",
-        "tension"
-      ]
+        "entity_strategic_profile"
+      ],
+      "note": "la corona: sta addosso a chi la porta dal setup, e una Conseguenza puo' togliergliela. Fino alla 0.1.443 la interrogava la clausola di una proposta — «solo chi porta la corona puo' requisire» — e le proposte sono uscite dai dati (D-474): il Consiglio a due domande non ha un posto dove una condizione valga per **una sola risposta**, perche' non ci sono risposte, ci sono due domande. La guardano la faccia di un Destino e tre profili di casa; il motore no. Rimetterla a mordere e' una decisione, ed e' in ISSUES 129."
     },
     {
       "id": "crystal_exploited",
@@ -633,8 +632,7 @@
         "destiny_physical",
         "echo_card",
         "entity",
-        "entity_strategic_profile",
-        "tension"
+        "entity_strategic_profile"
       ]
     },
     {
@@ -925,8 +923,7 @@
       ],
       "read_by": [
         "destiny",
-        "objective",
-        "tension"
+        "objective"
       ],
       "note": "una scoperta: le clausole che la contano la guardano tutte insieme, non per nome, e nessun Destino la desidera da sola — per questo il censimento la vede orfana pur avendo chi la scrive e chi la conta"
     },
@@ -1296,8 +1293,7 @@
       ],
       "read_by": [
         "asset_physical",
-        "entity",
-        "tension"
+        "entity"
       ],
       "note": "vive sia sulla casa (entry_tag della successione) sia sul mondo (fatto ricordato)"
     },
@@ -1384,8 +1380,7 @@
       ],
       "read_by": [
         "chronicle",
-        "echo_card",
-        "tension"
+        "echo_card"
       ],
       "note": "la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero (D-334)"
     },
@@ -1419,8 +1414,7 @@
       ],
       "read_by": [
         "chronicle",
-        "echo_card",
-        "tension"
+        "echo_card"
       ],
       "note": "la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero (D-334)"
     },
@@ -1871,8 +1865,7 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "entity_strategic_profile",
-        "tension"
+        "entity_strategic_profile"
       ],
       "note": "fatto del mondo; il sigillo sulla mappa e' structure:sealed"
     },
@@ -2231,7 +2224,6 @@
         "destiny_physical",
         "entity_strategic_profile",
         "objective",
-        "tension",
         "echo_card"
       ]
     },

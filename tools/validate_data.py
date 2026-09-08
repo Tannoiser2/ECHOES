@@ -267,25 +267,17 @@ def check_references(
         if not council:
             continue
         where = f"{origins['tension']} [{tension['id']}.council]"
-        question_ids = {q["id"] for q in council.get("questions", []) or []}
         for question in council.get("questions", []) or []:
             for condition in question.get("eligibility", []) or []:
                 _check_condition(
                     condition, known_entities, known_regions, known_tensions, report, where
                 )
-        # **L'esito di base di una domanda** (D-467): Conseguenze che esistono.
+        # **L'esito di base di una domanda** (D-467) e **quello del suo rifiuto**
+        # (D-475): Conseguenze che esistono.
         for question in council.get("questions", []) or []:
-            for consequence_id in question.get("base", []) or []:
-                require(known_consequences, consequence_id, "consequence", where)
-        for proposition in council.get("propositions", []) or []:
-            for condition in proposition.get("eligibility", []) or []:
-                _check_condition(
-                    condition, known_entities, known_regions, known_tensions, report, where
-                )
-            if proposition["question_id"] not in question_ids:
-                report.fail(where, f"proposition '{proposition['id']}' references unknown question")
-            for consequence_id in proposition.get("success_consequences", []) or []:
-                require(known_consequences, consequence_id, "consequence", where)
+            for list_name in ("base", "refused"):
+                for consequence_id in question.get(list_name, []) or []:
+                    require(known_consequences, consequence_id, "consequence", where)
 
     for chronicle in documents.get("chronicle", []):
         where = f"{origins['chronicle']} [{chronicle['id']}]"

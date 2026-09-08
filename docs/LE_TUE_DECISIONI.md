@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **134** |
+| voci scritte | **136** |
 | chiuse | **124** |
-| aperte | **10** |
-| di cui **aspettano una tua decisione** | **0** |
+| aperte | **12** |
+| di cui **aspettano una tua decisione** | **2** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,23 +305,26 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
+| 🔴 | **2** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
+**Una.** Delle dodici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su due tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **nessuna**
+# 🔴 Aspettano te: **due**
 
-**Per la prima volta da quando questa lista esiste, non c'è niente di rosso.** In
-0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a tutte»* — e
-questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
+**Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
+sono due: la **R14** e la **R15**, e le hai fatte nascere tutt'e due tu — la
+prima chiedendo l'audit delle Azioni, la seconda chiedendo qual è il
+meccanismo di ECHOES. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
+svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
+tutte»* — e questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
 | | voce | cosa hai detto | dov'è finita |
 |---|---|---|---|
@@ -342,10 +345,108 @@ questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 suo colore, e da 0.1.397 lo strumento va rosso se una voce prova ad abitare in due
 posti — vedi [D-427](DECISIONS.md#d-427).)*
 
-**Quello che questo cambia, ed è la cosa che chiedevi:** il giro non è più fermo
-su di te. Delle diciassette voci ancora aperte non ce n'è **nessuna** che aspetti
-una tua parola — le due 🔵 aspettano una partita, non una decisione. Se una rossa
-nasce di nuovo, nasce qui.
+**Quello che questo cambiava, allora:** il giro non era più fermo su di te.
+Delle voci aperte non ce n'era **nessuna** che aspettasse una tua parola — le
+due 🔵 aspettano una partita, non una decisione. *«Se una rossa nasce di nuovo,
+nasce qui»*, dicevo. Eccola.
+
+### R14. [131](ISSUES.md#131) — il verbo doppio: **aperta in 0.1.446**
+
+Ed eccola, la prima rossa nuova, e l'hai fatta nascere tu: *«mi fai un audit di
+quante azioni e di che tipo vengono giocate? Che poi lo stesso verbo sia sulla
+stessa carta nelle due azioni non mi va troppo a genio.»*
+
+L'audit su cento anni: **2.636 Azioni calate** su 5.419 carte pescate. Per
+verbo, TRAMARE **30,5%**, MUOVERE 20,4%, FORGIARE 20,0%, INFLUENZARE 10,3%,
+RIVENDICARE 7,2%, ACQUISIRE 7,0%, **SEGNARE 4,6%** — fra il primo e l'ultimo
+ci sono **6,6 volte**. Nessuna carta è muta.
+
+**E sul verbo doppio avevi ragione, e si misura.** Le carte che portano lo
+stesso verbo su tutt'e due le Azioni sono **18 su 48** (una correzione: ti
+avevo detto 29, e veniva da un commento vecchio nel codice — ricontate dai
+dati sono 18: 9 INFLUENZARE, 8 FORGIARE, 1 TRAMARE).
+
+| | carte | calate | al voto |
+|---|---|---|---|
+| **verbo doppio** | 18 | **29,1%** | **53,9%** |
+| **due verbi diversi** | 30 | **59,1%** | 32,7% |
+
+**Una carta col verbo doppio si cala la metà delle volte, e finisce al voto il
+doppio.** Quando le due facce portano lo stesso verbo il tavolo smette di
+giocarla come Azione e la spende come **moneta** al Consiglio. Due a uno.
+
+E **sette delle diciotto non posano nessun segno su nessuna delle due facce**:
+lì la differenza fra le due Azioni è solo il *verso* — «Sigillare in alto»
+contro «Sigillare in basso», «Portare la folla sotto le finestre» contro
+«Mandare la folla a casa». È una scelta vera, ma dentro lo stesso gesto.
+
+Quattro cose da decidere, e sono tue:
+
+1. **Le sette senza segni** — Sigillo, Folla, Mobilitazione, Braccia Ferme,
+   Favore, Ostaggio, Mercenari: la seconda faccia prende un verbo diverso, o
+   almeno un segno che la distingua?
+2. **Le altre undici col verbo doppio**: restano così, visto che i segni le
+   distinguono già?
+3. **SEGNARE al 4,6%**, con sette facce su 96: il verbo più nuovo è il meno
+   giocato. È poco stampato, o poco appetibile?
+4. **INFLUENZARE al 24,3% di calate** è il fondo del tavolo come Azione, ma la
+   moneta più votata al Consiglio. Va bene così, o è da riequilibrare?
+
+### R15. [132](ISSUES.md#132) — quali sono le scelte vere: **aperta in 0.1.447**
+
+*«Il gioco forse è troppo semplificato, quali sono le effettive scelte che fa
+un giocatore? E non ci sono meccanismi di combo che danno soddisfazione né un
+deck building o un piazzamento laboratori, quindi qual è il meccanismo di gioco
+di ECHOES?»*
+
+Ho misurato invece di rispondere a sentimento, e la risposta non è quella che
+la domanda si aspetta.
+
+**Le scelte ci sono: 147 all'anno sul tavolo, 36,8 a testa** — 14.703 in cento
+anni. Il menu dell'Azione è largo (46 voci in media, fino a 194) ma sono
+**3,07 verbi distinti su 7**: dieci modi di fare la stessa cosa non sono dieci
+scelte. **Il numero non è il difetto. Il difetto è che non si accumulano.**
+
+**Il meccanismo c'è, ed è tuo: ECHOES è un gioco di agenda.** Ogni Azione fa
+due cose insieme — un fatto nel mondo, *e* un voto su cosa il tavolo discuterà,
+perché la Risonanza scalda un Tema e il Tema più caldo decide quale domanda va
+al Consiglio. Poi le carte tenute in mano diventano peso al voto, e le pedine
+comprano cosa resta al mondo. La domanda vera del gioco è: **di cosa si
+parlerà, e chi ci arriva con le carte in mano?**
+
+Tre punti deboli, misurati:
+
+1. **L'agenda non si sceglie.** La Risonanza avviene comunque e scalda il Tema
+   stampato: la leva più interessante del gioco la muovi **alla cieca**.
+2. **Il motore che ti costruisci pesa un quarto.** Le carte puntano a segni:
+   **112 richieste su 154 (73%) puntano terreno stampato** che nessuno può
+   creare — capitale, commercio, granaio, porto. Solo **42 (27%)** puntano
+   segni che tu o il Consiglio potete posare. La combo *«segno adesso, ci gioco
+   sopra dopo»* esiste, ma è la minoranza.
+3. **Niente resta che sia tuo.** Le Pietre sono l'unica cosa persistente e di
+   proprietà: **13,85 alzate a partita, di cui 1,80 da un'Azione di un
+   giocatore** — le altre le mette l'apertura o il Consiglio. A fine anno una
+   casa ne ha **1,2 sue**.
+
+**E qui c'è la cosa che conta più di tutte: il telaio del motore c'è già ed è
+quasi spento.** Le `tag_rules` legano un segno a una regola meccanica, e sono
+**56**. Di quelle **21 sono morte** (spingevano il dado che non c'è più), 14
+decidono cosa peschi, e **solo 8 toccano quello che un'Azione può fare**. Una
+Pietra che desse una *capacità* invece di un +1 — «finché tieni il Granaio, le
+tue carte Sopravvivenza costano meno» — è già la forma di `ACTION_DISCOUNT`, e
+in tutta la scatola **ce n'è una sola**.
+
+Non serve un meccanismo nuovo. Serve accendere quello che c'è. Quattro strade,
+e sono tue:
+
+1. **La Risonanza diventa una scelta?** Due Temi sulla faccia, tu scegli quale
+   scaldare: ogni Azione diventa anche una mossa sull'agenda. È una riga sui
+   dati e una scelta in più al turno.
+2. **Sposto il rapporto 27/73?** Più bersagli su segni posabili: è lavoro di
+   contenuto, e fa crescere la combo che già c'è.
+3. **Le Pietre diventano capacità?** Il telaio c'è e ha quattro regole in
+   tutto.
+4. **Le 21 regole morte**: puntate sul mucchio dei gettoni, o tolte?
 
 ---
 
@@ -441,10 +542,99 @@ Consiglio giocato da te.
 un Consiglio solo, il tuo. Il giro vecchio — la proposta, i gettoni, il
 prezzo scelto dagli altri, il dado — non c'e' piu'; le prove che lo
 custodivano sono passate alla regola nuova, o tolte con la ragione scritta.
-Tre cose restano da decidere, e sono tue: **i gettoni del RIVENDICARE**, che
-la carta da' ancora e il Consiglio non chiede piu' — si tolgono, o servono
-a qualcos'altro?; **le proposte stampate sulle carte**, che la scheda mostra
-e nessuno vota piu'; e il segno che pesava sul dado, senza piu' un dado.
+
+**Giro 6 fatto in 0.1.444** ([D-474](DECISIONS.md#d-474)): le proposte non
+sono piu' nemmeno **sulle carte**. Erano 194, scritte a mano, e nessun motore
+le leggeva da due versioni: la scheda te le mostrava ancora, e leggere una
+cosa che il gioco non fa e' peggio che non leggerla. Adesso la scheda dice le
+**due domande**, quando ognuna si apre e cosa lascia al mondo chi risponde di
+si'. Il catalogo conta 60 carte e 120 domande. E la partita non si e' mossa di
+niente: sui 100 semi escono **gli stessi identici numeri** di prima, che era
+esattamente la prova da fare.
+
+Quattro cose ti avevo lasciato, e mi hai risposto su tutte. **Due sono
+fatte in 0.1.445** ([D-475](DECISIONS.md#d-475)), una e' in corso, e la
+quarta era una domanda a me.
+
+**1. Le sedici Conseguenze — fatto.** *«Tornano come esito, io non vorrei
+perderle.»* Le ho guardate una per una e dicono da sole dove vanno: erano
+l'esito della **proposta contraria**. La domanda teneva il si', l'orfana era
+il no.
+
+| la domanda | se passa | se il tavolo la respinge |
+|---|---|---|
+| nominare l'erede | l'erede e' nominato | **la corona si divide** |
+| giurare la scorta alle vie | scorta giurata, vie riaperte | **le vie saccheggiate** |
+| mostrare la reliquia | la reliquia e' mostrata | **la teca murata** |
+| rimettere il debito | il debito e' rimesso | **il debito chiamato** |
+
+Adesso ogni domanda puo' portare **cosa lascia se la respingi**, e la carta
+stampata lo dice. Una cosa te la devo dire perche' l'ho corretta in corsa:
+al primo giro il segno del rifiuto arrivava **anche quando l'altra domanda
+passava** — mi sembrava giusto, *dire di no e' una decisione* — e la misura mi
+ha smentito. I Consigli su un tavolo a quattro domande scendevano da 5 a 3, e
+soprattutto *Il Drago Abbattuto* usciva **senza che nessuno lo avesse
+proposto**. Queste sedici erano l'esito di una proposta che il tavolo votava:
+regalarle a chi perde e' un'altra cosa. Adesso: **se una passa hai deciso; se
+non passa nessuna, le hai respinte tutt'e due.**
+
+Il numero: le Conseguenze che non escono mai in 100 anni passano da **20 a 9**
+su 67, e **undici delle sedici escono davvero**. Cinque hanno la strada e non
+la percorrono, perche' le loro carte non cadono mai in quel modo: te lo scrivo
+perche' e' meta' lavoro, non tutto.
+
+**2. La corona — non c'era niente da eliminare.** *«Se non e' possibile
+inserirla o cambiarla la possiamo eliminare»*: e' possibile, ed e' successo da
+solo. L'unica cosa in tutta la scatola che toglie la corona dalla testa di
+qualcuno e' *La Capitale Presa* — una delle sedici. Finche' era
+irraggiungibile, la corona non poteva cambiare di mano in tutta la partita.
+Resta segnata come «muta» in un documento, e la ragione e' tecnica: il registro
+chiama «lettore» solo una **clausola**, e la corona non ne ha. La guardano i
+profili delle case (Aldric la vuole, le Citta' Libere la temono, e questo pesa
+sulle scelte), un Destino, e quella Conseguenza. Se vuoi che una **regola** la
+interroghi, e' un'altra decisione tua.
+
+**3. I gettoni del RIVENDICARE — fatto in 0.1.446**
+([D-476](DECISIONS.md#d-476)), ma il numero ha cambiato quello che mi hai
+chiesto, e te lo racconto perche' e' interessante.
+
+*«Dovrebbe sempre dare i gettoni con cui comprare benefici e costi.»* Prima di
+toccarlo ho scritto una sonda: su 100 anni il RIVENDICARE conia **220
+gettoni** — 2,2 l'anno su **tutto** il tavolo — contro **3.055 pedine posate**
+nei Consigli. Se una pedina costasse un gettone, un gettone dovrebbe comprarne
+**quattordici** perche' il tavolo resti pieno com'e'. Far pagare ogni pedina
+non sarebbe un'economia: sarebbe un Consiglio spento.
+
+Quindi il gettone fa la cosa che il tetto non permette: **ne alza il bordo di
+uno**. Una parte puo' avere al massimo un beneficio in piu' dei suoi costi;
+ogni gettone speso te ne fa comprare uno in piu'. E' esattamente l'aritmetica
+che avevi scritto tu in D-280 — *«una Cicatrice ne compra uno oltre il
+limite»* — col gettone al posto della Cicatrice. Si spende da solo: nessuno
+preferirebbe perdere il beneficio tenendosi la moneta.
+
+**E poi ho scoperto che non bastava.** Scritta la regola, l'ho misurata: si
+spendeva **11 volte su 100**. La causa era il cervello — non posa mai una
+pedina che il prezzo gli toglierebbe, quindi non arriva mai al punto di doverla
+pagare. Insegnata la moneta anche a lui: **48 volte su 100**. La differenza fra
+una regola che c'e' e una regola che conta.
+
+Due cose te le devo, e sono un prezzo vero. **Le vittorie nette scendono, e con
+loro gli Echi**: da 145 a 114 sul tavolo misto, e le Verita' scritte da 316 a
+273. La ragione e' meccanica: posare un **costo** e' sostenere, e chi ha una
+moneta posa un **beneficio** dove prima posava un costo — meno peso nel voto,
+piu' controdomande che passano. Il Consiglio diventa piu' ricco e piu'
+incerto. E **il 52% dei gettoni muore ancora in mano**: se vuoi il rubinetto
+aperto — il RIVENDICARE che ne conia piu' d'uno, o un gettone a testa per Atto
+— dimmelo, che e' una taratura piu' grossa e la faccio.
+
+**4. Il segno che pesava sul dado — mi hai chiesto che vuol dire, ed e' giusto
+chiederlo.** Non e' il dado. Sono **21 regole scritte** nei dati che dicono
+*«un mondo segnato pesa sul Consiglio»*: «La fame siede al tavolo» −1, «La
+citta' parla piu' forte al Consiglio» +1, «Il seggio vuoto pesa sulla Carta»
+−1. Spingevano il World Factor, cioe' il dado. Tolto il dado, spingono il
+vuoto. La domanda vera e': **un mondo segnato deve pesare sul mucchio dei
+gettoni?** Se si', quelle 21 righe tornano vive puntandole sul mucchio; se no,
+escono. E' una regola di gioco, e la decidi tu.
 
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
@@ -962,9 +1152,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
+**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+fuori dalla lista, e **due aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

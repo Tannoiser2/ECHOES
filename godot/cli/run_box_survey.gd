@@ -66,13 +66,15 @@ func _initialize() -> void:
 	# e le clausole che gli avversari attaccano. Il primo giro ne guardava uno
 	# solo su cinque, e un documento che ne conta un quinto e non fallisce e' la
 	# forma di difetto che questo progetto ha gia' visto sei volte.
-	# **Le Proposte stanno sulla carta** (D-462): si leggono dalla scheda fusa,
-	# come fa il motore. I sacchetti restano del template.
+	# **Le Domande stanno sulla carta** (D-462; le Proposte sono uscite dai dati
+	# in D-474): si leggono dalla scheda fusa, come fa il motore, e quello che
+	# una domanda applica se il tavolo le risponde di si' e' il suo esito di
+	# base. I sacchetti restano del template.
 	var reachable: Array = []
 	for tension_id in data.tensions:
 		var sheet: Dictionary = data.confluence_template_for(str(tension_id))
-		for entry in sheet.get("propositions", []):
-			reachable.append_array((entry as Dictionary).get("success_consequences", []))
+		for entry in sheet.get("questions", []):
+			reachable.append_array((entry as Dictionary).get("base", []))
 	for template_id in data.confluence_templates:
 		var template: Dictionary = data.confluence_templates[str(template_id)]
 		var pools: Dictionary = template.get("consequence_pools", {})

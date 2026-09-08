@@ -67,6 +67,7 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 # duecento».
 MUTI_NOTI: Dict[str, str] = {
     "account_settled": "4 volte in 100 anni",
+    "crowned": "in ogni partita, dal setup",
     "someone_paid": "",
     "dragon_slain": "non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
     "settlement:$proponent": "50 volte in 100 anni",
@@ -301,12 +302,12 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         readers(echo.get("eligibility"), "carta Echo")
     for consequence in items("consequence"):
         readers(consequence.get("eligibility"), "Conseguenza")
-    # **Le Proposte stanno sulla carta** (D-462): il registro leggeva quelle
-    # del template, sette carte su sessanta.
+    # **Le Domande stanno sulla carta** (D-462; le Proposte sono uscite dai
+    # dati in D-474, e restano le Domande): una domanda che si apre solo a
+    # certe condizioni **legge** il tavolo, ed e' una mano sul segno.
     for card in items("tension"):
-        for proposition in (card.get("council") or {}).get("propositions", []) or []:
-            readers(proposition.get("eligibility"), "proposta")
-            readers(proposition.get("conditions"), "proposta")
+        for question in (card.get("council") or {}).get("questions", []) or []:
+            readers(question.get("eligibility"), "domanda")
         # **La penna del Consiglio** (D-286): una clausola vinta posa i
         # suoi segni sul mondo — l'amnistia concessa, la Carta che vale
         # per un tempo solo, la successione con testimoni. Il registro

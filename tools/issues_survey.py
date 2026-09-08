@@ -368,9 +368,21 @@ def render_colori(c: dict[str, int], presenti: list[str]) -> str:
                 "| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |"
             )
         else:
+            # **Il numero accorda il verbo**: con una rossa sola la riga
+            # diceva «Nessuna stanno sulla strada», che e' la frase di un
+            # generatore che non ha mai girato su uno — e «nessuna» vuole il
+            # singolare come «una». Il foglio lo legge il
+            # committente, e una riga sgrammaticata la legge come un errore
+            # anche quando il conto e' giusto.
             lines.append(
-                "| 🔴 | **%d** | **tu**, con una parola. %s stanno sulla strada, %s sono fuori |"
-                % (c["🔴"], parola(c[STRADA]).capitalize(), parola(c[FUORI_STRADA]))
+                "| 🔴 | **%d** | **tu**, con una parola. %s %s sulla strada, %s %s fuori |"
+                % (
+                    c["🔴"],
+                    parola(c[STRADA]).capitalize(),
+                    "sta" if c[STRADA] <= 1 else "stanno",
+                    parola(c[FUORI_STRADA]),
+                    "\u00e8" if c[FUORI_STRADA] <= 1 else "sono",
+                )
             )
     for colore in ["🔵", "🟡", "⚫", "⚪"]:
         if colore in presenti:
@@ -385,7 +397,10 @@ def render_colori(c: dict[str, int], presenti: list[str]) -> str:
         if c["🔴"] == 0:
             testo += " **Il giro non e' fermo su nessuna tua parola.**"
         else:
-            testo += " **Il giro e' fermo su %s parole.**" % parola(c["🔴"])
+            testo += " **Il giro e' fermo su %s.**" % (
+                "una tua parola" if c["🔴"] == 1
+                else "%s tue parole" % parola(c["🔴"])
+            )
         lines.append(textwrap.fill(testo.replace("e'", "è"), width=79))
     lines.append("")
     lines.append(COLORI_END)

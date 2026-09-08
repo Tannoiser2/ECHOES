@@ -190,9 +190,9 @@
       "famiglia": "",
       "corpo": [
         "A · Che cosa si fa del Cristallo Rosso che esce nella Regione di cui si discute?",
-        "   se vince: La Miniera Aperta · La Miniera di Stato",
+        "   se vince: La Miniera Aperta · La Miniera di Stato  —  se cade: Le Gallerie Riaperte",
         "B · A chi appartiene ciò che dorme sotto la Regione di cui si discute?  — solo se: Il Risveglio è vicino",
-        "   se vince: Studio sotto Custodia"
+        "   se vince: Studio sotto Custodia  —  se cade: Il Drago Abbattuto"
       ],
       "righe": [
         {
@@ -546,7 +546,7 @@
       "famiglia": "",
       "corpo": [
         "A · La palude restituisce morti che nessun registro conosce: si dà loro un rito, o si rimettono dov'erano?",
-        "   se vince: La Custodia Riconosciuta",
+        "   se vince: La Custodia Riconosciuta  —  se cade: La Teca Murata",
         "B · E l'acqua che li ha scoperti, si rimanda dov'era?",
         "   se vince: I Canali Riaperti"
       ],
@@ -724,7 +724,7 @@
       "famiglia": "",
       "corpo": [
         "A · Il bosco arretra di un campo all'anno nella Regione di cui si discute: si mette un limite al taglio?",
-        "   se vince: La Razione Imposta",
+        "   se vince: La Razione Imposta  —  se cade: Si Spreme Quello Che C'e'",
         "B · E le fornaci, si fermano una stagione?",
         "   se vince: Il Mercato Spostato"
       ],
@@ -991,9 +991,9 @@
       "famiglia": "",
       "corpo": [
         "A · Chi tiene il registro, e chi può leggerlo?",
-        "   se vince: Il Registro Aperto",
+        "   se vince: Il Registro Aperto  —  se cade: Il Debito Chiamato",
         "B · E se lo chiamano tutto insieme, nella Regione di cui si discute cosa succede?  — solo se: Il Debito è al limite",
-        "   se vince: Il Debito Rimesso"
+        "   se vince: Il Debito Rimesso  —  se cade: Il Debito Chiamato"
       ],
       "righe": [
         {
@@ -1347,7 +1347,7 @@
       "famiglia": "",
       "corpo": [
         "A · I pali sono spuntati di notte nella Regione di cui si discute: si tolgono, o si scrive chi li ha piantati?",
-        "   se vince: La Carta Scritta",
+        "   se vince: La Carta Scritta  —  se cade: La Domanda Ripresa",
         "B · E l'uso della terra, a chi resta?",
         "   se vince: Il Peso Diviso"
       ],
@@ -1436,7 +1436,7 @@
       "famiglia": "",
       "corpo": [
         "A · I campi rendono meno ogni anno: si lascia riposare la terra, e chi comincia?",
-        "   se vince: Il Raccolto Torna",
+        "   se vince: Il Raccolto Torna  —  se cade: Si Spreme Quello Che C'e'",
         "B · E chi non può permetterselo, come semina?",
         "   se vince: Il Granaio del Trono"
       ],
@@ -1525,9 +1525,9 @@
       "famiglia": "",
       "corpo": [
         "A · Chi nutre la Regione di cui si discute quando i granai si svuotano?",
-        "   se vince: Il Granaio del Trono · La Distribuzione Verificata",
+        "   se vince: Il Granaio del Trono · La Distribuzione Verificata  —  se cade: Il Titolo che non Vale più",
         "B · Nella Regione di cui si discute, a chi appartiene la terra che ancora produce?  — solo se: La Carestia è al limite",
-        "   se vince: La Valle Chiusa"
+        "   se vince: La Valle Chiusa  —  se cade: Il Titolo che non Vale più · Chi Puo', Se Ne Va"
       ],
       "righe": [
         {
@@ -2682,7 +2682,7 @@
       "famiglia": "",
       "corpo": [
         "A · Fuori dalle città vive gente che non risulta da nessuna parte: ha diritto di restare nella Regione di cui si discute?",
-        "   se vince: Chi Lavora Mangia",
+        "   se vince: Chi Lavora Mangia  —  se cade: La Partenza",
         "B · E contarli, conviene a qualcuno?",
         "   se vince: Il Registro Aperto"
       ],
@@ -3127,7 +3127,7 @@
       "famiglia": "",
       "corpo": [
         "A · I pellegrini continuano ad arrivare nella Regione di cui si discute: si dà loro da mangiare, o si chiude la strada?",
-        "   se vince: Il Granaio del Trono",
+        "   se vince: Il Granaio del Trono  —  se cade: La Cinghia Stretta",
         "B · E l'anno santo, lo dichiara qualcuno?",
         "   se vince: La Custodia Riconosciuta"
       ],
@@ -3661,9 +3661,9 @@
       "famiglia": "",
       "corpo": [
         "A · E chi ha diritto di vederlo?  — solo se: La Reliquia è al limite",
-        "   se vince: La Teca Aperta",
+        "   se vince: La Teca Aperta  —  se cade: La Teca Murata",
         "B · Chi risponde di quello che c'è nella teca?",
-        "   se vince: La Custodia Riconosciuta"
+        "   se vince: La Custodia Riconosciuta  —  se cade: Le Gallerie Lasciate · La Roccia che Cede"
       ],
       "righe": [
         {
@@ -3752,7 +3752,7 @@
         "A · Chi riscuote su quello che passa nella Regione di cui si discute?",
         "   se vince: Il Pedaggio Scritto",
         "B · Chi risponde di un carico che non arriva?  — solo se: Le Vie Interrotte sono al limite",
-        "   se vince: La Scorta Giurata · Le Vie Riaperte"
+        "   se vince: La Scorta Giurata · Le Vie Riaperte  —  se cade: La Strada Spogliata · La Via delle Miniere Tagliata"
       ],
       "righe": [
         {
@@ -4462,9 +4462,9 @@
       "famiglia": "",
       "corpo": [
         "A · Chi siede sul trono quando questo si alza?",
-        "   se vince: L'Erede Nominato · L'Ordine Rimesso in Piedi",
+        "   se vince: L'Erede Nominato · L'Ordine Rimesso in Piedi  —  se cade: La Corona Divisa",
         "B · Nella Regione di cui si discute, che cosa vale più di un nome: la legge o le spade?  — solo se: La Successione è al limite",
-        "   se vince: La Legge Scritta"
+        "   se vince: La Legge Scritta  —  se cade: La Capitale Presa · La Domanda Ripresa"
       ],
       "righe": [
         {
@@ -4640,7 +4640,7 @@
       "famiglia": "",
       "corpo": [
         "A · Metà della decima si perde fra il campo e l'altare: si aprono i registri, o si lascia stare?",
-        "   se vince: Il Registro Aperto",
+        "   se vince: Il Registro Aperto  —  se cade: Si Spreme Quello Che C'e'",
         "B · E in un anno magro, si paga lo stesso?",
         "   se vince: La Razione Imposta · Il Debito a Rate"
       ],
@@ -4818,7 +4818,7 @@
       "famiglia": "",
       "corpo": [
         "A · È salito qualcosa che nessun mastro riconosce: chi lo tiene, e dove?",
-        "   se vince: La Teca Aperta",
+        "   se vince: La Teca Aperta  —  se cade: La Teca Murata",
         "B · E studiarlo, con quali regole?",
         "   se vince: Studio sotto Custodia"
       ],
@@ -4996,7 +4996,7 @@
       "famiglia": "",
       "corpo": [
         "A · Una delle pietre incise è a terra: si rialza, e chi la tocca?",
-        "   se vince: La Custodia Riconosciuta",
+        "   se vince: La Custodia Riconosciuta  —  se cade: La Teca Murata",
         "B · E il margine, chi lo gira?",
         "   se vince: Gli Uomini alla Porta"
       ],

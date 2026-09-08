@@ -89,9 +89,9 @@ func _initialize() -> void:
 	# la cui eleggibilita' nomina un `legend:`. Se a fine misura sono a zero,
 	# sono contenuto che non esiste (D-035), e va detto qui, non scoperto poi.
 	#
-	# **Erano le proposte** (fino a D-472): il Consiglio a due domande (D-467)
-	# non vota proposte, e la lista `propositions` rimasta nei dati non la
-	# legge il motore. Quello che il tavolo puo' leggere e' la domanda, e
+	# **Erano le proposte** (fino a D-472, e da D-474 non sono piu' nemmeno nei
+	# dati): il Consiglio a due domande (D-467) non vota proposte. Quello che
+	# il tavolo puo' leggere e' la domanda, e
 	# quella che il mondo ricorda e' `winning_question_id`. Se nessuna domanda
 	# scritta nomina una leggenda, la riga sotto lo dice: e' un vuoto dei dati,
 	# non della misura.

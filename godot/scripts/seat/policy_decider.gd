@@ -2037,11 +2037,40 @@ func choose_raise(
 				best_benefit = {"id": str((voice as Dictionary)["id"]), "score": score}
 		elif score > int(best_cost["score"]):
 			best_cost = {"id": str((voice as Dictionary)["id"]), "score": score}
-	if benefits > costs and str(best_cost["id"]) != "":
+	# **E le monete che questa parte ha in mano** ([D-476](../../docs/DECISIONS.md#d-476)):
+	# un gettone di rivendicazione alza di uno il tetto dei benefici, quindi un
+	# beneficio in piu' non e' una pedina che il prezzo togliera' — e' una
+	# pedina comprata.
+	#
+	# Senza questa riga la moneta esisteva e non si spendeva quasi mai: il
+	# cervello non posa **mai** una pedina che il conto ritirerebbe, quindi non
+	# arrivava mai al punto di doverla pagare. Misurato prima: **25 gettoni
+	# spesi su 223 coniati in 100 anni**, e quei venticinque erano incidenti,
+	# non scelte.
+	var purse: int = _claim_tokens_of_side(side, session)
+	if benefits > costs + purse and str(best_cost["id"]) != "":
 		return str(best_cost["id"])
-	if str(best_benefit["id"]) != "" and benefits <= costs:
+	if str(best_benefit["id"]) != "" and benefits <= costs + purse:
 		return str(best_benefit["id"])
 	return ""
+
+
+## Le monete di rivendicazione che una parte puo' mettere sul tavolo: la parte e'
+## una, e il gettone di chi la sostiene vale per lei (D-476).
+func _claim_tokens_of_side(side: String, session: RefCounted) -> int:
+	var purse: int = 0
+	var part: Variant = (session.confluence.current.get("sides", {}) as Dictionary).get(side)
+	if part == null:
+		return 0
+	var seats: Array = ((part as Dictionary).get("seats", []) as Array).duplicate()
+	var leader: String = str((part as Dictionary).get("leader", ""))
+	if leader != "" and not seats.has(leader):
+		seats.append(leader)
+	for entity_id in seats:
+		var entity: Variant = (session.world["entities"] as Dictionary).get(str(entity_id))
+		if entity != null:
+			purse += int((entity as Dictionary).get("claim_tokens", 0))
+	return purse
 
 
 ## Quanto vale, per questo seggio, l'esito di base della domanda di una parte.

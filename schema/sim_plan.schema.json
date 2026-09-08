@@ -279,9 +279,6 @@
         "question_id": {
           "type": "string"
         },
-        "proposition_id": {
-          "type": "string"
-        },
         "stances": {
           "type": "object",
           "additionalProperties": {

@@ -283,7 +283,7 @@ def main() -> int:
     # Fino a 0.1.344 questa sezione leggeva i **template**, ed era il terzo
     # posto in cui una sonda guardava ancora la vecchia casa: al tavolo si
     # legge quello che c'e' stampato sulla Tensione, e il motore fa lo stesso
-    # (`_council_base_for`: «le Domande e le Proposte le mette la carta»).
+    # (`_council_base_for`: «le Domande le mette la carta»).
     # Il documento prometteva *ogni* testo leggibile e ne saltava 314.
     for tension in tensions:
         council = tension.get("council") or {}
@@ -291,21 +291,11 @@ def main() -> int:
             review.entry(str(question["id"]), question.get("text"))
             for number, riga in enumerate(labels_of(question.get("eligibility")), start=1):
                 review.entry("%s, si apre se %d" % (question["id"], number), riga)
-        for proposition in council.get("propositions", []) or []:
-            review.entry(str(proposition["id"]), proposition.get("text"))
-            for number, riga in enumerate(labels_of(proposition.get("eligibility")), start=1):
-                review.entry("%s, si puo' proporre se %d" % (proposition["id"], number), riga)
-            if proposition.get("echo_summary"):
-                review.entry(
-                    "%s, esito" % proposition["id"], proposition["echo_summary"]
-                )
-            for outcome, text in sorted(proposition.get("echo_summaries", {}).items()):
-                review.entry("%s, esito %s" % (proposition["id"], outcome), text)
 
     # E le **clausole**: la controproposta che un avversario attacca a una
     # **E il template ha ancora un testo suo** (ISSUES 105): dodici schede col
-    # loro titolo, la loro descrizione e le domande e proposte che non stanno
-    # (ancora) su una carta Tensione. Il motore le legge, quindi si leggono.
+    # loro titolo, la loro descrizione e le domande che non stanno (ancora) su
+    # una carta Tensione. Il motore le legge, quindi si leggono.
     review.line("### Le schede del Consiglio — quello che il template porta ancora")
     review.line()
     for template in templates:
@@ -317,14 +307,6 @@ def main() -> int:
             review.entry(str(question["id"]), question.get("text"))
             for number, riga in enumerate(labels_of(question.get("eligibility")), start=1):
                 review.entry("%s, si apre se %d" % (question["id"], number), riga)
-        for proposition in template.get("propositions", []) or []:
-            review.entry(str(proposition["id"]), proposition.get("text"))
-            for number, riga in enumerate(labels_of(proposition.get("eligibility")), start=1):
-                review.entry("%s, si puo' proporre se %d" % (proposition["id"], number), riga)
-            if proposition.get("echo_summary"):
-                review.entry("%s, esito" % proposition["id"], proposition["echo_summary"])
-            for outcome, text in sorted(proposition.get("echo_summaries", {}).items()):
-                review.entry("%s, esito %s" % (proposition["id"], outcome), text)
 
     review.line("## 6. Le Conseguenze — quello che una decisione lascia")
     review.line()
