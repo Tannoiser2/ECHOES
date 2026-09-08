@@ -273,9 +273,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **138** |
-| chiuse | **124** |
-| aperte | **14** |
-| di cui **aspettano una tua decisione** | **4** |
+| chiuse | **125** |
+| aperte | **13** |
+| di cui **aspettano una tua decisione** | **3** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,23 +305,23 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **4** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **3** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle quattordici voci aperte, una le posso muovere senza di te — ed è
-il numero che va detto per primo. **Il giro è fermo su quattro tue parole.**
+**Una.** Delle tredici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su tre tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **quattro**
+# 🔴 Aspettano te: **tre**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
-sono quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai fatte
-nascere tutte tu — chiedendo l'audit delle Azioni, chiedendo qual è il
+sono state quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai
+fatte nascere tutte tu — chiedendo l'audit delle Azioni, chiedendo qual è il
 meccanismo di ECHOES, guardando le caselle del Consiglio, e chiedendo l'audit
 dei segni che non servono a niente. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
 svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
@@ -351,7 +351,7 @@ Delle voci aperte non ce n'era **nessuna** che aspettasse una tua parola — le
 due 🔵 aspettano una partita, non una decisione. *«Se una rossa nasce di nuovo,
 nasce qui»*, dicevo. Eccola.
 
-### R14. [131](ISSUES.md#131) — il verbo doppio: **aperta in 0.1.446**
+### ✔ R14. [131](ISSUES.md#131) — il verbo doppio: **aperta in 0.1.446**
 
 Ed eccola, la prima rossa nuova, e l'hai fatta nascere tu: *«mi fai un audit di
 quante azioni e di che tipo vengono giocate? Che poi lo stesso verbo sia sulla
@@ -392,6 +392,23 @@ Quattro cose da decidere, e sono tue:
    giocato. È poco stampato, o poco appetibile?
 4. **INFLUENZARE al 24,3% di calate** è il fondo del tavolo come Azione, ma la
    moneta più votata al Consiglio. Va bene così, o è da riequilibrare?
+
+**E la tua parola e' arrivata**: *«via in ordine R14 in poi»*. Chiusa in
+0.1.451 ([D-481](DECISIONS.md#d-481)).
+
+Le sette carte senza segni adesso ne hanno uno per faccia — nessuno inventato,
+tutti gia' nel dizionario e gia' letti: il Sigillo mette e toglie «una domanda
+e' rimasta aperta», il Favore chiama il debito o lo rimette, i Mercenari giurano
+la scorta o la sciolgono. E una guardia nuova va rossa se due Azioni con lo
+stesso verbo portano gli stessi segni, cosi' non ricapita.
+
+**Ma il numero che ti aveva dato fastidio non si e' mosso, e te lo devo dire:**
+le carte col verbo doppio si calano ancora il **29,4%** (era 29,1%). La causa
+l'ho misurata ed e' un'altra: quelle sette finiscono **al voto** il 61,1% delle
+volte. Non sono carte deboli, sono **monete** — e se una carta rende piu' da
+moneta che da Azione, la domanda non e' la carta: e' il meccanismo del gioco.
+Che e' esattamente la **R15**, qui sotto.
+
 
 ### R15. [132](ISSUES.md#132) — quali sono le scelte vere: **aperta in 0.1.447**
 
@@ -1256,9 +1273,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle quattordici voci aperte ne
-posso muovere **una** da sola. Due le verifica una persona che gioca, sette
-stanno fuori dalla lista, e **quattro aspettano una tua parola**.
+**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
+muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
+fuori dalla lista, e **tre aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

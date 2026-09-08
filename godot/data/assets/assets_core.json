@@ -408,13 +408,19 @@
         "actions": [
           {
             "label": "Prestarli",
-            "text": "Sali di 1 gradino nel rapporto con lei.",
-            "template": "FORGE"
+            "text": "Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su di lei.",
+            "template": "FORGE",
+            "puts_tag": [
+              "escort_sworn"
+            ]
           },
           {
             "label": "Toglierli di mezzo",
-            "text": "Scendi di 1 gradino con lei e pesca 1 Ricchezza.",
-            "template": "FORGE"
+            "text": "Scendi di 1 gradino con lei, pesca 1 Ricchezza e togli #scorta_giurata da lei.",
+            "template": "FORGE",
+            "clears_tag": [
+              "escort_sworn"
+            ]
           }
         ],
         "resonance": {
@@ -837,13 +843,19 @@
         "actions": [
           {
             "label": "Sigillare in basso",
-            "text": "Abbassa quella questione di 1.",
-            "template": "INFLUENCE"
+            "text": "Abbassa quella questione di 1 e togli #domanda_aperta dal mondo.",
+            "template": "INFLUENCE",
+            "clears_tag": [
+              "question_unresolved"
+            ]
           },
           {
             "label": "Sigillare in alto",
-            "text": "Alza quella questione di 1.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 1 e metti #domanda_aperta sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "question_unresolved"
+            ]
           }
         ],
         "resonance": {
@@ -1426,13 +1438,19 @@
         "actions": [
           {
             "label": "Portare la folla sotto le finestre",
-            "text": "Alza quella questione di 1.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 1 e metti #richiesta_ascoltata sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "petition_heard"
+            ]
           },
           {
             "label": "Mandare la folla a casa",
-            "text": "Abbassa quella questione di 1.",
-            "template": "INFLUENCE"
+            "text": "Abbassa quella questione di 1 e metti #ordine_ristabilito sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "order_restored"
+            ]
           }
         ],
         "resonance": {
@@ -1679,13 +1697,19 @@
         "actions": [
           {
             "label": "Chiamare tutti",
-            "text": "Alza quella questione di 2.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 2 e metti #peso_diviso sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "burden_shared"
+            ]
           },
           {
             "label": "Chiamare solo i tuoi",
-            "text": "Alza quella questione di 1 e pesca 1 Popolo.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 1, pesca 1 Popolo e metti #la_voce_corre sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "rumour_running"
+            ]
           }
         ],
         "resonance": {
@@ -2024,13 +2048,19 @@
         "actions": [
           {
             "label": "Fermare tutto",
-            "text": "Alza quella questione di 2.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 2 e metti #domanda_aperta sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "question_unresolved"
+            ]
           },
           {
             "label": "Fermare solo una cosa",
-            "text": "Abbassa quella questione di 1 e pesca 1 Popolo.",
-            "template": "INFLUENCE"
+            "text": "Abbassa quella questione di 1, pesca 1 Popolo e metti #peso_diviso sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "burden_shared"
+            ]
           }
         ],
         "resonance": {
@@ -3493,13 +3523,19 @@
         "actions": [
           {
             "label": "Chiedere il favore",
-            "text": "Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo.",
-            "template": "INFLUENCE"
+            "text": "Abbassa quella questione di 1, scendi di 1 gradino con la casa che la stava spingendo e metti #debito_chiamato sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "debt_called"
+            ]
           },
           {
             "label": "Fare il favore",
-            "text": "Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te, e metti #debito_rimesso sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "debt_forgiven"
+            ]
           }
         ],
         "resonance": {
@@ -3990,13 +4026,19 @@
         "actions": [
           {
             "label": "Mostrare l'ostaggio",
-            "text": "Abbassa quella questione di 2.",
-            "template": "INFLUENCE"
+            "text": "Abbassa quella questione di 2 e metti #tradimento_detto sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "betrayal_spoken"
+            ]
           },
           {
             "label": "Restituire l'ostaggio",
-            "text": "Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te.",
-            "template": "INFLUENCE"
+            "text": "Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te, e metti #conto_saldato sul mondo.",
+            "template": "INFLUENCE",
+            "puts_tag": [
+              "account_settled"
+            ]
           }
         ],
         "resonance": {

@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.451 — Le due Azioni della stessa carta lasciano cose diverse (R14)
+
+[D-481](docs/DECISIONS.md#d-481), [ISSUES 131](docs/ISSUES.md#131) **chiusa**.
+
+*«Via in ordine R14 in poi.»* La R14 era il verbo doppio: 18 carte su 48
+stampano lo stesso verbo su tutt'e due le Azioni, e **sette non posavano nessun
+segno** — la differenza fra le due meta' era il verso di un numero.
+
+**Adesso ognuna delle quattordici facce lascia un segno**, e nessuno e' nuovo:
+sono tutti gia' nel dizionario, gia' scritti da qualcun altro e gia' letti. Il
+Sigillo mette e toglie «una domanda e' rimasta aperta»; la Folla lascia «la
+richiesta e' stata ascoltata» o «l'ordine e' stato ristabilito»; il Favore
+chiama il debito o lo rimette; l'Ostaggio dice il tradimento o salda il conto; i
+Mercenari giurano la scorta o la sciolgono.
+
+**E una guardia nuova perche' non ricapiti**: `validate_physical.py` va rosso se
+due Azioni con lo stesso verbo portano gli stessi segni, col suo autotest sul
+difetto piantato (52, era 51). L'unica eccezione e' dichiarata con la sua
+ragione: **Investitura** mette `renowned` su tutt'e due le facce, ma a due
+soggetti diversi.
+
+**Quello che si e' mosso:** quelle facce adesso **scrivono sul mondo**, e su
+segni che qualcuno legge — in cento anni `debt_called` passa da 231 a **322**,
+`escort_sworn` da 206 a **224**, `petition_heard` da 5 a **10**: oltre
+centoquaranta memorie in piu', dove prima quelle sette carte non lasciavano
+niente.
+
+**Il numero che aveva aperto la voce non si e' mosso, e si scrive:** le carte
+col verbo doppio si calano il **29,4%** (era 29,1%), le sette il **14,3%**,
+INFLUENZARE il **23,7%** (era 24,3%). La causa e' misurata ed e' un'altra: la
+scelta *fra le due meta'* adesso funziona — prima, con zero segni, vinceva
+sempre la prima — ma **quante volte una carta si cala** lo decide quanto vale al
+voto, e quelle sette al voto ci finiscono il **61,1%** delle volte. Non sono
+carte deboli, sono monete. Il seguito e' la [132](docs/ISSUES.md#132).
+
+**Cancello:** 100 semi, **0 seggi bloccati su 8** sui due tavoli. Verita' 273 →
+**278** sul misto, 269 → **257** sull'uniforme; Consigli 4,86 → 4,82 e 4,76 →
+4,75.
+
+---
+
 ## 0.1.450 — Il cerchietto e' la scelta: la scheda non ripete i posti accesi
 
 [D-480](docs/DECISIONS.md#d-480).

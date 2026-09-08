@@ -507,11 +507,11 @@
         },
         {
           "voce": "①",
-          "testo": "Sigillare in basso — Abbassa quella questione di 1."
+          "testo": "Sigillare in basso — Abbassa quella questione di 1 e togli #domanda_aperta dal mondo."
         },
         {
           "voce": "②",
-          "testo": "Sigillare in alto — Alza quella questione di 1."
+          "testo": "Sigillare in alto — Alza quella questione di 1 e metti #domanda_aperta sul mondo."
         },
         {
           "voce": "SEMPRE",
@@ -807,11 +807,11 @@
         },
         {
           "voce": "①",
-          "testo": "Chiedere il favore — Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo."
+          "testo": "Chiedere il favore — Abbassa quella questione di 1, scendi di 1 gradino con la casa che la stava spingendo e metti #debito_chiamato sul mondo."
         },
         {
           "voce": "②",
-          "testo": "Fare il favore — Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te."
+          "testo": "Fare il favore — Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te, e metti #debito_rimesso sul mondo."
         },
         {
           "voce": "SEMPRE",
@@ -927,11 +927,11 @@
         },
         {
           "voce": "①",
-          "testo": "Mostrare l'ostaggio — Abbassa quella questione di 2."
+          "testo": "Mostrare l'ostaggio — Abbassa quella questione di 2 e metti #tradimento_detto sul mondo."
         },
         {
           "voce": "②",
-          "testo": "Restituire l'ostaggio — Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te."
+          "testo": "Restituire l'ostaggio — Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te, e metti #conto_saldato sul mondo."
         },
         {
           "voce": "SEMPRE",
@@ -1291,11 +1291,11 @@
         },
         {
           "voce": "①",
-          "testo": "Prestarli — Sali di 1 gradino nel rapporto con lei."
+          "testo": "Prestarli — Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su di lei."
         },
         {
           "voce": "②",
-          "testo": "Toglierli di mezzo — Scendi di 1 gradino con lei e pesca 1 Ricchezza."
+          "testo": "Toglierli di mezzo — Scendi di 1 gradino con lei, pesca 1 Ricchezza e togli #scorta_giurata da lei."
         },
         {
           "voce": "SEMPRE",
@@ -2075,11 +2075,11 @@
         },
         {
           "voce": "①",
-          "testo": "Portare la folla sotto le finestre — Alza quella questione di 1."
+          "testo": "Portare la folla sotto le finestre — Alza quella questione di 1 e metti #richiesta_ascoltata sul mondo."
         },
         {
           "voce": "②",
-          "testo": "Mandare la folla a casa — Abbassa quella questione di 1."
+          "testo": "Mandare la folla a casa — Abbassa quella questione di 1 e metti #ordine_ristabilito sul mondo."
         },
         {
           "voce": "SEMPRE",
@@ -2375,11 +2375,11 @@
         },
         {
           "voce": "①",
-          "testo": "Chiamare tutti — Alza quella questione di 2."
+          "testo": "Chiamare tutti — Alza quella questione di 2 e metti #peso_diviso sul mondo."
         },
         {
           "voce": "②",
-          "testo": "Chiamare solo i tuoi — Alza quella questione di 1 e pesca 1 Popolo."
+          "testo": "Chiamare solo i tuoi — Alza quella questione di 1, pesca 1 Popolo e metti #la_voce_corre sul mondo."
         },
         {
           "voce": "SEMPRE",
@@ -2491,11 +2491,11 @@
         },
         {
           "voce": "①",
-          "testo": "Fermare tutto — Alza quella questione di 2."
+          "testo": "Fermare tutto — Alza quella questione di 2 e metti #domanda_aperta sul mondo."
         },
         {
           "voce": "②",
-          "testo": "Fermare solo una cosa — Abbassa quella questione di 1 e pesca 1 Popolo."
+          "testo": "Fermare solo una cosa — Abbassa quella questione di 1, pesca 1 Popolo e metti #peso_diviso sul mondo."
         },
         {
           "voce": "SEMPRE",

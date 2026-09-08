@@ -159,11 +159,11 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `succession_by_law` | **si'** | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | vuole | `crowned` | no | no | casato |
 | vuole | `structure:granary` | **si'** | **si'** | Pietra |
-| vuole | `order_restored` | **si'** | no | Conseguenza, faccia della Tensione |
+| vuole | `order_restored` | **si'** | **si'** | Conseguenza, faccia della Tensione |
 | teme | `crown_divided` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `condition:unrest` | **si'** | **si'** | Conseguenza, Risonanza, carta Asset, carta Echo, faccia della Tensione |
 | teme | `condition:starving` | **si'** | **si'** | Conseguenza, Risonanza, carta Echo, faccia della Tensione |
-| teme | `question_unresolved` | no | no | Conseguenza |
+| teme | `question_unresolved` | no | **si'** | Conseguenza |
 | teme | `scar:changed_hands` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `charter_written` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `discovery:the_charter` | no | no | Conseguenza |
@@ -207,7 +207,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | teme | `water_priced` | no | no | Conseguenza |
 | teme | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
 | teme | `anointed` | no | no | Conseguenza |
-| teme | `account_settled` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
+| teme | `account_settled` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | teme | `structure:tollgate` | **si'** | **si'** | Pietra |
 | teme | `structure:archive` | **si'** | **si'** | Pietra |
 
@@ -223,7 +223,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `structure:archive` | **si'** | **si'** | Pietra |
 | vuole | `discovery:legend` | no | **si'** | Conseguenza |
 | vuole | `discovery:the_ledger` | no | **si'** | Conseguenza |
-| vuole | `question_unresolved` | no | no | Conseguenza |
+| vuole | `question_unresolved` | no | **si'** | Conseguenza |
 | teme | `mine_sealed` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | teme | `study_supervised` | no | no | Conseguenza |
 | teme | `condition:guarded` | **si'** | no | Conseguenza, faccia della Tensione |
@@ -242,7 +242,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | vuole | `nahr_settled` | **si'** | no | Conseguenza, faccia della Tensione, fatto che dura |
 | vuole | `settlement:village` | **si'** | **si'** | Pietra |
 | vuole | `nomad_range` | no | no | tessera |
-| vuole | `burden_shared` | no | no | Conseguenza, carta Echo |
+| vuole | `burden_shared` | no | **si'** | Conseguenza, carta Echo |
 | teme | `valley_sealed` | no | no | Conseguenza, fatto che dura |
 | teme | `scar:sealed_border` | **si'** | no | Conseguenza, faccia della Tensione |
 | teme | `condition:emptied` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
@@ -260,7 +260,7 @@ cose che nessuno sa dare non ha una strategia: ha un desiderio.
 | | segno | dal Consiglio | da una carta | altrimenti |
 |---|---|---|---|---|
 | vuole | `debt_called` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione |
-| vuole | `account_settled` | **si'** | no | Conseguenza, carta Echo, faccia della Tensione |
+| vuole | `account_settled` | **si'** | **si'** | Conseguenza, carta Echo, faccia della Tensione |
 | vuole | `structure:tollgate` | **si'** | **si'** | Pietra |
 | vuole | `ledger_public` | **si'** | **si'** | Conseguenza, carta Asset, faccia della Tensione, fatto che dura |
 | vuole | `discovery:the_ledger` | no | **si'** | Conseguenza |
@@ -366,17 +366,17 @@ porta del tempo legge (D-290): perderlo non sposta una clausola, sposta
 | `discovery:legend` | LYRA | VAERAX, VETRO | **si'** | Azione stampata, Conseguenza |
 | `discovery:the_ledger` | LYRA, SALE | VETRO | **si'** | Azione stampata, Conseguenza |
 | `faith_established` | VETRO | CENERE, LYRA | **si'** | Conseguenza, faccia della Tensione |
-| `question_unresolved` | LYRA | ALDRIC, SALE | **si'** | Conseguenza |
+| `question_unresolved` | LYRA | ALDRIC, SALE | **si'** | Azione stampata, Conseguenza |
 | `structure:sealed` | VETRO | CENERE, NAHR | **si'** | Conseguenza, faccia della Tensione |
 | `study_supervised` | VAERAX | CENERE, LYRA | — | Conseguenza |
-| `account_settled` | SALE | LIBERE | **si'** | Conseguenza, carta Echo, faccia della Tensione |
+| `account_settled` | SALE | LIBERE | **si'** | Azione stampata, Conseguenza, carta Echo, faccia della Tensione |
 | `condition:contested` | NAHR | ALDRIC | — | Azione stampata, Conseguenza, carta Asset, carta Echo, faccia della Tensione |
 | `crowned` | ALDRIC | LIBERE | **si'** | casato |
 | `debt_forgiven` | LIBERE | SALE | — | Azione stampata, Conseguenza, carta Echo, faccia della Tensione |
 | `discovery:the_charter` | LIBERE | ALDRIC | — | Conseguenza |
 | `nahr_settled` | NAHR | ALDRIC | **si'** | Conseguenza, faccia della Tensione, fatto che dura |
 | `relic_buried` | VETRO | CENERE | **si'** | Conseguenza, faccia della Tensione |
-| `rumour_running` | VAERAX | VETRO | — | Conseguenza |
+| `rumour_running` | VAERAX | VETRO | — | Azione stampata, Conseguenza |
 | `structure:archive` | LYRA | LIBERE | **si'** | Azione stampata, Pietra |
 | `succession_by_law` | ALDRIC | NAHR | **si'** | Azione stampata, Conseguenza, faccia della Tensione, fatto che dura |
 | `water_priced` | SALE | LIBERE | — | Conseguenza |

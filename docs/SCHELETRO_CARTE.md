@@ -26,7 +26,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 
 | mazzo | corpo rimpicciolito | la piu' stretta | illustrazione media | la piu' piccola |
 |---|---|---|---|---|
-| **asset** | 24 su 48 | 84% | 37% | 34% |
+| **asset** | 26 su 48 | 84% | 37% | 34% |
 | **tension** | 0 su 60 | 100% | — | — |
 | **council** | 0 su 60 | 100% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |

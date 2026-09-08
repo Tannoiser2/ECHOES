@@ -45,6 +45,122 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-481 — Due Azioni con lo stesso verbo devono lasciare segni diversi
+
+**implemented in 0.1.451.** Parola del committente: *«via in ordine R14 in
+poi»*, sulle quattro domande che [ISSUES 131](ISSUES.md#131) gli aveva messo
+davanti. Questo verbale risponde a tutte e quattro.
+
+### 1. Le sette senza segni: adesso ne hanno
+
+Sette carte su 48 stampavano lo stesso verbo su tutt'e due le Azioni **e non
+posavano nessun segno**: la differenza fra le due meta' era il verso di un
+numero — «Sigillare in alto» contro «Sigillare in basso», «Portare la folla
+sotto le finestre» contro «Mandare la folla a casa». Al tavolo non sono due
+scelte: sono una scelta e il suo contrario dentro lo stesso gesto.
+
+Ognuna delle quattordici facce adesso lascia un segno, e **nessun segno e'
+nuovo**: sono tutti gia' nel dizionario, gia' scritti da qualcun altro e gia'
+letti — `question_unresolved` da sette mani, `debt_called` da otto,
+`escort_sworn` da quattro.
+
+| carta | prima faccia | seconda faccia |
+|---|---|---|
+| Sigillo | abbassa e **toglie** `question_unresolved` | alza e lo **mette** |
+| Folla | alza e mette `petition_heard` | abbassa e mette `order_restored` |
+| Mobilitazione | alza di 2 e mette `burden_shared` | alza di 1, pesca, e mette `rumour_running` |
+| Braccia Ferme | alza di 2 e mette `question_unresolved` | abbassa, pesca, e mette `burden_shared` |
+| Favore | chiede: `debt_called` | fa: `debt_forgiven` |
+| Ostaggio | mostra: `betrayal_spoken` | restituisce: `account_settled` |
+| Mercenari | prestarli: mette `escort_sworn` su di lei | toglierli: glielo **toglie** |
+
+Cinque voci del dizionario hanno preso un **alias stampabile** — «domanda
+aperta», «richiesta ascoltata», «ordine ristabilito», «peso diviso», «conto
+saldato» — perche' una faccia deve poter nominare il segno col cancelletto, e i
+titoli con l'apostrofo non si stampano (`#una_domanda_e'_rimasta_aperta` non e'
+una parola).
+
+**Sei carte su sette portano segni GLOBAL, e non e' un caso.** Il motore posa il
+segno stampato dove il dizionario dice che vive (D-283): un segno ENTITY vuole
+una casa nominata dall'Azione, e queste sei bersagliano una **questione**, non
+una casa — un segno ENTITY li' non si poserebbe da nessuna parte. Mercenari, che
+bersaglia un'altra casa, e' l'unica che puo' usare `escort_sworn`.
+
+### 2. Le altre undici restano
+
+I segni le distinguono gia'. L'unica che non si distingue nemmeno adesso e'
+**Investitura** — tutt'e due le facce mettono `renowned` — e la ragione e' che
+lo stesso segno va a **due soggetti diversi**: su di lei se la investi, su di te
+se ti fai investire. Il dato non ha modo di dirlo, quindi e' dichiarata in
+`FACCE_GEMELLE_NOTE` con la sua ragione, come i muti del registro.
+
+### 3. La guardia, perche' non ricapiti
+
+`validate_physical.py` ha un controllo nuovo — **due facce gemelle** — e il suo
+autotest sul difetto piantato (52 difetti in tutto, era 51): se due Azioni della
+stessa carta portano lo stesso verbo **e** lo stesso insieme di segni, il
+cancello va rosso. Il difetto si fabbrica invece di cercarlo fra i dati, perche'
+adesso fra i dati non c'e' piu' — e una prova che cerca un difetto riparato
+smette di provare senza dirlo (CLAUDE.md).
+
+### 4. Cosa questo cambia, misurato — e cosa **non** cambia
+
+Cancello dei 100 semi, tavolo misto e uniforme: **0 seggi bloccati su 8**. Le
+Verita' salgono sul misto (273 → 278) e scendono sull'uniforme (269 → 257); i
+Consigli restano (4,86 → 4,82 e 4,76 → 4,75).
+
+**E il numero che il committente guardava non si e' mosso**, e va scritto:
+
+| | prima | dopo |
+|---|---|---|
+| carte col verbo doppio, calate | 29,1% | **29,4%** |
+| le sette, calate | — | **14,3%** |
+| INFLUENZARE, calate | 24,3% | **23,7%** |
+
+**Quello che invece si e' mosso, e si vede sul tavolo:** quelle facce adesso
+**scrivono**, e scrivono su segni che qualcuno legge. In cento anni
+(`docs/MISURA_SEGNI.md`, stesso tavolo e stesso seme):
+
+| segno | prima | dopo |
+|---|---|---|
+| `debt_called` | 231 | **322** |
+| `escort_sworn` | 206 | **224** |
+| `debt_forgiven` | 129 | **136** |
+| `burden_shared` | 72 | **80** |
+| `question_unresolved` | 43 | **46** |
+| `betrayal_spoken` | 12 | **15** |
+| `order_restored` | 7 | **10** |
+| `petition_heard` | 5 | **10** |
+
+Sono **oltre centoquaranta memorie in piu'** che il mondo scrive in cento anni,
+tutte su segni che Destini, profili, Risonanze e la pesca delle domande
+interrogano davvero. Prima quelle sette carte, giocate, non lasciavano niente.
+
+**La causa e' misurata, ed e' un'altra.** `_face_score` sceglie **quale delle
+due meta'** giocare, e quello adesso funziona: prima, con zero segni, le due
+meta' pareggiavano a zero e vinceva sempre la prima — la seconda faccia di
+quelle sette carte non veniva mai giocata. Ma **quante volte una carta si cala**
+non lo decide `_face_score`: lo decide quanto quella carta vale **al voto**. Le
+sette finiscono al voto il 61,1% delle volte che sono in mano, contro il 14,3%
+in cui si calano: non sono carte deboli, sono **monete**.
+
+Quindi la R14 chiude quello che poteva chiudere — al tavolo le due Azioni adesso
+sono due — e consegna il resto alla **R15**, che e' la domanda giusta: se una
+carta rende piu' da moneta che da Azione, il meccanismo del gioco e' il
+Consiglio, non il turno. Non si tocca con una carta: si tocca decidendo cos'e'
+ECHOES.
+
+### 5. Le altre due domande di ISSUES 131
+
+**SEGNARE al 4,6%** e' **poco stampato, non poco appetibile**: sette facce su 96
+sono il 7,3% della carta stampata, e ne esce il 4,6% delle giocate. Lo scarto
+c'e' ed e' piccolo; il verbo non e' morto.
+
+**INFLUENZARE al 23,7%** non e' contenuto morto: e' il verbo che va **piu' di
+tutti** al voto. E' la stessa cosa detta dal fondo — vedi il punto 4.
+
+---
+
 ## D-480 — La scheda della carta non ristampa i posti gia' accesi
 
 **implemented in 0.1.450.** Parola del committente, guardando il tabellone:

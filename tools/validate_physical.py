@@ -1360,7 +1360,74 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 "puo' vederla" % conseguenza.get("id")
             )
 
+    guai.extend(due_facce_uguali(documenti))
     guai.extend(due_domande(documenti))
+    return guai
+
+
+# Le carte che stampano lo stesso verbo su tutt'e due le Azioni **e** gli stessi
+# segni, con la ragione per cui va bene. Sono eccezioni dichiarate, come i muti
+# del registro: si scrivono qui, non si tacciono.
+FACCE_GEMELLE_NOTE: Dict[str, str] = {
+    "AST_AUTHORITY_INVESTITURE":
+        "lo stesso segno va a due soggetti diversi: «Investirla» mette #fama su "
+        "di lei, «Farsi investire» su di te, e il dato non ha modo di dirlo",
+}
+
+
+def due_facce_uguali(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Due Azioni con lo stesso verbo devono lasciare segni diversi** (D-481).
+
+    Parola del committente: *«che poi lo stesso verbo sia sulla stessa carta
+    nelle due azioni non mi va troppo a genio»*. Misurato ([ISSUES
+    131](../docs/ISSUES.md#131)): 18 carte su 48 stampano due volte lo stesso
+    verbo, e sette di quelle non posavano **nessun segno** — la differenza fra
+    le due meta' era solo il verso di un numero, «alza» contro «abbassa».
+
+    Al tavolo due Azioni che si distinguono solo per il segno di un numero non
+    sono due scelte: sono una scelta e il suo contrario, dentro lo stesso gesto.
+    E nel motore sono anche peggio, perche' `_face_score` sceglie la meta'
+    **guardando i segni**: senza segni le due meta' pareggiano a zero e vince
+    sempre la prima, cioe' la seconda non viene mai giocata.
+
+    La guardia: se le due Azioni portano lo stesso verbo, i segni che lasciano —
+    posati e tolti — non possono essere lo stesso insieme, a meno che la carta
+    non stia in `FACCE_GEMELLE_NOTE` con la sua ragione.
+    """
+    guai: List[str] = []
+    for carta in documenti.get("asset", []):
+        azioni = ((carta.get("physical") or {}).get("actions") or [])
+        if len(azioni) != 2:
+            continue
+        verbi = {str((a or {}).get("template", "")) for a in azioni}
+        if len(verbi) != 1:
+            continue
+        firme = []
+        for azione in azioni:
+            posa = tuple(sorted(str(t) for t in (azione.get("puts_tag") or [])))
+            toglie = tuple(sorted(str(t) for t in (azione.get("clears_tag") or [])))
+            firme.append((posa, toglie))
+        if firme[0] != firme[1]:
+            continue
+        carta_id = str(carta.get("id", ""))
+        if carta_id in FACCE_GEMELLE_NOTE:
+            continue
+        guai.append(
+            "due facce gemelle: %s — le sue due Azioni portano lo stesso verbo "
+            "(%s) e lasciano gli stessi segni (%s): al tavolo non sono due "
+            "scelte, e il motore giochera' sempre la prima. Dai a una delle due "
+            "un segno che la distingua, oppure dichiarala in FACCE_GEMELLE_NOTE "
+            "con la ragione." % (
+                carta_id, verbi.pop(),
+                ", ".join(firme[0][0] + firme[0][1]) or "nessuno",
+            )
+        )
+    for carta_id in sorted(set(FACCE_GEMELLE_NOTE) - {
+            str(c.get("id", "")) for c in documenti.get("asset", [])}):
+        guai.append(
+            "«%s» e' dichiarata fra le facce gemelle e non e' una carta: "
+            "togli la riga da FACCE_GEMELLE_NOTE." % carta_id
+        )
     return guai
 
 
@@ -1485,6 +1552,20 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def mano_taciuta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         voce(prova, bersaglio)["read_by"] = [
             m for m in voce(prova, bersaglio)["read_by"] if m != "tension"]
+
+    def facce_gemelle(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Due Azioni identiche nel verbo e nei segni, sulla prima carta utile."""
+        for carta in prova.get("asset", []):
+            azioni = ((carta.get("physical") or {}).get("actions") or [])
+            if len(azioni) != 2 or carta.get("id") in FACCE_GEMELLE_NOTE:
+                continue
+            azioni[1]["template"] = azioni[0]["template"]
+            for chiave in ("puts_tag", "clears_tag"):
+                if chiave in azioni[0]:
+                    azioni[1][chiave] = list(azioni[0][chiave])
+                else:
+                    azioni[1].pop(chiave, None)
+            return
 
     def cancelletto_orfano(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         v = voce(prova, bersaglio)
@@ -1987,6 +2068,12 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "casella senza domanda"),
         pianta("domanda con meno di tre caselle sue", domanda_scoperta,
                "domanda con pochi"),
+        # **Le due facce gemelle** (D-481): fabbricato sulla prima carta a due
+        # Azioni, non cercato fra i dati — le sette che avevano il difetto sono
+        # state riparate, e una prova che cerca un difetto riparato smette di
+        # provare senza dirlo.
+        pianta("due Azioni con lo stesso verbo e gli stessi segni", facce_gemelle,
+               "due facce gemelle"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

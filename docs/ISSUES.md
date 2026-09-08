@@ -10165,7 +10165,7 @@ stessa, ed e' esattamente la frase che si legge come «si torna al primo anno».
 Adesso il tavolo si ripesca e il bottone dice **che anno si gioca**.
 
 
-### 131. Il verbo doppio: una carta su tre porta due volte lo stesso verbo, e il tavolo la gioca meta'
+### 131. ✅ Il verbo doppio: una carta su tre porta due volte lo stesso verbo, e il tavolo la gioca meta' — CHIUSA in 0.1.451: le sette hanno i loro segni, e il resto e' la 132
 
 `regole` · `bilanciamento` · `da-decidere` · voluta dal committente · **aperta in 0.1.446**
 
@@ -10233,6 +10233,32 @@ INFLUENZARE, che e' il fondo, e FORGIARE.
    ([59](#59), chiusa in 0.1.412) che il numero riapre da un'altra parte: non
    e' contenuto morto — va al voto piu' di tutti — ma come **Azione** e' il
    fondo del tavolo.
+
+
+**Chiusa in 0.1.451** ([D-481](DECISIONS.md#d-481)), sulla parola del
+committente *«via in ordine R14 in poi»*. Le quattro risposte:
+
+1. **Le sette senza segni**: ognuna delle quattordici facce lascia adesso un
+   segno — nessuno nuovo, tutti gia' nel dizionario e gia' letti. Sigillo mette
+   e toglie `question_unresolved`, Favore chiama e rimette il debito, Mercenari
+   giura e disgiura la scorta. E una **guardia nuova** in `validate_physical.py`
+   (col suo autotest, 52 difetti piantati) va rossa se due Azioni con lo stesso
+   verbo portano gli stessi segni.
+2. **Le altre undici restano.** L'unica che non si distingue nemmeno nel dato e'
+   **Investitura** — `renowned` su tutt'e due le facce, ma a due soggetti
+   diversi — ed e' dichiarata con la sua ragione.
+3. **SEGNARE** e' **poco stampato, non poco appetibile**: 7 facce su 96 (7,3%)
+   per il 4,6% delle giocate.
+4. **INFLUENZARE** non e' contenuto morto: e' il verbo che va **piu' di tutti**
+   al voto.
+
+**E il numero che aveva aperto la voce non si e' mosso**: le carte col verbo
+doppio si calano il **29,4%** (era 29,1%), le sette il **14,3%**, INFLUENZARE il
+**23,7%** (era 24,3%). La causa e' misurata ed e' un'altra: `_face_score`
+sceglie **quale meta'** — e quello adesso funziona, prima con zero segni vinceva
+sempre la prima — ma **quante volte una carta si cala** lo decide quanto vale al
+voto. Le sette finiscono al voto il **61,1%** delle volte: non sono carte
+deboli, sono **monete**. Il seguito e' la [132](#132), che e' la domanda giusta.
 
 
 ### 132. Le scelte ci sono e non si accumulano: qual e' il meccanismo di ECHOES

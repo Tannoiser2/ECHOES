@@ -11,15 +11,19 @@
         "GLOBAL"
       ],
       "written_by": [
+        "asset_physical",
         "consequence",
-        "tension",
-        "echo_card"
+        "echo_card",
+        "tension"
       ],
       "read_by": [
         "destiny_physical",
         "entity_strategic_profile"
       ],
-      "note": "memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399)"
+      "note": "memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399)",
+      "aliases": [
+        "conto saldato"
+      ]
     },
     {
       "id": "amnesty_granted",
@@ -131,6 +135,7 @@
         "GLOBAL"
       ],
       "written_by": [
+        "asset_physical",
         "consequence",
         "echo_card"
       ],
@@ -139,7 +144,10 @@
         "entity",
         "entity_strategic_profile"
       ],
-      "note": "memoria del mondo: narrata (D-103), ereditata"
+      "note": "memoria del mondo: narrata (D-103), ereditata",
+      "aliases": [
+        "peso diviso"
+      ]
     },
     {
       "id": "capital",
@@ -1999,6 +2007,7 @@
         "GLOBAL"
       ],
       "written_by": [
+        "asset_physical",
         "consequence",
         "tension"
       ],
@@ -2008,7 +2017,10 @@
         "destiny_physical",
         "echo_card"
       ],
-      "note": "vita postuma: vive nella sua forma legend:"
+      "note": "vita postuma: vive nella sua forma legend:",
+      "aliases": [
+        "ordine ristabilito"
+      ]
     },
     {
       "id": "parley_held",
@@ -2035,12 +2047,16 @@
         "GLOBAL"
       ],
       "written_by": [
+        "asset_physical",
         "echo_card"
       ],
       "read_by": [
         "asset_physical"
       ],
-      "note": "memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**, come `parley_held`: e' una cosa successa, non una cosa da ottenere (D-394)."
+      "note": "memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**, come `parley_held`: e' una cosa successa, non una cosa da ottenere (D-394).",
+      "aliases": [
+        "richiesta ascoltata"
+      ]
     },
     {
       "id": "place:collapsed_pass",
@@ -2215,6 +2231,7 @@
         "GLOBAL"
       ],
       "written_by": [
+        "asset_physical",
         "consequence"
       ],
       "read_by": [
@@ -2225,6 +2242,9 @@
         "entity_strategic_profile",
         "objective",
         "echo_card"
+      ],
+      "aliases": [
+        "domanda aperta"
       ]
     },
     {
@@ -2333,6 +2353,7 @@
         "la voce corre"
       ],
       "written_by": [
+        "asset_physical",
         "consequence"
       ],
       "read_by": [
