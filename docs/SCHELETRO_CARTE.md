@@ -28,7 +28,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 |---|---|---|---|---|
 | **asset** | 26 su 48 | 84% | 37% | 34% |
 | **tension** | 0 su 60 | 100% | — | — |
-| **council** | 0 su 60 | 100% | — | — |
+| **council** | 48 su 60 | 80% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
 | **objective** | 0 su 19 | 100% | 52% | 52% |
 | **entity** | 0 su 32 | 100% | 52% | 52% |

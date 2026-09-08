@@ -273,9 +273,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **138** |
-| chiuse | **126** |
-| aperte | **12** |
-| di cui **aspettano una tua decisione** | **2** |
+| chiuse | **127** |
+| aperte | **11** |
+| di cui **aspettano una tua decisione** | **1** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,19 +305,19 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **2** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **1** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dodici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su due tue parole.**
+**Una.** Delle undici voci aperte, una le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su una tua parola.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **due**
+# 🔴 Aspettano te: **una**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
 sono state quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai
@@ -518,7 +518,7 @@ restituiscono tutte e diciassette (276 → 293). Cancello **0 su 8** dopo ognuna
 delle quattro.
 
 
-### R16. [133](ISSUES.md#133) — le caselle del Consiglio: **aperta in 0.1.448**
+### ✔ R16. [133](ISSUES.md#133) — le caselle del Consiglio: **aperta in 0.1.448**
 
 *«Continua a non convincermi scaldare il tema che si sta dibattendo, non ha
 senso, a cosa serve. Poi non si capisce cosa vuol dire "Sul luogo si alza un
@@ -597,6 +597,28 @@ Quattro cose da decidere:
    solo e va bene così?
 4. **Le cinque Cicatrici**: è la stessa domanda della R16 punto 2, e la
    risposta vale per tutt'e due.
+
+**E la tua parola e' arrivata**: *«via in ordine R14 in poi»*. **Chiusa in
+0.1.456** ([D-486](DECISIONS.md#d-486)).
+
+1. **Scaldare il Tema adesso costa.** Il Calore che posi su quella casella
+   **resta**: l'Atto nuovo comincia con quel Calore, e la domanda torna prima. E'
+   la sola cosa che attraversa l'Atto. Il tavolo se n'e' accorto e la compra
+   meno: 287 → **244**.
+2. **Le frasi dicono cosa cambia**: 427 riscritte, coi numeri veri. *«Sul luogo
+   si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.»*
+   *«Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine
+   partita, e chi conta le Cicatrici la conta.»*
+3. **Le 44 caselle mute sono otto**, e le otto sono due segni soli: una
+   Cicatrice (che pesa nel conteggio) e un muto gia' dichiarato. Non l'ho
+   riparato a parte: l'hanno fatto le quattro regole della R15 e i segni delle
+   sette carte della R14.
+4. **Le 19 mai comprate: non e' il tavolo, sono le carte.** Delle 25 caselle del
+   vocabolario, **13 non sono stampate su nessuna carta**. Il motore le esegue
+   tutte; nessuna carta le offre. E' contenuto da scrivere, e te lo lascio
+   scritto invece di nasconderlo.
+
+Cancello **0 su 8**, Verita' 292 → 285 sul misto e 244 → **251** sull'uniforme.
 
 
 ---
@@ -1303,9 +1325,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
 muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **due aspettano una tua parola**.
+fuori dalla lista, e **una aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

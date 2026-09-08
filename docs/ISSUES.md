@@ -10451,7 +10451,7 @@ dove puoi giocare domani, e quello che costruisci cambia cosa puoi fare.
    **234** sull'uniforme.
 
 
-### 133. Le caselle del Consiglio: una su cinque non fa niente, e le frasi non dicono cosa cambia
+### 133. ✅ Le caselle del Consiglio: una su cinque non fa niente, e le frasi non dicono cosa cambia — CHIUSA in 0.1.456: il Calore resta, le frasi dicono l'effetto, i muti sono otto
 
 `regole` · `ux` · `da-decidere` · voluta dal committente · **aperta in 0.1.448**
 
@@ -10508,19 +10508,33 @@ gioca non ha modo di sapere cosa cambia. TOLL: offerta 1.866, comprata 149.
 **E una terza cosa che la sonda dice da se':** delle 32 caselle del vocabolario
 ne vengono comprate **13**. Diciannove non escono mai.
 
-**Cosa resta da decidere, e lo decide il committente:**
+**Chiusa in 0.1.456** ([D-486](DECISIONS.md#d-486)), sulla parola *«via in
+ordine R14 in poi»*. Le quattro risposte:
 
-1. **Scaldare il Tema in dibattito**: si toglie dalle liste, o gli si da' un
-   effetto che sopravviva all'Atto (per esempio: il Calore non speso passa
-   all'Atto dopo, che ROADMAP §4.1 chiama gia' «taratura d'autore»)?
-2. **Le 44 caselle mute**: si fanno mordere — una regola che legga
-   `scar:unanswered` e le altre — o si tolgono? E' la stessa regola che D-475
-   ha applicato alle Conseguenze senza strada, e si puo' mettere sotto la
-   stessa guardia.
-3. **Le frasi**: la casella dice il gesto (*«Sul luogo si alza un pedaggio»*) e
-   deve dire l'effetto (*«chi entra qui paga»*). E' riscrittura di testo su 32
-   caselle, e la voce di chi scrive e' del committente.
-4. **Le 19 caselle mai comprate**: contenuto che il tavolo non sceglie mai.
+1. ✔ **Scaldare il Tema costa davvero**: il Calore posato da quella casella si
+   segna a parte (`KEEP_THEME_HEAT`, Effetto nuovo col suo inverso) e **torna
+   sul tavolo appena i mucchi sono spenti** — e' la sola cosa che attraversa
+   l'Atto, e vale una volta sola. E' la taratura d'autore di ROADMAP §4.1,
+   decisa nel modo piu' piccolo possibile. La carta adesso lo dice, e il tavolo
+   la compra meno: **287 → 244**.
+2. ✔ **Le 44 caselle mute sono otto**: dei 37 segni che le caselle posano, non
+   letti da nessuno ne restano **due** — `scar:plundered` (7 caselle, ed e' una
+   Cicatrice: pesa nel conteggio che 22 clausole interrogano) e `watched` (1,
+   muto dichiarato). Non e' stato un lavoro a parte: le quattro regole di
+   [D-483](DECISIONS.md#d-483) e i segni delle sette carte di
+   [D-481](DECISIONS.md#d-481) hanno fatto mordere quasi tutto.
+3. ✔ **Le frasi dicono l'effetto**: **427 frasi riscritte** su 18 modelli, coi
+   numeri veri — `#conteso` e `#malcontento` alzano la soglia di 1, `#indebitata`
+   e `#razionato` la abbassano, `#sorvegliata` vieta di tramare li', il Granaio
+   fa firmare i patti senza pagare il Legame. *«Sul luogo si alza un pedaggio:
+   da qui in poi chi ci passa paga chi lo controlla.»*
+4. ✔ **Le 19 mai comprate: non e' il tavolo, sono le carte.** Delle 25 caselle
+   del vocabolario, **13 non sono stampate su nessuna carta Tensione**. Il
+   motore le esegue tutte — `MISURA_CASELLE.md` lo verifica chiamandole una per
+   una — e nessuna carta le offre. E' contenuto da scrivere, e resta dichiarato.
+
+**Cancello 0 su 8**, Verita' 292 → **285** sul misto e 244 → **251**
+sull'uniforme.
 
 
 

@@ -44,6 +44,9 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		# `theme_decks` le Tensioni coperte del Tema, `theme_front` la carta
 		# girata.
 		"theme_heat": {},
+		# Quanto Calore, di quello posato dalle caselle del Consiglio,
+		# sopravvive alla spesa dei mucchi (D-486).
+		"theme_heat_kept": {},
 		"theme_tokens": {},
 		"theme_decks": {},
 		"theme_front": {},
@@ -156,6 +159,7 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 	# scalda lo stesso — e' il tavolo che dice dove il mondo sta guardando.
 	for theme_id in data.themes:
 		world["theme_heat"][str(theme_id)] = 0
+		world["theme_heat_kept"][str(theme_id)] = 0
 		world["theme_tokens"][str(theme_id)] = 0
 
 	deal_theme_decks(world, chronicle, data, rng)

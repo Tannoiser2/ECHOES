@@ -65,14 +65,14 @@ Il grano del fondo ha una muffa scura. Si puo' non vederla, se si ha abbastanza 
 ### A · Nella Regione di cui si discute, chi apre i sili e guarda dentro?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E del raccolto marcito, chi risponde?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto · La Distribuzione Verificata
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -85,14 +85,14 @@ Sul tratto in ombra qualcuno riscuote un pedaggio che nessun Consiglio ha scritt
 ### A · Chi ha teso la catena sulla strada, e con che diritto?
 
 - **Se vince, a prescindere dalle pedine:** Il Pedaggio Scritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato chiamato.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato chiamato.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E i carri che passano domani, chi li accompagna?
 
 - **Se vince, a prescindere dalle pedine:** La Scorta Giurata
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato chiamato. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato chiamato. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -105,14 +105,14 @@ Le pietre che dicono dove finisce il mio e comincia il tuo si sono mosse. Le pie
 ### A · Tre pietre di confine si sono mosse: si cammina il confine, o si riscrive il catasto?
 
 - **Se vince, a prescindere dalle pedine:** Il Conto Saldato
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi le ha spostate, si cerca?
 
 - **Se vince, a prescindere dalle pedine:** La Parola Fredda
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -126,14 +126,14 @@ La palude restituisce corpi che nessuno ha sepolto secondo il rito. Vecchi. Alcu
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
 - **Se il tavolo la respinge:** La Teca Murata
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente: l'abbandono. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la reliquia e' tornata sottoterra.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E l'acqua che li ha scoperti, si rimanda dov'era?
 
 - **Se vince, a prescindere dalle pedine:** I Canali Riaperti
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -168,14 +168,14 @@ Il bosco rende: legna, carbone, terra nuova. Rende una volta sola.
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta
 - **Se il tavolo la respinge:** Si Spreme Quello Che C'e'
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato messo a rendere.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sfruttato. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il Cristallo e' stato messo a rendere.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sfruttato. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E le fornaci, si fermano una stagione?
 
 - **Se vince, a prescindere dalle pedine:** Il Mercato Spostato
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato messo a rendere. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il Cristallo e' stato messo a rendere. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -188,14 +188,14 @@ Chi siede decide. Percio' la prima decisione e' sempre chi siede.
 ### A · Chi si siede al tavolo, e chi lo decide?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta vale anche per chi non siede.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #malcontento. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta vale anche per chi non siede.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E un veto, quanto vale?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta vale anche per chi non siede. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta vale anche per chi non siede. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -208,14 +208,14 @@ Le notizie viaggiano a cavallo di chi le porta. Chi paga le staffette sceglie co
 ### A · Chi paga le staffette, e cosa compra davvero?
 
 - **Se vince, a prescindere dalle pedine:** La Scorta Giurata
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: quello che si e' capito resta scritto.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: quello che si e' capito resta scritto.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E le lettere che arrivano aperte, per le mani di chi sono passate?
 
 - **Se vince, a prescindere dalle pedine:** Il Conto Saldato
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: quello che si e' capito resta scritto. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: quello che si e' capito resta scritto. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -251,14 +251,14 @@ Ci sono acque dove le pertiche non toccano. I pescatori ci buttano una moneta e 
 ### A · Le reti tornano strappate e non dai sassi: si pesca ancora nel fondo, o si gira largo?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E andare a vedere cosa c'è sotto, conviene a qualcuno?
 
 - **Se vince, a prescindere dalle pedine:** Studio sotto Custodia
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -271,14 +271,14 @@ In fondo alle gallerie qualcosa risponde ai colpi. Con un ritardo. Sempre lo ste
 ### A · In fondo qualcosa risponde ai colpi nella Regione di cui si discute: si scende a vedere chi, o si smette di battere?
 
 - **Se vince, a prescindere dalle pedine:** Studio sotto Custodia
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la miniera e' stata chiusa.
-- **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la miniera e' stata chiusa.
+- **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E il turno lungo, chi lo fa adesso?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la miniera e' stata chiusa. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la miniera e' stata chiusa. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -291,14 +291,14 @@ Il mare ha smesso di dare. Nessuno sa a chi chiedere il perche', e intanto le ba
 ### A · Chi pesca nella Regione di cui si discute, adesso che le reti tornano vuote?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato rimesso.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E le barche ferme, di chi restano?
 
 - **Se vince, a prescindere dalle pedine:** Il Luogo Abbandonato
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -312,14 +312,14 @@ I pali nuovi spuntano di notte. La terra che era di tutti, al mattino, ha un pad
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
 - **Se il tavolo la respinge:** La Domanda Ripresa
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta e' stata scritta.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E l'uso della terra, a chi resta?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta e' stata scritta. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -333,14 +333,14 @@ I campi rendono meno ogni anno, e nessuno vuole essere il primo a lasciarli ripo
 
 - **Se vince, a prescindere dalle pedine:** Il Raccolto Torna
 - **Se il tavolo la respinge:** Si Spreme Quello Che C'e'
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato rimesso.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi non può permetterselo, come semina?
 
 - **Se vince, a prescindere dalle pedine:** Il Granaio del Trono
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -376,14 +376,14 @@ Un'unica barca collega l'isola. Chi la governa, governa l'isola piu' del suo pad
 ### A · La traversata ha un prezzo: chi lo scrive, e chi lo riscuote?
 
 - **Se vince, a prescindere dalle pedine:** Il Pedaggio Scritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E se una barca sola non basta piu'?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -396,14 +396,14 @@ Gli argini vecchi tengono per abitudine. L'acqua non ha abitudini.
 ### A · La palude è salita di un palmo nella Regione di cui si discute: si rifanno gli argini, o si arretra?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente: il confine sigillato. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E i canali vecchi, si riaprono?
 
 - **Se vince, a prescindere dalle pedine:** I Canali Riaperti
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -416,14 +416,14 @@ Due gilde si contendono le stesse strade. Per ora si rubano i clienti. Le vie so
 ### A · Le vie sono strette: di chi sono?
 
 - **Se vince, a prescindere dalle pedine:** Il Mercato Spostato
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E del magazzino bruciato, chi risponde?
 
 - **Se vince, a prescindere dalle pedine:** Il Conto Saldato
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -436,14 +436,14 @@ Qualcuno predica una fede quasi uguale. Il quasi e' il problema.
 ### A · Si predica una parola nuova nella Regione di cui si discute: si stabilisce cosa si può dire, o si lascia dire?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la fede ha una casa riconosciuta.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la fede ha una casa riconosciuta.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E a chi la ascolta, cosa si fa?
 
 - **Se vince, a prescindere dalle pedine:** La Voce Gira Lo Stesso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la fede ha una casa riconosciuta. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la fede ha una casa riconosciuta. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -456,14 +456,14 @@ Si chiamano ospiti. Mangiano a corte, dormono a corte, e non possono andarsene.
 ### A · Gli ospiti di corte, quando possono tornare a casa?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'ordine e' stato rimesso in piedi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'ordine e' stato rimesso in piedi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi risponde di loro?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'ordine e' stato rimesso in piedi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'ordine e' stato rimesso in piedi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -476,14 +476,14 @@ Sull'isola c'e' un altare piu' vecchio della fede che lo usa. Le barche hanno ri
 ### A · Sull'isola c'è un altare più vecchio della fede che lo usa: chi lo custodisce?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la fede ha una casa riconosciuta.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la fede ha una casa riconosciuta.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E il rito, si scrive nuovo o si copia il vecchio?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la fede ha una casa riconosciuta. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la fede ha una casa riconosciuta. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -496,14 +496,14 @@ Sull'isola i suoni durano meno. Le parole cadono corte. Nessuno ci passa la nott
 ### A · Sull'isola le parole cadono corte: ci si sbarca ancora, o si gira al largo?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: della montagna si e' smesso di parlare.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: della montagna si e' smesso di parlare.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E a chi ci ha già passato la notte, cosa si chiede?
 
 - **Se vince, a prescindere dalle pedine:** Studio sotto Custodia
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: della montagna si e' smesso di parlare. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: della montagna si e' smesso di parlare. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -516,14 +516,14 @@ Braccia senza terra, terra senza braccia: il conto non torna, e chi lavora comin
 ### A · Braccia senza terra e terra senza braccia: si scrive un patto di lavoro, o si lascia contrattare?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta e' stata scritta.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E dare terra a chi la lavora, si può?
 
 - **Se vince, a prescindere dalle pedine:** La Marca Concessa
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta e' stata scritta. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -536,14 +536,14 @@ Scrivere di chi e' la terra e' un modo di prendersela. Non scriverlo e' un altro
 ### A · Il trono vuole un registro delle terre: chi misura?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi non si fa scrivere?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Rifiutata
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -556,14 +556,14 @@ Servono braccia per le armi. Le stesse braccia servivano per il raccolto.
 ### A · Nella Regione di cui si discute, chi decide quante braccia vanno alle armi?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta · La Quota Garantita
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'ordine e' stato rimesso in piedi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'ordine e' stato rimesso in piedi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E il raccolto che resta indietro, chi lo perde?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'ordine e' stato rimesso in piedi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'ordine e' stato rimesso in piedi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -576,14 +576,14 @@ Ai margini il potere arriva stanco. Chi vive sul confine obbedisce a chi e' piu'
 ### A · Ai margini della Regione di cui si discute, a chi si obbedisce davvero?
 
 - **Se vince, a prescindere dalle pedine:** Il Prezzo del Consenso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la corona e' stata divisa.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la corona e' stata divisa.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E i titoli che si danno da soli, valgono?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la corona e' stata divisa. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la corona e' stata divisa. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -596,14 +596,14 @@ Dalla palude sale una febbre lenta che non uccide subito. Prima toglie le forze,
 ### A · Nella Regione di cui si discute, chi manda gli uomini a prosciugare?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente: l'abbandono. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E i malati, chi se li tiene?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -637,14 +637,14 @@ Sotto i sentieri ci sono strade piu' vecchie, dritte come nessuno costruisce piu
 ### A · Le vie di prima portano tutte nello stesso posto: si mappano, o le trova chi capita?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E dove finiscono, cosa ci si fa?
 
 - **Se vince, a prescindere dalle pedine:** I Canali Riaperti
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -657,14 +657,14 @@ Hanno servito il potere di prima. Il potere di adesso non si fida, e non puo' co
 ### A · Le insegne del vecchio ordine, si portano ancora?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la successione e' scritta in una legge.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la successione e' scritta in una legge.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi comanda i veterani?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la successione e' scritta in una legge. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la successione e' scritta in una legge. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -677,14 +677,14 @@ I posti hanno due nomi: quello che si usa e quello che si evita. Qualcuno ha rip
 ### A · I nomi vecchi sono tornati sui muri: si stabilisce cosa vogliono dire, o si cancellano?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Archivio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: quello che si e' capito resta scritto.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: quello che si e' capito resta scritto.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E dirli, si può?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: quello che si e' capito resta scritto. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: quello che si e' capito resta scritto. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -697,14 +697,14 @@ Le greggi non leggono i confini. I pastori si', e li leggono diversi.
 ### A · Due greggi sullo stesso pascolo nella Regione di cui si discute: si fa un calendario, o decide l'erba?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Villaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Villaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E il margine, si divide?
 
 - **Se vince, a prescindere dalle pedine:** La Marca Concessa
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -718,14 +718,14 @@ Arrivano a piedi, mangiano poco, pregano molto. Sono tanti, e continuano ad arri
 
 - **Se vince, a prescindere dalle pedine:** Il Granaio del Trono
 - **Se il tavolo la respinge:** La Cinghia Stretta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la reliquia e' tornata sottoterra.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E l'anno santo, lo dichiara qualcuno?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -758,14 +758,14 @@ Qualcuno ha letto nei cristalli una data. Da allora, tutto quello che succede se
 ### A · Gira una profezia con un numero dentro: si discute la lettura, o si lascia contare?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato misurato.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il Cristallo e' stato misurato.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E il giorno dopo la data, cosa si fa?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato misurato. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il Cristallo e' stato misurato. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -778,14 +778,14 @@ Fermare i malanni vuol dire fermare le strade. Le strade sono quelle che danno d
 ### A · Chi traccia il cordone nella Regione di cui si discute, e dove passa?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: il confine sigillato. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi resta fuori, dove va?
 
 - **Se vince, a prescindere dalle pedine:** Il Luogo Abbandonato
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -798,14 +798,14 @@ Arrivano con quello che portano addosso. Da qualcosa scappano, e nessuno chiede 
 ### A · Nella Regione di cui si discute, chi decide dove si fermano quelli che arrivano?
 
 - **Se vince, a prescindere dalle pedine:** Il Seggio Preso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #malcontento. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi paga il pane in piu'?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -818,14 +818,14 @@ Chi governa in nome di un altro governa comunque. E ci prende gusto.
 ### A · Il sigillo, fino a quando lo tiene il reggente?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la corona e' stata divisa.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la corona e' stata divisa.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E dopo, a chi torna?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la corona e' stata divisa. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la corona e' stata divisa. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -883,14 +883,14 @@ Dove l'acqua si ritira resta il sale, e il sale vale. La terra che lo da' non da
 ### A · Le vasche rendono come un raccolto nella Regione di cui si discute: chi fissa il prezzo del sale?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i conti sono stati chiusi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sfruttato. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i conti sono stati chiusi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sfruttato. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E le vasche, si contano?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i conti sono stati chiusi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i conti sono stati chiusi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -903,14 +903,14 @@ Chi tocca l'altare non si tocca. Era una regola comoda finche' non ci si e' aggr
 ### A · Un ricercato tiene l'altare nella Regione di cui si discute: dove finisce l'asilo?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta e' stata scritta.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E gli armati davanti alla porta, chi li manda via?
 
 - **Se vince, a prescindere dalle pedine:** Gli Uomini alla Porta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la Carta e' stata scritta. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la Carta e' stata scritta. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -923,14 +923,14 @@ Un sigillo vale quanto la cera se nessuno controlla la mano che lo preme.
 ### A · Chi controlla la mano che preme il sigillo?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E gli ordini gia' partiti, valgono?
 
 - **Se vince, a prescindere dalle pedine:** Il Prezzo del Consenso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -943,14 +943,14 @@ Le campane non suonano da tre lune. Nessuno ha deciso il silenzio, e nessuno osa
 ### A · Le campane tacciono da tre lune nella Regione di cui si discute: si torna a suonarle, e per chi?
 
 - **Se vince, a prescindere dalle pedine:** L'Ordine Rimesso in Piedi
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la fede ha una casa riconosciuta.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Torre di veglia. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la fede ha una casa riconosciuta.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi ha deciso il silenzio, si scopre?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la fede ha una casa riconosciuta. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la fede ha una casa riconosciuta. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -963,14 +963,14 @@ Una volta le barche passavano dalla palude. I canali ci sono ancora, sotto: chie
 ### A · Chi manda le braccia a scavare, e per quante stagioni?
 
 - **Se vince, a prescindere dalle pedine:** I Canali Riaperti
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: l'abbandono. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Canale. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E quando l'acqua torna a correre, di chi e'?
 
 - **Se vince, a prescindere dalle pedine:** L'Acqua a Prezzo
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: l'acqua torna a muoversi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -983,14 +983,14 @@ Non e' solo la montagna a dormire. I racconti contano sette dormienti, e uno si 
 ### A · I racconti contano sette dormienti e uno si è svegliato: si contano sul serio, o si smette di contarli?
 
 - **Se vince, a prescindere dalle pedine:** La Leggenda Messa per Iscritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Archivio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la miniera e' stata chiusa.
-- **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la miniera e' stata chiusa.
+- **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E dove si dorme, chi veglia?
 
 - **Se vince, a prescindere dalle pedine:** Gli Uomini alla Porta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la miniera e' stata chiusa. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la miniera e' stata chiusa. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1003,14 +1003,14 @@ Quello che non passa dal molo passa dalla cala. Il porto vive due volte: di gior
 ### A · La cala vecchia scarica di notte: si chiude, o si apre?
 
 - **Se vince, a prescindere dalle pedine:** Il Debito Rimesso
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E i doganieri che guardano il mare sbagliato?
 
 - **Se vince, a prescindere dalle pedine:** Gli Uomini alla Porta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1067,14 +1067,14 @@ Una parte del raccolto va agli dei. Chi la raccoglie per loro, intanto, la tiene
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
 - **Se il tavolo la respinge:** Si Spreme Quello Che C'e'
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E in un anno magro, si paga lo stesso?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta · Il Debito a Rate
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1087,14 +1087,14 @@ Il tributo si paga a chi protegge. Quando la protezione non si vede, il tributo 
 ### A · Il tributo si paga intero, in un anno che ha reso a meta'?
 
 - **Se vince, a prescindere dalle pedine:** Il Pedaggio Scritto
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i conti sono stati chiusi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i conti sono stati chiusi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #svuotato. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E in cambio di che cosa, esattamente?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i conti sono stati chiusi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i conti sono stati chiusi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1108,14 +1108,14 @@ Lo scavo ha trovato qualcosa di fabbricato. Nessuna fucina di adesso sa fabbrica
 
 - **Se vince, a prescindere dalle pedine:** La Teca Aperta
 - **Se il tavolo la respinge:** La Teca Murata
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato misurato.
-- **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Sito dormiente. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il Cristallo e' stato misurato.
+- **Costi che puo' sostenere (3):** Il luogo viene murato: quello che sta sotto resta sotto. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E studiarlo, con quali regole?
 
 - **Se vince, a prescindere dalle pedine:** Studio sotto Custodia
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il Cristallo e' stato misurato. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il Cristallo e' stato misurato. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1128,14 +1128,14 @@ Promesse fatte agli dei in anni cattivi. Gli anni sono passati, le promesse no.
 ### A · Mezzo paese ha un voto da sciogliere: si scioglie tutto insieme, o uno per uno?
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Archivio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: quello che si e' capito resta scritto.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente: la domanda sul muro. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: quello che si e' capito resta scritto.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi non lo scioglie, si conta?
 
 - **Se vince, a prescindere dalle pedine:** Il Conto in Vite
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: quello che si e' capito resta scritto. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: quello che si e' capito resta scritto. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1149,14 +1149,14 @@ Attorno alle terre selvagge ci sono pietre incise, a distanze regolari. Una e' c
 
 - **Se vince, a prescindere dalle pedine:** La Custodia Riconosciuta
 - **Se il tavolo la respinge:** La Teca Murata
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente: l'abbandono. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la reliquia e' tornata sottoterra.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #lutto. · Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E il margine, chi lo gira?
 
 - **Se vince, a prescindere dalle pedine:** Gli Uomini alla Porta
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: la reliquia e' tornata sottoterra. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1190,14 +1190,14 @@ Il braccio di Eredan non e' il braccio del porto. Su ogni differenza, qualcuno g
 ### A · Di chi e' il braccio con cui si misura?
 
 - **Se vince, a prescindere dalle pedine:** La Carta Scritta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: passata di mano. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E chi guarda le bilance quando il mercato e' pieno?
 
 - **Se vince, a prescindere dalle pedine:** Il Registro Aperto
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il registro e' aperto a chi vuole leggerlo. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1210,14 +1210,14 @@ Il freddo non e' una carestia. E' la carestia con la porta chiusa.
 ### A · Nella Regione di cui si discute, chi distribuisce la legna quando gela?
 
 - **Se vince, a prescindere dalle pedine:** La Razione Imposta
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato. · Accetta 1 Cicatrice permanente: il confine sigillato. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato rimesso.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1. · Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E i debiti dell'inverno, si contano a primavera?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: il debito e' stato rimesso. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 
@@ -1230,14 +1230,14 @@ I lupi hanno smesso di aver paura. Qualcosa nel bosco li ha convinti che di qua 
 ### A · Chi veglia il limitare nella Regione di cui si discute?
 
 - **Se vince, a prescindere dalle pedine:** La Veglia sulla Montagna
-- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
-- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata. · Accetta 1 Cicatrice permanente: la razzia. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Costruisci 1 Pietra nel luogo: Foresta. · Assegna o trasferisci il controllo del luogo. · Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi.
+- **Costi che puo' sostenere (3):** Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama. · Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ### B · E le bestie perse, chi le rimette?
 
 - **Se vince, a prescindere dalle pedine:** Il Peso Diviso
-- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0). · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori. · Togli una condizione dal luogo.
-- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata. · Sul luogo si alza un pedaggio. · Il Tema di questa domanda si scalda di 1.
+- **Benefici che puo' sostenere (4):** Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo. · Il mondo ricorda: i Nahr hanno un posto dove fermarsi. · Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola. · Togli una condizione dal luogo.
+- **Costi che puo' sostenere (4):** Cedi il controllo del luogo. · Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1. · Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla. · Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 ---
 

@@ -690,7 +690,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_CONTROL`**
@@ -698,7 +698,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_REMEMBER`**
@@ -706,7 +706,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_BAD_GRAIN, si ottiene — B_CLEAR`**
@@ -714,7 +714,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_BAD_GRAIN, si paga — C_YIELD`**
@@ -722,19 +722,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_BAD_GRAIN, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_BAD_GRAIN, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_BAD_GRAIN, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BAD_GRAIN, se cade — F_CONDITION`**
@@ -742,7 +742,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BAD_GRAIN, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BLACK_TOLLS`**
@@ -780,7 +780,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_CONTROL`**
@@ -788,7 +788,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_REMEMBER`**
@@ -796,7 +796,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_BLACK_TOLLS, si ottiene — B_CLEAR`**
@@ -804,7 +804,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_BLACK_TOLLS, si paga — C_YIELD`**
@@ -812,19 +812,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_BLACK_TOLLS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_BLACK_TOLLS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_BLACK_TOLLS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BLACK_TOLLS, se cade — F_CONDITION`**
@@ -832,7 +832,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BLACK_TOLLS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BOUNDARY_STONES`**
@@ -882,7 +882,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BOUNDARY_STONES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_BOUNDARY_STONES, si ottiene — B_REMEMBER`**
@@ -890,7 +890,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BOUNDARY_STONES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_BOUNDARY_STONES, si ottiene — B_CLEAR`**
@@ -898,7 +898,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BOUNDARY_STONES, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_BOUNDARY_STONES, si paga — C_YIELD`**
@@ -906,27 +906,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BOUNDARY_STONES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_BOUNDARY_STONES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_BOUNDARY_STONES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_BOUNDARY_STONES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BOUNDARY_STONES, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_BOUNDARY_STONES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BURIALS`**
@@ -976,7 +976,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BURIALS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_BURIALS, si ottiene — B_REMEMBER`**
@@ -984,7 +984,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BURIALS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_BURIALS, si ottiene — B_CLEAR`**
@@ -1000,19 +1000,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BURIALS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_BURIALS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: l'abbandono.
+> Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_BURIALS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_BURIALS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_BURIALS, se cade — F_CONDITION`**
@@ -1020,7 +1020,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_BURIALS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_CHARTER`**
@@ -1164,7 +1164,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_CLEARING, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_CLEARING, si ottiene — B_REMEMBER`**
@@ -1172,7 +1172,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_CLEARING, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_CLEARING, si ottiene — B_CLEAR`**
@@ -1188,19 +1188,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_CLEARING, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_CLEARING, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_CLEARING, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_CLEARING, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_CLEARING, se cade — F_CONDITION`**
@@ -1208,7 +1208,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_CLEARING, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_COUNCIL_SEATS`**
@@ -1254,7 +1254,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COUNCIL_SEATS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_COUNCIL_SEATS, si ottiene — B_REMEMBER`**
@@ -1262,7 +1262,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COUNCIL_SEATS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_COUNCIL_SEATS, si ottiene — B_CLEAR`**
@@ -1270,7 +1270,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COUNCIL_SEATS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_COUNCIL_SEATS, si paga — C_YIELD`**
@@ -1278,27 +1278,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COUNCIL_SEATS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_COUNCIL_SEATS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_COUNCIL_SEATS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_COUNCIL_SEATS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_COUNCIL_SEATS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_COUNCIL_SEATS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_COURIERS`**
@@ -1348,7 +1348,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COURIERS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_COURIERS, si ottiene — B_REMEMBER`**
@@ -1356,7 +1356,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COURIERS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_COURIERS, si ottiene — B_CLEAR`**
@@ -1364,7 +1364,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COURIERS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_COURIERS, si paga — C_YIELD`**
@@ -1372,27 +1372,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_COURIERS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_COURIERS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_COURIERS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_COURIERS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_COURIERS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_COURIERS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_DEBT`**
@@ -1536,7 +1536,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_DEEP_WATER, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_DEEP_WATER, si ottiene — B_REMEMBER`**
@@ -1544,7 +1544,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_DEEP_WATER, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_DEEP_WATER, si ottiene — B_CLEAR`**
@@ -1552,7 +1552,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_DEEP_WATER, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_DEEP_WATER, si paga — C_YIELD`**
@@ -1560,19 +1560,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_DEEP_WATER, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_DEEP_WATER, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_DEEP_WATER, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_DEEP_WATER, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_DEEP_WATER, se cade — F_CONDITION`**
@@ -1580,7 +1580,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_DEEP_WATER, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ECHOES_BELOW`**
@@ -1626,7 +1626,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ECHOES_BELOW, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_ECHOES_BELOW, si ottiene — B_REMEMBER`**
@@ -1634,7 +1634,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ECHOES_BELOW, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_ECHOES_BELOW, si ottiene — B_CLEAR`**
@@ -1650,27 +1650,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ECHOES_BELOW, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_ECHOES_BELOW, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_ECHOES_BELOW, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_ECHOES_BELOW, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ECHOES_BELOW, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_ECHOES_BELOW, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_EMPTY_NETS`**
@@ -1708,7 +1708,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_CONTROL`**
@@ -1716,7 +1716,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_REMEMBER`**
@@ -1724,7 +1724,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_EMPTY_NETS, si ottiene — B_CLEAR`**
@@ -1732,7 +1732,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_EMPTY_NETS, si paga — C_YIELD`**
@@ -1740,19 +1740,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_EMPTY_NETS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_EMPTY_NETS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_EMPTY_NETS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_EMPTY_NETS, se cade — F_CONDITION`**
@@ -1760,7 +1760,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_EMPTY_NETS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ENCLOSURE`**
@@ -1810,7 +1810,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_CONTROL`**
@@ -1818,7 +1818,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_REMEMBER`**
@@ -1826,7 +1826,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_ENCLOSURE, si ottiene — B_CLEAR`**
@@ -1834,7 +1834,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ENCLOSURE, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_ENCLOSURE, si paga — C_YIELD`**
@@ -1842,27 +1842,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ENCLOSURE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_ENCLOSURE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_ENCLOSURE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_ENCLOSURE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ENCLOSURE, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_ENCLOSURE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_FALLOW`**
@@ -1904,7 +1904,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FALLOW, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_FALLOW, si ottiene — B_CONTROL`**
@@ -1912,7 +1912,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FALLOW, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_FALLOW, si ottiene — B_REMEMBER`**
@@ -1920,7 +1920,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FALLOW, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_FALLOW, si ottiene — B_CLEAR`**
@@ -1928,7 +1928,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FALLOW, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_FALLOW, si paga — C_YIELD`**
@@ -1936,27 +1936,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FALLOW, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_FALLOW, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_FALLOW, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_FALLOW, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_FALLOW, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_FALLOW, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_FAMINE`**
@@ -2092,7 +2092,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FERRY, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_FERRY, si ottiene — B_CONTROL`**
@@ -2100,7 +2100,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FERRY, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_FERRY, si ottiene — B_REMEMBER`**
@@ -2108,7 +2108,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FERRY, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_FERRY, si ottiene — B_CLEAR`**
@@ -2124,27 +2124,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FERRY, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_FERRY, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_FERRY, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_FERRY, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_FERRY, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_FERRY, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_FLOOD`**
@@ -2190,7 +2190,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FLOOD, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_FLOOD, si ottiene — B_REMEMBER`**
@@ -2198,7 +2198,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FLOOD, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_FLOOD, si ottiene — B_CLEAR`**
@@ -2214,27 +2214,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_FLOOD, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_FLOOD, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: il confine sigillato.
+> Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_FLOOD, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_FLOOD, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_FLOOD, se cade — F_CONDITION`**
-> Il luogo resta tagliato fuori.
+> Il luogo resta tagliato fuori: muovere una presenza dentro o fuori costa 1 carta in piu'.
 
 
 **`TEN_FLOOD, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_GUILD_WAR`**
@@ -2272,7 +2272,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_CONTROL`**
@@ -2280,7 +2280,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_REMEMBER`**
@@ -2288,7 +2288,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_GUILD_WAR, si ottiene — B_CLEAR`**
@@ -2296,7 +2296,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_GUILD_WAR, si paga — C_YIELD`**
@@ -2304,19 +2304,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_GUILD_WAR, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_GUILD_WAR, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_GUILD_WAR, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_GUILD_WAR, se cade — F_CONDITION`**
@@ -2324,7 +2324,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_GUILD_WAR, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_HERESY`**
@@ -2370,7 +2370,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HERESY, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_HERESY, si ottiene — B_REMEMBER`**
@@ -2378,7 +2378,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HERESY, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_HERESY, si ottiene — B_CLEAR`**
@@ -2386,7 +2386,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HERESY, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_HERESY, si paga — C_YIELD`**
@@ -2394,27 +2394,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HERESY, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_HERESY, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_HERESY, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_HERESY, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_HERESY, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_HERESY, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_HOSTAGES`**
@@ -2460,7 +2460,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HOSTAGES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_HOSTAGES, si ottiene — B_REMEMBER`**
@@ -2468,7 +2468,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HOSTAGES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_HOSTAGES, si ottiene — B_CLEAR`**
@@ -2476,7 +2476,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HOSTAGES, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_HOSTAGES, si paga — C_YIELD`**
@@ -2484,27 +2484,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_HOSTAGES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_HOSTAGES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_HOSTAGES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_HOSTAGES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_HOSTAGES, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_HOSTAGES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ISLAND_SHRINE`**
@@ -2550,7 +2550,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SHRINE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_ISLAND_SHRINE, si ottiene — B_REMEMBER`**
@@ -2558,7 +2558,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SHRINE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_ISLAND_SHRINE, si ottiene — B_CLEAR`**
@@ -2566,7 +2566,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SHRINE, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_ISLAND_SHRINE, si paga — C_YIELD`**
@@ -2574,27 +2574,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SHRINE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_ISLAND_SHRINE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_ISLAND_SHRINE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_ISLAND_SHRINE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ISLAND_SHRINE, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_ISLAND_SHRINE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ISLAND_SILENCE`**
@@ -2640,7 +2640,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SILENCE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_ISLAND_SILENCE, si ottiene — B_REMEMBER`**
@@ -2648,7 +2648,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SILENCE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_ISLAND_SILENCE, si ottiene — B_CLEAR`**
@@ -2656,7 +2656,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SILENCE, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_ISLAND_SILENCE, si paga — C_YIELD`**
@@ -2664,27 +2664,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_ISLAND_SILENCE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_ISLAND_SILENCE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_ISLAND_SILENCE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_ISLAND_SILENCE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_ISLAND_SILENCE, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_ISLAND_SILENCE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_LANDLESS`**
@@ -2726,7 +2726,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LANDLESS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_LANDLESS, si ottiene — B_CONTROL`**
@@ -2734,7 +2734,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LANDLESS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_LANDLESS, si ottiene — B_REMEMBER`**
@@ -2742,7 +2742,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LANDLESS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_LANDLESS, si ottiene — B_CLEAR`**
@@ -2758,27 +2758,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LANDLESS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_LANDLESS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_LANDLESS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_LANDLESS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_LANDLESS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_LANDLESS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_LAND_REGISTER`**
@@ -2824,7 +2824,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LAND_REGISTER, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_LAND_REGISTER, si ottiene — B_REMEMBER`**
@@ -2832,7 +2832,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LAND_REGISTER, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_LAND_REGISTER, si ottiene — B_CLEAR`**
@@ -2840,7 +2840,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LAND_REGISTER, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_LAND_REGISTER, si paga — C_YIELD`**
@@ -2848,27 +2848,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LAND_REGISTER, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_LAND_REGISTER, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_LAND_REGISTER, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_LAND_REGISTER, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_LAND_REGISTER, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_LAND_REGISTER, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_LEVY`**
@@ -2910,7 +2910,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LEVY, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_LEVY, si ottiene — B_CONTROL`**
@@ -2918,7 +2918,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LEVY, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_LEVY, si ottiene — B_REMEMBER`**
@@ -2926,7 +2926,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LEVY, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_LEVY, si ottiene — B_CLEAR`**
@@ -2934,7 +2934,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LEVY, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_LEVY, si paga — C_YIELD`**
@@ -2942,27 +2942,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_LEVY, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_LEVY, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_LEVY, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_LEVY, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_LEVY, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_LEVY, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_MARCHES`**
@@ -3012,7 +3012,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARCHES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_MARCHES, si ottiene — B_REMEMBER`**
@@ -3020,7 +3020,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARCHES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_MARCHES, si ottiene — B_CLEAR`**
@@ -3028,7 +3028,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARCHES, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_MARCHES, si paga — C_YIELD`**
@@ -3036,27 +3036,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARCHES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_MARCHES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_MARCHES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_MARCHES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_MARCHES, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_MARCHES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_MARSH_FEVER`**
@@ -3106,7 +3106,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARSH_FEVER, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_MARSH_FEVER, si ottiene — B_REMEMBER`**
@@ -3114,7 +3114,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARSH_FEVER, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_MARSH_FEVER, si ottiene — B_CLEAR`**
@@ -3130,19 +3130,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARSH_FEVER, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_MARSH_FEVER, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: l'abbandono.
+> Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_MARSH_FEVER, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_MARSH_FEVER, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_MARSH_FEVER, se cade — F_CONDITION`**
@@ -3150,7 +3150,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_MARSH_FEVER, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_NAMELESS`**
@@ -3286,7 +3286,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_OLD_CHANNELS, si ottiene — B_REMEMBER`**
@@ -3294,7 +3294,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_OLD_CHANNELS, si ottiene — B_CLEAR`**
@@ -3302,7 +3302,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_OLD_CHANNELS, si paga — C_YIELD`**
@@ -3310,19 +3310,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_OLD_CHANNELS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_OLD_CHANNELS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_OLD_CHANNELS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_OLD_CHANNELS, se cade — F_CONDITION`**
@@ -3330,7 +3330,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_CHANNELS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_OLD_GUARD`**
@@ -3380,7 +3380,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_GUARD, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_OLD_GUARD, si ottiene — B_REMEMBER`**
@@ -3388,7 +3388,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_GUARD, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_OLD_GUARD, si ottiene — B_CLEAR`**
@@ -3396,7 +3396,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_GUARD, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_OLD_GUARD, si paga — C_YIELD`**
@@ -3404,27 +3404,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_GUARD, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_OLD_GUARD, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_OLD_GUARD, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_OLD_GUARD, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_OLD_GUARD, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_OLD_GUARD, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_OLD_NAMES`**
@@ -3466,7 +3466,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Archivio.
+> Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_CONTROL`**
@@ -3474,7 +3474,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_REMEMBER`**
@@ -3482,7 +3482,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_OLD_NAMES, si ottiene — B_CLEAR`**
@@ -3490,7 +3490,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_NAMES, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_OLD_NAMES, si paga — C_YIELD`**
@@ -3498,27 +3498,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_OLD_NAMES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_OLD_NAMES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_OLD_NAMES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_OLD_NAMES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_OLD_NAMES, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_OLD_NAMES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_PASTURE`**
@@ -3568,7 +3568,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PASTURE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_PASTURE, si ottiene — B_REMEMBER`**
@@ -3576,7 +3576,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PASTURE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_PASTURE, si ottiene — B_CLEAR`**
@@ -3584,7 +3584,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PASTURE, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_PASTURE, si paga — C_YIELD`**
@@ -3592,27 +3592,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PASTURE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_PASTURE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_PASTURE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_PASTURE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_PASTURE, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_PASTURE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_PILGRIMS`**
@@ -3654,7 +3654,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PILGRIMS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_PILGRIMS, si ottiene — B_CONTROL`**
@@ -3662,7 +3662,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PILGRIMS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_PILGRIMS, si ottiene — B_REMEMBER`**
@@ -3670,7 +3670,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PILGRIMS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_PILGRIMS, si ottiene — B_CLEAR`**
@@ -3678,7 +3678,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PILGRIMS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_PILGRIMS, si paga — C_YIELD`**
@@ -3686,27 +3686,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PILGRIMS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_PILGRIMS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_PILGRIMS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_PILGRIMS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_PILGRIMS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_PILGRIMS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_PLAGUE`**
@@ -3842,7 +3842,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PROPHECY, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_PROPHECY, si ottiene — B_REMEMBER`**
@@ -3850,7 +3850,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PROPHECY, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_PROPHECY, si ottiene — B_CLEAR`**
@@ -3858,7 +3858,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PROPHECY, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_PROPHECY, si paga — C_YIELD`**
@@ -3866,27 +3866,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_PROPHECY, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_PROPHECY, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_PROPHECY, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_PROPHECY, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_PROPHECY, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_PROPHECY, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_QUARANTINE`**
@@ -3924,7 +3924,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_QUARANTINE, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_QUARANTINE, si ottiene — B_CONTROL`**
@@ -3932,7 +3932,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_QUARANTINE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_QUARANTINE, si ottiene — B_REMEMBER`**
@@ -3940,7 +3940,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_QUARANTINE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_QUARANTINE, si ottiene — B_CLEAR`**
@@ -3948,7 +3948,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_QUARANTINE, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_QUARANTINE, si paga — C_YIELD`**
@@ -3956,27 +3956,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_QUARANTINE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_QUARANTINE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: il confine sigillato.
+> Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_QUARANTINE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_QUARANTINE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_QUARANTINE, se cade — F_CONDITION`**
-> Il luogo resta tagliato fuori.
+> Il luogo resta tagliato fuori: muovere una presenza dentro o fuori costa 1 carta in piu'.
 
 
 **`TEN_QUARANTINE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_REFUGEES`**
@@ -4018,7 +4018,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REFUGEES, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_REFUGEES, si ottiene — B_CONTROL`**
@@ -4026,7 +4026,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REFUGEES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_REFUGEES, si ottiene — B_REMEMBER`**
@@ -4034,7 +4034,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REFUGEES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_REFUGEES, si ottiene — B_CLEAR`**
@@ -4042,7 +4042,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REFUGEES, si paga — C_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_REFUGEES, si paga — C_YIELD`**
@@ -4050,27 +4050,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REFUGEES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_REFUGEES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_REFUGEES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_REFUGEES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_REFUGEES, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_REFUGEES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_REGENCY`**
@@ -4120,7 +4120,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REGENCY, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_REGENCY, si ottiene — B_REMEMBER`**
@@ -4128,7 +4128,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REGENCY, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_REGENCY, si ottiene — B_CLEAR`**
@@ -4136,7 +4136,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REGENCY, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_REGENCY, si paga — C_YIELD`**
@@ -4144,27 +4144,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_REGENCY, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_REGENCY, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_REGENCY, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_REGENCY, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_REGENCY, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_REGENCY, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_RELIC`**
@@ -4410,7 +4410,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SALT_FIELDS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SALT_FIELDS, si ottiene — B_REMEMBER`**
@@ -4418,7 +4418,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SALT_FIELDS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SALT_FIELDS, si ottiene — B_CLEAR`**
@@ -4434,27 +4434,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SALT_FIELDS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SALT_FIELDS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SALT_FIELDS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SALT_FIELDS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SALT_FIELDS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_SALT_FIELDS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SANCTUARY`**
@@ -4504,7 +4504,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SANCTUARY, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SANCTUARY, si ottiene — B_REMEMBER`**
@@ -4512,7 +4512,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SANCTUARY, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SANCTUARY, si ottiene — B_CLEAR`**
@@ -4520,7 +4520,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SANCTUARY, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_SANCTUARY, si paga — C_YIELD`**
@@ -4528,27 +4528,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SANCTUARY, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SANCTUARY, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SANCTUARY, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SANCTUARY, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SANCTUARY, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_SANCTUARY, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SEALS`**
@@ -4586,7 +4586,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SEALS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_SEALS, si ottiene — B_CONTROL`**
@@ -4594,7 +4594,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SEALS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SEALS, si ottiene — B_REMEMBER`**
@@ -4602,7 +4602,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SEALS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SEALS, si ottiene — B_CLEAR`**
@@ -4610,7 +4610,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SEALS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_SEALS, si paga — C_YIELD`**
@@ -4618,27 +4618,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SEALS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SEALS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SEALS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SEALS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SEALS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_SEALS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SILENT_BELLS`**
@@ -4688,7 +4688,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILENT_BELLS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SILENT_BELLS, si ottiene — B_REMEMBER`**
@@ -4696,7 +4696,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILENT_BELLS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SILENT_BELLS, si ottiene — B_CLEAR`**
@@ -4704,7 +4704,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILENT_BELLS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_SILENT_BELLS, si paga — C_YIELD`**
@@ -4712,27 +4712,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILENT_BELLS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SILENT_BELLS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SILENT_BELLS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SILENT_BELLS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SILENT_BELLS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_SILENT_BELLS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SILTED_CANALS`**
@@ -4778,7 +4778,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SILTED_CANALS, si ottiene — B_REMEMBER`**
@@ -4786,7 +4786,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SILTED_CANALS, si ottiene — B_CLEAR`**
@@ -4794,7 +4794,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SILTED_CANALS, si paga — C_YIELD`**
@@ -4802,19 +4802,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SILTED_CANALS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: l'abbandono.
+> Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SILTED_CANALS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SILTED_CANALS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SILTED_CANALS, se cade — F_CONDITION`**
@@ -4822,7 +4822,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SILTED_CANALS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SLEEPERS`**
@@ -4864,7 +4864,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SLEEPERS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Archivio.
+> Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta.
 
 
 **`TEN_SLEEPERS, si ottiene — B_CONTROL`**
@@ -4872,7 +4872,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SLEEPERS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SLEEPERS, si ottiene — B_REMEMBER`**
@@ -4880,7 +4880,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SLEEPERS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SLEEPERS, si ottiene — B_CLEAR`**
@@ -4896,27 +4896,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SLEEPERS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SLEEPERS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SLEEPERS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SLEEPERS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SLEEPERS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_SLEEPERS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SMUGGLING`**
@@ -4954,7 +4954,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SMUGGLING, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_SMUGGLING, si ottiene — B_CONTROL`**
@@ -4962,7 +4962,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SMUGGLING, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_SMUGGLING, si ottiene — B_REMEMBER`**
@@ -4970,7 +4970,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SMUGGLING, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_SMUGGLING, si ottiene — B_CLEAR`**
@@ -4978,7 +4978,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SMUGGLING, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_SMUGGLING, si paga — C_YIELD`**
@@ -4986,27 +4986,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_SMUGGLING, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_SMUGGLING, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_SMUGGLING, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_SMUGGLING, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SMUGGLING, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_SMUGGLING, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_SUCCESSION`**
@@ -5232,7 +5232,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_TITHE, si ottiene — B_CONTROL`**
@@ -5240,7 +5240,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_TITHE, si ottiene — B_REMEMBER`**
@@ -5248,7 +5248,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_TITHE, si ottiene — B_CLEAR`**
@@ -5256,7 +5256,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_TITHE, si paga — C_YIELD`**
@@ -5264,19 +5264,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_TITHE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_TITHE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_TITHE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_TITHE, se cade — F_CONDITION`**
@@ -5284,7 +5284,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TITHE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_TRIBUTE`**
@@ -5322,7 +5322,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TRIBUTE, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_TRIBUTE, si ottiene — B_CONTROL`**
@@ -5330,7 +5330,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TRIBUTE, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_TRIBUTE, si ottiene — B_REMEMBER`**
@@ -5338,7 +5338,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TRIBUTE, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_TRIBUTE, si ottiene — B_CLEAR`**
@@ -5354,27 +5354,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_TRIBUTE, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_TRIBUTE, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_TRIBUTE, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_TRIBUTE, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_TRIBUTE, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_TRIBUTE, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_UNEARTHED`**
@@ -5420,7 +5420,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_UNEARTHED, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_UNEARTHED, si ottiene — B_REMEMBER`**
@@ -5428,7 +5428,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_UNEARTHED, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_UNEARTHED, si ottiene — B_CLEAR`**
@@ -5444,27 +5444,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_UNEARTHED, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_UNEARTHED, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_UNEARTHED, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_UNEARTHED, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_UNEARTHED, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_UNEARTHED, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_VOWS`**
@@ -5506,7 +5506,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_VOWS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Archivio.
+> Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta.
 
 
 **`TEN_VOWS, si ottiene — B_CONTROL`**
@@ -5514,7 +5514,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_VOWS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_VOWS, si ottiene — B_REMEMBER`**
@@ -5522,7 +5522,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_VOWS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_VOWS, si ottiene — B_CLEAR`**
@@ -5538,27 +5538,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_VOWS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_VOWS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la domanda sul muro.
+> Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_VOWS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_VOWS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_VOWS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #malcontento.
+> Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_VOWS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WARD_STONES`**
@@ -5604,7 +5604,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WARD_STONES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_WARD_STONES, si ottiene — B_REMEMBER`**
@@ -5612,7 +5612,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WARD_STONES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_WARD_STONES, si ottiene — B_CLEAR`**
@@ -5628,19 +5628,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WARD_STONES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_WARD_STONES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: l'abbandono.
+> Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_WARD_STONES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_WARD_STONES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WARD_STONES, se cade — F_CONDITION`**
@@ -5648,7 +5648,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WARD_STONES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WATER`**
@@ -5784,7 +5784,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WEIGHTS, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Pedaggio.
+> Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.
 
 
 **`TEN_WEIGHTS, si ottiene — B_CONTROL`**
@@ -5792,7 +5792,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WEIGHTS, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_WEIGHTS, si ottiene — B_REMEMBER`**
@@ -5800,7 +5800,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WEIGHTS, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_WEIGHTS, si ottiene — B_CLEAR`**
@@ -5808,7 +5808,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WEIGHTS, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_WEIGHTS, si paga — C_YIELD`**
@@ -5816,27 +5816,27 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WEIGHTS, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_WEIGHTS, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: passata di mano.
+> Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_WEIGHTS, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_WEIGHTS, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WEIGHTS, se cade — F_CONDITION`**
-> Al luogo si aggiunge #conteso.
+> Al luogo si aggiunge #conteso: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.
 
 
 **`TEN_WEIGHTS, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WINTER`**
@@ -5878,7 +5878,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, si ottiene — B_STONE`**
-> Costruisci 1 Pietra nel luogo: Granaio.
+> Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.
 
 
 **`TEN_WINTER, si ottiene — B_CONTROL`**
@@ -5886,7 +5886,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_WINTER, si ottiene — B_REMEMBER`**
@@ -5894,7 +5894,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_WINTER, si ottiene — B_CLEAR`**
@@ -5902,7 +5902,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, si paga — C_CONDITION`**
-> Al luogo si aggiunge #razionato.
+> Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.
 
 
 **`TEN_WINTER, si paga — C_YIELD`**
@@ -5910,23 +5910,23 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_WINTER, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: il confine sigillato.
+> Accetta 1 Cicatrice permanente — il confine sigillato: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_WINTER, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_WINTER, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WINTER, se cade — F_CONDITION`**
-> Il luogo resta tagliato fuori.
+> Il luogo resta tagliato fuori: muovere una presenza dentro o fuori costa 1 carta in piu'.
 
 
 **`TEN_WINTER, se cade — F_LEAN`**
@@ -5934,7 +5934,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WINTER, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WOLVES`**
@@ -5980,7 +5980,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WOLVES, si ottiene — B_COOL`**
-> Raffredda il Tema di 1 (minimo 0).
+> Raffredda il Tema di 1 (minimo 0): la sua domanda si allontana dal tavolo.
 
 
 **`TEN_WOLVES, si ottiene — B_REMEMBER`**
@@ -5988,7 +5988,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WOLVES, si ottiene — B_REOPEN`**
-> Riapri il luogo: via il #tagliato_fuori.
+> Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.
 
 
 **`TEN_WOLVES, si ottiene — B_CLEAR`**
@@ -5996,7 +5996,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WOLVES, si paga — C_CONDITION`**
-> Al luogo si aggiunge #sorvegliata.
+> Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.
 
 
 **`TEN_WOLVES, si paga — C_YIELD`**
@@ -6004,19 +6004,19 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WOLVES, si paga — C_DEBT`**
-> Al luogo si aggiunge #indebitata.
+> Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.
 
 
 **`TEN_WOLVES, si paga — C_SCAR`**
-> Accetta 1 Cicatrice permanente: la razzia.
+> Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.
 
 
 **`TEN_WOLVES, si paga — C_TOLL`**
-> Sul luogo si alza un pedaggio.
+> Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.
 
 
 **`TEN_WOLVES, si paga — C_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 **`TEN_WOLVES, se cade — F_CONDITION`**
@@ -6024,7 +6024,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`TEN_WOLVES, se cade — F_HEAT`**
-> Il Tema di questa domanda si scalda di 1.
+> Il Tema di questa domanda si scalda di 1, e resta caldo: l'Atto nuovo comincia con quel Calore, e la sua domanda torna prima.
 
 
 ## 5. I Consigli — domande ai voti e proposte

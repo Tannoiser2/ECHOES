@@ -204,3 +204,48 @@ func test_the_piles_are_spent_after_the_councils() -> void:
 	var last: Dictionary = (session.world["effect_log"] as Array).back() as Dictionary
 	assert_eq(str(last.get("type", "")), "ADJUST_THEME_HEAT", "lo spendere e' un Effetto")
 	assert_eq(str((last.get("source", {}) as Dictionary).get("id", "")), "ACT_END", "firmato dalla fine dell'Atto")
+
+
+## --- e il Calore posato dal Consiglio attraversa l'Atto (D-486) -------------
+
+
+## **Un costo cancellato due minuti dopo non e' un costo.**
+##
+## Parola del committente: *«continua a non convincermi scaldare il tema che si
+## sta dibattendo, non ha senso, a cosa serve»*. Era misurato: il Consiglio si
+## tiene a fine Atto e subito dopo i mucchi si spendono, quindi quella pedina
+## veniva cancellata prima di fare qualsiasi cosa — 287 pedine in cento anni su
+## un costo che non costava.
+##
+## Adesso il Calore di **quella** casella si segna a parte e torna sul tavolo
+## quando i mucchi si spengono: e' la sola cosa che attraversa l'Atto.
+func test_the_kept_heat_survives_the_spent_piles() -> void:
+	var theme_id: String = str(data().themes.keys()[0])
+	var source: Dictionary = Effect.source("test", "TEST", "", 1, 1, 0)
+	session.applier.apply(Effect.make(
+		"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": 3}, source
+	))
+	session.applier.apply(Effect.make(
+		"KEEP_THEME_HEAT", "theme", theme_id, {"delta": 1}, source
+	))
+	assert_eq(int((session.world["theme_heat_kept"] as Dictionary)[theme_id]), 1,
+		"il Consiglio ha segnato un Calore che resta")
+
+	session.chronicle.call("_spend_the_piles", 1)
+
+	assert_eq(int((session.world["theme_heat"] as Dictionary)[theme_id]), 1,
+		"spesi i mucchi, resta solo il Calore del Consiglio")
+	assert_eq(int((session.world["theme_heat_kept"] as Dictionary)[theme_id]), 0,
+		"e il registro si azzera: vale per l'Atto dopo, una volta sola")
+
+
+## E senza quella casella, i mucchi si spendono come sempre: freddi.
+func test_without_the_council_the_piles_go_cold() -> void:
+	var theme_id: String = str(data().themes.keys()[0])
+	session.applier.apply(Effect.make(
+		"ADJUST_THEME_HEAT", "theme", theme_id, {"delta": 3},
+		Effect.source("test", "TEST", "", 1, 1, 0)
+	))
+	session.chronicle.call("_spend_the_piles", 1)
+	assert_eq(int((session.world["theme_heat"] as Dictionary)[theme_id]), 0,
+		"senza il Consiglio il Tema torna freddo")

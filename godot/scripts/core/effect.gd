@@ -19,6 +19,10 @@ const INVERSE_TYPE: Dictionary = {
 	# La traccia del Calore (PZ-1): sale e scende su se stessa, col delta
 	# davvero applicato nell'inverse_payload, come le Tensioni.
 	"ADJUST_THEME_HEAT": "ADJUST_THEME_HEAT",
+	# **Il Calore che attraversa l'Atto** (D-486): la casella «scalda il Tema»
+	# segna qui quanto del suo Calore sopravvive alla spesa dei mucchi. Si
+	# inverte su se stesso come la traccia, col delta applicato davvero.
+	"KEEP_THEME_HEAT": "KEEP_THEME_HEAT",
 	"SET_TENSION_VISIBILITY": "SET_TENSION_VISIBILITY",
 	"ADD_PRESENCE": "REMOVE_PRESENCE",
 	"REMOVE_PRESENCE": "ADD_PRESENCE",
