@@ -114,7 +114,8 @@ Le sonde stanno in `godot/cli/`. Le più usate: `run_playtest.gd` (il cancello),
 `run_pass_probe.gd` (perché un seggio passa), `run_asking_probe.gd` (quanto rende
 giocare), `run_resonance_probe.gd` (quante volte il mondo risponde),
 `run_boxes_probe.gd` (quante volte una casella del Consiglio viene offerta e
-quante viene presa).
+quante viene presa), `run_agenda_probe.gd` (chi decide di cosa si parla: quante
+volte la Risonanza offre due Temi e quante volte la scelta sposta il gettone).
 
 ---
 

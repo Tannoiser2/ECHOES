@@ -45,6 +45,162 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-483 — Le regole del Consiglio guardano il luogo di cui si discute
+
+**implemented in 0.1.453.** Seconda mossa della R15 ([ISSUES
+132](ISSUES.md#132), punto 4), sulla parola *«via in ordine R14 in poi»*.
+
+### 1. Il difetto, gia' misurato
+
+[D-477](DECISIONS.md#d-477) aveva puntato sul mucchio le ventun regole
+`COUNCIL_MODIFIER` rimaste senza mestiere. Rimetterle in vita non era bastato:
+toccavano il **9%** dei Consigli, 41 su 46 da una regola sola, e sedici su
+ventuno non mordevano mai. La causa stava scritta nella misura stessa:
+**nessuno dei dieci segni piu' scritti dal mondo era nominato da nessuna delle
+ventuno**. Quattordici di quelle regole chiedono una `life:` — quella casa, in
+quella vita, seduta a quel tavolo — e le altre segni rari.
+
+### 2. La mossa: quattro regole sui quattro segni piu' scritti
+
+| segno | scritto in 100 anni | la regola | verso |
+|---|---|---|---|
+| `condition:contested` | 370 | *Dove due mani tengono lo stesso lembo, decidere costa di piu'* | **+1** |
+| `condition:unrest` | 333 | *Col malcontento in piazza il tavolo fatica* | **+1** |
+| `condition:indebted` | 304 | *Chi e' indebitato ha meno voce per opporsi* | **−1** |
+| `condition:rationed` | 203 | *Dove si raziona, si decide in fretta* | **−1** |
+
+I versi sono **d'autore e dichiarati**, come chiedeva la voce: due segni pesano
+sulla decisione, due la spingono. Un luogo conteso o in rivolta rende piu'
+difficile chiudere la sua questione; un luogo indebitato o razionato non ha la
+forza — o il tempo — di tenerla aperta.
+
+### 3. E guardano **il luogo di cui si discute**
+
+Una regola di Regione, fino a qui, chiedeva *«esiste da qualche parte sulla
+mappa una Regione con questo segno?»*. Per un segno che il mondo scrive **370
+volte in cento anni** quella domanda ha quasi sempre la stessa risposta: sarebbe
+una **costante**, e una costante non e' una regola.
+
+Le quattro nuove portano `focus: true`, e allora la regola guarda la **Regione
+della domanda** — quella che il Consiglio ha davanti. E' anche la frase giusta
+da leggere al tavolo: *«dove due mani tengono lo stesso lembo»* parla di quel
+posto li', non della mappa. Le diciassette vecchie restano come stavano.
+
+### 4. Misurato
+
+`cli/run_pile_probe.gd`, 100 anni, semi da 7000:
+
+| | prima (D-477) | dopo |
+|---|---|---|
+| Consigli col mucchio mosso | **9%** (46 su 513) | **51%** (264 su 516) |
+| soglia alzata / abbassata | — | 161 / 103 |
+| spostamento medio quando si muove | 1,0 | **1,22** |
+| regole che mordono almeno una volta | 5 su 21 | **9 su 25** |
+
+Le quattro nuove sono anche le quattro che mordono di piu': 137, 106, 96, 52
+Consigli. **Sedici delle ventun vecchie restano mute**, e restano dichiarate:
+chiedono una vita precisa seduta al tavolo, e quel giorno la regola c'e'.
+
+### 5. Il costo, che si scrive
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** sui due tavoli.
+
+| | prima | dopo |
+|---|---|---|
+| Verita', misto | 283 | **276** |
+| Verita', uniforme | 235 | **234** |
+| Consigli caduti, misto | 60 | **61** |
+| Consigli caduti, uniforme | 58 | **61** |
+
+Sette Verita' in meno sul misto: un mondo che rende piu' difficile decidere fa
+cadere qualche domanda in piu'. E' il prezzo di una regola che morde davvero, e
+adesso morde in un Consiglio su due invece che in uno su undici.
+
+---
+
+## D-482 — La Risonanza avviene comunque, ma il Tema lo scegli tu
+
+**implemented in 0.1.452.** Parola del committente: *«via in ordine R14 in
+poi»*. Questa e' la **prima** delle quattro decisioni di
+[ISSUES 132](ISSUES.md#132) — *«quali sono le effettive scelte che fa un
+giocatore? […] quale il meccanismo di gioco di echoes?»*
+
+### 1. Il difetto, detto come lo diceva la misura
+
+Il meccanismo di ECHOES c'e' ed e' **l'agenda**: ogni Azione fa due cose
+insieme — un fatto nel mondo e un voto su cosa il tavolo discutera', perche' la
+Risonanza scalda un Tema e il Tema piu' caldo decide quale domanda va al
+Consiglio (D-260, D-261).
+
+Ma **quella leva si muoveva alla cieca**: la Risonanza avviene comunque (D-257)
+e scaldava il Tema stampato, punto. La cosa piu' interessante del gioco era un
+effetto collaterale della carta calata.
+
+### 2. La regola nuova, in una riga
+
+> **La Risonanza avviene sempre. Quale dei due Temi stampati scalda, lo dice
+> chi cala la carta.**
+
+L'obbligo resta — non si puo' non far rispondere il mondo — e la scelta e'
+fra i **due Temi che la carta gia' portava stampati**: nessun Tema nuovo,
+nessuna carta nuova, nessun sistema in piu'.
+
+- il dato: `resonance.or_theme` sulle **39** carte che stampano due Temi (le 9
+  che ne portano uno solo restano obbligate, e va bene: non tutte le carte
+  danno la stessa liberta');
+- la faccia: la prima frase della Risonanza adesso dice *«Scalda Potere
+  **oppure** Vie +1, scegli tu»*;
+- il motore: `resonance_theme` viaggia coi parametri della giocata, e un Tema
+  che la carta non stampa **non vale** — si ricade su quello stampato per
+  primo, che e' quello che fanno i salvataggi vecchi;
+- il cervello: fra i due sceglie **quello dove ha piu' carte in mano**, perche'
+  al Consiglio pesano le carte tenute — *portare il tavolo dove si e' forti* e'
+  la mossa, e non c'e' bisogno di insegnargliene un'altra;
+- la persona: dopo aver scelto la mossa, una domanda sola — *«Il mondo
+  risponde: quale Tema scaldi?»*
+- la guardia: `validate_physical.py` va rosso su una **Risonanza cieca** (due
+  Temi stampati e nessuna scelta) e su un secondo Tema inventato (54 difetti
+  piantati, erano 52).
+
+### 3. Misurato
+
+`cli/run_agenda_probe.gd` (nuova), 100 anni, tavolo misto, semi da 7000:
+
+| | |
+|---|---|
+| carte calate con una Risonanza | 2.636 |
+| di quelle, con **due Temi da scegliere** | **2.180 (82,7%)** |
+| e la scelta ha **spostato il gettone** | **1.136 — il 52,1% delle volte che poteva** |
+
+Prima di questa decisione quel numero era **zero per costruzione**. Il Potere
+prende 918 gettoni, e **537 di quelli sono scelti** al posto del Tema stampato:
+il tavolo tira la leva, e la tira spesso.
+
+### 4. Il costo, che si scrive
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** sui due tavoli. Ma i due tavoli
+si comportano in modo diverso, e il secondo peggiora:
+
+| | prima | dopo |
+|---|---|---|
+| Verita', tavolo misto | 278 | **283** |
+| Verita', tavolo uniforme | 257 | **235** |
+| Consigli caduti (FAIL), misto | 48 | **60** |
+| Consigli caduti (FAIL), uniforme | 44 | **58** |
+| COUNTER, uniforme | 196 | **206** |
+
+**La causa e' la regola stessa.** Quattro ottimizzatori identici scelgono lo
+stesso Tema — quello dove hanno piu' carte — e concentrano l'agenda su pochi
+Temi: piu' Consigli sullo stesso tavolo, piu' opposizione, piu' domande che
+cadono. Sul tavolo **misto**, dove i quattro caratteri vogliono cose diverse, la
+stessa leva fa il contrario e le Verita' salgono.
+
+E' il costo di una leva vera: se scegliere non cambiasse gli esiti, non sarebbe
+una scelta. **Ventidue Verita' in meno sul tavolo uniforme sono il prezzo, ed e'
+scritto qui invece che nascosto.**
+
+---
+
 ## D-481 — Due Azioni con lo stesso verbo devono lasciare segni diversi
 
 **implemented in 0.1.451.** Parola del committente: *«via in ordine R14 in

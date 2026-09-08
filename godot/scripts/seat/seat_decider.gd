@@ -151,6 +151,11 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 			"template": str(options[choice]["template"]),
 			"params": options[choice]["params"],
 		}
+		# **E il mondo risponde dove dici tu** (D-482): la carta stampa due
+		# Temi e la Risonanza ne scalda **uno** — quale lo scegli adesso, subito
+		# dopo aver scelto la mossa. E' la sola leva sull'agenda del tavolo: il
+		# Tema piu' caldo decide quale domanda arriva al Consiglio.
+		await _ask_which_theme(entity_id, request, session)
 		var dying: Array = _clauses_this_switches_off(entity_id, request, session)
 		if dying.is_empty():
 			return request
@@ -161,6 +166,45 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 		if confirmed != 1:
 			return request
 	return {"template": "PASS", "params": {}}
+
+
+## **Quale Tema scalda la Risonanza** (D-482), quando la carta ne offre due.
+##
+## La domanda arriva **dopo** la mossa e prima di eseguirla, perche' al tavolo
+## e' cosi': cali la carta, e poi dici dove il mondo risponde. Una carta che di
+## Temi ne stampa uno solo non chiede niente — non c'e' niente da scegliere, e
+## una domanda con una risposta sola e' rumore.
+func _ask_which_theme(
+	entity_id: String, request: Dictionary, session: RefCounted
+) -> void:
+	if str(request.get("template", "")) != "PLAY_CARD":
+		return
+	var params: Dictionary = request.get("params", {}) as Dictionary
+	var card: Variant = session.data.assets.get(str(params.get("asset_id", "")))
+	if card == null:
+		return
+	var echo: Dictionary = (
+		((card as Dictionary).get("physical", {}) as Dictionary).get("resonance", {})
+		as Dictionary
+	)
+	var first: String = str(echo.get("theme", ""))
+	var second: String = str(echo.get("or_theme", ""))
+	if first == "" or second == "" or first == second:
+		return
+	var labels: Array = []
+	for theme_id in [first, second]:
+		labels.append("Scalda %s" % _theme_title(theme_id, session))
+	var choice: int = await _choose(
+		"  Il mondo risponde: quale Tema scaldi?", labels,
+		[{"theme": first}, {"theme": second}]
+	)
+	params["resonance_theme"] = first if choice <= 0 else second
+
+
+## Il nome del Tema come sta stampato, mai il suo id.
+func _theme_title(theme_id: String, session: RefCounted) -> String:
+	var theme: Variant = session.data.themes.get(theme_id)
+	return theme_id if theme == null else str((theme as Dictionary).get("title", theme_id))
 
 
 ## ISSUES 21: le clausole del proprio Destino, oggi accese, che questa azione

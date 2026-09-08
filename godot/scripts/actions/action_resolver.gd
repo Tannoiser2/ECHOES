@@ -1277,7 +1277,8 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	# non e' un parametro del verbo: non deve arrivare al resolver.
 	var merged: Dictionary = {}
 	for key in params:
-		if key != "asset_id" and key != "face_action" and key != "mark_region_id":
+		if key != "asset_id" and key != "face_action" and key != "mark_region_id" \
+				and key != "resonance_theme":
 			merged[key] = params[key]
 	for key in (action.get("params", {}) as Dictionary):
 		merged[key] = (action["params"] as Dictionary)[key]
@@ -1299,6 +1300,11 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 		# — ma la carta il posto lo dice lo stesso: il bersaglio a segni sta
 		# sulla faccia, e al tavolo ci si punta il dito.
 		"mark_region_id": str(params.get("mark_region_id", "")),
+		# **Quale Tema scalda la Risonanza** (D-482). La reazione del mondo
+		# avviene comunque (D-257), ma la carta ne offre due e chi la gioca
+		# sceglie quale: e' l'unica leva sull'agenda del tavolo, perche' il
+		# Tema piu' caldo decide quale domanda arriva al Consiglio (D-260).
+		"resonance_theme": str(params.get("resonance_theme", "")),
 	}
 
 
@@ -1546,7 +1552,10 @@ func _play_asset_card(
 	# sceglie. E' la regola che il committente ha messo al centro della direzione
 	# fisica — *ogni Azione ha una reazione* — ed e' l'unica riga di questo file
 	# che il tavolo puo' leggere sulla carta invece che dedurla.
-	effects.append_array(_resonance(entity_id, str(request["asset_id"]), inner, source, effects))
+	effects.append_array(_resonance(
+		entity_id, str(request["asset_id"]), inner, source, effects,
+		str(request.get("resonance_theme", ""))
+	))
 	var info: Dictionary = (outcome.get("info", {}) as Dictionary).duplicate()
 	info["asset_id"] = str(request["asset_id"])
 	info["kind"] = kind
@@ -1647,7 +1656,7 @@ func _sign_effect(
 
 func _resonance(
 	entity_id: String, asset_id: String, played: Dictionary, source: Dictionary,
-	done: Array
+	done: Array, wanted_theme: String = ""
 ) -> Array:
 	var card: Variant = data.assets.get(asset_id)
 	if card == null:
@@ -1686,7 +1695,20 @@ func _resonance(
 	# Consiglio. Il ponte sulle Tensioni qui sotto resta: finche' le Domande
 	# vivono sulle questioni, il Calore deve anche avvicinarle. Cadra' quando
 	# le Domande fisiche si pescheranno dal Tema (ISSUES 69), non prima.
+	# **Il Tema si sceglie, fra i due stampati** (D-482). La Risonanza resta
+	# obbligatoria — avviene comunque, e non si puo' non scaldare niente — ma
+	# **quale** dei due Temi prende il Calore lo dice chi cala la carta. E' la
+	# risposta alla domanda del committente su qual e' il meccanismo di ECHOES
+	# (ISSUES 132): il Tema piu' caldo decide quale domanda va al Consiglio, e
+	# fino a qui quella leva si muoveva alla cieca.
+	#
+	# Un Tema chiesto che la carta non stampa non vale: si ricade su quello
+	# stampato per primo, che e' quello che fanno i salvataggi vecchi, le prove
+	# scritte prima di questa decisione e ogni carta che di Temi ne offre uno.
 	var theme_id: String = str(echo.get("theme", ""))
+	var other_theme: String = str(echo.get("or_theme", ""))
+	if wanted_theme != "" and (wanted_theme == theme_id or wanted_theme == other_theme):
+		theme_id = wanted_theme
 	if theme_id != "" and heat > 0:
 		var bag: Array = (_chronicle.get("theme_tokens", {}) as Dictionary).get("covered", []) as Array
 		for _i in range(heat):

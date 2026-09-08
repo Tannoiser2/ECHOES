@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3246 testi in lettura.
+possono spostare nella frase, non togliere. 3250 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7698,7 +7698,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_AUTHORITY_CENSUS, risonanza`**
-> Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.
+> Scalda Potere **oppure** Vie +1, scegli tu. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.
 
 
 **`AST_AUTHORITY_CROWN_RIGHT`**
@@ -7782,7 +7782,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_AUTHORITY_INTERDICT, risonanza`**
-> Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori. Se la fede ha avuto un posto: Fede +3.
+> Scalda Fede **oppure** Potere +2, scegli tu. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori. Se la fede ha avuto un posto: Fede +3.
 
 
 **`AST_AUTHORITY_INVESTITURE`**
@@ -7810,7 +7810,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_AUTHORITY_INVESTITURE, risonanza`**
-> Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto. Se porti #fama: Fede +2.
+> Scalda Fede **oppure** Potere +1, scegli tu. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto. Se porti #fama: Fede +2.
 
 
 **`AST_AUTHORITY_MAGISTRATE`**
@@ -7838,7 +7838,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_AUTHORITY_MAGISTRATE, risonanza`**
-> Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona. Se la Carta e' stata scritta: Potere +2.
+> Scalda Potere **oppure** Vie +1, scegli tu. Un magistrato e' la corona che arriva dove la corona non va di persona. Se la Carta e' stata scritta: Potere +2.
 
 
 **`AST_AUTHORITY_SEAL`**
@@ -7922,7 +7922,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_BETROTHAL, risonanza`**
-> Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza. Se porti #fama: Fede +3.
+> Scalda Fede **oppure** Potere +2, scegli tu. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza. Se porti #fama: Fede +3.
 
 
 **`AST_BONDS_BLOOD_TIE`**
@@ -7950,7 +7950,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_BLOOD_TIE, risonanza`**
-> Scalda Antico +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.
+> Scalda Antico **oppure** Fede +1, scegli tu. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.
 
 
 **`AST_BONDS_BROKEN_PACT`**
@@ -7978,7 +7978,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_BROKEN_PACT, risonanza`**
-> Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque. Se il giuramento e' stato rotto: Fede +3.
+> Scalda Fede **oppure** Potere +2, scegli tu. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque. Se il giuramento e' stato rotto: Fede +3.
 
 
 **`AST_BONDS_FAVOR`**
@@ -8006,7 +8006,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_FAVOR, risonanza`**
-> Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.
+> Scalda Fede **oppure** Vie +1, scegli tu. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.
 
 
 **`AST_BONDS_GUEST_RIGHT`**
@@ -8034,7 +8034,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_GUEST_RIGHT, risonanza`**
-> Scalda Terra +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.
+> Scalda Terra **oppure** Fede +1, scegli tu. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.
 
 
 **`AST_BONDS_HOSTAGE`**
@@ -8062,7 +8062,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_HOSTAGE, risonanza`**
-> Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo. Se il tradimento e' stato detto ad alta voce: Fede +3.
+> Scalda Fede **oppure** Potere +2, scegli tu. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo. Se il tradimento e' stato detto ad alta voce: Fede +3.
 
 
 **`AST_BONDS_OATH`**
@@ -8090,7 +8090,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_OATH, risonanza`**
-> Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis. Se porti #fama: Fede +2.
+> Scalda Fede **oppure** Potere +1, scegli tu. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis. Se porti #fama: Fede +2.
 
 
 **`AST_BONDS_OLD_DEBT`**
@@ -8118,7 +8118,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_BONDS_OLD_DEBT, risonanza`**
-> Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente. Se il debito e' stato chiamato: Fede +2.
+> Scalda Fede **oppure** Vie +1, scegli tu. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente. Se il debito e' stato chiamato: Fede +2.
 
 
 **`AST_FORCE_BORDER_WATCH`**
@@ -8146,7 +8146,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_BORDER_WATCH, risonanza`**
-> Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.
+> Scalda Terra **oppure** Potere +1, scegli tu. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.
 
 
 **`AST_FORCE_BURNED_GATE`**
@@ -8174,7 +8174,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_BURNED_GATE, risonanza`**
-> Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua. Se una domanda e' rimasta aperta: Potere +3.
+> Scalda Potere **oppure** Terra +2, scegli tu. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua. Se una domanda e' rimasta aperta: Potere +3.
 
 
 **`AST_FORCE_LEVY`**
@@ -8202,7 +8202,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_LEVY, risonanza`**
-> Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce. Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.
+> Scalda Sopravvivenza **oppure** Potere +1, scegli tu. I campi restano soli: chi tiene la lancia non tiene la falce. Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.
 
 
 **`AST_FORCE_MERCENARIES`**
@@ -8230,7 +8230,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_MERCENARIES, risonanza`**
-> Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro. Se il debito e' stato chiamato: Vie +2.
+> Scalda Vie **oppure** Potere +1, scegli tu. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro. Se il debito e' stato chiamato: Vie +2.
 
 
 **`AST_FORCE_OLD_ARMY`**
@@ -8286,7 +8286,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_ROADBLOCK, risonanza`**
-> Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano. Se il pedaggio si divide: Vie +2.
+> Scalda Vie **oppure** Potere +1, scegli tu. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano. Se il pedaggio si divide: Vie +2.
 
 
 **`AST_FORCE_SIEGE`**
@@ -8314,7 +8314,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_SIEGE, risonanza`**
-> Scalda Terra +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.
+> Scalda Terra **oppure** Potere +2, scegli tu. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.
 
 
 **`AST_FORCE_WARBAND`**
@@ -8342,7 +8342,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_FORCE_WARBAND, risonanza`**
-> Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata. Se il luogo e' #saccheggiato: Terra +3, e ci resta #malcontento.
+> Scalda Terra **oppure** Potere +2, scegli tu. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata. Se il luogo e' #saccheggiato: Terra +3, e ci resta #malcontento.
 
 
 **`AST_KNOWLEDGE_ARCHIVE`**
@@ -8370,7 +8370,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, risonanza`**
-> Scalda Antico +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.
+> Scalda Antico **oppure** Vie +1, scegli tu. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.
 
 
 **`AST_KNOWLEDGE_LEDGER`**
@@ -8426,7 +8426,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_OLD_MAP, risonanza`**
-> Scalda Antico +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.
+> Scalda Antico **oppure** Vie +1, scegli tu. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.
 
 
 **`AST_KNOWLEDGE_PROOF`**
@@ -8454,7 +8454,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_PROOF, risonanza`**
-> Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.
+> Scalda Fede **oppure** Potere +1, scegli tu. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.
 
 
 **`AST_KNOWLEDGE_RED_CRYSTAL`**
@@ -8482,7 +8482,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_RED_CRYSTAL, risonanza`**
-> Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda. Se il Cristallo e' stato sfruttato: Antico +3, e ci resta #sfruttato.
+> Scalda Antico **oppure** Fede +1, scegli tu. Il Risveglio non distingue fra chi scava e chi guarda. Se il Cristallo e' stato sfruttato: Antico +3, e ci resta #sfruttato.
 
 
 **`AST_KNOWLEDGE_RUMOR`**
@@ -8510,7 +8510,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_RUMOR, risonanza`**
-> Scalda Antico +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.
+> Scalda Antico **oppure** Fede +1, scegli tu. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY`**
@@ -8538,7 +8538,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_SEALED_TESTIMONY, risonanza`**
-> Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista. Se una domanda e' rimasta aperta: Potere +3.
+> Scalda Potere **oppure** Fede +2, scegli tu. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista. Se una domanda e' rimasta aperta: Potere +3.
 
 
 **`AST_KNOWLEDGE_WITNESS`**
@@ -8566,7 +8566,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_KNOWLEDGE_WITNESS, risonanza`**
-> Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere. Se il tradimento e' stato detto ad alta voce: Fede +3.
+> Scalda Fede **oppure** Potere +2, scegli tu. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere. Se il tradimento e' stato detto ad alta voce: Fede +3.
 
 
 **`AST_PEOPLE_CROWD`**
@@ -8594,7 +8594,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_CROWD, risonanza`**
-> Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto. Se il grano e' stato requisito: Sopravvivenza +2.
+> Scalda Sopravvivenza **oppure** Potere +1, scegli tu. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto. Se il grano e' stato requisito: Sopravvivenza +2.
 
 
 **`AST_PEOPLE_ELDERS`**
@@ -8622,7 +8622,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_ELDERS, risonanza`**
-> Scalda Antico +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.
+> Scalda Antico **oppure** Fede +1, scegli tu. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.
 
 
 **`AST_PEOPLE_EXODUS`**
@@ -8650,7 +8650,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_EXODUS, risonanza`**
-> Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto. Se i Nahr si sono fermati: Terra +3, e ci resta la Cicatrice «lo sgombero».
+> Scalda Terra **oppure** Sopravvivenza +2, scegli tu. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto. Se i Nahr si sono fermati: Terra +3, e ci resta la Cicatrice «lo sgombero».
 
 
 **`AST_PEOPLE_HARVEST_HANDS`**
@@ -8706,7 +8706,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_MARCH, risonanza`**
-> Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa. Se sul luogo c'e' #fame: Sopravvivenza +2, e ci resta #malcontento.
+> Scalda Sopravvivenza **oppure** Terra +1, scegli tu. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa. Se sul luogo c'e' #fame: Sopravvivenza +2, e ci resta #malcontento.
 
 
 **`AST_PEOPLE_MOBILIZATION`**
@@ -8734,7 +8734,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_MOBILIZATION, risonanza`**
-> Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso. Se una domanda e' rimasta aperta: Sopravvivenza +3.
+> Scalda Sopravvivenza **oppure** Terra +2, scegli tu. Chi si mobilita non lavora, e chi non lavora mangia lo stesso. Se una domanda e' rimasta aperta: Sopravvivenza +3.
 
 
 **`AST_PEOPLE_SPOKESMAN`**
@@ -8762,7 +8762,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_SPOKESMAN, risonanza`**
-> Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare. Se la richiesta e' stata ascoltata: Potere +2.
+> Scalda Potere **oppure** Fede +1, scegli tu. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare. Se la richiesta e' stata ascoltata: Potere +2.
 
 
 **`AST_PEOPLE_STILL_HANDS`**
@@ -8790,7 +8790,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_PEOPLE_STILL_HANDS, risonanza`**
-> Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano. Se il pedaggio si divide: Vie +3.
+> Scalda Vie **oppure** Sopravvivenza +2, scegli tu. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano. Se il pedaggio si divide: Vie +3.
 
 
 **`AST_WEALTH_CARAVAN`**
@@ -8846,7 +8846,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_WEALTH_CREDIT, risonanza`**
-> Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo. Se il debito e' stato chiamato: Vie +2.
+> Scalda Vie **oppure** Potere +1, scegli tu. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo. Se il debito e' stato chiamato: Vie +2.
 
 
 **`AST_WEALTH_GRAIN`**
@@ -8902,7 +8902,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_WEALTH_GRANARY_KEYS, risonanza`**
-> Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta. Se il grano e' stato requisito: Sopravvivenza +3.
+> Scalda Sopravvivenza **oppure** Potere +2, scegli tu. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta. Se il grano e' stato requisito: Sopravvivenza +3.
 
 
 **`AST_WEALTH_LAND_MORTGAGE`**
@@ -8930,7 +8930,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_WEALTH_LAND_MORTGAGE, risonanza`**
-> Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente. Se il debito e' stato chiamato: Terra +3.
+> Scalda Terra **oppure** Vie +2, scegli tu. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente. Se il debito e' stato chiamato: Terra +3.
 
 
 **`AST_WEALTH_SALT`**
@@ -8958,7 +8958,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_WEALTH_SALT, risonanza`**
-> Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.
+> Scalda Vie **oppure** Sopravvivenza +1, scegli tu. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.
 
 
 **`AST_WEALTH_TOLL`**
@@ -8986,7 +8986,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_WEALTH_TOLL, risonanza`**
-> Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto. Se il debito e' stato chiamato: Vie +2.
+> Scalda Vie **oppure** Potere +1, scegli tu. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto. Se il debito e' stato chiamato: Vie +2.
 
 
 **`AST_WEALTH_TREASURY`**
@@ -9014,7 +9014,7 @@ possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 
 **`AST_WEALTH_TREASURY, risonanza`**
-> Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.
+> Scalda Potere **oppure** Vie +2, scegli tu. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.
 
 
 ## 9. I Destini — le ambizioni, gradino per gradino
@@ -11255,6 +11255,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > La citta' parla piu' forte al Consiglio
 
 
+**`TGR_CONTESTED_TABLE`**
+> Dove due mani tengono lo stesso lembo, decidere costa di piu'
+
+
 **`TGR_CURSED_WOOD_HAND`**
 > Dalla selva si torna con meno
 
@@ -11319,6 +11323,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > Il debito di mezza stagione
 
 
+**`TGR_INDEBTED_TABLE`**
+> Chi e' indebitato ha meno voce per opporsi
+
+
 **`TGR_INQUISITION_EYE`**
 > L'occhio dell'Inquisizione
 
@@ -11365,6 +11373,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_PLUNDERED_GATE`**
 > La strada depredata
+
+
+**`TGR_RATIONED_TABLE`**
+> Dove si raziona, si decide in fretta
 
 
 **`TGR_REGENCY_RATIONS`**
@@ -11425,6 +11437,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_TOWN_HAND`**
 > Nel borgo si tiene qualcosa da parte
+
+
+**`TGR_UNREST_TABLE`**
+> Col malcontento in piazza il tavolo fatica
 
 
 **`TGR_VILLAGE_PEOPLE`**

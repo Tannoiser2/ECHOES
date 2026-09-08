@@ -269,6 +269,10 @@
           "minimum": -2,
           "maximum": 2,
           "description": "Solo per ACTION_RIPPLE: quanto la Tensione indicata si muove quando l'azione riesce."
+        },
+        "focus": {
+          "type": "boolean",
+          "description": "COUNCIL_MODIFIER con `when.scope` REGION: se vero la regola guarda **la Regione di cui si discute**, non una Regione qualsiasi che porti il segno (D-483). Un segno che il mondo scrive spesso, letto su tutta la mappa, diventa una costante — e una costante non e' una regola."
         }
       }
     }

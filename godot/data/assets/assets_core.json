@@ -73,10 +73,11 @@
         "resonance": {
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 1,
-          "text": "Scalda Sopravvivenza +1. I campi restano soli: chi tiene la lancia non tiene la falce. Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.",
+          "text": "Scalda Sopravvivenza **oppure** Potere +1, scegli tu. I campi restano soli: chi tiene la lancia non tiene la falce. Se il luogo e' #magro: Sopravvivenza +2, e ci resta #fame.",
           "if_target_tag": "condition:lean",
           "extra_heat": 1,
-          "extra_tag": "condition:starving"
+          "extra_tag": "condition:starving",
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -161,10 +162,11 @@
         "resonance": {
           "theme": "THM_TERRA",
           "heat": 1,
-          "text": "Scalda Terra +1. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.",
+          "text": "Scalda Terra **oppure** Potere +1, scegli tu. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.",
           "if_target_tag": "nomad_range",
           "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "extra_tag": "condition:unrest",
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -256,9 +258,10 @@
         "resonance": {
           "theme": "THM_VIE",
           "heat": 1,
-          "text": "Scalda Vie +1. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano. Se il pedaggio si divide: Vie +2.",
+          "text": "Scalda Vie **oppure** Potere +1, scegli tu. Una strada su cui c'e' un posto di blocco non e' piu' una strada: e' una porta, e le porte si contano. Se il pedaggio si divide: Vie +2.",
           "if_target_tag": "toll_shared",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -345,10 +348,11 @@
         "resonance": {
           "theme": "THM_TERRA",
           "heat": 2,
-          "text": "Scalda Terra +2. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata. Se il luogo e' #saccheggiato: Terra +3, e ci resta #malcontento.",
+          "text": "Scalda Terra **oppure** Potere +2, scegli tu. Una banda armata non torna indietro uguale, e nemmeno il posto da cui e' passata. Se il luogo e' #saccheggiato: Terra +3, e ci resta #malcontento.",
           "if_target_tag": "condition:plundered",
           "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "extra_tag": "condition:unrest",
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 2,
@@ -426,9 +430,10 @@
         "resonance": {
           "theme": "THM_VIE",
           "heat": 1,
-          "text": "Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro. Se il debito e' stato chiamato: Vie +2.",
+          "text": "Scalda Vie **oppure** Potere +1, scegli tu. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro. Se il debito e' stato chiamato: Vie +2.",
           "if_target_tag": "debt_called",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -525,9 +530,10 @@
         "resonance": {
           "theme": "THM_TERRA",
           "heat": 2,
-          "text": "Scalda Terra +2. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.",
+          "text": "Scalda Terra **oppure** Potere +2, scegli tu. Un assedio si vede da lontano, e chi ha fame lo racconta prima di chi comanda. Se il grano e' stato requisito: Terra +3.",
           "if_target_tag": "grain_requisitioned",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 2,
@@ -700,9 +706,10 @@
         "resonance": {
           "theme": "THM_POTERE",
           "heat": 2,
-          "text": "Scalda Potere +2. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua. Se una domanda e' rimasta aperta: Potere +3.",
+          "text": "Scalda Potere **oppure** Terra +2, scegli tu. Le porte bruciate si raccontano per due generazioni, e nessuna versione e' la tua. Se una domanda e' rimasta aperta: Potere +3.",
           "if_target_tag": "question_unresolved",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_TERRA"
         },
         "council_use": {
           "base_strength": 3,
@@ -951,10 +958,11 @@
         "resonance": {
           "theme": "THM_POTERE",
           "heat": 1,
-          "text": "Scalda Potere +1. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.",
+          "text": "Scalda Potere **oppure** Vie +1, scegli tu. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.",
           "if_target_tag": "nomad_range",
           "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "extra_tag": "condition:unrest",
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 1,
@@ -1127,9 +1135,10 @@
         "resonance": {
           "theme": "THM_POTERE",
           "heat": 1,
-          "text": "Scalda Potere +1. Un magistrato e' la corona che arriva dove la corona non va di persona. Se la Carta e' stata scritta: Potere +2.",
+          "text": "Scalda Potere **oppure** Vie +1, scegli tu. Un magistrato e' la corona che arriva dove la corona non va di persona. Se la Carta e' stata scritta: Potere +2.",
           "if_target_tag": "charter_written",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 2,
@@ -1207,9 +1216,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 1,
-          "text": "Scalda Fede +1. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto. Se porti #fama: Fede +2.",
+          "text": "Scalda Fede **oppure** Potere +1, scegli tu. Un titolo dato e' una gerarchia detta ad alta voce, e qualcuno la sentira' come un insulto. Se porti #fama: Fede +2.",
           "if_target_tag": "renowned",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -1288,9 +1298,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 2,
-          "text": "Scalda Fede +2. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori. Se la fede ha avuto un posto: Fede +3.",
+          "text": "Scalda Fede **oppure** Potere +2, scegli tu. Un interdetto non toglie niente a nessuno: dice solo che d'ora in poi c'e' un dentro e un fuori. Se la fede ha avuto un posto: Fede +3.",
           "if_target_tag": "faith_established",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 3,
@@ -1456,9 +1467,10 @@
         "resonance": {
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 1,
-          "text": "Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto. Se il grano e' stato requisito: Sopravvivenza +2.",
+          "text": "Scalda Sopravvivenza **oppure** Potere +1, scegli tu. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto. Se il grano e' stato requisito: Sopravvivenza +2.",
           "if_target_tag": "grain_requisitioned",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -1546,9 +1558,10 @@
         "resonance": {
           "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Antico +1. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.",
+          "text": "Scalda Antico **oppure** Fede +1, scegli tu. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.",
           "if_target_tag": "faith_established",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 1,
@@ -1715,9 +1728,10 @@
         "resonance": {
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 2,
-          "text": "Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso. Se una domanda e' rimasta aperta: Sopravvivenza +3.",
+          "text": "Scalda Sopravvivenza **oppure** Terra +2, scegli tu. Chi si mobilita non lavora, e chi non lavora mangia lo stesso. Se una domanda e' rimasta aperta: Sopravvivenza +3.",
           "if_target_tag": "question_unresolved",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_TERRA"
         },
         "council_use": {
           "base_strength": 2,
@@ -1799,9 +1813,10 @@
         "resonance": {
           "theme": "THM_POTERE",
           "heat": 1,
-          "text": "Scalda Potere +1. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare. Se la richiesta e' stata ascoltata: Potere +2.",
+          "text": "Scalda Potere **oppure** Fede +1, scegli tu. Un portavoce e' qualcuno che ha deciso di chi e' la voce, e l'ha deciso prima di parlare. Se la richiesta e' stata ascoltata: Potere +2.",
           "if_target_tag": "petition_heard",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 2,
@@ -1886,10 +1901,11 @@
         "resonance": {
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 1,
-          "text": "Scalda Sopravvivenza +1. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa. Se sul luogo c'e' #fame: Sopravvivenza +2, e ci resta #malcontento.",
+          "text": "Scalda Sopravvivenza **oppure** Terra +1, scegli tu. Una marcia non torna indietro da sola: qualcuno deve prometterle qualcosa. Se sul luogo c'e' #fame: Sopravvivenza +2, e ci resta #malcontento.",
           "if_target_tag": "condition:starving",
           "extra_heat": 1,
-          "extra_tag": "condition:unrest"
+          "extra_tag": "condition:unrest",
+          "or_theme": "THM_TERRA"
         },
         "council_use": {
           "base_strength": 1,
@@ -1981,10 +1997,11 @@
         "resonance": {
           "theme": "THM_TERRA",
           "heat": 2,
-          "text": "Scalda Terra +2. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto. Se i Nahr si sono fermati: Terra +3, e ci resta la Cicatrice «lo sgombero».",
+          "text": "Scalda Terra **oppure** Sopravvivenza +2, scegli tu. Un esodo non si annulla: il posto da cui si e' partiti resta com'e' rimasto. Se i Nahr si sono fermati: Terra +3, e ci resta la Cicatrice «lo sgombero».",
           "if_target_tag": "nahr_settled",
           "extra_heat": 1,
-          "extra_tag": "scar:emptied"
+          "extra_tag": "scar:emptied",
+          "or_theme": "THM_SOPRAVVIVENZA"
         },
         "council_use": {
           "base_strength": 3,
@@ -2066,9 +2083,10 @@
         "resonance": {
           "theme": "THM_VIE",
           "heat": 2,
-          "text": "Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano. Se il pedaggio si divide: Vie +3.",
+          "text": "Scalda Vie **oppure** Sopravvivenza +2, scegli tu. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano. Se il pedaggio si divide: Vie +3.",
           "if_target_tag": "toll_shared",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_SOPRAVVIVENZA"
         },
         "council_use": {
           "base_strength": 3,
@@ -2154,9 +2172,10 @@
         "resonance": {
           "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Antico +1. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.",
+          "text": "Scalda Antico **oppure** Fede +1, scegli tu. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.",
           "if_target_tag": "betrayal_spoken",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 1,
@@ -2242,9 +2261,10 @@
         "resonance": {
           "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Antico +1. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.",
+          "text": "Scalda Antico **oppure** Vie +1, scegli tu. Una strada che qualcuno ha ritrovato e' una strada che qualcun altro vorra' chiudere. Se il luogo porta #commercio: Antico +2.",
           "if_target_tag": "trade",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 1,
@@ -2411,9 +2431,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 1,
-          "text": "Scalda Fede +1. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.",
+          "text": "Scalda Fede **oppure** Potere +1, scegli tu. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.",
           "if_target_tag": "knowledge_shared",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 2,
@@ -2501,9 +2522,10 @@
         "resonance": {
           "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Antico +1. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.",
+          "text": "Scalda Antico **oppure** Vie +1, scegli tu. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.",
           "if_target_tag": "ledger_public",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 1,
@@ -2582,9 +2604,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 2,
-          "text": "Scalda Fede +2. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere. Se il tradimento e' stato detto ad alta voce: Fede +3.",
+          "text": "Scalda Fede **oppure** Potere +2, scegli tu. Un testimone non porta la verita': porta la propria, e adesso il tavolo deve scegliere. Se il tradimento e' stato detto ad alta voce: Fede +3.",
           "if_target_tag": "betrayal_spoken",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 2,
@@ -2674,10 +2697,11 @@
         "resonance": {
           "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Antico +1. Il Risveglio non distingue fra chi scava e chi guarda. Se il Cristallo e' stato sfruttato: Antico +3, e ci resta #sfruttato.",
+          "text": "Scalda Antico **oppure** Fede +1, scegli tu. Il Risveglio non distingue fra chi scava e chi guarda. Se il Cristallo e' stato sfruttato: Antico +3, e ci resta #sfruttato.",
           "if_target_tag": "crystal_exploited",
           "extra_heat": 2,
-          "extra_tag": "condition:exploited"
+          "extra_tag": "condition:exploited",
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 2,
@@ -2765,9 +2789,10 @@
         "resonance": {
           "theme": "THM_POTERE",
           "heat": 2,
-          "text": "Scalda Potere +2. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista. Se una domanda e' rimasta aperta: Potere +3.",
+          "text": "Scalda Potere **oppure** Fede +2, scegli tu. Una deposizione sigillata pesa uguale aperta o chiusa: quello che conta e' che esista. Se una domanda e' rimasta aperta: Potere +3.",
           "if_target_tag": "question_unresolved",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 3,
@@ -2948,9 +2973,10 @@
         "resonance": {
           "theme": "THM_VIE",
           "heat": 1,
-          "text": "Scalda Vie +1. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.",
+          "text": "Scalda Vie **oppure** Sopravvivenza +1, scegli tu. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.",
           "if_target_tag": "toll_shared",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_SOPRAVVIVENZA"
         },
         "council_use": {
           "base_strength": 1,
@@ -3039,9 +3065,10 @@
         "resonance": {
           "theme": "THM_VIE",
           "heat": 1,
-          "text": "Scalda Vie +1. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto. Se il debito e' stato chiamato: Vie +2.",
+          "text": "Scalda Vie **oppure** Potere +1, scegli tu. Ogni pedaggio e' un prezzo che qualcuno non aveva messo in conto. Se il debito e' stato chiamato: Vie +2.",
           "if_target_tag": "debt_called",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -3207,9 +3234,10 @@
         "resonance": {
           "theme": "THM_VIE",
           "heat": 1,
-          "text": "Scalda Vie +1. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo. Se il debito e' stato chiamato: Vie +2.",
+          "text": "Scalda Vie **oppure** Potere +1, scegli tu. Il credito e' una corda: la tiene chi presta, e la sente chi la porta al collo. Se il debito e' stato chiamato: Vie +2.",
           "if_target_tag": "debt_called",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -3287,9 +3315,10 @@
         "resonance": {
           "theme": "THM_SOPRAVVIVENZA",
           "heat": 2,
-          "text": "Scalda Sopravvivenza +2. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta. Se il grano e' stato requisito: Sopravvivenza +3.",
+          "text": "Scalda Sopravvivenza **oppure** Potere +2, scegli tu. Le chiavi non fanno il grano: decidono soltanto chi resta fuori dalla porta. Se il grano e' stato requisito: Sopravvivenza +3.",
           "if_target_tag": "grain_requisitioned",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 2,
@@ -3373,9 +3402,10 @@
         "resonance": {
           "theme": "THM_POTERE",
           "heat": 2,
-          "text": "Scalda Potere +2. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.",
+          "text": "Scalda Potere **oppure** Vie +2, scegli tu. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.",
           "if_target_tag": "crown_dispossessed",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 3,
@@ -3458,9 +3488,10 @@
         "resonance": {
           "theme": "THM_TERRA",
           "heat": 2,
-          "text": "Scalda Terra +2. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente. Se il debito e' stato chiamato: Terra +3.",
+          "text": "Scalda Terra **oppure** Vie +2, scegli tu. Un'ipoteca sulla terra e' una domanda su chi ci vive, fatta a chi non e' presente. Se il debito e' stato chiamato: Terra +3.",
           "if_target_tag": "debt_called",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 3,
@@ -3541,9 +3572,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 1,
-          "text": "Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.",
+          "text": "Scalda Fede **oppure** Vie +1, scegli tu. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.",
           "if_target_tag": "parley_held",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 1,
@@ -3625,9 +3657,10 @@
         "resonance": {
           "theme": "THM_TERRA",
           "heat": 1,
-          "text": "Scalda Terra +1. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.",
+          "text": "Scalda Terra **oppure** Fede +1, scegli tu. Il diritto d'ospitalita' regge finche' nessuno lo mette alla prova, e qualcuno lo mettera'. Se porti la scorta giurata: Terra +2.",
           "if_target_tag": "escort_sworn",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 1,
@@ -3705,9 +3738,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 1,
-          "text": "Scalda Fede +1. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente. Se il debito e' stato chiamato: Fede +2.",
+          "text": "Scalda Fede **oppure** Vie +1, scegli tu. Un debito vecchio non e' una somma: e' una storia che qualcuno raccontera' diversamente. Se il debito e' stato chiamato: Fede +2.",
           "if_target_tag": "debt_called",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_VIE"
         },
         "council_use": {
           "base_strength": 1,
@@ -3788,9 +3822,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 1,
-          "text": "Scalda Fede +1. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis. Se porti #fama: Fede +2.",
+          "text": "Scalda Fede **oppure** Potere +1, scegli tu. Un giuramento pronunciato e' una cosa che il mondo dovra' ricordare o dimenticare, e nessuna delle due e' gratis. Se porti #fama: Fede +2.",
           "if_target_tag": "renowned",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 1,
@@ -3871,9 +3906,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 2,
-          "text": "Scalda Fede +2. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza. Se porti #fama: Fede +3.",
+          "text": "Scalda Fede **oppure** Potere +2, scegli tu. Una promessa di nozze e' un patto che coinvolge chi non era nella stanza. Se porti #fama: Fede +3.",
           "if_target_tag": "renowned",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 2,
@@ -3959,9 +3995,10 @@
         "resonance": {
           "theme": "THM_ANTICO",
           "heat": 1,
-          "text": "Scalda Antico +1. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.",
+          "text": "Scalda Antico **oppure** Fede +1, scegli tu. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.",
           "if_target_tag": "heir_named",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_FEDE"
         },
         "council_use": {
           "base_strength": 2,
@@ -4044,9 +4081,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 2,
-          "text": "Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo. Se il tradimento e' stato detto ad alta voce: Fede +3.",
+          "text": "Scalda Fede **oppure** Potere +2, scegli tu. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo. Se il tradimento e' stato detto ad alta voce: Fede +3.",
           "if_target_tag": "betrayal_spoken",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 3,
@@ -4125,9 +4163,10 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 2,
-          "text": "Scalda Fede +2. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque. Se il giuramento e' stato rotto: Fede +3.",
+          "text": "Scalda Fede **oppure** Potere +2, scegli tu. Un patto rotto non si dimentica: cambia quello che gli altri sono disposti a promettere a chiunque. Se il giuramento e' stato rotto: Fede +3.",
           "if_target_tag": "oath_broken",
-          "extra_heat": 1
+          "extra_heat": 1,
+          "or_theme": "THM_POTERE"
         },
         "council_use": {
           "base_strength": 3,

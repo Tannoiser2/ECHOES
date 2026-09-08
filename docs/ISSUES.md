@@ -10364,9 +10364,22 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
 
 **Cosa resta da decidere, e lo decide il committente:**
 
-1. **La Risonanza diventa una scelta?** Se la faccia offrisse due Temi e tu
-   scegliessi quale scaldare, ogni Azione diventerebbe anche una mossa
-   sull'agenda. E' una riga sui dati e una scelta in piu' al turno.
+1. ✔ **La Risonanza e' diventata una scelta** — **fatta in 0.1.452**
+   ([D-482](DECISIONS.md#d-482)). La Risonanza avviene sempre; **quale dei due
+   Temi stampati scalda lo dice chi cala la carta**. Trentanove carte su 48 ne
+   stampano due, e la faccia adesso lo dice: *«Scalda Potere oppure Vie +1,
+   scegli tu»*.
+
+   Misurato (`cli/run_agenda_probe.gd`, 100 anni, tavolo misto): su **2.636**
+   carte calate con una Risonanza, **2.180 (82,7%)** offrono la scelta, e
+   **1.136 volte — il 52,1% delle volte che poteva — la scelta sposta il
+   gettone** su un Tema diverso da quello stampato per primo. Prima era zero per
+   costruzione.
+
+   **Il costo si scrive**: cancello 0 su 8, ma sul tavolo **uniforme** le Verita'
+   scendono da 257 a **235** e i Consigli caduti salgono da 44 a **58** —
+   quattro ottimizzatori identici scelgono lo stesso Tema e concentrano
+   l'agenda. Sul tavolo **misto** la stessa leva fa il contrario: 278 → **283**.
 2. **Il rapporto 27/73 si sposta?** Scrivere piu' bersagli su segni posabili e'
    lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
 3. **Le Pietre diventano capacita'?** Il telaio (`ACTION_DISCOUNT`,
@@ -10381,6 +10394,22 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    davvero** — `condition:contested` (370 volte), `condition:unrest` (333),
    `condition:indebted` (304), `condition:rationed` (203) — e con quale verso
    ognuna.
+
+   **Scritte in 0.1.453** ([D-483](DECISIONS.md#d-483)): quattro regole, una per
+   segno, coi versi dichiarati — conteso e malcontento **alzano** la soglia,
+   indebitato e razionato la **abbassano**. E guardano **il luogo di cui si
+   discute**, non una Regione qualsiasi: un segno scritto 370 volte, letto su
+   tutta la mappa, sarebbe una costante, e una costante non e' una regola.
+
+   Misurato (`run_pile_probe`, 100 anni): i Consigli col mucchio mosso passano
+   dal **9%** al **51%** (264 su 516), lo spostamento medio da 1,0 a **1,22**, e
+   le regole che mordono almeno una volta da 5 su 21 a **9 su 25**. Le quattro
+   nuove sono anche le quattro che mordono di piu'. **Sedici delle ventun
+   vecchie restano mute** e restano dichiarate: chiedono una vita precisa seduta
+   al tavolo.
+
+   **Il costo:** cancello 0 su 8, Verita' 283 → **276** sul misto e 235 →
+   **234** sull'uniforme.
 
 
 ### 133. Le caselle del Consiglio: una su cinque non fa niente, e le frasi non dicono cosa cambia

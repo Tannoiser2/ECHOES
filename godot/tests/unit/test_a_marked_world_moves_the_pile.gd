@@ -103,3 +103,77 @@ func test_the_pile_never_goes_below_nothing() -> void:
 	assert_false(context.is_empty(), "il Consiglio si apre")
 	assert_eq(session.confluence.pile(), 0, "e con zero gettoni il mucchio resta zero")
 	session.confluence.current = {}
+
+
+## --- e le quattro regole sui segni che il mondo scrive davvero (D-483) ------
+
+
+## **Il luogo di cui si discute, non un luogo qualsiasi.**
+##
+## Le ventun regole di D-477 toccavano il **9%** dei Consigli, e la causa era
+## misurata: nessuno dei dieci segni piu' scritti dal mondo era nominato da
+## nessuna di loro. Le quattro nuove nominano i primi quattro — conteso,
+## malcontento, indebitato, razionato — e guardano **la Regione della domanda**:
+## un segno che il mondo scrive 370 volte in cento anni, letto su tutta la
+## mappa, sarebbe una costante, e una costante non e' una regola.
+func test_a_contested_focus_raises_the_pile() -> void:
+	var focus: String = str((session.world["regions"] as Dictionary).keys()[0])
+	var altrove: String = str((session.world["regions"] as Dictionary).keys()[1])
+	var seat: String = str(session.world["turn_order"][0])
+
+	((session.world["regions"][altrove] as Dictionary)["tags"] as Array).append(
+		"condition:contested"
+	)
+	var lontano: Dictionary = TagRules.council_pile_shift(
+		session.data, session.world, "TEN_FAMINE", seat, focus
+	)
+	assert_eq(int(lontano["delta"]), 0,
+		"un conteso dall'altra parte della mappa non pesa su questa domanda")
+
+	((session.world["regions"][focus] as Dictionary)["tags"] as Array).append(
+		"condition:contested"
+	)
+	var qui: Dictionary = TagRules.council_pile_shift(
+		session.data, session.world, "TEN_FAMINE", seat, focus
+	)
+	assert_eq(int(qui["delta"]), 1, "sul luogo di cui si parla, la soglia sale di uno")
+	assert_true(
+		(qui["titles"] as Array).has(
+			"Dove due mani tengono lo stesso lembo, decidere costa di piu'"
+		),
+		"e il Consiglio sa dire perche': %s" % str(qui["titles"])
+	)
+
+
+## **E i due versi sono due**: due segni pesano, due aiutano, e chi legge il
+## tabellone vede la somma. Il verso e' d'autore ed e' dichiarato nei dati.
+func test_the_four_signs_pull_in_two_directions() -> void:
+	var focus: String = str((session.world["regions"] as Dictionary).keys()[0])
+	var seat: String = str(session.world["turn_order"][0])
+	var tags: Array = (session.world["regions"][focus] as Dictionary)["tags"] as Array
+
+	for pair in [["condition:contested", 1], ["condition:unrest", 1],
+			["condition:indebted", -1], ["condition:rationed", -1]]:
+		var before: int = int(TagRules.council_pile_shift(
+			session.data, session.world, "TEN_FAMINE", seat, focus
+		)["delta"])
+		tags.append(str((pair as Array)[0]))
+		var after: int = int(TagRules.council_pile_shift(
+			session.data, session.world, "TEN_FAMINE", seat, focus
+		)["delta"])
+		assert_eq(after - before, int((pair as Array)[1]),
+			"«%s» muove la soglia di %d" % [str((pair as Array)[0]), int((pair as Array)[1])])
+		tags.erase(str((pair as Array)[0]))
+
+
+## E senza un luogo di cui si discute, una regola col dito puntato non morde:
+## non si inventa un posto per farla valere.
+func test_without_a_focus_the_pointed_rule_stays_quiet() -> void:
+	var focus: String = str((session.world["regions"] as Dictionary).keys()[0])
+	((session.world["regions"][focus] as Dictionary)["tags"] as Array).append(
+		"condition:contested"
+	)
+	var shift: Dictionary = TagRules.council_pile_shift(
+		session.data, session.world, "TEN_FAMINE", str(session.world["turn_order"][0])
+	)
+	assert_eq(int(shift["delta"]), 0, "senza il luogo della domanda, la regola tace")
