@@ -559,7 +559,20 @@ func _render_outcome(council: Dictionary) -> void:
 	var pile: int = int(council.get("pile", 0))
 	var result_v: Variant = council.get("result", null)
 	if result_v == null:
-		_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
+		# **E perche' vale quello** ([D-477](../../docs/DECISIONS.md#d-477)): se
+		# il mondo segnato ha mosso la soglia, il tavolo deve sapere quale segno
+		# gliel'ha mossa. Una regola che non si vede non e' una regola del
+		# tavolo: e' un numero che cambia e nessuno sa perche'.
+		var shift: int = int(council.get("pile_shift", 0))
+		var titles: Array = council.get("pile_shift_titles", []) as Array
+		if shift == 0 or titles.is_empty():
+			_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
+		else:
+			_outcome.text = "Il mucchio sulla domanda vale %d — %s di uno perche' %s: chi vince deve arrivarci." % [
+				pile,
+				"alzato" if shift > 0 else "abbassato",
+				" e ".join(PackedStringArray(titles)),
+			]
 		return
 	var settled: Dictionary = result_v as Dictionary
 	var outcome: String = str(settled["outcome"])

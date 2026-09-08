@@ -10345,6 +10345,14 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
 3. **Le Pietre diventano capacita'?** Il telaio (`ACTION_DISCOUNT`,
    `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in tutto.
-4. **Le 21 regole morte** (`COUNCIL_MODIFIER`): puntate sul mucchio dei
-   gettoni, o tolte? E' la stessa voce aperta in [129](#129).
+4. ✔ **Le 21 regole morte** (`COUNCIL_MODIFIER`) — **puntate sul mucchio in
+   0.1.447** ([D-477](DECISIONS.md#d-477)): un segno del mondo alza o abbassa
+   la soglia che le due parti devono battere. **Ma il numero e' 9%**: su 513
+   Consigli il mondo ne muove 46, e 41 di quei 46 sono una regola sola. Sedici
+   su ventuno restano mute, e la causa e' misurata — **i dieci segni piu'
+   scritti del mondo non sono nominati da nessuna delle ventuno**. Resta da
+   decidere, ed e' d'autore: **scrivere regole sui segni che il mondo scrive
+   davvero** — `condition:contested` (370 volte), `condition:unrest` (333),
+   `condition:indebted` (304), `condition:rationed` (203) — e con quale verso
+   ognuna.
 

@@ -306,10 +306,33 @@ func _open_the_sides(template: Dictionary, question_id: String) -> void:
 		},
 		"B": {"question_id": other, "leader": "", "seats": [], "boxes": []},
 	}
-	current["pile"] = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
+	# **Il mucchio, e quanto il mondo segnato lo muove**
+	# ([D-477](../../docs/DECISIONS.md#d-477)). I gettoni caduti sul Tema dicono
+	# quanto la questione scotta; le ventun regole `COUNCIL_MODIFIER` dicono
+	# quanto il mondo rende difficile deciderla. La fame sparsa in giro alza la
+	# soglia di un Consiglio sulla Carestia; una citta' che parla forte la
+	# abbassa.
+	#
+	# Non scende mai sotto zero: una soglia negativa vorrebbe dire che una parte
+	# passa senza aver messo niente sul tavolo, e al tavolo quel gesto non
+	# esiste.
+	var heat: int = int((world.get("theme_heat", {}) as Dictionary).get(theme_id, 0))
+	var world_says: Dictionary = TagRules.council_pile_shift(
+		data, world, str(current["tension_id"]), str(current["proponent"])
+	)
+	var shift: int = int(world_says.get("delta", 0))
+	current["pile"] = maxi(heat + shift, 0)
+	current["pile_shift"] = shift
+	current["pile_shift_titles"] = (world_says.get("titles", []) as Array).duplicate()
 	current["passed"] = {}
 	log.bullet("B. Contro: %s" % say(_question_text(template, other)))
-	log.bullet("B. Il mucchio sulla domanda vale %d." % int(current["pile"]))
+	if shift == 0:
+		log.bullet("B. Il mucchio sulla domanda vale %d." % int(current["pile"]))
+	else:
+		log.bullet("B. Il mucchio sulla domanda vale %d: %d di gettoni, %s%d perche' %s." % [
+			int(current["pile"]), heat, "+" if shift > 0 else "", shift,
+			" e ".join(PackedStringArray(current["pile_shift_titles"])),
+		])
 
 
 func sides_open() -> bool:

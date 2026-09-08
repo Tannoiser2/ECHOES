@@ -67,12 +67,25 @@ static func action_bonus(
 	return {"delta": delta, "titles": titles}
 
 
-## COUNCIL_MODIFIER: di quanto i segni pesano sul World Factor del Consiglio.
+## COUNCIL_MODIFIER: **di quanto i segni muovono il mucchio del Consiglio**
+## ([D-477](../../docs/DECISIONS.md#d-477)).
+##
+## Il mucchio e' la soglia che le due parti devono battere per far passare la
+## loro domanda (D-467): alzarlo rende piu' difficile decidere, abbassarlo piu'
+## facile. E' la cosa che al tavolo si guarda prima di impegnare una carta.
+##
+## **Queste ventun regole spingevano il World Factor**, cioe' il dado, e il dado
+## e' uscito con D-467: da allora nessun motore le chiamava, e ventun righe
+## d'autore — «La fame siede al tavolo», «La citta' parla piu' forte al
+## Consiglio», «Il seggio vuoto pesa sulla Carta» — non muovevano piu' niente.
+## Adesso muovono la soglia, ed e' il mestiere che avevano: **un mondo segnato
+## cambia quanto e' difficile decidere.**
+##
 ## Al tavolo del Consiglio gli scope si leggono così: GLOBAL è il mondo,
 ## ENTITY è il proponente (la fama precede chi propone), REGION è una Regione
 ## qualsiasi che porti il segno (se da qualche parte si muore di fame, la fame
 ## siede al tavolo).
-static func council_world_factor(
+static func council_pile_shift(
 	data, world: Dictionary, tension_id: String, proponent_id: String
 ) -> Dictionary:
 	var delta: int = 0
@@ -90,7 +103,7 @@ static func council_world_factor(
 			if not present:
 				break
 		if present:
-			delta += int(rule.get("world_factor_delta", 0))
+			delta += int(rule.get("pile_delta", 0))
 			titles.append(str(rule["title"]))
 	return {"delta": delta, "titles": titles}
 

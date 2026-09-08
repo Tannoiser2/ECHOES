@@ -446,7 +446,29 @@ e sono tue:
    contenuto, e fa crescere la combo che già c'è.
 3. **Le Pietre diventano capacità?** Il telaio c'è e ha quattro regole in
    tutto.
-4. **Le 21 regole morte**: puntate sul mucchio dei gettoni, o tolte?
+4. ✔ **Le 21 regole morte — fatte in 0.1.447**
+   ([D-477](DECISIONS.md#d-477)), ed e' la cosa che ti avevo proposto per
+   prima. Adesso un segno del mondo **alza o abbassa la soglia** che le due
+   parti devono battere: se hai lasciato fame in giro, il Consiglio sulla
+   Carestia si vota contro un mucchio piu' alto. Il tabellone lo dice: *«Il
+   mucchio vale 4 — alzato di uno perche' La fame siede al tavolo»*.
+
+   **E il numero e' meno di quello che ti avevo promesso, quindi te lo scrivo
+   grosso: 9%.** Su 513 Consigli in cento anni il mondo ne muove **46**, e
+   **41 di quei 46 sono una regola sola** — «La fama precede». Sedici delle
+   ventuno non mordono mai.
+
+   La causa l'ho misurata, e non e' il motore: **sono i segni che quelle regole
+   nominano.** Guardano vite precise, Cicatrici, memorie che escono due volte
+   in un secolo. I dieci segni che il mondo scrive **davvero** —
+   `#conteso` 370 volte, `#malcontento` 333, `#indebitato` 304, `#razionato`
+   203 — **non sono nominati da nessuna delle ventuno**.
+
+   Quindi il meccanismo c'e' e funziona, ma incontra il mondo una volta su
+   undici. Il passo che manca **e' contenuto, non motore**: scrivere quattro o
+   cinque regole sui segni che escono davvero. Ma **con quale verso** — se
+   `#conteso` renda piu' difficile decidere o piu' facile — e' una scelta
+   d'autore, e la faccio solo se me la dici tu.
 
 ---
 

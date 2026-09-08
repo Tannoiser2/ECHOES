@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.447 — Le ventuno regole morte puntate sul mucchio
+
+[D-477](docs/DECISIONS.md#d-477), [ISSUES 132](docs/ISSUES.md#132). Parola del
+committente: *«mergia e vai»*, sulla proposta di accendere il telaio che c'e'
+invece di inventarne uno nuovo.
+
+Ventun `tag_rules` col gancio `COUNCIL_MODIFIER` dicevano la cosa che al gioco
+mancava — *un mondo segnato pesa sul Consiglio* — e spingevano il **World
+Factor**, cioe' il dado, uscito con D-467. Da settanta versioni nessun motore
+le chiamava: ventun righe vive nei dati e morte nel gioco.
+
+Adesso muovono **il mucchio**, che e' la soglia che le due parti devono battere
+(D-467): un segno che aiuta a decidere la abbassa, uno che pesa la alza, e non
+scende mai sotto zero. Il campo diventa `pile_delta` e **il verso si rovescia**,
+che e' la traduzione fedele — il World Factor +1 aiutava chi propone, e sul
+mucchio «piu' facile» si scrive con una soglia piu' bassa. Il tabellone lo dice:
+*«Il mucchio vale 4 — alzato di uno perche' La fame siede al tavolo»*.
+
+**Il numero, e non e' quello sperato.** `run_pile_probe` (nuova), 100 anni: su
+**513 Consigli il mondo ne muove 46, il 9%** — e **41 di quei 46 sono una
+regola sola**, «La fama precede». **Sedici delle ventuno restano mute.**
+
+La causa e' misurata, e non e' il gancio: **sono i segni che le regole
+nominano**. I dieci segni piu' scritti del mondo — `condition:contested` (370),
+`condition:unrest` (333), `condition:indebted` (304)… — non sono nominati da
+**nessuna** delle ventuno, che guardano vite precise, Cicatrici e memorie rare.
+Il passo che manca e' contenuto, non motore, ed e' una decisione d'autore.
+
+Cancello dei 100 semi: 0 seggi bloccati su un solo livello su 8 sui due tavoli,
+esiti mossi appena. Suite 775 prove in 121 suite, zero `SCRIPT ERROR`.
+
+Costo dichiarato: avevo proposto questo giro come *«la combo che cerchi»*, e il
+9% e' meno di quanto promesso. Il meccanismo esiste e funziona; il mondo che il
+gioco scrive non incontra quasi mai le regole che lo dovrebbero leggere. E la
+sonda nuova era cieca alla prima stesura — ascoltava un passo che il controller
+non emette e contava zero Consigli su cinquecento: ottava volta.
+
+---
+
 ## 0.1.446 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
 
 [D-476](docs/DECISIONS.md#d-476), [ISSUES 129](docs/ISSUES.md#129). Parola del

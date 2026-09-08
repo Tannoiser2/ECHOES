@@ -23,7 +23,7 @@
         "tag": "life:INC_LYRA_ACADEMY"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): quando l'Accademia propone, la sua misura fa testo - World Factor +1. Vale solo finché quella vita siede al tavolo."
     },
@@ -48,7 +48,7 @@
         "tag": "life:INC_LIBERE_ASSEMBLY"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): l'Assemblea non convoca, e' gia' riunita - World Factor +1 quando propone."
     },
@@ -61,7 +61,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_DEBT",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): chi tiene il registro dei debiti decide quando parlarne - World Factor +1 quando il Banco Nero propone sul Debito."
     },
@@ -86,7 +86,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_ROADS",
-      "world_factor_delta": -1,
+      "pile_delta": 1,
       "active": true,
       "note": "La cicatrice che morde (ISSUES 24, fase 4): finche' da qualche parte un ponte resta rotto, i Consigli sulle Vie partono col mondo contro. La cicatrice non si cura: e' il ponte meccanico fra le ere."
     },
@@ -126,7 +126,7 @@
         "tag": "settlement:city"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il terzo grado (D-160): dove c'e' una citta', il mondo ascolta. Non e' un bonus a chi la tiene — e' il Fattore Mondo che pende dalla parte di chi propone, perche' una citta' rende una decisione piu' facile da far applicare."
     },
@@ -202,7 +202,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_CHARTER",
-      "world_factor_delta": -1,
+      "pile_delta": 1,
       "active": true,
       "note": "La cicatrice che morde (ISSUES 24, fase 4): dove un seggio fu preso con la forza, la Carta si scrive in salita - il mondo ricorda chi non si fido' delle firme."
     },
@@ -228,7 +228,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_DEBT",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): chi ha rimesso un debito grosso davanti a tutti parla del Debito con un credito diverso - World Factor +1 quando propone sul Debito."
     },
@@ -240,7 +240,7 @@
         "tag": "life:INC_VETRO_02"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "La seduta sulle vite (D-124, portata in forma piena da D-126 coi segni compositi): quando i Frati del Vetro propongono e da qualche parte la reliquia e' custodita (structure:sealed), World Factor +1 su ogni Consiglio - la custodia fa autorita'. La forma provvisoria (solo sulla Reliquia) e' durata una versione.",
       "when_also": [
@@ -341,7 +341,7 @@
         "tag": "life:INC_NAHR_HOSTS"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): ogni casa ha ospitato gli Ospiti una volta, e nessuna vuole ricordarselo ad alta voce - World Factor +1 quando propongono."
     },
@@ -354,7 +354,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_RELIC",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): sulla Reliquia nessuno sa piu' cose dell'Inquisizione - World Factor +1 quando propone sulla Reliquia."
     },
@@ -367,7 +367,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_FAMINE",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): quando il Regno di Nahr propone sulla Carestia, parla chi ha il granaio - World Factor +1. Prima forma (INFLUENCE +1) respinta coi numeri: scaldava la Carestia e l'anno-biblioteca decideva 7 Consigli contro la banda 3-6 della guardia."
     },
@@ -379,7 +379,7 @@
         "tag": "life:INC_LIBERE_LEAGUE"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): quando la Lega delibera, sette citta' hanno gia' detto si' - World Factor +1 quando propone."
     },
@@ -448,7 +448,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_AWAKENING",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "D-109, portata in forma piena da D-127: la memoria arma i fedeli - il Culto della Montagna pesa +1 quando propone, finche' la caduta del drago e' scritta sulla montagna. La cicatrice che lo ha fatto nascere e' la stessa che lo sostiene.",
       "when_also": [
@@ -516,7 +516,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_FAMINE",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): chi governa a razioni parla per ultimo sulla fame - World Factor +1 quando la Reggenza propone sulla Carestia."
     },
@@ -528,7 +528,7 @@
         "tag": "renowned"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Chi ha vinto un Consiglio in modo clamoroso viene ascoltato: quando propone, il World Factor parte a +1. Il segno più famoso fra i muti del censimento, finalmente al lavoro (D-105)."
     },
@@ -540,7 +540,7 @@
         "tag": "life:INC_ALDRIC_02"
       },
       "kind": "COUNCIL_MODIFIER",
-      "world_factor_delta": -1,
+      "pile_delta": 1,
       "active": true,
       "note": "La seduta sulle vite (D-126): la Repubblica della Valle delibera per collegi - quando propone, il mondo la ascolta con un anno di ritardo. E' la meta' prudente del suo carattere; l'altra meta' e' il muro."
     },
@@ -566,7 +566,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_SUCCESSION",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): la Corona Restaurata parla di corone - World Factor +1 quando propone sulla Successione."
     },
@@ -579,7 +579,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_AWAKENING",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): ogni Consiglio sul Risveglio parla di lui, e lui e' sveglio - World Factor +1 quando Vaerax Ridestato propone sul Risveglio."
     },
@@ -592,7 +592,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_ROADS",
-      "world_factor_delta": 1,
+      "pile_delta": -1,
       "active": true,
       "note": "Il potere della vita (D-109): chi ha rifatto le strade parla delle Vie Interrotte da chi ci passa sopra - World Factor +1 quando propone su quella questione."
     },
@@ -655,7 +655,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_FAMINE",
-      "world_factor_delta": -1,
+      "pile_delta": 1,
       "active": true,
       "note": "Finché una Regione muore di fame, i Consigli sulla Carestia partono col mondo contro (D-105)."
     },
@@ -668,7 +668,7 @@
       },
       "kind": "COUNCIL_MODIFIER",
       "tension_id": "TEN_SUCCESSION",
-      "world_factor_delta": -1,
+      "pile_delta": 1,
       "active": true,
       "note": "La cicatrice che morde (ISSUES 24, fase 4): una capitale passata di mano con la forza rende ogni Consiglio sulla Successione piu' duro, per sempre. Le corone si contano da quel giorno."
     },

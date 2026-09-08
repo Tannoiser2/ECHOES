@@ -10,6 +10,101 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-477 — Le ventuno regole morte puntate sul mucchio: un mondo segnato cambia quanto e' difficile decidere
+
+**implemented in 0.1.447.** Parola del committente: *«mergia e vai»*, sulla
+proposta che [ISSUES 132](ISSUES.md#132) aveva messo in cima — accendere il
+telaio che c'e' invece di inventarne uno nuovo.
+
+### 1. Cosa erano
+
+Ventun `tag_rules` col gancio `COUNCIL_MODIFIER`, scritte d'autore, che dicono
+la cosa che al gioco mancava: *un mondo segnato pesa sul Consiglio.* «La fame
+siede al tavolo» −1, «La citta' parla piu' forte al Consiglio» +1, «Il seggio
+vuoto pesa sulla Carta» −1, «La fama precede» +1.
+
+Spingevano il **World Factor**, cioe' il dado. Il dado e' uscito con
+[D-467](#d-467), e da allora **nessun motore le chiamava**: ventun righe vive
+nei dati e morte nel gioco, per settanta versioni, senza che niente lo dicesse
+— la forma di difetto che questo progetto ha gia' visto sei volte (D-035).
+
+### 2. La regola
+
+> **Un segno del mondo muove il mucchio del Consiglio.** Il mucchio e' la
+> soglia che le due parti devono battere per far passare la loro domanda
+> (D-467): un segno che **aiuta** a decidere la abbassa, uno che **pesa** la
+> alza. Non scende mai sotto zero — una soglia negativa vorrebbe dire una parte
+> che passa senza aver messo niente sul tavolo.
+
+Il campo cambia nome con lei: `world_factor_delta` diventa **`pile_delta`**, e
+**il verso si rovescia**, che e' la traduzione fedele. Il World Factor `+1`
+aiutava chi propone; sul mucchio «piu' facile decidere» si scrive con una
+soglia **piu' bassa**. Le ventun regole sono state riscritte una per una col
+segno invertito, e la funzione si chiama `council_pile_shift`: il nome dice
+cosa fa, e non nomina piu' un dado che non c'e'.
+
+**E si vede al tavolo.** Il tabellone scrive *«Il mucchio sulla domanda vale 4
+— alzato di uno perche' La fame siede al tavolo»*, e il verbale lo stesso. Una
+regola che non si vede non e' una regola del tavolo: e' un numero che cambia e
+nessuno sa perche'.
+
+### 3. Il numero, e non e' quello che speravo
+
+`run_pile_probe` (nuova), 100 anni, seme 7000:
+
+| | |
+|---|---|
+| Consigli tenuti | **513** |
+| col mucchio mosso dal mondo | **46 — il 9%** |
+| soglia alzata · abbassata | 5 · 41 |
+| spostamento, quando c'e' | sempre **1** |
+| delle ventuno, quante mordono | **5** |
+
+E delle 46 volte, **41 sono una regola sola** — «La fama precede», che guarda
+il segno `renowned` del proponente. Le altre quattro mordono una o due volte in
+cento anni. **Sedici regole su ventuno restano scritte e mute.**
+
+**La causa e' misurata, e non e' il gancio: sono i segni che le regole
+nominano.** I dieci segni piu' scritti del mondo — `condition:contested` (370),
+`condition:unrest` (333), `discovery:the_omen` (333), `condition:indebted`
+(304), `debt_called` (236), `condition:rationed` (203)… — **non sono nominati
+da nessuna delle ventuno**. Le regole guardano segni rari: una vita precisa
+(`life:INC_*`), una Cicatrice, una memoria che esce due volte in un secolo.
+
+Quindi: **il gancio e' vivo e la strada e' aperta, ma il mondo che il gioco
+scrive davvero non incontra quasi mai le regole che lo dovrebbero leggere.**
+
+### 4. I numeri del cancello
+
+- **100 semi, seme 7000: 0 seggi bloccati su un solo livello su 8**, tavolo
+  misto e uniforme.
+- Gli esiti si muovono appena, ed e' coerente col 9%: FAIL · SUCC di misura ·
+  SUCC · DECI · COUNTER passano da **61 · 35 · 97 · 114 · 179** a **59 · 34 ·
+  100 · 115 · 178** sul misto, e da **44 · 32 · 108 · 105 · 187** a **44 · 33 ·
+  106 · 105 · 188** sull'uniforme.
+- Suite **775 prove in 121 suite**, zero `SCRIPT ERROR`; 28 cancelli veloci
+  verdi.
+
+### Costi dichiarati
+
+- **Nove per cento non e' una combo, e' un principio acceso.** Avevo proposto
+  questo giro come *«la combo che cerchi»*: la misura dice che il meccanismo
+  adesso esiste e funziona, ma tocca un Consiglio su undici e per nove decimi
+  attraverso una regola sola. E' meno di quanto avevo promesso, ed e' scritto
+  qui perche' un numero peggiorato e detto vale piu' di uno nascosto.
+- **Il passo che manca e' contenuto, non motore**, ed e' misurato: scrivere
+  regole `COUNCIL_MODIFIER` sui segni che il mondo scrive davvero. Quattro
+  righe su `condition:contested`, `condition:unrest`, `condition:indebted` e
+  `condition:rationed` toccherebbero centinaia di occorrenze invece di due. Ma
+  **quale verso dare a ognuna e' una decisione d'autore**, non una taratura, e
+  sta in [ISSUES 132](ISSUES.md#132) per il committente.
+- **La sonda nuova era cieca alla prima stesura**: ascoltava un passo `SIDES`
+  che il controller non emette — ne emette due, `QUESTION` e `RESOLVED` — e
+  contava **zero Consigli su cinquecento**. Ottava volta in questo progetto che
+  uno zero era chi guardava.
+
+---
+
 ## D-476 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
 
 **implemented in 0.1.446.** Parola del committente:

@@ -155,7 +155,7 @@ def check_references(
     # extra steps.
     NEEDED_BY_KIND = {
         "ACTION_MODIFIER": ("template", "delta"),
-        "COUNCIL_MODIFIER": ("world_factor_delta",),
+        "COUNCIL_MODIFIER": ("pile_delta",),
         "GATE": ("movement",),
         "RELATION_CAP": ("max_level",),
         "ACTION_GATE": ("template",),
