@@ -28,6 +28,18 @@
       "note": "Il potere della vita (D-109): quando l'Accademia propone, la sua misura fa testo - World Factor +1. Vale solo finché quella vita siede al tavolo."
     },
     {
+      "id": "TGR_ARCHIVE_SPEAKS",
+      "title": "Chi tiene l'Archivio parla senza spendere",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:archive"
+      },
+      "kind": "ACTION_DISCOUNT",
+      "template": "INFLUENCE",
+      "active": true,
+      "note": "D-484: la Pietra che diventa una capacita'. Chi ha presenza dove sta l'Archivio influenza una domanda senza scartare la carta: le carte le ha gia' scritte. E' il telaio ACTION_DISCOUNT, che fino a 0.1.453 aveva una regola sola in tutta la scatola."
+    },
+    {
       "id": "TGR_ASH_VIGIL",
       "title": "La veglia arma",
       "when": {
@@ -117,6 +129,19 @@
       },
       "active": true,
       "note": "La carta consegnata (D-117): quando CNS_CANALS_DUG posa il canale, il proponente riceve la Riserva di Grano - l'acqua torna nei campi, e il primo raccolto e' di chi ha scavato."
+    },
+    {
+      "id": "TGR_CASTLE_VOICE",
+      "title": "Dal castello la voce arriva piu' lontano",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:castle"
+      },
+      "kind": "ACTION_MODIFIER",
+      "template": "INFLUENCE",
+      "delta": 1,
+      "active": true,
+      "note": "D-484: il secondo grado del Presidio pesa di uno su ogni domanda, nel verso che chi gioca sceglie. Senza `tension_id` vale su tutte: e' una capacita', non un argomento su un tema solo."
     },
     {
       "id": "TGR_CITY_VOICE",
@@ -297,6 +322,18 @@
       "note": "I Forni Riaccesi (D-129, decisione C della seduta): chi sta sulla ferita aperta e la lavora pesca ricchezza migliore. Composita: la vita E la presenza sulla ferita - l'industria e' dove la montagna soffia."
     },
     {
+      "id": "TGR_GRANARY_PACTS",
+      "title": "I patti si firmano dove c'e' il grano",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:granary"
+      },
+      "kind": "ACTION_DISCOUNT",
+      "template": "FORGE",
+      "active": true,
+      "note": "D-484: chi tiene il Granaio stringe un patto senza pagarlo con un Legame — al tavolo si offre da mangiare, e il patto si fa. Specchio di TGR_STARVING_NO_FORGE: a stomaco vuoto i patti non si firmano, col granaio si firmano gratis."
+    },
+    {
       "id": "TGR_GRANARY_VOICE",
       "title": "Il granaio parla",
       "when": {
@@ -439,6 +476,18 @@
         }
       ],
       "note": "La Leggenda della Montagna (D-133): finche' il mondo dimentica cosa dorme davvero, la sua parola sui fronti che sostiene pesa un impegno in piu'. Se il sigillo cade il segno sparisce, e la voce torna una voce."
+    },
+    {
+      "id": "TGR_LIBRARY_HAND",
+      "title": "La Biblioteca tiene una carta in piu'",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:library"
+      },
+      "kind": "HAND_LIMIT",
+      "active": true,
+      "note": "D-484: il secondo grado dell'Archivio alza di uno il limite di mano di chi ha presenza li'. E' la prima capacita' che premia l'**alzare** una Pietra, non solo il costruirla (ISSUES 111: solo 1,4 Pietre su 10,7 arrivano al grado 2).",
+      "hand_limit_delta": 1
     },
     {
       "id": "TGR_MARCH_PASSES",
@@ -723,6 +772,18 @@
       "bias": "BONUS",
       "active": true,
       "note": "Il segno che costruisce (ISSUES 24, fase 4): dove si riscuote il pedaggio la ricchezza passa di mano - chi ci sta pesca la carta migliore."
+    },
+    {
+      "id": "TGR_TOLLGATE_WORD",
+      "title": "Chi incassa il pedaggio rivendica per parola propria",
+      "when": {
+        "scope": "REGION",
+        "tag": "structure:tollgate"
+      },
+      "kind": "ACTION_DISCOUNT",
+      "template": "CLAIM",
+      "active": true,
+      "note": "D-484: la Dogana e' un'autorita' che si vede da lontano — chi la tiene non paga l'Asset AUTHORITY per rivendicare."
     },
     {
       "id": "TGR_TOWN_HAND",

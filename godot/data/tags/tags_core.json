@@ -2787,9 +2787,10 @@
       ],
       "read_by": [
         "asset_physical",
-        "entity_strategic_profile",
         "destiny",
-        "destiny_physical"
+        "destiny_physical",
+        "entity_strategic_profile",
+        "tag_rule"
       ]
     },
     {
@@ -2824,7 +2825,8 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical"
+        "asset_physical",
+        "tag_rule"
       ],
       "note": "secondo grado della Torre (STR_KEEP). Arriva sul tavolo — 92 volte in cento partite, e a fine partita ci sta in 65 — e le facce delle carte lo nominano come bersaglio. Che nessun Destino lo desideri e' una scelta: la scala della Pietra si insegue col primo grado, non col secondo (D-394)."
     },
@@ -2865,7 +2867,8 @@
         "structure_type"
       ],
       "read_by": [
-        "asset_physical"
+        "asset_physical",
+        "tag_rule"
       ],
       "note": "secondo grado dell'Archivio (STR_ARCHIVE), la Grande Biblioteca. Arriva 14 volte in cento partite e le facce la nominano come bersaglio. Come il castello: e' il grado alto di una scala, non un traguardo a se' (D-394)."
     },

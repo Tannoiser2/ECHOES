@@ -45,6 +45,122 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-485 — Ogni carta a bersaglio puo' essere puntata su un posto che qualcuno ha segnato
+
+**implemented in 0.1.455.** Ultima delle quattro mosse della R15 ([ISSUES
+132](ISSUES.md#132), punto 2): *«Il rapporto 27/73 si sposta? Scrivere piu'
+bersagli su segni posabili e' lavoro di contenuto, non di motore, e fa crescere
+la combo che gia' esiste.»*
+
+### 1. Il numero contava le alternative, non le occasioni
+
+La misura di ISSUES 132 diceva: **154 richieste di bersaglio su 36 segni, e il
+73% punta terreno stampato che nessuno puo' creare**. Rimisurata oggi era
+62/38, ma il numero — per come e' costruito — **conta le alternative scritte
+sulle carte**, non le carte. Una carta che dice *«un luogo con #capitale,
+#commercio o #conteso»* porta tre richieste, due delle quali su terreno: il
+rapporto peggiora, e intanto quella carta la si puo' puntare dove si vuole,
+segnando prima.
+
+La domanda giusta e' **per carta**: quante delle carte a bersaglio si possono
+puntare su un posto che qualcuno ha segnato? Erano **26 su 28**.
+
+### 2. Le due che restavano
+
+- **Atto di Successione** — solo `capital` e il dominio del territorio: adesso
+  vale anche un luogo **conteso**, che e' il segno piu' scritto del mondo (370
+  volte in cento anni) e che una carta o una casella possono posare. Al tavolo:
+  *«si scrive il nome dell'erede dove due mani tengono lo stesso lembo»*.
+- **Il Tesoro** — capitale, commercio, miniera, cristallo: adesso vale anche un
+  luogo con una **Dogana**, che e' una Pietra che si costruisce. *«Il tesoro si
+  tiene dove si incassa.»*
+
+**Adesso sono 28 su 28.** La combo *«segno il posto adesso, ci gioco sopra
+dopo»* non e' piu' la minoranza: e' la regola, e vale per ogni carta che dice
+dove va.
+
+### 3. Misurato
+
+Cancello dei 100 semi, **0 seggi bloccati su 8**. Gli esiti restano dov'erano
+(292 Verita' sul misto contro 293, 244 sull'uniforme identiche): due bersagli in
+piu' su 162 richieste non spostano una partita, e **non dovevano** — spostano
+quello che si **puo'** fare, non quello che il cervello fa.
+
+Il rapporto delle richieste resta **38%**, ed e' giusto lasciarlo li' e
+dichiararlo: allargarlo vorrebbe dire togliere il terreno stampato dalle carte,
+cioe' togliere alla mappa il suo mestiere.
+
+---
+
+## D-484 — Una Pietra e' una capacita', non un +1
+
+**implemented in 0.1.454.** Terza mossa della R15 ([ISSUES
+132](ISSUES.md#132), punto 3): *«Le Pietre diventano capacita'? Il telaio
+(`ACTION_DISCOUNT`, `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in
+tutto.»*
+
+### 1. Perche' erano quattro
+
+Il telaio c'era e **non si poteva usare**: `ACTION_DISCOUNT` lo leggeva **solo**
+RIVENDICARE. Le altre due strade che costano una carta — INFLUENZARE senza
+presenza e FORGIARE in su (D-188) — non lo guardavano nemmeno, quindi una regola
+di sconto scritta su di loro sarebbe stata inchiostro. Un telaio che vale per un
+verbo solo non e' un telaio: e' un caso particolare, e infatti in tutta la
+scatola c'era **una** regola di sconto.
+
+Adesso i tre verbi che pagano una carta lo chiedono tutti, nel controllo **e**
+nell'esecuzione, e lo sconto si nomina a verbale come gia' faceva il RIVENDICARE
+(D-131): *«parla senza spendere: Chi tiene l'Archivio parla senza spendere»*.
+
+### 2. Cinque Pietre, cinque capacita'
+
+| Pietra | cosa da', mentre la tieni |
+|---|---|
+| **Archivio** (`structure:archive`) | INFLUENZARE non spende la carta |
+| **Granaio** (`structure:granary`) | FORGIARE in su non paga il Legame |
+| **Dogana** (`structure:tollgate`) | RIVENDICARE non paga l'Autorita' |
+| **Biblioteca** (`structure:library`, grado 2) | **+1 al limite di mano** |
+| **Castello** (`structure:castle`, grado 2) | INFLUENZARE pesa **+1 su ogni domanda** |
+
+Le prime tre sono il primo grado: costruire una Pietra adesso cambia **cosa
+puoi fare**, non quanto vali. Le ultime due stanno sul **secondo grado**, ed e'
+la prima volta che alzare una Pietra da' qualcosa che il primo grado non da' —
+ISSUES 111 aveva misurato che di 10,7 Pietre in piedi solo 1,4 arrivano al
+grado 2, e non c'era nessuna ragione per portarcele.
+
+Il Granaio e' anche lo specchio di una regola che c'era gia': *«i patti non si
+firmano a stomaco vuoto»* (`condition:starving` sbarra FORGIARE). Col granaio in
+piedi i patti si firmano gratis.
+
+### 3. Misurato
+
+Cancello dei 100 semi, **0 seggi bloccati su 8** sui due tavoli, e stavolta i
+numeri salgono da tutte le parti:
+
+| | prima | dopo |
+|---|---|---|
+| Verita', misto | 276 | **293** |
+| Verita', uniforme | 234 | **244** |
+| Consigli l'anno, misto | 4,88 | **5,10** |
+| Consigli l'anno, uniforme | 4,70 | **4,98** |
+| Consigli caduti, misto | 61 | 71 |
+| Consigli caduti, uniforme | 61 | 75 |
+
+La ragione e' diretta: una carta non spesa e' una carta che resta in mano, e una
+mano piu' piena apre piu' Consigli e ne fa cadere qualcuno in piu'. **Diciassette
+Verita' in piu' sul misto** e dieci sull'uniforme: e' il contrario del prezzo
+pagato in D-482 e D-483, ed e' giusto che sia cosi' — questa mossa da' potere a
+chi costruisce, quelle due lo toglievano a chi decide.
+
+### 4. Quello che questa mossa **non** fa
+
+Non aumenta quante Pietre si alzano: quello e' un altro difetto misurato
+(`run_stone_probe`: **2,10 alzate da un'Azione** a partita, contro 8,95
+dall'apertura). Adesso pero' alzarne una **serve a qualcosa**, ed e' la
+condizione perche' quel numero possa salire.
+
+---
+
 ## D-483 — Le regole del Consiglio guardano il luogo di cui si discute
 
 **implemented in 0.1.453.** Seconda mossa della R15 ([ISSUES

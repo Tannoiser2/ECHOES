@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3250 testi in lettura.
+possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7878,7 +7878,7 @@ possono spostare nella frase, non togliere. 3250 testi in lettura.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT, bersaglio`**
-> Scegli un luogo con #capitale. Vale anche ogni luogo del dominio del #territorio.
+> Scegli un luogo con #capitale o #conteso. Vale anche ogni luogo del dominio del #territorio.
 
 
 **`AST_AUTHORITY_SUCCESSION_ACT, azione 1`**
@@ -8998,7 +8998,7 @@ possono spostare nella frase, non togliere. 3250 testi in lettura.
 
 
 **`AST_WEALTH_TREASURY, bersaglio`**
-> Scegli un luogo con #capitale, #commercio, #miniera o #cristallo. Vale anche ogni luogo del dominio delle #risorse.
+> Scegli un luogo con #capitale, #commercio, #miniera, #cristallo o una #dogana. Vale anche ogni luogo del dominio delle #risorse.
 
 
 **`AST_WEALTH_TREASURY, azione 1`**
@@ -11223,6 +11223,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > L'Accademia fa testo
 
 
+**`TGR_ARCHIVE_SPEAKS`**
+> Chi tiene l'Archivio parla senza spendere
+
+
 **`TGR_ASH_VIGIL`**
 > La veglia arma
 
@@ -11249,6 +11253,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_CANAL_GRAIN`**
 > Chi riapre i canali ha il grano
+
+
+**`TGR_CASTLE_VOICE`**
+> Dal castello la voce arriva piu' lontano
 
 
 **`TGR_CITY_VOICE`**
@@ -11303,6 +11311,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > I forni pagano bene
 
 
+**`TGR_GRANARY_PACTS`**
+> I patti si firmano dove c'e' il grano
+
+
 **`TGR_GRANARY_VOICE`**
 > Il granaio parla
 
@@ -11345,6 +11357,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_LEGEND_VOICE`**
 > La voce che il mondo ricorda
+
+
+**`TGR_LIBRARY_HAND`**
+> La Biblioteca tiene una carta in piu'
 
 
 **`TGR_MARCH_PASSES`**
@@ -11433,6 +11449,10 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`TGR_TOLLGATE_WEALTH`**
 > Al pedaggio i denari girano
+
+
+**`TGR_TOLLGATE_WORD`**
+> Chi incassa il pedaggio rivendica per parola propria
 
 
 **`TGR_TOWN_HAND`**
