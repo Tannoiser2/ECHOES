@@ -1605,6 +1605,24 @@ func _menu() -> void:
 ## non e' piu' una domanda da fare a chi apre l'app.
 func _a_world_at_random() -> int:
 	return int(Time.get_unix_time_from_system()) % 100000
+## **Le persone restano ai loro posti** quando il tavolo si ripesca (D-473).
+##
+## Chi giocava il secondo seggio gioca il secondo seggio anche l'anno dopo,
+## qualunque casa ci si sieda. Una casa che resta al tavolo tiene la sua
+## persona; per le altre conta l'ordine, che e' il giro del tavolo.
+static func _inherit_seats(humans: Array, before: Array, now: Array) -> Array:
+	var out: Array = []
+	for seat in humans:
+		var who: String = str(seat)
+		if now.has(who):
+			out.append(who)
+			continue
+		var where: int = before.find(who)
+		if where >= 0 and where < now.size() and not out.has(str(now[where])):
+			out.append(str(now[where]))
+	return out
+
+
 func _seats_of(chronicle_id: String) -> Array:
 	var data: RefCounted = _load_help_data()
 	if data == null or not data.chronicles.has(chronicle_id):
@@ -1858,10 +1876,17 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 		say("dieci anni si apre col bottone «La cronaca».")
 		sequel = ""
 	if sequel != "":
+		# **Il bottone dice che anno si gioca, non come si chiama la Chronicle**
+		# (D-473, parola del committente: *«la terza Chronicle ripartiva dalla
+		# prima quando chiedevo di andare avanti»*). CHR_00 e' il seguito di se
+		# stessa (D-263), quindi il titolo e' sempre «La Prima Chronicle»: al
+		# terzo anno il bottone diceva alla lettera che si tornava al primo.
+		# Quello che cambia, e che si vuole sapere, e' **quanti anni passano** e
+		# a che punto della saga si e'.
 		var choice: int = await ask(
 			"L'anno e' chiuso, ma il mondo no. Il tempo passa.",
 			[
-				"Gioca l'era successiva — %s" % str(data.chronicles[sequel]["title"]),
+				"Gioca l'anno dopo — il %d° dei %d della saga" % [played + 1, enough],
 				"Basta cosi: la saga si ferma qui",
 			]
 		)
@@ -1872,7 +1897,20 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 			_toggle_cronaca(false)
 			_session = GameSession.new(data)
 			_last_seed = _last_seed + 97
-			_seats = _seats_of(sequel)
+			# **E il tavolo si ripesca, come dice la Chronicle** (D-431,
+			# `seats_between_eras`: *«le case passano, il mondo resta»*).
+			# Fino a qui la pagina rimetteva a sedere le quattro case
+			# **scritte** — Aldric, Nahr, Lyra, Vaerax — a ogni era, mentre le
+			# sonde ripescavano: nell'app una saga di dieci anni era dieci
+			# volte lo stesso tavolo, ed e' la ragione per cui il terzo anno
+			# sembrava il primo.
+			var seated_before: Array = _seats.duplicate()
+			_seats = GameSession.seats_for_next_era(data, sequel, _last_seed, seated_before)
+			# **Chi gioca tiene il posto, non la casa.** Se la casa che sedeva
+			# li' e' passata, chi giocava quel posto prende quella che ci si
+			# siede adesso: al tavolo la sedia e' la stessa, cambia chi ci
+			# arriva.
+			humans = _inherit_seats(humans, seated_before, _seats)
 			# **Se l'anno dopo non si apre, si dice.** Questa riga ignorava il
 			# `false` che `setup` puo' tornare, e una saga che non prosegue
 			# restava una schermata che non fa niente — senza una parola su

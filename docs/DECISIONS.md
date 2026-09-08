@@ -38,10 +38,10 @@ committente ricordava diversa, e una non si riproduce.
 |---|---|
 | *«Riserva di Grano ha 19 mosse??? e Prova 14?»* | **Difetto.** La colonna scrive «N mosse» dove N e' quanti **posti sul tavolo** accettano quella carta (`_redraw_choices`). INFLUENZARE arriva a sei domande per due versi piu' le Regioni: 19. Non e' un conto sbagliato, e' un numero che al tavolo non esiste. |
 | *«sulla destra vorrei proprio la carta visualizzata»* e le sei schede delle Tensioni | **Disegno, e si fa.** Oggi a destra c'e' il verbale (testo scorrevole) e a sinistra una colonna di righe con le barre. La scheda della carta Tensione esiste gia' (`council_sheet.gd`) e nessuno la apre di suo. |
-| *«Le adiacenze della mappa sono casuali?... l'isola muta non aveva una sola adiacenza?»* | **No, e no.** Misurato su cinque semi: cambiano sia **quali** sei tessere escono su dieci, sia **chi confina con chi** — al seme 7001 l'Isola Muta tocca il Porto e le Terre Nahr, al 12345 le Miniere e la Valle Verde. Fissa e' solo la **cornice 3x2** (D-464). E l'Isola Muta porta **due** varchi stampati (`edges: N, O`), non uno: la lista scritta a mano di prima non la legge piu' nessuno da [D-390](#d-390), dove l'adiacenza e' diventata il varco e non l'accostamento. Se deve averne uno solo, e' una riga nei dati della tessera, ed e' una parola del committente. |
+| *«Le adiacenze della mappa sono casuali?... l'isola muta non aveva una sola adiacenza?»* | **No, e no.** Misurato su cinque semi: cambiano sia **quali** sei tessere escono su dieci, sia **chi confina con chi** — al seme 7001 l'Isola Muta tocca il Porto e le Terre Nahr, al 12345 le Miniere e la Valle Verde. Fissa e' solo la **cornice 3x2** (D-464). E l'Isola Muta porta **due** varchi stampati (`edges: N, O`), non uno: la lista scritta a mano di prima non la legge piu' nessuno da [D-390](#d-390), dove l'adiacenza e' diventata il varco e non l'accostamento. La parola del committente e' arrivata: *«l'isola muta va bene con due»*, e la voce si chiude qui. |
 | *«Nella scheda La mia casa ci sono informazioni ripetute»* | **Difetto.** `StatusPanel` ridisegna i sei Temi, le domande con le barre, i rapporti, i segni: i Temi e le domande stanno gia' nella colonna di sinistra, i rapporti nella riga dei seggi sotto la mappa. |
 | *«La scheda Obiettivi... dovrebbero esserci le tre carte obiettivo pescate»* | **Difetto, e la carta esiste gia'.** La scheda mostra Casata, Destino e il profilo, e i tre obiettivi coperti li scrive come righe di testo. I tre sono pescati per saga (D-237) e stanno in `entities[id].objectives`; il mazzo delle 19 carte Obiettivo si stampa gia' dall'export. |
-| *«la partita non va oltre la terza chronicle»* | **Non si riproduce dal codice.** Il motore gioca dieci anni (`run_saga --chronicles=10`, exit 0), e la logica della porta della pagina, rifatta identica in una prova, offre l'era successiva fino al decimo e chiude li' — che e' la regola scritta ([D-253](#d-253), `saga_scoring.decides_after: 10`). Poi provato **nell'app vera**, nel browser, con quattro bot e i clic dati da un copione: la partita ha giocato **dieci anni di fila** — dall'anno 800 al 2020, con le case che cambiano pelle di era in era — e si e' chiusa con *«La saga e' finita: 10 anni giocati»*. Resta da capire cosa fermasse la partita del committente: la domanda gli e' stata rimandata. |
+| *«la partita non va oltre la terza chronicle»* | **Difetto, e la causa e' arrivata col secondo messaggio.** Dal codice non si riproduceva: il motore gioca dieci anni (`run_saga --chronicles=10`, exit 0), la logica della porta ne offre dieci, e l'app nel browser con quattro bot ha giocato dall'anno 800 al 2020 chiudendosi da sola. Poi il committente ha detto la cosa esatta che vedeva — *«la terza Chronicle ripartiva dalla prima quando chiedevo di andare avanti»* — e allora si trova: la pagina rimetteva a sedere le **quattro case scritte** sulla Chronicle a ogni era (`_seats_of`), invece di ripescare il tavolo come dice [D-431](#d-431) (`seats_between_eras: REDRAW`). Dieci anni di saga erano dieci volte lo stesso tavolo, e il bottone ci scriveva sopra alla lettera «Gioca l'era successiva — La Prima Chronicle», perche' CHR_00 e' il seguito di se stessa (D-263). Non era la partita che si fermava: era il terzo anno che sembrava il primo. |
 | *«appare ancora la carta di propp che doveva essere sparita»* | **Mezza regola e mezzo difetto.** Le carte Eco esistono ancora — 48 nel mazzo — ma da [D-360](#d-360) non si pescano da sole: le cala un giocatore. Quello che appare a schermo intero e' la loro vista (`echo_card_view.gd`), che porta stampata la riga **«funzione di Propp: ...»**: Propp e' l'impalcatura con cui il mazzo e' stato scritto (D-030), non una parola del tavolo, e su una carta in mano non ci va. |
 
 ### 2. La regola, da qui in avanti
@@ -110,6 +110,7 @@ contare uno, due volte nello stesso pannello zero, un nome in due posti zero.
 | 1 | le quattro cose piccole e certe: via «N mosse», via «funzione di Propp», i doppioni della scheda della casa, le tre carte Obiettivo al posto delle righe |
 | 2 | la colonna dei sei Temi come sei dorsi di carta; la carta grande a destra |
 | 3 | la sonda che conta i doppioni, e il cancello che li tiene a zero — **fatto**: zero, con la guardia provata |
+| 4 | **la saga cambia tavolo davvero**: la pagina ripesca i seggi fra un'era e l'altra come le sonde, e chi gioca tiene il posto invece della casa — **fatto** |
 
 ### Costi dichiarati
 
@@ -120,6 +121,11 @@ contare uno, due volte nello stesso pannello zero, un nome in due posti zero.
   primo posto dove si scorre da quando la pagina e' il tavolo.
 - E **dice piu' parole**: 233 testi contro 193. Il costo e' scritto qui sopra,
   col perche' il numero non e' quello da guardare.
+- **Chi gioca cambia casa fra un'era e l'altra**, ed e' la regola che si e'
+  smesso di ignorare: la persona tiene il **posto**, non la casata. Una casa
+  che resta al tavolo si porta dietro la sua persona; per le altre conta
+  l'ordine dei seggi, che e' il giro del tavolo. Al tavolo fisico e' il gesto
+  di passare le plance a chi resta seduto.
 - Le carte Eco restano nel mazzo. Se il committente le vuole via del tutto e'
   un'altra decisione, e non e' questa.
 

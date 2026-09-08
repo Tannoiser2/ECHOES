@@ -5,6 +5,34 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.443 — La saga cambia tavolo: il terzo anno smette di sembrare il primo
+
+[D-473](docs/DECISIONS.md#d-473), [ISSUES 130](docs/ISSUES.md#130), che si
+chiude qui. Il committente aveva scritto che *«la partita non va oltre la terza
+chronicle»*; dal codice non si riproduceva — il motore gioca dieci anni, la
+logica della porta ne offre dieci, e l'app nel browser ha giocato dall'anno 800
+al 2020 da sola. Poi ha detto la cosa esatta che vedeva: *«la terza Chronicle
+ripartiva dalla prima quando chiedevo di andare avanti»*, e la causa era li'.
+
+La pagina rimetteva a sedere le **quattro case scritte** sulla Chronicle a ogni
+era, invece di ripescare il tavolo come la Chronicle stessa dice
+([D-431](docs/DECISIONS.md#d-431), `seats_between_eras: REDRAW` — *«le case
+passano, il mondo resta»*). Le sonde ripescavano da cento versioni; la pagina
+no. Dieci anni di saga erano dieci volte lo stesso tavolo, e il bottone ci
+scriveva sopra alla lettera «Gioca l'era successiva — **La Prima Chronicle**»,
+perche' CHR_00 e' il seguito di se stessa (D-263).
+
+Adesso il tavolo si ripesca — dal secondo anno siedono case diverse — e **chi
+gioca tiene il posto, non la casa**: se la casata che sedeva li' e' passata,
+la persona che la giocava prende quella che ci si siede adesso. Il bottone
+dice che anno si gioca: *«Gioca l'anno dopo — il 3° dei 10 della saga»*.
+
+E l'altra voce lasciata al committente e' tornata chiusa: **l'Isola Muta tiene
+i suoi due varchi** (*«va bene con due»*). Le adiacenze cambiano col seme,
+tessere comprese; fissa e' solo la cornice 3x2.
+
+---
+
 ## 0.1.442 — La pagina e' fatta di carte: il disegno, e il primo giro
 
 [D-473](docs/DECISIONS.md#d-473), [ISSUES 130](docs/ISSUES.md#130). Sette

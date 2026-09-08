@@ -273,10 +273,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **134** |
-| chiuse | **123** |
-| aperte | **11** |
+| chiuse | **124** |
+| aperte | **10** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **11** |
+| di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,10 +307,10 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **2** | **io**, da sola, senza aspettare niente |
+| 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
+**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
 numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
@@ -381,7 +381,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **due**
+# 🟡 Sono mie, e non aspettano niente: **una**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -446,7 +446,7 @@ la carta da' ancora e il Consiglio non chiede piu' — si tolgono, o servono
 a qualcos'altro?; **le proposte stampate sulle carte**, che la scheda mostra
 e nessuno vota piu'; e il segno che pesava sul dado, senza piu' un dado.
 
-### M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **aperta in 0.1.442**
+### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
 Hai giocato un anno e mi hai scritto sette cose. Le ho cercate tutte nel
 codice prima di risponderti, e stanno in [D-473](DECISIONS.md#d-473):
@@ -463,12 +463,12 @@ codice prima di risponderti, e stanno in [D-473](DECISIONS.md#d-473):
 - **le tre carte Obiettivo**: c'erano da sempre e le scrivevo come tre righe.
   **Adesso sono tre carte.**
 - **le adiacenze**: cambiano col seme, tessere comprese. Fissa e' solo la
-  cornice 3x2. L'Isola Muta porta **due** varchi stampati, non uno: se ne deve
-  avere uno solo e' una riga nei dati, e la parola e' tua.
-- **la terza Chronicle**: non l'ho riprodotta. Il motore gioca dieci anni, la
-  logica della porta ne offre dieci, e nel browser ho fatto giocare l'app fino
-  in fondo — **dieci anni, dall'800 al 2020**, e si chiude da sola. Ti chiedo
-  cosa vedevi: la partita si bloccava, o l'offerta non compariva?
+  cornice 3x2. L'Isola Muta porta **due** varchi stampati, e mi hai risposto
+  che *«va bene con due»*: chiusa.
+- **la terza Chronicle**: la prima volta non l'ho riprodotta, perche' la
+  partita non si ferma affatto — nel browser ho fatto giocare l'app dall'800
+  al 2020. Poi mi hai detto la cosa esatta che vedevi, *«ripartiva dalla prima
+  quando chiedevo di andare avanti»*, e la causa era li'. Guarda sotto.
 - **«troppo testo»**: e' la riga che tiene tutte le altre, ed e' la regola
   nuova. *Sulla pagina c'e' quello che sta sul tavolo, e nella forma in cui ci
   sta.* Il testo resta in due posti: la riga che racconta cosa e' successo, e
@@ -486,6 +486,20 @@ numero che tengo a zero adesso e' un altro: **le frasi che la pagina dice in
 due punti diversi**, che era il difetto vero della scheda della casa. Oggi
 sono zero, e la guardia la provo su casi finti perche' uno zero, qui, e' quasi
 sempre la sonda cieca.
+
+**Il quarto giro, in 0.1.443: la saga cambia tavolo.** Il terzo anno sembrava
+il primo perche' lo era: la pagina rimetteva a sedere le **stesse quattro
+case** — Aldric, Nahr, Lyra, Vaerax — a ogni era, mentre la Chronicle dice da
+cento versioni che fra un'era e l'altra il tavolo si **ripesca**
+([D-431](DECISIONS.md#d-431): *«le case passano, il mondo resta»*). Le prove e
+le sonde ripescavano; solo la pagina no. E il bottone ti scriveva alla lettera
+«Gioca l'era successiva — **La Prima Chronicle**», perche' la Prima Chronicle
+e' il seguito di se stessa: leggerlo come «si torna al primo anno» era la cosa
+giusta da capire.
+
+Adesso dal secondo anno siedono case diverse, e **tu tieni il posto, non la
+casa**: se la casata che giocavi e' passata, prendi quella che si siede al tuo
+seggio. Il bottone dice *«Gioca l'anno dopo — il 3° dei 10 della saga»*.
 
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
@@ -948,8 +962,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
-muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
+muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
