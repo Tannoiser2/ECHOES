@@ -50,6 +50,17 @@ func _panel() -> Node:
 	return panel
 
 
+## **La scheda degli Obiettivi** ([D-478](DECISIONS.md#d-478)): da quando le due
+## schede si sono divise il mestiere, Casata e Destino stanno **qui** e non piu'
+## sulla plancia. Una prova che le cerca sulla plancia cerca dove non sono.
+func _goals_panel() -> Node:
+	var live: RefCounted = _fresh()
+	var panel: Node = StatusPanel.new()
+	panel.only_goals = true
+	panel.render(live, str(live.world["turn_order"][0]))
+	return panel
+
+
 ## **Le domande stanno nella colonna** (D-473): la scheda della casa ha smesso
 ## di ripeterle, e con loro se n'e' andata la riga col punteggio. Quello che
 ## una domanda dice si legge sulla sua carta, e l'angolo della carta e' dove
@@ -199,7 +210,7 @@ func test_where_the_threshold_still_opens_something_the_row_says_so() -> void:
 ## due figure grandi e mute. Adesso una dice chi sei e l'altra cosa vuoi, e sotto
 ## ognuna c'e' il suo nome.
 func test_the_two_tarots_say_what_they_are() -> void:
-	var panel: Node = _panel()
+	var panel: Node = _goals_panel()
 	var lines: Array = []
 	_labels_of(panel, lines)
 	assert_true(lines.has("CHI SEI"), "la prima carta dice di essere la casa")

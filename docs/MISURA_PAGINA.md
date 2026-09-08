@@ -22,8 +22,8 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 10 |
-| nodi in tutto | 438 |
-| testi sotto gli occhi | 233 |
+| nodi in tutto | 368 |
+| testi sotto gli occhi | 188 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
 | bersagli che si toccano | 22 |
@@ -31,9 +31,9 @@ sta in una colonna sua.
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
 | **frasi che la pagina dice in due punti** | **0** |
-| testi con una taglia | 244 |
+| testi con una taglia | 199 |
 | **piu' piccoli di 11 punti sul tablet** | **0** |
-| sotto i 17 punti, che la guida chiama «corpo» | 242 |
+| sotto i 17 punti, che la guida chiama «corpo» | 197 |
 | il piu' piccolo, sul tablet | 11.0 punti |
 
 **Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`
@@ -96,7 +96,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 
 | pannello | dove sta | nodi | larghezza chiesta | altezza chiesta |
 |---|---|---|---|---|
-| colonna di stato | sotto, in una scheda | 83 | 408 | 1336 |
+| colonna di stato | sotto, in una scheda | 38 | 120 | 1744 |
 | mappa | al centro | 13 | *si adatta* | |
 | il Consiglio | a schermo intero | 81 | 974 | 182 |
 | il tavolo | nella stanza, prima di sedersi | 38 | *si adatta* | |
@@ -105,7 +105,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 | le domande | a sinistra, la colonna delle domande | 97 | 230 | 690 |
 | la pagina d'aiuto | al centro | 2 | 37 | 28 |
 | la mano | sotto, in una scheda | 13 | 342 | 246 |
-| gli obiettivi | sotto, in una scheda | 73 | 408 | 1184 |
+| gli obiettivi | sotto, in una scheda | 48 | 408 | 653 |
 
 Un posto per riga, col piu' largo dei pannelli che ci stanno — e, dove
 l'altezza e' una promessa, anche il piu' alto:
@@ -114,7 +114,7 @@ l'altezza e' una promessa, anche il piu' alto:
 |---|---|---|---|---|
 | **a sinistra, la colonna delle domande** | 250 | le domande | **230** | ✓ ne avanzano 20 |
 | **al centro** | 780 | chi siede | **402** | ✓ ne avanzano 378 |
-| **sotto, in una scheda** | 1350 | colonna di stato | **408** | ✓ ne avanzano 942 |
+| **sotto, in una scheda** | 1350 | gli obiettivi | **408** | ✓ ne avanzano 942 |
 | **a schermo intero** | 1318 | il Consiglio | **974** | ✓ ne avanzano 344 |
 | a schermo intero, in altezza | 976 | il Consiglio | **182** | ✓ ne avanzano 794 |
 
@@ -135,11 +135,11 @@ Quanti testi a ogni taglia, sul tablet:
 
 | punti | testi |
 |---|---|
-| 11 | 132 |
-| 12 | 72 |
+| 11 | 99 |
+| 12 | 63 |
 | 13 | 23 |
 | 14 | 1 |
-| 15 | 14 |
+| 15 | 11 |
 | 18 | 1 |
 | 19 | 1 |
 

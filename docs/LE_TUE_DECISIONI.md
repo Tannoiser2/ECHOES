@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **136** |
+| voci scritte | **138** |
 | chiuse | **124** |
-| aperte | **12** |
-| di cui **aspettano una tua decisione** | **2** |
+| aperte | **14** |
+| di cui **aspettano una tua decisione** | **4** |
 | di cui sono mie da fare | **10** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,24 +305,25 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **2** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **4** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **1** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dodici voci aperte, una le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su due tue parole.**
+**Una.** Delle quattordici voci aperte, una le posso muovere senza di te — ed è
+il numero che va detto per primo. **Il giro è fermo su quattro tue parole.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **due**
+# 🔴 Aspettano te: **quattro**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
-sono due: la **R14** e la **R15**, e le hai fatte nascere tutt'e due tu — la
-prima chiedendo l'audit delle Azioni, la seconda chiedendo qual è il
-meccanismo di ECHOES. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
+sono quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai fatte
+nascere tutte tu — chiedendo l'audit delle Azioni, chiedendo qual è il
+meccanismo di ECHOES, guardando le caselle del Consiglio, e chiedendo l'audit
+dei segni che non servono a niente. Stanno in fondo a questa sezione. Prima, la storia di come questo posto si era
 svuotato: in 0.1.397 hai risposto a tutte e dodici con una parola sola — *«sì a
 tutte»* — e questo è dove sono finite ([D-427](DECISIONS.md#d-427)):
 
@@ -446,7 +447,110 @@ e sono tue:
    contenuto, e fa crescere la combo che già c'è.
 3. **Le Pietre diventano capacità?** Il telaio c'è e ha quattro regole in
    tutto.
-4. **Le 21 regole morte**: puntate sul mucchio dei gettoni, o tolte?
+4. ✔ **Le 21 regole morte — fatte in 0.1.447**
+   ([D-477](DECISIONS.md#d-477)), ed e' la cosa che ti avevo proposto per
+   prima. Adesso un segno del mondo **alza o abbassa la soglia** che le due
+   parti devono battere: se hai lasciato fame in giro, il Consiglio sulla
+   Carestia si vota contro un mucchio piu' alto. Il tabellone lo dice: *«Il
+   mucchio vale 4 — alzato di uno perche' La fame siede al tavolo»*.
+
+   **E il numero e' meno di quello che ti avevo promesso, quindi te lo scrivo
+   grosso: 9%.** Su 513 Consigli in cento anni il mondo ne muove **46**, e
+   **41 di quei 46 sono una regola sola** — «La fama precede». Sedici delle
+   ventuno non mordono mai.
+
+   La causa l'ho misurata, e non e' il motore: **sono i segni che quelle regole
+   nominano.** Guardano vite precise, Cicatrici, memorie che escono due volte
+   in un secolo. I dieci segni che il mondo scrive **davvero** —
+   `#conteso` 370 volte, `#malcontento` 333, `#indebitato` 304, `#razionato`
+   203 — **non sono nominati da nessuna delle ventuno**.
+
+   Quindi il meccanismo c'e' e funziona, ma incontra il mondo una volta su
+   undici. Il passo che manca **e' contenuto, non motore**: scrivere quattro o
+   cinque regole sui segni che escono davvero. Ma **con quale verso** — se
+   `#conteso` renda piu' difficile decidere o piu' facile — e' una scelta
+   d'autore, e la faccio solo se me la dici tu.
+
+### R16. [133](ISSUES.md#133) — le caselle del Consiglio: **aperta in 0.1.448**
+
+*«Continua a non convincermi scaldare il tema che si sta dibattendo, non ha
+senso, a cosa serve. Poi non si capisce cosa vuol dire "Sul luogo si alza un
+pedaggio" oppure "la domanda sul muro" […] non ti dicono cosa succede e cosa
+cambia per il gioco.»*
+
+Avevi ragione su tutt'e due, e tutt'e due hanno un numero.
+
+**Scaldare il Tema in dibattito è un costo che non costa.** Il Consiglio si
+tiene a fine Atto, e subito dopo il motore **azzera tutti i mucchi**: la pedina
+che hai posato lì viene cancellata due minuti dopo, nello stesso Atto. Fa
+qualcosa **solo** quando nell'Atto c'è un secondo Consiglio comprato col
+RIVENDICARE — 1,86 volte l'anno. Misurato: quella casella è **offerta 2.331
+volte e comprata 287** in cento anni.
+
+**E quarantaquattro caselle su 242 posano un segno che nessuno legge — il
+18%.** Il peggiore è proprio il tuo esempio: `scar:unanswered`, «la domanda sul
+muro», sta su **16 caselle** e non lo interroga nessuna regola. Quando la carta
+ti dice *«Accetta 1 Cicatrice permanente: la domanda sul muro»*, la frase è
+oscura **e** la Cicatrice non fa niente: è una penalità che non penalizza.
+
+Il pedaggio è il caso opposto e più insidioso: `toll` **è** letto, quindi
+qualcosa fa — ma la frase dice il **gesto** e non l'**effetto**, e tu non hai
+modo di sapere cosa cambia.
+
+E una terza cosa che la sonda dice da sé: delle **32 caselle** del vocabolario
+il tavolo ne compra **13**. Diciannove non escono mai.
+
+Quattro cose da decidere:
+
+1. **Scaldare il Tema in dibattito**: si toglie, o gli si dà un effetto che
+   sopravviva all'Atto (il Calore non speso che passa all'Atto dopo)?
+2. **Le 44 caselle mute**: si fanno mordere, o si tolgono? È la stessa regola
+   che oggi abbiamo applicato alle Conseguenze senza strada.
+3. **Le frasi**: devono dire l'effetto, non il gesto. È riscrittura di testo su
+   32 caselle, e la voce è la tua.
+4. **Le 19 caselle mai comprate.**
+
+### R17. [134](ISSUES.md#134) — i segni che non servono a niente: **aperta in 0.1.449**
+
+*«Fammi un audit di tutti i TAG che non servono a un cazzo […] perché se un tag
+viene letto una volta da qualcuno, questo tag non serve a nulla.»*
+
+L'audit c'è, e da adesso **si rifà da solo**: il registro dei segni ha una
+sezione sua, e un cancello va rosso se invecchia. Il tuo criterio, applicato
+alla lettera:
+
+**Dei 103 segni che qualcosa scrive sul mondo, 44 — il 43% — li guarda una mano
+sola (34) o nessuna (10). E 42 di quei 44 hanno un gettone stampato nella
+scatola: un terzo della fustellatura.** In cento anni di mondo quei 44 si
+prendono **1.454 scritture su 4.822, il 30%** di tutto quello che il mondo
+scrive.
+
+Ma non è un difetto solo, sono cinque, e il più grosso è questo:
+
+**Le nove Scoperte sono lo stesso gettone.** Nessuna clausola ne nomina una:
+Destini e obiettivi chiedono *«tre scoperte»*, mai *«l'Auspicio»*. Sono
+**1.258 scritture su 4.822 — il 26% di tutto quello che il mondo scrive** — per
+un contenuto in cui l'Auspicio e il Registro dei Traffici sono, per il gioco,
+la stessa cosa. Al tavolo, oggi, sono nove fustelle diverse per una cosa che si
+conta a peso.
+
+Gli altri quattro gruppi: **dodici** gettoni che pesano solo quali domande
+escono l'anno dopo e non cambiano niente di quello che puoi fare adesso;
+**cinque** Cicatrici lette solo dal loro conteggio — fra cui `scar:unanswered`,
+la «domanda sul muro» di cui parlavi guardando il tabellone; **quattro** letti
+da un Destino solo; **quattro** sparsi.
+
+Quattro cose da decidere:
+
+1. **Le nove Scoperte**: un gettone «Scoperta» ×9, o qualcuno che le nomini una
+   per una — un Destino che vuole *l'Auspicio*, non «tre scoperte»?
+2. **I dodici della pesca**: restano memoria pura — e allora la carta lo dice,
+   *«questo peserà sull'anno prossimo»* — o si fanno mordere adesso?
+3. **I quattro di un Destino solo**: si allargano, o è contenuto di un tarocco
+   solo e va bene così?
+4. **Le cinque Cicatrici**: è la stessa domanda della R16 punto 2, e la
+   risposta vale per tutt'e due.
+
 
 ---
 
@@ -1152,9 +1256,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
-muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **due aspettano una tua parola**.
+**Quello che resta da dire in una riga:** delle quattordici voci aperte ne
+posso muovere **una** da sola. Due le verifica una persona che gioca, sette
+stanno fuori dalla lista, e **quattro aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

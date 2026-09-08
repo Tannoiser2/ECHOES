@@ -23,22 +23,22 @@ se su un tavolo intero e' zero, il cancello e' rosso.
 | — ABSTAIN | 2 (0%) | 3 (1%) |
 | Consigli col tavolo in silenzio (tutti astenuti) | 0 (0%) | 0 (0%) |
 | Consigli con un OPPOSE dichiarato | 132 (96%) | 135 (97%) |
-| carte impegnate dal proponente, per Consiglio | 1.33 | 1.42 |
-| carte impegnate dagli altri tre, per Consiglio | 3.50 | 3.45 |
-| non proponenti che impegnano almeno una carta | 315 (77%) | 327 (78%) |
+| carte impegnate dal proponente, per Consiglio | 1.33 | 1.40 |
+| carte impegnate dagli altri tre, per Consiglio | 3.50 | 3.43 |
+| non proponenti che impegnano almeno una carta | 315 (77%) | 325 (78%) |
 | gettoni di opposizione comprati (D-419) | 0 | 0 |
 | punti del dibattito guadagnati · persi (D-455) | 0 · 0 | 0 · 0 |
-| margine medio | 1.88 | 0.86 |
+| margine medio | 1.89 | 0.84 |
 | **Consigli con opposizione nel margine** | **132 (96%)** | **135 (97%)** |
 
 ## Gli esiti
 
 | esito | misto | uniforme |
 |---|---|---|
-| COUNTER | 40 | 52 |
-| DECISIVE_SUCCESS | 40 | 28 |
+| COUNTER | 40 | 53 |
+| DECISIVE_SUCCESS | 41 | 28 |
 | FAILURE | 16 | 9 |
-| SUCCESS | 32 | 36 |
+| SUCCESS | 31 | 35 |
 | SUCCESS_WITH_COST | 9 | 14 |
 
 ## Chi si astiene, seggio per seggio
@@ -101,7 +101,7 @@ si oppone.
 | **anni con meno di sei domande** | **0** | **0** |
 | mucchio medio (valore) | 4.13 | 4.02 |
 | gettoni medi sul mucchio | 3.88 | 3.76 |
-| carte della parte piu' forte (media) | 9.18 | 9.16 |
+| carte della parte piu' forte (media) | 9.18 | 9.14 |
 | **Consigli in cui la parte piu' forte arriva al mucchio** | **132 (96%)** | **138 (99%)** |
 
 Quanti Consigli a ogni valore del mucchio:

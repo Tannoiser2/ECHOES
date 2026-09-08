@@ -1441,7 +1441,7 @@ const DEFS := {
 				"min": -2,
 				"max": 2,
 			},
-			"world_factor_delta": {
+			"pile_delta": {
 				"type": "int",
 				"min": -2,
 				"max": 2,

@@ -85,7 +85,7 @@ le Pietre e i gradi che le degradano.
 | `structure:library` | 0 | 10 | 0 | 10 |  |
 | `structure:palace` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `structure:sealed` | 0 | 12 | 16 | 12 |  |
-| `structure:tollgate` | 0 | 372 | 7 | 93 |  |
+| `structure:tollgate` | 0 | 373 | 7 | 93 |  |
 | `structure:watchtower` | 100 | 334 | 69 | 87 |  |
 
 ## un gettone accanto alla tessera
@@ -97,17 +97,17 @@ lo stato di adesso: si mette e si toglie.
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
 | `condition:abandoned` | 0 | 21 | 1 | 17 |  |
-| `condition:contested` | 0 | 370 | 119 | 89 |  |
-| `condition:cut_off` | 0 | 154 | 243 | 59 |  |
+| `condition:contested` | 0 | 369 | 119 | 89 |  |
+| `condition:cut_off` | 0 | 153 | 243 | 58 |  |
 | `condition:emptied` | 0 | 42 | 4 | 35 |  |
 | `condition:exploited` | 0 | 21 | 0 | 15 |  |
 | `condition:guarded` | 0 | 73 | 5 | 56 |  |
-| `condition:indebted` | 0 | 262 | 28 | 92 |  |
+| `condition:indebted` | 0 | 263 | 29 | 92 |  |
 | `condition:lean` | 0 | 144 | 150 | 49 |  |
 | `condition:mourning` | 0 | 51 | 35 | 39 |  |
-| `condition:plundered` | 0 | 54 | 13 | 35 |  |
-| `condition:rationed` | 0 | 202 | 128 | 68 |  |
-| `condition:starving` | 0 | 86 | 170 | 45 |  |
+| `condition:plundered` | 0 | 53 | 13 | 34 |  |
+| `condition:rationed` | 0 | 202 | 129 | 68 |  |
+| `condition:starving` | 0 | 86 | 169 | 45 |  |
 | `condition:unrest` | 0 | 341 | 104 | 91 |  |
 
 ## un dischetto rotondo
@@ -129,7 +129,7 @@ le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 | `scar:open_wound` | 0 | 12 | 0 | 11 |  |
 | `scar:plundered` | 0 | 32 | 0 | 28 |  |
 | `scar:sealed_border` | 0 | 11 | 0 | 11 |  |
-| `scar:the_empty_chair` | 0 | 18 | 0 | 16 |  |
+| `scar:the_empty_chair` | 0 | 19 | 0 | 17 |  |
 | `scar:unanswered` | 0 | 38 | 60 | 29 | **tolta piu' volte di quante si posa** |
 
 ## sulla scheda della casa
@@ -206,7 +206,7 @@ quello che il mondo ricorda (ISSUES 110).
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `account_settled` | 0 | 18 | 0 | 17 |  |
+| `account_settled` | 0 | 19 | 0 | 18 |  |
 | `amnesty_granted` | 0 | 5 | 0 | 5 |  |
 | `betrayal_spoken` | 0 | 12 | 0 | 11 |  |
 | `burden_shared` | 0 | 72 | 0 | 50 |  |
@@ -227,7 +227,7 @@ quello che il mondo ricorda (ISSUES 110).
 | `grain_requisitioned` | 0 | 14 | 0 | 11 |  |
 | `heir_named` | 0 | 109 | 0 | 56 |  |
 | `knowledge_shared` | 0 | 173 | 0 | 76 |  |
-| `ledger_public` | 0 | 182 | 0 | 85 |  |
+| `ledger_public` | 0 | 181 | 0 | 84 |  |
 | `legend:debt_called` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `legend:oath_broken` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `legend:order_restored` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
@@ -235,12 +235,12 @@ quello che il mondo ricorda (ISSUES 110).
 | `mountain_forgotten` | 0 | 7 | 0 | 7 |  |
 | `nahr_settled` | 0 | 24 | 0 | 24 |  |
 | `no_charter` | 0 | 4 | 0 | 4 |  |
-| `oath_broken` | 0 | 5 | 15 | 5 |  |
+| `oath_broken` | 0 | 5 | 16 | 5 |  |
 | `order_restored` | 0 | 7 | 0 | 7 |  |
 | `parley_held` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `petition_heard` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `price_in_lives` | 0 | 7 | 0 | 6 |  |
-| `question_unresolved` | 0 | 44 | 6 | 35 |  |
+| `question_unresolved` | 0 | 43 | 6 | 34 |  |
 | `quota_guaranteed` | 0 | 3 | 0 | 3 |  |
 | `relic_buried` | 0 | 17 | 0 | 16 |  |
 | `relic_recorded` | 0 | 3 | 0 | 3 |  |

@@ -10345,6 +10345,151 @@ Non serve un meccanismo nuovo: serve **accendere quello che c'e'**.
    lavoro di contenuto, non di motore, e fa crescere la combo che gia' esiste.
 3. **Le Pietre diventano capacita'?** Il telaio (`ACTION_DISCOUNT`,
    `ACTION_MODIFIER`, `ACTION_GRANT`) c'e' e ha 4 regole in tutto.
-4. **Le 21 regole morte** (`COUNCIL_MODIFIER`): puntate sul mucchio dei
-   gettoni, o tolte? E' la stessa voce aperta in [129](#129).
+4. ✔ **Le 21 regole morte** (`COUNCIL_MODIFIER`) — **puntate sul mucchio in
+   0.1.447** ([D-477](DECISIONS.md#d-477)): un segno del mondo alza o abbassa
+   la soglia che le due parti devono battere. **Ma il numero e' 9%**: su 513
+   Consigli il mondo ne muove 46, e 41 di quei 46 sono una regola sola. Sedici
+   su ventuno restano mute, e la causa e' misurata — **i dieci segni piu'
+   scritti del mondo non sono nominati da nessuna delle ventuno**. Resta da
+   decidere, ed e' d'autore: **scrivere regole sui segni che il mondo scrive
+   davvero** — `condition:contested` (370 volte), `condition:unrest` (333),
+   `condition:indebted` (304), `condition:rationed` (203) — e con quale verso
+   ognuna.
 
+
+### 133. Le caselle del Consiglio: una su cinque non fa niente, e le frasi non dicono cosa cambia
+
+`regole` · `ux` · `da-decidere` · voluta dal committente · **aperta in 0.1.448**
+
+> «Continua a non convincermi scaldare il tema che si sta dibattendo, non ha
+> senso, a cosa serve. Poi non si capisce cosa vuol dire per esempio "Sul luogo
+> si alza un pedaggio" oppure accetti la cicatrice "la domanda sul muro", sono
+> frasi che per i giocatori non hanno senso e non ti dicono cosa succede e cosa
+> cambia per il gioco.»
+
+Due difetti diversi, tutt'e due misurati, tutt'e due veri.
+
+**1. Scaldare il Tema in dibattito e' un costo che non costa.** Il Consiglio si
+tiene **a fine Atto** (D-214), e subito dopo `_spend_the_piles` **azzera tutti
+i mucchi**. Una pedina su «Il Tema di questa domanda si scalda di 1» viene
+cancellata due minuti dopo, nello stesso Atto. L'unica finestra in cui fa
+qualcosa e' quando nell'Atto c'e' un **secondo** Consiglio comprato col
+RIVENDICARE — 1,86 volte l'anno — perche' li' il calore aggiunto puo' cambiare
+quale mazzetto si apre per secondo.
+
+Misurato (`run_boxes_probe`, 100 anni, 513 Consigli): **HEAT_THEME offerta
+2.331 volte e comprata 287**. Duecentottantasette pedine posate su un costo che
+per la stragrande maggioranza delle volte non cambia niente.
+
+**2. Quarantaquattro caselle su 242 posano un segno che nessuno legge.**
+Incrociate le caselle coi lettori — clausole di Destini, Obiettivi, carte,
+Conseguenze e `tag_rules`:
+
+| | |
+|---|---|
+| segni distinti posati dalle caselle | **37**, su **242** caselle |
+| di quelli, **non letti da nessuna clausola** | **10** segni, su **44** caselle (**18%**) |
+
+I muti, per quante caselle li posano:
+
+| segno | caselle |
+|---|---|
+| `scar:unanswered` — *«la domanda sul muro»* | **16** |
+| `scar:plundered` | 7 |
+| `scar:sealed_border` | 5 |
+| `condition:mourning` | 5 |
+| `faith_established` | 3 |
+| `account_settled`, `crystal_measured`, `condition:lean` | 2 ciascuno |
+| `charter_for_all`, `watched` | 1 ciascuno |
+
+Quindi quando la carta dice *«Accetta 1 Cicatrice permanente: la domanda sul
+muro»*, la frase e' oscura **e** la Cicatrice non fa niente: e' una penalita'
+che non penalizza, ed e' la casella SCAR — **offerta 2.581 volte e comprata
+236**.
+
+Il pedaggio e' il caso opposto e piu' insidioso: `toll` **e'** letto, quindi la
+casella fa qualcosa — ma la frase dice il **gesto** e non l'**effetto**, e chi
+gioca non ha modo di sapere cosa cambia. TOLL: offerta 1.866, comprata 149.
+
+**E una terza cosa che la sonda dice da se':** delle 32 caselle del vocabolario
+ne vengono comprate **13**. Diciannove non escono mai.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **Scaldare il Tema in dibattito**: si toglie dalle liste, o gli si da' un
+   effetto che sopravviva all'Atto (per esempio: il Calore non speso passa
+   all'Atto dopo, che ROADMAP §4.1 chiama gia' «taratura d'autore»)?
+2. **Le 44 caselle mute**: si fanno mordere — una regola che legga
+   `scar:unanswered` e le altre — o si tolgono? E' la stessa regola che D-475
+   ha applicato alle Conseguenze senza strada, e si puo' mettere sotto la
+   stessa guardia.
+3. **Le frasi**: la casella dice il gesto (*«Sul luogo si alza un pedaggio»*) e
+   deve dire l'effetto (*«chi entra qui paga»*). E' riscrittura di testo su 32
+   caselle, e la voce di chi scrive e' del committente.
+4. **Le 19 caselle mai comprate**: contenuto che il tavolo non sceglie mai.
+
+
+
+### 134. I segni che li guarda una mano sola: 44 su 103, e 42 hanno una fustella
+
+`contenuto` · `regole` · `da-decidere` · voluta dal committente · **aperta in 0.1.449**
+
+> «Fammi un audit di tutti i TAG che non servono a un cazzo, e che praticamente
+> sono inutili ai fini del gioco, perche' se un tag viene letto una volta da
+> qualcuno, questo tag non serve a nulla.»
+
+L'audit c'e', ed e' **generato**: da 0.1.449 il registro dei segni ha una
+sezione sua — [«I segni che li guarda una mano sola»](REGISTRO_SEGNI.md) — che
+il cancello `build_sign_registry.py --check` tiene aggiornata. I numeri qui
+sotto non sono scritti a mano: si rifanno da soli.
+
+**Il conto.** Dei **103 segni che qualcosa scrive sul mondo**:
+
+| | |
+|---|---|
+| li legge **piu' di una mano** | 59 |
+| li guarda **una mano sola** | **34** |
+| non li guarda **nessuno** (i muti gia' dichiarati) | **10** |
+| **col criterio del committente (0 o 1)** | **44 su 103 = 43%** |
+| di quei 44, con **un gettone stampato** nella scatola | **42** |
+
+E incrociando col mondo che gira (`docs/MISURA_SEGNI.md`, 100 anni): quei 44
+segni si prendono **1.454 scritture su 4.822 — il 30% di tutto quello che il
+mondo scrive in cento anni**.
+
+**Ma non sono un difetto solo: sono cinque difetti diversi**, e vanno decisi
+separati.
+
+| l'unica mano | segni | cos'e' davvero |
+|---|---|---|
+| **la pesca delle domande** | 12 | pesano quali Tensioni escono l'anno dopo, e **niente di quello che puoi fare adesso**. Il gettone si posa e non cambia una mossa |
+| **il codice che conta le Scoperte** | 9 | nove Scoperte diverse, e nessuna clausola ne nomina una: il gioco conta solo **quante**. Sono 1.258 scritture su 4.822 — **il 26% di tutto** — per un contenuto in cui `discovery:the_omen` e `discovery:trade_ledger` sono la stessa cosa |
+| **il conteggio delle Cicatrici** | 5 | e' voluto e dichiarato: una Cicatrice pesa **perche' e' una Cicatrice**, il nome non lo legge nessuno. Ma e' proprio il caso che il committente ha nominato guardando il tabellone (ISSUES 133): «la domanda sul muro» e' `scar:unanswered`, e non fa niente di suo |
+| **un Destino** | 4 | `anointed`, `ash_watch`, `failed_proposal`, `water_moves`: una clausola sola su un tarocco solo. Chi non ha quel Destino non ha motivo di guardarli |
+| **una Risonanza, una regola, il motore** | 4 | `parley_held`, `petition_heard`, `settlement:march`, `evicted:$region_focus` |
+
+**Le tre cose che questo dice, e che nessuna misura di prima diceva:**
+
+1. **Le nove Scoperte sono un gettone solo.** Al tavolo, oggi, tenere nove
+   fustelle diverse per una cosa che il gioco conta a peso e' spesa pura: la
+   stessa scatola direbbe le stesse regole con **un gettone «Scoperta» ×9**.
+   L'alternativa opposta e' altrettanto legittima e piu' interessante: far
+   nominare le Scoperte da qualcuno — un Destino che vuole *l'Auspicio*, non
+   «tre scoperte».
+2. **Dodici gettoni servono solo a pesare la pesca dell'anno dopo.** Nessuno di
+   loro cambia una mossa: sono memoria pura. Il tavolo li posa, li guarda, e
+   non ci fa niente fino al prossimo anno — e la persona che gioca non ha modo
+   di saperlo.
+3. **42 fustelle su 122 servono un segno che nessuno o quasi interroga**: e'
+   un terzo della fustellatura della scatola.
+
+**Cosa resta da decidere, e lo decide il committente:**
+
+1. **Le nove Scoperte**: un gettone solo ×9, oppure qualcuno che le nomini una
+   per una?
+2. **I dodici della pesca**: restano memoria pura — e allora la carta lo dice
+   («questo peserà sull'anno prossimo») — o si fanno mordere adesso?
+3. **I quattro letti da un Destino solo**: si allargano ad altre clausole, o si
+   accetta che siano contenuto di un tarocco solo?
+4. **Le cinque Cicatrici**: e' la stessa domanda di ISSUES 133 punto 2, e la
+   risposta e' una sola per tutt'e due.

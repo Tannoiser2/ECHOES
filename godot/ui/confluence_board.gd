@@ -62,6 +62,10 @@ const COUNT_WIDTH: float = 280.0
 ## Il lato della pedina disegnata accanto a una voce della carta.
 const PEDINA: float = 16.0
 
+## Il colore di una casella che si puo' prendere adesso (D-480): l'ocra della
+## mano che sceglie, la stessa dei posti accesi sulla mappa (D-239).
+const OFFER_COLOUR: String = "#e8b563"
+
 var _header: Label
 var _question: Label
 var _proposition: Label
@@ -319,11 +323,13 @@ func _render_sides_face(session: RefCounted, council: Dictionary, face: Dictiona
 			var text: String = "%s · %s" % [marks, str((voice as Dictionary).get("text", ""))]
 			var side: String = str(taken.get(voice_id, ""))
 			if side != "":
-				_face.add_child(_face_voice(text, true, str(SIDE_COLOURS[side])))
+				_face.add_child(_face_voice(text, true, str(SIDE_COLOURS[side]), voice_id))
 			elif session.confluence.is_open() and not live.has(voice_id):
-				_face.add_child(_face_voice(text + "   — non qui: non cambierebbe niente", false, str(pair[3])))
+				_face.add_child(_face_voice(
+					text + "   — non qui: non cambierebbe niente", false, str(pair[3])
+				))
 			else:
-				_face.add_child(_face_voice(text, false, str(pair[2])))
+				_face.add_child(_face_voice(text, false, str(pair[2]), voice_id))
 	var falls: Array = face.get("failure", []) as Array
 	if not falls.is_empty():
 		_face.add_child(_face_heading("SE CADE — se non passa nessuna delle due"))
@@ -376,10 +382,16 @@ func _face_heading(text: String) -> Label:
 ## vuoti — la stessa trappola delle frecce di D-463. Una riga porta la pedina
 ## come nodo, con `marked` scritto sopra, cosi' una prova la legge senza
 ## cercare un segno.
-func _face_voice(text: String, marked: bool, colour: String) -> HBoxContainer:
+func _face_voice(text: String, marked: bool, colour: String,
+		voice_id: String = "") -> HBoxContainer:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 6)
 	row.set_meta("marked", marked)
+	# **La riga sa quale casella e'** (D-480): serve a `ask()` per accendere la
+	# casella che si puo' prendere, invece di ristamparla come bottone sotto.
+	if voice_id != "":
+		row.set_meta("voice", voice_id)
+		row.set_meta("colour", colour)
 	var pedina := Control.new()
 	pedina.custom_minimum_size = Vector2(PEDINA, PEDINA)
 	pedina.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
@@ -559,7 +571,20 @@ func _render_outcome(council: Dictionary) -> void:
 	var pile: int = int(council.get("pile", 0))
 	var result_v: Variant = council.get("result", null)
 	if result_v == null:
-		_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
+		# **E perche' vale quello** ([D-477](../../docs/DECISIONS.md#d-477)): se
+		# il mondo segnato ha mosso la soglia, il tavolo deve sapere quale segno
+		# gliel'ha mossa. Una regola che non si vede non e' una regola del
+		# tavolo: e' un numero che cambia e nessuno sa perche'.
+		var shift: int = int(council.get("pile_shift", 0))
+		var titles: Array = council.get("pile_shift_titles", []) as Array
+		if shift == 0 or titles.is_empty():
+			_outcome.text = "Il mucchio sulla domanda vale %d: chi vince deve arrivarci." % pile
+		else:
+			_outcome.text = "Il mucchio sulla domanda vale %d — %s di uno perche' %s: chi vince deve arrivarci." % [
+				pile,
+				"alzato" if shift > 0 else "abbassato",
+				" e ".join(PackedStringArray(titles)),
+			]
 		return
 	var settled: Dictionary = result_v as Dictionary
 	var outcome: String = str(settled["outcome"])
@@ -579,13 +604,33 @@ func _render_outcome(council: Dictionary) -> void:
 
 ## Draw the choices as cards and suspend until one is pressed. The board neither
 ## knows nor cares what they are.
-func ask(prompt: String, labels: Array) -> int:
+func ask(prompt: String, labels: Array, subjects: Array = []) -> int:
 	_prompt.text = prompt
 	for child in _choices.get_children():
 		child.queue_free()
 		_choices.remove_child(child)
 
+	# **La casella sulla carta e' la scelta** (D-480, parola del committente:
+	# *«perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo
+	# un cerchietto per scegliere cosa fare, e' una ripetizione inutile»*).
+	# Le caselle offerte si accendono sulla carta girata, e quelle non si
+	# ristampano come carta-scelta qui sotto.
+	var offered: Dictionary = _boxes_offered(subjects)
+	_light_boxes(offered, func(found: Array) -> void:
+		# Una casella che porta una scelta sola **e'** la risposta. Una che ne
+		# porta due — la stessa casella «con A» e «con B» — ha tolto di mezzo
+		# tutto il resto: restano quelle due, ed e' il gesto del tavolo (D-231),
+		# posi la pedina e poi dici per quale domanda.
+		if found.size() == 1:
+			picked.emit(int(found[0]))
+			return
+		_only_these(labels, found)
+	)
+
 	for i in range(labels.size()):
+		var subject: Dictionary = (subjects[i] if i < subjects.size() else {}) as Dictionary
+		if offered.has(str(subject.get("box", ""))):
+			continue
 		var index: int = i
 		var card := _choice_card(str(labels[i]))
 		card.pressed.connect(func() -> void: picked.emit(index))
@@ -593,10 +638,101 @@ func ask(prompt: String, labels: Array) -> int:
 
 	var chosen: int = await picked
 	_prompt.text = ""
+	_light_boxes({})
 	for child in _choices.get_children():
 		child.queue_free()
 		_choices.remove_child(child)
 	return chosen
+
+
+## Le caselle che questa domanda offre, e quali scelte porta ognuna (D-480):
+## `id della casella -> [indici]`.
+##
+## Quasi sempre e' una scelta sola, e allora toccare la casella **e'** la
+## risposta. Una casella marcata per tutt'e due le domande ne porta due — «con
+## A» e «con B» — e toccarla non direbbe da che parte stai: apre quelle due, e
+## non tutta la lista. E' il gesto del tavolo (D-231) e il patto di D-238:
+## **nessuna scelta legale resta irraggiungibile.**
+static func _boxes_offered(subjects: Array) -> Dictionary:
+	var seen: Dictionary = {}
+	for i in range(subjects.size()):
+		var subject: Dictionary = (subjects[i] if subjects[i] != null else {}) as Dictionary
+		var voice_id: String = str(subject.get("box", ""))
+		if voice_id == "":
+			continue
+		var found: Array = seen.get(voice_id, []) as Array
+		found.append(i)
+		seen[voice_id] = found
+	return seen
+
+
+## Accende sulla carta girata le caselle che si possono prendere adesso, e
+## spegne le altre. Una riga accesa e' **alta un dito** (D-243) e risponde al
+## tocco: e' la stessa scelta di prima, chiesta col gesto del tavolo.
+func _light_boxes(offered: Dictionary, take: Callable = Callable()) -> void:
+	if _face == null:
+		return
+	for child in _face.get_children():
+		var row := child as Control
+		if row == null or not row.has_meta("voice"):
+			continue
+		var voice_id: String = str(row.get_meta("voice"))
+		var lit: bool = offered.has(voice_id)
+		row.set_meta("offered", lit)
+		row.mouse_filter = Control.MOUSE_FILTER_PASS if lit else Control.MOUSE_FILTER_IGNORE
+		row.custom_minimum_size.y = 44.0 if lit else 0.0
+		# **Una casella che si puo' prendere si vede** che si puo' prendere: il
+		# cerchietto e la sua riga passano all'ocra di chi sta scegliendo. Un
+		# bersaglio grande e invisibile non e' un bersaglio.
+		_paint_row(row, Color(OFFER_COLOUR if lit else str(row.get_meta("colour", "#5f584c"))))
+		for connection in row.gui_input.get_connections():
+			row.gui_input.disconnect(connection["callable"] as Callable)
+		if not lit:
+			continue
+		if not take.is_valid():
+			continue
+		var found: Array = (offered[voice_id] as Array).duplicate()
+		row.gui_input.connect(func(event: InputEvent) -> void:
+			if not (event is InputEventMouseButton):
+				return
+			var press := event as InputEventMouseButton
+			if press.pressed and press.button_index == MOUSE_BUTTON_LEFT:
+				take.call(found)
+		)
+
+
+## La casella toccata ha tolto di mezzo tutto il resto: sotto restano solo le
+## scelte che quella casella porta — «con A» e «con B» — e niente altro.
+func _only_these(labels: Array, found: Array) -> void:
+	for child in _choices.get_children():
+		child.queue_free()
+		_choices.remove_child(child)
+	for entry in found:
+		var index: int = int(entry)
+		if index < 0 or index >= labels.size():
+			continue
+		var card := _choice_card(str(labels[index]))
+		card.pressed.connect(func() -> void: picked.emit(index))
+		_choices.add_child(card)
+
+
+## La riga ridipinta: la parola e il cerchietto dello stesso colore. Il
+## cerchietto e' un nodo che si disegna da se' (D-466), quindi il colore glielo
+## si ridice riattaccando il disegno.
+func _paint_row(row: Control, colour: Color) -> void:
+	for child in row.get_children():
+		if child is Label:
+			(child as Label).add_theme_color_override("font_color", colour)
+			continue
+		var pedina := child as Control
+		if pedina == null:
+			continue
+		for connection in pedina.draw.get_connections():
+			pedina.draw.disconnect(connection["callable"] as Callable)
+		pedina.draw.connect(
+			_draw_pedina.bind(pedina, bool(row.get_meta("marked", false)), colour)
+		)
+		pedina.queue_redraw()
 
 
 ## Una scelta del Consiglio disegnata come una carta, non come un bottone con

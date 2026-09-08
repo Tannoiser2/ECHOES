@@ -52,10 +52,10 @@ func test_with_no_signs_on_the_board_every_hook_is_neutral() -> void:
 			session.data, session.world, entity_id, "INFLUENCE", "TEN_FAMINE"
 		)
 		assert_eq(int(bonus["delta"]), 0, "nessun bonus d'azione per %s" % entity_id)
-		var factor: Dictionary = TagRules.council_world_factor(
+		var factor: Dictionary = TagRules.council_pile_shift(
 			session.data, session.world, "TEN_FAMINE", entity_id
 		)
-		assert_eq(int(factor["delta"]), 0, "nessun peso sul Consiglio per %s" % entity_id)
+		assert_eq(int(factor["delta"]), 0, "nessun peso sul mucchio per %s" % entity_id)
 	for region_id: String in session.data.regions.keys():
 		assert_eq(
 			TagRules.movement_gate(session.data, session.world, region_id),

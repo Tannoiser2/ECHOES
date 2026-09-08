@@ -127,11 +127,14 @@ func test_the_life_sign_powers_the_life() -> void:
 	# potere è della vita, non del seggio.
 	var seat: Dictionary = session.world["entities"]["ENT_LYRA"]
 	(seat["tags"] as Array).append("life:INC_LYRA_ACADEMY")
-	var factor: Dictionary = TagRules.council_world_factor(
+	# Da [D-477](DECISIONS.md#d-477) il gancio muove **il mucchio** e non il
+	# dado: l'Accademia che fa testo **abbassa** la soglia di uno, perche' col
+	# suo peso al tavolo si decide piu' facilmente.
+	var factor: Dictionary = TagRules.council_pile_shift(
 		session.data, session.world, "TEN_FAMINE", "ENT_LYRA"
 	)
-	assert_eq(int(factor["delta"]), 1, "l'Accademia fa testo quando propone")
-	var other: Dictionary = TagRules.council_world_factor(
+	assert_eq(int(factor["delta"]), -1, "l'Accademia fa testo quando propone: il mucchio scende")
+	var other: Dictionary = TagRules.council_pile_shift(
 		session.data, session.world, "TEN_FAMINE", "ENT_ALDRIC"
 	)
 	assert_eq(int(other["delta"]), 0, "il potere non è di chi non vive quella vita")

@@ -542,6 +542,70 @@ def sezione_del_tavolo(signs: Dict[str, Dict[str, Set[str]]], dove: Dict[str, st
     return lines
 
 
+def fustelle() -> Dict[str, str]:
+    """Il gettone stampato di ogni segno, dal catalogo delle pedine.
+
+    Serve alla sezione della mano sola: un segno che nessuno interroga costa
+    comunque una fustella nella scatola, ed e' il conto che si vede al tavolo.
+    """
+    return {str(v["tag"]): str(v["id"]) for v in items("token_icon") if v.get("tag")}
+
+
+def sezione_della_mano_sola(signs: Dict[str, Dict[str, Set[str]]],
+                            dove: Dict[str, str]) -> List[str]:
+    """I segni che li guarda **una mano sola**, raggruppati per quella mano.
+
+    E' il criterio del committente, detto con parole sue: *«se un tag viene
+    letto una volta da qualcuno, questo tag non serve a nulla»*. Non e' vero
+    alla lettera — una mano sola e' pur sempre una mano — ma il conto dice
+    dov'e' il contenuto che il tavolo non usa, e la colonna della fustella dice
+    quanto costa tenerlo.
+    """
+    written = {t: r for t, r in signs.items() if r["scrive"] or r["cancella"]}
+    soli = sorted(t for t, r in written.items() if len(r["legge"]) == 1)
+    muti = sorted(t for t, r in written.items() if not r["legge"])
+    tagli = fustelle()
+    quante_fustelle = sum(1 for t in soli + muti if t in tagli)
+
+    lines = ["## I segni che li guarda una mano sola", "",
+             "Il criterio e' del committente: *«se un tag viene letto una volta da",
+             "qualcuno, questo tag non serve a nulla»*. Una mano sola e' pur sempre una",
+             "mano — ma un segno letto da un solo posto **non fa scegliere**: chi gioca",
+             "non ha nessun motivo per posarlo o evitarlo, se non quell'unico.",
+             "",
+             "L'ultima colonna e' il costo vero: la fustella che quel segno si porta",
+             "nella scatola comunque.", ""]
+    lines.append("**%d segni su %d scritti sul mondo — il %d%% — li guarda una mano sola "
+                 "(%d) o nessuna (%d), e %d di loro hanno un gettone stampato.**"
+                 % (len(soli) + len(muti), len(written),
+                    round(100 * (len(soli) + len(muti)) / len(written)) if written else 0,
+                    len(soli), len(muti), quante_fustelle))
+    lines.append("")
+    per_mano: Dict[str, List[str]] = defaultdict(list)
+    for tag in soli:
+        per_mano[sorted(signs[tag]["legge"])[0]].append(tag)
+    lines.append("| l'unica mano che legge | segni | quali |")
+    lines.append("|---|---|---|")
+    for mano in sorted(per_mano, key=lambda m: (-len(per_mano[m]), m)):
+        lines.append("| %s | **%d** | %s |" % (
+            mano, len(per_mano[mano]),
+            ", ".join("`%s`" % t for t in per_mano[mano])))
+    lines.append("")
+    lines.append("| segno | sul tavolo sta | chi lo scrive | chi lo legge | gettone |")
+    lines.append("|---|---|---|---|---|")
+    for tag in soli:
+        nome = next((n for k, n, _ in POSTI if k == dove.get(tag)), "—")
+        lines.append("| `%s` | %s | %s | %s | %s |" % (
+            tag, nome,
+            ", ".join(sorted(signs[tag]["scrive"] | signs[tag]["cancella"])) or "—",
+            sorted(signs[tag]["legge"])[0],
+            ("`%s`" % tagli[tag]) if tag in tagli else "—"))
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    return lines
+
+
 def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
     written = {t: r for t, r in signs.items() if r["scrive"] or r["cancella"]}
     mute = sorted(t for t, r in written.items() if not r["legge"])
@@ -555,10 +619,16 @@ def render(signs: Dict[str, Dict[str, Set[str]]]) -> str:
     lines.append("**E %d segni li chiede qualcuno senza che niente li scriva.**"
                  % len(asked))
     lines.append("")
+    soli = [t for t, r in written.items() if len(r["legge"]) == 1]
+    lines.append("**E %d li guarda una mano sola: contando i muti, %d su %d — il %d%%.**"
+                 % (len(soli), len(soli) + len(mute), len(written),
+                    round(100 * (len(soli) + len(mute)) / len(written)) if written else 0))
+    lines.append("")
     lines.append("---")
     lines.append("")
     dove = posti()
     lines.extend(sezione_del_tavolo(signs, dove))
+    lines.extend(sezione_della_mano_sola(signs, dove))
     lines.append("## I segni muti")
     lines.append("")
     if not mute:

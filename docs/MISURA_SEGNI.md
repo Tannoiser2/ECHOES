@@ -12,7 +12,7 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 
 | segno | scritto | temuto | voluto | chi altro lo legge | |
 |---|---|---|---|---|---|
-| `account_settled` | 18 | 0 | 0 | `destiny_physical`, `entity_strategic_profile` |  |
+| `account_settled` | 19 | 0 | 0 | `destiny_physical`, `entity_strategic_profile` |  |
 | `amnesty_granted` | 5 | 0 | 0 | `chronicle` |  |
 | `betrayal_spoken` | 12 | 0 | 0 | `asset_physical`, `echo_card` |  |
 | `burden_shared` | 72 | 0 | 0 | `echo_card`, `entity`, `entity_strategic_profile` |  |
@@ -20,15 +20,15 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `charter_temporary` | 14 | 0 | 0 | `chronicle`, `entity` |  |
 | `charter_written` | 58 | 0 | 2 | `asset_physical`, `destiny`, `entity`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `condition:abandoned` | 21 | 0 | 1 | `asset_physical`, `destiny_physical`, `tension`, `chronicle`, `echo_card`, `destiny` |  |
-| `condition:contested` | 370 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tension`, `destiny`, `echo_card` |  |
-| `condition:cut_off` | 154 | 1 | 1 | `asset`, `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile`, `tension` |  |
+| `condition:contested` | 369 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tension`, `destiny`, `echo_card` |  |
+| `condition:cut_off` | 153 | 1 | 1 | `asset`, `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile`, `tension` |  |
 | `condition:emptied` | 42 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension`, `echo_card` |  |
 | `condition:exploited` | 21 | 1 | 1 | `chronicle`, `destiny`, `entity_strategic_profile`, `objective`, `tension` |  |
 | `condition:guarded` | 73 | 0 | 0 | `entity_strategic_profile`, `tag_rule`, `echo_card` |  |
-| `condition:indebted` | 262 | 0 | 0 | `consequence`, `destiny_physical`, `tension`, `chronicle` |  |
+| `condition:indebted` | 263 | 0 | 0 | `consequence`, `destiny_physical`, `tension`, `chronicle` |  |
 | `condition:lean` | 144 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension` |  |
 | `condition:mourning` | 51 | 0 | 0 | `asset`, `asset_physical`, `tension`, `chronicle` |  |
-| `condition:plundered` | 54 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
+| `condition:plundered` | 53 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
 | `condition:rationed` | 202 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension`, `chronicle`, `echo_card` |  |
 | `condition:starving` | 86 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tag_rule`, `tension`, `chronicle`, `entity_strategic_profile` |  |
 | `condition:unrest` | 341 | 5 | 0 | `asset`, `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `echo_card`, `tension`, `chronicle`, `entity_strategic_profile` |  |
@@ -57,7 +57,7 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `hard_bargain` | 6 | 0 | 0 | — |  |
 | `heir_named` | 109 | 0 | 0 | `asset_physical`, `entity` |  |
 | `knowledge_shared` | 173 | 0 | 1 | `asset_physical`, `destiny_physical`, `chronicle`, `entity_strategic_profile`, `echo_card`, `destiny` |  |
-| `ledger_public` | 182 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile` |  |
+| `ledger_public` | 181 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `echo_card`, `entity`, `entity_strategic_profile` |  |
 | `mine_sealed` | 9 | 3 | 3 | `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
 | `mountain_forgotten` | 7 | 0 | 1 | `chronicle`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule` |  |
 | `nahr_settled` | 24 | 0 | 2 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
@@ -65,7 +65,7 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `oath_broken` | 5 | 1 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule` |  |
 | `order_restored` | 7 | 0 | 2 | `entity_strategic_profile`, `destiny`, `destiny_physical`, `echo_card` |  |
 | `price_in_lives` | 7 | 0 | 0 | — |  |
-| `question_unresolved` | 44 | 5 | 0 | `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `echo_card` |  |
+| `question_unresolved` | 43 | 5 | 0 | `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `echo_card` |  |
 | `quota_guaranteed` | 3 | 0 | 0 | `chronicle` |  |
 | `relic_buried` | 17 | 1 | 0 | `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `relic_recorded` | 3 | 0 | 0 | `chronicle` |  |

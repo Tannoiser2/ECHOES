@@ -10,6 +10,248 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-478 — Le due schede si dividono il mestiere, e la fascia si chiude
+
+**implemented in 0.1.448.** Parola del committente, davanti alla pagina: *«la
+mia casa e obiettivi mostrano le stesse cose e poi la finestra e' piccolissima
+in altezza e non si legge nulla, falla collassabile, ma quando e' aperta deve
+avere almeno l'altezza di una carta»*.
+
+*(Questo verbale e' arrivato con una versione di ritardo: il codice e' di
+0.1.448, la pagina di DECISIONS no. Scriverlo adesso e' meno peggio che
+lasciarlo mancare — la regola di casa e' che una decisione senza verbale non e'
+stata presa.)*
+
+### 1. Le due schede dicevano le stesse cose, e si poteva contare
+
+**La mia plancia** e **Obiettivi** chiamavano tutt'e due `_update_destiny` e il
+profilo della casa: due terzi del contenuto erano lo stesso testo, disegnato
+due volte. Adesso il mestiere e' diviso e non si sovrappone:
+
+- **Obiettivi** dice **a che gioco stai giocando**: la Casata, il Destino coi
+  suoi tre gradini, le tre carte Obiettivo.
+- **La mia plancia** dice **quello che tieni tu**: i Diritti, i segni che porti
+  addosso, i segni che la tua casa vuole vedere a fine anno.
+
+La divisione ha una prova che la tiene: `test_the_two_sheets_say_different_things.gd`
+va rossa se un blocco ricompare su tutt'e due.
+
+### 2. La fascia si apre e si chiude, e aperta e' alta almeno una carta
+
+`_toggle_tabs(open)` in `game_screen.gd`: chiusa, la fascia lascia tutto lo
+spazio alla mappa e la maniglia resta li' a dire come riaprirla; aperta, il
+minimo e' `AssetCard.wanted_height() + 44` — **l'altezza di una carta** (D-246)
+piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
+
+---
+
+## D-480 — La scheda della carta non ristampa i posti gia' accesi
+
+**implemented in 0.1.450.** Parola del committente, guardando il tabellone:
+*«perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo un
+cerchietto per scegliere cosa fare, e' una ripetizione inutile.»*
+
+### Il difetto, e perche' era gia' stato deciso una volta
+
+[D-238](DECISIONS.md#d-238) dice: *una scelta che ha un posto dove cadere non e'
+anche un bottone*. Era stata applicata alla **colonna** delle scelte, e nella
+**scheda della carta in mano** (D-279) non era mai arrivata: `_card_sheet`
+ristampava un bottone per ogni scelta legale, comprese quelle che in quel
+momento erano gia' cerchiate d'oro sulla mappa o accese sulla riga di una
+domanda. Lo schermo diceva due volte la stessa cosa — una col cerchietto e una
+col bottone — e il committente ha visto esattamente questo.
+
+### La regola, e il suo limite
+
+Un posto acceso che porta **una sola** scelta non ha bisogno del bottone:
+cliccarlo **e'** gia' la risposta, perche' `card_placed` porta quell'unico
+indice e `picked` lo emette. La scheda mette al suo posto una riga che nomina
+il posto — *«— toccala dove si accende: Valle Verde»* — col nome scritto sul
+tavolo, mai l'id.
+
+**Ma un posto che ne porta due non e' una risposta.** Sulla stessa domanda una
+carta puo' sapere fare due cose opposte — alzarla o abbassarla — e toccarla non
+direbbe quale: quelle due restano bottoni. E' il patto di D-238 tenuto per
+intero: **nessuna scelta legale resta irraggiungibile**, e quattro prove nuove
+in `test_drag_and_drop.gd` lo tengono, compresa quella che obbliga
+`_place_of` e `_take_hold` a leggere i posti nello stesso ordine — se
+divergessero, la scheda toglierebbe un bottone che nessun posto acceso
+sostituisce.
+
+### E la stessa cosa nel Consiglio, che e' dove il committente guardava
+
+Il tabellone disegnava le due liste della carta girata con **il cerchietto di
+ogni casella** (D-466), e sotto ristampava le stesse caselle come carte-scelta:
+*«Con A — <la domanda> · Beneficio: <il testo>»*. Due volte la stessa cosa, e la
+seconda con parole del motore.
+
+Adesso **la casella sulla carta e' la scelta**:
+
+- `SeatDecider` dice, per ogni scelta, **quale casella e'** — `{"box": id,
+  "side": "A"}` — nel campo `subjects` che il ponte `_choose → ask` portava gia'
+  per le Regioni (D-230). Il decisore non impara niente di nuovo: dice quello
+  che gia' sapeva;
+- il tabellone accende quelle caselle sulla carta girata — **alte un dito**
+  (D-243) — e non le ristampa sotto;
+- quello che non e' una casella resta una carta-scelta: **«Passa»**, e ogni
+  scelta che il cartone non porta.
+
+E la casella che serve **tutt'e due le domande** non e' un'eccezione da
+lasciare fuori: toccarla non dice da che parte stai, ma **ha tolto di mezzo
+tutto il resto** — restano le sue due scelte, «con A» e «con B», e niente
+altro. E' il gesto che D-231 ha gia' scritto per le carte: posi la pedina, e
+*poi* dici per quale domanda.
+
+Cinque prove in `test_the_council_shows_its_card.gd` tengono i casi: la casella
+accesa e non ristampata, «Passa» che resta scritto, la casella condivisa che
+porta le sue due scelte, il restringimento quando la si tocca, e il colore che
+dice che si puo' prendere. Le tre prove di `test_a_council_can_be_played.gd`
+adesso guardano **dove si tocca davvero** — le caselle accese piu' le
+carte-scelta — perche' una prova che guardasse solo le seconde troverebbe zero
+dove lo schermo offre tutto: e' la stessa trappola di casa, dall'altra parte.
+
+---
+
+## D-479 — L'audit dei segni lo conta il registro, non io
+
+**implemented in 0.1.449.** Domanda del committente: *«fammi un audit di tutti
+i TAG che non servono a un cazzo […] perche' se un tag viene letto una volta da
+qualcuno, questo tag non serve a nulla»*.
+
+### La forma della risposta, prima del contenuto
+
+Un audit scritto a mano nei verbali e' un numero che invecchia dal giorno dopo,
+e questo progetto ha gia' pagato tre volte quel difetto (D-338, D-398,
+ISSUES 105: elenchi paralleli che nessuno tiene allineati). Quindi il criterio
+del committente e' entrato **nel generatore**: `tools/build_sign_registry.py`
+ha una sezione nuova, «I segni che li guarda una mano sola», e il cancello
+`--check` va rosso se il documento non e' piu' quello che i dati producono.
+
+Sono due conti soli, e li fa il registro:
+
+- un segno **scritto sul mondo** i cui lettori sono **esattamente uno**;
+- di quelli, quanti hanno **una fustella** nel catalogo delle pedine — perche'
+  al tavolo il costo di un segno che nessuno interroga e' un gettone stampato.
+
+I lettori sono quelli che il registro conosceva gia' — Destini, obiettivi,
+regole del segno, la pesca delle domande, le facce fisiche, il codice che legge
+per prefisso — quindi la sezione non introduce un secondo modello di lettura:
+guarda gli stessi dati dell'unica colonna che il registro aveva sempre avuto.
+
+### Cosa dice, a oggi
+
+**44 segni su 103 — il 43% — li guarda una mano sola (34) o nessuna (10), e 42
+di loro hanno un gettone stampato.** Il gruppo piu' grosso sono le **nove
+Scoperte**, che nessuna clausola nomina una per una: valgono **1.258 scritture
+su 4.822** in cento anni (`docs/MISURA_SEGNI.md`), il 26% di tutto quello che
+il mondo scrive, per un contenuto in cui una Scoperta vale l'altra.
+
+Il resto e' in [ISSUES 134](ISSUES.md#134), e le quattro decisioni che ne
+escono sono del committente: e' contenuto, non motore.
+
+### Cosa questo verbale **non** decide
+
+Niente e' stato tolto e niente e' stato fatto mordere. Il cancello dei 100 semi
+non e' stato rimisurato perche' **il gioco non e' cambiato**: la modifica e' un
+documento generato in piu' e la sezione che lo genera.
+
+---
+
+## D-477 — Le ventuno regole morte puntate sul mucchio: un mondo segnato cambia quanto e' difficile decidere
+
+**implemented in 0.1.447.** Parola del committente: *«mergia e vai»*, sulla
+proposta che [ISSUES 132](ISSUES.md#132) aveva messo in cima — accendere il
+telaio che c'e' invece di inventarne uno nuovo.
+
+### 1. Cosa erano
+
+Ventun `tag_rules` col gancio `COUNCIL_MODIFIER`, scritte d'autore, che dicono
+la cosa che al gioco mancava: *un mondo segnato pesa sul Consiglio.* «La fame
+siede al tavolo» −1, «La citta' parla piu' forte al Consiglio» +1, «Il seggio
+vuoto pesa sulla Carta» −1, «La fama precede» +1.
+
+Spingevano il **World Factor**, cioe' il dado. Il dado e' uscito con
+[D-467](#d-467), e da allora **nessun motore le chiamava**: ventun righe vive
+nei dati e morte nel gioco, per settanta versioni, senza che niente lo dicesse
+— la forma di difetto che questo progetto ha gia' visto sei volte (D-035).
+
+### 2. La regola
+
+> **Un segno del mondo muove il mucchio del Consiglio.** Il mucchio e' la
+> soglia che le due parti devono battere per far passare la loro domanda
+> (D-467): un segno che **aiuta** a decidere la abbassa, uno che **pesa** la
+> alza. Non scende mai sotto zero — una soglia negativa vorrebbe dire una parte
+> che passa senza aver messo niente sul tavolo.
+
+Il campo cambia nome con lei: `world_factor_delta` diventa **`pile_delta`**, e
+**il verso si rovescia**, che e' la traduzione fedele. Il World Factor `+1`
+aiutava chi propone; sul mucchio «piu' facile decidere» si scrive con una
+soglia **piu' bassa**. Le ventun regole sono state riscritte una per una col
+segno invertito, e la funzione si chiama `council_pile_shift`: il nome dice
+cosa fa, e non nomina piu' un dado che non c'e'.
+
+**E si vede al tavolo.** Il tabellone scrive *«Il mucchio sulla domanda vale 4
+— alzato di uno perche' La fame siede al tavolo»*, e il verbale lo stesso. Una
+regola che non si vede non e' una regola del tavolo: e' un numero che cambia e
+nessuno sa perche'.
+
+### 3. Il numero, e non e' quello che speravo
+
+`run_pile_probe` (nuova), 100 anni, seme 7000:
+
+| | |
+|---|---|
+| Consigli tenuti | **513** |
+| col mucchio mosso dal mondo | **46 — il 9%** |
+| soglia alzata · abbassata | 5 · 41 |
+| spostamento, quando c'e' | sempre **1** |
+| delle ventuno, quante mordono | **5** |
+
+E delle 46 volte, **41 sono una regola sola** — «La fama precede», che guarda
+il segno `renowned` del proponente. Le altre quattro mordono una o due volte in
+cento anni. **Sedici regole su ventuno restano scritte e mute.**
+
+**La causa e' misurata, e non e' il gancio: sono i segni che le regole
+nominano.** I dieci segni piu' scritti del mondo — `condition:contested` (370),
+`condition:unrest` (333), `discovery:the_omen` (333), `condition:indebted`
+(304), `debt_called` (236), `condition:rationed` (203)… — **non sono nominati
+da nessuna delle ventuno**. Le regole guardano segni rari: una vita precisa
+(`life:INC_*`), una Cicatrice, una memoria che esce due volte in un secolo.
+
+Quindi: **il gancio e' vivo e la strada e' aperta, ma il mondo che il gioco
+scrive davvero non incontra quasi mai le regole che lo dovrebbero leggere.**
+
+### 4. I numeri del cancello
+
+- **100 semi, seme 7000: 0 seggi bloccati su un solo livello su 8**, tavolo
+  misto e uniforme.
+- Gli esiti si muovono appena, ed e' coerente col 9%: FAIL · SUCC di misura ·
+  SUCC · DECI · COUNTER passano da **61 · 35 · 97 · 114 · 179** a **59 · 34 ·
+  100 · 115 · 178** sul misto, e da **44 · 32 · 108 · 105 · 187** a **44 · 33 ·
+  106 · 105 · 188** sull'uniforme.
+- Suite **775 prove in 121 suite**, zero `SCRIPT ERROR`; 28 cancelli veloci
+  verdi.
+
+### Costi dichiarati
+
+- **Nove per cento non e' una combo, e' un principio acceso.** Avevo proposto
+  questo giro come *«la combo che cerchi»*: la misura dice che il meccanismo
+  adesso esiste e funziona, ma tocca un Consiglio su undici e per nove decimi
+  attraverso una regola sola. E' meno di quanto avevo promesso, ed e' scritto
+  qui perche' un numero peggiorato e detto vale piu' di uno nascosto.
+- **Il passo che manca e' contenuto, non motore**, ed e' misurato: scrivere
+  regole `COUNCIL_MODIFIER` sui segni che il mondo scrive davvero. Quattro
+  righe su `condition:contested`, `condition:unrest`, `condition:indebted` e
+  `condition:rationed` toccherebbero centinaia di occorrenze invece di due. Ma
+  **quale verso dare a ognuna e' una decisione d'autore**, non una taratura, e
+  sta in [ISSUES 132](ISSUES.md#132) per il committente.
+- **La sonda nuova era cieca alla prima stesura**: ascoltava un passo `SIDES`
+  che il controller non emette — ne emette due, `QUESTION` e `RESOLVED` — e
+  contava **zero Consigli su cinquecento**. Ottava volta in questo progetto che
+  uno zero era chi guardava.
+
+---
+
 ## D-476 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
 
 **implemented in 0.1.446.** Parola del committente:

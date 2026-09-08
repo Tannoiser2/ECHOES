@@ -524,13 +524,17 @@ func choose_side(
 	_speaking_to = entity_id
 	var labels: Array = []
 	var choices: Array = []
+	# **Ogni scelta dice quale casella e'** (D-480): il tabellone accende quella
+	# casella sulla carta girata, e non la ristampa come carta-scelta sotto.
+	var subjects: Array = []
 	for side in ["A", "B"]:
 		var question: String = session.confluence.say(_side_question_text(side, session))
 		for voice in (offer.get(side, []) as Array):
 			labels.append("Con %s — %s\n%s" % [side, question, _box_label(voice as Dictionary)])
 			choices.append({"side": side, "voice_id": str((voice as Dictionary)["id"])})
+			subjects.append({"box": str((voice as Dictionary)["id"]), "side": side})
 	var choice: int = await _choose(
-		"  %s, da che parte stai, e cosa posi?" % _name(entity_id, session), labels
+		"  %s, da che parte stai, e cosa posi?" % _name(entity_id, session), labels, subjects
 	)
 	if choice < 0:
 		return fallback.choose_side(entity_id, context, offer, session)
@@ -545,9 +549,13 @@ func choose_box(
 		return fallback.choose_box(entity_id, context, menu, side, session)
 	_speaking_to = entity_id
 	var labels: Array = []
+	var subjects: Array = []
 	for voice in menu:
 		labels.append(_box_label(voice as Dictionary))
-	var choice: int = await _choose("  %s, cosa posi per prima?" % _name(entity_id, session), labels)
+		subjects.append({"box": str((voice as Dictionary)["id"]), "side": side})
+	var choice: int = await _choose(
+		"  %s, cosa posi per prima?" % _name(entity_id, session), labels, subjects
+	)
 	if choice < 0:
 		return fallback.choose_box(entity_id, context, menu, side, session)
 	return str((menu[choice] as Dictionary)["id"])
@@ -561,10 +569,15 @@ func choose_raise(
 		return fallback.choose_raise(entity_id, context, menu, session)
 	_speaking_to = entity_id
 	var labels: Array = []
+	var subjects: Array = []
 	for voice in menu:
 		labels.append(_box_label(voice as Dictionary))
+		subjects.append({"box": str((voice as Dictionary)["id"])})
 	labels.append("Passa")
-	var choice: int = await _choose("  %s, rilanci?" % _name(entity_id, session), labels)
+	# Passare non e' una casella: resta una carta-scelta, se no non si potrebbe
+	# piu' passare.
+	subjects.append({})
+	var choice: int = await _choose("  %s, rilanci?" % _name(entity_id, session), labels, subjects)
 	if choice < 0:
 		return fallback.choose_raise(entity_id, context, menu, session)
 	if choice >= menu.size():

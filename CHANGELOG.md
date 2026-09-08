@@ -5,6 +5,146 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.450 — Il cerchietto e' la scelta: la scheda non ripete i posti accesi
+
+[D-480](docs/DECISIONS.md#d-480).
+
+*«Perche' mi ripeti le opzioni della carta sotto? Basterebbe che io scelgo un
+cerchietto per scegliere cosa fare, e' una ripetizione inutile.»* Aveva ragione,
+ed era una regola gia' presa: [D-238](docs/DECISIONS.md#d-238) aveva tolto dalla
+colonna le scelte che hanno un posto dove cadere, e nella **scheda della carta
+in mano** non era mai arrivata.
+
+**Adesso una scelta con un posto acceso tutto suo non e' anche un bottone**: al
+suo posto la scheda scrive dove si posa, col nome del tavolo — *«— toccala dove
+si accende: Valle Verde»* — e la si prende toccando il cerchietto.
+
+**E nel Consiglio, che e' dove guardava.** Il tabellone disegnava le due liste
+della carta girata col cerchietto di ogni casella, e sotto le ristampava tutte
+come carte-scelta. Adesso **la casella offerta si accende sulla carta** — alta
+un dito — e si tocca; sotto resta solo quello che il cartone non porta, a
+cominciare da **«Passa»**.
+
+**E una casella che serve tutt'e due le domande?** Toccarla non dice da che
+parte stai, ma toglie di mezzo tutto il resto: restano le sue due scelte, «con
+A» e «con B». E' il gesto del tavolo — posi la pedina, e *poi* dici per quale
+domanda.
+
+**Quello che resta una scelta scritta, e perche':** sulla mappa, un posto che
+porta due scelte — la stessa domanda alzata o abbassata — non e' una risposta,
+e toccarlo non saprebbe quale delle due; e sotto il Consiglio restano «Passa» e
+tutto quello che il cartone non porta. Nove prove nuove tengono il patto:
+**nessuna scelta legale resta irraggiungibile.**
+
+---
+
+## 0.1.449 — L'audit dei segni: 44 su 103 li guarda una mano sola
+
+[D-479](docs/DECISIONS.md#d-479), [ISSUES 134](docs/ISSUES.md#134). E
+[D-478](docs/DECISIONS.md#d-478), il verbale di 0.1.448 arrivato con una
+versione di ritardo.
+
+**Il criterio del committente e' diventato un cancello.** *«Se un tag viene
+letto una volta da qualcuno, questo tag non serve a nulla»*: il registro dei
+segni ha una sezione nuova — **«I segni che li guarda una mano sola»** — e
+`build_sign_registry.py --check` va rosso se invecchia. L'audit non e' scritto
+a mano da nessuna parte: si rifa' dai dati.
+
+**Quello che dice, a oggi:** dei **103 segni** che qualcosa scrive sul mondo,
+**44 — il 43% — li guarda una mano sola (34) o nessuna (10)**, e **42 di quei
+44 hanno un gettone stampato**: un terzo della fustellatura della scatola. In
+cento anni di mondo quei 44 si prendono **1.454 scritture su 4.822, il 30%** di
+tutto quello che il mondo scrive.
+
+**E il gruppo piu' grosso e' uno solo: le nove Scoperte.** Nessuna clausola ne
+nomina una — Destini e obiettivi chiedono *«tre scoperte»*, mai *«l'Auspicio»*.
+Sono **1.258 scritture su 4.822, il 26% di tutto**, per un contenuto in cui una
+Scoperta vale l'altra. Gli altri quattro gruppi: dodici gettoni che pesano solo
+la pesca dell'anno dopo, cinque Cicatrici lette solo dal loro conteggio (fra
+cui `scar:unanswered`, la «domanda sul muro»), quattro letti da un Destino
+solo, quattro sparsi.
+
+**Niente e' stato tolto e niente e' stato fatto mordere**: le quattro decisioni
+che ne escono sono del committente e stanno in ISSUES 134 e nella **R17** del
+foglio delle decisioni. Il cancello dei 100 semi non e' stato rimisurato
+perche' **il gioco non e' cambiato**: la modifica e' un documento generato in
+piu'.
+
+---
+
+## 0.1.448 — Le due schede si dividono, la fascia si chiude, e le caselle si misurano
+
+[D-478](docs/DECISIONS.md#d-478), [ISSUES 133](docs/ISSUES.md#133).
+
+**Le due schede non dicono piu' le stesse cose.** *«La mia casa e obiettivi
+mostrano le stesse cose»*: era vero e misurabile — chiamavano tutt'e due il
+Destino e il profilo, quindi due terzi erano identici. Adesso **Obiettivi**
+dice a che gioco stai giocando (Casata, Destino, le tre carte Obiettivo) e
+**la plancia** quello che tieni tu (i Diritti, i segni che porti addosso, i
+segni che la tua casa vuole vedere a fine anno).
+
+**E la fascia delle schede si apre e si chiude.** *«La finestra e'
+piccolissima in altezza e non si legge nulla, falla collassabile, ma quando e'
+aperta deve avere almeno l'altezza di una carta»*: chiusa lascia tutto lo
+spazio alla mappa, aperta non scende mai sotto l'altezza di una carta (D-246).
+La maniglia resta anche da chiusa e dice come riaprirla.
+
+**E due misure nuove, chieste guardando il tabellone** ([ISSUES 133](docs/ISSUES.md#133)):
+
+- **scaldare il Tema in dibattito e' un costo che non costa.** Il Consiglio si
+  tiene a fine Atto e subito dopo il motore azzera tutti i mucchi: la pedina
+  viene cancellata nello stesso Atto. Fa qualcosa solo quando c'e' un secondo
+  Consiglio comprato col RIVENDICARE, 1,86 volte l'anno. Offerta **2.331**
+  volte, comprata **287**;
+- **44 caselle su 242 posano un segno che nessuna clausola legge** — il 18%.
+  Il peggiore e' `scar:unanswered`, «la domanda sul muro», su **16 caselle**:
+  una penalita' che non penalizza. E delle 32 caselle del vocabolario il tavolo
+  ne compra **13**.
+
+Suite 778 prove in 122 suite, zero `SCRIPT ERROR`; 28 cancelli veloci verdi e i
+documenti rigenerati con `--rigenera --tutti`.
+
+---
+
+## 0.1.447 — Le ventuno regole morte puntate sul mucchio
+
+[D-477](docs/DECISIONS.md#d-477), [ISSUES 132](docs/ISSUES.md#132). Parola del
+committente: *«mergia e vai»*, sulla proposta di accendere il telaio che c'e'
+invece di inventarne uno nuovo.
+
+Ventun `tag_rules` col gancio `COUNCIL_MODIFIER` dicevano la cosa che al gioco
+mancava — *un mondo segnato pesa sul Consiglio* — e spingevano il **World
+Factor**, cioe' il dado, uscito con D-467. Da settanta versioni nessun motore
+le chiamava: ventun righe vive nei dati e morte nel gioco.
+
+Adesso muovono **il mucchio**, che e' la soglia che le due parti devono battere
+(D-467): un segno che aiuta a decidere la abbassa, uno che pesa la alza, e non
+scende mai sotto zero. Il campo diventa `pile_delta` e **il verso si rovescia**,
+che e' la traduzione fedele — il World Factor +1 aiutava chi propone, e sul
+mucchio «piu' facile» si scrive con una soglia piu' bassa. Il tabellone lo dice:
+*«Il mucchio vale 4 — alzato di uno perche' La fame siede al tavolo»*.
+
+**Il numero, e non e' quello sperato.** `run_pile_probe` (nuova), 100 anni: su
+**513 Consigli il mondo ne muove 46, il 9%** — e **41 di quei 46 sono una
+regola sola**, «La fama precede». **Sedici delle ventuno restano mute.**
+
+La causa e' misurata, e non e' il gancio: **sono i segni che le regole
+nominano**. I dieci segni piu' scritti del mondo — `condition:contested` (370),
+`condition:unrest` (333), `condition:indebted` (304)… — non sono nominati da
+**nessuna** delle ventuno, che guardano vite precise, Cicatrici e memorie rare.
+Il passo che manca e' contenuto, non motore, ed e' una decisione d'autore.
+
+Cancello dei 100 semi: 0 seggi bloccati su un solo livello su 8 sui due tavoli,
+esiti mossi appena. Suite 775 prove in 121 suite, zero `SCRIPT ERROR`.
+
+Costo dichiarato: avevo proposto questo giro come *«la combo che cerchi»*, e il
+9% e' meno di quanto promesso. Il meccanismo esiste e funziona; il mondo che il
+gioco scrive non incontra quasi mai le regole che lo dovrebbero leggere. E la
+sonda nuova era cieca alla prima stesura — ascoltava un passo che il controller
+non emette e contava zero Consigli su cinquecento: ottava volta.
+
+---
+
 ## 0.1.446 — Il gettone del RIVENDICARE compra il beneficio oltre il tetto
 
 [D-476](docs/DECISIONS.md#d-476), [ISSUES 129](docs/ISSUES.md#129). Parola del
