@@ -373,8 +373,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Sigillare in basso.** Abbassa quella questione di 1.
-B. **Sigillare in alto.** Alza quella questione di 1.
+A. **Sigillare in basso.** Abbassa quella questione di 1 e togli #domanda_aperta dal mondo.
+B. **Sigillare in alto.** Alza quella questione di 1 e metti #domanda_aperta sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere +1. Un sigillo non convince nessuno: dice solo chi ha il diritto di chiudere il discorso. Se la Carta non e' stata scritta: Potere +2.
 
@@ -469,8 +469,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Mostrare l'ostaggio.** Abbassa quella questione di 2.
-B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te.
+A. **Mostrare l'ostaggio.** Abbassa quella questione di 2 e metti #tradimento_detto sul mondo.
+B. **Restituire l'ostaggio.** Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te, e metti #conto_saldato sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +2. Un ostaggio tiene fermo il tavolo e intanto insegna a tutti come si tiene fermo un tavolo. Se il tradimento e' stato detto ad alta voce: Fede +3.
 
@@ -611,8 +611,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Chiedere il favore.** Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo.
-B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te.
+A. **Chiedere il favore.** Abbassa quella questione di 1, scendi di 1 gradino con la casa che la stava spingendo e metti #debito_chiamato sul mondo.
+B. **Fare il favore.** Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te, e metti #debito_rimesso sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Fede +1. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.
 
@@ -1088,8 +1088,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Prestarli.** Sali di 1 gradino nel rapporto con lei.
-B. **Toglierli di mezzo.** Scendi di 1 gradino con lei e pesca 1 Ricchezza.
+A. **Prestarli.** Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su di lei.
+B. **Toglierli di mezzo.** Scendi di 1 gradino con lei, pesca 1 Ricchezza e togli #scorta_giurata da lei.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +1. Chi si compra si ricompra, e il prezzo lo sa gia' qualcun altro. Se il debito e' stato chiamato: Vie +2.
 
@@ -1613,8 +1613,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Fermare tutto.** Alza quella questione di 2.
-B. **Fermare solo una cosa.** Abbassa quella questione di 1 e pesca 1 Popolo.
+A. **Fermare tutto.** Alza quella questione di 2 e metti #domanda_aperta sul mondo.
+B. **Fermare solo una cosa.** Abbassa quella questione di 1, pesca 1 Popolo e metti #peso_diviso sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Vie +2. Quando le braccia si fermano, le prime cose che non arrivano sono quelle che venivano da lontano. Se il pedaggio si divide: Vie +3.
 
@@ -1661,8 +1661,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Chiamare tutti.** Alza quella questione di 2.
-B. **Chiamare solo i tuoi.** Alza quella questione di 1 e pesca 1 Popolo.
+A. **Chiamare tutti.** Alza quella questione di 2 e metti #peso_diviso sul mondo.
+B. **Chiamare solo i tuoi.** Alza quella questione di 1, pesca 1 Popolo e metti #la_voce_corre sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +2. Chi si mobilita non lavora, e chi non lavora mangia lo stesso. Se una domanda e' rimasta aperta: Sopravvivenza +3.
 
@@ -1755,8 +1755,8 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Portare la folla sotto le finestre.** Alza quella questione di 1.
-B. **Mandare la folla a casa.** Abbassa quella questione di 1.
+A. **Portare la folla sotto le finestre.** Alza quella questione di 1 e metti #richiesta_ascoltata sul mondo.
+B. **Mandare la folla a casa.** Abbassa quella questione di 1 e metti #ordine_ristabilito sul mondo.
 
 **RISONANZA (avviene sempre)** — Scalda Sopravvivenza +1. Una folla che si raduna mangia dove si raduna, e i conti li fa il posto. Se il grano e' stato requisito: Sopravvivenza +2.
 

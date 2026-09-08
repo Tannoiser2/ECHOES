@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3241 testi in lettura.
+possono spostare nella frase, non togliere. 3246 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7856,13 +7856,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_AUTHORITY_SEAL, azione 1`**
 > Sigillare in basso
 
-> Abbassa quella questione di 1.
+> Abbassa quella questione di 1 e togli #domanda_aperta dal mondo.
 
 
 **`AST_AUTHORITY_SEAL, azione 2`**
 > Sigillare in alto
 
-> Alza quella questione di 1.
+> Alza quella questione di 1 e metti #domanda_aperta sul mondo.
 
 
 **`AST_AUTHORITY_SEAL, risonanza`**
@@ -7996,13 +7996,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_BONDS_FAVOR, azione 1`**
 > Chiedere il favore
 
-> Abbassa quella questione di 1 e scendi di 1 gradino con la casa che la stava spingendo.
+> Abbassa quella questione di 1, scendi di 1 gradino con la casa che la stava spingendo e metti #debito_chiamato sul mondo.
 
 
 **`AST_BONDS_FAVOR, azione 2`**
 > Fare il favore
 
-> Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te.
+> Alza quella questione di 1 per conto di un'altra casa: lei sale di 2 gradini nel rapporto con te, e metti #debito_rimesso sul mondo.
 
 
 **`AST_BONDS_FAVOR, risonanza`**
@@ -8052,13 +8052,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_BONDS_HOSTAGE, azione 1`**
 > Mostrare l'ostaggio
 
-> Abbassa quella questione di 2.
+> Abbassa quella questione di 2 e metti #tradimento_detto sul mondo.
 
 
 **`AST_BONDS_HOSTAGE, azione 2`**
 > Restituire l'ostaggio
 
-> Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te.
+> Alza quella questione di 1: la casa che lo rivoleva sale di 2 gradini nel rapporto con te, e metti #conto_saldato sul mondo.
 
 
 **`AST_BONDS_HOSTAGE, risonanza`**
@@ -8220,13 +8220,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_FORCE_MERCENARIES, azione 1`**
 > Prestarli
 
-> Sali di 1 gradino nel rapporto con lei.
+> Sali di 1 gradino nel rapporto con lei e metti #scorta_giurata su di lei.
 
 
 **`AST_FORCE_MERCENARIES, azione 2`**
 > Toglierli di mezzo
 
-> Scendi di 1 gradino con lei e pesca 1 Ricchezza.
+> Scendi di 1 gradino con lei, pesca 1 Ricchezza e togli #scorta_giurata da lei.
 
 
 **`AST_FORCE_MERCENARIES, risonanza`**
@@ -8584,13 +8584,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_PEOPLE_CROWD, azione 1`**
 > Portare la folla sotto le finestre
 
-> Alza quella questione di 1.
+> Alza quella questione di 1 e metti #richiesta_ascoltata sul mondo.
 
 
 **`AST_PEOPLE_CROWD, azione 2`**
 > Mandare la folla a casa
 
-> Abbassa quella questione di 1.
+> Abbassa quella questione di 1 e metti #ordine_ristabilito sul mondo.
 
 
 **`AST_PEOPLE_CROWD, risonanza`**
@@ -8724,13 +8724,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_PEOPLE_MOBILIZATION, azione 1`**
 > Chiamare tutti
 
-> Alza quella questione di 2.
+> Alza quella questione di 2 e metti #peso_diviso sul mondo.
 
 
 **`AST_PEOPLE_MOBILIZATION, azione 2`**
 > Chiamare solo i tuoi
 
-> Alza quella questione di 1 e pesca 1 Popolo.
+> Alza quella questione di 1, pesca 1 Popolo e metti #la_voce_corre sul mondo.
 
 
 **`AST_PEOPLE_MOBILIZATION, risonanza`**
@@ -8780,13 +8780,13 @@ possono spostare nella frase, non togliere. 3241 testi in lettura.
 **`AST_PEOPLE_STILL_HANDS, azione 1`**
 > Fermare tutto
 
-> Alza quella questione di 2.
+> Alza quella questione di 2 e metti #domanda_aperta sul mondo.
 
 
 **`AST_PEOPLE_STILL_HANDS, azione 2`**
 > Fermare solo una cosa
 
-> Abbassa quella questione di 1 e pesca 1 Popolo.
+> Abbassa quella questione di 1, pesca 1 Popolo e metti #peso_diviso sul mondo.
 
 
 **`AST_PEOPLE_STILL_HANDS, risonanza`**
@@ -10354,6 +10354,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 **`account_settled`**
 > il conto e' stato saldato
 
+> conto saldato
+
 
 **`amnesty_granted`**
 > l'amnistia e' stata concessa
@@ -10385,6 +10387,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`burden_shared`**
 > il peso e' stato diviso
+
+> peso diviso
 
 
 **`capital`**
@@ -10872,6 +10876,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 **`order_restored`**
 > l'ordine e' stato ristabilito
 
+> ordine ristabilito
+
 
 **`parley_held`**
 > ci si e' parlato
@@ -10879,6 +10885,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`petition_heard`**
 > la richiesta e' stata ascoltata
+
+> richiesta ascoltata
 
 
 **`place:collapsed_pass`**
@@ -10931,6 +10939,8 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`question_unresolved`**
 > una domanda e' rimasta aperta
+
+> domanda aperta
 
 
 **`quota_guaranteed`**

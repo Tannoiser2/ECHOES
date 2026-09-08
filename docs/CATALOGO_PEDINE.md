@@ -1239,7 +1239,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il conto e' stato saldato
 
-`account_settled` · categoria **MEMORY** · sta su global · lo posa: consequence, tension, echo_card
+`account_settled` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, echo_card, tension
 
 **Cosa vuol dire.** Il debito e' chiuso: nessuno deve piu' niente a nessuno.
 
@@ -1293,7 +1293,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il peso e' stato diviso
 
-`burden_shared` · categoria **MEMORY** · sta su global · lo posa: consequence, echo_card
+`burden_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, echo_card
 
 **Cosa vuol dire.** Il carico non e' di uno solo: se lo portano in piu' d'uno.
 
@@ -1707,7 +1707,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### l'ordine e' stato ristabilito
 
-`order_restored` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
+`order_restored` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** La rivolta e' finita: chi comandava comanda di nuovo.
 
@@ -1743,7 +1743,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la richiesta e' stata ascoltata
 
-`petition_heard` · categoria **MEMORY** · sta su global · lo posa: echo_card
+`petition_heard` · categoria **MEMORY** · sta su global · lo posa: asset_physical, echo_card
 
 **Cosa vuol dire.** Chi ha chiesto e' stato ascoltato, che poi gli sia stato dato o no.
 
@@ -1779,7 +1779,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### una domanda e' rimasta aperta
 
-`question_unresolved` · categoria **MEMORY** · sta su global · lo posa: consequence
+`question_unresolved` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence
 
 **Cosa vuol dire.** Il Consiglio non ha deciso, e la cosa resta li'.
 
@@ -1869,7 +1869,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la voce corre
 
-`rumour_running` · categoria **MEMORY** · sta su global · lo posa: consequence
+`rumour_running` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence
 
 **Cosa vuol dire.** Se ne parla dappertutto, e nessuno sa piu' chi l'ha detto per primo.
 

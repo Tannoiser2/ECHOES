@@ -91,7 +91,7 @@ nella scatola comunque.
 | `evicted:$region_focus` | sulla scheda della casa | carta Asset | codice (chronicle_controller.gd) | — |
 | `failed_proposal` | sulla scheda della casa | Conseguenza | Destino | `TOK_FAILED_PROPOSAL` |
 | `parley_held` | un gettone sul bordo della mappa | carta Echo | Risonanza | `TOK_PARLEY_HELD` |
-| `petition_heard` | un gettone sul bordo della mappa | carta Echo | Risonanza | `TOK_PETITION_HEARD` |
+| `petition_heard` | un gettone sul bordo della mappa | Azione stampata, carta Echo | Risonanza | `TOK_PETITION_HEARD` |
 | `quota_guaranteed` | un gettone sul bordo della mappa | Conseguenza | pesca delle domande | `TOK_QUOTA_GUARANTEED` |
 | `relic_recorded` | un gettone sul bordo della mappa | Conseguenza | pesca delle domande | `TOK_RELIC_RECORDED` |
 | `scar:divided_seal` | un dischetto rotondo | Conseguenza (cicatrice) | conteggio delle cicatrici (`scar_count`) | `TOK_SCAR_DIVIDED_SEAL` |
@@ -115,7 +115,7 @@ Conseguenza che promette un cambiamento che il gioco non registra.
 
 | segno | sul tavolo sta | chi lo scrive | perche' e' ancora qui |
 |---|---|---|---|
-| `account_settled` | un gettone sul bordo della mappa | Conseguenza, carta Echo, casella IL MONDO RICORDA | memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399) — 4 volte in 100 anni |
+| `account_settled` | un gettone sul bordo della mappa | Azione stampata, Conseguenza, carta Echo, casella IL MONDO RICORDA | memoria del mondo: «il conto e' stato saldato» chiude un debito e nessuna clausola lo interroga — la faccia di un Destino e un profilo lo guardano, il motore no (D-399) — 4 volte in 100 anni |
 | `crowned` | sulla scheda della casa | Conseguenza | la corona: sta addosso a chi la porta dal setup, e una Conseguenza puo' togliergliela. Fino alla 0.1.443 la interrogava la clausola di una proposta — «solo chi porta la corona puo' requisire» — e le proposte sono uscite dai dati (D-474): il Consiglio a due domande non ha un posto dove una condizione valga per **una sola risposta**, perche' non ci sono risposte, ci sono due domande. La guardano la faccia di un Destino e tre profili di casa; il motore no. Rimetterla a mordere e' una decisione, ed e' in ISSUES 129. — in ogni partita, dal setup |
 | `dragon_slain` | un gettone sul bordo della mappa | Conseguenza | memoria del mondo: narrata (D-103), ereditata — non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56) |
 | `hard_bargain` | sulla scheda della casa | Conseguenza | marchio di memoria (D-278): ha ottenuto cedendo poco, e il tavolo se lo ricorda — il motore non lo interroga |
@@ -142,7 +142,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `anointed` | Conseguenza | — | Destino |
 | `ash_watch` | Conseguenza | — | Destino |
 | `betrayal_spoken` | Azione stampata, carta Echo | — | Risonanza, carta Echo |
-| `burden_shared` | Conseguenza, carta Echo | — | carta Echo, chi siede l'anno prossimo |
+| `burden_shared` | Azione stampata, Conseguenza, carta Echo | — | carta Echo, chi siede l'anno prossimo |
 | `charter_for_all` | casella IL MONDO RICORDA | — | pesca delle domande |
 | `charter_temporary` | carta Echo | — | chi siede l'anno prossimo, pesca delle domande |
 | `charter_written` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, chi siede l'anno prossimo, pesca delle domande |
@@ -178,7 +178,7 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `discovery:trade_ledger` | Azione stampata | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `discovery:written_law` | Azione stampata, Conseguenza | — | codice (condition_evaluator.gd, policy_decider.gd) |
 | `distribution_audited` | Conseguenza | — | pesca delle domande |
-| `escort_sworn` | Azione stampata, Conseguenza | — | Destino, Risonanza, chi siede l'anno prossimo |
+| `escort_sworn` | Azione stampata, Conseguenza | Azione stampata | Destino, Risonanza, chi siede l'anno prossimo |
 | `evicted:$region_focus` | — | carta Asset | codice (chronicle_controller.gd) |
 | `failed_proposal` | Conseguenza | — | Destino |
 | `faith_established` | Conseguenza, casella IL MONDO RICORDA | — | Risonanza, pesca delle domande |
@@ -191,16 +191,16 @@ Nessuno: tutto quello che una condizione chiede, qualcosa lo puo' scrivere.
 | `nahr_settled` | Conseguenza, casella IL MONDO RICORDA | — | Destino, Risonanza, chi siede l'anno prossimo, fatto che dura |
 | `no_charter` | Conseguenza | — | Destino, Risonanza, pesca delle domande |
 | `oath_broken` | Azione stampata, Conseguenza | Conseguenza | Destino, Risonanza, bersaglio a segni, leggenda (un'era dopo), pesca delle domande, regola del segno |
-| `order_restored` | Conseguenza, casella IL MONDO RICORDA | — | Destino, carta Echo, leggenda (un'era dopo) |
+| `order_restored` | Azione stampata, Conseguenza, casella IL MONDO RICORDA | — | Destino, carta Echo, leggenda (un'era dopo) |
 | `parley_held` | carta Echo | — | Risonanza |
-| `petition_heard` | carta Echo | — | Risonanza |
-| `question_unresolved` | Conseguenza | Conseguenza | Destino, Risonanza, carta Echo, obiettivo |
+| `petition_heard` | Azione stampata, carta Echo | — | Risonanza |
+| `question_unresolved` | Azione stampata, Conseguenza | Azione stampata, Conseguenza | Destino, Risonanza, carta Echo, obiettivo |
 | `quota_guaranteed` | Conseguenza | — | pesca delle domande |
 | `relic_buried` | Conseguenza, casella IL MONDO RICORDA | — | Destino, pesca delle domande |
 | `relic_recorded` | Conseguenza | — | pesca delle domande |
 | `relic_shown` | Conseguenza | — | Destino, chi siede l'anno prossimo, pesca delle domande |
 | `renowned` | Azione stampata, Conseguenza, carta Echo | — | Destino, Risonanza, obiettivo, regola del segno |
-| `rumour_running` | Conseguenza | — | Destino, carta Echo |
+| `rumour_running` | Azione stampata, Conseguenza | — | Destino, carta Echo |
 | `scar:abandoned` | Conseguenza (cicatrice) | — | conteggio delle cicatrici (`scar_count`), regola del segno |
 | `scar:broken_bridge` | Conseguenza (cicatrice) | carta Asset | conteggio delle cicatrici (`scar_count`), regola del segno |
 | `scar:broken_word` | Conseguenza (cicatrice) | — | conteggio delle cicatrici (`scar_count`), regola del segno |
