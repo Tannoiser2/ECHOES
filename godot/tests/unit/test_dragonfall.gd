@@ -1,10 +1,16 @@
 extends "res://tests/test_case.gd"
-## La morte di Vaerax (D-127, decisione B della seduta sulle vite): per via
-## di Propp. La caccia si propone solo quando una Rivelazione ha mostrato
-## cosa dorme; la Conseguenza spegne il drago, segna la montagna con la
-## caduta, e il Culto che nasce da quella morte (ON_DEATH, gia' provato in
-## test_incarnations) legge proprio quella cicatrice. E il drago si difende:
-## il punteggio teme la propria fine piu' di qualunque clausola.
+## La morte di Vaerax (D-127, decisione B della seduta sulle vite): la
+## Conseguenza spegne il drago, segna la montagna con la caduta, e il Culto
+## che nasce da quella morte (ON_DEATH, gia' provato in test_incarnations)
+## legge proprio quella cicatrice. E il drago si difende: il punteggio teme
+## la propria fine piu' di qualunque clausola.
+##
+## La porta di Propp - «la caccia si propone solo dopo una Rivelazione» - era
+## l'eleggibilita' della proposta P_SLAY_THE_DRAGON, e le proposte sono
+## uscite dal codice con il Consiglio di D-280 (D-467, D-472). Nel Consiglio
+## a due domande CNS_DRAGON_SLAIN non sta nell'esito di base di nessuna
+## delle due domande del Risveglio, quindi oggi nessun voto ci arriva: la
+## prova della porta non ha piu' niente da custodire e non c'e' piu'.
 
 const Effect := preload("res://scripts/core/effect.gd")
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
@@ -12,53 +18,6 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 
 func before_each() -> void:
 	new_session()
-
-
-func _heat(tension_id: String, target: int) -> void:
-	var current: int = int(session.world["tensions"][tension_id]["current_value"])
-	if current == target:
-		return
-	session.applier.apply(Effect.make(
-		"ADJUST_TENSION", "tension", tension_id,
-		{"delta": target - current}, {"kind": "TEST", "id": "heat"}
-	))
-
-
-func _proposition_ids() -> Array:
-	var out: Array = []
-	for proposition in session.confluence.available_propositions():
-		out.append(str((proposition as Dictionary)["id"]))
-	return out
-
-
-## La carta di Propp e' la porta: senza la funzione della Rivelazione la
-## caccia non si puo' nemmeno proporre.
-func test_the_hunt_needs_the_revelation_first() -> void:
-	_heat("TEN_AWAKENING", 6)
-	var context: Dictionary = session.confluence.open("TEN_AWAKENING", {"kind": "THRESHOLD"})
-	assert_false(context.is_empty(), "il Consiglio si apre")
-	session.confluence.set_question("Q_AWAKENING_MOUNTAIN")
-	assert_false(
-		_proposition_ids().has("P_SLAY_THE_DRAGON"),
-		"senza Rivelazione la caccia non e' sul tavolo"
-	)
-	session.confluence.current = {}
-	# La Rivelazione si fa succedere **calando la carta che la porta** (D-358):
-	# la porta della caccia non e' piu' un segno nascosto sul mondo, e' una carta
-	# scoperta sul tavolo.
-	var rivelazione: String = ""
-	for card in session.data.echo_cards.values():
-		if str(card.get("function_id", "")) == "REVELATION":
-			rivelazione = str(card["id"])
-			break
-	assert_ne(rivelazione, "", "esiste una carta che porta la Rivelazione")
-	(session.world["echo_played"] as Array).append(rivelazione)
-	session.confluence.open("TEN_AWAKENING", {"kind": "THRESHOLD"})
-	session.confluence.set_question("Q_AWAKENING_MOUNTAIN")
-	assert_true(
-		_proposition_ids().has("P_SLAY_THE_DRAGON"),
-		"mostrato cio' che dorme, la caccia si puo' proporre"
-	)
 
 
 ## La Conseguenza: il drago si spegne, la montagna porta la caduta, e la

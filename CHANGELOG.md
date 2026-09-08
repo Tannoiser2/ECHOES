@@ -5,6 +5,18 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.441 — Il giro 5 di D-467: un motore solo, il Consiglio di D-280 esce dal codice
+
+[D-472](docs/DECISIONS.md#d-472). Il Consiglio con la proposta, i benefici
+comprati coi gettoni, il prezzo scelto dagli avversari, l'opposizione
+comprata, la controproposta e il dado non esiste piu' nel codice: resta il
+Consiglio a due domande, e la dichiarazione `two_questions` esce dallo
+schema. Le prove di D-280 sono portate alla regola nuova o tolte con
+verbale; sei sonde CLI che contavano proposte contano domande; la sonda del
+prezzo e' tolta. Cancello dei 100 semi: 0 seggi bloccati sui due tavoli.
+
+---
+
 ## 0.1.440 — Il giro 4 di D-467: il cervello gioca per il mucchio, le pedine pesano, il tabellone a due colori
 
 [D-471](docs/DECISIONS.md#d-471). Ogni seggio di una parte impegna carte per

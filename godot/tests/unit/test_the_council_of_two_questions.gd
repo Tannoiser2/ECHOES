@@ -5,9 +5,10 @@ extends "res://tests/test_case.gd"
 ## posa un beneficio gratis, gli altri prendono posizione e posano sulle
 ## caselle marcate della loro parte, si rilancia, il prezzo si conta per
 ## parte, e si vota senza dado contro il mucchio: A, B, o nessuna. Queste prove
-## giocano il tavolo spedito (CHR_00 lo dichiara) con un decisore **scritto**,
-## cosi' ogni esito e' fabbricato e non cercato; e tengono la Chronicle di
-## prova sul giro vecchio, perche' non lo dichiara.
+## giocano il tavolo spedito (CHR_00) con un decisore **scritto**, cosi' ogni
+## esito e' fabbricato e non cercato. Da D-472 e' **l'unico giro** che il
+## motore sa fare: il Consiglio di D-280 e' uscito dal codice, e anche la
+## Chronicle di prova gioca a due domande senza doverlo dichiarare.
 
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 
@@ -78,13 +79,21 @@ func _heat(live: RefCounted, tension_id: String, value: int) -> void:
 	(live.world["theme_heat"] as Dictionary)[theme_id] = value
 
 
-func test_the_shipped_table_declares_two_questions_and_the_test_one_does_not() -> void:
+## Non c'e' piu' una dichiarazione da fare (D-472): il tavolo spedito e la
+## Chronicle di prova aprono tutti e due con due parti, e la B e' l'altra
+## domanda della carta anche quando la Tensione non l'ha ancora resa idonea.
+func test_both_the_shipped_table_and_the_test_one_open_with_two_sides() -> void:
 	var live: RefCounted = _table()
-	assert_true(live.confluence.two_questions(), "CHR_00 gioca a due domande")
+	live.confluence.open(_openable(live), {"kind": "THRESHOLD"})
+	assert_true(live.confluence.sides_open(), "CHR_00 apre con due parti")
+	live.confluence.current = {}
 	new_session()
-	assert_false(session.confluence.two_questions(), "la Chronicle di prova gioca il giro di D-280")
-	session.confluence.open("TEN_FAMINE", {"kind": "THRESHOLD"})
-	assert_false(session.confluence.sides_open(), "e aprendo non ha due parti")
+	var context: Dictionary = session.confluence.open("TEN_FAMINE", {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "la Chronicle di prova apre il suo Consiglio")
+	assert_true(session.confluence.sides_open(), "e apre con due parti, senza dichiararlo")
+	assert_eq(session.confluence.side_question("A"), str(context["question_id"]), "la A e' la domanda presa")
+	assert_ne(session.confluence.side_question("B"), "", "e la B e' l'altra della carta")
+	assert_ne(session.confluence.side_question("B"), session.confluence.side_question("A"), "non la stessa")
 
 
 func test_opening_makes_two_sides_and_reads_the_pile() -> void:
@@ -194,7 +203,7 @@ func test_when_b_wins_its_base_outcome_applies() -> void:
 	assert_true(not base.is_empty(), "la B ha un esito di base")
 	for consequence_id in base:
 		assert_true((result["consequence_ids"] as Array).has(str(consequence_id)), "e si applica: %s" % str(consequence_id))
-	assert_eq(int(result["world_factor"]), 0, "senza dado")
+	assert_false(result.has("world_factor"), "e senza dado: il risultato non ne porta nemmeno la chiave")
 
 
 func test_when_nobody_reaches_the_pile_nothing_passes() -> void:

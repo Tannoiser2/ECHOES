@@ -21,19 +21,15 @@ const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 
 
 ## Quattro persone che non toccano niente. È il tavolo più silenzioso possibile:
-## se il Consiglio arriva anche qui, arriva sempre.
+## se il Consiglio arriva anche qui, arriva sempre. Al Consiglio a due domande
+## (D-467, D-472) non sa scegliere parte né casella: il controllore lo mette
+## con A sulla prima casella libera, e nessuno impegna una carta.
 class Idle extends RefCounted:
 	func choose_action(_entity_id: String, _ao: int, _session: RefCounted) -> Dictionary:
 		return {"template": "PASS", "params": {}}
 
 	func choose_question(_context: Dictionary, _options: Array, _session: RefCounted) -> String:
 		return ""
-
-	func choose_proposition(_context: Dictionary, options: Array, _session: RefCounted) -> String:
-		return "" if options.is_empty() else str(options[0]["id"])
-
-	func choose_stance(_entity_id: String, _context: Dictionary, _session: RefCounted) -> Dictionary:
-		return {"stance": "ABSTAIN", "clause_id": ""}
 
 	func choose_commit(
 		_entity_id: String, _context: Dictionary, _limit: int, _session: RefCounted

@@ -437,6 +437,15 @@ delle pedine. **I quattro giri sono percorsi.** Quello che resta lo leggi
 nella voce: il giro vecchio da togliere, le marche da rivedere, e un
 Consiglio giocato da te.
 
+**Giro 5 fatto in 0.1.441** ([D-472](DECISIONS.md#d-472)): il codice sa fare
+un Consiglio solo, il tuo. Il giro vecchio — la proposta, i gettoni, il
+prezzo scelto dagli altri, il dado — non c'e' piu'; le prove che lo
+custodivano sono passate alla regola nuova, o tolte con la ragione scritta.
+Tre cose restano da decidere, e sono tue: **i gettoni del RIVENDICARE**, che
+la carta da' ancora e il Consiglio non chiede piu' — si tolgono, o servono
+a qualcos'altro?; **le proposte stampate sulle carte**, che la scheda mostra
+e nessuno vota piu'; e il segno che pesava sul dado, senza piu' un dado.
+
 ### ✔ M1. [56](ISSUES.md#56) — nove Conseguenze su sessantacinque non escono mai: **chiusa in 0.1.410**
 
 **Chiusa in 0.1.410** ([D-440](DECISIONS.md#d-440)): rimisurate su 200 anni in

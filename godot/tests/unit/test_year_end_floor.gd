@@ -23,18 +23,17 @@ const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
 ## gets its Councils, because an Act-end Echo card can force one. This one is
 ## sharper on purpose: it leaves the world's Drift as the only thing that moves
 ## a question, which is exactly the arithmetic the audit tripped over.
+##
+## Al Consiglio a due domande (D-467, D-472) questo decisore non sceglie ne'
+## parte ne' casella: il controllore lo mette con A sulla prima casella
+## libera, e nessuno impegna una carta. Il pavimento si misura sui Consigli
+## aperti, non su chi li vince.
 class Idle extends RefCounted:
 	func choose_action(_entity_id: String, _ao_index: int, _session: RefCounted) -> Dictionary:
 		return {"template": "PASS", "params": {}}
 
 	func choose_question(_context: Dictionary, _options: Array, _session: RefCounted) -> String:
 		return ""
-
-	func choose_proposition(_context: Dictionary, options: Array, _session: RefCounted) -> String:
-		return "" if options.is_empty() else str(options[0]["id"])
-
-	func choose_stance(_entity_id: String, _context: Dictionary, _session: RefCounted) -> Dictionary:
-		return {"stance": "ABSTAIN", "clause_id": ""}
 
 	func choose_commit(
 		_entity_id: String, _context: Dictionary, _limit: int, _session: RefCounted

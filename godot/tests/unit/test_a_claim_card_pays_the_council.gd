@@ -1,17 +1,17 @@
 extends "res://tests/test_case.gd"
-
-const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 ## **Il gettone di rivendicazione** (D-387 — ISSUES 122, parola del committente:
 ## *«io intendo l'azione rivendicare sulla carta come la carta che ti da' i
 ## Token da utilizzare proprio in questa occasione»*).
 ##
-## Fino a D-386 il primo beneficio era gratis e ogni altro si pagava con un
-## costo scelto dagli avversari — cioe' il proponente non spendeva **niente di
-## suo**, e prendeva sempre e solo quello che valeva di piu'. Adesso la moneta
-## esiste, si guadagna un turno prima, e si spende in Consiglio.
-##
-## Qui si prova la catena intera: la carta la da', il Consiglio la spende, e
-## senza di lei il secondo beneficio non si compra.
+## La carta con la faccia RIVENDICARE lascia in mano un gettone, e una carta
+## che non rivendica no: l'Effetto `GRANT_CLAIM_TOKEN` esiste ancora, e queste
+## due prove lo sorvegliano. **Da D-472 il Consiglio non spende gettoni**: il
+## giro di D-280 — il gettone che comprava il secondo beneficio, il prezzo
+## scelto dagli avversari — e' uscito dal codice col Consiglio a due domande
+## (D-467), dove le pedine si posano sulle caselle della propria parte e il
+## prezzo si conta per parte al voto. La prova che spendeva il gettone in
+## Consiglio e' tolta con verbale; a cosa serva il gettone adesso e' una voce
+## aperta di D-472, non di questo file.
 
 const SEAT: String = "ENT_ALDRIC"
 
@@ -72,64 +72,3 @@ func test_another_card_leaves_none() -> void:
 		hand.append(altra)
 	session.actions.execute(SEAT, {"template": "PLAY_CARD", "params": {"asset_id": altra}})
 	assert_eq(_tokens(SEAT), 0, "MUOVERE non e' RIVENDICARE")
-
-
-## **E il gettone si spende dove il committente ha detto**: nel Consiglio, per
-## il **primo acquisto che costa** — che da [D-417](../../docs/DECISIONS.md#d-417)
-## e' il terzo, parola del committente: *«due acquisti liberi»*.
-##
-## La prova chiede il primo che costa, non «il secondo»: cosi' misura **la
-## regola** e non la taratura di oggi. Con un solo acquisto libero le caselle
-## vive per Consiglio erano **una** e i benefici comprati 1,22; coi due liberi
-## sono 2,25.
-func test_the_token_buys_the_second_benefit() -> void:
-	var tension_id: String = ""
-	for candidate in (session.world["tensions"] as Dictionary):
-		var face: Dictionary = (
-			(session.data.tensions[str(candidate)] as Dictionary).get("physical", {})
-		) as Dictionary
-		if (face.get("benefits", []) as Array).size() >= 2:
-			tension_id = str(candidate)
-			break
-	assert_ne(tension_id, "", "sul tavolo c'e' una domanda con due benefici stampati")
-	var context: Dictionary = session.confluence.open(tension_id, {"kind": "THRESHOLD"})
-	assert_false(context.is_empty(), "la Confluence si apre")
-	var options: Array = session.confluence.available_propositions()
-	assert_false(options.is_empty(), "e porta una proposta")
-	session.confluence.set_proposition(str((options[0] as Dictionary)["id"]))
-	var proponent: String = str(context["proponent"])
-
-	var menu: Array = session.confluence.benefit_menu()
-	if menu.size() < CouncilEconomy.FREE_BENEFITS + 1:
-		# Una carta le cui caselle qui non morderebbero non serve a questa
-		# prova: quello che si sta provando e' la moneta, non le caselle vive.
-		assert_true(true, "questa domanda non offre due caselle vive: niente da provare")
-		return
-	var free: int = CouncilEconomy.FREE_BENEFITS
-	if menu.size() < free + 1:
-		assert_true(true, "questa domanda non offre abbastanza caselle vive")
-		return
-	var oltre: Array = []
-	for i in range(free + 1):
-		oltre.append(str((menu[i] as Dictionary)["id"]))
-
-	assert_eq(
-		session.confluence.benefit_ceiling(), free,
-		"a mani vuote se ne posano %d" % free
-	)
-	assert_false(session.confluence.set_benefits(oltre), "e uno in piu' non si compra")
-
-	var effect: GDScript = load("res://scripts/core/effect.gd")
-	session.applier.apply(effect.make(
-		"GRANT_CLAIM_TOKEN", "entity", proponent, {},
-		effect.source("system", "TEST", "", 1, 1, 0)
-	))
-	assert_eq(
-		session.confluence.benefit_ceiling(), free + 1,
-		"col gettone se ne posa uno in piu'"
-	)
-	assert_true(session.confluence.set_benefits(oltre), "e adesso si comprano")
-	assert_eq(
-		int((session.world["entities"][proponent] as Dictionary)["claim_tokens"]), 0,
-		"il gettone e' stato speso"
-	)
