@@ -131,7 +131,7 @@
         },
         {
           "voce": "①",
-          "testo": "Contare le teste — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere."
+          "testo": "Contare le teste — Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere."
         },
         {
           "voce": "②",
@@ -687,7 +687,7 @@
         },
         {
           "voce": "①",
-          "testo": "Cercare il legame — Scopri una questione velata che tocca il luogo, e pesca 1 Legami."
+          "testo": "Cercare il legame — Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami."
         },
         {
           "voce": "②",
@@ -1111,7 +1111,7 @@
         },
         {
           "voce": "①",
-          "testo": "Guardare chi arriva — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere."
+          "testo": "Guardare chi arriva — Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere."
         },
         {
           "voce": "②",
@@ -1587,7 +1587,7 @@
         },
         {
           "voce": "①",
-          "testo": "Cercare indietro — Scopri una questione velata che tocca il luogo, e pesca 1 Sapere."
+          "testo": "Cercare indietro — Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Sapere."
         },
         {
           "voce": "②",
@@ -1771,7 +1771,7 @@
         },
         {
           "voce": "①",
-          "testo": "Mostrare la prova — Scopri una questione velata e metti #sapere_condiviso sul mondo."
+          "testo": "Mostrare la prova — Leggi a quanto esplode una domanda e metti #sapere_condiviso sul mondo."
         },
         {
           "voce": "②",
@@ -1895,7 +1895,7 @@
         },
         {
           "voce": "①",
-          "testo": "Ascoltare la voce — Scopri una questione velata che tocca il luogo."
+          "testo": "Ascoltare la voce — Leggi a quanto esplode una domanda che tocca il luogo."
         },
         {
           "voce": "②",
@@ -2135,7 +2135,7 @@
         },
         {
           "voce": "①",
-          "testo": "Ascoltarli — Scopri una questione velata che tocca il luogo, e pesca 1 Legami."
+          "testo": "Ascoltarli — Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami."
         },
         {
           "voce": "②",
@@ -2851,7 +2851,7 @@
         },
         {
           "voce": "①",
-          "testo": "Vendere il sale — Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza."
+          "testo": "Vendere il sale — Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Ricchezza."
         },
         {
           "voce": "②",

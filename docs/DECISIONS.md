@@ -45,6 +45,187 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-495 — La riga che diceva il falso, e il velo raccontato con la regola di prima
+
+**implemented in 0.1.465.** Giro 6 di [ISSUES 135](ISSUES.md#135), sulla parola
+*«mergia e vai col giro 6»*, e prima di tutto **una correzione a
+[D-494](#d-494)**, che e' mio.
+
+### La riga era falsa, e l'avevo scritta io due volte
+
+Il committente, con la carta in mano:
+
+> *«E cosa significa "l'APP ne risolve una"? Possibile che non si riesca ad
+> avere una carta asset definitiva e coerente?»*
+
+Aveva ragione, e piu' di quanto avessi capito: quella riga non era solo
+sgraziata, **diceva una cosa che non e' vera**.
+
+[D-493](#d-493) l'aveva messa come frase generica del verbo dichiarato; D-494
+l'aveva fatta puntare a una delle due Azioni. Tutt'e due partivano dalla stessa
+premessa — *il motore ne esegue una sola* — e quella premessa e' **falsa da
+[D-283](#d-283)**: una carta stampa due Azioni, chi cala dice **quale**
+(`face_action` e' l'indice) e il verbo viene dalla faccia. Il `card_action.kind`
+non e' il verbo che si gioca: e' il **ripiego** per quando l'indice non arriva.
+
+Non l'ho dedotto: l'ha detto la sonda. `run_card_ledger` stampa due tabelle
+affiancate, e su venti anni dal seme 7000 dicono cose diverse:
+
+| per azione **dichiarata** | per azione **calata** |
+|---|---|
+| CLAIM, FORGIARE, INFLUENZARE, MUOVERE, TRAMARE | le stesse, **piu' ACQUISIRE 36 e SEGNARE 20** |
+
+**56 calate su 563 — il 9,9% — pronunciano un verbo che il `card_action` non
+nomina nemmeno.** E la sonda lo sapeva gia': il suo commento porta la riga
+*«Nona volta che una sonda di questo progetto guarda altrove»*, scritta quando
+D-414 se ne accorse. L'avevo davanti e ho guardato il campo sbagliato lo
+stesso.
+
+**Quindi la riga se ne va, e non viene sostituita.** Le due Azioni sono due, si
+giocano tutt'e due, e la carta non deve confessare niente: una carta dice cosa
+fa la carta, non cosa l'app sa fare.
+
+**Il campo `engine` resta e cambia mestiere.** Non dice piu' «quale l'app
+risolve» — l'app le risolve tutt'e due — ma **a quale faccia il `card_action`
+corrisponde**: e' il ripiego, e un ripiego che non e' nessuna delle Azioni
+stampate e' un ripiego che mente. Regge su **47 carte su 48**; la sola che non
+lo fa e' *Debito Vecchio*, dichiarata. Il lavoro di D-494 non si butta — la
+lettura carta per carta, il cancello, il difetto di *Favore* restano tutti —
+cambia la frase che ne usciva.
+
+### E il velo raccontava la regola di prima
+
+L'altra parola del committente, sullo stesso screenshot:
+
+> *«Ma ancora azioni che fanno riferimento a tensioni velate???»*
+
+`veiled_tensions` decide che cosa una domanda velata tiene coperto ([D-187](#d-187)):
+con `HIDES_ALL` il numero non si vede; con `HIDES_THRESHOLD` — la regola della
+Chronicle **spedita**, chiesta dal committente stesso: *«il mondo lo sa quale e'
+il valore ma i giocatori no, e quindi nessuno sa quando le velate si attivano»* —
+il valore e' pubblico ed e' **la soglia** a stare coperta.
+
+**Otto facce su 96** dicevano *«Scopri una questione velata»*, che e' la frase
+della regola di prima: non diceva **cosa** si scopre, e lasciava credere coperto
+un numero che sta in chiaro. Il pannello d'aiuto lo diceva gia' giusto, perche'
+lo genera leggendo la Chronicle; la carta no, perche' al tavolo e' di cartone e
+la frase e' stampata.
+
+Adesso dicono: *«Leggi a quanto esplode una domanda che tocca il luogo»*.
+
+E la guardia fa il collegamento che il cartone non puo' fare: legge la regola
+dalle Chronicle e pretende che le facce TRAMARE portino la frase di **quella**
+regola. Il giorno in cui una Chronicle cambia regola va rosso li', invece che in
+mano a chi gioca.
+
+**La guardia ha sbagliato posto al primo giro**, e vale scriverlo: cercava
+`veiled_tensions` sotto `rules`, dove non sta. Non ha dato errore — ha dato il
+**default**, e con quello ha dichiarato sbagliate le otto facce appena
+riscritte giuste. Un dato letto nel posto sbagliato non tace: risponde, e
+risponde con sicurezza.
+
+### Il costo
+
+Cancello **0 seggi bloccati su un solo livello su 8**, tavolo misto e uniforme,
+100 semi su 7000. Sono cambiati testi e una guardia: nessuna regola.
+
+---
+
+## D-494 — Quale delle due il motore risolve, e il parametro che non era muto
+
+**implemented in 0.1.464.** Giro 5 di [ISSUES 135](ISSUES.md#135), sulla parola
+*«vai col giro 5»*. Nasce da una riga che avevo scritto io in
+[D-493](#d-493) e che era vera e restava criptica.
+
+### La riga che non bastava
+
+D-493 aveva messo le due Azioni sulla carta e lasciato in coda la frase del
+verbo dichiarato, con la sua premessa:
+
+> Oggi l'app ne risolve una: **FORGIARE — muovi di un passo il rapporto con
+> un'altra casa**
+
+E' una **terza** frase, generica, che parla di un verbo e non di questa carta —
+ed e' esattamente quello di cui il committente si lamentava fin dall'inizio:
+*«sono sempre frasi narrative e criptiche»*. Peggio: su *Credito* dice **un
+passo** dove le due Azioni dicono **2 gradini** e **1 gradino**. Tre numeri,
+nessuno uguale all'altro.
+
+Adesso la riga punta a una delle due, per numero e per nome:
+
+> Oggi **l'app risolve la 2 — Comprare il suo debito**
+
+Non c'e' niente di inventato: la risposta e' nel dato.
+
+### Come si sa quale, e chi lo sorveglia
+
+Il campo e' `engine: true` sulla faccia, scritto da `tools/engine_action.py`.
+Misurato prima di scriverlo, sulle 48 carte:
+
+| | carte |
+|---|---|
+| il verbo dichiarato sta su **una sola** delle due Azioni: dedotta | **29** |
+| le due Azioni portano **lo stesso verbo**: letta carta per carta | **18** |
+| il verbo dichiarato non e' **nessuno** dei due stampati | **1** |
+
+Le 18 sono lettura d'autore, decisa guardando il verso che `card_action`
+chiede — `direction` UP/DOWN, `delta` +1/-1 — e la frase di `card_action.note`,
+che e' il posto dove l'autore aveva gia' scritto cosa fa il motore. Stanno in
+`LETTURA`, ognuna con la sua ragione, come le marche delle caselle di
+[D-489](#d-489).
+
+**E la guardia dice anche quello che non prende.** `validate_physical.py`
+controlla che le marche siano al piu' una per carta, che il verbo dell'Azione
+marcata sia quello dichiarato, e che una carta senza marca abbia una ragione:
+tre difetti piantati, tutti e tre mordono. Ma sulle **18 carte collo stesso
+verbo** quella guardia e' cieca per costruzione — una marca spostata dall'una
+all'altra le combacia comunque. Quelle le sorveglia `engine_action.py --check`,
+che e' diventato **un cancello suo**: sono 35 adesso, e la CI li gira tutti.
+
+L'unica carta senza marca e' *Debito Vecchio*, che dichiara RIVENDICARE e
+stampa INFLUENZARE e FORGIARE. La scheda lo dice: *«Oggi l'app non risolve
+nessuna delle due»*. Sta in ISSUES 69 con le altre cose della faccia fisica che
+il motore non esegue.
+
+### E leggendo le carte una per una ne e' saltato fuori un altro
+
+Per decidere le 18 servivano i `card_action.params`, e li ho contati contro
+quello che il motore legge davvero — ricavato da `action_resolver.gd`, dalle
+`_check_*` e dalle funzioni che eseguono, **non a memoria**. Sette carte su 48
+portavano un parametro che il loro verbo non guarda: `delta` su RIVENDICARE e
+TRAMARE, `direction` su MUOVERE e INFLUENZARE.
+
+Sei erano muti davvero. **Il settimo no**, e questa e' la parte che conta.
+
+*Favore* dichiarava `INFLUENCE` con `direction: "UP"`. Il resolver di
+INFLUENZARE legge `delta` e ignora `direction`, quindi sembrava innocuo. Ma il
+cervello, in `policy_decider.gd`, filtra le carte con una regola scritta li'
+sopra — *«cio' che la carta fissa non si contratta: se dice -1 e il seggio
+voleva +1, quella carta non dice quell'intenzione»* — e la applica
+**confrontando le chiavi**. `direction` non e' una chiave che l'intenzione
+porta: il confronto non scattava **mai**, e *Favore* si offriva anche per
+**abbassare** una domanda, cioe' per il verso opposto a quello che il suo
+autore aveva scritto.
+
+Detto in `delta: 1` — lo stesso numero che il motore stava gia' usando come
+default — la regola morde. La misura lo prova, isolando i sette uno per uno
+sul seme 7003: sei non spostano niente, e togliere `direction` da *Favore*
+porta le estrazioni da **211 a 212**.
+
+Un parametro non e' muto perche' il resolver non lo legge: e' muto quando
+**nessuno** lo legge, e questo lo leggeva la regola che doveva imporre — al
+contrario.
+
+### Il costo
+
+Il cancello resta **0 seggi bloccati su un solo livello su 8**, tavolo misto e
+uniforme, 100 semi su 7000 — misurato **dopo** il cambio di *Favore*, che
+sposta il gioco: non e' un giro di soli testi come D-493. Le Verita' sono **325
+scritte, 322 diverse** sul tavolo misto e **324 scritte, 324 diverse** su quello
+uniforme; erano 319/317 e 324/323 nel giro prima, sullo stesso seme.
+
+---
+
 ## D-493 — Le DUE Azioni della carta, e la parola «costa» che non era un costo
 
 **implemented in 0.1.463.** Quarto giro di [ISSUES 135](ISSUES.md#135), aperto

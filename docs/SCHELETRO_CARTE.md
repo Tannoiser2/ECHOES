@@ -66,7 +66,7 @@ E porta il suo **Eco** (D-359): si cala al posto di un'Azione se le condizioni c
 > autorità · comune
 > angolo: **1**
 > DOVE  Scegli un luogo con #capitale, #granaio o #commercio. Vale anche il #porto, e ogni luogo del dominio del #territorio.
-> ① Contare le teste — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+> ① Contare le teste — Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.
 > ② Contare i sacchi — Togli #razionato dal luogo.
 > SEMPRE  Potere +1 · se il bersaglio ha #pascolo: +1 ancora e posa #inquieta
 > AL CONSIGLIO  1 · +1 se si discute di Potere o Vie

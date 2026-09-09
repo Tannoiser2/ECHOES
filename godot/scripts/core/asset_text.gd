@@ -302,8 +302,6 @@ static func printed_actions(asset: Dictionary) -> Array:
 	return said
 
 
-## What this card adds to the Support front of a Council on this Tension - the
-## resolver's own arithmetic, not a copy of it.
 static func value_on(asset: Dictionary, relevant_families: Array) -> int:
 	return ConfluenceResolution.asset_value(asset, relevant_families, "SUPPORT")
 
@@ -319,19 +317,21 @@ static func tooltip(asset: Dictionary, data = null) -> String:
 	# qui c'era la frase del verbo dichiarato, che e' una sola e non e' nessuna
 	# delle due.
 	var printed: Array = printed_actions(asset)
-	var verb: String = action_note(asset)
 	if printed.is_empty():
+		var verb: String = action_note(asset)
 		if verb != "":
 			lines.append(verb)
 	else:
+		# **E qui non si aggiunge altro** (D-495). D-493 aveva messo in coda la
+		# frase del verbo dichiarato e D-494 l'aveva fatta puntare a una delle
+		# due: erano tutt'e due sbagliate, perche' dicevano che il motore ne
+		# esegue una sola. Non e' vero da [D-283](../../docs/DECISIONS.md#d-283):
+		# chi cala dice **quale** delle due, e il verbo viene dalla faccia. Su
+		# venti anni giocati, 56 calate su 563 pronunciano un verbo che il
+		# `card_action` non nomina nemmeno. Le due Azioni bastano: sono due, e
+		# si giocano tutt'e due.
 		for i in range(printed.size()):
 			lines.append("%d. %s" % [i + 1, str(printed[i])])
-		# La faccia ne offre due, il motore ne esegue una (ISSUES 69). Dirlo
-		# e' piu' onesto che stampare la frase del verbo dichiarato come se
-		# fosse una terza Azione — o che tacerla, e lasciare il giocatore a
-		# scoprire da solo quale delle due l'app gli risolve.
-		if verb != "":
-			lines.append("Oggi l'app ne risolve una: %s" % verb)
 	lines.append(note(asset, data))
 	var rules: String = str(asset.get("rules_text", ""))
 	if rules != "":

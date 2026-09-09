@@ -120,15 +120,30 @@ func test_every_card_names_the_verb_it_carries() -> void:
 		var kind: String = str((asset.get("card_action", {}) as Dictionary).get("kind", ""))
 		if kind == "" or kind == "NONE":
 			continue
+		var title: String = str(asset["title"])
 		var said: String = AssetText.action_note(asset)
 		assert_true(
 			said != "" and not said.begins_with("un'azione senza parole"),
-			"«%s» porta %s e lo dice: «%s»" % [str(asset["title"]), kind, said]
+			"«%s» porta %s e lo dice: «%s»" % [title, kind, said]
 		)
-		assert_true(
-			AssetText.tooltip(asset, loaded).contains(said),
-			"e la scheda lo scrive, non solo la funzione"
-		)
+		# **E la scheda dice cosa fa la carta** — ma da D-495 non con questa
+		# frase, e nemmeno con un rimando a una delle due. La frase del verbo e'
+		# generica per costruzione, e la carta ne ha due di piu' precise: sono
+		# quelle che porta. Il ripiego resta per una carta **senza** blocco
+		# fisico, e la prova prende tutt'e due i casi.
+		var card: String = AssetText.tooltip(asset, loaded)
+		var printed: Array = AssetText.printed_actions(asset)
+		if printed.is_empty():
+			assert_true(card.contains(said), "«%s»: la scheda porta la frase del verbo" % title)
+		else:
+			for line in printed:
+				assert_true(
+					card.contains(str(line)),
+					"«%s»: la scheda porta le sue Azioni stampate" % title
+				)
+			assert_false(
+				card.contains("l'app"), "«%s»: e non parla dell'app" % title
+			)
 		checked += 1
 	assert_true(checked >= 40, "e vale per tutte le carte con un'azione: %d" % checked)
 
@@ -285,17 +300,56 @@ func test_the_tooltip_leads_with_the_two_actions() -> void:
 	var said: String = AssetText.tooltip(asset, loaded)
 	assert_true(said.contains("Aprire credito"), "la prima Azione c'e': %s" % said)
 	assert_true(said.contains("Comprare il suo debito"), "e la seconda: %s" % said)
-	# La frase del verbo dichiarato resta, ma **dopo** le due e dichiarata per
-	# quello che e': una delle due, quella che l'app risolve oggi (ISSUES 69).
-	# Prima stava da sola e sembrava l'unica Azione della carta.
-	assert_true(
-		said.contains("Oggi l'app ne risolve una:"),
-		"e dice quale delle due il motore esegue: %s" % said
+	# **E in coda non si aggiunge altro** (D-495). D-493 aveva messo qui la
+	# frase generica del verbo e D-494 l'aveva fatta puntare a una delle due:
+	# tutt'e due dicevano che il motore ne esegue una sola, e non e' vero da
+	# D-283. Le due Azioni bastano.
+	assert_false(
+		said.contains("muovi di un passo il rapporto"),
+		"la frase generica del verbo non c'e': %s" % said
 	)
-	assert_true(
-		said.find("Aprire credito") < said.find("Oggi l'app ne risolve una:"),
-		"le due Azioni vengono prima: %s" % said
-	)
+	assert_false(said.contains("l'app risolve"), "e nemmeno la confessione: %s" % said)
+
+
+## **E la carta non confessa i limiti dell'app** (D-495), nemmeno quella in cui
+## il verbo dichiarato non e' nessuno dei due stampati.
+##
+## Su *Debito Vecchio* `card_action` dice RIVENDICARE e le due Azioni portano
+## INFLUENZARE e FORGIARE. Non e' un buco: il `card_action` e' il ripiego per
+## quando non arriva l'indice della faccia, e chi cala l'indice lo manda sempre.
+## La carta stampa le sue due Azioni e basta.
+func test_a_card_does_not_confess_what_the_app_cannot_do() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati si leggono")
+	var asset: Dictionary = loaded.assets["AST_BONDS_OLD_DEBT"] as Dictionary
+	var said: String = AssetText.tooltip(asset, loaded)
+	assert_true(said.contains("Esigere"), "la prima Azione c'e': %s" % said)
+	assert_true(said.contains("Rimettere"), "e la seconda: %s" % said)
+	assert_false(said.contains("l'app"), "e nessuna riga parla dell'app: %s" % said)
+
+
+## **Il ponte fra le due grammatiche regge su 47 carte su 48** (D-495).
+##
+## `engine` non dice piu' «quale l'app risolve» — l'app le risolve tutt'e due —
+## ma **a quale faccia il `card_action` corrisponde**: e' il ripiego, e un
+## ripiego che non e' nessuna delle Azioni stampate e' un ripiego che mente.
+## Una carta sola ce l'ha cosi', ed e' dichiarata.
+func test_the_fallback_verb_matches_a_printed_action() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati si leggono")
+	var bridged: int = 0
+	for asset_id in loaded.assets:
+		var asset: Dictionary = loaded.assets[str(asset_id)] as Dictionary
+		var kind: String = str((asset.get("card_action", {}) as Dictionary).get("kind", ""))
+		for face in ((asset.get("physical", {}) as Dictionary).get("actions", []) as Array):
+			if not bool((face as Dictionary).get("engine", false)):
+				continue
+			bridged += 1
+			assert_eq(
+				str((face as Dictionary).get("template", "")), kind,
+				"«%s»: la faccia del ripiego porta il verbo dichiarato" % str(asset["title"])
+			)
+	assert_eq(bridged, 47, "e sono 47 su 48: su una il ripiego non e' nessuna delle due")
 
 
 ## **«Costa» non era un costo** (D-493, parola del committente: *«costa: il

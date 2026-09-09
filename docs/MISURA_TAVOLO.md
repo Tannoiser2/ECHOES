@@ -62,31 +62,31 @@ le Pietre e i gradi che le degradano.
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `place:collapsed_pass` | 0 | 3 | 0 | 3 |  |
-| `place:cursed_wood` | 0 | 5 | 0 | 3 |  |
+| `place:collapsed_pass` | 0 | 3 | 0 | 2 |  |
+| `place:cursed_wood` | 0 | 7 | 0 | 4 |  |
 | `place:dry_spring` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `place:forest` | 98 | 190 | 0 | 98 |  |
+| `place:forest` | 98 | 191 | 0 | 98 |  |
 | `place:low_spring` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `place:open_site` | 0 | 2 | 0 | 2 |  |
-| `place:pass` | 64 | 64 | 0 | 61 |  |
+| `place:open_site` | 0 | 3 | 0 | 3 |  |
+| `place:pass` | 64 | 64 | 0 | 62 |  |
 | `place:sleeping_site` | 85 | 118 | 0 | 84 |  |
 | `place:spring` | 88 | 122 | 0 | 88 |  |
 | `place:stripped_site` | 0 | 1 | 0 | 1 |  |
 | `settlement:$proponent` | 0 | 0 | 0 | 0 | *una forma: l'id vero lo scrive il motore* |
 | `settlement:city` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `settlement:march` | 0 | 4 | 0 | 4 |  |
-| `settlement:market` | 0 | 11 | 0 | 10 |  |
-| `settlement:town` | 0 | 10 | 0 | 10 |  |
-| `settlement:village` | 33 | 73 | 6 | 32 |  |
-| `structure:archive` | 22 | 155 | 6 | 40 |  |
-| `structure:canal` | 0 | 47 | 28 | 20 |  |
-| `structure:castle` | 0 | 59 | 0 | 54 |  |
-| `structure:granary` | 0 | 354 | 40 | 87 |  |
-| `structure:library` | 0 | 13 | 0 | 13 |  |
+| `settlement:market` | 0 | 12 | 0 | 10 |  |
+| `settlement:town` | 0 | 7 | 0 | 7 |  |
+| `settlement:village` | 33 | 74 | 5 | 37 |  |
+| `structure:archive` | 22 | 167 | 9 | 42 |  |
+| `structure:canal` | 0 | 50 | 29 | 20 |  |
+| `structure:castle` | 0 | 62 | 0 | 54 |  |
+| `structure:granary` | 0 | 352 | 41 | 85 |  |
+| `structure:library` | 0 | 17 | 0 | 16 |  |
 | `structure:palace` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `structure:sealed` | 0 | 5 | 13 | 4 |  |
-| `structure:tollgate` | 0 | 361 | 9 | 91 |  |
-| `structure:watchtower` | 100 | 330 | 67 | 89 |  |
+| `structure:sealed` | 0 | 7 | 16 | 6 |  |
+| `structure:tollgate` | 0 | 346 | 5 | 92 |  |
+| `structure:watchtower` | 100 | 332 | 70 | 82 |  |
 
 ## un gettone accanto alla tessera
 
@@ -96,41 +96,41 @@ lo stato di adesso: si mette e si toglie.
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `condition:abandoned` | 0 | 13 | 1 | 11 |  |
-| `condition:contested` | 0 | 388 | 135 | 91 |  |
-| `condition:cut_off` | 0 | 175 | 270 | 56 |  |
-| `condition:emptied` | 0 | 41 | 3 | 35 |  |
-| `condition:exploited` | 0 | 10 | 0 | 9 |  |
-| `condition:guarded` | 0 | 91 | 16 | 56 |  |
-| `condition:indebted` | 0 | 324 | 41 | 93 |  |
-| `condition:lean` | 0 | 130 | 160 | 45 |  |
-| `condition:mourning` | 0 | 43 | 50 | 32 |  |
-| `condition:plundered` | 0 | 49 | 17 | 34 |  |
-| `condition:rationed` | 0 | 175 | 149 | 60 |  |
-| `condition:starving` | 0 | 79 | 156 | 45 |  |
-| `condition:unrest` | 0 | 386 | 163 | 90 |  |
+| `condition:abandoned` | 0 | 15 | 2 | 10 |  |
+| `condition:contested` | 0 | 391 | 136 | 93 |  |
+| `condition:cut_off` | 0 | 187 | 264 | 56 |  |
+| `condition:emptied` | 0 | 43 | 5 | 36 |  |
+| `condition:exploited` | 0 | 11 | 1 | 9 |  |
+| `condition:guarded` | 0 | 92 | 16 | 56 |  |
+| `condition:indebted` | 0 | 302 | 40 | 92 |  |
+| `condition:lean` | 0 | 128 | 168 | 47 |  |
+| `condition:mourning` | 0 | 37 | 53 | 25 |  |
+| `condition:plundered` | 0 | 48 | 14 | 34 |  |
+| `condition:rationed` | 0 | 179 | 145 | 66 |  |
+| `condition:starving` | 0 | 79 | 159 | 45 |  |
+| `condition:unrest` | 0 | 392 | 170 | 91 |  |
 
 ## un dischetto rotondo
 
 le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 
-**13 segni: 11 arrivano sul tavolo, 2 non ci arrivano mai.**
+**13 segni: 12 arrivano sul tavolo, 1 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `scar:abandoned` | 0 | 57 | 0 | 40 |  |
-| `scar:broken_bridge` | 0 | 6 | 39 | 6 | **tolta piu' volte di quante si posa** |
-| `scar:broken_word` | 0 | 7 | 0 | 5 |  |
-| `scar:burned_records` | 0 | 6 | 0 | 6 |  |
-| `scar:changed_hands` | 0 | 55 | 0 | 44 |  |
+| `scar:abandoned` | 0 | 60 | 0 | 45 |  |
+| `scar:broken_bridge` | 0 | 6 | 35 | 6 | **tolta piu' volte di quante si posa** |
+| `scar:broken_word` | 0 | 8 | 0 | 6 |  |
+| `scar:burned_records` | 0 | 9 | 0 | 9 |  |
+| `scar:changed_hands` | 0 | 53 | 0 | 43 |  |
 | `scar:divided_seal` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `scar:dragonfall` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `scar:emptied` | 0 | 16 | 0 | 14 |  |
-| `scar:open_wound` | 0 | 6 | 0 | 5 |  |
-| `scar:plundered` | 0 | 24 | 0 | 22 |  |
-| `scar:sealed_border` | 0 | 8 | 0 | 7 |  |
-| `scar:the_empty_chair` | 0 | 49 | 0 | 39 |  |
-| `scar:unanswered` | 0 | 46 | 60 | 38 | **tolta piu' volte di quante si posa** |
+| `scar:dragonfall` | 0 | 1 | 0 | 1 |  |
+| `scar:emptied` | 0 | 18 | 0 | 17 |  |
+| `scar:open_wound` | 0 | 7 | 0 | 6 |  |
+| `scar:plundered` | 0 | 22 | 0 | 20 |  |
+| `scar:sealed_border` | 0 | 12 | 0 | 10 |  |
+| `scar:the_empty_chair` | 0 | 48 | 0 | 40 |  |
+| `scar:unanswered` | 0 | 55 | 55 | 44 |  |
 
 ## sulla scheda della casa
 
@@ -141,27 +141,27 @@ chi sei adesso, e la vita che stai vivendo.
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
 | `ancient` | 44 | 0 | 0 | 44 |  |
-| `anointed` | 0 | 15 | 0 | 14 |  |
+| `anointed` | 0 | 12 | 0 | 11 |  |
 | `ash` | 57 | 0 | 0 | 57 |  |
-| `ash_watch` | 0 | 2 | 0 | 1 |  |
+| `ash_watch` | 0 | 3 | 0 | 2 |  |
 | `crowned` | 55 | 0 | 4 | 55 |  |
 | `discovery:crystal` | 0 | 9 | 0 | 9 |  |
-| `discovery:legend` | 0 | 142 | 0 | 71 |  |
-| `discovery:relic` | 0 | 30 | 0 | 23 |  |
+| `discovery:legend` | 0 | 139 | 0 | 71 |  |
+| `discovery:relic` | 0 | 31 | 0 | 23 |  |
 | `discovery:shared_record` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `discovery:supervised_record` | 0 | 1 | 0 | 1 |  |
-| `discovery:the_charter` | 0 | 38 | 0 | 33 |  |
-| `discovery:the_ledger` | 0 | 300 | 0 | 98 |  |
+| `discovery:the_charter` | 0 | 38 | 0 | 31 |  |
+| `discovery:the_ledger` | 0 | 305 | 0 | 96 |  |
 | `discovery:the_measure` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `discovery:the_omen` | 0 | 321 | 0 | 96 |  |
-| `discovery:trade_ledger` | 0 | 184 | 0 | 76 |  |
-| `discovery:written_law` | 0 | 167 | 0 | 73 |  |
-| `escort_sworn` | 0 | 277 | 14 | 92 |  |
+| `discovery:the_omen` | 0 | 331 | 0 | 96 |  |
+| `discovery:trade_ledger` | 0 | 179 | 0 | 79 |  |
+| `discovery:written_law` | 0 | 169 | 0 | 73 |  |
+| `escort_sworn` | 0 | 263 | 16 | 90 |  |
 | `evicted:$region_focus` | 0 | 0 | 0 | 0 | *una forma: l'id vero lo scrive il motore* |
 | `failed_proposal` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `free_cities` | 48 | 0 | 0 | 48 |  |
 | `guild` | 46 | 0 | 0 | 46 |  |
-| `hard_bargain` | 0 | 3 | 0 | 3 |  |
+| `hard_bargain` | 0 | 1 | 0 | 1 |  |
 | `life:INC_ALDRIC_02` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_ALDRIC_REGENCY` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `life:INC_ALDRIC_RESTORED` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
@@ -188,88 +188,87 @@ chi sei adesso, e la vita che stai vivendo.
 | `life:INC_VETRO_SCHOOL` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `migrating` | 54 | 0 | 0 | 54 |  |
 | `order` | 48 | 0 | 0 | 48 |  |
-| `renowned` | 0 | 310 | 0 | 95 |  |
+| `renowned` | 0 | 297 | 0 | 93 |  |
 | `scholar` | 48 | 0 | 0 | 48 |  |
 | `sleeping` | 44 | 0 | 0 | 44 |  |
-| `spoke_and_lost` | 0 | 11 | 0 | 10 |  |
-| `took_by_hand` | 0 | 2 | 0 | 2 |  |
+| `spoke_and_lost` | 0 | 12 | 0 | 11 |  |
+| `took_by_hand` | 0 | 3 | 0 | 3 |  |
 | `twice_uprooted` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `uprooted` | 0 | 2 | 0 | 2 |  |
-| `watched` | 0 | 21 | 0 | 15 |  |
+| `uprooted` | 0 | 5 | 0 | 5 |  |
+| `watched` | 0 | 21 | 0 | 16 |  |
 | `water_rights` | 0 | 0 | 0 | 0 | **non arriva mai** |
 
 ## un gettone sul bordo della mappa
 
 quello che il mondo ricorda (ISSUES 110).
 
-**52 segni: 42 arrivano sul tavolo, 10 non ci arrivano mai.**
+**52 segni: 43 arrivano sul tavolo, 9 non ci arrivano mai.**
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `account_settled` | 0 | 21 | 0 | 20 |  |
-| `amnesty_granted` | 0 | 2 | 0 | 2 |  |
-| `betrayal_spoken` | 0 | 20 | 0 | 19 |  |
-| `burden_shared` | 0 | 89 | 0 | 58 |  |
+| `account_settled` | 0 | 22 | 0 | 21 |  |
+| `amnesty_granted` | 0 | 3 | 0 | 3 |  |
+| `betrayal_spoken` | 0 | 23 | 0 | 20 |  |
+| `burden_shared` | 0 | 104 | 0 | 62 |  |
 | `charter_for_all` | 0 | 4 | 0 | 4 |  |
-| `charter_temporary` | 0 | 10 | 0 | 10 |  |
-| `charter_written` | 0 | 59 | 0 | 35 |  |
+| `charter_temporary` | 0 | 9 | 0 | 9 |  |
+| `charter_written` | 0 | 59 | 0 | 33 |  |
 | `crown_dispossessed` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `crown_divided` | 0 | 22 | 0 | 22 |  |
-| `crystal_exploited` | 0 | 14 | 0 | 14 |  |
-| `crystal_measured` | 0 | 16 | 0 | 16 |  |
-| `debt_called` | 0 | 307 | 0 | 95 |  |
-| `debt_forgiven` | 0 | 126 | 0 | 71 |  |
-| `debt_staggered` | 0 | 8 | 0 | 6 |  |
+| `crown_divided` | 0 | 19 | 0 | 19 |  |
+| `crystal_exploited` | 0 | 16 | 0 | 16 |  |
+| `crystal_measured` | 0 | 13 | 0 | 13 |  |
+| `debt_called` | 0 | 261 | 0 | 94 |  |
+| `debt_forgiven` | 0 | 127 | 0 | 75 |  |
+| `debt_staggered` | 0 | 7 | 0 | 5 |  |
 | `descent_witnessed` | 0 | 1 | 0 | 1 |  |
-| `distribution_audited` | 0 | 7 | 0 | 6 |  |
-| `dragon_slain` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `faith_established` | 0 | 26 | 0 | 24 |  |
-| `grain_requisitioned` | 0 | 18 | 0 | 15 |  |
-| `heir_named` | 0 | 101 | 0 | 59 |  |
-| `knowledge_shared` | 0 | 174 | 0 | 72 |  |
-| `ledger_public` | 0 | 213 | 0 | 86 |  |
+| `distribution_audited` | 0 | 6 | 0 | 6 |  |
+| `dragon_slain` | 0 | 1 | 0 | 1 |  |
+| `faith_established` | 0 | 23 | 0 | 21 |  |
+| `grain_requisitioned` | 0 | 15 | 0 | 12 |  |
+| `heir_named` | 0 | 98 | 0 | 57 |  |
+| `knowledge_shared` | 0 | 173 | 0 | 71 |  |
+| `ledger_public` | 0 | 215 | 0 | 85 |  |
 | `legend:debt_called` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `legend:oath_broken` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `legend:order_restored` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
-| `mine_sealed` | 0 | 1 | 1 | 1 |  |
+| `mine_sealed` | 0 | 1 | 2 | 1 |  |
 | `mountain_forgotten` | 0 | 1 | 0 | 1 |  |
-| `nahr_settled` | 0 | 16 | 0 | 16 |  |
+| `nahr_settled` | 0 | 13 | 0 | 13 |  |
 | `no_charter` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `oath_broken` | 0 | 10 | 11 | 8 |  |
-| `order_restored` | 0 | 237 | 0 | 94 |  |
+| `oath_broken` | 0 | 14 | 15 | 12 |  |
+| `order_restored` | 0 | 219 | 0 | 92 |  |
 | `parley_held` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `petition_heard` | 0 | 9 | 0 | 7 |  |
-| `price_in_lives` | 0 | 11 | 0 | 10 |  |
-| `question_unresolved` | 0 | 53 | 38 | 25 |  |
+| `petition_heard` | 0 | 7 | 0 | 5 |  |
+| `price_in_lives` | 0 | 10 | 0 | 10 |  |
+| `question_unresolved` | 0 | 53 | 35 | 25 |  |
 | `quota_guaranteed` | 0 | 11 | 0 | 11 |  |
-| `relic_buried` | 0 | 10 | 0 | 10 |  |
-| `relic_recorded` | 0 | 2 | 0 | 2 |  |
+| `relic_buried` | 0 | 11 | 0 | 9 |  |
+| `relic_recorded` | 0 | 3 | 0 | 3 |  |
 | `relic_shown` | 0 | 3 | 0 | 2 |  |
-| `rumour_running` | 0 | 15 | 0 | 13 |  |
+| `rumour_running` | 0 | 16 | 0 | 14 |  |
 | `seal_kept` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `seal_kept_twice` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `someone_paid` | 0 | 1 | 0 | 1 |  |
 | `study_supervised` | 0 | 2 | 0 | 2 |  |
-| `succession_by_law` | 0 | 46 | 0 | 37 |  |
-| `succession_settled` | 0 | 7 | 0 | 6 |  |
-| `succession_witnessed` | 0 | 7 | 0 | 6 |  |
-| `toll_shared` | 0 | 76 | 0 | 47 |  |
-| `valley_sealed` | 0 | 1 | 0 | 1 |  |
-| `water_moves` | 0 | 48 | 0 | 35 |  |
+| `succession_by_law` | 0 | 43 | 0 | 33 |  |
+| `succession_settled` | 0 | 6 | 0 | 6 |  |
+| `succession_witnessed` | 0 | 6 | 0 | 6 |  |
+| `toll_shared` | 0 | 75 | 0 | 47 |  |
+| `valley_sealed` | 0 | 2 | 0 | 2 |  |
+| `water_moves` | 0 | 51 | 0 | 38 |  |
 | `water_priced` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `water_shared` | 0 | 2 | 0 | 1 |  |
+| `water_shared` | 0 | 3 | 0 | 2 |  |
 
 ## I segni che non arrivano mai
 
 Hanno un posto sul tavolo, e in cento partite non ci si posano mai.
-Sono **45 su 175**.
+Sono **43 su 175**.
 
 | segno | dove starebbe |
 |---|---|
 | `crown_dispossessed` | un gettone sul bordo della mappa |
 | `discovery:shared_record` | sulla scheda della casa |
 | `discovery:the_measure` | sulla scheda della casa |
-| `dragon_slain` | un gettone sul bordo della mappa |
 | `failed_proposal` | sulla scheda della casa |
 | `legend:debt_called` | un gettone sul bordo della mappa |
 | `legend:oath_broken` | un gettone sul bordo della mappa |
@@ -303,7 +302,6 @@ Sono **45 su 175**.
 | `place:dry_spring` | uno spazio sulla tessera |
 | `place:low_spring` | uno spazio sulla tessera |
 | `scar:divided_seal` | un dischetto rotondo |
-| `scar:dragonfall` | un dischetto rotondo |
 | `seal_kept` | un gettone sul bordo della mappa |
 | `seal_kept_twice` | un gettone sul bordo della mappa |
 | `settlement:city` | uno spazio sulla tessera |

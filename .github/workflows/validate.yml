@@ -33,6 +33,13 @@ jobs:
       - name: La guardia dei gettoni morde
         run: python3 tools/validate_data.py --self-test
 
+      # Quale delle due Azioni stampate il motore risolve (D-494). Su 18 carte
+      # su 48 le due portano lo stesso verbo, e li' il dato da solo non
+      # distingue: la lettura carta per carta sta in engine_action.py, e questo
+      # passo e' l'unico che se ne accorge se una marca si sposta.
+      - name: Quale Azione risolve il motore
+        run: python3 tools/engine_action.py --check
+
       # schema_defs.gd is generated. If it no longer matches the schemas, the
       # Godot-side validation and the Python-side validation have diverged.
       - name: Drift check - generated GDScript schema
