@@ -5,6 +5,50 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.463 — Le DUE Azioni della carta, e «costa» che non era un costo
+
+[D-493](docs/DECISIONS.md#d-493), giro 4 di [ISSUES 135](docs/ISSUES.md#135),
+da uno screenshot e due domande: *«Ma quali sono le DUE azioni di questa
+carta?»* e *«costa: il mondo registra: il debito e' stato chiamato. Cosa vuol
+dire?»*.
+
+**La scheda mostrava zero delle due.** Le Azioni stampate sono due su **48
+carte su 48**; al loro posto la carta stampava la frase del verbo dichiarato —
+la grammatica digitale — che non e' nessuna delle due. Su *Credito* si leggeva
+«muovi di un passo il rapporto» mentre la faccia dice «sale di **2 gradini**»
+e «scendi di **1 gradino**»: non una frase piu' povera, un numero diverso da
+entrambi.
+
+**Il verbo dichiarato resta, ma dichiarato.** Il motore ne esegue una sola
+delle due ([ISSUES 69](docs/ISSUES.md#69)), e chi gioca ha diritto di sapere
+quale: la riga e' l'ultima e porta la sua premessa, *«Oggi l'app ne risolve
+una»*. Cosi' si **vede** anche l'unico caso, su 48, in cui le due grammatiche
+non si incontrano: *Debito Vecchio* dichiara `CLAIM` e stampa `INFLUENCE` e
+`FORGE`. Misurato e scritto, non rimediato qui.
+
+**E «costa:» non nominava un costo.** Stava su **48 carte su 48** e prometteva
+un prezzo: quegli Effetti scattano **se la carta si impegna al Consiglio**, e
+calarla non costa niente. Adesso la frase dice quando succede — *«se la
+impegni al Consiglio, il mondo registra: il debito e' stato chiamato»* — e il
+contenuto e' lo stesso di prima.
+
+### Cambiato
+- `AssetText.printed_actions()`: le due Azioni della faccia fisica, `label` e
+  `text`, lette dal dato.
+- La scheda della carta (`asset_card.gd`) e il suggerimento le mostrano al
+  posto della frase generica, numerate e prima di tutto il resto.
+- `AssetText.note()`: «costa: X» diventa «se la impegni al Consiglio, X».
+
+### Misurato
+- **48/48** carte con due Azioni stampate; **0** mostrate prima.
+- **1/48** carte in cui il verbo dichiarato non e' fra i due stampati.
+- **48/48** carte che dicevano «costa:».
+- Cancello **0 seggi bloccati su 8**, tavolo misto e uniforme, 100 semi su
+  7000. Verita' **319 scritte / 317 diverse** (misto), **324 / 323**
+  (uniforme).
+
+---
+
 ## 0.1.462 — A ogni Azione, cosa succede
 
 [D-492](docs/DECISIONS.md#d-492), giro 3 di [ISSUES 135](docs/ISSUES.md#135) e

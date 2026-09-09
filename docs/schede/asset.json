@@ -147,7 +147,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #contesa"
+          "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #contesa"
         },
         {
           "voce": "PRENDI",
@@ -211,7 +211,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: dove si discute diventa #contesa"
+          "testo": "si scarta comunque · se la impegni al Consiglio, dove si discute diventa #contesa"
         },
         {
           "voce": "PRENDI",
@@ -275,7 +275,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: dove si discute non e' piu' #inquieta"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #inquieta"
         },
         {
           "voce": "PRENDI",
@@ -339,7 +339,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -403,7 +403,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sempre · si scarta comunque · costa: il mondo registra: l'erede e' stato nominato"
+          "testo": "+1 sempre · si scarta comunque · se la impegni al Consiglio, il mondo registra: l'erede e' stato nominato"
         },
         {
           "voce": "PRENDI",
@@ -463,7 +463,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+2 se ti opponi · torna in mano se la proposta passa · costa: dove si discute non e' piu' la domanda sul muro"
+          "testo": "+2 se ti opponi · torna in mano se la proposta passa · se la impegni al Consiglio, dove si discute non e' piu' la domanda sul muro"
         },
         {
           "voce": "PRENDI",
@@ -523,7 +523,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 se ti opponi · si scarta se la impegni · costa: la domanda in gioco scende"
+          "testo": "+1 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, la domanda in gioco scende"
         },
         {
           "voce": "PRENDI",
@@ -583,7 +583,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: il rivale entra dove si discute"
+          "testo": "si scarta comunque · se la impegni al Consiglio, il rivale entra dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -643,7 +643,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+2 se ti opponi · si scarta comunque · costa: il rapporto fra chi gioca e il rivale cambia"
+          "testo": "+2 se ti opponi · si scarta comunque · se la impegni al Consiglio, il rapporto fra chi gioca e il rivale cambia"
         },
         {
           "voce": "PRENDI",
@@ -703,7 +703,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: il rapporto fra chi gioca e il rivale cambia"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, il rapporto fra chi gioca e il rivale cambia"
         },
         {
           "voce": "PRENDI",
@@ -763,7 +763,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -823,7 +823,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: il rapporto fra chi gioca e il rivale cambia"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, il rapporto fra chi gioca e il rivale cambia"
         },
         {
           "voce": "PRENDI",
@@ -883,7 +883,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sul suo tema · si scarta se la impegni · costa: chi gioca perde: cacciata da dove si discuteva"
+          "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, chi gioca perde: cacciata da dove si discuteva"
         },
         {
           "voce": "PRENDI",
@@ -943,7 +943,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: il rivale entra dove si discute"
+          "testo": "si scarta comunque · se la impegni al Consiglio, il rivale entra dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -1007,7 +1007,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "non si scarta mai · costa: il rapporto fra chi gioca e il rivale cambia"
+          "testo": "non si scarta mai · se la impegni al Consiglio, il rapporto fra chi gioca e il rivale cambia"
         },
         {
           "voce": "PRENDI",
@@ -1067,7 +1067,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 se ti opponi · si scarta se la impegni · costa: nella sede del rivale diventa #indebitata"
+          "testo": "+1 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, nella sede del rivale diventa #indebitata"
         },
         {
           "voce": "PRENDI",
@@ -1127,7 +1127,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sul suo tema · si scarta se la impegni · costa: Le Vie Interrotte sale"
+          "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, Le Vie Interrotte sale"
         },
         {
           "voce": "PRENDI",
@@ -1187,7 +1187,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: chi gioca se ne va dove si discute"
+          "testo": "si scarta comunque · se la impegni al Consiglio, chi gioca se ne va dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -1247,7 +1247,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: La Carestia sale"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, La Carestia sale"
         },
         {
           "voce": "PRENDI",
@@ -1307,7 +1307,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sempre · si scarta se la impegni · costa: dove si discute diventa #inquieta"
+          "testo": "+1 sempre · si scarta se la impegni · se la impegni al Consiglio, dove si discute diventa #inquieta"
         },
         {
           "voce": "PRENDI",
@@ -1363,7 +1363,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -1427,7 +1427,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 se ti opponi · si scarta se la impegni · costa: dove si discute diventa tagliata fuori"
+          "testo": "+1 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, dove si discute diventa tagliata fuori"
         },
         {
           "voce": "PRENDI",
@@ -1483,7 +1483,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+2 se ti opponi · si scarta se la impegni · costa: La Carestia sale, viene giu' Presidio dove si discute"
+          "testo": "+2 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, La Carestia sale, viene giu' Presidio dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -1543,7 +1543,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -1603,7 +1603,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "torna in mano se la proposta passa · costa: si alza Archivio dove si discute"
+          "testo": "torna in mano se la proposta passa · se la impegni al Consiglio, si alza Archivio dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -1663,7 +1663,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 se ti opponi · si scarta se la impegni · costa: il mondo registra: i conti sono pubblici"
+          "testo": "+1 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, il mondo registra: i conti sono pubblici"
         },
         {
           "voce": "PRENDI",
@@ -1727,7 +1727,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' il ponte rotto"
+          "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' il ponte rotto"
         },
         {
           "voce": "PRENDI",
@@ -1787,7 +1787,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "torna in mano se la proposta passa · costa: la domanda in gioco si apre a tutti"
+          "testo": "torna in mano se la proposta passa · se la impegni al Consiglio, la domanda in gioco si apre a tutti"
         },
         {
           "voce": "PRENDI",
@@ -1851,7 +1851,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco si apre a tutti"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco si apre a tutti"
         },
         {
           "voce": "PRENDI",
@@ -1911,7 +1911,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: la domanda in gioco si apre a tutti"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, la domanda in gioco si apre a tutti"
         },
         {
           "voce": "PRENDI",
@@ -1971,7 +1971,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -2031,7 +2031,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+2 se ti opponi · si scarta comunque · costa: nella sede del rivale diventa #inquieta"
+          "testo": "+2 se ti opponi · si scarta comunque · se la impegni al Consiglio, nella sede del rivale diventa #inquieta"
         },
         {
           "voce": "PRENDI",
@@ -2091,7 +2091,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: nella capitale diventa #inquieta"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, nella capitale diventa #inquieta"
         },
         {
           "voce": "PRENDI",
@@ -2151,7 +2151,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 se ti opponi · si scarta se la impegni · costa: dove si discute non e' piu' in lutto"
+          "testo": "+1 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' in lutto"
         },
         {
           "voce": "PRENDI",
@@ -2211,7 +2211,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: chi gioca se ne va dove si discute"
+          "testo": "si scarta comunque · se la impegni al Consiglio, chi gioca se ne va dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -2271,7 +2271,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #affamata"
+          "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #affamata"
         },
         {
           "voce": "PRENDI",
@@ -2331,7 +2331,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: dove si discute non e' piu' #razionata"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #razionata"
         },
         {
           "voce": "PRENDI",
@@ -2391,7 +2391,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+2 se ti opponi · si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "+2 se ti opponi · si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -2451,7 +2451,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: il rapporto fra chi gioca e il rivale cambia"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, il rapporto fra chi gioca e il rivale cambia"
         },
         {
           "voce": "PRENDI",
@@ -2507,7 +2507,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",
@@ -2567,7 +2567,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: dove si discute non e' piu' tagliata fuori"
+          "testo": "si scarta comunque · se la impegni al Consiglio, dove si discute non e' piu' tagliata fuori"
         },
         {
           "voce": "PRENDI",
@@ -2627,7 +2627,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sempre · si scarta se la impegni · costa: il mondo registra: il debito e' stato chiamato"
+          "testo": "+1 sempre · si scarta se la impegni · se la impegni al Consiglio, il mondo registra: il debito e' stato chiamato"
         },
         {
           "voce": "PRENDI",
@@ -2687,7 +2687,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta se la impegni · costa: La Carestia scende"
+          "testo": "si scarta se la impegni · se la impegni al Consiglio, La Carestia scende"
         },
         {
           "voce": "PRENDI",
@@ -2747,7 +2747,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+2 se ti opponi · si scarta se la impegni · costa: dove si discute diventa #razionata"
+          "testo": "+2 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, dove si discute diventa #razionata"
         },
         {
           "voce": "PRENDI",
@@ -2807,7 +2807,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: il rivale entra dove si discute"
+          "testo": "si scarta comunque · se la impegni al Consiglio, il rivale entra dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -2867,7 +2867,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #magra"
+          "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #magra"
         },
         {
           "voce": "PRENDI",
@@ -2927,7 +2927,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "+1 se ti opponi · si scarta se la impegni · costa: si alza Pedaggio dove si discute"
+          "testo": "+1 se ti opponi · si scarta se la impegni · se la impegni al Consiglio, si alza Pedaggio dove si discute"
         },
         {
           "voce": "PRENDI",
@@ -2987,7 +2987,7 @@
         },
         {
           "voce": "IMPEGNI",
-          "testo": "si scarta comunque · costa: la domanda in gioco sale"
+          "testo": "si scarta comunque · se la impegni al Consiglio, la domanda in gioco sale"
         },
         {
           "voce": "PRENDI",

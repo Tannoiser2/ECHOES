@@ -144,7 +144,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "IMPEGNI",
-      "testo": "+1 sul suo tema · si scarta se la impegni · costa: dove si discute non e' piu' #contesa"
+      "testo": "+1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #contesa"
     },
     {
       "voce": "PRENDI",
