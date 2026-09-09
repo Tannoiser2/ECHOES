@@ -20,7 +20,7 @@ from pathlib import Path
 # I segnalini e la traccia (D-097) chiudono il fascicolo, dopo i mazzi. Il
 # sort_key spoglia l'ultimo suffisso numerico, quindi i nomi qui sono i gambi.
 DECK_ORDER = [
-    "asset", "echo", "tension", "destiny", "entity", "region",
+    "asset", "tension", "destiny", "entity", "region",
     "segnalini_chr", "segni", "traccia",
 ]
 

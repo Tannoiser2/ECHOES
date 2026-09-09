@@ -31,7 +31,6 @@ extends RefCounted
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const StoneRules := preload("res://scripts/world/stone_rules.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
-const EchoText := preload("res://scripts/core/echo_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
@@ -296,8 +295,6 @@ func _narrow(options: Array, field: String, prompt: String, keep_group: bool) ->
 ## (`AssetText.ACTIONS`): un verbo si spiega in un posto solo.
 func _verb_label(verb: String, how_many: int) -> String:
 	var said: String = str(AssetText.ACTIONS.get(verb, verb))
-	if verb == "PLAY_ECHO":
-		said = "CALARE UN ECO — la parola di una carta, al posto di un'Azione"
 	if how_many > 1:
 		said += "   (%d modi)" % how_many
 	return said
@@ -383,24 +380,6 @@ func _clauses_this_switches_off(
 func _action_options(entity_id: String, session: RefCounted) -> Array:
 	var out: Array = []
 	var service: RefCounted = session.service
-
-	# D-359: l'Eco e' il terzo blocco della carta Asset che hai in mano - la sua
-	# versione potenziata. Si offre accanto alle Azioni normali della stessa
-	# carta, cosi' la scelta si vede: la stessa carta, o la sua parola.
-	for asset_id in service.hand(entity_id):
-		var request: Dictionary = {"asset_card_id": str(asset_id)}
-		if session.actions.can_execute(entity_id, "PLAY_ECHO", request):
-			var echo_id: String = str(
-				(session.data.assets[str(asset_id)] as Dictionary)["echo_id"]
-			)
-			# Il titolo da solo non dice niente: che tono ha e cosa fa stanno
-			# accanto, come per le carte Asset (EchoText).
-			out.append({
-				"label": EchoText.label(
-					session.data.echo_cards[echo_id] as Dictionary, session.data
-				),
-				"template": "PLAY_ECHO", "params": request,
-			})
 
 	for family in ["AUTHORITY", "FORCE", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]:
 		var request: Dictionary = {"family": family}
@@ -567,7 +546,7 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 
 
 ## Ogni voce sa da che verbo viene e da quale offerta nuda (D-490). Quelle che
-## non passano dalla mano — l'Eco, il passo — se lo dicono da sole.
+## non passano dalla mano — il passo — se lo dicono da sole.
 static func _named(options: Array) -> Array:
 	for option in options:
 		var entry: Dictionary = option as Dictionary
@@ -600,8 +579,8 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 	var out: Array = []
 	for offer in offers:
 		var template: String = str((offer as Dictionary)["template"])
-		# Le carte del Narratore sono un mazzo a parte, e PASS non costa niente.
-		if template == "PLAY_ECHO" or template == "PASS":
+		# PASS non costa niente.
+		if template == "PASS":
 			out.append(offer)
 			continue
 		for asset_id in hand:

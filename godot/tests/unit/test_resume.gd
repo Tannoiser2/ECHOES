@@ -26,10 +26,10 @@ func _fresh() -> RefCounted:
 
 
 ## Interrompere sull'**ultimo** round di un Atto e il caso che rompe tutto se lo
-## si sbaglia: la carta Echo di fine Atto non e ancora uscita, e riprendere dal
-## primo round dell'Atto dopo la salterebbe - cioe perderebbe l'unica mossa che
-## il mondo fa da solo. Stesso confronto, punto di interruzione diverso.
-func test_a_chronicle_resumed_on_an_act_boundary_still_plays_its_echo_card() -> void:
+## si sbaglia: il sipario dell'Atto — il Consiglio che lo chiude — non e' ancora
+## sceso, e riprendere dal primo round dell'Atto dopo lo salterebbe. Stesso
+## confronto, punto di interruzione diverso.
+func test_a_chronicle_resumed_on_an_act_boundary_still_closes_its_act() -> void:
 	await _compare_interrupted_at(1, 3)
 
 

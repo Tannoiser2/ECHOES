@@ -71,13 +71,6 @@ func _initialize() -> void:
 		# What the world played at each Act end, in order.
 		var cards: Array = []
 		var before_cards: int = 0
-		session.chronicle.phase_changed.connect(
-			func(_act: int, _round: int, phase: String) -> void:
-				if phase != "ACT_ECHO":
-					return
-				before_cards = (session.world["echo_played"] as Array).size()
-		)
-
 		# Captured on the first phase that is not SETUP, because inheritance is
 		# applied *inside* run(): reading it here would compare this year against
 		# the factory default and report a handover that never happened.
@@ -99,14 +92,6 @@ func _initialize() -> void:
 
 		var report: Dictionary = await session.run(PolicyDecider.new(session.log))
 		var world: Dictionary = session.world
-
-		for card_id in world["echo_played"]:
-			var card: Dictionary = data.echo_cards[str(card_id)]
-			cards.append({
-				"title": str(card["title"]),
-				"family": str(card["dramatic_family"]),
-				"function": str(card["function_id"]),
-			})
 
 		var confluences: Array = []
 		for result in report["confluences"]:

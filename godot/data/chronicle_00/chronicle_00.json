@@ -60,36 +60,6 @@
         "REG_TERRE_NAHR",
         "REG_VALLE_VERDE"
       ],
-      "act_echo_pools": [
-        {
-          "act": 1,
-          "families": [
-            "PRESSURE"
-          ]
-        },
-        {
-          "act": 2,
-          "families": [
-            "RUPTURE",
-            "RUPTURE",
-            "TURN",
-            "TURN",
-            "PRESSURE",
-            "MEMORIA"
-          ]
-        },
-        {
-          "act": 3,
-          "families": [
-            "RESOLUTION",
-            "RESOLUTION",
-            "RESOLUTION",
-            "TURN",
-            "RUPTURE",
-            "MEMORIA"
-          ]
-        }
-      ],
       "confluence_templates": [
         "CNF_FAMINE_01",
         "CNF_AWAKENING_01",
@@ -183,8 +153,7 @@
           "TEN_CHARTER": [
             "charter_written",
             "no_charter",
-            "charter_for_all",
-            "charter_temporary"
+            "charter_for_all"
           ],
           "TEN_DEBT": [
             "debt_called",
@@ -223,7 +192,6 @@
             "crown_divided",
             "crown_dispossessed",
             "oath_broken",
-            "amnesty_granted",
             "succession_witnessed",
             "succession_settled"
           ],
@@ -413,6 +381,11 @@
       },
       "acquire_rules": {
         "can_build_stone": true
+      },
+      "personal_decks": {
+        "size": 18,
+        "draw_per_act": 6,
+        "identity_cards": 2
       }
     }
   ]

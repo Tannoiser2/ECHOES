@@ -141,11 +141,6 @@ func test_the_switch_takes_the_six_actions_off_the_table() -> void:
 		str(refused["error"]).contains("con le carte"),
 		"e il motivo lo dice: «%s»" % str(refused["error"])
 	)
-	# Le carte del Narratore restano: sono un mazzo a parte, non la mano.
-	assert_eq(
-		resolver.check(SEAT, "PLAY_ECHO", {}).contains("con le carte"), false,
-		"le carte del Narratore non passano di qui"
-	)
 	chronicle.erase("actions_from_cards")
 
 

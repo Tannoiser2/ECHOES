@@ -31,7 +31,6 @@ const SaveSerializer := preload("res://scripts/core/save_serializer.gd")
 const DevDashboard := preload("res://ui/dev_dashboard.gd")
 const ExportPreview := preload("res://ui/export_preview.gd")
 const ChronicleBookView := preload("res://ui/chronicle_book_view.gd")
-const EchoCardView := preload("res://ui/echo_card_view.gd")
 const LogExport := preload("res://scripts/core/log_export.gd")
 const TableChoice := preload("res://scripts/core/table_choice.gd")
 const ThemeDecksView := preload("res://ui/theme_decks_view.gd")
@@ -104,9 +103,6 @@ var _last_seed: int = -1
 ## finita, quando la sessione non c'e' piu'.
 var _last_chronicle: String = ""
 var _last_year: int = 0
-## The Act-end Echo card waiting to be looked at, and what it did.
-var _echo: PanelContainer
-var _pending_echo: Dictionary = {}
 ## The map and the Council share the middle of the screen: one is visible at a
 ## time, because they answer different questions and a player looking at a
 ## Council is not choosing where to walk.
@@ -437,11 +433,6 @@ func _build() -> void:
 	_sheet.closed.connect(func() -> void: _sheet.visible = false)
 	_centre.add_child(_sheet)
 
-	_echo = EchoCardView.new()
-	_echo.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_echo.visible = false
-	_centre.add_child(_echo)
-
 	_dev = DevDashboard.new()
 	_dev.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_dev.visible = false
@@ -668,11 +659,11 @@ func _refresh() -> void:
 		_dev.render(_session)
 	var council_open: bool = _session.confluence.is_open()
 	var busy: bool = (
-		_help.visible or _echo.visible or _dev_open or _export_open or _cronaca_open
+		_help.visible or _dev_open or _export_open or _cronaca_open
 	)
 	# **Il Consiglio copre tutto** (D-464): quando e' aperto e' la sola cosa
 	# sullo schermo, e sotto il tavolo resta com'era.
-	_council.visible = council_open and not _echo.visible
+	_council.visible = council_open
 	_map.visible = not busy
 	if council_open:
 		_board.render(_session, _viewer)
@@ -751,7 +742,11 @@ func _context_line() -> String:
 			margin = left
 			closest = id
 	if closest == "":
-		return "Le domande dell'anno sono tutte velate: TRAMA per leggerne una."
+		# D-496: col velo che copre la sola soglia i numeri si leggono tutti —
+		# quello che manca e' sapere quando esplodono, ed e' quello che TRAMARE
+		# va a prendere. «Tutte velate» faceva credere coperta anche la colonna
+		# che il giocatore ha davanti.
+		return "Di nessuna domanda sai a quanto esplode: TRAMA per leggerne una."
 
 	var title: String = str(_session.data.tensions[closest]["title"])
 	var tail: String = "" if veiled == 0 else "  (e %d che non puoi ancora leggere)" % veiled
@@ -900,37 +895,16 @@ func _load_help_data() -> RefCounted:
 ## screen holds the snapshot and stops here on its own - no decider is asked
 ## anything, because there is nothing to decide (D-039).
 func _beat() -> void:
-	await _echo_beat()
 	if _closed_council.is_empty():
 		return
 	var council: Dictionary = _closed_council
 	_closed_council = {}
 	_help_button.button_pressed = false
 	_council.visible = true
-	_echo.visible = false
 	_board.render_closed(_session, council)
 	_status.render(_session, _viewer)
 	_hand.render(_session, _viewer, "")
 	await _board.ask("Il Consiglio ha deciso.", ["Avanti"])
-
-
-## The same pause, for the card that ends an Act. It comes first when both are
-## waiting, because that is the order they happened in: the card is drawn, and
-## then it may force the Council that follows it (D-044).
-func _echo_beat() -> void:
-	if _pending_echo.is_empty() or _viewer == "":
-		_pending_echo = {}
-		return
-	var drawn: Dictionary = _pending_echo
-	_pending_echo = {}
-	_help_button.button_pressed = false
-	_echo.visible = true
-	_council.visible = false
-	_map.visible = false
-	_echo.render(drawn["card"], drawn["applied"], _session.data)
-	_status.render(_session, _viewer)
-	await _echo.wait()
-	_echo.visible = false
 
 
 # --- the screen's whole API -------------------------------------------------
@@ -2015,13 +1989,6 @@ func _drive(data: RefCounted, humans: Array, chronicle_id: String) -> void:
 			# vuol dire che riprendere costa al massimo il round in corso.
 			if phase == "THRESHOLD_CHECK":
 				SaveManager.autosave(_session)
-	)
-	# Held, not shown: the card is drawn deep inside the Act and the screen has
-	# nowhere to suspend there. It is looked at at the next question, like the
-	# closed Council.
-	_session.chronicle.act_echo_drawn.connect(
-		func(card: Dictionary, applied: Array) -> void:
-			_pending_echo = {"card": card.duplicate(true), "applied": applied.duplicate(true)}
 	)
 	# L'eco del cambiamento (l'inventario dell'app): ogni effetto che tocca una
 	# Regione accende un anello che sfuma li' dove e' successo. La mappa decide

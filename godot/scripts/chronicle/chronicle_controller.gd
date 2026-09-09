@@ -18,12 +18,6 @@ const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 signal phase_changed(act: int, round: int, phase: String)
 signal confluence_resolved(result: Dictionary)
-## The Act-end Echo card, with the Effects it applied. Emitted after they land,
-## so whoever draws it can say what the card *did* and not only what it says.
-## Nothing in the engine listens: it exists because three times a Chronicle the
-## story turns on a card nobody at the table ever sees (D-044).
-signal act_echo_drawn(card: Dictionary, applied: Array)
-
 var session: RefCounted
 var world: Dictionary
 var data: RefCounted
@@ -95,8 +89,8 @@ func run(decider: Object) -> Dictionary:
 			from_act += 1
 			from_round = 1
 	# And if that round is off the end of the Act, the Act's own ending has not
-	# happened yet: the Echo card is drawn there, and skipping it would lose the
-	# one move the world makes on its own.
+	# happened yet: the Council that closes the Act runs there, and skipping it
+	# would lose it.
 	elif from_round > rounds:
 		log.section("SI RIPRENDE - fine dell'Atto %d" % from_act)
 		await end_of_act(from_act, decider)
@@ -174,6 +168,78 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
 	await end_of_act(act, decider)
+
+
+## **Si pesca dal proprio mazzetto** (D-499, ISSUES 136).
+##
+## Il mazzetto e' il **pozzo** di ogni casa — parola del committente: *«i
+## mazzetti rimangono separati e fanno da pozzo quando si pescano nuove
+## carte»* — e a inizio Atto se ne pescano `draw_per_act`, uguali per tutti.
+##
+## **Quando il pozzo finisce si rimescola lo scarto**, che e' quello che rende
+## il mazzetto un mazzo e non una scorta: le carte giocate tornano, e quelle
+## acquisite durante l'anno le trovi gli Atti dopo. Se non c'e' piu' niente
+## nemmeno nello scarto, si pesca quello che c'e' e si va avanti: una casa senza
+## carte e' il difetto che questa regola viene a togliere, non uno da rifare
+## qui in silenzio.
+##
+## Il tetto della mano resta quello della Chronicle: pescare oltre il tetto
+## vorrebbe dire scartare subito, e al tavolo nessuno pesca per buttare.
+func _draw_from_personal_deck(act: int) -> void:
+	var rules: Dictionary = _chronicle.get("personal_decks", {}) as Dictionary
+	var wanted: int = int(rules.get("draw_per_act", 0))
+	if wanted <= 0:
+		return
+	var hand_cap: int = int(_chronicle.get("hand_limit", 0))
+	for entity_id in session.service.active_entities():
+		var id: String = str(entity_id)
+		var deck: Dictionary = (world.get("personal_decks", {}) as Dictionary).get(id, {}) as Dictionary
+		if deck.is_empty():
+			continue
+		var room: int = wanted
+		if hand_cap > 0:
+			room = mini(wanted, maxi(0, hand_cap - (session.service.hand(id) as Array).size()))
+		var drawn: int = 0
+		for _i in range(room):
+			var payload: Dictionary = _top_of_deck(deck, id)
+			if payload.is_empty():
+				break
+			payload["source"] = "PERSONAL_DECK"
+			var effect: Dictionary = Effect.make(
+				"GRANT_ASSET", "entity", id, payload, {"kind": "act_start", "act": act}
+			)
+			if not (session.applier.apply(effect) as Dictionary).is_empty():
+				drawn += 1
+		if drawn > 0:
+			log.bullet("%s pesca %d carte dal suo mazzetto." % [
+				str(data.entities.get(id, {}).get("name", id)), drawn,
+			])
+
+
+## Quale carta e' in cima al pozzo, **senza toglierla**: la toglie l'Effect, che
+## e' l'unico che puo' mutare il mondo (effect-sourcing). Toglierla qui la faceva
+## sparire prima che l'applier la trovasse, e la pesca falliva alla prima carta.
+##
+## Il rimescolo lo calcola questa funzione, col seme, e lo **porta nel payload**:
+## e' la stessa strada di `_draw_one` nel resolver, e per la stessa ragione —
+## l'applier verifica, non sceglie.
+func _top_of_deck(deck: Dictionary, entity_id: String) -> Dictionary:
+	var draw: Array = deck.get("draw", []) as Array
+	var payload: Dictionary = {}
+	if draw.is_empty():
+		var discard: Array = deck.get("discard", []) as Array
+		if discard.is_empty():
+			return {}
+		var reshuffled: Array = session.rng.shuffle(discard)
+		payload["reshuffle"] = reshuffled
+		draw = reshuffled
+		log.bullet("Il mazzetto di %s viene rimescolato dagli scarti." % str(
+			data.entities.get(entity_id, {}).get("name", entity_id)
+		))
+	if draw.is_empty():
+		return {}
+	payload["asset_id"] = str(draw[0])
+	return payload
 
 
 ## La stagione gira e le porte si riaprono: i tag `evicted:` messi dai Consigli
@@ -716,16 +782,14 @@ func _score_the_debate(
 	return deltas
 
 
-## ISSUES 23 (D-118): la carta di Propp non si pesca piu' da sola a fine atto —
-## la cala un giocatore, nel suo turno, pagandola. Qui resta solo il sipario:
-## se in tutto l'atto nessuno ha parlato, il silenzio e' una scelta del tavolo
-## (decisione del committente: nessuna rete di sicurezza).
+## Il sipario di un Atto: si chiude col suo Consiglio (D-214).
+##
+## La fase si chiama ancora `ACT_ECHO` e la parola regge: quello che chiude un
+## Atto e' **l'Eco che il Consiglio lascia** — il ricordo, non la carta. Le
+## carte Eco se ne sono andate in [D-500], e con loro il contatore di quante
+## ne fossero state calate nell'Atto.
 func end_of_act(act: int, decider: Object) -> void:
 	_set_phase(act, int(_chronicle["rounds_per_act"]), "ACT_ECHO")
-	var played: int = int(world.get("echoes_played_in_act", 0))
-	world["echoes_played_in_act"] = 0
-	if played == 0:
-		log.bullet("L'Atto %d si chiude senza una carta del Narratore: il silenzio resta scritto." % act)
 	await _council_closing_the_act(act, decider)
 
 
@@ -961,6 +1025,19 @@ func _hottest_with_something_to_say() -> String:
 ##
 ## Vive solo se la Chronicle dichiara `hand_refill`. Senza, non succede niente.
 func _refill_hands(act: int) -> void:
+	# **Il mazzetto personale, quando la Chronicle ce l'ha** (D-499, ISSUES 136).
+	#
+	# Il rubinetto qui sotto pesca **in base alla mappa**: due carte per pedina,
+	# una per Regione tenuta, fra un pavimento di 2 e un tetto di 6. Misurato,
+	# da' circa **quattro** carte per Atto contro un fabbisogno di **3,92** — si
+	# sta esattamente al limite, senza margine, ed e' per questo che una
+	# Occasione su cinque non ha altro che «passa».
+	#
+	# Il mazzetto lo sostituisce con un numero **fisso e uguale per tutti**,
+	# come il committente ha chiesto: cambia **cosa** peschi, non quanto.
+	if not (_chronicle.get("personal_decks", {}) as Dictionary).is_empty():
+		_draw_from_personal_deck(act)
+		return
 	var rules: Dictionary = _chronicle.get("hand_refill", {}) as Dictionary
 	if rules.is_empty():
 		return
@@ -1040,87 +1117,6 @@ func _fullest_deck() -> String:
 			most = pile
 			best = str(family)
 	return best
-
-
-## L'Eco che parla (D-118, D-359). Costo e legalita' li ha gia' giudicati
-## l'ActionResolver, che ha anche gia' scartato la carta calata e il suo prezzo;
-## qui l'Eco parla - gli effetti si applicano e si raccontano, i presagi
-## scattano, e un eventuale Consiglio prescritto si prenota nello stesso posto
-## del CLAIM (`forced_confluence`), per aprirsi a fine round.
-##
-## Non arriva piu' da un mazzo: arriva dalla faccia della carta Asset che
-## qualcuno aveva in mano, ed e' per questo che la pila `echo_played` e' anche
-## il registro di quali carte sono state spese per la loro versione potenziata.
-func play_narrator_card(entity_id: String, card_id: String, source: Dictionary) -> Array:
-	var card: Dictionary = data.echo_cards[card_id]
-	log.section("LA CARTA DEL NARRATORE - %s (%s)" % [str(card["title"]), str(card["dramatic_family"])])
-	log.bullet("%s la cala sul tavolo." % _name(entity_id))
-	log.line(str(card["description"]))
-	# La funzione della carta **non si scrive piu' sul mondo** (D-358). Era un
-	# segno che il giocatore non vedeva — `effect_text` lo nascondeva apposta — e
-	# decideva chi poteva uscire l'anno dopo: viveva solo nell'app. Adesso la
-	# carta si posa scoperta sul tavolo, e la domanda «e' gia' successa una cosa
-	# di questo genere?» si fa guardando quella pila.
-	if not (world["echo_played"] as Array).has(card_id):
-		(world["echo_played"] as Array).append(card_id)
-	var applied: Array = []
-	for hook in card["effect_hooks"]:
-		# Chi cala la carta e' il suo proponente: gli effetti scritti per un
-		# Consiglio ($proponent, $rival) leggono la mano che l'ha giocata.
-		var bindings: Dictionary = card_bindings(hook, entity_id)
-		if str(hook["kind"]) == "CONSEQUENCE":
-			for effect in session.compiler.compile(str(hook["consequence_id"]), bindings, source):
-				var stored: Dictionary = session.applier.apply(effect)
-				if not stored.is_empty():
-					applied.append(stored)
-		else:
-			var effect: Dictionary = session.compiler.compile_spec(hook["effect"], bindings, source)
-			var stored: Dictionary = session.applier.apply(effect)
-			if not stored.is_empty():
-				applied.append(stored)
-	for effect in applied:
-		var said: String = EffectNarrator.narrate(effect, data)
-		if said != "":
-			log.bullet(said)
-	session.tensions.fire_omens(source)
-	world["echoes_played_in_act"] = int(world.get("echoes_played_in_act", 0)) + 1
-	act_echo_drawn.emit(card, applied)
-	var forced: Variant = card.get("forces_confluence_on", null)
-	if forced != null and world["tensions"].has(str(forced)):
-		world["forced_confluence"] = {"tension_id": str(forced), "entity_id": entity_id}
-		log.bullet("La carta prescrive un Consiglio su %s." % str(forced))
-	return applied
-
-
-## An Echo card has no Confluence behind it, so `$region_focus` has nothing to
-## resolve against unless the card says which question it is about. `bindings`
-## may name a `focus_tension`; without one the Chronicle's first Tension is used,
-## which keeps every card written before this still working.
-func card_bindings(hook: Dictionary, proponent: String = "") -> Dictionary:
-	var bindings: Dictionary = (hook.get("bindings", {}) as Dictionary).duplicate(true)
-	var tension_id: String = str(bindings.get("focus_tension", ""))
-	if tension_id == "" or not world["tensions"].has(tension_id):
-		tension_id = str((world["tensions"] as Dictionary).keys()[0])
-	bindings["region_focus"] = session.confluence.narrative.focus_region(tension_id)
-	bindings["tension"] = tension_id
-	# A card has no proponent, but the Consequences it fires were written for a
-	# Confluence and expect one. Whoever would carry that question if it opened
-	# now is the honest answer - and it is the same rule the Confluence uses, so
-	# a card and a council name the same person in the same world. Una carta
-	# calata da una mano (ISSUES 23) il proponente ce l'ha: chi l'ha giocata.
-	if proponent != "":
-		bindings["proponent"] = proponent
-	elif not bindings.has("proponent"):
-		bindings["proponent"] = session.service.determine_proponent(tension_id)
-	bindings["rival"] = session.confluence.narrative.rival_id(
-		str(bindings["region_focus"]), str(bindings["proponent"])
-	)
-	bindings["capital"] = session.confluence.narrative.capital_region()
-	bindings["adjacent"] = session.confluence.narrative.adjacent_to(str(bindings["region_focus"]))
-	bindings["rival_seat"] = session.confluence.narrative.seat_of(
-		str(bindings["rival"]), str(bindings["region_focus"])
-	)
-	return bindings
 
 
 func chronicle_end() -> Dictionary:

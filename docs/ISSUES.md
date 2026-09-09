@@ -10138,6 +10138,174 @@ sposta una virgola della partita, che era il punto.
 - quello che nessuna sonda misura: **un Consiglio giocato da persone**.
 
 
+### 136. Passare senza poter fare nulla: la mano, le Azioni e quello che si possiede
+
+`regole` · `ux` · voluta dal committente · **aperta in 0.1.466**
+
+Il committente, dopo un anno giocato a mano:
+
+> *«La mano di carte e le azioni di gioco sono da rivedere: ho passato l'atto 2
+> e 3 senza carte in mano e ho dovuto passare, questo e' inaccettabile. Passare
+> senza poter fare nulla. Quindi e' da rivedere l'intero meccanismo. A questo
+> punto ogni atto bisogna pescare le carte da un mazzetto precomposto,
+> facciamolo diventare un deckbuilding. Le azioni devono fare qualcosa, le
+> presenze, le pietre che si possiedono devono poter farmi fare qualcosa.
+> Altrimenti non ne usciamo piu'. Bisogna fare combo tra quello che si ha in
+> mano e quello che fanno fare i tag sulla mappa o sulla scheda entita'. Anche
+> il potere di una entita' mi deve permettere di fare qualcosa.»*
+
+**Misurato prima di rispondere**, con una sonda nuova
+(`run_empty_hand_probe.gd`) che guarda la mano **un attimo prima** di ogni
+scelta, su 30 anni dal seme 7000, tavolo misto:
+
+| atto | occasioni | mano media | a secco | **passa** | passa a secco |
+|---|---|---|---|---|---|
+| 1 | 720 | 3,32 | 29 (4,0%) | **423 (58,8%)** | 29 (4,0%) |
+| 2 | 720 | 3,29 | 45 (**6,2%**) | **414 (57,5%)** | 45 (6,2%) |
+| 3 | 720 | 3,66 | 25 (3,5%) | **400 (55,6%)** | 25 (3,5%) |
+
+La sonda si dichiara non cieca: **2160 Occasioni contate, 2160 promesse dalla
+Chronicle**, e le scelte del decisore sono PLAY_CARD 266, PASS 408, PLAY_ECHO 46
+su dieci anni. *(PLAY_ECHO era ancora una voce del menu: in 0.1.470 non c'e'
+piu' — [D-500](DECISIONS.md#d-500).)*
+
+**Il primo numero l'ho letto male, e va detto.** Avevo scritto che la mano
+vuota vale il 4-6% e che il 57% e' passare **avendo** carte — mettendo in fila
+il tavolo della **policy** (che passa spesso per scelta) e quello di una
+**persona**. Sono due tavoli diversi, ed e' esattamente quello che la regola di
+casa vieta: *un numero si scrive col tavolo su cui e' misurato*
+([D-391](DECISIONS.md#d-391)).
+
+**Sul tavolo che conta — quello giocato da una persona — il committente ha
+ragione in pieno.** `run_blocked_probe.gd`, 15 anni dal seme 7000, siede al
+posto suo e chiede al motore il perche' di ogni blocco:
+
+| | |
+|---|---|
+| Occasioni viste da chi gioca | 270 |
+| con la **sola voce «passa»** | **55 (20%)** — una su cinque |
+| di quelle, con la **mano vuota** | **39 (70%)** |
+| carte in mano nei momenti bloccati | **0,44** in media |
+
+**La mano vuota e' la causa principale, non il contorno.** Sette blocchi su
+dieci sono mano vuota, e nei momenti bloccati la mano ha meno di mezza carta.
+Su 18 Occasioni l'anno, restare fermi 3-4 volte e' quello che il committente ha
+vissuto: *«ho passato l'atto 2 e 3»*.
+
+**E c'e' una seconda causa vera**, il 38% delle ragioni contate: **24 carte
+arrivano a un luogo e l'Azione e' rifiutata lo stesso** — sempre le stesse due,
+*Giuramento* e *Promessa di Nozze*, FORGIARE che chiede un'altra casa e il suo
+consenso. Il bersaglio a segni le fa passare, il verbo no.
+
+Quindi tutt'e due le meta' della frase del committente reggono, e la prima e' la
+piu' grossa: **le carte mancano davvero**, e in piu' qualche carta che c'e' non
+si puo' giocare.
+
+**Fatto quando:**
+
+1. ✔ **perche' si passa avendo carte** — misurato in 0.1.466 con
+   `run_blocked_probe.gd`: **20%** delle Occasioni bloccate, **70%** per mano
+   vuota;
+2. ✔ **il rubinetto della mano** — **fatto in 0.1.469**
+   ([D-499](DECISIONS.md#d-499)): il mazzetto personale, 18 carte uguali per
+   tutti e composizione diversa, 6 pescate a inizio Atto, e le carte giocate
+   tornano nel proprio scarto. **Le Occasioni bloccate passano da 55 su 270
+   (20%) a 9 (3%)**, e di quelle una sola e' mano vuota. Il cancello resta **0
+   su 8** e le Verita' salgono da 325 a **360** (misto) e da 324 a **402**
+   (uniforme);
+3. **le Azioni fanno qualcosa** — dei nove blocchi rimasti, **dodici ragioni su
+   tredici** sono *«la carta arriva al luogo, ma l'Azione e' rifiutata lo
+   stesso»*: sempre *Giuramento* e *Promessa di Nozze*, FORGIARE che chiede
+   un'altra casa **e il suo consenso**. E' quello che resta da rimediare, ed e'
+   adesso **la causa principale**;
+4. **il potere dell'entita' apre un'Azione sua**;
+5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
+   spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
+
+   **E il mazzo di Echi non si fa piu': le carte Eco non esistono.** Il
+   committente aveva chiesto di contarli — *«gli echi sono solo tre/quattro per
+   partita, un po' poco»* — e `run_echo_probe.gd` ha risposto **3,73 l'anno su
+   tutto il tavolo** (56 su 15 anni): con quattro case sedute, **meno di uno a
+   testa**. Il **66%** dei Consigli lasciava un Eco, quindi non erano rari
+   perche' il criterio fosse stretto: erano pochi perche' i Consigli sono
+   **5,58** l'anno. Vista la misura, la parola e' stata *«lascia perdere gli
+   echi, che non dovrebbero piu' esistere come carte»*, e in **0.1.470**
+   ([D-500](DECISIONS.md#d-500)) le 48 carte Eco se ne sono andate. L'Eco-**ricordo**
+   — `CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — resta intero;
+
+6. **l'Eco non sa di chi e'** — il payload porta `participants`, `outcome`,
+   `tension_id`; chi ha **vinto** no. Le case partecipano a quasi tutti gli Echi
+   (3,1-4,0 su 3,73 scritti), quindi «partecipare» non distingue nessuno. Era
+   nato come ostacolo al mazzo di Echi, e quel mazzo non si fa piu': **il buco
+   resta lo stesso**, perche' la Cronaca che la saga eredita non sa dire chi ha
+   ottenuto cosa;
+7. un'altra ora con l'app in mano.
+
+**Dove sono i numeri del punto 2 dopo 0.1.470.** Tolte le carte Eco, il tavolo
+misurato non e' piu' quello di 0.1.469 e i numeri vanno riletti insieme: i
+Consigli passano da 5,58 a **5,68** l'anno, le Verita' da 360 a **393/391**
+(misto) e da 402 a **421/418** (uniforme), e il cancello resta **0 su 8** su
+tutti e due i tavoli, 100 semi dal 7000. Le Azioni che prima diventavano un Eco
+adesso restano Azioni, e il mondo le registra.
+
+**La forma l'ha decisa il committente in 0.1.468:** *«il mazzetto viene creato
+diverso da entita' a entita' in base agli obiettivi e alla presenza sulla mappa
+e poi ognuno lo costruisce mano a mano»*. Il dimensionamento e' misurato in
+[D-498](DECISIONS.md#d-498): con **3 carte per famiglia raggiunta** il mazzetto
+parte a **12,5** e da' **4,17 carte per Atto**, contro un fabbisogno di **3,92**
+— e a fine anno e' a **26,1**, cioe' raddoppia. Con 2 per famiglia si resta a
+**3,00** per Atto, sotto il fabbisogno.
+
+**Due cose restano da decidere, e non le decido io:** quante carte per famiglia
+(la tabella dice 3, ma e' una scelta di gioco) e **come entrano gli obiettivi**,
+visto che su 19 obiettivi spediti solo **due** nominano una famiglia.
+
+**Il rubinetto vecchio, per confronto, e i numeri che gia' c'erano.**
+[`run_hand_probe.gd`](../godot/cli/run_hand_probe.gd), scritta per una sua
+proposta precedente — *«le carte si pescano a inizio atto a seconda della
+presenza in una regione: due presenze, due carte»* — dice che il **fabbisogno**
+di un seggio e' **11,76 carte l'anno** (6,08 per le Azioni + 5,68 impegnate ai
+Consigli), cioe' **3,92 per Atto**; col rubinetto della mappa la mano starebbe a
+**4,91 / 5,01 / 5,26** carte nei tre Atti, contro le **3,3 / 3,3 / 3,7** di
+adesso. Il mazzetto precomposto per Atto e' una terza forma, e non e' misurata.
+
+
+### 137. ✅ La scheda del Consiglio: non si sa chi sta facendo cosa — CHIUSA in 0.1.467
+
+`ux` · voluta dal committente · **aperta in 0.1.466**
+
+> *«Anche questa scheda di costi e benefici non si capisce molto, non si sa chi
+> sta facendo cosa e le voci sono tutte mescolate.»*
+
+Guardando lo screenshot, tre difetti distinti su una scheda sola:
+
+1. **le sigle non si spiegano**: ogni voce porta `A ·`, `B ·` o `BA ·`, e da
+   nessuna parte c'e' scritto che sono **le due domande** del Consiglio;
+2. **le voci sono mescolate**: BENEFICI e COSTI sono due liste sole, con dentro
+   le voci di tutt'e due le domande in ordine sparso — chi vuole rispondere alla
+   domanda A deve pescare le sue righe fra quelle della B;
+3. **non si dice chi sceglie**: per [D-280](DECISIONS.md#d-280) il **proponente
+   compra i benefici** e **gli avversari scelgono i costi**, e la scheda non lo
+   dice da nessuna parte. Le voci grigie con *«— non qui: non cambierebbe
+   niente»* occupano meta' della lista e non sono scelte di nessuno.
+
+✔ **Fatta in 0.1.467** ([D-497](DECISIONS.md#d-497)). Dentro BENEFICI e COSTI
+ci sono tre gruppi — *per la domanda A*, *per la domanda B*, *per tutte e due* —
+e la sigla sparisce dalle righe perche' la dice il gruppo. I titoli delle due
+liste dicono chi sceglie: *«li compra chi propone»*, *«li scelgono gli
+avversari»*.
+
+**E non si raggruppa per domanda in cima**, che sarebbe stato l'ordine piu'
+ovvio: le voci comuni sono **185 su 720** (3,1 per carta) e finirebbero stampate
+due volte — al tavolo, due caselle dove ce n'e' una.
+
+**E le spente stanno in coda al loro gruppo.** Misurate invece che stimate a
+occhio — a occhio avevo scritto «meta' della lista»: sono **183 su 564**, cioe'
+**una su tre**, su 47 schede vere. Non si tolgono, perche' sapere **cosa c'era e
+non vale qui** e' meta' di una trattativa; ma vanno sotto, dove non intralciano
+la scelta.
+
+
 ### 135. Il menu, il verbale e le frasi: quello che l'app chiede non si capisce
 
 `ux` · `regole` · voluta dal committente · **aperta in 0.1.460**

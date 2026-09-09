@@ -739,6 +739,24 @@ func _grant_asset(target: Dictionary, payload: Dictionary) -> Variant:
 		touched_deck = true
 	else:
 		match str(payload.get("source", "VOID")):
+			# **Il pozzo personale** (D-499): col mazzetto acceso la carta non
+			# esce dal mazzo della famiglia ma dal proprio, e l'applier
+			# **verifica** invece di scegliere — come per «DECK», e per la
+			# stessa ragione: il rimescolo lo calcola chi pesca, col seme, e lo
+			# porta qui dentro l'Effect.
+			"PERSONAL_DECK":
+				var who: String = str(target.get("id", ""))
+				var mine: Variant = world.get("personal_decks", {}).get(who)
+				if mine == null:
+					return _fail("nessun mazzetto per '%s'" % who)
+				var own: Dictionary = mine as Dictionary
+				if payload.has("reshuffle"):
+					own["draw"] = (payload["reshuffle"] as Array).duplicate()
+					own["discard"] = []
+				var at_own: int = (own["draw"] as Array).find(asset_id)
+				if at_own < 0:
+					return _fail("'%s' non e' nel mazzetto di '%s'" % [asset_id, who])
+				(own["draw"] as Array).remove_at(at_own)
 			"DECK":
 				if deck == null:
 					return _fail("no deck for family '%s'" % family)
@@ -815,6 +833,16 @@ func _remove_asset(target: Dictionary, payload: Dictionary) -> Variant:
 		touched_deck = true
 	else:
 		match str(payload.get("destination", "DISCARD")):
+			# **Lo scarto personale** (D-499): la carta giocata torna nel proprio
+			# scarto, e da li' nel proprio mazzetto quando il pozzo finisce. E'
+			# questo che rende il mazzetto un **mazzo** e non una scorta: senza,
+			# diciotto carte durano tre Atti esatti e poi non c'e' piu' niente.
+			"OWN_DISCARD":
+				var owner: String = str(target.get("id", ""))
+				var his: Variant = world.get("personal_decks", {}).get(owner)
+				if his == null:
+					return _fail("nessun mazzetto per '%s'" % owner)
+				((his as Dictionary)["discard"] as Array).append(asset_id)
 			"DISCARD":
 				if deck == null:
 					return _fail("no deck for family '%s'" % family)

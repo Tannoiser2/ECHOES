@@ -47,7 +47,6 @@ SHAPES = {
 ## l'unica riga di questo documento che una misura non produce.
 SCHERMO = {
     "asset": "Mano (`hand_view`) + le carte in Consiglio",
-    "echo": "Tavolo (`echo_card_view`), a fine Atto",
     "tension": "Colonna (`status_panel`) e tabellone del Consiglio",
     "destiny": "Colonna: **il tarocco e le tre righe della faccia**",
     "entity": "Colonna: il tarocco della Casata",
@@ -145,7 +144,7 @@ def art_files() -> Dict[str, bool]:
     stesura di questa misura contava 97 prompt contro i 146 del brief, ed erano
     le cartelle sbagliate piu' le vite non contate."""
     out: Dict[str, bool] = {}
-    for schema in ("asset", "echo_card", "region", "entity", "destiny"):
+    for schema in ("asset", "region", "entity", "destiny"):
         for entry in items(schema):
             chiavi = [str(entry.get("art_prompt_key", ""))]
             for vita in entry.get("incarnations", []) or []:
@@ -158,7 +157,6 @@ def art_files() -> Dict[str, bool]:
 
 def survey() -> str:
     assets = items("asset")
-    echoes = items("echo_card")
     tensions = items("tension")
     destinies = items("destiny")
     entities = items("entity")

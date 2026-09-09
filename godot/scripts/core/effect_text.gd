@@ -10,10 +10,6 @@ extends RefCounted
 ## Unknown types report themselves by name rather than staying silent. A card
 ## that quietly did something is worse than a card that says `SET_ENTITY_TAG`.
 
-## The `function:` tag every Echo card writes is bookkeeping - it is how a later
-## card can require an earlier one (D-030) - and saying it out loud would tell a
-## player about the deck's plumbing instead of about their world.
-
 ## Il vocabolario della mappa, in italiano. Un tag e' un identificativo: sta
 ## bene nei dati e non si legge al tavolo. Fino a 0.1.120 il registro pubblico
 ## e la console dicevano «Valle Verde: condition:lean», che e' esattamente il

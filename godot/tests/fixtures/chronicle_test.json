@@ -60,34 +60,6 @@
         "TEN_SUCCESSION",
         "TEN_ROADS"
       ],
-      "act_echo_pools": [
-        {
-          "act": 1,
-          "families": [
-            "PRESSURE"
-          ]
-        },
-        {
-          "act": 2,
-          "families": [
-            "RUPTURE",
-            "RUPTURE",
-            "TURN",
-            "TURN",
-            "PRESSURE"
-          ]
-        },
-        {
-          "act": 3,
-          "families": [
-            "RESOLUTION",
-            "RESOLUTION",
-            "RESOLUTION",
-            "TURN",
-            "RUPTURE"
-          ]
-        }
-      ],
       "confluence_templates": [
         "CNF_FAMINE_01",
         "CNF_AWAKENING_01",
@@ -372,36 +344,6 @@
         "REG_MONTAGNE_ROSSE",
         "REG_MINIERE_ANTICHE",
         "REG_STRADA_MERCANTI"
-      ],
-      "act_echo_pools": [
-        {
-          "act": 1,
-          "families": [
-            "PRESSURE"
-          ]
-        },
-        {
-          "act": 2,
-          "families": [
-            "RUPTURE",
-            "RUPTURE",
-            "TURN",
-            "TURN",
-            "PRESSURE",
-            "MEMORIA"
-          ]
-        },
-        {
-          "act": 3,
-          "families": [
-            "RESOLUTION",
-            "RESOLUTION",
-            "RESOLUTION",
-            "TURN",
-            "RUPTURE",
-            "MEMORIA"
-          ]
-        }
       ],
       "confluence_templates": [
         "CNF_FAMINE_01",

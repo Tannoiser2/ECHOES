@@ -25,8 +25,9 @@ Su questo non c'è niente da discutere, ed è la maggior parte:
 - **sei Temi** con una traccia di Calore, e a fine Atto il più caldo apre una Domanda;
 - ogni carta è **un'Azione scelta più una Risonanza obbligatoria**, mai un evento
   che accade;
-- **ogni tag deve essere letto** da almeno una carta, Domanda, Destino, Echo o
-  regola di setup;
+- **ogni tag deve essere letto** da almeno una carta, Domanda, Destino o regola
+  di setup — le carte Echo, che ne leggevano sette da sole, non ci sono più
+  ([D-500](DECISIONS.md#d-500));
 - il **Consiglio decide il significato**, non duplica le Azioni;
 - **Echo e Cicatrici preparano la Chronicle dopo**, e si vedono sul tavolo;
 - i **Destini si leggono guardando la mappa**;

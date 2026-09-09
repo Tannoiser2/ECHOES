@@ -433,25 +433,6 @@ func _lines(data: RefCounted, chronicle_id: String) -> Array:
 	out.append("Alla fine: [b]sostegno − opposizione + 1d6[/b]. Sotto zero la proposta cade; da 5 in su passa senza discussione.")
 	out.append("")
 
-	if data != null and data.echo_cards.size() > 0:
-		out.append(SECTION % "L'ECO DELLE CARTE")
-		out.append(
-			"Ogni carta Asset porta stampato un terzo blocco: il suo [b]Eco[/b], la "
-			+ "versione potenziata della carta. Non c'e' un mazzo a parte da cui "
-			+ "pescarlo — ce l'hai gia' in mano, sotto le due Azioni normali."
-		)
-		out.append(
-			"Calarlo costa [b]la carta[/b], come giocarla per una delle sue Azioni. "
-			+ "Quello che cambia sono le condizioni: si puo' fare solo se il mondo porta "
-			+ "i segni che quell'Eco nomina, ed e' scritto sulla faccia."
-		)
-		out.append(
-			"L'Atto decide che tipo di Eco puo' parlare: il primo solo [b]pressione[/b], "
-			+ "l'ultimo soprattutto [b]risoluzione[/b]. La forma di una storia sta nelle "
-			+ "carte, non nella testa di chi la racconta."
-		)
-		out.append("")
-
 	out.append(SECTION % "COME SI VINCE")
 	var goals: Dictionary = rules.get("objectives", {}) as Dictionary
 	if not goals.is_empty():

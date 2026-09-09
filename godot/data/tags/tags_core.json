@@ -13,7 +13,6 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -24,22 +23,6 @@
       "aliases": [
         "conto saldato"
       ]
-    },
-    {
-      "id": "amnesty_granted",
-      "title": "l'amnistia e' stata concessa",
-      "category": "MEMORY",
-      "table_place": "WORLD_MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "echo_card"
-      ],
-      "read_by": [
-        "chronicle"
-      ],
-      "note": "memoria del mondo (D-286): la pesca dell'era successiva la ascolta — se il mondo porta ancora questo segno, la sua questione pesa il triplo"
     },
     {
       "id": "ancient",
@@ -117,12 +100,10 @@
         "il tradimento e' stato detto ad alta voce"
       ],
       "written_by": [
-        "asset_physical",
-        "echo_card"
+        "asset_physical"
       ],
       "read_by": [
-        "asset_physical",
-        "echo_card"
+        "asset_physical"
       ],
       "note": "memoria del mondo che le facce fisiche usano come **bersaglio**, non come premio: una carta dice «se il tradimento e' stato detto» e cambia quello che fa. Nessun Destino la insegue perche' non e' un traguardo — e' una condizione che si trova sul tavolo (D-394)."
     },
@@ -136,11 +117,9 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
-        "echo_card",
         "entity",
         "entity_strategic_profile"
       ],
@@ -163,8 +142,7 @@
       "read_by": [
         "asset_physical",
         "destiny_physical",
-        "tension",
-        "echo_card"
+        "tension"
       ],
       "note": "funzione stampata sulla tessera: e' uno dei segni con cui le carte dicono **dove** si agisce, e il legame che le frasi d'autore risolvono in un luogo. Non si conquista e non si costruisce: si guarda, come si guarda un simbolo su una casella (D-394)."
     },
@@ -182,23 +160,6 @@
       "read_by": [
         "chronicle",
         "entity_strategic_profile"
-      ],
-      "note": "memoria del mondo (D-286): la pesca dell'era successiva la ascolta — se il mondo porta ancora questo segno, la sua questione pesa il triplo"
-    },
-    {
-      "id": "charter_temporary",
-      "title": "la Carta vale per un tempo solo",
-      "category": "MEMORY",
-      "table_place": "WORLD_MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "echo_card"
-      ],
-      "read_by": [
-        "chronicle",
-        "entity"
       ],
       "note": "memoria del mondo (D-286): la pesca dell'era successiva la ascolta — se il mondo porta ancora questo segno, la sua questione pesa il triplo"
     },
@@ -244,7 +205,6 @@
         "destiny_physical",
         "tension",
         "chronicle",
-        "echo_card",
         "destiny"
       ]
     },
@@ -264,7 +224,6 @@
         "asset",
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -273,7 +232,6 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "echo_card",
         "tag_rule",
         "tension"
       ]
@@ -294,7 +252,6 @@
         "asset",
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -304,7 +261,6 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "echo_card",
         "entity",
         "entity_strategic_profile",
         "tension"
@@ -325,7 +281,6 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -335,8 +290,7 @@
         "destiny_physical",
         "entity_strategic_profile",
         "objective",
-        "tension",
-        "echo_card"
+        "tension"
       ]
     },
     {
@@ -381,8 +335,7 @@
       ],
       "read_by": [
         "entity_strategic_profile",
-        "tag_rule",
-        "echo_card"
+        "tag_rule"
       ],
       "note": "il prezzo di una proposta che passa (D-278): al tavolo si legge sulla tessera, e da D-353 morde — sotto gli occhi della guardia non si trama"
     },
@@ -396,8 +349,7 @@
       ],
       "written_by": [
         "asset",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
         "chronicle",
@@ -422,7 +374,6 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -446,7 +397,6 @@
       ],
       "written_by": [
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -504,7 +454,6 @@
         "asset_physical",
         "chronicle",
         "consequence",
-        "echo_card",
         "tag_rule",
         "tension"
       ]
@@ -524,7 +473,6 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -554,7 +502,6 @@
         "asset",
         "asset_physical",
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -564,7 +511,6 @@
         "consequence",
         "destiny",
         "destiny_physical",
-        "echo_card",
         "entity_strategic_profile",
         "tag_rule",
         "tension"
@@ -642,7 +588,6 @@
         "chronicle",
         "destiny",
         "destiny_physical",
-        "echo_card",
         "entity",
         "entity_strategic_profile"
       ]
@@ -661,7 +606,6 @@
       ],
       "written_by": [
         "asset_physical",
-        "echo_card",
         "tension"
       ],
       "read_by": [
@@ -717,8 +661,7 @@
         "entity",
         "tag_rule",
         "chronicle",
-        "entity_strategic_profile",
-        "echo_card"
+        "entity_strategic_profile"
       ]
     },
     {
@@ -736,8 +679,7 @@
       "written_by": [
         "asset_physical",
         "consequence",
-        "tension",
-        "echo_card"
+        "tension"
       ],
       "read_by": [
         "destiny",
@@ -826,8 +768,7 @@
         "ENTITY"
       ],
       "written_by": [
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
         "destiny",
@@ -912,9 +853,7 @@
       "scope": [
         "ENTITY"
       ],
-      "written_by": [
-        "echo_card"
-      ],
+      "written_by": [],
       "read_by": [
         "destiny",
         "objective"
@@ -930,8 +869,7 @@
         "ENTITY"
       ],
       "written_by": [
-        "asset_physical",
-        "echo_card"
+        "asset_physical"
       ],
       "read_by": [
         "destiny",
@@ -1120,8 +1058,7 @@
       ],
       "written_by": [
         "asset",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
         "asset"
@@ -1235,8 +1172,7 @@
         "asset_physical",
         "destiny_physical",
         "tension",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "note": "vocazione del luogo, stampata sulla Regione: non e' la pietra structure:granary, e le facce che stampano #granaio accettano tutt'e due (D-406)"
     },
@@ -1340,15 +1276,13 @@
       ],
       "written_by": [
         "asset_physical",
-        "tension",
-        "echo_card"
+        "tension"
       ],
       "read_by": [
         "asset_physical",
         "destiny_physical",
         "chronicle",
         "entity_strategic_profile",
-        "echo_card",
         "destiny"
       ]
     },
@@ -1374,7 +1308,6 @@
         "asset_physical",
         "destiny",
         "destiny_physical",
-        "echo_card",
         "entity",
         "entity_strategic_profile"
       ]
@@ -1391,8 +1324,7 @@
         "chronicle"
       ],
       "read_by": [
-        "chronicle",
-        "echo_card"
+        "chronicle"
       ],
       "note": "la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero (D-334)"
     },
@@ -1408,8 +1340,7 @@
         "chronicle"
       ],
       "read_by": [
-        "chronicle",
-        "echo_card"
+        "chronicle"
       ],
       "note": "la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero (D-334)"
     },
@@ -1425,8 +1356,7 @@
         "chronicle"
       ],
       "read_by": [
-        "chronicle",
-        "echo_card"
+        "chronicle"
       ],
       "note": "la forma postuma di un fatto: il passaggio di Chronicle promuove a racconto quello che il mondo non tiene piu' per vero (D-334)"
     },
@@ -1854,7 +1784,6 @@
       ],
       "read_by": [
         "consequence",
-        "echo_card",
         "tension",
         "asset_physical"
       ],
@@ -1958,7 +1887,6 @@
         "destiny_physical",
         "tension",
         "consequence",
-        "echo_card",
         "entity_strategic_profile"
       ]
     },
@@ -2018,29 +1946,12 @@
       "read_by": [
         "entity_strategic_profile",
         "destiny",
-        "destiny_physical",
-        "echo_card"
+        "destiny_physical"
       ],
       "note": "vita postuma: vive nella sua forma legend:",
       "aliases": [
         "ordine ristabilito"
       ]
-    },
-    {
-      "id": "parley_held",
-      "title": "ci si e' parlato",
-      "category": "MEMORY",
-      "table_place": "WORLD_MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "echo_card"
-      ],
-      "read_by": [
-        "asset_physical"
-      ],
-      "note": "memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**: dice che al tavolo ci si e' parlati, e cambia quello che una carta puo' fare dopo. Non e' un punto (D-394)."
     },
     {
       "id": "petition_heard",
@@ -2051,13 +1962,12 @@
         "GLOBAL"
       ],
       "written_by": [
-        "asset_physical",
-        "echo_card"
+        "asset_physical"
       ],
       "read_by": [
         "asset_physical"
       ],
-      "note": "memoria scritta da una carta Echo e letta dalle facce fisiche come **bersaglio**, come `parley_held`: e' una cosa successa, non una cosa da ottenere (D-394).",
+      "note": "memoria letta dalle facce fisiche come **bersaglio**: e' una cosa successa, non una cosa da ottenere (D-394). La scriveva una carta Echo, e le carte Echo non ci sono piu' (D-500): adesso la scrive la faccia fisica di un Asset.",
       "aliases": [
         "richiesta ascoltata"
       ]
@@ -2244,8 +2154,7 @@
         "destiny",
         "destiny_physical",
         "entity_strategic_profile",
-        "objective",
-        "echo_card"
+        "objective"
       ],
       "aliases": [
         "domanda aperta"
@@ -2334,8 +2243,7 @@
       ],
       "written_by": [
         "asset_physical",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
         "asset_physical",
@@ -2362,8 +2270,7 @@
       ],
       "read_by": [
         "destiny",
-        "destiny_physical",
-        "echo_card"
+        "destiny_physical"
       ]
     },
     {
@@ -2745,20 +2652,6 @@
       "note": "era etichetta di famiglia muta; da D-262 la legge la grammatica adattiva ($entity_with e requires_entity_tag): dice chi sei, e adesso il mondo puo' parlarne senza nominarti"
     },
     {
-      "id": "someone_paid",
-      "title": "qualcuno ha pagato",
-      "category": "MEMORY",
-      "table_place": "WORLD_MEMORY",
-      "scope": [
-        "GLOBAL"
-      ],
-      "written_by": [
-        "echo_card"
-      ],
-      "read_by": [],
-      "note": "memoria del mondo: narrata (D-103), ereditata"
-    },
-    {
       "id": "spoke_and_lost",
       "title": "ha parlato e ha perso",
       "title_spoken": "la proposta caduta in Consiglio",
@@ -3059,8 +2952,7 @@
       ],
       "read_by": [
         "asset_physical",
-        "chronicle",
-        "echo_card"
+        "chronicle"
       ]
     },
     {
@@ -3093,7 +2985,6 @@
         "asset_physical",
         "destiny_physical",
         "tension",
-        "echo_card",
         "consequence"
       ],
       "note": "funzione stampata sulla tessera: il commercio e' uno dei segni con cui le carte dicono **dove**, ed e' letto da carte, Destini, Tensioni, Echi e Conseguenze. C'e' gia' quando la tessera esce (D-394)."
@@ -3108,8 +2999,7 @@
       ],
       "written_by": [
         "asset",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
         "entity"
@@ -3126,13 +3016,11 @@
       ],
       "written_by": [
         "asset",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "read_by": [
         "asset",
-        "consequence",
-        "echo_card"
+        "consequence"
       ],
       "note": "lo posa chi caccia una casa da una Regione (D-130), e lo rilegge lui stesso: la seconda cacciata nello stesso anno diventa `twice_uprooted`, e quella la legge la successione"
     },
@@ -3179,7 +3067,6 @@
       ],
       "written_by": [
         "consequence",
-        "echo_card",
         "tension"
       ],
       "read_by": [

@@ -13,11 +13,9 @@
         "crown_dispossessed",
         "heir_named",
         "succession_settled",
-        "charter_temporary",
         "condition:contested",
         "order_restored",
-        "petition_heard",
-        "amnesty_granted"
+        "petition_heard"
       ],
       "art_prompt_key": "theme.potere"
     },

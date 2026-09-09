@@ -84,7 +84,6 @@ def check_references(
     known_structure_types = ids.get("structure_type", set())
     known_destinies = ids.get("destiny", set())
     known_consequences = ids.get("consequence", set())
-    known_echoes = ids.get("echo_card", set())
     known_templates = ids.get("confluence_template", set())
 
     def require(container: Set[str], value: str, kind: str, where: str) -> None:
@@ -222,22 +221,6 @@ def check_references(
                     known_structure_types,
                 )
 
-    for card in documents.get("echo_card", []):
-        where = f"{origins['echo_card']} [{card['id']}]"
-        for hook in card.get("effect_hooks", []):
-            if hook["kind"] == "CONSEQUENCE":
-                if "consequence_id" not in hook:
-                    report.fail(where, "CONSEQUENCE hook without consequence_id")
-                else:
-                    require(known_consequences, hook["consequence_id"], "consequence", where)
-            elif "effect" not in hook:
-                report.fail(where, "EFFECT hook without effect")
-        forced = card.get("forces_confluence_on")
-        if forced:
-            require(known_tensions, forced, "tension", where)
-        for condition in card.get("eligibility", []):
-            _check_condition(condition, known_entities, known_regions, known_tensions, report, where)
-
     for template in documents.get("confluence_template", []):
         where = f"{origins['confluence_template']} [{template['id']}]"
         # A Council may bind to one Tension or to a whole domain (D-028).
@@ -313,9 +296,6 @@ def check_references(
                     where,
                     f"drift_distribution totals {drift_total}, expected {expected} (acts x rounds_per_act)",
                 )
-        acts_covered = {pool["act"] for pool in chronicle["act_echo_pools"]}
-        if acts_covered != set(range(1, chronicle["acts"] + 1)):
-            report.fail(where, "act_echo_pools must cover every act exactly once")
         # Every Tension in play needs a Confluence template, or a threshold hit
         # would open a Confluence with nothing to ask.
         templates_by_tension = {
@@ -398,13 +378,6 @@ def check_references(
                         f"tension '{tension_id}' is in play but no seat's Destiny names it: "
                         "the table has no reason to care how that question ends",
                     )
-        # Every Act pool must have at least one card available.
-        cards_by_family: Dict[str, int] = defaultdict(int)
-        for card in documents.get("echo_card", []):
-            cards_by_family[card["dramatic_family"]] += 1
-        for pool in chronicle["act_echo_pools"]:
-            if not any(cards_by_family[f] for f in pool["families"]):
-                report.fail(where, f"act {pool['act']} echo pool has no available cards")
 
     for plan in documents.get("sim_plan", []):
         where = f"{origins.get('sim_plan', 'sim_plan')} [{plan['id']}]"
@@ -426,9 +399,6 @@ def check_references(
                 require(known_regions, target_id, "region", where)
             elif kind == "entity":
                 require(known_entities, target_id, "entity", where)
-
-    unused_echoes = known_echoes  # referenced only through Act pools by family
-    del unused_echoes
 
     check_bindings(documents, origins, report)
 
@@ -1025,7 +995,7 @@ def check_drawn_tables_do_not_name_a_house(
                     )
                 walk(value, doc_id, where, allowed)
 
-    for kind in ("confluence_template", "consequence", "echo_card"):
+    for kind in ("confluence_template", "consequence"):
         for document in documents.get(kind, []):
             # Una Conseguenza che dichiara la casa di cui parla puo' nominarla:
             # il motore la salta quando quella casa non siede.

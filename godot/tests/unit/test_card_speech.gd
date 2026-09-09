@@ -12,59 +12,19 @@ extends "res://tests/test_case.gd"
 ## cose che mancavano: le carte del Narratore parlano, e i segni della mappa si
 ## dicono in italiano invece che come identificativi.
 
-const EchoText := preload("res://scripts/core/echo_text.gd")
 const EffectText := preload("res://scripts/core/effect_text.gd")
+const AssetText := preload("res://scripts/core/asset_text.gd")
 
 
 func before_each() -> void:
 	new_session()
 
 
-## Nessuna carta del Narratore e' muta.
-func test_every_narrator_card_says_what_it_does() -> void:
-	var mute: Array = []
-	for card_id in data().echo_cards:
-		var note: String = EchoText.note(data().echo_cards[card_id] as Dictionary, data())
-		if note == "" or note == "non cambia niente da sola":
-			mute.append(str(card_id))
-	assert_eq(mute.size(), 0, "carte che non dichiarano niente: %s" % str(mute))
-
-
-## E l'etichetta porta titolo, tono e mestiere.
-func test_the_label_carries_title_tone_and_trade() -> void:
-	var card: Dictionary = data().echo_cards["ECH_LACK"]
-	var label: String = EchoText.label(card, data())
-	assert_true(label.contains("Mancanza"), "il titolo c'e'")
-	assert_true(label.contains("stringe"), "il tono della famiglia drammatica c'e'")
-	assert_true(label.contains("La Carestia"), "e la Tensione che muove pure")
-
-
-## Una carta che apre un Consiglio lo dice: e' la conseguenza piu' pesante che
-## si possa scegliere per sbaglio.
-func test_a_card_that_opens_a_council_says_so() -> void:
-	var forced: String = ""
-	for card_id in data().echo_cards:
-		# `str(null)` non e' la stringa vuota: senza il controllo esplicito
-		# questo ciclo prende la prima carta qualsiasi (e il test si e' preso
-		# la propria lezione al primo giro).
-		var opens: Variant = (data().echo_cards[card_id] as Dictionary).get(
-			"forces_confluence_on", null
-		)
-		if opens != null and str(opens) != "":
-			forced = str(card_id)
-			break
-	assert_ne(forced, "", "esiste almeno una carta che apre un Consiglio")
-	assert_true(
-		EchoText.note(data().echo_cards[forced] as Dictionary, data()).contains("Consiglio"),
-		"e lo dichiara"
-	)
-
-
 ## Nessun identificativo grezzo davanti a chi gioca.
 func test_no_raw_identifiers_reach_the_table() -> void:
 	var ugly: Array = []
-	for card_id in data().echo_cards:
-		var note: String = EchoText.note(data().echo_cards[card_id] as Dictionary, data())
+	for card_id in data().assets:
+		var note: String = AssetText.note(data().assets[card_id] as Dictionary, data())
 		for mark in ["condition:", "structure:", "scar:", "$", "_TAG", "REG_", "TEN_", "ENT_"]:
 			if note.contains(mark) and not ugly.has(str(card_id)):
 				ugly.append(str(card_id))

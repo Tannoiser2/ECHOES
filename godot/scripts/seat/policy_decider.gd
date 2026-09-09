@@ -797,13 +797,6 @@ func _choose_intent(entity_id: String, _ao_index: int, session: RefCounted) -> D
 	if not forge.is_empty():
 		return forge
 
-	# 4b. La carta del Narratore (ISSUES 23, D-118): se una carta in mano e'
-	#     pronta per la storia e le risorse reggono il prezzo, si cala. Prima
-	#     dello steering: un atto che resta muto e' un'occasione persa.
-	var narrated: Dictionary = _play_narrator(entity_id, session)
-	if not narrated.is_empty():
-		return narrated
-
 	# 4c. L'alleanza che conviene (D-171): con chi aspetta le stesse domande,
 	#     perche' quando si aprono il suo voto pesa sul mio fronte. Dietro la
 	#     soglia di mano, come lo steering — si compra con quello che avanza.
@@ -848,8 +841,8 @@ func _as_card_play(
 	entity_id: String, intent: Dictionary, session: RefCounted
 ) -> Dictionary:
 	var template: String = str(intent.get("template", "PASS"))
-	# PASS non costa carte, e la carta del Narratore e' un mazzo a parte.
-	if template == "PASS" or template == "PLAY_ECHO" or template == "PLAY_CARD":
+	# PASS non costa carte.
+	if template == "PASS" or template == "PLAY_CARD":
 		return intent
 	# La prima intenzione e' quella buona; le altre sono le seconde scelte dello
 	# stesso cervello. Senza questa fila un'intenzione che la mano non sa dire
@@ -866,7 +859,7 @@ func _as_card_play(
 			wishes.append(other)
 	for wish in wishes:
 		var kind: String = str((wish as Dictionary).get("template", ""))
-		if kind == "PASS" or kind == "PLAY_ECHO" or kind == "PLAY_CARD":
+		if kind == "PASS" or kind == "PLAY_CARD":
 			continue
 		var wanted: Dictionary = (wish as Dictionary).get("params", {}) as Dictionary
 		var card: Dictionary = _card_that_says(entity_id, kind, wanted, session)
@@ -2238,60 +2231,6 @@ func _consequence_score(
 	for effect in consequence["effects"]:
 		score += _score_effect(effect, entity_id, proponent_id, goals, session, bindings)
 	return score
-
-
-## La carta del Narratore (ISSUES 23, D-118): la prima carta in mano che la
-## storia accetta, quando le risorse reggono il prezzo (una carta Asset). Il
-## resolver rifiuta da solo quelle non eleggibili: qui si chiede, non si giudica.
-##
-## Al massimo UNA per atto a seggio: senza questo freno la sedia svuotava la
-## mano appena poteva - 17 carte a cronaca contro le 3 di prima - e i Consigli
-## scendevano sotto la banda del §7 (le azioni finivano tutte nel Narratore).
-## Il conto si legge dal registro degli Effect, non da una memoria della sedia:
-## una partita ripresa dal salvataggio deve rifare le stesse scelte (§18.3).
-func _play_narrator(entity_id: String, session: RefCounted) -> Dictionary:
-	if session.service.hand_size(entity_id) < COMFORTABLE_HAND:
-		return {}
-	# **Via il tetto di una calata per Atto** (D-360, scelta del committente).
-	# Serviva quando l'Eco arrivava da un mazzo del Narratore e calarne due di
-	# fila voleva dire raccontare la storia da soli. Adesso l'Eco e' un'opzione
-	# della carta che si ha in mano, come le sue due Azioni: chi ne cala due in
-	# un Atto ha speso due carte per farlo, e quello e' gia' il freno.
-	# Non basta che la storia accetti la carta: deve servire a chi la cala.
-	# Senza questo filtro le sedie calavano qualunque cosa fosse eleggibile e
-	# Kessa restava piantata al Minimo (46/50): le carte altrui le scaldavano
-	# le questioni contro. Il punteggio e' lo stesso delle clausole negoziali.
-	#
-	# ISSUES 23 fase 2: i binding sono quelli con cui la carta verra' davvero
-	# compilata (chi cala e' il proponente), non quelli del Consiglio aperto -
-	# fuori da un Consiglio sono vuoti, e un hook scritto su un $slot pesava
-	# zero per costruzione. E le Conseguenze agganciate contano come contano
-	# in una proposta: sono la parte pesante della carta.
-	var goals: Dictionary = _tag_goals(entity_id, session)
-	# D-359: non c'e' piu' una mano del Narratore da scorrere. Si guardano le
-	# carte Asset che il seggio ha in mano, e di ognuna la sua versione
-	# potenziata - l'Eco stampato sulla stessa faccia.
-	for asset_id in session.service.hand(entity_id):
-		var params: Dictionary = {"asset_card_id": str(asset_id)}
-		if not session.actions.can_execute(entity_id, "PLAY_ECHO", params):
-			continue
-		var card_id: String = str((session.data.assets[str(asset_id)] as Dictionary)["echo_id"])
-		var score: int = 0
-		for hook in session.data.echo_cards[card_id].get("effect_hooks", []):
-			var bindings: Dictionary = session.chronicle.card_bindings(hook, entity_id)
-			if str(hook.get("kind", "")) == "EFFECT":
-				score += _score_effect(hook["effect"], entity_id, entity_id, goals, session, bindings)
-			elif str(hook.get("kind", "")) == "CONSEQUENCE":
-				var consequence: Variant = session.data.consequences.get(
-					str(hook.get("consequence_id", ""))
-				)
-				if consequence == null:
-					continue
-				for effect in consequence["effects"]:
-					score += _score_effect(effect, entity_id, entity_id, goals, session, bindings)
-		if score > 0:
-			return {"template": "PLAY_ECHO", "params": params}
-	return {}
 
 
 func _sorted(keys: Array) -> Array:

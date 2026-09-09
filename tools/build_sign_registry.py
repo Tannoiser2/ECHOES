@@ -68,14 +68,17 @@ CLEAR_TYPES = {"REMOVE_REGION_TAG", "REMOVE_GLOBAL_TAG", "REMOVE_ENTITY_TAG"}
 MUTI_NOTI: Dict[str, str] = {
     "account_settled": "4 volte in 100 anni",
     "crowned": "in ogni partita, dal setup",
-    "someone_paid": "",
-    "dragon_slain": "non esce mai in 100 anni: la Conseguenza non e' mai stata scelta (ISSUES 56)",
-    "settlement:$proponent": "50 volte in 100 anni",
-    "hard_bargain": "",
-    "price_in_lives": "",
-    "spoke_and_lost": "",
-    "took_by_hand": "",
-    "watched": "",
+    # **Restato muto quando le carte Eco se ne sono andate** (D-500): lo scrive
+    # una Conseguenza, e a leggerlo era l'eleggibilita' di una carta Eco. La
+    # Conseguenza resta e il segno si posa ancora sul tavolo: quello che manca
+    # e' qualcuno che lo guardi, ed e' scritto qui invece che nascosto.
+    "dragon_slain": "lo leggeva solo una carta Eco, e le carte Eco non ci sono piu' (D-500)",
+    "hard_bargain": "lo leggeva solo una carta Eco (D-500)",
+    "price_in_lives": "lo leggeva solo una carta Eco (D-500)",
+    "spoke_and_lost": "lo leggeva solo una carta Eco (D-500)",
+    "took_by_hand": "lo leggeva solo una carta Eco (D-500)",
+    "watched": "lo leggeva solo una carta Eco (D-500)",
+    "settlement:$proponent": "lo leggeva solo una carta Eco (D-500)",
 }
 
 
@@ -166,7 +169,7 @@ SCRITTI_DAL_CODICE_ESATTI: Dict[str, str] = {
 SCRITTI_DAL_CODICE: Dict[str, str] = {
     "legend:": "world_state_factory.gd — un fatto che sbiadisce diventa leggenda",
     "evicted:": "confluence_controller.gd — la cacciata da una Regione",
-    "function:": "chronicle_controller.gd — la funzione di Propp della carta Echo uscita",
+    "function:": "nessuno lo scrive piu' (D-358, D-500): resta la guardia in world_state_factory.gd, per un salvataggio d'archivio che ne porti ancora uno",
     "life:": "succession.gd — l'incarnazione che siede quest'anno",
 }
 
@@ -268,21 +271,6 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
         for campo in ("any_tag", "forbidden_tag"):
             for tag in target.get(campo, []) or []:
                 note(str(tag), "legge", "bersaglio a segni")
-    for echo in items("echo_card"):
-        for hook in echo.get("effect_hooks", []) or []:
-            payload: Any = [hook]
-            if isinstance(hook, dict):
-                # Un gancio porta `effects` (piu' d'uno) **oppure** `effect`
-                # (uno solo). La seconda forma non veniva guardata, e due
-                # memorie — «ci si e' parlato», «la richiesta e' stata
-                # ascoltata» — risultavano chieste da una Risonanza e scritte
-                # da nessuno (D-286).
-                if "effects" in hook:
-                    payload = hook["effects"]
-                elif "effect" in hook:
-                    payload = [hook["effect"]]
-            for role, tag in tags_in_effects(payload):
-                note(tag, role, "carta Echo")
 
     def readers(conditions: Any, who: str) -> None:
         sink: Set[str] = set()
@@ -298,8 +286,6 @@ def collect() -> Dict[str, Dict[str, Set[str]]]:
     for rule in items("tag_rule"):
         when = rule.get("when")
         readers([when] if isinstance(when, dict) else when, "regola del segno")
-    for echo in items("echo_card"):
-        readers(echo.get("eligibility"), "carta Echo")
     for consequence in items("consequence"):
         readers(consequence.get("eligibility"), "Conseguenza")
     # **Le Domande stanno sulla carta** (D-462; le Proposte sono uscite dai
@@ -436,7 +422,7 @@ HEADER = """# ECHOES — il registro dei segni
 
 <!-- FILE GENERATO — si rifa' con `python3 tools/build_sign_registry.py`. -->
 
-Ogni segno che le Conseguenze, le carte Asset e le carte Echo scrivono sul
+Ogni segno che le Conseguenze e le carte Asset scrivono sul
 mondo, e **chi lo legge**.
 
 Un segno ha senso solo se qualcosa se ne accorge: se cambia cosa puoi fare

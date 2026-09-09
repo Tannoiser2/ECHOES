@@ -80,7 +80,6 @@ NON_SI_LEGGE: dict[str, str] = {
     "asset/on_commit_effects/note": "il mestiere della carta spiegato a chi la implementa",
     "asset/card_action/note": "idem, sul lato digitale dell'Azione",
     "consequence/effects/note": "il perche' di un Effetto, per chi lo legge nel codice",
-    "echo_card/effect_hooks/effect/note": "idem, sugli agganci della carta Echo",
     "action/params/note": "cosa significa un parametro dell'Azione",
     # La matrice del disegno: e' il documento con cui si scrive il gioco, non
     # un pezzo che si mette in mano a qualcuno.
@@ -107,7 +106,7 @@ NON_SI_LEGGE: dict[str, str] = {
 # controllo non lo vede: e' l'unico buco che resta, ed e' dichiarato.
 DOCUMENTI = (
     "chronicle", "region", "entity", "tension", "confluence_template",
-    "consequence", "echo_card", "asset", "destiny", "action", "objective",
+    "consequence", "asset", "destiny", "action", "objective",
     "theme", "structure_type", "tag", "tag_rule", "token_icon",
     "entity_strategic_profile",
 )
@@ -177,7 +176,6 @@ def main() -> int:
     tensions = sorted_by_id(load_all("tension"))
     templates = sorted_by_id(load_all("confluence_template"))
     consequences = sorted_by_id(load_all("consequence"))
-    echoes = sorted_by_id(load_all("echo_card"))
     assets = sorted_by_id(load_all("asset"))
     destinies = sorted_by_id(load_all("destiny"))
     actions = sorted_by_id(load_all("action"))
@@ -318,16 +316,7 @@ def main() -> int:
         if scar and scar.get("description"):
             review.entry("%s, cicatrice" % consequence["id"], scar["description"])
 
-    review.line("## 7. Le carte Echo — il mondo risponde")
-    review.line()
-    for card in echoes:
-        review.entry(card["id"], card.get("title"), card.get("description"))
-        # QUANDO ESCE: la riga che dice a che punto del mondo la carta puo'
-        # cadere. E' stampata sulla faccia (SCHELETRO_CARTE: 43 su 48).
-        for number, riga in enumerate(labels_of(card.get("eligibility")), start=1):
-            review.entry("%s, quando esce %d" % (card["id"], number), riga)
-
-    review.line("## 8. Le carte Asset — quello che si tiene in mano")
+    review.line("## 7. Le carte Asset — quello che si tiene in mano")
     review.line()
     # **La faccia che si gioca, non solo il racconto** (D-340).
     #
@@ -359,7 +348,7 @@ def main() -> int:
             "%s, risonanza" % asset["id"], physical.get("resonance", {}).get("text")
         )
 
-    review.line("## 9. I Destini — le ambizioni, gradino per gradino")
+    review.line("## 8. I Destini — le ambizioni, gradino per gradino")
     review.line()
     for destiny in destinies:
         review.entry(destiny["id"], destiny.get("title"), destiny.get("description"))
@@ -382,7 +371,7 @@ def main() -> int:
         for level in ("minimum", "victory", "triumph"):
             review.entry("%s, si legge %s" % (destiny["id"], level), reads.get(level))
 
-    review.line("## 10. Gli Obiettivi — i tre coperti che si pescano a inizio saga")
+    review.line("## 9. Gli Obiettivi — i tre coperti che si pescano a inizio saga")
     review.line()
     for objective in objectives:
         clauses = " · ".join(labels_of(objective.get("conditions")))
@@ -391,7 +380,7 @@ def main() -> int:
             objective.get("label"), clauses if clauses else None,
         )
 
-    review.line("## 11. Le Pietre — quello che si costruisce, grado per grado")
+    review.line("## 10. Le Pietre — quello che si costruisce, grado per grado")
     review.line()
     for stone in sorted_by_id(load_all("structure_type")):
         review.entry(stone["id"], stone.get("name"), stone.get("description"))
@@ -405,12 +394,12 @@ def main() -> int:
             "%s, in rovina" % stone["id"], ruin.get("name"), ruin.get("description")
         )
 
-    review.line("## 12. I Temi — le sei tracce del calore")
+    review.line("## 11. I Temi — le sei tracce del calore")
     review.line()
     for theme in sorted_by_id(load_all("theme")):
         review.entry(theme["id"], theme.get("title"), theme.get("covers"))
 
-    review.line("## 13. I segni — il nome stampato sul gettone")
+    review.line("## 12. I segni — il nome stampato sul gettone")
     review.line()
     review.line("*(Il nome con cui un segno si chiama al tavolo: quello stampato sul")
     review.line("gettone e, quando e' diverso, quello che l'app dice dentro una frase.")
@@ -428,12 +417,12 @@ def main() -> int:
             " · ".join(sign.get("aliases", []) or []) or None,
         )
 
-    review.line("## 14. Le regole dei segni — cosa fa un segno quando c'e'")
+    review.line("## 13. Le regole dei segni — cosa fa un segno quando c'e'")
     review.line()
     for rule in sorted_by_id(load_all("tag_rule")):
         review.entry(rule["id"], rule.get("title"))
 
-    review.line("## 15. Le Azioni — la plancia, stampata una volta")
+    review.line("## 14. Le Azioni — la plancia, stampata una volta")
     review.line()
     for action in actions:
         review.entry(

@@ -83,7 +83,6 @@ const DEFS := {
 			"discard_or_retain_rule",
 			"rarity",
 			"art_prompt_key",
-			"echo_id",
 		],
 		"additional_properties": false,
 		"properties": {
@@ -150,10 +149,6 @@ const DEFS := {
 				"type": "String",
 				"min_length": 1,
 			},
-			"echo_id": {
-				"type": "String",
-				"pattern": "^ECH_[A-Z0-9_]+$",
-			},
 			"rules_text": {
 				"type": "String",
 			},
@@ -185,7 +180,6 @@ const DEFS := {
 			"presence_tokens",
 			"entities",
 			"regions",
-			"act_echo_pools",
 			"confluence_templates",
 			"opening_text",
 			"seats_between_eras",
@@ -262,13 +256,6 @@ const DEFS := {
 				},
 			},
 			"drift_distribution": {
-				"type": "Array",
-				"min_items": 1,
-				"element": {
-					"type": "Dictionary",
-				},
-			},
-			"act_echo_pools": {
 				"type": "Array",
 				"min_items": 1,
 				"element": {
@@ -397,6 +384,9 @@ const DEFS := {
 					"KEEP",
 					"KEEP_THEN_DRAW",
 				],
+			},
+			"personal_decks": {
+				"type": "Dictionary",
 			},
 		},
 	},
@@ -554,92 +544,6 @@ const DEFS := {
 			},
 			"physical": {
 				"type": "Dictionary",
-			},
-		},
-	},
-	"echo_card": {
-		"kind": "collection",
-		"required": [
-			"id",
-			"title",
-			"dramatic_family",
-			"function_id",
-			"description",
-			"eligibility",
-			"effect_hooks",
-			"art_prompt_key",
-		],
-		"additional_properties": false,
-		"properties": {
-			"id": {
-				"type": "String",
-				"pattern": "^ECH_[A-Z0-9_]+$",
-			},
-			"title": {
-				"type": "String",
-				"min_length": 1,
-			},
-			"dramatic_family": {
-				"type": "String",
-				"enum": [
-					"PRESSURE",
-					"RUPTURE",
-					"TURN",
-					"RESOLUTION",
-				],
-			},
-			"function_id": {
-				"type": "String",
-				"enum": [
-					"LACK",
-					"THREAT",
-					"PROHIBITION",
-					"REQUEST",
-					"TEMPTATION",
-					"OMEN",
-					"VIOLATION",
-					"BETRAYAL",
-					"LOSS",
-					"ATTACK",
-					"SEPARATION",
-					"USURPATION",
-					"DISCOVERY",
-					"REVELATION",
-					"GIFT",
-					"ENCOUNTER",
-					"TRANSFORMATION",
-					"RETURN",
-					"SACRIFICE",
-					"CONQUEST",
-					"RECONCILIATION",
-					"PUNISHMENT",
-					"LIBERATION",
-					"SUCCESSION",
-				],
-			},
-			"description": {
-				"type": "String",
-				"min_length": 1,
-			},
-			"eligibility": {
-				"type": "Array",
-				"element": {
-					"type": "Dictionary",
-				},
-			},
-			"effect_hooks": {
-				"type": "Array",
-				"element": {
-					"type": "Dictionary",
-				},
-			},
-			"forces_confluence_on": {
-				"type": "String",
-				"nullable": true,
-			},
-			"art_prompt_key": {
-				"type": "String",
-				"min_length": 1,
 			},
 		},
 	},
@@ -1342,7 +1246,6 @@ const DEFS := {
 						"consequence",
 						"destiny",
 						"destiny_physical",
-						"echo_card",
 						"entity",
 						"objective",
 						"region",
@@ -1365,7 +1268,6 @@ const DEFS := {
 						"consequence",
 						"destiny",
 						"destiny_physical",
-						"echo_card",
 						"entity",
 						"objective",
 						"region",
@@ -1882,10 +1784,6 @@ const DEFS := {
 			"decks": {
 				"type": "Dictionary",
 			},
-			"echoes_played_in_act": {
-				"type": "int",
-				"min": 0,
-			},
 			"drift_track": {
 				"type": "Array",
 				"element": {
@@ -1969,7 +1867,6 @@ const COLLECTION_SCHEMA_IDS := [
 	"confluence_template",
 	"consequence",
 	"destiny",
-	"echo_card",
 	"entity",
 	"entity_strategic_profile",
 	"objective",
@@ -2037,7 +1934,6 @@ const EFFECT_SOURCE_KINDS := [
 	"system",
 	"confluence",
 	"consequence",
-	"echo_card",
 	"developer",
 ]
 
@@ -2131,9 +2027,3 @@ const CONSEQUENCE_CATEGORIES := [
 	"THREAT",
 ]
 
-const DRAMATIC_FAMILIES := [
-	"PRESSURE",
-	"RUPTURE",
-	"TURN",
-	"RESOLUTION",
-]

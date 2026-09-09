@@ -253,16 +253,13 @@ func test_a_house_portrait_is_varied_by_its_archetype() -> void:
 ## le domande diventano mini da appoggiare alla traccia dei valori.
 func test_each_deck_has_the_size_of_its_table_role() -> void:
 	var loaded: RefCounted = data()
-	# **E le Asset sono tarocchi da D-421**, con l'Eco che le segue perche' e' un
-	# blocco stampato sulla stessa carta (D-359). Su 63x88 quarantasei facce su
+	# **E le Asset sono tarocchi da D-421.** Su 63x88 quarantasei facce su
 	# quarantotto stampavano il corpo rimpicciolito, la piu' stretta al 74%, e
 	# l'illustrazione stava al suo pavimento del 34%: una carta che porta sette
 	# righe di regole **e** un disegno non ci sta, e stringere e' la scelta che
 	# rende la carta illeggibile invece di ammettere che serve piu' spazio.
 	assert_eq(str(CardFace.deck_of("asset", loaded)[0]["shape"]), "TAROT",
 		"le Asset portano regole e disegno: tarocco")
-	assert_eq(str(CardFace.deck_of("echo", loaded)[0]["shape"]), "TAROT",
-		"e l'Eco sta sulla stessa carta, quindi la segue")
 	# **E la Domanda e' un tarocco col Consiglio sul retro** (D-449): era mini
 	# per la traccia dei valori, poi 63x88 per un giorno (D-446); con il
 	# Consiglio dietro serve il tarocco, ed e' misurato. Il retro e' un mazzo
@@ -731,80 +728,6 @@ func test_the_tension_card_prints_no_description() -> void:
 	assert_eq(cards, 60, "le carte Domanda")
 
 
-## **La carta Eco diceva cosa si prova, mai cosa succede** (D-344).
-##
-## Il committente: *«ogni azione, effetto e #tag deve essere visibile sulla
-## carta [...] il 100% delle carte devono essere lette e capite»*. Le carte Eco
-## erano il buco piu' grosso: **86 Effetti scritti nel dato e zero stampati**,
-## piu' 38 condizioni che dicono quando la carta puo' uscire. Sulla faccia
-## c'era la `description`, e basta.
-##
-## La prova parte dai dati e conta due volte: ogni carta con Effetti deve
-## stamparne almeno uno, e il racconto non deve restarci accanto.
-func test_the_echo_card_says_what_it_does() -> void:
-	var loaded: RefCounted = data()
-	var con_effetti: int = 0
-	# Il mazzo Eco non si stampa da solo (D-359, D-449): la faccia si legge
-	# per nome, e la prova qui sotto chiede che finisca sulla carta Asset.
-	for face in CardFace.deck_of("echo", loaded):
-		var card: Dictionary = face as Dictionary
-		var written: Dictionary = loaded.echo_cards[str(card["id"])]
-		var printed: String = " ".join(PackedStringArray(card.get("notes", []) as Array))
-		var whole: String = printed + " " + " ".join(
-			PackedStringArray(card.get("body", []) as Array)
-		)
-		if not (written.get("effect_hooks", []) as Array).is_empty():
-			con_effetti += 1
-			assert_true(printed.contains("IL MONDO"),
-				"%s ha Effetti e la carta non li stampa" % str(card["id"]))
-		for condition in written.get("eligibility", []) as Array:
-			assert_true(printed.contains("QUANDO ESCE"),
-				"%s ha una condizione e la carta non la stampa" % str(card["id"]))
-			break
-		var prose: String = str(written.get("description", ""))
-		if prose != "":
-			assert_false(whole.contains(prose),
-				"%s stampa ancora il racconto" % str(card["id"]))
-	assert_eq(
-		con_effetti, loaded.echo_cards.size(),
-		"ogni Eco stampa cosa fa: sono il terzo blocco della carta Asset (D-359)"
-	)
-
-
-## **E l'Eco sta sulla carta Asset, stampato** (D-359, fatto in D-449). Fino a
-## D-449 la decisione valeva per lo schermo e per la mano, e l'export stampava
-## ancora 48 carte Eco a parte: la faccia Asset non portava il blocco. Adesso
-## ogni Asset con un `echo_id` stampa ECO, e sotto le stesse righe della faccia
-## Eco — QUANDO ESCE, IL MONDO — confrontate una per una.
-func test_the_asset_card_carries_its_echo() -> void:
-	var loaded: RefCounted = data()
-	var echoes: Dictionary = {}
-	for face in CardFace.deck_of("echo", loaded):
-		echoes[str((face as Dictionary)["id"])] = face
-	var con_eco: int = 0
-	for face in CardFace.deck_of("asset", loaded):
-		var card: Dictionary = face as Dictionary
-		var echo_id: String = str(loaded.assets[str(card["id"])].get("echo_id", ""))
-		if not echoes.has(echo_id):
-			continue
-		con_eco += 1
-		var notes: Array = card["notes"]
-		var eco: Dictionary = echoes[echo_id]
-		var head: String = "ECO  %s" % str(eco["title"])
-		assert_true(
-			notes.any(func(n: Variant) -> bool: return str(n).begins_with(head)),
-			"%s stampa il suo Eco «%s»" % [str(card["id"]), str(eco["title"])]
-		)
-		for note in eco["notes"]:
-			assert_true(notes.has(str(note)), "%s porta la riga dell'Eco: %s" % [str(card["id"]), str(note).substr(0, 40)])
-		# E non il racconto dell'Eco: sulla faccia ogni riga e' una regola (D-344).
-		var prose: String = str(loaded.echo_cards[echo_id].get("description", ""))
-		if prose != "":
-			assert_false(" ".join(PackedStringArray(notes)).contains(prose), "%s non stampa il racconto dell'Eco" % str(card["id"]))
-	assert_eq(con_eco, loaded.echo_cards.size(), "ogni Eco sta su una carta Asset")
-	assert_false(CardFace.DECKS.has("echo"), "e non c'e' un mazzo Eco da stampare")
-
-
 ## **I segni della tessera** (D-344). Una carta Azione si gioca «su un luogo con
 ## #granaio»: senza i segni stampati sulla tessera quel bersaglio non si trova
 ## col dito. Trentadue segni su dieci tessere, e non ne arrivava **nessuno** —
@@ -845,7 +768,6 @@ func test_no_face_prints_its_prose() -> void:
 	var loaded: RefCounted = data()
 	var sets: Dictionary = {
 		"asset": [loaded.assets, "rules_text"],
-		"echo": [loaded.echo_cards, "description"],
 		"tension": [loaded.tensions, "description"],
 		"destiny": [loaded.destinies, "description"],
 		"entity": [loaded.entities, "description"],
@@ -869,8 +791,7 @@ func test_no_face_prints_its_prose() -> void:
 			+ " " + " ".join(PackedStringArray(card.get("body", []) as Array))
 		assert_false(whole.contains(prose),
 			"%s/%s stampa ancora il racconto" % [deck, str(card["id"])])
-	# Erano piu' di 150 con il mazzo Eco stampato a parte; da D-449 l'Eco sta
-	# sulla carta Asset, e il suo racconto lo guarda la prova dell'Eco.
+	# Erano piu' di 150 quando c'era anche il mazzo Eco (D-500).
 	assert_true(guardate > 140, "guardate %d facce con un testo d'autore" % guardate)
 
 

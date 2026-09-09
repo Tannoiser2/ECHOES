@@ -45,6 +45,448 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-500 — Via le carte Eco: resta il ricordo, sparisce la carta
+
+**implemented in 0.1.470.** Parola del committente, dopo aver visto quanti Echi
+un anno produce davvero: *«lascia perdere gli echi, che non dovrebbero piu'
+esistere come carte»*.
+
+**Due cose che si chiamavano uguale, e una sola se ne va.** L'**Eco-ricordo** —
+`CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — e' il cuore del
+gioco e resta intero. L'**Eco-carta** — la terza faccia dell'Asset, che
+[D-359](#d-359) aveva fuso sulla stessa carta — non c'e' piu'.
+
+### Quanto pesava, misurato prima di toccare
+
+| cosa | quanto |
+|---|---|
+| carte Eco | **48**, 43 con condizioni, 96 testi d'autore |
+| carte Asset che ne nominavano una | **48 su 48** |
+| quante volte si giocavano | **~3 l'anno** — 46 su 720 scelte (6,4%) |
+| file di codice da toccare | **12**, piu' 5 sonde e 6 prove |
+
+E il numero che ha deciso: `run_echo_probe.gd` conta **3,73 Echi l'anno su tutto
+il tavolo**, cioe' **meno di uno per casa**. Il committente ne aveva visti «tre o
+quattro per partita» e la misura gli ha dato ragione, in peggio.
+
+### Il costo, scritto voce per voce
+
+**Una Conseguenza su 54** perde la sua unica strada: `CNS_OATH_BROKEN`. Le altre
+dieci che passavano da un Eco hanno anche altre vie, contate.
+
+**Sette segni restano muti**, perche' a leggerli erano solo le eleggibilita'
+delle carte Eco: `dragon_slain`, `hard_bargain`, `price_in_lives`,
+`spoke_and_lost`, `took_by_hand`, `watched`, `settlement:$proponent`. Sono
+**dichiarati uno per uno** in `MUTI_NOTI`, con la ragione: il mondo li scrive
+ancora, e quello che manca e' chi li guardi.
+
+**Due segni se ne vanno del tutto** — `someone_paid` e `parley_held` — perche'
+solo le carte Eco li scrivevano. Con `parley_held` se n'e' andata anche la
+condizione della Risonanza di *Favore*, che ora scalda senza il suo bonus.
+
+**Due clausole diventavano impossibili** e sono state tolte con i loro segni:
+`amnesty_granted` e `charter_temporary`. La seconda apriva la porta a
+un'incarnazione delle Citta' Libere, che adesso entra da quella delle altre
+(`LINE_EXHAUSTED`).
+
+**E il TRIUMPH si e' dimezzato**: da **6 a 3 su 400** seggi-partita **sul
+tavolo misto** dei 100 semi dal 7000; sul tavolo uniforme sono **5 su 400**.
+Non e' un difetto di equilibrio — i seggi bloccati restano **0 su 8** su tutti
+e due — ma e' un numero peggiorato, e si scrive.
+
+### Una prova che era fragile per costruzione
+
+`test_destinies_are_contested` chiedeva **almeno un TRIUMPH** su 24 partite,
+cioe' 96 seggi-partita. Allo 0,75% l'attesa e' **0,7**: la prova chiedeva un
+evento che il gioco produce meno di una volta per campione, e passava per
+fortuna. Adesso misura quello che voleva davvero dire — **i seggi arrivano a
+livelli diversi** — e non dipende piu' da un evento raro.
+
+### Quello che ha cambiato nel gioco
+
+| | col mazzetto e gli Echi | senza le carte Eco |
+|---|---|---|
+| Consigli per anno | 5,58 | **5,68** |
+| Verita', tavolo misto | 360 / 360 | **393 / 391** |
+| Verita', tavolo uniforme | 402 / 399 | **421 / 418** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 815 test | **800 test**, 75 004 asserzioni |
+
+Le Verita' salgono ancora — **+33** sul misto, **+19** sull'uniforme — perche' le
+Azioni che prima diventavano un Eco adesso restano Azioni, e il mondo le
+registra.
+
+### La coda che il primo giro si era lasciato dietro
+
+Tolte le carte, il codice che le leggeva era ancora li' — e leggeva **il
+vuoto**. Il difetto che l'ha fatto vedere e' uno solo, e la suite lo ha scritto
+restando **verde**:
+
+```
+SCRIPT ERROR: Invalid access to property or key 'echoes_played' ...
+          at: _council_lines (res://ui/table_view.gd:71)
+```
+
+E' la prima trappola di casa, in piena regola: **GDScript non alza niente che
+si possa prendere**. La vetrina del tavolo chiedeva al modello una chiave che
+il modello non scrive piu'; la funzione si interrompeva a meta', la prova
+contava le sue asserzioni fino a li' e diceva **ok**.
+
+Cercata la coda per intero, era questa:
+
+| cosa | dove stava |
+|---|---|
+| `data.echo_cards`, la collezione | `data_set.gd`, e nove posti che la leggevano |
+| `_echo`, `_when_it_comes`, `DRAMA`, `PROPP`, `DOVE_CADE` | `card_face.gd`: la faccia stampata di un mazzo che non si stampa |
+| `_families_open_by`, `_act_echo_families` | `action_resolver.gd`: leggevano `act_echo_pools`, che aveva gia' lasciato la Chronicle |
+| `act_echo_drawn`, `card_bindings` | `chronicle_controller.gd`: un segnale che nessuno emetteva piu' e la funzione che serviva solo agli hook delle carte |
+| `echo_card_view.gd` e `_echo_beat` | la carta di fine Atto, con la sua pausa sullo schermo |
+| `echo_played`, `echoes_played_in_act` | il mondo teneva la pila dei calati e il conto per Atto |
+| il MASTER PROMPT 2 | `art_bible.gd` lo assegnava a un mazzo che non c'e' |
+| la sezione 7 del documento dei testi, le Echo card del manifesto, il blocco ECHI del flusso disegnato | sei strumenti che giravano a vuoto su una cartella cancellata |
+
+E **due prove erano diventate cieche**: `test_the_echo_card_says_what_it_does` e
+`test_the_asset_card_carries_its_echo` giravano su una collezione vuota e
+chiudevano con `assert_eq(0, 0)`. Una terza avrebbe preso `deck_of("echo")[0]`
+su un elenco vuoto — cioe' si sarebbe interrotta in silenzio come la vetrina.
+Sono cancellate, non aggiustate: una prova che non puo' fallire non e' una
+prova.
+
+Il conto della suite scende da 803 a **800 test** ed e' quello che deve
+succedere; le asserzioni salgono a **75 004**, perche' quelle che se ne vanno
+erano finte.
+
+E i documenti generati si sono accorciati da soli, che e' il modo giusto: i
+**segni del dizionario** da 175 a **171**, i **segnalini da tagliare** da 116
+tipi (150 pezzi) a **112 (146)**, i **soggetti da illustrare** da 161 a
+**113** — quarantotto erano le carte Eco. `PUNTO_ZERO.md` portava numeri piu'
+vecchi ancora (177 segni, 118 tipi): adesso porta quelli misurati.
+
+I due documenti fermi — `RULES_V0_2.md` e `GAME_DESIGN.md` — restano fermi, ma
+il loro cartello lo dice: dove si legge *«fine Atto: si pesca 1 carta Echo»*, si
+sta leggendo il gioco di prima.
+
+### Tre tagli sbagliati, e come me ne sono accorto
+
+Tagliare per numero di riga ha portato via, tre volte, piu' del dovuto: **85
+righe** dalla vetrina del tavolo che non c'entravano con gli Echi, una funzione
+intera dal catalogo delle carte, meta' di un blocco nel validatore. Ogni volta
+se n'e' accorta la **prova o il cancello**, mai una rilettura mia — ed e' la
+ragione per cui questo progetto tiene 29 cancelli e non tre.
+
+---
+
+## D-499 — Il mazzetto personale, scritto: una Occasione bloccata su trenta invece che su cinque
+
+**implemented in 0.1.469.** [ISSUES 136](ISSUES.md#136). E' il rimedio al difetto
+che il committente ha vissuto giocando: *«ho passato l'atto 2 e 3 senza carte in
+mano e ho dovuto passare, questo e' inaccettabile»*.
+
+La forma e i numeri sono suoi, dati in due messaggi:
+
+> *«Il mazzetto viene creato diverso da entita' a entita' in base agli obiettivi
+> e alla presenza sulla mappa e poi ognuno lo costruisce mano a mano.»*
+>
+> *«I mazzetti rimangono separati e fanno da pozzo quando si pescano nuove
+> carte, all'inizio dell'anno le entita' hanno lo stesso numero di carte, cambia
+> come sono composti, e poi vengono pescate il numero sufficiente di carte ogni
+> atto per fare le azioni necessarie.»*
+
+### Il rubinetto che c'era, e perche' non bastava
+
+Non e' che mancasse un rubinetto: `hand_refill` c'era, e pesca **in base alla
+mappa** — due carte per pedina, una per Regione tenuta, fra un pavimento di 2 e
+un tetto di 6. Misurato, dava circa **quattro** carte per Atto contro un
+fabbisogno di **3,92**: si stava esattamente al limite, senza un dito di
+margine. Da li' l'Occasione su cinque senza niente da fare.
+
+### Stesso numero, composizione diversa
+
+Il mazzetto e' **18 carte per tutti** — `draw_per_act` 6 per tre Atti — e la
+differenza sta in **quali**, non in quante. E' la riga che il committente ha
+aggiunto nel secondo messaggio, e risponde a un numero che [D-498](#d-498)
+aveva trovato: comporre il mazzetto sulla sola presenza dava **14,5** carte a
+chi tocca quattro famiglie e **11,5** a chi ne tocca tre, il 26% in piu' a chi la
+mappa aveva gia' favorito.
+
+Sui quattro seggi del seme 7000, i mazzetti montati:
+
+| casa | il suo mazzetto |
+|---|---|
+| Vaerax | Sapere 6 · Legami 7 · Forza 5 |
+| Re Aldric | Autorita' 5 · Ricchezza 4 · Popolo 4 · Forza 5 |
+| Kessa dei Fuochi | Sapere 6 · Forza 6 · Legami 6 |
+| Maestra Ilve | Autorita' 5 · Forza 4 · Sapere 4 · Ricchezza 5 |
+
+Diciotto per tutte, e nessuna uguale a un'altra.
+
+### E' un mazzo, non una scorta
+
+Le carte giocate tornano nello **scarto personale**, e quando il pozzo finisce lo
+scarto si rimescola. Senza questo, diciotto carte durerebbero tre Atti esatti e
+poi non ci sarebbe piu' niente: sarebbe una scorta, non un mazzo — e il difetto
+tornerebbe all'Atto 3, dove il committente l'aveva visto.
+
+### Quello che ha cambiato
+
+| | prima | col mazzetto |
+|---|---|---|
+| **Occasioni bloccate** (tavolo di una persona) | **55 su 270 — 20%** | **9 su 270 — 3%** |
+| di quelle, con la mano vuota | 39 (70%) | **1 (11%)** |
+| carte in mano nei momenti bloccati | 0,44 | **1,33** |
+| Consigli per anno | 4,98 | **5,58** |
+| Verita' scritte, tavolo misto | 325 / 322 diverse | **360 / 360** |
+| Verita' scritte, tavolo uniforme | 324 / 324 | **402 / 399** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+
+**Una Occasione bloccata su trenta invece che su cinque**, e il mondo scrive di
+piu' perche' si gioca di piu': le Verita' salgono di **35** sul tavolo misto e di
+**78** su quello uniforme. Il cancello che non si negozia resta a **0 su 8** su
+tutti e due i tavoli, 100 semi su 7000.
+
+### E adesso la causa che resta e' l'altra
+
+Dei nove blocchi rimasti, **uno** e' mano vuota e **dodici ragioni su tredici**
+sono *«la carta arriva a un luogo, ma l'Azione e' rifiutata lo stesso»*: sempre
+*Giuramento* e *Promessa di Nozze*, FORGIARE che chiede un'altra casa **e il suo
+consenso**. Il bersaglio a segni le fa passare, il verbo no. E' il prossimo
+lavoro di ISSUES 136, ed e' scritto li'.
+
+### Due difetti miei, presi dalla prova invece che dal committente
+
+**La carta spariva prima che l'Effect la trovasse.** La pesca toglieva la carta
+dal mazzetto e *poi* chiedeva all'applier di toglierla: falliva alla prima. Il
+resolver la stessa cosa la fa da sempre nel modo giusto — legge la cima **senza
+toglierla** e porta il rimescolo dentro il payload, cosi' l'applier verifica
+invece di scegliere. Adesso anche qui.
+
+**E la regola sta dietro un interruttore.** `personal_decks` assente vuol dire il
+gioco di prima, coi sei mazzi comuni e il rubinetto della mappa: un cambio di
+questa taglia che non si puo' spegnere non si puo' nemmeno misurare contro
+quello che ha sostituito.
+
+---
+
+## D-498 — Il mazzetto personale: la forma decisa dal committente, e quanto grande
+
+**disegno, in 0.1.468.** [ISSUES 136](ISSUES.md#136). Non tocca ancora il
+motore: e' la misura che viene **prima** di scriverlo, la stessa disciplina con
+cui `run_hand_probe` misuro' il rubinetto della mappa prima che esistesse.
+
+### La forma, decisa dal committente
+
+> *«Il mazzetto viene creato diverso da entita' a entita' in base agli obiettivi
+> e alla presenza sulla mappa e poi ognuno lo costruisce mano a mano. A ogni
+> atto si pescano nuove carte dal mazzetto che cresce con esperienza da veri
+> deck builder.»*
+
+Oggi i mazzi sono **sei, comuni**, uno per famiglia: tutti pescano dagli stessi.
+Il mazzetto personale li sostituisce.
+
+### Quanto grande, misurato
+
+`run_deck_probe.gd` (nuova) gioca 25 anni senza cambiare una regola e scrive
+cosa darebbe il mazzetto proposto. Si compone di due pezzi che **stanno gia' nei
+dati**: le `starting_assets` dell'entita' — due, di due famiglie diverse, ed e'
+la sua identita' — piu' N carte per ogni famiglia che la sua **presenza**
+raggiunge (`asset_sources` delle Regioni dove ha pedine).
+
+| carte per famiglia | mazzetto di partenza | a fine anno | **carte per Atto** |
+|---|---|---|---|
+| 1 | 5,5 | 19,1 | 1,83 |
+| 2 | 9,0 | 22,6 | 3,00 |
+| **3** | **12,5** | **26,1** | **4,17** |
+
+**Il fabbisogno e' 3,92 carte per Atto** (6,08 Azioni + 5,68 impegnate ai
+Consigli, diviso tre Atti). Solo **3 per famiglia** lo copre, e con un margine
+di 0,25: due lo lasciano scoperto di quasi una carta per Atto, che e' esattamente
+il buco che il committente ha vissuto.
+
+**E il mazzetto raddoppia in un anno** — da 12,5 a 26,1 — con **13,6 acquisti**
+di media. Il pezzo «deck builder» della frase c'e' gia': ACQUISIRE e' il verbo
+che compra, e quello che compra oggi finisce in mano; nel mazzetto personale
+finisce **nel mazzetto**, e torna gli Atti dopo.
+
+**Lo scarto fra le case va detto:** chi ha presenza su 4 famiglie parte con
+**14,5** carte, chi ne ha 3 con **11,5** — il **26%** in piu'. Non e' per forza
+un difetto (le case sono diverse per disegno), ma e' un numero che al primo
+squilibrio va guardato.
+
+### La presenza si legge dalla scatola, non dal tabellone
+
+Al primo giro la sonda chiedeva le Regioni con presenza al mondo appena montato,
+e tornavano **zero**: sul tabellone le pedine non ci sono ancora, si posano
+giocando — e' la domanda *«cosa posi per prima?»* del primo round. **La sonda si
+e' dichiarata cieca da sola**, con la riga che avevo scritto apposta, ed e' la
+settima volta in questo progetto.
+
+Leggere dai dati non e' un ripiego: il mazzetto si compone **nella scatola**,
+prima che qualcuno posi una pedina, e la presenza scritta nell'entita' e'
+esattamente quello che la scatola sa di lei.
+
+### Cosa manca ancora, e non lo decido io
+
+Il committente dice **«in base agli obiettivi e alla presenza»**. La presenza e'
+misurata. Gli obiettivi no, e per una ragione: sui **19 obiettivi spediti**, solo
+**due** nominano una famiglia. Gli altri parlano di Pietre, domini, segni e
+controllo — cose che una famiglia non la scelgono. Perche' gli obiettivi entrino
+nel mazzetto serve un ponte che oggi non c'e', ed e' un pezzo di disegno da
+decidere, non da dedurre.
+
+---
+
+## D-497 — La scheda del Consiglio: chi sceglie, e le voci raggruppate per domanda
+
+**implemented in 0.1.467.** [ISSUES 137](ISSUES.md#137), parola del committente
+con la scheda sotto gli occhi:
+
+> *«Anche questa scheda di costi e benefici non si capisce molto, non si sa chi
+> sta facendo cosa e le voci sono tutte mescolate.»*
+
+Tre difetti distinti su una scheda sola, e nessuno dei tre tocca una regola.
+
+### 1. La sigla che nessuno spiegava
+
+Ogni voce portava davanti `A ·`, `B ·` o `BA ·`, e da nessuna parte c'era
+scritto che sono **le due domande** del Consiglio. Al tavolo una sigla senza
+legenda non e' una marca: e' rumore, ripetuto su ogni riga.
+
+### 2. Le voci mescolate
+
+BENEFICI e COSTI erano **due liste sole**, con dentro le voci di tutt'e due le
+domande in ordine sparso. Chi voleva rispondere alla domanda A doveva pescare le
+sue righe fra quelle della B — su una carta vera sono **8,9 voci** in media.
+
+Adesso dentro ogni lista ci sono tre gruppi: *per la domanda A*, *per la domanda
+B*, *per tutte e due*. La sigla sparisce dalle righe perche' la dice il gruppo.
+
+**E non si raggruppa per domanda in cima**, che sarebbe stato l'ordine piu'
+ovvio: le voci che valgono per tutt'e due sono **185 su 720** — 3,1 per carta —
+e finirebbero stampate due volte. Al tavolo due caselle dove ce n'e' una e' un
+difetto peggiore di quello che si voleva togliere.
+
+### 3. Chi sceglie non stava scritto
+
+[D-280](#d-280) dice che **il proponente compra i benefici e gli avversari
+scelgono i costi**. E' la regola che regge tutta la trattativa, ed era l'unica
+cosa che la scheda non diceva. Adesso sta nei titoli delle due liste: *«BENEFICI
+— li compra chi propone»*, *«COSTI — li scelgono gli avversari»*.
+
+### 4. E le spente stavano in mezzo
+
+Una voce che qui non cambierebbe niente si vede spenta da [D-306](#d-306), ma
+stava **in mezzo** alle altre. Quante fossero l'avevo stimato a occhio dallo
+screenshot — «meta' della lista» — e la stima era sbagliata: misurate su **47
+schede vere**, sono **183 su 564**, cioe' **una su tre**.
+
+Una su tre e' abbastanza da far scorrere tutta la lista a chi cerca cosa
+comprare. Adesso stanno **in coda al loro gruppo**, e non si tolgono: fanno
+parte della carta, e sapere cosa c'era e non vale qui e' meta' di una
+trattativa.
+
+### La prova ha cambiato criterio, non mestiere
+
+`test_the_board_draws_both_lists` pretendeva **la sigla su ogni riga**, che era
+meta' del difetto. Non e' stata tolta: adesso prende **il gruppo** — scorre le
+righe, tiene il gruppo aperto e verifica che ogni casella stia sotto la domanda
+che serve — piu' due assertivi nuovi: che la sigla **non** ci sia piu', e che i
+titoli dicano chi sceglie. La cosa che la prova sorvegliava — *a quale domanda
+serve una casella si legge* — e' ancora sorvegliata, dal posto in cui e' andata
+a stare.
+
+### Il costo, ed e' scritto
+
+**La pagina del Consiglio cresce di sei righe**: i nodi passano da **81 a 87**,
+e con loro i testi sotto gli occhi di tutta l'app da **188 a 194**. Sono le sei
+intestazioni dei gruppi — tre nei benefici, tre nei costi — ed e' esattamente
+quello che si paga per non avere piu' le voci mescolate. Il conto sta in
+[MISURA_PAGINA](MISURA_PAGINA.md), che va rigenerata insieme.
+
+Sei righe di intestazione contro **8,9 voci** da pescare a occhio: e' un cambio
+che si paga volentieri, ma si paga, e il numero peggiorato si scrive.
+
+Suite **815 test / 76 637 asserzioni**, verde. Nessuna regola toccata: cambia
+come la scheda e' disposta, non cosa contiene.
+
+---
+
+## D-496 — Il velo fuori dalle carte, e la guardia che cercava una frase invece del difetto
+
+**implemented in 0.1.466.** Giro 7 di [ISSUES 135](ISSUES.md#135). Nasce da una
+domanda semplice: *il difetto che [D-495](#d-495) ha riparato sulle carte, sta
+anche altrove?*
+
+Sì, in tre posti, e uno di quei tre **contraddice il motore**.
+
+### I tre testi rimasti
+
+`action_templates.json` — che nessuna guardia guardava — teneva la regola vecchia
+del velo:
+
+| dove | diceva | ma |
+|---|---|---|
+| `ACT_INFLUENCE.rules_text` | *«Le Tensioni velate non sono influenzabili finché non ne conosce il valore»* | col velo sulla sola soglia **si spingono come ogni altra**, e il commento del motore lo dice: *«e allora la domanda si spinge come ogni altra»* |
+| `ACT_SCHEME.description` | *«leggi in privato il valore di una Tensione velata»* | il valore e' pubblico |
+| `ACT_SCHEME.rules_text` | *«lascia un tag discovery: sull'Entita»* | e parlava pure in tecnico |
+
+Il primo e' il peggiore dei tre: una **regola stampata che il motore smentisce**.
+
+Con loro sono cambiate tre frasi del codice che il giocatore legge nel verbale
+— il narratore degli Effetti, il TRAMARE del resolver e la riga della pagina —
+che dicevano *«ora ha un numero»* a chi quel numero legge da sempre.
+
+### La guardia era giusta nel posto e sbagliata nel modo
+
+Questa e' la parte che vale piu' delle tre frasi.
+
+La guardia di D-495 guardava **le sole facce delle carte**. Allargata a ogni
+testo, e' rimasta verde lo stesso: cercava la stringa *«questione velata»*, e il
+difetto vero di `ACT_INFLUENCE` e' scritto con altre parole — *«non ne conosce
+il valore»*. **Una guardia che cerca il difetto com'era scritto quella volta non
+cerca il difetto: cerca il ricordo del difetto.** Sesta sonda cieca di questo
+progetto.
+
+Adesso la marca e' il **concetto**: ogni regola del velo dichiara cosa **copre**
+e cosa **lascia in chiaro**, e il difetto e' un testo che nomina il velo e
+promette coperto cio' che la regola lascia in chiaro.
+
+E al secondo giro ha preso **la frase giusta appena scritta** — *«il suo numero
+e' sul tavolo»* — perche' cercava la parola invece dell'affermazione. Nominare
+una cosa non e' coprirla. La marca finale e' un **verbo del coprire nella stessa
+frase** della cosa in chiaro, e la negazione ammette due parolette in mezzo:
+*«non se ne conosce»* e' italiano normale, e pretendere le parole attaccate ha
+fatto passare un difetto piantato al primo colpo.
+
+Tre errori della stessa guardia in un giro, tutti presi da un difetto
+**fabbricato** invece che dai dati: e' esattamente la ragione per cui la regola
+di casa dice di fabbricarli.
+
+### E aprendo le voci nuove ne e' saltata fuori una quarta, di guardia
+
+Il foglio delle decisioni e' andato rosso appena aperte
+[136](ISSUES.md#136) e [137](ISSUES.md#137), e non per il foglio: per la sua
+**guardia**. Il settimo difetto piantato di `issues_survey.py` mette un numero
+falso nel conto in grassetto di un titolo e pretende che la rigenerazione lo
+raddrizzi — ma lo piantava sulla **prima occorrenza nel foglio intero**. Finche'
+il conto giallo e' stato una parola che il foglio non usa altrove ha funzionato;
+il giorno in cui e' diventato «**quattro**» — parola che sta in un paragrafo
+cento righe prima — il difetto e' finito li', dove la spina dorsale non arriva,
+e la guardia e' andata rossa **accusando la rigenerazione di un difetto che si
+era piantata da sola**.
+
+E' esattamente l'inciampo che il punto **6**, due righe sopra, aveva gia' avuto
+e corretto per se': *«non la prima riga del foglio che porta la stessa
+parola»*. Nessuno l'aveva portato al punto 7. Adesso pianta dentro il titolo,
+come il 6.
+
+### Il costo
+
+Cancelli verdi (**29** veloci), suite **815 test / 76 620 asserzioni**, **60**
+difetti piantati. Sono cambiati testi e due guardie: nessuna regola, e il
+cancello dei 100 semi non e' toccato da niente di questo giro.
+
+---
+
 ## D-495 — La riga che diceva il falso, e il velo raccontato con la regola di prima
 
 **implemented in 0.1.465.** Giro 6 di [ISSUES 135](ISSUES.md#135), sulla parola

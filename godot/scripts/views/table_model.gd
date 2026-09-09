@@ -24,7 +24,6 @@ static func build(session: RefCounted) -> Dictionary:
 		"tensions": [],
 		"regions": [],
 		"councils": [],
-		"echoes_played": [],
 		"verbale": [],
 	}
 
@@ -97,22 +96,6 @@ static func build(session: RefCounted) -> Dictionary:
 			"proponent": session.service.name_of(str(result["proponent"])),
 			"played": played,
 		})
-
-	# Le carte che il mondo ha calato: la faccia in tavola.
-	# Prima si ricavava per sottrazione — le uscite dal mazzo meno quelle
-	# ancora in mano — perche' il mazzo era l'unica cosa che sapesse chi aveva
-	# cosa, e mostrarlo tale e quale svelava a tutto il tavolo la mano del
-	# Narratore di ognuno (D-144). Adesso non c'e' piu' ne' mazzo ne' mano
-	# (D-359): `echo_played` e' la pila di quelli che qualcuno ha calato
-	# davvero, e la vetrina la copia. Un Eco che nessuno ha calato non ci puo'
-	# finire per costruzione, non per attenzione.
-	for card_id in world.get("echo_played", []):
-		var card: Variant = data.echo_cards.get(str(card_id))
-		if card != null:
-			(out["echoes_played"] as Array).append({
-				"id": str(card_id),
-				"title": str(card["title"]),
-			})
 
 	# Il verbale e' pubblico per contratto (game_log.gd): i segreti di seggio
 	# passano da io.say e non lo toccano mai.

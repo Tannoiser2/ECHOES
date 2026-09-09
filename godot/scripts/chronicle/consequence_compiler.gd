@@ -1,5 +1,5 @@
 extends RefCounted
-## Compiles Consequences and Echo-card hooks into Effects (§6.3, §16).
+## Compiles Consequences into Effects (§6.3, §16).
 ##
 ## Authored data holds Effect *specs* with $variables ($proponent, $tension,
 ## $actor...). This resolves them against the running context and hands back
@@ -41,8 +41,7 @@ func compile_many(consequence_ids: Array, context: Dictionary, source: Dictionar
 	return effects
 
 
-## Compile a bare Effect spec (Echo-card EFFECT hooks, Asset on_commit_effects,
-## Condition clauses).
+## Compile a bare Effect spec (Asset on_commit_effects, Condition clauses).
 func compile_spec(spec: Dictionary, context: Dictionary, source: Dictionary) -> Dictionary:
 	var target: Dictionary = spec["target"]
 	var target_id: String = _substitute_string(str(target["id"]), context)

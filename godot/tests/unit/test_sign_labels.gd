@@ -20,10 +20,6 @@ func _collect_written_tags() -> Dictionary:
 		var scar: Dictionary = consequence.get("scar", {})
 		if not scar.is_empty():
 			found["region"][str(scar.get("tag", ""))] = true
-	for card_id in session.data.echo_cards:
-		for hook in session.data.echo_cards[card_id].get("effect_hooks", []):
-			if str(hook.get("kind", "")) == "EFFECT":
-				writers.append([hook.get("effect", {})])
 	for asset_id in session.data.assets:
 		writers.append(session.data.assets[asset_id].get("on_commit_effects", []))
 	# **E le rovine delle pietre.** Una pietra che crolla lascia una cicatrice,

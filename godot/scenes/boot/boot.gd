@@ -28,7 +28,7 @@ func _summary(ok: bool) -> String:
 	var data: RefCounted = DataRegistry.data
 	return (
 		"Dati validi (versione %s): %d Chronicle, %d Entita, %d Regioni, %d Asset, "
-		+ "%d Tensioni, %d template Confluence, %d carte Echo, %d Conseguenze, %d Destiny."
+		+ "%d Tensioni, %d template Confluence, %d Conseguenze, %d Destiny."
 	) % [
 		data.data_version,
 		data.chronicles.size(),
@@ -37,7 +37,6 @@ func _summary(ok: bool) -> String:
 		data.assets.size(),
 		data.tensions.size(),
 		data.confluence_templates.size(),
-		data.echo_cards.size(),
 		data.consequences.size(),
 		data.destinies.size(),
 	]

@@ -131,7 +131,7 @@ costruiscono per lui.
 | | |
 |---|---|
 | Temi | **6** — Potere, Sopravvivenza, Terra, Antico, Fede, Vie |
-| carte Asset con faccia fisica | **48 su 48**, ognuna col suo Eco **stampato sulla faccia** ([D-449](DECISIONS.md#d-449)) |
+| carte Asset con faccia fisica | **48 su 48**, due Azioni per faccia; l'Eco stampato se n'e' andato con le carte Eco ([D-500](DECISIONS.md#d-500)) |
 | Destini con faccia fisica | **23 su 23** |
 | carte Domanda | **60** — dieci per Tema, tarocchi **fronte-retro**: davanti la domanda, dietro il suo Consiglio ([D-449](DECISIONS.md#d-449)) |
 | carte Obiettivo | **19**, con una faccia da [D-445](DECISIONS.md#d-445) |
@@ -180,14 +180,14 @@ invece di battersi le cifre a mano ([D-373](DECISIONS.md#d-373)).
 
 | | |
 |---|---|
-| Asset | **48** (132 copie), tutte con faccia fisica, ognuna col suo Eco |
-| Echi | **48**, sulle carte Asset · Domande **60**, col Consiglio sul retro · Destini **23** · Obiettivi **19** · Casate **32** (8 case, una carta per vita) |
+| Asset | **48** (132 copie), tutte con faccia fisica |
+| Domande **60**, col Consiglio sul retro · Destini **23** · Obiettivi **19** · Casate **32** (8 case, una carta per vita) | le carte Eco non ci sono piu' ([D-500](DECISIONS.md#d-500)) |
 | Conseguenze | **63** · azioni **7** |
 | Regioni 10 · Entità 8 · profili strategici 8 · Cronache **1** (CHR_00) | |
-| segni nel dizionario | **177** · regole del segno **59** · icone **124** |
+| segni nel dizionario | **171** · regole del segno **65** · schede dei segnalini **118** |
 | template di Consiglio | 12 |
 | **da stampare** | **84 fogli A4**, più quattro fogli-fustella |
-| **segnalini** | **118 tipi, 152 pezzi**, più le pedine dei seggi |
+| **segnalini** | **112 tipi, 146 pezzi**, più le pedine dei seggi ([COMPONENTI](COMPONENTI.md)) |
 | **da illustrare** | **161 soggetti**, 11 disegnati, **150 ancora segnaposto** |
 
 **Ogni pezzo ha una scheda, e il dato per generarlo.** Da

@@ -141,7 +141,7 @@ func _classify(effect: Dictionary, data: RefCounted, text: String) -> String:
 
 	# Le azioni dei giocatori: il resolver scrive una riga per template, ed e'
 	# gia' asserito altrove che ogni azione offerta e' legale e raccontata.
-	if source_kind == "action" and source_id != "ACT_PLAY_ECHO":
+	if source_kind == "action":
 		return "azione: il resolver ha la sua riga"
 
 	# Due voci di flusso dichiarate nel Consiglio, con parole loro: il Ripple

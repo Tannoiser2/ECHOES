@@ -26,7 +26,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 
 | mazzo | corpo rimpicciolito | la piu' stretta | illustrazione media | la piu' piccola |
 |---|---|---|---|---|
-| **asset** | 29 su 48 | 81% | 36% | 34% |
+| **asset** | 0 su 48 | 100% | 48% | 41% |
 | **tension** | 0 su 60 | 100% | — | — |
 | **council** | 48 su 60 | 79% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
@@ -55,10 +55,6 @@ E porta il suo **Eco** (D-359): si cala al posto di un'Azione se le condizioni c
 | **AL CONSIGLIO** | 48 su 48 |
 | **IMPEGNI** | 48 su 48 |
 | **PRENDI ACQUISIRE** | 48 su 48 |
-| **ECO** | 48 su 48 |
-| **QUANDO ESCE** | 43 su 48 |
-| **IL MONDO** | 48 su 48 |
-| **CONVOCA IL CONSIGLIO** | 9 su 48 |
 
 **Una carta vera**, come esce dal foglio di stampa:
 
@@ -72,10 +68,6 @@ E porta il suo **Eco** (D-359): si cala al posto di un'Azione se le condizioni c
 > AL CONSIGLIO  1 · +1 se si discute di Potere o Vie
 > IMPEGNI  +1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #contesa
 > PRENDI  ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.
-> ECO  La Chiamata · PRESSIONE · funzione di Propp: richiesta
-> QUANDO ESCE  il mondo porta il debito e' stato chiamato
-> IL MONDO  la domanda in gioco sale · in una Regione con #commercio diventa #indebitata
-> CONVOCA IL CONSIGLIO  su Il Debito
 
 ## Il mazzo `tension`
 

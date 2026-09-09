@@ -151,8 +151,7 @@ func _the_two_lists(tension: Dictionary) -> void:
 ##
 ## Il mondo pero' le risposte ce le ha lo stesso: **di quale Regione parla questa
 ## domanda adesso** e **chi la porterebbe se si aprisse** si calcolano senza
-## Consiglio — e' la stessa strada che una carta Echo percorre da sempre
-## (`card_bindings`). Quindi: prima si riempie con quello che il mondo sa, e
+## Consiglio. Quindi: prima si riempie con quello che il mondo sa, e
 ## quello che resta **si spiega**. Un nome vero quando c'e', un ruolo quando non
 ## c'e', mai un `$`.
 func _voice_for(tension_id: String, session: RefCounted) -> Callable:
@@ -162,8 +161,7 @@ func _voice_for(tension_id: String, session: RefCounted) -> Callable:
 		return Callable()
 	var narrative: RefCounted = session.confluence.narrative
 	# **Chi la porterebbe se si aprisse adesso.** Non e' un'invenzione della
-	# pagina: e' la stessa regola che il Consiglio applica quando si apre, ed e'
-	# gia' la strada che una carta Echo percorre fuori da ogni Consiglio.
+	# pagina: e' la stessa regola che il Consiglio applica quando si apre.
 	var bindings: Dictionary = narrative.bindings_for(
 		tension_id, session.service.determine_proponent(tension_id)
 	)

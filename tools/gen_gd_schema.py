@@ -192,9 +192,6 @@ def render(schemas: Dict[str, Dict[str, Any]]) -> str:
     consequence_categories = (
         schemas["consequence"]["$defs"]["consequence_category"]["enum"]
     )
-    dramatic_families = (
-        schemas["echo_card"]["$defs"]["echo_card"]["properties"]["dramatic_family"]["enum"]
-    )
 
     parts = [
         HEADER,
@@ -227,7 +224,6 @@ def render(schemas: Dict[str, Dict[str, Any]]) -> str:
         "",
         f"const CONSEQUENCE_CATEGORIES := {gd_value(list(consequence_categories), 0)}",
         "",
-        f"const DRAMATIC_FAMILIES := {gd_value(list(dramatic_families), 0)}",
         "",
     ]
     return "\n".join(parts)

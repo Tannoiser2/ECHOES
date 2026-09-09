@@ -112,7 +112,13 @@ Chiavi in uso: vedi la colonna `art_prompt_key` di
 
 ---
 
-## MASTER PROMPT 2 — Echo card
+## MASTER PROMPT 2 — Echo card *(non piu' in uso)*
+
+> **Le carte Eco non esistono piu'** ([D-500](DECISIONS.md#d-500)): l'Eco che
+> resta e' il **ricordo** che un Consiglio lascia, e non e' un pezzo da
+> illustrare. Questo prompt resta scritto qui, e solo qui, perche' gli altri
+> sono numerati e i loro numeri sono citati in giro per questo documento: non
+> ha piu' un mazzo che lo legga.
 
 ```
 ECHOES — Echo card. A narrative moment: {SOGGETTO}.

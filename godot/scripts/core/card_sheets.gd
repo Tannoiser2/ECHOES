@@ -47,7 +47,7 @@ const COMMON_FIELDS: Array = [
 const TYPES: Dictionary = {
 	"asset": {
 		"nome": "carta Asset",
-		"cosa": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Sotto le Azioni porta il suo Eco** (D-359): se le condizioni ci sono si cala quello al posto di un'Azione, e costa la carta.",
+		"cosa": "La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dal proprio mazzetto a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Due blocchi, non tre** (D-500): l'Eco stampato sotto le Azioni se n'e' andato con le carte Eco.",
 		"immagine": "Una **scena** — un luogo, un gesto, persone dentro una cosa che sta succedendo — mai un ritratto singolo centrato. L'accento e' il colore della famiglia.",
 		"sottotitolo": "famiglia e rarita' (`family`, `rarity`), in italiano",
 		"angolo": "la forza (`strength`)",
@@ -59,12 +59,8 @@ const TYPES: Dictionary = {
 			["AL CONSIGLIO", "quanto vale al voto e quando di piu': `physical.council_use`, `strength`"],
 			["IMPEGNI", "cosa lascia se la impegni: `on_commit_effects`, `discard_or_retain_rule`"],
 			["PRENDI", "come arriva in mano: `acquisition_rule`"],
-			["ECO", "l'Eco della carta, la sua versione potenziata: `echo_id`, con titolo, famiglia drammatica e funzione di Propp"],
-			["QUANDO ESCE", "le condizioni per calare l'Eco: `eligibility` dell'Eco, generate dai campi"],
-			["IL MONDO", "cosa fa l'Eco, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id)"],
-			["CONVOCA IL CONSIGLIO", "la domanda che l'Eco apre, se ne apre una: `forces_confluence_on`"],
 		],
-		"voci": ["DOVE", "①", "②", "SEMPRE", "AL CONSIGLIO", "IMPEGNI", "PRENDI", "ECO", "QUANDO ESCE", "IL MONDO", "CONVOCA IL CONSIGLIO"],
+		"voci": ["DOVE", "①", "②", "SEMPRE", "AL CONSIGLIO", "IMPEGNI", "PRENDI"],
 	},
 	"tension": {
 		"nome": "carta Domanda (la Tensione), fronte",
@@ -333,8 +329,8 @@ static func document(data: RefCounted, bible: RefCounted, json_dir: String) -> S
 	lines.append("faccia stampa, e questo documento non si scrive.")
 	lines.append("")
 	lines.append("Una carta puo' avere **due facce**: la Domanda porta il suo Consiglio sul")
-	lines.append("retro (D-449), e l'Asset porta il suo Eco sotto le Azioni (D-359). Il JSON")
-	lines.append("di un retro dice di che fronte e' (`fronte`), e viceversa (`retro`).")
+	lines.append("retro (D-449). Il JSON di un retro dice di che fronte e' (`fronte`), e")
+	lines.append("viceversa (`retro`).")
 	lines.append("")
 	lines.append("| tipo | formato | facce | pezzi | immagine | il dato |")
 	lines.append("|---|---|---|---|---|---|")

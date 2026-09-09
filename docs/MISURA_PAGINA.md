@@ -22,8 +22,8 @@ sta in una colonna sua.
 | | |
 |---|---|
 | pannelli guardati | 10 |
-| nodi in tutto | 368 |
-| testi sotto gli occhi | 188 |
+| nodi in tutto | 374 |
+| testi sotto gli occhi | 194 |
 | *piu' 1 blocchi di testo ricco che questa sonda non sa leggere* | |
 | **testi che vivono solo nel suggerimento del mouse** | **2** |
 | bersagli che si toccano | 22 |
@@ -31,9 +31,9 @@ sta in una colonna sua.
 | di cui non dichiarano nessuna misura | 0 |
 | **parole tecniche sotto gli occhi** | **0** |
 | **frasi che la pagina dice in due punti** | **0** |
-| testi con una taglia | 199 |
+| testi con una taglia | 205 |
 | **piu' piccoli di 11 punti sul tablet** | **0** |
-| sotto i 17 punti, che la guida chiama «corpo» | 197 |
+| sotto i 17 punti, che la guida chiama «corpo» | 203 |
 | il piu' piccolo, sul tablet | 11.0 punti |
 
 **Il testo ricco resta fuori, e va detto.** Un `RichTextLabel`
@@ -58,8 +58,8 @@ nessuna scritta accanto ripete.
 
 | pannello | dove | cosa direbbe |
 |---|---|---|
-| la mano | PanelContainer | L'ECO - La Parola Data La cosa che era stata proibita viene fatta, e viene fatta da chi l' |
-| la mano | PanelContainer | L'ECO - Presagio Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare |
+| la mano | PanelContainer | Giuramento — bonds, forza 1 1. Giurare insieme: Sali di 1 gradino nel rapporto con lei e m |
+| la mano | PanelContainer | Voce di Corridoio — knowledge, forza 1 1. Ascoltare la voce: Leggi a quanto esplode una do |
 
 ## 2. I bersagli che un dito non prende
 
@@ -98,7 +98,7 @@ che resta: e' la mappa, ed e' giusto che sia lei.
 |---|---|---|---|---|
 | colonna di stato | sotto, in una scheda | 38 | 120 | 1744 |
 | mappa | al centro | 13 | *si adatta* | |
-| il Consiglio | a schermo intero | 81 | 974 | 182 |
+| il Consiglio | a schermo intero | 87 | 974 | 182 |
 | il tavolo | nella stanza, prima di sedersi | 38 | *si adatta* | |
 | i mazzi dei Temi | non sta sulla pagina (D-464) | 13 | *si adatta* | |
 | chi siede | al centro | 25 | 402 | 44 |
@@ -135,7 +135,7 @@ Quanti testi a ogni taglia, sul tablet:
 
 | punti | testi |
 |---|---|
-| 11 | 99 |
+| 11 | 105 |
 | 12 | 63 |
 | 13 | 23 |
 | 14 | 1 |

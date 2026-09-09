@@ -5,6 +5,242 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.470 — Via le carte Eco: resta il ricordo, sparisce la carta
+
+[D-500](docs/DECISIONS.md#d-500), [ISSUES 136](docs/ISSUES.md#136). Parola del
+committente, dopo aver visto quanti Echi un anno produce davvero: *«lascia
+perdere gli echi, che non dovrebbero piu' esistere come carte»*.
+
+**Due cose si chiamavano uguale, e una sola se ne va.** L'Eco-**ricordo** —
+`CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — e' il cuore del gioco
+e resta intero. L'Eco-**carta**, la terza faccia dell'Asset che
+[D-359](docs/DECISIONS.md#d-359) aveva fuso sulla stessa carta, non c'e' piu'.
+
+Il numero che ha deciso: `run_echo_probe.gd` conta **3,73 Echi l'anno su tutto il
+tavolo**, cioe' **meno di uno per casa**. Le carte Eco erano **48**, le nominavano
+**48 Asset su 48**, e si giocavano **46 volte su 720 scelte** (6,4%).
+
+### Rimosso
+
+- le **48 carte Eco** (`godot/data/echoes/`), lo schema `echo_card`, il campo
+  `echo_id` da tutti e 48 gli Asset e `act_echo_pools` dalla Chronicle;
+- la voce **PLAY_ECHO** dal risolutore, dal cervello del seggio e dal menu che il
+  seggio offre; `echo_text.gd`, il blocco Eco della mano, `run_echo_weight_probe`,
+  `run_consequence_probe` e `test_echo_grammar`;
+- **e la coda che leggeva il vuoto**: la collezione `echo_cards`, la faccia
+  stampata di `card_face.gd` (`_echo`, `DRAMA`, `PROPP`), le due funzioni del
+  risolutore che leggevano `act_echo_pools`, il segnale `act_echo_drawn` con
+  `card_bindings`, la vista `echo_card_view.gd` con la sua pausa a fine Atto, e
+  le due chiavi che il mondo teneva (`echo_played`, `echoes_played_in_act`).
+
+  A trovarla e' stato un `SCRIPT ERROR` **dentro una suite verde** — la vetrina
+  del tavolo chiedeva al modello una chiave sparita, e la funzione si
+  interrompeva a meta' senza che niente diventasse rosso. Con lei se ne vanno
+  **due prove diventate cieche**, che giravano su una collezione vuota e
+  chiudevano con `assert_eq(0, 0)`, e sei strumenti che giravano a vuoto su una
+  cartella cancellata.
+
+### Il costo, voce per voce
+
+- **una Conseguenza su 54** perde la sua unica strada: `CNS_OATH_BROKEN`;
+- **sette segni restano muti**, perche' a leggerli erano solo le eleggibilita'
+  delle carte Eco — dichiarati uno per uno in `MUTI_NOTI`, con la ragione;
+- **due segni se ne vanno** (`someone_paid`, `parley_held`), e con `parley_held`
+  la condizione della Risonanza di *Favore*, che ora scalda senza il suo bonus;
+- **due clausole diventavano impossibili** (`amnesty_granted`,
+  `charter_temporary`) e sono state tolte coi loro segni; l'incarnazione delle
+  Citta' Libere entra adesso da `LINE_EXHAUSTED`;
+- **il TRIUMPH si e' dimezzato**: da **6 a 3 su 400** seggi-partita **sul
+  tavolo misto** dei 100 semi dal 7000; sull'uniforme sono **5 su 400**.
+
+`test_destinies_are_contested` chiedeva almeno un TRIUMPH su 96 seggi-partita:
+allo 0,75% l'attesa e' **0,7**, cioe' la prova chiedeva un evento che il gioco
+produce meno di una volta per campione. Adesso misura quello che voleva dire —
+**i seggi arrivano a livelli diversi** — e non dipende piu' da un evento raro.
+
+### Misurato
+
+| | col mazzetto e gli Echi | senza le carte Eco |
+|---|---|---|
+| Consigli per anno | 5,58 | **5,68** |
+| Verita', tavolo misto | 360 / 360 | **393 / 391** |
+| Verita', tavolo uniforme | 402 / 399 | **421 / 418** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 815 test | **800 test**, 75 004 asserzioni |
+
+E i documenti generati si accorciano da soli: i **segni del dizionario** da 175
+a **171**, i **segnalini da tagliare** da 116 tipi (150 pezzi) a **112 (146)**,
+i **soggetti da illustrare** da 161 a **113**.
+
+Cento semi dal 7000, tutti e due i tavoli. Le Verita' salgono ancora — **+33**
+sul misto, **+19** sull'uniforme — perche' le Azioni che prima diventavano un Eco
+adesso restano Azioni, e il mondo le registra.
+
+---
+
+## 0.1.469 — Il mazzetto personale: una Occasione bloccata su trenta invece che su cinque
+
+[D-499](docs/DECISIONS.md#d-499), [ISSUES 136](docs/ISSUES.md#136), col
+dimensionamento misurato prima in [D-498](docs/DECISIONS.md#d-498). E' il rimedio
+al difetto che il committente ha vissuto: *«ho passato l'atto 2 e 3 senza carte
+in mano e ho dovuto passare»*.
+
+**Il rubinetto c'era e non bastava.** `hand_refill` pescava in base alla mappa e
+dava circa **quattro** carte per Atto contro un fabbisogno di **3,92**:
+esattamente al limite, senza margine.
+
+**Adesso ogni casa ha il suo mazzetto: 18 carte uguali per tutte**, e la
+differenza sta in **quali** — 2 di identita' piu' il resto distribuito a giro fra
+le famiglie che la sua presenza raggiunge. Se ne pescano **6 a inizio Atto**, e
+le carte giocate tornano nel **proprio scarto**, che si rimescola quando il pozzo
+finisce: e' un mazzo, non una scorta.
+
+### Misurato
+
+| | prima | col mazzetto |
+|---|---|---|
+| **Occasioni bloccate** (tavolo di una persona) | **55 / 270 — 20%** | **9 — 3%** |
+| di quelle, con la mano vuota | 39 (70%) | **1 (11%)** |
+| carte in mano nei momenti bloccati | 0,44 | **1,33** |
+| Consigli per anno | 4,98 | **5,58** |
+| Verita', tavolo misto | 325 / 322 | **360 / 360** |
+| Verita', tavolo uniforme | 324 / 324 | **402 / 399** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+
+Suite **815 test, 76 637 asserzioni**, verde.
+
+### Cambiato
+- Schema Chronicle: `personal_decks` (`size`, `draw_per_act`, `identity_cards`).
+  **Assente vuol dire il gioco di prima**: un cambio di questa taglia che non si
+  puo' spegnere non si puo' nemmeno misurare contro quello che ha sostituito.
+- `world_state_factory`: il mazzetto si monta dopo i sei mazzi comuni, che
+  restano il magazzino della scatola.
+- `chronicle_controller`: la pesca a inizio Atto, col rimescolo dello scarto.
+- `effect_applier`: `PERSONAL_DECK` come sorgente e `OWN_DISCARD` come
+  destinazione, ognuna col suo inverso.
+
+**E la causa che resta e' l'altra:** dei nove blocchi rimasti, **dodici ragioni
+su tredici** sono *«la carta arriva al luogo, ma l'Azione e' rifiutata lo
+stesso»* — *Giuramento* e *Promessa di Nozze*, FORGIARE che chiede il consenso di
+un'altra casa.
+
+---
+
+## 0.1.467 — La scheda del Consiglio: chi sceglie, e le voci raggruppate
+
+[D-497](docs/DECISIONS.md#d-497), [ISSUES 137](docs/ISSUES.md#137), parola del
+committente: *«non si sa chi sta facendo cosa e le voci sono tutte mescolate»*.
+
+Tre difetti su una scheda sola, nessuno dei quali tocca una regola:
+
+- **la sigla che nessuno spiegava** — ogni voce portava `A ·`, `B ·` o `BA ·`, e
+  da nessuna parte c'era scritto che sono le due domande. Adesso non c'e' piu':
+  la dice il gruppo;
+- **le voci mescolate** — BENEFICI e COSTI erano due liste sole con dentro le
+  voci di tutt'e due in ordine sparso, **8,9 per carta**. Adesso dentro ogni
+  lista ci sono tre gruppi: per la domanda A, per la B, per tutte e due;
+- **chi sceglie non stava scritto** — [D-280](docs/DECISIONS.md#d-280) dice che
+  il proponente compra i benefici e gli avversari scelgono i costi, ed era
+  l'unica cosa che la scheda non diceva. Adesso sta nei titoli.
+
+**Non si raggruppa per domanda in cima**, che sarebbe l'ordine piu' ovvio: le
+voci comuni sono **185 su 720** (3,1 per carta) e finirebbero stampate due
+volte — al tavolo, due caselle dove ce n'e' una.
+
+### Cambiato
+- `confluence_board.gd`: i tre gruppi dentro le due liste, i titoli che dicono
+  chi sceglie, la sigla via dalle righe.
+- `test_the_board_draws_both_lists`: pretendeva la sigla su ogni riga, che era
+  meta' del difetto. Adesso prende **il gruppo** — e in piu' che la sigla non ci
+  sia e che i titoli dicano chi sceglie.
+
+### Misurato
+- voci per carta Tensione: **8,9** in media (4,4 solo A, 4,5 solo B, 3,1 comuni).
+- voci comuni in tutto: **185 su 720** — la ragione per cui i gruppi stanno
+  dentro le liste e non sopra.
+- voci spente su una scheda vera: **183 su 564** (**32%**), 47 schede — a occhio
+  avevo scritto «meta'», ed era una stima sbagliata.
+- **il costo, scritto**: la pagina del Consiglio cresce da **81 a 87 nodi** e i
+  testi sotto gli occhi di tutta l'app da **188 a 194** — sono le sei
+  intestazioni dei gruppi.
+- suite **815 test, 76 637 asserzioni**, verde.
+
+**E le spente vanno in coda al loro gruppo**, con [ISSUES
+137](docs/ISSUES.md#137) che si chiude. Quante fossero l'avevo stimato a occhio
+— «meta' della lista» — e misurate su 47 schede sono **183 su 564**, una su tre.
+Non si tolgono: sapere cosa c'era e non vale qui e' meta' di una trattativa.
+
+---
+
+## 0.1.466 — Il velo fuori dalle carte, e due voci nuove misurate prima di rispondere
+
+[D-496](docs/DECISIONS.md#d-496), giro 7 di [ISSUES 135](docs/ISSUES.md#135),
+piu' le due voci che il committente ha aperto giocando.
+
+**Il difetto del velo stava anche fuori dalle carte.** `action_templates.json`
+teneva tre frasi della regola vecchia, e una **contraddice il motore**: *«le
+Tensioni velate non sono influenzabili»*, quando col velo sulla sola soglia si
+spingono come ogni altra — e il commento del resolver lo dice. Con loro sono
+cambiate tre frasi del codice che il giocatore legge nel verbale.
+
+**E la guardia era giusta nel posto e sbagliata nel modo**, tre volte in un
+giro: guardava le sole facce delle carte; allargata a ogni testo cercava la
+**stringa** «questione velata», e il difetto vero e' scritto con altre parole;
+corretta a cercare la parola in chiaro, ha preso per sbagliata **la frase giusta
+appena scritta**. La marca finale e' un verbo del coprire nella stessa frase
+della cosa che la regola lascia in chiaro — e la negazione ammette due parolette
+in mezzo, perche' *«non se ne conosce»* e' italiano normale.
+
+### Aperte
+- **[ISSUES 136](docs/ISSUES.md#136)** — *«ho passato l'atto 2 e 3 senza carte
+  in mano»*. **Il committente ha ragione in pieno**, e la prima lettura dei
+  numeri era mia e sbagliata: avevo messo in fila il tavolo della policy (che
+  passa spesso per scelta) e quello di una persona, cioe' proprio quello che
+  [D-391](docs/DECISIONS.md#d-391) vieta. Sul tavolo che conta —
+  `run_blocked_probe.gd` (nuova), 15 anni dal seme 7000, seduta al posto di chi
+  gioca — le Occasioni con la **sola voce «passa»** sono **55 su 270 (20%)**, e
+  **39 di quelle (70%) hanno la mano vuota**: nei momenti bloccati la mano ha
+  **0,44 carte**. E il **38%** delle ragioni contate e' una seconda causa vera:
+  **24 carte arrivano al luogo e l'Azione e' rifiutata lo stesso** — *Giuramento*
+  e *Promessa di Nozze*, FORGIARE che chiede un'altra casa e il suo consenso.
+- **[ISSUES 137](docs/ISSUES.md#137)** — la scheda del Consiglio non dice che
+  `A` e `B` sono le due domande, mescola le voci delle due, e non dice che il
+  proponente compra i benefici e gli avversari scelgono i costi.
+
+### Cambiato
+- I tre testi di `action_templates.json` dicono la regola spedita, senza gergo.
+- `effect_narrator.gd`, `action_resolver.gd`, `game_screen.gd`: le tre frasi del
+  verbale scelgono le parole secondo la regola del velo invece di darne una per
+  scontata.
+- `validate_physical.py`: la guardia del velo copre **ogni testo di ogni
+  schema**, e la marca e' il concetto invece della frase. Due difetti piantati
+  nuovi — uno fuori dalle carte, uno che verifica il **verso opposto**, cioe'
+  che la guardia taccia su una frase giusta: **60** in tutto.
+- `run_empty_hand_probe.gd` (nuova): la mano un attimo prima di ogni scelta, per
+  Atto, e si dichiara non cieca contando le Occasioni contro la Chronicle.
+- `issues_survey.py`: il settimo difetto piantato si mette **dentro il titolo**
+  invece che alla prima occorrenza nel foglio. Era latente e l'ha svegliato
+  l'apertura delle due voci: la guardia andava rossa accusando la rigenerazione
+  di un difetto che si era piantata da sola.
+
+### Misurato
+- testi che raccontavano il velo vecchio fuori dalle carte: **3**, di cui **1**
+  contraddetto dal motore; frasi del codice: **3**.
+- **tavolo della policy** (30 anni, seme 7000, misto): mano vuota per Atto
+  **4,0% / 6,2% / 3,5%**, passa **58,8% / 57,5% / 55,6%**, mano media
+  **3,32 / 3,29 / 3,66**.
+- **tavolo di una persona** (15 anni, seme 7000): bloccati **20%** delle
+  Occasioni, di cui **70%** a mano vuota, **0,44** carte in mano quando bloccato.
+  I due tavoli non si mettono in fila, ed e' la ragione per cui il primo numero
+  di questa voce era sbagliato.
+- fabbisogno di un seggio: **11,76 carte l'anno**, **3,92 per Atto**.
+- suite **815 test, 76 620 asserzioni**, verde; difetti piantati **60**.
+
+Il cancello dei 100 semi non e' toccato da questo giro: sono cambiati testi e
+una guardia, nessuna regola.
+
+---
+
 ## 0.1.465 — La riga che diceva il falso, e il velo raccontato con la regola di prima
 
 [D-495](docs/DECISIONS.md#d-495), giro 6 di [ISSUES 135](docs/ISSUES.md#135),

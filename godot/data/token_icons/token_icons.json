@@ -521,13 +521,6 @@
       "soggetto": "due meta' di un bastoncino di conto, spezzate e rimesse una accanto all'altra"
     },
     {
-      "id": "TOK_AMNESTY_GRANTED",
-      "tag": "amnesty_granted",
-      "fustella": "MONDO",
-      "rappresenta": "Quello che era stato fatto non si conta piu': si riparte da zero.",
-      "soggetto": "un ceppo di ferro aperto, con la catena che pende vuota"
-    },
-    {
       "id": "TOK_BETRAYAL_SPOKEN",
       "tag": "betrayal_spoken",
       "fustella": "MONDO",
@@ -547,13 +540,6 @@
       "fustella": "MONDO",
       "rappresenta": "La legge scritta vale per chiunque, senza eccezioni comprate.",
       "soggetto": "un sigillo pendente da un nastro, largo quanto il rotolo che chiude"
-    },
-    {
-      "id": "TOK_CHARTER_TEMPORARY",
-      "tag": "charter_temporary",
-      "fustella": "MONDO",
-      "rappresenta": "Vale adesso e non per sempre: qualcuno ci ha messo una scadenza.",
-      "soggetto": "una clessidra posata di traverso sopra un rotolo chiuso"
     },
     {
       "id": "TOK_CHARTER_WRITTEN",
@@ -703,13 +689,6 @@
       "soggetto": "una bilancia tornata in piano, i due piatti alla stessa altezza"
     },
     {
-      "id": "TOK_PARLEY_HELD",
-      "tag": "parley_held",
-      "fustella": "MONDO",
-      "rappresenta": "Prima di decidere si sono seduti e si sono parlati.",
-      "soggetto": "due sgabelli uno di fronte all'altro, vuoti"
-    },
-    {
       "id": "TOK_PETITION_HEARD",
       "tag": "petition_heard",
       "fustella": "MONDO",
@@ -764,13 +743,6 @@
       "fustella": "MONDO",
       "rappresenta": "Se ne parla dappertutto, e nessuno sa piu' chi l'ha detto per primo.",
       "soggetto": "tre linee ondulate che partono da un punto e si allargano"
-    },
-    {
-      "id": "TOK_SOMEONE_PAID",
-      "tag": "someone_paid",
-      "fustella": "MONDO",
-      "rappresenta": "Quella decisione e' costata a qualcuno, e non a chi l'ha presa.",
-      "soggetto": "una scodella vuota rovesciata"
     },
     {
       "id": "TOK_STUDY_SUPERVISED",

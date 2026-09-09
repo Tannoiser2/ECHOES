@@ -102,7 +102,7 @@ func _mentions_outside_comments(source: String, needle: String) -> bool:
 ## terzo blocco della carta che si ha gia' in mano, e la vista lo dice nel
 ## tooltip. Il test compila e disegna la vista, che la suite headless altrimenti
 ## non carica mai - il debito scoperto in 0.1.60, pagato qui per questa vista.
-func test_hand_view_draws_one_card_each_with_its_echo() -> void:
+func test_hand_view_draws_one_card_each_with_its_actions() -> void:
 	new_session()
 	var viewer: String = str(session.world["turn_order"][0])
 	var view: HBoxContainer = preload("res://ui/hand_view.gd").new()
@@ -112,9 +112,10 @@ func test_hand_view_draws_one_card_each_with_its_echo() -> void:
 		session.service.hand_size(viewer),
 		"una figura per ogni Asset in mano, e nessun mazzo a parte"
 	)
-	var said_echo: bool = false
+	var said_actions: bool = false
 	for child in view.get_children():
-		if str((child as Control).tooltip_text).begins_with("L'ECO - "):
-			said_echo = true
-	assert_true(said_echo, "e ogni carta dice quale Eco porta")
+		# La scheda porta le due Azioni numerate (D-493): «1. …», «2. …».
+		if str((child as Control).tooltip_text).contains("1. "):
+			said_actions = true
+	assert_true(said_actions, "e ogni carta dice le sue due Azioni")
 	view.free()

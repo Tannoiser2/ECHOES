@@ -11,9 +11,21 @@ extends RefCounted
 
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
+## **Che cosa cambia quando una domanda si apre, dipende da cosa teneva
+## coperto** (D-496). Con `HIDES_ALL` era il numero; con `HIDES_THRESHOLD` — la
+## regola della Chronicle spedita — il numero era gia' sul tavolo, e quello che
+## si scopre e' **a quanto esplode**. Dire «il suo numero e' sul tavolo» a chi
+## quel numero lo legge da sempre e' una frase che non racconta niente.
 const VISIBILITY_SAID: Dictionary = {
 	"OPEN": "%s non è più velata: il suo numero è sul tavolo.",
 	"VEILED": "%s torna velata.",
+	"SECRET": "%s scompare dalla vista del tavolo.",
+}
+
+## La stessa riga, quando il velo copre la sola soglia.
+const VISIBILITY_SAID_THRESHOLD: Dictionary = {
+	"OPEN": "%s non è più velata: adesso si sa a quanto esplode.",
+	"VEILED": "%s torna velata: a quanto esplode torna coperto.",
 	"SECRET": "%s scompare dalla vista del tavolo.",
 }
 
@@ -43,9 +55,13 @@ static func narrate(effect: Dictionary, data) -> String:
 			return "Il Tema %s si raffredda." % _theme(target_id, data)
 		"SET_TENSION_VISIBILITY":
 			var visibility: String = str(payload.get("visibility", ""))
-			if not VISIBILITY_SAID.has(visibility):
+			var said: Dictionary = (
+				VISIBILITY_SAID_THRESHOLD if _veil_hides_threshold(data)
+				else VISIBILITY_SAID
+			)
+			if not said.has(visibility):
 				return ""
-			return str(VISIBILITY_SAID[visibility]) % _tension(target_id, data)
+			return str(said[visibility]) % _tension(target_id, data)
 		"ADD_PRESENCE":
 			return "%s mette radici in %s." % [
 				_entity(target_id, data), _region(str(payload.get("region_id", "")), data)
@@ -204,6 +220,28 @@ static func _region(id: String, data) -> String:
 	if data != null and data.regions.has(id):
 		return str(data.regions[id]["name"])
 	return id
+
+
+## **Quale regola del velo e' nella scatola** (D-496).
+##
+## Il narratore non ha il mondo sotto mano, solo i dati, quindi la chiede alle
+## Chronicle: e' vera solo se **tutte** dicono `HIDES_THRESHOLD`, perche' una
+## frase sola non puo' raccontare due regole. Il validatore va rosso il giorno
+## in cui non concordano, cosi' qui il ripiego non copre mai un disaccordo.
+##
+## Il `data` puo' essere nullo — il narratore lo accetta ovunque — e allora si
+## torna alla regola di partenza, che e' il default dello schema.
+static func _veil_hides_threshold(data) -> bool:
+	if data == null:
+		return false
+	var chronicles: Variant = data.get("chronicles") if data is Dictionary else data.chronicles
+	if not (chronicles is Dictionary) or (chronicles as Dictionary).is_empty():
+		return false
+	for id in (chronicles as Dictionary):
+		var card: Dictionary = (chronicles as Dictionary)[id] as Dictionary
+		if str(card.get("veiled_tensions", "HIDES_ALL")) != "HIDES_THRESHOLD":
+			return false
+	return true
 
 
 static func _tension(id: String, data) -> String:

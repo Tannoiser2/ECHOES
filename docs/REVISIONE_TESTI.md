@@ -7,7 +7,7 @@ Ogni testo che un giocatore può leggere, nell'ordine in cui lo incontra,
 con il suo identificativo. Per correggere basta una riga, anche a voce:
 «`P_SHOW_IT`: riscrivi così…» — al resto pensa il motore. I segnaposto
 (`$the_region`, `$proponent`…) sono gli slot che il mondo riempie: si
-possono spostare nella frase, non togliere. 3255 testi in lettura.
+possono spostare nella frase, non togliere. 3084 testi in lettura.
 
 ## 1. Le aperture — lette ad alta voce all'inizio dell'anno
 
@@ -7097,581 +7097,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 > Il Consiglio decide di non decidere, e fuori dalla sala qualcuno racconta comunque la sua versione. Non e' una proposta caduta: e' una proposta che lascia correre.
 
 
-## 7. Le carte Echo — il mondo risponde
-
-**`ECH_AMNESTY`**
-> Amnistia
-
-> Si decide di non contare più chi aveva giurato a chi. Non tutti sono d'accordo, e nessuno lo dice.
-
-
-**`ECH_AMNESTY, quando esce 1`**
-> Si perdona dopo che qualcuno si è preso o ha vietato qualcosa
-
-
-**`ECH_AMNESTY, quando esce 2`**
-> e' gia' stata calata una carta Eco di usurpation
-
-
-**`ECH_AMNESTY, quando esce 3`**
-> e' gia' stata calata una carta Eco di prohibition
-
-
-**`ECH_AMNESTY, quando esce 4`**
-> e' gia' stata calata una carta Eco di conquest
-
-
-**`ECH_BETRAYAL`**
-> Tradimento
-
-> Un accordo viene rotto da chi lo aveva proposto. Il danno non è la rottura: è che ora tutti ricalcolano.
-
-
-**`ECH_BETRAYAL, quando esce 1`**
-> Da qualche parte una terra e' contesa
-
-
-**`ECH_CALL_OF_ACCOUNTS`**
-> La Chiamata
-
-> La Gilda scrive a tre città lo stesso giorno. Non chiede di pagare: chiede di confermare la cifra.
-
-
-**`ECH_CALL_OF_ACCOUNTS, quando esce 1`**
-> Un debito e' stato chiamato
-
-
-**`ECH_CARAVAN_LOST`**
-> Carovana Perduta
-
-> Undici carri partiti, nessuno arrivato, e nessun corpo trovato. È la parte senza corpi che spaventa.
-
-
-**`ECH_CROWNING`**
-> Chi Siede
-
-> Un nome viene detto e non viene contestato. Non è giustizia: è che tutti sono stanchi.
-
-
-**`ECH_CROWNING, quando esce 1`**
-> Si succede a qualcuno solo dopo che il posto si è liberato o è stato preso
-
-
-**`ECH_CROWNING, quando esce 2`**
-> e' gia' stata calata una carta Eco di threat
-
-
-**`ECH_CROWNING, quando esce 3`**
-> e' gia' stata calata una carta Eco di usurpation
-
-
-**`ECH_CROWNING, quando esce 4`**
-> e' gia' stata calata una carta Eco di conquest
-
-
-**`ECH_CROWNING, quando esce 5`**
-> e' gia' stata calata una carta Eco di separation
-
-
-**`ECH_DISCOVERY`**
-> Scoperta
-
-> Qualcosa di nascosto viene misurato. Da questo momento la questione ha dei numeri, e i numeri si discutono.
-
-
-**`ECH_DISCOVERY, quando esce 1`**
-> Il Cristallo e' stato sfruttato
-
-
-**`ECH_EMPTY_THRONE`**
-> Sedia Vuota
-
-> Il re manca a un consiglio. Poi a un secondo. Alla terza volta la stanza ha smesso di aspettarlo.
-
-
-**`ECH_EMPTY_THRONE, quando esce 1`**
-> Una domanda e' rimasta aperta
-
-
-**`ECH_EXODUS`**
-> La Partenza
-
-> Le carriole partono di notte per non dover salutare nessuno. Al mattino mancano tre famiglie su dieci.
-
-
-**`ECH_EXODUS, quando esce 1`**
-> Da qualche parte una terra e' stata abbandonata
-
-
-**`ECH_GOOD_YEAR`**
-> Annata Buona
-
-> Piove quando serve e smette quando serve. Non risolve niente, ma sposta la domanda di un anno.
-
-
-**`ECH_GOOD_YEAR, quando esce 1`**
-> Un'annata buona si nota solo dopo una che non lo era
-
-
-**`ECH_HANDS_DOWN`**
-> Le Mani Ferme
-
-> Nessuno alza le mani contro nessuno: le tengono ferme, e basta quello. Il lavoro si ferma dove serviva di piu', e nessuno ha dato un ordine.
-
-
-**`ECH_HANDS_DOWN, quando esce 1`**
-> Da qualche parte si raziona il grano
-
-
-**`ECH_LACK`**
-> Mancanza
-
-> Qualcosa che c'era non c'è più, e la sua assenza comincia a organizzare le giornate di tutti.
-
-
-**`ECH_LACK, quando esce 1`**
-> Da qualche parte si raziona il grano
-
-
-**`ECH_LEGEND_BROKEN_OATH`**
-> Il Giuramento che Nessuno Sciolse
-
-> Qualcuno ripete a voce alta il giuramento che fu rotto, coi nomi di chi c'era. Le case contano da quanti anni nessuno lo nomina, e la conta non torna a nessuno.
-
-
-**`ECH_LEGEND_BROKEN_OATH, quando esce 1`**
-> Si racconta di un giuramento rotto, o se n'e' rotto uno adesso
-
-
-**`ECH_LEGEND_BROKEN_OATH, quando esce 2`**
-> Si racconta di un giuramento rotto e mai sciolto
-
-
-**`ECH_LEGEND_BROKEN_OATH, quando esce 3`**
-> Un tradimento e' stato detto ad alta voce
-
-
-**`ECH_LEGEND_CALLED_DAY`**
-> Il Giorno che la Gilda Chiese Tutto
-
-> La storia si racconta a ogni firma: una Gilda morta da secoli che un mattino chiese tutto insieme. Il debito di adesso comincia a pesare come quello antico.
-
-
-**`ECH_LEGEND_CALLED_DAY, quando esce 1`**
-> Si racconta del giorno in cui la Gilda chiese tutto, o un debito e' stato chiamato adesso
-
-
-**`ECH_LEGEND_CALLED_DAY, quando esce 2`**
-> Si racconta del giorno in cui la Gilda chiese tutto
-
-
-**`ECH_LEGEND_CALLED_DAY, quando esce 3`**
-> Un debito e' stato chiamato
-
-
-**`ECH_LEGEND_GOOD_YEAR`**
-> La Ballata dell'Anno Buono
-
-> Un cantastorie riporta in giro la ballata dell'anno in cui l'ordine torno davvero. Nessuno dei presenti c'era, e tutti giurano di ricordarselo.
-
-
-**`ECH_LEGEND_GOOD_YEAR, quando esce 1`**
-> Si racconta dell'anno in cui l'ordine torno', o e' tornato adesso
-
-
-**`ECH_LEGEND_GOOD_YEAR, quando esce 2`**
-> Si racconta di un anno in cui l'ordine torno'
-
-
-**`ECH_LEGEND_GOOD_YEAR, quando esce 3`**
-> L'ordine e' stato ristabilito
-
-
-**`ECH_LOSS`**
-> Perdita
-
-> Qualcuno non c'è più, e la sua parte di lavoro resta scoperta.
-
-
-**`ECH_LOSS, quando esce 1`**
-> Da qualche parte c'e' malcontento
-
-
-**`ECH_OATH_BROKEN`**
-> La Parola Data
-
-> La cosa che era stata proibita viene fatta, e viene fatta da chi l'aveva proibita.
-
-
-**`ECH_OATH_BROKEN, quando esce 1`**
-> Si viola qualcosa che era stato proibito o promesso
-
-
-**`ECH_OATH_BROKEN, quando esce 2`**
-> e' gia' stata calata una carta Eco di prohibition
-
-
-**`ECH_OATH_BROKEN, quando esce 3`**
-> e' gia' stata calata una carta Eco di request
-
-
-**`ECH_OATH_SWORN`**
-> Giuramento Prestato
-
-> Due che si contavano come nemici mettono per iscritto una cosa sola, e quella regge.
-
-
-**`ECH_OATH_SWORN, quando esce 1`**
-> Ci si lega quando qualcosa minaccia entrambi
-
-
-**`ECH_OFFER`**
-> L'Offerta
-
-> Qualcuno propone una scorciatoia che funziona davvero. E il fatto che funzioni il problema.
-
-
-**`ECH_OMEN`**
-> Presagio
-
-> Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare del tutto.
-
-
-**`ECH_OMEN, quando esce 1`**
-> La voce corre
-
-
-**`ECH_PARLEY`**
-> L'Incontro
-
-> Due che non si parlavano si trovano nello stesso posto senza averlo deciso, e devono dirsi qualcosa.
-
-
-**`ECH_PETITION`**
-> La Supplica
-
-> Arrivano a chiedere, e lo fanno in pubblico. Dire di no adesso costa più di quanto costava ieri.
-
-
-**`ECH_RECKONING`**
-> Il Conto
-
-> Si paga per quello che si è fatto, davanti a chi lo ha subito. Non ripara niente, ma chiude.
-
-
-**`ECH_RECKONING, quando esce 1`**
-> Non si punisce nessuno prima che qualcuno abbia fatto qualcosa
-
-
-**`ECH_RECKONING, quando esce 2`**
-> e' gia' stata calata una carta Eco di violation
-
-
-**`ECH_RECKONING, quando esce 3`**
-> e' gia' stata calata una carta Eco di betrayal
-
-
-**`ECH_RECKONING, quando esce 4`**
-> e' gia' stata calata una carta Eco di usurpation
-
-
-**`ECH_RECKONING, quando esce 5`**
-> e' gia' stata calata una carta Eco di conquest
-
-
-**`ECH_RECONCILIATION`**
-> Riconciliazione
-
-> Due parti che si erano contate come nemiche trovano un motivo pratico per smettere.
-
-
-**`ECH_RECONCILIATION, quando esce 1`**
-> Ci si riconcilia dopo qualunque rottura
-
-
-**`ECH_RECONCILIATION, quando esce 2`**
-> e' gia' stata calata una carta Eco di betrayal
-
-
-**`ECH_RECONCILIATION, quando esce 3`**
-> e' gia' stata calata una carta Eco di violation
-
-
-**`ECH_RECONCILIATION, quando esce 4`**
-> e' gia' stata calata una carta Eco di attack
-
-
-**`ECH_RECONCILIATION, quando esce 5`**
-> e' gia' stata calata una carta Eco di separation
-
-
-**`ECH_REVELATION`**
-> Rivelazione
-
-> Cio che era privato diventa pubblico davanti a tutti. Non si può più decidere come se non si sapesse.
-
-
-**`ECH_REVELATION, quando esce 1`**
-> Si rivela quello che qualcuno aveva già scoperto
-
-
-**`ECH_ROADS_OPEN`**
-> Vie Riaperte
-
-> Il primo carro che passa senza scorta non fa notizia. E per questo che si capisce che è finita.
-
-
-**`ECH_ROADS_OPEN, quando esce 1`**
-> Si torna da una chiusura o da una partenza
-
-
-**`ECH_ROADS_OPEN, quando esce 2`**
-> e' gia' stata calata una carta Eco di prohibition
-
-
-**`ECH_ROADS_OPEN, quando esce 3`**
-> e' gia' stata calata una carta Eco di separation
-
-
-**`ECH_ROAD_CLOSED`**
-> Strada Chiusa
-
-> Una frana, o qualcuno che l'ha fatta sembrare una frana. Il risultato non cambia: da est non arriva più niente.
-
-
-**`ECH_ROAD_CLOSED, quando esce 1`**
-> Da qualche parte una terra e' sorvegliata
-
-
-**`ECH_SACRIFICE`**
-> Sacrificio
-
-> Qualcuno paga di persona per chiudere una questione. Funziona, e non viene dimenticato.
-
-
-**`ECH_SEIZURE`**
-> La Presa
-
-> Non una battaglia: una mattina in cui le guardie alla porta rispondono a un altro nome.
-
-
-**`ECH_SEIZURE, quando esce 1`**
-> Si prende qualcosa solo dopo un attacco o una minaccia
-
-
-**`ECH_SEIZURE, quando esce 2`**
-> e' gia' stata calata una carta Eco di attack
-
-
-**`ECH_SEIZURE, quando esce 3`**
-> e' gia' stata calata una carta Eco di threat
-
-
-**`ECH_SEIZURE, quando esce 4`**
-> e' gia' stata calata una carta Eco di usurpation
-
-
-**`ECH_SILT`**
-> Interramento
-
-> Un canale che si chiude non fa rumore. Se ne accorge chi sta in fondo, un anno dopo tutti gli altri.
-
-
-**`ECH_SILT, quando esce 1`**
-> Da qualche parte si raziona il grano
-
-
-**`ECH_THE_CALLED_UP`**
-> I Chiamati
-
-> La chiamata gira di casa in casa, e la gente che risponde non torna quella di prima: chi ha impugnato qualcosa una volta lo sa fare per sempre.
-
-
-**`ECH_THE_CALLED_UP, quando esce 1`**
-> Da qualche parte c'e' malcontento
-
-
-**`ECH_THE_CLOSED_ROAD`**
-> La Strada Chiusa a Chiave
-
-> Il pedaggio smette di essere un prezzo e diventa un permesso. Chi non ce l'ha scopre in un pomeriggio quanto era corta la strada.
-
-
-**`ECH_THE_CLOSED_ROAD, quando esce 1`**
-> Un pedaggio e' stato diviso
-
-
-**`ECH_THE_COPY`**
-> La Copia
-
-> Salta fuori una copia del registro antico in una casa dove nessuno sa leggerlo. Adesso lo sanno in tre.
-
-
-**`ECH_THE_COPY, quando esce 1`**
-> Il registro e' pubblico
-
-
-**`ECH_THE_CRACK`**
-> La Crepa
-
-> Nella galleria bassa si apre una crepa da cui esce aria calda. I Signori della Cenere la puntellano e non lo scrivono da nessuna parte.
-
-
-**`ECH_THE_CRACK, quando esce 1`**
-> Da qualche parte c'e' malcontento
-
-
-**`ECH_THE_DUG_SEASON`**
-> La Stagione Scavata
-
-> Due stagioni di braccia, e l'acqua arriva dove arrivava prima. Non è un miracolo: è terra tolta.
-
-
-**`ECH_THE_DUG_SEASON, quando esce 1`**
-> Da qualche parte si raziona il grano
-
-
-**`ECH_THE_FIRES_OUTSIDE`**
-> I Fuochi Fuori
-
-> Fuori dalle mura i fuochi sono gli stessi di ottobre. Dentro le mura si smette di contarli.
-
-
-**`ECH_THE_FIRES_OUTSIDE, quando esce 1`**
-> Da qualche parte una terra e' stata svuotata
-
-
-**`ECH_THE_FORGIVEN_DEBT`**
-> Il Debito Rimesso
-
-> Una casa cancella una riga che poteva riscuotere. Non lo fa per bonta': lo fa perche' cosi' quella riga se la ricordano tutti.
-
-
-**`ECH_THE_FORGIVEN_DEBT, quando esce 1`**
-> Un debito e' stato chiamato
-
-
-**`ECH_THE_LONG_TABLE`**
-> Il Tavolo Lungo
-
-> Si mette un tavolo abbastanza lungo perché ci stiano tutti seduti, e si scopre che era quello il problema.
-
-
-**`ECH_THE_LONG_TABLE, quando esce 1`**
-> Il peso e' stato diviso
-
-
-**`ECH_THE_MET_ROAD`**
-> L'Incontro sulla Strada
-
-> Due carovane che non dovevano incrociarsi si fermano allo stesso pozzo. Quello che si dicono la' cambia due contratti che erano gia' firmati.
-
-
-**`ECH_THE_MET_ROAD, quando esce 1`**
-> Da qualche parte una terra e' tagliata fuori
-
-
-**`ECH_THE_OLD_ACCOUNT`**
-> Il Conto Vecchio
-
-> Si tira fuori un conto di tre generazioni fa e si chiude davanti a tutti. Nessuno discute la cifra: discutono di essersela dimenticata.
-
-
-**`ECH_THE_OLD_ACCOUNT, quando esce 1`**
-> Un debito e' stato chiamato
-
-
-**`ECH_THE_ONE_WHO_SAW`**
-> Quello che c'Era
-
-> Si presenta uno che c'era, e lo dice ad alta voce. Da quel momento la versione comoda ha un nome contro, e il nome e' di qualcuno che si puo' andare a cercare.
-
-
-**`ECH_THE_ONE_WHO_SAW, quando esce 1`**
-> Una domanda e' rimasta aperta
-
-
-**`ECH_THE_PRICE_OF_SALT`**
-> Il Prezzo del Sale
-
-> Il sale costa quanto decide chi lo vende, e quest'anno lo decide una casa sola. Nessuno rifiuta, e tutti se lo segnano.
-
-
-**`ECH_THE_PRICE_OF_SALT, quando esce 1`**
-> Da qualche parte una terra e' tagliata fuori
-
-
-**`ECH_THE_QUIET_SHAFT`**
-> Il Pozzo Zitto
-
-> La crepa smette di soffiare da sola. I Signori della Cenere tornano a scendere, e stavolta lo scrivono.
-
-
-**`ECH_THE_QUIET_SHAFT, quando esce 1`**
-> Una domanda e' rimasta aperta
-
-
-**`ECH_THE_SHORT_YEAR`**
-> L'Anno Corto
-
-> Il fiume arriva sei settimane in ritardo e riparte in anticipo. Nessuno lo chiama siccita: si dice che è stato un anno corto.
-
-
-**`ECH_THE_SHORT_YEAR, quando esce 1`**
-> Da qualche parte una terra e' contesa
-
-
-**`ECH_THE_WALKING_YEAR`**
-> L'Anno a Piedi
-
-> Un anno intero passa camminando. Le strade si imparano a memoria, e i campi che si lasciano smettono di riconoscere qualcuno.
-
-
-**`ECH_THE_WALKING_YEAR, quando esce 1`**
-> Da qualche parte una terra e' stata abbandonata
-
-
-**`ECH_TWO_VERDICTS`**
-> Due Sentenze
-
-> Lo stesso caso, due città, due sentenze opposte. Entrambe applicate, entrambe legittime.
-
-
-**`ECH_TWO_VERDICTS, quando esce 1`**
-> Il registro e' pubblico
-
-
-**`ECH_USURPATION`**
-> Usurpazione
-
-> Qualcuno si siede dove non gli spetta, e scopre che nessuno si alza per protestare.
-
-
-**`ECH_USURPATION, quando esce 1`**
-> Una domanda e' rimasta aperta
-
-
-**`ECH_VIGIL_MOVED`**
-> La Veglia Spostata
-
-> L'Ordine cambia l'ora delle veglie e non lo annuncia. Chi abita vicino conta le campane.
-
-
-**`ECH_VIGIL_MOVED, quando esce 1`**
-> La voce corre
-
-
-**`ECH_WRITTEN_DOWN`**
-> Messo per Iscritto
-
-> Non si risolve niente: si scrive. E qualche anno dopo si scopre che scrivere era risolvere.
-
-
-**`ECH_WRITTEN_DOWN, quando esce 1`**
-> Il sapere e' stato condiviso
-
-
-## 8. Le carte Asset — quello che si tiene in mano
+## 7. Le carte Asset — quello che si tiene in mano
 
 **`AST_AUTHORITY_CENSUS`**
 > Censimento
@@ -8006,7 +7432,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 
 
 **`AST_BONDS_FAVOR, risonanza`**
-> Scalda Fede **oppure** Vie +1, scegli tu. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.
+> Scalda Legami **oppure** Potere +1, scegli tu. Un favore chiesto al momento giusto vale piu' di un argomento, e chi lo concede lo ricorda.
 
 
 **`AST_BONDS_GUEST_RIGHT`**
@@ -9017,7 +8443,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 > Scalda Potere **oppure** Vie +2, scegli tu. Un tesoro aperto e' una promessa; un tesoro chiuso e' un'accusa. Nessuno dei due resta segreto. Se la corona e' stata spogliata: Potere +3.
 
 
-## 9. I Destini — le ambizioni, gradino per gradino
+## 8. I Destini — le ambizioni, gradino per gradino
 
 **`DST_ALDRIC`**
 > Il Regno che Resta
@@ -9847,7 +9273,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 > La fede diventata legge: c'è una Carta scritta, nessuno l'ha rifiutata — e il mondo porta il segno del giorno in cui la teca si è aperta.
 
 
-## 10. Gli Obiettivi — i tre coperti che si pescano a inizio saga
+## 9. Gli Obiettivi — i tre coperti che si pescano a inizio saga
 
 **`OBJ_A_GARRISON`**
 > Il Muro che Tiene
@@ -10039,7 +9465,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 > Almeno 2 carte Sapere in mano · Almeno una scoperta sua · Una sua pedina in una terra del dominio dell'antico
 
 
-## 11. Le Pietre — quello che si costruisce, grado per grado
+## 10. Le Pietre — quello che si costruisce, grado per grado
 
 **`STR_ARCHIVE`**
 > Archivio
@@ -10305,7 +9731,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 > Il legno e' a terra e nessuno lo ha rimesso su. Si passa gratis, e non e' una buona notizia per nessuno.
 
 
-## 12. I Temi — le sei tracce del calore
+## 11. I Temi — le sei tracce del calore
 
 **`THM_ANTICO`**
 > Antico
@@ -10343,7 +9769,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 > Strade, canali, commercio, ponti, passaggi, acqua. Cosa passa e cosa viene fermato.
 
 
-## 13. I segni — il nome stampato sul gettone
+## 12. I segni — il nome stampato sul gettone
 
 *(Il nome con cui un segno si chiama al tavolo: quello stampato sul
 gettone e, quando e' diverso, quello che l'app dice dentro una frase.
@@ -10355,10 +9781,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > il conto e' stato saldato
 
 > conto saldato
-
-
-**`amnesty_granted`**
-> l'amnistia e' stata concessa
 
 
 **`ancient`**
@@ -10397,10 +9819,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 **`charter_for_all`**
 > la Carta vale per tutti
-
-
-**`charter_temporary`**
-> la Carta vale per un tempo solo
 
 
 **`charter_written`**
@@ -10879,10 +10297,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > ordine ristabilito
 
 
-**`parley_held`**
-> ci si e' parlato
-
-
 **`petition_heard`**
 > la richiesta e' stata ascoltata
 
@@ -11075,10 +10489,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > dormiente
 
 
-**`someone_paid`**
-> qualcuno ha pagato
-
-
 **`spoke_and_lost`**
 > ha parlato e ha perso
 
@@ -11213,7 +10623,7 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > selvaggio
 
 
-## 14. Le regole dei segni — cosa fa un segno quando c'e'
+## 13. Le regole dei segni — cosa fa un segno quando c'e'
 
 **`TGR_ABANDONED_WEALTH`**
 > Nella terra abbandonata la ricchezza non attecchisce
@@ -11475,7 +10885,7 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 > La ferita aperta parla del Risveglio
 
 
-## 15. Le Azioni — la plancia, stampata una volta
+## 14. Le Azioni — la plancia, stampata una volta
 
 **`ACT_ACQUIRE`**
 > Acquisire
@@ -11506,7 +10916,7 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > Modifica di +/-1 una Tensione aperta. Serve presenza in una Regione taggata col dominio della Tensione, oppure lo scarto di 1 Asset di una famiglia rilevante.
 
-> Le Tensioni velate non sono influenzabili finché l'Entita non ne conosce il valore (SCHEME).
+> Una domanda velata si spinge come ogni altra: il suo numero e' sul tavolo. Quello che non sai e' a quanto esplode, finche' non lo leggi con TRAMARE.
 
 
 **`ACT_MARK`**
@@ -11528,6 +10938,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 **`ACT_SCHEME`**
 > Tramare
 
-> Scegli uno: leggi in privato il valore di una Tensione velata; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.
+> Scegli uno: leggi a quanto esplode una domanda; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.
 
-> Scoprire il valore di una Tensione velata e una Scoperta: lascia un tag discovery: sull'Entita.
+> Aver letto a quanto esplode una domanda resta tuo: gli altri non lo sanno, e tu lo sai fino a fine anno.
