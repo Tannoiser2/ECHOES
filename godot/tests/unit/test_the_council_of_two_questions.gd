@@ -277,6 +277,40 @@ func test_when_b_wins_its_base_outcome_applies() -> void:
 	assert_false(result.has("world_factor"), "e senza dado: il risultato non ne porta nemmeno la chiave")
 
 
+## **Il di piu' di una vittoria netta** (D-488). Il pool `decisive_bonus` sta
+## nei dodici template e nello schema dal principio, e fino al 0.1.457 non lo
+## leggeva **nessuno**: misurato, zero applicazioni in cento anni. Adesso lo
+## legge la fascia larga, e la legge per tutt'e due le parti — qui vince la B,
+## che prima non poteva prenderselo per nessun margine.
+func test_a_wide_win_takes_the_decisive_bonus() -> void:
+	var live: RefCounted = _table()
+	var tension_id: String = _openable(live)
+	_heat(live, tension_id, 1)
+	var bonus: Array = (
+		(live.data.confluence_template_for(tension_id).get("consequence_pools", {}) as Dictionary)
+			.get("decisive_bonus", []) as Array
+	)
+	assert_true(not bonus.is_empty(), "la carta ha un di piu' scritto per chi stravince")
+	var decider: Scripted = Scripted.new()
+	var peek: Dictionary = live.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	var proponent: String = str(peek["proponent"])
+	live.confluence.current = {}
+	for entity_id in live.world["entities"]:
+		if str(entity_id) != proponent:
+			decider.with_b.append(str(entity_id))
+			decider.cards_for[str(entity_id)] = 2
+	var result: Dictionary = await live.chronicle.run_confluence(tension_id, {"kind": "THRESHOLD", "entity_id": ""}, decider)
+	assert_eq(str(result["outcome"]), ConfluenceResolution.COUNTER, "vince la controdomanda")
+	assert_eq(
+		str(result["band"]), ConfluenceResolution.WIDE,
+		"e di larga misura: A %d contro B %d" % [int(result["support_total"]), int(result["oppose_total"])]
+	)
+	assert_true(
+		(result["consequence_ids"] as Array).has(str(bonus[0])),
+		"quindi il di piu' si applica: %s" % str(result["consequence_ids"])
+	)
+
+
 func test_when_nobody_reaches_the_pile_nothing_passes() -> void:
 	var live: RefCounted = _table()
 	var tension_id: String = _openable(live)
@@ -359,6 +393,37 @@ func test_the_board_shows_both_sides() -> void:
 		for list_name in ["benefits", "costs"]:
 			placed += live.confluence.side_boxes(side, list_name).size()
 	assert_eq(pedine, placed, "ogni pedina posata si vede sulla carta")
+
+	# **Quanto nettamente vince l'altra domanda** (D-488): A ha tre parole per
+	# dire il suo margine, la B ne aveva una sola per qualunque distanza. Le
+	# tre si leggono qui, sul tabellone, con lo stesso esito e fasce diverse.
+	var said_by_band: Array = []
+	for pair in [[7, 8], [4, 8], [1, 8]]:
+		board._render_outcome({
+			"pile": 4,
+			"result": {
+				"outcome": ConfluenceResolution.COUNTER,
+				"support_total": int(pair[0]),
+				"oppose_total": int(pair[1]),
+				"margin": int(pair[0]) - int(pair[1]),
+				"band": ConfluenceResolution.band_of(
+					int(pair[0]), int(pair[1]), ConfluenceResolution.COUNTER
+				),
+			},
+		})
+		said_by_band.append(str(board._verdict.text))
+	assert_eq(said_by_band.size(), 3, "tre margini")
+	for word in said_by_band:
+		assert_true(str(word).contains("altra domanda"), "e ognuno dice che vince l'altra: %s" % str(word))
+	assert_eq(
+		said_by_band, [
+			"Vince l'altra domanda, per un soffio",
+			"Vince l'altra domanda",
+			"Vince l'altra domanda, senza discussione",
+		],
+		"con tre parole diverse e non una sola"
+	)
+
 	board.free()
 	live.confluence.current = {}
 

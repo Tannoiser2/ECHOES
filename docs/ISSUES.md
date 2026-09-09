@@ -10102,17 +10102,26 @@ sposta una virgola della partita, che era il punto.
   Resta dichiarata muta perche' nessuna **clausola** la interroga — la guardano
   i profili delle case, un Destino e quella Conseguenza. Rimetterle una
   clausola resta una decisione;
-- **il dente dei segni sul dado** (ISSUES 24) rimasto senza dado. Chiesto dal
-  committente *«che vuol dire?»*, e la risposta e' che non e' il dado: sono
-  **21 regole scritte** (`tag_rules`, gancio `COUNCIL_MODIFIER`) che dicono
-  *«un mondo segnato pesa sul Consiglio»* — «La fame siede al tavolo» −1, «La
-  citta' parla piu' forte» +1, «Il seggio vuoto pesa sulla Carta» −1.
-  Spingevano il World Factor; senza dado spingono il vuoto. La domanda vera e'
-  **se un mondo segnato debba pesare sul mucchio dei gettoni**: se si', quelle
-  21 righe tornano vive con un cambio di destinazione; se no, escono;
-- le marche delle caselle da rivedere carta per carta nel catalogo; le fasce
-  dell'esito di A che a due domande dicono meno; e quello che nessuna sonda
-  misura: **un Consiglio giocato da persone**.
+- ✅ **il dente dei segni sul dado** (ISSUES 24) rimasto senza dado — **fatto
+  in 0.1.452-0.1.453** ([D-477](DECISIONS.md#d-477),
+  [D-483](DECISIONS.md#d-483)). Chiesto dal committente *«che vuol dire?»*, e la
+  risposta era che non e' il dado: erano **21 regole scritte** (`tag_rules`,
+  gancio `COUNCIL_MODIFIER`) che dicono *«un mondo segnato pesa sul
+  Consiglio»* e spingevano il World Factor. Puntate sul **mucchio dei
+  gettoni**, e poi fatte guardare **il luogo di cui si discute**: oggi le 25
+  regole muovono la soglia in **un Consiglio su due**, e nove mordono almeno
+  una volta;
+- ✅ **le fasce dell'esito di A che a due domande dicono meno** — **fatte in
+  0.1.458** ([D-488](DECISIONS.md#d-488)), la taratura che
+  [D-471](DECISIONS.md#d-471) aveva promesso *«con un numero scritto»*. Il
+  numero: la controdomanda decideva **un Consiglio su tre e non lasciava mai un
+  Eco**, la B non aveva fasce, il pool `decisive_bonus` non lo leggeva nessuno
+  in dodici template, e la porta dell'Eco chiedeva 6 quando le due parti ne
+  muovono 12,7. Adesso la fascia e' **del vincitore**, e la porta e' a dodici:
+  il mondo ricorda +14% e +30%, e ricorda cose diverse — 108 Echi su 329
+  vengono da Consigli che prima non lasciavano niente;
+- le marche delle caselle da rivedere carta per carta nel catalogo; e quello
+  che nessuna sonda misura: **un Consiglio giocato da persone**.
 
 
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo

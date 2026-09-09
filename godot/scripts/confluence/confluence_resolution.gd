@@ -24,6 +24,15 @@ const DECISIVE: String = "DECISIVE_SUCCESS"
 ## si applicano l'esito di base e le caselle della domanda B.
 const COUNTER: String = "COUNTER"
 
+## **La fascia e' del vincitore, non della parte A** (D-488). Le tre parole di
+## §12.3 stavano sul margine di A, e a due domande dicevano meno: quando vince
+## la B — un Consiglio su tre — non c'era nessuna parola, e il mondo non
+## ricordava niente. Il taglio e' lo stesso di sempre, letto sul margine di chi
+## ha vinto; per A l'esito e la fascia restano la stessa cosa.
+const NARROW: String = "DI_MISURA"
+const CLEAR: String = "PASSA"
+const WIDE: String = "SENZA_DISCUSSIONE"
+
 
 ## The value one committed Asset contributes.
 ##
@@ -84,6 +93,21 @@ static func winner_of(outcome: String) -> String:
 	if outcome == COUNTER:
 		return "B"
 	return "A" if is_success(outcome) else ""
+
+
+## **Quanto nettamente ha vinto chi ha vinto** (D-488). Vuota se non passa
+## nessuna: li' non c'e' un vincitore di cui dire il margine. Le soglie sono
+## quelle di `two_sides_outcome`, e per A la fascia e' l'esito.
+static func band_of(a_total: int, b_total: int, outcome: String) -> String:
+	var side: String = winner_of(outcome)
+	if side == "":
+		return ""
+	var margin: int = (a_total - b_total) if side == "A" else (b_total - a_total)
+	if margin >= 5:
+		return WIDE
+	if margin >= 2:
+		return CLEAR
+	return NARROW
 
 
 ## **Le carte delle due parti, contate** (§12.3). Il proponente argomenta

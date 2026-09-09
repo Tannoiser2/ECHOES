@@ -45,6 +45,124 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-488 — La fascia e' del vincitore, e un Consiglio su tre torna a lasciare memoria
+
+**implemented in 0.1.458.** La taratura che [D-471](#d-471) aveva lasciato
+scritta: *«Le fasce sul margine sono quelle di D-280, e a due domande dicono
+meno: un'altra taratura, se servira', con un numero scritto.»* Serviva, ed ecco
+il numero. E' una riga di [ISSUES 129](ISSUES.md#129), non una voce nuova.
+
+### 1. Il difetto, che erano tre viste dello stesso buco
+
+Prima di toccare niente ho rifatto **la sonda dei margini** alla regola nuova:
+`cli/run_margin_probe.gd` sapeva ancora di dado e di World Factor, e leggeva le
+fasce sull'istogramma di *tutti* i Consigli — dove, a due domande, un margine
+negativo non e' un Fallimento ma la vittoria della B. Adesso legge il margine
+**fra i Consigli che quella parte ha vinto**, che e' l'unico posto dove una
+fascia vuol dire qualcosa.
+
+Cento anni, tavolo misto, semi da 1000, 513 Consigli:
+
+| | |
+|---|---|
+| Consigli decisi dalla **controdomanda** | 166 (32%) |
+| di quelli, quanti lasciano un Eco | **0** |
+| Consigli decisi da A | 274 |
+| di quelli, quanti lasciano un Eco | **273** |
+| `decisive_bonus` applicato in cento anni | **0 volte** |
+
+Tre facce dello stesso buco:
+
+1. **`should_record` guardava l'esito di A.** `COUNTER` non e' un successo del
+   proponente e non e' un Fallimento: cadeva fuori da tutti e tre i rami. *Le
+   Azioni cambiano il mondo, il Consiglio decide cosa il mondo ricordera'* — e
+   un Consiglio su tre non faceva ricordare niente, per nessun margine.
+2. **La B non aveva fasce.** Il margine c'era ed era distribuito come quello di
+   A — sui suoi 166: 15% di misura, 52% pieno, 31% senza discussione — e si
+   buttava via tutto.
+3. **Il pool `decisive_bonus` non lo leggeva nessuno.** Sta nei dodici template,
+   nello schema e nel flusso disegnato; `CNS_DECISIVE_RENOWN` — *la rinomanza
+   dei Decisivi*, che [ISSUES 24](ISSUES.md#24) nominava fra i segni muti gia'
+   nel 0.1.65 — usciva **zero volte**. E' la stessa forma che il pool `failure`
+   aveva fino al 0.1.285 ([D-323](#d-323)): un pool d'autore, nei dati e nello
+   schema, che il motore non apre. Trovata due volte nello stesso posto.
+
+E una quarta faccia, che e' la ragione per cui le fasce «dicevano meno»: la
+porta dell'Eco chiedeva **6** alle due parti insieme, ed era scritta quando i
+totali erano soltanto le carte impegnate. Con le pedine di [D-471](#d-471) A+B
+fa **12,7 di media**. Una porta che lascia passare 273 Consigli su 274 non e'
+una porta.
+
+### 2. La mossa
+
+- **`band_of(A, B, esito)`**: la fascia e' del vincitore, letta sul **suo**
+  margine, col taglio di sempre — 0-1 *di misura*, 2-4 *passa*, ≥5 *senza
+  discussione*. Per A la fascia **e'** l'esito, e la prova lo tiene punto per
+  punto: il taglio non si e' spostato di uno.
+- **La porta dell'Eco**: fascia larga → sempre, da qualunque parte del tavolo
+  venga; fascia piena → se le due parti insieme arrivano a **12**, che e' la
+  mediana misurata; **fascia di misura → mai**, ed e' quello che *«passa, ma si
+  paga»* dice da sempre. Il Fallimento costato caro resta identico: e' un fronte
+  solo, e sei per un fronte e' ancora tanto.
+- **Il `decisive_bonus` lo legge la fascia larga**, per tutt'e due le parti. Ne
+  porta una sola, come il prezzo ([D-267](#d-267)), e va a chi ha vinto: quando
+  vince la B il `$proponent` e' gia' chi la guida ([D-475](#d-475)).
+- **Il tabellone dice le tre parole della B**: *vince l'altra domanda, per un
+  soffio* · *vince l'altra domanda* · *vince l'altra domanda, senza
+  discussione*.
+- **Quattro prove nuove sulla porta**, in un file che non c'era
+  (`test_what_the_world_remembers`), piu' la fascia di B nella risoluzione e il
+  `decisive_bonus` nel Consiglio giocato. **La porta non aveva nessuna prova**:
+  e' cosi' che un buco da un Consiglio su tre e' rimasto verde per venti
+  versioni.
+
+### 3. Misurato, in due passi — e il primo si scrive perche' e' il costo
+
+Il cancello dei 100 semi, seme 7000:
+
+| | 0.1.457 | solo il buco chiuso | **e con la porta tarata** |
+|---|---|---|---|
+| seggi bloccati su un solo livello, misto | 0 su 8 | 0 su 8 | **0 su 8** |
+| seggi bloccati, uniforme | 0 su 8 | 0 su 8 | **0 su 8** |
+| Verita' scritte, misto | 285 | 462 | **325** |
+| Verita' scritte, uniforme | 252 | 435 | **328** |
+
+**Chiudere il buco da solo faceva +62% e +73% di memoria**, e non era il buco:
+era la porta sempre aperta che moltiplicava tutto quello che le passava
+davanti. Con la porta a dodici il mondo ricorda **+14%** sul misto e **+30%**
+sull'uniforme — l'uniforme sale di piu' perche' li' la controdomanda vince piu'
+spesso (197 Consigli su 498) — e soprattutto ricorda **cose diverse**: su cento
+anni (semi da 1000) **108 dei 329 Echi vengono da Consigli che prima non ne
+lasciavano nessuno**, e i 32 vinti di misura non ne lasciano piu'.
+
+Gli esiti sul cancello, per intero — FAIL · di misura · SUCC · DECI · COUNTER:
+
+| | 0.1.457 | adesso |
+|---|---|---|
+| misto | 72 · 34 · 93 · 131 · 177 | **80 · 34 · 96 · 135 · 163** |
+| uniforme | 82 · 22 · 93 · 110 · 189 | **78 · 23 · 91 · 109 · 197** |
+
+### 4. Quello che si e' acceso da solo
+
+- **`order_restored` da 18 a 230 scritture** in cento anni, e da 18 a **95**
+  partite in cui sta sul tavolo a fine partita; **`renowned` da 86 a 300**, e da
+  54 a **98**. Sono i due segni di `CNS_DECISIVE_RENOWN`, che prima non usciva.
+- **`TGR_RENOWN_PRECEDES`** — *«La fama precede»*, il mucchio −1 — aveva un
+  lettore e nessuno scrittore che sparasse davvero. Adesso ce l'ha.
+- E la tabella dei punti regalati al contrario — *«la clausola vuole una cosa
+  che non succede mai, quindi resta falsa per tutta la partita»* — **si e'
+  svuotata**: `mountain_forgotten`, che *La Leggenda di Vaerax* chiede alla
+  SOGLIA, adesso il mondo lo scrive. **Due volte su cento anni, e non e' merito
+  mio**: lo scrive la casella IL MONDO RICORDA di una Tensione, e con un mondo
+  che diverge e' caduta due volte invece di zero. Lo scrivo perche' a due su
+  cento quella riga vale finche' quella casella cade, non perche' l'abbia
+  risolta.
+
+Suite **806 prove verdi**; 28 cancelli veloci e 6 lenti verdi, i tre documenti
+del mondo rigenerati perche' il mondo ricorda cose diverse.
+
+---
+
 ## D-487 — Tre Scoperte hanno un nome, e la memoria dice cosa fa
 
 **implemented in 0.1.457.** La R17 ([ISSUES 134](ISSUES.md#134)), sulla parola

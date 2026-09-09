@@ -40,12 +40,53 @@ func test_the_bands_of_a_are_on_the_margin() -> void:
 	assert_eq(ConfluenceResolution.two_sides_outcome(12, 3, 7), ConfluenceResolution.DECISIVE, "dodici contro tre no")
 
 
-## **La B non ha fasce**: che vinca di uno o di nove, e' COUNTER. Per chi
-## propone e' una sconfitta, per il mondo e' una decisione presa.
-func test_b_wins_without_bands() -> void:
+## **L'esito della B e' uno solo**: che vinca di uno o di nove, e' COUNTER.
+## Per chi propone e' una sconfitta, per il mondo e' una decisione presa. La
+## fascia, da D-488, la dice `band_of` e non l'esito.
+func test_b_wins_with_a_single_outcome() -> void:
 	assert_eq(ConfluenceResolution.two_sides_outcome(0, 9, 0), ConfluenceResolution.COUNTER, "di molto")
 	assert_eq(ConfluenceResolution.two_sides_outcome(8, 9, 0), ConfluenceResolution.COUNTER, "di misura")
 	assert_eq(ConfluenceResolution.two_sides_outcome(8, 9, 10), ConfluenceResolution.FAILURE, "ma sotto il mucchio non e' niente")
+
+
+## **La fascia e' del vincitore** (D-488). Per A e' l'esito stesso, e questa e'
+## la prova che il taglio non si e' spostato di un punto; per B e' l'unico
+## posto dove il margine si legge, perche' il suo esito e' uno solo.
+func test_the_band_belongs_to_whoever_won() -> void:
+	var narrow: String = ConfluenceResolution.NARROW
+	var clear: String = ConfluenceResolution.CLEAR
+	var wide: String = ConfluenceResolution.WIDE
+	for row in [
+		[7, 6, narrow], [8, 6, clear], [10, 6, clear], [11, 6, wide], [20, 0, wide],
+	]:
+		var outcome: String = ConfluenceResolution.two_sides_outcome(int(row[0]), int(row[1]), 0)
+		assert_eq(
+			ConfluenceResolution.band_of(int(row[0]), int(row[1]), outcome), str(row[2]),
+			"A %d contro %d" % [int(row[0]), int(row[1])]
+		)
+	# **Le stesse soglie, dall'altra parte del tavolo.** I numeri sono gli
+	# stessi scambiati: se la fascia dipendesse ancora da A, qui uscirebbe
+	# sempre la piu' larga, perche' il margine di A e' negativo e negativo e'
+	# minore di due.
+	for row in [
+		[6, 7, narrow], [6, 8, clear], [6, 10, clear], [6, 11, wide], [0, 20, wide],
+	]:
+		var outcome: String = ConfluenceResolution.two_sides_outcome(int(row[0]), int(row[1]), 0)
+		assert_eq(str(outcome), ConfluenceResolution.COUNTER, "vince la B")
+		assert_eq(
+			ConfluenceResolution.band_of(int(row[0]), int(row[1]), outcome), str(row[2]),
+			"B %d contro %d" % [int(row[1]), int(row[0])]
+		)
+	# **Se non passa nessuna non c'e' una fascia**: non c'e' un vincitore di
+	# cui dire il margine, e una stringa vuota lo dice meglio di uno zero.
+	assert_eq(
+		ConfluenceResolution.band_of(3, 3, ConfluenceResolution.FAILURE), "",
+		"a parita' nessuna fascia"
+	)
+	assert_eq(
+		ConfluenceResolution.band_of(9, 2, ConfluenceResolution.FAILURE), "",
+		"e nemmeno quando A guida di sette ma non arriva al mucchio"
+	)
 
 
 ## Chi ha vinto, e se per chi propone e' un successo: i cinque esiti uno per
