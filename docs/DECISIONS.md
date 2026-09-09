@@ -45,6 +45,130 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-490 — Il menu a passi, i due verbi che mancavano, e i pulsanti nella barra
+
+**implemented in 0.1.460.** Il committente ha giocato un anno e ha scritto
+cinque cose. Questa e' la prima meta': *«perche' sbarrare la strada e' ripetuta
+cosi' tante volte?»*, *«la GUI non e' chiaro su quello che bisogna fare»*,
+*«tutte le scelte non le voglio a destra ma nella barra di stato sopra, ogni
+cosa, ogni decisione, ogni scelta e azione un pulsante ben chiaro»*.
+
+### 1. Prima di toccare, una sonda che si siede al suo posto
+
+`cli/run_menu_probe.gd` gioca con un `io` che **registra invece di scegliere**:
+vede i menu che arrivano a una persona — la domanda, le voci, e cosa ognuna dice
+di se' — poi risponde «non scelgo» e la policy tira avanti il turno. La partita
+non cambia di niente e la sonda ha visto tutto.
+
+Venti anni, semi da 3000, una persona al primo seggio:
+
+| | |
+|---|---|
+| menu offerti a una persona | 664 |
+| **voci per menu** | **23,7 di media, 130 nel piu' lungo** |
+| **menu con voci ripetute parola per parola** | **316 su 664 — 47%** |
+| **voci coinvolte** | **12.662 su 15.754 — 80%** |
+
+E cosa distingue davvero due voci che si leggono identiche: **`tension`, 1.267
+volte**. Le sei «Sbarrare la strada · a Porto Cinerino» che il committente ha
+visto erano **dodici domande diverse**, e l'etichetta non diceva quale.
+
+**La causa e' combinatoria.** `_action_options` costruisce le offerte nude —
+alza o abbassa ognuna delle domande, muovi in ognuna delle Regioni, forgia con
+ognuna delle case — e `_through_the_hand` le moltiplica **per ogni carta in mano
+e per ognuna delle sue due Azioni**. Dodici domande per due versi per cinque
+carte per due facce e' il menu da 130 voci.
+
+### 2. E due verbi su sette che una persona non poteva giocare
+
+La stessa sonda, contando i verbi delle voci offerte:
+
+| verbo | voci |
+|---|---|
+| INFLUENZARE | 9.968 (63%) |
+| FORGIARE | 1.777 |
+| TRAMARE | 1.471 |
+| MUOVERE | 487 |
+| ACQUISIRE | 240 |
+| **RIVENDICARE** | **0** |
+| **SEGNARE** | **0** |
+
+`_action_options` non li costruiva. La policy invece RIVENDICA — e le carte
+stampano **11 facce CLAIM e 7 facce MARK** su 96: diciotto facce che una persona
+aveva in mano e non poteva calare. RIVENDICARE e' anche il verbo a cui
+[D-476](#d-476) ha appena dato una moneta.
+
+**E SEGNARE non era eseguibile da nessuno.** Aggiunta l'offerta, il motore
+rispondeva *«manca il luogo da segnare»* a ogni carta. La causa sta in
+`_card_request`: `mark_region_id` e' tenuto **fuori** dai parametri del verbo, e
+per gli altri sei e' giusto — MUOVERE va in una Regione e i suoi segni ne
+toccano un'altra ([D-284](#d-284)) — ma il verbo il cui effetto **sono** i segni
+non ha un secondo bersaglio: quello e' il suo. Una riga nel motore, non nello
+schermo, perche' e' la regola e non un rattoppo del front-end.
+
+### 3. Il menu a passi
+
+Si sceglie come al tavolo, **in tre tempi**:
+
+1. **cosa fai** — i verbi, con la riga che dice cosa fanno: quella di
+   `AssetText.ACTIONS`, la stessa stampata sulle carte, cosi' un verbo si
+   impara in un posto solo. *«INFLUENZARE — alzi o abbassi di 1 una domanda
+   dell'anno (2 modi)»*;
+2. **dove, o su chi** — le offerte nude di quel verbo, ognuna una volta sola;
+3. **con quale carta** — le carte in mano che sanno dirlo li', con l'Azione
+   stampata che useranno.
+
+Un passo con una voce sola **non si fa**: un passo obbligato non e' una scelta.
+Ai passi 2 e 3 c'e' «← Torna indietro», perche' scegliere un verbo non e' un
+impegno.
+
+### 4. I pulsanti stanno nella barra, e ogni scelta ne ha uno
+
+Stavano in fondo alla colonna di destra, sotto la carta guardata e sopra il
+verbale, dentro uno scorrimento alto 230 punti: il posto dove si guarda per
+ultimo. Adesso sono la meta' destra della **barra che dice a chi tocca**. Ci
+stanno perche' il menu e' a passi: al primo ce ne sono sette, non centotrenta.
+
+**E questo rovescia [D-238](#d-238)**, che va detto per intero. D-238 toglieva
+dalla colonna le scelte con un posto dove cadere — *«una scelta che ha un posto
+non e' anche un bottone»* — perche' il committente aveva chiesto il
+trascinamento e non i pulsanti. Il trascinamento **resta, e resta il primo**:
+si tocca la carta, si accendono i posti, si tocca il posto. Ma resta **anche**
+il pulsante, su parola sua dopo aver giocato, e nessuna scelta e' piu'
+raggiungibile in un modo solo. La prova di D-238 e' riscritta: dice ancora se
+una scelta ha un posto — serve ad accendere la mappa — e non dice piu' che
+quello la toglie dai pulsanti.
+
+### 5. Misurato
+
+Venti anni, semi da 3000, la stessa sonda e lo stesso tavolo di prima:
+
+| | 0.1.459 | **adesso** |
+|---|---|---|
+| voci per menu | 23,7 — **130 nel piu' lungo** | **4,2 — 14** |
+| menu con voci ripetute parola per parola | **316 su 664 (47%)** | **6 su 664 (0%)** |
+| voci coinvolte | **12.662 su 15.754 (80%)** | **12 su 2.794 (0%)** |
+| verbi che una persona puo' giocare | **5 su 7** | **7 su 7** |
+
+Le **19.162 scorciatoie** non entrano nel conto e non devono: sono le giocate
+intere che la mano e la mappa offrono col gesto, e che la barra non disegna.
+Contarle direbbe che il menu e' lungo come prima, mentre chi gioca ne vede
+quattro.
+
+Il cancello dei 100 semi, seme 7000: **0 seggi bloccati su 8** sui due tavoli, e
+le Verita' scritte restano **319** sul misto e **324** sull'uniforme, le stesse
+di 0.1.459. Non e' una coincidenza ed era la prova da fare: questo giro tocca
+**come si sceglie**, non cosa succede, e la partita spedita la giocano quattro
+policy che da qui non passano.
+
+Suite **808 prove verdi**. Cinque prove hanno cambiato mestiere e una e' nuova:
+tre custodivano l'indice che una mossa aveva nel menu — un numero che il menu a
+passi non conserva piu' — e adesso scelgono **la voce**, non il suo posto. E'
+la stessa lezione di sempre in questa casa: una prova che conta le posizioni si
+rompe al primo riordino, una che nomina quello che vuole no.
+
+---
+
 ## D-489 — Le marche delle caselle, lette carta per carta
 
 **implemented in 0.1.459.** Parola del committente: *«vai con le marche delle

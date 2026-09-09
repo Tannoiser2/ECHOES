@@ -5,6 +5,55 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.460 — Il menu a passi, i due verbi che mancavano, e i pulsanti nella barra
+
+[D-490](docs/DECISIONS.md#d-490), primo giro di
+[ISSUES 135](docs/ISSUES.md#135). Il committente ha giocato un anno e ha scritto
+cinque cose; questa e' la prima meta'.
+
+**«Perche' sbarrare la strada e' ripetuta cosi' tante volte?»** Perche' erano
+**dodici domande diverse** e l'etichetta non diceva quale. Il menu di un turno
+era il **prodotto** di tutte le offerte per tutte le carte in mano per tutte le
+loro facce: misurato su venti anni con una sonda che si siede al posto di chi
+gioca e registra invece di scegliere, **23,7 voci di media e 130 nel piu'
+lungo**, con l'**80%** ripetute parola per parola.
+
+Adesso si sceglie come al tavolo, **in tre tempi**: cosa fai, dove, con che
+carta. Un passo con una voce sola non si fa. I verbi si leggono con la riga che
+dice cosa fanno — la stessa stampata sulle carte.
+
+**E sotto c'erano due cose che nessuno aveva chiesto.** Dei sette verbi di §10 il
+menu ne offriva **cinque**: RIVENDICARE e SEGNARE uscivano **zero volte**, mentre
+la policy li gioca e le carte li stampano su **11 e 7 facce** — diciotto facce
+che una persona aveva in mano e non poteva calare. E **SEGNARE non era eseguibile
+da nessuno**: il motore teneva `mark_region_id` fuori dai parametri del verbo —
+giusto per gli altri sei, dove il posto dei segni e' un'altra cosa — ma per il
+verbo il cui effetto **sono** i segni quello e' il suo bersaglio, e rispondeva
+«manca il luogo da segnare» a ogni carta.
+
+**I pulsanti stanno nella barra in alto**, come chiesto, e **ogni scelta ne ha
+uno** — anche quelle che si posano sulla mappa. Questo rovescia
+[D-238](docs/DECISIONS.md#d-238), e va detto: il trascinamento resta, e **resta
+il primo**, per parola sua; il pulsante gli sta accanto, non al suo posto. Le
+giocate intere viaggiano come **scorciatoie** che la mano e la mappa offrono col
+gesto e la barra non disegna, cosi' prendere una carta continua a bastare.
+
+| venti anni, semi da 3000 | 0.1.459 | **adesso** |
+|---|---|---|
+| voci per menu | 23,7 — **130 nel piu' lungo** | **4,2 — 14** |
+| menu con voci ripetute | **47%** | **0%** |
+| verbi giocabili da una persona | **5 su 7** | **7 su 7** |
+
+Cancello dei 100 semi: **0 seggi bloccati su 8**, e la partita spedita non si
+muove — questo giro tocca **come si sceglie**, non cosa succede. Suite **808
+prove verdi**: cinque hanno cambiato mestiere, perche' custodivano l'indice che
+una mossa aveva nel menu e adesso scelgono **la voce**.
+
+Restano, e sono l'altra meta' della voce: **il verbale che si legge** e **le
+frasi che dicono cosa fare in termini di gioco**.
+
+---
+
 ## 0.1.459 — Le marche delle caselle, lette carta per carta
 
 [D-489](docs/DECISIONS.md#d-489), l'ultima riga di lavoro di

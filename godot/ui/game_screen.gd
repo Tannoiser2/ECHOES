@@ -356,6 +356,26 @@ func _build() -> void:
 	_hint.add_theme_color_override("font_color", Color("#c9bfae"))
 	what.add_child(_hint)
 
+	# **Le scelte stanno qui, nella barra, e sono pulsanti** (D-490, parola del
+	# committente dopo aver giocato: *«tutte le scelte non le voglio a destra ma
+	# nella barra di stato sopra, ogni cosa, ogni decisione, ogni scelta e
+	# azione un pulsante ben chiaro»*). Stavano in fondo alla colonna di destra,
+	# sotto la carta guardata e sopra il verbale, dentro uno scorrimento alto
+	# 230 punti: il posto dove si guarda per ultimo. Adesso sono la meta' destra
+	# della barra che dice a chi tocca — la prima cosa che si legge.
+	#
+	# Ci stanno perche' il menu e' a passi: al primo ce ne sono sette, non 130.
+	_scroll = ScrollContainer.new()
+	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_scroll.custom_minimum_size = Vector2(0, 96)
+	_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_scroll.size_flags_stretch_ratio = 2.2
+	bar_row.add_child(_scroll)
+	_buttons = VBoxContainer.new()
+	_buttons.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_buttons.add_theme_constant_override("separation", 4)
+	_scroll.add_child(_buttons)
+
 	# 2. Le tre colonne: domande, tavolo, verbale.
 	var columns := HBoxContainer.new()
 	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -461,17 +481,6 @@ func _build() -> void:
 	_look.set_size_name("grande")
 	_look.visible = false
 	right.add_child(_look)
-
-	_scroll = ScrollContainer.new()
-	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	# Uno scorrimento non cresce col contenuto: senza un'altezza sua i
-	# bottoni della scelta sparivano dietro il verbale.
-	_scroll.custom_minimum_size = Vector2(0, 230)
-	right.add_child(_scroll)
-	_buttons = VBoxContainer.new()
-	_buttons.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_buttons.add_theme_constant_override("separation", 5)
-	_scroll.add_child(_buttons)
 
 	_help_button = Button.new()
 	_help_button.toggle_mode = true
@@ -1611,11 +1620,30 @@ func _redraw_choices() -> void:
 		row.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var card_id: String = str(asset_id)
+		# Una riga di carta non e' una scelta: e' la mano detta a parole, e
+		# serve a restringere la colonna. Il meta la distingue dai pulsanti
+		# delle scelte, che sono uno per voce (D-490).
+		row.set_meta("card", card_id)
 		row.pressed.connect(func() -> void: _on_card_chosen(card_id))
 		_buttons.add_child(row)
+	# **Ogni scelta ha il suo pulsante** (D-490), e questa riga rovescia D-238.
+	#
+	# D-238 toglieva dalla colonna le scelte che avevano un posto dove cadere:
+	# *«una scelta che ha un posto dove cadere non e' anche un bottone»*, perche'
+	# il committente aveva chiesto il trascinamento e non i pulsanti. Il
+	# trascinamento resta, e resta il primo — la carta si prende e si posa sulla
+	# mappa come prima. Ma **resta anche il pulsante**, su parola sua dopo aver
+	# giocato: *«ogni cosa, ogni decisione, ogni scelta e azione un pulsante ben
+	# chiaro»*. Chi conosce il gesto lo usa; chi non lo conosce ha sempre il
+	# pulsante, e nessuna scelta e' raggiungibile in un modo solo.
 	for i in range(_labels.size()):
-		var subject: Dictionary = _subjects[i] if i < _subjects.size() else {}
-		if _has_a_landing_place(subject as Dictionary):
+		# **La scorciatoia non e' un pulsante** (D-490): la stessa giocata che
+		# la mano e la mappa offrono col gesto viaggia accanto ai verbi, perche'
+		# chi prende una carta deve poter finire li'. Disegnarla anche qui
+		# rimetterebbe in barra le centotrenta righe che il menu a passi ha
+		# appena tolto.
+		var about: Dictionary = _subjects[i] if i < _subjects.size() else {}
+		if bool((about as Dictionary).get("shortcut", false)):
 			continue
 		var button := Button.new()
 		button.text = str(_labels[i])

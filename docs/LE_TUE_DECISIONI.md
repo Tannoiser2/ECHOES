@@ -272,11 +272,11 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **138** |
+| voci scritte | **139** |
 | chiuse | **128** |
-| aperte | **10** |
+| aperte | **11** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **10** |
+| di cui sono mie da fare | **11** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,10 +307,10 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **1** | **io**, da sola, senza aspettare niente |
+| 🟡 | **2** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Una.** Delle dieci voci aperte, una le posso muovere senza di te — ed è il
+**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
 numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
@@ -676,7 +676,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **una**
+# 🟡 Sono mie, e non aspettano niente: **due**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -916,6 +916,44 @@ detto *«non provo niente»* invece di passare a vuoto. Adesso la caduta la
 
 **Con questa, di ISSUES 129 resta solo quello che nessuna sonda puo' misurare:
 un Consiglio giocato da persone.**
+
+### M17. [135](ISSUES.md#135) — quello che l'app chiede non si capisce: **aperta in 0.1.460**
+
+Hai giocato e mi hai scritto cinque cose. Prima di cominciare te ne ho chieste
+due, e le tue risposte hanno deciso il lavoro: il menu si accorcia **a passi** —
+prima cosa fai, poi con che carta — e **il trascinamento resta, e resta il
+primo**, coi pulsanti in piu'.
+
+**Giro 1 fatto in 0.1.460** ([D-490](DECISIONS.md#d-490)). Ho misurato prima di
+toccare, con una sonda che si siede al tuo posto e registra i menu invece di
+sceglierli. Il numero e' peggio di come si vedeva:
+
+| | prima | adesso |
+|---|---|---|
+| voci per menu | 23,7 — **130 nel piu' lungo** | **4,1 — 14** |
+| menu con voci ripetute parola per parola | **47%** | 1% |
+| voci coinvolte | **80%** | **0%** |
+| verbi che una persona puo' giocare | **5 su 7** | **7 su 7** |
+
+Le sei «Sbarrare la strada · a Porto Cinerino» erano **dodici domande diverse**:
+il menu era il prodotto di tutte le offerte per tutte le carte in mano per tutte
+le loro facce, e l'etichetta non diceva quale domanda stavi alzando.
+
+**E sotto ho trovato due cose che non avevi chiesto.** RIVENDICARE e SEGNARE non
+li potevi giocare — zero volte in venti anni — mentre i bot si', e le carte li
+stampano su **11 e 7 facce**: diciotto facce che avevi in mano e non potevi
+calare. E SEGNARE non era eseguibile **da nessuno**: il motore toglieva il luogo
+dai parametri del verbo e rispondeva «manca il luogo da segnare» a ogni carta.
+
+I pulsanti sono nella barra in alto, come volevi, e **ogni scelta ne ha uno** —
+anche quelle che si posano sulla mappa, il che rovescia una regola che avevi
+chiesto tu in 0.1.428 e che adesso non vale piu': il gesto resta il primo, il
+pulsante gli sta accanto.
+
+**Cosa resta di questa voce:** il verbale che si legge, le frasi che dicono cosa
+fare in termini di gioco — *«SI RAFFREDDA  Un cordone e cure decisi al
+Consiglio»* racconta e non istruisce — e un'ora con l'app in mano, che nessuna
+sonda misura.
 
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
@@ -1433,8 +1471,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dieci voci aperte ne posso
-muovere **una** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
