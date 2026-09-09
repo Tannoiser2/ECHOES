@@ -82,6 +82,18 @@ scelgono i costi**. E' la regola che regge tutta la trattativa, ed era l'unica
 cosa che la scheda non diceva. Adesso sta nei titoli delle due liste: *«BENEFICI
 — li compra chi propone»*, *«COSTI — li scelgono gli avversari»*.
 
+### 4. E le spente stavano in mezzo
+
+Una voce che qui non cambierebbe niente si vede spenta da [D-306](#d-306), ma
+stava **in mezzo** alle altre. Quante fossero l'avevo stimato a occhio dallo
+screenshot — «meta' della lista» — e la stima era sbagliata: misurate su **47
+schede vere**, sono **183 su 564**, cioe' **una su tre**.
+
+Una su tre e' abbastanza da far scorrere tutta la lista a chi cerca cosa
+comprare. Adesso stanno **in coda al loro gruppo**, e non si tolgono: fanno
+parte della carta, e sapere cosa c'era e non vale qui e' meta' di una
+trattativa.
+
 ### La prova ha cambiato criterio, non mestiere
 
 `test_the_board_draws_both_lists` pretendeva **la sigla su ogni riga**, che era

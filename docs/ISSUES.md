@@ -10219,7 +10219,7 @@ Consigli), cioe' **3,92 per Atto**; col rubinetto della mappa la mano starebbe a
 adesso. Il mazzetto precomposto per Atto e' una terza forma, e non e' misurata.
 
 
-### 137. La scheda del Consiglio: non si sa chi sta facendo cosa
+### 137. ✅ La scheda del Consiglio: non si sa chi sta facendo cosa — CHIUSA in 0.1.467
 
 `ux` · voluta dal committente · **aperta in 0.1.466**
 
@@ -10248,9 +10248,11 @@ avversari»*.
 ovvio: le voci comuni sono **185 su 720** (3,1 per carta) e finirebbero stampate
 due volte — al tavolo, due caselle dove ce n'e' una.
 
-**Resta aperta la terza riga:** le voci spente con *«— non qui: non cambierebbe
-niente»* stanno ancora in mezzo a quelle che si possono prendere. Adesso almeno
-sono dentro il gruppo della loro domanda, ma occupano ancora meta' della lista.
+**E le spente stanno in coda al loro gruppo.** Misurate invece che stimate a
+occhio — a occhio avevo scritto «meta' della lista»: sono **183 su 564**, cioe'
+**una su tre**, su 47 schede vere. Non si tolgono, perche' sapere **cosa c'era e
+non vale qui** e' meta' di una trattativa; ma vanno sotto, dove non intralciano
+la scelta.
 
 
 ### 135. Il menu, il verbale e le frasi: quello che l'app chiede non si capisce

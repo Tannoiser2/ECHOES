@@ -273,10 +273,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **141** |
-| chiuse | **128** |
-| aperte | **13** |
+| chiuse | **129** |
+| aperte | **12** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **13** |
+| di cui sono mie da fare | **12** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,12 +307,11 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **4** | **io**, da sola, senza aspettare niente |
+| 🟡 | **3** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Quattro.** Delle tredici voci aperte, quattro le posso muovere senza di te —
-ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
-parola.**
+**Tre.** Delle dodici voci aperte, tre le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
@@ -677,7 +676,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **quattro**
+# 🟡 Sono mie, e non aspettano niente: **tre**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -1055,7 +1054,7 @@ quello che avevi proposto tu, *«due presenze, due carte»* — la mano starebbe
 **4,91 / 5,01 / 5,26** nei tre Atti, contro **3,3 / 3,3 / 3,7** di adesso. Il
 mazzetto precomposto per Atto e' una terza forma, e quella non e' misurata.
 
-### M19. [137](ISSUES.md#137) — la scheda del Consiglio: **aperta in 0.1.466**
+### ✔ M19. [137](ISSUES.md#137) — la scheda del Consiglio: **aperta in 0.1.466**
 
 > *«Non si sa chi sta facendo cosa e le voci sono tutte mescolate.»*
 
@@ -1582,9 +1581,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
-muovere **quattro** da sola. Due le verifica una persona che gioca, sette
-stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
+muovere **tre** da sola. Due le verifica una persona che gioca, sette stanno
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

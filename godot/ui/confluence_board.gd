@@ -365,7 +365,24 @@ func _render_sides_face(session: RefCounted, council: Dictionary, face: Dictiona
 			if voices.is_empty():
 				continue
 			_face.add_child(_face_heading(str(group_said[key])))
+			# **Le spente in coda al loro gruppo** (D-497, terza riga di ISSUES
+			# 137). Una voce su tre non si puo' prendere qui — **183 su 564**,
+			# misurate su 47 schede — e stavano in mezzo alle altre: chi cerca
+			# cosa comprare le scorreva tutte per scoprire che un terzo non
+			# serviva. Non si tolgono, pero': fanno parte della carta, e sapere
+			# **cosa c'era e non vale qui** e' meta' di una trattativa. Vanno
+			# sotto, dove non intralciano la scelta.
+			var live_here: Array = []
+			var dead_here: Array = []
 			for voice in voices:
+				var voice_id: String = str((voice as Dictionary)["id"])
+				var spenta: bool = (
+					str(taken.get(voice_id, "")) == ""
+					and session.confluence.is_open()
+					and not live.has(voice_id)
+				)
+				(dead_here if spenta else live_here).append(voice)
+			for voice in live_here + dead_here:
 				var voice_id: String = str((voice as Dictionary)["id"])
 				# **La sigla non serve piu'**: la dice il gruppo, e ripeterla su
 				# ogni riga era la meta' del disordine.

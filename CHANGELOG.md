@@ -37,13 +37,17 @@ volte — al tavolo, due caselle dove ce n'e' una.
 - voci per carta Tensione: **8,9** in media (4,4 solo A, 4,5 solo B, 3,1 comuni).
 - voci comuni in tutto: **185 su 720** — la ragione per cui i gruppi stanno
   dentro le liste e non sopra.
+- voci spente su una scheda vera: **183 su 564** (**32%**), 47 schede — a occhio
+  avevo scritto «meta'», ed era una stima sbagliata.
 - **il costo, scritto**: la pagina del Consiglio cresce da **81 a 87 nodi** e i
   testi sotto gli occhi di tutta l'app da **188 a 194** — sono le sei
   intestazioni dei gruppi.
 - suite **815 test, 76 637 asserzioni**, verde.
 
-**Resta aperta una riga di ISSUES 137:** le voci spente con *«non qui: non
-cambierebbe niente»* stanno ancora in mezzo a quelle prendibili.
+**E le spente vanno in coda al loro gruppo**, con [ISSUES
+137](docs/ISSUES.md#137) che si chiude. Quante fossero l'avevo stimato a occhio
+— «meta' della lista» — e misurate su 47 schede sono **183 su 564**, una su tre.
+Non si tolgono: sapere cosa c'era e non vale qui e' meta' di una trattativa.
 
 ---
 
