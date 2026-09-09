@@ -981,14 +981,81 @@ func _on_save_pressed() -> void:
 	_hint.text = said if said != "" else "Non c'e ancora una partita da salvare."
 
 
+## **La pagina disegna gia' il pannello del seggio** (D-491, parola del
+## committente dopo un'ora di gioco: *«Il LOG non si capisce nulla»*).
+##
+## `SeatDecider` manda il cartiglio a caratteri — ATTO e ROUND, le domande
+## dell'anno, la mappa, la mano, il Destino — **a ogni Occasione**, a chi non
+## dichiara di disegnarselo. Il telefono lo dichiara da D-143 e non lo riceve;
+## questa pagina no, e se lo ristampava nel verbale mentre le stesse cose
+## stavano gia' sullo schermo: la colonna delle domande a sinistra, la mappa al
+## centro, la mano e il Destino nelle schede sotto, i rapporti nella striscia
+## dei seggi. Misurato con `cli/run_log_probe.gd`: **144 righe su 880**, il
+## 16%, erano quel pannello ridetto — e nella foto del committente si vedono
+## due blocchi identici uno sotto l'altro.
+func shows_state() -> bool:
+	return true
+
+
 func say(text: String) -> void:
 	if text.begins_with("=="):
 		_transcript.append_text("\n[color=#e8b563][b]%s[/b][/color]\n" % text.strip_edges())
+		_empty_lines = 0
 		_tell(text)
 		return
 	var said: String = _without_frames(text)
-	_transcript.append_text("%s\n" % said)
+	# **Una riga vuota separa; due sono rumore** (D-491). Il verbale ne prende
+	# una da ogni sezione del motore e una da ogni respiro del decisore: sulla
+	# pagina si sommavano, e nella colonna stretta due righe vuote di fila
+	# valgono un paragrafo di niente.
+	if said.strip_edges() == "":
+		_empty_lines += 1
+		if _empty_lines > 1:
+			return
+	else:
+		_empty_lines = 0
+	_transcript.append_text("%s\n" % _shaped(said))
 	_tell(said)
+
+
+## Quante righe vuote di fila sono gia' finite nel verbale.
+var _empty_lines: int = 0
+
+
+## **Il verbale ha tre livelli, e si vedono** (D-491, parola del committente:
+## *«Il LOG non si capisce nulla»*).
+##
+## Il motore scrive gia' strutturato — `section()` fa un titolo, `bullet()` fa
+## `  - `, e le righe di dettaglio arrivano con un rientro in piu' — e sulla
+## pagina quella struttura andava persa: 666 righe l'anno tutte dello stesso
+## colore e dello stesso peso, in una colonna larga 300 punti.
+##
+## Qui la struttura torna visibile, e **niente di piu'**: chi agisce in chiaro,
+## il dettaglio piu' tenue e rientrato. Non si riscrive una parola: si smette
+## di appiattire quello che il verbale gia' dice.
+func _shaped(line: String) -> String:
+	if not line.begins_with("  - "):
+		return line
+	var body: String = line.substr(4)
+	if body.begins_with("  "):
+		return "    [color=#8a8172]%s[/color]" % body.strip_edges()
+	return "  [color=#c9bfae]•[/color] %s" % _seat_in_bold(body)
+
+
+## Il nome di chi agisce, in grassetto. Le righe del verbale cominciano quasi
+## sempre con una casa che fa qualcosa — «Vaerax gioca…», «Re Aldric passa.» —
+## e vedere di chi e' il turno e' la meta' del capire cosa succede.
+func _seat_in_bold(body: String) -> String:
+	if _session == null:
+		return body
+	for entity_id in (_session.world["entities"] as Dictionary):
+		var named: Variant = _session.data.entities.get(str(entity_id))
+		if named == null:
+			continue
+		var title: String = str((named as Dictionary).get("title", ""))
+		if title != "" and body.begins_with(title):
+			return "[b]%s[/b]%s" % [title, body.substr(title.length())]
+	return body
 
 
 ## **Il verbale parla, non disegna** (D-464): il cartiglio del turno arriva

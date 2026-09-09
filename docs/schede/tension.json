@@ -113,7 +113,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta su chi tiene d'occhio la montagna."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -147,7 +147,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Sigillare le Miniere. Un patto che vincoli chi studia il Cristallo."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -181,7 +181,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una conta pubblica del granaio. Il grano guasto bruciato davanti a tutti."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -215,7 +215,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una scorta armata decisa al Consiglio. La catena tolta e mostrata in piazza."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -249,7 +249,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un confine camminato e giurato davanti a testimoni. Un catasto riscritto al Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -283,7 +283,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un rito per i senza nome celebrato davanti a tutti. Un campo santo nuovo consacrato."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -317,7 +317,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta su chi scrive la regola. Una regola scritta e accettata anche da chi ci perde."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -351,7 +351,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un limite di taglio deciso e sorvegliato. Una stagione senza fornaci."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -385,7 +385,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una regola dei seggi scritta e giurata. Un seggio nuovo assegnato senza sangue."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -419,7 +419,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un servizio di staffette giurato al Consiglio. Una posta sigillata con pene scritte."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -453,7 +453,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta sul registro. Un condono, per quanto parziale."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -487,7 +487,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un divieto di pesca deciso e rispettato. Una spedizione fatta con giudizio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -521,7 +521,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una veglia decisa e mantenuta. Il fondo sigillato per decisione del Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -555,7 +555,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Turni e banchi divisi per decisione del Consiglio. Il pesce tornato con la stagione."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -589,7 +589,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un Consiglio che decide di chi e' l'uso della terra. Un titolo scritto e letto in piazza."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -623,7 +623,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un anno di maggese deciso e rispettato. Una rotazione scritta al Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -657,7 +657,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta sulla distribuzione del grano. Carte Echo di RISOLUZIONE che spendono qualcosa di reale."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -691,7 +691,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una tariffa scritta al Consiglio. Una seconda barca messa in acqua."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -725,7 +725,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Argini rifatti per decisione del Consiglio. I canali vecchi riaperti."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -759,7 +759,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un arbitrato del Consiglio fra le gilde. Un mercato diviso con confini scritti."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -793,7 +793,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un Consiglio che decide cosa si puo' predicare. Una disputa pubblica con un vincitore."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -827,7 +827,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Uno scambio di ostaggi deciso al Consiglio. Un ritorno a casa concesso e festeggiato."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -861,7 +861,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una custodia dell'altare decisa al Consiglio. Un rito nuovo scritto per il posto vecchio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -895,7 +895,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un presidio stabilito con un rito. Un divieto di sbarco deciso al Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -929,7 +929,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un patto di lavoro deciso al Consiglio. Terra concessa a chi la lavora."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -963,7 +963,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un catasto giurato dalle parti. Un Consiglio che decide chi misura."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -997,7 +997,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una leva con regole scritte al Consiglio. Un anno senza chiamate."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1031,7 +1031,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una marca concessa a un titolare scelto. Un giro d'ispezione del trono ai margini."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1065,7 +1065,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un cordone e cure decisi al Consiglio. I canali riaperti che muovono l'acqua."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1099,7 +1099,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta su chi ha diritto di restare."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1133,7 +1133,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una mappa delle vie vecchie fatta e custodita. Un divieto di percorrerle deciso al Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1167,7 +1167,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un giuramento nuovo prestato dai vecchi. Una pensione decisa al Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1201,7 +1201,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una disputa dei dotti che stabilisca cosa significano. Un divieto o una riabilitazione decisi al Consiglio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1235,7 +1235,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un calendario dei pascoli deciso al Consiglio. Una stagione divisa senza sangue."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1269,7 +1269,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un cammino con tappe e granai decisi al Consiglio. Un anno santo dichiarato e organizzato."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1303,7 +1303,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una divisione che tutti riescono a dire ad alta voce."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1337,7 +1337,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una disputa pubblica sulla lettura. Il Consiglio che fissa cosa si fa il giorno dopo la data."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1371,7 +1371,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un cordone con regole e termini scritti. Una quarantena finita senza contagio."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1405,7 +1405,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un'accoglienza con regole decisa al Consiglio. Terra o lavoro dati a chi arriva."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1439,7 +1439,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un termine scritto e giurato al Consiglio. La consegna del sigillo davanti a testimoni."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1473,7 +1473,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta su chi la custodisce. Sotterrarla di nuovo, e dirlo."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1507,7 +1507,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una scorta pagata da chi ci guadagna. Un pedaggio scritto e uguale per tutti."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1541,7 +1541,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un prezzo del sale deciso al Consiglio. Le vasche contate e scritte."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1575,7 +1575,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un Consiglio che decide i confini dell'asilo. Una consegna negoziata senza sangue."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1609,7 +1609,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un registro dei sigilli deciso al Consiglio. Un falsario preso e mostrato."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1643,7 +1643,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un Consiglio che decide chi suona, e per chi. Un lutto sciolto con un rito."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1677,7 +1677,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un cantiere diviso per decisione del Consiglio. Il primo tratto riaperto che paga il secondo."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1711,7 +1711,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un censimento dei racconti fatto sul serio. Una veglia istituita dove si dorme."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1745,7 +1745,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una dogana onesta pagata bene. Un condono che fa emergere i traffici."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1779,7 +1779,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un erede riconosciuto davanti a testimoni. Un patto che leghi una casa al trono."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1813,7 +1813,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una divisione che tutti riescono a dire ad alta voce."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1847,7 +1847,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Registri della decima aperti al Consiglio. Una decima sospesa in un anno magro."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1881,7 +1881,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un tributo ridotto per l'anno magro. Un conto pubblico di dove va il tributo."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1915,7 +1915,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una custodia decisa al Consiglio. Uno studio fatto con regole scritte."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1949,7 +1949,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un rito di scioglimento celebrato per tutti. Un Consiglio che dice quali voti valgono ancora."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -1983,7 +1983,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Le pietre rialzate con il rito giusto. Un giro di guardia istituito sul margine."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -2017,7 +2017,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una Confluence risolta su chi scava e chi paga. Carte Echo di RISOLUZIONE che spendono braccia vere."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -2051,7 +2051,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Un campione dei pesi giurato al Consiglio. Un ispettore dei mercati nominato."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -2085,7 +2085,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Legna e tetti divisi per decisione del Consiglio. Un disgelo arrivato in tempo."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",
@@ -2119,7 +2119,7 @@
         },
         {
           "voce": "SI RAFFREDDA",
-          "testo": "Una battuta ordinata dal Consiglio. Recinti e guardiani pagati in comune."
+          "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
         },
         {
           "voce": "SI DIBATTE",

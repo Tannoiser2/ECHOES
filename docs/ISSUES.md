@@ -10166,11 +10166,16 @@ guardano si guardano:
 1. ✔ **le voci ripetute** — **giro 1 fatto in 0.1.460**
    ([D-490](DECISIONS.md#d-490)): il menu a tre tempi, i due verbi che una
    persona non poteva giocare, i pulsanti nella barra di stato;
-2. **il verbale che si legge**: oggi e' un muro di righe dove la mossa, lo
-   stato del mondo e il conto dell'anno si susseguono senza gerarchia;
-3. **le frasi che dicono cosa fare**: «SI RAFFREDDA  Un cordone e cure decisi
-   al Consiglio» racconta e non istruisce — quali caselle, quale verbo, quanti
-   gettoni;
+2. ✔ **il verbale che si legge** — **giro 2 fatto in 0.1.461**
+   ([D-491](DECISIONS.md#d-491)): il pannello di stato non si ristampa piu' —
+   era **il 16% delle righe** dette al seggio, e la pagina disegna gia' tutte
+   quelle cose — e le righe del motore prendono i tre livelli che il motore
+   gia' scrive. Righe dette al seggio da **110 a 20 l'anno**;
+3. ✔ **le frasi che dicono cosa fare** — **giro 2 fatto in 0.1.461**: SI
+   RAFFREDDA porta la **regola** al posto del racconto, ed e' lo stesso scambio
+   che [D-337](DECISIONS.md#d-337) aveva gia' fatto su SI ACCENDE QUANDO. Le
+   tre vie sono quelle del motore, e **il numero dello sfogo si legge dalla
+   Chronicle**: a mano avrei scritto −2, il dato dice −1;
 4. **un'ora con l'app in mano**, che nessuna sonda misura.
 
 

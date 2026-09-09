@@ -218,7 +218,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "SI RAFFREDDA",
-      "testo": "Una Confluence risolta su chi tiene d'occhio la montagna."
+      "testo": "il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1"
     },
     {
       "voce": "SI DIBATTE",

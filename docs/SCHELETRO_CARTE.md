@@ -100,7 +100,7 @@ Non si gioca e non si tiene in mano: sta sul tavolo tutto l'anno. **Sul retro, i
 > domanda · l'antico
 > SI DISCUTE DI  La montagna fuma di nuovo nella Regione di cui si discute: si mette qualcuno a guardarla, o si scrive che ha sempre fumato? · E le bocche aperte sul fianco, si murano?
 > SI ACCENDE QUANDO  una casa entra dove sta il #cristallo o nel #selvaggio, o se ne va
-> SI RAFFREDDA  Una Confluence risolta su chi tiene d'occhio la montagna.
+> SI RAFFREDDA  il suo Consiglio la decide e torna a 1 · se cade, -1 · INFLUENZARE la abbassa di 1
 > SI DIBATTE  quando a fine Atto i suoi gettoni, girati, fanno il mucchio piu' alto: gira la carta.
 > AL CONSIGLIO VALGONO  forza, sapere, gente
 

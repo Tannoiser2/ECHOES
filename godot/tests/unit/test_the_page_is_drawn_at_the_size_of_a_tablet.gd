@@ -89,6 +89,23 @@ func test_the_turn_card_reaches_the_transcript_without_its_frames() -> void:
 	assert_true(said.ends_with("Una riga senza cornice resta com'e'."), "e chi non ha cornici non si tocca")
 
 
+## **E adesso quel cartiglio non arriva nemmeno** (D-491).
+##
+## La pagina disegna gia' domande, mappa, mano, Destino e rapporti: riceverne
+## anche la versione a caratteri, a ogni Occasione, voleva dire ristampare nel
+## verbale le stesse cose che stavano sullo schermo. Misurato con
+## `cli/run_log_probe.gd`: **144 righe su 880 dette al seggio**, il 16%, erano
+## quel pannello. Il telefono lo dichiara da D-143; adesso lo dichiara anche
+## lei, e il filtro qui sopra resta come rete per chi non lo dichiara.
+func test_the_page_draws_its_own_state() -> void:
+	var screen: Node = load("res://ui/game_screen.gd").new()
+	assert_true(
+		screen.has_method("shows_state") and bool(screen.call("shows_state")),
+		"la pagina dice al decisore che il pannello se lo disegna da se'"
+	)
+	screen.free()
+
+
 ## **Ogni posto della pagina ha una larghezza** (D-466): la sonda misura i
 ## pannelli contro il posto in cui stanno — sinistra, centro, sotto, schermo
 ## intero — e i posti, messi in fila coi margini, fanno il tablet. Un pannello

@@ -424,7 +424,7 @@ static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
 		rise = "SI ACCENDE QUANDO  %s" % " · ".join(PackedStringArray(said))
 	face["notes"] = [
 		rise,
-		"SI RAFFREDDA  %s" % " ".join(PackedStringArray(tension.get("decrease_rules", []))),
+		"SI RAFFREDDA  %s" % _cools_when(data),
 		# Il gesto del tavolo (D-203, D-450): i gettoni pescati si posano
 		# coperti sulla carta; a fine Atto si girano, e la carta col mucchio
 		# piu' alto si gira sul suo Consiglio.
@@ -464,6 +464,43 @@ static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:
 ## che leggesse solo i template stamperebbe **otto carte su sessanta** e
 ## direbbe che le altre non hanno domande. Provato, ed e' quello che faceva la
 ## prima stesura di questa funzione.
+## **SI RAFFREDDA, come regola** (D-491, parola del committente davanti alla
+## carta: *«Un cordone e cure decisi al Consiglio. I canali riaperti che muovono
+## l'acqua. Ma che vuol dire? Cosa si deve fare in termini di gioco?»*).
+##
+## Aveva ragione, ed e' **lo stesso difetto che D-337 aveva gia' corretto una
+## riga sopra**: SI ACCENDE QUANDO portava `triggers`, prosa d'autore, e adesso
+## porta la regola in segni che il motore esegue. SI RAFFREDDA era rimasta
+## indietro con `decrease_rules` — *«Un titolo scritto e letto in piazza»* — che
+## racconta e non si gioca.
+##
+## La regola vera sta nel motore e sono tre vie, tutte e tre giocabili:
+##
+##  - il **Consiglio che la decide** la riporta a 1, qualunque domanda vinca
+##    (`ConfluenceController`, H.1: `delta = 1 - before`);
+##  - il **Consiglio che cade** la sfoga di `failure_delta`, che e' un dato
+##    della Chronicle;
+##  - **INFLUENZARE** la abbassa di 1, che e' un'Azione e una carta.
+##
+## Il numero dello sfogo si **legge dalla Chronicle**, non si scrive qui: se
+## un giorno la si tara, la carta lo dice da sola. Il racconto resta nel dato e
+## lo legge il brief d'arte, come in D-340 e D-341.
+static func _cools_when(data: RefCounted) -> String:
+	var sfoga: int = -2
+	for chronicle_id in data.chronicles:
+		var rules: Dictionary = (
+			(data.chronicles[str(chronicle_id)] as Dictionary).get("confluence_rules", {})
+			as Dictionary
+		)
+		if rules.has("failure_delta"):
+			sfoga = int(rules["failure_delta"])
+			break
+	return (
+		"il suo Consiglio la decide e torna a 1 · se cade, %d · INFLUENZARE la abbassa di 1"
+		% sfoga
+	)
+
+
 static func _questions_of(tension: Dictionary, data: RefCounted) -> Array:
 	var wanted: Array = tension.get("possible_questions", []) as Array
 	if wanted.is_empty():

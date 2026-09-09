@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.461 — Il verbale che si legge, e SI RAFFREDDA che dice la regola
+
+[D-491](docs/DECISIONS.md#d-491), giro 2 di [ISSUES 135](docs/ISSUES.md#135).
+Due delle cinque cose viste giocando: *«Il LOG non si capisce nulla»* e *«i
+testi di OGNI cosa sono troppo narrativi... ma poi si deve capire cosa
+succede»*.
+
+**Il verbale, misurato con una sonda che fa due giri e cambia una cosa sola**:
+se chi ascolta dichiara di disegnarsi il pannello da se'. Otto anni, righe
+dette al seggio: **880 contro 160** — 110 l'anno contro 20 — e la differenza e'
+tutta il **pannello di stato ristampato a ogni Occasione**, il 16% del totale.
+Nella foto del committente si vedono due blocchi identici uno sotto l'altro.
+
+La pagina disegna gia' domande, mappa, mano, Destino e rapporti: e' lo stesso
+caso del telefono in [D-143](docs/DECISIONS.md#d-143), che lo dichiara da
+allora. **Una riga.**
+
+Sotto restano le **666 righe l'anno** del registro, e adesso hanno i tre livelli
+che il motore gia' scrive: titolo in oro, la riga di chi agisce col **nome della
+casa in grassetto**, il dettaglio rientrato e piu' tenue. Non si riscrive una
+parola: si smette di appiattire. E una riga vuota separa, due sono rumore.
+
+**SI RAFFREDDA porta la regola**, ed e' lo stesso scambio che
+[D-337](docs/DECISIONS.md#d-337) aveva gia' fatto una riga sopra su SI ACCENDE
+QUANDO. Le tre vie sono quelle del motore: *«il suo Consiglio la decide e torna
+a 1 · se cade, −1 · INFLUENZARE la abbassa di 1»*.
+
+**Il numero si legge dalla Chronicle, e si e' guadagnato il posto subito**: a
+mano avrei scritto −2, la lettera dell'appendice che sta nel commento del
+motore. Il dato spedito dice **−1**. Il racconto resta nel dato e lo legge il
+brief d'arte.
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** e gli stessi identici numeri di
+0.1.460 — questo giro tocca cosa si legge, non cosa succede.
+
+---
+
 ## 0.1.460 — Il menu a passi, i due verbi che mancavano, e i pulsanti nella barra
 
 [D-490](docs/DECISIONS.md#d-490), primo giro di
