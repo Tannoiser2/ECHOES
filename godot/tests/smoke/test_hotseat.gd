@@ -29,6 +29,12 @@ class RecordingIo extends RefCounted:
 	var labels: Array = []
 	var subjects: Array = []
 	var answer: int = -1
+	## **Premere una Regione** (D-490): con il menu a passi l'indice di una
+	## mossa non e' piu' quello che aveva in `_action_options` — davanti ci
+	## sono i verbi e il passo — quindi un dito che punta un posto si finge
+	## cosi': si sceglie la voce **che parla di quel posto**, che e'
+	## esattamente cio' che fa la mappa.
+	var press_region: String = ""
 
 	func say(_text: String) -> void:
 		pass
@@ -36,6 +42,10 @@ class RecordingIo extends RefCounted:
 	func choose(_prompt: String, p_labels: Array, p_subjects: Array = []) -> int:
 		labels = p_labels
 		subjects = p_subjects
+		if press_region != "":
+			for i in range(p_subjects.size()):
+				if str((p_subjects[i] as Dictionary).get("region", "")) == press_region:
+					return i
 		return answer
 
 
@@ -135,22 +145,36 @@ func test_a_move_carries_the_region_it_is_about() -> void:
 	await decider.choose_action("ENT_ALDRIC", 0, session)
 
 	assert_eq(io.subjects.size(), io.labels.size(), "un soggetto per ogni voce offerta")
+	# **Col menu a passi le voci non sono piu' le offerte, una per una** (D-490):
+	# davanti ci sono i verbi, e le giocate intere viaggiano dietro come
+	# scorciatoie per la mano e la mappa. Quello che questa prova tiene resta
+	# lo stesso: **la mossa dichiara il posto dove mette la presenza**, e chi
+	# non e' una mossa non si accende sulla mappa al posto suo.
 	var moves: int = 0
-	for i in range(options.size()):
+	var wanted: Dictionary = {}
+	for option in options:
+		if str((option as Dictionary)["template"]) == "MOVE":
+			wanted[str(((option as Dictionary)["params"] as Dictionary)["region_id"])] = true
+	for i in range(io.labels.size()):
 		var subject: Dictionary = io.subjects[i]
 		var named: String = str(subject.get("region", ""))
-		if str(options[i]["template"]) == "MOVE":
-			moves += 1
-			assert_eq(
-				named, str(options[i]["params"]["region_id"]),
-				"il luogo dichiarato e quello dove la mossa mette la presenza"
-			)
-			assert_true(session.world["regions"].has(named), "ed e una Regione che esiste")
-		else:
-			assert_eq(named, "", "solo una mossa ha un posto sulla mappa")
+		if named == "":
+			continue
+		if not bool(subject.get("shortcut", false)):
+			continue
+		if not wanted.has(named):
+			continue
+		moves += 1
+		assert_true(session.world["regions"].has(named), "ed e una Regione che esiste")
+	assert_eq(moves, wanted.size(), "ogni mossa e' offerta col suo posto, una volta sola")
 	assert_true(moves > 0, "in partenza qualche Regione deve essere raggiungibile")
+	var passa: int = -1
+	for i in range(io.labels.size()):
+		if str(io.labels[i]).begins_with("Passa"):
+			passa = i
+	assert_true(passa >= 0, "si puo' sempre passare")
 	assert_eq(
-		str((io.subjects[io.subjects.size() - 1] as Dictionary).get("region", "")), "",
+		str((io.subjects[passa] as Dictionary).get("region", "")), "",
 		"e 'Passa' non e un posto"
 	)
 
@@ -170,7 +194,7 @@ func test_pressing_a_region_is_choosing_that_move() -> void:
 			chosen = i
 	assert_true(chosen >= 0, "ci deve essere almeno una mossa da scegliere")
 
-	io.answer = chosen
+	io.press_region = str(options[chosen]["params"]["region_id"])
 	var request: Dictionary = await decider.choose_action("ENT_ALDRIC", 0, session)
 	assert_eq(str(request["template"]), "MOVE", "quello che torna e una mossa")
 	assert_eq(

@@ -128,29 +128,18 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	if not _reads_own_state():
 		_say(_board(entity_id, session))
 	var options: Array = _action_options(entity_id, session)
-	var labels: Array = []
-	var subjects: Array = []
-	for option in options:
-		labels.append(str(option["label"]))
-		subjects.append(option.get("subject", {}))
-	labels.append("Passa")
-	subjects.append({})
 	# ISSUES 21: al tavolo fisico un compagno ti farebbe notare che stai
 	# spegnendo la tua stessa spunta. L'app fa altrettanto: se la mossa scelta
 	# spegne una clausola accesa del proprio Destino, una riga di avviso e la
 	# scelta di ripensarci. Un cartello, non un consigliere.
 	while true:
-		var choice: int = await _choose(
-			"%s, azione %d:" % [_name(entity_id, session), ao_index + 1], labels, subjects
+		var request: Dictionary = await _pick_an_action(
+			entity_id, ao_index, options, session
 		)
-		if choice < 0:
+		if request.is_empty():
 			return fallback.choose_action(entity_id, ao_index, session)
-		if choice >= options.size():
-			return {"template": "PASS", "params": {}}
-		var request: Dictionary = {
-			"template": str(options[choice]["template"]),
-			"params": options[choice]["params"],
-		}
+		if str(request.get("template", "")) == "PASS":
+			return request
 		# **E il mondo risponde dove dici tu** (D-482): la carta stampa due
 		# Temi e la Risonanza ne scalda **uno** — quale lo scegli adesso, subito
 		# dopo aver scelto la mossa. E' la sola leva sull'agenda del tavolo: il
@@ -166,6 +155,139 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 		if confirmed != 1:
 			return request
 	return {"template": "PASS", "params": {}}
+
+
+## **Il menu a passi** (D-490, parola del committente davanti alla pagina:
+## *«ogni cosa, ogni decisione, ogni scelta e azione un pulsante ben chiaro»*).
+##
+## Fino al 0.1.459 il menu di un turno era **il prodotto** di tutte le offerte
+## per tutte le carte in mano per tutte le loro facce. Misurato con
+## `cli/run_menu_probe.gd` su venti anni: **23,7 voci di media, 130 nel piu'
+## lungo**, e l'**80%** delle voci ripetute parola per parola dentro lo stesso
+## menu — dodici «Sbarrare la strada · a Porto Cinerino» che erano dodici
+## domande diverse, e l'etichetta non diceva quale.
+##
+## Adesso si sceglie come al tavolo, **in tre tempi**: cosa fai, dove, con che
+## carta. Ogni passo elenca cose distinte, e un passo con una voce sola non si
+## fa: se una carta sola sa dire quel verbo li', la si cala e basta.
+func _pick_an_action(
+	entity_id: String, ao_index: int, options: Array, session: RefCounted
+) -> Dictionary:
+	# **Passo 1: cosa fai.** I verbi, con la riga che dice cosa fanno — quella
+	# di `AssetText`, la stessa stampata sulle carte, cosi' il verbo si impara
+	# in un posto solo.
+	var by_verb: Dictionary = {}
+	for option in options:
+		var verb: String = str((option as Dictionary).get("verb", ""))
+		if verb == "":
+			verb = str((option as Dictionary)["template"])
+		var mine: Array = by_verb.get(verb, []) as Array
+		mine.append(option)
+		by_verb[verb] = mine
+	var verbs: Array = []
+	for verb in AssetText.ACTIONS:
+		if by_verb.has(str(verb)):
+			verbs.append(str(verb))
+	for verb in by_verb:
+		if not verbs.has(str(verb)):
+			verbs.append(str(verb))
+
+	var labels: Array = []
+	var subjects: Array = []
+	for verb in verbs:
+		labels.append(_verb_label(str(verb), (by_verb[str(verb)] as Array).size()))
+		subjects.append({"verb": str(verb)})
+	labels.append("Passa — non fai niente con questa Occasione")
+	subjects.append({})
+	# **E il trascinamento resta il primo** (D-490, seconda parola del
+	# committente). I pulsanti sono i verbi, sette e non centotrenta; ma chi
+	# prende una carta in mano, o punta il dito su una Regione, sta gia'
+	# scegliendo — e deve poter finire li'. Ogni giocata intera viaggia quindi
+	# accanto ai verbi, marcata `shortcut`: la mano e la mappa la offrono, la
+	# barra dei pulsanti non la disegna. Senza queste righe, al primo passo la
+	# mano era morta: le carte si vedevano e non se ne poteva prendere nessuna,
+	# ed e' esattamente il difetto che D-281 aveva gia' trovato una volta.
+	var shortcuts: Array = []
+	for option in options:
+		var about: Dictionary = ((option as Dictionary).get("subject", {}) as Dictionary).duplicate()
+		if about.is_empty():
+			continue
+		about["shortcut"] = true
+		labels.append(str((option as Dictionary)["label"]))
+		subjects.append(about)
+		shortcuts.append(option)
+	var which: int = await _choose(
+		"%s, azione %d — cosa fai?" % [_name(entity_id, session), ao_index + 1],
+		labels, subjects
+	)
+	if which < 0:
+		return {}
+	if which > verbs.size():
+		var taken: Dictionary = shortcuts[which - verbs.size() - 1] as Dictionary
+		return {"template": str(taken["template"]), "params": taken["params"]}
+	if which == verbs.size():
+		return {"template": "PASS", "params": {}}
+
+	# **Passo 2: dove, o su chi.** Le offerte nude di quel verbo, ognuna una
+	# volta sola: «Alza Le Vie Interrotte», «Metti una presenza in Eredan».
+	var here: Array = by_verb[str(verbs[which])] as Array
+	var chosen: Array = await _narrow(here, "origin", "  E dove?", true)
+	if chosen.is_empty():
+		return await _pick_an_action(entity_id, ao_index, options, session)
+
+	# **Passo 3: con quale carta.** Le carte in mano che sanno dirlo li', con
+	# l'Azione stampata che useranno.
+	var picked: Array = await _narrow(chosen, "label", "  Con quale carta?", false)
+	if picked.is_empty():
+		return await _pick_an_action(entity_id, ao_index, options, session)
+	var option: Dictionary = picked[0] as Dictionary
+	return {"template": str(option["template"]), "params": option["params"]}
+
+
+## Un passo del menu: raggruppa quello che resta su `field`, e chiede. Con un
+## gruppo solo non chiede niente — un passo obbligato non e' una scelta — e
+## torna quel gruppo; vuoto vuol dire «torna indietro».
+func _narrow(options: Array, field: String, prompt: String, keep_group: bool) -> Array:
+	var groups: Array = []
+	var by_key: Dictionary = {}
+	for option in options:
+		var key: String = str((option as Dictionary).get(field, ""))
+		if not by_key.has(key):
+			by_key[key] = []
+			groups.append(key)
+		(by_key[key] as Array).append(option)
+	if groups.size() == 1:
+		return by_key[str(groups[0])] as Array if keep_group else [options[0]]
+	var labels: Array = []
+	var subjects: Array = []
+	for key in groups:
+		var first: Dictionary = (by_key[str(key)] as Array)[0] as Dictionary
+		labels.append(str(key))
+		var about: Dictionary = (first.get("subject", {}) as Dictionary).duplicate()
+		if keep_group:
+			# La carta non e' ancora scelta: lo schermo accenda il posto, non
+			# una carta in mano.
+			about.erase("asset")
+			about.erase("face_action")
+		subjects.append(about)
+	labels.append("← Torna indietro")
+	subjects.append({})
+	var which: int = await _choose(prompt, labels, subjects)
+	if which < 0 or which >= groups.size():
+		return []
+	var found: Array = by_key[str(groups[which])] as Array
+	return found if keep_group else [found[0]]
+
+
+## Il verbo come si legge al tavolo. La frase e' quella stampata sulle carte
+## (`AssetText.ACTIONS`): un verbo si spiega in un posto solo.
+func _verb_label(verb: String, how_many: int) -> String:
+	var said: String = str(AssetText.ACTIONS.get(verb, verb))
+	if verb == "PLAY_ECHO":
+		said = "CALARE UN ECO — la parola di una carta, al posto di un'Azione"
+	if how_many > 1:
+		said += "   (%d modi)" % how_many
+	return said
 
 
 ## **Quale Tema scalda la Risonanza** (D-482), quando la carta ne offre due.
@@ -374,6 +496,40 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				"subject": {"tension": str(tension_id)},
 			})
 
+	# **RIVENDICARE e SEGNARE, i due verbi che una persona non poteva giocare**
+	# (D-490). Misurato con `cli/run_menu_probe.gd` su venti anni: dei sette
+	# verbi di §10 il menu ne offriva **cinque** — CLAIM e MARK uscivano **zero
+	# volte**, mentre la policy li gioca e le carte li stampano su 11 e 7 facce.
+	# Chi gioca non poteva prendersi il diritto di aprire il Consiglio: proprio
+	# il diritto a cui D-476 ha appena dato una moneta.
+	var domains: Dictionary = {}
+	for tension_id in _sorted(session.world["tensions"].keys()):
+		var force: Dictionary = {"mode": "FORCE", "tension_id": str(tension_id)}
+		if session.actions.can_execute(entity_id, "CLAIM", force):
+			out.append({
+				"label": "Prendi la parola su %s" % _tension(str(tension_id), session),
+				"template": "CLAIM", "params": force,
+				"subject": {"tension": str(tension_id)},
+			})
+		domains[session.service.tension_domain(str(tension_id))] = true
+	for domain in _sorted(domains.keys()):
+		var create: Dictionary = {"mode": "CREATE", "domain": str(domain)}
+		if session.actions.can_execute(entity_id, "CLAIM", create):
+			out.append({
+				"label": "Prenota la parola sulle domande di %s" % str(domain),
+				"template": "CLAIM", "params": create,
+			})
+
+	# SEGNARE non si chiede al motore da solo: il suo effetto **sono** i segni
+	# della faccia (D-423), e senza carta non ha niente da lasciare. L'offerta
+	# nuda dice il verbo; i posti li trova la faccia, e la legalita' la
+	# giudica `PLAY_CARD` un momento dopo.
+	if bool(
+		(session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary)
+			.get("actions_from_cards", false)
+	):
+		out.append({"label": "Lascia un segno", "template": "MARK", "params": {}})
+
 	for other_id in session.world["turn_order"]:
 		if str(other_id) == entity_id:
 			continue
@@ -394,7 +550,19 @@ func _action_options(entity_id: String, session: RefCounted) -> Array:
 				# e' li' che una carta che forgia deve poter cadere (D-231).
 				"subject": {"entity": str(other_id)},
 			})
-	return _through_the_hand(entity_id, out, session)
+	return _named(_through_the_hand(entity_id, out, session))
+
+
+## Ogni voce sa da che verbo viene e da quale offerta nuda (D-490). Quelle che
+## non passano dalla mano — l'Eco, il passo — se lo dicono da sole.
+static func _named(options: Array) -> Array:
+	for option in options:
+		var entry: Dictionary = option as Dictionary
+		if str(entry.get("verb", "")) == "":
+			entry["verb"] = str(entry["template"])
+		if str(entry.get("origin", "")) == "":
+			entry["origin"] = str(entry["label"])
+	return options
 
 
 ## **Quando le carte sono l'unica moneta, il menu deve offrire le carte** (D-194).
@@ -457,8 +625,6 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 				).duplicate()
 				params["asset_id"] = str(asset_id)
 				params["face_action"] = index
-				if not session.actions.can_execute(entity_id, "PLAY_CARD", params):
-					continue
 				# **E dove cadono i segni stampati** (D-284). Se questa meta'
 				# posa segni di Regione e il verbo non ne nomina nessuna, il
 				# posto e' una scelta vera — posare una condizione a casa
@@ -477,6 +643,15 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 					var where: String = str(place)
 					if where != "":
 						here["mark_region_id"] = where
+					# **La legalita' si chiede sulla giocata intera** (D-490).
+					# Stava sopra, prima che il posto ci fosse, e per SEGNARE
+					# quello era tutto: il bersaglio di una faccia SEGNARE lo
+					# da' la faccia, non l'offerta, quindi la domanda partiva
+					# senza luogo, il motore rispondeva «manca il luogo da
+					# segnare» e le sette facce SEGNARE della scatola sparivano
+					# dal menu. Misurato: **zero SEGNARE offerti in venti anni**.
+					if not session.actions.can_execute(entity_id, "PLAY_CARD", here):
+						continue
 					# **E a chi** (D-463): una faccia che cede o promette a
 					# un'altra casa usciva con tre bottoni identici — «Cedere
 					# il diritto» tre volte — e chi gioca non sapeva a chi.
@@ -492,6 +667,17 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 							else " · a %s" % _region(where, session),
 							to_whom,
 						],
+						# **Da quale offerta nuda viene questa voce** (D-490).
+						# Senza, il menu e' il prodotto di tutte le offerte per
+						# tutte le carte per tutte le facce — misurato, 130 voci
+						# nel piu' lungo e l'80% ripetute parola per parola — e
+						# la carta che una voce porta si legge, ma **cosa fa**
+						# no: dodici «Sbarrare la strada · a Porto Cinerino»
+						# erano dodici domande diverse e lo schermo non lo
+						# diceva. Con l'origine il menu si apre a passi: prima
+						# il verbo, poi il bersaglio, poi la carta.
+						"verb": template,
+						"origin": str((offer as Dictionary)["label"]),
 						"template": "PLAY_CARD", "params": here,
 					# **Di cosa parla la scelta, e con che carta** (D-230). Il
 					# bersaglio dell'offerta si perdeva qui: una MUOVERE nata

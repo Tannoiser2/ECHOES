@@ -22,12 +22,22 @@ class ScriptedIo extends RefCounted:
 	var said: Array = []
 	var asks: Array = []
 	var answers: Array = []
+	## **Si sceglie la voce, non il suo numero** (D-490). Col menu a passi
+	## l'indice che una mossa aveva in `_action_options` non e' piu' il suo
+	## posto nella lista — davanti ci sono i verbi — e una prova che conta le
+	## posizioni si romperebbe a ogni riordino. Qui si dice **cosa** si preme.
+	var pick: String = ""
 
 	func say(text: String) -> void:
 		said.append(str(text))
 
 	func choose(_prompt: String, labels: Array, _subjects: Array = []) -> int:
 		asks.append(labels.duplicate())
+		if pick != "":
+			for i in range(labels.size()):
+				if str(labels[i]) == pick:
+					pick = ""
+					return i
 		if answers.is_empty():
 			return -1
 		return int(answers.pop_front())
@@ -100,7 +110,7 @@ func _decider_with(io: RefCounted) -> RefCounted:
 const MINIMUM_SIGNS: Array = ["wild", "domain:ANCIENT"]
 
 
-func _first_move_away(decider: RefCounted) -> int:
+func _first_move_away(decider: RefCounted) -> String:
 	var options: Array = decider._action_options("ENT_VAERAX", session)
 	for i in range(options.size()):
 		if str(options[i]["template"]) != "MOVE":
@@ -114,8 +124,8 @@ func _first_move_away(decider: RefCounted) -> int:
 				still_counts = true
 				break
 		if not still_counts:
-			return i
-	return -1
+			return str(options[i]["label"])
+	return ""
 
 
 func test_the_move_of_seed_15308_warns_before_confirming() -> void:
@@ -123,10 +133,11 @@ func test_the_move_of_seed_15308_warns_before_confirming() -> void:
 	_seat_vaerax_on_the_mountain()
 	var io := ScriptedIo.new()
 	var decider: RefCounted = _decider_with(io)
-	var move: int = _first_move_away(decider)
-	assert_true(move >= 0, "ci deve essere una mossa che porta via dalla montagna")
+	var move: String = _first_move_away(decider)
+	assert_true(move != "", "ci deve essere una mossa che porta via dalla montagna")
 
-	io.answers = [move, 0]  # la mossa, poi «Sì, la faccio»
+	io.pick = move
+	io.answers = [0]  # scelta la mossa, poi «Sì, la faccio»
 	var request: Dictionary = await decider.choose_action("ENT_VAERAX", 0, session)
 
 	var warned: bool = false
@@ -148,11 +159,15 @@ func test_thinking_again_returns_to_the_menu() -> void:
 	_seat_vaerax_on_the_mountain()
 	var io := ScriptedIo.new()
 	var decider: RefCounted = _decider_with(io)
-	var move: int = _first_move_away(decider)
-	assert_true(move >= 0, "ci deve essere una mossa che porta via dalla montagna")
+	var move: String = _first_move_away(decider)
+	assert_true(move != "", "ci deve essere una mossa che porta via dalla montagna")
 
-	var options: int = decider._action_options("ENT_VAERAX", session).size()
-	io.answers = [move, 1, options]  # la mossa, «No, ci ripenso», poi «Passa»
+	# «Passa» sta subito dopo i verbi, e il menu a passi lo mette li' sempre.
+	var verbs: Dictionary = {}
+	for option in decider._action_options("ENT_VAERAX", session):
+		verbs[str((option as Dictionary).get("verb", (option as Dictionary)["template"]))] = true
+	io.pick = move
+	io.answers = [1, verbs.size()]  # «No, ci ripenso», poi «Passa»
 	var request: Dictionary = await decider.choose_action("ENT_VAERAX", 0, session)
 
 	assert_eq(str(request["template"]), "PASS", "il ripensamento torna al menu, e si puo' passare")
@@ -166,13 +181,13 @@ func test_a_move_that_leaves_the_destiny_alone_says_nothing() -> void:
 	var decider: RefCounted = _decider_with(io)
 	# Un ACQUIRE non tocca presenze, tag o Tensioni: nessuna clausola si spegne.
 	var options: Array = decider._action_options("ENT_VAERAX", session)
-	var quiet: int = -1
+	var quiet: String = ""
 	for i in range(options.size()):
 		if str(options[i]["template"]) == "ACQUIRE":
-			quiet = i
-	assert_true(quiet >= 0, "ci deve essere un'azione che non tocca il Destino")
+			quiet = str(options[i]["label"])
+	assert_true(quiet != "", "ci deve essere un'azione che non tocca il Destino")
 
-	io.answers = [quiet]
+	io.pick = quiet
 	var request: Dictionary = await decider.choose_action("ENT_VAERAX", 0, session)
 
 	assert_eq(str(request["template"]), "ACQUIRE", "la mossa torna senza cerimonie")

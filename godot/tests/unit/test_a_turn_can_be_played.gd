@@ -189,3 +189,76 @@ func test_the_hint_says_a_gesture_a_finger_can_do() -> void:
 	assert_false(hint.to_lower().contains("trascina"), "niente trascinamento: «%s»" % hint)
 	assert_true(hint.to_lower().contains("tocca"), "si dice cosa toccare: «%s»" % hint)
 	_finish(screen)
+
+
+## --- il menu a passi (D-490) ------------------------------------------------
+
+func _buttons_of(screen: Node) -> Array:
+	var said: Array = []
+	for child in screen.get("_buttons").get_children():
+		# Le righe delle carte non sono scelte: sono la mano detta a parole.
+		if child is Button and not (child as Button).has_meta("card"):
+			said.append(str((child as Button).text))
+	return said
+
+
+## **Il primo passo chiede il verbo, non centotrenta righe.**
+##
+## Fino al 0.1.459 il menu di un turno era il prodotto di tutte le offerte per
+## tutte le carte in mano per tutte le loro facce: misurato su venti anni, 23,7
+## voci di media e **130 nel piu' lungo**, con l'80% ripetute parola per parola.
+## Adesso si sceglie come al tavolo: prima cosa fai, poi dove, poi con che
+## carta.
+func test_the_menu_asks_the_verb_first() -> void:
+	var seat: String = _seat()
+	var screen: Node = _screen(seat)
+	_ask_one_action(screen, seat)
+	var said: Array = _buttons_of(screen)
+	assert_true(not said.is_empty(), "il turno offre qualcosa")
+	assert_true(
+		said.size() <= 8,
+		"il primo passo sta in un pugno di pulsanti: %d — %s" % [said.size(), str(said)]
+	)
+	var verbs: int = 0
+	for word in ["MUOVERE", "INFLUENZARE", "TRAMARE", "FORGIARE", "RIVENDICARE", "ACQUISIRE", "SEGNARE"]:
+		for line in said:
+			if str(line).begins_with(str(word)):
+				verbs += 1
+				break
+	assert_true(verbs >= 1, "e sono i verbi del gioco: %s" % str(said))
+	var passes: bool = false
+	for line in said:
+		if str(line).begins_with("Passa"):
+			passes = true
+	assert_true(passes, "e si puo' sempre passare: %s" % str(said))
+	# Ogni voce e' scritta una volta sola: e' il difetto che il committente ha
+	# visto giocando — sei «Sbarrare la strada · a Porto Cinerino» in fila.
+	var visto: Dictionary = {}
+	for line in said:
+		assert_false(visto.has(str(line)), "«%s» compare due volte" % str(line))
+		visto[str(line)] = true
+	_finish(screen)
+
+
+## **E ogni scelta e' anche un pulsante** (D-490), che rovescia D-238.
+##
+## D-238 toglieva dalla colonna le scelte con un posto dove cadere, perche' il
+## committente aveva chiesto il trascinamento e non i pulsanti. Il trascinamento
+## resta e resta il primo; ma dopo aver giocato la parola e' cambiata — *«ogni
+## cosa, ogni decisione, ogni scelta e azione un pulsante ben chiaro»* — e
+## nessuna scelta e' piu' raggiungibile in un modo solo.
+func test_every_choice_is_also_a_button() -> void:
+	var seat: String = _seat()
+	var screen: Node = _screen(seat)
+	_ask_one_action(screen, seat)
+	var shown: int = 0
+	for subject in (screen.get("_subjects") as Array):
+		if not bool((subject as Dictionary).get("shortcut", false)):
+			shown += 1
+	assert_eq(
+		_buttons_of(screen).size(), shown,
+		"un pulsante per ogni scelta che si vede"
+	)
+	assert_true(shown < (screen.get("_labels") as Array).size(),
+		"e le scorciatoie viaggiano lo stesso, per la mano e la mappa")
+	_finish(screen)

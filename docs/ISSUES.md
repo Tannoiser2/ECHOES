@@ -10138,6 +10138,42 @@ sposta una virgola della partita, che era il punto.
 - quello che nessuna sonda misura: **un Consiglio giocato da persone**.
 
 
+### 135. Il menu, il verbale e le frasi: quello che l'app chiede non si capisce
+
+`ux` · `regole` · voluta dal committente · **aperta in 0.1.460**
+
+Il committente ha giocato un anno e ha scritto cinque cose:
+
+> *«Perche' sbarrare la strada e' ripetuta cosi' tante volte? Il LOG non si
+> capisce nulla, e poi i testi di OGNI cosa sono troppo narrativi, il che va bene
+> ma poi si deve capire cosa succede: es: La febbre delle paludi si raffredda
+> quando un cordone e cure decisi dal concilio, i canali riaperti che curano
+> l'acqua. Ma che vuol dire? Cosa si deve fare in termini di gioco? E poi la GUI
+> non e' chiaro su quello che bisogna fare, Mostrare L'ostaggio, Restituire
+> l'ostaggio ripetuto piu' volte ma che significa? Cosa succede? Il meccanismo di
+> gioco deve essere chiaro, a una azione deve corrispondere una descrizione
+> chiara di quello che devo fare o quello che deve succedere. Poi tutte le scelte
+> non le voglio a destra ma nella barra di stato sopra, ogni cosa, ogni
+> decisione, ogni scelta e azione un pulsante ben chiaro.»*
+
+**Due decisioni sue, prese prima di cominciare:** il menu si accorcia **a passi**
+— prima cosa fai, poi con che carta — e il **trascinamento resta, e resta il
+primo**, coi pulsanti in piu'.
+
+**Fatto quando** le tre cose che si misurano sono misurate e le due che si
+guardano si guardano:
+
+1. ✔ **le voci ripetute** — **giro 1 fatto in 0.1.460**
+   ([D-490](DECISIONS.md#d-490)): il menu a tre tempi, i due verbi che una
+   persona non poteva giocare, i pulsanti nella barra di stato;
+2. **il verbale che si legge**: oggi e' un muro di righe dove la mossa, lo
+   stato del mondo e il conto dell'anno si susseguono senza gerarchia;
+3. **le frasi che dicono cosa fare**: «SI RAFFREDDA  Un cordone e cure decisi
+   al Consiglio» racconta e non istruisce — quali caselle, quale verbo, quanti
+   gettoni;
+4. **un'ora con l'app in mano**, che nessuna sonda misura.
+
+
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo
 
 `ux` · voluta dal committente · **aperta in 0.1.442**

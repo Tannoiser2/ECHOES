@@ -272,17 +272,18 @@ func test_every_subject_a_card_speaks_to_has_a_place() -> void:
 const GameScreen := preload("res://ui/game_screen.gd")
 
 
-## **Il difetto che rendeva invisibile tutto questo lavoro.**
+## **Una scelta sa se ha un posto dove cadere**, ed e' quello che accende la
+## mappa e le righe delle domande.
 ##
-## Il trascinamento c'era da D-230, ma la colonna delle scelte continuava a
-## stampare un bottone per ognuna: si toglievano solo quelle che vivevano su una
-## Regione. Da fuori lo schermo era identico a prima — una lista di pulsanti che
-## dicono cosa fare, che e' esattamente cio' che il committente aveva chiesto di
-## non avere. Il trascinamento esisteva e non serviva a niente, perche' accanto
-## c'era sempre il modo vecchio.
-##
-## Adesso una scelta che ha un posto dove cadere **non e' anche un bottone**.
-func test_a_choice_with_a_place_is_not_also_a_button() -> void:
+## **Questa prova ha cambiato mestiere in D-490**, e va detto. Nata con D-238,
+## teneva la regola *«una scelta che ha un posto non e' anche un bottone»*: il
+## committente aveva chiesto il trascinamento e non i pulsanti, e la colonna
+## rifaceva col testo quello che la mano faceva col gesto. Dopo aver giocato la
+## parola e' cambiata — *«ogni cosa, ogni decisione, ogni scelta e azione un
+## pulsante ben chiaro»* — e il pulsante e' tornato **accanto** al gesto, non al
+## suo posto. Quello che resta vero, e che questa prova tiene, e' il **fatto**:
+## dove una scelta puo' cadere. Quel fatto serve ancora, a chi disegna la mappa.
+func test_a_choice_knows_where_it_can_land() -> void:
 	var carried_to_a_question: Dictionary = {"asset": CARD, "tension": "TEN_FAMINE"}
 	var carried_to_a_house: Dictionary = {"asset": CARD, "entity": "ENT_ALDRIC"}
 	var on_the_map: Dictionary = {"region": HERE}
@@ -293,10 +294,11 @@ func test_a_choice_with_a_place_is_not_also_a_button() -> void:
 		)
 
 
-## E quello che **non** ha un posto resta un bottone, perche' altrimenti sarebbe
-## irraggiungibile. Passare non si trascina da nessuna parte, e una trama che non
-## parla di niente di visibile nemmeno.
-func test_a_choice_with_nowhere_to_go_stays_a_button() -> void:
+## E quello che **non** ha un posto vive solo nel pulsante: passare non si
+## trascina da nessuna parte, e una trama che non parla di niente di visibile
+## nemmeno. Prima di D-490 era la sola ragione per cui un pulsante esisteva;
+## adesso e' la sola per cui un pulsante e' l'**unica** strada.
+func test_a_choice_with_nowhere_to_go_lives_in_its_button() -> void:
 	for subject in [
 		{},
 		{"asset": CARD},

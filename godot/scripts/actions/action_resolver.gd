@@ -1315,6 +1315,16 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 		merged["structure_type"] = builds
 	if kind == "MARK":
 		merged["face_signs"] = signs
+		# **Per SEGNARE, il posto dei segni e' il luogo da segnare** (D-490).
+		# `mark_region_id` resta fuori dai parametri del verbo perche' per gli
+		# altri sei e' un'altra cosa — MUOVERE va in una Regione e i suoi segni
+		# ne toccano un'altra (D-284) — ma il verbo il cui effetto **sono** i
+		# segni non ha un secondo bersaglio: quello e' il suo. Senza questa
+		# riga SEGNARE rispondeva «manca il luogo da segnare» a ogni carta che
+		# lo porta, e le sette facce SEGNARE della scatola erano ingiocabili
+		# per chiunque non passasse gia' `region_id` a mano.
+		if str(merged.get("region_id", "")) == "":
+			merged["region_id"] = str(params.get("mark_region_id", ""))
 	return {
 		"kind": kind, "params": merged, "asset_id": asset_id, "face_action": chosen,
 		# **Dove cadono i segni stampati** (D-284). Il verbo puo' non nominare
