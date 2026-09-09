@@ -20,7 +20,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.levy",
-      "echo_id": "ECH_LACK",
       "rules_text": "Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.",
       "card_action": {
         "kind": "MOVE",
@@ -106,7 +105,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.border_watch",
-      "echo_id": "ECH_ROAD_CLOSED",
       "rules_text": "Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.",
       "card_action": {
         "kind": "SCHEME",
@@ -197,7 +195,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.roadblock",
-      "echo_id": "ECH_CARAVAN_LOST",
       "rules_text": "Fermare un carro costa sempre meno che farlo partire.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -294,7 +291,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.force.warband",
-      "echo_id": "ECH_THE_CRACK",
       "rules_text": "Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.",
       "card_action": {
         "kind": "MOVE",
@@ -385,7 +381,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.force.mercenaries",
-      "echo_id": "ECH_OFFER",
       "rules_text": "Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.",
       "card_action": {
         "kind": "FORGE",
@@ -467,7 +462,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.force.siege",
-      "echo_id": "ECH_THE_SHORT_YEAR",
       "rules_text": "Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.",
       "card_action": {
         "kind": "CLAIM",
@@ -569,7 +563,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.force.old_army",
-      "echo_id": "ECH_EMPTY_THRONE",
       "rules_text": "Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.",
       "card_action": {
         "kind": "MOVE",
@@ -652,7 +645,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.force.burned_gate",
-      "echo_id": "ECH_SEIZURE",
       "rules_text": "Chi apre una porta così non resta lì a difenderla.",
       "card_action": {
         "kind": "CLAIM",
@@ -744,7 +736,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.edict",
-      "echo_id": "ECH_TWO_VERDICTS",
       "rules_text": "Una riga scritta bene vale quanto chi la fa rispettare, e dove si discute la legge calma la piazza.",
       "card_action": {
         "kind": "CLAIM",
@@ -824,7 +815,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.seal",
-      "echo_id": "ECH_WRITTEN_DOWN",
       "rules_text": "Il sigillo che manca ferma più cose del sigillo che c'è.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -906,7 +896,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.census",
-      "echo_id": "ECH_CALL_OF_ACCOUNTS",
       "rules_text": "Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.",
       "card_action": {
         "kind": "SCHEME",
@@ -999,7 +988,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.crown_right",
-      "echo_id": "ECH_USURPATION",
       "rules_text": "Un diritto invocato due volte non è più un diritto: è una pretesa, e la pretesa divide.",
       "card_action": {
         "kind": "CLAIM",
@@ -1080,7 +1068,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.authority.magistrate",
-      "echo_id": "ECH_RECKONING",
       "rules_text": "Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.",
       "card_action": {
         "kind": "MOVE",
@@ -1174,7 +1161,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.authority.investiture",
-      "echo_id": "ECH_CROWNING",
       "rules_text": "Si concede una volta sola, e tutti se ne ricordano: la nomina scrive un nome nella linea.",
       "card_action": {
         "kind": "FORGE",
@@ -1257,7 +1243,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.authority.interdict",
-      "echo_id": "ECH_LEGEND_BROKEN_OATH",
       "rules_text": "Vietare una cosa a tutti alza la posta per tutti.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -1340,7 +1325,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.authority.succession_act",
-      "echo_id": "ECH_AMNESTY",
       "rules_text": "Nominare un erede fa arrivare tutti quelli che non sono stati nominati.",
       "card_action": {
         "kind": "CLAIM",
@@ -1426,7 +1410,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.crowd",
-      "echo_id": "ECH_PETITION",
       "rules_text": "Nessuno l'ha convocata. È arrivata lo stesso, in capitale, e la capitale resta inquieta.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -1511,7 +1494,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.elders",
-      "echo_id": "ECH_VIGIL_MOVED",
       "rules_text": "Parlano piano, dicono di no, e vengono ripetuti per tre villaggi. E sanno accompagnare un lutto.",
       "card_action": {
         "kind": "SCHEME",
@@ -1603,7 +1585,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.harvest_hands",
-      "echo_id": "ECH_GOOD_YEAR",
       "rules_text": "Non sono un esercito: ma senza di loro non si mangia, e dove arrivano la fame si spegne.",
       "card_action": {
         "kind": "FORGE",
@@ -1690,7 +1671,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.mobilization",
-      "echo_id": "ECH_THE_CALLED_UP",
       "rules_text": "È più facile fermare qualcosa in molti che costruirla, e la piazza resta calda.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -1775,7 +1755,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.people.spokesman",
-      "echo_id": "ECH_PARLEY",
       "rules_text": "Qualcuno che dice ad alta voce quello che già pensano in molti, e che dopo non può più tornare indietro.",
       "card_action": {
         "kind": "CLAIM",
@@ -1861,7 +1840,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.people.march",
-      "echo_id": "ECH_THE_WALKING_YEAR",
       "rules_text": "Poca gente, ma in strada e alla stessa ora. Il punto non è quanti sono: è che si sono trovati.",
       "card_action": {
         "kind": "MOVE",
@@ -1952,7 +1930,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.people.exodus",
-      "echo_id": "ECH_EXODUS",
       "rules_text": "Chi parte non torna al tavolo.",
       "card_action": {
         "kind": "MOVE",
@@ -2049,7 +2026,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.people.still_hands",
-      "echo_id": "ECH_HANDS_DOWN",
       "rules_text": "Un paese che si ferma non si rimette in moto dove l'avevi lasciato.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -2134,7 +2110,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.rumor",
-      "echo_id": "ECH_OMEN",
       "rules_text": "Non è vera. Non è ancora falsa. E finché gira, i numeri si nascondono dietro le voci.",
       "card_action": {
         "kind": "SCHEME",
@@ -2224,7 +2199,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.old_map",
-      "echo_id": "ECH_ROADS_OPEN",
       "rules_text": "I confini sono sbagliati; le strade no, e una strada giusta ricuce un ponte rotto.",
       "card_action": {
         "kind": "MOVE",
@@ -2314,7 +2288,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.ledger",
-      "echo_id": "ECH_LEGEND_CALLED_DAY",
       "rules_text": "Chi tiene i conti sa cosa manca, e lo dice nel momento peggiore. Da quel momento i conti sono di tutti.",
       "card_action": {
         "kind": "FORGE",
@@ -2394,7 +2367,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.proof",
-      "echo_id": "ECH_REVELATION",
       "rules_text": "Una prova dimostrata non si consuma, e apre la questione a tutti i presenti.",
       "card_action": {
         "kind": "SCHEME",
@@ -2486,7 +2458,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.knowledge.archive",
-      "echo_id": "ECH_THE_COPY",
       "rules_text": "Le carte non si consumano: si consuma chi le sa leggere.",
       "card_action": {
         "kind": "SCHEME",
@@ -2579,7 +2550,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.knowledge.witness",
-      "echo_id": "ECH_THE_ONE_WHO_SAW",
       "rules_text": "Un testimone si spende una volta sola, e la deposizione agita la casa accusata.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -2662,7 +2632,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.knowledge.red_crystal",
-      "echo_id": "ECH_DISCOVERY",
       "rules_text": "Mostrarlo chiude ogni dubbio, e apre la domanda a chiunque fosse nella stanza.",
       "card_action": {
         "kind": "SCHEME",
@@ -2757,7 +2726,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.knowledge.sealed_testimony",
-      "echo_id": "ECH_THE_QUIET_SHAFT",
       "rules_text": "Quello che era scritto per un solo lettore adesso lo hanno sentito tutti.",
       "card_action": {
         "kind": "CLAIM",
@@ -2848,7 +2816,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.grain",
-      "echo_id": "ECH_SILT",
       "rules_text": "Conta più di un titolo, per il tempo in cui dura. E dura quanto basta.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -2939,7 +2906,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.salt",
-      "echo_id": "ECH_THE_PRICE_OF_SALT",
       "rules_text": "Non nutre nessuno: senza, quello che nutre non arriva.",
       "card_action": {
         "kind": "SCHEME",
@@ -3032,7 +2998,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.toll",
-      "echo_id": "ECH_THE_CLOSED_ROAD",
       "rules_text": "Una corda tesa fra due pali, e il diritto di non alzarla.",
       "card_action": {
         "kind": "CLAIM",
@@ -3122,7 +3087,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.caravan",
-      "echo_id": "ECH_THE_MET_ROAD",
       "rules_text": "Una carovana spesa è una carovana partita, e una carovana che parte riapre la via.",
       "card_action": {
         "kind": "MOVE",
@@ -3212,7 +3176,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.wealth.credit",
-      "echo_id": "ECH_THE_FORGIVEN_DEBT",
       "rules_text": "Vale nel momento in cui lo chiedi, e non un minuto dopo: chiederlo chiama tutti i debiti.",
       "card_action": {
         "kind": "FORGE",
@@ -3294,7 +3257,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.wealth.granary_keys",
-      "echo_id": "ECH_THE_DUG_SEASON",
       "rules_text": "Non possiedi il grano: possiedi la serratura, e la serratura raziona.",
       "card_action": {
         "kind": "FORGE",
@@ -3377,7 +3339,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.wealth.treasury",
-      "echo_id": "ECH_SACRIFICE",
       "rules_text": "Aprire il tesoro dice a tutti quanto vale davvero la questione.",
       "card_action": {
         "kind": "MOVE",
@@ -3466,7 +3427,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.wealth.land_mortgage",
-      "echo_id": "ECH_THE_FIRES_OUTSIDE",
       "rules_text": "Impegnare una terra fa arrivare chi la vuole.",
       "card_action": {
         "kind": "FORGE",
@@ -3552,7 +3512,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.favor",
-      "echo_id": "ECH_LEGEND_GOOD_YEAR",
       "rules_text": "Piccolo, ricordato con precisione, e restituito al momento giusto.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -3605,9 +3564,7 @@
         "resonance": {
           "theme": "THM_FEDE",
           "heat": 1,
-          "text": "Scalda Fede **oppure** Vie +1, scegli tu. Un favore non si restituisce mai per intero: e' questo che lo tiene in vita. Se ci si e' parlato: Fede +2.",
-          "if_target_tag": "parley_held",
-          "extra_heat": 1,
+          "text": "Scalda Legami **oppure** Potere +1, scegli tu. Un favore chiesto al momento giusto vale piu' di un argomento, e chi lo concede lo ricorda.",
           "or_theme": "THM_VIE"
         },
         "council_use": {
@@ -3637,7 +3594,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.guest_right",
-      "echo_id": "ECH_OATH_SWORN",
       "rules_text": "Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.",
       "card_action": {
         "kind": "MOVE",
@@ -3721,7 +3677,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.old_debt",
-      "echo_id": "ECH_THE_OLD_ACCOUNT",
       "rules_text": "Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.",
       "card_action": {
         "kind": "CLAIM",
@@ -3802,7 +3757,6 @@
       "rarity": "COMMON",
       "deck_copies": 4,
       "art_prompt_key": "asset.bonds.oath",
-      "echo_id": "ECH_OATH_BROKEN",
       "rules_text": "Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.",
       "card_action": {
         "kind": "FORGE",
@@ -3887,7 +3841,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.betrothal",
-      "echo_id": "ECH_THE_LONG_TABLE",
       "rules_text": "Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.",
       "card_action": {
         "kind": "FORGE",
@@ -3972,7 +3925,6 @@
       "rarity": "UNCOMMON",
       "deck_copies": 2,
       "art_prompt_key": "asset.bonds.blood_tie",
-      "echo_id": "ECH_LOSS",
       "rules_text": "Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.",
       "card_action": {
         "kind": "SCHEME",
@@ -4063,7 +4015,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.bonds.hostage",
-      "echo_id": "ECH_BETRAYAL",
       "rules_text": "Chi consegna un figlio compra una parola, e la paga a casa propria.",
       "card_action": {
         "kind": "INFLUENCE",
@@ -4150,7 +4101,6 @@
       "rarity": "RARE",
       "deck_copies": 1,
       "art_prompt_key": "asset.bonds.broken_pact",
-      "echo_id": "ECH_RECONCILIATION",
       "rules_text": "Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.",
       "card_action": {
         "kind": "INFLUENCE",

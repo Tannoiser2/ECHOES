@@ -77,7 +77,7 @@ func test_the_printed_tile_carries_the_same_terrain() -> void:
 			"%s porta il proprio bioma in stampa" % str(item["id"])
 		)
 	# E nessun altro mazzo lo fa: le carte hanno il segnaposto, non il terreno.
-	for deck in ["asset", "echo", "destiny"]:
+	for deck in ["asset", "destiny"]:
 		for face in CardFace.deck_of(str(deck), data()):
 			assert_eq(str((face as Dictionary)["terrain"]), "", "%s non ha terreno" % deck)
 

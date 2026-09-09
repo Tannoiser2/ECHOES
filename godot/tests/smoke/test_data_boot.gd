@@ -311,12 +311,7 @@ func test_no_destiny_asks_for_a_tag_nothing_can_write() -> void:
 			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
 			if tag != "":
 				writable[tag] = str(consequence["id"])
-	# An Echo card can write one too, and so can the opening position.
-	for card in loaded.echo_cards.values():
-		for effect in card.get("effects", []):
-			var tag: String = str((effect.get("payload", {}) as Dictionary).get("tag", ""))
-			if str(effect["type"]).begins_with("SET_") and tag != "":
-				writable[tag] = str(card["id"])
+	# La posizione di partenza ne scrive altri.
 	for region in loaded.regions.values():
 		for tag in region["tags"]:
 			writable[str(tag)] = str(region["id"])
@@ -432,28 +427,3 @@ func test_generated_schema_covers_every_collection() -> void:
 			"schema_defs.gd definisce '%s'" % schema_id
 		)
 	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 32, "l'enum EffectType chiuso ha 32 voci")
-
-
-## Every Echo-card hook has to compile to at least one Effect. A card whose
-## Consequence uses a $variable the card cannot supply compiles to nothing and
-## says so only in a push_error, so the card silently does nothing at the table -
-## which is exactly what CNS_HARVEST_RETURNS and CNS_CROWN_DIVIDED did.
-func test_every_echo_card_hook_compiles_to_something() -> void:
-	new_session()
-	var source: Dictionary = load("res://scripts/core/effect.gd").source(
-		"echo_card", "TEST", "", 1, 1, 0
-	)
-	for card in data().echo_cards.values():
-		for hook in card["effect_hooks"]:
-			var bindings: Dictionary = session.chronicle.card_bindings(hook)
-			if str(hook["kind"]) == "CONSEQUENCE":
-				assert_false(
-					session.compiler.compile(str(hook["consequence_id"]), bindings, source).is_empty(),
-					"%s: la Consequence '%s' non compila in nessun Effect"
-					% [str(card["id"]), str(hook["consequence_id"])]
-				)
-			else:
-				assert_false(
-					session.compiler.compile_spec(hook["effect"], bindings, source).is_empty(),
-					"%s: un hook EFFECT non compila" % str(card["id"])
-				)

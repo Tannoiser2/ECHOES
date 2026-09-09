@@ -14,6 +14,8 @@ extends HBoxContainer
 ## The card itself is `ui/asset_card.gd` - it knows how to draw itself and what
 ## to say under the cursor. This just decides which cards are in the row.
 
+const AssetText := preload("res://scripts/core/asset_text.gd")
+
 const AssetCard := preload("res://ui/asset_card.gd")
 const CardArt := preload("res://ui/card_art.gd")
 
@@ -83,27 +85,8 @@ func render(
 		) else 0.5)
 		card.chosen.connect(func(chosen_id: String) -> void: card_chosen.emit(chosen_id))
 		card.set_held(str(asset_id) == _held)
-		# L'Eco della carta (D-359). Non c'e' piu' una mano del Narratore da
-		# disegnare accanto: l'Eco e' il terzo blocco di **questa** carta, la
-		# sua versione potenziata. Qui si dice cosa direbbe e, quando non si
-		# puo' calare, perche' - il bottone arriva dal SeatDecider, lo stesso
-		# del terminale.
-		var echo: Variant = session.data.echo_cards.get(
-			str((asset as Dictionary).get("echo_id", ""))
-		)
-		if echo != null:
-			var refusal: String = session.actions.check(
-				viewer_id, "PLAY_ECHO", {"asset_card_id": str(asset_id)}
-			)
-			# **Che la carta abbia un Eco si legge sulla carta** (D-384). Il
-			# nome dell'Eco stava solo nel suggerimento del mouse: su un tablet
-			# meta' dei giocatori non sapeva che quella carta ha una seconda
-			# faccia. Il suggerimento resta per chi ha un mouse e porta anche il
-			# testo intero; il **nome** adesso e' stampato, e allungare la carta
-			# per farci stare il resto e' un'altra rivista (ISSUES 65).
-			card.tooltip_text = "L'ECO - %s\n%s%s" % [
-				str((echo as Dictionary)["title"]),
-				str((echo as Dictionary)["description"]),
-				"" if refusal == "" else "\n(non si cala: %s)" % refusal,
-			]
-			card.note_echo(str((echo as Dictionary)["title"]))
+		# **Il suggerimento porta la scheda della carta** (D-500). Fino a qui
+		# portava l'Eco — la terza faccia — e con le carte Eco se n'e' andato
+		# anche lui: la carta restava senza niente sotto il mouse. Adesso c'e'
+		# quello che la carta e': le due Azioni, il valore, cosa le succede.
+		card.tooltip_text = AssetText.tooltip(asset as Dictionary, session.data)

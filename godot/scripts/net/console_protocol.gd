@@ -140,18 +140,6 @@ static func audit_table(message: Dictionary, session: RefCounted) -> Array:
 	if str(message.get("kind", "")) != "table":
 		return found
 	var model: Dictionary = message.get("model", {})
-	# D-359: non esiste piu' una mano del Narratore da cui una carta possa
-	# trapelare. Resta la domanda opposta, e va fatta lo stesso: la vetrina
-	# mostra solo quello che qualcuno ha calato davvero? Un Eco nella vetrina
-	# che non e' nella pila dei calati sarebbe una carta inventata dalla vista.
-	var played_ids: Array = session.world.get("echo_played", []) as Array
-	for played in model.get("echoes_played", []):
-		var entry: Dictionary = played
-		var card_id: String = str(entry.get("id", ""))
-		if not played_ids.has(card_id):
-			found.append("la vetrina mostra «%s», che nessuno ha calato" % [
-				str(entry.get("title", card_id))
-			])
 	# Le carte impegnate in un Consiglio **chiuso** sono roba del tavolo: gli
 	# impegni si rivelano tutti insieme in seduta (D-014), e quello che il
 	# tavolo ha visto rivelare puo' restare in tavola. Quelle di un Consiglio

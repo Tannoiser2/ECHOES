@@ -45,6 +45,137 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-500 — Via le carte Eco: resta il ricordo, sparisce la carta
+
+**implemented in 0.1.470.** Parola del committente, dopo aver visto quanti Echi
+un anno produce davvero: *«lascia perdere gli echi, che non dovrebbero piu'
+esistere come carte»*.
+
+**Due cose che si chiamavano uguale, e una sola se ne va.** L'**Eco-ricordo** —
+`CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — e' il cuore del
+gioco e resta intero. L'**Eco-carta** — la terza faccia dell'Asset, che
+[D-359](#d-359) aveva fuso sulla stessa carta — non c'e' piu'.
+
+### Quanto pesava, misurato prima di toccare
+
+| cosa | quanto |
+|---|---|
+| carte Eco | **48**, 43 con condizioni, 96 testi d'autore |
+| carte Asset che ne nominavano una | **48 su 48** |
+| quante volte si giocavano | **~3 l'anno** — 46 su 720 scelte (6,4%) |
+| file di codice da toccare | **12**, piu' 5 sonde e 6 prove |
+
+E il numero che ha deciso: `run_echo_probe.gd` conta **3,73 Echi l'anno su tutto
+il tavolo**, cioe' **meno di uno per casa**. Il committente ne aveva visti «tre o
+quattro per partita» e la misura gli ha dato ragione, in peggio.
+
+### Il costo, scritto voce per voce
+
+**Una Conseguenza su 54** perde la sua unica strada: `CNS_OATH_BROKEN`. Le altre
+dieci che passavano da un Eco hanno anche altre vie, contate.
+
+**Sette segni restano muti**, perche' a leggerli erano solo le eleggibilita'
+delle carte Eco: `dragon_slain`, `hard_bargain`, `price_in_lives`,
+`spoke_and_lost`, `took_by_hand`, `watched`, `settlement:$proponent`. Sono
+**dichiarati uno per uno** in `MUTI_NOTI`, con la ragione: il mondo li scrive
+ancora, e quello che manca e' chi li guardi.
+
+**Due segni se ne vanno del tutto** — `someone_paid` e `parley_held` — perche'
+solo le carte Eco li scrivevano. Con `parley_held` se n'e' andata anche la
+condizione della Risonanza di *Favore*, che ora scalda senza il suo bonus.
+
+**Due clausole diventavano impossibili** e sono state tolte con i loro segni:
+`amnesty_granted` e `charter_temporary`. La seconda apriva la porta a
+un'incarnazione delle Citta' Libere, che adesso entra da quella delle altre
+(`LINE_EXHAUSTED`).
+
+**E il TRIUMPH si e' dimezzato**: da **6 a 3 su 400** seggi-partita **sul
+tavolo misto** dei 100 semi dal 7000; sul tavolo uniforme sono **5 su 400**.
+Non e' un difetto di equilibrio — i seggi bloccati restano **0 su 8** su tutti
+e due — ma e' un numero peggiorato, e si scrive.
+
+### Una prova che era fragile per costruzione
+
+`test_destinies_are_contested` chiedeva **almeno un TRIUMPH** su 24 partite,
+cioe' 96 seggi-partita. Allo 0,75% l'attesa e' **0,7**: la prova chiedeva un
+evento che il gioco produce meno di una volta per campione, e passava per
+fortuna. Adesso misura quello che voleva davvero dire — **i seggi arrivano a
+livelli diversi** — e non dipende piu' da un evento raro.
+
+### Quello che ha cambiato nel gioco
+
+| | col mazzetto e gli Echi | senza le carte Eco |
+|---|---|---|
+| Consigli per anno | 5,58 | **5,68** |
+| Verita', tavolo misto | 360 / 360 | **393 / 391** |
+| Verita', tavolo uniforme | 402 / 399 | **421 / 418** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 815 test | **800 test**, 75 004 asserzioni |
+
+Le Verita' salgono ancora — **+33** sul misto, **+19** sull'uniforme — perche' le
+Azioni che prima diventavano un Eco adesso restano Azioni, e il mondo le
+registra.
+
+### La coda che il primo giro si era lasciato dietro
+
+Tolte le carte, il codice che le leggeva era ancora li' — e leggeva **il
+vuoto**. Il difetto che l'ha fatto vedere e' uno solo, e la suite lo ha scritto
+restando **verde**:
+
+```
+SCRIPT ERROR: Invalid access to property or key 'echoes_played' ...
+          at: _council_lines (res://ui/table_view.gd:71)
+```
+
+E' la prima trappola di casa, in piena regola: **GDScript non alza niente che
+si possa prendere**. La vetrina del tavolo chiedeva al modello una chiave che
+il modello non scrive piu'; la funzione si interrompeva a meta', la prova
+contava le sue asserzioni fino a li' e diceva **ok**.
+
+Cercata la coda per intero, era questa:
+
+| cosa | dove stava |
+|---|---|
+| `data.echo_cards`, la collezione | `data_set.gd`, e nove posti che la leggevano |
+| `_echo`, `_when_it_comes`, `DRAMA`, `PROPP`, `DOVE_CADE` | `card_face.gd`: la faccia stampata di un mazzo che non si stampa |
+| `_families_open_by`, `_act_echo_families` | `action_resolver.gd`: leggevano `act_echo_pools`, che aveva gia' lasciato la Chronicle |
+| `act_echo_drawn`, `card_bindings` | `chronicle_controller.gd`: un segnale che nessuno emetteva piu' e la funzione che serviva solo agli hook delle carte |
+| `echo_card_view.gd` e `_echo_beat` | la carta di fine Atto, con la sua pausa sullo schermo |
+| `echo_played`, `echoes_played_in_act` | il mondo teneva la pila dei calati e il conto per Atto |
+| il MASTER PROMPT 2 | `art_bible.gd` lo assegnava a un mazzo che non c'e' |
+| la sezione 7 del documento dei testi, le Echo card del manifesto, il blocco ECHI del flusso disegnato | sei strumenti che giravano a vuoto su una cartella cancellata |
+
+E **due prove erano diventate cieche**: `test_the_echo_card_says_what_it_does` e
+`test_the_asset_card_carries_its_echo` giravano su una collezione vuota e
+chiudevano con `assert_eq(0, 0)`. Una terza avrebbe preso `deck_of("echo")[0]`
+su un elenco vuoto — cioe' si sarebbe interrotta in silenzio come la vetrina.
+Sono cancellate, non aggiustate: una prova che non puo' fallire non e' una
+prova.
+
+Il conto della suite scende da 803 a **800 test** ed e' quello che deve
+succedere; le asserzioni salgono a **75 004**, perche' quelle che se ne vanno
+erano finte.
+
+E i documenti generati si sono accorciati da soli, che e' il modo giusto: i
+**segni del dizionario** da 175 a **171**, i **segnalini da tagliare** da 116
+tipi (150 pezzi) a **112 (146)**, i **soggetti da illustrare** da 161 a
+**113** — quarantotto erano le carte Eco. `PUNTO_ZERO.md` portava numeri piu'
+vecchi ancora (177 segni, 118 tipi): adesso porta quelli misurati.
+
+I due documenti fermi — `RULES_V0_2.md` e `GAME_DESIGN.md` — restano fermi, ma
+il loro cartello lo dice: dove si legge *«fine Atto: si pesca 1 carta Echo»*, si
+sta leggendo il gioco di prima.
+
+### Tre tagli sbagliati, e come me ne sono accorto
+
+Tagliare per numero di riga ha portato via, tre volte, piu' del dovuto: **85
+righe** dalla vetrina del tavolo che non c'entravano con gli Echi, una funzione
+intera dal catalogo delle carte, meta' di un blocco nel validatore. Ogni volta
+se n'e' accorta la **prova o il cancello**, mai una rilettura mia — ed e' la
+ragione per cui questo progetto tiene 29 cancelli e non tre.
+
+---
+
 ## D-499 — Il mazzetto personale, scritto: una Occasione bloccata su trenta invece che su cinque
 
 **implemented in 0.1.469.** [ISSUES 136](ISSUES.md#136). E' il rimedio al difetto

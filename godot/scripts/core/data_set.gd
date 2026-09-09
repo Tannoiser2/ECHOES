@@ -11,7 +11,6 @@ var regions: Dictionary = {}
 var entities: Dictionary = {}
 var tensions: Dictionary = {}
 var actions: Dictionary = {}
-var echo_cards: Dictionary = {}
 var consequences: Dictionary = {}
 var destinies: Dictionary = {}
 var objectives: Dictionary = {}
@@ -44,7 +43,6 @@ const _TARGETS: Dictionary = {
 	"region": "regions",
 	"entity": "entities",
 	"tension": "tensions",
-	"echo_card": "echo_cards",
 	"consequence": "consequences",
 	"destiny": "destinies",
 	"objective": "objectives",
@@ -301,15 +299,6 @@ func assets_of_family(family: String) -> Array:
 	for asset in assets.values():
 		if str(asset["family"]) == family:
 			out.append(asset)
-	out.sort_custom(func(a, b): return str(a["id"]) < str(b["id"]))
-	return out
-
-
-func echo_cards_of_families(families: Array) -> Array:
-	var out: Array = []
-	for card in echo_cards.values():
-		if families.has(str(card["dramatic_family"])):
-			out.append(card)
 	out.sort_custom(func(a, b): return str(a["id"]) < str(b["id"]))
 	return out
 

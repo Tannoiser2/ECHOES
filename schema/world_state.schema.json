@@ -184,11 +184,6 @@
             "$ref": "#/$defs/deck_state"
           }
         },
-        "echoes_played_in_act": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Quante carte del Narratore sono state calate nell'atto in corso (ISSUES 23, D-118): a fine atto il conto si azzera, e uno zero dice che il tavolo ha scelto il silenzio. Facoltativo per i salvataggi scritti prima della 0.1.80."
-        },
         "drift_track": {
           "type": "array",
           "items": {

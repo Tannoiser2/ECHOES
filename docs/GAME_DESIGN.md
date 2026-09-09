@@ -8,6 +8,11 @@
 > è uscito dal codice in [D-472](DECISIONS.md#d-472) e dai dati in
 > [D-474](DECISIONS.md#d-474): sulle carte non ci sono più proposte.
 >
+> **E le carte Echo non esistono più** ([D-500](DECISIONS.md#d-500)): l'Eco che
+> resta è il *ricordo* che un Consiglio lascia, non un mazzo da cui si pesca.
+> Dove qui sotto una carta Echo spinge qualcosa, quella spinta oggi arriva da
+> un'Azione o dal Ripple di un Consiglio.
+>
 > Il documento resta perché spiega **perché** il gioco è fatto così, e quella
 > parte vale ancora. Per com'è fatto oggi: [PUNTO_ZERO.md](PUNTO_ZERO.md) e
 > [DECISIONS.md](DECISIONS.md) da D-460 in avanti.

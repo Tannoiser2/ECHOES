@@ -118,7 +118,6 @@ def written_signs() -> Dict[str, Set[str]]:
 
     for schema, who in (
         ("consequence", "Conseguenza"),
-        ("echo_card", "carta Echo"),
         ("confluence_template", "clausola di Consiglio"),
         ("asset", "carta Asset"),
     ):
@@ -131,12 +130,6 @@ def written_signs() -> Dict[str, Set[str]]:
                 if kind == "ADD_SCAR" and tag:
                     note(tag, who)
             note(str((item.get("scar") or {}).get("tag", "")), who)
-    # **La Funzione e' stampata sulla carta Echo** (D-334): giocarla la lascia
-    # sul mondo. Era l'altra penna che si dichiarava «del motore».
-    for card in items("echo_card"):
-        if card.get("function_id"):
-            note("function:%s" % str(card["function_id"]), "carta Echo")
-
     # La faccia delle carte, che da D-283 scrive per davvero.
     for card in items("asset"):
         face = card.get("physical") or {}

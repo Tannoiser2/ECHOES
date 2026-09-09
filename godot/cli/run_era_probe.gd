@@ -95,10 +95,9 @@ func _initialize() -> void:
 	# quella che il mondo ricorda e' `winning_question_id`. Se nessuna domanda
 	# scritta nomina una leggenda, la riga sotto lo dice: e' un vuoto dei dati,
 	# non della misura.
+	# Le carte Eco non esistono piu' (D-500): la memoria che questa sonda
+	# guarda resta quella delle domande scritte.
 	var memoria_cards: Array = []
-	for card in data.echo_cards.values():
-		if str(card["dramatic_family"]) == "MEMORIA":
-			memoria_cards.append(str(card["id"]))
 	var legend_questions: Array = []
 	for tension_id in data.tensions:
 		for question in data.confluence_template_for(str(tension_id)).get("questions", []):
@@ -207,9 +206,6 @@ func _initialize() -> void:
 			)
 			var report: Dictionary = await session.run(table)
 
-			for card_id in session.world["echo_played"]:
-				if memoria_cards.has(str(card_id)):
-					memory_read[str(card_id)] = int(memory_read.get(str(card_id), 0)) + 1
 			for result in report["confluences"]:
 				# La domanda che ha vinto il voto (D-467), non piu' la proposta.
 				var voted: String = str((result as Dictionary).get("winning_question_id", ""))

@@ -23,7 +23,7 @@ delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 ## 2. I segnalini che si posano
 
 Non hanno una carta: sono quadratini di cartone da 15 mm, e sono la
-meta' del gioco che si tocca. **Non sono i 175 segni del dizionario**:
+meta' del gioco che si tocca. **Non sono i 171 segni del dizionario**:
 quelli comprendono memorie, funzioni del motore, leggende e domini
 stampati sulle tessere. Un segnalino si taglia solo per quello che si
 **posa**: su una Regione, accanto a una casa, o sul bordo della mappa
@@ -33,12 +33,12 @@ dove sta quello che il mondo ricorda (D-351).
 |---|---|---|
 | **Segni delle Regioni** — condizioni (2 copie), Pietre e insediamenti, Cicatrici | 33 | 50 |
 | **Segni delle case** — fama, scoperte, promesse | 33 | 39 |
-| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 49 | 49 |
+| **Segni del mondo** — sul bordo della mappa: fatti che il mondo ricorda | 45 | 45 |
 | Presenza e controllo | 2 | 5 per casa |
 | Rombi del Calore | 1 | uno per ognuno dei 6 Temi, piu' due di scorta |
 | **Gettoni RIVENDICARE** — la moneta del Consiglio | 1 | 12 |
 
-**116 tipi diversi, 150 pezzi** piu' le pedine dei seggi.
+**112 tipi diversi, 146 pezzi** piu' le pedine dei seggi.
 
 Quanti di quei tipi un tavolo vede **davvero in un anno** non lo dice
 questo censimento: lo misura `cli/run_punchboard_probe.gd`, che gioca
@@ -62,9 +62,9 @@ centodiciotto simboli, si impara quello che si vede.
 
 | | |
 |---|---|
-| soggetti da illustrare (`art_prompt_key`) | **161** |
+| soggetti da illustrare (`art_prompt_key`) | **113** |
 | gia' disegnati | **11** |
-| ancora segnaposto | **150** |
+| ancora segnaposto | **102** |
 
 I prompt pronti da mandare a chi disegna stanno in
 [BRIEF_ARTE.md](BRIEF_ARTE.md), generati dagli stessi dati.
@@ -105,7 +105,7 @@ posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 
 ### b. L'arte
 
-**150 soggetti su 161 sono ancora segnaposto.** E' il pezzo piu' grosso
+**102 soggetti su 113 sono ancora segnaposto.** E' il pezzo piu' grosso
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
 
@@ -139,7 +139,6 @@ giudizio e' del committente, su un tavolo vero.
 |---|---|
 | asset | Mano (`hand_view`) + le carte in Consiglio |
 | destiny | Colonna: **il tarocco e le tre righe della faccia** |
-| echo | Tavolo (`echo_card_view`), a fine Atto |
 | entity | Colonna: il tarocco della Casata |
 | objective | Colonna: i tre coperti del seggio |
 | profile | Colonna: **COSA RESTERA' DI TE** |

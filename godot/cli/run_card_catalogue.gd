@@ -20,7 +20,6 @@ extends SceneTree
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
-const EchoText := preload("res://scripts/core/echo_text.gd")
 const CardFace := preload("res://scripts/core/card_face.gd")
 const ArtBible := preload("res://scripts/core/art_bible.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
@@ -55,7 +54,6 @@ func _initialize() -> void:
 
 	var counted: int = 0
 	counted += _assets(lines, data, bible)
-	counted += _echoes(lines, data, bible)
 	var pieces: int = _pieces(lines, data)
 
 	lines.append("---")
@@ -197,51 +195,6 @@ func _face(lines: Array, asset: Dictionary, data: RefCounted) -> void:
 	lines.append("**IN CONSIGLIO** — vale %d%s." % [int(council["base_strength"]), extra])
 	lines.append("")
 
-## Le carte Echo: la funzione di Propp che qualcuno cala sul tavolo.
-func _echoes(lines: Array, data: RefCounted, bible: RefCounted) -> int:
-	lines.append("---")
-	lines.append("")
-	lines.append("## Le carte Echo (il Narratore)")
-	lines.append("")
-	lines.append("Non si votano: si **calano**, e la storia prende una piega. Ognuna porta")
-	lines.append("una funzione di Propp, e alcune convocano un Consiglio.")
-	lines.append("")
-
-	var faces: Dictionary = {}
-	for face in CardFace.deck_of("echo", data):
-		faces[str((face as Dictionary)["id"])] = face
-
-	var ids: Array = []
-	for card_id in data.echo_cards:
-		ids.append(str(card_id))
-	ids.sort()
-	var counted: int = 0
-	for card_id in ids:
-		var card: Dictionary = data.echo_cards[str(card_id)] as Dictionary
-		counted += 1
-		lines.append("### %s" % str(card["title"]))
-		lines.append("")
-		lines.append("| | |")
-		lines.append("|---|---|")
-		lines.append("| famiglia | %s |" % str(card.get("dramatic_family", "")).to_lower())
-		lines.append("| funzione | %s |" % str(card.get("function_id", "")).to_lower())
-		var forced: Variant = card.get("forces_confluence_on", null)
-		if forced != null and str(forced) != "":
-			var about: Variant = data.tensions.get(str(forced))
-			lines.append("| convoca un Consiglio | su %s |" % (
-				str(forced) if about == null else str((about as Dictionary)["title"])
-			))
-		var does: String = EchoText.note(card, data)
-		if does != "":
-			lines.append("| cosa fa | %s |" % does)
-		lines.append("| id | `%s` |" % str(card_id))
-		lines.append("")
-		var description: String = str(card.get("description", ""))
-		if description != "":
-			lines.append("> %s" % description)
-			lines.append("")
-		_prompt(lines, faces.get(str(card_id), {}) as Dictionary, data, bible)
-	return counted
 
 
 ## I pezzi che stanno sulla mappa: cosa serve fabbricare, e quanti.
@@ -367,10 +320,6 @@ func _written(data: RefCounted, prefix: String) -> Array:
 			found[str(scar["tag"])] = true
 	for asset_id in data.assets:
 		writers.append((data.assets[str(asset_id)] as Dictionary).get("on_commit_effects", []))
-	for card_id in data.echo_cards:
-		for hook in (data.echo_cards[str(card_id)] as Dictionary).get("effect_hooks", []):
-			if (hook as Dictionary).has("effect"):
-				writers.append([(hook as Dictionary)["effect"]])
 	for structure_id in data.structure_types:
 		var ruin: Dictionary = (
 			data.structure_types[str(structure_id)] as Dictionary

@@ -87,11 +87,9 @@ const ENTITY_WORDS: Dictionary = {
 ## Le memorie del mondo, al centro del tavolo.
 const WORLD_WORDS: Dictionary = {
 	"account_settled": "il conto e' stato saldato",
-	"amnesty_granted": "l'amnistia e' stata concessa",
 	"betrayal_spoken": "il tradimento e' stato detto ad alta voce",
 	"burden_shared": "il peso e' stato diviso",
 	"charter_for_all": "la Carta vale per tutti",
-	"charter_temporary": "la Carta vale per un tempo solo",
 	"charter_written": "la Carta e' stata scritta",
 	"crown_dispossessed": "la corona e' stata spogliata",
 	"crown_divided": "la corona e' stata divisa",
@@ -114,7 +112,6 @@ const WORLD_WORDS: Dictionary = {
 	"no_charter": "la Carta non e' stata scritta",
 	"oath_broken": "il giuramento e' stato rotto",
 	"order_restored": "l'ordine e' stato ristabilito",
-	"parley_held": "ci si e' parlato",
 	"petition_heard": "la richiesta e' stata ascoltata",
 	"price_in_lives": "si e' pagato in vite",
 	"question_unresolved": "una domanda e' rimasta aperta",
@@ -125,7 +122,6 @@ const WORLD_WORDS: Dictionary = {
 	"rumour_running": "la voce corre",
 	"seal_kept": "il sigillo ha tenuto",
 	"seal_kept_twice": "il sigillo ha tenuto due volte",
-	"someone_paid": "qualcuno ha pagato",
 	"study_supervised": "lo studio e' sotto sorveglianza",
 	"succession_by_law": "la successione e' passata per legge",
 	"succession_settled": "la successione e' stata risolta",

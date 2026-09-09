@@ -83,18 +83,6 @@ def render(documents: Dict[str, List[Dict[str, Any]]]) -> str:
         )
     )
 
-    cards = sorted(documents.get("echo_card", []), key=lambda c: (c["dramatic_family"], c["id"]))
-    parts.append(f"\n## Echo cards ({len(cards)})\n")
-    parts.append(
-        table(
-            [
-                [c["id"], c["title"], c["dramatic_family"], c["function_id"], f"`{c['art_prompt_key']}`"]
-                for c in cards
-            ],
-            ["id", "titolo", "famiglia drammatica", "funzione", "art_prompt_key"],
-        )
-    )
-
     regions = sorted(documents.get("region", []), key=lambda r: (r["role"], r["id"]))
     parts.append(f"\n## Region tiles ({len(regions)})\n")
     parts.append(

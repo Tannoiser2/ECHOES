@@ -21,7 +21,7 @@ const CardFace := preload("res://scripts/core/card_face.gd")
 
 ## Quale MASTER PROMPT vale per quale mazzo, e con quale variazione.
 const PROMPT_FOR: Dictionary = {
-	"asset": 1, "echo": 2, "region": 3, "entity": 4, "destiny": 5, "objective": 7,
+	"asset": 1, "region": 3, "entity": 4, "destiny": 5, "objective": 7,
 }
 
 ## Le intestazioni delle tabelle di variation key. Sono righe di tabella come le
@@ -229,16 +229,16 @@ func brief(data: RefCounted) -> String:
 		lines.append("```")
 		lines.append("")
 
-	for deck in ["asset", "echo", "region", "entity", "destiny", "objective"]:
+	for deck in ["asset", "region", "entity", "destiny", "objective"]:
 		var faces: Array = CardFace.deck_of(str(deck), data)
 		if faces.is_empty():
 			continue
 		lines.append("## %s" % str(deck))
 		lines.append("")
 		if not PROMPT_FOR.has(str(deck)):
-			lines.append("La ART_BIBLE non ha un MASTER PROMPT per questo mazzo: i tre esistenti")
-			lines.append("sono carta Asset, carta Echo e tessera Regione. Le chiavi sotto sono")
-			lines.append("**in uso e senza prompt** — o si scrive il quarto, o si tolgono.")
+			lines.append("La ART_BIBLE non ha un MASTER PROMPT per questo mazzo. Le chiavi")
+			lines.append("sotto sono **in uso e senza prompt** — o si scrive il prompt che")
+			lines.append("manca, o si tolgono.")
 			lines.append("")
 		for face in faces:
 			var item: Dictionary = face
@@ -298,8 +298,6 @@ func _situation(face: Dictionary, data: RefCounted) -> String:
 	match deck:
 		"asset":
 			return str((data.assets[id] as Dictionary).get("rules_text", ""))
-		"echo":
-			return str((data.echo_cards[id] as Dictionary).get("description", ""))
 		"region":
 			return str((data.regions[id] as Dictionary).get("description", ""))
 		"destiny":
@@ -332,20 +330,13 @@ func keys_without_situation(data: RefCounted) -> Array:
 
 
 ## Quale riga della variation key vale per questa faccia: la famiglia per un
-## Asset, la famiglia drammatica (in italiano, come la scrive la tabella) per un
-## Echo, il bioma per una Regione.
+## Asset, il bioma per una Regione, l'archetipo per una Casata.
 func _accent_key(face: Dictionary, data: RefCounted) -> String:
 	var deck: String = str(face["deck"])
 	var id: String = str(face["id"])
 	match deck:
 		"asset":
 			return str(data.assets[id]["family"])
-		"echo":
-			var family: String = str(data.echo_cards[id]["dramatic_family"])
-			var described: Dictionary = CardFace.DRAMA.get(family, {})
-			if described.is_empty():
-				return family
-			return str(described["label"]).split(" —")[0]
 		"region":
 			return str(data.regions[id]["biome"])
 		"entity":

@@ -82,42 +82,6 @@ func test_the_table_model_carries_no_seat_secrets() -> void:
 			)
 
 
-## E la vetrina mostra **solo quello che qualcuno ha calato** (D-144, D-359).
-## Questo test e' nato da una fuga vera: la vetrina leggeva `echo_deck.drawn` -
-## tutto cio' che il mazzo aveva lasciato - e la chiamava «il mondo ha calato»,
-## mentre meta' di quelle carte erano ancora nelle mani dei seggi. Il mazzo non
-## c'e' piu', ma la domanda resta la stessa dall'altro verso: un Eco che nessuno
-## ha calato non deve comparire in vetrina.
-func test_the_table_shows_only_echoes_actually_played() -> void:
-	var card_id: String = "ECH_LACK"
-	assert_false(
-		(session.world["echo_played"] as Array).has(card_id),
-		"la prova parte da un Eco che nessuno ha calato"
-	)
-	var model: Dictionary = TableModel.build(session)
-	assert_false(
-		JSON.stringify(model).contains(str(session.data.echo_cards[card_id]["title"])),
-		"«%s» non l'ha calata nessuno: il tavolo non la nomina" % card_id
-	)
-	assert_true(
-		Protocol.audit_table({"kind": "table", "model": model}, session).is_empty(),
-		"la perquisizione della vetrina non trova niente"
-	)
-
-
-## E la perquisizione della vetrina morde davvero: se in vetrina finisce un Eco
-## che nessuno ha calato, deve dirlo. Una guardia che non ha mai detto di no non
-## si sa se funziona.
-func test_the_table_audit_catches_a_planted_leak() -> void:
-	var card_id: String = "ECH_LACK"
-	var model: Dictionary = TableModel.build(session)
-	(model["echoes_played"] as Array).append({
-		"id": card_id, "title": str(session.data.echo_cards[card_id]["title"]),
-	})
-	var found: Array = Protocol.audit_table({"kind": "table", "model": model}, session)
-	assert_eq(found.size(), 1, "una carta piantata, una fuga trovata")
-
-
 ## La console di un seggio contiene i SUOI segreti e nessuno di quelli altrui.
 func test_a_console_holds_only_its_own_seat() -> void:
 	var seats: Array = session.world["turn_order"]

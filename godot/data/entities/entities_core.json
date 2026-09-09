@@ -1822,8 +1822,7 @@
             "CLAIM": 2
           },
           "art_prompt_key": "entity.libere_assembly",
-          "entry": "ON_TAG",
-          "entry_tag": "charter_temporary"
+          "entry": "LINE_EXHAUSTED"
         }
       ],
       "starting_structures": [

@@ -331,7 +331,7 @@ def _tocchi_espliciti(documenti: Dict[str, List[Dict[str, Any]]]):
     # saperlo bisogna guardare se il primo segno c'e' gia'. Non e' una regola a
     # parte: e' la stessa mano che toglie la presenza, e il dato dice quali
     # pezzi lo fanno.
-    for schema_id in ("asset", "consequence", "echo_card", "confluence_template",
+    for schema_id in ("asset", "consequence", "confluence_template",
                       "tension", "destiny"):
         for pezzo in documenti.get(schema_id, []):
             if _toglie_presenza(pezzo):
@@ -781,13 +781,6 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             if _nudo(str(segno)) not in voci:
                 guai.append("Destino che osserva un segno fuori dal dizionario: %s guarda «%s»"
                             % (destino.get("id"), segno))
-
-    # 16. Echi senza effetto: una carta del Narratore senza `effect_hooks` e'
-    # colore travestito da carta — si gioca, si paga, e il mondo non si muove.
-    for eco in documenti.get("echo_card", []):
-        if not eco.get("effect_hooks"):
-            guai.append("Echo senza effetto: %s — si gioca, si paga, e il mondo non si muove"
-                        % eco.get("id"))
 
     # 17. Bersagli garantiti sul tavolo pescato (PZ-3, D-273): una carta a
     # bersaglio REGION deve poter nominare un luogo su OGNI mappa pescata.
@@ -1332,11 +1325,12 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     # e la differenza fra le due non si vede leggendo il file: si vede solo
     # contando **da dove ci si arriva**.
     #
-    # Le strade sono quattro, e sono tutte: l'esito di base di una domanda, il
-    # suo rifiuto, un sacchetto del template, il gancio di una carta Eco. Le
-    # sedici che questo giro rimette in strada erano l'esito delle proposte
-    # contrarie, e per due versioni non ne hanno avuta nessuna senza che niente
-    # lo dicesse.
+    # Le strade sono tre, e sono tutte: l'esito di base di una domanda, il suo
+    # rifiuto, un sacchetto del template. Erano quattro finche' c'era il gancio
+    # di una carta Eco (D-500), ed e' quella che ha lasciato `CNS_OATH_BROKEN`
+    # senza strada. Le sedici che D-475 ha rimesso in strada erano l'esito delle
+    # proposte contrarie, e per due versioni non ne hanno avuta nessuna senza
+    # che niente lo dicesse.
     strade: Dict[str, Set[str]] = defaultdict(set)
     for carta in documenti.get("tension", []):
         for domanda in ((carta.get("council") or {}).get("questions") or []):
@@ -1348,16 +1342,12 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         for _nome, sacchetto in (template.get("consequence_pools") or {}).items():
             for cid in sacchetto or []:
                 strade[str(cid)].add("un sacchetto del Consiglio")
-    for eco in documenti.get("echo_card", []):
-        for gancio in (eco.get("effect_hooks") or []):
-            if str(gancio.get("kind", "")) == "CONSEQUENCE":
-                strade[str(gancio.get("consequence_id", ""))].add("una carta Eco")
     for conseguenza in documenti.get("consequence", []):
         if not strade.get(str(conseguenza.get("id", ""))):
             guai.append(
                 "Conseguenza senza strada: %s — nessuna domanda la porta, nessun "
-                "rifiuto, nessun sacchetto, nessuna carta Eco: il tavolo non "
-                "puo' vederla" % conseguenza.get("id")
+                "rifiuto, nessun sacchetto: il tavolo non puo' vederla"
+                % conseguenza.get("id")
             )
 
     guai.extend(due_facce_uguali(documenti))
@@ -2021,9 +2011,6 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         con_faccia = next(d for d in prova["destiny"] if d.get("physical"))
         con_faccia["physical"]["observes"] = ["segno_inventato_apposta"]
 
-    def eco_di_colore(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        prova["echo_card"][0]["effect_hooks"] = []
-
     def bersaglio_stretto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una carta ri-mirata sulla sola #capitale: una tessera su dieci, e la
         # meta' delle mappe pescate non avrebbe dove posarla.
@@ -2410,8 +2397,6 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "ponte delle domande rotto"),
         pianta("Destino che osserva un segno inventato", destino_cieco,
                "Destino che osserva un segno fuori dal dizionario"),
-        pianta("Echo svuotato dei suoi effetti", eco_di_colore,
-               "Echo senza effetto"),
         pianta("carta ri-mirata su un segno raro", bersaglio_stretto,
                "bersaglio non garantito sul tavolo pescato"),
         pianta("clausola di Destino ri-mirata su un segno raro", clausola_stretta,

@@ -17,6 +17,10 @@
 > contrasto, il tavolo si divide in due parti che posano pedine sulle caselle
 > della carta, e si vota **senza dado** contro il mucchio dei gettoni; il giro
 > con la proposta, il World Factor e il margine è uscito dal codice in D-472.
+> E **le carte Echo non esistono più** (D-500): l'Eco che resta è il *ricordo*
+> che un Consiglio lascia — le Verità, la Cronaca che la saga eredita — non un
+> mazzo da cui si pesca. Ogni riga qui sotto che dica «si pesca 1 carta Echo» o
+> «trigger: carta Echo» è ferma a prima.
 
 Il testo di riferimento è la specifica esecutiva v0.2. Questo documento descrive
 **cosa faceva il codice a 0.1.38**: i numeri che erano davvero in gioco, le

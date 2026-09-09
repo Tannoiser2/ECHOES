@@ -106,10 +106,10 @@ func test_shipped_councils_name_no_region_by_id() -> void:
 	var loaded: RefCounted = DataSet.new()
 	assert_true(loaded.load_from("res://data"), "i dati della scatola si leggono")
 	var offese: int = 0
-	for collection in [loaded.consequences, loaded.confluence_templates, loaded.echo_cards]:
+	for collection in [loaded.consequences, loaded.confluence_templates]:
 		for doc_id in collection:
 			offese += _region_ids_in(collection[doc_id])
-	assert_eq(offese, 0, "nessuna Conseguenza, template o Echo nomina una Regione per id")
+	assert_eq(offese, 0, "nessuna Conseguenza e nessun template nomina una Regione per id")
 
 
 func _region_ids_in(node: Variant) -> int:

@@ -18,12 +18,6 @@ const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
 signal phase_changed(act: int, round: int, phase: String)
 signal confluence_resolved(result: Dictionary)
-## The Act-end Echo card, with the Effects it applied. Emitted after they land,
-## so whoever draws it can say what the card *did* and not only what it says.
-## Nothing in the engine listens: it exists because three times a Chronicle the
-## story turns on a card nobody at the table ever sees (D-044).
-signal act_echo_drawn(card: Dictionary, applied: Array)
-
 var session: RefCounted
 var world: Dictionary
 var data: RefCounted
@@ -95,8 +89,8 @@ func run(decider: Object) -> Dictionary:
 			from_act += 1
 			from_round = 1
 	# And if that round is off the end of the Act, the Act's own ending has not
-	# happened yet: the Echo card is drawn there, and skipping it would lose the
-	# one move the world makes on its own.
+	# happened yet: the Council that closes the Act runs there, and skipping it
+	# would lose it.
 	elif from_round > rounds:
 		log.section("SI RIPRENDE - fine dell'Atto %d" % from_act)
 		await end_of_act(from_act, decider)
@@ -788,16 +782,14 @@ func _score_the_debate(
 	return deltas
 
 
-## ISSUES 23 (D-118): la carta di Propp non si pesca piu' da sola a fine atto —
-## la cala un giocatore, nel suo turno, pagandola. Qui resta solo il sipario:
-## se in tutto l'atto nessuno ha parlato, il silenzio e' una scelta del tavolo
-## (decisione del committente: nessuna rete di sicurezza).
+## Il sipario di un Atto: si chiude col suo Consiglio (D-214).
+##
+## La fase si chiama ancora `ACT_ECHO` e la parola regge: quello che chiude un
+## Atto e' **l'Eco che il Consiglio lascia** — il ricordo, non la carta. Le
+## carte Eco se ne sono andate in [D-500], e con loro il contatore di quante
+## ne fossero state calate nell'Atto.
 func end_of_act(act: int, decider: Object) -> void:
 	_set_phase(act, int(_chronicle["rounds_per_act"]), "ACT_ECHO")
-	var played: int = int(world.get("echoes_played_in_act", 0))
-	world["echoes_played_in_act"] = 0
-	if played == 0:
-		log.bullet("L'Atto %d si chiude senza una carta del Narratore: il silenzio resta scritto." % act)
 	await _council_closing_the_act(act, decider)
 
 
@@ -1125,87 +1117,6 @@ func _fullest_deck() -> String:
 			most = pile
 			best = str(family)
 	return best
-
-
-## L'Eco che parla (D-118, D-359). Costo e legalita' li ha gia' giudicati
-## l'ActionResolver, che ha anche gia' scartato la carta calata e il suo prezzo;
-## qui l'Eco parla - gli effetti si applicano e si raccontano, i presagi
-## scattano, e un eventuale Consiglio prescritto si prenota nello stesso posto
-## del CLAIM (`forced_confluence`), per aprirsi a fine round.
-##
-## Non arriva piu' da un mazzo: arriva dalla faccia della carta Asset che
-## qualcuno aveva in mano, ed e' per questo che la pila `echo_played` e' anche
-## il registro di quali carte sono state spese per la loro versione potenziata.
-func play_narrator_card(entity_id: String, card_id: String, source: Dictionary) -> Array:
-	var card: Dictionary = data.echo_cards[card_id]
-	log.section("LA CARTA DEL NARRATORE - %s (%s)" % [str(card["title"]), str(card["dramatic_family"])])
-	log.bullet("%s la cala sul tavolo." % _name(entity_id))
-	log.line(str(card["description"]))
-	# La funzione della carta **non si scrive piu' sul mondo** (D-358). Era un
-	# segno che il giocatore non vedeva — `effect_text` lo nascondeva apposta — e
-	# decideva chi poteva uscire l'anno dopo: viveva solo nell'app. Adesso la
-	# carta si posa scoperta sul tavolo, e la domanda «e' gia' successa una cosa
-	# di questo genere?» si fa guardando quella pila.
-	if not (world["echo_played"] as Array).has(card_id):
-		(world["echo_played"] as Array).append(card_id)
-	var applied: Array = []
-	for hook in card["effect_hooks"]:
-		# Chi cala la carta e' il suo proponente: gli effetti scritti per un
-		# Consiglio ($proponent, $rival) leggono la mano che l'ha giocata.
-		var bindings: Dictionary = card_bindings(hook, entity_id)
-		if str(hook["kind"]) == "CONSEQUENCE":
-			for effect in session.compiler.compile(str(hook["consequence_id"]), bindings, source):
-				var stored: Dictionary = session.applier.apply(effect)
-				if not stored.is_empty():
-					applied.append(stored)
-		else:
-			var effect: Dictionary = session.compiler.compile_spec(hook["effect"], bindings, source)
-			var stored: Dictionary = session.applier.apply(effect)
-			if not stored.is_empty():
-				applied.append(stored)
-	for effect in applied:
-		var said: String = EffectNarrator.narrate(effect, data)
-		if said != "":
-			log.bullet(said)
-	session.tensions.fire_omens(source)
-	world["echoes_played_in_act"] = int(world.get("echoes_played_in_act", 0)) + 1
-	act_echo_drawn.emit(card, applied)
-	var forced: Variant = card.get("forces_confluence_on", null)
-	if forced != null and world["tensions"].has(str(forced)):
-		world["forced_confluence"] = {"tension_id": str(forced), "entity_id": entity_id}
-		log.bullet("La carta prescrive un Consiglio su %s." % str(forced))
-	return applied
-
-
-## An Echo card has no Confluence behind it, so `$region_focus` has nothing to
-## resolve against unless the card says which question it is about. `bindings`
-## may name a `focus_tension`; without one the Chronicle's first Tension is used,
-## which keeps every card written before this still working.
-func card_bindings(hook: Dictionary, proponent: String = "") -> Dictionary:
-	var bindings: Dictionary = (hook.get("bindings", {}) as Dictionary).duplicate(true)
-	var tension_id: String = str(bindings.get("focus_tension", ""))
-	if tension_id == "" or not world["tensions"].has(tension_id):
-		tension_id = str((world["tensions"] as Dictionary).keys()[0])
-	bindings["region_focus"] = session.confluence.narrative.focus_region(tension_id)
-	bindings["tension"] = tension_id
-	# A card has no proponent, but the Consequences it fires were written for a
-	# Confluence and expect one. Whoever would carry that question if it opened
-	# now is the honest answer - and it is the same rule the Confluence uses, so
-	# a card and a council name the same person in the same world. Una carta
-	# calata da una mano (ISSUES 23) il proponente ce l'ha: chi l'ha giocata.
-	if proponent != "":
-		bindings["proponent"] = proponent
-	elif not bindings.has("proponent"):
-		bindings["proponent"] = session.service.determine_proponent(tension_id)
-	bindings["rival"] = session.confluence.narrative.rival_id(
-		str(bindings["region_focus"]), str(bindings["proponent"])
-	)
-	bindings["capital"] = session.confluence.narrative.capital_region()
-	bindings["adjacent"] = session.confluence.narrative.adjacent_to(str(bindings["region_focus"]))
-	bindings["rival_seat"] = session.confluence.narrative.seat_of(
-		str(bindings["rival"]), str(bindings["region_focus"])
-	)
-	return bindings
 
 
 func chronicle_end() -> Dictionary:

@@ -60,12 +60,6 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 		"rng_seed": rng.get_seed(),
 		"rng_state": 0,
 		"decks": {},
-		# Gli Echi **calati**, scoperti sul tavolo (D-358). Dalla D-359 non c'e'
-		# piu' un mazzo del Narratore da cui pescarli: l'Eco sta stampato sulla
-		# carta Asset, e questa e' la pila di quelli che qualcuno ha davvero
-		# calato - una carta in mano non e' successa.
-		"echo_played": [],
-		"echoes_played_in_act": 0,
 		"drift_track": [],
 		"drift_index": 0,
 		"confluence_queue": [],

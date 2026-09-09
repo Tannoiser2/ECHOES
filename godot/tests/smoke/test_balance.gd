@@ -152,9 +152,22 @@ func test_destinies_are_contested() -> void:
 		echoes * 2 >= RUNS,
 		"almeno un Echo ogni due Chronicle, misurati %d su %d partite" % [echoes, RUNS]
 	)
+	# **Contesi vuol dire livelli diversi, non un TRIUMPH per forza** (D-500).
+	#
+	# Fino a qui questa riga chiedeva almeno un TRIUMPH su 24 partite, cioe' su
+	# **96 seggi-partita**. Col mazzetto personale e senza le carte Eco il
+	# TRIUMPH e' passato da **6 a 3 su 400** seggi-partita **sul tavolo misto**
+	# dei 100 semi del cancello (sull'uniforme sono 5) — lo 0,75%, che su 96
+	# vale un'attesa di **0,7**: la prova chiedeva un evento che il gioco
+	# produce meno di una volta per campione, ed e' fragile per costruzione, non
+	# per il gioco.
+	#
+	# Quello che la prova vuole dire e' che i Destini **si contendono**: che i
+	# seggi non finiscano tutti allo stesso livello. Quello si misura, e non
+	# dipende da un evento allo 0,7%.
 	assert_true(
-		int(levels.get("TRIUMPH", 0)) > 0,
-		"qualcuno deve poter arrivare al Triumph"
+		levels.size() >= 3,
+		"i seggi arrivano a livelli diversi, non tutti allo stesso: %s" % str(levels)
 	)
 	assert_true(
 		int(levels.get("MINIMUM", 0)) > 0,

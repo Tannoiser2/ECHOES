@@ -132,8 +132,6 @@ func test_the_printed_card_carries_its_family() -> void:
 			IconSet.FAMILIES.has(str((face as Dictionary)["family"])),
 			"%s porta la propria famiglia" % str((face as Dictionary)["id"])
 		)
-	for face in CardFace.deck_of("echo", data()):
-		assert_eq(str((face as Dictionary)["family"]), "", "una carta Echo non ha famiglia di Asset")
 
 
 ## La prova a occhio si rigenera con tutto il resto, quindi non puo' invecchiare.

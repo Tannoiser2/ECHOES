@@ -58,8 +58,8 @@ nessuna scritta accanto ripete.
 
 | pannello | dove | cosa direbbe |
 |---|---|---|
-| la mano | PanelContainer | L'ECO - La Parola Data La cosa che era stata proibita viene fatta, e viene fatta da chi l' |
-| la mano | PanelContainer | L'ECO - Presagio Un segno che nessuno sa leggere del tutto e che nessuno riesce a ignorare |
+| la mano | PanelContainer | Giuramento — bonds, forza 1 1. Giurare insieme: Sali di 1 gradino nel rapporto con lei e m |
+| la mano | PanelContainer | Voce di Corridoio — knowledge, forza 1 1. Ascoltare la voce: Leggi a quanto esplode una do |
 
 ## 2. I bersagli che un dito non prende
 

@@ -41,7 +41,6 @@
         "presence_tokens",
         "entities",
         "regions",
-        "act_echo_pools",
         "confluence_templates",
         "opening_text",
         "seats_between_eras"
@@ -138,40 +137,6 @@
               "count": {
                 "type": "integer",
                 "minimum": 1
-              }
-            }
-          }
-        },
-        "act_echo_pools": {
-          "type": "array",
-          "minItems": 1,
-          "description": "Dramatic families the Act-end Echo card is drawn from, indexed by act (1-based order). The list is a weighted bag, not a set: repeating a family makes it more likely, and the seeded RNG picks the order in which families are tried. An Act 3 written as [RESOLUTION, RESOLUTION, TURN, RUPTURE] resolves about half the time and can still end mid-crisis (D-030).",
-          "items": {
-            "type": "object",
-            "required": [
-              "act",
-              "families"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "act": {
-                "type": "integer",
-                "minimum": 1
-              },
-              "families": {
-                "type": "array",
-                "minItems": 1,
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "PRESSURE",
-                    "RUPTURE",
-                    "TURN",
-                    "RESOLUTION",
-                    "MEMORIA"
-                  ]
-                },
-                "description": "Repeats are weights, not duplicates to be cleaned up. MEMORIA sta solo nei pool delle Chronicle-biblioteca: e la famiglia delle carte che leggono una leggenda (D-076)."
               }
             }
           }

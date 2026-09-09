@@ -149,7 +149,3 @@ func test_the_draw_does_not_move_the_world() -> void:
 		JSON.stringify(a["decks"]), JSON.stringify(b["decks"]),
 		"e nemmeno i mazzi"
 	)
-	assert_eq(
-		JSON.stringify(a["echo_played"]), JSON.stringify(b["echo_played"]),
-		"ne' la pila degli Echi calati"
-	)

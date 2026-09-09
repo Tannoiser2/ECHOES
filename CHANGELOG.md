@@ -5,6 +5,79 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.470 — Via le carte Eco: resta il ricordo, sparisce la carta
+
+[D-500](docs/DECISIONS.md#d-500), [ISSUES 136](docs/ISSUES.md#136). Parola del
+committente, dopo aver visto quanti Echi un anno produce davvero: *«lascia
+perdere gli echi, che non dovrebbero piu' esistere come carte»*.
+
+**Due cose si chiamavano uguale, e una sola se ne va.** L'Eco-**ricordo** —
+`CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — e' il cuore del gioco
+e resta intero. L'Eco-**carta**, la terza faccia dell'Asset che
+[D-359](docs/DECISIONS.md#d-359) aveva fuso sulla stessa carta, non c'e' piu'.
+
+Il numero che ha deciso: `run_echo_probe.gd` conta **3,73 Echi l'anno su tutto il
+tavolo**, cioe' **meno di uno per casa**. Le carte Eco erano **48**, le nominavano
+**48 Asset su 48**, e si giocavano **46 volte su 720 scelte** (6,4%).
+
+### Rimosso
+
+- le **48 carte Eco** (`godot/data/echoes/`), lo schema `echo_card`, il campo
+  `echo_id` da tutti e 48 gli Asset e `act_echo_pools` dalla Chronicle;
+- la voce **PLAY_ECHO** dal risolutore, dal cervello del seggio e dal menu che il
+  seggio offre; `echo_text.gd`, il blocco Eco della mano, `run_echo_weight_probe`,
+  `run_consequence_probe` e `test_echo_grammar`;
+- **e la coda che leggeva il vuoto**: la collezione `echo_cards`, la faccia
+  stampata di `card_face.gd` (`_echo`, `DRAMA`, `PROPP`), le due funzioni del
+  risolutore che leggevano `act_echo_pools`, il segnale `act_echo_drawn` con
+  `card_bindings`, la vista `echo_card_view.gd` con la sua pausa a fine Atto, e
+  le due chiavi che il mondo teneva (`echo_played`, `echoes_played_in_act`).
+
+  A trovarla e' stato un `SCRIPT ERROR` **dentro una suite verde** — la vetrina
+  del tavolo chiedeva al modello una chiave sparita, e la funzione si
+  interrompeva a meta' senza che niente diventasse rosso. Con lei se ne vanno
+  **due prove diventate cieche**, che giravano su una collezione vuota e
+  chiudevano con `assert_eq(0, 0)`, e sei strumenti che giravano a vuoto su una
+  cartella cancellata.
+
+### Il costo, voce per voce
+
+- **una Conseguenza su 54** perde la sua unica strada: `CNS_OATH_BROKEN`;
+- **sette segni restano muti**, perche' a leggerli erano solo le eleggibilita'
+  delle carte Eco — dichiarati uno per uno in `MUTI_NOTI`, con la ragione;
+- **due segni se ne vanno** (`someone_paid`, `parley_held`), e con `parley_held`
+  la condizione della Risonanza di *Favore*, che ora scalda senza il suo bonus;
+- **due clausole diventavano impossibili** (`amnesty_granted`,
+  `charter_temporary`) e sono state tolte coi loro segni; l'incarnazione delle
+  Citta' Libere entra adesso da `LINE_EXHAUSTED`;
+- **il TRIUMPH si e' dimezzato**: da **6 a 3 su 400** seggi-partita **sul
+  tavolo misto** dei 100 semi dal 7000; sull'uniforme sono **5 su 400**.
+
+`test_destinies_are_contested` chiedeva almeno un TRIUMPH su 96 seggi-partita:
+allo 0,75% l'attesa e' **0,7**, cioe' la prova chiedeva un evento che il gioco
+produce meno di una volta per campione. Adesso misura quello che voleva dire —
+**i seggi arrivano a livelli diversi** — e non dipende piu' da un evento raro.
+
+### Misurato
+
+| | col mazzetto e gli Echi | senza le carte Eco |
+|---|---|---|
+| Consigli per anno | 5,58 | **5,68** |
+| Verita', tavolo misto | 360 / 360 | **393 / 391** |
+| Verita', tavolo uniforme | 402 / 399 | **421 / 418** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 815 test | **800 test**, 75 004 asserzioni |
+
+E i documenti generati si accorciano da soli: i **segni del dizionario** da 175
+a **171**, i **segnalini da tagliare** da 116 tipi (150 pezzi) a **112 (146)**,
+i **soggetti da illustrare** da 161 a **113**.
+
+Cento semi dal 7000, tutti e due i tavoli. Le Verita' salgono ancora — **+33**
+sul misto, **+19** sull'uniforme — perche' le Azioni che prima diventavano un Eco
+adesso restano Azioni, e il mondo le registra.
+
+---
+
 ## 0.1.469 — Il mazzetto personale: una Occasione bloccata su trenta invece che su cinque
 
 [D-499](docs/DECISIONS.md#d-499), [ISSUES 136](docs/ISSUES.md#136), col

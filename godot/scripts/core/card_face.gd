@@ -11,10 +11,10 @@ extends RefCounted
 ## disegna - il foglio di stampa in SVG, l'anteprima dentro l'app - decide solo
 ## *come*, mai *cosa*.
 ##
-## Le tre tabelle qui sotto stavano sparse fra le viste: i colori di famiglia
-## dentro `asset_card.gd`, le famiglie drammatiche e le funzioni di Propp dentro
-## `echo_card_view.gd`. Due tabelle che devono essere d'accordo e non hanno un
-## posto comune finiscono per non esserlo, e adesso il posto comune e' questo.
+## La tabella dei colori di famiglia stava dentro `asset_card.gd`: una tabella
+## che la carta stampata e la carta sullo schermo devono leggere uguale, e che
+## non aveva un posto comune, finisce per non essere piu' la stessa. Il posto
+## comune e' questo.
 
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
@@ -31,29 +31,6 @@ const FAMILY_COLOURS: Dictionary = {
 	"BONDS": "#b06b8f",
 }
 const NEUTRAL: String = "#8a8172"
-
-## Le quattro famiglie drammatiche delle carte Echo, colore prima: nell'arco di
-## tre Atti il colore e' la cosa che un giocatore impara a leggere.
-const DRAMA: Dictionary = {
-	"PRESSURE": {"colour": "#c9a86a", "label": "PRESSIONE — qualcosa si accumula"},
-	"RUPTURE": {"colour": "#c8553d", "label": "ROTTURA — qualcosa si spezza"},
-	"TURN": {"colour": "#7fa6c9", "label": "SVOLTA — qualcosa cambia direzione"},
-	"RESOLUTION": {"colour": "#6fa88a", "label": "RISOLUZIONE — qualcosa si chiude"},
-}
-
-## Le funzioni di Propp hanno nomi inglesi nei dati perche' e' da li che viene la
-## morfologia; al tavolo si legge italiano. Un nome che manca esce come id invece
-## di sparire.
-const PROPP: Dictionary = {
-	"LACK": "mancanza", "OMEN": "presagio", "BETRAYAL": "tradimento", "LOSS": "perdita",
-	"DISCOVERY": "scoperta", "REVELATION": "rivelazione", "SACRIFICE": "sacrificio",
-	"RECONCILIATION": "riconciliazione", "PROHIBITION": "divieto", "THREAT": "minaccia",
-	"USURPATION": "usurpazione", "ATTACK": "attacco", "GIFT": "dono",
-	"TRANSFORMATION": "trasformazione", "LIBERATION": "liberazione", "RETURN": "ritorno",
-	"REQUEST": "richiesta", "TEMPTATION": "tentazione", "VIOLATION": "violazione",
-	"SEPARATION": "separazione", "ENCOUNTER": "incontro", "CONQUEST": "conquista",
-	"PUNISHMENT": "punizione", "SUCCESSION": "successione",
-}
 
 const RARITY: Dictionary = {"COMMON": "comune", "UNCOMMON": "non comune", "RARE": "rara"}
 
@@ -75,13 +52,6 @@ const BIOMES: Dictionary = {
 ## il Consiglio sta sul retro di un tarocco (0 sbordano, 7 su 60 stretti,
 ## la piu' stretta 88%) e non su quello di una 63x88 (13 sbordano). Quindi la
 ## Domanda e' un tarocco, e `BACKS` dice quale mazzo e' il retro di quale.
-##
-## E lo stesso vale per l'Eco (D-359): non e' un mazzo, e' il terzo blocco
-## stampato sulla carta Asset. Il mazzo «echo» resta leggibile — lo schermo
-## mostra la carta calata a fine Atto — ma non si stampa da solo.
-## Come si chiama, su una carta Eco, il posto che l'Effetto colpisce: non «dove
-## si discute», che e' la parola del Consiglio (D-344).
-const DOVE_CADE: String = "nel luogo della carta"
 
 ## **E il mazzo Obiettivo** (D-445): diciannove carte coperte che fino alla
 ## 0.1.414 non avevano una faccia — il censimento le contava fra le cose «che
@@ -95,7 +65,7 @@ const BACKS: Dictionary = {"tension": "council"}
 ## Come si chiamano al tavolo, che e' come vanno chiamati ovunque li si nomini:
 ## sul foglio di stampa, nell'anteprima e nel riepilogo dell'export.
 const DECK_LABELS: Dictionary = {
-	"asset": "carte Asset", "echo": "carte Echo", "tension": "carte Domanda",
+	"asset": "carte Asset", "tension": "carte Domanda",
 	"council": "carte Domanda, retro", "objective": "carte Obiettivo",
 	"destiny": "carte Destino", "entity": "carte Casata", "region": "tessere Regione",
 }
@@ -147,7 +117,6 @@ static func deck_of(deck: String, data: RefCounted) -> Array:
 static func _source(deck: String, data: RefCounted) -> Dictionary:
 	match deck:
 		"asset": return data.assets
-		"echo": return data.echo_cards
 		"tension": return data.tensions
 		"council": return data.tensions
 		"destiny": return data.destinies
@@ -177,7 +146,6 @@ static func of(deck: String, id: String, data: RefCounted) -> Dictionary:
 		return {}
 	match deck:
 		"asset": return _asset(item, data)
-		"echo": return _echo(item, data)
 		"tension": return _tension(item, data)
 		"council": return _council(item, data)
 		"destiny": return _destiny(item, data)
@@ -213,7 +181,7 @@ static func _face(deck: String, id: String, shape: String) -> Dictionary:
 
 ## `data` serve per la riga meccanica: i segni che una carta posa sul mondo si
 ## dicono con la loro parola italiana, e quella la sa `SignLabels` leggendo il
-## set. Lo prendono gia' `_echo` e `_destiny` per la stessa ragione.
+## set. Lo prende gia' `_destiny` per la stessa ragione.
 static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 	var family: String = str(asset["family"])
 	var face: Dictionary = _face("asset", str(asset["id"]), "TAROT")
@@ -261,117 +229,14 @@ static func _asset(asset: Dictionary, data: RefCounted) -> Dictionary:
 			"IMPEGNI  %s" % AssetText.note(asset, data),
 			"PRENDI  %s" % str(asset.get("acquisition_rule", "")),
 		]
-	# **L'Eco e' il terzo blocco di questa carta** (D-359, stampato da D-449).
-	# Si cala al posto di un'Azione, se le condizioni ci sono, e costa la
-	# carta: QUANDO ESCE e IL MONDO sono le stesse righe della faccia Eco, e
-	# la prova le confronta una per una.
-	var echo_v: Variant = data.echo_cards.get(str(asset.get("echo_id", "")))
-	if echo_v != null:
-		var eco: Dictionary = _echo(echo_v as Dictionary, data)
-		face["notes"].append("ECO  %s · %s" % [str(eco["title"]), str(eco["subtitle"])])
-		for note in eco["notes"]:
-			face["notes"].append(str(note))
-		face["echo_id"] = str(eco["id"])
+	# **La carta ha due blocchi, non tre** (D-500): l'Eco stampato sulla faccia
+	# se n'e' andato con le carte Eco. Restano le due Azioni, che sono quello
+	# che si gioca.
 	face["family"] = family
 	face["art_prompt_key"] = str(asset["art_prompt_key"])
 	face["copies"] = int(asset.get("deck_copies", 1))
 	face["footer"] = str(asset["id"])
 	return face
-
-
-static func _echo(card: Dictionary, data: RefCounted) -> Dictionary:
-	var family: String = str(card["dramatic_family"])
-	var described: Dictionary = DRAMA.get(family, {"colour": NEUTRAL, "label": family})
-	var face: Dictionary = _face("echo", str(card["id"]), "TAROT")
-	face["title"] = str(card["title"])
-	var function_id: String = str(card["function_id"])
-	face["subtitle"] = "%s · funzione di Propp: %s" % [
-		str(described["label"]).split(" —")[0], str(PROPP.get(function_id, function_id.to_lower())),
-	]
-	face["accent"] = str(described["colour"])
-	# **La carta Eco diceva solo cosa si prova, mai cosa succede** (D-344).
-	#
-	# Trentanove carte su trentanove: **86 Effetti scritti nel dato e zero
-	# stampati**, piu' 38 condizioni che dicono quando la carta puo' uscire e
-	# che nessuno vedeva. Sulla faccia c'era la `description` — *«Qualcosa che
-	# c'era non c'e' piu', e la sua assenza comincia a organizzare le giornate
-	# di tutti»* — e basta.
-	#
-	# Adesso: **QUANDO ESCE** (le condizioni) e **IL MONDO** (quello che la carta
-	# fa), chiesto ad `AssetText` come ogni altra riga meccanica del progetto, in
-	# modo che la carta non possa dire una cosa e il motore farne un'altra.
-	face["body"] = []
-	# **E la condizione si genera, non si ricopia.** Le `label` d'autore portano
-	# l'id dentro — *«TEN_FAMINE e' in gioco quest'anno»* — su 24 delle 38: e' un
-	# id interno su una carta da giocatore, la stessa cosa che D-339 ha tolto da
-	# tutte le altre facce. I campi ci sono (`tension_id`, `tag`), e la frase si
-	# costruisce da quelli; la `label` resta il ripiego per le forme che i campi
-	# non sanno ancora dire.
-	var quando: Array = []
-	for condition in card.get("eligibility", []) as Array:
-		var said: String = _when_it_comes(condition as Dictionary, data)
-		if said != "":
-			quando.append(said)
-	if not quando.is_empty():
-		face["notes"].append("QUANDO ESCE  %s" % " · ".join(PackedStringArray(quando)))
-	# **Due modi di attaccare un Effetto a una carta Eco**, e tutti e due vanno
-	# stampati: un Effetto scritto sulla carta (75 su 86) e una Conseguenza
-	# chiamata per id (11). Otto carte hanno **solo** la seconda forma: la prima
-	# stesura di questa faccia leggeva soltanto `effect`, e quelle otto uscivano
-	# mute. L'ha presa la prova che nessuna faccia sia vuota, che c'era gia'.
-	var fa: Array = []
-	for hook_v in card.get("effect_hooks", []) as Array:
-		var hook: Dictionary = hook_v
-		var said: String = ""
-		match str(hook.get("kind", "")):
-			"EFFECT":
-				var effect: Dictionary = hook.get("effect", {})
-				if not effect.is_empty():
-					said = AssetText.effect_note(effect, data, DOVE_CADE)
-			"CONSEQUENCE":
-				var consequence: Variant = data.consequences.get(
-					str(hook.get("consequence_id", ""))
-				)
-				if consequence != null:
-					said = CouncilText.consequence_note(
-						consequence as Dictionary, data, Callable(), DOVE_CADE
-					)
-		if said != "" and not fa.has(said):
-			fa.append(said)
-	if not fa.is_empty():
-		face["notes"].append("IL MONDO  %s" % " · ".join(PackedStringArray(fa)))
-	# Due delle ventiquattro convocano un Consiglio (§12.1 b): e' la carta che si
-	# prende il tavolo, e sulla carta stampata dev'esserci scritto.
-	var forced: Variant = card.get("forces_confluence_on", null)
-	if forced != null and data.tensions.has(str(forced)):
-		face["notes"].append(
-			"CONVOCA IL CONSIGLIO  su %s" % str(data.tensions[str(forced)]["title"])
-		)
-	face["art_prompt_key"] = str(card.get("art_prompt_key", ""))
-	face["footer"] = str(card["id"])
-	return face
-
-
-## Quando una carta Eco puo' uscire, in parole del tavolo (D-344).
-static func _when_it_comes(condition: Dictionary, data: RefCounted) -> String:
-	match str(condition.get("type", "")):
-		"tension_limit":
-			var asked: String = str(condition.get("tension_id", ""))
-			if data.tensions.has(asked):
-				return "%s e' al tavolo" % str((data.tensions[asked] as Dictionary)["title"])
-		"state_tag_present":
-			return "il mondo porta %s" % AssetText.sign_word(str(condition.get("tag", "")), data)
-		"any_of":
-			var one: Array = []
-			for inner in condition.get("conditions", []) as Array:
-				var said: String = _when_it_comes(inner as Dictionary, data)
-				if said != "" and not one.has(said):
-					one.append(said)
-			if not one.is_empty():
-				return " oppure ".join(PackedStringArray(one))
-	# Niente da generare: resta la frase d'autore, che almeno e' scritta per chi
-	# gioca — e se porta un id lo prende la prova di D-339.
-	return str(condition.get("label", ""))
 
 
 static func _tension(tension: Dictionary, data: RefCounted) -> Dictionary:

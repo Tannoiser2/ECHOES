@@ -36,7 +36,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### contesa
 
-`condition:contested` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card, tension
+`condition:contested` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, tension
 
 **Cosa vuol dire.** Due case ci mettono le mani sopra e nessuna ha ancora vinto.
 
@@ -55,7 +55,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### tagliata fuori
 
-`condition:cut_off` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card, tension
+`condition:cut_off` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, tension
 
 **Cosa vuol dire.** La strada non porta piu' qui: chi c'e' resta, chi e' fuori non entra.
 
@@ -74,7 +74,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### svuotata
 
-`condition:emptied` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension
+`condition:emptied` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** Qualcuno ha sgomberato: non se ne sono andati, sono stati mandati via.
 
@@ -112,7 +112,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### indebitata
 
-`condition:indebted` · categoria **STATE** · sta su region · lo posa: asset, consequence, echo_card
+`condition:indebted` · categoria **STATE** · sta su region · lo posa: asset, consequence
 
 **Cosa vuol dire.** Quello che c'e' e' gia' promesso a qualcun altro.
 
@@ -131,7 +131,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### magra
 
-`condition:lean` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension
+`condition:lean` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** L'annata e' scarsa: si mangia, ma poco.
 
@@ -150,7 +150,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### in lutto
 
-`condition:mourning` · categoria **STATE** · sta su region · lo posa: consequence, echo_card, tension
+`condition:mourning` · categoria **STATE** · sta su region · lo posa: consequence, tension
 
 **Cosa vuol dire.** Qui e' morto qualcuno che contava, e il posto se lo ricorda.
 
@@ -207,7 +207,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### affamata
 
-`condition:starving` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, echo_card, tension
+`condition:starving` · categoria **STATE** · sta su region · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** Si muore di fame, adesso, non l'anno prossimo.
 
@@ -226,7 +226,7 @@ Dashed outline: this is a thing happening, and it can end.
 
 ### inquieta
 
-`condition:unrest` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, echo_card, tension
+`condition:unrest` · categoria **STATE** · sta su region · lo posa: asset, asset_physical, consequence, tension
 
 **Cosa vuol dire.** La gente non ci sta piu', e si vede.
 
@@ -785,7 +785,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: la reliquia
 
-`discovery:relic` · categoria **MEMORY** · sta su entity · lo posa: consequence, echo_card
+`discovery:relic` · categoria **MEMORY** · sta su entity · lo posa: consequence
 
 **Cosa vuol dire.** Hanno trovato la reliquia.
 
@@ -821,7 +821,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: la misura
 
-`discovery:the_measure` · categoria **MEMORY** · sta su entity · lo posa: echo_card
+`discovery:the_measure` · categoria **MEMORY** · sta su entity
 
 **Cosa vuol dire.** Hanno trovato **come** si misura: il metodo, non la cosa.
 
@@ -839,7 +839,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### scoperta: il presagio
 
-`discovery:the_omen` · categoria **MEMORY** · sta su entity · lo posa: asset_physical, echo_card
+`discovery:the_omen` · categoria **MEMORY** · sta su entity · lo posa: asset_physical
 
 **Cosa vuol dire.** Hanno visto il presagio, e non l'hanno potuto disfare.
 
@@ -965,7 +965,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### sradicato
 
-`uprooted` · categoria **ENTITY** · sta su entity · lo posa: asset, consequence, echo_card
+`uprooted` · categoria **ENTITY** · sta su entity · lo posa: asset, consequence
 
 **Cosa vuol dire.** Sono stati cacciati da dove stavano.
 
@@ -983,7 +983,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### due volte sradicato
 
-`twice_uprooted` · categoria **ENTITY** · sta su entity · lo posa: asset, consequence, echo_card
+`twice_uprooted` · categoria **ENTITY** · sta su entity · lo posa: asset, consequence
 
 **Cosa vuol dire.** Cacciati due volte: non hanno piu' un centro da difendere.
 
@@ -1019,7 +1019,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### la fama
 
-`renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence, echo_card
+`renowned` · categoria **ENTITY** · sta su entity · lo posa: asset_physical, consequence
 
 **Cosa vuol dire.** Di questa casa si parla, e la fama pesa nelle stanze.
 
@@ -1239,7 +1239,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il conto e' stato saldato
 
-`account_settled` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, echo_card, tension
+`account_settled` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** Il debito e' chiuso: nessuno deve piu' niente a nessuno.
 
@@ -1255,27 +1255,9 @@ one object or one gesture, seen from the side or from straight above.
 Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 
-### l'amnistia e' stata concessa
-
-`amnesty_granted` · categoria **MEMORY** · sta su global · lo posa: echo_card
-
-**Cosa vuol dire.** Quello che era stato fatto non si conta piu': si riparte da zero.
-
-**Cosa si vede.** un ceppo di ferro aperto, con la catena che pende vuota
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: un ceppo di ferro aperto, con la catena che pende vuota.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
 ### il tradimento e' stato detto ad alta voce
 
-`betrayal_spoken` · categoria **MEMORY** · sta su global · lo posa: asset_physical, echo_card
+`betrayal_spoken` · categoria **MEMORY** · sta su global · lo posa: asset_physical
 
 **Cosa vuol dire.** Non e' piu' un sospetto: qualcuno lo ha detto davanti a tutti.
 
@@ -1293,7 +1275,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il peso e' stato diviso
 
-`burden_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, echo_card
+`burden_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence
 
 **Cosa vuol dire.** Il carico non e' di uno solo: se lo portano in piu' d'uno.
 
@@ -1320,24 +1302,6 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
 Subject: un sigillo pendente da un nastro, largo quanto il rotolo che chiude.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
-### la Carta vale per un tempo solo
-
-`charter_temporary` · categoria **MEMORY** · sta su global · lo posa: echo_card
-
-**Cosa vuol dire.** Vale adesso e non per sempre: qualcuno ci ha messo una scadenza.
-
-**Cosa si vede.** una clessidra posata di traverso sopra un rotolo chiuso
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: una clessidra posata di traverso sopra un rotolo chiuso.
 Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
 Two or three strokes at most, closed silhouette, thick enough to survive at
 16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
@@ -1419,7 +1383,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il Cristallo e' stato misurato
 
-`crystal_measured` · categoria **MEMORY** · sta su global · lo posa: asset_physical, echo_card, tension
+`crystal_measured` · categoria **MEMORY** · sta su global · lo posa: asset_physical, tension
 
 **Cosa vuol dire.** Qualcuno lo ha pesato e contato invece di temerlo.
 
@@ -1455,7 +1419,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### il debito e' stato perdonato
 
-`debt_forgiven` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension, echo_card
+`debt_forgiven` · categoria **MEMORY** · sta su global · lo posa: asset_physical, consequence, tension
 
 **Cosa vuol dire.** Chi doveva avere ha lasciato perdere, e il conto si chiude.
 
@@ -1581,7 +1545,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### quello che si e' saputo lo sanno tutti
 
-`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, tension, echo_card
+`knowledge_shared` · categoria **MEMORY** · sta su global · lo posa: asset_physical, tension
 
 **Cosa vuol dire.** Quello che sapeva uno lo sanno tutti, e non si vende piu'.
 
@@ -1723,27 +1687,9 @@ one object or one gesture, seen from the side or from straight above.
 Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 
-### ci si e' parlato
-
-`parley_held` · categoria **MEMORY** · sta su global · lo posa: echo_card
-
-**Cosa vuol dire.** Prima di decidere si sono seduti e si sono parlati.
-
-**Cosa si vede.** due sgabelli uno di fronte all'altro, vuoti
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: due sgabelli uno di fronte all'altro, vuoti.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
 ### la richiesta e' stata ascoltata
 
-`petition_heard` · categoria **MEMORY** · sta su global · lo posa: asset_physical, echo_card
+`petition_heard` · categoria **MEMORY** · sta su global · lo posa: asset_physical
 
 **Cosa vuol dire.** Chi ha chiesto e' stato ascoltato, che poi gli sia stato dato o no.
 
@@ -1885,24 +1831,6 @@ one object or one gesture, seen from the side or from straight above.
 Medieval woodcut sensibility, not modern flat-icon geometry.
 ```
 
-### qualcuno ha pagato
-
-`someone_paid` · categoria **MEMORY** · sta su global · lo posa: echo_card
-
-**Cosa vuol dire.** Quella decisione e' costata a qualcuno, e non a chi l'ha presa.
-
-**Cosa si vede.** una scodella vuota rovesciata
-
-```
-Single monochrome pictogram for a 15 mm cardboard token, ECHOES.
-Subject: una scodella vuota rovesciata.
-Solid black on bone white, no greys, no gradient, no colour, no text, no frame.
-Two or three strokes at most, closed silhouette, thick enough to survive at
-16 px and at a photocopy. Centred, generous margin, no perspective, no scene:
-one object or one gesture, seen from the side or from straight above.
-Medieval woodcut sensibility, not modern flat-icon geometry.
-```
-
 ### lo studio e' sotto sorveglianza
 
 `study_supervised` · categoria **MEMORY** · sta su global · lo posa: consequence
@@ -2013,7 +1941,7 @@ Medieval woodcut sensibility, not modern flat-icon geometry.
 
 ### l'acqua ha cambiato strada
 
-`water_moves` · categoria **MEMORY** · sta su global · lo posa: consequence, echo_card, tension
+`water_moves` · categoria **MEMORY** · sta su global · lo posa: consequence, tension
 
 **Cosa vuol dire.** Il corso e' stato spostato, e chi ne viveva adesso e' a secco.
 

@@ -18,8 +18,8 @@ facce vere: una voce stampata che la scheda tace, o promessa che nessuna
 faccia stampa, e questo documento non si scrive.
 
 Una carta puo' avere **due facce**: la Domanda porta il suo Consiglio sul
-retro (D-449), e l'Asset porta il suo Eco sotto le Azioni (D-359). Il JSON
-di un retro dice di che fronte e' (`fronte`), e viceversa (`retro`).
+retro (D-449). Il JSON di un retro dice di che fronte e' (`fronte`), e
+viceversa (`retro`).
 
 | tipo | formato | facce | pezzi | immagine | il dato |
 |---|---|---|---|---|---|
@@ -67,7 +67,7 @@ Not photorealistic, not glossy 3D, not anime, not comic-book inked line art, not
 
 ## 1. carta Asset — tarocco 70×120 mm · 48 facce · 132 pezzi
 
-**Cos'e'.** La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dalla mappa a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Sotto le Azioni porta il suo Eco** (D-359): se le condizioni ci sono si cala quello al posto di un'Azione, e costa la carta.
+**Cos'e'.** La carta che si cala dalla mano: **tu scegli dove e quale delle due Azioni**. Arriva con ACQUISIRE, o dal proprio mazzetto a inizio Atto; limite di mano 7. Costa 1 Occasione, o la impegni al Consiglio e vale forza. **Due blocchi, non tre** (D-500): l'Eco stampato sotto le Azioni se n'e' andato con le carte Eco.
 
 **L'immagine.** Una **scena** — un luogo, un gesto, persone dentro una cosa che sta succedendo — mai un ritratto singolo centrato. L'accento e' il colore della famiglia.
 
@@ -104,10 +104,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 | **AL CONSIGLIO** | quanto vale al voto e quando di piu': `physical.council_use`, `strength` |
 | **IMPEGNI** | cosa lascia se la impegni: `on_commit_effects`, `discard_or_retain_rule` |
 | **PRENDI** | come arriva in mano: `acquisition_rule` |
-| **ECO** | l'Eco della carta, la sua versione potenziata: `echo_id`, con titolo, famiglia drammatica e funzione di Propp |
-| **QUANDO ESCE** | le condizioni per calare l'Eco: `eligibility` dell'Eco, generate dai campi |
-| **IL MONDO** | cosa fa l'Eco, in segni: `effect_hooks` (Effetti scritti e Conseguenze chiamate per id) |
-| **CONVOCA IL CONSIGLIO** | la domanda che l'Eco apre, se ne apre una: `forces_confluence_on` |
 
 **Una carta, per intero, com'e' nel JSON:**
 
@@ -149,22 +145,6 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "PRENDI",
       "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
-    },
-    {
-      "voce": "ECO",
-      "testo": "La Chiamata · PRESSIONE · funzione di Propp: richiesta"
-    },
-    {
-      "voce": "QUANDO ESCE",
-      "testo": "il mondo porta il debito e' stato chiamato"
-    },
-    {
-      "voce": "IL MONDO",
-      "testo": "la domanda in gioco sale · in una Regione con #commercio diventa #indebitata"
-    },
-    {
-      "voce": "CONVOCA IL CONSIGLIO",
-      "testo": "su Il Debito"
     }
   ],
   "arte": {

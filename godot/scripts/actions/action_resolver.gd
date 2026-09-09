@@ -18,7 +18,7 @@ const RngService := preload("res://scripts/core/rng_service.gd")
 
 const TEMPLATES: Array = [
 	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "MARK",
-	"PLAY_ECHO", "PLAY_CARD"
+	"PLAY_CARD"
 ]
 
 ## Le sei azioni di §10: quelle che una carta puo' mettere in mano, e quelle che
@@ -34,10 +34,6 @@ var rng: RefCounted
 var log: RefCounted
 var service: RefCounted
 var tensions: RefCounted
-## ISSUES 23 (D-118): calare una carta del Narratore e' un'azione, ma la carta
-## parla nel ChronicleController (funzione, effetti, presagi). GameSession
-## aggancia qui `play_narrator_card`; l'eleggibilita' si giudica in check().
-var play_card: Callable = Callable()
 var _eligibility: RefCounted
 
 var _chronicle: Dictionary
@@ -95,8 +91,6 @@ func check(entity_id: String, template: String, params: Dictionary) -> String:
 			return _check_claim(entity_id, params)
 		"MARK":
 			return _check_mark(entity_id, params)
-		"PLAY_ECHO":
-			return _check_play_echo(entity_id, params)
 		"PLAY_CARD":
 			return _check_play_card(entity_id, params)
 	return "template non implementato"
@@ -156,8 +150,6 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 			outcome = _scheme(entity_id, params, source)
 		"CLAIM":
 			outcome = _claim(entity_id, params, source)
-		"PLAY_ECHO":
-			outcome = _play_echo(entity_id, params, source)
 		"PLAY_CARD":
 			outcome = _play_asset_card(entity_id, params, source)
 		_:
@@ -547,60 +539,6 @@ func _check_claim(entity_id: String, params: Dictionary) -> String:
 		return "serve 1 ulteriore Asset AUTHORITY da scartare"
 	return ""
 
-
-## Calare l'Eco di una carta (D-359). **Non c'e' piu' un mazzo del Narratore**:
-## l'Eco e' il terzo blocco stampato sulla carta Asset che hai in mano - la sua
-## versione potenziata. Si cala al posto di un'Azione normale, e le quattro
-## guardie sono:
-##
-##   1. la carta e' in mano (e' una carta Asset, non un mazzo a parte);
-##   2. l'Atto lo permette: la famiglia drammatica dell'Eco deve stare nel
-##      pool dell'Atto corrente - e' la forma in tre atti, che prima faceva il
-##      sacchetto e adesso fa questo cancello;
-##   3. i segni che l'Eco nomina stanno sul tavolo (D-030 letto a segni, non
-##      piu' col nome della questione dell'anno: strada 1 del committente);
-##
-## **Non costa piu' della carta stessa** (D-360, scelta del committente: *«l'eco
-## non deve costare due carte, e' una opzione come le azioni, solo che ha
-## condizioni piu' stringenti»*). Il prezzo della parola di D-118 nasceva quando
-## l'Eco arrivava da un mazzo a parte e la carta Asset era il pedaggio per farlo
-## parlare; adesso l'Eco **e' la carta**, e farsi pagare due volte lo stesso
-## pezzo non e' una regola, e' un attrito. Quello che lo distingue da un'Azione
-## normale sono le tre guardie qui sopra, non il conto.
-func _check_play_echo(entity_id: String, params: Dictionary) -> String:
-	var asset_id: String = str(params.get("asset_card_id", ""))
-	if not service.hand(entity_id).has(asset_id):
-		return "'%s' non e nella mano di %s" % [asset_id, entity_id]
-	var asset: Variant = data.assets.get(asset_id)
-	if asset == null:
-		return "carta sconosciuta '%s'" % asset_id
-	var card_id: String = str((asset as Dictionary).get("echo_id", ""))
-	var card: Variant = data.echo_cards.get(card_id)
-	if card == null:
-		return "'%s' non porta un Eco" % asset_id
-	if not _families_open_by(int(world["act"])).has(str((card as Dictionary)["dramatic_family"])):
-		return "l'Eco di '%s' non si cala in questo Atto" % asset_id
-	if not _eligibility.all_hold((card as Dictionary).get("eligibility", []), {}):
-		return "il mondo non porta i segni di '%s'" % str((card as Dictionary)["title"])
-	if (card as Dictionary).get("forces_confluence_on", null) != null \
-			and world.get("forced_confluence", null) != null:
-		return "il tavolo ha gia un Consiglio prescritto per questo round"
-	return ""
-
-
-func _play_echo(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
-	var asset_id: String = str(params.get("asset_card_id", ""))
-	var card_id: String = str((data.assets[asset_id] as Dictionary)["echo_id"])
-	var effects: Array = []
-	# La carta se ne va, e basta quello (D-360): e' lei che parla, ed e' lei il
-	# prezzo. Come giocare una carta per una delle sue due Azioni normali.
-	effects.append_array(_discard(entity_id, asset_id, source))
-	var applied: Array = play_card.call(entity_id, card_id, source)
-	effects.append_array(applied)
-	return _ok("PLAY_ECHO", effects, {"echo_card_id": card_id, "asset_card_id": asset_id})
-
-
-# --- ACQUIRE ---------------------------------------------------------------
 
 func _acquire(entity_id: String, params: Dictionary, source: Dictionary) -> Dictionary:
 	if str(params.get("structure_type", "")) != "":
@@ -1097,33 +1035,6 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 			)
 			return _ok("SCHEME", effects, {"tension_id": veiled_id, "veiled": true})
 	return _error("SCHEME", "modo sconosciuto '%s'" % mode)
-
-
-## Le famiglie che possono parlare **da quest'Atto in poi** (D-359).
-##
-## `act_echo_pools` dice dove una famiglia *comincia*: pressione dall'Atto 1,
-## rottura e svolta dal 2, risoluzione dal 3. La prima stesura leggeva il pool
-## come un elenco chiuso — solo quelle famiglie, in quell'Atto — e misurato
-## costava caro: **382 Echi fermi in mano per l'Atto**, piu' di quanti ne
-## fermassero i segni. Era anche una regola sbagliata: una pressione al terzo
-## Atto e' perfettamente drammatica, una risoluzione al primo no.
-##
-## La forma in tre atti e' che **le cose diventano possibili**, non che smettano
-## di esserlo.
-func _families_open_by(act: int) -> Array:
-	var out: Array = []
-	for earlier in range(1, act + 1):
-		for family in _act_echo_families(earlier):
-			if not out.has(str(family)):
-				out.append(str(family))
-	return out
-
-
-func _act_echo_families(act: int) -> Array:
-	for pool in _chronicle["act_echo_pools"]:
-		if int(pool["act"]) == act:
-			return pool["families"]
-	return []
 
 
 # --- CLAIM -----------------------------------------------------------------

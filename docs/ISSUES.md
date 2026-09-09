@@ -10166,7 +10166,8 @@ scelta, su 30 anni dal seme 7000, tavolo misto:
 
 La sonda si dichiara non cieca: **2160 Occasioni contate, 2160 promesse dalla
 Chronicle**, e le scelte del decisore sono PLAY_CARD 266, PASS 408, PLAY_ECHO 46
-su dieci anni.
+su dieci anni. *(PLAY_ECHO era ancora una voce del menu: in 0.1.470 non c'e'
+piu' — [D-500](DECISIONS.md#d-500).)*
 
 **Il primo numero l'ho letto male, e va detto.** Avevo scritto che la mano
 vuota vale il 4-6% e che il 57% e' passare **avendo** carte — mettendo in fila
@@ -10221,20 +10222,31 @@ si puo' giocare.
 5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
    spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
 
-   **E un mazzo fatto di Echi, misurato, non si sentirebbe.** Il committente
-   aveva chiesto di contarli — *«gli echi sono solo tre/quattro per partita, un
-   po' poco»* — e `run_echo_probe.gd` dice **3,73 l'anno su tutto il tavolo**
-   (56 su 15 anni): con quattro case sedute, **meno di uno a testa**. Il **66%**
-   dei Consigli lascia un Eco, quindi non sono rari perche' il criterio e'
-   stretto: sono pochi perche' i Consigli sono **5,58** l'anno.
+   **E il mazzo di Echi non si fa piu': le carte Eco non esistono.** Il
+   committente aveva chiesto di contarli — *«gli echi sono solo tre/quattro per
+   partita, un po' poco»* — e `run_echo_probe.gd` ha risposto **3,73 l'anno su
+   tutto il tavolo** (56 su 15 anni): con quattro case sedute, **meno di uno a
+   testa**. Il **66%** dei Consigli lasciava un Eco, quindi non erano rari
+   perche' il criterio fosse stretto: erano pochi perche' i Consigli sono
+   **5,58** l'anno. Vista la misura, la parola e' stata *«lascia perdere gli
+   echi, che non dovrebbero piu' esistere come carte»*, e in **0.1.470**
+   ([D-500](DECISIONS.md#d-500)) le 48 carte Eco se ne sono andate. L'Eco-**ricordo**
+   — `CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — resta intero;
 
-   **E l'Eco non sa di chi e'.** Il payload porta `participants`, `outcome`,
+6. **l'Eco non sa di chi e'** — il payload porta `participants`, `outcome`,
    `tension_id`; chi ha **vinto** no. Le case partecipano a quasi tutti gli Echi
-   (3,1-4,0 su 3,73 scritti), quindi «partecipare» non distingue nessuno: un
-   mazzo di Echi oggi non saprebbe a chi darli, e darli a tutti farebbe lo
-   stesso mazzo per tutti. **E' un buco vero e sta in piedi da solo**, anche se
-   l'idea del mazzo di Echi non si fa;
-6. un'altra ora con l'app in mano.
+   (3,1-4,0 su 3,73 scritti), quindi «partecipare» non distingue nessuno. Era
+   nato come ostacolo al mazzo di Echi, e quel mazzo non si fa piu': **il buco
+   resta lo stesso**, perche' la Cronaca che la saga eredita non sa dire chi ha
+   ottenuto cosa;
+7. un'altra ora con l'app in mano.
+
+**Dove sono i numeri del punto 2 dopo 0.1.470.** Tolte le carte Eco, il tavolo
+misurato non e' piu' quello di 0.1.469 e i numeri vanno riletti insieme: i
+Consigli passano da 5,58 a **5,68** l'anno, le Verita' da 360 a **393/391**
+(misto) e da 402 a **421/418** (uniforme), e il cancello resta **0 su 8** su
+tutti e due i tavoli, 100 semi dal 7000. Le Azioni che prima diventavano un Eco
+adesso restano Azioni, e il mondo le registra.
 
 **La forma l'ha decisa il committente in 0.1.468:** *«il mazzetto viene creato
 diverso da entita' a entita' in base agli obiettivi e alla presenza sulla mappa
