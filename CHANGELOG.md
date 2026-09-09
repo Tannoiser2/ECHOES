@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.462 — A ogni Azione, cosa succede
+
+[D-492](docs/DECISIONS.md#d-492), giro 3 di [ISSUES 135](docs/ISSUES.md#135) e
+ultima delle cinque cose viste giocando: *«Mostrare l'ostaggio, Restituire
+l'ostaggio... ma che significa? Cosa succede?»*.
+
+**Il contenuto c'era gia'.** La faccia di una carta porta due campi: `label` —
+«Mostrare l'ostaggio» — e `text` — *«Abbassa quella questione di 2 e metti
+#tradimento_detto sul mondo»*. Il menu stampava solo il primo, e il secondo e'
+scritto su **96 facce su 96**. Non mancava contenuto: mancava di mostrarlo.
+
+**E la riga che ha fatto il lavoro e' un'altra.** Col menu a passi di D-490 il
+terzo passo quasi non si chiede — un passo con una voce sola si salta — quindi
+quando dietro un bersaglio c'e' **una carta sola** la scelta si ferma al secondo
+passo, e li' c'era il bersaglio e basta. Adesso li' c'e' anche l'effetto: senza
+quella riga il testo delle 96 facce sarebbe rimasto invisibile come prima.
+
+| venti anni, le stesse partite | 0.1.461 | **adesso** |
+|---|---|---|
+| voci che nominano una carta | 658 | 658 |
+| di quelle, dicono cosa succede | **0 (0%)** | **658 (100%)** |
+
+**E la sonda credeva di aver visto tutto.** `run_menu_probe` rispondeva «non
+scelgo»: il turno tornava alla policy e lei registrava senza cambiare niente —
+elegante, e cieca, perche' non vedeva mai il secondo e il terzo passo. Il primo
+numero che ha dato era *«voci che sono una carta da calare: 0»*, uno zero della
+sonda e non del gioco. **La quinta volta in questo progetto.** Adesso sceglie
+sempre la prima voce: gioca una partita sua, e vede ogni menu.
+
+**Con lei si misura anche la domanda del committente** — *«se un giocatore non
+pesca, rischia di restare senza carte?»*: le Occasioni in cui l'unica cosa da
+fare e' passare sono **22 su 360 (6%)** con la policy, che pesca quando le
+serve, e **52 su 360 (14%)** per una sonda che **non pesca mai** — piu' che
+raddoppiate. Il fabbisogno e'
+**11,96 carte l'anno** per seggio contro le **5,5** che la mappa da' da sola:
+ACQUISIRE non e' una mossa in piu', e' meta' del rubinetto.
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** e gli stessi identici numeri di
+0.1.461.
+
+---
+
 ## 0.1.461 — Il verbale che si legge, e SI RAFFREDDA che dice la regola
 
 [D-491](docs/DECISIONS.md#d-491), giro 2 di [ISSUES 135](docs/ISSUES.md#135).

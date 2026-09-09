@@ -24,6 +24,11 @@ const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 ## Un `io` che non sceglie: guarda, scrive, e lascia decidere alla policy.
 class Registro extends RefCounted:
 	var menus: Array = []
+	## **Il seggio che non pesca mai** (domanda del committente: *«se un
+	## giocatore non pesca carte, c'e' il rischio che non abbia carte per fare
+	## tutti gli atti?»*). Acceso, la sonda salta ACQUISIRE ogni volta che
+	## glielo offrono, e quello che resta si conta.
+	var never_draws: bool = false
 
 	func say(_text: String) -> void:
 		pass
@@ -46,7 +51,24 @@ class Registro extends RefCounted:
 		menus.append({
 			"prompt": prompt, "labels": seen, "subjects": about, "shortcuts": hidden,
 		})
-		return -1
+		# **Sceglie sempre la prima voce**, e non e' pigrizia: rispondendo «non
+		# scelgo» il turno tornava alla policy e la sonda non vedeva mai il
+		# **secondo** e il **terzo** passo del menu — quelli dove si scelgono il
+		# bersaglio e la carta. Misurava il primo e credeva di aver visto tutto.
+		#
+		# Prendendo sempre la prima, la sonda gioca una partita sua — diversa da
+		# quella della policy, e va detto — ma vede ogni menu che l'app
+		# mostrerebbe a una persona, che e' quello che deve misurare.
+		if labels.is_empty():
+			return -1
+		if never_draws:
+			for i in range(labels.size()):
+				var subject: Dictionary = (
+					(subjects[i] if i < subjects.size() else {}) as Dictionary
+				)
+				if str(subject.get("verb", "")) != "ACQUIRE":
+					return i
+		return 0
 
 
 func _initialize() -> void:
@@ -69,6 +91,9 @@ func _initialize() -> void:
 		return
 
 	var registro: Registro = Registro.new()
+	for argument in OS.get_cmdline_user_args():
+		if str(argument) == "--senza-pescare":
+			registro.never_draws = true
 	for i in range(runs):
 		var seats: Array = GameSession.seats_for(data, chronicle_id, first_seed + i)
 		var session: RefCounted = GameSession.new(data)
@@ -80,8 +105,13 @@ func _initialize() -> void:
 		await session.run(table)
 		session.dispose()
 
+	_skips_the_draw = registro.never_draws
 	_racconta(registro.menus)
 	quit(0)
+
+
+## Se questo giro ha saltato ACQUISIRE: serve solo al titolo del rapporto.
+var _skips_the_draw: bool = false
 
 
 func _racconta(menus: Array) -> void:
@@ -95,6 +125,12 @@ func _racconta(menus: Array) -> void:
 	var esempi: Array = []
 	var distinzioni: Dictionary = {}
 	var verbi: Dictionary = {}
+	var con_effetto: int = 0
+	var giocate: int = 0
+	var bersagli: int = 0
+	var con_effetto_qui: int = 0
+	var solo_passa: int = 0
+	var turni: int = 0
 	for menu in menus:
 		var labels: Array = (menu as Dictionary)["labels"] as Array
 		var subjects: Array = (menu as Dictionary)["subjects"] as Array
@@ -108,9 +144,26 @@ func _racconta(menus: Array) -> void:
 			gruppi[testo] = indici
 			if not _ha_un_posto(subjects[i] as Dictionary):
 				senza_posto += 1
-			var verbo: String = str((subjects[i] as Dictionary).get("verb", ""))
+			# **Dice anche cosa succede, o solo come si chiama** (D-492): una
+			# voce che porta l'effetto della faccia va a capo.
+			var about: Dictionary = subjects[i] as Dictionary
+			var verbo: String = str(about.get("verb", ""))
 			if verbo != "":
 				verbi[verbo] = int(verbi.get(verbo, 0)) + 1
+			# **Le voci che portano una carta da calare** (D-492): al secondo
+			# passo il bersaglio, al terzo la carta. Il primo passo nomina il
+			# verbo e basta — non c'e' ancora niente da calare — e non conta.
+			var un_posto: bool = (
+				about.has("region") or about.has("tension") or about.has("entity")
+			)
+			if str(about.get("asset", "")) != "":
+				giocate += 1
+				if str(labels[i]).contains("\n"):
+					con_effetto += 1
+			elif verbo != "" and un_posto:
+				bersagli += 1
+				if str(labels[i]).contains("\n"):
+					con_effetto_qui += 1
 		var doppie_qui: int = 0
 		for testo in gruppi:
 			var indici: Array = gruppi[testo] as Array
@@ -125,11 +178,19 @@ func _racconta(menus: Array) -> void:
 			doppie_menu += 1
 			doppie_voci += doppie_qui
 		scorciatoie += int((menu as Dictionary).get("shortcuts", 0))
+		# **Chi resta senza carte** (la domanda del committente): un menu
+		# dell'azione dove l'unica cosa da fare e' passare.
+		if str((menu as Dictionary)["prompt"]).contains("cosa fai?"):
+			turni += 1
+			if labels.size() <= 1:
+				solo_passa += 1
 		var chiave: String = _famiglia(str((menu as Dictionary)["prompt"]))
 		per_prompt[chiave] = int(per_prompt.get(chiave, 0)) + 1
 
 	print("")
-	print("== SONDA DEI MENU — cosa vede chi gioca ==")
+	print("== SONDA DEI MENU — cosa vede chi gioca%s ==" % (
+		", senza mai pescare" if _skips_the_draw else ""
+	))
 	print("")
 	print("Menu offerti a una persona: %d" % menus.size())
 	print("  voci in tutto            %d  (%.1f per menu, il piu' lungo %d)" % [
@@ -155,6 +216,19 @@ func _racconta(menus: Array) -> void:
 	print("  qualche esempio:")
 	for esempio in esempi:
 		print("    %s" % esempio)
+	print("")
+	print("  voci che **nominano una carta**: %d" % giocate)
+	print("  di quelle, dicono **cosa succede**: %d (%d%%)" % [
+		con_effetto, con_effetto * 100 / maxi(giocate, 1),
+	])
+	print("  voci che sono **un bersaglio** (la carta si sceglie dopo): %d" % bersagli)
+	print("  di quelle, con una carta sola dietro, dicono cosa succede: %d (%d%%)" % [
+		con_effetto_qui, con_effetto_qui * 100 / maxi(bersagli, 1),
+	])
+	print("")
+	print("**Occasioni in cui l'unica cosa da fare e' passare**: %d su %d (%d%%)" % [
+		solo_passa, turni, solo_passa * 100 / maxi(turni, 1),
+	])
 	print("")
 	print("**I verbi che una persona si vede offrire** (i sette di §10):")
 	for chiave in ["MOVE", "SCHEME", "INFLUENCE", "FORGE", "CLAIM", "ACQUIRE", "MARK"]:

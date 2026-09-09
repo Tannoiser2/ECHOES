@@ -45,6 +45,105 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-492 — A ogni Azione, cosa succede — e la sonda che credeva di aver visto tutto
+
+**implemented in 0.1.462.** Giro 3 di [ISSUES 135](ISSUES.md#135), sulla parola
+*«vai col giro 3»*. E' l'ultima delle cinque cose che il committente ha scritto
+giocando, e la piu' corta da rimediare:
+
+> *«Mostrare l'ostaggio, Restituire l'ostaggio ripetuto piu' volte ma che
+> significa? Cosa succede? Il meccanismo di gioco deve essere chiaro, a una
+> azione deve corrispondere una descrizione chiara di quello che devo fare o
+> quello che deve succedere.»*
+
+Le ripetizioni le ha tolte [D-490](#d-490). Restava la meta' che conta: **che
+significa?**
+
+### 1. Il contenuto c'era gia', e nessuno lo metteva sotto gli occhi
+
+La faccia di una carta porta **due campi**:
+
+| campo | la carta Ostaggio |
+|---|---|
+| `label` | «Mostrare l'ostaggio» |
+| `text` | «Abbassa quella questione di 2 e metti #tradimento_detto sul mondo.» |
+
+Il menu stampava **solo il primo**. E il secondo c'e' su **96 facce su 96** —
+tutte, senza eccezioni: contato sui dati, non stimato. Non mancava contenuto:
+mancava di mostrarlo.
+
+### 2. La mossa, e la riga che serviva davvero
+
+L'etichetta della giocata porta il nome **e** l'effetto, su due righe. Ma la
+riga che ha fatto il lavoro e' un'altra, ed e' venuta fuori misurando: con il
+menu a passi di D-490 **il terzo passo quasi non si chiede**, perche' un passo
+con una voce sola si salta. Se una carta sola sa dire quel verbo su quel
+bersaglio, la scelta si ferma al **secondo** passo — e li' l'etichetta era il
+bersaglio e basta.
+
+Quindi il secondo passo, **quando dietro c'e' una carta sola**, porta anche
+l'effetto di quella carta. Senza questa riga il testo delle 96 facce sarebbe
+rimasto invisibile esattamente come prima.
+
+### 3. E la sonda credeva di aver visto tutto
+
+`run_menu_probe` rispondeva **«non scelgo»** a ogni domanda: il turno tornava
+alla policy, la partita andava avanti da sola, e la sonda registrava i menu
+senza cambiare niente. Elegante, e **cieca**: non vedeva mai il secondo e il
+terzo passo, perche' al primo si fermava.
+
+Misurato prima di accorgersene: *«voci che sono una carta da calare: **0**»* —
+uno zero che non era del gioco, era della sonda. E' la quinta volta in questo
+progetto ([le trappole](../CLAUDE.md)), e il rimedio e' sempre lo stesso:
+provarlo su un caso che **deve** dare non-zero.
+
+Adesso la sonda **sceglie sempre la prima voce**. Gioca una partita sua —
+diversa da quella della policy, ed e' scritto nel file — ma vede ogni menu che
+l'app mostrerebbe a una persona.
+
+### 4. Misurato
+
+Venti anni, semi da 3000, **le stesse partite prima e dopo**:
+
+| | 0.1.461 | **adesso** |
+|---|---|---|
+| voci che **nominano una carta** | 658 | 658 |
+| di quelle, dicono **cosa succede** | **0 (0%)** | **658 (100%)** |
+| voci che sono un **bersaglio** | 1.557 | 1.557 |
+| di quelle, con una carta sola dietro, dicono cosa succede | 0 | **449 (28%)** |
+
+Il 28% non e' un difetto: sono i bersagli dietro cui c'e' **piu'** di una carta,
+e li' la carta si sceglie al passo dopo — dove il testo c'e' al 100%.
+
+Cancello dei 100 semi: **0 seggi bloccati su 8** sui due tavoli, e gli stessi
+identici numeri di 0.1.461. Questo giro cambia **cosa c'e' scritto sul
+pulsante**, e nient'altro.
+
+### 5. E un numero che il committente ha chiesto, misurato
+
+*«Se un giocatore non pesca carte... c'e' il rischio che non abbia carte per
+fare tutti gli atti?»*
+
+La sonda che adesso gioca lo dice, e la risposta e' **si', e si vede**:
+
+| chi gioca | Occasioni in cui l'unica cosa da fare e' passare |
+|---|---|
+| la policy, che pesca quando le serve | **22 su 360 (6%)** |
+| la sonda, che prende sempre la prima voce | 50 su 360 (13%) |
+| la sonda **che non pesca mai** (`--senza-pescare`) | **52 su 360 (14%)** |
+
+Il caso estremo si e' fatto misurare: la sonda salta ACQUISIRE ogni volta che
+glielo offrono — 112 volte in venti anni — e i turni buttati **piu' che
+raddoppiano** rispetto a chi pesca quando gli serve.
+
+Chi non sceglie di pescare **raddoppia** i turni buttati. E il conto strutturale
+lo conferma (`run_hand_probe`, 30 anni): fabbisogno **11,96 carte l'anno** per
+seggio — 6,19 di Azioni piu' 5,77 impegnate ai Consigli — contro le **5,5** che
+la mappa da' da sola. ACQUISIRE non e' una mossa in piu': e' meta' del
+rubinetto.
+
+---
+
 ## D-491 — Il verbale che si legge, e SI RAFFREDDA che dice la regola
 
 **implemented in 0.1.461.** Giro 2 di [ISSUES 135](ISSUES.md#135), sulla parola
