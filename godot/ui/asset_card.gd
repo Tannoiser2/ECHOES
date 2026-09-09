@@ -177,9 +177,15 @@ func render(p_asset: Dictionary, relevant: Array, council_open: bool, data: RefC
 	_name.add_theme_color_override(
 		"font_color", Color("#efe7d8") if is_relevant else Color("#c9bfae")
 	)
-	# Il verbo per primo: la domanda di chi ha la carta in mano non e' «quanto
-	# vale», e' «cosa succede se la calo» (D-228).
-	_verb.text = AssetText.action_note(asset)
+	# **Le due Azioni, coi loro nomi** (D-493). La domanda di chi ha la carta in
+	# mano non e' «quanto vale», e' «cosa posso farci» — e la risposta sono le
+	# due Azioni stampate, non la frase del verbo di §10, che e' una sola e su
+	# alcune carte dice pure un numero che le Azioni smentiscono.
+	var printed: Array = AssetText.printed_actions(asset)
+	_verb.text = (
+		AssetText.action_note(asset) if printed.is_empty()
+		else "\n".join(PackedStringArray(printed))
+	)
 
 	# What this card will actually add to the sum, in this Council, right now -
 	# asked of the resolver rather than recomputed here, so a card with a bonus

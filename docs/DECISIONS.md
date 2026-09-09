@@ -45,6 +45,88 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-493 — Le DUE Azioni della carta, e la parola «costa» che non era un costo
+
+**implemented in 0.1.463.** Quarto giro di [ISSUES 135](ISSUES.md#135), aperto
+da uno screenshot e da due domande del committente:
+
+> *«Ma quali sono le DUE azioni di questa carta? Ogni carta mostra solo una
+> azione. C'e' qualcosa che non va — e poi sono sempre frasi narrative e
+> criptiche: "costa: il mondo registra: il debito e' stato chiamato". Cosa vuol
+> dire?»*
+
+Sono due difetti diversi, e tutti e due misurati prima di toccare il codice.
+
+### Uno: la carta mostrava zero delle sue due Azioni
+
+**48 carte su 48 hanno due Azioni stampate.** La scheda della carta non ne
+mostrava nessuna: stampava `AssetText.action_note(asset)`, che e' la frase del
+**verbo dichiarato** — il campo `card_action.kind`, la grammatica digitale — e
+non e' nessuna delle due. E' un caso preciso della cosa che
+[D-492](#d-492) aveva gia' trovato nel menu: **il contenuto c'era e non lo
+mostrava nessuno.**
+
+Su *Credito* si leggeva questo:
+
+> «muovi di un passo il rapporto»
+
+mentre la faccia dice, e sono le due Azioni vere:
+
+> 1. Aprire credito: sale di 2 gradini nel rapporto con te e metti
+>    #indebitata sul mondo.
+> 2. Comprare il suo debito: scendi di 1 gradino con lei e pesca 2 Ricchezza.
+
+Un passo contro due gradini o uno: la frase generica non e' solo piu' povera,
+e' un **numero diverso** da entrambi.
+
+`printed_actions(asset)` legge le due `label` + `text` dalla faccia fisica; la
+scheda le mostra al posto della frase, e il suggerimento le porta numerate,
+prima di tutto il resto — perche' e' la domanda di chi ha la carta in mano:
+non «quanto vale», ma **cosa posso farci**.
+
+### E il verbo dichiarato resta, dichiarato per quello che e'
+
+Toglierlo del tutto sarebbe stato nascondere una cosa vera: **il motore ne
+esegue una sola** delle due (ISSUES 69), e chi gioca sull'app ha diritto di
+sapere quale. Quindi la riga resta, ultima, con la sua premessa:
+
+> Oggi l'app ne risolve una: *chiamare il credito e' rompere: il rapporto
+> scende di un grado*.
+
+**E in una carta su 48 le due grammatiche non si incontrano:** su *Debito
+Vecchio* il verbo dichiarato e' `CLAIM` e le due Azioni stampate sono
+`INFLUENCE` e `FORGE`. Mostrandole tutte e tre lo scarto si **vede**, dove
+prima era coperto dalla frase generica. Non e' rimediato qui — e' misurato e
+scritto, e va in ISSUES 69 con le altre cose della faccia fisica che il motore
+non esegue.
+
+### Due: «costa:» non nominava un costo
+
+La parola stava su **48 carte su 48** — tutte hanno `on_commit_effects` — e
+prometteva un prezzo. Quegli Effetti non sono un prezzo: scattano **se la
+carta si impegna al Consiglio**, e calare la carta non costa niente. La frase
+prometteva una cosa e ne nominava un'altra, che e' il difetto peggiore delle
+due: un giocatore che legge «costa» e non paga niente smette di credere alle
+parole della carta.
+
+Adesso dice quando succede:
+
+> se la impegni al Consiglio, il mondo registra: il debito e' stato chiamato
+
+Il contenuto e' lo stesso — la frase dell'Effetto viene da `effect_note`, che
+[D-336](#d-336) aveva gia' portato via dai nomi interni. Cambia la parola che
+la introduce, ed e' l'unica cosa che era falsa.
+
+### Il costo, e cosa non e' misurato
+
+Il cancello resta **0 su 8**, tavolo misto e uniforme, 100 semi su 7000: non
+si e' toccata una regola, solo quello che si legge. Le Verita' sono **319
+scritte, 317 diverse** sul tavolo misto e **324 scritte, 323 diverse** su
+quello uniforme. La cosa che nessuna sonda misura resta quella di sempre, ed e'
+l'ultima riga aperta di ISSUES 135: **un'ora con l'app in mano.**
+
+---
+
 ## D-492 — A ogni Azione, cosa succede — e la sonda che credeva di aver visto tutto
 
 **implemented in 0.1.462.** Giro 3 di [ISSUES 135](ISSUES.md#135), sulla parola

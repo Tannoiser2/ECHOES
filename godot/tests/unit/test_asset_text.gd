@@ -45,6 +45,12 @@ func test_every_card_says_what_becomes_of_it() -> void:
 ## A card that does something to the world when committed says so, in words,
 ## and one that does not stays quiet. This is what makes the 12 strongest cards
 ## a decision instead of the obvious play.
+##
+## Dal 0.1.463 la frase dice **quando** succede invece di chiamarlo un costo
+## (D-493): gli `on_commit_effects` scattano se la carta si impegna al
+## Consiglio, e non si paga niente per calarla.
+const WHEN_IT_HAPPENS: String = "se la impegni al Consiglio,"
+
 func test_a_card_that_costs_something_says_so() -> void:
 	var loaded: RefCounted = data()
 	var costed: int = 0
@@ -52,10 +58,14 @@ func test_a_card_that_costs_something_says_so() -> void:
 		var asset: Dictionary = loaded.assets[asset_id]
 		var note: String = AssetText.note(asset)
 		if (asset.get("on_commit_effects", []) as Array).is_empty():
-			assert_false(note.contains("costa:"), "%s non costa niente e non deve dirlo" % asset_id)
+			assert_false(
+				note.contains(WHEN_IT_HAPPENS), "%s non fa niente e non deve dirlo" % asset_id
+			)
 			continue
 		costed += 1
-		assert_true(note.contains("costa:"), "%s ha un costo e deve dichiararlo" % asset_id)
+		assert_true(
+			note.contains(WHEN_IT_HAPPENS), "%s ha un effetto e deve dire quando scatta" % asset_id
+		)
 	assert_true(costed >= 12, "le carte con un costo sono almeno le dodici da 3, misurate %d" % costed)
 
 
@@ -225,3 +235,82 @@ func test_an_unknown_target_is_declared_not_invented() -> void:
 	}, data())
 	assert_true(said.contains("non sa dire"),
 		"un posto che il vocabolario non conosce si dichiara: «%s»" % said)
+
+
+## --- le due Azioni, e il prezzo che non era un prezzo (D-493) ---------------
+
+
+## **Ogni carta mostra le sue due Azioni** (D-493, parola del committente con
+## la carta in mano: *«ma quali sono le DUE azioni di questa carta? Ogni carta
+## mostra solo una azione»*).
+##
+## Fino al 0.1.463 la carta in mano stampava la frase del **verbo dichiarato**
+## di §10 — una sola, e generica — mentre le Azioni stampate sulla faccia sono
+## **due su tutte e 48 le carte**. Il verbo dichiarato ha smesso di essere la
+## verita' della carta con D-283; il menu lo sapeva, la carta no.
+func test_a_card_shows_both_of_its_printed_actions() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati della scatola si leggono")
+	var senza: Array = []
+	for asset_id in loaded.assets:
+		var asset: Dictionary = loaded.assets[str(asset_id)] as Dictionary
+		var printed: Array = (
+			(asset.get("physical", {}) as Dictionary).get("actions", []) as Array
+		)
+		if printed.is_empty():
+			continue
+		var said: Array = AssetText.printed_actions(asset)
+		if said.size() != printed.size():
+			senza.append(str(asset["title"]))
+		for i in range(said.size()):
+			var face: Dictionary = printed[i] as Dictionary
+			assert_true(
+				str(said[i]).contains(str(face.get("label", ""))),
+				"«%s» dice il nome della sua Azione %d" % [str(asset["title"]), i + 1]
+			)
+			assert_true(
+				str(face.get("text", "")) == "" or str(said[i]).contains(str(face["text"])),
+				"e cosa succede: «%s» %d" % [str(asset["title"]), i + 1]
+			)
+	assert_eq(senza, [], "nessuna carta ne perde per strada")
+
+
+## **E il tooltip parte da quelle**, non dal verbo. La prova guarda una carta
+## dove i due dicono cose diverse: *Credito* porta «di 2 gradini» e «di 1», e
+## il verbo di §10 dice «di un passo».
+func test_the_tooltip_leads_with_the_two_actions() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati si leggono")
+	var asset: Dictionary = loaded.assets["AST_WEALTH_CREDIT"] as Dictionary
+	var said: String = AssetText.tooltip(asset, loaded)
+	assert_true(said.contains("Aprire credito"), "la prima Azione c'e': %s" % said)
+	assert_true(said.contains("Comprare il suo debito"), "e la seconda: %s" % said)
+	# La frase del verbo dichiarato resta, ma **dopo** le due e dichiarata per
+	# quello che e': una delle due, quella che l'app risolve oggi (ISSUES 69).
+	# Prima stava da sola e sembrava l'unica Azione della carta.
+	assert_true(
+		said.contains("Oggi l'app ne risolve una:"),
+		"e dice quale delle due il motore esegue: %s" % said
+	)
+	assert_true(
+		said.find("Aprire credito") < said.find("Oggi l'app ne risolve una:"),
+		"le due Azioni vengono prima: %s" % said
+	)
+
+
+## **«Costa» non era un costo** (D-493, parola del committente: *«costa: il
+## mondo registra: il debito e' stato chiamato. Cosa vuol dire?»*).
+##
+## Sono gli `on_commit_effects`: succedono quando la carta si **impegna al
+## Consiglio**, non quando la si cala, e non si paga niente. La parola
+## prometteva un prezzo e ne nominava un altro.
+func test_what_looked_like_a_price_says_when_it_happens() -> void:
+	var loaded: RefCounted = DataSet.new()
+	assert_true(loaded.load_from("res://data"), "i dati si leggono")
+	var asset: Dictionary = loaded.assets["AST_WEALTH_CREDIT"] as Dictionary
+	var said: String = AssetText.note(asset, loaded)
+	assert_true(
+		said.contains("se la impegni al Consiglio"),
+		"dice quando succede: %s" % said
+	)
+	assert_false(said.contains("costa:"), "e non lo chiama piu' un costo: %s" % said)

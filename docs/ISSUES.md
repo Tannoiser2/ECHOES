@@ -10184,7 +10184,24 @@ guardano si guardano:
    il primo passo: adesso gioca, e con lei si misura anche **quanti turni si
    buttano senza pescare** — 6% con la policy, **13%** prendendo sempre la
    prima voce;
-5. **un'ora con l'app in mano**, che nessuna sonda misura.
+5. ✔ **le DUE Azioni della carta, e «costa» che non era un costo** — **giro 4
+   fatto in 0.1.463** ([D-493](DECISIONS.md#d-493)), sullo screenshot e sulle
+   due domande: *«Ma quali sono le DUE azioni di questa carta?»* e *«costa: il
+   mondo registra... cosa vuol dire?»*. La scheda mostrava **zero delle due**
+   Azioni stampate — e sono stampate su **48 carte su 48**: al loro posto
+   c'era la frase del verbo dichiarato, che su *Credito* dice «un passo» dove
+   la faccia dice «2 gradini» e «1 gradino». Adesso ci sono tutte e due, e il
+   verbo dichiarato resta ultimo con la sua premessa — *«Oggi l'app ne risolve
+   una»* — perche' il motore ne esegue una sola (voce 69). E «costa:», che
+   stava su **48 carte su 48** e non nominava un costo, dice quando succede:
+   *«se la impegni al Consiglio»*;
+6. **un'ora con l'app in mano**, che nessuna sonda misura.
+
+**Una cosa misurata qui e non rimediata:** su **una carta su 48** — *Debito
+Vecchio* — il verbo dichiarato (`CLAIM`) non e' nessuno dei due stampati
+(`INFLUENCE`, `FORGE`). Mostrando tutte e tre le righe lo scarto si vede;
+sta con le altre cose della faccia fisica che il motore non esegue, nella
+voce 69.
 
 
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo

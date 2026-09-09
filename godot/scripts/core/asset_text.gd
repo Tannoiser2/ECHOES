@@ -157,7 +157,12 @@ static func note(asset: Dictionary, data = null) -> String:
 	parts.append(str(DISPOSITION.get(str(asset["discard_or_retain_rule"]), "")))
 	var cost: String = cost_note(asset, data)
 	if cost != "":
-		parts.append("costa: %s" % cost)
+		# **Non e' un costo: e' quello che lascia al mondo** (D-493, parola del
+		# committente: *«costa: il mondo registra: il debito e' stato chiamato.
+		# Cosa vuol dire?»*). Sono gli `on_commit_effects`, e succedono quando
+		# la carta si impegna al Consiglio — non quando la si cala, e non si
+		# paga niente. «Costa» prometteva un prezzo e ne nominava un altro.
+		parts.append("se la impegni al Consiglio, %s" % cost)
 	return " · ".join(PackedStringArray(parts))
 
 
@@ -271,6 +276,32 @@ static func action_note(asset: Dictionary) -> String:
 	return str(ACTIONS.get(kind, "un'azione senza parole (%s)" % kind))
 
 
+## **Le due Azioni della carta, coi loro nomi** (D-493, parola del committente
+## con la carta in mano: *«ma quali sono le DUE azioni di questa carta? Ogni
+## carta mostra solo una azione»*).
+##
+## Aveva ragione, e il difetto e' piu' vecchio di quanto sembri: la carta in
+## mano stampava `action_note` — la frase del **verbo dichiarato** in
+## `card_action.kind`, quella di §10 — e le due Azioni stampate sulla faccia non
+## le guardava nessuno. **Tutte e 48 le carte ne hanno due**, contate.
+##
+## E la frase generica non era solo generica: su *Credito* diceva *«muovi di un
+## passo il rapporto»* mentre le sue Azioni dicono **due gradini** e **uno**, e
+## su *Debito Vecchio* prometteva RIVENDICARE quando la faccia porta FORGIARE e
+## INFLUENZARE. Il verbo dichiarato ha smesso di essere la verita' della carta
+## con [D-283](../../docs/DECISIONS.md#d-283) — *«i verbi di una carta sono
+## quelli stampati sulla sua faccia»* — e il menu lo sa da allora: la carta no.
+static func printed_actions(asset: Dictionary) -> Array:
+	var said: Array = []
+	for face in ((asset.get("physical", {}) as Dictionary).get("actions", []) as Array):
+		var label: String = str((face as Dictionary).get("label", ""))
+		var text: String = str((face as Dictionary).get("text", ""))
+		if label == "" and text == "":
+			continue
+		said.append(label if text == "" else "%s: %s" % [label, text])
+	return said
+
+
 ## What this card adds to the Support front of a Council on this Tension - the
 ## resolver's own arithmetic, not a copy of it.
 static func value_on(asset: Dictionary, relevant_families: Array) -> int:
@@ -283,11 +314,24 @@ static func tooltip(asset: Dictionary, data = null) -> String:
 	var lines: Array = ["%s — %s, forza %d" % [
 		str(asset["title"]), str(asset["family"]).to_lower(), int(asset["strength"]),
 	]]
-	# **Il verbo per primo.** E' la domanda che si fa chi ha la carta in mano:
-	# non «quanto vale», ma «cosa succede se la calo».
+	# **Le due Azioni per prime** (D-493). E' la domanda che si fa chi ha la
+	# carta in mano: non «quanto vale», ma «cosa posso farci». Fino al 0.1.463
+	# qui c'era la frase del verbo dichiarato, che e' una sola e non e' nessuna
+	# delle due.
+	var printed: Array = printed_actions(asset)
 	var verb: String = action_note(asset)
-	if verb != "":
-		lines.append(verb)
+	if printed.is_empty():
+		if verb != "":
+			lines.append(verb)
+	else:
+		for i in range(printed.size()):
+			lines.append("%d. %s" % [i + 1, str(printed[i])])
+		# La faccia ne offre due, il motore ne esegue una (ISSUES 69). Dirlo
+		# e' piu' onesto che stampare la frase del verbo dichiarato come se
+		# fosse una terza Azione — o che tacerla, e lasciare il giocatore a
+		# scoprire da solo quale delle due l'app gli risolve.
+		if verb != "":
+			lines.append("Oggi l'app ne risolve una: %s" % verb)
 	lines.append(note(asset, data))
 	var rules: String = str(asset.get("rules_text", ""))
 	if rules != "":
