@@ -1365,6 +1365,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai.extend(due_domande(documenti))
     guai.extend(azione_del_motore(documenti))
     guai.extend(params_muti(documenti))
+    guai.extend(il_velo_sulle_carte(documenti))
     return guai
 
 
@@ -1486,6 +1487,72 @@ def due_facce_uguali(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             "«%s» e' dichiarata fra le facce gemelle e non e' una carta: "
             "togli la riga da FACCE_GEMELLE_NOTE." % carta_id
         )
+    return guai
+
+
+# **Che cosa TRAMARE fa vedere**, secondo la regola della Chronicle (D-495).
+# Le due regole di `veiled_tensions` (D-187) fanno scoprire cose diverse, e una
+# faccia che racconta l'altra dice al giocatore una cosa che non succede.
+VELO_DICE: Dict[str, str] = {
+    "HIDES_ALL": "questione velata",
+    "HIDES_THRESHOLD": "a quanto esplode",
+}
+
+
+def il_velo_sulle_carte(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Una faccia TRAMARE dice cosa si scopre, con la regola spedita** (D-495).
+
+    `veiled_tensions` decide che cosa una domanda velata tiene coperto (D-187):
+    con `HIDES_ALL` il numero non si vede, con `HIDES_THRESHOLD` — la regola
+    della Chronicle spedita, chiesta dal committente — **il valore e' pubblico
+    ed e' la soglia a stare coperta**.
+
+    Otto facce su 96 dicevano *«Scopri una questione velata»*, che e' la frase
+    della regola di prima: non diceva **cosa** si scopre, e lasciava credere
+    coperto un numero che sta in chiaro. Il pannello d'aiuto lo diceva gia'
+    giusto, leggendolo dalla Chronicle; la carta no, perche' al tavolo e' di
+    cartone e la frase e' stampata.
+
+    Allora la guardia fa il collegamento che il cartone non puo' fare: legge la
+    regola dalle Chronicle e pretende che le facce TRAMARE portino la frase di
+    **quella** regola e non dell'altra. Il giorno in cui una Chronicle cambia
+    regola, va rossa qui invece che in mano a chi gioca.
+    """
+    # **Il campo sta sulla Chronicle, non sotto `rules`.** Cercarlo nel posto
+    # sbagliato non da' errore: da' il default, e la guardia direbbe che le
+    # otto facce giuste sono sbagliate — con la sicurezza di chi ha letto un
+    # dato che non ha letto. Preso al primo giro, e vale la riga di commento.
+    regole = {
+        str(c.get("veiled_tensions", "HIDES_ALL"))
+        for c in documenti.get("chronicle", [])
+    } or {"HIDES_ALL"}
+    if len(regole) != 1:
+        # Piu' Chronicle con regole diverse: la carta e' una sola e non puo'
+        # dire due cose. Si dichiara qui il giorno che succede.
+        return [
+            "le Chronicle non dicono la stessa cosa sul velo (%s): una carta "
+            "stampata non puo' raccontarle tutte e due — decidi quale regola "
+            "sta nella scatola." % ", ".join(sorted(regole))
+        ]
+    regola = regole.pop()
+    dice = VELO_DICE.get(regola)
+    if dice is None:
+        return ["regola del velo sconosciuta: %s — aggiungila a VELO_DICE." % regola]
+    altre = {v for k, v in VELO_DICE.items() if k != regola}
+    guai: List[str] = []
+    for carta in documenti.get("asset", []):
+        for i, azione in enumerate((carta.get("physical") or {}).get("actions") or []):
+            if str((azione or {}).get("template", "")) != "SCHEME":
+                continue
+            testo = str((azione or {}).get("text", ""))
+            for sbagliata in altre:
+                if sbagliata in testo:
+                    guai.append(
+                        "%s Azione %d: dice «%s», che e' la frase di un'altra "
+                        "regola del velo. La Chronicle dice %s, e allora la "
+                        "faccia deve dire «%s»."
+                        % (str(carta.get("id", "")), i + 1, sbagliata, regola, dice)
+                    )
     return guai
 
 
@@ -1831,6 +1898,17 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                 continue
             azione.setdefault("params", {})["delta"] = -1
             return
+
+    def velo_raccontato_male(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Fabbricato**: si rimette su una faccia TRAMARE la frase della regola
+        # che la Chronicle **non** usa. E' il difetto vero che le otto facce
+        # avevano, e si pianta invece di cercarlo, perche' adesso e' riparato.
+        for carta in prova["asset"]:
+            for azione in ((carta.get("physical") or {}).get("actions") or []):
+                if str(azione.get("template", "")) != "SCHEME":
+                    continue
+                azione["text"] = "Scopri una questione velata che tocca il luogo."
+                return
 
     def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["region"][0]["tags"] = []
@@ -2319,6 +2397,11 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Azioni marcate «engine»"),
         pianta("un parametro che il verbo della carta non legge", parametro_muto,
                "non lo legge"),
+        # **Il velo raccontato con la regola sbagliata** (D-495): otto facce su
+        # 96 dicevano «Scopri una questione velata» quando la Chronicle spedita
+        # tiene coperta la soglia e lascia il valore in chiaro.
+        pianta("una faccia TRAMARE che racconta l'altra regola del velo",
+               velo_raccontato_male, "frase di un'altra regola del velo"),
         # **La Risonanza cieca** (D-482), fabbricata sulla prima carta a due
         # Temi: le 39 che avevano il difetto sono state riparate.
         pianta("carta con due Temi e nessuna scelta", risonanza_cieca,

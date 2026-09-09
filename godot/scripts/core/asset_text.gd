@@ -302,34 +302,6 @@ static func printed_actions(asset: Dictionary) -> Array:
 	return said
 
 
-## **Quale delle due il motore risolve** (D-494).
-##
-## D-493 aveva messo le due Azioni sulla carta e lasciato in coda la frase del
-## verbo dichiarato, con la sua premessa. Era vera e restava criptica: e' una
-## **terza** frase, generica, e su alcune carte porta un numero che non e' ne'
-## quello della prima Azione ne' quello della seconda — su *Credito* «un passo»
-## contro «2 gradini» e «1 gradino». Il committente, con la carta in mano:
-## *«sono sempre frasi narrative e criptiche»*.
-##
-## Adesso la riga **punta a una delle due**, per numero e per nome, e non
-## inventa niente: la risposta e' nel dato (`engine` sulla faccia), scritta da
-## `tools/engine_action.py` — dedotta su **29 carte su 48**, dove il verbo
-## dichiarato compare su una sola delle due Azioni, e letta carta per carta
-## sulle **18** in cui le due lo pronunciano tutte e due.
-##
-## Torna vuota quando il motore non risolve nessuna delle due: **una carta su
-## 48**, e chi legge deve saperlo (ISSUES 69).
-static func engine_action(asset: Dictionary) -> String:
-	var faces: Array = (asset.get("physical", {}) as Dictionary).get("actions", []) as Array
-	for i in range(faces.size()):
-		var face: Dictionary = faces[i] as Dictionary
-		if bool(face.get("engine", false)):
-			return "l'app risolve la %d — %s" % [i + 1, str(face.get("label", ""))]
-	return ""
-
-
-## What this card adds to the Support front of a Council on this Tension - the
-## resolver's own arithmetic, not a copy of it.
 static func value_on(asset: Dictionary, relevant_families: Array) -> int:
 	return ConfluenceResolution.asset_value(asset, relevant_families, "SUPPORT")
 
@@ -345,22 +317,21 @@ static func tooltip(asset: Dictionary, data = null) -> String:
 	# qui c'era la frase del verbo dichiarato, che e' una sola e non e' nessuna
 	# delle due.
 	var printed: Array = printed_actions(asset)
-	var verb: String = action_note(asset)
 	if printed.is_empty():
+		var verb: String = action_note(asset)
 		if verb != "":
 			lines.append(verb)
 	else:
+		# **E qui non si aggiunge altro** (D-495). D-493 aveva messo in coda la
+		# frase del verbo dichiarato e D-494 l'aveva fatta puntare a una delle
+		# due: erano tutt'e due sbagliate, perche' dicevano che il motore ne
+		# esegue una sola. Non e' vero da [D-283](../../docs/DECISIONS.md#d-283):
+		# chi cala dice **quale** delle due, e il verbo viene dalla faccia. Su
+		# venti anni giocati, 56 calate su 563 pronunciano un verbo che il
+		# `card_action` non nomina nemmeno. Le due Azioni bastano: sono due, e
+		# si giocano tutt'e due.
 		for i in range(printed.size()):
 			lines.append("%d. %s" % [i + 1, str(printed[i])])
-		# La faccia ne offre due, il motore ne esegue una (ISSUES 69). D-494:
-		# la riga **nomina quale**, invece di ripetere la frase generica del
-		# verbo — che e' una terza frase, e su alcune carte porta un numero
-		# diverso da entrambe. Dove il motore non ne esegue nessuna, lo dice.
-		var which: String = engine_action(asset)
-		lines.append(
-			"Oggi %s" % which if which != ""
-			else "Oggi l'app non risolve nessuna delle due"
-		)
 	lines.append(note(asset, data))
 	var rules: String = str(asset.get("rules_text", ""))
 	if rules != "":

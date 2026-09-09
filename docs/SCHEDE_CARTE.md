@@ -128,7 +128,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "①",
-      "testo": "Contare le teste — Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere."
+      "testo": "Contare le teste — Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere."
     },
     {
       "voce": "②",

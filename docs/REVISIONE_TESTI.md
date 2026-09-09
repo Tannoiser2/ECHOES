@@ -7688,7 +7688,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_AUTHORITY_CENSUS, azione 1`**
 > Contare le teste
 
-> Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+> Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.
 
 
 **`AST_AUTHORITY_CENSUS, azione 2`**
@@ -7940,7 +7940,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_BONDS_BLOOD_TIE, azione 1`**
 > Cercare il legame
 
-> Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+> Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami.
 
 
 **`AST_BONDS_BLOOD_TIE, azione 2`**
@@ -8136,7 +8136,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_FORCE_BORDER_WATCH, azione 1`**
 > Guardare chi arriva
 
-> Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+> Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.
 
 
 **`AST_FORCE_BORDER_WATCH, azione 2`**
@@ -8360,7 +8360,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_KNOWLEDGE_ARCHIVE, azione 1`**
 > Cercare indietro
 
-> Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
+> Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Sapere.
 
 
 **`AST_KNOWLEDGE_ARCHIVE, azione 2`**
@@ -8444,7 +8444,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_KNOWLEDGE_PROOF, azione 1`**
 > Mostrare la prova
 
-> Scopri una questione velata e metti #sapere_condiviso sul mondo.
+> Leggi a quanto esplode una domanda e metti #sapere_condiviso sul mondo.
 
 
 **`AST_KNOWLEDGE_PROOF, azione 2`**
@@ -8500,7 +8500,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_KNOWLEDGE_RUMOR, azione 1`**
 > Ascoltare la voce
 
-> Scopri una questione velata che tocca il luogo.
+> Leggi a quanto esplode una domanda che tocca il luogo.
 
 
 **`AST_KNOWLEDGE_RUMOR, azione 2`**
@@ -8612,7 +8612,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_PEOPLE_ELDERS, azione 1`**
 > Ascoltarli
 
-> Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+> Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami.
 
 
 **`AST_PEOPLE_ELDERS, azione 2`**
@@ -8948,7 +8948,7 @@ possono spostare nella frase, non togliere. 3255 testi in lettura.
 **`AST_WEALTH_SALT, azione 1`**
 > Vendere il sale
 
-> Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
+> Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Ricchezza.
 
 
 **`AST_WEALTH_SALT, azione 2`**

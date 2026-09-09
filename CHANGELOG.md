@@ -5,6 +5,57 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.465 — La riga che diceva il falso, e il velo raccontato con la regola di prima
+
+[D-495](docs/DECISIONS.md#d-495), giro 6 di [ISSUES 135](docs/ISSUES.md#135),
+e prima di tutto **una correzione a [D-494](docs/DECISIONS.md#d-494)**.
+
+**La riga era falsa.** Il committente: *«cosa significa "l'APP ne risolve una"?
+Possibile che non si riesca ad avere una carta asset definitiva e coerente?»*.
+D-493 l'aveva messa come frase generica del verbo, D-494 l'aveva fatta puntare
+a una delle due: tutt'e due partivano dalla premessa che il motore ne esegua
+**una sola**, e quella premessa e' falsa da
+[D-283](docs/DECISIONS.md#d-283) — chi cala dice **quale** delle due, e il
+verbo viene dalla faccia.
+
+Lo dice la sonda, non un ragionamento: su venti anni dal seme 7000, la tabella
+«per azione calata» porta **ACQUISIRE 36** e **SEGNARE 20**, che la tabella
+«per azione dichiarata» non nomina affatto. **56 calate su 563 — il 9,9% —
+pronunciano un verbo che il `card_action` non conosce.** La riga se n'e'
+andata e **non e' stata sostituita**: la carta dice le sue due Azioni e basta.
+
+**E otto facce su 96 raccontavano il velo con la regola di prima.** Con
+`veiled_tensions: HIDES_THRESHOLD` — la regola spedita, chiesta dal committente
+— il valore di una domanda velata e' **pubblico** ed e' **la soglia** a stare
+coperta. *«Scopri una questione velata»* non diceva cosa si scopre e lasciava
+credere coperto un numero in chiaro. Adesso: *«Leggi a quanto esplode una
+domanda che tocca il luogo»*.
+
+### Cambiato
+- `AssetText`: via la riga in coda e via `engine_action()`. Il suggerimento
+  porta le due Azioni e il resto della scheda, niente altro.
+- Le 8 facce TRAMARE dicono cosa si scopre, con la regola della Chronicle.
+- `validate_physical.py`: guardia nuova che legge `veiled_tensions` dalle
+  Chronicle e pretende che le facce TRAMARE portino la frase di quella regola.
+  Difetto piantato nuovo: **59** in tutto.
+- `engine` cambia mestiere: non «quale l'app risolve» ma **a quale faccia il
+  `card_action` corrisponde** — il ripiego. Regge su 47 carte su 48.
+
+### Misurato
+- calate che pronunciano un verbo assente dal `card_action`: **56 / 563**
+  (**9,9%**), venti anni dal seme 7000.
+- facce che raccontavano il velo con la regola vecchia: **8 / 96**.
+- il ponte fra le due grammatiche regge su **47 / 48** carte.
+- cancello **0 seggi bloccati su 8**, tavolo misto e uniforme, 100 semi su
+  7000. Sono cambiati testi e una guardia: nessuna regola.
+
+**Una guardia ha sbagliato posto al primo giro**, e vale scriverlo: cercava
+`veiled_tensions` sotto `rules`, dove non sta. Non ha dato errore — ha dato il
+**default**, e con quello ha dichiarato sbagliate le otto facce appena
+riscritte giuste.
+
+---
+
 ## 0.1.464 — Quale delle due il motore risolve, e il parametro che non era muto
 
 [D-494](docs/DECISIONS.md#d-494), giro 5 di [ISSUES 135](docs/ISSUES.md#135).

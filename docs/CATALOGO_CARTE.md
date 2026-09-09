@@ -230,7 +230,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Contare le teste.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+A. **Contare le teste.** Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.
 B. **Contare i sacchi.** Togli #razionato dal luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Potere **oppure** Vie +1, scegli tu. Contare e' un atto di governo, e chi viene contato lo sa. Se il luogo porta #pascolo: Potere +2, e ci resta #malcontento.
@@ -564,7 +564,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Cercare il legame.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+A. **Cercare il legame.** Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami.
 B. **Fermare la famiglia.** Alza un Villaggio in un luogo dove hai presenza: il sangue mette radici dove si ferma.
 
 **RISONANZA (avviene sempre)** — Scalda Antico **oppure** Fede +1, scegli tu. Il sangue non e' un argomento: e' un modo di non doverne portare nessuno. Se l'erede e' stato nominato: Antico +2.
@@ -993,7 +993,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Guardare chi arriva.** Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.
+A. **Guardare chi arriva.** Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.
 B. **Far sapere che il confine e' tuo.** Rivendica il luogo: al prossimo Consiglio la sua Domanda si apre.
 
 **RISONANZA (avviene sempre)** — Scalda Terra **oppure** Potere +1, scegli tu. Un confine sorvegliato e' un confine che qualcuno ha appena disegnato. Se il luogo porta #pascolo: Terra +2, e ci resta #malcontento.
@@ -1279,7 +1279,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Mostrare la prova.** Scopri una questione velata e metti #sapere_condiviso sul mondo.
+A. **Mostrare la prova.** Leggi a quanto esplode una domanda e metti #sapere_condiviso sul mondo.
 B. **Depositare la prova.** Alza un Archivio in un luogo dove hai presenza, e la prova resta li' dove tutti sanno di trovarla.
 
 **RISONANZA (avviene sempre)** — Scalda Fede **oppure** Potere +1, scegli tu. Una prova non chiude una discussione: decide chi dovra' chiamare bugiardo chi. Se quello che si e' saputo lo sanno tutti: Fede +2.
@@ -1374,7 +1374,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Cercare indietro.** Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.
+A. **Cercare indietro.** Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Sapere.
 B. **Aprire l'archivio.** Alza un Archivio in un luogo dove hai presenza.
 
 **RISONANZA (avviene sempre)** — Scalda Antico **oppure** Vie +1, scegli tu. Un archivio non conserva il passato: conserva la versione che qualcuno ha avuto il tempo di scrivere. Se i conti sono pubblici: Antico +2.
@@ -1517,7 +1517,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Ascoltare la voce.** Scopri una questione velata che tocca il luogo.
+A. **Ascoltare la voce.** Leggi a quanto esplode una domanda che tocca il luogo.
 B. **Mettere in giro la voce.** Rivendica il luogo: la voce arriva prima di te, e al prossimo Consiglio la sua Domanda si apre.
 
 **RISONANZA (avviene sempre)** — Scalda Antico **oppure** Fede +1, scegli tu. Una voce di corridoio e' una verita' che non ha ancora deciso di chi essere. Se il tradimento e' stato detto ad alta voce: Antico +2.
@@ -1803,7 +1803,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Ascoltarli.** Scopri una questione velata che tocca il luogo, e pesca 1 Legami.
+A. **Ascoltarli.** Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami.
 B. **Farli parlare in pubblico.** Togli #lutto o #malcontento dal luogo.
 
 **RISONANZA (avviene sempre)** — Scalda Antico **oppure** Fede +1, scegli tu. Chi ricorda decide cosa c'era prima, e cosa c'era prima decide cosa e' giusto adesso. Se la fede ha avuto un posto: Antico +2.
@@ -2232,7 +2232,7 @@ no border. Not gory, not horror.
 
 **AZIONE — scegli 1**
 
-A. **Vendere il sale.** Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.
+A. **Vendere il sale.** Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Ricchezza.
 B. **Salare per l'inverno.** Alza un Granaio in un luogo dove hai presenza: quello che si sala, si tiene.
 
 **RISONANZA (avviene sempre)** — Scalda Vie **oppure** Sopravvivenza +1, scegli tu. Il sale e' l'unica merce che tutti comprano e nessuno vuole nominare. Se il pedaggio si divide: Vie +2.

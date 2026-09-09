@@ -45,6 +45,92 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-495 — La riga che diceva il falso, e il velo raccontato con la regola di prima
+
+**implemented in 0.1.465.** Giro 6 di [ISSUES 135](ISSUES.md#135), sulla parola
+*«mergia e vai col giro 6»*, e prima di tutto **una correzione a
+[D-494](#d-494)**, che e' mio.
+
+### La riga era falsa, e l'avevo scritta io due volte
+
+Il committente, con la carta in mano:
+
+> *«E cosa significa "l'APP ne risolve una"? Possibile che non si riesca ad
+> avere una carta asset definitiva e coerente?»*
+
+Aveva ragione, e piu' di quanto avessi capito: quella riga non era solo
+sgraziata, **diceva una cosa che non e' vera**.
+
+[D-493](#d-493) l'aveva messa come frase generica del verbo dichiarato; D-494
+l'aveva fatta puntare a una delle due Azioni. Tutt'e due partivano dalla stessa
+premessa — *il motore ne esegue una sola* — e quella premessa e' **falsa da
+[D-283](#d-283)**: una carta stampa due Azioni, chi cala dice **quale**
+(`face_action` e' l'indice) e il verbo viene dalla faccia. Il `card_action.kind`
+non e' il verbo che si gioca: e' il **ripiego** per quando l'indice non arriva.
+
+Non l'ho dedotto: l'ha detto la sonda. `run_card_ledger` stampa due tabelle
+affiancate, e su venti anni dal seme 7000 dicono cose diverse:
+
+| per azione **dichiarata** | per azione **calata** |
+|---|---|
+| CLAIM, FORGIARE, INFLUENZARE, MUOVERE, TRAMARE | le stesse, **piu' ACQUISIRE 36 e SEGNARE 20** |
+
+**56 calate su 563 — il 9,9% — pronunciano un verbo che il `card_action` non
+nomina nemmeno.** E la sonda lo sapeva gia': il suo commento porta la riga
+*«Nona volta che una sonda di questo progetto guarda altrove»*, scritta quando
+D-414 se ne accorse. L'avevo davanti e ho guardato il campo sbagliato lo
+stesso.
+
+**Quindi la riga se ne va, e non viene sostituita.** Le due Azioni sono due, si
+giocano tutt'e due, e la carta non deve confessare niente: una carta dice cosa
+fa la carta, non cosa l'app sa fare.
+
+**Il campo `engine` resta e cambia mestiere.** Non dice piu' «quale l'app
+risolve» — l'app le risolve tutt'e due — ma **a quale faccia il `card_action`
+corrisponde**: e' il ripiego, e un ripiego che non e' nessuna delle Azioni
+stampate e' un ripiego che mente. Regge su **47 carte su 48**; la sola che non
+lo fa e' *Debito Vecchio*, dichiarata. Il lavoro di D-494 non si butta — la
+lettura carta per carta, il cancello, il difetto di *Favore* restano tutti —
+cambia la frase che ne usciva.
+
+### E il velo raccontava la regola di prima
+
+L'altra parola del committente, sullo stesso screenshot:
+
+> *«Ma ancora azioni che fanno riferimento a tensioni velate???»*
+
+`veiled_tensions` decide che cosa una domanda velata tiene coperto ([D-187](#d-187)):
+con `HIDES_ALL` il numero non si vede; con `HIDES_THRESHOLD` — la regola della
+Chronicle **spedita**, chiesta dal committente stesso: *«il mondo lo sa quale e'
+il valore ma i giocatori no, e quindi nessuno sa quando le velate si attivano»* —
+il valore e' pubblico ed e' **la soglia** a stare coperta.
+
+**Otto facce su 96** dicevano *«Scopri una questione velata»*, che e' la frase
+della regola di prima: non diceva **cosa** si scopre, e lasciava credere coperto
+un numero che sta in chiaro. Il pannello d'aiuto lo diceva gia' giusto, perche'
+lo genera leggendo la Chronicle; la carta no, perche' al tavolo e' di cartone e
+la frase e' stampata.
+
+Adesso dicono: *«Leggi a quanto esplode una domanda che tocca il luogo»*.
+
+E la guardia fa il collegamento che il cartone non puo' fare: legge la regola
+dalle Chronicle e pretende che le facce TRAMARE portino la frase di **quella**
+regola. Il giorno in cui una Chronicle cambia regola va rosso li', invece che in
+mano a chi gioca.
+
+**La guardia ha sbagliato posto al primo giro**, e vale scriverlo: cercava
+`veiled_tensions` sotto `rules`, dove non sta. Non ha dato errore — ha dato il
+**default**, e con quello ha dichiarato sbagliate le otto facce appena
+riscritte giuste. Un dato letto nel posto sbagliato non tace: risponde, e
+risponde con sicurezza.
+
+### Il costo
+
+Cancello **0 seggi bloccati su un solo livello su 8**, tavolo misto e uniforme,
+100 semi su 7000. Sono cambiati testi e una guardia: nessuna regola.
+
+---
+
 ## D-494 — Quale delle due il motore risolve, e il parametro che non era muto
 
 **implemented in 0.1.464.** Giro 5 di [ISSUES 135](ISSUES.md#135), sulla parola

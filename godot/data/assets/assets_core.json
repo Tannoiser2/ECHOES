@@ -145,7 +145,7 @@
         "actions": [
           {
             "label": "Guardare chi arriva",
-            "text": "Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.",
+            "text": "Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.",
             "puts_tag": [
               "discovery:the_omen"
             ],
@@ -946,7 +946,7 @@
         "actions": [
           {
             "label": "Contare le teste",
-            "text": "Scopri una questione velata che tocca quel luogo, e pesca 1 Sapere.",
+            "text": "Leggi a quanto esplode una domanda che tocca quel luogo, e pesca 1 Sapere.",
             "puts_tag": [
               "discovery:the_ledger"
             ],
@@ -1551,7 +1551,7 @@
         "actions": [
           {
             "label": "Ascoltarli",
-            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Legami.",
+            "text": "Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami.",
             "puts_tag": [
               "discovery:legend"
             ],
@@ -2173,7 +2173,7 @@
         "actions": [
           {
             "label": "Ascoltare la voce",
-            "text": "Scopri una questione velata che tocca il luogo.",
+            "text": "Leggi a quanto esplode una domanda che tocca il luogo.",
             "puts_tag": [
               "discovery:the_omen"
             ],
@@ -2433,7 +2433,7 @@
         "actions": [
           {
             "label": "Mostrare la prova",
-            "text": "Scopri una questione velata e metti #sapere_condiviso sul mondo.",
+            "text": "Leggi a quanto esplode una domanda e metti #sapere_condiviso sul mondo.",
             "puts_tag": [
               "discovery:written_law",
               "knowledge_shared"
@@ -2526,7 +2526,7 @@
         "actions": [
           {
             "label": "Cercare indietro",
-            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Sapere.",
+            "text": "Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Sapere.",
             "puts_tag": [
               "discovery:the_ledger"
             ],
@@ -2980,7 +2980,7 @@
         "actions": [
           {
             "label": "Vendere il sale",
-            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Ricchezza.",
+            "text": "Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Ricchezza.",
             "puts_tag": [
               "discovery:trade_ledger"
             ],
@@ -4010,7 +4010,7 @@
         "actions": [
           {
             "label": "Cercare il legame",
-            "text": "Scopri una questione velata che tocca il luogo, e pesca 1 Legami.",
+            "text": "Leggi a quanto esplode una domanda che tocca il luogo, e pesca 1 Legami.",
             "puts_tag": [
               "discovery:legend"
             ],
