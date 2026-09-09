@@ -1490,12 +1490,44 @@ def due_facce_uguali(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     return guai
 
 
-# **Che cosa TRAMARE fa vedere**, secondo la regola della Chronicle (D-495).
-# Le due regole di `veiled_tensions` (D-187) fanno scoprire cose diverse, e una
-# faccia che racconta l'altra dice al giocatore una cosa che non succede.
-VELO_DICE: Dict[str, str] = {
-    "HIDES_ALL": "questione velata",
-    "HIDES_THRESHOLD": "a quanto esplode",
+# **Che cosa una domanda velata tiene coperto**, secondo la regola della
+# Chronicle (D-187, guardia da D-495, allargata in D-496).
+#
+# Al primo giro qui c'erano due **frasi** — «questione velata» e «a quanto
+# esplode» — e cercarle era cercare il difetto **come era scritto quella
+# volta**. Rimettendo il difetto vero di `ACT_INFLUENCE` la guardia e' rimasta
+# verde: quella frase dice *«non ne conosce il valore»*, che e' lo stesso
+# errore con altre parole. **Sesta sonda cieca di questo progetto.**
+#
+# Adesso la marca e' il **concetto**: ogni regola dice cosa il velo copre
+# (`copre`) e cosa lascia in chiaro (`mostra`), e un testo che nomina il velo
+# **e** promette coperto cio' che la regola lascia in chiaro e' sbagliato,
+# comunque sia girata la frase.
+VELO_PAROLA = re.compile(r"velat[aeio]", re.IGNORECASE)
+# I modi in cui un testo dice che qualcosa **sta coperto**. Nominare una cosa
+# non e' un difetto — «il suo numero e' sul tavolo» nomina il numero e dice il
+# vero. Il difetto e' **coprirla**, e questi sono i verbi che la coprono.
+# (La guardia se n'e' accorta prendendo per sbagliata la frase giusta appena
+# scritta: cercare la parola invece dell'affermazione non basta.)
+# La negazione ammette fino a due parolette in mezzo — «non **se ne** conosce»
+# e' italiano normale, e pretendere le parole attaccate ha fatto passare un
+# difetto piantato al primo colpo.
+VELO_COPRE = re.compile(
+    r"non\s+(?:\w+\s+){0,2}(?:vede|vedono|conosce|conoscono|sa|sai|sanno|legge|leggono)"
+    r"|copert|nascost|in\s+privato|scoprir|scopri\b|rivelar",
+    re.IGNORECASE,
+)
+VELO_REGOLE: Dict[str, Dict[str, Any]] = {
+    "HIDES_ALL": {
+        "copre": ["valore", "numero"],
+        "mostra": ["soglia", "a quanto esplode"],
+        "dice": "il numero di una domanda velata non si vede",
+    },
+    "HIDES_THRESHOLD": {
+        "copre": ["soglia", "a quanto esplode"],
+        "mostra": ["valore", "numero"],
+        "dice": "il valore e' pubblico, e a stare coperta e' la soglia",
+    },
 }
 
 
@@ -1535,24 +1567,56 @@ def il_velo_sulle_carte(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]
             "sta nella scatola." % ", ".join(sorted(regole))
         ]
     regola = regole.pop()
-    dice = VELO_DICE.get(regola)
-    if dice is None:
-        return ["regola del velo sconosciuta: %s — aggiungila a VELO_DICE." % regola]
-    altre = {v for k, v in VELO_DICE.items() if k != regola}
+    detta = VELO_REGOLE.get(regola)
+    if detta is None:
+        return ["regola del velo sconosciuta: %s — aggiungila a VELO_REGOLE." % regola]
+    dice = str(detta["dice"])
+    # Le parole che, accanto al velo, promettono coperto cio' che questa regola
+    # lascia in chiaro: sono quelle che tradiscono la regola dell'altra.
+    in_chiaro = [str(x) for x in detta["mostra"]]
+    # **Ogni testo, non solo le facce delle carte** (D-496). Al primo giro
+    # questa guardia guardava le sole Azioni TRAMARE, e le otto facce riparate
+    # la facevano tacere — mentre `action_templates.json` teneva ancora tre
+    # frasi della regola vecchia, fra cui una che il motore **contraddice**:
+    # «le Tensioni velate non sono influenzabili», quando col velo sulla sola
+    # soglia si spingono come ogni altra. Una guardia che copre il posto in cui
+    # il difetto e' stato trovato, e non la classe del difetto, e' una guardia
+    # che va verde il giorno dopo.
     guai: List[str] = []
-    for carta in documenti.get("asset", []):
-        for i, azione in enumerate((carta.get("physical") or {}).get("actions") or []):
-            if str((azione or {}).get("template", "")) != "SCHEME":
-                continue
-            testo = str((azione or {}).get("text", ""))
-            for sbagliata in altre:
-                if sbagliata in testo:
-                    guai.append(
-                        "%s Azione %d: dice «%s», che e' la frase di un'altra "
-                        "regola del velo. La Chronicle dice %s, e allora la "
-                        "faccia deve dire «%s»."
-                        % (str(carta.get("id", "")), i + 1, sbagliata, regola, dice)
-                    )
+    CAMPI = ("text", "label", "rules_text", "description", "note", "subtitle")
+
+    def scava(nodo: Any, chi: str, dove: str) -> None:
+        if isinstance(nodo, dict):
+            mio = str(nodo.get("id", "")) or chi
+            for chiave, valore in nodo.items():
+                if isinstance(valore, str) and chiave in CAMPI:
+                    if not VELO_PAROLA.search(valore):
+                        continue
+                    # Frase per frase: il difetto e' un verbo che copre **nella
+                    # stessa frase** della cosa che la regola lascia in chiaro.
+                    pezzi = [x for x in re.split(r"[.;]", valore) if x.strip()]
+                    for parola in in_chiaro:
+                        if not any(
+                            parola.lower() in pezzo.lower() and VELO_COPRE.search(pezzo)
+                            for pezzo in pezzi
+                        ):
+                            continue
+                        if True:
+                            guai.append(
+                                "%s (%s.%s): parla del velo e nomina «%s», che "
+                                "con questa regola **non** e' coperto. La "
+                                "Chronicle dice %s: %s."
+                                % (mio or dove, dove, chiave, parola, regola, dice)
+                            )
+                            break
+                else:
+                    scava(valore, mio, dove)
+        elif isinstance(nodo, list):
+            for voce in nodo:
+                scava(voce, chi, dove)
+
+    for schema, carte in documenti.items():
+        scava(carte, "", schema)
     return guai
 
 
@@ -1907,8 +1971,30 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             for azione in ((carta.get("physical") or {}).get("actions") or []):
                 if str(azione.get("template", "")) != "SCHEME":
                     continue
-                azione["text"] = "Scopri una questione velata che tocca il luogo."
+                azione["text"] = "Scopri il valore di una domanda velata che tocca il luogo."
                 return
+
+    def velo_fuori_dalle_carte(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Lo stesso difetto in un altro schema** (D-496): la guardia di D-495
+        # guardava le sole facce delle carte, e `action_templates.json` teneva
+        # tre frasi della regola vecchia senza che nessuno se ne accorgesse.
+        # Questo difetto sta fuori dalle carte apposta.
+        for azione in prova.get("action", []):
+            azione["rules_text"] = (
+                "Una domanda velata non si spinge finche' non se ne conosce il valore."
+            )
+            return
+
+    def velo_detto_giusto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Il verso opposto**: una frase che *nomina* il numero senza coprirlo
+        # dice il vero, e la guardia deve tacere. E' il caso che l'ha presa in
+        # castagna al secondo giro — cercava la parola invece dell'affermazione
+        # — e sta qui perche' non ci ricaschi.
+        for azione in prova.get("action", []):
+            azione["rules_text"] = (
+                "Una domanda velata si spinge come ogni altra: il suo numero e' sul tavolo."
+            )
+            return
 
     def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["region"][0]["tags"] = []
@@ -2401,7 +2487,9 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # 96 dicevano «Scopri una questione velata» quando la Chronicle spedita
         # tiene coperta la soglia e lascia il valore in chiaro.
         pianta("una faccia TRAMARE che racconta l'altra regola del velo",
-               velo_raccontato_male, "frase di un'altra regola del velo"),
+               velo_raccontato_male, "non** e' coperto"),
+        pianta("lo stesso difetto del velo fuori dalle carte",
+               velo_fuori_dalle_carte, "non** e' coperto"),
         # **La Risonanza cieca** (D-482), fabbricata sulla prima carta a due
         # Temi: le 39 che avevano il difetto sono state riparate.
         pianta("carta con due Temi e nessuna scelta", risonanza_cieca,

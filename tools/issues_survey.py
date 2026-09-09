@@ -626,7 +626,16 @@ def main() -> int:
             return 1
 
         # 7. Un numero sbagliato in un titolo: la spina dorsale deve raddrizzarlo.
-        guasto = piantato(sheet_now, in_grassetto, "**trenta**")
+        #    **Dentro il titolo, non alla prima occorrenza nel foglio.** E' lo
+        #    stesso inciampo del punto 6 due righe sopra, e qui era rimasto: il
+        #    giorno in cui il conto di un colore e' una parola che il foglio usa
+        #    anche in prosa — «**quattro**», che sta in un paragrafo cento righe
+        #    prima del titolo giallo — il difetto finiva li' dentro, dove la
+        #    spina dorsale non arriva, e la guardia andava rossa accusando la
+        #    rigenerazione di un difetto che si era piantata da sola.
+        guasto = piantato(
+            sheet_now, titolo_giallo, titolo_giallo.replace(in_grassetto, "**trenta**", 1)
+        )
         if guasto is None:
             return 1
         if rigenera(guasto, voices) != sheet_now:

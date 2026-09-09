@@ -11506,7 +11506,7 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > Modifica di +/-1 una Tensione aperta. Serve presenza in una Regione taggata col dominio della Tensione, oppure lo scarto di 1 Asset di una famiglia rilevante.
 
-> Le Tensioni velate non sono influenzabili finché l'Entita non ne conosce il valore (SCHEME).
+> Una domanda velata si spinge come ogni altra: il suo numero e' sul tavolo. Quello che non sai e' a quanto esplode, finche' non lo leggi con TRAMARE.
 
 
 **`ACT_MARK`**
@@ -11528,6 +11528,6 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 **`ACT_SCHEME`**
 > Tramare
 
-> Scegli uno: leggi in privato il valore di una Tensione velata; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.
+> Scegli uno: leggi a quanto esplode una domanda; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.
 
-> Scoprire il valore di una Tensione velata e una Scoperta: lascia un tag discovery: sull'Entita.
+> Aver letto a quanto esplode una domanda resta tuo: gli altri non lo sanno, e tu lo sai fino a fine anno.

@@ -10138,6 +10138,93 @@ sposta una virgola della partita, che era il punto.
 - quello che nessuna sonda misura: **un Consiglio giocato da persone**.
 
 
+### 136. Passare senza poter fare nulla: la mano, le Azioni e quello che si possiede
+
+`regole` · `ux` · voluta dal committente · **aperta in 0.1.466**
+
+Il committente, dopo un anno giocato a mano:
+
+> *«La mano di carte e le azioni di gioco sono da rivedere: ho passato l'atto 2
+> e 3 senza carte in mano e ho dovuto passare, questo e' inaccettabile. Passare
+> senza poter fare nulla. Quindi e' da rivedere l'intero meccanismo. A questo
+> punto ogni atto bisogna pescare le carte da un mazzetto precomposto,
+> facciamolo diventare un deckbuilding. Le azioni devono fare qualcosa, le
+> presenze, le pietre che si possiedono devono poter farmi fare qualcosa.
+> Altrimenti non ne usciamo piu'. Bisogna fare combo tra quello che si ha in
+> mano e quello che fanno fare i tag sulla mappa o sulla scheda entita'. Anche
+> il potere di una entita' mi deve permettere di fare qualcosa.»*
+
+**Misurato prima di rispondere**, con una sonda nuova
+(`run_empty_hand_probe.gd`) che guarda la mano **un attimo prima** di ogni
+scelta, su 30 anni dal seme 7000, tavolo misto:
+
+| atto | occasioni | mano media | a secco | **passa** | passa a secco |
+|---|---|---|---|---|---|
+| 1 | 720 | 3,32 | 29 (4,0%) | **423 (58,8%)** | 29 (4,0%) |
+| 2 | 720 | 3,29 | 45 (**6,2%**) | **414 (57,5%)** | 45 (6,2%) |
+| 3 | 720 | 3,66 | 25 (3,5%) | **400 (55,6%)** | 25 (3,5%) |
+
+La sonda si dichiara non cieca: **2160 Occasioni contate, 2160 promesse dalla
+Chronicle**, e le scelte del decisore sono PLAY_CARD 266, PASS 408, PLAY_ECHO 46
+su dieci anni.
+
+**E il numero sposta la diagnosi.** La mano vuota c'e' — ed e' peggiore
+nell'**Atto 2**, esattamente dove il committente l'ha vista — ma vale il **4-6%**.
+Quello che vale il **57%** e' passare **avendo carte in mano**: nove volte su
+dieci chi passa ha in media tre carte e le passa lo stesso. Non e' (solo) che le
+carte mancano: e' che **avere carte non basta per poter fare qualcosa**.
+
+Il che e' la seconda meta' della frase del committente — *«le azioni devono fare
+qualcosa, le presenze, le pietre che si possiedono devono poter farmi fare
+qualcosa»* — ed e' la meta' piu' grossa.
+
+**Da misurare prima di toccare il meccanismo:** *perche'* si passa avendo carte.
+La sonda del menu di [D-492](DECISIONS.md#d-492) gioca e sa contare le voci: va
+chiesta a lei, su ogni Occasione chiusa con «passo».
+
+**Fatto quando:**
+
+1. **perche' si passa avendo carte** — misurato, voce per voce;
+2. **le Azioni fanno qualcosa** — presenze, Pietre e segni della mappa aprono
+   Azioni che senza di loro non ci sarebbero;
+3. **il rubinetto della mano** — la forma la decide il committente (vedi sotto);
+4. **il potere dell'entita' apre un'Azione sua**;
+5. un'altra ora con l'app in mano.
+
+**Il rubinetto e' una decisione del committente, e ci sono gia' i numeri.**
+[`run_hand_probe.gd`](../godot/cli/run_hand_probe.gd), scritta per una sua
+proposta precedente — *«le carte si pescano a inizio atto a seconda della
+presenza in una regione: due presenze, due carte»* — dice che il **fabbisogno**
+di un seggio e' **11,76 carte l'anno** (6,08 per le Azioni + 5,68 impegnate ai
+Consigli), cioe' **3,92 per Atto**; col rubinetto della mappa la mano starebbe a
+**4,91 / 5,01 / 5,26** carte nei tre Atti, contro le **3,3 / 3,3 / 3,7** di
+adesso. Il mazzetto precomposto per Atto e' una terza forma, e non e' misurata.
+
+
+### 137. La scheda del Consiglio: non si sa chi sta facendo cosa
+
+`ux` · voluta dal committente · **aperta in 0.1.466**
+
+> *«Anche questa scheda di costi e benefici non si capisce molto, non si sa chi
+> sta facendo cosa e le voci sono tutte mescolate.»*
+
+Guardando lo screenshot, tre difetti distinti su una scheda sola:
+
+1. **le sigle non si spiegano**: ogni voce porta `A ·`, `B ·` o `BA ·`, e da
+   nessuna parte c'e' scritto che sono **le due domande** del Consiglio;
+2. **le voci sono mescolate**: BENEFICI e COSTI sono due liste sole, con dentro
+   le voci di tutt'e due le domande in ordine sparso — chi vuole rispondere alla
+   domanda A deve pescare le sue righe fra quelle della B;
+3. **non si dice chi sceglie**: per [D-280](DECISIONS.md#d-280) il **proponente
+   compra i benefici** e **gli avversari scelgono i costi**, e la scheda non lo
+   dice da nessuna parte. Le voci grigie con *«— non qui: non cambierebbe
+   niente»* occupano meta' della lista e non sono scelte di nessuno.
+
+**Fatto quando** la scheda raggruppa per domanda, dice chi sceglie in ognuna, e
+le voci che non cambierebbero niente non stanno in mezzo a quelle che si
+possono prendere.
+
+
 ### 135. Il menu, il verbale e le frasi: quello che l'app chiede non si capisce
 
 `ux` · `regole` · voluta dal committente · **aperta in 0.1.460**

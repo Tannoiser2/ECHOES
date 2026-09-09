@@ -45,6 +45,83 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-496 — Il velo fuori dalle carte, e la guardia che cercava una frase invece del difetto
+
+**implemented in 0.1.466.** Giro 7 di [ISSUES 135](ISSUES.md#135). Nasce da una
+domanda semplice: *il difetto che [D-495](#d-495) ha riparato sulle carte, sta
+anche altrove?*
+
+Sì, in tre posti, e uno di quei tre **contraddice il motore**.
+
+### I tre testi rimasti
+
+`action_templates.json` — che nessuna guardia guardava — teneva la regola vecchia
+del velo:
+
+| dove | diceva | ma |
+|---|---|---|
+| `ACT_INFLUENCE.rules_text` | *«Le Tensioni velate non sono influenzabili finché non ne conosce il valore»* | col velo sulla sola soglia **si spingono come ogni altra**, e il commento del motore lo dice: *«e allora la domanda si spinge come ogni altra»* |
+| `ACT_SCHEME.description` | *«leggi in privato il valore di una Tensione velata»* | il valore e' pubblico |
+| `ACT_SCHEME.rules_text` | *«lascia un tag discovery: sull'Entita»* | e parlava pure in tecnico |
+
+Il primo e' il peggiore dei tre: una **regola stampata che il motore smentisce**.
+
+Con loro sono cambiate tre frasi del codice che il giocatore legge nel verbale
+— il narratore degli Effetti, il TRAMARE del resolver e la riga della pagina —
+che dicevano *«ora ha un numero»* a chi quel numero legge da sempre.
+
+### La guardia era giusta nel posto e sbagliata nel modo
+
+Questa e' la parte che vale piu' delle tre frasi.
+
+La guardia di D-495 guardava **le sole facce delle carte**. Allargata a ogni
+testo, e' rimasta verde lo stesso: cercava la stringa *«questione velata»*, e il
+difetto vero di `ACT_INFLUENCE` e' scritto con altre parole — *«non ne conosce
+il valore»*. **Una guardia che cerca il difetto com'era scritto quella volta non
+cerca il difetto: cerca il ricordo del difetto.** Sesta sonda cieca di questo
+progetto.
+
+Adesso la marca e' il **concetto**: ogni regola del velo dichiara cosa **copre**
+e cosa **lascia in chiaro**, e il difetto e' un testo che nomina il velo e
+promette coperto cio' che la regola lascia in chiaro.
+
+E al secondo giro ha preso **la frase giusta appena scritta** — *«il suo numero
+e' sul tavolo»* — perche' cercava la parola invece dell'affermazione. Nominare
+una cosa non e' coprirla. La marca finale e' un **verbo del coprire nella stessa
+frase** della cosa in chiaro, e la negazione ammette due parolette in mezzo:
+*«non se ne conosce»* e' italiano normale, e pretendere le parole attaccate ha
+fatto passare un difetto piantato al primo colpo.
+
+Tre errori della stessa guardia in un giro, tutti presi da un difetto
+**fabbricato** invece che dai dati: e' esattamente la ragione per cui la regola
+di casa dice di fabbricarli.
+
+### E aprendo le voci nuove ne e' saltata fuori una quarta, di guardia
+
+Il foglio delle decisioni e' andato rosso appena aperte
+[136](ISSUES.md#136) e [137](ISSUES.md#137), e non per il foglio: per la sua
+**guardia**. Il settimo difetto piantato di `issues_survey.py` mette un numero
+falso nel conto in grassetto di un titolo e pretende che la rigenerazione lo
+raddrizzi — ma lo piantava sulla **prima occorrenza nel foglio intero**. Finche'
+il conto giallo e' stato una parola che il foglio non usa altrove ha funzionato;
+il giorno in cui e' diventato «**quattro**» — parola che sta in un paragrafo
+cento righe prima — il difetto e' finito li', dove la spina dorsale non arriva,
+e la guardia e' andata rossa **accusando la rigenerazione di un difetto che si
+era piantata da sola**.
+
+E' esattamente l'inciampo che il punto **6**, due righe sopra, aveva gia' avuto
+e corretto per se': *«non la prima riga del foglio che porta la stessa
+parola»*. Nessuno l'aveva portato al punto 7. Adesso pianta dentro il titolo,
+come il 6.
+
+### Il costo
+
+Cancelli verdi (**29** veloci), suite **815 test / 76 620 asserzioni**, **60**
+difetti piantati. Sono cambiati testi e due guardie: nessuna regola, e il
+cancello dei 100 semi non e' toccato da niente di questo giro.
+
+---
+
 ## D-495 — La riga che diceva il falso, e il velo raccontato con la regola di prima
 
 **implemented in 0.1.465.** Giro 6 di [ISSUES 135](ISSUES.md#135), sulla parola

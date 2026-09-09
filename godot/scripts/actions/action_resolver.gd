@@ -1016,9 +1016,15 @@ func _scheme(entity_id: String, params: Dictionary, source: Dictionary) -> Dicti
 						)
 					)
 				)
+			# **Cosa ha letto, detto per quello che e'** (D-496). Col velo che
+			# copre la sola soglia il numero era gia' sul tavolo: quello che
+			# adesso sa e' a quanto esplode, e dirgli «ora ha un numero» non
+			# racconta niente a chi quel numero lo legge da sempre.
 			log.bullet((
 				"%s trama in silenzio: ha sbirciato sotto un mucchio."
 				if tensions.piles_are_covered()
+				else "%s trama in silenzio: adesso sa a quanto esplode."
+				if service.hides_threshold_only()
 				else "%s trama in silenzio: qualcosa di velato ora ha un numero."
 			) % _name(entity_id))
 			return _ok(

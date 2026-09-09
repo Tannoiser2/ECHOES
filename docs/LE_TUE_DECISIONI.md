@@ -272,11 +272,11 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **139** |
+| voci scritte | **141** |
 | chiuse | **128** |
-| aperte | **11** |
+| aperte | **13** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **11** |
+| di cui sono mie da fare | **13** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,11 +307,12 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **2** | **io**, da sola, senza aspettare niente |
+| 🟡 | **4** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
+**Quattro.** Delle tredici voci aperte, quattro le posso muovere senza di te —
+ed è il numero che va detto per primo. **Il giro non è fermo su nessuna tua
+parola.**
 
 <!-- COLORI: fine -->
 
@@ -676,7 +677,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **due**
+# 🟡 Sono mie, e non aspettano niente: **quattro**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -989,6 +990,63 @@ tocca cosa si legge, non cosa succede.
 **Di quello che hai scritto restano le due cose che non si misurano:** la GUI
 che *«non e' chiaro su quello che bisogna fare»* oltre ai menu — che si vede
 solo riaprendo l'app — e un'altra ora con l'app in mano.
+
+**Giri 4, 5, 6 e 7 fatti in 0.1.463–0.1.466**, e sono nati dai tuoi screenshot:
+le due Azioni che la carta non mostrava (48 carte su 48 ne hanno due, e ne
+mostrava **zero**), «costa:» che non era un costo, il parametro di *Favore* che
+sembrava muto e faceva offrire la carta **al verso opposto**, e il velo
+raccontato con la regola di prima — otto facce piu' tre testi fuori dalle carte,
+uno dei quali il motore **contraddice**.
+
+**E una riga l'avevo scritta sbagliata io, due volte.** *«L'app ne risolve
+una»*: non e' vero da [D-283](DECISIONS.md#d-283), il motore esegue l'Azione che
+scegli, e su venti anni **56 calate su 563** pronunciano un verbo che il
+`card_action` non nomina nemmeno. Se n'e' andata senza sostituto.
+
+### M18. [136](ISSUES.md#136) — passare senza poter fare nulla: **aperta in 0.1.466**
+
+Hai giocato un anno intero e hai scritto: *«ho passato l'atto 2 e 3 senza carte
+in mano e ho dovuto passare, questo e' inaccettabile»*.
+
+**Ho misurato prima di risponderti**, con una sonda nuova che guarda la mano un
+attimo prima di ogni scelta — 30 anni, tavolo misto, e si dichiara non cieca
+contando 2160 Occasioni contro le 2160 che la Chronicle promette.
+
+Hai ragione, e il numero dice qualcosa in piu' di quello che hai visto:
+
+| atto | mano media | a secco | **passa** |
+|---|---|---|---|
+| 1 | 3,32 | 4,0% | **58,8%** |
+| 2 | 3,29 | **6,2%** | **57,5%** |
+| 3 | 3,66 | 3,5% | **55,6%** |
+
+La mano vuota c'e', ed e' peggiore **nell'Atto 2** — esattamente dove l'hai
+vista. Ma vale il **4-6%**. Quello che vale il **57%** e' passare **avendo carte
+in mano**: nove volte su dieci chi passa ha in media tre carte e le passa lo
+stesso.
+
+Quindi non e' (solo) che le carte mancano: **avere carte non basta per poter
+fare qualcosa**, che e' la seconda meta' di quello che hai scritto — *«le
+presenze, le pietre che si possiedono devono poter farmi fare qualcosa»* — ed e'
+la meta' piu' grossa.
+
+**Il rubinetto della mano e' una decisione tua, e i numeri ci sono gia'.** Il
+fabbisogno di un seggio e' **11,76 carte l'anno** (6,08 per le Azioni + 5,68
+impegnate ai Consigli), cioe' **3,92 per Atto**. Col rubinetto della mappa —
+quello che avevi proposto tu, *«due presenze, due carte»* — la mano starebbe a
+**4,91 / 5,01 / 5,26** nei tre Atti, contro **3,3 / 3,3 / 3,7** di adesso. Il
+mazzetto precomposto per Atto e' una terza forma, e quella non e' misurata.
+
+### M19. [137](ISSUES.md#137) — la scheda del Consiglio: **aperta in 0.1.466**
+
+> *«Non si sa chi sta facendo cosa e le voci sono tutte mescolate.»*
+
+Guardando lo screenshot sono tre difetti su una scheda sola, e tutti e tre si
+rimediano senza toccare una regola: le sigle `A ·` `B ·` `BA ·` non dicono da
+nessuna parte che sono **le due domande**; BENEFICI e COSTI sono due liste sole
+con dentro le voci di tutt'e due in ordine sparso; e non c'e' scritto che **il
+proponente compra i benefici e gli avversari scelgono i costi**, che e'
+[D-280](DECISIONS.md#d-280).
 
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
@@ -1506,9 +1564,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
-muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+**Quello che resta da dire in una riga:** delle tredici voci aperte ne posso
+muovere **quattro** da sola. Due le verifica una persona che gioca, sette
+stanno fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

@@ -5,6 +5,65 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.466 — Il velo fuori dalle carte, e due voci nuove misurate prima di rispondere
+
+[D-496](docs/DECISIONS.md#d-496), giro 7 di [ISSUES 135](docs/ISSUES.md#135),
+piu' le due voci che il committente ha aperto giocando.
+
+**Il difetto del velo stava anche fuori dalle carte.** `action_templates.json`
+teneva tre frasi della regola vecchia, e una **contraddice il motore**: *«le
+Tensioni velate non sono influenzabili»*, quando col velo sulla sola soglia si
+spingono come ogni altra — e il commento del resolver lo dice. Con loro sono
+cambiate tre frasi del codice che il giocatore legge nel verbale.
+
+**E la guardia era giusta nel posto e sbagliata nel modo**, tre volte in un
+giro: guardava le sole facce delle carte; allargata a ogni testo cercava la
+**stringa** «questione velata», e il difetto vero e' scritto con altre parole;
+corretta a cercare la parola in chiaro, ha preso per sbagliata **la frase giusta
+appena scritta**. La marca finale e' un verbo del coprire nella stessa frase
+della cosa che la regola lascia in chiaro — e la negazione ammette due parolette
+in mezzo, perche' *«non se ne conosce»* e' italiano normale.
+
+### Aperte
+- **[ISSUES 136](docs/ISSUES.md#136)** — *«ho passato l'atto 2 e 3 senza carte
+  in mano»*. Misurata prima di rispondere, con `run_empty_hand_probe.gd` (nuova)
+  su 30 anni: la mano vuota vale il **4-6%** ed e' peggiore nell'**Atto 2**,
+  dove il committente l'ha vista; ma **il 57% delle Occasioni si passa avendo
+  carte in mano**. Non e' solo che le carte mancano: avere carte non basta per
+  poter fare qualcosa.
+- **[ISSUES 137](docs/ISSUES.md#137)** — la scheda del Consiglio non dice che
+  `A` e `B` sono le due domande, mescola le voci delle due, e non dice che il
+  proponente compra i benefici e gli avversari scelgono i costi.
+
+### Cambiato
+- I tre testi di `action_templates.json` dicono la regola spedita, senza gergo.
+- `effect_narrator.gd`, `action_resolver.gd`, `game_screen.gd`: le tre frasi del
+  verbale scelgono le parole secondo la regola del velo invece di darne una per
+  scontata.
+- `validate_physical.py`: la guardia del velo copre **ogni testo di ogni
+  schema**, e la marca e' il concetto invece della frase. Due difetti piantati
+  nuovi — uno fuori dalle carte, uno che verifica il **verso opposto**, cioe'
+  che la guardia taccia su una frase giusta: **60** in tutto.
+- `run_empty_hand_probe.gd` (nuova): la mano un attimo prima di ogni scelta, per
+  Atto, e si dichiara non cieca contando le Occasioni contro la Chronicle.
+- `issues_survey.py`: il settimo difetto piantato si mette **dentro il titolo**
+  invece che alla prima occorrenza nel foglio. Era latente e l'ha svegliato
+  l'apertura delle due voci: la guardia andava rossa accusando la rigenerazione
+  di un difetto che si era piantata da sola.
+
+### Misurato
+- testi che raccontavano il velo vecchio fuori dalle carte: **3**, di cui **1**
+  contraddetto dal motore; frasi del codice: **3**.
+- mano vuota per Atto: **4,0% / 6,2% / 3,5%**; passa: **58,8% / 57,5% / 55,6%**;
+  mano media **3,32 / 3,29 / 3,66** (30 anni, seme 7000, tavolo misto).
+- fabbisogno di un seggio: **11,76 carte l'anno**, **3,92 per Atto**.
+- suite **815 test, 76 620 asserzioni**, verde; difetti piantati **60**.
+
+Il cancello dei 100 semi non e' toccato da questo giro: sono cambiati testi e
+una guardia, nessuna regola.
+
+---
+
 ## 0.1.465 — La riga che diceva il falso, e il velo raccontato con la regola di prima
 
 [D-495](docs/DECISIONS.md#d-495), giro 6 di [ISSUES 135](docs/ISSUES.md#135),

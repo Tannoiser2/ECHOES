@@ -751,7 +751,11 @@ func _context_line() -> String:
 			margin = left
 			closest = id
 	if closest == "":
-		return "Le domande dell'anno sono tutte velate: TRAMA per leggerne una."
+		# D-496: col velo che copre la sola soglia i numeri si leggono tutti —
+		# quello che manca e' sapere quando esplodono, ed e' quello che TRAMARE
+		# va a prendere. «Tutte velate» faceva credere coperta anche la colonna
+		# che il giocatore ha davanti.
+		return "Di nessuna domanda sai a quanto esplode: TRAMA per leggerne una."
 
 	var title: String = str(_session.data.tensions[closest]["title"])
 	var tail: String = "" if veiled == 0 else "  (e %d che non puoi ancora leggere)" % veiled
