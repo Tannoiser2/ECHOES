@@ -10209,7 +10209,19 @@ si puo' giocare.
 4. **il potere dell'entita' apre un'Azione sua**;
 5. un'altra ora con l'app in mano.
 
-**Il rubinetto e' una decisione del committente, e ci sono gia' i numeri.**
+**La forma l'ha decisa il committente in 0.1.468:** *«il mazzetto viene creato
+diverso da entita' a entita' in base agli obiettivi e alla presenza sulla mappa
+e poi ognuno lo costruisce mano a mano»*. Il dimensionamento e' misurato in
+[D-498](DECISIONS.md#d-498): con **3 carte per famiglia raggiunta** il mazzetto
+parte a **12,5** e da' **4,17 carte per Atto**, contro un fabbisogno di **3,92**
+— e a fine anno e' a **26,1**, cioe' raddoppia. Con 2 per famiglia si resta a
+**3,00** per Atto, sotto il fabbisogno.
+
+**Due cose restano da decidere, e non le decido io:** quante carte per famiglia
+(la tabella dice 3, ma e' una scelta di gioco) e **come entrano gli obiettivi**,
+visto che su 19 obiettivi spediti solo **due** nominano una famiglia.
+
+**Il rubinetto vecchio, per confronto, e i numeri che gia' c'erano.**
 [`run_hand_probe.gd`](../godot/cli/run_hand_probe.gd), scritta per una sua
 proposta precedente — *«le carte si pescano a inizio atto a seconda della
 presenza in una regione: due presenze, due carte»* — dice che il **fabbisogno**

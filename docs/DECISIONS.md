@@ -45,6 +45,74 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-498 — Il mazzetto personale: la forma decisa dal committente, e quanto grande
+
+**disegno, in 0.1.468.** [ISSUES 136](ISSUES.md#136). Non tocca ancora il
+motore: e' la misura che viene **prima** di scriverlo, la stessa disciplina con
+cui `run_hand_probe` misuro' il rubinetto della mappa prima che esistesse.
+
+### La forma, decisa dal committente
+
+> *«Il mazzetto viene creato diverso da entita' a entita' in base agli obiettivi
+> e alla presenza sulla mappa e poi ognuno lo costruisce mano a mano. A ogni
+> atto si pescano nuove carte dal mazzetto che cresce con esperienza da veri
+> deck builder.»*
+
+Oggi i mazzi sono **sei, comuni**, uno per famiglia: tutti pescano dagli stessi.
+Il mazzetto personale li sostituisce.
+
+### Quanto grande, misurato
+
+`run_deck_probe.gd` (nuova) gioca 25 anni senza cambiare una regola e scrive
+cosa darebbe il mazzetto proposto. Si compone di due pezzi che **stanno gia' nei
+dati**: le `starting_assets` dell'entita' — due, di due famiglie diverse, ed e'
+la sua identita' — piu' N carte per ogni famiglia che la sua **presenza**
+raggiunge (`asset_sources` delle Regioni dove ha pedine).
+
+| carte per famiglia | mazzetto di partenza | a fine anno | **carte per Atto** |
+|---|---|---|---|
+| 1 | 5,5 | 19,1 | 1,83 |
+| 2 | 9,0 | 22,6 | 3,00 |
+| **3** | **12,5** | **26,1** | **4,17** |
+
+**Il fabbisogno e' 3,92 carte per Atto** (6,08 Azioni + 5,68 impegnate ai
+Consigli, diviso tre Atti). Solo **3 per famiglia** lo copre, e con un margine
+di 0,25: due lo lasciano scoperto di quasi una carta per Atto, che e' esattamente
+il buco che il committente ha vissuto.
+
+**E il mazzetto raddoppia in un anno** — da 12,5 a 26,1 — con **13,6 acquisti**
+di media. Il pezzo «deck builder» della frase c'e' gia': ACQUISIRE e' il verbo
+che compra, e quello che compra oggi finisce in mano; nel mazzetto personale
+finisce **nel mazzetto**, e torna gli Atti dopo.
+
+**Lo scarto fra le case va detto:** chi ha presenza su 4 famiglie parte con
+**14,5** carte, chi ne ha 3 con **11,5** — il **26%** in piu'. Non e' per forza
+un difetto (le case sono diverse per disegno), ma e' un numero che al primo
+squilibrio va guardato.
+
+### La presenza si legge dalla scatola, non dal tabellone
+
+Al primo giro la sonda chiedeva le Regioni con presenza al mondo appena montato,
+e tornavano **zero**: sul tabellone le pedine non ci sono ancora, si posano
+giocando — e' la domanda *«cosa posi per prima?»* del primo round. **La sonda si
+e' dichiarata cieca da sola**, con la riga che avevo scritto apposta, ed e' la
+settima volta in questo progetto.
+
+Leggere dai dati non e' un ripiego: il mazzetto si compone **nella scatola**,
+prima che qualcuno posi una pedina, e la presenza scritta nell'entita' e'
+esattamente quello che la scatola sa di lei.
+
+### Cosa manca ancora, e non lo decido io
+
+Il committente dice **«in base agli obiettivi e alla presenza»**. La presenza e'
+misurata. Gli obiettivi no, e per una ragione: sui **19 obiettivi spediti**, solo
+**due** nominano una famiglia. Gli altri parlano di Pietre, domini, segni e
+controllo — cose che una famiglia non la scelgono. Perche' gli obiettivi entrino
+nel mazzetto serve un ponte che oggi non c'e', ed e' un pezzo di disegno da
+decidere, non da dedurre.
+
+---
+
 ## D-497 — La scheda del Consiglio: chi sceglie, e le voci raggruppate per domanda
 
 **implemented in 0.1.467.** [ISSUES 137](ISSUES.md#137), parola del committente
