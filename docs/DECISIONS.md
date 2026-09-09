@@ -45,6 +45,99 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-491 — Il verbale che si legge, e SI RAFFREDDA che dice la regola
+
+**implemented in 0.1.461.** Giro 2 di [ISSUES 135](ISSUES.md#135), sulla parola
+*«mergia e vai col giro 2»*. Due delle cinque cose che il committente ha visto
+giocando: *«Il LOG non si capisce nulla»* e *«i testi di OGNI cosa sono troppo
+narrativi, il che va bene ma poi si deve capire cosa succede»*.
+
+### 1. Il verbale, misurato prima di toccarlo
+
+`cli/run_log_probe.gd` fa due giri della stessa partita e cambia una cosa sola:
+se l'`io` dall'altra parte **dichiara di disegnarsi il pannello da se'**. La
+differenza fra le due colonne e' il difetto, e non e' un'opinione.
+
+Otto anni, semi da 3000:
+
+| righe dette al seggio | chi non si disegna lo stato | **chi se lo disegna** |
+|---|---|---|
+| in tutto | 880 — **110 l'anno** | 160 — **20 l'anno** |
+| il pannello di stato ristampato | **144 (16%)** | **0** |
+| righe vuote | 152 | 152 |
+
+**Il pannello era tutto quello che il decisore diceva alla pagina**, tolte le
+righe vuote. Arriva a ogni Occasione — ATTO e ROUND, le domande dell'anno, la
+mappa, la mano, il Destino — e nella foto del committente si vedono **due
+blocchi identici uno sotto l'altro**.
+
+La pagina pero' disegna gia' tutte quelle cose: la colonna delle domande a
+sinistra, la mappa al centro, la mano e il Destino nelle schede sotto, i
+rapporti nella striscia dei seggi. E' esattamente il caso di
+[D-143](#d-143) — la console del telefono lo dichiara da allora e non lo
+riceve — e la pagina, che e' nata dopo, non lo dichiarava.
+
+**Una riga**: `shows_state()` su `game_screen`.
+
+### 2. E il verbale del motore prende i suoi tre livelli
+
+Sotto ci sono **666 righe l'anno** del registro, in una colonna larga 300
+punti, tutte dello stesso colore e dello stesso peso. Il motore le scrive gia'
+strutturate — `section()` un titolo, `bullet()` un `  - `, il dettaglio con un
+rientro in piu' — e la pagina appiattiva tutto.
+
+Adesso la struttura si vede, e **non si riscrive una parola**: titolo in oro,
+la riga di chi agisce col **nome della casa in grassetto**, il dettaglio
+rientrato e piu' tenue. Piu' una regola piccola che vale un paragrafo: **una
+riga vuota separa, due sono rumore**.
+
+### 3. SI RAFFREDDA: la stessa medicina di D-337, tre anni dopo
+
+*«La febbre delle paludi si raffredda quando un cordone e cure decisi dal
+concilio, i canali riaperti che curano l'acqua. Ma che vuol dire? Cosa si deve
+fare in termini di gioco?»*
+
+Ha ragione, ed e' **lo stesso difetto che [D-337](#d-337) aveva gia' corretto
+una riga sopra**: SI ACCENDE QUANDO portava `triggers`, prosa d'autore, e da
+allora porta la regola in segni che il motore esegue. SI RAFFREDDA era rimasta
+indietro con `decrease_rules`.
+
+La regola vera sta nel motore, e sono tre vie, tutte e tre giocabili:
+
+| via | dove sta scritta |
+|---|---|
+| il **Consiglio che la decide** la riporta a 1, qualunque domanda vinca | `ConfluenceController`, H.1: `delta = 1 - before` |
+| il **Consiglio che cade** la sfoga | `failure_delta`, un dato della Chronicle |
+| **INFLUENZARE** la abbassa di 1 | un'Azione e una carta |
+
+Adesso la carta stampa: *«SI RAFFREDDA  il suo Consiglio la decide e torna a 1
+· se cade, −1 · INFLUENZARE la abbassa di 1»*.
+
+**Il numero si legge dalla Chronicle**, e questa riga si e' guadagnata il suo
+posto subito: scrivendola a mano avrei messo **−2**, la lettera dell'appendice
+che sta nel commento del motore. La Chronicle spedita dice **−1**, e la carta
+adesso dice il vero. Se un giorno lo si tara, lo dice da sola.
+
+Il racconto resta nel dato e lo legge il brief d'arte, come in
+[D-340](#d-340) e [D-341](#d-341): sulla carta ogni riga e' una regola.
+
+### 4. Misurato
+
+| | 0.1.460 | **adesso** |
+|---|---|---|
+| righe dette al seggio, l'anno | 110 | **20** |
+| di cui pannello ristampato | **16%** | **0%** |
+| Tensioni la cui riga SI RAFFREDDA e' una regola | 0 su 60 | **60 su 60** |
+
+Cancello dei 100 semi, seme 7000: **0 seggi bloccati su 8** sui due tavoli, e
+gli stessi identici numeri di 0.1.460 — questo giro tocca **cosa si legge**,
+non cosa succede, ed e' la prova da fare.
+
+Suite verde con tre prove nuove; 28 cancelli veloci e 6 lenti verdi, schede e
+scheletro delle carte rigenerati.
+
+---
+
 ## D-490 — Il menu a passi, i due verbi che mancavano, e i pulsanti nella barra
 
 **implemented in 0.1.460.** Il committente ha giocato un anno e ha scritto

@@ -955,6 +955,41 @@ fare in termini di gioco — *«SI RAFFREDDA  Un cordone e cure decisi al
 Consiglio»* racconta e non istruisce — e un'ora con l'app in mano, che nessuna
 sonda misura.
 
+**E in 0.1.461, giro 2** ([D-491](DECISIONS.md#d-491)): le altre due cose che
+avevi visto.
+
+**Il verbale.** Prima di toccarlo l'ho misurato con una sonda che gioca due
+volte la stessa partita e cambia **una cosa sola**: se chi ascolta dichiara di
+disegnarsi il pannello da se'. Righe dette al seggio, otto anni: **880 contro
+160**. Tutta la differenza era il **cartiglio ATTO/ROUND ristampato a ogni
+Occasione** — le domande dell'anno, la mappa, la mano, il Destino — che e'
+esattamente il doppione che hai fotografato, due blocchi identici uno sotto
+l'altro. La pagina disegna gia' tutte quelle cose. Il telefono lo dichiarava
+dal 0.1.86; lei, nata dopo, no.
+
+Sotto restano le **666 righe l'anno** del registro, e adesso hanno i tre livelli
+che il motore gia' scriveva e la pagina appiattiva: il titolo in oro, la riga di
+chi agisce col **nome della casa in grassetto**, il dettaglio rientrato e piu'
+tenue. Non ho riscritto una parola.
+
+**Le frasi.** *«Un cordone e cure decisi al Consiglio... ma che vuol dire?»* —
+avevi ragione, ed era **lo stesso difetto gia' corretto una riga sopra**: SI
+ACCENDE QUANDO portava la prosa fino al 0.1.301 e da allora porta la regola. SI
+RAFFREDDA era rimasta indietro. Adesso dice: *«il suo Consiglio la decide e
+torna a 1 · se cade, −1 · INFLUENZARE la abbassa di 1»*.
+
+**E quella riga si e' guadagnata il posto subito.** Scrivendola a mano avrei
+messo **−2**, che e' la lettera dell'appendice scritta nel commento del motore.
+La Chronicle spedita dice **−1**. Adesso il numero lo legge dal dato, e se un
+giorno lo tari la carta lo dice da sola.
+
+Cancello **0 su 8** e gli stessi identici numeri del giro prima: questo giro
+tocca cosa si legge, non cosa succede.
+
+**Di quello che hai scritto restano le due cose che non si misurano:** la GUI
+che *«non e' chiaro su quello che bisogna fare»* oltre ai menu — che si vede
+solo riaprendo l'app — e un'altra ora con l'app in mano.
+
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
 Hai giocato un anno e mi hai scritto sette cose. Le ho cercate tutte nel

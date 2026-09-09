@@ -303,3 +303,41 @@ func test_the_place_filter_on_a_presence_can_also_say_no() -> void:
 	assert_true(bool(_play_at(str(where[0])).get("ok", false)), "la carta si gioca")
 	assert_eq(session.tensions.value(twin), before,
 		"il filtro ha detto no: quel segno la Regione non ce l'ha")
+
+
+## --- e cosa la fa scendere (D-491) ------------------------------------------
+
+const CardFace := preload("res://scripts/core/card_face.gd")
+
+
+## **SI RAFFREDDA dice la regola, non il racconto** (D-491, parola del
+## committente davanti alla carta: *«Un cordone e cure decisi al Consiglio. I
+## canali riaperti che muovono l'acqua. Ma che vuol dire? Cosa si deve fare in
+## termini di gioco?»*).
+##
+## E' lo stesso scambio che D-337 aveva gia' fatto una riga sopra, su SI
+## ACCENDE QUANDO: la prosa d'autore resta nel dato e la carta stampa la regola
+## che il motore esegue. Le tre vie sono quelle vere — il Consiglio che decide,
+## il Consiglio che cade, INFLUENZARE — e **il numero dello sfogo si legge
+## dalla Chronicle**: se qualcuno lo tara, la carta lo dice da sola.
+func test_a_tension_says_what_cools_it() -> void:
+	var tension: Dictionary = session.data.tensions["TEN_FAMINE"] as Dictionary
+	var face: Dictionary = CardFace.of("tension", "TEN_FAMINE", session.data)
+	var cools: String = ""
+	for note in face.get("notes", []) as Array:
+		if str(note).begins_with("SI RAFFREDDA"):
+			cools = str(note)
+	assert_ne(cools, "", "la carta ha la sua riga")
+	assert_true(cools.contains("Consiglio"), "il Consiglio che la decide: %s" % cools)
+	assert_true(cools.contains("INFLUENZARE"), "e l'Azione che la abbassa: %s" % cools)
+	var sfoga: int = int((
+		(session.data.chronicles["CHR_00"] as Dictionary).get("confluence_rules", {})
+		as Dictionary
+	).get("failure_delta", -2))
+	assert_true(
+		cools.contains(str(sfoga)),
+		"e lo sfogo col numero della Chronicle (%d): %s" % [sfoga, cools]
+	)
+	# La prosa resta nel dato — la legge il brief d'arte — e non sulla carta.
+	for said in tension.get("decrease_rules", []) as Array:
+		assert_false(cools.contains(str(said)), "il racconto non e' stampato: «%s»" % str(said))
