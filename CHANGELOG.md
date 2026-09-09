@@ -5,6 +5,60 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.464 — Quale delle due il motore risolve, e il parametro che non era muto
+
+[D-494](docs/DECISIONS.md#d-494), giro 5 di [ISSUES 135](docs/ISSUES.md#135).
+Nasce da una riga che D-493 aveva lasciato in coda alla carta, vera e criptica:
+*«Oggi l'app ne risolve una: FORGIARE — muovi di un passo il rapporto con
+un'altra casa»*. E' una **terza** frase, generica, e su *Credito* dice **un
+passo** dove le due Azioni dicono **2 gradini** e **1 gradino**.
+
+**Adesso la riga punta a una delle due**, per numero e per nome — *«Oggi l'app
+risolve la 2 — Comprare il suo debito»* — e non inventa niente: il dato lo dice
+con `engine` sulla faccia, **dedotto** dove il verbo dichiarato sta su una sola
+delle due Azioni (29 carte su 48) e **letto carta per carta** dove le due lo
+portano tutte e due (18). L'unica carta in cui il motore non ne esegue nessuna
+— *Debito Vecchio* — lo **dichiara** invece di promettere un verbo che non fa.
+
+**E leggendo le carte una per una ne e' saltato fuori un altro.** Contando i
+`card_action.params` contro quello che il motore legge davvero — ricavato da
+`action_resolver.gd`, non a memoria — **7 carte su 48** portavano un parametro
+che il loro verbo non guarda. Sei erano muti; il settimo no. *Favore*
+dichiarava `INFLUENCE` con `direction: "UP"`, e il cervello filtra le carte
+confrontando **le chiavi** dei parametri fissi con l'intenzione voluta:
+`direction` non e' una chiave che l'intenzione porta, quindi il confronto non
+scattava mai e *Favore* si offriva anche per **abbassare** una domanda, il
+verso opposto a quello scritto sulla carta.
+
+### Cambiato
+- Schema `asset`: `physical.actions[].engine`, vera sull'Azione che il motore
+  risolve.
+- `tools/engine_action.py` (nuovo): la scrive — dedotta su 29, letta su 18 con
+  la ragione accanto. E' **un cancello**, ed e' l'unico che prende le 18.
+- `validate_physical.py`: al piu' una marca per carta, il suo verbo e' quello
+  dichiarato, una carta senza marca ha una ragione — e un parametro che il
+  verbo non legge. Quattro difetti piantati nuovi, **58** in tutto.
+- `AssetText.engine_action()`: la riga che punta all'Azione; vuota quando il
+  motore non ne risolve nessuna, e allora la scheda lo dice.
+- I sette parametri: sei tolti, e `direction: "UP"` di *Favore* detto in
+  `delta: 1` — lo stesso numero che il motore usava gia' come default.
+- Un ramo irraggiungibile tolto dalla guardia nuova prima di scriverla nei
+  cancelli.
+
+### Misurato
+- carte in cui l'Azione risolta si **deduce** dal verbo: **29 / 48**;
+  **lette** carta per carta: **18**; **senza nessuna**: **1**.
+- parametri che il verbo della carta non legge: **7 / 48 carte**; di questi,
+  quelli che cambiano il gioco: **1**.
+- *Favore*: isolando i sette uno per uno sul seme 7003, sei non spostano
+  niente e il settimo porta le estrazioni da **211 a 212**.
+- cancello **0 seggi bloccati su 8**, tavolo misto e uniforme, 100 semi su
+  7000. Verita' **325 scritte / 322 diverse** (misto), **324 / 324**
+  (uniforme); erano 319/317 e 324/323 nel giro prima.
+- cancelli: **35** (29 veloci + 6 lenti); difetti piantati: **58**.
+
+---
+
 ## 0.1.463 — Le DUE Azioni della carta, e «costa» che non era un costo
 
 [D-493](docs/DECISIONS.md#d-493), giro 4 di [ISSUES 135](docs/ISSUES.md#135),

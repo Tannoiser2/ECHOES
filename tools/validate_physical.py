@@ -1363,6 +1363,8 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai.extend(due_facce_uguali(documenti))
     guai.extend(la_scelta_del_tema(documenti))
     guai.extend(due_domande(documenti))
+    guai.extend(azione_del_motore(documenti))
+    guai.extend(params_muti(documenti))
     return guai
 
 
@@ -1413,6 +1415,22 @@ def la_scelta_del_tema(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             guai.append("scelta finta: %s offre due volte lo stesso Tema (%s)"
                         % (carta_id, primo))
     return guai
+
+
+# **Quali parametri ogni verbo legge davvero** (D-494), ricavati da
+# `godot/scripts/actions/action_resolver.gd` — dalle `_check_*` e dalle funzioni
+# che eseguono, non a memoria. Alcuni li riempie il motore al momento
+# (`region_id`, `tension_id`, `target_entity_id`): stanno qui perche' una carta
+# puo' scriverli, e non perche' debba.
+PARAMS_LETTI: Dict[str, Set[str]] = {
+    "MOVE": {"from_region_id", "region_id"},
+    "INFLUENCE": {"delta", "tension_id", "via"},
+    "FORGE": {"consent", "direction", "target_entity_id"},
+    "SCHEME": {"mode", "region_id", "tension_id"},
+    "CLAIM": {"domain", "mode", "tension_id"},
+    "MARK": {"face_signs", "region_id"},
+    "ACQUIRE": {"family", "keep_asset_id", "structure_type"},
+}
 
 
 def due_facce_uguali(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
@@ -1468,6 +1486,104 @@ def due_facce_uguali(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
             "«%s» e' dichiarata fra le facce gemelle e non e' una carta: "
             "togli la riga da FACCE_GEMELLE_NOTE." % carta_id
         )
+    return guai
+
+
+def azione_del_motore(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Quale delle due Azioni il motore risolve** (D-494).
+
+    Le Azioni stampate sono due, il `card_action` della carta ne esegue **una**.
+    Il dato lo dice con `engine: true` su quella giusta, scritto da
+    `tools/engine_action.py`; senza, la scheda dell'app stampava al suo posto una
+    terza frase — quella generica del verbo — che su alcune carte porta un numero
+    diverso da entrambe le Azioni.
+
+    Tre cose, e la seconda e' quella che serve davvero:
+
+    1. **al piu' una per carta**: due sarebbe una carta che dice due cose;
+    2. **il suo verbo e' il verbo dichiarato**, e dove il verbo compare su una
+       sola delle due Azioni la guardia lo **deduce** e pretende che sia quella —
+       cosi' una marca messa sulla faccia sbagliata non passa;
+    3. **una carta senza nessuna marca deve avere una ragione**: il verbo
+       dichiarato non e' nessuno dei due stampati. Se il verbo c'e' e la marca no,
+       e' una carta dimenticata, non una dichiarazione.
+
+    **Quello che questa guardia non prende, e chi lo prende.** Sulle **18 carte
+    in cui le due Azioni portano lo stesso verbo** il dato non basta: una marca
+    spostata dall'una all'altra passa di qui senza un graffio, perche' il verbo
+    combacia in tutti e due i casi. Quelle le sorveglia `tools/engine_action.py
+    --check`, che tiene la lettura carta per carta ed e' un cancello suo.
+    """
+    guai: List[str] = []
+    for carta in documenti.get("asset", []):
+        azioni = ((carta.get("physical") or {}).get("actions") or [])
+        if not azioni:
+            continue
+        carta_id = str(carta.get("id", ""))
+        verbo = str((carta.get("card_action") or {}).get("kind", ""))
+        marcate = [i for i, a in enumerate(azioni) if bool((a or {}).get("engine", False))]
+        stesso = [i for i, a in enumerate(azioni) if str((a or {}).get("template", "")) == verbo]
+
+        if len(marcate) > 1:
+            guai.append(
+                "%s: %d Azioni marcate «engine» — il motore ne esegue una sola. "
+                "Rigira tools/engine_action.py." % (carta_id, len(marcate))
+            )
+            continue
+        if not marcate:
+            if verbo not in ("", "NONE") and stesso:
+                guai.append(
+                    "%s: nessuna Azione marcata «engine», ma il verbo dichiarato "
+                    "(%s) sta sull'Azione %s. Rigira tools/engine_action.py."
+                    % (carta_id, verbo, ", ".join(str(i + 1) for i in stesso))
+                )
+            continue
+        scelta = marcate[0]
+        porta = str((azioni[scelta] or {}).get("template", ""))
+        if porta != verbo:
+            guai.append(
+                "%s: l'Azione %d e' marcata «engine» e porta %s, ma la carta "
+                "dichiara %s. Una marca sulla faccia sbagliata dice al giocatore "
+                "una cosa che il motore non fa."
+                % (carta_id, scelta + 1, porta or "nessun verbo", verbo or "niente")
+            )
+    return guai
+
+
+def params_muti(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Un parametro che il verbo non legge non e' una regola** (D-494).
+
+    Misurato leggendo `action_resolver.gd` invece di ricopiarlo a memoria: sette
+    carte su 48 portavano un `card_action.params` che il loro verbo non guarda —
+    `delta` su RIVENDICARE e TRAMARE, `direction` su MUOVERE e INFLUENZARE. Il
+    motore usava il proprio default e l'intenzione dell'autore restava a terra,
+    scritta e muta.
+
+    La tabella e' la stessa del motore, e la sorveglia il suo autotest.
+    """
+    guai: List[str] = []
+    for carta in documenti.get("asset", []):
+        azione = carta.get("card_action") or {}
+        verbo = str(azione.get("kind", ""))
+        if verbo in ("", "NONE"):
+            continue
+        letti = PARAMS_LETTI.get(verbo)
+        if letti is None:
+            guai.append(
+                "%s: il verbo %s non sta in PARAMS_LETTI — aggiungilo leggendo "
+                "action_resolver.gd." % (str(carta.get("id", "")), verbo)
+            )
+            continue
+        for chiave in sorted((azione.get("params") or {})):
+            if chiave not in letti:
+                guai.append(
+                    "%s: %s porta «%s» nei params, e %s non lo legge (legge %s). "
+                    "Togli il parametro o dillo nella lingua che il verbo capisce."
+                    % (
+                        str(carta.get("id", "")), verbo, chiave, verbo,
+                        ", ".join(sorted(letti)) or "niente",
+                    )
+                )
     return guai
 
 
@@ -1678,6 +1794,43 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         entrambe = [str(q["id"]) for q in carta["council"]["questions"]]
         for v in carta["physical"]["benefits"]:
             v["for"] = list(entrambe)
+
+    def marca_sulla_faccia_sbagliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Fabbricato** (regola di casa): si prende la prima carta in cui il
+        # verbo dichiarato sta su una sola delle due Azioni e si sposta la marca
+        # sull'altra. E' il caso che nessuna lettura a occhio prende, perche' la
+        # carta continua a dire due cose sensate: solo il motore sa quale delle
+        # due esegue.
+        for carta in prova["asset"]:
+            azioni = ((carta.get("physical") or {}).get("actions") or [])
+            verbo = str((carta.get("card_action") or {}).get("kind", ""))
+            stesso = [i for i, a in enumerate(azioni) if str(a.get("template", "")) == verbo]
+            if len(azioni) != 2 or len(stesso) != 1:
+                continue
+            for azione in azioni:
+                azione.pop("engine", None)
+            azioni[1 - stesso[0]]["engine"] = True
+            return
+
+    def due_marche(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Una carta che dice che il motore esegue tutt'e due le sue Azioni.
+        for carta in prova["asset"]:
+            azioni = ((carta.get("physical") or {}).get("actions") or [])
+            if len(azioni) != 2:
+                continue
+            for azione in azioni:
+                azione["engine"] = True
+            return
+
+    def parametro_muto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # Un `delta` su una carta MUOVERE: MUOVERE non lo legge, e il numero
+        # scritto dall'autore resta a terra senza che niente si lamenti.
+        for carta in prova["asset"]:
+            azione = carta.get("card_action") or {}
+            if str(azione.get("kind", "")) != "MOVE":
+                continue
+            azione.setdefault("params", {})["delta"] = -1
+            return
 
     def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["region"][0]["tags"] = []
@@ -2156,6 +2309,16 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         # provare senza dirlo.
         pianta("due Azioni con lo stesso verbo e gli stessi segni", facce_gemelle,
                "due facce gemelle"),
+        # **Quale delle due il motore risolve** (D-494). Tre difetti, e il primo
+        # e' quello che conta: una marca sulla faccia sbagliata lascia la carta
+        # perfettamente sensata da leggere e dice al giocatore una cosa che il
+        # motore non fa.
+        pianta("la marca «engine» sulla faccia che il motore non esegue",
+               marca_sulla_faccia_sbagliata, "ma la carta dichiara"),
+        pianta("due Azioni marcate «engine» sulla stessa carta", due_marche,
+               "Azioni marcate «engine»"),
+        pianta("un parametro che il verbo della carta non legge", parametro_muto,
+               "non lo legge"),
         # **La Risonanza cieca** (D-482), fabbricata sulla prima carta a due
         # Temi: le 39 che avevano il difetto sono state riparate.
         pianta("carta con due Temi e nessuna scelta", risonanza_cieca,

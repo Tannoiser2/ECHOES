@@ -59,7 +59,8 @@
           {
             "label": "Chiamare la leva",
             "text": "Sposta una tua presenza da quel luogo a un luogo confinante.",
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Tenerli a casa",
@@ -148,7 +149,8 @@
             "puts_tag": [
               "discovery:the_omen"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Far sapere che il confine e' tuo",
@@ -243,7 +245,8 @@
             "puts_tag": [
               "condition:cut_off"
             ],
-            "template": "INFLUENCE"
+            "template": "INFLUENCE",
+            "engine": true
           },
           {
             "label": "Mettere la sbarra",
@@ -334,7 +337,8 @@
           {
             "label": "Prendere il posto",
             "text": "Sposta una tua presenza li'.",
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Spogliare il posto",
@@ -416,7 +420,8 @@
             "template": "FORGE",
             "puts_tag": [
               "escort_sworn"
-            ]
+            ],
+            "engine": true
           },
           {
             "label": "Toglierli di mezzo",
@@ -516,7 +521,8 @@
             "puts_tag": [
               "condition:contested"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Affamare e aspettare",
@@ -600,7 +606,8 @@
           {
             "label": "Richiamarli sotto le armi",
             "text": "Sposta due tue presenze in quel luogo, anche da lontano.",
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Rimetterli in riga",
@@ -649,9 +656,7 @@
       "rules_text": "Chi apre una porta così non resta lì a difenderla.",
       "card_action": {
         "kind": "CLAIM",
-        "params": {
-          "delta": 1
-        },
+        "params": {},
         "note": "Bruciate le porte non c'e' piu' niente da discutere: si e' gia' preso, e adesso lo si dice."
       },
       "on_commit_effects": [
@@ -692,7 +697,8 @@
               "condition:contested",
               "scar:open_wound"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Mostrare la fiaccola",
@@ -775,7 +781,8 @@
             "puts_tag": [
               "condition:contested"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Proibire",
@@ -862,7 +869,8 @@
             "template": "INFLUENCE",
             "puts_tag": [
               "question_unresolved"
-            ]
+            ],
+            "engine": true
           }
         ],
         "resonance": {
@@ -902,9 +910,7 @@
       "rules_text": "Una lista di nomi è la forma più semplice del potere, e la lista chiarisce chi sta dove.",
       "card_action": {
         "kind": "SCHEME",
-        "params": {
-          "delta": -1
-        },
+        "params": {},
         "note": "Contare la gente e' il modo piu' vecchio di guardare le carte degli altri: si sa chi c'e', e quindi cosa manca."
       },
       "on_commit_effects": [
@@ -944,7 +950,8 @@
             "puts_tag": [
               "discovery:the_ledger"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Contare i sacchi",
@@ -1031,7 +1038,8 @@
             "puts_tag": [
               "condition:contested"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Cedere il diritto",
@@ -1076,9 +1084,7 @@
       "rules_text": "Un giudice che ha avuto ragione serve ancora, e risponde a chi ha lasciato la domanda scritta sul muro.",
       "card_action": {
         "kind": "MOVE",
-        "params": {
-          "direction": "DOWN"
-        },
+        "params": {},
         "note": "Un magistrato lo si manda, e dove il magistrato siede la corona c'e'."
       },
       "on_commit_effects": [
@@ -1120,7 +1126,8 @@
             "clears_tag": [
               "condition:contested"
             ],
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Mandarlo a tenere le carte",
@@ -1202,7 +1209,8 @@
             "puts_tag": [
               "renowned"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           },
           {
             "label": "Farsi investire",
@@ -1284,7 +1292,8 @@
           {
             "label": "Proibire",
             "text": "Abbassa quella questione di 2. Nessuno puo' influenzarla fino a fine Atto.",
-            "template": "INFLUENCE"
+            "template": "INFLUENCE",
+            "engine": true
           },
           {
             "label": "Scomunicare",
@@ -1372,7 +1381,8 @@
               "condition:contested",
               "heir_named"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Scrivere la regola",
@@ -1454,7 +1464,8 @@
             "template": "INFLUENCE",
             "puts_tag": [
               "petition_heard"
-            ]
+            ],
+            "engine": true
           },
           {
             "label": "Mandare la folla a casa",
@@ -1544,7 +1555,8 @@
             "puts_tag": [
               "discovery:legend"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Farli parlare in pubblico",
@@ -1640,7 +1652,8 @@
             "clears_tag": [
               "condition:lean"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           }
         ],
         "resonance": {
@@ -1723,7 +1736,8 @@
             "template": "INFLUENCE",
             "puts_tag": [
               "rumour_running"
-            ]
+            ],
+            "engine": true
           }
         ],
         "resonance": {
@@ -1803,7 +1817,8 @@
             "puts_tag": [
               "condition:contested"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Darla a un altro",
@@ -1888,7 +1903,8 @@
             "template": "MOVE",
             "puts_tag": [
               "condition:lean"
-            ]
+            ],
+            "engine": true
           },
           {
             "label": "Marciare sulla capitale",
@@ -1983,7 +1999,8 @@
             "puts_tag": [
               "condition:emptied"
             ],
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Mandare avanti i primi",
@@ -2070,7 +2087,8 @@
             "template": "INFLUENCE",
             "puts_tag": [
               "question_unresolved"
-            ]
+            ],
+            "engine": true
           },
           {
             "label": "Fermare solo una cosa",
@@ -2159,7 +2177,8 @@
             "puts_tag": [
               "discovery:the_omen"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Mettere in giro la voce",
@@ -2248,7 +2267,8 @@
             "clears_tag": [
               "condition:cut_off"
             ],
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Tenere la mappa per se'",
@@ -2328,7 +2348,8 @@
             "puts_tag": [
               "ledger_public"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           },
           {
             "label": "Chiudere il registro",
@@ -2417,7 +2438,8 @@
               "discovery:written_law",
               "knowledge_shared"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Depositare la prova",
@@ -2508,7 +2530,8 @@
             "puts_tag": [
               "discovery:the_ledger"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Aprire l'archivio",
@@ -2599,7 +2622,8 @@
           {
             "label": "Farlo tacere",
             "text": "Abbassa quella questione di 2.",
-            "template": "INFLUENCE"
+            "template": "INFLUENCE",
+            "engine": true
           }
         ],
         "resonance": {
@@ -2692,7 +2716,8 @@
               "crystal_measured",
               "discovery:crystal"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           }
         ],
         "resonance": {
@@ -2775,7 +2800,8 @@
               "condition:contested",
               "betrayal_spoken"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Metterla agli atti",
@@ -2866,7 +2892,8 @@
             "clears_tag": [
               "condition:starving"
             ],
-            "template": "INFLUENCE"
+            "template": "INFLUENCE",
+            "engine": true
           },
           {
             "label": "Costruire il granaio",
@@ -2916,9 +2943,7 @@
       "rules_text": "Non nutre nessuno: senza, quello che nutre non arriva.",
       "card_action": {
         "kind": "SCHEME",
-        "params": {
-          "delta": -1
-        },
+        "params": {},
         "note": "Il sale passa dappertutto, e con i carri del sale viaggiano le notizie."
       },
       "on_commit_effects": [
@@ -2959,7 +2984,8 @@
             "puts_tag": [
               "discovery:trade_ledger"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Salare per l'inverno",
@@ -3010,9 +3036,7 @@
       "rules_text": "Una corda tesa fra due pali, e il diritto di non alzarla.",
       "card_action": {
         "kind": "CLAIM",
-        "params": {
-          "delta": 1
-        },
+        "params": {},
         "note": "Chi mette una corda su una strada sta dicendo che la strada e' sua: e' una rivendicazione con un prezzo scritto sopra."
       },
       "on_commit_effects": [
@@ -3052,7 +3076,8 @@
             "puts_tag": [
               "condition:contested"
             ],
-            "template": "CLAIM"
+            "template": "CLAIM",
+            "engine": true
           },
           {
             "label": "Dividere l'incasso",
@@ -3141,7 +3166,8 @@
             "clears_tag": [
               "condition:cut_off"
             ],
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Fermare la carovana",
@@ -3229,7 +3255,8 @@
           {
             "label": "Comprare il suo debito",
             "text": "Scendi di 1 gradino con lei e pesca 2 Ricchezza.",
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           }
         ],
         "resonance": {
@@ -3310,7 +3337,8 @@
             "puts_tag": [
               "grain_requisitioned"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           }
         ],
         "resonance": {
@@ -3389,7 +3417,8 @@
           {
             "label": "Aprire il tesoro",
             "text": "Sposta due tue presenze in quel luogo.",
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Metterci una guardia",
@@ -3476,7 +3505,8 @@
             "puts_tag": [
               "debt_called"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           },
           {
             "label": "Rimettere l'ipoteca",
@@ -3527,7 +3557,7 @@
       "card_action": {
         "kind": "INFLUENCE",
         "params": {
-          "direction": "UP"
+          "delta": 1
         },
         "note": "Un favore chiesto al momento giusto sposta una questione piu' di un argomento."
       },
@@ -3568,7 +3598,8 @@
             "template": "INFLUENCE",
             "puts_tag": [
               "debt_forgiven"
-            ]
+            ],
+            "engine": true
           }
         ],
         "resonance": {
@@ -3610,9 +3641,7 @@
       "rules_text": "Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.",
       "card_action": {
         "kind": "MOVE",
-        "params": {
-          "direction": "UP"
-        },
+        "params": {},
         "note": "Essere ospiti e' essere la': si entra in casa d'altri con il permesso di restarci."
       },
       "on_commit_effects": [
@@ -3644,7 +3673,8 @@
           {
             "label": "Entrare come ospite",
             "text": "Sposta una tua presenza li', anche se il luogo e' di un altro.",
-            "template": "MOVE"
+            "template": "MOVE",
+            "engine": true
           },
           {
             "label": "Dare loro una casa",
@@ -3813,7 +3843,8 @@
             "puts_tag": [
               "escort_sworn"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           },
           {
             "label": "Farsi giurare",
@@ -3902,7 +3933,8 @@
           {
             "label": "Rimandare",
             "text": "Salite di 1 gradino e pesca 1 Legami.",
-            "template": "FORGE"
+            "template": "FORGE",
+            "engine": true
           }
         ],
         "resonance": {
@@ -3982,7 +4014,8 @@
             "puts_tag": [
               "discovery:legend"
             ],
-            "template": "SCHEME"
+            "template": "SCHEME",
+            "engine": true
           },
           {
             "label": "Fermare la famiglia",
@@ -4069,7 +4102,8 @@
             "template": "INFLUENCE",
             "puts_tag": [
               "betrayal_spoken"
-            ]
+            ],
+            "engine": true
           },
           {
             "label": "Restituire l'ostaggio",
@@ -4159,7 +4193,8 @@
           {
             "label": "Minacciare di rompere",
             "text": "Alza quella questione di 1. Chi aveva il patto ti da' 1 carta a scelta perche' tu non lo faccia.",
-            "template": "INFLUENCE"
+            "template": "INFLUENCE",
+            "engine": true
           }
         ],
         "resonance": {

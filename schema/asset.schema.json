@@ -236,6 +236,10 @@
           "type": "string",
           "pattern": "^STR_[A-Z_]+$",
           "description": "La Pietra che questa Azione alza (D-412). Solo su un'Azione ACQUIRE: la faccia dice **quale** Pietra, cosi' al tavolo non si sceglie fra dieci segnalini ma si prende quello stampato sulla carta. Si alza di grado 1, di chi l'ha alzata, in una Regione dove ha presenza e dove il bersaglio a segni della carta arriva."
+        },
+        "engine": {
+          "type": "boolean",
+          "description": "Vera sull'Azione che il motore risolve oggi (D-494). Le Azioni stampate sono due, il `card_action` della carta ne esegue **una**: senza questo campo la scheda dell'app non sapeva dire quale, e stampava una terza frase generica che su alcune carte portava un numero diverso da entrambe. Al piu' una per carta; il validatore pretende che il suo `template` sia il `card_action.kind`, e dove il verbo compare su una sola delle due la deduce e la controlla. Una carta puo' non averne nessuna: vuol dire che il motore non esegue nessuna delle due Azioni stampate, e la scheda lo dice invece di far finta."
         }
       }
     },

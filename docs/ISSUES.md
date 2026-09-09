@@ -10195,7 +10195,27 @@ guardano si guardano:
    una»* — perche' il motore ne esegue una sola (voce 69). E «costa:», che
    stava su **48 carte su 48** e non nominava un costo, dice quando succede:
    *«se la impegni al Consiglio»*;
-6. **un'ora con l'app in mano**, che nessuna sonda misura.
+6. ✔ **quale delle due il motore risolve** — **giro 5 fatto in 0.1.464**
+   ([D-494](DECISIONS.md#d-494)). La riga in coda alla carta, che D-493 aveva
+   lasciato come frase generica del verbo, adesso **punta a una delle due** per
+   numero e per nome: *«Oggi l'app risolve la 2 — Comprare il suo debito»*.
+   Il dato lo dice (`engine` sulla faccia): **dedotto** su 29 carte su 48,
+   **letto carta per carta** sulle 18 in cui le due Azioni portano lo stesso
+   verbo, **nessuno** sull'unica in cui il motore non ne esegue nessuna — e
+   quella lo dichiara. E leggendole e' saltato fuori un difetto vero: **7
+   parametri su 48 carte** che il loro verbo non legge, di cui **uno non era
+   muto affatto** (vedi sotto);
+7. **un'ora con l'app in mano**, che nessuna sonda misura.
+
+**Il parametro che sembrava muto e non lo era.** *Favore* dichiarava
+`INFLUENCE` con `direction: "UP"`: il resolver di INFLUENZARE legge `delta` e
+ignora `direction`, quindi pareva innocuo. Ma il cervello filtra le carte
+confrontando **le chiavi** dei parametri fissi con l'intenzione voluta, e
+`direction` non e' una chiave che l'intenzione porta: il confronto non scattava
+mai, e *Favore* si offriva anche per **abbassare** una domanda — il verso
+opposto a quello scritto sulla carta. Detto in `delta: 1` la regola morde, e la
+misura lo prova isolando i sette uno per uno: sei non spostano niente, il
+settimo porta le estrazioni del seme 7003 da **211 a 212**.
 
 **Una cosa misurata qui e non rimediata:** su **una carta su 48** — *Debito
 Vecchio* — il verbo dichiarato (`CLAIM`) non e' nessuno dei due stampati

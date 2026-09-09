@@ -76,6 +76,7 @@ Linux, e serve solo a dire in quale corsia va un cancello.
 | `python3 tools/validate_data.py --self-test` | 0.1 s | che la guardia dei gettoni morda |
 | `python3 tools/validate_physical.py --check` | 0.1 s | **la grammatica fisica**: il dizionario dei segni (`godot/data/tags`) allineato ai dati — ambiti, mani, #cancelletti, muti con ragione — piu' carte senza Risonanza, Risonanze cieche, Temi senza Tensioni, tessere senza segni o che nessuno legge, Tensioni senza domande, ponti delle domande rotti, Destini che osservano l'inesistente, Echi senza effetto, bersagli non garantiti sul tavolo pescato, liste di opportunita'/malus monche o con scelte finte sulle carte Tensione |
 | `python3 tools/validate_physical.py --self-test` | 2.6 s | che la guardia del dizionario morda, su ogni difetto piantato |
+| `python3 tools/engine_action.py --check` | 0.1 s | **quale delle due Azioni stampate il motore risolve**: dedotta dove il verbo dichiarato sta su una sola delle due (29 carte su 48), letta carta per carta dove le due lo portano tutte e due (18) — e questa e' l'unica guardia che le prende, perche' li' il dato da solo non basta |
 | `python3 tools/gen_gd_schema.py --check` | 0.1 s | `schema_defs.gd` allineato agli schemi |
 | `python3 tools/gen_sign_labels.py --check` | 0.1 s | **le parole dei segni**: `sign_labels.gd` generato dal dizionario, cosi' un segno si battezza una volta sola |
 | `python3 tools/build_manifest.py --check` | 0.1 s | il manifesto degli asset |

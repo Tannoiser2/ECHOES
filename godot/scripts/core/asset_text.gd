@@ -302,6 +302,32 @@ static func printed_actions(asset: Dictionary) -> Array:
 	return said
 
 
+## **Quale delle due il motore risolve** (D-494).
+##
+## D-493 aveva messo le due Azioni sulla carta e lasciato in coda la frase del
+## verbo dichiarato, con la sua premessa. Era vera e restava criptica: e' una
+## **terza** frase, generica, e su alcune carte porta un numero che non e' ne'
+## quello della prima Azione ne' quello della seconda — su *Credito* «un passo»
+## contro «2 gradini» e «1 gradino». Il committente, con la carta in mano:
+## *«sono sempre frasi narrative e criptiche»*.
+##
+## Adesso la riga **punta a una delle due**, per numero e per nome, e non
+## inventa niente: la risposta e' nel dato (`engine` sulla faccia), scritta da
+## `tools/engine_action.py` — dedotta su **29 carte su 48**, dove il verbo
+## dichiarato compare su una sola delle due Azioni, e letta carta per carta
+## sulle **18** in cui le due lo pronunciano tutte e due.
+##
+## Torna vuota quando il motore non risolve nessuna delle due: **una carta su
+## 48**, e chi legge deve saperlo (ISSUES 69).
+static func engine_action(asset: Dictionary) -> String:
+	var faces: Array = (asset.get("physical", {}) as Dictionary).get("actions", []) as Array
+	for i in range(faces.size()):
+		var face: Dictionary = faces[i] as Dictionary
+		if bool(face.get("engine", false)):
+			return "l'app risolve la %d — %s" % [i + 1, str(face.get("label", ""))]
+	return ""
+
+
 ## What this card adds to the Support front of a Council on this Tension - the
 ## resolver's own arithmetic, not a copy of it.
 static func value_on(asset: Dictionary, relevant_families: Array) -> int:
@@ -326,12 +352,15 @@ static func tooltip(asset: Dictionary, data = null) -> String:
 	else:
 		for i in range(printed.size()):
 			lines.append("%d. %s" % [i + 1, str(printed[i])])
-		# La faccia ne offre due, il motore ne esegue una (ISSUES 69). Dirlo
-		# e' piu' onesto che stampare la frase del verbo dichiarato come se
-		# fosse una terza Azione — o che tacerla, e lasciare il giocatore a
-		# scoprire da solo quale delle due l'app gli risolve.
-		if verb != "":
-			lines.append("Oggi l'app ne risolve una: %s" % verb)
+		# La faccia ne offre due, il motore ne esegue una (ISSUES 69). D-494:
+		# la riga **nomina quale**, invece di ripetere la frase generica del
+		# verbo — che e' una terza frase, e su alcune carte porta un numero
+		# diverso da entrambe. Dove il motore non ne esegue nessuna, lo dice.
+		var which: String = engine_action(asset)
+		lines.append(
+			"Oggi %s" % which if which != ""
+			else "Oggi l'app non risolve nessuna delle due"
+		)
 	lines.append(note(asset, data))
 	var rules: String = str(asset.get("rules_text", ""))
 	if rules != "":
