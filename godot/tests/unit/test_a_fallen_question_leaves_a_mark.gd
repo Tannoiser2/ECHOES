@@ -10,15 +10,19 @@ extends "res://tests/test_case.gd"
 ## nessuno assegna resta contesa, l'Antico che nessuno chiude diventa una voce
 ## che corre, un conto che nessuno salda chiude la strada.
 ##
-## Le prove sono tre, e la terza e' quella che tiene le altre oneste: **una
-## prova che cerca una condizione fra i dati puo' smettere di provare senza
-## dirlo** se quella condizione sparisce. Qui la condizione e' «esiste almeno un
-## Consiglio caduto», e se non c'e' la prova lo dice invece di passare a vuoto.
+## **La caduta si fabbrica, non si cerca** (D-489). Fino al 0.1.458 due di
+## queste prove giravano sei semi e guardavano i Consigli caduti che
+## capitavano; l'avviso che il file stesso si era scritto — *«una prova che
+## cerca una condizione fra i dati puo' smettere di provare senza dirlo»* — e'
+## suonato il giorno in cui le marche delle caselle sono diventate quelle della
+## carta e su quei sei semi non e' caduto piu' niente. Adesso la caduta si
+## costruisce, su tutte e quattro le carte del banco invece che su quelle che il
+## caso faceva cadere: e' una prova piu' forte, non una riparazione.
 
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 
-const SEATS: Array = ["ENT_ALDRIC", "ENT_NAHR", "ENT_LYRA", "ENT_VAERAX"]
-const SEMI: Array = [9100, 9137, 9174, 9211, 9248, 9285]
+## Le quattro carte del banco: la caduta si fabbrica su tutte e quattro.
+const TENSIONI: Array = ["TEN_FAMINE", "TEN_AWAKENING", "TEN_SUCCESSION", "TEN_ROADS"]
 
 
 ## Ogni scheda di Consiglio dice **una riga sola** sotto «se cade», e quella
@@ -56,61 +60,35 @@ func test_every_council_sheet_says_what_happens_if_it_falls() -> void:
 ## controlla tutt'e due le cose, in ordine: prima la riga del sacchetto, poi i
 ## rifiuti delle due domande.
 func test_a_fallen_council_lands_the_consequence_of_its_own_sheet() -> void:
-	var fallen: int = 0
-	var with_a_refusal: int = 0
-	for seed_value in SEMI:
-		if session != null:
-			session.dispose()
-		session = GameSession.new(data())
-		session.setup("CHR_TEST", SEATS, int(seed_value))
-		await session.run(_decider())
-		for entry in session.chronicle.confluence_results:
-			var result: Dictionary = entry as Dictionary
-			if str(result["outcome"]) != ConfluenceResolution.FAILURE:
-				continue
-			fallen += 1
-			var sheet: Dictionary = data().confluence_template_for(str(result["tension_id"]))
-			var expected: Array = (
-				(sheet.get("consequence_pools", {}) as Dictionary).get("failure", []) as Array
-			).duplicate()
-			# Le due domande della carta sono state respinte tutt'e due: cio'
-			# che ognuna lascia si aggiunge, senza doppioni.
-			#
-			# **L'ordine e' quello del tavolo, non quello della stampa** (D-486):
-			# il motore le mette nell'ordine delle due parti — A e poi B — e
-			# quale domanda finisce da che parte lo decide il Consiglio, non la
-			# carta. Fino a 0.1.455 le due coincidevano per caso, e questa riga
-			# e' andata rossa il giorno in cui il Calore che attraversa l'Atto
-			# ha cambiato quale domanda si apre per prima. Si confrontano gli
-			# insiemi: quello che conta e' che ci sia tutto, una volta sola.
-			var refusals: int = 0
-			for question in (sheet.get("questions", []) as Array):
-				for consequence_id in ((question as Dictionary).get("refused", []) as Array):
-					refusals += 1
-					if not expected.has(consequence_id):
-						expected.append(consequence_id)
-			if refusals > 0:
-				with_a_refusal += 1
-			var landed: Array = (result["consequence_ids"] as Array).duplicate()
-			landed.sort()
-			expected.sort()
-			assert_eq(
-				landed, expected,
-				"la domanda %s e' caduta: doveva lasciare %s" % [
-					str(result["tension_id"]), str(expected)
-				]
-			)
-	# **Le due righe che tengono onesta la prova.** Se un giorno nessuno di
-	# questi semi fa cadere piu' niente, o se nessuna delle carte che cadono
-	# porta un rifiuto scritto, questa prova smetterebbe di provare in silenzio
-	# — la seconda meta' passerebbe senza aver mai guardato una Conseguenza
-	# rimessa in strada da D-475.
-	assert_true(fallen > 0, "su %d semi non e' caduta nemmeno una domanda: la prova non prova niente" % SEMI.size())
-	# Su questi semi cade poco, e quel poco puo' capitare su una carta che non
-	# scrive nessun rifiuto: `with_a_refusal` si legge, non si pretende. La
-	# meta' nuova la prova il caso **fabbricato** qui sotto, che e' la regola di
-	# casa — una condizione cercata fra i dati puo' smettere di esserci.
-	assert_true(with_a_refusal >= 0, "il conto delle cadute con un rifiuto si legge")
+	var checked: int = 0
+	for tension_id in TENSIONI:
+		var result: Dictionary = _make_it_fall(str(tension_id))
+		assert_eq(
+			str(result.get("outcome", "")), ConfluenceResolution.FAILURE,
+			"%s: senza un impegno non passa nessuna delle due" % str(tension_id)
+		)
+		var sheet: Dictionary = data().confluence_template_for(str(tension_id))
+		var expected: Array = (
+			(sheet.get("consequence_pools", {}) as Dictionary).get("failure", []) as Array
+		).duplicate()
+		# Le due domande della carta sono state respinte tutt'e due: cio' che
+		# ognuna lascia si aggiunge, senza doppioni.
+		for question in (sheet.get("questions", []) as Array):
+			for consequence_id in ((question as Dictionary).get("refused", []) as Array):
+				if not expected.has(consequence_id):
+					expected.append(consequence_id)
+		var landed: Array = (result["consequence_ids"] as Array).duplicate()
+		# **L'ordine e' quello del tavolo, non quello della stampa** (D-486): il
+		# motore le mette nell'ordine delle due parti, e quale domanda finisce
+		# da che parte lo decide il Consiglio. Si confrontano gli insiemi.
+		landed.sort()
+		expected.sort()
+		assert_eq(
+			landed, expected,
+			"%s e' caduta: doveva lasciare %s" % [str(tension_id), str(expected)]
+		)
+		checked += 1
+	assert_eq(checked, TENSIONI.size(), "tutte le carte del banco sono state fatte cadere")
 
 
 ## **E il rifiuto arriva davvero al mondo** (D-475), su un caso **fabbricato**:
@@ -164,26 +142,41 @@ func test_a_refused_question_lands_what_it_says_it_leaves() -> void:
 ## elencata che non posa nessun Effect sarebbe una riga stampata e basta.
 func test_the_mark_reaches_the_world_and_not_only_the_minute() -> void:
 	var landed: int = 0
-	for seed_value in SEMI:
-		if session != null:
-			session.dispose()
-		session = GameSession.new(data())
-		session.setup("CHR_TEST", SEATS, int(seed_value))
-		await session.run(_decider())
-		for entry in session.chronicle.confluence_results:
-			var result: Dictionary = entry as Dictionary
-			if str(result["outcome"]) != ConfluenceResolution.FAILURE:
-				continue
-			if (result["consequence_ids"] as Array).is_empty():
-				continue
-			assert_true(
-				(result["effect_ids"] as Array).size() > 0,
-				"la domanda %s e' caduta e non ha posato niente sul mondo"
-					% str(result["tension_id"])
-			)
-			landed += 1
-	assert_true(landed > 0, "nessun Consiglio caduto misurato: la prova non prova niente")
+	for tension_id in TENSIONI:
+		var result: Dictionary = _make_it_fall(str(tension_id))
+		assert_false(
+			(result["consequence_ids"] as Array).is_empty(),
+			"%s caduta lascia almeno una Conseguenza" % str(tension_id)
+		)
+		assert_true(
+			(result["effect_ids"] as Array).size() > 0,
+			"%s e' caduta e non ha posato niente sul mondo" % str(tension_id)
+		)
+		landed += 1
+	assert_eq(landed, TENSIONI.size(), "ogni carta del banco ha posato il suo segno")
 
 
-func _decider() -> RefCounted:
-	return load("res://scripts/seat/policy_decider.gd").new(session.log)
+## **Si fabbrica la caduta, non si cerca** (regola di casa, e questo file la
+## dichiarava gia' in testa). Fino al 0.1.458 queste due prove giravano sei semi
+## e contavano i Consigli caduti che capitavano: il giorno in cui le marche
+## delle caselle sono diventate quelle della carta (D-489) su quei sei semi non
+## e' caduto piu' niente, e le due prove hanno detto *«non provo niente»* invece
+## di passare a vuoto — che e' esattamente il lavoro che facevano.
+##
+## Adesso la caduta si costruisce: si apre il Consiglio e non impegna nessuno.
+## Le due parti restano a zero, nessuna supera l'altra, e a parita' non passa
+## nessuna delle due (D-467). E si fa su **tutte** le carte del banco, non su
+## quelle che il caso faceva cadere.
+func _make_it_fall(tension_id: String) -> Dictionary:
+	new_session()
+	var theme_id: String = str(data().tensions[tension_id].get("theme", ""))
+	if not session.world.has("theme_heat"):
+		session.world["theme_heat"] = {}
+	(session.world["theme_heat"] as Dictionary)[theme_id] = 0
+	var context: Dictionary = session.confluence.open(tension_id, {"kind": "THRESHOLD"})
+	assert_false(context.is_empty(), "il Consiglio di %s si apre" % tension_id)
+	var result: Dictionary = session.confluence.resolve()
+	assert_false(result.is_empty(), "e si risolve: %s" % session.confluence.last_error)
+	return result
+
+

@@ -137,8 +137,8 @@ Dice le domande e le caselle con cui il tavolo la risolve.
 > · B · Riapri il luogo: via il #tagliato_fuori.
 > · B · Togli una condizione dal luogo.
 > SI PAGA
-> · A · Il luogo viene murato: quello che sta sotto resta sotto.
-> · B · Cedi il controllo del luogo.
+> · B · Il luogo viene murato: quello che sta sotto resta sotto.
+> · A · Cedi il controllo del luogo.
 > · B · Al luogo si aggiunge #indebitata.
 > · A · Accetta 1 Cicatrice permanente: la domanda sul muro.
 > · B · Sul luogo si alza un pedaggio.

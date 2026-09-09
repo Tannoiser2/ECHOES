@@ -870,6 +870,53 @@ mondo quasi non scriveva — *Ordine Ristabilito* e *la fama* — passano da 18 
 86 scritture a **230 e 300**, e «La fama precede» smette di essere una regola
 senza penna.
 
+**E in 0.1.459, su tua parola — *«vai con le marche delle caselle carta per
+carta»* — e' caduta anche l'ultima riga di lavoro che restava**
+([D-489](DECISIONS.md#d-489)). Quella l'avevo lasciata a te fin dal giro 2, e
+avevo ragione a lasciarla: e' lettura, non regola.
+
+Il difetto in una riga: **tutte e 60 le carte portavano le stesse dodici
+marche**. Una forma sola, sessanta volte. Scegliere la domanda A o la domanda B
+metteva sul tavolo sempre le stesse cose, e le due domande erano due solo sulla
+carta. Adesso le forme sono **45**.
+
+La regola della lettura e' una: *una casella serve la domanda che il tavolo sta
+rispondendo quando la posa.* Costruire va con la domanda che istituisce, il
+controllo con quella che chiede di chi e', riaprire con quella che apre, il
+debito con quella del conto, la Cicatrice con quella che lascia quel torto.
+
+**Una cosa l'ho scritta due volte, e la seconda me l'ha dettata la misura.** Al
+primo giro avevo dato anche **la memoria** alla domanda che la scrive: *«il
+registro e' aperto a chi vuole leggerlo»* sta con «si aprono i registri?», non
+con «in un anno magro si paga lo stesso?». Sembrava la riga migliore di tutte.
+I numeri hanno detto no in due punti: divisa, la memoria **si compra la meta'
+delle volte** (487 acquisti su cento anni, 238), e sul banco delle prove la
+controdomanda **smetteva di essere giocata** — dal 34% al 6% dei Consigli.
+Quindi la memoria resta della **carta**, come il Tema, che poi e' quello che
+avevi gia' scelto tu in D-453: *«la casella della memoria, la storia della
+carta»*.
+
+Una guardia nuova tiene quello che mancava — *ogni domanda ha almeno una casella
+sua* — perche' il conto vecchio (tre per domanda) lo si superava dando tutto a
+tutt'e due, ed e' esattamente quello che facevo.
+
+**Il cancello: 0 su 8** sui due tavoli, Consigli per anno 5,07, la controdomanda
+al 33%: **il tavolo che si gioca non si e' mosso.** Quello che si e' mosso e' il
+**banco delle prove** — quattro carte nel §10 di sempre, un gioco che nessuno
+gioca ma su cui stanno ferme le prove unitarie: li' i Consigli per anno scendono
+da 5,12 a 4,25 e la controdomanda dal 34% al 21%. La banda di `test_balance`
+scende a 4-7 con la ragione scritta nel file, i limiti duri non si toccano, e da
+oggi quel numero ha una sonda che lo misura invece di leggerlo dentro
+un'asserzione rossa.
+
+**E due prove hanno fatto il loro mestiere.** Cercavano un Consiglio caduto su
+sei semi; con le marche nuove su quei sei non ne e' caduto piu' nessuno, e hanno
+detto *«non provo niente»* invece di passare a vuoto. Adesso la caduta la
+**fabbricano**, su tutte e quattro le carte del banco.
+
+**Con questa, di ISSUES 129 resta solo quello che nessuna sonda puo' misurare:
+un Consiglio giocato da persone.**
+
 ### ✔ M16. [130](ISSUES.md#130) — la pagina e' fatta di carte: **chiusa in 0.1.443**
 
 Hai giocato un anno e mi hai scritto sette cose. Le ho cercate tutte nel

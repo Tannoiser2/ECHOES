@@ -45,6 +45,140 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-489 — Le marche delle caselle, lette carta per carta
+
+**implemented in 0.1.459.** Parola del committente: *«vai con le marche delle
+caselle carta per carta»*. E' l'ultima riga di lavoro rimasta in
+[ISSUES 129](ISSUES.md#129) che non chieda una persona che gioca.
+
+### 1. Il difetto era dichiarato, e stava scritto in D-469
+
+[D-469](#d-469) aveva marcato le caselle **a regola, per verbo**, e lo aveva
+detto: una prima passata, da correggere carta per carta. Il costo si conta in
+una riga: **tutte e 60 le carte portavano le stesse dodici marche.** Una forma
+sola, sessanta volte. La carta non diceva niente di suo, e scegliere la domanda
+A o la domanda B metteva sul tavolo sempre le stesse cose.
+
+### 2. La regola della lettura, che e' una sola
+
+> **Una casella serve la domanda che il tavolo sta rispondendo quando la posa.**
+
+Le due domande di una carta sono di specie diversa quasi sempre: la **A** chiede
+*chi fa la cosa* — chi nutre, chi scrive la regola, chi riscuote, chi custodisce,
+se si costruisce o si chiude; la **B** chiede *e poi* — di chi e' dopo, chi
+paga, chi risponde, chi resta fuori, chi si conta. Da li' scendono le case dei
+verbi:
+
+| casella | va alla domanda che… |
+|---|---|
+| COSTRUISCI PIETRA | **istituisce**: un granaio, un archivio, una porta di pedaggio, un canale |
+| CAMBIA / CEDI CONTROLLO | chiede **di chi e'**, a chi torna, chi comanda |
+| RIAPRI · RIMUOVI CONDIZIONE | **apre** |
+| AGGIUNGI CONDIZIONE · PEDAGGIO | **sorveglia, raziona, chiude, fa pagare il passaggio** |
+| PRENDI DEBITO | e' la domanda del **conto** |
+| CICATRICE | vinta, lascia il **torto** che quella cicatrice nomina |
+
+E **tre caselle non si leggono, perche' sono della carta e non della domanda**:
+RAFFREDDA TEMA, SCALDA TEMA e IL MONDO RICORDA. Le prime due perche' il Tema e'
+della carta; la terza per la stessa ragione, ed e' il pezzo di questo verbale
+che ho scritto **due volte**.
+
+La lettura sta in `tools/mark_boxes.py`, sessanta righe, una per carta. Girata
+una volta; da qui in poi la guardia sta nel validatore. **Le forme delle marche
+passano da 1 a 45.**
+
+### 3. La memoria: ci ho provato, e la misura ha detto di no
+
+Il primo giro dava IL MONDO RICORDA **alla domanda che quella memoria la
+scrive**: *«il registro e' aperto a chi vuole leggerlo»* sta con «si aprono i
+registri?», non con «in un anno magro si paga lo stesso?». Il verbo e' lo stesso
+su tutte le carte, il segno no, e sembrava la riga migliore di tutta la lettura.
+
+I numeri hanno detto altro, in due punti:
+
+- **si compra la meta' delle volte**: su cento anni, IL MONDO RICORDA passava da
+  487 acquisti a 238, ed e' la casella piu' comprata dopo il Tema. Il mondo
+  ricordava meno perche' la memoria non era piu' disponibile a chi vinceva;
+- **e sul banco delle prove la controdomanda smetteva di essere giocata**: dal
+  34% al **6%** dei Consigli. Divisa, la memoria diventa il peso che decide
+  quale delle due domande vale la pena prendere, e il proponente prende sempre
+  quella.
+
+Quindi la memoria resta **della carta**, come il Tema — che e' anche quello che
+[D-308](#d-308) e [D-453](#d-453) dicevano gia': *«la casella della memoria, la
+storia della carta»*. La memoria e' cio' che il mondo ricorda del fatto che
+quella questione **sia stata decisa**, non della risposta che ha vinto.
+
+*(Resta vero che il testo di alcune memorie e' scritto per una risposta sola, e
+letto sotto l'altra suona storto. E' contenuto d'autore, non una marca, e non lo
+tocco qui.)*
+
+### 4. La guardia nuova: due domande con le stesse caselle sono una domanda sola
+
+`validate_physical.py` chiedeva **tre caselle per domanda e per lato**, e la
+passata a regola quel conto lo superava benissimo: bastava dare tutto a tutt'e
+due. Adesso chiede anche che **ogni domanda ne abbia almeno una sua**. Il difetto
+e' **fabbricato** e non cercato fra i dati: si prende la prima carta e le si
+danno tutti i benefici a tutt'e due le domande — il conto dei tre resta alto e
+la guardia vecchia tace, la nuova morde. **55 difetti piantati.**
+
+### 5. Misurato — e il tavolo spedito non si muove
+
+Il cancello dei 100 semi, seme 7000:
+
+| | 0.1.458 | **adesso** |
+|---|---|---|
+| seggi bloccati su un solo livello, misto | 0 su 8 | **0 su 8** |
+| seggi bloccati, uniforme | 0 su 8 | **0 su 8** |
+| Consigli per anno, misto | 5,08 | **5,07** |
+| esiti misto — FAIL · di misura · SUCC · DECI · COUNTER | 80 · 34 · 96 · 135 · 163 | **75 · 30 · 114 · 121 · 167** |
+| esiti uniforme | 78 · 23 · 91 · 109 · 197 | **64 · 33 · 93 · 110 · 198** |
+| Verita' scritte, misto · uniforme | 325 · 328 | **319 · 324** |
+
+### 6. Il banco delle prove, invece, si muove — e la banda scende
+
+`test_balance` sorveglia da sempre quanti Consigli fa una Chronicle a quattro
+Tensioni, e quella banda si e' mossa cinque volte in questo progetto. Non c'era
+una sonda che la misurasse: il numero si leggeva dentro il messaggio di
+un'asserzione rossa, e con quello non si confronta niente. Adesso c'e':
+`cli/run_year_length_probe.gd`, e **chiama il banco invece di ricopiarlo** —
+apre `test_case.gd` e usa la sua `new_session`, cosi' misura esattamente la
+partita che la suite gioca.
+
+| banco delle prove, 24 Chronicle | 0.1.458 | **adesso** |
+|---|---|---|
+| Consigli per anno, media | 5,12 | **4,25** |
+| mediana | 5 | **4** |
+| distribuzione | [4..7] | **[3..6]** |
+| SUCCESS | 34% | **44%** |
+| **COUNTER** | **34%** | **21%** |
+
+Il banco e' **quattro carte nel §10 di sempre** — un gioco che nessuno gioca,
+tenuto perche' le prove unitarie stiano ferme — e quando i dati cambiano si
+muove piu' del tavolo vero. Il tavolo vero, sopra, non si e' mosso. La banda
+scende a **4-7** con questa ragione scritta nel file, e i **limiti duri non si
+toccano**: 2-8, e nessuna delle 24 partite ci finisce fuori.
+
+**La riga che ti devo**: sul banco la controdomanda passa dal 34% al 21%. Sul
+tavolo spedito resta al 31%. Se un giorno anche li' dovesse scendere, la causa
+e' scritta qui — caselle divise vuol dire due menu diversi, e due menu diversi
+vuol dire che uno dei due e' preferibile.
+
+### 7. E due prove che cercavano invece di fabbricare
+
+`test_a_fallen_question_leaves_a_mark` girava sei semi e guardava i Consigli
+caduti **che capitavano**. Il file si era scritto da solo l'avviso — *«una prova
+che cerca una condizione fra i dati puo' smettere di provare senza dirlo»* — e
+l'avviso e' suonato: su quei sei semi non e' caduto piu' niente, e le due prove
+hanno detto *«non provo niente»* invece di passare a vuoto. **Hanno funzionato
+esattamente come dovevano.** Adesso la caduta si **fabbrica** — si apre il
+Consiglio e non impegna nessuno, a parita' non passa nessuna delle due — e si fa
+su **tutte e quattro** le carte del banco invece che su quelle scelte dal caso.
+
+Suite **806 prove verdi**; 28 cancelli veloci e 6 lenti verdi.
+
+---
+
 ## D-488 — La fascia e' del vincitore, e un Consiglio su tre torna a lasciare memoria
 
 **implemented in 0.1.458.** La taratura che [D-471](#d-471) aveva lasciato

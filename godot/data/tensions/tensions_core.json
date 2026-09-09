@@ -41,7 +41,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_FAMINE_GRAIN"
+              "Q_FAMINE_LAND"
             ]
           },
           {
@@ -68,7 +68,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_FAMINE_LAND"
+              "Q_FAMINE_GRAIN"
             ]
           },
           {
@@ -104,7 +104,7 @@
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_FAMINE_GRAIN"
+              "Q_FAMINE_LAND"
             ]
           },
           {
@@ -114,7 +114,8 @@
             "chi": "RIVAL",
             "level": "ENEMY",
             "for": [
-              "Q_FAMINE_GRAIN"
+              "Q_FAMINE_GRAIN",
+              "Q_FAMINE_LAND"
             ]
           },
           {
@@ -122,7 +123,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
-              "Q_FAMINE_LAND"
+              "Q_FAMINE_GRAIN"
             ]
           },
           {
@@ -262,7 +263,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
             "structure": "STR_OLD_SITE",
             "for": [
-              "Q_AWAKENING_CRYSTAL"
+              "Q_AWAKENING_MOUNTAIN"
             ]
           },
           {
@@ -270,7 +271,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_AWAKENING_CRYSTAL"
+              "Q_AWAKENING_MOUNTAIN"
             ]
           },
           {
@@ -297,7 +298,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_AWAKENING_MOUNTAIN"
+              "Q_AWAKENING_CRYSTAL"
             ]
           },
           {
@@ -305,7 +306,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_AWAKENING_MOUNTAIN"
+              "Q_AWAKENING_CRYSTAL"
             ]
           }
         ],
@@ -332,7 +333,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata.",
             "for": [
-              "Q_AWAKENING_MOUNTAIN"
+              "Q_AWAKENING_CRYSTAL"
             ]
           },
           {
@@ -341,7 +342,7 @@
             "text": "Accetta 1 Cicatrice permanente: la domanda sul muro.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_AWAKENING_CRYSTAL"
+              "Q_AWAKENING_MOUNTAIN"
             ]
           },
           {
@@ -349,6 +350,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
+              "Q_AWAKENING_CRYSTAL",
               "Q_AWAKENING_MOUNTAIN"
             ]
           },
@@ -528,6 +530,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
+              "Q_SUCCESSION_HEIR",
               "Q_SUCCESSION_LAW"
             ]
           }
@@ -539,7 +542,7 @@
             "text": "Al luogo si aggiunge #sorvegliata.",
             "tag": "condition:guarded",
             "for": [
-              "Q_SUCCESSION_HEIR"
+              "Q_SUCCESSION_LAW"
             ]
           },
           {
@@ -547,7 +550,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_SUCCESSION_LAW"
+              "Q_SUCCESSION_HEIR"
             ]
           },
           {
@@ -775,7 +778,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_ROADS_ESCORT"
+              "Q_ROADS_TOLL"
             ]
           },
           {
@@ -792,7 +795,7 @@
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border",
             "for": [
-              "Q_ROADS_TOLL"
+              "Q_ROADS_ESCORT"
             ]
           },
           {
@@ -800,7 +803,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
-              "Q_ROADS_ESCORT"
+              "Q_ROADS_TOLL"
             ]
           },
           {
@@ -971,7 +974,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_PLAGUE_DEAD"
+              "Q_PLAGUE_DOORS"
             ]
           },
           {
@@ -990,7 +993,7 @@
             "text": "Al luogo si aggiunge #lutto.",
             "tag": "condition:mourning",
             "for": [
-              "Q_PLAGUE_DOORS"
+              "Q_PLAGUE_DEAD"
             ]
           },
           {
@@ -998,7 +1001,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_PLAGUE_DEAD"
+              "Q_PLAGUE_DOORS"
             ]
           },
           {
@@ -1015,7 +1018,7 @@
             "text": "Accetta 1 Cicatrice permanente: l'abbandono.",
             "tag": "scar:abandoned",
             "for": [
-              "Q_PLAGUE_DOORS"
+              "Q_PLAGUE_DEAD"
             ]
           },
           {
@@ -1023,7 +1026,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
-              "Q_PLAGUE_DEAD"
+              "Q_PLAGUE_DOORS"
             ]
           },
           {
@@ -1152,7 +1155,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_THIRST_WELLS"
+              "Q_THIRST_PRICE"
             ]
           },
           {
@@ -1179,7 +1182,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_THIRST_PRICE"
+              "Q_THIRST_WELLS"
             ]
           },
           {
@@ -1223,7 +1226,7 @@
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_THIRST_WELLS"
+              "Q_THIRST_PRICE"
             ]
           },
           {
@@ -1231,6 +1234,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
+              "Q_THIRST_WELLS",
               "Q_THIRST_PRICE"
             ]
           },
@@ -1357,7 +1361,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_WATER_CANALS"
+              "Q_WATER_PRICE"
             ]
           },
           {
@@ -1384,7 +1388,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_WATER_PRICE"
+              "Q_WATER_CANALS"
             ]
           },
           {
@@ -1392,7 +1396,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_WATER_PRICE"
+              "Q_WATER_CANALS"
             ]
           }
         ],
@@ -1403,7 +1407,7 @@
             "text": "Al luogo si aggiunge #razionato.",
             "tag": "condition:rationed",
             "for": [
-              "Q_WATER_CANALS"
+              "Q_WATER_PRICE"
             ]
           },
           {
@@ -1419,7 +1423,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata.",
             "for": [
-              "Q_WATER_PRICE"
+              "Q_WATER_CANALS"
             ]
           },
           {
@@ -1567,7 +1571,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio.",
             "structure": "STR_TOLLGATE",
             "for": [
-              "Q_DEBT_LEDGER"
+              "Q_DEBT_CALL"
             ]
           },
           {
@@ -1575,7 +1579,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_DEBT_LEDGER"
+              "Q_DEBT_CALL"
             ]
           },
           {
@@ -1602,7 +1606,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_DEBT_CALL"
+              "Q_DEBT_LEDGER"
             ]
           },
           {
@@ -1610,7 +1614,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_DEBT_CALL"
+              "Q_DEBT_LEDGER"
             ]
           }
         ],
@@ -1621,7 +1625,7 @@
             "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest",
             "for": [
-              "Q_DEBT_LEDGER"
+              "Q_DEBT_CALL"
             ]
           },
           {
@@ -1637,6 +1641,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata.",
             "for": [
+              "Q_DEBT_LEDGER",
               "Q_DEBT_CALL"
             ]
           },
@@ -1646,7 +1651,7 @@
             "text": "Accetta 1 Cicatrice permanente: il confine sigillato.",
             "tag": "scar:sealed_border",
             "for": [
-              "Q_DEBT_LEDGER"
+              "Q_DEBT_CALL"
             ]
           },
           {
@@ -1654,7 +1659,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
-              "Q_DEBT_CALL"
+              "Q_DEBT_LEDGER"
             ]
           },
           {
@@ -1790,7 +1795,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
             "structure": "STR_OLD_SITE",
             "for": [
-              "Q_RELIC_SHOW"
+              "Q_RELIC_KEEP"
             ]
           },
           {
@@ -1798,7 +1803,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_RELIC_SHOW"
+              "Q_RELIC_KEEP"
             ]
           },
           {
@@ -1825,7 +1830,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_RELIC_KEEP"
+              "Q_RELIC_SHOW"
             ]
           },
           {
@@ -1833,7 +1838,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_RELIC_KEEP"
+              "Q_RELIC_SHOW"
             ]
           }
         ],
@@ -1844,7 +1849,7 @@
             "text": "Al luogo si aggiunge #sorvegliata.",
             "tag": "condition:guarded",
             "for": [
-              "Q_RELIC_SHOW"
+              "Q_RELIC_KEEP"
             ]
           },
           {
@@ -1860,7 +1865,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata.",
             "for": [
-              "Q_RELIC_KEEP"
+              "Q_RELIC_SHOW"
             ]
           },
           {
@@ -1877,7 +1882,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
-              "Q_RELIC_KEEP"
+              "Q_RELIC_SHOW"
             ]
           },
           {
@@ -2009,7 +2014,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
             "structure": "STR_KEEP",
             "for": [
-              "Q_CHARTER_WRITE"
+              "Q_CHARTER_SEAT"
             ]
           },
           {
@@ -2017,7 +2022,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_CHARTER_WRITE"
+              "Q_CHARTER_SEAT"
             ]
           },
           {
@@ -2044,7 +2049,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_CHARTER_SEAT"
+              "Q_CHARTER_WRITE"
             ]
           },
           {
@@ -2052,7 +2057,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_CHARTER_SEAT"
+              "Q_CHARTER_WRITE"
             ]
           }
         ],
@@ -2063,7 +2068,7 @@
             "text": "Al luogo si aggiunge #malcontento.",
             "tag": "condition:unrest",
             "for": [
-              "Q_CHARTER_WRITE"
+              "Q_CHARTER_SEAT"
             ]
           },
           {
@@ -2079,7 +2084,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata.",
             "for": [
-              "Q_CHARTER_SEAT"
+              "Q_CHARTER_WRITE"
             ]
           },
           {
@@ -2088,7 +2093,7 @@
             "text": "Accetta 1 Cicatrice permanente: passata di mano.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_CHARTER_WRITE"
+              "Q_CHARTER_SEAT"
             ]
           },
           {
@@ -2096,7 +2101,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio.",
             "for": [
-              "Q_CHARTER_SEAT"
+              "Q_CHARTER_WRITE"
             ]
           },
           {
@@ -2229,7 +2234,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_NAMELESS_RIGHT"
+              "Q_NAMELESS_COUNT"
             ]
           },
           {
@@ -2256,7 +2261,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori.",
             "for": [
-              "Q_NAMELESS_COUNT"
+              "Q_NAMELESS_RIGHT"
             ]
           },
           {
@@ -2264,7 +2269,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_NAMELESS_COUNT"
+              "Q_NAMELESS_RIGHT"
             ]
           }
         ],
@@ -2275,7 +2280,7 @@
             "text": "Al luogo si aggiunge #sorvegliata.",
             "tag": "condition:guarded",
             "for": [
-              "Q_NAMELESS_RIGHT"
+              "Q_NAMELESS_COUNT"
             ]
           },
           {
@@ -2283,7 +2288,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_NAMELESS_COUNT"
+              "Q_NAMELESS_RIGHT"
             ]
           },
           {
@@ -2478,7 +2483,7 @@
             "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
             "tag": "structure:sealed",
             "for": [
-              "Q_ASH_WATCH"
+              "Q_ASH_MOUTHS"
             ]
           },
           {
@@ -2486,7 +2491,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_ASH_MOUTHS"
+              "Q_ASH_WATCH"
             ]
           },
           {

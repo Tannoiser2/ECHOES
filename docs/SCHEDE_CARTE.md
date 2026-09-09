@@ -305,11 +305,11 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "·",
-      "testo": "A · Il luogo viene murato: quello che sta sotto resta sotto."
+      "testo": "B · Il luogo viene murato: quello che sta sotto resta sotto."
     },
     {
       "voce": "·",
-      "testo": "B · Cedi il controllo del luogo."
+      "testo": "A · Cedi il controllo del luogo."
     },
     {
       "voce": "·",
