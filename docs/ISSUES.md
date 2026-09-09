@@ -10220,6 +10220,20 @@ si puo' giocare.
 4. **il potere dell'entita' apre un'Azione sua**;
 5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
    spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
+
+   **E un mazzo fatto di Echi, misurato, non si sentirebbe.** Il committente
+   aveva chiesto di contarli — *«gli echi sono solo tre/quattro per partita, un
+   po' poco»* — e `run_echo_probe.gd` dice **3,73 l'anno su tutto il tavolo**
+   (56 su 15 anni): con quattro case sedute, **meno di uno a testa**. Il **66%**
+   dei Consigli lascia un Eco, quindi non sono rari perche' il criterio e'
+   stretto: sono pochi perche' i Consigli sono **5,58** l'anno.
+
+   **E l'Eco non sa di chi e'.** Il payload porta `participants`, `outcome`,
+   `tension_id`; chi ha **vinto** no. Le case partecipano a quasi tutti gli Echi
+   (3,1-4,0 su 3,73 scritti), quindi «partecipare» non distingue nessuno: un
+   mazzo di Echi oggi non saprebbe a chi darli, e darli a tutti farebbe lo
+   stesso mazzo per tutti. **E' un buco vero e sta in piedi da solo**, anche se
+   l'idea del mazzo di Echi non si fa;
 6. un'altra ora con l'app in mano.
 
 **La forma l'ha decisa il committente in 0.1.468:** *«il mazzetto viene creato
