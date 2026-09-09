@@ -32,7 +32,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.",
             "structure": "STR_GRANARY",
             "for": [
-              "Q_ENCLOSURE_POSTS"
+              "Q_ENCLOSURE_USE"
             ]
           },
           {
@@ -40,7 +40,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_ENCLOSURE_POSTS"
+              "Q_ENCLOSURE_USE"
             ]
           },
           {
@@ -67,7 +67,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_ENCLOSURE_USE"
+              "Q_ENCLOSURE_POSTS"
             ]
           },
           {
@@ -75,7 +75,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_ENCLOSURE_USE"
+              "Q_ENCLOSURE_POSTS"
             ]
           }
         ],
@@ -111,7 +111,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_ENCLOSURE_POSTS"
+              "Q_ENCLOSURE_USE"
             ]
           },
           {
@@ -119,7 +119,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_ENCLOSURE_USE"
+              "Q_ENCLOSURE_POSTS"
             ]
           },
           {
@@ -343,7 +343,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_FALLOW_LEAN"
+              "Q_FALLOW_REST"
             ]
           },
           {
@@ -468,7 +468,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_LANDLESS_PACT"
+              "Q_LANDLESS_LAND"
             ]
           },
           {
@@ -514,7 +514,7 @@
             "text": "Al luogo si aggiunge #svuotato.",
             "tag": "condition:emptied",
             "for": [
-              "Q_LANDLESS_PACT"
+              "Q_LANDLESS_LAND"
             ]
           },
           {
@@ -530,7 +530,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_LANDLESS_LAND"
+              "Q_LANDLESS_PACT"
             ]
           },
           {
@@ -539,7 +539,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_LANDLESS_PACT"
+              "Q_LANDLESS_LAND"
             ]
           },
           {
@@ -547,7 +547,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_LANDLESS_LAND"
+              "Q_LANDLESS_PACT"
             ]
           },
           {
@@ -718,7 +718,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_FLOOD_CANALS"
+              "Q_FLOOD_DIKES"
             ]
           },
           {
@@ -902,7 +902,7 @@
             "text": "Al luogo si aggiunge #sfruttato.",
             "tag": "condition:exploited",
             "for": [
-              "Q_CLEARING_LIMIT"
+              "Q_CLEARING_KILNS"
             ]
           },
           {
@@ -910,7 +910,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_CLEARING_KILNS"
+              "Q_CLEARING_LIMIT"
             ]
           },
           {
@@ -1097,7 +1097,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_STONES_WALK"
+              "Q_STONES_WHO"
             ]
           },
           {
@@ -1105,7 +1105,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_STONES_WHO"
+              "Q_STONES_WALK"
             ]
           },
           {
@@ -1235,7 +1235,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Villaggio.",
             "structure": "STR_SETTLEMENT",
             "for": [
-              "Q_PASTURE_CALENDAR"
+              "Q_PASTURE_SEASON"
             ]
           },
           {
@@ -1243,7 +1243,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_PASTURE_CALENDAR"
+              "Q_PASTURE_SEASON"
             ]
           },
           {
@@ -1270,7 +1270,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_PASTURE_SEASON"
+              "Q_PASTURE_CALENDAR"
             ]
           },
           {
@@ -1278,7 +1278,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_PASTURE_SEASON"
+              "Q_PASTURE_CALENDAR"
             ]
           }
         ],
@@ -1305,7 +1305,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_PASTURE_SEASON"
+              "Q_PASTURE_CALENDAR"
             ]
           },
           {
@@ -1314,7 +1314,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_PASTURE_CALENDAR"
+              "Q_PASTURE_SEASON"
             ]
           },
           {
@@ -1434,7 +1434,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
             "structure": "STR_CANAL",
             "for": [
-              "Q_SALT_PRICE"
+              "Q_SALT_COUNT"
             ]
           },
           {
@@ -1469,7 +1469,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_SALT_COUNT"
+              "Q_SALT_PRICE"
             ]
           },
           {
@@ -1477,7 +1477,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_SALT_COUNT"
+              "Q_SALT_PRICE"
             ]
           }
         ],
@@ -1488,7 +1488,7 @@
             "text": "Al luogo si aggiunge #sfruttato.",
             "tag": "condition:exploited",
             "for": [
-              "Q_SALT_PRICE"
+              "Q_SALT_COUNT"
             ]
           },
           {
@@ -1504,7 +1504,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_SALT_COUNT"
+              "Q_SALT_PRICE"
             ]
           },
           {
@@ -1521,7 +1521,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_SALT_COUNT"
+              "Q_SALT_PRICE"
             ]
           },
           {
@@ -1707,7 +1707,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_REGISTER_MEASURE"
+              "Q_REGISTER_REFUSE"
             ]
           },
           {
@@ -1715,7 +1715,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_REGISTER_REFUSE"
+              "Q_REGISTER_MEASURE"
             ]
           },
           {
@@ -1828,7 +1828,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_PILGRIMS_FEED"
+              "Q_PILGRIMS_YEAR"
             ]
           },
           {
@@ -1855,7 +1855,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_PILGRIMS_YEAR"
+              "Q_PILGRIMS_FEED"
             ]
           },
           {
@@ -1863,7 +1863,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_PILGRIMS_YEAR"
+              "Q_PILGRIMS_FEED"
             ]
           }
         ],
@@ -1890,7 +1890,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_PILGRIMS_YEAR"
+              "Q_PILGRIMS_FEED"
             ]
           },
           {
@@ -1899,7 +1899,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_PILGRIMS_FEED"
+              "Q_PILGRIMS_YEAR"
             ]
           },
           {
@@ -2075,7 +2075,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_HERESY_PREACH"
+              "Q_HERESY_LISTEN"
             ]
           },
           {
@@ -2083,7 +2083,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_HERESY_LISTEN"
+              "Q_HERESY_PREACH"
             ]
           },
           {
@@ -2100,7 +2100,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_HERESY_PREACH"
+              "Q_HERESY_LISTEN"
             ]
           },
           {
@@ -2108,7 +2108,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_HERESY_LISTEN"
+              "Q_HERESY_PREACH"
             ]
           },
           {
@@ -2213,7 +2213,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Archivio. Finche' lo tieni, influenzare una domanda non ti costa la carta.",
             "structure": "STR_ARCHIVE",
             "for": [
-              "Q_VOWS_RELEASE"
+              "Q_VOWS_WHO"
             ]
           },
           {
@@ -2221,7 +2221,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_VOWS_RELEASE"
+              "Q_VOWS_WHO"
             ]
           },
           {
@@ -2248,7 +2248,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_VOWS_WHO"
+              "Q_VOWS_RELEASE"
             ]
           },
           {
@@ -2256,7 +2256,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_VOWS_WHO"
+              "Q_VOWS_RELEASE"
             ]
           }
         ],
@@ -2283,7 +2283,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_VOWS_WHO"
+              "Q_VOWS_RELEASE"
             ]
           },
           {
@@ -2292,7 +2292,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_VOWS_RELEASE"
+              "Q_VOWS_WHO"
             ]
           },
           {
@@ -2409,7 +2409,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
             "structure": "STR_KEEP",
             "for": [
-              "Q_BELLS_RING"
+              "Q_BELLS_WHO"
             ]
           },
           {
@@ -2417,7 +2417,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_BELLS_RING"
+              "Q_BELLS_WHO"
             ]
           },
           {
@@ -2444,7 +2444,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_BELLS_WHO"
+              "Q_BELLS_RING"
             ]
           },
           {
@@ -2452,7 +2452,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_BELLS_WHO"
+              "Q_BELLS_RING"
             ]
           }
         ],
@@ -2463,7 +2463,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_BELLS_RING"
+              "Q_BELLS_WHO"
             ]
           },
           {
@@ -2479,7 +2479,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_BELLS_WHO"
+              "Q_BELLS_RING"
             ]
           },
           {
@@ -2488,7 +2488,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_BELLS_RING"
+              "Q_BELLS_WHO"
             ]
           },
           {
@@ -2496,7 +2496,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_BELLS_WHO"
+              "Q_BELLS_RING"
             ]
           },
           {
@@ -2670,7 +2670,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_SHRINE_RITE"
+              "Q_SHRINE_KEEP"
             ]
           },
           {
@@ -2687,7 +2687,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_SHRINE_KEEP"
+              "Q_SHRINE_RITE"
             ]
           },
           {
@@ -2695,7 +2695,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_SHRINE_RITE"
+              "Q_SHRINE_KEEP"
             ]
           },
           {
@@ -2800,7 +2800,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.",
             "structure": "STR_GRANARY",
             "for": [
-              "Q_TITHE_LEDGER"
+              "Q_TITHE_LEAN"
             ]
           },
           {
@@ -2808,7 +2808,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_TITHE_LEDGER"
+              "Q_TITHE_LEAN"
             ]
           },
           {
@@ -2835,7 +2835,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_TITHE_LEAN"
+              "Q_TITHE_LEDGER"
             ]
           },
           {
@@ -2843,7 +2843,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_TITHE_LEAN"
+              "Q_TITHE_LEDGER"
             ]
           }
         ],
@@ -2854,7 +2854,7 @@
             "text": "Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.",
             "tag": "condition:rationed",
             "for": [
-              "Q_TITHE_LEDGER"
+              "Q_TITHE_LEAN"
             ]
           },
           {
@@ -2862,7 +2862,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_TITHE_LEAN"
+              "Q_TITHE_LEDGER"
             ]
           },
           {
@@ -3000,7 +3000,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
             "structure": "STR_CANAL",
             "for": [
-              "Q_BURIALS_RITE"
+              "Q_BURIALS_WATER"
             ]
           },
           {
@@ -3008,7 +3008,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_BURIALS_RITE"
+              "Q_BURIALS_WATER"
             ]
           },
           {
@@ -3035,7 +3035,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_BURIALS_WATER"
+              "Q_BURIALS_RITE"
             ]
           },
           {
@@ -3043,7 +3043,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_BURIALS_WATER"
+              "Q_BURIALS_RITE"
             ]
           }
         ],
@@ -3210,7 +3210,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_PROPHECY_READ"
+              "Q_PROPHECY_AFTER"
             ]
           },
           {
@@ -3256,7 +3256,7 @@
             "text": "Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.",
             "tag": "condition:rationed",
             "for": [
-              "Q_PROPHECY_READ"
+              "Q_PROPHECY_AFTER"
             ]
           },
           {
@@ -3289,7 +3289,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_PROPHECY_AFTER"
+              "Q_PROPHECY_READ"
             ]
           },
           {
@@ -3394,7 +3394,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
             "structure": "STR_KEEP",
             "for": [
-              "Q_SANCTUARY_LIMITS"
+              "Q_SANCTUARY_DOOR"
             ]
           },
           {
@@ -3402,7 +3402,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_SANCTUARY_LIMITS"
+              "Q_SANCTUARY_DOOR"
             ]
           },
           {
@@ -3437,7 +3437,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_SANCTUARY_DOOR"
+              "Q_SANCTUARY_LIMITS"
             ]
           }
         ],
@@ -3464,7 +3464,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_SANCTUARY_DOOR"
+              "Q_SANCTUARY_LIMITS"
             ]
           },
           {
@@ -3473,7 +3473,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_SANCTUARY_LIMITS"
+              "Q_SANCTUARY_DOOR"
             ]
           },
           {
@@ -3600,7 +3600,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_REGENCY_SEAL"
+              "Q_REGENCY_AFTER"
             ]
           },
           {
@@ -3627,7 +3627,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_REGENCY_AFTER"
+              "Q_REGENCY_SEAL"
             ]
           },
           {
@@ -3635,7 +3635,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_REGENCY_AFTER"
+              "Q_REGENCY_SEAL"
             ]
           }
         ],
@@ -3662,7 +3662,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_REGENCY_AFTER"
+              "Q_REGENCY_SEAL"
             ]
           },
           {
@@ -3671,7 +3671,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_REGENCY_SEAL"
+              "Q_REGENCY_AFTER"
             ]
           },
           {
@@ -3785,7 +3785,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
             "structure": "STR_KEEP",
             "for": [
-              "Q_HOSTAGES_GUEST"
+              "Q_HOSTAGES_WHO"
             ]
           },
           {
@@ -3793,7 +3793,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_HOSTAGES_GUEST"
+              "Q_HOSTAGES_WHO"
             ]
           },
           {
@@ -3820,7 +3820,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_HOSTAGES_WHO"
+              "Q_HOSTAGES_GUEST"
             ]
           },
           {
@@ -3828,7 +3828,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_HOSTAGES_WHO"
+              "Q_HOSTAGES_GUEST"
             ]
           }
         ],
@@ -3839,7 +3839,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_HOSTAGES_GUEST"
+              "Q_HOSTAGES_WHO"
             ]
           },
           {
@@ -3847,7 +3847,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_HOSTAGES_WHO"
+              "Q_HOSTAGES_GUEST"
             ]
           },
           {
@@ -3977,7 +3977,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.",
             "structure": "STR_GRANARY",
             "for": [
-              "Q_LEVY_ARMS"
+              "Q_LEVY_HARVEST"
             ]
           },
           {
@@ -4012,7 +4012,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_LEVY_HARVEST"
+              "Q_LEVY_ARMS"
             ]
           },
           {
@@ -4031,7 +4031,7 @@
             "text": "Al luogo si aggiunge #razionato: nessuno puo' requisirgli il grano, e al Consiglio si decide piu' in fretta, soglia -1.",
             "tag": "condition:rationed",
             "for": [
-              "Q_LEVY_ARMS"
+              "Q_LEVY_HARVEST"
             ]
           },
           {
@@ -4039,7 +4039,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_LEVY_HARVEST"
+              "Q_LEVY_ARMS"
             ]
           },
           {
@@ -4064,7 +4064,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_LEVY_HARVEST"
+              "Q_LEVY_ARMS"
             ]
           },
           {
@@ -4236,7 +4236,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_SEALS_ORDERS"
+              "Q_SEALS_HAND"
             ]
           },
           {
@@ -4253,7 +4253,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_SEALS_HAND"
+              "Q_SEALS_ORDERS"
             ]
           },
           {
@@ -4403,7 +4403,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_MARCHES_TITLE"
+              "Q_MARCHES_EDGE"
             ]
           },
           {
@@ -4447,7 +4447,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_MARCHES_EDGE"
+              "Q_MARCHES_TITLE"
             ]
           },
           {
@@ -4455,7 +4455,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_MARCHES_TITLE"
+              "Q_MARCHES_EDGE"
             ]
           },
           {
@@ -4602,7 +4602,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_COUNCIL_SEATS_VETO"
+              "Q_COUNCIL_SEATS_WHO"
             ]
           },
           {
@@ -4621,7 +4621,7 @@
             "text": "Al luogo si aggiunge #malcontento: al Consiglio la sua domanda diventa piu' difficile da chiudere, soglia +1.",
             "tag": "condition:unrest",
             "for": [
-              "Q_COUNCIL_SEATS_WHO"
+              "Q_COUNCIL_SEATS_VETO"
             ]
           },
           {
@@ -4629,7 +4629,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_COUNCIL_SEATS_VETO"
+              "Q_COUNCIL_SEATS_WHO"
             ]
           },
           {
@@ -4759,7 +4759,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Torre di veglia.",
             "structure": "STR_KEEP",
             "for": [
-              "Q_OLD_GUARD_INSIGNIA"
+              "Q_OLD_GUARD_COMMAND"
             ]
           },
           {
@@ -4767,7 +4767,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_OLD_GUARD_INSIGNIA"
+              "Q_OLD_GUARD_COMMAND"
             ]
           },
           {
@@ -4794,7 +4794,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_OLD_GUARD_COMMAND"
+              "Q_OLD_GUARD_INSIGNIA"
             ]
           },
           {
@@ -4802,7 +4802,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_OLD_GUARD_COMMAND"
+              "Q_OLD_GUARD_INSIGNIA"
             ]
           }
         ],
@@ -4959,7 +4959,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_TRIBUTE_FULL"
+              "Q_TRIBUTE_WHAT_FOR"
             ]
           },
           {
@@ -5021,7 +5021,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_TRIBUTE_WHAT_FOR"
+              "Q_TRIBUTE_FULL"
             ]
           },
           {
@@ -5030,7 +5030,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_TRIBUTE_FULL"
+              "Q_TRIBUTE_WHAT_FOR"
             ]
           },
           {
@@ -5038,7 +5038,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_TRIBUTE_WHAT_FOR"
+              "Q_TRIBUTE_FULL"
             ]
           },
           {
@@ -5153,7 +5153,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_ECHOES_WHO"
+              "Q_ECHOES_SHIFT"
             ]
           },
           {
@@ -5337,7 +5337,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
             "structure": "STR_CANAL",
             "for": [
-              "Q_CHANNELS_MAP"
+              "Q_CHANNELS_END"
             ]
           },
           {
@@ -5345,7 +5345,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_CHANNELS_MAP"
+              "Q_CHANNELS_END"
             ]
           },
           {
@@ -5372,7 +5372,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_CHANNELS_END"
+              "Q_CHANNELS_MAP"
             ]
           },
           {
@@ -5380,7 +5380,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_CHANNELS_END"
+              "Q_CHANNELS_MAP"
             ]
           }
         ],
@@ -5416,7 +5416,7 @@
             "text": "Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:plundered",
             "for": [
-              "Q_CHANNELS_MAP"
+              "Q_CHANNELS_END"
             ]
           },
           {
@@ -5424,7 +5424,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_CHANNELS_END"
+              "Q_CHANNELS_MAP"
             ]
           },
           {
@@ -5539,7 +5539,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_SLEEPERS_COUNT"
+              "Q_SLEEPERS_WATCH"
             ]
           },
           {
@@ -5566,7 +5566,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_SLEEPERS_WATCH"
+              "Q_SLEEPERS_COUNT"
             ]
           },
           {
@@ -5574,7 +5574,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_SLEEPERS_WATCH"
+              "Q_SLEEPERS_COUNT"
             ]
           }
         ],
@@ -5585,7 +5585,7 @@
             "text": "Il luogo viene murato: quello che sta sotto resta sotto.",
             "tag": "structure:sealed",
             "for": [
-              "Q_SLEEPERS_COUNT"
+              "Q_SLEEPERS_WATCH"
             ]
           },
           {
@@ -5601,7 +5601,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_SLEEPERS_WATCH"
+              "Q_SLEEPERS_COUNT"
             ]
           },
           {
@@ -5728,7 +5728,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Sito dormiente.",
             "structure": "STR_OLD_SITE",
             "for": [
-              "Q_SILENCE_LAND"
+              "Q_SILENCE_NIGHT"
             ]
           },
           {
@@ -5763,7 +5763,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_SILENCE_NIGHT"
+              "Q_SILENCE_LAND"
             ]
           },
           {
@@ -5771,7 +5771,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_SILENCE_NIGHT"
+              "Q_SILENCE_LAND"
             ]
           }
         ],
@@ -5782,7 +5782,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_SILENCE_LAND"
+              "Q_SILENCE_NIGHT"
             ]
           },
           {
@@ -5790,7 +5790,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_SILENCE_NIGHT"
+              "Q_SILENCE_LAND"
             ]
           },
           {
@@ -5798,7 +5798,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_SILENCE_NIGHT"
+              "Q_SILENCE_LAND"
             ]
           },
           {
@@ -5807,7 +5807,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_SILENCE_LAND"
+              "Q_SILENCE_NIGHT"
             ]
           },
           {
@@ -5815,7 +5815,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_SILENCE_NIGHT"
+              "Q_SILENCE_LAND"
             ]
           },
           {
@@ -5982,7 +5982,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_UNEARTHED_STUDY"
+              "Q_UNEARTHED_KEEP"
             ]
           },
           {
@@ -6171,7 +6171,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_NAMES_MEAN"
+              "Q_NAMES_USE"
             ]
           },
           {
@@ -6187,7 +6187,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_NAMES_USE"
+              "Q_NAMES_MEAN"
             ]
           },
           {
@@ -6323,7 +6323,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_WARDS_RAISE"
+              "Q_WARDS_MARGIN"
             ]
           },
           {
@@ -6394,7 +6394,7 @@
             "text": "Accetta 1 Cicatrice permanente — l'abbandono: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:abandoned",
             "for": [
-              "Q_WARDS_RAISE"
+              "Q_WARDS_MARGIN"
             ]
           },
           {
@@ -6402,7 +6402,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_WARDS_MARGIN"
+              "Q_WARDS_RAISE"
             ]
           },
           {
@@ -6512,7 +6512,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Canale.",
             "structure": "STR_CANAL",
             "for": [
-              "Q_DEEP_NETS"
+              "Q_DEEP_LOOK"
             ]
           },
           {
@@ -6547,7 +6547,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_DEEP_LOOK"
+              "Q_DEEP_NETS"
             ]
           },
           {
@@ -6555,7 +6555,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_DEEP_LOOK"
+              "Q_DEEP_NETS"
             ]
           }
         ],
@@ -6741,7 +6741,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_WINTER_DEBT"
+              "Q_WINTER_WOOD"
             ]
           },
           {
@@ -6965,7 +6965,7 @@
             "text": "Al luogo si aggiunge #lutto.",
             "tag": "condition:mourning",
             "for": [
-              "Q_MARSH_FEVER_WATER"
+              "Q_MARSH_FEVER_SICK"
             ]
           },
           {
@@ -6998,7 +6998,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_MARSH_FEVER_SICK"
+              "Q_MARSH_FEVER_WATER"
             ]
           },
           {
@@ -7110,7 +7110,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.",
             "structure": "STR_TOLLGATE",
             "for": [
-              "Q_EMPTY_NETS_WATER"
+              "Q_EMPTY_NETS_BOATS"
             ]
           },
           {
@@ -7118,7 +7118,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_EMPTY_NETS_WATER"
+              "Q_EMPTY_NETS_BOATS"
             ]
           },
           {
@@ -7145,7 +7145,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_EMPTY_NETS_BOATS"
+              "Q_EMPTY_NETS_WATER"
             ]
           },
           {
@@ -7153,7 +7153,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_EMPTY_NETS_BOATS"
+              "Q_EMPTY_NETS_WATER"
             ]
           }
         ],
@@ -7180,7 +7180,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_EMPTY_NETS_BOATS"
+              "Q_EMPTY_NETS_WATER"
             ]
           },
           {
@@ -7189,7 +7189,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_EMPTY_NETS_WATER"
+              "Q_EMPTY_NETS_BOATS"
             ]
           },
           {
@@ -7302,7 +7302,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Granaio. Finche' lo tieni, stringere un patto non ti costa un Legame.",
             "structure": "STR_GRANARY",
             "for": [
-              "Q_REFUGEES_ROOM"
+              "Q_REFUGEES_COST"
             ]
           },
           {
@@ -7337,7 +7337,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_REFUGEES_COST"
+              "Q_REFUGEES_ROOM"
             ]
           },
           {
@@ -7364,7 +7364,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_REFUGEES_COST"
+              "Q_REFUGEES_ROOM"
             ]
           },
           {
@@ -7381,7 +7381,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_REFUGEES_ROOM"
+              "Q_REFUGEES_COST"
             ]
           },
           {
@@ -7583,7 +7583,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_WOLVES_FLOCK"
+              "Q_WOLVES_WATCH"
             ]
           },
           {
@@ -7769,7 +7769,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_BAD_GRAIN_SILO"
+              "Q_BAD_GRAIN_BLAME"
             ]
           },
           {
@@ -7777,7 +7777,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_BAD_GRAIN_BLAME"
+              "Q_BAD_GRAIN_SILO"
             ]
           },
           {
@@ -7972,7 +7972,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_QUARANTINE_OUT"
+              "Q_QUARANTINE_LINE"
             ]
           },
           {
@@ -8133,7 +8133,7 @@
             "text": "Al luogo si aggiunge #svuotato.",
             "tag": "condition:emptied",
             "for": [
-              "Q_FERRY_TARIFF"
+              "Q_FERRY_SECOND"
             ]
           },
           {
@@ -8149,7 +8149,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_FERRY_SECOND"
+              "Q_FERRY_TARIFF"
             ]
           },
           {
@@ -8166,7 +8166,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_FERRY_SECOND"
+              "Q_FERRY_TARIFF"
             ]
           },
           {
@@ -8327,7 +8327,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_TOLLS_CHAIN"
+              "Q_TOLLS_CONVOY"
             ]
           },
           {
@@ -8335,7 +8335,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_TOLLS_CONVOY"
+              "Q_TOLLS_CHAIN"
             ]
           },
           {
@@ -8360,7 +8360,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_TOLLS_CONVOY"
+              "Q_TOLLS_CHAIN"
             ]
           },
           {
@@ -8467,7 +8467,7 @@
             "text": "Costruisci 1 Pietra nel luogo: Pedaggio. Finche' lo tieni, rivendicare non ti costa un'Autorita'.",
             "structure": "STR_TOLLGATE",
             "for": [
-              "Q_WEIGHTS_ARM"
+              "Q_WEIGHTS_WATCH"
             ]
           },
           {
@@ -8502,7 +8502,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_WEIGHTS_WATCH"
+              "Q_WEIGHTS_ARM"
             ]
           },
           {
@@ -8521,7 +8521,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_WEIGHTS_ARM"
+              "Q_WEIGHTS_WATCH"
             ]
           },
           {
@@ -8529,7 +8529,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_WEIGHTS_WATCH"
+              "Q_WEIGHTS_ARM"
             ]
           },
           {
@@ -8537,7 +8537,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_WEIGHTS_WATCH"
+              "Q_WEIGHTS_ARM"
             ]
           },
           {
@@ -8694,7 +8694,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_COURIERS_SEAL"
+              "Q_COURIERS_PAYS"
             ]
           },
           {
@@ -8713,7 +8713,7 @@
             "text": "Al luogo si aggiunge #sorvegliata: finche' c'e', li' non si trama.",
             "tag": "condition:guarded",
             "for": [
-              "Q_COURIERS_PAYS"
+              "Q_COURIERS_SEAL"
             ]
           },
           {
@@ -8729,7 +8729,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_COURIERS_SEAL"
+              "Q_COURIERS_PAYS"
             ]
           },
           {
@@ -8738,7 +8738,7 @@
             "text": "Accetta 1 Cicatrice permanente — la domanda sul muro: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:unanswered",
             "for": [
-              "Q_COURIERS_PAYS"
+              "Q_COURIERS_SEAL"
             ]
           },
           {
@@ -8746,7 +8746,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_COURIERS_SEAL"
+              "Q_COURIERS_PAYS"
             ]
           },
           {
@@ -8862,7 +8862,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_CANALS_ARMS"
+              "Q_CANALS_WATER"
             ]
           },
           {
@@ -8889,7 +8889,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_CANALS_WATER"
+              "Q_CANALS_ARMS"
             ]
           },
           {
@@ -8897,7 +8897,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_CANALS_WATER"
+              "Q_CANALS_ARMS"
             ]
           }
         ],
@@ -8924,7 +8924,7 @@
             "verb": "TAKE_DEBT",
             "text": "Al luogo si aggiunge #indebitata: al Consiglio la sua domanda si decide piu' in fretta, soglia -1.",
             "for": [
-              "Q_CANALS_WATER"
+              "Q_CANALS_ARMS"
             ]
           },
           {
@@ -9081,7 +9081,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_GUILDS_FIRE"
+              "Q_GUILDS_STREETS"
             ]
           },
           {
@@ -9108,7 +9108,7 @@
             "verb": "YIELD_CONTROL",
             "text": "Cedi il controllo del luogo.",
             "for": [
-              "Q_GUILDS_FIRE"
+              "Q_GUILDS_STREETS"
             ]
           },
           {
@@ -9125,7 +9125,7 @@
             "text": "Accetta 1 Cicatrice permanente — la razzia: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:plundered",
             "for": [
-              "Q_GUILDS_STREETS"
+              "Q_GUILDS_FIRE"
             ]
           },
           {
@@ -9248,7 +9248,7 @@
             "verb": "TAKE_CONTROL",
             "text": "Assegna o trasferisci il controllo del luogo.",
             "for": [
-              "Q_SMUGGLING_COVE"
+              "Q_SMUGGLING_CUSTOMS"
             ]
           },
           {
@@ -9275,7 +9275,7 @@
             "verb": "REOPEN",
             "text": "Riapri il luogo: via il #tagliato_fuori, e muovere una presenza dentro o fuori torna a costare una carta sola.",
             "for": [
-              "Q_SMUGGLING_CUSTOMS"
+              "Q_SMUGGLING_COVE"
             ]
           },
           {
@@ -9283,7 +9283,7 @@
             "verb": "CLEAR_CONDITION",
             "text": "Togli una condizione dal luogo.",
             "for": [
-              "Q_SMUGGLING_CUSTOMS"
+              "Q_SMUGGLING_COVE"
             ]
           }
         ],
@@ -9319,7 +9319,7 @@
             "text": "Accetta 1 Cicatrice permanente — passata di mano: resta fino a fine partita, e chi conta le Cicatrici la conta.",
             "tag": "scar:changed_hands",
             "for": [
-              "Q_SMUGGLING_COVE"
+              "Q_SMUGGLING_CUSTOMS"
             ]
           },
           {
@@ -9327,7 +9327,7 @@
             "verb": "TOLL",
             "text": "Sul luogo si alza un pedaggio: da qui in poi chi ci passa paga chi lo controlla.",
             "for": [
-              "Q_SMUGGLING_CUSTOMS"
+              "Q_SMUGGLING_COVE"
             ]
           },
           {

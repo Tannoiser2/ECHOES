@@ -1518,6 +1518,19 @@ def due_domande(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 if quante < MIN_PER_DOMANDA:
                     guai.append("domanda con pochi %s su %s: «%s» ne ha %d, ne servono %d"
                                 % (come, chi, qid, quante, MIN_PER_DOMANDA))
+            # **Ogni domanda ne ha almeno una sua** (D-489). Se tutte le caselle
+            # di un lato servono tutt'e due le domande, scegliere l'una o
+            # l'altra non cambia niente di quello che c'e' sul tavolo: sono due
+            # domande stampate e una domanda sola giocata. E' il difetto che
+            # D-469 aveva lasciato aperto con la passata a regola — le stesse
+            # dodici marche su tutte e 60 le carte — e che la lettura carta per
+            # carta ha chiuso.
+            for qid in ids:
+                sue = sum(1 for v in faccia.get(lista) or []
+                          if [str(x) for x in (v.get("for") or [])] == [qid])
+                if not sue:
+                    guai.append("domanda senza %s suoi su %s: «%s» divide tutto con l'altra"
+                                % (come, chi, qid))
     return guai
 
 
@@ -1655,6 +1668,16 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         prima = str(carta["council"]["questions"][0]["id"])
         for v in carta["physical"]["costs"]:
             v["for"] = [q for q in v["for"] if q != prima] or [str(carta["council"]["questions"][1]["id"])]
+
+    def domanda_senza_niente_di_suo(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Fabbricato, non cercato** (regola di casa): si prende la prima carta
+        # e si danno tutti i benefici a tutt'e due le domande. Il conto per
+        # domanda resta alto — la guardia dei tre non se ne accorge — e le due
+        # domande diventano la stessa domanda.
+        carta = prova["tension"][0]
+        entrambe = [str(q["id"]) for q in carta["council"]["questions"]]
+        for v in carta["physical"]["benefits"]:
+            v["for"] = list(entrambe)
 
     def tessera_spogliata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         prova["region"][0]["tags"] = []
@@ -2123,6 +2146,10 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "casella senza domanda"),
         pianta("domanda con meno di tre caselle sue", domanda_scoperta,
                "domanda con pochi"),
+        # **Le due domande che sono una sola** (D-489), fabbricata sulla prima
+        # carta: fino al 0.1.458 tutte e 60 portavano le stesse marche.
+        pianta("domanda che divide tutte le caselle con l'altra",
+               domanda_senza_niente_di_suo, "divide tutto con l'altra"),
         # **Le due facce gemelle** (D-481): fabbricato sulla prima carta a due
         # Azioni, non cercato fra i dati — le sette che avevano il difetto sono
         # state riparate, e una prova che cerca un difetto riparato smette di

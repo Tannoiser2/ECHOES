@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.459 — Le marche delle caselle, lette carta per carta
+
+[D-489](docs/DECISIONS.md#d-489), l'ultima riga di lavoro di
+[ISSUES 129](docs/ISSUES.md#129) che non chieda una persona che gioca. Parola
+del committente: *«vai con le marche delle caselle carta per carta»*.
+
+**Il difetto in una riga: tutte e 60 le carte portavano le stesse dodici
+marche.** [D-469](docs/DECISIONS.md#d-469) le aveva assegnate a regola, per
+verbo, e lo aveva dichiarato: una prima passata, da correggere carta per carta.
+Il costo era che scegliere la domanda A o la domanda B metteva sul tavolo sempre
+le stesse cose — due domande stampate, e una domanda sola giocata. Adesso le
+forme delle marche sono **45**.
+
+La regola della lettura e' una sola: **una casella serve la domanda che il
+tavolo sta rispondendo quando la posa.** Costruire va con la domanda che
+istituisce, il controllo con quella che chiede *di chi e'*, riaprire con quella
+che apre, il debito con quella del conto, la Cicatrice con quella che lascia
+quel torto.
+
+**Tre caselle restano della carta e non della domanda**: raffreddare e scaldare
+il Tema, e **la memoria**. Quest'ultima e' la riga che ho scritto due volte: al
+primo giro l'avevo data alla domanda che la scrive, e la misura ha detto no —
+divisa, IL MONDO RICORDA si compra la meta' delle volte (487 acquisti su cento
+anni, 238) e sul banco la controdomanda passa dal 34% al 6%. La memoria e' la
+**storia della carta** (D-308, D-453), non della risposta che ha vinto.
+
+**Una guardia nuova**: ogni domanda deve avere almeno una casella **sua**,
+perche' il conto vecchio — tre caselle per domanda — lo si superava dando tutto
+a tutt'e due. Difetto fabbricato e non cercato: 55 piantati, tutti mordono.
+
+**Il costo, per intero.** Cancello dei 100 semi: **0 seggi bloccati su 8** sui
+due tavoli, Consigli per anno **5,07**, controdomanda al **33%** — il tavolo che
+si gioca non si muove. Le Verita' scritte scendono da 325 a **319** sul misto e
+da 328 a **324** sull'uniforme. Si muove il **banco delle prove**, quattro carte
+nel §10 di sempre: Consigli per anno da 5,12 a **4,25**, controdomanda dal 34%
+al **21%**. La banda di `test_balance` scende a **4-7** con la ragione scritta
+nel file; i limiti duri (2-8) non si toccano, e da oggi quel numero ha una sonda
+— `run_year_length_probe` — che **chiama il banco invece di ricopiarlo**.
+
+**E due prove hanno fatto il loro mestiere**: cercavano un Consiglio caduto su
+sei semi, su quei sei non ne e' caduto piu' nessuno, e hanno detto *«non provo
+niente»* invece di passare a vuoto. Adesso la caduta la **fabbricano**, su tutte
+e quattro le carte del banco.
+
+Suite 806 prove verdi; 28 cancelli veloci e 6 lenti verdi.
+
+---
+
 ## 0.1.458 — La fascia e' del vincitore, e un Consiglio su tre torna a lasciare memoria
 
 [D-488](docs/DECISIONS.md#d-488), una riga di

@@ -76,7 +76,29 @@ const CEILING: int = 8
 ## La banda si allarga in alto e non in basso: 5-7 e' 1.25-1.75 per Tensione,
 ## ancora dentro il 6-8 che §7 scrive per quattro Tensioni, e il pavimento — la
 ## Chronicle che non decide niente — non si e' mosso di un passo.
-const BAND_LOW: int = 5
+##
+## **Scesa a 4-7 con D-489**, e la ragione va detta per intero perche' questa
+## volta la banda si e' mossa **verso il basso**. Le marche delle caselle non
+## sono piu' le stesse su tutte le carte: ogni domanda ha le sue, lette una per
+## una. Sul banco — quattro carte, il §10 di sempre — il tavolo risponde molto
+## piu' spesso alla domanda **diretta** (SUCCESS dal 34% al 44%, la
+## controdomanda dal 34% al 21%), e la domanda diretta e' quella che chiude la
+## questione con piu' Conseguenze: la Tensione scende di piu', risale piu'
+## tardi, e l'anno ne tiene uno in meno. Misurato con `run_year_length_probe`,
+## che da D-489 esiste apposta: media 5,12 -> **4,25**, mediana 5 -> **4**,
+## distribuzione da [4..7] a [3..6].
+##
+## **E il numero che conta non si e' mosso**: sul tavolo spedito — i 100 semi
+## del cancello, le 60 carte, il gioco che si gioca — i Consigli per anno sono
+## 5,08 -> **5,09** e la controdomanda vince il 32% -> **31%** delle volte. Il
+## banco e' quattro carte in un gioco che nessuno gioca, tenuto perche' le prove
+## unitarie stiano ferme; quando i dati cambiano si muove piu' del tavolo vero,
+## ed e' quello che e' successo.
+##
+## **I limiti duri non si sono mossi**, come sempre: 2-8, e nessuna delle 24
+## partite ci finisce fuori. Il pavimento che §7 difende davvero — la Chronicle
+## che non decide niente — e' lontano.
+const BAND_LOW: int = 4
 const BAND_HIGH: int = 7
 
 

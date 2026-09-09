@@ -10120,8 +10120,22 @@ sposta una virgola della partita, che era il punto.
   muovono 12,7. Adesso la fascia e' **del vincitore**, e la porta e' a dodici:
   il mondo ricorda +14% e +30%, e ricorda cose diverse — 108 Echi su 329
   vengono da Consigli che prima non lasciavano niente;
-- le marche delle caselle da rivedere carta per carta nel catalogo; e quello
-  che nessuna sonda misura: **un Consiglio giocato da persone**.
+- ✅ **le marche delle caselle, lette carta per carta** — **fatto in 0.1.459**
+  ([D-489](DECISIONS.md#d-489)), parola del committente: *«vai con le marche
+  delle caselle carta per carta»*. La passata a regola di D-469 dava a tutte e
+  60 le carte **le stesse dodici marche**: una forma sola, sessanta volte.
+  Adesso sono **45 forme distinte**, lette sulle due domande di ogni carta, e
+  una guardia nuova tiene la proprieta' che mancava: **ogni domanda ha almeno
+  una casella sua**, perche' due domande con le stesse caselle sono una domanda
+  sola. Tre caselle restano della **carta** e non della domanda — raffreddare e
+  scaldare il Tema, e **la memoria**: darla alla domanda che la scrive la faceva
+  comprare la meta' delle volte e spegneva la controdomanda, e la misura ha
+  deciso contro la lettura. Il costo che resta e' sul **banco delle prove**, non
+  sul tavolo spedito: li' i Consigli per anno scendono da 5,12 a 4,25 e la
+  controdomanda dal 34% al 21%, e la banda di `test_balance` scende a 4-7 con la
+  ragione scritta; sui 100 semi del cancello i Consigli restano 5,07 e la
+  controdomanda al 33%;
+- quello che nessuna sonda misura: **un Consiglio giocato da persone**.
 
 
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo
