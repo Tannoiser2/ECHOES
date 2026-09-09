@@ -10168,19 +10168,37 @@ La sonda si dichiara non cieca: **2160 Occasioni contate, 2160 promesse dalla
 Chronicle**, e le scelte del decisore sono PLAY_CARD 266, PASS 408, PLAY_ECHO 46
 su dieci anni.
 
-**E il numero sposta la diagnosi.** La mano vuota c'e' — ed e' peggiore
-nell'**Atto 2**, esattamente dove il committente l'ha vista — ma vale il **4-6%**.
-Quello che vale il **57%** e' passare **avendo carte in mano**: nove volte su
-dieci chi passa ha in media tre carte e le passa lo stesso. Non e' (solo) che le
-carte mancano: e' che **avere carte non basta per poter fare qualcosa**.
+**Il primo numero l'ho letto male, e va detto.** Avevo scritto che la mano
+vuota vale il 4-6% e che il 57% e' passare **avendo** carte — mettendo in fila
+il tavolo della **policy** (che passa spesso per scelta) e quello di una
+**persona**. Sono due tavoli diversi, ed e' esattamente quello che la regola di
+casa vieta: *un numero si scrive col tavolo su cui e' misurato*
+([D-391](DECISIONS.md#d-391)).
 
-Il che e' la seconda meta' della frase del committente — *«le azioni devono fare
-qualcosa, le presenze, le pietre che si possiedono devono poter farmi fare
-qualcosa»* — ed e' la meta' piu' grossa.
+**Sul tavolo che conta — quello giocato da una persona — il committente ha
+ragione in pieno.** `run_blocked_probe.gd`, 15 anni dal seme 7000, siede al
+posto suo e chiede al motore il perche' di ogni blocco:
 
-**Da misurare prima di toccare il meccanismo:** *perche'* si passa avendo carte.
-La sonda del menu di [D-492](DECISIONS.md#d-492) gioca e sa contare le voci: va
-chiesta a lei, su ogni Occasione chiusa con «passo».
+| | |
+|---|---|
+| Occasioni viste da chi gioca | 270 |
+| con la **sola voce «passa»** | **55 (20%)** — una su cinque |
+| di quelle, con la **mano vuota** | **39 (70%)** |
+| carte in mano nei momenti bloccati | **0,44** in media |
+
+**La mano vuota e' la causa principale, non il contorno.** Sette blocchi su
+dieci sono mano vuota, e nei momenti bloccati la mano ha meno di mezza carta.
+Su 18 Occasioni l'anno, restare fermi 3-4 volte e' quello che il committente ha
+vissuto: *«ho passato l'atto 2 e 3»*.
+
+**E c'e' una seconda causa vera**, il 38% delle ragioni contate: **24 carte
+arrivano a un luogo e l'Azione e' rifiutata lo stesso** — sempre le stesse due,
+*Giuramento* e *Promessa di Nozze*, FORGIARE che chiede un'altra casa e il suo
+consenso. Il bersaglio a segni le fa passare, il verbo no.
+
+Quindi tutt'e due le meta' della frase del committente reggono, e la prima e' la
+piu' grossa: **le carte mancano davvero**, e in piu' qualche carta che c'e' non
+si puo' giocare.
 
 **Fatto quando:**
 

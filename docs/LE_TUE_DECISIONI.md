@@ -1020,15 +1020,33 @@ Hai ragione, e il numero dice qualcosa in piu' di quello che hai visto:
 | 2 | 3,29 | **6,2%** | **57,5%** |
 | 3 | 3,66 | 3,5% | **55,6%** |
 
-La mano vuota c'e', ed e' peggiore **nell'Atto 2** — esattamente dove l'hai
-vista. Ma vale il **4-6%**. Quello che vale il **57%** e' passare **avendo carte
-in mano**: nove volte su dieci chi passa ha in media tre carte e le passa lo
-stesso.
+**Poi ho letto male quei numeri, e te l'avevo detto sbagliato.** Ti avevo
+scritto che la mano vuota vale il 4-6% e che il grosso e' passare **avendo**
+carte. Stavo mettendo in fila due tavoli diversi — quello della policy, che
+passa spesso per scelta sua, e quello di una persona — ed e' proprio la cosa che
+la regola di casa vieta.
 
-Quindi non e' (solo) che le carte mancano: **avere carte non basta per poter
-fare qualcosa**, che e' la seconda meta' di quello che hai scritto — *«le
-presenze, le pietre che si possiedono devono poter farmi fare qualcosa»* — ed e'
-la meta' piu' grossa.
+**Sul tavolo che conta, quello giocato da una persona, hai ragione in pieno:**
+
+| | |
+|---|---|
+| Occasioni viste da chi gioca | 270 |
+| con la **sola voce «passa»** | **55 (20%)** — una su cinque |
+| di quelle, con la **mano vuota** | **39 (70%)** |
+| carte in mano quando sei bloccato | **0,44** |
+
+Sette blocchi su dieci sono mano vuota, e quando sei bloccato in mano hai meno
+di mezza carta. Su 18 Occasioni l'anno vuol dire restare fermo **3-4 volte**:
+quello che hai vissuto negli Atti 2 e 3.
+
+**E c'e' una seconda causa**, il 38% delle ragioni: **24 carte arrivano al luogo
+e l'Azione e' rifiutata lo stesso** — sempre *Giuramento* e *Promessa di Nozze*,
+FORGIARE che chiede un'altra casa e il suo consenso. Il bersaglio le fa passare,
+il verbo no.
+
+Quindi tutt'e due le meta' di quello che hai scritto reggono, e la prima e' la
+piu' grossa: **le carte mancano davvero**, e in piu' qualcuna che hai in mano
+non si puo' giocare.
 
 **Il rubinetto della mano e' una decisione tua, e i numeri ci sono gia'.** Il
 fabbisogno di un seggio e' **11,76 carte l'anno** (6,08 per le Azioni + 5,68

@@ -26,11 +26,16 @@ in mezzo, perche' *«non se ne conosce»* e' italiano normale.
 
 ### Aperte
 - **[ISSUES 136](docs/ISSUES.md#136)** — *«ho passato l'atto 2 e 3 senza carte
-  in mano»*. Misurata prima di rispondere, con `run_empty_hand_probe.gd` (nuova)
-  su 30 anni: la mano vuota vale il **4-6%** ed e' peggiore nell'**Atto 2**,
-  dove il committente l'ha vista; ma **il 57% delle Occasioni si passa avendo
-  carte in mano**. Non e' solo che le carte mancano: avere carte non basta per
-  poter fare qualcosa.
+  in mano»*. **Il committente ha ragione in pieno**, e la prima lettura dei
+  numeri era mia e sbagliata: avevo messo in fila il tavolo della policy (che
+  passa spesso per scelta) e quello di una persona, cioe' proprio quello che
+  [D-391](docs/DECISIONS.md#d-391) vieta. Sul tavolo che conta —
+  `run_blocked_probe.gd` (nuova), 15 anni dal seme 7000, seduta al posto di chi
+  gioca — le Occasioni con la **sola voce «passa»** sono **55 su 270 (20%)**, e
+  **39 di quelle (70%) hanno la mano vuota**: nei momenti bloccati la mano ha
+  **0,44 carte**. E il **38%** delle ragioni contate e' una seconda causa vera:
+  **24 carte arrivano al luogo e l'Azione e' rifiutata lo stesso** — *Giuramento*
+  e *Promessa di Nozze*, FORGIARE che chiede un'altra casa e il suo consenso.
 - **[ISSUES 137](docs/ISSUES.md#137)** — la scheda del Consiglio non dice che
   `A` e `B` sono le due domande, mescola le voci delle due, e non dice che il
   proponente compra i benefici e gli avversari scelgono i costi.
@@ -54,8 +59,13 @@ in mezzo, perche' *«non se ne conosce»* e' italiano normale.
 ### Misurato
 - testi che raccontavano il velo vecchio fuori dalle carte: **3**, di cui **1**
   contraddetto dal motore; frasi del codice: **3**.
-- mano vuota per Atto: **4,0% / 6,2% / 3,5%**; passa: **58,8% / 57,5% / 55,6%**;
-  mano media **3,32 / 3,29 / 3,66** (30 anni, seme 7000, tavolo misto).
+- **tavolo della policy** (30 anni, seme 7000, misto): mano vuota per Atto
+  **4,0% / 6,2% / 3,5%**, passa **58,8% / 57,5% / 55,6%**, mano media
+  **3,32 / 3,29 / 3,66**.
+- **tavolo di una persona** (15 anni, seme 7000): bloccati **20%** delle
+  Occasioni, di cui **70%** a mano vuota, **0,44** carte in mano quando bloccato.
+  I due tavoli non si mettono in fila, ed e' la ragione per cui il primo numero
+  di questa voce era sbagliato.
 - fabbisogno di un seggio: **11,76 carte l'anno**, **3,92 per Atto**.
 - suite **815 test, 76 620 asserzioni**, verde; difetti piantati **60**.
 
