@@ -2031,12 +2031,19 @@ func _carries(played: Dictionary, entity_id: String, tag: String) -> bool:
 func _discard(entity_id: String, asset_id: String, source: Dictionary) -> Array:
 	if asset_id == "":
 		return []
+	# **Col mazzetto personale la carta torna nel proprio scarto** (D-499): e'
+	# quello che rende il mazzetto un mazzo e non una scorta. Senza mazzetto la
+	# carta va nello scarto della sua famiglia, come e' sempre stato.
+	var where: String = (
+		"OWN_DISCARD" if not (_chronicle.get("personal_decks", {}) as Dictionary).is_empty()
+		else "DISCARD"
+	)
 	var applied: Dictionary = applier.apply(
 		Effect.make(
 			"REMOVE_ASSET",
 			"entity",
 			entity_id,
-			{"asset_id": asset_id, "destination": "DISCARD"},
+			{"asset_id": asset_id, "destination": where},
 			source
 		)
 	)

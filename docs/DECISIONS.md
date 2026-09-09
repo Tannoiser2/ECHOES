@@ -45,6 +45,97 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-499 — Il mazzetto personale, scritto: una Occasione bloccata su trenta invece che su cinque
+
+**implemented in 0.1.469.** [ISSUES 136](ISSUES.md#136). E' il rimedio al difetto
+che il committente ha vissuto giocando: *«ho passato l'atto 2 e 3 senza carte in
+mano e ho dovuto passare, questo e' inaccettabile»*.
+
+La forma e i numeri sono suoi, dati in due messaggi:
+
+> *«Il mazzetto viene creato diverso da entita' a entita' in base agli obiettivi
+> e alla presenza sulla mappa e poi ognuno lo costruisce mano a mano.»*
+>
+> *«I mazzetti rimangono separati e fanno da pozzo quando si pescano nuove
+> carte, all'inizio dell'anno le entita' hanno lo stesso numero di carte, cambia
+> come sono composti, e poi vengono pescate il numero sufficiente di carte ogni
+> atto per fare le azioni necessarie.»*
+
+### Il rubinetto che c'era, e perche' non bastava
+
+Non e' che mancasse un rubinetto: `hand_refill` c'era, e pesca **in base alla
+mappa** — due carte per pedina, una per Regione tenuta, fra un pavimento di 2 e
+un tetto di 6. Misurato, dava circa **quattro** carte per Atto contro un
+fabbisogno di **3,92**: si stava esattamente al limite, senza un dito di
+margine. Da li' l'Occasione su cinque senza niente da fare.
+
+### Stesso numero, composizione diversa
+
+Il mazzetto e' **18 carte per tutti** — `draw_per_act` 6 per tre Atti — e la
+differenza sta in **quali**, non in quante. E' la riga che il committente ha
+aggiunto nel secondo messaggio, e risponde a un numero che [D-498](#d-498)
+aveva trovato: comporre il mazzetto sulla sola presenza dava **14,5** carte a
+chi tocca quattro famiglie e **11,5** a chi ne tocca tre, il 26% in piu' a chi la
+mappa aveva gia' favorito.
+
+Sui quattro seggi del seme 7000, i mazzetti montati:
+
+| casa | il suo mazzetto |
+|---|---|
+| Vaerax | Sapere 6 · Legami 7 · Forza 5 |
+| Re Aldric | Autorita' 5 · Ricchezza 4 · Popolo 4 · Forza 5 |
+| Kessa dei Fuochi | Sapere 6 · Forza 6 · Legami 6 |
+| Maestra Ilve | Autorita' 5 · Forza 4 · Sapere 4 · Ricchezza 5 |
+
+Diciotto per tutte, e nessuna uguale a un'altra.
+
+### E' un mazzo, non una scorta
+
+Le carte giocate tornano nello **scarto personale**, e quando il pozzo finisce lo
+scarto si rimescola. Senza questo, diciotto carte durerebbero tre Atti esatti e
+poi non ci sarebbe piu' niente: sarebbe una scorta, non un mazzo — e il difetto
+tornerebbe all'Atto 3, dove il committente l'aveva visto.
+
+### Quello che ha cambiato
+
+| | prima | col mazzetto |
+|---|---|---|
+| **Occasioni bloccate** (tavolo di una persona) | **55 su 270 — 20%** | **9 su 270 — 3%** |
+| di quelle, con la mano vuota | 39 (70%) | **1 (11%)** |
+| carte in mano nei momenti bloccati | 0,44 | **1,33** |
+| Consigli per anno | 4,98 | **5,58** |
+| Verita' scritte, tavolo misto | 325 / 322 diverse | **360 / 360** |
+| Verita' scritte, tavolo uniforme | 324 / 324 | **402 / 399** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+
+**Una Occasione bloccata su trenta invece che su cinque**, e il mondo scrive di
+piu' perche' si gioca di piu': le Verita' salgono di **35** sul tavolo misto e di
+**78** su quello uniforme. Il cancello che non si negozia resta a **0 su 8** su
+tutti e due i tavoli, 100 semi su 7000.
+
+### E adesso la causa che resta e' l'altra
+
+Dei nove blocchi rimasti, **uno** e' mano vuota e **dodici ragioni su tredici**
+sono *«la carta arriva a un luogo, ma l'Azione e' rifiutata lo stesso»*: sempre
+*Giuramento* e *Promessa di Nozze*, FORGIARE che chiede un'altra casa **e il suo
+consenso**. Il bersaglio a segni le fa passare, il verbo no. E' il prossimo
+lavoro di ISSUES 136, ed e' scritto li'.
+
+### Due difetti miei, presi dalla prova invece che dal committente
+
+**La carta spariva prima che l'Effect la trovasse.** La pesca toglieva la carta
+dal mazzetto e *poi* chiedeva all'applier di toglierla: falliva alla prima. Il
+resolver la stessa cosa la fa da sempre nel modo giusto — legge la cima **senza
+toglierla** e porta il rimescolo dentro il payload, cosi' l'applier verifica
+invece di scegliere. Adesso anche qui.
+
+**E la regola sta dietro un interruttore.** `personal_decks` assente vuol dire il
+gioco di prima, coi sei mazzi comuni e il rubinetto della mappa: un cambio di
+questa taglia che non si puo' spegnere non si puo' nemmeno misurare contro
+quello che ha sostituito.
+
+---
+
 ## D-498 — Il mazzetto personale: la forma decisa dal committente, e quanto grande
 
 **disegno, in 0.1.468.** [ISSUES 136](ISSUES.md#136). Non tocca ancora il

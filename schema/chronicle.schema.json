@@ -968,6 +968,33 @@
             "KEEP_THEN_DRAW"
           ],
           "description": "**Chi siede l'anno prossimo** (D-431, ISSUES 64). `REDRAW`: si ripesca dal pool a ogni era, e le case passano mentre il mondo resta — e' la regola scelta dal committente. `KEEP`: siedono le stesse case dal primo anno all'ultimo. `KEEP_THEN_DRAW`: si ripesca, ma chi c'era ha precedenza. Prima di questo campo la regola non era scritta da nessuna parte e ogni sonda ne applicava una sua: `run_era_probe` ripescava con un seme per era, `run_saga` teneva il tavolo fermo. Due sonde, due giochi."
+        },
+        "personal_decks": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "**Il mazzetto personale** (D-499, ISSUES 136, forma decisa dal committente: *«i mazzetti rimangono separati e fanno da pozzo quando si pescano nuove carte, all'inizio dell'anno le entita' hanno lo stesso numero di carte, cambia come sono composti»*). Assente, il gioco tiene i sei mazzi comuni per famiglia e nessuno pesca a inizio Atto: e' il tavolo di prima, che resta misurabile per confronto.",
+          "required": [
+            "size",
+            "draw_per_act"
+          ],
+          "properties": {
+            "size": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Quante carte ha il mazzetto di **ogni** casa a inizio anno. Uguale per tutte — cambia la composizione, non il numero — cosi' nessuna parte avanti perche' la mappa le ha dato una famiglia in piu'."
+            },
+            "draw_per_act": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Quante carte si pescano dal proprio mazzetto a inizio Atto. Le Azioni di un Atto sono `rounds_per_act` x 2; pescarne altrettante da' da giocare e lascia scelta, pescarne meno riporta il difetto che questa regola viene a togliere."
+            },
+            "identity_cards": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 2,
+              "description": "Quante delle `size` sono le `starting_assets` dell'entita' — la sua identita'. Il resto si distribuisce fra le famiglie che la sua **presenza** raggiunge sulla mappa."
+            }
+          }
         }
       }
     }

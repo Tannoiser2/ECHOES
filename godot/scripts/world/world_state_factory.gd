@@ -1151,6 +1151,88 @@ static func _build_asset_decks(
 			for _i in range(maxi(0, copies - already_dealt)):
 				pile.append(str(asset["id"]))
 		world["decks"][family] = {"draw": rng.shuffle(pile), "discard": []}
+	_build_personal_decks(world, chronicle, data, rng)
+
+
+## **Il mazzetto personale** (D-499, ISSUES 136).
+##
+## Il committente, dopo un anno giocato a mano: *«ho passato l'atto 2 e 3 senza
+## carte in mano e ho dovuto passare, questo e' inaccettabile»*. Misurato: sul
+## tavolo di una persona **una Occasione su cinque** non ha altro che «passa», e
+## **sette blocchi su dieci** sono mano vuota ([D-498](../../docs/DECISIONS.md#d-498)).
+##
+## La forma l'ha decisa lui: *«i mazzetti rimangono separati e fanno da pozzo
+## quando si pescano nuove carte, all'inizio dell'anno le entita' hanno lo stesso
+## numero di carte, cambia come sono composti»*.
+##
+## **Stesso numero, composizione diversa**, ed e' la riga che conta: la misura
+## aveva trovato che comporre il mazzetto sulla sola presenza dava **14,5** carte
+## a chi tocca quattro famiglie e **11,5** a chi ne tocca tre — il 26% in piu' a
+## chi la mappa aveva gia' favorito. Il numero uguale per tutti toglie quello
+## squilibrio e lascia la differenza dove deve stare: **quali** carte, non
+## quante.
+##
+## Due pezzi, tutti e due gia' nei dati:
+##
+##   · le `starting_assets` — due, di due famiglie diverse: l'identita' della
+##     casa, e sono le carte che al tavolo la riconoscono;
+##   · il resto, distribuito **a giro** fra le famiglie che la sua `presence`
+##     raggiunge (gli `asset_sources` delle Regioni dove parte). A giro e non a
+##     blocchi, cosi' un mazzetto da 18 su tre famiglie non e' sei carte di una
+##     e poi sei dell'altra.
+##
+## Le carte escono dai sei mazzi comuni, che restano il magazzino della scatola:
+## quello che va in un mazzetto personale non e' piu' pescabile da nessun altro,
+## ed e' la ragione per cui questa funzione gira **dopo** che i sei sono montati.
+static func _build_personal_decks(
+	world: Dictionary, chronicle: Dictionary, data: RefCounted, rng: RefCounted
+) -> void:
+	var rules: Dictionary = chronicle.get("personal_decks", {}) as Dictionary
+	world["personal_decks"] = {}
+	if rules.is_empty():
+		return
+	var size: int = int(rules.get("size", 0))
+	var identity: int = int(rules.get("identity_cards", 2))
+	for entity_id in chronicle["entities"]:
+		var id: String = str(entity_id)
+		var entity: Dictionary = data.entities[id] as Dictionary
+		var pile: Array = []
+		# **L'identita' per prima**: sono carte gia' assegnate, e stanno fuori
+		# dai sei mazzi comuni fin dal montaggio qui sopra.
+		for asset_id in (entity.get("starting_assets", []) as Array):
+			if pile.size() >= identity:
+				break
+			pile.append(str(asset_id))
+		# **Le famiglie che la presenza raggiunge**, dai dati e non dal
+		# tabellone: le pedine si posano giocando, e qui non ce n'e' ancora
+		# nessuna. Il mazzetto si compone nella scatola.
+		var families: Array = []
+		for region_id in (entity.get("presence", []) as Array):
+			var region: Variant = data.regions.get(str(region_id))
+			if region == null:
+				continue
+			for family in ((region as Dictionary).get("asset_sources", []) as Array):
+				if not families.has(str(family)):
+					families.append(str(family))
+		families.sort()
+		if families.is_empty():
+			# Una casa senza presenza scritta non resta senza mazzetto: pesca da
+			# tutte. Non succede nei dati spediti, e un giorno in cui succede
+			# dev'essere un giorno che si gioca lo stesso.
+			families = ASSET_FAMILIES.duplicate()
+		var turn: int = 0
+		var empty_rounds: int = 0
+		while pile.size() < size and empty_rounds < families.size():
+			var family: String = str(families[turn % families.size()])
+			turn += 1
+			var deck: Dictionary = world["decks"][family] as Dictionary
+			var draw: Array = deck["draw"] as Array
+			if draw.is_empty():
+				empty_rounds += 1
+				continue
+			empty_rounds = 0
+			pile.append(str(draw.pop_front()))
+		world["personal_decks"][id] = {"draw": rng.shuffle(pile), "discard": []}
 
 
 ## La ripesca che ascolta (D-079). Al setup l'anno viene pescato alla cieca,

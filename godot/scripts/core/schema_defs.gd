@@ -398,6 +398,9 @@ const DEFS := {
 					"KEEP_THEN_DRAW",
 				],
 			},
+			"personal_decks": {
+				"type": "Dictionary",
+			},
 		},
 	},
 	"confluence_template": {

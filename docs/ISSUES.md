@@ -10202,12 +10202,25 @@ si puo' giocare.
 
 **Fatto quando:**
 
-1. **perche' si passa avendo carte** — misurato, voce per voce;
-2. **le Azioni fanno qualcosa** — presenze, Pietre e segni della mappa aprono
-   Azioni che senza di loro non ci sarebbero;
-3. **il rubinetto della mano** — la forma la decide il committente (vedi sotto);
+1. ✔ **perche' si passa avendo carte** — misurato in 0.1.466 con
+   `run_blocked_probe.gd`: **20%** delle Occasioni bloccate, **70%** per mano
+   vuota;
+2. ✔ **il rubinetto della mano** — **fatto in 0.1.469**
+   ([D-499](DECISIONS.md#d-499)): il mazzetto personale, 18 carte uguali per
+   tutti e composizione diversa, 6 pescate a inizio Atto, e le carte giocate
+   tornano nel proprio scarto. **Le Occasioni bloccate passano da 55 su 270
+   (20%) a 9 (3%)**, e di quelle una sola e' mano vuota. Il cancello resta **0
+   su 8** e le Verita' salgono da 325 a **360** (misto) e da 324 a **402**
+   (uniforme);
+3. **le Azioni fanno qualcosa** — dei nove blocchi rimasti, **dodici ragioni su
+   tredici** sono *«la carta arriva al luogo, ma l'Azione e' rifiutata lo
+   stesso»*: sempre *Giuramento* e *Promessa di Nozze*, FORGIARE che chiede
+   un'altra casa **e il suo consenso**. E' quello che resta da rimediare, ed e'
+   adesso **la causa principale**;
 4. **il potere dell'entita' apre un'Azione sua**;
-5. un'altra ora con l'app in mano.
+5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
+   spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
+6. un'altra ora con l'app in mano.
 
 **La forma l'ha decisa il committente in 0.1.468:** *«il mazzetto viene creato
 diverso da entita' a entita' in base agli obiettivi e alla presenza sulla mappa

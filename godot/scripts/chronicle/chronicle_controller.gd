@@ -176,6 +176,78 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	await end_of_act(act, decider)
 
 
+## **Si pesca dal proprio mazzetto** (D-499, ISSUES 136).
+##
+## Il mazzetto e' il **pozzo** di ogni casa — parola del committente: *«i
+## mazzetti rimangono separati e fanno da pozzo quando si pescano nuove
+## carte»* — e a inizio Atto se ne pescano `draw_per_act`, uguali per tutti.
+##
+## **Quando il pozzo finisce si rimescola lo scarto**, che e' quello che rende
+## il mazzetto un mazzo e non una scorta: le carte giocate tornano, e quelle
+## acquisite durante l'anno le trovi gli Atti dopo. Se non c'e' piu' niente
+## nemmeno nello scarto, si pesca quello che c'e' e si va avanti: una casa senza
+## carte e' il difetto che questa regola viene a togliere, non uno da rifare
+## qui in silenzio.
+##
+## Il tetto della mano resta quello della Chronicle: pescare oltre il tetto
+## vorrebbe dire scartare subito, e al tavolo nessuno pesca per buttare.
+func _draw_from_personal_deck(act: int) -> void:
+	var rules: Dictionary = _chronicle.get("personal_decks", {}) as Dictionary
+	var wanted: int = int(rules.get("draw_per_act", 0))
+	if wanted <= 0:
+		return
+	var hand_cap: int = int(_chronicle.get("hand_limit", 0))
+	for entity_id in session.service.active_entities():
+		var id: String = str(entity_id)
+		var deck: Dictionary = (world.get("personal_decks", {}) as Dictionary).get(id, {}) as Dictionary
+		if deck.is_empty():
+			continue
+		var room: int = wanted
+		if hand_cap > 0:
+			room = mini(wanted, maxi(0, hand_cap - (session.service.hand(id) as Array).size()))
+		var drawn: int = 0
+		for _i in range(room):
+			var payload: Dictionary = _top_of_deck(deck, id)
+			if payload.is_empty():
+				break
+			payload["source"] = "PERSONAL_DECK"
+			var effect: Dictionary = Effect.make(
+				"GRANT_ASSET", "entity", id, payload, {"kind": "act_start", "act": act}
+			)
+			if not (session.applier.apply(effect) as Dictionary).is_empty():
+				drawn += 1
+		if drawn > 0:
+			log.bullet("%s pesca %d carte dal suo mazzetto." % [
+				str(data.entities.get(id, {}).get("name", id)), drawn,
+			])
+
+
+## Quale carta e' in cima al pozzo, **senza toglierla**: la toglie l'Effect, che
+## e' l'unico che puo' mutare il mondo (effect-sourcing). Toglierla qui la faceva
+## sparire prima che l'applier la trovasse, e la pesca falliva alla prima carta.
+##
+## Il rimescolo lo calcola questa funzione, col seme, e lo **porta nel payload**:
+## e' la stessa strada di `_draw_one` nel resolver, e per la stessa ragione —
+## l'applier verifica, non sceglie.
+func _top_of_deck(deck: Dictionary, entity_id: String) -> Dictionary:
+	var draw: Array = deck.get("draw", []) as Array
+	var payload: Dictionary = {}
+	if draw.is_empty():
+		var discard: Array = deck.get("discard", []) as Array
+		if discard.is_empty():
+			return {}
+		var reshuffled: Array = session.rng.shuffle(discard)
+		payload["reshuffle"] = reshuffled
+		draw = reshuffled
+		log.bullet("Il mazzetto di %s viene rimescolato dagli scarti." % str(
+			data.entities.get(entity_id, {}).get("name", entity_id)
+		))
+	if draw.is_empty():
+		return {}
+	payload["asset_id"] = str(draw[0])
+	return payload
+
+
 ## La stagione gira e le porte si riaprono: i tag `evicted:` messi dai Consigli
 ## dell'atto precedente (D-067) si tolgono qui, con un Effect come ogni altra
 ## mutazione. All'Atto 1 non c'e' niente da togliere e il giro e' un no-op.
@@ -961,6 +1033,19 @@ func _hottest_with_something_to_say() -> String:
 ##
 ## Vive solo se la Chronicle dichiara `hand_refill`. Senza, non succede niente.
 func _refill_hands(act: int) -> void:
+	# **Il mazzetto personale, quando la Chronicle ce l'ha** (D-499, ISSUES 136).
+	#
+	# Il rubinetto qui sotto pesca **in base alla mappa**: due carte per pedina,
+	# una per Regione tenuta, fra un pavimento di 2 e un tetto di 6. Misurato,
+	# da' circa **quattro** carte per Atto contro un fabbisogno di **3,92** — si
+	# sta esattamente al limite, senza margine, ed e' per questo che una
+	# Occasione su cinque non ha altro che «passa».
+	#
+	# Il mazzetto lo sostituisce con un numero **fisso e uguale per tutti**,
+	# come il committente ha chiesto: cambia **cosa** peschi, non quanto.
+	if not (_chronicle.get("personal_decks", {}) as Dictionary).is_empty():
+		_draw_from_personal_deck(act)
+		return
 	var rules: Dictionary = _chronicle.get("hand_refill", {}) as Dictionary
 	if rules.is_empty():
 		return

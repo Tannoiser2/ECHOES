@@ -5,6 +5,54 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.469 — Il mazzetto personale: una Occasione bloccata su trenta invece che su cinque
+
+[D-499](docs/DECISIONS.md#d-499), [ISSUES 136](docs/ISSUES.md#136), col
+dimensionamento misurato prima in [D-498](docs/DECISIONS.md#d-498). E' il rimedio
+al difetto che il committente ha vissuto: *«ho passato l'atto 2 e 3 senza carte
+in mano e ho dovuto passare»*.
+
+**Il rubinetto c'era e non bastava.** `hand_refill` pescava in base alla mappa e
+dava circa **quattro** carte per Atto contro un fabbisogno di **3,92**:
+esattamente al limite, senza margine.
+
+**Adesso ogni casa ha il suo mazzetto: 18 carte uguali per tutte**, e la
+differenza sta in **quali** — 2 di identita' piu' il resto distribuito a giro fra
+le famiglie che la sua presenza raggiunge. Se ne pescano **6 a inizio Atto**, e
+le carte giocate tornano nel **proprio scarto**, che si rimescola quando il pozzo
+finisce: e' un mazzo, non una scorta.
+
+### Misurato
+
+| | prima | col mazzetto |
+|---|---|---|
+| **Occasioni bloccate** (tavolo di una persona) | **55 / 270 — 20%** | **9 — 3%** |
+| di quelle, con la mano vuota | 39 (70%) | **1 (11%)** |
+| carte in mano nei momenti bloccati | 0,44 | **1,33** |
+| Consigli per anno | 4,98 | **5,58** |
+| Verita', tavolo misto | 325 / 322 | **360 / 360** |
+| Verita', tavolo uniforme | 324 / 324 | **402 / 399** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+
+Suite **815 test, 76 637 asserzioni**, verde.
+
+### Cambiato
+- Schema Chronicle: `personal_decks` (`size`, `draw_per_act`, `identity_cards`).
+  **Assente vuol dire il gioco di prima**: un cambio di questa taglia che non si
+  puo' spegnere non si puo' nemmeno misurare contro quello che ha sostituito.
+- `world_state_factory`: il mazzetto si monta dopo i sei mazzi comuni, che
+  restano il magazzino della scatola.
+- `chronicle_controller`: la pesca a inizio Atto, col rimescolo dello scarto.
+- `effect_applier`: `PERSONAL_DECK` come sorgente e `OWN_DISCARD` come
+  destinazione, ognuna col suo inverso.
+
+**E la causa che resta e' l'altra:** dei nove blocchi rimasti, **dodici ragioni
+su tredici** sono *«la carta arriva al luogo, ma l'Azione e' rifiutata lo
+stesso»* — *Giuramento* e *Promessa di Nozze*, FORGIARE che chiede il consenso di
+un'altra casa.
+
+---
+
 ## 0.1.467 — La scheda del Consiglio: chi sceglie, e le voci raggruppate
 
 [D-497](docs/DECISIONS.md#d-497), [ISSUES 137](docs/ISSUES.md#137), parola del

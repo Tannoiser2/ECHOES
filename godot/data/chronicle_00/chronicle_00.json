@@ -413,6 +413,11 @@
       },
       "acquire_rules": {
         "can_build_stone": true
+      },
+      "personal_decks": {
+        "size": 18,
+        "draw_per_act": 6,
+        "identity_cards": 2
       }
     }
   ]
