@@ -10238,9 +10238,19 @@ Guardando lo screenshot, tre difetti distinti su una scheda sola:
    dice da nessuna parte. Le voci grigie con *«— non qui: non cambierebbe
    niente»* occupano meta' della lista e non sono scelte di nessuno.
 
-**Fatto quando** la scheda raggruppa per domanda, dice chi sceglie in ognuna, e
-le voci che non cambierebbero niente non stanno in mezzo a quelle che si
-possono prendere.
+✔ **Fatta in 0.1.467** ([D-497](DECISIONS.md#d-497)). Dentro BENEFICI e COSTI
+ci sono tre gruppi — *per la domanda A*, *per la domanda B*, *per tutte e due* —
+e la sigla sparisce dalle righe perche' la dice il gruppo. I titoli delle due
+liste dicono chi sceglie: *«li compra chi propone»*, *«li scelgono gli
+avversari»*.
+
+**E non si raggruppa per domanda in cima**, che sarebbe stato l'ordine piu'
+ovvio: le voci comuni sono **185 su 720** (3,1 per carta) e finirebbero stampate
+due volte — al tavolo, due caselle dove ce n'e' una.
+
+**Resta aperta la terza riga:** le voci spente con *«— non qui: non cambierebbe
+niente»* stanno ancora in mezzo a quelle che si possono prendere. Adesso almeno
+sono dentro il gruppo della loro domanda, ma occupano ancora meta' della lista.
 
 
 ### 135. Il menu, il verbale e le frasi: quello che l'app chiede non si capisce

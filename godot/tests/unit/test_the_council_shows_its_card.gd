@@ -131,17 +131,48 @@ func _row_of(list_name: String, voice_id: String) -> Dictionary:
 
 
 ## Le due liste della carta stanno sul tabellone, tutte e due intere e coi
-## titoli del cartone, e ogni casella porta davanti la lettera della domanda
-## che serve — A, B, o tutt'e due — come stampato (D-469).
+## titoli del cartone, e **a quale domanda serve una casella si legge** — che e'
+## la cosa che conta (D-469).
+##
+## **Ma non piu' da una sigla su ogni riga** (D-497, ISSUES 137, parola del
+## committente: *«non si sa chi sta facendo cosa e le voci sono tutte
+## mescolate»*). La sigla «A», «B», «BA» davanti al testo era meta' del
+## disordine: la ripeteva ogni riga e non la spiegava nessuna. Adesso le voci
+## stanno in **gruppi** dentro le due liste — per la domanda A, per la B, per
+## tutte e due — e la prova prende **il gruppo**, che e' dove la stessa
+## informazione e' andata a stare.
 func test_the_board_draws_both_lists() -> void:
 	_open()
 	var column: String = " · ".join(PackedStringArray(_drawn()))
 	assert_true(column.contains("BENEFICI"), "la lista dei benefici c'e': %s" % column)
 	assert_true(column.contains("COSTI"), "e quella dei costi")
 	assert_false(column.contains("COSA SI COMPRA") or column.contains("IL PREZZO"), "coi titoli di D-280 usciti")
+	# **E si dice chi sceglie in ognuna** (D-280): il proponente compra i
+	# benefici, gli avversari scelgono i costi, e non stava scritto da nessuna
+	# parte.
+	assert_true(column.contains("li compra chi propone"), "chi compra i benefici: %s" % column)
+	assert_true(column.contains("li scelgono gli avversari"), "e chi sceglie i costi")
 	var a_question: String = session.confluence.side_question("A")
 	var b_question: String = session.confluence.side_question("B")
 	assert_ne(a_question, b_question, "le due parti hanno due domande")
+	# Ogni casella si legge, e sta sotto il gruppo della domanda che serve: si
+	# scorrono le righe in ordine e il gruppo aperto e' quello che vale.
+	var rows: Array = _drawn()
+	var groups: Dictionary = {}
+	var open_group: String = ""
+	for row in rows:
+		var line: String = str(row)
+		if line.contains("per la domanda A"):
+			open_group = "A"
+		elif line.contains("per la domanda B"):
+			open_group = "B"
+		elif line.contains("per tutte e due"):
+			open_group = "AB"
+		elif line.contains("BENEFICI") or line.contains("COSTI"):
+			open_group = ""
+		elif open_group != "":
+			groups[line] = open_group
+	var checked: int = 0
 	for list_name in ["benefits", "costs"]:
 		for voice in ((data().tensions[TENSION]["physical"] as Dictionary)[list_name] as Array):
 			var voice_id: String = str((voice as Dictionary)["id"])
@@ -149,12 +180,22 @@ func test_the_board_draws_both_lists() -> void:
 			assert_false(row.is_empty(), "«%s» si legge" % voice_id)
 			if row.is_empty():
 				continue
+			# **E la sigla non c'e' piu' davanti al testo.**
+			assert_false(
+				str(row["text"]).begins_with("A · ") or str(row["text"]).begins_with("B · ")
+				or str(row["text"]).begins_with("BA · "),
+				"«%s» non porta piu' la sigla: %s" % [voice_id, str(row["text"])]
+			)
 			var served: Array = (voice as Dictionary).get("for", []) as Array
-			var marks: String = str(row["text"]).split(" · ")[0]
 			var expected: String = ""
 			for question_id in served:
 				expected += "A" if str(question_id) == a_question else ("B" if str(question_id) == b_question else "")
-			assert_eq(marks, expected, "«%s» porta la marca della domanda che serve" % voice_id)
+			if expected.length() > 1:
+				expected = "AB"
+			var mine: String = str(groups.get(str(row["text"]), ""))
+			assert_eq(mine, expected, "«%s» sta sotto il gruppo della sua domanda" % voice_id)
+			checked += 1
+	assert_true(checked >= 8, "e vale per ogni casella della carta: %d" % checked)
 
 
 ## **La pedina posata si vede sulla casella**, del colore della parte che

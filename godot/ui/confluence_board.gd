@@ -323,23 +323,62 @@ func _render_sides_face(session: RefCounted, council: Dictionary, face: Dictiona
 		for list_name in ["benefits", "costs"]:
 			for voice in session.confluence.live_voices(list_name):
 				live[str((voice as Dictionary)["id"])] = true
-	for pair in [["benefits", "BENEFICI", "#6fa88a", "#5f6b62"], ["costs", "COSTI", "#c8553d", "#7a5a52"]]:
+	# **Raggruppate per domanda, e con scritto chi sceglie** (D-497, ISSUES 137,
+	# parola del committente: *«non si sa chi sta facendo cosa e le voci sono
+	# tutte mescolate»*).
+	#
+	# Fino a qui erano due liste sole — BENEFICI e COSTI — con dentro le voci di
+	# tutt'e due le domande in ordine sparso, ognuna marcata «A», «B» o «BA» da
+	# una sigla che nessuna riga spiegava. Chi voleva rispondere alla domanda A
+	# doveva pescare le sue righe fra quelle della B.
+	#
+	# **Non si raggruppa per domanda in cima**, pero': le voci che valgono per
+	# tutte e due sono **185 su 720** — 3,1 per carta — e finirebbero stampate
+	# due volte, che al tavolo vuol dire due caselle dove ce n'e' una. I gruppi
+	# stanno **dentro** le due liste, e le comuni hanno il loro.
+	#
+	# E la riga di chi sceglie viene da [D-280](../../docs/DECISIONS.md#d-280),
+	# che e' una regola del tavolo e non stava scritta da nessuna parte.
+	var order: Array = ["A", "B", "AB"]
+	var group_said: Dictionary = {
+		"A": "── per la domanda A ──",
+		"B": "── per la domanda B ──",
+		"AB": "── per tutte e due ──",
+	}
+	for pair in [
+		["benefits", "BENEFICI — li compra chi propone", "#6fa88a", "#5f6b62"],
+		["costs", "COSTI — li scelgono gli avversari", "#c8553d", "#7a5a52"],
+	]:
 		_face.add_child(_face_heading(str(pair[1])))
+		# Le voci si dividono per domanda prima di stamparle, tenendo l'ordine
+		# della carta dentro ogni gruppo: e' la carta a decidere l'ordine, non
+		# questa funzione.
+		var groups: Dictionary = {"A": [], "B": [], "AB": []}
 		for voice in (face.get(str(pair[0]), []) as Array):
-			var voice_id: String = str((voice as Dictionary)["id"])
 			var marks: String = ""
 			for question_id in ((voice as Dictionary).get("for", []) as Array):
 				marks += str(letters.get(str(question_id), ""))
-			var text: String = "%s · %s" % [marks, str((voice as Dictionary).get("text", ""))]
-			var side: String = str(taken.get(voice_id, ""))
-			if side != "":
-				_face.add_child(_face_voice(text, true, str(SIDE_COLOURS[side]), voice_id))
-			elif session.confluence.is_open() and not live.has(voice_id):
-				_face.add_child(_face_voice(
-					text + "   — non qui: non cambierebbe niente", false, str(pair[3])
-				))
-			else:
-				_face.add_child(_face_voice(text, false, str(pair[2]), voice_id))
+			var key: String = "AB" if marks.length() > 1 else (marks if marks != "" else "AB")
+			(groups[key] as Array).append(voice)
+		for key in order:
+			var voices: Array = groups[key] as Array
+			if voices.is_empty():
+				continue
+			_face.add_child(_face_heading(str(group_said[key])))
+			for voice in voices:
+				var voice_id: String = str((voice as Dictionary)["id"])
+				# **La sigla non serve piu'**: la dice il gruppo, e ripeterla su
+				# ogni riga era la meta' del disordine.
+				var text: String = str((voice as Dictionary).get("text", ""))
+				var side: String = str(taken.get(voice_id, ""))
+				if side != "":
+					_face.add_child(_face_voice(text, true, str(SIDE_COLOURS[side]), voice_id))
+				elif session.confluence.is_open() and not live.has(voice_id):
+					_face.add_child(_face_voice(
+						text + "   — non qui: non cambierebbe niente", false, str(pair[3])
+					))
+				else:
+					_face.add_child(_face_voice(text, false, str(pair[2]), voice_id))
 	var falls: Array = face.get("failure", []) as Array
 	if not falls.is_empty():
 		_face.add_child(_face_heading("SE CADE — se non passa nessuna delle due"))

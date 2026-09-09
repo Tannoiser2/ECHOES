@@ -45,6 +45,69 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-497 — La scheda del Consiglio: chi sceglie, e le voci raggruppate per domanda
+
+**implemented in 0.1.467.** [ISSUES 137](ISSUES.md#137), parola del committente
+con la scheda sotto gli occhi:
+
+> *«Anche questa scheda di costi e benefici non si capisce molto, non si sa chi
+> sta facendo cosa e le voci sono tutte mescolate.»*
+
+Tre difetti distinti su una scheda sola, e nessuno dei tre tocca una regola.
+
+### 1. La sigla che nessuno spiegava
+
+Ogni voce portava davanti `A ·`, `B ·` o `BA ·`, e da nessuna parte c'era
+scritto che sono **le due domande** del Consiglio. Al tavolo una sigla senza
+legenda non e' una marca: e' rumore, ripetuto su ogni riga.
+
+### 2. Le voci mescolate
+
+BENEFICI e COSTI erano **due liste sole**, con dentro le voci di tutt'e due le
+domande in ordine sparso. Chi voleva rispondere alla domanda A doveva pescare le
+sue righe fra quelle della B — su una carta vera sono **8,9 voci** in media.
+
+Adesso dentro ogni lista ci sono tre gruppi: *per la domanda A*, *per la domanda
+B*, *per tutte e due*. La sigla sparisce dalle righe perche' la dice il gruppo.
+
+**E non si raggruppa per domanda in cima**, che sarebbe stato l'ordine piu'
+ovvio: le voci che valgono per tutt'e due sono **185 su 720** — 3,1 per carta —
+e finirebbero stampate due volte. Al tavolo due caselle dove ce n'e' una e' un
+difetto peggiore di quello che si voleva togliere.
+
+### 3. Chi sceglie non stava scritto
+
+[D-280](#d-280) dice che **il proponente compra i benefici e gli avversari
+scelgono i costi**. E' la regola che regge tutta la trattativa, ed era l'unica
+cosa che la scheda non diceva. Adesso sta nei titoli delle due liste: *«BENEFICI
+— li compra chi propone»*, *«COSTI — li scelgono gli avversari»*.
+
+### La prova ha cambiato criterio, non mestiere
+
+`test_the_board_draws_both_lists` pretendeva **la sigla su ogni riga**, che era
+meta' del difetto. Non e' stata tolta: adesso prende **il gruppo** — scorre le
+righe, tiene il gruppo aperto e verifica che ogni casella stia sotto la domanda
+che serve — piu' due assertivi nuovi: che la sigla **non** ci sia piu', e che i
+titoli dicano chi sceglie. La cosa che la prova sorvegliava — *a quale domanda
+serve una casella si legge* — e' ancora sorvegliata, dal posto in cui e' andata
+a stare.
+
+### Il costo, ed e' scritto
+
+**La pagina del Consiglio cresce di sei righe**: i nodi passano da **81 a 87**,
+e con loro i testi sotto gli occhi di tutta l'app da **188 a 194**. Sono le sei
+intestazioni dei gruppi — tre nei benefici, tre nei costi — ed e' esattamente
+quello che si paga per non avere piu' le voci mescolate. Il conto sta in
+[MISURA_PAGINA](MISURA_PAGINA.md), che va rigenerata insieme.
+
+Sei righe di intestazione contro **8,9 voci** da pescare a occhio: e' un cambio
+che si paga volentieri, ma si paga, e il numero peggiorato si scrive.
+
+Suite **815 test / 76 637 asserzioni**, verde. Nessuna regola toccata: cambia
+come la scheda e' disposta, non cosa contiene.
+
+---
+
 ## D-496 — Il velo fuori dalle carte, e la guardia che cercava una frase invece del difetto
 
 **implemented in 0.1.466.** Giro 7 di [ISSUES 135](ISSUES.md#135). Nasce da una

@@ -5,6 +5,48 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.467 — La scheda del Consiglio: chi sceglie, e le voci raggruppate
+
+[D-497](docs/DECISIONS.md#d-497), [ISSUES 137](docs/ISSUES.md#137), parola del
+committente: *«non si sa chi sta facendo cosa e le voci sono tutte mescolate»*.
+
+Tre difetti su una scheda sola, nessuno dei quali tocca una regola:
+
+- **la sigla che nessuno spiegava** — ogni voce portava `A ·`, `B ·` o `BA ·`, e
+  da nessuna parte c'era scritto che sono le due domande. Adesso non c'e' piu':
+  la dice il gruppo;
+- **le voci mescolate** — BENEFICI e COSTI erano due liste sole con dentro le
+  voci di tutt'e due in ordine sparso, **8,9 per carta**. Adesso dentro ogni
+  lista ci sono tre gruppi: per la domanda A, per la B, per tutte e due;
+- **chi sceglie non stava scritto** — [D-280](docs/DECISIONS.md#d-280) dice che
+  il proponente compra i benefici e gli avversari scelgono i costi, ed era
+  l'unica cosa che la scheda non diceva. Adesso sta nei titoli.
+
+**Non si raggruppa per domanda in cima**, che sarebbe l'ordine piu' ovvio: le
+voci comuni sono **185 su 720** (3,1 per carta) e finirebbero stampate due
+volte — al tavolo, due caselle dove ce n'e' una.
+
+### Cambiato
+- `confluence_board.gd`: i tre gruppi dentro le due liste, i titoli che dicono
+  chi sceglie, la sigla via dalle righe.
+- `test_the_board_draws_both_lists`: pretendeva la sigla su ogni riga, che era
+  meta' del difetto. Adesso prende **il gruppo** — e in piu' che la sigla non ci
+  sia e che i titoli dicano chi sceglie.
+
+### Misurato
+- voci per carta Tensione: **8,9** in media (4,4 solo A, 4,5 solo B, 3,1 comuni).
+- voci comuni in tutto: **185 su 720** — la ragione per cui i gruppi stanno
+  dentro le liste e non sopra.
+- **il costo, scritto**: la pagina del Consiglio cresce da **81 a 87 nodi** e i
+  testi sotto gli occhi di tutta l'app da **188 a 194** — sono le sei
+  intestazioni dei gruppi.
+- suite **815 test, 76 637 asserzioni**, verde.
+
+**Resta aperta una riga di ISSUES 137:** le voci spente con *«non qui: non
+cambierebbe niente»* stanno ancora in mezzo a quelle prendibili.
+
+---
+
 ## 0.1.466 — Il velo fuori dalle carte, e due voci nuove misurate prima di rispondere
 
 [D-496](docs/DECISIONS.md#d-496), giro 7 di [ISSUES 135](docs/ISSUES.md#135),
