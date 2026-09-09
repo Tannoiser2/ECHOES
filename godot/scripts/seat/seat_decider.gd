@@ -261,8 +261,21 @@ func _narrow(options: Array, field: String, prompt: String, keep_group: bool) ->
 	var labels: Array = []
 	var subjects: Array = []
 	for key in groups:
-		var first: Dictionary = (by_key[str(key)] as Array)[0] as Dictionary
-		labels.append(str(key))
+		var found_here: Array = by_key[str(key)] as Array
+		var first: Dictionary = found_here[0] as Dictionary
+		# **E cosa succede** (D-492). Quando il gruppo ha una carta sola il
+		# passo dopo non si fa — un passo obbligato non e' una scelta — e senza
+		# questa riga l'effetto della faccia non lo vedrebbe mai nessuno: la
+		# scelta finirebbe sul bersaglio, col nome dell'Azione e basta. Misurato
+		# prima di scriverla: il terzo passo si chiedeva **zero volte** in dieci
+		# anni, e le 96 facce della scatola hanno tutte il loro testo.
+		var detail: String = ""
+		if keep_group and found_here.size() == 1:
+			var whole: String = str(first.get("label", ""))
+			var newline: int = whole.find("\n")
+			if newline >= 0:
+				detail = whole.substr(newline)
+		labels.append("%s%s" % [str(key), detail])
 		var about: Dictionary = (first.get("subject", {}) as Dictionary).duplicate()
 		if keep_group:
 			# La carta non e' ancora scelta: lo schermo accenda il posto, non
@@ -275,8 +288,8 @@ func _narrow(options: Array, field: String, prompt: String, keep_group: bool) ->
 	var which: int = await _choose(prompt, labels, subjects)
 	if which < 0 or which >= groups.size():
 		return []
-	var found: Array = by_key[str(groups[which])] as Array
-	return found if keep_group else [found[0]]
+	var chosen_group: Array = by_key[str(groups[which])] as Array
+	return chosen_group if keep_group else [chosen_group[0]]
 
 
 ## Il verbo come si legge al tavolo. La frase e' quella stampata sulle carte
@@ -660,12 +673,29 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 						"" if whom == "" or where != "" else " · a %s" % _name(whom, session)
 					)
 					out.append({
-						"label": "«%s» — %s%s%s" % [
-							str((card as Dictionary)["title"]),
-							str(face.get("label", (offer as Dictionary)["label"])),
-							"" if where == ""
-							else " · a %s" % _region(where, session),
-							to_whom,
+						# **E cosa succede se la cali** (D-492, parola del
+						# committente: *«Mostrare l'ostaggio, Restituire
+						# l'ostaggio... ma che significa? Cosa succede? A una
+						# azione deve corrispondere una descrizione chiara di
+						# quello che devo fare o quello che deve succedere»*).
+						#
+						# La faccia porta due campi: `label`, il nome d'autore —
+						# «Mostrare l'ostaggio» — e `text`, cosa succede —
+						# *«Abbassa quella questione di 2 e metti
+						# #tradimento_detto sul mondo»*. Il menu mostrava solo
+						# il primo. Il secondo e' scritto su **tutte e 96 le
+						# facce della scatola** e non lo leggeva nessuno: il
+						# contenuto c'era, mancava di metterlo sotto gli occhi.
+						"label": "%s%s" % [
+							"«%s» — %s%s%s" % [
+								str((card as Dictionary)["title"]),
+								str(face.get("label", (offer as Dictionary)["label"])),
+								"" if where == ""
+								else " · a %s" % _region(where, session),
+								to_whom,
+							],
+							"" if str(face.get("text", "")) == ""
+							else "\n%s" % str(face["text"]),
 						],
 						# **Da quale offerta nuda viene questa voce** (D-490).
 						# Senza, il menu e' il prodotto di tutte le offerte per

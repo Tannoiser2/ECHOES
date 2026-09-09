@@ -10176,7 +10176,15 @@ guardano si guardano:
    che [D-337](DECISIONS.md#d-337) aveva gia' fatto su SI ACCENDE QUANDO. Le
    tre vie sono quelle del motore, e **il numero dello sfogo si legge dalla
    Chronicle**: a mano avrei scritto −2, il dato dice −1;
-4. **un'ora con l'app in mano**, che nessuna sonda misura.
+4. ✔ **a ogni Azione, cosa succede** — **giro 3 fatto in 0.1.462**
+   ([D-492](DECISIONS.md#d-492)): l'etichetta della giocata porta il nome
+   **e** l'effetto. Il testo c'era gia' su **96 facce su 96** e non lo mostrava
+   nessuno; le voci che nominano una carta e dicono cosa succede passano da
+   **0% a 100%**. E la sonda dei menu, che rispondeva «non scelgo», vedeva solo
+   il primo passo: adesso gioca, e con lei si misura anche **quanti turni si
+   buttano senza pescare** — 6% con la policy, **13%** prendendo sempre la
+   prima voce;
+5. **un'ora con l'app in mano**, che nessuna sonda misura.
 
 
 ### 130. ✅ La pagina e' fatta di carte, non di righe — CHIUSA in 0.1.443: quattro giri, zero doppioni, e la saga cambia tavolo
