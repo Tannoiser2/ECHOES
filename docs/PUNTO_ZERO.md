@@ -217,11 +217,11 @@ E le misure che guardano il tavolo giocato:
 
 | | |
 |---|---|
-| segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | **53 su 177** |
-| **punti regalati** / **porte murate** (`MISURA_SEGNI`) | **1** / **0** |
-| vite scritte che non si siedono mai (`MISURA_VITE`) | **1 su 24** |
-| testi che un giocatore può leggere (`REVISIONE_TESTI`) | **4.233** |
-| pezzi e legami del flusso disegnato (`flusso.html`) | **1.050 / 4.381** |
+| segni che non arrivano mai sul tavolo (`MISURA_TAVOLO`) | **19 su 171** (più 27 fuori dalla portata della sonda, e 2 che sono forme) |
+| **punti regalati** / **porte murate** (`MISURA_SEGNI`) | **2** / **0** |
+| vite scritte che non si siedono mai (`MISURA_VITE`) | **2 su 24** |
+| testi che un giocatore può leggere (`REVISIONE_TESTI`) | **3.084** |
+| pezzi e legami del flusso disegnato (`flusso.html`) | **756 / 3.338** |
 | pezzi del disegno senza nemmeno una freccia | **1** (erano 7) |
 | testi che vivono solo nel suggerimento del mouse (`MISURA_PAGINA`) | **2** |
 | bersagli più stretti di un dito / pannelli che dipingono | **0** / **0** (erano 0 / 2) |
@@ -280,8 +280,9 @@ piccolo»* — sono [D-445](DECISIONS.md#d-445) e [D-446](DECISIONS.md#d-446).
 ## 7. Il debito che questo giro ha trovato
 
 - **`docs/RULES_V0_2.md` è fermo a 0.1.38** e rimanda a un file che non esiste
-  più. Resta perché è l'unico posto dove le regole sono scritte per esteso, con
-  l'avvertenza in cima.
+  più. Non è più l'unico posto dove le regole sono scritte per esteso: da
+  0.1.471 c'è **[REGOLAMENTO.md](REGOLAMENTO.md)**, che descrive il gioco che la
+  scatola gioca oggi. La v0.2 resta come archivio, con l'avvertenza in cima.
 - **La traccia dei valori usciva dal foglio** — 223 mm su un A4 da 210 — e
   nessuna prova lo vedeva: contava i rettangoli, non dove stavano
   ([D-446](DECISIONS.md#d-446)). Adesso una prova chiede a ogni casella di

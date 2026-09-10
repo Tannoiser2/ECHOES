@@ -63,10 +63,10 @@
           "name": "from_region_id",
           "type": "region_id",
           "required": false,
-          "note": "Obbligatorio quando i 3 token sono già tutti sul tavolo."
+          "note": "Obbligatorio quando i gettoni di presenza sono già tutti sul tavolo."
         }
       ],
-      "rules_text": "Ogni Entita ha 3 token presenza. Una Regione non può ospitare più token dei suoi presence_slots."
+      "rules_text": "I gettoni di presenza di una casa sono quelli che la Chronicle dichiara: in questa sono 5. Una Regione non può ospitare più gettoni dei suoi presence_slots."
     },
     {
       "id": "ACT_INFLUENCE",
@@ -153,7 +153,7 @@
       "template": "SCHEME",
       "title": "Tramare",
       "ao_cost": 1,
-      "description": "Scegli uno: leggi a quanto esplode una domanda; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.",
+      "description": "Scegli uno: leggi a quanto esplode una domanda; leggi 1 informazione privata di una Regione.",
       "narrative_verbs": [
         "Spiare",
         "Studiare",

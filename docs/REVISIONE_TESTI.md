@@ -10932,12 +10932,12 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 
 > Aggiungi o sposta 1 token presenza in una Regione adiacente a una in cui hai già presenza, o in una delle tue Regioni iniziali.
 
-> Ogni Entita ha 3 token presenza. Una Regione non può ospitare più token dei suoi presence_slots.
+> I gettoni di presenza di una casa sono quelli che la Chronicle dichiara: in questa sono 5. Una Regione non può ospitare più gettoni dei suoi presence_slots.
 
 
 **`ACT_SCHEME`**
 > Tramare
 
-> Scegli uno: leggi a quanto esplode una domanda; guarda le prime 2 carte del mazzo Echo dell'Atto; leggi 1 informazione privata di una Regione.
+> Scegli uno: leggi a quanto esplode una domanda; leggi 1 informazione privata di una Regione.
 
 > Aver letto a quanto esplode una domanda resta tuo: gli altri non lo sanno, e tu lo sai fino a fine anno.

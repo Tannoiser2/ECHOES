@@ -31,8 +31,7 @@
         "condition:rationed",
         "grain_requisitioned",
         "condition:mourning",
-        "burden_shared",
-        "someone_paid"
+        "burden_shared"
       ],
       "art_prompt_key": "theme.sopravvivenza"
     },
@@ -80,7 +79,6 @@
         "legend:",
         "discovery:legend",
         "betrayal_spoken",
-        "parley_held",
         "question_unresolved",
         "scar:unanswered",
         "renowned"

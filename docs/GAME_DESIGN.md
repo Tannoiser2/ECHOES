@@ -14,8 +14,10 @@
 > un'Azione o dal Ripple di un Consiglio.
 >
 > Il documento resta perché spiega **perché** il gioco è fatto così, e quella
-> parte vale ancora. Per com'è fatto oggi: [PUNTO_ZERO.md](PUNTO_ZERO.md) e
-> [DECISIONS.md](DECISIONS.md) da D-460 in avanti.
+> parte vale ancora. Per **come si gioca** oggi:
+> [REGOLAMENTO.md](REGOLAMENTO.md). Per i numeri:
+> [PUNTO_ZERO.md](PUNTO_ZERO.md) e [DECISIONS.md](DECISIONS.md) da D-460 in
+> avanti.
 
 ECHOES è un boardgame/GDR narrativo-strategico a Chronicle. Ogni Chronicle è una
 storia completa ambientata nello stesso mondo persistente. I giocatori controllano
