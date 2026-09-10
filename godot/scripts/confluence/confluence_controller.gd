@@ -23,6 +23,7 @@ extends RefCounted
 ##   8. Ripple                                 (K)
 
 const Effect := preload("res://scripts/core/effect.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
@@ -699,11 +700,18 @@ func commit(entity_id: String, asset_ids: Array) -> bool:
 		return false
 
 	# Multiset check: the same card cannot be spent twice.
-	var available: Array = service.hand(entity_id)
+	#
+	# **E si paga col piatto che la Chronicle dichiara** (D-504): dove si copre,
+	# una carta in mano non basta — al Consiglio arriva solo quello che si e'
+	# messo da parte, a faccia in giu', prima di sapere di cosa si parlava.
+	var available: Array = service.commit_pool(entity_id)
+	var covers: bool = HandRhythm.council_pays_from_covered(_chronicle)
 	for asset_id in asset_ids:
 		var index: int = available.find(str(asset_id))
 		if index < 0:
-			last_error = "%s non ha '%s' in mano" % [entity_id, asset_id]
+			last_error = "%s non ha '%s' %s" % [
+				entity_id, asset_id, "fra le carte coperte" if covers else "in mano",
+			]
 			return false
 		available.remove_at(index)
 
@@ -1146,6 +1154,21 @@ func _dispose_assets(
 	)
 	for entity_id in current["commits"]:
 		var committed: Array = current["commits"][entity_id]
+		# **Le coperte si girano prima di spenderle** (D-504). Al tavolo e' un
+		# gesto solo — volti la carta e la butti — ma sono due mutazioni: la
+		# carta torna in mano *scoperta*, e da li' se ne va. Scritte come una
+		# sola, la carta recuperata su un Consiglio caduto resterebbe coperta
+		# per sempre, e lo scarto cercherebbe in mano una carta che sta altrove.
+		for asset_id in committed:
+			if not (service.covered(str(entity_id)) as Array).has(str(asset_id)):
+				continue
+			_apply(
+				applied,
+				Effect.make(
+					"UNCOVER_ASSET", "entity", str(entity_id),
+					{"asset_id": str(asset_id)}, source
+				)
+			)
 		var kept: String = ""
 		if recovers and failure and _stance_of(str(entity_id)) == "OPPOSE" and not committed.is_empty():
 			kept = str(recovery.get(entity_id, ""))

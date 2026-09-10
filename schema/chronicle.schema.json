@@ -974,8 +974,7 @@
           "additionalProperties": false,
           "description": "**Il mazzetto personale** (D-499, ISSUES 136, forma decisa dal committente: *«i mazzetti rimangono separati e fanno da pozzo quando si pescano nuove carte, all'inizio dell'anno le entita' hanno lo stesso numero di carte, cambia come sono composti»*). Assente, il gioco tiene i sei mazzi comuni per famiglia e nessuno pesca a inizio Atto: e' il tavolo di prima, che resta misurabile per confronto.",
           "required": [
-            "size",
-            "draw_per_act"
+            "size"
           ],
           "properties": {
             "size": {
@@ -987,6 +986,18 @@
               "type": "integer",
               "minimum": 1,
               "description": "Quante carte si pescano dal proprio mazzetto a inizio Atto. Le Azioni di un Atto sono `rounds_per_act` x 2; pescarne altrettante da' da giocare e lascia scelta, pescarne meno riporta il difetto che questa regola viene a togliere."
+            },
+            "hand_at_round_start": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "description": "**Il ritmo del turno** (D-504, forma decisa dal committente: *«nel primo turno si pescano 5 carte, se ne giocano due e se ne sceglie una per il concilio; le due rimaste si possono scartare oppure tenere; nel secondo turno si torna a pescare per arrivare a 5»*). Dichiarato, all'inizio di **ogni turno** la mano diventa esattamente questo numero: si pesca dal proprio mazzetto quello che manca, e si scarta quello che sta sopra — perche' ACQUISIRE puo' portarla oltre dentro il turno. Sostituisce `draw_per_act`, che pescava una volta per Atto e lasciava la mano a scendere. Omesso, resta il ritmo per Atto."
+            },
+            "cover_per_round": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3,
+              "description": "Quante carte si **coprono** alla fine di ogni turno (D-504). Una carta coperta esce dalla mano, resta segreta agli altri, e **al Consiglio si impegna solo quello che si e' coperto**: l'impegno diventa una scelta presa prima di sapere di cosa si parlera', invece che a mano aperta davanti alla domanda. A 1 su tre turni fanno tre coperte per Atto, che e' esattamente `max_commit_assets`. A 0 nessuno copre e il Consiglio impegna dalla mano come prima."
             },
             "identity_cards": {
               "type": "integer",

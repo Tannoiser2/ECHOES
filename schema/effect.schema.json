@@ -17,6 +17,7 @@
         "BUILD_STRUCTURE",
         "CLOSE_PASSAGE",
         "CONSUME_CLAIM",
+        "COVER_ASSET",
         "CREATE_CLAIM",
         "CREATE_ECHO",
         "GRANT_ASSET",
@@ -42,7 +43,8 @@
         "SET_TENSION_VISIBILITY",
         "SPEND_CLAIM_TOKEN",
         "SPEND_HOUSE_POWER",
-        "TRANSFER_ASSET"
+        "TRANSFER_ASSET",
+        "UNCOVER_ASSET"
       ]
     },
     "target": {

@@ -110,6 +110,10 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"incarnation": 0,
 			"presence": [],
 			"hand": [],
+			# **Le carte coperte** (D-504): quelle messe da parte a fine turno,
+			# segrete agli altri, e le sole impegnabili al Consiglio. Si parte
+			# a mani vuote: la prima si copre alla fine del primo turno.
+			"covered": [],
 			"tags": (definition["tags"] as Array).duplicate(),
 			"active": bool(definition["active"]),
 			"ao_remaining": 0,

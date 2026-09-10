@@ -24,8 +24,20 @@ static func build(session: RefCounted) -> Dictionary:
 		"tensions": [],
 		"regions": [],
 		"councils": [],
+		"seats": [],
 		"verbale": [],
 	}
+
+	# **Le carte coperte si contano, non si leggono** (D-504). Al tavolo vero un
+	# mucchietto a faccia in giu' davanti a qualcuno **si vede**: quante sono e'
+	# un fatto pubblico, quali sono e' il segreto. Se l'app non le contasse
+	# direbbe meno del tavolo — e chi guarda lo schermo grande non saprebbe che
+	# l'avversario arriva al Consiglio con tre carte da mettere sul piatto.
+	for entity_id in world["turn_order"]:
+		(out["seats"] as Array).append({
+			"name": session.service.name_of(str(entity_id)),
+			"covered": session.service.covered_size(str(entity_id)),
+		})
 
 	# Le domande, come le vede il tavolo: una velata mostra il dorso (-1),
 	# anche se qualche seggio ne ha sbirciato il numero con lo SCHEME.

@@ -28,6 +28,7 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 		"round": int(world.get("round", 0)),
 		"tensions": [],
 		"hand": [],
+		"covered": [],
 		"destiny": {},
 		"relations": [],
 		"signs": [],
@@ -58,6 +59,18 @@ static func build(session: RefCounted, seat_id: String) -> Dictionary:
 				"title": str(asset["title"]),
 				"family": str(asset["family"]),
 			})
+	# **Le proprie coperte** (D-504): sono sue, quindi le sa. Il tavolo grande ne
+	# vede solo il numero — questa console e' il posto dove un segreto di seggio
+	# puo' stare, ed e' la stessa disciplina della mano qui sopra.
+	for asset_id in session.service.covered(seat_id):
+		var card: Variant = data.assets.get(str(asset_id))
+		if card != null:
+			(out["covered"] as Array).append({
+				"id": str(asset_id),
+				"title": str((card as Dictionary)["title"]),
+				"family": str((card as Dictionary)["family"]),
+			})
+
 	# I quattro obiettivi, se la Chronicle li dichiara (D-198): il palese per
 	# primo, poi i tre che ha pescato e che nessun altro conosce. E' la stessa
 	# casella `destiny` — chi legge il modello guarda `rungs` e trova quattro

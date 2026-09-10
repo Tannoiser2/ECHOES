@@ -426,4 +426,4 @@ func test_generated_schema_covers_every_collection() -> void:
 			SchemaDefs.DEFS.has(str(schema_id)),
 			"schema_defs.gd definisce '%s'" % schema_id
 		)
-	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 34, "l'enum EffectType chiuso ha 34 voci")
+	assert_eq(SchemaDefs.EFFECT_TYPES.size(), 36, "l'enum EffectType chiuso ha 36 voci")

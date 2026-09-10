@@ -5,6 +5,61 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.474 — Il ritmo a cinque, e la carta coperta per il Consiglio
+
+[D-504](docs/DECISIONS.md#d-504), [ISSUES 136](docs/ISSUES.md#136). Forma decisa
+dal committente: *«nel primo turno si pescano 5 carte, se ne giocano due e se ne
+sceglie una per il concilio; le due rimaste si possono scartare oppure tenere;
+nel secondo turno si torna a pescare per arrivare a 5»*.
+
+### Aggiunto
+
+- **a inizio turno la mano e' esattamente cinque**: si pesca quello che manca e
+  si scarta quello che sta sopra. Il tetto della Chronicle (7) resta quello che
+  vale **dentro** il turno, quindi non muore;
+- **a fine turno si copre una carta**, che esce dalla mano, resta segreta, e
+  **al Consiglio si impegna solo quello che si e' coperto**. L'impegno era una
+  scelta a mano aperta davanti alla domanda; adesso e' una scelta presa **prima
+  di sapere di cosa si parlera'**;
+- **coprire e' un Effetto** (`COVER_ASSET` / `UNCOVER_ASSET`) col suo inverso, e
+  al Consiglio le coperte **si girano prima di spendersi**;
+- **le coperte si contano ma non si leggono**: il modello del tavolo porta
+  quante ne ha ogni seggio, e una prova controlla che l'id della carta non
+  compaia da nessuna parte in quel dizionario. Al tavolo vero un mucchietto a
+  faccia in giu' si vede.
+
+### Misurato
+
+**Il ritmo**, 15 anni dal seme 7000, per seggio per anno: **26,0** carte
+pescate, 5,8 scartate a scelta, **9,0 coperte** — cioe' 3 per Atto, esatte. Il
+mazzetto di 18 carte **gira 1,4 volte l'anno**, quindi le carte comprate tornano
+in mano: e' il deckbuilding che ISSUES 136 chiedeva.
+
+**Le Occasioni bloccate al posto di una persona passano da 5 su 270 (1%) a 2
+(0%)**, e nei momenti bloccati la mano ha **4,50 carte** invece di 2,00. Il giro
+intero: **20%** in 0.1.466, 3%, 8%, 5%, 1%, **0%** adesso.
+
+**Il Consiglio pesa piu', non meno** — era la paura, e la misura dice il
+contrario: le carte impegnate salgono (proponente 1,43 a **1,54** sul misto,
+1,54 a **1,66** sull'uniforme), e sul tavolo uniforme il **margine medio passa da
+0,32 a 1,16**: quattro ottimizzatori che si annullavano adesso decidono qualcosa.
+
+**Il costo:** Verita' da 417 a **396** sul misto e da 427 a **413**
+sull'uniforme, Consigli da 5,61 a 5,58 e da 5,58 a **5,44**. La ragione sta nei
+COUNTER, che salgono da 176 a 192 e da 197 a 215: chi si oppone arriva con piu'
+peso, quindi **cadono piu' proposte**, e una proposta caduta lascia scritto meno
+di una accolta. Il cancello resta **0 seggi bloccati su 8**.
+
+**E la leva, misurata prima di consegnare.** Con **due** carte coperte per turno
+invece di una, gli stessi cento semi danno **488/484** Verita' sul misto e
+**441/435** sull'uniforme — settantuno sopra il punto di partenza. Spedito resta
+**una**, perche' e' quello che il committente ha detto: il numero sta dietro
+`personal_decks.cover_per_round` e si sposta con una parola.
+
+Suite **817 test, 75 074 asserzioni**.
+
+---
+
 ## 0.1.473 — Il potere della casa: il verbo che sai fare, senza carta
 
 [D-503](docs/DECISIONS.md#d-503), [ISSUES 136](docs/ISSUES.md#136) punto 4.

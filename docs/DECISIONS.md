@@ -45,6 +45,166 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-504 — Il ritmo a cinque, e la carta coperta per il Consiglio
+
+**implemented in 0.1.474.** Forma decisa dal committente, per intero:
+
+> *«Ogni atto ha 3 turni con due azioni l'una per un totale di 6 azioni. Nel
+> primo turno si pescano 5 carte, se ne giocano due e se ne sceglie una per il
+> concilio. Le due rimaste si possono scartare oppure tenere. Nel secondo turno
+> si torna a pescare per arrivare a 5 carte e si ripete. Se il mazzetto finisce
+> si rimischia. Se si acquistano nuove carte si mettono nel mazzetto.»*
+
+### La regola, in due meta' che vanno accese insieme
+
+1. **All'inizio di ogni turno la mano e' esattamente cinque**
+   (`personal_decks.hand_at_round_start`): si pesca quello che manca dal proprio
+   pozzo, e si **scarta** quello che sta sopra — perche' ACQUISIRE puo' portarla
+   oltre dentro il turno, e sono parole sue: *«se se ne acquistano troppo vanno
+   comunque scartate»*. Il tetto della Chronicle (`hand_limit`, 7) resta quello
+   che vale **dentro** il turno, e non muore.
+2. **A fine turno si copre una carta** (`personal_decks.cover_per_round`), che
+   esce dalla mano, resta segreta, e **al Consiglio si impegna solo quello che si
+   e' coperto**.
+
+La seconda e' quella che cambia il gioco. L'impegno al Consiglio era una scelta
+fatta **a mano aperta davanti alla domanda**; adesso e' una scelta fatta **prima
+di sapere di cosa si parlera'**, e la Deriva puo' ancora farne esplodere
+un'altra. Al tavolo e' un gesto per turno: *pareggi la mano a cinque, e giri una
+carta a faccia in giu' davanti a te.*
+
+**Il ritmo che ne esce**, misurato su 15 anni dal seme 7000, per seggio per anno:
+
+| | |
+|---|---|
+| carte pescate | **26,0** |
+| carte scartate a scelta | 5,8 |
+| carte coperte | **9,0** — cioe' 3 per Atto, esatte |
+| giri del mazzetto (18 carte) | **1,4** |
+
+Il mazzetto **gira**, quindi le carte comprate tornano davvero in mano: e' il
+deckbuilding che ISSUES 136 chiedeva, e con il ritmo per Atto non ci arrivava.
+*(Avevo stimato 2,5 giri e temuto che le due carte d'identita' tornassero cinque
+volte l'anno: il cervello scarta meno di quanto pensassi — 5,8 carte — e il
+mazzetto gira 1,4 volte. La stima era mia, il numero e' della sonda.)*
+
+### Quello che ha chiuso
+
+`run_blocked_probe.gd`, 15 anni dal seme 7000, seduta al posto di una persona:
+
+| | 0.1.473 | adesso |
+|---|---|---|
+| Occasioni con la **sola voce «passa»** | 5 su 270 (1%) | **2 (0%)** |
+| di quelle, mano vuota | 0 | **0** |
+| carte in mano nei momenti bloccati | 2,00 | **4,50** |
+
+**Il giro intero di ISSUES 136, per chi legge di fila:** 55 su 270 (**20%**) in
+0.1.466, 9 (3%) col mazzetto personale, 24 (8%) senza le carte Eco nel menu, 14
+(5%) con FORGIARE riparato, 5 (1%) col potere della casa, **2 (0%)** adesso. Le
+nove ragioni che restano sono tutte «la carta arriva al luogo, ma l'Azione e'
+rifiutata»: sono carte INFLUENZARE col tetto per round gia' speso, cioe' la
+regola che funziona.
+
+### Il Consiglio pesa piu', non meno
+
+Era la mia paura, e la misura dice il contrario. `run_participation_probe`:
+
+| | prima (misto · uniforme) | adesso |
+|---|---|---|
+| carte impegnate dal proponente | 1,43 · 1,54 | **1,54 · 1,66** |
+| carte impegnate dagli altri tre | 4,20 · 4,22 | **4,31 · 4,43** |
+| margine medio | 1,73 · **0,32** | 1,56 · **1,16** |
+| Consigli con opposizione nel margine | 95% · 97% | **97% · 98%** |
+| non proponenti che impegnano almeno una carta | 85% · 84% | 81% · 81% |
+
+**Sul tavolo uniforme il margine medio passa da 0,32 a 1,16**: quattro
+ottimizzatori che si annullavano a vicenda adesso decidono qualcosa. Chi
+impegna e' meno gente ma con piu' peso: coprire e' una scelta, e chi non ha
+coperto niente non ha niente da mettere.
+
+### Il costo, scritto
+
+| | 0.1.473 | adesso |
+|---|---|---|
+| Verita', tavolo misto | 417 / 412 | **396 / 394** |
+| Verita', tavolo uniforme | 427 / 427 | **413 / 412** |
+| Consigli per anno | 5,61 · 5,58 | **5,58 · 5,44** |
+| COUNTER su 100 anni | 176 · 197 | **192 · 215** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 809 test | **817 test**, 75 074 asserzioni |
+
+**Ventuno Verita' in meno sul misto e quattordici sull'uniforme, e vanno
+scritte.** La ragione si legge nella riga sotto: i COUNTER salgono di sedici e
+di diciotto. Chi si oppone arriva con piu' peso, quindi **cadono piu' proposte**,
+e una proposta caduta lascia scritto meno di una accolta. Il Consiglio e' piu'
+combattuto e il mondo ricorda meno: e' un baratto, non un miglioramento secco.
+
+### La leva, misurata prima di consegnare
+
+Il committente ha detto **una** carta coperta per turno. Con **due** — sei per
+Atto invece di tre — gli stessi cento semi danno:
+
+| `cover_per_round` | Verita' misto | Verita' uniforme | Consigli | seggi bloccati |
+|---|---|---|---|---|
+| il ritmo per Atto (0.1.473) | 417 / 412 | 427 / 427 | 5,61 · 5,58 | 0 su 8 |
+| **1 — come detto** | 396 / 394 | 413 / 412 | 5,58 · 5,44 | 0 su 8 |
+| 2 | **488 / 484** | **441 / 435** | 5,54 · 5,39 | 0 su 8 |
+
+**A due coperte le Verita' non tornano soltanto: salgono di settantuno sopra il
+punto di partenza**, e il tavolo misto ne scrive 488 su 100 anni. Spedito resta
+**1**, perche' e' quello che il committente ha detto e la scelta e' sua; il
+numero sta dietro `cover_per_round` e si sposta con una parola.
+
+**A tre non ha senso provarci**, e si vede senza misurare: 5 in mano meno 2
+giocate meno 3 coperte fa **zero**, quindi non resta niente da tenere o
+buttare — e il *«si possono scartare oppure tenere»* sparirebbe dalla regola.
+
+### La regola sta in un posto solo
+
+Il ritmo lo chiedono in **cinque**: il controller per pareggiare la mano e per
+far coprire, il servizio per dire con che cosa si paga un Consiglio, il
+Consiglio per rifiutare un impegno non coperto, i due decisori per scegliere, e
+la vista del tavolo per dire **quante** coperte ha un avversario senza dire
+quali. Quindi vive in
+[`hand_rhythm.gd`](../godot/scripts/world/hand_rhythm.gd), pura.
+
+**E le coperte si contano ma non si leggono.** Al tavolo vero un mucchietto a
+faccia in giu' davanti a qualcuno si **vede**: quante sono e' un fatto pubblico,
+quali sono e' il segreto. Il modello del tavolo porta il numero per seggio, e una
+prova controlla che l'id della carta **non compaia da nessuna parte** in quel
+dizionario.
+
+### Coprire e' un Effetto, come tutto il resto
+
+`COVER_ASSET` / `UNCOVER_ASSET`, col carico che porta l'indice in mano perche'
+disfare rimetta la carta **dove stava** — la promessa dell'effect-sourcing e'
+*identico*, non *equivalente*. E al Consiglio **le coperte si girano prima di
+spendersi**: al tavolo e' un gesto solo, ma sono due mutazioni, e scritte come
+una la carta recuperata su un Consiglio caduto resterebbe coperta per sempre.
+
+### Le prove che il tavolo automatico non avrebbe dato
+
+**Il mezzo giro che scarta sopra il cinque non si accende mai in una misura**: il
+cervello non acquisisce abbastanza da sfondare la mano — zero volte in 15 anni —
+quindi quella meta' della regola sarebbe stata codice che nessuno esegue. Si
+prova su una condizione **fabbricata**: sette carte in mano, il turno che si apre,
+e le due di troppo che finiscono nel **proprio** scarto.
+
+E cinque prove che erano rimaste puntate sulla mano invece che sul piatto — due
+decisori scritti, il conto delle carte da salvare, il cervello che fa la sua
+quota — adesso leggono `commit_pool`. Ognuna di quelle, letta sulla mano, avrebbe
+misurato un Consiglio vuoto credendo di misurarne uno pieno.
+
+### Quello che resta aperto
+
+- **quante coperte per turno**: la tabella qui sopra dice cosa costa la scelta;
+- **se una coperta non spesa si porti all'anno dopo.** Oggi resta coperta fino a
+  quando la si impegna, e fra un Atto e l'altro non si pulisce: chi non spende
+  arriva all'ultimo Consiglio con di piu'. Non e' misurato **quanto** di piu',
+  perche' sui cento semi i Consigli sono 5,5 l'anno e le coperte si consumano.
+
+---
+
 ## D-503 — Il potere della casa: il verbo che sai fare, senza carta
 
 **implemented in 0.1.473.** Parola del committente, dalla stessa frase che ha

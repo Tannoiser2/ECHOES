@@ -10267,6 +10267,16 @@ si puo' giocare.
    ottenuto cosa;
 7. un'altra ora con l'app in mano.
 
+**E in 0.1.474 il ritmo della mano l'ha riscritto il committente**
+([D-504](DECISIONS.md#d-504)): *«nel primo turno si pescano 5 carte, se ne
+giocano due e se ne sceglie una per il concilio; le due rimaste si possono
+scartare oppure tenere»*. Le Occasioni bloccate al posto di una persona arrivano
+a **2 su 270 (0%)** — il giro di questa voce, di fila: **20% - 3% - 8% - 5% - 1%
+- 0%** — e il mazzetto gira **1,4 volte l'anno**, quindi le carte comprate
+tornano davvero in mano. Il costo e' scritto nel verbale: **21 Verita' in meno**
+sul tavolo misto, perche' chi si oppone arriva con piu' peso e cadono piu'
+proposte.
+
 **Dove sono i numeri del punto 2 dopo 0.1.470.** Tolte le carte Eco, il tavolo
 misurato non e' piu' quello di 0.1.469 e i numeri vanno riletti insieme: i
 Consigli passano da 5,58 a **5,68** l'anno, le Verita' da 360 a **393/391**

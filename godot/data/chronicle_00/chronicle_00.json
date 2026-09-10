@@ -390,7 +390,8 @@
       },
       "personal_decks": {
         "size": 18,
-        "draw_per_act": 6,
+        "hand_at_round_start": 5,
+        "cover_per_round": 1,
         "identity_cards": 2
       }
     }

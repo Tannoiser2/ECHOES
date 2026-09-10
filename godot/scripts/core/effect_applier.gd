@@ -217,6 +217,10 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _move_claim_tokens(target, 1)
 		"SPEND_CLAIM_TOKEN":
 			return _move_claim_tokens(target, -1)
+		"COVER_ASSET":
+			return _cover_asset(target, payload)
+		"UNCOVER_ASSET":
+			return _uncover_asset(target, payload)
 		"GRANT_HOUSE_POWER":
 			return _move_house_power(target, 1)
 		"SPEND_HOUSE_POWER":
@@ -342,6 +346,50 @@ func _move_claim_tokens(target: Dictionary, delta: int) -> Variant:
 		return _fail("'%s' non ha gettoni di rivendicazione da spendere" % target.get("id", ""))
 	(entity as Dictionary)["claim_tokens"] = before + delta
 	return {}
+
+
+## **La carta si copre** (D-504): esce dalla mano e si posa a faccia in giu'.
+##
+## Il carico porta `hand_index` perche' disfare deve rimetterla **dove stava**:
+## una mano con le stesse carte in un ordine diverso non e' la stessa mano, e la
+## promessa dell'effect-sourcing e' *identico*, non *equivalente*. E' la stessa
+## ragione per cui `_add_presence` si porta `at`.
+func _cover_asset(target: Dictionary, payload: Dictionary) -> Variant:
+	var entity: Variant = world["entities"].get(str(target.get("id", "")))
+	if entity == null:
+		return _fail("unknown entity '%s'" % target.get("id", ""))
+	var asset_id: String = str(payload.get("asset_id", ""))
+	var hand: Array = (entity as Dictionary)["hand"] as Array
+	var index: int = hand.find(asset_id)
+	if index < 0:
+		return _fail("'%s' non ha '%s' in mano da coprire" % [target.get("id", ""), asset_id])
+	hand.remove_at(index)
+	if not (entity as Dictionary).has("covered"):
+		(entity as Dictionary)["covered"] = []
+	((entity as Dictionary)["covered"] as Array).append(asset_id)
+	# **L'inverso e' quello che si torna** (vedi `apply`): senza l'id della carta
+	# lo scoprire cercherebbe la stringa vuota fra le coperte, e il round-trip
+	# lo dice subito — «non ha '' fra le coperte».
+	return {"asset_id": asset_id, "hand_index": index}
+
+
+## E scoprirla la rimette in mano, al posto da cui era uscita.
+func _uncover_asset(target: Dictionary, payload: Dictionary) -> Variant:
+	var entity: Variant = world["entities"].get(str(target.get("id", "")))
+	if entity == null:
+		return _fail("unknown entity '%s'" % target.get("id", ""))
+	var asset_id: String = str(payload.get("asset_id", ""))
+	var covered: Array = (entity as Dictionary).get("covered", []) as Array
+	var index: int = covered.find(asset_id)
+	if index < 0:
+		return _fail("'%s' non ha '%s' fra le coperte" % [target.get("id", ""), asset_id])
+	covered.remove_at(index)
+	var hand: Array = (entity as Dictionary)["hand"] as Array
+	if payload.has("hand_index"):
+		hand.insert(clampi(int(payload["hand_index"]), 0, hand.size()), asset_id)
+	else:
+		hand.append(asset_id)
+	return {"asset_id": asset_id, "covered_index": index}
 
 
 ## **Il potere della casa** (D-503): uno per Atto, e mai sotto zero. Come il

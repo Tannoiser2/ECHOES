@@ -10,7 +10,7 @@ alla volta.
 ## Avvertenza sulla versione
 
 Questo regolamento descrive **il gioco che la scatola gioca oggi**, alla
-versione 0.1.473, e non il gioco che vorrebbe essere: ogni regola scritta qui è
+versione 0.1.474, e non il gioco che vorrebbe essere: ogni regola scritta qui è
 una regola che il motore esegue e che i cancelli sorvegliano. Dove una cosa è
 stampata sui pezzi ma non ha ancora un effetto, sta scritto nel
 [capitolo 18](#18-quello-che-questo-regolamento-non-copre-ancora) e non in mezzo
@@ -471,44 +471,81 @@ ANNO (Chronicle)
 
 ### 6.1 Il round, passo per passo
 
-1. **AZIONI.** In ordine di turno, ogni casa spende le sue **2 Occasioni**, una
+1. **LA MANO A CINQUE.** Ogni casa pareggia la mano a **5 carte**: pesca quello
+   che manca dal suo mazzetto, scarta quello che sta sopra (capitolo 6.3).
+2. **AZIONI.** In ordine di turno, ogni casa spende le sue **2 Occasioni**, una
    dopo l'altra, prima di passare la parola. Le Occasioni **non si accumulano**
    fra i round: quelle non spese sono perse.
-2. **DERIVA.** Nel gioco di oggi la Deriva **non c'è**: il mondo non spinge una
+3. **SI COPRE.** Ogni casa gira **1 carta** a faccia in giù davanti a sé: è la
+   sola che potrà impegnare al Consiglio. Poi tiene o scarta quello che le resta.
+   Si copre **prima** della Deriva, quindi senza sapere quale domanda esploderà.
+4. **DERIVA.** Nel gioco di oggi la Deriva **non c'è**: il mondo non spinge una
    domanda per conto suo. Il Calore lo fanno i giocatori, con le Risonanze — e i
    due insieme farebbero tre volte i gettoni che il gioco vuole.
-3. **RICONTO DEL CONTROLLO.** Si guarda chi tiene cosa (capitolo 12.2).
-4. **SOVRAESTENSIONE.** Chi tiene più Regioni di quante ne può reggere paga
+5. **RICONTO DEL CONTROLLO.** Si guarda chi tiene cosa (capitolo 12.2).
+6. **SOVRAESTENSIONE.** Chi tiene più Regioni di quante ne può reggere paga
    (capitolo 12.3).
-5. **CONTROLLO DELLA SOGLIA.** Nel gioco di oggi il round **non apre Consigli**:
+7. **CONTROLLO DELLA SOGLIA.** Nel gioco di oggi il round **non apre Consigli**:
    il Consiglio è di fine Atto.
 
 **Un'Azione rifiutata consuma comunque l'Occasione.** Il tempo passa anche quando
 il piano non funziona: se provi a calare una carta su un luogo che non porta i
 suoi segni, l'Occasione è spesa.
 
-### 6.2 A inizio Atto: la pesca
+### 6.2 A inizio Atto
 
-All'inizio di ogni Atto, **prima del primo round**, ogni casa:
+All'inizio di ogni Atto, **prima del primo round**, ogni casa **rialza le
+cacciate**: i divieti di rientro posati dai Consigli dell'Atto precedente
+decadono. La stagione gira e le porte si riaprono. All'Atto I non c'è niente da
+rialzare.
 
-1. **rialza le cacciate**: i divieti di rientro posati dai Consigli dell'Atto
-   precedente decadono. La stagione gira e le porte si riaprono. All'Atto I non
-   c'è niente da rialzare;
-2. **pesca fino a 6 carte dal proprio mazzetto**, uguali per tutti — ma **mai
-   oltre il limite di mano**. All'Atto I, con le due carte d'identità già in
-   mano, se ne pescano **5**; negli Atti dopo se ne pescano 6, o quante ce ne
-   stanno.
+E **rimette diritto il tarocco della Casata**: il potere della casa torna
+(capitolo 7).
+
+Le carte non si pescano a inizio Atto: si pescano **a inizio turno**, ed è il
+capitolo qui sotto.
+
+### 6.3 Il ritmo del turno: cinque in mano, una coperta
+
+Questo è il giro che si ripete nove volte in un anno, e conviene impararlo come
+un gesto solo.
+
+1. **All'inizio del turno la mano è esattamente 5.** Peschi dal tuo mazzetto
+   quello che manca. Se ne hai **più** di cinque — capita: ACQUISIRE ne mette una
+   in mano dentro il turno — ne scarti fino a tornare a cinque.
+2. **Giochi le tue 2 Occasioni**, cioè normalmente due carte (capitolo 7).
+3. **Copri 1 carta**: la giri a faccia in giù davanti a te. Esce dalla mano — non
+   la puoi più giocare — e **al Consiglio potrai impegnare solo quello che hai
+   coperto**. La scegli **senza sapere di cosa si parlerà**: la domanda si apre
+   dopo, e la Deriva può ancora farne esplodere un'altra.
+4. **Delle due che ti restano, tieni o scarta**, come vuoi.
+
+**Scartare è pescare.** La mano torna a cinque all'inizio del turno prossimo,
+quindi buttare non ti costa niente e la carta buttata torna nel **tuo** scarto,
+da cui rientrerà nel mazzetto. Tenere è la scommessa: *questa mi serve fra un
+turno*. Chi scarta vede più carte e macina il mazzo; chi tiene punta su una
+carta precisa.
+
+**Alla fine dell'Atto hai 3 carte coperte** davanti a te, e sono quelle con cui
+vai al Consiglio — esattamente il numero massimo che un Consiglio accetta. Una
+coperta che non spendi **resta coperta**: all'ultimo Consiglio dell'anno puoi
+arrivare con più di tre da scegliere.
 
 **Quando il pozzo finisce, si rimescola lo scarto.** È questo che rende il
 mazzetto un mazzo e non una scorta: le carte giocate tornano dentro, e quelle
-acquisite durante l'anno si ritrovano negli Atti dopo. Se non c'è più niente
-nemmeno nello scarto, si pesca quello che c'è e si va avanti.
+**acquisite durante l'anno diventano tue per sempre** — appena le giochi o le
+scarti finiscono nel tuo mazzetto. In un anno un mazzetto gira circa una volta e
+mezza, quindi quello che compri lo rivedi.
 
-**Non si pesca oltre il limite di mano** (7 carte): pescare per buttare non è un
-gesto che al tavolo si fa. Chi arriva a inizio Atto con la mano piena non pesca
-niente.
+> **Un esempio, un turno intero.** Kessa ha in mano *Mercenari*, *Sigillo*,
+> *Braccia Ferme*, *Censimento* e *Carovana*. Gioca *Mercenari* per FORGIARE e
+> *Censimento* per TRAMARE: due Occasioni spese. Le restano tre carte. Copre il
+> *Sigillo* — è forte, e al Consiglio vale in ogni caso — e lo gira a faccia in
+> giù. Delle due che le restano scarta *Braccia Ferme*, che non le serve, e tiene
+> *Carovana* perché al turno dopo vuole muovere sulla strada. Al turno seguente
+> ha *Carovana* in mano e ne pesca quattro: di nuovo cinque.
 
-### 6.3 A fine Atto: i mucchi e il Consiglio
+### 6.4 A fine Atto: i mucchi e il Consiglio
 
 A fine Atto:
 
@@ -918,8 +955,14 @@ a partire dal capoparte.
 
 ### 10.6 L'impegno delle carte
 
-Ogni casa **impegna carte coperte**, fino a **3**. Si rivelano **tutte insieme**:
-è la seduta, e quello che il tavolo ha visto rivelare resta in tavola.
+Ogni casa impegna fino a **3** carte, e **le prende dal suo mucchietto coperto**
+— quello che ha costruito una carta per turno (capitolo 6.3). **Una carta tenuta
+in mano non si impegna**: al Consiglio arriva solo quello che avevi messo da
+parte prima di sapere di cosa si sarebbe parlato. È la regola che rende il
+Consiglio un impegno e non un ripensamento.
+
+Gli impegni si rivelano **tutti insieme**: è la seduta, e quello che il tavolo ha
+visto rivelare resta in tavola.
 
 **Quanto vale una carta impegnata:**
 
@@ -1607,7 +1650,9 @@ Le voci aperte, tutte, con chi le può muovere, stanno in
 | **limite di mano** | 7 |
 | **pedine di presenza** | 5 per casa |
 | **mazzetto personale** | 18 carte, di cui 2 d'identità |
-| **si pesca a inizio Atto** | fino a 6, mai oltre il limite di mano |
+| **la mano a inizio turno** | esattamente 5: si pesca quel che manca, si scarta quel che sta sopra |
+| **si copre a fine turno** | 1 carta, che è la sola impegnabile al Consiglio |
+| **carte coperte a fine Atto** | 3 per casa |
 | **carte impegnabili a un Consiglio** | 3 per casa |
 | **Consigli in un anno** | almeno uno per Atto, due se qualcuno forza — misurati **5,68** l'anno |
 | **regioni sulla mappa** | 6 pescate su 10 |

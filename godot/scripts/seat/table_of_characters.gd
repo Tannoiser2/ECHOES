@@ -174,5 +174,16 @@ class Table extends RefCounted:
 	func choose_commit(entity_id: String, context: Dictionary, limit: int, session: RefCounted) -> Array:
 		return _who(entity_id).choose_commit(entity_id, context, limit, session)
 
+	## **Le due domande del turno** (D-504) passano al carattere come tutte le
+	## altre. Senza queste due righe il tavolo dei caratteri le lascerebbe al
+	## ripiego del motore: si coprirebbe sempre la carta piu' forte e **nessuno
+	## scarterebbe mai**, quindi il mazzetto non girerebbe e la misura sarebbe
+	## cieca proprio sulla meta' nuova della regola.
+	func choose_cover(entity_id: String, how_many: int, session: RefCounted) -> Array:
+		return _who(entity_id).choose_cover(entity_id, how_many, session)
+
+	func choose_discards(entity_id: String, most: int, session: RefCounted) -> Array:
+		return _who(entity_id).choose_discards(entity_id, most, session)
+
 	func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 		return _who(str(context["proponent"])).choose_recovery(context, session)

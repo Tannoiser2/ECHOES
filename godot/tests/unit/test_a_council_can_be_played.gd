@@ -31,6 +31,8 @@ extends "res://tests/test_case.gd"
 const GameScreen := preload("res://ui/game_screen.gd")
 const SeatDecider := preload("res://scripts/seat/seat_decider.gd")
 const ConfluenceBoard := preload("res://ui/confluence_board.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
+const Effect := preload("res://scripts/core/effect.gd")
 
 ## Gli id che al tavolo non si leggono mai. `AST_` sta gia' in
 ## `test_a_turn_can_be_played`; qui contano quelli del Consiglio.
@@ -51,7 +53,30 @@ func before_each() -> void:
 		_mine.applier.apply(effect)
 	_mine.world["act"] = 1
 	_mine.world["round"] = 1
+	# **E le carte coperte** (D-504): sul tavolo spedito il Consiglio si paga con
+	# quello che si e' messo da parte a fine turno, e qui i turni non si giocano.
+	# Senza, il menu «Cosa impegni?» non avrebbe niente da offrire — e non
+	# perche' l'app sia rotta, ma perche' la prova avrebbe saltato il gesto.
+	_cover_some(_mine)
 	session = _mine
+
+
+## Copre qualche carta a testa, con l'Effetto e non scrivendo nel mondo: e' la
+## stessa strada del controller a fine turno.
+func _cover_some(live: RefCounted, how_many: int = 3) -> void:
+	if HandRhythm.cover_per_round(
+		live.data.chronicles[str(live.world["chronicle_id"])] as Dictionary
+	) <= 0:
+		return
+	for entity_id in live.world["turn_order"]:
+		var id: String = str(entity_id)
+		for asset_id in (live.service.ranked_by_strength(
+			live.service.hand(id)
+		) as Array).slice(0, how_many):
+			live.applier.apply(Effect.make(
+				"COVER_ASSET", "entity", id, {"asset_id": str(asset_id)},
+				Effect.source("test", "TEST", id, 1, 1, 0)
+			))
 
 
 ## Uno schermo costruito e non avviato, con dentro la partita: `_ready()`
@@ -364,7 +389,11 @@ func test_the_losing_side_can_name_what_it_saves() -> void:
 		if str(entity_id) == str(context["proponent"]):
 			continue
 		var possibili: Array = []
-		for asset_id in (session.world["entities"][str(entity_id)]["hand"] as Array):
+		# **Dal piatto che il Consiglio accetta** (D-504): si salva una carta
+		# **impegnata**, e dove si copre le impegnate vengono dalle coperte. Letto
+		# sulla mano, questo giro cercherebbe carte che al Consiglio non ci sono
+		# mai arrivate.
+		for asset_id in (session.service.commit_pool(str(entity_id)) as Array):
 			var asset: Dictionary = session.data.assets[str(asset_id)]
 			if str(asset["discard_or_retain_rule"]) != "ALWAYS_DISCARD":
 				possibili.append(str(asset_id))

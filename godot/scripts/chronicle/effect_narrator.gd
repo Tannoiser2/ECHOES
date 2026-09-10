@@ -184,6 +184,11 @@ static func narrate(effect: Dictionary, data) -> String:
 			return "%s prende un gettone di rivendicazione." % _entity(target_id, data)
 		"SPEND_CLAIM_TOKEN":
 			return "%s spende un gettone di rivendicazione." % _entity(target_id, data)
+		"COVER_ASSET":
+			# **Quale carta non si dice**: e' coperta, ed e' il punto.
+			return "%s mette da parte una carta, coperta." % _entity(target_id, data)
+		"UNCOVER_ASSET":
+			return "%s riprende in mano una carta coperta." % _entity(target_id, data)
 		"GRANT_HOUSE_POWER":
 			return "%s rimette diritto il suo tarocco: il potere della casa torna." % _entity(
 				target_id, data

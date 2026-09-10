@@ -580,6 +580,7 @@ const DEFS := {
 					"BUILD_STRUCTURE",
 					"CLOSE_PASSAGE",
 					"CONSUME_CLAIM",
+					"COVER_ASSET",
 					"CREATE_CLAIM",
 					"CREATE_ECHO",
 					"GRANT_ASSET",
@@ -606,6 +607,7 @@ const DEFS := {
 					"SPEND_CLAIM_TOKEN",
 					"SPEND_HOUSE_POWER",
 					"TRANSFER_ASSET",
+					"UNCOVER_ASSET",
 				],
 			},
 			"target": {
@@ -631,6 +633,7 @@ const DEFS := {
 					"BUILD_STRUCTURE",
 					"CLOSE_PASSAGE",
 					"CONSUME_CLAIM",
+					"COVER_ASSET",
 					"CREATE_CLAIM",
 					"CREATE_ECHO",
 					"GRANT_ASSET",
@@ -657,6 +660,7 @@ const DEFS := {
 					"SPEND_CLAIM_TOKEN",
 					"SPEND_HOUSE_POWER",
 					"TRANSFER_ASSET",
+					"UNCOVER_ASSET",
 				],
 			},
 			"inverse_payload": {
@@ -1900,6 +1904,7 @@ const EFFECT_TYPES := [
 	"BUILD_STRUCTURE",
 	"CLOSE_PASSAGE",
 	"CONSUME_CLAIM",
+	"COVER_ASSET",
 	"CREATE_CLAIM",
 	"CREATE_ECHO",
 	"GRANT_ASSET",
@@ -1926,6 +1931,7 @@ const EFFECT_TYPES := [
 	"SPEND_CLAIM_TOKEN",
 	"SPEND_HOUSE_POWER",
 	"TRANSFER_ASSET",
+	"UNCOVER_ASSET",
 ]
 
 const EFFECT_TARGET_KINDS := [

@@ -2066,6 +2066,55 @@ func _commit_for_my_side(entity_id: String, context: Dictionary, limit: int, ses
 	return chosen
 
 
+## **Quale carta coprire** (D-504).
+##
+## Chi copre non sa ancora di cosa si parlera': la domanda si apre dopo, e la
+## Deriva puo' ancora farne esplodere un'altra. Quindi non si guardano le
+## famiglie rilevanti — non ce n'e' una — e resta **la forza nuda**, che e'
+## l'unica cosa che una carta vale in ogni Consiglio.
+##
+## E' una scelta povera di proposito: il cervello non sa fare meglio di quello
+## che sa una persona in quel momento, e un cervello che coprisse sapendo la
+## domanda misurerebbe un gioco che nessuno gioca.
+func choose_cover(entity_id: String, how_many: int, session: RefCounted) -> Array:
+	if how_many <= 0:
+		return []
+	return (session.service.ranked_by_strength(
+		session.service.hand(entity_id)
+	) as Array).slice(0, how_many)
+
+
+## **Cosa buttare di quello che resta** (D-504).
+##
+## Siccome la mano torna al suo numero all'inizio del turno dopo, **scartare e'
+## pescare**: chi butta non perde niente e rivede quella carta dopo il
+## rimescolo. Quindi la domanda non e' *«mi dispiace perderla?»* ma *«mi serve
+## al turno prossimo?»*, e la risposta la sa gia' `hand_plays`: una carta che
+## non porta nessuna Azione giocabile adesso non ne portera' una fra un turno
+## per conto suo.
+##
+## Il criterio e' quindi: **si tiene quello che si potrebbe giocare, si macina
+## il resto.** E' anche la cosa che fa girare il mazzetto, quindi le carte
+## comprate tornano in mano invece di restare in fondo al pozzo.
+func choose_discards(entity_id: String, most: int, session: RefCounted) -> Array:
+	if most <= 0:
+		return []
+	var playable: Dictionary = {}
+	for play in hand_plays(entity_id, session):
+		var asset_id: String = str(
+			((play as Dictionary).get("params", {}) as Dictionary).get("asset_id", "")
+		)
+		if asset_id != "":
+			playable[asset_id] = true
+	var out: Array = []
+	for asset_id in session.service.hand(entity_id):
+		if out.size() >= most:
+			break
+		if not playable.has(str(asset_id)):
+			out.append(str(asset_id))
+	return out
+
+
 func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:
 	return {}
 
