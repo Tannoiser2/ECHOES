@@ -340,6 +340,9 @@ const DEFS := {
 			"control_rules": {
 				"type": "Dictionary",
 			},
+			"forge_rules": {
+				"type": "Dictionary",
+			},
 			"tension_pool": {
 				"type": "Dictionary",
 			},

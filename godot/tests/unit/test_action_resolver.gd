@@ -186,6 +186,40 @@ func test_forge_up_needs_the_other_house_to_accept() -> void:
 	assert_eq(session.service.hand_size("ENT_NAHR"), hand_before - 1, "il Bond e stato speso")
 
 
+## **E il pavimento del consenso sta nel dato**, non nel codice (D-502):
+## `forge_rules.consent_from` sulla Chronicle. Provato girandolo, perche' un
+## interruttore che nessuno legge da' sempre la stessa risposta e sembra
+## funzionare: la **stessa** Azione, sulla **stessa** coppia, passa col
+## pavimento scritto e viene rifiutata con quello alzato.
+func test_the_consent_floor_comes_from_the_chronicle() -> void:
+	# La Chronicle che il risolutore **tiene** non e' `chronicle_def()`: la pesca
+	# delle case e della mappa se ne fa una copia, e quella copia resta al lato
+	# nuovo dell'interruttore. Si gira la sua, e si rimette la sua.
+	var written: Dictionary = session.actions.get("_chronicle") as Dictionary
+	var raised: Dictionary = written.duplicate(true)
+	raised["forge_rules"] = {"consent_from": "ALLY"}
+	session.actions.set("_chronicle", raised)
+	var refused: Dictionary = _do(
+		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA", "direction": "UP"}
+	)
+	assert_false(bool(refused["ok"]), "col pavimento ad alleata, da neutrale non si sale piu'")
+	assert_true(
+		str(refused["error"]).contains("neutrale"),
+		"e il motivo dice a che punto e il rapporto: «%s»" % str(refused["error"])
+	)
+	assert_eq(
+		session.service.relation_level("ENT_NAHR", "ENT_LYRA"), "NEUTRAL", "e niente si e mosso"
+	)
+	session.actions.set("_chronicle", written)
+	var allowed: Dictionary = _do(
+		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA", "direction": "UP"}
+	)
+	assert_true(
+		bool(allowed["ok"]),
+		"col pavimento scritto la stessa Azione passa: %s" % str(allowed["error"])
+	)
+
+
 ## **E il verso non si indovina** (D-502): un'Azione che non dice da che parte
 ## muove il rapporto si rifiuta, invece di prendere «UP» di ripiego. Il ripiego
 ## faceva eseguire cinque facce su ventuno al contrario di quello che stampano.

@@ -27,6 +27,12 @@ dava il permesso da solo.
   salire finche' non le sei nemico. Era un `bool` nei parametri che il cervello
   alzava **per conto del bersaglio** — il consenso di un'altra casa non lo
   dichiara chi lo chiede — e che il menu di una persona lasciava sempre falso;
+- **il pavimento del consenso sta nel dato**: `forge_rules.consent_from` in
+  `chronicle_00.json` (`HOSTILE`) e nello schema, non solo nel ripiego del
+  codice. Il verbale mandava a cercarlo nella Chronicle e nella Chronicle non
+  c'era: un interruttore promesso e non montato. Provato **girandolo** — alzato
+  ad *alleata*, la stessa Azione sulla stessa coppia viene rifiutata — perche'
+  un interruttore che nessuno legge da' sempre la stessa risposta;
 - **le parole dei cinque gradini** tornano in `SignLabels`. `seats_strip.gd`
   teneva la sua tabella, ed era **un'altra scala**: chi arrivava a *nemica* o a
   *vincolata* si rileggeva l'id inglese.
@@ -51,7 +57,7 @@ Cento semi dal 7000: **0 seggi bloccati su 8** su tutti e due i tavoli. Verita'
 l'uniforme ne perde 8: un verbo che prima non si giocava adesso si gioca, e i
 quattro ottimizzatori lo spendono dove prima spendevano altro.
 
-Suite **802 test, 74 987 asserzioni**. La guardia nuova — *ogni faccia FORGIARE
+Suite **803 test, 74 991 asserzioni**. La guardia nuova — *ogni faccia FORGIARE
 dichiara il verso, e il verso dichiarato e' quello che la frase dice* — porta il
 self-test della grammatica fisica a **61 difetti piantati**.
 

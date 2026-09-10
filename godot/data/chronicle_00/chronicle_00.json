@@ -42,6 +42,9 @@
         "overextension_delta": 1,
         "lapse_without_presence": true
       },
+      "forge_rules": {
+        "consent_from": "HOSTILE"
+      },
       "entities": [
         "ENT_ALDRIC",
         "ENT_NAHR",

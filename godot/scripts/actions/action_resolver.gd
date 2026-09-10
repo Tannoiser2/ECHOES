@@ -404,8 +404,10 @@ func _influence_uses_presence(entity_id: String, tension_id: String, delta: int)
 ## giura con chi ti ha giurato guerra — e da OSTILE si puo' ancora risalire,
 ## che e' quello che rende la pista a due sensi invece che a senso unico.
 ##
-## Sta nella Chronicle (`forge_rules.consent_from`), quindi si cambia con una
-## parola; senza dichiarazione il pavimento e' il gradino piu' basso.
+## Il pavimento **sta scritto nella Chronicle** — `forge_rules.consent_from`,
+## in CHR_00 `HOSTILE` — quindi si cambia con una parola e si legge dove un
+## lettore lo cerca. Una Chronicle che non lo dichiara prende lo stesso
+## pavimento di ripiego, che e' il gradino subito sopra il nemico.
 func _consent_floor() -> String:
 	var rules: Dictionary = _chronicle.get("forge_rules", {}) as Dictionary
 	return str(rules.get("consent_from", WorldStateService.RELATION_ORDER[1]))

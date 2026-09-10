@@ -10221,7 +10221,8 @@ si puo' giocare.
    verso lo dichiara la faccia** e non piu' la carta — cinque facce su ventuno
    venivano eseguite al contrario di quello che stampano — e **il consenso e'
    un fatto del tavolo che si legge**: una casa accetta finche' non le sei
-   nemico.
+   nemico — e il pavimento sta scritto in `chronicle_00.json`
+   (`forge_rules.consent_from`), quindi si sposta con una parola.
 
    Le Occasioni bloccate passano da **24 su 270 (8%) a 14 (5%)**, le ragioni da
    62 a 17, e quelle che restano **non sono piu' una carta sola**: una coda

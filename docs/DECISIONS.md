@@ -106,7 +106,13 @@ esisteva **solo al posto di una persona**.
    salire finche' il rapporto e' almeno `forge_rules.consent_from`, e rifiuta
    sotto. Il pavimento e' l'**ultimo gradino**, quindi la porta chiusa e' una
    sola — *non si giura con chi ti ha giurato guerra* — e da **ostile** si
-   risale ancora.
+   risale ancora. Il valore **sta scritto in `chronicle_00.json`** (`HOSTILE`)
+   e nello schema, non solo nel ripiego del codice: una regola che il verbale
+   manda a cercare nel dato deve stare nel dato, altrimenti il verbale promette
+   un interruttore che non c'e'. Ed e' provato **girandolo** — alzato ad
+   *alleata*, la stessa Azione sulla stessa coppia viene rifiutata — perche' un
+   interruttore che nessuno legge da' sempre la stessa risposta e sembra
+   funzionare.
 
 **Il pavimento sull'ultimo gradino non e' una limatura, e' la regola.** Con il
 pavimento a NEUTRALE la pista sarebbe diventata a **senso unico**: da ostile non
@@ -142,7 +148,7 @@ Cento semi dal 7000, tutti e due i tavoli:
 | Verita', tavolo uniforme | 421 / 418 | **413 / 410** |
 | Consigli per anno | 5,68 · 5,64 | **5,66 · 5,60** |
 | **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
-| suite | 800 test | **802 test**, 74 987 asserzioni |
+| suite | 800 test | **803 test**, 74 991 asserzioni |
 
 **Il misto guadagna 17 Verita', l'uniforme ne perde 8**, e i Consigli scendono
 di due centesimi. Un verbo che prima non si giocava adesso si gioca, e i quattro
