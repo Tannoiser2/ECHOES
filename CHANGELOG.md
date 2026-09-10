@@ -5,6 +5,83 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.471 — Le regole, scritte per esteso e per come si giocano oggi
+
+[D-501](docs/DECISIONS.md#d-501). Richiesta del committente: un regolamento
+*«accurato, esauriente, in stile regolamento da kickstarter»*, a capitoli, coi
+materiali, il turno, le regole speciali, gli esempi e le condizioni di vittoria.
+
+### Aggiunto
+
+- **[docs/REGOLAMENTO.md](docs/REGOLAMENTO.md)** — diciannove capitoli: il
+  materiale, l'anatomia dei sette pezzi, la lingua dei segni, la preparazione,
+  la struttura dell'anno, i sette verbi, la Risonanza, il Calore, il Consiglio
+  passo per passo, cosa lascia nel mondo, la mappa, i rapporti, le 65 regole
+  speciali dei segni, il conto di fine anno, la saga, **quattro esempi
+  giocati**, e un glossario.
+
+Ogni regola viene da chi la esegue — la Chronicle, il risolutore, l'economia del
+Consiglio, il registro degli Echi, il valutatore dei Destini — e le carte degli
+esempi sono carte vere.
+
+### Corretto, e trovato scrivendolo
+
+Quattro erano errori miei, presi rileggendo il codice invece del mio testo: la
+mano non parte vuota (parte con le due carte d'identita', e all'Atto I se ne
+pescano **5**), il mazzetto di un Tema con una domanda per Tema e' **una carta
+sola gia' scoperta**, i posti di costruzione sono **1-3**, e la presenza iniziale
+cade **solo sulle tessere uscite**.
+
+Due erano nei **dati spediti**, cioe' le legge un giocatore:
+
+- **`ACT_MOVE` diceva «ogni Entita ha 3 token presenza»**: la Chronicle ne
+  dichiara **5**, e il motore legge quella. Adesso la riga non stampa piu' un
+  numero fisso;
+- **`ACT_SCHEME` offriva ancora «guarda le prime 2 carte del mazzo Echo
+  dell'Atto»**, un mazzo cancellato in 0.1.470. I parametri accettavano solo
+  domanda e Regione: la terza voce era una promessa che nessuno poteva
+  mantenere.
+
+E **due segni fantasma** — `someone_paid` e `parley_held` — sono usciti dalla
+lista dei tag di due Temi, dove D-500 li aveva lasciati. Non li legge nessuno, e
+infatti nessun cancello se n'era accorto.
+
+### Rimisurato
+
+I numeri delle sonde lunghe in `PUNTO_ZERO.md §4` erano fermi a 0.1.415, e
+scrivendo il capitolo 18 li avevo presi di li'. Rigenerata la corsia lenta, il
+foglio porta quello che i documenti freschi dicono: segni che non arrivano mai
+sul tavolo **19 su 171** (erano «53 su 177»), punti regalati **2**, vite che non
+si siedono **2 su 24**, testi in lettura **3.084**, flusso **756 pezzi / 3.338
+legami**.
+
+### Misurato
+
+Il cancello dei **100 semi dal 7000** dà **esattamente** i numeri di 0.1.470 —
+seggi bloccati **0 su 8** su tutti e due i tavoli, Consigli 5,68 e 5,64, Verità
+393/391 e 421/418 — ed è quello che deve succedere: una correzione di testo che
+muovesse il gioco sarebbe una correzione sbagliata.
+
+Dagli stessi cento anni viene la tabella nuova del capitolo 10: su **568
+Consigli**, la controdomanda ne vince **180 — uno su tre**. Prendere l'altra
+domanda non è un gesto di protesta, è un modo di vincere, e adesso il
+regolamento lo dice col numero.
+
+### Dichiarato
+
+Il **capitolo 18** del regolamento dice cosa e' stampato sui pezzi e **non fa
+ancora niente**: i valori dei verbi della carta Casata, SOGLIA e TRIONFO del
+Destino, le 24 carte rifiutate al luogo, gli obiettivi fuori dal mazzetto, l'Eco
+che non sa di chi e', l'economia di D-280, i 53 segni che non arrivano mai al
+tavolo — e **la durata di una partita, che non e' misurata**.
+
+`RULES_V0_2.md` smette di essere l'unico posto dove le regole sono scritte per
+esteso: resta come archivio della v0.2, e i tre documenti fermi puntano al
+regolamento nuovo. E' il primo debito di [PUNTO_ZERO §7](docs/PUNTO_ZERO.md) che
+si chiude.
+
+---
+
 ## 0.1.470 — Via le carte Eco: resta il ricordo, sparisce la carta
 
 [D-500](docs/DECISIONS.md#d-500), [ISSUES 136](docs/ISSUES.md#136). Parola del

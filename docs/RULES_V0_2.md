@@ -1,8 +1,10 @@
 # ECHOES — Regole v0.2 (implementate in 0.0)
 
 > ⚠️ **Questo documento è fermo a 0.1.38, e da allora il gioco ha cambiato
-> direzione.** Resta perché è l'unico posto dove le regole sono scritte per
-> esteso, ma **non è il presente**: per i numeri di oggi vedi
+> direzione.** Le regole di oggi, scritte per esteso, stanno in
+> **[REGOLAMENTO.md](REGOLAMENTO.md)**: è lì che va guardato chi vuole giocare.
+> Questo foglio resta come archivio della v0.2, e **non è il presente**: per i
+> numeri di oggi vedi
 > [PUNTO_ZERO.md](PUNTO_ZERO.md), per dove sta andando
 > [ROADMAP_PUNTO_ZERO.md](ROADMAP_PUNTO_ZERO.md), e per cosa è stato deciso da
 > allora [DECISIONS.md](DECISIONS.md) da D-100 in avanti.

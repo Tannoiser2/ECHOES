@@ -45,6 +45,114 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-501 — Le regole, scritte per esteso e per come si giocano oggi
+
+**implemented in 0.1.471.** Richiesta del committente: *«puoi scrivere le regole
+del gioco in modo che siano accurate esaurienti e in stile regolamento da
+kickstarter? Non deve essere un elenco di punti, deve essere esaustivo,
+suddiviso in capitoli e deve descrivere i materiali, il turno di gioco, le regole
+speciali, anche con alcuni esempi, condizioni di vittoria ecc.»*
+
+`docs/REGOLAMENTO.md`, diciannove capitoli, quattro esempi giocati.
+
+### Da dove viene ogni riga
+
+**Non e' stato scritto a memoria.** Ogni regola e' stata ricavata da chi la
+esegue: la Chronicle per i numeri, `action_templates.json` per i verbi,
+`confluence_controller.gd` e `confluence_resolution.gd` per il Consiglio,
+`council_economy.gd` per il vocabolario delle caselle, `echo_recorder.gd` per la
+porta dell'Eco, `destiny_evaluator.gd` per il conto di fine anno,
+`world_state_factory.gd` per il setup, `tag_rules_core.json` per le regole
+speciali. Le carte degli esempi sono carte vere, prese dalle schede generate.
+
+### E scriverlo ha trovato sei cose sbagliate
+
+Questo e' il valore vero del giro, e va scritto per primo. **Quattro erano mie,
+scritte nel regolamento prima di controllare** — e le ho prese rileggendo il
+codice invece che il mio testo:
+
+| avevo scritto | il gioco fa |
+|---|---|
+| «la mano parte vuota» | parte con **le due carte d'identita'**, e all'Atto I se ne pescano **5**, non 6: il tetto della mano e' 7 |
+| «il mazzetto del Tema e' coperto, e al secondo gettone si gira» | con **una domanda per Tema** il mazzetto e' **una carta sola, gia' scoperta**: non c'e' niente da girare |
+| «i posti di costruzione sono 2-3» | sono **1-3** |
+| «la presenza iniziale si posa dove la mappa consente» | si posa **solo sulle tessere uscite**, e una casa rimasta senza niente **si accampa** su una tessera a giro |
+
+E **due erano nei dati spediti**, cioe' le legge un giocatore:
+
+- **`ACT_MOVE` diceva «ogni Entita ha 3 token presenza»**, e la Chronicle ne
+  dichiara **5**. Il motore legge `presence_tokens` da sempre; la riga stampata
+  sulla plancia diceva un altro numero. Adesso non scrive piu' un numero fisso:
+  dice che i gettoni sono quelli che la Chronicle dichiara, e quanti sono in
+  questa;
+- **`ACT_SCHEME` offriva ancora «guarda le prime 2 carte del mazzo Echo
+  dell'Atto»**, un mazzo che [D-500](#d-500) ha cancellato ieri. I `params`
+  accettavano solo `TENSION` e `REGION`: la terza voce era una promessa che
+  nessun parametro poteva mantenere.
+
+E' la stessa famiglia di difetti di [D-496](#d-496) — testo di regola vecchio in
+`action_templates.json` — e la ragione per cui ne restavano due e' che la
+guardia del velo cerca **il velo**, non ogni frase che invecchia.
+
+**Piu' due segni fantasma**: `someone_paid` e `parley_held` erano ancora nella
+lista dei tag di due Temi, dopo che D-500 li aveva tolti dal dizionario. Non li
+guarda nessuno — `themes[].tags` non lo legge ne' il motore ne' uno strumento —
+e infatti nessun cancello se n'era accorto.
+
+### Cosa il regolamento **non** promette
+
+Il capitolo 18 e' l'applicazione della seconda regola di casa a un documento che
+di solito non ce l'ha: **quello che e' stampato sui pezzi e non fa ancora niente
+sta scritto li'**, non in mezzo alle regole.
+
+Ci stanno: i valori dei verbi sulla carta Casata (**SA FARE**), che nessuna
+regola legge; SOGLIA e TRIONFO del Destino, che non contano al conto di fine
+anno; le 24 carte che arrivano al luogo e vengono rifiutate; gli obiettivi che
+non entrano nel mazzetto; l'Eco che non sa di chi e'; l'economia di
+[D-280](#d-280), che non e' quella che il motore esegue; i 53 segni che non
+arrivano mai sul tavolo; e **la durata di una partita, che non e' misurata** — e
+un regolamento da campagna che si inventasse i minuti sarebbe il primo numero
+scritto senza misura in cinquecento decisioni.
+
+### Il cancello non si muove, ed e' il punto
+
+Cento semi dal 7000: **0 seggi bloccati su 8** su tutti e due i tavoli, Consigli
+**5,68** e **5,64**, Verita' **393/391** e **421/418** — identici a 0.1.470. Una
+correzione di testo che muovesse il gioco sarebbe una correzione sbagliata.
+
+Dagli stessi cento anni viene una tabella che il regolamento non aveva: su
+**568 Consigli**, la controdomanda ne vince **180**, uno su tre. E' il numero che
+dice a chi legge che prendere l'altra domanda non e' protestare — e' un modo di
+vincere.
+
+### E i numeri di PUNTO_ZERO §4, rimisurati
+
+Scrivendo il capitolo 18 ho preso i numeri delle sonde lunghe da `PUNTO_ZERO.md`
+— ed erano fermi a 0.1.415. Rigenerata la corsia lenta, i documenti freschi
+dicono altro, e il foglio adesso porta quello che dicono loro:
+
+| | scritto | misurato oggi |
+|---|---|---|
+| segni che non arrivano mai sul tavolo | 53 su 177 | **19 su 171** (piu' 27 fuori dalla portata della sonda, e 2 che sono forme) |
+| punti regalati / porte murate | 1 / 0 | **2 / 0** |
+| vite scritte che non si siedono mai | 1 su 24 | **2 su 24** |
+| testi che un giocatore puo' leggere | 4.233 | **3.084** |
+| pezzi e legami del flusso disegnato | 1.050 / 4.381 | **756 / 3.338** |
+
+E' la **lezione 5** un'altra volta — *un documento fermo mente piu' di un
+documento che manca* — e stavolta il documento fermo stava per farmi scrivere
+«cinquantatre' segni» in un regolamento.
+
+### Il debito che chiude
+
+[PUNTO_ZERO §7](PUNTO_ZERO.md) diceva: *«`RULES_V0_2.md` e' fermo a 0.1.38 e
+rimanda a un file che non esiste piu'. Resta perche' e' l'unico posto dove le
+regole sono scritte per esteso.»* Adesso non lo e' piu': la v0.2 resta come
+archivio, e i tre documenti fermi — `RULES_V0_2.md`, `GAME_DESIGN.md` e il
+PUNTO_ZERO stesso — puntano al regolamento nuovo.
+
+---
+
 ## D-500 — Via le carte Eco: resta il ricordo, sparisce la carta
 
 **implemented in 0.1.470.** Parola del committente, dopo aver visto quanti Echi
