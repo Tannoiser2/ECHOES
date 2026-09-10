@@ -612,6 +612,16 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 					((offer as Dictionary)["params"] as Dictionary).get("structure_type", "")
 				) != builds:
 					continue
+				# **E una faccia che scende non sta sotto l'offerta che sale**
+				# (D-502). Il verbo FORGIARE esce due volte, una per verso, e
+				# fino a qui le facce combaciavano solo per `template`: la
+				# stessa Azione compariva sotto tutti e due, e il verso che
+				# vinceva era quello dell'offerta, non quello stampato.
+				var turn: String = str(face.get("direction", ""))
+				if turn != "" and str(
+					((offer as Dictionary)["params"] as Dictionary).get("direction", "")
+				) != turn:
+					continue
 				var params: Dictionary = (
 					(offer as Dictionary)["params"] as Dictionary
 				).duplicate()

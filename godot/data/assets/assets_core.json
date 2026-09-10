@@ -416,7 +416,8 @@
             "puts_tag": [
               "escort_sworn"
             ],
-            "engine": true
+            "engine": true,
+            "direction": "UP"
           },
           {
             "label": "Toglierli di mezzo",
@@ -424,7 +425,8 @@
             "template": "FORGE",
             "clears_tag": [
               "escort_sworn"
-            ]
+            ],
+            "direction": "DOWN"
           }
         ],
         "resonance": {
@@ -1032,7 +1034,8 @@
           {
             "label": "Cedere il diritto",
             "text": "Un'altra casa prende la rivendicazione al posto tuo e sale di 2 gradini nel rapporto con te.",
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -1196,7 +1199,8 @@
               "renowned"
             ],
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "UP"
           },
           {
             "label": "Farsi investire",
@@ -1204,7 +1208,8 @@
             "puts_tag": [
               "renowned"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -1634,7 +1639,8 @@
               "condition:lean"
             ],
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -1802,7 +1808,8 @@
           {
             "label": "Darla a un altro",
             "text": "Un'altra casa parla per prima al prossimo Consiglio e sale di 2 gradini nel rapporto con te.",
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -2322,7 +2329,8 @@
               "ledger_public"
             ],
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "UP"
           },
           {
             "label": "Chiudere il registro",
@@ -2330,7 +2338,8 @@
             "puts_tag": [
               "debt_called"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "DOWN"
           }
         ],
         "resonance": {
@@ -3050,7 +3059,8 @@
             "puts_tag": [
               "toll_shared"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -3213,13 +3223,15 @@
             "puts_tag": [
               "debt_called"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           },
           {
             "label": "Comprare il suo debito",
             "text": "Scendi di 1 gradino con lei e pesca 2 Ricchezza.",
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "DOWN"
           }
         ],
         "resonance": {
@@ -3291,7 +3303,8 @@
           {
             "label": "Dare le chiavi",
             "text": "Sale di 2 gradini nel rapporto con te.",
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           },
           {
             "label": "Tenere le chiavi",
@@ -3300,7 +3313,8 @@
               "grain_requisitioned"
             ],
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "DOWN"
           }
         ],
         "resonance": {
@@ -3466,7 +3480,8 @@
               "debt_called"
             ],
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "DOWN"
           },
           {
             "label": "Rimettere l'ipoteca",
@@ -3474,7 +3489,8 @@
             "puts_tag": [
               "debt_forgiven"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -3719,7 +3735,8 @@
             "puts_tag": [
               "debt_forgiven"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -3798,12 +3815,14 @@
               "escort_sworn"
             ],
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "UP"
           },
           {
             "label": "Farsi giurare",
             "text": "Lei sale di 1 gradino verso di te, tu no. Prendi 1 sua carta a scelta.",
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           }
         ],
         "resonance": {
@@ -3881,13 +3900,15 @@
             "puts_tag": [
               "escort_sworn"
             ],
-            "template": "FORGE"
+            "template": "FORGE",
+            "direction": "UP"
           },
           {
             "label": "Rimandare",
             "text": "Salite di 1 gradino e pesca 1 Legami.",
             "template": "FORGE",
-            "engine": true
+            "engine": true,
+            "direction": "UP"
           }
         ],
         "resonance": {

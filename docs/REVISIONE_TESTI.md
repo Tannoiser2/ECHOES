@@ -10906,9 +10906,9 @@ e vanno riunificati — [ISSUES 70](ISSUES.md#70).)*
 **`ACT_FORGE`**
 > Forgiare
 
-> Sposta di 1 passo una relazione. Verso l'alto serve 1 Asset BONDS scartato e il consenso dell'altro giocatore; verso il basso è unilaterale e gratuito.
+> Sposta di 1 passo una relazione. Verso l'alto serve 1 Asset Legami scartato, e l'altra casa accetta finché non le sei nemico; verso il basso è unilaterale e gratuito.
 
-> Scendere genera sempre un Effect visibile nel log pubblico. I tag speciali (Patto, Debito...) arrivano da Asset e Consequence, non da FORGE.
+> Il verso lo dice l'Azione stampata che cali, non la carta: la stessa carta ne porta due che vanno in versi opposti. Scendere genera sempre un Effect visibile nel log pubblico. I tag speciali (Patto, Debito...) arrivano da Asset e Consequence, non da FORGE.
 
 
 **`ACT_INFLUENCE`**

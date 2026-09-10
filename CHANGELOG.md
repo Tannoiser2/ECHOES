@@ -5,6 +5,58 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.472 — Il verso lo dice la faccia, e il consenso lo da' il rapporto
+
+[D-502](docs/DECISIONS.md#d-502), [ISSUES 136](docs/ISSUES.md#136) punto 3.
+Parola del committente: *«sistema le 24 carte rifiutate al luogo»*.
+
+**Il difetto era piu' grosso di due carte: era il verbo intero.** Al posto di
+una persona **tutte e sedici le facce FORGIARE che salgono erano rifiutate**,
+sempre — e il cancello non se n'era mai accorto perche' il tavolo automatico si
+dava il permesso da solo.
+
+### Corretto
+
+- **il verso di un rapporto lo dichiara la faccia**, non la carta. Lo stesso
+  cartoncino ne stampa due che vanno in versi opposti — *Mercenari* ①
+  «Prestarli» sale, ② «Toglierli di mezzo» scende — e finche' il verso stava su
+  `card_action` il motore ne leggeva **uno solo per tutte e due**: **cinque
+  facce su ventuno** venivano eseguite al contrario di quello che stampano, e
+  undici prendevano il ripiego «UP» che nessuno aveva scritto;
+- **il consenso e' un fatto del tavolo che si legge**: una casa accetta di
+  salire finche' non le sei nemico. Era un `bool` nei parametri che il cervello
+  alzava **per conto del bersaglio** — il consenso di un'altra casa non lo
+  dichiara chi lo chiede — e che il menu di una persona lasciava sempre falso;
+- **le parole dei cinque gradini** tornano in `SignLabels`. `seats_strip.gd`
+  teneva la sua tabella, ed era **un'altra scala**: chi arrivava a *nemica* o a
+  *vincolata* si rileggeva l'id inglese.
+
+### Misurato
+
+Tavolo di una persona, 15 anni dal seme 7000:
+
+| | prima | adesso |
+|---|---|---|
+| **Occasioni bloccate** | **24 su 270 — 8%** | **14 — 5%** |
+| ragioni contate | 62 | **17** |
+| carte in mano nei momenti bloccati | 2,58 | **0,93** |
+
+E i blocchi che restano **non sono piu' una carta sola**: prima erano tutti il
+*Giuramento*, adesso sono una coda lunga su sei carte diverse, e quattro dei
+quattordici sono mano vuota.
+
+Cento semi dal 7000: **0 seggi bloccati su 8** su tutti e due i tavoli. Verita'
+**410/410** sul misto (erano 393/391) e **413/410** sull'uniforme (erano
+421/418), Consigli **5,66** e **5,60**. Il misto guadagna 17 Verita' e
+l'uniforme ne perde 8: un verbo che prima non si giocava adesso si gioca, e i
+quattro ottimizzatori lo spendono dove prima spendevano altro.
+
+Suite **802 test, 74 987 asserzioni**. La guardia nuova — *ogni faccia FORGIARE
+dichiara il verso, e il verso dichiarato e' quello che la frase dice* — porta il
+self-test della grammatica fisica a **61 difetti piantati**.
+
+---
+
 ## 0.1.471 — Le regole, scritte per esteso e per come si giocano oggi
 
 [D-501](docs/DECISIONS.md#d-501). Richiesta del committente: un regolamento

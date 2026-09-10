@@ -146,6 +146,23 @@ const DOMAIN_WORDS: Dictionary = {
 	"ANCIENT": "l'antico",
 }
 
+## I cinque gradini di un rapporto, in italiano (D-502).
+##
+## Stavano dentro `seats_strip.gd`, che e' una vista — e la tabella li' era
+## **un'altra scala**: HOSTILE, COLD, NEUTRAL, WARM, ALLY, con due gradini che
+## il motore non ha (`COLD`, `WARM`) e due suoi che mancavano (`ENEMY`,
+## `BOUND`). Chi arrivava a nemica o a vincolata si vedeva stampato l'id
+## inglese, ed e' la lezione 9 di casa: **una regola scritta in due file
+## diverge in silenzio**. Adesso la scala e' una sola, e sta dove stanno le
+## altre parole.
+const RELATION_WORDS: Dictionary = {
+	"ENEMY": "nemica",
+	"HOSTILE": "ostile",
+	"NEUTRAL": "neutrale",
+	"ALLY": "alleata",
+	"BOUND": "vincolata",
+}
+
 ## Le sei famiglie delle carte, in italiano.
 ##
 ## Stavano dentro `help_panel.gd`, che e' una vista: una tabella di parole
@@ -160,6 +177,10 @@ const FAMILY_WORDS: Dictionary = {
 	"WEALTH": "ricchezza",
 	"BONDS": "legami",
 }
+
+
+static func relation(level: String) -> String:
+	return str(RELATION_WORDS.get(level, level.to_lower()))
 
 
 static func domain(id: String) -> String:

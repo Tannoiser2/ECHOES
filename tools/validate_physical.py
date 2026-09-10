@@ -1354,6 +1354,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai.extend(la_scelta_del_tema(documenti))
     guai.extend(due_domande(documenti))
     guai.extend(azione_del_motore(documenti))
+    guai.extend(il_verso_del_rapporto(documenti))
     guai.extend(params_muti(documenti))
     guai.extend(il_velo_sulle_carte(documenti))
     return guai
@@ -1607,6 +1608,58 @@ def il_velo_sulle_carte(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]
 
     for schema, carte in documenti.items():
         scava(carte, "", schema)
+    return guai
+
+
+# Il verso di un rapporto, letto dalla frase stampata. Le due forme che le
+# ventuno facce usano, e nient'altro: un verbo di salita o di discesa seguito,
+# entro una manciata di parole, da «di N gradini».
+SALE = re.compile(r"\b(sali|salite|sale)\b[^.]{0,20}?\bdi\s+\d+\s+gradin", re.I)
+SCENDE = re.compile(r"\b(scendi|scendete|scende)\b[^.]{0,20}?\bdi\s+\d+\s+gradin", re.I)
+
+
+def il_verso_del_rapporto(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Da che parte muove il rapporto, detto dalla faccia** (D-502).
+
+    Il verso stava su `card_action.params.direction`, che e' **uno solo per
+    tutte e due le Azioni stampate** — e dieci carte su undici ne stampano due
+    che vanno in versi opposti: «Prestarli» sale, «Toglierli di mezzo» scende.
+    Misurato: **cinque facce su ventuno** venivano eseguite al contrario di
+    quello che dicono, e le altre prendevano il ripiego «UP» che nessuno aveva
+    scritto.
+
+    Questa guardia chiede due cose, e la seconda e' quella che morde: che ogni
+    faccia FORGIARE **dichiari** il verso, e che il verso dichiarato sia quello
+    che la sua frase dice. Una faccia che stampa «Scendi di 1 gradino» e
+    dichiara UP e' il difetto che questo giro ha trovato, e senza il confronto
+    col testo la prima meta' da sola l'avrebbe lasciato passare.
+    """
+    guai: List[str] = []
+    for carta in documenti.get("asset", []):
+        for indice, faccia in enumerate((carta.get("physical") or {}).get("actions", []) or []):
+            if str(faccia.get("template", "")) != "FORGE":
+                continue
+            dove = "%s, Azione %d" % (carta.get("id"), indice + 1)
+            verso = str(faccia.get("direction", ""))
+            if not verso:
+                guai.append(
+                    "Azione FORGIARE senza verso: %s non dice da che parte muove "
+                    "il rapporto, e il motore non lo indovina" % dove
+                )
+                continue
+            testo = str(faccia.get("text", ""))
+            su, giu = bool(SALE.search(testo)), bool(SCENDE.search(testo))
+            detto = "UP" if su and not giu else ("DOWN" if giu and not su else "")
+            if detto == "":
+                guai.append(
+                    "Azione FORGIARE che non dice il verso a parole: %s — «%s»"
+                    % (dove, testo[:60])
+                )
+            elif detto != verso:
+                guai.append(
+                    "Azione FORGIARE col verso al contrario: %s dichiara %s e stampa "
+                    "«%s»" % (dove, verso, testo[:60])
+                )
     return guai
 
 
@@ -1932,6 +1985,28 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                 azione.pop("engine", None)
             azioni[1 - stesso[0]]["engine"] = True
             return
+
+    def verso_tolto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Fabbricato**: si toglie il verso alla prima faccia FORGIARE. E' il
+        # difetto che il ripiego «UP» nascondeva — la faccia taceva e il motore
+        # sceglieva per lei.
+        for carta in prova["asset"]:
+            for faccia in ((carta.get("physical") or {}).get("actions") or []):
+                if str(faccia.get("template", "")) == "FORGE":
+                    faccia.pop("direction", None)
+                    return
+
+    def verso_al_contrario(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Il difetto che questo giro ha trovato davvero**, rifabbricato: una
+        # faccia che stampa «Scendi di 1 gradino» e dichiara di salire. Il primo
+        # controllo — «il verso c'e'» — da solo non lo prende: la faccia e'
+        # dichiarata, e dice il contrario di quello che fa.
+        for carta in prova["asset"]:
+            for faccia in ((carta.get("physical") or {}).get("actions") or []):
+                if str(faccia.get("template", "")) != "FORGE":
+                    continue
+                faccia["direction"] = "DOWN" if faccia.get("direction") == "UP" else "UP"
+                return
 
     def due_marche(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una carta che dice che il motore esegue tutt'e due le sue Azioni.
@@ -2468,6 +2543,13 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Azioni marcate «engine»"),
         pianta("un parametro che il verbo della carta non legge", parametro_muto,
                "non lo legge"),
+        # **Il verso di un rapporto** (D-502). Due difetti, e il secondo e'
+        # quello che il primo non prende: una faccia che dichiara il verso e
+        # stampa il contrario si legge benissimo, e va eseguita al rovescio.
+        pianta("Azione FORGIARE senza il verso del rapporto", verso_tolto,
+               "senza verso"),
+        pianta("Azione FORGIARE che dichiara un verso e ne stampa un altro",
+               verso_al_contrario, "al contrario"),
         # **Il velo raccontato con la regola sbagliata** (D-495): otto facce su
         # 96 dicevano «Scopri una questione velata» quando la Chronicle spedita
         # tiene coperta la soglia e lascia il valore in chiaro.

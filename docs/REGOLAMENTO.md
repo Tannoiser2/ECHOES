@@ -10,7 +10,7 @@ alla volta.
 ## Avvertenza sulla versione
 
 Questo regolamento descrive **il gioco che la scatola gioca oggi**, alla
-versione 0.1.471, e non il gioco che vorrebbe essere: ogni regola scritta qui è
+versione 0.1.472, e non il gioco che vorrebbe essere: ogni regola scritta qui è
 una regola che il motore esegue e che i cancelli sorvegliano. Dove una cosa è
 stampata sui pezzi ma non ha ancora un effetto, sta scritto nel
 [capitolo 18](#18-quello-che-questo-regolamento-non-copre-ancora) e non in mezzo
@@ -568,9 +568,20 @@ Quello che non sai è a quanto esplode, finché non lo leggi con TRAMARE.*
 
 Sposta di **1 gradino** un rapporto fra la tua casa e un'altra.
 
-- **verso l'alto**: serve **1 Asset Legami scartato** e il **consenso** dell'altra
-  casa;
+- **verso l'alto**: serve **1 Asset Legami scartato**, e l'altra casa deve
+  accettare;
 - **verso il basso**: è unilaterale e gratuito.
+
+**Il verso lo dice l'Azione che cali, non la carta.** La stessa carta ne stampa
+due che vanno in versi opposti: *Mercenari* ① «Prestarli» sale, ② «Toglierli di
+mezzo» scende. Si legge sulla faccia, e il tavolo non deve indovinare.
+
+**E il consenso si legge, non si chiede.** Una casa accetta di salire con te
+finché **non le sei nemico**: guardi la pista dei rapporti e sai già la
+risposta. Sotto quel gradino rifiuta — *non si giura con chi ti ha giurato
+guerra* — e per risalire da lì serve il Consiglio, o una Conseguenza. Da
+**ostile** invece si risale ancora: è quello che tiene la pista a due sensi
+invece che a senso unico.
 
 Scendere lascia sempre una riga nel registro pubblico: rompere si vede.
 
@@ -1121,6 +1132,10 @@ RAPPORTO** di un Consiglio, o con le Azioni stampate su certe carte.
 impegna almeno 2 carte vale **+1 per gradino sopra il neutro**, fino a +2
 (capitolo 10.7).
 
+**E a cosa serve non essere nemici:** una casa che ti è **nemica** non sale di
+un gradino con te, per nessuna carta. È l'unica porta chiusa della pista, e
+scendere fin lì è una scelta che non si disfa da soli.
+
 **I pavimenti e i tetti.** Certi segni **murano** un rapporto: il Legame di
 Sangue tiene una coppia sopra il neutro per sempre; l'Egemonia mette un tetto ad
 alleato — *ci si allea con lei, non ci si lega*. Un giuramento spezzato vince sul
@@ -1497,12 +1512,6 @@ nessuna regola li legge. Il potere di una casa che apra un'Azione sua è
 gradino che conta è VITTORIA, che è l'obiettivo palese. Le altre due righe si
 leggono e non si contano.
 
-**Ventiquattro carte arrivano al luogo e vengono rifiutate lo stesso.** Sono
-sempre le stesse due — *Giuramento* e *Promessa di Nozze* — con FORGIARE che
-chiede un'altra casa **e il suo consenso**: il bersaglio a segni le fa passare, il
-verbo no. È il difetto aperto più grosso, e sta in [ISSUES 136](ISSUES.md#136)
-punto 3.
-
 **Gli obiettivi non entrano nel mazzetto personale.** La forma che il committente
 ha chiesto era *«il mazzetto viene creato diverso da entità a entità in base agli
 obiettivi e alla presenza sulla mappa»*: la presenza c'è, gli obiettivi no. Su 19
@@ -1517,6 +1526,12 @@ ogni altro un costo, una Cicatrice che ne compra uno oltre il limite — è la f
 decisa in D-280 e **non è quella che il motore esegue**: oggi il prezzo si conta
 per parte, un beneficio in più dei costi (capitolo 10.4).
 
+**Una Occasione su venti resta senza niente da fare.** Misurate al posto di una
+persona, 15 anni dal seme 7000: **14 su 270**. Quattro sono mano vuota a fine
+Atto; le altre sono una coda lunga di carte che arrivano al luogo e vengono
+rifiutate lo stesso, su sei carte diverse. Era una su dodici prima di
+[D-502](DECISIONS.md#d-502), e tutte la stessa carta.
+
 **La durata di una partita non è misurata**, e nessun numero qui la stima.
 
 **Diciannove segni su 171 non arrivano mai sul tavolo** in cento anni giocati:
@@ -1524,6 +1539,14 @@ esistono nel dizionario, li scrive qualcosa, ma la partita non li produce — fr
 loro la Reggia, la Città, il passo franato e la sorgente bassa, cioè i gradi
 alti delle Pietre. E **due clausole di Destino temono qualcosa che non succede
 mai**, quindi sono vere dall'apertura: un punto regalato ciascuna.
+
+**Le regole speciali che muovono il mucchio mordono poco.** Sono venticinque
+(capitolo 14), e misurate in 0.1.447 il mondo spostava la soglia in **46
+Consigli su 513 — il 9%** — con **41 di quei 46 da una regola sola**, *La fama
+precede*. La causa è misurata e non è il motore: quelle regole nominano segni
+che il mondo quasi non scrive, mentre i quattro più scritti — #conteso,
+#malcontento, #indebitata, #razionato — non sono nominati da nessuna. È una
+misura di quella versione, e va rifatta.
 
 **L'arte è quasi tutta segnaposto**: 11 soggetti disegnati su 113.
 

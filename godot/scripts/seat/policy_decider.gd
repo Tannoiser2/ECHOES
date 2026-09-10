@@ -563,9 +563,10 @@ func _relations_of(entity_id: String, session: RefCounted, live: Array) -> Dicti
 
 
 ## Move a relation the Destiny has an opinion about. Souring one needs nothing
-## but the action; warming one needs the other seat's consent and a BONDS card,
-## which is why a promise is easier to break than to hold - and why the seat that
-## needs it kept has to spend on it before it slips.
+## but the action; warming one needs a BONDS card and the other house's consent,
+## which da D-502 e' un fatto del tavolo che si legge — accetta chi non ti e'
+## nemica — e non piu' un `bool` che chi chiede alzava per conto di chi doveva
+## darlo. Per questo una promessa e' piu' facile da rompere che da tenere.
 func _forge(entity_id: String, session: RefCounted) -> Dictionary:
 	var goals: Dictionary = _relation_goals(entity_id, session)
 	for other in _sorted(goals.keys()):
@@ -573,7 +574,6 @@ func _forge(entity_id: String, session: RefCounted) -> Dictionary:
 		var request: Dictionary = {
 			"target_entity_id": str(other),
 			"direction": direction,
-			"consent": direction == "UP",
 		}
 		if session.actions.can_execute(entity_id, "FORGE", request):
 			return {"template": "FORGE", "params": request}
@@ -656,7 +656,6 @@ func _ally_of_convenience(entity_id: String, session: RefCounted) -> Dictionary:
 	var request: Dictionary = {
 		"target_entity_id": best,
 		"direction": "UP",
-		"consent": true,
 	}
 	if not session.actions.can_execute(entity_id, "FORGE", request):
 		return {}
@@ -1303,7 +1302,7 @@ func _targets_for(
 				if str(other) == entity_id:
 					continue
 				out.append({
-					"target_entity_id": str(other), "direction": "UP", "consent": true,
+					"target_entity_id": str(other), "direction": "UP",
 				})
 			# **E rompere un patto, quando non resta altro** (D-424). Rompere per
 			# noia e' un prezzo e non un ripiego — ma un turno che non lascia
