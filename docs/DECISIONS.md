@@ -45,6 +45,141 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-503 — Il potere della casa: il verbo che sai fare, senza carta
+
+**implemented in 0.1.473.** Parola del committente, dalla stessa frase che ha
+aperto [ISSUES 136](ISSUES.md#136): *«anche il potere di una entita' mi deve
+permettere di fare qualcosa»*.
+
+### Quarantotto numeri in vista, e nessuna regola che li leggesse
+
+Il tarocco della Casata resta sul tavolo tutta la partita e stampa `SA FARE`:
+
+> SA FARE  acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1
+
+Sei numeri per otto case, **quarantotto in tutto**, e li leggevano **tre posti,
+nessuno dei quali era una regola**: la faccia che li stampa (`card_face`), la
+scheda che la documenta (`card_sheets`), e l'eredita' alla successione. Il
+regolamento lo dichiarava al §18 fra le cose stampate che il motore non esegue —
+e una cosa stampata che non fa niente al tavolo e' peggio di una cosa che manca,
+perche' chi gioca la legge e aspetta.
+
+### La regola
+
+**Il numero piu' alto e' il potere della casa: quel verbo si gioca senza carta,
+una volta per Atto.** A parita' di numero i verbi migliori sono piu' d'uno, e
+sceglie chi gioca. Le otto case della scatola ne escono con otto poteri distinti
+e sparsi su tutti e sei i verbi:
+
+| casa | numeri | potere |
+|---|---|---|
+| Re Aldric | rivendicare 4 · influenzare 4 | rivendicare **o** influenzare |
+| Popolo Nahr | muovere 4 | muovere |
+| Lyra | tramare 5 | tramare |
+| Vaerax | influenzare 4 · tramare 4 | influenzare **o** tramare |
+| Maestra Ilve | acquisire 4 | acquisire |
+| Priore Anselmo | tramare 4 | tramare |
+| Kessa dei Fuochi | rivendicare 4 | rivendicare |
+| Le Citta' Libere | influenzare 4 | influenzare |
+
+**Al tavolo non aggiunge un pezzo**: la carta e' gia' li', e si ruota per dire
+che il potere e' speso. Si rimette diritta quando l'Atto dopo si apre — e nel
+motore quello e' un Effect col suo inverso (`GRANT_HOUSE_POWER` /
+`SPEND_HOUSE_POWER`), come il gettone di rivendicazione. Il potere **non si
+accumula**: quello non speso non si porta appresso.
+
+Quante volte per Atto lo dice la Chronicle (`house_power.per_act`), e in CHR_00
+e' **una**: una carta ruotata e rimessa diritta e' la cosa piu' leggibile che il
+tavolo sappia fare. Oltre servirebbe un segnalino per contare, e allora il
+potere smetterebbe di essere un'eccezione e diventerebbe una valuta.
+
+### Prima della carta o dopo? Misurato, non deciso a occhio
+
+Due letture della stessa regola, e non era ovvia quale fosse migliore: il potere
+come **prima scelta** — quello che sai fare senza carta lo fai senza carta, e la
+carta ti resta per il Consiglio — o come **pavimento**, per quando la mano non
+porta quel verbo. Cento semi dal 7000:
+
+| dove sta il potere | Verita' misto | Verita' uniforme | usi/anno | seggi bloccati |
+|---|---|---|---|---|
+| non esiste (0.1.472) | 410 / 410 | 413 / 410 | — | 0 su 8 |
+| dopo la carta | 406 / 403 | 415 / 411 | **0,80** | 0 su 8 |
+| **prima della carta** | **417 / 412** | **427 / 427** | **1,93** | 0 su 8 |
+
+**Tenerlo per dopo costava quattro Verita' sul misto.** Una casa che spende una
+carta per una cosa che sapeva fare gratis si presenta al Consiglio con una carta
+in meno, e il mondo ricorda solo i Consigli in cui qualcuno ha messo peso. Sul
+tavolo uniforme le **427 Verita' sono tutte diverse**, che non era mai capitato.
+
+### Quello che ha cambiato dove il difetto era
+
+`run_blocked_probe.gd`, 15 anni dal seme 7000, seduta al posto di una persona —
+lo stesso banco su cui D-502 aveva misurato:
+
+| | 0.1.472 | adesso |
+|---|---|---|
+| Occasioni con la **sola voce «passa»** | 14 su 270 (5%) | **5 (1%)** |
+| ragioni contate | 17 | **10** |
+| di quelle, **mano vuota** | 4 (23%) | **0** |
+| carte in mano nei momenti bloccati | 0,93 | **2,00** |
+
+**La mano vuota come causa e' finita a zero.** Le dieci ragioni che restano sono
+tutte «la carta arriva al luogo, ma l'Azione e' rifiutata», e guardate una per
+una **non sono un difetto**: sono carte INFLUENZARE con il tetto per round di
+`influence_rules` gia' speso. La regola e' giusta; quello che mancava era
+un'altra cosa da fare, ed e' quello che il potere aggiunge.
+
+Il giro dei tre numeri, per chi legge di fila: **55 su 270 (20%)** in 0.1.466,
+**9 (3%)** col mazzetto personale in 0.1.469, **24 (8%)** dopo che le carte Eco
+sono uscite dal menu in 0.1.470, **14 (5%)** con FORGIARE riparato in 0.1.472,
+**5 (1%)** adesso.
+
+### Il costo, scritto
+
+| | 0.1.472 | adesso |
+|---|---|---|
+| Verita', tavolo misto | 410 / 410 | **417 / 412** |
+| Verita', tavolo uniforme | 413 / 410 | **427 / 427** |
+| Consigli per anno | 5,66 · 5,60 | **5,61 · 5,58** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 802 test | **809 test**, 75 010 asserzioni |
+
+**I Consigli per anno scendono di cinque centesimi su tutti e due i tavoli**, e
+va scritto: un'Azione in piu' per Atto e' un round che si consuma facendo cose
+invece di aprire discorsi. Le Verita' salgono di sette e di quattordici, quindi
+il cambio conviene — ma il numero peggiorato resta qui.
+
+### La regola sta in un posto solo
+
+Il potere lo chiedono in **quattro**: il motore per rifiutare a voce alta, il
+menu di una persona per offrire la voce, il cervello per dirlo quando serve, e
+la faccia della carta per stamparlo. Quattro copie divergono in silenzio —
+lezione 9 di casa — quindi la domanda vive in
+[`house_power_rules.gd`](../godot/scripts/world/house_power_rules.gd), pura, e
+tutti e quattro la chiamano. La lista dei verbi che il potere puo' aprire non e'
+ricopiata nemmeno nel validatore: la legge dall'enum dello schema dell'Asset.
+
+### La guardia
+
+`il_potere_della_casa` chiede tre cose, e la terza e' quella che morde: che ogni
+casa abbia un verbo sopra lo zero, che il suo verbo migliore sia uno che il
+potere sa aprire, e che i verbi a pari merito **non siano piu' di due**. Una
+casa con tutti i numeri uguali stampa un potere che apre tutto — cioe' un'Azione
+gratis per Atto, e un tarocco che non distingue piu' una casa dall'altra: il
+primo controllo da solo l'avrebbe lasciata passare. Self-test a **63 difetti
+piantati**.
+
+### Quello che resta aperto, e non lo decido io
+
+- **quante volte per Atto**: la tabella dice una, ed e' una scelta di gioco, non
+  di codice. Sta dietro `house_power.per_act`, quindi si sposta con una parola;
+- **se il numero conti anche altrove.** Oggi il potere legge **solo il massimo**:
+  che una casa abbia `tramare 5` o `tramare 4` non cambia niente, e che abbia
+  `muovere 1` o `muovere 3` nemmeno. I quarantotto numeri fanno qualcosa, ma
+  ne fanno una cosa sola.
+
+---
+
 ## D-502 — Il verso lo dice la faccia, e il consenso lo da' il rapporto
 
 **implemented in 0.1.472.** Parola del committente: *«sistema le 24 carte

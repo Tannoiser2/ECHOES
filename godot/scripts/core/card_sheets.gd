@@ -129,10 +129,11 @@ const TYPES: Dictionary = {
 		"scena": "`description` della vita che siede",
 		"righe": [
 			["SA FARE", "i valori dei verbi: `action_values`"],
+			["POTERE", "il verbo col numero piu' alto, e quante volte per Atto lo dice senza carta: `action_values` col massimo, e `house_power.per_act` della Chronicle"],
 			["VUOI LASCIARE", "i segni del profilo strategico: `entity_profiles[].wants`"],
 			["SE NON CE LA FAI", "la vita dopo e la sua porta: `incarnations[].also_enters`"],
 		],
-		"voci": ["SA FARE", "VUOI LASCIARE", "SE NON CE LA FAI"],
+		"voci": ["SA FARE", "POTERE", "VUOI LASCIARE", "SE NON CE LA FAI"],
 	},
 	"region": {
 		"nome": "tessera Regione",

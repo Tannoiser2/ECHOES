@@ -42,6 +42,9 @@
         "overextension_delta": 1,
         "lapse_without_presence": true
       },
+      "house_power": {
+        "per_act": 1
+      },
       "forge_rules": {
         "consent_from": "HOSTILE"
       },

@@ -10,7 +10,7 @@ alla volta.
 ## Avvertenza sulla versione
 
 Questo regolamento descrive **il gioco che la scatola gioca oggi**, alla
-versione 0.1.472, e non il gioco che vorrebbe essere: ogni regola scritta qui è
+versione 0.1.473, e non il gioco che vorrebbe essere: ogni regola scritta qui è
 una regola che il motore esegue e che i cancelli sorvegliano. Dove una cosa è
 stampata sui pezzi ma non ha ancora un effetto, sta scritto nel
 [capitolo 18](#18-quello-che-questo-regolamento-non-copre-ancora) e non in mezzo
@@ -274,6 +274,8 @@ La casa, in vista tutta la partita. Porta:
 
 - **SA FARE** — i valori dei sei verbi, che è il ritratto di cosa quella casa è
   brava a fare;
+- **POTERE** — il verbo col numero più alto, e cosa il potere permette: *«POTERE
+  rivendicare o influenzare senza carta, una volta per Atto»*. È il capitolo 7;
 - **VUOI LASCIARE** — i segni che quella casa vuole lasciare nel mondo;
 - **SE NON CE LA FAI** — la porta del tempo: dopo quanti anni, e con meno di
   quanti di quei segni, la casa **diventa un'altra cosa** (capitolo 16).
@@ -528,8 +530,16 @@ tavolo freddo non è un tavolo senza domande.
 
 ## 7. L'Occasione d'Azione e i sette verbi
 
-Con un'Occasione si fa **una** di queste cose: si cala una carta dalla mano
-(capitolo 8), o si usa uno dei verbi della plancia. I verbi sono **sette**.
+I verbi sono **sette**, e con un'Occasione se ne dice **uno**. Ma un verbo non
+si prende dal nulla: **la moneta sono le carte**. Ogni Azione stampata su una
+carta Asset porta uno di questi verbi (capitolo 8), e quella è la strada
+normale.
+
+Le altre due strade sono strette di proposito. **Il potere della tua casa** te
+ne apre uno senza carta, una volta per Atto (in fondo a questo capitolo). E
+**PASSARE** non costa niente. Fuori da queste, un verbo senza una carta che lo
+porti non si dice: è la regola che rende la mano una scelta invece di un
+promemoria.
 
 ### ACQUISIRE
 
@@ -623,6 +633,34 @@ chiedere niente al tavolo**.
 
 Una faccia SEGNARE senza segni non è un'Azione: il suo effetto **sono** i segni,
 e il motore la rifiuta.
+
+### Il potere della casa: il verbo che sai fare, senza carta
+
+Guarda il numero **più alto** fra i sei di `SA FARE` sul tuo tarocco. Quel verbo
+è **il potere della tua casa**, e **una volta per Atto lo dici senza calare
+nessuna carta**. Se hai due verbi a pari merito — Re Aldric ha *rivendicare 4* e
+*influenzare 4* — scegli tu quale dei due.
+
+Usato il potere, **ruota il tarocco**: è speso. Lo rimetti diritto quando l'Atto
+dopo si apre. Il potere **non si accumula**: se non lo usi, quell'Atto è passato.
+
+Vale il resto delle regole del verbo: il potere ti dà **la parola**, non il
+permesso. Un MUOVERE col potere vuole comunque una Regione confinante, e un
+INFLUENZARE col potere paga comunque il tetto di una spinta per round.
+
+> **Un esempio.** È il round 3 dell'Atto II. Il Popolo Nahr ha in mano due
+> carte, tutte e due INFLUENZARE, e la spinta di questo round l'ha già spesa:
+> quelle due carte, qui, non gli servono a niente. Sul suo tarocco c'è *muovere
+> 4*, ed è il suo potere. Nahr sposta una pedina in una Regione confinante
+> **senza calare niente**, e ruota il tarocco. Le due carte restano in mano — e
+> a fine Atto votano in Consiglio.
+>
+> Attenzione a cosa il potere **non** paga: RIVENDICARE chiede di scartare un
+> Asset Autorità, e il potere non lo regala. Chi ha *rivendicare 4* sul tarocco
+> risparmia la carta che porta il verbo, non quella che il verbo costa.
+
+Le otto case della scatola hanno otto poteri diversi, sparsi su tutti e sei i
+verbi della plancia: chi sa muovere, chi sa tramare, chi sa comprare.
 
 ### PASSARE
 
@@ -1502,11 +1540,12 @@ c'è quello che è stampato sui pezzi o scritto nei documenti ma **non è ancora
 una regola che il motore esegue**. Sta scritto qui invece che nascosto in mezzo
 alle regole.
 
-**I valori dei verbi sulla carta Casata (SA FARE) non fanno ancora niente.**
-Sono stampati — *«acquisire 3 · muovere 2 · influenzare 4 · forgiare 2 · tramare
-1 · rivendicare 4»* — ed è il ritratto di cosa quella casa è brava a fare, ma
-nessuna regola li legge. Il potere di una casa che apra un'Azione sua è
-[ISSUES 136](ISSUES.md#136) punto 4.
+**Dei sei valori sulla carta Casata, la regola legge solo il più alto.** Da
+0.1.473 quel numero è il **potere della casa** (capitolo 7), e questo i
+quarantotto numeri della scatola lo fanno. Quello che non fanno è tutto il
+resto: che una casa abbia *tramare 5* o *tramare 4* non cambia niente, e che
+abbia *muovere 1* o *muovere 3* nemmeno. Sono un ritratto che apre una porta,
+non una scala che conta.
 
 **SOGLIA e TRIONFO della carta Destino non contano al conto di fine anno.** Il
 gradino che conta è VITTORIA, che è l'obiettivo palese. Le altre due righe si

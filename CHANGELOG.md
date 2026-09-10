@@ -5,6 +5,68 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.473 — Il potere della casa: il verbo che sai fare, senza carta
+
+[D-503](docs/DECISIONS.md#d-503), [ISSUES 136](docs/ISSUES.md#136) punto 4.
+Parola del committente: *«anche il potere di una entita' mi deve permettere di
+fare qualcosa»*.
+
+**Il tarocco della Casata stampava quarantotto numeri che nessuna regola
+leggeva.** `SA FARE  acquisire 3 · rivendicare 4 · ...`, in vista tutta la
+partita, e li guardavano tre posti: la faccia che li stampa, la scheda che la
+documenta, l'eredita' alla successione. Il regolamento lo dichiarava al §18.
+
+### Aggiunto
+
+- **il numero piu' alto e' il potere della casa**: quel verbo si gioca **senza
+  carta**, una volta per Atto. A pari merito i verbi migliori sono due e sceglie
+  chi gioca; le otto case della scatola ne escono con otto poteri distinti,
+  sparsi su tutti e sei i verbi. Al tavolo non aggiunge un pezzo: il tarocco si
+  ruota, e si rimette diritto all'Atto dopo;
+- **e nel motore e' un Effect col suo inverso** (`GRANT_HOUSE_POWER` /
+  `SPEND_HOUSE_POWER`), come il gettone di rivendicazione. Il potere non si
+  accumula: quello non speso non si porta appresso;
+- **la riga sul tarocco**, accanto ai numeri che la decidono — *«POTERE
+  rivendicare o influenzare senza carta, una volta per Atto»* — perche' una
+  regola che sta nel manuale e non sul cartoncino, al tavolo non esiste;
+- **quante volte per Atto lo dice la Chronicle** (`house_power.per_act`), e in
+  CHR_00 e' una.
+
+### Misurato
+
+**Prima della carta o dopo? Misurato invece che deciso a occhio.** Cento semi
+dal 7000:
+
+| dove sta il potere | Verita' misto | Verita' uniforme | usi/anno |
+|---|---|---|---|
+| non esiste (0.1.472) | 410 / 410 | 413 / 410 | — |
+| dopo la carta | 406 / 403 | 415 / 411 | 0,80 |
+| **prima della carta** | **417 / 412** | **427 / 427** | **1,93** |
+
+Tenerlo per dopo costava quattro Verita' sul misto: chi spende una carta per una
+cosa che sapeva fare gratis arriva al Consiglio con una carta in meno. Sul
+tavolo uniforme le 427 Verita' sono **tutte diverse**, che non era mai capitato.
+
+**E dove il difetto era.** `run_blocked_probe.gd`, 15 anni dal seme 7000, al
+posto di una persona: le Occasioni con la sola voce «passa» passano da **14 su
+270 (5%) a 5 (1%)**, le ragioni da 17 a 10, e la **mano vuota come causa arriva
+a zero**. Le dieci che restano sono tutte carte INFLUENZARE col tetto per round
+gia' speso — la regola e' giusta, mancava un'altra cosa da fare.
+
+Il giro di fila: **20%** in 0.1.466, **3%** col mazzetto personale, **8%** senza
+le carte Eco nel menu, **5%** con FORGIARE riparato, **1%** adesso.
+
+**Il costo:** i Consigli per anno scendono da 5,66 a **5,61** sul misto e da
+5,60 a **5,58** sull'uniforme — un'Azione in piu' per Atto e' un round speso a
+fare cose invece che ad aprire discorsi. Il cancello resta **0 seggi bloccati su
+8** su tutti e due i tavoli.
+
+Suite **809 test, 75 010 asserzioni**. La guardia nuova — *ogni casa ha un verbo
+migliore, quel verbo il potere lo sa aprire, e i pari merito non sono piu' di
+due* — porta il self-test della grammatica fisica a **63 difetti piantati**.
+
+---
+
 ## 0.1.472 — Il verso lo dice la faccia, e il consenso lo da' il rapporto
 
 [D-502](docs/DECISIONS.md#d-502), [ISSUES 136](docs/ISSUES.md#136) punto 3.

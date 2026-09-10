@@ -576,6 +576,14 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 	if not bool(chronicle.get("actions_from_cards", false)):
 		return offers
 	var hand: Array = session.service.hand(entity_id)
+	# **Il potere della casa non passa dalla mano** (D-503, ISSUES 136 punto 4):
+	# e' il verbo che questa casa sa fare meglio, e si gioca senza carta un tot
+	# di volte per Atto. Il motore dice quali sono i verbi buoni e se il tarocco
+	# e' ancora diritto; qui si chiede a lui invece di ricopiarne la regola —
+	# una regola scritta in due file diverge in silenzio.
+	var power_verbs: Array = []
+	if int((session.world["entities"][entity_id] as Dictionary).get("house_power", 0)) > 0:
+		power_verbs = session.actions.house_verbs(entity_id)
 	var out: Array = []
 	for offer in offers:
 		var template: String = str((offer as Dictionary)["template"])
@@ -583,6 +591,17 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 		if template == "PASS":
 			out.append(offer)
 			continue
+		# **E la voce del potere sta accanto a quella con la carta**, non invece
+		# di quella: chi ha in mano una carta che porta quel verbo sceglie se
+		# spendere la carta o il potere, e sono due mosse diverse.
+		if power_verbs.has(template):
+			var free: Dictionary = (offer as Dictionary).duplicate(true)
+			var free_params: Dictionary = (free["params"] as Dictionary).duplicate()
+			free_params["house_power"] = true
+			free["params"] = free_params
+			free["label"] = "Col potere della casa: %s (senza carta)" % str(free["label"])
+			if session.actions.can_execute(entity_id, template, free_params):
+				out.append(free)
 		for asset_id in hand:
 			var card: Variant = session.data.assets.get(str(asset_id))
 			if card == null:

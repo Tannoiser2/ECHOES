@@ -639,6 +639,22 @@
             }
           }
         },
+        "house_power": {
+          "type": "object",
+          "description": "**Il potere della casa** (D-503, ISSUES 136 punto 4). Il tarocco della Casata stampa `SA FARE` — un numero per verbo — e fino a qui nessuna regola li leggeva: quarantotto numeri in vista tutta la partita che non facevano niente. Il potere e' quello: il verbo col numero **piu' alto** si gioca senza carta, un tot di volte per Atto. A parita' di numero i verbi migliori sono piu' d'uno, e sceglie chi gioca. Omesso, il potere non esiste e la carta Casata resta un ritratto.",
+          "additionalProperties": false,
+          "required": [
+            "per_act"
+          ],
+          "properties": {
+            "per_act": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3,
+              "description": "Quante volte per Atto. A 1 e' una carta ruotata e rimessa diritta, che e' la cosa piu' leggibile che il tavolo sappia fare; oltre serve un segnalino per contare, e allora il potere smette di essere un'eccezione e diventa una valuta."
+            }
+          }
+        },
         "forge_rules": {
           "type": "object",
           "description": "Quando un'altra casa accetta di salire di un gradino (D-502). Salire chiede il consenso dell'altra casa, e il consenso non e' una bandiera che alza chi lo chiede: e' un fatto del tavolo che si legge dal rapporto. Scendere non chiede niente a nessuno.",

@@ -197,6 +197,7 @@ La casa, in vista tutta la partita: cosa sa fare e cosa vuole lasciare.
 | il sottotitolo | 32 su 32 |
 | l'illustrazione | 32 su 32 |
 | **SA FARE** | 32 su 32 |
+| **POTERE** | 32 su 32 |
 | **VUOI LASCIARE** | 32 su 32 |
 | **SE NON CE LA FAI** | 12 su 32 |
 
@@ -205,6 +206,7 @@ La casa, in vista tutta la partita: cosa sa fare e cosa vuole lasciare.
 > **Re Aldric**
 > sovrano · vuole il potere
 > SA FARE  acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1
+> POTERE  rivendicare o influenzare senza carta, una volta per Atto
 > VUOI LASCIARE  la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito
 > SE NON CE LA FAI  dopo 150 anni con meno di 1 di questi segni: La Repubblica della Valle
 

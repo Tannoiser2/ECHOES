@@ -13,6 +13,7 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
+const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
@@ -164,6 +165,7 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	# ha gia' avuto il suo giro di stagione, e rifarlo cambierebbe la partita.
 	if from_round == 1:
 		_lift_evictions(act)
+		_recharge_house_power(act)
 		_refill_hands(act)
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
@@ -258,6 +260,33 @@ func _lift_evictions(act: int) -> void:
 				"REMOVE_ENTITY_TAG", "entity", str(entity_id), {"tag": str(tag)}, source
 			))
 			log.bullet("La stagione gira: %s puo tornare dov'era stato cacciato." % _name(str(entity_id)))
+
+
+## **Il tarocco si rimette diritto** (D-503, ISSUES 136 punto 4). Il potere
+## della casa non si accumula: quello non speso nell'Atto che chiude non si
+## porta appresso, e quello speso torna. Un Effect per volta, come ogni altra
+## mutazione, cosi' il verbale dice chi l'ha ripreso e disfare l'Atto lo
+## rimette speso.
+##
+## All'Atto 1 il giro e' un **no-op**: il tarocco lo posa diritto il setup, che
+## e' come la carta arriva sul tavolo. E dove la Chronicle non dichiara il
+## potere non esce nessun Effect.
+func _recharge_house_power(act: int) -> void:
+	var per_act: int = HousePowerRules.per_act(_chronicle)
+	if per_act <= 0:
+		return
+	for entity_id in world["turn_order"]:
+		var id: String = str(entity_id)
+		var left: int = int((world["entities"][id] as Dictionary).get("house_power", 0))
+		for _i in range(per_act - left):
+			var source: Dictionary = Effect.source(
+				"system", "ACT_OPENS", "", act, 1, int(world["effect_sequence"])
+			)
+			session.applier.apply(Effect.make(
+				"GRANT_HOUSE_POWER", "entity", id, {}, source
+			))
+		if per_act - left > 0:
+			log.bullet("%s rimette diritto il tarocco: il potere della casa torna." % _name(id))
 
 
 func play_round(act: int, round_number: int, decider: Object) -> void:

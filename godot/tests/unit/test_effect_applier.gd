@@ -197,6 +197,17 @@ func test_round_trip_every_reversible_type() -> void:
 		_make("GRANT_CLAIM_TOKEN", "entity", "ENT_NAHR", {}),
 		_make("SPEND_CLAIM_TOKEN", "entity", "ENT_NAHR", {})
 	)
+	# **Il potere della casa** (D-503): stessa forma del gettone di sopra, e per
+	# la stessa ragione — spenderlo va provato su una casa che il tarocco lo ha
+	# ancora diritto, se no il motore rifiuta e il round-trip non prova niente.
+	_round_trip(
+		"GRANT_HOUSE_POWER", _make("GRANT_HOUSE_POWER", "entity", "ENT_NAHR", {})
+	)
+	_with_setup(
+		"SPEND_HOUSE_POWER",
+		_make("GRANT_HOUSE_POWER", "entity", "ENT_NAHR", {}),
+		_make("SPEND_HOUSE_POWER", "entity", "ENT_NAHR", {})
+	)
 	_with_setup(
 		"REMOVE_SCAR",
 		_make(
@@ -269,6 +280,7 @@ func test_round_trip_every_reversible_type() -> void:
 		"SET_CONTROL", "SET_REGION_TAG", "REMOVE_REGION_TAG", "SET_GLOBAL_TAG",
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
 		"CREATE_CLAIM", "CONSUME_CLAIM", "GRANT_CLAIM_TOKEN", "SPEND_CLAIM_TOKEN",
+		"GRANT_HOUSE_POWER", "SPEND_HOUSE_POWER",
 		"ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
 		"REMOVE_ENTITY_TAG", "SET_ENTITY_ACTIVE",
 		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE", "SET_STRUCTURE_OWNER",

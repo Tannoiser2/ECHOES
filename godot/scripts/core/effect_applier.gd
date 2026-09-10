@@ -217,6 +217,10 @@ func _mutate(effect_type: String, target: Dictionary, payload: Dictionary) -> Va
 			return _move_claim_tokens(target, 1)
 		"SPEND_CLAIM_TOKEN":
 			return _move_claim_tokens(target, -1)
+		"GRANT_HOUSE_POWER":
+			return _move_house_power(target, 1)
+		"SPEND_HOUSE_POWER":
+			return _move_house_power(target, -1)
 		"ADD_SCAR":
 			return _add_scar(payload)
 		"REMOVE_SCAR":
@@ -337,6 +341,20 @@ func _move_claim_tokens(target: Dictionary, delta: int) -> Variant:
 	if before + delta < 0:
 		return _fail("'%s' non ha gettoni di rivendicazione da spendere" % target.get("id", ""))
 	(entity as Dictionary)["claim_tokens"] = before + delta
+	return {}
+
+
+## **Il potere della casa** (D-503): uno per Atto, e mai sotto zero. Come il
+## gettone di sopra, spendere quello che non si ha e' un errore e non un no-op —
+## al tavolo il tarocco o e' diritto o e' ruotato, e non c'e' un terzo stato.
+func _move_house_power(target: Dictionary, delta: int) -> Variant:
+	var entity: Variant = world["entities"].get(str(target.get("id", "")))
+	if entity == null:
+		return _fail("unknown entity '%s'" % target.get("id", ""))
+	var before: int = int((entity as Dictionary).get("house_power", 0))
+	if before + delta < 0:
+		return _fail("'%s' ha gia' speso il potere della casa" % target.get("id", ""))
+	(entity as Dictionary)["house_power"] = before + delta
 	return {}
 
 

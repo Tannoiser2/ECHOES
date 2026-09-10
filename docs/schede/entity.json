@@ -78,6 +78,10 @@
       "da_dove": "i valori dei verbi: `action_values`"
     },
     {
+      "voce": "POTERE",
+      "da_dove": "il verbo col numero piu' alto, e quante volte per Atto lo dice senza carta: `action_values` col massimo, e `house_power.per_act` della Chronicle"
+    },
+    {
       "voce": "VUOI LASCIARE",
       "da_dove": "i segni del profilo strategico: `entity_profiles[].wants`"
     },
@@ -100,6 +104,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "rivendicare o influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -134,6 +142,10 @@
           "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 3 · muovere 3 · tramare 3"
         },
         {
+          "voce": "POTERE",
+          "testo": "rivendicare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
         },
@@ -166,6 +178,10 @@
           "testo": "acquisire 3 · rivendicare 3 · forgiare 3 · influenzare 4 · muovere 3 · tramare 1"
         },
         {
+          "voce": "POTERE",
+          "testo": "influenzare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "la Carta e' stata scritta · la Carta vale per tutti · l'acqua ha cambiato strada · il debito e' stato perdonato · scoperta: la carta"
         }
@@ -192,6 +208,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 1 · forgiare 2 · influenzare 2 · muovere 2 · tramare 5"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "tramare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -226,6 +246,10 @@
           "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 3 · muovere 4 · tramare 1"
         },
         {
+          "voce": "POTERE",
+          "testo": "muovere senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "i Nahr si sono fermati · Villaggio · pascolo · il peso e' stato diviso"
         },
@@ -256,6 +280,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 4 · rivendicare 2 · forgiare 3 · influenzare 3 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "acquisire senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -290,6 +318,10 @@
           "testo": "acquisire 2 · rivendicare 1 · forgiare 1 · influenzare 4 · muovere 2 · tramare 4"
         },
         {
+          "voce": "POTERE",
+          "testo": "influenzare o tramare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "le Miniere sono state sigillate · lo studio e' sotto sorveglianza · la montagna e' diventata racconto · Sito dormiente"
         }
@@ -316,6 +348,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 2 · rivendicare 3 · forgiare 3 · influenzare 3 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "tramare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -350,6 +386,10 @@
           "testo": "acquisire 3 · rivendicare 2 · forgiare 3 · influenzare 4 · muovere 2 · tramare 2"
         },
         {
+          "voce": "POTERE",
+          "testo": "influenzare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito"
         }
@@ -376,6 +416,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 4 · rivendicare 1 · forgiare 2 · influenzare 4 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "acquisire o influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -410,6 +454,10 @@
           "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 3 · muovere 2 · tramare 2"
         },
         {
+          "voce": "POTERE",
+          "testo": "rivendicare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "la successione e' passata per legge · la corona · il granaio · l'ordine e' stato ristabilito"
         }
@@ -438,6 +486,10 @@
           "testo": "acquisire 3 · rivendicare 3 · forgiare 3 · influenzare 3 · muovere 3 · tramare 2"
         },
         {
+          "voce": "POTERE",
+          "testo": "acquisire o rivendicare o forgiare o influenzare o muovere senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
         }
@@ -464,6 +516,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 4 · rivendicare 3 · forgiare 3 · influenzare 3 · muovere 3 · tramare 2"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "acquisire senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -498,6 +554,10 @@
           "testo": "acquisire 3 · rivendicare 2 · forgiare 3 · influenzare 2 · muovere 4 · tramare 3"
         },
         {
+          "voce": "POTERE",
+          "testo": "muovere senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "il Cristallo e' stato sfruttato · la cenere · scoperta: il cristallo · il pedaggio"
         }
@@ -524,6 +584,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 2 · rivendicare 2 · forgiare 4 · influenzare 4 · muovere 2 · tramare 3"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "forgiare o influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -554,6 +618,10 @@
           "testo": "acquisire 3 · rivendicare 5 · forgiare 2 · influenzare 4 · muovere 2 · tramare 2"
         },
         {
+          "voce": "POTERE",
+          "testo": "rivendicare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "la Carta e' stata scritta · la Carta vale per tutti · l'acqua ha cambiato strada · il debito e' stato perdonato · scoperta: la carta"
         }
@@ -580,6 +648,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 3 · forgiare 4 · influenzare 4 · muovere 2 · tramare 1"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "forgiare o influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -610,6 +682,10 @@
           "testo": "acquisire 2 · rivendicare 3 · forgiare 2 · influenzare 3 · muovere 2 · tramare 4"
         },
         {
+          "voce": "POTERE",
+          "testo": "tramare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "scoperta: il cristallo · quello che si e' saputo lo sanno tutti · il Cristallo e' stato misurato · Archivio · scoperta: la leggenda · scoperta: il registro · una domanda e' rimasta aperta"
         }
@@ -636,6 +712,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 4 · muovere 2 · tramare 2"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -670,6 +750,10 @@
           "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 4 · muovere 2 · tramare 4"
         },
         {
+          "voce": "POTERE",
+          "testo": "influenzare o tramare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "scoperta: il cristallo · quello che si e' saputo lo sanno tutti · il Cristallo e' stato misurato · Archivio · scoperta: la leggenda · scoperta: il registro · una domanda e' rimasta aperta"
         }
@@ -696,6 +780,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 1 · forgiare 3 · influenzare 3 · muovere 5 · tramare 2"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "muovere senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -726,6 +814,10 @@
           "testo": "acquisire 2 · rivendicare 1 · forgiare 4 · influenzare 4 · muovere 4 · tramare 2"
         },
         {
+          "voce": "POTERE",
+          "testo": "forgiare o influenzare o muovere senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "i Nahr si sono fermati · Villaggio · pascolo · il peso e' stato diviso"
         }
@@ -752,6 +844,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 4 · forgiare 3 · influenzare 3 · muovere 2 · tramare 1"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "rivendicare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -786,6 +882,10 @@
           "testo": "acquisire 4 · rivendicare 1 · forgiare 3 · influenzare 3 · muovere 3 · tramare 2"
         },
         {
+          "voce": "POTERE",
+          "testo": "acquisire senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "il debito e' stato chiamato · il conto e' stato saldato · il pedaggio · i conti sono pubblici · scoperta: il registro"
         }
@@ -812,6 +912,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 4 · rivendicare 1 · forgiare 2 · influenzare 3 · muovere 2 · tramare 4"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "acquisire o tramare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -846,6 +950,10 @@
           "testo": "acquisire 3 · rivendicare 1 · forgiare 4 · influenzare 4 · muovere 2 · tramare 3"
         },
         {
+          "voce": "POTERE",
+          "testo": "forgiare o influenzare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "il debito e' stato chiamato · il conto e' stato saldato · il pedaggio · i conti sono pubblici · scoperta: il registro"
         }
@@ -872,6 +980,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 2 · rivendicare 2 · forgiare 3 · influenzare 4 · muovere 2 · tramare 3"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -902,6 +1014,10 @@
           "testo": "acquisire 2 · rivendicare 2 · forgiare 3 · influenzare 5 · muovere 0 · tramare 3"
         },
         {
+          "voce": "POTERE",
+          "testo": "influenzare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "le Miniere sono state sigillate · lo studio e' sotto sorveglianza · la montagna e' diventata racconto · Sito dormiente"
         }
@@ -928,6 +1044,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 1 · rivendicare 4 · forgiare 1 · influenzare 4 · muovere 3 · tramare 3"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "rivendicare o influenzare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -958,6 +1078,10 @@
           "testo": "acquisire 2 · rivendicare 3 · forgiare 3 · influenzare 4 · muovere 2 · tramare 3"
         },
         {
+          "voce": "POTERE",
+          "testo": "influenzare senza carta, una volta per Atto"
+        },
+        {
           "voce": "VUOI LASCIARE",
           "testo": "la custodia riconosciuta · la fede ha avuto un posto · la reliquia e' stata sepolta · il sigillo"
         }
@@ -984,6 +1108,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 2 · rivendicare 2 · forgiare 2 · influenzare 3 · muovere 3 · tramare 5"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "tramare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",
@@ -1016,6 +1144,10 @@
         {
           "voce": "SA FARE",
           "testo": "acquisire 3 · rivendicare 1 · forgiare 4 · influenzare 3 · muovere 3 · tramare 3"
+        },
+        {
+          "voce": "POTERE",
+          "testo": "forgiare senza carta, una volta per Atto"
         },
         {
           "voce": "VUOI LASCIARE",

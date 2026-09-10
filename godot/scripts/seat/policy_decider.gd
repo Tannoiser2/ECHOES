@@ -671,6 +671,26 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	var intent: Dictionary = _choose_intent(entity_id, ao_index, session)
 	if not _cards_are_the_coin(session):
 		return _with_a_theme(entity_id, intent, session)
+	# **Il potere della casa viene prima della carta** (D-503, ISSUES 136 punto
+	# 4). Quale delle due strade fosse quella giusta non era ovvio, quindi si e'
+	# misurato: **il potere prima** — quello che una casa sa fare senza carta lo
+	# fa senza carta, e la carta resta per il Consiglio — contro **il potere
+	# dopo**, cioe' un pavimento per quando la mano non porta quel verbo.
+	#
+	#   dove sta il potere   ·  Verita' misto  ·  Verita' uniforme  ·  usi/anno
+	#      (prima di D-503)         410/410           413/410            —
+	#      dopo la carta            406/403           415/411          0,80
+	#      prima della carta        417/412           427/427          1,93   <- scelta
+	#
+	# **Tenerlo per dopo costava quattro Verita' sul misto**: una casa che
+	# spende una carta per una cosa che sapeva fare gratis si presenta al
+	# Consiglio con una carta in meno, e il mondo ricorda solo i Consigli in cui
+	# qualcuno ha messo peso. Sul tavolo uniforme le 427 Verita' sono **tutte
+	# diverse**, che non era mai capitato. Il vincolo di casa resta **0 seggi
+	# bloccati su 8** su tutti e due i tavoli in tutt'e due le versioni.
+	var power: Dictionary = _as_house_power(entity_id, intent, session)
+	if str(power.get("template", "PASS")) != "PASS":
+		return power
 	var play: Dictionary = _as_card_play(entity_id, intent, session)
 	if str(play.get("template", "PASS")) != "PASS":
 		return _with_a_theme(entity_id, play, session)
@@ -760,6 +780,31 @@ func _rather_than_nothing(entity_id: String, session: RefCounted) -> Dictionary:
 	var anything: Array = hand_plays(entity_id, session)
 	_no_better_move = false
 	return anything[0] if not anything.is_empty() else {"template": "PASS", "params": {}}
+
+
+## **L'intento detto col potere della casa** (D-503, ISSUES 136 punto 4).
+##
+## Quali verbi il potere apre e se il tarocco e' ancora diritto lo dice il
+## motore: qui non si ricopia la regola, si chiede. E' la lezione 9 di casa —
+## una regola scritta in due file diverge in silenzio — ed e' la stessa strada
+## che prende il menu di una persona.
+func _as_house_power(
+	entity_id: String, intent: Dictionary, session: RefCounted
+) -> Dictionary:
+	var template: String = str(intent.get("template", "PASS"))
+	if template == "PASS" or template == "PLAY_CARD":
+		return {"template": "PASS", "params": {}}
+	if int(
+		(session.world["entities"][entity_id] as Dictionary).get("house_power", 0)
+	) <= 0:
+		return {"template": "PASS", "params": {}}
+	if not (session.actions.house_verbs(entity_id) as Array).has(template):
+		return {"template": "PASS", "params": {}}
+	var params: Dictionary = (intent.get("params", {}) as Dictionary).duplicate()
+	params["house_power"] = true
+	if not session.actions.can_execute(entity_id, template, params):
+		return {"template": "PASS", "params": {}}
+	return {"template": template, "params": params}
 
 
 func _cards_are_the_coin(session: RefCounted) -> bool:

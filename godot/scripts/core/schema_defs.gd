@@ -340,6 +340,9 @@ const DEFS := {
 			"control_rules": {
 				"type": "Dictionary",
 			},
+			"house_power": {
+				"type": "Dictionary",
+			},
 			"forge_rules": {
 				"type": "Dictionary",
 			},
@@ -581,6 +584,7 @@ const DEFS := {
 					"CREATE_ECHO",
 					"GRANT_ASSET",
 					"GRANT_CLAIM_TOKEN",
+					"GRANT_HOUSE_POWER",
 					"KEEP_THEME_HEAT",
 					"OPEN_PASSAGE",
 					"RAZE_STRUCTURE",
@@ -600,6 +604,7 @@ const DEFS := {
 					"SET_STRUCTURE_OWNER",
 					"SET_TENSION_VISIBILITY",
 					"SPEND_CLAIM_TOKEN",
+					"SPEND_HOUSE_POWER",
 					"TRANSFER_ASSET",
 				],
 			},
@@ -630,6 +635,7 @@ const DEFS := {
 					"CREATE_ECHO",
 					"GRANT_ASSET",
 					"GRANT_CLAIM_TOKEN",
+					"GRANT_HOUSE_POWER",
 					"KEEP_THEME_HEAT",
 					"OPEN_PASSAGE",
 					"RAZE_STRUCTURE",
@@ -649,6 +655,7 @@ const DEFS := {
 					"SET_STRUCTURE_OWNER",
 					"SET_TENSION_VISIBILITY",
 					"SPEND_CLAIM_TOKEN",
+					"SPEND_HOUSE_POWER",
 					"TRANSFER_ASSET",
 				],
 			},
@@ -1897,6 +1904,7 @@ const EFFECT_TYPES := [
 	"CREATE_ECHO",
 	"GRANT_ASSET",
 	"GRANT_CLAIM_TOKEN",
+	"GRANT_HOUSE_POWER",
 	"KEEP_THEME_HEAT",
 	"OPEN_PASSAGE",
 	"RAZE_STRUCTURE",
@@ -1916,6 +1924,7 @@ const EFFECT_TYPES := [
 	"SET_STRUCTURE_OWNER",
 	"SET_TENSION_VISIBILITY",
 	"SPEND_CLAIM_TOKEN",
+	"SPEND_HOUSE_POWER",
 	"TRANSFER_ASSET",
 ]
 
