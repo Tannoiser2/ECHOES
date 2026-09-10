@@ -45,6 +45,137 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-502 — Il verso lo dice la faccia, e il consenso lo da' il rapporto
+
+**implemented in 0.1.472.** Parola del committente: *«sistema le 24 carte
+rifiutate al luogo»* — l'ultimo punto grosso di [ISSUES 136](ISSUES.md#136), e
+la causa principale rimasta dopo il mazzetto personale.
+
+### Misurato prima di toccare
+
+`run_blocked_probe.gd`, 15 anni dal seme 7000, seduta al posto di una persona:
+
+| | |
+|---|---|
+| Occasioni viste da chi gioca | 270 |
+| con la **sola voce «passa»** | **24 (8%)** |
+| di quelle, con la mano vuota | **0** |
+| carte in mano nei momenti bloccati | **2,58** |
+| ragioni: «la carta arriva al luogo, ma l'Azione e' rifiutata» | **62 su 62 — il 100%** |
+
+**Nessuno era bloccato per la mano vuota**: erano bloccati con due carte e mezzo
+in mano. E gli esempi che la sonda porta sono tutti la stessa carta,
+`AST_BONDS_OATH`.
+
+### Il difetto era piu' grosso di due carte
+
+Cercata la causa, il verbo intero era ingiocabile, e per **due** ragioni
+diverse.
+
+**Il verso stava sulla carta invece che sulla faccia.** `card_action.params.direction`
+e' **uno solo per tutte e due le Azioni stampate**, e dieci carte su undici ne
+stampano due che vanno in versi opposti: *Mercenari* ① «Prestarli» sale, ②
+«Toglierli di mezzo» scende. Misurato sulle ventuno facce FORGIARE della
+scatola:
+
+| | quante |
+|---|---|
+| facce FORGIARE | **21**, su 11 carte |
+| che dichiaravano un verso (sulla carta) | 10 |
+| **eseguite al contrario di quello che stampano** | **5** |
+| che prendevano il ripiego «UP» senza che nessuno l'avesse scritto | **11** |
+
+E' la stessa lezione di [D-283](#d-283) — *la faccia e' la verita'* — su un
+campo che era rimasto indietro.
+
+**E il consenso era un `bool` che nessuno alzava.** La regola della plancia
+diceva *«salire chiede il consenso dell'altra casa»*, e il consenso viaggiava
+nei parametri. Chi lo alzava? Il cervello, **per conto del bersaglio**: una
+finzione, perche' il consenso di un'altra casa non lo dichiara chi lo chiede. E
+il menu di una persona lo lasciava sempre falso, quindi **tutte e sedici le
+facce che salgono erano rifiutate**, sempre. Il cancello non se n'era mai
+accorto perche' il tavolo automatico si dava il permesso da solo: il difetto
+esisteva **solo al posto di una persona**.
+
+### Le due regole nuove
+
+1. **Il verso lo dichiara la faccia** (`direction` su ogni Azione FORGIARE
+   stampata), e il motore non lo indovina piu': senza, rifiuta e lo dice.
+   Ventuno facce, scritte leggendo la frase che ognuna stampa.
+2. **Il consenso e' un fatto del tavolo che si legge**: una casa accetta di
+   salire finche' il rapporto e' almeno `forge_rules.consent_from`, e rifiuta
+   sotto. Il pavimento e' l'**ultimo gradino**, quindi la porta chiusa e' una
+   sola — *non si giura con chi ti ha giurato guerra* — e da **ostile** si
+   risale ancora. Il valore **sta scritto in `chronicle_00.json`** (`HOSTILE`)
+   e nello schema, non solo nel ripiego del codice: una regola che il verbale
+   manda a cercare nel dato deve stare nel dato, altrimenti il verbale promette
+   un interruttore che non c'e'. Ed e' provato **girandolo** — alzato ad
+   *alleata*, la stessa Azione sulla stessa coppia viene rifiutata — perche' un
+   interruttore che nessuno legge da' sempre la stessa risposta e sembra
+   funzionare.
+
+**Il pavimento sull'ultimo gradino non e' una limatura, e' la regola.** Con il
+pavimento a NEUTRALE la pista sarebbe diventata a **senso unico**: da ostile non
+si potrebbe piu' risalire con nessuna carta, e scendere e' gratis. Con il
+pavimento in fondo resta una sola porta murata, e per riaprirla c'e' il
+Consiglio — che e' esattamente il posto dove il gioco mette le cose che una
+casa da sola non puo' fare.
+
+### Quello che ha cambiato
+
+| | prima | adesso |
+|---|---|---|
+| **Occasioni bloccate** (tavolo di una persona, 15 anni) | **24 su 270 — 8%** | **14 — 5%** |
+| ragioni contate | 62 | **17** |
+| di quelle, «arriva e viene rifiutata» | 62 (100%) | **13 (76%)** |
+| di quelle, mano vuota | 0 | 4 (23%) |
+| carte in mano nei momenti bloccati | 2,58 | **0,93** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+
+**I blocchi che restano non sono piu' una carta sola.** Prima erano tutti il
+*Giuramento*; adesso sono una coda lunga — `AST_FORCE_BORDER_WATCH`,
+`AST_FORCE_ROADBLOCK`, `AST_PEOPLE_STILL_HANDS`, `AST_PEOPLE_MOBILIZATION`,
+`AST_AUTHORITY_SEAL` — e **quattro dei quattordici sono mano vuota**, con 0,93
+carte in mano: la coda che resta e' di fine mano, non di verbo murato.
+
+### Il costo, scritto
+
+Cento semi dal 7000, tutti e due i tavoli:
+
+| | 0.1.471 | adesso |
+|---|---|---|
+| Verita', tavolo misto | 393 / 391 | **410 / 410** |
+| Verita', tavolo uniforme | 421 / 418 | **413 / 410** |
+| Consigli per anno | 5,68 · 5,64 | **5,66 · 5,60** |
+| **seggi bloccati su un solo livello** | 0 su 8 | **0 su 8** |
+| suite | 800 test | **803 test**, 74 991 asserzioni |
+
+**Il misto guadagna 17 Verita', l'uniforme ne perde 8**, e i Consigli scendono
+di due centesimi. Un verbo che prima non si giocava adesso si gioca, e i quattro
+ottimizzatori lo spendono dove prima spendevano altro: e' un numero peggiorato
+su un tavolo e migliorato sull'altro, e si scrive tutt'e due.
+
+### E una scala che era scritta due volte
+
+`seats_strip.gd` teneva la sua tabella delle parole dei rapporti, ed era
+**un'altra scala**: HOSTILE, COLD, NEUTRAL, WARM, ALLY — due gradini che il
+motore non ha, e senza i due estremi che ha. Chi arrivava a **nemica** o a
+**vincolata** si rileggeva l'id inglese sotto gli occhi, che e' il difetto che
+[D-463](#d-463) era venuto a togliere. Adesso le cinque parole stanno in
+`SignLabels` con tutte le altre, e la vista tiene solo i colori. E' la lezione 9
+di casa: *una regola scritta in due file diverge in silenzio*.
+
+### La guardia
+
+`il_verso_del_rapporto` chiede due cose, e la seconda e' quella che morde: che
+ogni faccia FORGIARE **dichiari** il verso, e che il verso dichiarato sia quello
+che la sua frase dice. Una faccia che stampa «Scendi di 1 gradino» e dichiara UP
+si legge benissimo, e va eseguita al rovescio: il primo controllo da solo
+l'avrebbe lasciata passare. Self-test a **61 difetti piantati**, coi due nuovi
+visti mordere.
+
+---
+
 ## D-501 — Le regole, scritte per esteso e per come si giocano oggi
 
 **implemented in 0.1.471.** Richiesta del committente: *«puoi scrivere le regole

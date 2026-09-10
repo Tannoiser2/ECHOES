@@ -258,7 +258,6 @@ class Witness extends RefCounted:
 							var ask: Dictionary = base.duplicate()
 							ask["target_entity_id"] = str(other)
 							ask["direction"] = str(direction)
-							ask["consent"] = true
 							var no_f: String = session.actions.check(entity_id, "PLAY_CARD", ask)
 							if no_f == "":
 								return ""

@@ -234,6 +234,14 @@
         "engine": {
           "type": "boolean",
           "description": "Vera sull'Azione che il motore risolve oggi (D-494). Le Azioni stampate sono due, il `card_action` della carta ne esegue **una**: senza questo campo la scheda dell'app non sapeva dire quale, e stampava una terza frase generica che su alcune carte portava un numero diverso da entrambe. Al piu' una per carta; il validatore pretende che il suo `template` sia il `card_action.kind`, e dove il verbo compare su una sola delle due la deduce e la controlla. Una carta puo' non averne nessuna: vuol dire che il motore non esegue nessuna delle due Azioni stampate, e la scheda lo dice invece di far finta."
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "UP",
+            "DOWN"
+          ],
+          "description": "Il verso che questa Azione FORGIARE muove il rapporto (D-502). **Sta sulla faccia, non sulla carta**: dieci carte su undici stampano due Azioni che vanno in versi opposti — «Prestarli» sale, «Toglierli di mezzo» scende — e finche' il verso lo diceva `card_action.params.direction` il motore ne leggeva **uno solo per tutte e due**. Cinque facce su ventuno venivano eseguite al contrario di quello che stampano, e le altre prendevano il verso di ripiego «UP» senza che nessuno l'avesse scritto. Obbligatorio su ogni faccia FORGIARE: il validatore lo pretende, e lo confronta col verso che il testo dice."
         }
       }
     },

@@ -172,20 +172,81 @@ func test_influence_refuses_a_delta_other_than_one() -> void:
 	assert_false(bool(result["ok"]), "INFLUENCE muove di 1, non di 3")
 
 
-## §10 FORGE: up needs consent and a Bond; down is unilateral and free.
-func test_forge_up_needs_consent_and_a_bond() -> void:
+## §10 FORGE: salire chiede il consenso e un Bond; scendere e' unilaterale e
+## gratis. **Il consenso lo da' il rapporto** (D-502): una casa accetta finche'
+## non le sei nemico, e sotto rifiuta — con la scala a un senso solo il gioco
+## non tornerebbe, quindi la porta chiusa e' una sola, l'ultimo gradino.
+func test_forge_up_needs_the_other_house_to_accept() -> void:
+	var hand_before: int = session.service.hand_size("ENT_NAHR")
+	var result: Dictionary = _do(
+		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA", "direction": "UP"}
+	)
+	assert_true(bool(result["ok"]), "da NEUTRAL si sale: %s" % str(result["error"]))
+	assert_eq(session.service.relation_level("ENT_NAHR", "ENT_LYRA"), "ALLY", "NEUTRAL -> ALLY")
+	assert_eq(session.service.hand_size("ENT_NAHR"), hand_before - 1, "il Bond e stato speso")
+
+
+## **E il pavimento del consenso sta nel dato**, non nel codice (D-502):
+## `forge_rules.consent_from` sulla Chronicle. Provato girandolo, perche' un
+## interruttore che nessuno legge da' sempre la stessa risposta e sembra
+## funzionare: la **stessa** Azione, sulla **stessa** coppia, passa col
+## pavimento scritto e viene rifiutata con quello alzato.
+func test_the_consent_floor_comes_from_the_chronicle() -> void:
+	# La Chronicle che il risolutore **tiene** non e' `chronicle_def()`: la pesca
+	# delle case e della mappa se ne fa una copia, e quella copia resta al lato
+	# nuovo dell'interruttore. Si gira la sua, e si rimette la sua.
+	var written: Dictionary = session.actions.get("_chronicle") as Dictionary
+	var raised: Dictionary = written.duplicate(true)
+	raised["forge_rules"] = {"consent_from": "ALLY"}
+	session.actions.set("_chronicle", raised)
 	var refused: Dictionary = _do(
 		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA", "direction": "UP"}
 	)
-	assert_false(bool(refused["ok"]), "senza consenso non si sale")
-
-	var hand_before: int = session.service.hand_size("ENT_NAHR")
-	var result: Dictionary = _do(
-		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA", "direction": "UP", "consent": true}
+	assert_false(bool(refused["ok"]), "col pavimento ad alleata, da neutrale non si sale piu'")
+	assert_true(
+		str(refused["error"]).contains("neutrale"),
+		"e il motivo dice a che punto e il rapporto: «%s»" % str(refused["error"])
 	)
-	assert_true(bool(result["ok"]), "con consenso e un BONDS si sale: %s" % str(result["error"]))
-	assert_eq(session.service.relation_level("ENT_NAHR", "ENT_LYRA"), "ALLY", "NEUTRAL -> ALLY")
-	assert_eq(session.service.hand_size("ENT_NAHR"), hand_before - 1, "il Bond e stato speso")
+	assert_eq(
+		session.service.relation_level("ENT_NAHR", "ENT_LYRA"), "NEUTRAL", "e niente si e mosso"
+	)
+	session.actions.set("_chronicle", written)
+	var allowed: Dictionary = _do(
+		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA", "direction": "UP"}
+	)
+	assert_true(
+		bool(allowed["ok"]),
+		"col pavimento scritto la stessa Azione passa: %s" % str(allowed["error"])
+	)
+
+
+## **E il verso non si indovina** (D-502): un'Azione che non dice da che parte
+## muove il rapporto si rifiuta, invece di prendere «UP» di ripiego. Il ripiego
+## faceva eseguire cinque facce su ventuno al contrario di quello che stampano.
+func test_forge_without_a_direction_is_refused() -> void:
+	var refused: Dictionary = _do(
+		"ENT_NAHR", "FORGE", {"target_entity_id": "ENT_LYRA"}
+	)
+	assert_false(bool(refused["ok"]), "senza verso non si forgia")
+	assert_true(
+		str(refused["error"]).contains("da che parte"),
+		"e il motivo lo dice: «%s»" % str(refused["error"])
+	)
+
+
+## L'unica porta chiusa: chi ti e' nemica non sale di un passo con te. Da
+## ostile invece si risale, ed e' cio' che tiene la pista a due sensi.
+func test_an_enemy_does_not_climb_back_by_card() -> void:
+	_do("ENT_ALDRIC", "FORGE", {"target_entity_id": "ENT_NAHR", "direction": "DOWN"})
+	assert_eq(session.service.relation_level("ENT_ALDRIC", "ENT_NAHR"), "ENEMY", "HOSTILE -> ENEMY")
+	var refused: Dictionary = _do(
+		"ENT_ALDRIC", "FORGE", {"target_entity_id": "ENT_NAHR", "direction": "UP"}
+	)
+	assert_false(bool(refused["ok"]), "da nemica non si risale con una carta")
+	assert_true(
+		str(refused["error"]).contains("nemica"),
+		"e il motivo si legge in italiano: «%s»" % str(refused["error"])
+	)
 
 
 func test_forge_down_is_free_and_public() -> void:

@@ -15,6 +15,7 @@ const TagRules := preload("res://scripts/world/tag_rules.gd")
 const StoneRules := preload("res://scripts/world/stone_rules.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
 const TEMPLATES: Array = [
 	"ACQUIRE", "MOVE", "INFLUENCE", "FORGE", "SCHEME", "CLAIM", "MARK",
@@ -387,15 +388,49 @@ func _influence_uses_presence(entity_id: String, tension_id: String, delta: int)
 	return directions.has("UP" if delta > 0 else "DOWN")
 
 
+## **Il consenso lo da' il rapporto, non una bandiera** (D-502).
+##
+## La regola resta quella scritta sulla plancia — *salire chiede il consenso
+## dell'altra casa* — ma fino a qui il consenso era un `bool` nei parametri, e
+## **nessuno lo alzava**: il cervello se lo dava da solo per conto del bersaglio
+## (una finzione: il consenso di un'altra casa non lo dichiara chi lo chiede), e
+## il menu di una persona lo lasciava sempre falso. Misurato: al posto di una
+## persona **tutte e sedici le facce FORGIARE che salgono erano rifiutate**, e
+## il verbo intero era ingiocabile.
+##
+## Adesso il consenso e' un **fatto del tavolo che si legge**: una casa accetta
+## di salire finche' il rapporto e' almeno `consent_from`, e rifiuta sotto. Con
+## il pavimento sull'ultimo gradino resta **una sola porta chiusa** — non si
+## giura con chi ti ha giurato guerra — e da OSTILE si puo' ancora risalire,
+## che e' quello che rende la pista a due sensi invece che a senso unico.
+##
+## Il pavimento **sta scritto nella Chronicle** — `forge_rules.consent_from`,
+## in CHR_00 `HOSTILE` — quindi si cambia con una parola e si legge dove un
+## lettore lo cerca. Una Chronicle che non lo dichiara prende lo stesso
+## pavimento di ripiego, che e' il gradino subito sopra il nemico.
+func _consent_floor() -> String:
+	var rules: Dictionary = _chronicle.get("forge_rules", {}) as Dictionary
+	return str(rules.get("consent_from", WorldStateService.RELATION_ORDER[1]))
+
+
 func _check_forge(entity_id: String, params: Dictionary) -> String:
 	var other: String = str(params.get("target_entity_id", ""))
 	if not world["entities"].has(other) or other == entity_id:
 		return "bersaglio non valido '%s'" % other
-	var direction: String = str(params.get("direction", "UP"))
+	# **Il verso lo dice la faccia** (D-502): senza, non si indovina. Un ripiego
+	# a «UP» faceva eseguire cinque facce su ventuno al contrario di quello che
+	# stampano, e la guardia dei dati adesso pretende che ogni faccia lo scriva.
+	var direction: String = str(params.get("direction", ""))
+	if direction == "":
+		return "quest'Azione non dice da che parte muove il rapporto"
 	var current: String = service.relation_level(entity_id, other)
 	if direction == "UP":
-		if not bool(params.get("consent", false)):
-			return "salire di un passo richiede il consenso di %s" % other
+		var floor_level: String = _consent_floor()
+		if WorldStateService.RELATION_ORDER.find(current) \
+				< WorldStateService.RELATION_ORDER.find(floor_level):
+			return "%s non sale di un passo con chi le e' %s" % [
+				other, SignLabels.relation(current)
+			]
 		if WorldStateService.shift_relation(current, 1) == current:
 			return "la relazione e gia al massimo"
 		if _pick_bond(entity_id, params) == "" \
@@ -1196,6 +1231,8 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	# fra dieci Pietre, si prende quella. Il parametro arriva da qui e non da chi
 	# gioca, perche' non e' una sua scelta — e' quello che la carta e'.
 	var builds: String = ""
+	## Il verso del rapporto che la faccia FORGIARE stampa (D-502).
+	var turn: String = ""
 	# **E quanti segni lascia** (D-423). SEGNARE non ha un effetto suo: il suo
 	# effetto **sono** i segni stampati sulla faccia, che `_face_signs` posa
 	# dopo. Un'Azione legale che non fa niente e non avvisa e' il difetto
@@ -1205,6 +1242,7 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 	if chosen >= 0 and chosen < face_actions.size():
 		kind = str((face_actions[chosen] as Dictionary).get("template", ""))
 		builds = str((face_actions[chosen] as Dictionary).get("builds", ""))
+		turn = str((face_actions[chosen] as Dictionary).get("direction", ""))
 		for field in ["puts_tag", "clears_tag"]:
 			signs += ((face_actions[chosen] as Dictionary).get(field, []) as Array).size()
 		if kind == "":
@@ -1230,6 +1268,16 @@ func _card_request(entity_id: String, params: Dictionary) -> Dictionary:
 		merged["discard_asset_id"] = asset_id
 	if builds != "":
 		merged["structure_type"] = builds
+	# **E la faccia detta il verso** (D-502). `card_action.params.direction` e'
+	# uno solo per tutte e due le Azioni stampate, e dieci carte su undici ne
+	# stampano due che vanno in versi opposti: «Prestarli» sale, «Toglierli di
+	# mezzo» scende. Misurato: **cinque facce su ventuno** venivano eseguite al
+	# contrario di quello che stampano, e le altre prendevano il ripiego «UP»
+	# che nessuno aveva scritto. Sta qui e non prima perche' i parametri della
+	# carta vengono dopo quelli di chi gioca: il verso della faccia vince su
+	# tutti e due, come `builds`.
+	if turn != "":
+		merged["direction"] = turn
 	if kind == "MARK":
 		merged["face_signs"] = signs
 		# **Per SEGNARE, il posto dei segni e' il luogo da segnare** (D-490).

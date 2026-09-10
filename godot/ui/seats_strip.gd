@@ -14,17 +14,20 @@ extends HBoxContainer
 ## dito (D-243).
 
 const DropSlot := preload("res://ui/drop_slot.gd")
+const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
-## I cinque livelli di un rapporto, col loro colore: gli stessi della colonna.
 ## I rapporti in parole: «hostile» e «neutral» stavano sotto gli occhi di chi
-## gioca, in inglese, nella striscia e nella colonna (D-463).
-const RELATION_WORDS: Dictionary = {
-	"HOSTILE": "ostile", "COLD": "fredda", "NEUTRAL": "neutrale",
-	"WARM": "calda", "ALLY": "alleata",
-}
+## gioca, in inglese (D-463).
+##
+## **Le parole non stanno piu' qui** (D-502). La tabella che c'era era
+## un'**altra scala** — HOSTILE, COLD, NEUTRAL, WARM, ALLY — con due gradini
+## che il motore non ha e senza i due estremi che ha: chi arrivava a nemica o a
+## vincolata si rileggeva l'id inglese. Adesso le parole le da' `SignLabels`,
+## dove stanno tutte le altre, e questa vista tiene solo i **colori**.
+const RELATION_WORDS: Dictionary = SignLabels.RELATION_WORDS
 const RELATIONS: Dictionary = {
-	"HOSTILE": "#c8553d", "COLD": "#c99a4e", "NEUTRAL": "#8a8172",
-	"WARM": "#6fa88a", "ALLY": "#7fa6c9",
+	"ENEMY": "#a33b2a", "HOSTILE": "#c8553d", "NEUTRAL": "#8a8172",
+	"ALLY": "#6fa88a", "BOUND": "#7fa6c9",
 }
 
 ## Gli stessi colori dei seggi della mappa, per ordine di turno (D-050).

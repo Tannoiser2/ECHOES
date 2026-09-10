@@ -639,6 +639,25 @@
             }
           }
         },
+        "forge_rules": {
+          "type": "object",
+          "description": "Quando un'altra casa accetta di salire di un gradino (D-502). Salire chiede il consenso dell'altra casa, e il consenso non e' una bandiera che alza chi lo chiede: e' un fatto del tavolo che si legge dal rapporto. Scendere non chiede niente a nessuno.",
+          "additionalProperties": false,
+          "properties": {
+            "consent_from": {
+              "type": "string",
+              "enum": [
+                "ENEMY",
+                "HOSTILE",
+                "NEUTRAL",
+                "ALLY",
+                "BOUND"
+              ],
+              "default": "HOSTILE",
+              "description": "Il gradino piu' basso da cui una casa accetta ancora di salire. A HOSTILE resta murata una porta sola - non si giura con chi ti ha giurato guerra - e da ostile si risale, che e' quello che tiene la pista a due sensi. A NEUTRAL la pista diventa a senso unico: scendere gratis, e da ostile nessuna carta riporta su. Riaprire la porta murata e' cosa del Consiglio, non di una carta."
+            }
+          }
+        },
         "tension_pool": {
           "type": "object",
           "description": "Assemble the Chronicle's Tensions from the library instead of listing them. The draw is seeded, so the same seed always deals the same year.",

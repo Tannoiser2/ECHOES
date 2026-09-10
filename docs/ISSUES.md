@@ -10213,11 +10213,22 @@ si puo' giocare.
    (20%) a 9 (3%)**, e di quelle una sola e' mano vuota. Il cancello resta **0
    su 8** e le Verita' salgono da 325 a **360** (misto) e da 324 a **402**
    (uniforme);
-3. **le Azioni fanno qualcosa** — dei nove blocchi rimasti, **dodici ragioni su
-   tredici** sono *«la carta arriva al luogo, ma l'Azione e' rifiutata lo
-   stesso»*: sempre *Giuramento* e *Promessa di Nozze*, FORGIARE che chiede
-   un'altra casa **e il suo consenso**. E' quello che resta da rimediare, ed e'
-   adesso **la causa principale**;
+3. ✔ **le Azioni fanno qualcosa** — **fatto in 0.1.472**
+   ([D-502](DECISIONS.md#d-502)). Il difetto era piu' grosso di due carte: al
+   posto di una persona **tutte e sedici le facce FORGIARE che salgono erano
+   rifiutate**, sempre, e il cancello non se n'era accorto perche' il tavolo
+   automatico si dava il permesso da solo. Due cause, tutt'e due tolte: **il
+   verso lo dichiara la faccia** e non piu' la carta — cinque facce su ventuno
+   venivano eseguite al contrario di quello che stampano — e **il consenso e'
+   un fatto del tavolo che si legge**: una casa accetta finche' non le sei
+   nemico — e il pavimento sta scritto in `chronicle_00.json`
+   (`forge_rules.consent_from`), quindi si sposta con una parola.
+
+   Le Occasioni bloccate passano da **24 su 270 (8%) a 14 (5%)**, le ragioni da
+   62 a 17, e quelle che restano **non sono piu' una carta sola**: una coda
+   lunga su sei carte diverse, con quattro dei quattordici a mano vuota (0,93
+   carte in mano). Il cancello resta **0 su 8**; le Verita' salgono a 410 sul
+   misto e scendono a 413 sull'uniforme, e il costo e' scritto nel verbale;
 4. **il potere dell'entita' apre un'Azione sua**;
 5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
    spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
