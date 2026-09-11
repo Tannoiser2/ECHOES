@@ -83,6 +83,18 @@ petali, ogni tessera con la sua casella, nessuna che si gira.
 - **le dieci illustrazioni vanno rifatte**: erano quadrate, ed erano l'unica
   arte finita della scatola.
 
+### Misurato
+
+Cento semi, `--runs=100 --seed=7000`, col tavolo passato da sei tessere a sette:
+
+| | |
+|---|---|
+| **seggi bloccati su un solo livello** | **0 su 8**, tavolo misto *e* uniforme |
+| Consigli per anno (tavolo uniforme) | media 5,25 · mediana 5 · da 3 a 6 |
+| Verità scritte (tavolo uniforme) | 431, di cui 428 diverse |
+
+E la suite: **838 prove in 129 suite, 90.804 asserzioni**, tutto verde.
+
 ### Aperto
 
 - **[ISSUES 138](docs/ISSUES.md#138) — la distanza sulla mappa non la legge
