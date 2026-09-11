@@ -35,6 +35,12 @@ var log: RefCounted
 ## Set by ConfluenceController: the Truth register keeps the *filled* sentence,
 ## because a $slot left in the permanent record would be a bug nobody can undo.
 var narrative: RefCounted = null
+## Anche questo lo passa il ConfluenceController, e serve a una cosa sola: il
+## **nome che la casa aveva quell'anno**. Fra due Chronicle passa un secolo e la
+## persona cambia mentre la casa resta (D-045), quindi un verbale che scrive il
+## nome deve scrivere quello di allora — e chi lo sa dire e' `name_of`, in un
+## posto solo.
+var service: RefCounted = null
 
 
 func _init(p_world: Dictionary, p_data: RefCounted, p_applier: RefCounted, p_log: RefCounted) -> void:
@@ -78,6 +84,19 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 	var template: Dictionary = data.confluence_template_for(str(context["tension_id"]))
 	var summary: String = _summary(template, context, result)
 
+	# **E di chi e'** (ISSUES 136, punto 6). Fino a qui il ricordo portava chi
+	# c'era (`participants`) e com'e' andata (`outcome`), e non chi **ha
+	# ottenuto**: le case partecipano a quasi tutti i Consigli — 3,1 su 3,73
+	# Echi l'anno — quindi «c'ero» non distingue nessuno, e il valutatore dei
+	# Destini attaccava lo stesso Eco come prova a tutti quanti.
+	#
+	# Adesso il ricordo dice il lato che ha vinto, **la casa che l'ha guidato**,
+	# chi stava con lei e chi le stava contro. Al tavolo e' la cosa piu' ovvia
+	# del mondo — la Verita' la scrive qualcuno — e serve alla saga, che eredita
+	# la Cronaca e fino a ieri non sapeva dire chi aveva ottenuto cosa.
+	var side: String = str(result.get("winner", ""))
+	var sides: Dictionary = context.get("sides", {}) as Dictionary
+	var other: String = "" if side == "" else ("B" if side == "A" else "A")
 	var echo: Dictionary = {
 		"echo_id": echo_id,
 		"title": str(template.get("echo_title_template", template["title"])),
@@ -88,6 +107,10 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 		"effect_ids": effect_ids.duplicate(),
 		"tension_id": str(context["tension_id"]),
 		"outcome": str(result["outcome"]),
+		"winning_side": side,
+		"won_by": _leader_of(sides, side),
+		"won_with": _seats_of(sides, side),
+		"lost_by": _seats_of(sides, other),
 	}
 
 	var applied: Array = []
@@ -116,6 +139,28 @@ func record(context: Dictionary, result: Dictionary, effect_ids: Array, source: 
 	return applied
 
 
+## Chi guidava quel lato, e chi ci stava. Vuoti quando non ha vinto nessuno:
+## li' non c'e' una casa di cui dire il nome, e scriverne una sarebbe peggio che
+## non scrivere niente.
+func _leader_of(sides: Dictionary, side: String) -> String:
+	if side == "":
+		return ""
+	return str((sides.get(side, {}) as Dictionary).get("leader", ""))
+
+
+func _seats_of(sides: Dictionary, side: String) -> Array:
+	if side == "":
+		return []
+	return ((sides.get(side, {}) as Dictionary).get("seats", []) as Array).duplicate()
+
+
+## Il nome che la casa aveva **quell'anno**, o l'id se nessuno sa dirlo.
+func _house(entity_id: String) -> String:
+	if entity_id == "" or service == null:
+		return entity_id
+	return str(service.name_of(entity_id))
+
+
 func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> String:
 	# Il registro tiene la domanda che ha vinto, o che nessuna e' arrivata al
 	# mucchio (D-467). Niente proposta, niente dado: da D-472 e' l'unico giro.
@@ -132,4 +177,10 @@ func _summary(template: Dictionary, context: Dictionary, result: Dictionary) -> 
 			asked = str((entry as Dictionary).get("text", ""))
 	if narrative != null:
 		asked = narrative.fill(asked, context.get("text_bindings", {}))
-	return "Il Consiglio rispose: %s (%s)." % [asked, count]
+	# **E il ricordo porta il nome di chi l'ha ottenuta.** Una Verita' che dice
+	# cosa il mondo ha deciso e non per mano di chi e' meta' verbale: la saga la
+	# eredita e non sa a chi darne merito.
+	var leader: String = _house(_leader_of(context.get("sides", {}) as Dictionary, winner))
+	if leader == "":
+		return "Il Consiglio rispose: %s (%s)." % [asked, count]
+	return "Il Consiglio rispose: %s — l'ha ottenuta %s (%s)." % [asked, leader, count]

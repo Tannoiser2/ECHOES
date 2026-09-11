@@ -273,10 +273,10 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **141** |
-| chiuse | **129** |
-| aperte | **12** |
+| chiuse | **130** |
+| aperte | **11** |
 | di cui **aspettano una tua decisione** | **0** |
-| di cui sono mie da fare | **12** |
+| di cui sono mie da fare | **11** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
 
@@ -307,10 +307,10 @@ aspetta me, non devi farci niente.
 |---|---|---|
 | 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
-| 🟡 | **3** | **io**, da sola, senza aspettare niente |
+| 🟡 | **2** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Tre.** Delle dodici voci aperte, tre le posso muovere senza di te — ed è il
+**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
 numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
@@ -676,7 +676,7 @@ La cosa onesta da dire è che **non so se questa voce sia ancora vera**.
 
 ---
 
-# 🟡 Sono mie, e non aspettano niente: **tre**
+# 🟡 Sono mie, e non aspettano niente: **due**
 
 Erano quattordici in 0.1.397, dieci arrivate qui dalle rosse
 ([D-427](DECISIONS.md#d-427)). Sei si erano chiuse e una era uscita dalla lista
@@ -1002,7 +1002,7 @@ una»*: non e' vero da [D-283](DECISIONS.md#d-283), il motore esegue l'Azione ch
 scegli, e su venti anni **56 calate su 563** pronunciano un verbo che il
 `card_action` non nomina nemmeno. Se n'e' andata senza sostituto.
 
-### M18. [136](ISSUES.md#136) — passare senza poter fare nulla: **aperta in 0.1.466**
+### ✔ M18. [136](ISSUES.md#136) — passare senza poter fare nulla: **aperta in 0.1.466**
 
 Hai giocato un anno intero e hai scritto: *«ho passato l'atto 2 e 3 senza carte
 in mano e ho dovuto passare, questo e' inaccettabile»*.
@@ -1547,16 +1547,19 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 
 # E una cosa che non è una voce: l'arte
 
-**150 illustrazioni su 161 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I
-prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due
-decisioni che lo bloccavano — il formato di una carta e come si disegna una
-tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista
-perché non è una voce: è la scatola.
+<!-- ARTE: inizio - generato da tools/issues_survey.py -->
 
-**E una riga trovata qui, in 0.1.406:** quel conto di 161 guarda carte Asset,
-Echi, tessere, case e Destini. **Le diciannove carte Obiettivo portano un prompt
-scritto e non ci sono dentro** — quindi i soggetti veri da disegnare sono di più
-di quanto quel numero dica. Non apro una voce: è una riga sotto questa.
+**121 illustrazioni su 132 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due decisioni che lo bloccavano — il formato di una carta e come si disegna una tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista perché non è una voce: è la scatola.
+
+| mazzo | soggetti | disegnati | da fare |
+|---|---|---|---|
+| Carte Asset | 48 | 1 | **47** |
+| Carte **Casata** (una per vita) | 32 | 0 | **32** |
+| Carte Destino | 23 | 0 | **23** |
+| Carte Obiettivo | 19 | 0 | **19** |
+| Tessere Regione | 10 | 10 | **0** |
+
+<!-- ARTE: fine -->
 
 ---
 
@@ -1581,8 +1584,8 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
-muovere **tre** da sola. Due le verifica una persona che gioca, sette stanno
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
 fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->

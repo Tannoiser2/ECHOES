@@ -174,7 +174,7 @@ Non si gioca: si conta a fine anno, clausola per clausola.
 |---|---|
 | il titolo | 19 su 19 |
 | il sottotitolo | 19 su 19 |
-| l'illustrazione | 18 su 19 |
+| l'illustrazione | 19 su 19 |
 | una riga di testo libero | 19 su 19 |
 | **CONTA** | 19 su 19 |
 

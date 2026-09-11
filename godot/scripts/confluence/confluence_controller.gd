@@ -82,6 +82,7 @@ func _init(
 	narrative = NarrativeText.new(p_world, p_data, service)
 	recorder = EchoRecorder.new(p_world, p_data, p_applier, p_log)
 	recorder.narrative = narrative
+	recorder.service = service
 	_chronicle = data.chronicles[world["chronicle_id"]]
 
 
