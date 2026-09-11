@@ -9,6 +9,7 @@ extends RefCounted
 
 const Effect := preload("res://scripts/core/effect.gd")
 const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
+const ObjectiveBridge := preload("res://scripts/world/objective_bridge.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const Succession := preload("res://scripts/chronicle/succession.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
@@ -1238,7 +1239,122 @@ static func _build_personal_decks(
 				continue
 			empty_rounds = 0
 			pile.append(str(draw.pop_front()))
+		# **E poi il mazzetto ascolta anche quello che la casa vuole** (ISSUES
+		# 136, punto 5): fin qui ha guardato solo la mappa.
+		_deck_listens_to_its_objectives(pile, entity_id, world, data, identity)
 		world["personal_decks"][id] = {"draw": rng.shuffle(pile), "discard": []}
+
+
+## **Un obiettivo che il mazzetto non puo' nemmeno provare e' decorazione.**
+##
+## Misurato prima di scriverlo (`cli/run_bridge_probe.gd`, 200 semi dal 7000):
+## su 2400 coppie casa-obiettivo, **904 chiedono qualcosa alle carte** — un
+## gesto da fare quest'anno, o carte di una famiglia — e **94 (il 10,4%) il
+## mazzetto non le poteva servire**, con un seggio su nove che si sedeva con un
+## obiettivo scoperto. E la causa era quasi sempre la stessa: *«Le Cose
+## Scritte»* chiede due carte Sapere e *«La Casa Legata»* una carta Legami, e
+## una casa che sta su Eredan e sulla Valle non pesca ne' Sapere ne' Legami —
+## **mai**, per costruzione.
+##
+## Quindi dopo la composizione sulla mappa si guarda la scheda: se resta un
+## obiettivo che il mazzetto non puo' servire, **entra una carta che lo serve al
+## posto della piu' ridondante** — quella la cui famiglia nel mazzetto e' gia'
+## la piu' rappresentata. E' la stessa forma del rimedio delle tessere
+## ([D-313](../../../docs/DECISIONS.md#d-313)): non si aggiunge, si **scambia**,
+## cosi' il mazzetto resta di diciotto.
+##
+## **Al tavolo e' un gesto solo, e si fa una volta:** composto il mazzetto,
+## giri i tuoi tre obiettivi e chiedi *«ho una carta che sappia farlo?»*. Se no,
+## ne peschi una che lo sa dal mazzo della famiglia che ti serve e rimetti giu'
+## la piu' inutile. Ed e' anche **la combo che il committente ha chiesto**: la
+## scheda degli obiettivi cambia il mazzo, non solo la mappa.
+##
+## Le carte entrano **dai mazzi comuni**, come tutte le altre: il mazzetto non
+## fabbrica copie che nella scatola non ci sono.
+static func _deck_listens_to_its_objectives(
+	pile: Array, entity_id: String, world: Dictionary, data: RefCounted, identity: int
+) -> void:
+	if data == null:
+		return
+	var entity: Dictionary = (world["entities"] as Dictionary)[entity_id] as Dictionary
+	for objective_id in (entity.get("objectives", []) as Array):
+		var objective: Variant = data.objectives.get(str(objective_id))
+		if objective == null:
+			continue
+		var asks: Dictionary = ObjectiveBridge.asks_of_deck(objective as Dictionary)
+		for verb in (asks["verbs"] as Array):
+			if ObjectiveBridge.cards_serving(pile, data, str(verb)).is_empty():
+				_swap_in(pile, world, data, identity, str(verb), "")
+		for family in (asks["families"] as Dictionary):
+			var wanted: int = int((asks["families"] as Dictionary)[family])
+			while ObjectiveBridge.cards_of_family(pile, data, str(family)) < wanted:
+				if not _swap_in(pile, world, data, identity, "", str(family)):
+					break
+
+
+## Fa entrare nel mazzetto una carta che sappia `verb` (o che sia della famiglia
+## `family`) e ne fa uscire la piu' ridondante. Falso se non c'e' niente da far
+## entrare: allora l'obiettivo resta scoperto, e **e' meglio di un mazzetto che
+## si gonfia** — la sonda lo conta.
+static func _swap_in(
+	pile: Array, world: Dictionary, data: RefCounted, identity: int,
+	verb: String, family: String
+) -> bool:
+	var comes_in: String = ""
+	var from_family: String = ""
+	# Le famiglie si guardano in ordine fisso: la pesca resta riproducibile.
+	var order: Array = [family] if family != "" else ASSET_FAMILIES
+	for candidate_family in order:
+		var deck: Variant = (world["decks"] as Dictionary).get(str(candidate_family))
+		if deck == null:
+			continue
+		var draw: Array = (deck as Dictionary)["draw"] as Array
+		for i in range(draw.size()):
+			var asset: Variant = data.assets.get(str(draw[i]))
+			if asset == null:
+				continue
+			if verb != "" and not ObjectiveBridge.face_serves(asset as Dictionary, verb):
+				continue
+			comes_in = str(draw[i])
+			from_family = str(candidate_family)
+			draw.remove_at(i)
+			break
+		if comes_in != "":
+			break
+	if comes_in == "":
+		return false
+	# **Chi esce**: la carta la cui famiglia nel mazzetto e' la piu'
+	# rappresentata, guardando dal fondo — cosi' le carte d'identita', che
+	# stanno in testa, escono per ultime. Se non ne esce nessuna il mazzetto si
+	# allunga di una, e quello sarebbe un mazzetto diverso dagli altri.
+	var counts: Dictionary = {}
+	for asset_id in pile:
+		var asset: Variant = data.assets.get(str(asset_id))
+		if asset != null:
+			var fam: String = str((asset as Dictionary)["family"])
+			counts[fam] = int(counts.get(fam, 0)) + 1
+	var goes_out: int = -1
+	var worst: int = 1
+	for i in range(pile.size() - 1, identity - 1, -1):
+		var asset: Variant = data.assets.get(str(pile[i]))
+		if asset == null:
+			continue
+		var fam: String = str((asset as Dictionary)["family"])
+		if int(counts.get(fam, 0)) > worst:
+			worst = int(counts[fam])
+			goes_out = i
+	if goes_out < 0:
+		((world["decks"] as Dictionary)[from_family] as Dictionary)["draw"].append(comes_in)
+		return false
+	var leaving: String = str(pile[goes_out])
+	pile[goes_out] = comes_in
+	var leaving_asset: Variant = data.assets.get(leaving)
+	if leaving_asset != null:
+		var back: String = str((leaving_asset as Dictionary)["family"])
+		var home: Variant = (world["decks"] as Dictionary).get(back)
+		if home != null:
+			((home as Dictionary)["draw"] as Array).append(leaving)
+	return true
 
 
 ## La ripesca che ascolta (D-079). Al setup l'anno viene pescato alla cieca,

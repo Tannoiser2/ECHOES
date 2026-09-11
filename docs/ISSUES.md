@@ -10138,9 +10138,17 @@ sposta una virgola della partita, che era il punto.
 - quello che nessuna sonda misura: **un Consiglio giocato da persone**.
 
 
-### 136. Passare senza poter fare nulla: la mano, le Azioni e quello che si possiede
+### 136. ✅ Passare senza poter fare nulla: la mano, le Azioni e quello che si possiede — CHIUSA in 0.1.478: tutti e sette i punti
 
-`regole` · `ux` · voluta dal committente · **aperta in 0.1.466**
+`regole` · `ux` · voluta dal committente · aperta in 0.1.466 · **chiusa in 0.1.478**
+
+> **Il giro intero, in una riga.** Le Occasioni in cui una persona resta senza
+> niente da fare: **20% → 3% → 8% → 5% → 1% → 0%**, in cinque versioni. Il
+> rubinetto della mano (D-499), le Azioni che fanno qualcosa (D-502), il potere
+> della casa (D-503), il ritmo a cinque scritto dal committente (D-504), le
+> coperte che si guadagnano sulla mappa (D-505), le copie che sono copie
+> (D-507), e in fondo le due cose che restavano: **il mazzetto ascolta anche
+> quello che vuoi** (D-509) e **l'Eco dice di chi e'** (D-508).
 
 Il committente, dopo un anno giocato a mano:
 
@@ -10245,8 +10253,30 @@ si puo' giocare.
    da **14 su 270 (5%) a 5 (1%)**, e **la mano vuota come causa arriva a zero**.
    I Consigli per anno scendono di cinque centesimi, e il costo e' scritto nel
    verbale; il cancello resta **0 su 8**;
-5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
-   spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
+5. ✔ **gli obiettivi entrano nel mazzetto** — **fatto in 0.1.478**
+   ([D-509](DECISIONS.md#d-509)). Il ponte mancava, ed era piu' largo di come
+   l'avevo scritto qui: non «solo due nominano una famiglia», ma **sei obiettivi
+   su 19 chiedono un gesto fatto quest'anno** — e un gesto lo fa una faccia di
+   carta: RAISE_STONE lo fa ACQUISIRE **che costruisce**, TAKE_GROUND
+   RIVENDICARE, SPREAD MUOVERE, TIGHTEN_BOND FORGIARE — piu' tre che chiedono
+   carte di una famiglia.
+
+   Misurato su 200 semi, solo il montaggio: di **904 coppie casa-obiettivo che
+   chiedono qualcosa alle carte**, **94 (il 10,4%) il mazzetto non le poteva
+   servire**, e un seggio su nove si sedeva con un obiettivo che non poteva
+   nemmeno provare. La causa non erano i gesti (7 casi in tutto): erano le
+   famiglie — *«Le Cose Scritte»* chiede due carte Sapere, *«La Casa Legata»*
+   una carta Legami, e una casa che sta su Eredan e sulla Valle non ne pesca
+   **mai**, per costruzione.
+
+   Adesso, composto il mazzetto sulla mappa, si guardano i tre obiettivi: se ne
+   resta uno scoperto **entra una carta che lo serve al posto della piu'
+   ridondante**, che e' la stessa forma del rimedio delle tessere
+   ([D-313](DECISIONS.md#d-313)). Le coppie scoperte passano da **94 a 0**, il
+   mazzetto resta di diciotto e nessuna carta esiste in piu' copie di quante la
+   scatola ne ha. **Il margine e' zero e sta scritto**: a montaggio finito
+   Sapere e Legami arrivano a 0 carte nei mazzi comuni, quindi il prestito oggi
+   c'e' e domani potrebbe non esserci;
 
    **E il mazzo di Echi non si fa piu': le carte Eco non esistono.** Il
    committente aveva chiesto di contarli — *«gli echi sono solo tre/quattro per
@@ -10259,12 +10289,20 @@ si puo' giocare.
    ([D-500](DECISIONS.md#d-500)) le 48 carte Eco se ne sono andate. L'Eco-**ricordo**
    — `CREATE_ECHO`, le Verita', la Cronaca che la saga eredita — resta intero;
 
-6. **l'Eco non sa di chi e'** — il payload porta `participants`, `outcome`,
-   `tension_id`; chi ha **vinto** no. Le case partecipano a quasi tutti gli Echi
-   (3,1-4,0 su 3,73 scritti), quindi «partecipare» non distingue nessuno. Era
-   nato come ostacolo al mazzo di Echi, e quel mazzo non si fa piu': **il buco
-   resta lo stesso**, perche' la Cronaca che la saga eredita non sa dire chi ha
-   ottenuto cosa;
+6. ✔ **l'Eco non sa di chi e'** — **fatto in 0.1.478**
+   ([D-508](DECISIONS.md#d-508)). Il payload porta adesso il lato che ha vinto,
+   **la casa che l'ha guidato**, chi stava con lei e chi le stava contro:
+   quattro cose che il tavolo aveva gia' in mano e che si perdevano al momento
+   di scrivere il ricordo. La **Verita' permanente porta il nome** di chi l'ha
+   ottenuta — col nome che la casa aveva quell'anno
+   ([D-045](DECISIONS.md#d-045)) — e la prova sotto il Destino dice il ruolo
+   invece del solo riassunto: *«l'hai ottenuta tu»*, *«stavi con chi l'ha
+   ottenuta»*, *«ti sei opposto e hai perso»*, *«eri al tavolo»*.
+
+   E il numero dice perche' serviva: una casa **partecipa** a 4,0-4,6 Echi
+   l'anno — tutti uguali — e ne **ottiene** da **0,60 a 1,50**. Partecipare non
+   distingueva niente; ottenere distingue di due volte e mezzo. Un Eco vecchio,
+   senza quei campi, resta leggibile e dice solo «eri al tavolo»;
 7. ✔ **un'altra ora con l'app in mano** — **fatta in 0.1.477**
    ([D-507](DECISIONS.md#d-507)). Ha trovato due cose, e tutt'e due erano
    misurabili col menu in mano (`cli/run_menu_probe.gd`, dieci anni dal seme

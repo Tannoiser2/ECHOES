@@ -44,6 +44,8 @@ func _initialize() -> void:
 	var truths: int = 0
 	var years: int = 0
 	var by_seat: Dictionary = {}
+	var won_by: Dictionary = {}
+	var nobody_won: int = 0
 	var seatings: Dictionary = {}
 	var by_band: Dictionary = {}
 
@@ -65,16 +67,22 @@ func _initialize() -> void:
 			match str(effect.get("type", "")):
 				"CREATE_ECHO":
 					echoes += 1
-					# **A chi va l'Eco non e' scritto da nessuna parte**, ed e'
-					# il primo risultato di questa sonda. Il payload porta
-					# `participants`, `outcome`, `tension_id` — chi ha **vinto**
-					# no. Un mazzo fatto di Echi avrebbe bisogno di saperlo, e
-					# oggi il motore non lo sa: si contano i partecipanti, che
-					# e' il piu' vicino che il dato consente.
+					# **E adesso a chi va l'Eco sta scritto** (D-508, ISSUES
+					# 136 punto 6). Il primo risultato di questa sonda era che
+					# il payload portava `participants`, `outcome`,
+					# `tension_id` — e chi aveva **vinto** no, quindi la sonda
+					# poteva contare solo chi c'era. Ora conta tutt'e due, e le
+					# due colonne messe in fila dicono quanto «partecipare»
+					# distingueva poco.
 					var payload: Dictionary = effect.get("payload", {}) as Dictionary
 					for who in (payload.get("participants", []) as Array):
 						var id: String = str(who)
 						by_seat[id] = int(by_seat.get(id, 0)) + 1
+					var leader: String = str(payload.get("won_by", ""))
+					if leader == "":
+						nobody_won += 1
+					else:
+						won_by[leader] = int(won_by.get(leader, 0)) + 1
 				"APPEND_TRUTH":
 					truths += 1
 		# **I Consigli si contano dal riepilogo dell'anno, non da un registro
@@ -101,16 +109,22 @@ func _initialize() -> void:
 		(float(echoes) / n) * 100.0 / 5.58
 	))
 	print("")
-	print("  PER CASA — a quanti Echi **partecipa** in un anno che gioca
-  (chi li vince non e' scritto nel dato: e' il primo buco che questa sonda trova)")
+	print("  PER CASA, in un anno che gioca: a quanti Echi **partecipa**, e quanti")
+	print("  ne **ottiene** — che e' la colonna che prima non si poteva scrivere.")
+	print("    %-22s %8s %8s" % ["casa", "al tavolo", "ottenuti"])
 	var ids: Array = seatings.keys()
 	ids.sort()
 	for id in ids:
 		var sat: float = maxf(1.0, float(seatings[id]))
-		print("    %-22s %5.2f" % [
+		print("    %-22s %8.2f %8.2f" % [
 			str(data.entities.get(str(id), {}).get("name", id)).substr(0, 21),
 			float(by_seat.get(str(id), 0)) / sat,
+			float(won_by.get(str(id), 0)) / sat,
 		])
+	print("")
+	print("  Echi che nessuno ha ottenuto (nessuna domanda al mucchio): %d su %d" % [
+		nobody_won, echoes,
+	])
 	print("")
 	if echoes == 0:
 		print("  ATTENZIONE: zero Consigli contati — la sonda e' cieca lei, non il gioco.")

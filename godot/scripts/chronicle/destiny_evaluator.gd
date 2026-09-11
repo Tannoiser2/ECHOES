@@ -116,9 +116,7 @@ func evaluate(destiny_id: String, holder: String = "") -> Dictionary:
 		if cumulative:
 			reached = str(LEVEL_NAMES[i])
 
-	for echo in world["echo_log"]:
-		if (echo["participants"] as Array).has(entity_id):
-			evidence.append("ECHO %s: %s" % [str(echo["echo_id"]), str(echo["summary"])])
+	evidence.append_array(_echo_evidence(entity_id))
 
 	return {
 		"destiny_id": destiny_id,
@@ -248,9 +246,7 @@ func _by_objectives(
 	for i in range(LEVEL_NAMES.size()):
 		achieved[LEVEL_NAMES[i]] = rung >= i
 
-	for echo in world["echo_log"]:
-		if (echo["participants"] as Array).has(entity_id):
-			evidence.append("ECHO %s: %s" % [str(echo["echo_id"]), str(echo["summary"])])
+	evidence.append_array(_echo_evidence(entity_id))
 
 	return {
 		"destiny_id": destiny_id,
@@ -295,3 +291,35 @@ func describe(result: Dictionary) -> String:
 		"TRIUMPH":
 			label = str(destiny["triumph"]["label"])
 	return "%s - %s: %s" % [who, str(result["level"]), label]
+
+
+## **Gli Echi che ti riguardano, e con che ruolo** (ISSUES 136, punto 6).
+##
+## La riga era «ECHO E3: <riassunto>» per **chiunque fosse al tavolo**, e le
+## case partecipano a quasi tutti i Consigli: la stessa prova finiva sotto il
+## Destino di tutti e non distingueva nessuno. Da D-508 il ricordo dice chi ha
+## ottenuto, chi stava con lui e chi ha perso, quindi la prova lo dice.
+##
+## Gli Echi vecchi — un salvataggio di prima, la Cronaca di un'era passata —
+## non hanno quei campi: li' la riga resta quella di sempre, «eri al tavolo»,
+## che e' tutto quello che quel ricordo sa dire di se'.
+func _echo_evidence(entity_id: String) -> Array:
+	var out: Array = []
+	for echo in world["echo_log"]:
+		var one: Dictionary = echo as Dictionary
+		if not (one.get("participants", []) as Array).has(entity_id):
+			continue
+		out.append("ECHO %s (%s): %s" % [
+			str(one["echo_id"]), _role_in(one, entity_id), str(one["summary"]),
+		])
+	return out
+
+
+func _role_in(echo: Dictionary, entity_id: String) -> String:
+	if str(echo.get("won_by", "")) == entity_id:
+		return "l'hai ottenuta tu"
+	if (echo.get("won_with", []) as Array).has(entity_id):
+		return "stavi con chi l'ha ottenuta"
+	if (echo.get("lost_by", []) as Array).has(entity_id):
+		return "ti sei opposto e hai perso"
+	return "eri al tavolo"

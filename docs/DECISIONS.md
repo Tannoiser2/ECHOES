@@ -10,6 +10,172 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-509 — Il mazzetto ascolta anche quello che vuoi
+
+**implemented in 0.1.478.** Punto 5 di [ISSUES 136](ISSUES.md#136), *«gli
+obiettivi entrano nel mazzetto»* — la voce che il committente ha aperto con
+*«bisogna fare combo tra quello che si ha in mano e quello che fanno fare i tag
+sulla mappa o sulla scheda entita'»*.
+
+### Il ponte che mancava
+
+Il mazzetto personale di [D-499](#d-499) si compone sulle **famiglie che la
+presenza raggiunge**: le tessere dove una casa sta dicono da quali mazzi pesca.
+E' una regola bella e guarda **una cosa sola, la mappa**. Quello che la casa
+*vuole* — i tre obiettivi che l'anno le ha dato — non entrava nel conto.
+
+E gli obiettivi chiedono carte piu' di quanto sembrasse. Non «solo due nominano
+una famiglia»: **sei su 19 chiedono un gesto fatto quest'anno**, e un gesto lo
+fa una faccia di carta.
+
+| il gesto | la faccia che lo fa | quante carte la portano |
+|---|---|---|
+| RAISE_STONE | ACQUISIRE **che costruisce** | 12 |
+| TAKE_GROUND | RIVENDICARE | 11 |
+| SPREAD | MUOVERE | 10 |
+| TIGHTEN_BOND | FORGIARE | 21 |
+
+La tabella sta in un posto solo — `scripts/world/objective_bridge.gd` — perche'
+la leggono in tre: la sonda che misura il buco, la composizione del mazzetto che
+lo tappa, e la prova che tiene ferma la corrispondenza. E c'e' una **guardia**:
+il giorno in cui qualcuno aggiunge un gesto allo schema senza dire quale faccia
+lo serve, l'obiettivo che lo chiede diventerebbe decorazione, e la prova va
+rossa invece di lasciarlo passare.
+
+### Misurato prima di scriverlo
+
+`cli/run_bridge_probe.gd`, **200 semi dal 7000, solo il montaggio** (non gioca
+l'anno: nessuna policy in mezzo a scegliere):
+
+| | prima | dopo |
+|---|---|---|
+| coppie casa-obiettivo | 2.400 | 2.400 |
+| di quelle, chiedono qualcosa alle carte | 904 (38%) | 904 |
+| **che il mazzetto non poteva servire** | **94 (10,4%)** | **0** |
+| seggi con almeno un obiettivo scoperto | **90 su 800 (11%)** | **0** |
+
+E la causa era quasi sempre la stessa, non i gesti:
+
+| cosa mancava | volte |
+|---|---|
+| KNOWLEDGE: ne chiede 2, nel mazzetto 0 | 49 |
+| BONDS: ne chiede 1, nel mazzetto 0 | 38 |
+| nessuna carta che sappia ACQUISIRE / MUOVERE / RIVENDICARE / FORGIARE | 7 in tutto |
+
+*«Le Cose Scritte»* chiede due carte Sapere e *«La Casa Legata»* una carta
+Legami — e una casa che sta su Eredan e sulla Valle non pesca **ne' Sapere ne'
+Legami, mai, per costruzione**.
+
+### La regola, e come si gioca
+
+Dopo la composizione sulla mappa si guarda la scheda: se resta un obiettivo che
+il mazzetto non puo' nemmeno provare, **entra una carta che lo serve al posto
+della piu' ridondante** — quella la cui famiglia nel mazzetto e' gia' la piu'
+rappresentata, guardata dal fondo, cosi' le carte d'identita' escono per ultime.
+
+E' la stessa forma del rimedio delle tessere ([D-313](#d-313)): non si aggiunge,
+si **scambia**, quindi il mazzetto resta di diciotto (misurato: 18 - 18 su 800
+seggi) e la carta arriva **dai mazzi comuni**, quindi nessuna carta esiste in
+piu' copie di quante la scatola ne ha (misurato: 0).
+
+**Al tavolo e' un gesto solo e si fa una volta:** composto il mazzetto, giri i
+tuoi tre obiettivi e chiedi *«ho una carta che sappia farlo?»*. Se no, ne peschi
+una che lo sa dal mazzo della famiglia che ti serve e rimetti giu' la piu'
+inutile. **Ed e' la combo che il committente ha chiesto**: la scheda degli
+obiettivi cambia il mazzo, non solo la mappa.
+
+### Il cancello, e il costo
+
+**100 semi dal 7000: 0 su 8 seggi bloccati su un solo livello**, tavolo misto e
+uniforme. Verita' **489 scritte / 484 diverse** sul misto — erano 489/483 — e
+**444 / 442** sull'uniforme, che erano **448/443**.
+
+**Quattro Verita' in meno sull'uniforme, e vanno scritte.** Il mazzetto adesso
+porta le carte che l'obiettivo chiede invece delle piu' comode, e quattro
+ottimizzatori con carte meno comode chiudono un filo meno proposte. Sul misto
+non si vede (+1 Verita' diverse). Il prezzo e' quello, e vale: **un obiettivo
+che non si puo' nemmeno provare non e' una scelta**, e la scelta e' il gioco.
+
+### Il margine, che e' zero, e va scritto
+
+La carta che entra la prestano i mazzi comuni, e **a montaggio finito il Sapere
+arriva a zero** — come i Legami. Nel caso peggiore su 200 semi:
+
+| famiglia | carte che restano |
+|---|---|
+| PEOPLE | 7 |
+| FORCE · WEALTH | 2 |
+| AUTHORITY | 1 |
+| **KNOWLEDGE · BONDS** | **0** |
+
+Oggi il rimedio trova sempre da prestare — 0 obiettivi scoperti su 800 seggi —
+ma **senza margine**: se domani gli obiettivi chiedessero piu' Sapere o piu'
+Legami, il prestito finirebbe e tornerebbero scoperti. La sonda lo dice prima,
+ed e' per questo che la riga c'e'.
+
+---
+
+## D-508 — L'Eco dice di chi e'
+
+**implemented in 0.1.478.** Punto 6 di [ISSUES 136](ISSUES.md#136): *«l'Eco non
+sa di chi e'»*.
+
+### Il buco
+
+Il ricordo portava **chi c'era** (`participants`), **com'e' andata** (`outcome`)
+e su cosa (`tension_id`). Chi aveva **ottenuto**, no. E «c'ero» non distingue
+nessuno: misurato con `cli/run_echo_probe.gd`, una casa partecipa a **4,3 Echi
+l'anno** su 4,25 scritti — praticamente tutti — quindi il valutatore dei Destini
+attaccava **lo stesso Eco come prova sotto il Destino di tutti quanti**.
+
+Era nato come ostacolo al mazzo di Echi, e quel mazzo non si fa piu'
+([D-500](#d-500)) — ma il buco era rimasto, perche' **la Cronaca che la saga
+eredita non sapeva dire chi aveva ottenuto cosa**.
+
+### Quello che il ricordo dice adesso
+
+Nel payload dell'Eco, quattro campi che il tavolo aveva gia' in mano e nessuno
+scriveva: il **lato** che ha vinto, **la casa che l'ha guidato**, chi stava con
+lei, e chi le stava contro. Non erano da calcolare: stavano in `context["sides"]`
+e si perdevano al momento di scrivere.
+
+E si vedono in due posti:
+
+- **la Verita' permanente porta il nome**: *«Il Consiglio rispose: <la domanda> —
+  l'ha ottenuta Re Aldric (A6 B1, mucchio 2)»*. Il nome e' quello che la casa
+  aveva **quell'anno** ([D-045](#d-045): fra due Chronicle passa un secolo e la
+  persona cambia mentre la casa resta), quindi lo chiede a `name_of` invece di
+  ricopiarlo;
+- **la prova sotto il Destino dice il ruolo**: *«l'hai ottenuta tu»*, *«stavi con
+  chi l'ha ottenuta»*, *«ti sei opposto e hai perso»*, *«eri al tavolo»*. Le
+  quattro righe erano una.
+
+**Un Eco vecchio non mente:** un salvataggio di prima, o la Cronaca di un'era
+passata, non ha quei campi, e li' la riga resta *«eri al tavolo»* — che e' tutto
+quello che quel ricordo sa dire di se'. Una prova lo tiene fermo.
+
+### Misurato
+
+`cli/run_echo_probe.gd`, 8 anni dal seme 7000, tavolo misto. La colonna che
+prima non si poteva scrivere:
+
+| casa | Echi a cui partecipa | Echi che **ottiene** |
+|---|---|---|
+| Le Citta' Libere | 4,50 | **1,50** |
+| Priore Anselmo | 4,25 | **1,25** |
+| Re Aldric · Maestra Ilve | 4,60 · 3,40 | **1,20** |
+| Lyra | 4,33 | **1,00** |
+| Kessa dei Fuochi | 4,40 | **0,80** |
+| Vaerax | 4,00 | **0,67** |
+| Popolo Nahr | 4,60 | **0,60** |
+
+**Partecipare non distingueva niente — da 4,0 a 4,6 per tutti. Ottenere
+distingue di due volte e mezzo**, da 0,60 a 1,50. E **2 Echi su 34** non hanno
+un vincitore, perche' nessuna domanda e' arrivata al mucchio: li' i campi
+restano vuoti, che e' meglio di un nome inventato.
+
+---
+
 ## D-507 — Due copie della stessa carta sono due carte, e la domanda non cambia sotto le dita
 
 **implemented in 0.1.477.** Punto 7 di [ISSUES 136](ISSUES.md#136), *«un'altra

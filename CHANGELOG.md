@@ -5,6 +5,66 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.478 — Il mazzetto ascolta quello che vuoi, e l'Eco dice di chi e'
+
+[D-509](docs/DECISIONS.md#d-509) e [D-508](docs/DECISIONS.md#d-508): i punti 5 e
+6 di [ISSUES 136](docs/ISSUES.md#136), gli ultimi due aperti della voce.
+
+### Aggiunto
+
+- **il mazzetto ascolta anche quello che vuoi.** Si componeva sulle famiglie che
+  la presenza raggiunge — guardava solo la mappa — e sei obiettivi su 19
+  chiedono un **gesto fatto quest'anno** piu' tre carte di una famiglia. Adesso,
+  composto il mazzetto, si guardano i tre obiettivi: se ne resta uno che il
+  mazzetto non puo' nemmeno provare, **entra una carta che lo serve al posto
+  della piu' ridondante**. Si scambia, non si aggiunge: diciotto carte restano
+  diciotto, e la carta arriva dai mazzi comuni;
+- **e il ponte sta in un posto solo** (`objective_bridge.gd`), con la guardia
+  che va rossa se domani un gesto nuovo non dice quale faccia lo serve;
+- **l'Eco dice di chi e'**: il lato che ha vinto, la casa che l'ha guidato, chi
+  stava con lei e chi le stava contro. La **Verita' permanente porta il nome** —
+  *«l'ha ottenuta Re Aldric»*, col nome che la casa aveva quell'anno — e la prova
+  sotto il Destino dice il ruolo: *«l'hai ottenuta tu»*, *«stavi con chi l'ha
+  ottenuta»*, *«ti sei opposto e hai perso»*, *«eri al tavolo»*.
+
+### Misurato
+
+Il ponte, `cli/run_bridge_probe.gd` su 200 semi dal 7000 (solo il montaggio):
+
+| | prima | dopo |
+|---|---|---|
+| coppie casa-obiettivo che chiedono carte | 904 su 2.400 | 904 |
+| **che il mazzetto non poteva servire** | **94 (10,4%)** | **0** |
+| seggi con un obiettivo scoperto | **90 su 800 (11%)** | **0** |
+| mazzetti | 18 | **18** |
+| carte oltre le copie della scatola | — | **0** |
+
+E l'Eco, `cli/run_echo_probe.gd` su 8 anni dal 7000: una casa **partecipa** a
+4,0-4,6 Echi l'anno — tutti uguali, non distingueva nessuno — e ne **ottiene**
+da **0,60 a 1,50**, che e' due volte e mezzo di differenza. 2 Echi su 34 non
+hanno un vincitore, e li' i campi restano vuoti.
+
+E il cancello, 100 semi dal 7000:
+
+**0 su 8 seggi bloccati su un solo livello**, tavolo misto e uniforme.
+Verita' **489 scritte / 484 diverse** sul misto (erano 489/483) e **444 / 442**
+sull'uniforme (erano 448/443); Consigli 5,52 · 5,41 contro 5,51 · 5,40.
+
+**Il numero peggiorato, scritto: quattro Verita' in meno sull'uniforme** — il
+mazzetto adesso porta carte che l'obiettivo chiede invece delle piu' comode, e
+quattro ottimizzatori con carte meno comode chiudono un filo meno proposte. Sul
+misto non si vede, e la spesa vale il prezzo: un obiettivo che non si puo'
+nemmeno provare non e' una scelta, e la scelta e' il gioco.
+
+### Il costo, e il margine
+
+**La carta che entra la prestano i mazzi comuni, e il margine e' zero:** a
+montaggio finito Sapere e Legami arrivano a **0 carte** nel caso peggiore. Oggi
+il rimedio trova sempre da prestare; se domani gli obiettivi chiedessero piu'
+Sapere, non lo troverebbe — e la sonda lo dice prima.
+
+---
+
 ## 0.1.477 — Due copie della stessa carta sono due carte
 
 [D-507](docs/DECISIONS.md#d-507). Punto 7 di [ISSUES 136](docs/ISSUES.md#136),
