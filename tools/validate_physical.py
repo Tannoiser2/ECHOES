@@ -1355,6 +1355,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai.extend(due_domande(documenti))
     guai.extend(azione_del_motore(documenti))
     guai.extend(il_verso_del_rapporto(documenti))
+    guai.extend(il_potere_della_casa(documenti))
     guai.extend(params_muti(documenti))
     guai.extend(il_velo_sulle_carte(documenti))
     return guai
@@ -1660,6 +1661,89 @@ def il_verso_del_rapporto(documenti: Dict[str, List[Dict[str, Any]]]) -> List[st
                     "Azione FORGIARE col verso al contrario: %s dichiara %s e stampa "
                     "«%s»" % (dove, verso, testo[:60])
                 )
+    return guai
+
+
+def _verbi_di_una_faccia() -> set[str]:
+    """I verbi che una faccia stampata puo' portare, letti dallo schema.
+
+    Sono gli stessi che il potere della casa puo' aprire — `CARD_KINDS` nel
+    motore — e qui si **leggono** invece di ricopiarli: una lista scritta in due
+    posti diverge in silenzio, ed e' la lezione 9 di casa.
+    """
+    schema = json.loads(
+        (REPO_ROOT / "schema" / "asset.schema.json").read_text(encoding="utf-8")
+    )
+
+    def cerca(nodo: object) -> list | None:
+        if isinstance(nodo, dict):
+            blocco = nodo.get("properties", {}).get("template")
+            if isinstance(blocco, dict) and blocco.get("enum"):
+                return list(blocco["enum"])
+            for figlio in nodo.values():
+                trovato = cerca(figlio)
+                if trovato is not None:
+                    return trovato
+        if isinstance(nodo, list):
+            for figlio in nodo:
+                trovato = cerca(figlio)
+                if trovato is not None:
+                    return trovato
+        return None
+
+    verbi = cerca(schema)
+    if not verbi:
+        raise SystemExit("lo schema dell'Asset non dice piu' quali verbi porta una faccia")
+    return set(verbi)
+
+
+VERBI_DEL_POTERE = _verbi_di_una_faccia()
+
+
+def il_potere_della_casa(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Il potere che il tarocco stampa deve esistere** (D-503, ISSUES 136 punto 4).
+
+    Il tarocco della Casata stampa `POTERE  <verbo> senza carta`, e quel verbo
+    non e' scritto a mano da nessuna parte: e' **il numero piu' alto** di
+    `action_values`. Quindi il difetto non e' una frase sbagliata, e' un
+    ritratto che non dice niente — e sono tre casi distinti.
+
+    Uno: una casa senza `action_values`, o con tutti i numeri a zero, stampa un
+    potere che non ha. Due: una casa il cui numero piu' alto sta su un verbo che
+    **il potere non sa aprire** stampa un potere che il motore rifiuta.
+
+    Tre, ed e' quello che il dato da solo non direbbe: **una casa i cui numeri
+    sono quasi tutti uguali**. Se i verbi migliori sono tre o piu', il potere non
+    e' un potere — e' un'Azione gratis per Atto qualunque cosa si voglia fare, e
+    il tarocco non distingue piu' una casa dall'altra. Due sono il massimo che
+    resta una scelta: *questo o quello*.
+    """
+    guai: List[str] = []
+    verbi = VERBI_DEL_POTERE
+    for casa in documenti.get("entity", []):
+        valori = casa.get("action_values") or {}
+        dove = str(casa.get("id"))
+        if not valori or max([int(v) for v in valori.values()] or [0]) <= 0:
+            guai.append(
+                "Casata senza potere: %s non porta nessun verbo sopra lo zero in "
+                "action_values, e il suo tarocco stampa POTERE lo stesso" % dove
+            )
+            continue
+        migliore = max(int(v) for v in valori.values())
+        migliori = sorted(k for k, v in valori.items() if int(v) == migliore)
+        fuori = [v for v in migliori if v not in verbi]
+        if fuori:
+            guai.append(
+                "Casata col potere su un verbo che il potere non apre: %s ha "
+                "%s a %d, e il motore lo rifiuterebbe"
+                % (dove, " e ".join(fuori), migliore)
+            )
+        if len(migliori) > 2:
+            guai.append(
+                "Casata senza un potere che distingua: %s ha %d verbi a pari "
+                "merito (%s), e un potere che apre tutto e' un'Azione gratis"
+                % (dove, len(migliori), " · ".join(migliori))
+            )
     return guai
 
 
@@ -2007,6 +2091,22 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                     continue
                 faccia["direction"] = "DOWN" if faccia.get("direction") == "UP" else "UP"
                 return
+
+    def potere_spento(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Fabbricato**: una casa con tutti i verbi a zero. Il tarocco stampa
+        # POTERE e il motore risponde «questa casa non sa fare niente meglio
+        # del resto».
+        casa = prova["entity"][0]
+        casa["action_values"] = {verbo: 0 for verbo in (casa.get("action_values") or {"MOVE": 0})}
+
+    def potere_su_tutto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        # **Il difetto che il dato da solo non direbbe**: i numeri tutti uguali.
+        # Ogni verbo e' «il migliore», quindi il potere non e' un potere — e'
+        # un'Azione gratis per Atto qualunque cosa si voglia fare, e il tarocco
+        # smette di distinguere una casa dall'altra. Il primo controllo — «c'e'
+        # un verbo sopra lo zero» — da solo lo lascia passare.
+        casa = prova["entity"][0]
+        casa["action_values"] = {verbo: 3 for verbo in (casa.get("action_values") or {"MOVE": 3})}
 
     def due_marche(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una carta che dice che il motore esegue tutt'e due le sue Azioni.
@@ -2550,6 +2650,13 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "senza verso"),
         pianta("Azione FORGIARE che dichiara un verso e ne stampa un altro",
                verso_al_contrario, "al contrario"),
+        # **Il potere della casa** (D-503). Due difetti, e il secondo e' quello
+        # che il primo non prende: dei numeri tutti uguali sono tutti «il
+        # migliore», e un potere che apre tutto non e' un potere.
+        pianta("una Casata che stampa un potere e non ne ha nessuno",
+               potere_spento, "senza potere"),
+        pianta("una Casata coi numeri tutti uguali, quindi un potere che apre tutto",
+               potere_su_tutto, "che distingua"),
         # **Il velo raccontato con la regola sbagliata** (D-495): otto facce su
         # 96 dicevano «Scopri una questione velata» quando la Chronicle spedita
         # tiene coperta la soglia e lascia il valore in chiaro.

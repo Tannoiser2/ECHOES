@@ -13,6 +13,7 @@ const Ids := preload("res://scripts/core/ids.gd")
 const WorldStateService := preload("res://scripts/world/world_state_service.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
 const StoneRules := preload("res://scripts/world/stone_rules.gd")
+const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
@@ -115,7 +116,18 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 	# si fa *prima* di sapere con quale carta la dira'. Metterlo nel check
 	# spegneva anche quella domanda, e i seggi smettevano di volere qualcosa:
 	# misurato, il 90% delle Occasioni restava muto.
-	if bool(_chronicle.get("actions_from_cards", false)) and CARD_KINDS.has(template):
+	# **Tranne che col potere della casa** (D-503, ISSUES 136 punto 4): il verbo
+	# che questa casa sa fare meglio si gioca senza carta, un tot di volte per
+	# Atto. E' la porta che il committente ha chiesto — *«anche il potere di una
+	# entita' mi deve permettere di fare qualcosa»* — e i numeri che la aprono
+	# sono quelli **gia' stampati** sul tarocco della Casata, che fino a qui
+	# nessuna regola leggeva.
+	var by_power: bool = bool(params.get("house_power", false))
+	if by_power:
+		var no: String = _check_house_power(entity_id, template)
+		if no != "":
+			return _error(template, no)
+	elif bool(_chronicle.get("actions_from_cards", false)) and CARD_KINDS.has(template):
 		return _error(
 			template,
 			"qui le azioni si fanno con le carte: gioca una carta che porti %s" % template
@@ -155,6 +167,19 @@ func execute(entity_id: String, request: Dictionary) -> Dictionary:
 			outcome = _play_asset_card(entity_id, params, source)
 		_:
 			return _error(template, "template non implementato")
+
+	# **E il tarocco si gira** (D-503): il potere si spende solo se l'Azione e'
+	# riuscita. Un'Azione rifiutata non costa il potere, esattamente come non
+	# costa la carta.
+	if by_power and bool(outcome.get("ok", false)):
+		var spent: Dictionary = applier.apply(Effect.make(
+			"SPEND_HOUSE_POWER", "entity", entity_id, {}, source
+		))
+		if not spent.is_empty():
+			(outcome.get("effects", []) as Array).append(spent)
+		log.bullet("  %s ha usato il potere della casa: il tarocco resta ruotato." % _name(
+			entity_id
+		))
 
 	# ISSUES 49 (D-192): **il calore lo pescano i giocatori.** Ogni azione
 	# riuscita pesca un gettone dal sacchetto e lo posa su una domanda: il mondo
@@ -411,6 +436,50 @@ func _influence_uses_presence(entity_id: String, tension_id: String, delta: int)
 func _consent_floor() -> String:
 	var rules: Dictionary = _chronicle.get("forge_rules", {}) as Dictionary
 	return str(rules.get("consent_from", WorldStateService.RELATION_ORDER[1]))
+
+
+## **Quello che la casa sa fare meglio** (D-503, ISSUES 136 punto 4).
+##
+## Il tarocco della Casata stampa `SA FARE  acquisire 3 · muovere 2 ·
+## influenzare 4 · forgiare 2 · tramare 1 · rivendicare 4`, e resta in vista
+## tutta la partita. Fino a qui quei numeri li leggevano **tre posti e nessuno
+## era una regola**: la faccia che li stampa, la scheda che la documenta, e
+## l'eredita' alla successione. Quarantotto numeri su otto carte che non
+## facevano niente, e il regolamento lo dichiarava al §18.
+##
+## Adesso il numero piu' alto dice **qual e' il potere della casa**, e a parita'
+## i verbi migliori sono piu' d'uno: sceglie chi gioca. Non si somma, non si
+## confronta con quello di nessun altro, non fa sconti — dice una cosa sola, e
+## la dice al tavolo senza tabelle: *questo, tu, lo sai fare senza carta*.
+func house_verbs(entity_id: String) -> Array:
+	var definition: Variant = data.entities.get(entity_id)
+	if definition == null:
+		return []
+	return HousePowerRules.best_verbs(definition as Dictionary, CARD_KINDS)
+
+
+## Il potere si puo' usare? Tre cose, e ognuna si legge sul tavolo: che questa
+## Chronicle i poteri li dia, che il tarocco sia ancora diritto, e che il verbo
+## sia quello che la casa sa fare meglio.
+func _check_house_power(entity_id: String, template: String) -> String:
+	if HousePowerRules.per_act(_chronicle) <= 0:
+		return "in questa Chronicle le case non hanno un potere"
+	var entity: Variant = world["entities"].get(entity_id)
+	if entity == null:
+		return "casa non valida '%s'" % entity_id
+	if int((entity as Dictionary).get("house_power", 0)) <= 0:
+		return "il potere della casa e' gia' speso: torna all'Atto prossimo"
+	var verbs: Array = house_verbs(entity_id)
+	if not verbs.has(template):
+		if verbs.is_empty():
+			return "questa casa non sa fare niente meglio del resto"
+		var words: Array = []
+		for verb in verbs:
+			words.append(SignLabels.action(str(verb)))
+		return "il potere di questa casa e' %s, non %s" % [
+			" o ".join(PackedStringArray(words)), SignLabels.action(template),
+		]
+	return ""
 
 
 func _check_forge(entity_id: String, params: Dictionary) -> String:

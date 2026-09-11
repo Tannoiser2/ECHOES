@@ -6,6 +6,7 @@ extends RefCounted
 
 const Ids := preload("res://scripts/core/ids.gd")
 const TagRules := preload("res://scripts/world/tag_rules.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
 
 const RELATION_ORDER: Array = ["ENEMY", "HOSTILE", "NEUTRAL", "ALLY", "BOUND"]
 
@@ -287,6 +288,37 @@ func hand_size(entity_id: String) -> int:
 	return hand(entity_id).size()
 
 
+## **Le carte coperte** (D-504): quelle messe da parte a fine turno. Restano di
+## chi le ha coperte, ma non sono piu' la mano — non si giocano come Azione — e
+## sono le sole che il Consiglio possa impegnare.
+func covered(entity_id: String) -> Array:
+	var entity: Variant = world["entities"].get(entity_id)
+	if entity == null:
+		return []
+	return ((entity as Dictionary).get("covered", []) as Array).duplicate()
+
+
+func covered_size(entity_id: String) -> int:
+	return covered(entity_id).size()
+
+
+## **Con che cosa questa casa puo' pagare un Consiglio.**
+##
+## Dove si copre, sono le coperte e basta: e' la regola nuova, e il senso di
+## coprire e' proprio che al Consiglio non si arriva a mano aperta. Dove non si
+## copre, e' la mano, come e' sempre stato. Chi chiede passa da qui e non
+## dall'una o dall'altra, cosi' la regola sta in un posto solo.
+func commit_pool(entity_id: String) -> Array:
+	if HandRhythm.council_pays_from_covered(_chronicle()):
+		return covered(entity_id)
+	return hand(entity_id)
+
+
+func _chronicle() -> Dictionary:
+	var found: Variant = data.chronicles.get(str(world.get("chronicle_id", "")))
+	return {} if found == null else found as Dictionary
+
+
 func count_family_in_hand(entity_id: String, family: String) -> int:
 	var count: int = 0
 	for asset_id in hand(entity_id):
@@ -312,12 +344,42 @@ func first_asset_of_families(entity_id: String, families: Array) -> String:
 
 ## Assets in hand ranked by what they are worth in this Tension, strongest
 ## first. Used by the CLI default policy and by Developer Mode previews.
+## **Le carte che questa casa potrebbe impegnare su questa domanda**, dalla piu'
+## utile alla meno. Da D-504 legge il **piatto degli impegni**, non la mano: dove
+## si copre, una carta in mano non e' impegnabile e classificarla sarebbe offrire
+## una scelta che il Consiglio rifiuta.
 func ranked_hand_for_tension(entity_id: String, tension_id: String) -> Array:
+	return ranked_for_tension(commit_pool(entity_id), tension_id)
+
+
+## La stessa classifica su **una lista qualunque** di carte: serve perche' i
+## piatti sono due — la mano e le coperte — e una classifica scritta due volte
+## si sarebbe scordata di uno dei due.
+func ranked_for_tension(cards: Array, tension_id: String) -> Array:
 	var relevant: Array = data.tensions[tension_id]["relevant_asset_families"]
-	var ranked: Array = hand(entity_id)
+	var ranked: Array = cards.duplicate()
 	ranked.sort_custom(func(a: Variant, b: Variant) -> bool:
 		var score_a: int = _commit_score(str(a), relevant)
 		var score_b: int = _commit_score(str(b), relevant)
+		if score_a == score_b:
+			return str(a) < str(b)
+		return score_a > score_b
+	)
+	return ranked
+
+
+## **Le carte piu' forti, senza sapere di cosa si parlera'** (D-504).
+##
+## Chi copre una carta a fine turno non sa ancora quale domanda si aprira': non
+## puo' guardare le famiglie rilevanti, perche' la domanda non c'e'. Quindi
+## resta la forza nuda, che e' l'unica cosa che una carta vale in ogni Consiglio.
+func ranked_by_strength(cards: Array) -> Array:
+	var ranked: Array = cards.duplicate()
+	ranked.sort_custom(func(a: Variant, b: Variant) -> bool:
+		var one: Variant = data.assets.get(str(a))
+		var two: Variant = data.assets.get(str(b))
+		var score_a: int = 0 if one == null else int((one as Dictionary)["strength"])
+		var score_b: int = 0 if two == null else int((two as Dictionary)["strength"])
 		if score_a == score_b:
 			return str(a) < str(b)
 		return score_a > score_b

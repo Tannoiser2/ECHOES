@@ -19,6 +19,7 @@ extends RefCounted
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 const CouncilText := preload("res://scripts/core/council_text.gd")
+const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
 
 ## Le sei famiglie di Asset e il loro accento. Un solo accento saturo per
 ## famiglia (ART_BIBLE): la carta si riconosce dal bordo prima che dal titolo.
@@ -577,6 +578,13 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 		# I verbi, non i loro nomi interni: si leggeva «acquire 3 · claim 1».
 		values.append("%s %d" % [SignLabels.action(str(action)), int(actions[action])])
 	face["notes"] = ["SA FARE  %s" % " · ".join(PackedStringArray(values))]
+	# **E adesso quei numeri fanno qualcosa** (D-503, ISSUES 136 punto 4). Fino
+	# a qui `SA FARE` era un ritratto: sei numeri in vista tutta la partita che
+	# nessuna regola leggeva. Il piu' alto e' il **potere della casa**, e il
+	# potere si stampa accanto ai numeri che lo decidono — se sta nel manuale e
+	# non sulla carta, al tavolo non esiste.
+	for line in _house_power(entity, data):
+		face["notes"].append(line)
 	# **Cosa questa casa vuole lasciare, e cosa diventa se non ce la fa**
 	# (D-288 e D-290). La strategia dichiarata stava in un file che leggevano il
 	# cervello e lo schermo; sul tavolo fisico non stava da nessuna parte, e una
@@ -591,6 +599,38 @@ static func _entity(entity: Dictionary, data: RefCounted) -> Dictionary:
 	face["art_prompt_key"] = str(entity.get("art_prompt_key", ""))
 	face["footer"] = str(entity["id"])
 	return face
+
+
+## La riga del potere: il verbo che questa casa sa fare meglio, e quante volte
+## per Atto lo dice senza carta.
+##
+## **Quanti sono lo dice la Chronicle**, non questo file: la scatola ne porta
+## una, e se un giorno il potere diventa due volte per Atto la carta lo dice da
+## sola. E' la stessa strada di `_cools_when`. Vuota — e la carta torna un
+## ritratto — dove nessuna Chronicle dichiara `house_power`.
+static func _house_power(entity: Dictionary, data: RefCounted) -> Array:
+	var per_act: int = 0
+	for chronicle_id in data.chronicles:
+		per_act = maxi(
+			per_act, HousePowerRules.per_act(data.chronicles[str(chronicle_id)] as Dictionary)
+		)
+	if per_act <= 0:
+		return []
+	# I verbi che il potere puo' aprire sono le Azioni che una carta potrebbe
+	# portare: le sei di §10 piu' SEGNARE. La lista sta nel motore, e qui si
+	# passa quella delle chiavi scritte sull'Entita' — che sono le stesse.
+	var verbs: Array = HousePowerRules.best_verbs(
+		entity, (entity.get("action_values", {}) as Dictionary).keys()
+	)
+	if verbs.is_empty():
+		return []
+	var words: Array = []
+	for verb in verbs:
+		words.append(SignLabels.action(str(verb)))
+	return ["POTERE  %s senza carta, %s" % [
+		" o ".join(PackedStringArray(words)),
+		"una volta per Atto" if per_act == 1 else "%d volte per Atto" % per_act,
+	]]
 
 
 ## Le due righe della carta Casata che vengono dal profilo strategico: quello

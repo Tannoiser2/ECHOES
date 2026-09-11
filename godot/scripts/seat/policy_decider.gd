@@ -671,6 +671,26 @@ func choose_action(entity_id: String, ao_index: int, session: RefCounted) -> Dic
 	var intent: Dictionary = _choose_intent(entity_id, ao_index, session)
 	if not _cards_are_the_coin(session):
 		return _with_a_theme(entity_id, intent, session)
+	# **Il potere della casa viene prima della carta** (D-503, ISSUES 136 punto
+	# 4). Quale delle due strade fosse quella giusta non era ovvio, quindi si e'
+	# misurato: **il potere prima** — quello che una casa sa fare senza carta lo
+	# fa senza carta, e la carta resta per il Consiglio — contro **il potere
+	# dopo**, cioe' un pavimento per quando la mano non porta quel verbo.
+	#
+	#   dove sta il potere   ·  Verita' misto  ·  Verita' uniforme  ·  usi/anno
+	#      (prima di D-503)         410/410           413/410            —
+	#      dopo la carta            406/403           415/411          0,80
+	#      prima della carta        417/412           427/427          1,93   <- scelta
+	#
+	# **Tenerlo per dopo costava quattro Verita' sul misto**: una casa che
+	# spende una carta per una cosa che sapeva fare gratis si presenta al
+	# Consiglio con una carta in meno, e il mondo ricorda solo i Consigli in cui
+	# qualcuno ha messo peso. Sul tavolo uniforme le 427 Verita' sono **tutte
+	# diverse**, che non era mai capitato. Il vincolo di casa resta **0 seggi
+	# bloccati su 8** su tutti e due i tavoli in tutt'e due le versioni.
+	var power: Dictionary = _as_house_power(entity_id, intent, session)
+	if str(power.get("template", "PASS")) != "PASS":
+		return power
 	var play: Dictionary = _as_card_play(entity_id, intent, session)
 	if str(play.get("template", "PASS")) != "PASS":
 		return _with_a_theme(entity_id, play, session)
@@ -760,6 +780,31 @@ func _rather_than_nothing(entity_id: String, session: RefCounted) -> Dictionary:
 	var anything: Array = hand_plays(entity_id, session)
 	_no_better_move = false
 	return anything[0] if not anything.is_empty() else {"template": "PASS", "params": {}}
+
+
+## **L'intento detto col potere della casa** (D-503, ISSUES 136 punto 4).
+##
+## Quali verbi il potere apre e se il tarocco e' ancora diritto lo dice il
+## motore: qui non si ricopia la regola, si chiede. E' la lezione 9 di casa —
+## una regola scritta in due file diverge in silenzio — ed e' la stessa strada
+## che prende il menu di una persona.
+func _as_house_power(
+	entity_id: String, intent: Dictionary, session: RefCounted
+) -> Dictionary:
+	var template: String = str(intent.get("template", "PASS"))
+	if template == "PASS" or template == "PLAY_CARD":
+		return {"template": "PASS", "params": {}}
+	if int(
+		(session.world["entities"][entity_id] as Dictionary).get("house_power", 0)
+	) <= 0:
+		return {"template": "PASS", "params": {}}
+	if not (session.actions.house_verbs(entity_id) as Array).has(template):
+		return {"template": "PASS", "params": {}}
+	var params: Dictionary = (intent.get("params", {}) as Dictionary).duplicate()
+	params["house_power"] = true
+	if not session.actions.can_execute(entity_id, template, params):
+		return {"template": "PASS", "params": {}}
+	return {"template": template, "params": params}
 
 
 func _cards_are_the_coin(session: RefCounted) -> bool:
@@ -2019,6 +2064,55 @@ func _commit_for_my_side(entity_id: String, context: Dictionary, limit: int, ses
 		chosen.append(str(asset_id))
 		total += ConfluenceResolution.asset_value(asset as Dictionary, relevant, front)
 	return chosen
+
+
+## **Quale carta coprire** (D-504).
+##
+## Chi copre non sa ancora di cosa si parlera': la domanda si apre dopo, e la
+## Deriva puo' ancora farne esplodere un'altra. Quindi non si guardano le
+## famiglie rilevanti — non ce n'e' una — e resta **la forza nuda**, che e'
+## l'unica cosa che una carta vale in ogni Consiglio.
+##
+## E' una scelta povera di proposito: il cervello non sa fare meglio di quello
+## che sa una persona in quel momento, e un cervello che coprisse sapendo la
+## domanda misurerebbe un gioco che nessuno gioca.
+func choose_cover(entity_id: String, how_many: int, session: RefCounted) -> Array:
+	if how_many <= 0:
+		return []
+	return (session.service.ranked_by_strength(
+		session.service.hand(entity_id)
+	) as Array).slice(0, how_many)
+
+
+## **Cosa buttare di quello che resta** (D-504).
+##
+## Siccome la mano torna al suo numero all'inizio del turno dopo, **scartare e'
+## pescare**: chi butta non perde niente e rivede quella carta dopo il
+## rimescolo. Quindi la domanda non e' *«mi dispiace perderla?»* ma *«mi serve
+## al turno prossimo?»*, e la risposta la sa gia' `hand_plays`: una carta che
+## non porta nessuna Azione giocabile adesso non ne portera' una fra un turno
+## per conto suo.
+##
+## Il criterio e' quindi: **si tiene quello che si potrebbe giocare, si macina
+## il resto.** E' anche la cosa che fa girare il mazzetto, quindi le carte
+## comprate tornano in mano invece di restare in fondo al pozzo.
+func choose_discards(entity_id: String, most: int, session: RefCounted) -> Array:
+	if most <= 0:
+		return []
+	var playable: Dictionary = {}
+	for play in hand_plays(entity_id, session):
+		var asset_id: String = str(
+			((play as Dictionary).get("params", {}) as Dictionary).get("asset_id", "")
+		)
+		if asset_id != "":
+			playable[asset_id] = true
+	var out: Array = []
+	for asset_id in session.service.hand(entity_id):
+		if out.size() >= most:
+			break
+		if not playable.has(str(asset_id)):
+			out.append(str(asset_id))
+	return out
 
 
 func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:

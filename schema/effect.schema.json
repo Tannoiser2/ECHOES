@@ -17,10 +17,12 @@
         "BUILD_STRUCTURE",
         "CLOSE_PASSAGE",
         "CONSUME_CLAIM",
+        "COVER_ASSET",
         "CREATE_CLAIM",
         "CREATE_ECHO",
         "GRANT_ASSET",
         "GRANT_CLAIM_TOKEN",
+        "GRANT_HOUSE_POWER",
         "KEEP_THEME_HEAT",
         "OPEN_PASSAGE",
         "RAZE_STRUCTURE",
@@ -40,7 +42,9 @@
         "SET_STRUCTURE_OWNER",
         "SET_TENSION_VISIBILITY",
         "SPEND_CLAIM_TOKEN",
-        "TRANSFER_ASSET"
+        "SPEND_HOUSE_POWER",
+        "TRANSFER_ASSET",
+        "UNCOVER_ASSET"
       ]
     },
     "target": {

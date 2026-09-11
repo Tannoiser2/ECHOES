@@ -8,6 +8,7 @@ extends RefCounted
 ## explains the whole table from EFF_000001 onwards. See DECISIONS D-003.
 
 const Effect := preload("res://scripts/core/effect.gd")
+const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
 const Ids := preload("res://scripts/core/ids.gd")
 const Succession := preload("res://scripts/chronicle/succession.gd")
 const RngService := preload("res://scripts/core/rng_service.gd")
@@ -109,6 +110,10 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			"incarnation": 0,
 			"presence": [],
 			"hand": [],
+			# **Le carte coperte** (D-504): quelle messe da parte a fine turno,
+			# segrete agli altri, e le sole impegnabili al Consiglio. Si parte
+			# a mani vuote: la prima si copre alla fine del primo turno.
+			"covered": [],
 			"tags": (definition["tags"] as Array).duplicate(),
 			"active": bool(definition["active"]),
 			"ao_remaining": 0,
@@ -118,6 +123,13 @@ static func build(chronicle: Dictionary, data: RefCounted, rng: RefCounted, seat
 			# Consiglio: il proponente per comprare un beneficio oltre il primo,
 			# un avversario per posare un costo.
 			"claim_tokens": 0,
+			# **Il potere della casa** (D-503, ISSUES 136 punto 4): il verbo che
+			# questa casa sa fare meglio, giocato senza carta. Si parte col
+			# tarocco **diritto** — al tavolo la carta si posa cosi', e il
+			# potere e' disponibile dal primo round — e si ricarica
+			# all'apertura di ogni Atto. Zero, e mai letto, se la Chronicle non
+			# dichiara `house_power`.
+			"house_power": HousePowerRules.per_act(chronicle),
 			# Il punteggio della campagna (D-180). Resta a zero e non si legge
 			# mai, se la Chronicle non dichiara `saga_scoring`: e' un contatore,
 			# come `confluence_count`, ed e' fra le eccezioni dichiarate

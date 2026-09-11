@@ -197,6 +197,35 @@ func test_round_trip_every_reversible_type() -> void:
 		_make("GRANT_CLAIM_TOKEN", "entity", "ENT_NAHR", {}),
 		_make("SPEND_CLAIM_TOKEN", "entity", "ENT_NAHR", {})
 	)
+	# **Il potere della casa** (D-503): stessa forma del gettone di sopra, e per
+	# la stessa ragione — spenderlo va provato su una casa che il tarocco lo ha
+	# ancora diritto, se no il motore rifiuta e il round-trip non prova niente.
+	_round_trip(
+		"GRANT_HOUSE_POWER", _make("GRANT_HOUSE_POWER", "entity", "ENT_NAHR", {})
+	)
+	_with_setup(
+		"SPEND_HOUSE_POWER",
+		_make("GRANT_HOUSE_POWER", "entity", "ENT_NAHR", {}),
+		_make("SPEND_HOUSE_POWER", "entity", "ENT_NAHR", {})
+	)
+	# **La carta coperta** (D-504): coprire si disfa, e scoprire va provato su
+	# una carta che *e'* coperta — se no il motore rifiuta per la ragione giusta
+	# e il round-trip non prova niente, come per il gettone qui sopra.
+	# La carta da coprire si **fabbrica**: cercarla in mano vuol dire dipendere
+	# da quello che le prove qui sopra hanno lasciato nel mondo, e una mano vuota
+	# darebbe un id vuoto e due round-trip che non provano niente.
+	session.applier.apply(_make(
+		"GRANT_ASSET", "entity", "ENT_NAHR", {"asset_id": "AST_WEALTH_GRAIN", "source": "VOID"}
+	))
+	_round_trip(
+		"COVER_ASSET",
+		_make("COVER_ASSET", "entity", "ENT_NAHR", {"asset_id": "AST_WEALTH_GRAIN"})
+	)
+	_with_setup(
+		"UNCOVER_ASSET",
+		_make("COVER_ASSET", "entity", "ENT_NAHR", {"asset_id": "AST_WEALTH_GRAIN"}),
+		_make("UNCOVER_ASSET", "entity", "ENT_NAHR", {"asset_id": "AST_WEALTH_GRAIN"})
+	)
 	_with_setup(
 		"REMOVE_SCAR",
 		_make(
@@ -269,6 +298,8 @@ func test_round_trip_every_reversible_type() -> void:
 		"SET_CONTROL", "SET_REGION_TAG", "REMOVE_REGION_TAG", "SET_GLOBAL_TAG",
 		"REMOVE_GLOBAL_TAG", "SET_RELATION", "GRANT_ASSET", "REMOVE_ASSET", "TRANSFER_ASSET",
 		"CREATE_CLAIM", "CONSUME_CLAIM", "GRANT_CLAIM_TOKEN", "SPEND_CLAIM_TOKEN",
+		"GRANT_HOUSE_POWER", "SPEND_HOUSE_POWER",
+		"COVER_ASSET", "UNCOVER_ASSET",
 		"ADD_SCAR", "REMOVE_SCAR", "SET_ENTITY_TAG",
 		"REMOVE_ENTITY_TAG", "SET_ENTITY_ACTIVE",
 		"BUILD_STRUCTURE", "RAZE_STRUCTURE", "SET_STRUCTURE_GRADE", "SET_STRUCTURE_OWNER",

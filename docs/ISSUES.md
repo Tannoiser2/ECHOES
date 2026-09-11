@@ -10229,7 +10229,22 @@ si puo' giocare.
    lunga su sei carte diverse, con quattro dei quattordici a mano vuota (0,93
    carte in mano). Il cancello resta **0 su 8**; le Verita' salgono a 410 sul
    misto e scendono a 413 sull'uniforme, e il costo e' scritto nel verbale;
-4. **il potere dell'entita' apre un'Azione sua**;
+4. ✔ **il potere dell'entita' apre un'Azione sua** — **fatto in 0.1.473**
+   ([D-503](DECISIONS.md#d-503)). Il tarocco della Casata stampava `SA FARE` —
+   sei numeri per otto case, **quarantotto in tutto** — e li leggevano tre
+   posti, nessuno dei quali era una regola. Adesso **il numero piu' alto e' il
+   potere**: quel verbo si gioca **senza carta**, una volta per Atto, e a pari
+   merito i verbi migliori sono due e sceglie chi gioca. Al tavolo non aggiunge
+   un pezzo — il tarocco si ruota, e si rimette diritto all'Atto dopo.
+
+   Se il potere venisse prima della carta o dopo non era ovvio, quindi si e'
+   misurato: **prima** da 417/412 Verita' sul misto e **427/427** sull'uniforme
+   contro 406/403 e 415/411 di **dopo**, con 1,93 usi l'anno invece di 0,80 —
+   chi spende una carta per una cosa che sapeva fare gratis arriva al Consiglio
+   con una carta in meno. Le Occasioni bloccate al posto di una persona passano
+   da **14 su 270 (5%) a 5 (1%)**, e **la mano vuota come causa arriva a zero**.
+   I Consigli per anno scendono di cinque centesimi, e il costo e' scritto nel
+   verbale; il cancello resta **0 su 8**;
 5. **gli obiettivi entrano nel mazzetto** — oggi non entrano: su 19 obiettivi
    spediti solo **due** nominano una famiglia, e serve un ponte che non c'e';
 
@@ -10251,6 +10266,16 @@ si puo' giocare.
    resta lo stesso**, perche' la Cronaca che la saga eredita non sa dire chi ha
    ottenuto cosa;
 7. un'altra ora con l'app in mano.
+
+**E in 0.1.474 il ritmo della mano l'ha riscritto il committente**
+([D-504](DECISIONS.md#d-504)): *«nel primo turno si pescano 5 carte, se ne
+giocano due e se ne sceglie una per il concilio; le due rimaste si possono
+scartare oppure tenere»*. Le Occasioni bloccate al posto di una persona arrivano
+a **2 su 270 (0%)** — il giro di questa voce, di fila: **20% - 3% - 8% - 5% - 1%
+- 0%** — e il mazzetto gira **1,4 volte l'anno**, quindi le carte comprate
+tornano davvero in mano. Il costo e' scritto nel verbale: **21 Verita' in meno**
+sul tavolo misto, perche' chi si oppone arriva con piu' peso e cadono piu'
+proposte.
 
 **Dove sono i numeri del punto 2 dopo 0.1.470.** Tolte le carte Eco, il tavolo
 misurato non e' piu' quello di 0.1.469 e i numeri vanno riletti insieme: i

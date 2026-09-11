@@ -500,6 +500,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 | il titolo | `title` o `name` |
 | il sottotitolo | l'archetipo e il bisogno (`archetype`, `need`), in italiano |
 | **SA FARE** | i valori dei verbi: `action_values` |
+| **POTERE** | il verbo col numero piu' alto, e quante volte per Atto lo dice senza carta: `action_values` col massimo, e `house_power.per_act` della Chronicle |
 | **VUOI LASCIARE** | i segni del profilo strategico: `entity_profiles[].wants` |
 | **SE NON CE LA FAI** | la vita dopo e la sua porta: `incarnations[].also_enters` |
 
@@ -519,6 +520,10 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     {
       "voce": "SA FARE",
       "testo": "acquisire 3 · rivendicare 4 · forgiare 2 · influenzare 4 · muovere 2 · tramare 1"
+    },
+    {
+      "voce": "POTERE",
+      "testo": "rivendicare o influenzare senza carta, una volta per Atto"
     },
     {
       "voce": "VUOI LASCIARE",

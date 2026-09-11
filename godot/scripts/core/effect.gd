@@ -44,6 +44,20 @@ const INVERSE_TYPE: Dictionary = {
 	# prende uno giocando una carta Asset dalla sua faccia RIVENDICARE.
 	"GRANT_CLAIM_TOKEN": "SPEND_CLAIM_TOKEN",
 	"SPEND_CLAIM_TOKEN": "GRANT_CLAIM_TOKEN",
+	# **Il potere della casa** (D-503, ISSUES 136 punto 4): il verbo che la casa
+	# sa fare meglio, giocato senza carta un tot di volte per Atto. Non e' una
+	# moneta come il gettone di sopra — non si accumula e non passa di mano: si
+	# spende e torna all'apertura dell'Atto dopo. Al tavolo e' il tarocco della
+	# Casata ruotato, e rimesso diritto.
+	"GRANT_HOUSE_POWER": "SPEND_HOUSE_POWER",
+	"SPEND_HOUSE_POWER": "GRANT_HOUSE_POWER",
+	# **La carta coperta** (D-504, ISSUES 136): a fine turno una carta esce dalla
+	# mano e si posa a faccia in giu' davanti a chi gioca. Non e' uno scarto —
+	# resta sua, e al Consiglio e' la sola che puo' impegnare — e non e' la mano,
+	# perche' non si puo' piu' giocare come Azione. E' un terzo posto, quindi ha
+	# il suo Effetto: scoprire e' rimetterla in mano.
+	"COVER_ASSET": "UNCOVER_ASSET",
+	"UNCOVER_ASSET": "COVER_ASSET",
 	"ADD_SCAR": "REMOVE_SCAR",
 	"REMOVE_SCAR": "ADD_SCAR",
 	"SET_ENTITY_TAG": "REMOVE_ENTITY_TAG",

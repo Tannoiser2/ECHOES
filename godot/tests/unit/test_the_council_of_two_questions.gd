@@ -11,6 +11,8 @@ extends "res://tests/test_case.gd"
 ## Chronicle di prova gioca a due domande senza doverlo dichiarare.
 
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
+const Effect := preload("res://scripts/core/effect.gd")
 
 
 ## Un decisore che fa quello che gli si dice: chi sta con B, quante carte
@@ -35,9 +37,13 @@ class Scripted extends RefCounted:
 	func choose_raise(_entity_id: String, _context: Dictionary, _menu: Array, _session: RefCounted) -> String:
 		return ""
 
+	## **Dal piatto che il Consiglio accetta** (D-504), non dalla mano: dove si
+	## copre, una carta in mano viene **rifiutata**, e un decisore scritto che
+	## la offrisse farebbe impegnare zero carte senza che questa prova se ne
+	## accorga — misurerebbe un Consiglio vuoto credendo di misurarne uno pieno.
 	func choose_commit(entity_id: String, _context: Dictionary, limit: int, session: RefCounted) -> Array:
 		var wanted: int = mini(int(cards_for.get(entity_id, 0)), limit)
-		return (session.service.hand(entity_id) as Array).slice(0, wanted)
+		return (session.service.commit_pool(entity_id) as Array).slice(0, wanted)
 
 	func choose_recovery(_context: Dictionary, _session: RefCounted) -> Dictionary:
 		return {}
@@ -56,7 +62,35 @@ func _table() -> RefCounted:
 	assert_true(_mine.setup("CHR_00", seats, 7000), "e l'anno si apre")
 	for effect in _mine.factory_setup_effects():
 		_mine.applier.apply(effect)
+	# **E le carte coperte**, che a un Consiglio vero ci sono sempre: qui si
+	# apre un Consiglio senza giocare i turni che le avrebbero prodotte.
+	_cover_some(_mine)
 	return _mine
+
+
+## **Le carte coperte, che al tavolo ci sono gia'** (D-504).
+##
+## Sul tavolo spedito il Consiglio si paga con quello che si e' **coperto** a
+## fine turno, e questa prova apre un Consiglio **senza giocare un turno**: senza
+## questa riga nessuno ha niente da impegnare e la prova misurerebbe un tavolo
+## che non esiste — zero carte sul piatto, e non perche' il Consiglio sia rotto.
+##
+## Si copre col suo Effetto, non scrivendo nel mondo: e' la stessa strada che
+## prende il controller alla fine di ogni turno.
+func _cover_some(live: RefCounted, how_many: int = 3) -> void:
+	if HandRhythm.cover_per_round(
+		live.data.chronicles[str(live.world["chronicle_id"])] as Dictionary
+	) <= 0:
+		return
+	for entity_id in live.world["turn_order"]:
+		var id: String = str(entity_id)
+		for asset_id in (live.service.ranked_by_strength(
+			live.service.hand(id)
+		) as Array).slice(0, how_many):
+			live.applier.apply(Effect.make(
+				"COVER_ASSET", "entity", id, {"asset_id": str(asset_id)},
+				Effect.source("test", "TEST", id, 1, 1, 0)
+			))
 
 
 func after_each() -> void:
@@ -346,7 +380,12 @@ func test_the_brain_commits_its_share_of_the_pile() -> void:
 	for asset_id in chosen:
 		total += ConfluenceResolution.asset_value(live.data.assets[str(asset_id)], relevant, "SUPPORT")
 	assert_true(
-		total >= 4 or chosen.size() == limit or chosen.size() == (live.service.hand(proponent) as Array).size(),
+		# **Il piatto, non la mano** (D-504): dove si copre, «tutto quello che
+		# puo'» sono le sue coperte. Letto sulla mano, questo controllo
+		# chiederebbe al cervello di impegnare carte che il Consiglio rifiuta.
+		total >= 4
+		or chosen.size() == limit
+		or chosen.size() == (live.service.commit_pool(proponent) as Array).size(),
 		"arriva al mucchio (%d) o da' tutto quello che puo' (%d carte)" % [total, chosen.size()]
 	)
 	live.confluence.current = {}

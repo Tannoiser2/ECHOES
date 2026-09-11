@@ -29,6 +29,7 @@ extends RefCounted
 ## uses `const X := preload(...)` and no `class_name`, and the rule holds here.
 
 const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
 const StoneRules := preload("res://scripts/world/stone_rules.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
@@ -576,6 +577,14 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 	if not bool(chronicle.get("actions_from_cards", false)):
 		return offers
 	var hand: Array = session.service.hand(entity_id)
+	# **Il potere della casa non passa dalla mano** (D-503, ISSUES 136 punto 4):
+	# e' il verbo che questa casa sa fare meglio, e si gioca senza carta un tot
+	# di volte per Atto. Il motore dice quali sono i verbi buoni e se il tarocco
+	# e' ancora diritto; qui si chiede a lui invece di ricopiarne la regola —
+	# una regola scritta in due file diverge in silenzio.
+	var power_verbs: Array = []
+	if int((session.world["entities"][entity_id] as Dictionary).get("house_power", 0)) > 0:
+		power_verbs = session.actions.house_verbs(entity_id)
 	var out: Array = []
 	for offer in offers:
 		var template: String = str((offer as Dictionary)["template"])
@@ -583,6 +592,17 @@ func _through_the_hand(entity_id: String, offers: Array, session: RefCounted) ->
 		if template == "PASS":
 			out.append(offer)
 			continue
+		# **E la voce del potere sta accanto a quella con la carta**, non invece
+		# di quella: chi ha in mano una carta che porta quel verbo sceglie se
+		# spendere la carta o il potere, e sono due mosse diverse.
+		if power_verbs.has(template):
+			var free: Dictionary = (offer as Dictionary).duplicate(true)
+			var free_params: Dictionary = (free["params"] as Dictionary).duplicate()
+			free_params["house_power"] = true
+			free["params"] = free_params
+			free["label"] = "Col potere della casa: %s (senza carta)" % str(free["label"])
+			if session.actions.can_execute(entity_id, template, free_params):
+				out.append(free)
 		for asset_id in hand:
 			var card: Variant = session.data.assets.get(str(asset_id))
 			if card == null:
@@ -852,6 +872,82 @@ func _side_question_text(side: String, session: RefCounted) -> String:
 	return question_id
 
 
+## **Quale carta copri** (D-504), che al tavolo e' il gesto di girare una carta
+## a faccia in giu' davanti a te.
+##
+## E' la domanda piu' difficile del turno **perche' e' cieca**: la domanda del
+## Consiglio non c'e' ancora, la Deriva puo' ancora farne esplodere un'altra, e
+## quello che copri e' l'unica cosa che potrai mettere sul piatto. Quindi il
+## menu dice **quanto vale una carta in Consiglio** e cosa fa uscendo, non
+## quanto vale «qui»: qui non c'e' ancora un qui.
+func choose_cover(entity_id: String, how_many: int, session: RefCounted) -> Array:
+	_speaking_to = entity_id
+	if not _is_human(entity_id):
+		return fallback.choose_cover(entity_id, how_many, session)
+	var chosen: Array = []
+	while chosen.size() < how_many:
+		var remaining: Array = []
+		var labels: Array = []
+		for asset_id in session.service.ranked_by_strength(session.service.hand(entity_id)):
+			if chosen.has(asset_id):
+				continue
+			var asset: Dictionary = session.data.assets[str(asset_id)]
+			remaining.append(asset_id)
+			labels.append("%s — %s, forza %d\n%s" % [
+				str(asset["title"]), str(asset["family"]).to_lower(),
+				int(asset["strength"]), AssetText.note(asset, session.data),
+			])
+		if remaining.is_empty():
+			break
+		var picked: int = await _choose(
+			"  %s copre una carta per il Consiglio (non sai ancora di cosa si parlera):"
+			% _name(entity_id, session),
+			labels
+		)
+		if picked < 0 or picked >= remaining.size():
+			return fallback.choose_cover(entity_id, how_many, session) if chosen.is_empty() else chosen
+		chosen.append(remaining[picked])
+	return chosen
+
+
+## **E cosa butti di quello che resta** (D-504).
+##
+## La riga da tenere davanti agli occhi e' che **scartare e' pescare**: la mano
+## torna al suo numero all'inizio del turno prossimo, quindi buttare non costa
+## niente e la carta buttata torna nel proprio mazzetto. Tenere e' la scommessa:
+## *questa mi serve fra un turno*. Il menu lo dice, perche' una scelta di cui non
+## si capisce il prezzo non e' una scelta.
+func choose_discards(entity_id: String, most: int, session: RefCounted) -> Array:
+	_speaking_to = entity_id
+	if not _is_human(entity_id):
+		return fallback.choose_discards(entity_id, most, session)
+	var chosen: Array = []
+	while chosen.size() < most:
+		var remaining: Array = []
+		var labels: Array = []
+		for asset_id in session.service.hand(entity_id):
+			if chosen.has(asset_id):
+				continue
+			var asset: Dictionary = session.data.assets[str(asset_id)]
+			remaining.append(asset_id)
+			labels.append("Scarta «%s» — %s, forza %d" % [
+				str(asset["title"]), str(asset["family"]).to_lower(),
+				int(asset["strength"]),
+			])
+		if remaining.is_empty():
+			break
+		labels.append("Tengo il resto in mano")
+		var picked: int = await _choose(
+			"  %s: scartare e pescare, tenere e scommettere. Cosa butta?"
+			% _name(entity_id, session),
+			labels
+		)
+		if picked < 0 or picked >= remaining.size():
+			break
+		chosen.append(remaining[picked])
+	return chosen
+
+
 ## Commit one card at a time until the limit or "basta". The terminal could take
 ## a whole line of numbers and the browser cannot, so this is the shape both can
 ## drive - and it reads closer to what committing is: you put one thing down,
@@ -893,7 +989,17 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 			break
 		labels.append("Non impegno altro")
 		var picked: int = await _choose(
-			"  %s impegna (%d di %d):" % [_name(entity_id, session), chosen.size(), limit],
+			"  %s impegna %s (%d di %d):" % [
+				_name(entity_id, session),
+				# **Da dove viene il piatto** (D-504): dove si copre, quello che
+				# si impegna e' solo quello che si e' messo da parte, e chi
+				# gioca deve vedere che il menu e' piu' corto per quella ragione
+				# e non perche' l'app si sia scordata delle sue carte.
+				"fra le sue coperte" if HandRhythm.council_pays_from_covered(
+					session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary
+				) else "dalla mano",
+				chosen.size(), limit,
+			],
 			labels
 		)
 		if picked < 0:

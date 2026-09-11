@@ -48,10 +48,10 @@ E la domanda da farsi a ogni modifica, che viene prima di ogni regola qui sotto:
 
 Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 
-**Sono trentaquattro, e non si girano a mano uno per uno.** Li gira
+**Sono trentacinque, e non si girano a mano uno per uno.** Li gira
 [`tools/gates.py`](tools/gates.py), in tre modi:
 
-- **senza argomenti** — i **28 veloci**, ventisette secondi in tutto: dopo ogni modifica;
+- **senza argomenti** — i **29 veloci**, ventisei secondi in tutto: dopo ogni modifica;
 - **`--lenti`** — le **6 sonde lunghe**: una volta, prima di aprire la PR;
 - **`--rigenera`** — rifà i documenti generati invece di controllarli, quando uno
   va rosso solo perché è vecchio. È il rosso che costa più tempo di tutti.

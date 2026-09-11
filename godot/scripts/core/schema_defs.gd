@@ -340,6 +340,9 @@ const DEFS := {
 			"control_rules": {
 				"type": "Dictionary",
 			},
+			"house_power": {
+				"type": "Dictionary",
+			},
 			"forge_rules": {
 				"type": "Dictionary",
 			},
@@ -577,10 +580,12 @@ const DEFS := {
 					"BUILD_STRUCTURE",
 					"CLOSE_PASSAGE",
 					"CONSUME_CLAIM",
+					"COVER_ASSET",
 					"CREATE_CLAIM",
 					"CREATE_ECHO",
 					"GRANT_ASSET",
 					"GRANT_CLAIM_TOKEN",
+					"GRANT_HOUSE_POWER",
 					"KEEP_THEME_HEAT",
 					"OPEN_PASSAGE",
 					"RAZE_STRUCTURE",
@@ -600,7 +605,9 @@ const DEFS := {
 					"SET_STRUCTURE_OWNER",
 					"SET_TENSION_VISIBILITY",
 					"SPEND_CLAIM_TOKEN",
+					"SPEND_HOUSE_POWER",
 					"TRANSFER_ASSET",
+					"UNCOVER_ASSET",
 				],
 			},
 			"target": {
@@ -626,10 +633,12 @@ const DEFS := {
 					"BUILD_STRUCTURE",
 					"CLOSE_PASSAGE",
 					"CONSUME_CLAIM",
+					"COVER_ASSET",
 					"CREATE_CLAIM",
 					"CREATE_ECHO",
 					"GRANT_ASSET",
 					"GRANT_CLAIM_TOKEN",
+					"GRANT_HOUSE_POWER",
 					"KEEP_THEME_HEAT",
 					"OPEN_PASSAGE",
 					"RAZE_STRUCTURE",
@@ -649,7 +658,9 @@ const DEFS := {
 					"SET_STRUCTURE_OWNER",
 					"SET_TENSION_VISIBILITY",
 					"SPEND_CLAIM_TOKEN",
+					"SPEND_HOUSE_POWER",
 					"TRANSFER_ASSET",
+					"UNCOVER_ASSET",
 				],
 			},
 			"inverse_payload": {
@@ -1893,10 +1904,12 @@ const EFFECT_TYPES := [
 	"BUILD_STRUCTURE",
 	"CLOSE_PASSAGE",
 	"CONSUME_CLAIM",
+	"COVER_ASSET",
 	"CREATE_CLAIM",
 	"CREATE_ECHO",
 	"GRANT_ASSET",
 	"GRANT_CLAIM_TOKEN",
+	"GRANT_HOUSE_POWER",
 	"KEEP_THEME_HEAT",
 	"OPEN_PASSAGE",
 	"RAZE_STRUCTURE",
@@ -1916,7 +1929,9 @@ const EFFECT_TYPES := [
 	"SET_STRUCTURE_OWNER",
 	"SET_TENSION_VISIBILITY",
 	"SPEND_CLAIM_TOKEN",
+	"SPEND_HOUSE_POWER",
 	"TRANSFER_ASSET",
+	"UNCOVER_ASSET",
 ]
 
 const EFFECT_TARGET_KINDS := [

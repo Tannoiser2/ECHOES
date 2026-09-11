@@ -13,6 +13,8 @@ extends RefCounted
 const Effect := preload("res://scripts/core/effect.gd")
 const ConfluenceResolution := preload("res://scripts/confluence/confluence_resolution.gd")
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
+const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
@@ -164,6 +166,7 @@ func play_act(act: int, decider: Object, from_round: int = 1) -> void:
 	# ha gia' avuto il suo giro di stagione, e rifarlo cambierebbe la partita.
 	if from_round == 1:
 		_lift_evictions(act)
+		_recharge_house_power(act)
 		_refill_hands(act)
 	for round_number in range(from_round, int(_chronicle["rounds_per_act"]) + 1):
 		await play_round(act, round_number, decider)
@@ -260,12 +263,198 @@ func _lift_evictions(act: int) -> void:
 			log.bullet("La stagione gira: %s puo tornare dov'era stato cacciato." % _name(str(entity_id)))
 
 
+## **Il tarocco si rimette diritto** (D-503, ISSUES 136 punto 4). Il potere
+## della casa non si accumula: quello non speso nell'Atto che chiude non si
+## porta appresso, e quello speso torna. Un Effect per volta, come ogni altra
+## mutazione, cosi' il verbale dice chi l'ha ripreso e disfare l'Atto lo
+## rimette speso.
+##
+## All'Atto 1 il giro e' un **no-op**: il tarocco lo posa diritto il setup, che
+## e' come la carta arriva sul tavolo. E dove la Chronicle non dichiara il
+## potere non esce nessun Effect.
+func _recharge_house_power(act: int) -> void:
+	var per_act: int = HousePowerRules.per_act(_chronicle)
+	if per_act <= 0:
+		return
+	for entity_id in world["turn_order"]:
+		var id: String = str(entity_id)
+		var left: int = int((world["entities"][id] as Dictionary).get("house_power", 0))
+		for _i in range(per_act - left):
+			var source: Dictionary = Effect.source(
+				"system", "ACT_OPENS", "", act, 1, int(world["effect_sequence"])
+			)
+			session.applier.apply(Effect.make(
+				"GRANT_HOUSE_POWER", "entity", id, {}, source
+			))
+		if per_act - left > 0:
+			log.bullet("%s rimette diritto il tarocco: il potere della casa torna." % _name(id))
+
+
+## **La mano torna a essere quella che la Chronicle dichiara** (D-504).
+##
+## Due mezzi giri in uno, e servono tutti e due: si **pesca** quello che manca
+## dal proprio pozzo, e si **scarta** quello che sta sopra — perche' ACQUISIRE
+## mette una carta in mano dentro il turno, e senza il pareggio quella carta
+## regalerebbe una mano piu' grande per sempre. Il tetto della Chronicle
+## (`hand_limit`) resta quello che vale **dentro** il turno; questo e' il
+## livello a cui il turno **comincia**.
+##
+## Dove il ritmo per turno non e' dichiarato, il giro e' un no-op e vale quello
+## per Atto.
+func _level_the_hands(act: int, round_number: int, decider: Object) -> void:
+	var target: int = HandRhythm.hand_target(_chronicle)
+	if target <= 0:
+		return
+	for entity_id in session.service.active_entities():
+		var id: String = str(entity_id)
+		var deck: Dictionary = (
+			world.get("personal_decks", {}) as Dictionary
+		).get(id, {}) as Dictionary
+		var drawn: int = 0
+		while session.service.hand_size(id) < target and not deck.is_empty():
+			var payload: Dictionary = _top_of_deck(deck, id)
+			if payload.is_empty():
+				# **Pozzo e scarto vuoti tutti e due**: si gioca con quello che
+				# c'e'. Una casa senza carte e' il difetto che questa regola
+				# viene a togliere, non uno da rifare qui in silenzio.
+				break
+			payload["source"] = "PERSONAL_DECK"
+			var effect: Dictionary = Effect.make(
+				"GRANT_ASSET", "entity", id, payload,
+				{"kind": "round_start", "act": act, "round": round_number}
+			)
+			if (session.applier.apply(effect) as Dictionary).is_empty():
+				break
+			drawn += 1
+		var over: int = session.service.hand_size(id) - target
+		var dropped: int = 0
+		while over > 0:
+			var extra: Array = await _ask_discards(decider, id, 1)
+			if extra.is_empty():
+				extra = [str((session.service.ranked_by_strength(
+					session.service.hand(id)
+				) as Array).back())]
+			for asset_id in extra:
+				_own_discard(id, str(asset_id), act, round_number)
+				dropped += 1
+				over -= 1
+		if drawn > 0 or dropped > 0:
+			log.bullet("%s pareggia la mano a %d: pesca %d, scarta %d." % [
+				_name(id), target, drawn, dropped,
+			])
+
+
+## **La carta coperta, e il resto che si tiene o si butta** (D-504).
+##
+## L'ordine e' quello del tavolo: prima si copre — e la coperta esce dalla mano,
+## quindi non la si puo' piu' scartare per sbaglio — e poi si decide cosa fare
+## di quello che resta. Chi scarta non perde niente: la mano torna a cinque al
+## turno dopo, quindi **scartare e' pescare**, e tenere e' una scommessa su una
+## carta precisa.
+func _cover_and_churn(act: int, round_number: int, decider: Object) -> void:
+	var how_many: int = HandRhythm.cover_per_round(_chronicle)
+	if how_many <= 0:
+		return
+	for entity_id in session.service.active_entities():
+		var id: String = str(entity_id)
+		var wanted: int = mini(how_many, session.service.hand_size(id))
+		var chosen: Array = []
+		if wanted > 0:
+			chosen = await _ask_cover(decider, id, wanted)
+			if chosen.is_empty():
+				# **Senza una scelta si copre la piu' forte**: chi copre non sa
+				# di cosa si parlera', e la forza nuda e' l'unica cosa che una
+				# carta vale in ogni Consiglio.
+				chosen = (session.service.ranked_by_strength(
+					session.service.hand(id)
+				) as Array).slice(0, wanted)
+		var covered: int = 0
+		for asset_id in chosen:
+			var applied: Dictionary = session.applier.apply(Effect.make(
+				"COVER_ASSET", "entity", id, {"asset_id": str(asset_id)},
+				Effect.source(
+					"system", "ROUND_ENDS", id, act, round_number,
+					int(world["effect_sequence"])
+				)
+			))
+			if not applied.is_empty():
+				covered += 1
+		if covered > 0:
+			# **Quale carta non si dice**, nemmeno nel verbale: e' coperta, ed
+			# e' il punto della regola.
+			log.bullet("%s mette da parte %s coperta." % [
+				_name(id), "1 carta" if covered == 1 else "%d carte" % covered,
+			])
+		var churn: Array = await _ask_discards(decider, id, session.service.hand_size(id))
+		for asset_id in churn:
+			_own_discard(id, str(asset_id), act, round_number)
+		if not churn.is_empty():
+			log.bullet("%s scarta %s: al turno prossimo ne pesca altrettante." % [
+				_name(id),
+				"1 carta" if churn.size() == 1 else "%d carte" % churn.size(),
+			])
+
+
+## Quali carte coprire, chieste a chi siede. Un decisore che non sa rispondere
+## lascia scegliere al motore: e' la stessa strada di `choose_raise`.
+func _ask_cover(decider: Object, entity_id: String, how_many: int) -> Array:
+	if how_many <= 0 or not decider.has_method("choose_cover"):
+		return []
+	var asked: Array = await decider.choose_cover(entity_id, how_many, session) as Array
+	# **Quello che torna si filtra**, come per gli scarti: un decisore che
+	# rispondesse con piu' carte del dovuto, o con una che non ha in mano, ne
+	# coprirebbe di piu' o farebbe fallire l'Effetto in silenzio. Il motore non
+	# si fida di una risposta: la controlla.
+	var out: Array = []
+	var hand: Array = session.service.hand(entity_id)
+	for asset_id in asked:
+		if out.size() >= how_many:
+			break
+		if hand.has(str(asset_id)) and not out.has(str(asset_id)):
+			out.append(str(asset_id))
+	return out
+
+
+## E quali buttare. Chi non risponde non butta niente: tenere e' il ripiego
+## innocuo, scartare no.
+func _ask_discards(decider: Object, entity_id: String, most: int) -> Array:
+	if most <= 0 or not decider.has_method("choose_discards"):
+		return []
+	var asked: Array = await decider.choose_discards(entity_id, most, session) as Array
+	var out: Array = []
+	var hand: Array = session.service.hand(entity_id)
+	for asset_id in asked:
+		if out.size() >= most:
+			break
+		if hand.has(str(asset_id)) and not out.has(str(asset_id)):
+			out.append(str(asset_id))
+	return out
+
+
+## La carta buttata torna nel **proprio** scarto, e da li' nel proprio mazzetto
+## al rimescolo (D-499): e' quello che rende «scartare» un investimento invece
+## di una perdita.
+func _own_discard(entity_id: String, asset_id: String, act: int, round_number: int) -> void:
+	session.applier.apply(Effect.make(
+		"REMOVE_ASSET", "entity", entity_id,
+		{"asset_id": asset_id, "destination": "OWN_DISCARD"},
+		Effect.source(
+			"system", "ROUND_ENDS", entity_id, act, round_number,
+			int(world["effect_sequence"])
+		)
+	))
+
+
 func play_round(act: int, round_number: int, decider: Object) -> void:
 	_set_phase(act, round_number, "ACTIONS")
 	# The INFLUENCE allowance is per round and does not carry over (D-021).
 	world["influence_used"] = {}
 	world["influence_used_by_tension"] = {}
 	log.section("Atto %d - Round %d" % [act, round_number])
+
+	# **La mano si pareggia prima di giocare** (D-504): a inizio turno e'
+	# esattamente quella che la Chronicle dichiara, e sopra o sotto si aggiusta.
+	await _level_the_hands(act, round_number, decider)
 
 	var opportunities: int = int(_chronicle["action_opportunities_per_round"])
 	for entity_id in session.service.active_entities():
@@ -284,6 +473,13 @@ func play_round(act: int, round_number: int, decider: Object) -> void:
 			# AO are spent whether or not the attempt succeeded; they do not
 			# carry over between rounds (§7).
 			world["entities"][entity_id]["ao_remaining"] = opportunities - ao_index - 1
+
+	# **E a fine turno si copre** (D-504), prima che qualunque Consiglio si
+	# apra: la carta che si mette da parte e' la sola che il Consiglio potra'
+	# impegnare, e va scelta **senza sapere** di cosa si parlera'. Sta qui e non
+	# dopo la Deriva per quello: la Deriva puo' far esplodere una domanda, e
+	# coprire dopo vorrebbe dire coprire sapendo.
+	await _cover_and_churn(act, round_number, decider)
 
 	_set_phase(act, round_number, "DRIFT")
 	session.tensions.apply_drift()
@@ -1035,6 +1231,10 @@ func _refill_hands(act: int) -> void:
 	#
 	# Il mazzetto lo sostituisce con un numero **fisso e uguale per tutti**,
 	# come il committente ha chiesto: cambia **cosa** peschi, non quanto.
+	if HandRhythm.hand_target(_chronicle) > 0:
+		# **Il ritmo e' del turno, non dell'Atto** (D-504): la mano si pareggia
+		# all'inizio di ogni turno, quindi qui non c'e' niente da pescare.
+		return
 	if not (_chronicle.get("personal_decks", {}) as Dictionary).is_empty():
 		_draw_from_personal_deck(act)
 		return
