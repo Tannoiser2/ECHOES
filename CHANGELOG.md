@@ -5,6 +5,63 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.476 — La rosa esagonale, misurata: il centro decide tutto
+
+[D-506](docs/DECISIONS.md#d-506). Domanda del committente: *«meglio la
+situazione attuale (6 tessere 3x2) oppure tessere esagonali con un esagono
+centrale e sei esagoni attorno?»*, e poi *«gli esagoni non hanno tutti i lati
+con varchi... la sonda deve misurare se qualcuno tra le tante combinazioni
+rimane isolata»*.
+
+**Nessuna regola di gioco e' cambiata.** Questo giro aggiunge uno strumento e
+un verbale: la parola sulla forma della mappa resta al committente.
+
+### Aggiunto
+
+- **`cli/run_flower_probe.gd`** — la rosa contro il 3x2, coi varchi spazzati
+  tutti. I varchi esagonali non esistono come dato e la sonda non se li inventa:
+  spazza **tutte le forme possibili** di una tessera a meno della rotazione — 12
+  su sei lati, 4 su quattro — ed enumera **84** composizioni per il 3x2 e
+  **31.824** per la rosa. Il 3x2 lo posa il **motore vero** con Regioni finte;
+  la rosa la posa la sonda, perche' il motore e' quadrato;
+- e la sonda **si prova su cinque casi fabbricati** prima di dire un numero, tre
+  che devono dare «esiste» e due «non esiste».
+
+### Misurato
+
+| | 3x2 | rosa |
+|---|---|---|
+| composizioni | 84 | 31.824 |
+| pose rotte | 1.212 su 2.560 (47%) | 949.315 su 1.512.336 (63%) |
+| senza **nessuna** posa buona | 4 (4,8%) | **153 (0,48%)** |
+| la regola rompe in almeno un ordine | 75 (89%) | **31.512 (99%)** |
+| dove smette di rompersi | 22 lati aperti su 24 | 37 su 42 |
+
+**Le tre strategie del committente:** A (la tessera piu' aperta al centro) rompe
+**373 composizioni su 31.824**, e con una tessera **aperta su tutti e sei i
+lati** al centro rompe **0 su 12.376** — l'isolamento diventa impossibile per
+costruzione. La stessa regola con la tessera sbagliata al centro rompe quasi il
+doppio (616). B e C — ruotare, riposizionare — **sono gia' la regola di oggi**, e
+da sole non salvano 153 composizioni.
+
+### E un numero di oggi che va detto
+
+**Nove Regioni su dieci sono aperte su tutti e quattro i lati** (38 lati su 40,
+[D-393](docs/DECISIONS.md#d-393)). Cioe' lo 0 isolate su 151.200 pose di
+`MISURA_TESSERE` misura una mappa **col vincolo quasi spento**. Se le montagne
+scendessero a due varchi, **il 3x2 si romperebbe eccome**: il difetto non e'
+della forma, e' della generosita' dei varchi — e con almeno **3 varchi su 4** per
+tessera il 3x2 non sbaglia mai.
+
+### Dichiarato e non misurato
+
+Cosa farebbe la rosa al **bilanciamento** (Verita', seggi bloccati, passaggi di
+mano della terra): per saperlo va costruito il motore esagonale. E il 99% della
+rosa e' su **48 ordini per composizione**, non su tutti e 5.040: campione
+dichiarato.
+
+---
+
 ## 0.1.475 — La mappa compra la memoria: le coperte si guadagnano
 
 [D-505](docs/DECISIONS.md#d-505). Parola del committente: *«aggiungiamo combo:
