@@ -1547,16 +1547,19 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 
 # E una cosa che non è una voce: l'arte
 
-**150 illustrazioni su 161 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I
-prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due
-decisioni che lo bloccavano — il formato di una carta e come si disegna una
-tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista
-perché non è una voce: è la scatola.
+<!-- ARTE: inizio - generato da tools/issues_survey.py -->
 
-**E una riga trovata qui, in 0.1.406:** quel conto di 161 guarda carte Asset,
-Echi, tessere, case e Destini. **Le diciannove carte Obiettivo portano un prompt
-scritto e non ci sono dentro** — quindi i soggetti veri da disegnare sono di più
-di quanto quel numero dica. Non apro una voce: è una riga sotto questa.
+**121 illustrazioni su 132 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due decisioni che lo bloccavano — il formato di una carta e come si disegna una tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista perché non è una voce: è la scatola.
+
+| mazzo | soggetti | disegnati | da fare |
+|---|---|---|---|
+| Carte Asset | 48 | 1 | **47** |
+| Carte **Casata** (una per vita) | 32 | 0 | **32** |
+| Carte Destino | 23 | 0 | **23** |
+| Carte Obiettivo | 19 | 0 | **19** |
+| Tessere Regione | 10 | 10 | **0** |
+
+<!-- ARTE: fine -->
 
 ---
 

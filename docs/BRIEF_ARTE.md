@@ -2520,6 +2520,26 @@ reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
 no numerals, no logos, no frame, no border. Not gory, not horror.
 ```
 
+### `objective.something_must_break` — Qualcosa Deve Rompersi
+
+- **soggetto**: Qualcosa Deve Rompersi
+- **scena**: Un anno in cui non succede niente è un anno che nessuno racconta. Questo obiettivo non chiede di vincere una questione: chiede che due arrivino al punto in cui il tavolo deve guardarle in faccia — e le questioni non salgono da sole, le alza qualcuno.
+- **id**: `OBJ_SOMETHING_MUST_BREAK`
+
+```
+ECHOES — Objective card. Emblematic scene of Qualcosa Deve Rompersi.
+What must be true at the end of the year: Un anno in cui non succede niente è un anno che nessuno racconta. Questo obiettivo non chiede di vincere una questione: chiede che due arrivino al punto in cui il tavolo deve guardarle in faccia — e le questioni non salgono da sole, le alza qualcuno.
+Neutral accent — worn stone grey and pale ochre — over the game's muted earth
+palette; no house colour: this card can belong to anyone. No faces: an
+Objective card shows the proof, not the one who brings it — a thing built,
+held, counted or kept, composed like an ex-voto. Seen close, at eye level, in
+plain daylight; one clear light source and a quiet background. Grounded
+medieval-adjacent world, no invented heraldry, no glowing magic. Composition:
+subject in the upper two thirds; the lower third is a calm, low-detail area
+reserved for a text overlay. Vertical card framing, 2:3. No text, no letters,
+no numerals, no logos, no frame, no border. Not gory, not horror.
+```
+
 ### `objective.the_longest_reach` — La Mano Più Lunga
 
 - **soggetto**: La Mano Più Lunga

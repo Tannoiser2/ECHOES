@@ -42,6 +42,8 @@ COLORI_START = "<!-- COLORI: inizio - generato da tools/issues_survey.py -->"
 COLORI_END = "<!-- COLORI: fine -->"
 RIGA_START = "<!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->"
 RIGA_END = "<!-- IN UNA RIGA: fine -->"
+ARTE_START = "<!-- ARTE: inizio - generato da tools/issues_survey.py -->"
+ARTE_END = "<!-- ARTE: fine -->"
 
 HEAD = re.compile(r"^### (\d+)\.(.*)$", re.M)
 # «chiusa in 0.1.306», «CHIUSA in 0.1.328». Una chiusura dichiarata porta sempre
@@ -480,6 +482,47 @@ def ritocca(sheet: str, voices: list[Voice], c: dict[str, int]) -> str:
     return "\n".join(fuori) + ("\n" if sheet.endswith("\n") else "")
 
 
+def render_arte() -> str:
+    """**Il paragrafo dell'arte, contato invece che ricordato.**
+
+    Diceva «150 illustrazioni su 161», scritto a mano, e il conto vero era
+    **121 su 132**: il numero era vecchio di settanta versioni, in un foglio che
+    due righe piu' sotto avverte che *«un numero scritto a mano invecchia il
+    giorno dopo»*. E sotto lo stesso paragrafo c'era gia' scritta la riga che lo
+    spiegava — gli Obiettivi non erano contati — trovata in 0.1.406 e lasciata
+    li'.
+
+    Adesso il conto lo fa `components_survey.art_files()`, che e' lo stesso che
+    scrive COMPONENTI: una misura sola, due fogli."""
+    from components_survey import ART_DECKS, art_files
+
+    arte = art_files()
+    fatti = sum(1 for v in arte.values() if v)
+    righe = [ARTE_START, ""]
+    righe.append(
+        "**%d illustrazioni su %d sono ancora un segnaposto** "
+        "(`docs/COMPONENTI.md`). I prompt sono tutti scritti, e generati dai "
+        "dati veri. È lavoro meccanico, e le due decisioni che lo bloccavano — "
+        "il formato di una carta e come si disegna una tessera — sono chiuse: "
+        "**si può commissionare quando vuoi**. Non è nella lista perché non è "
+        "una voce: è la scatola." % (len(arte) - fatti, len(arte))
+    )
+    righe.append("")
+    righe.append("| mazzo | soggetti | disegnati | da fare |")
+    righe.append("|---|---|---|---|")
+    for nome, prefisso in ART_DECKS:
+        quanti = [v for k, v in arte.items() if k.split(".")[0] == prefisso]
+        if not quanti:
+            continue
+        vinti = sum(1 for v in quanti if v)
+        righe.append(
+            "| %s | %d | %d | **%d** |" % (nome, len(quanti), vinti, len(quanti) - vinti)
+        )
+    righe.append("")
+    righe.append(ARTE_END)
+    return "\n".join(righe)
+
+
 def rigenera(sheet: str, voices: list[Voice]) -> str:
     """Il foglio come lo dicono le voci: la spina dorsale ritoccata e i tre
     blocchi generati. E' una porta sola, cosi' `--check` e la riscrittura non
@@ -489,7 +532,8 @@ def rigenera(sheet: str, voices: list[Voice]) -> str:
     out = ritocca(sheet, voices, c)
     out = splice(out, render(voices))
     out = splice(out, render_colori(c, presenti), COLORI_START, COLORI_END)
-    return splice(out, render_riga(c, presenti), RIGA_START, RIGA_END)
+    out = splice(out, render_riga(c, presenti), RIGA_START, RIGA_END)
+    return splice(out, render_arte(), ARTE_START, ARTE_END)
 
 
 def splice(sheet: str, block: str, start: str = START, end: str = END) -> str:

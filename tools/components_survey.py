@@ -136,15 +136,34 @@ def sheets(copies: int, shape: str) -> int:
     return (copies + per - 1) // per
 
 
+## I mazzi dell'arte, col nome che si legge al tavolo. L'ordine e' quello con
+## cui si guarda una scatola: le carte che si giocano, poi le case, poi quello
+## che sta sotto il paravento, poi la mappa.
+ART_DECKS = [
+    ("Carte Asset", "asset"),
+    ("Carte **Casata** (una per vita)", "entity"),
+    ("Carte Destino", "destiny"),
+    ("Carte Obiettivo", "objective"),
+    ("Tessere Regione", "region"),
+]
+
+
 def art_files() -> Dict[str, bool]:
     """Quali `art_prompt_key` hanno gia' un file, e quali sono ancora prompt.
 
     **Le vite delle case hanno un volto ciascuna** (D-111): un'Entita' con
     quattro incarnazioni sono quattro soggetti da illustrare, non uno. La prima
     stesura di questa misura contava 97 prompt contro i 146 del brief, ed erano
-    le cartelle sbagliate piu' le vite non contate."""
+    le cartelle sbagliate piu' le vite non contate.
+
+    **E gli Obiettivi ci sono dentro da 0.1.479.** Il foglio delle decisioni lo
+    diceva da 0.1.406 — *«le diciannove carte Obiettivo portano un prompt
+    scritto e non ci sono dentro»* — e per settanta versioni il conto e' rimasto
+    corto di diciannove: un mazzo intero da illustrare che nessun numero
+    nominava. Una riga trovata e non chiusa e' una riga che non e' stata
+    trovata."""
     out: Dict[str, bool] = {}
-    for schema in ("asset", "region", "entity", "destiny"):
+    for schema in ("asset", "region", "entity", "destiny", "objective"):
         for entry in items(schema):
             chiavi = [str(entry.get("art_prompt_key", ""))]
             for vita in entry.get("incarnations", []) or []:
@@ -336,6 +355,20 @@ def survey() -> str:
     add("| soggetti da illustrare (`art_prompt_key`) | **%d** |" % len(arte))
     add("| gia' disegnati | **%d** |" % arte_fatta)
     add("| ancora segnaposto | **%d** |" % (len(arte) - arte_fatta))
+    add("")
+    # **Un totale non e' una lista.** Chiedere «la carta Casata e' fra l'arte da
+    # fare?» a un numero solo non si puo': la risposta e' si' — 32 soggetti, uno
+    # per vita — ma il numero non lo dice, e chi guarda la lista non lo sa.
+    add("E **di cosa e' fatto quel numero**, mazzo per mazzo:")
+    add("")
+    add("| mazzo | soggetti | disegnati | da fare |")
+    add("|---|---|---|---|")
+    for nome, prefisso in ART_DECKS:
+        quanti = [v for k, v in arte.items() if k.split(".")[0] == prefisso]
+        if not quanti:
+            continue
+        fatti = sum(1 for v in quanti if v)
+        add("| %s | %d | %d | **%d** |" % (nome, len(quanti), fatti, len(quanti) - fatti))
     add("")
     add("I prompt pronti da mandare a chi disegna stanno in")
     add("[BRIEF_ARTE.md](BRIEF_ARTE.md), generati dagli stessi dati.")

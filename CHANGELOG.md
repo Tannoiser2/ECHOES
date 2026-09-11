@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.479 — La lista dell'arte dice di cosa e' fatta
+
+Parola del committente: *«aggiungi la carta Casata alla lista dell'arte da
+fare»*. C'era gia' — **32 soggetti, uno per vita** — e il punto e' che la lista
+non lo diceva: dava un totale nudo.
+
+### Corretto
+
+- **gli Obiettivi entrano nel conto dell'arte.** `art_files()` guardava quattro
+  mazzi su cinque, e le 19 carte Obiettivo restavano fuori: il foglio delle
+  decisioni lo aveva **trovato in 0.1.406** — *«portano un prompt scritto e non
+  ci sono dentro»* — e la riga era rimasta li' settanta versioni. I soggetti
+  passano da **113 a 132**;
+- **e un obiettivo non aveva nemmeno la chiave d'arte**: `OBJ_SOMETHING_MUST_BREAK`
+  sarebbe stato stampato senza soggetto e senza prompt, e nessuno poteva
+  commissionarlo. Adesso ce l'ha, e il brief passa da 131 a **132 voci**;
+- **il numero nel foglio delle decisioni era vecchio di settanta versioni**:
+  diceva «150 illustrazioni su 161» a mano, in un paragrafo che due righe sotto
+  avverte che *«un numero scritto a mano invecchia il giorno dopo»*. Adesso lo
+  genera `issues_survey.py` chiamando la stessa misura che scrive COMPONENTI.
+
+### Aggiunto
+
+**Un totale non e' una lista**, e adesso il conto si spezza per mazzo — in
+COMPONENTI e nel foglio delle decisioni:
+
+| mazzo | soggetti | disegnati | da fare |
+|---|---|---|---|
+| Carte Asset | 48 | 1 | **47** |
+| Carte **Casata** (una per vita) | 32 | 0 | **32** |
+| Carte Destino | 23 | 0 | **23** |
+| Carte Obiettivo | 19 | 0 | **19** |
+| Tessere Regione | 10 | 10 | **0** |
+
+**Le dieci tessere della mappa sono l'unica arte finita del gioco** — e questo
+e' il numero che serve sapere prima di cambiare la forma della mappa.
+
+---
+
 ## 0.1.478 — Il mazzetto ascolta quello che vuoi, e l'Eco dice di chi e'
 
 [D-509](docs/DECISIONS.md#d-509) e [D-508](docs/DECISIONS.md#d-508): i punti 5 e

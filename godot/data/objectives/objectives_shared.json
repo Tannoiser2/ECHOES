@@ -256,7 +256,8 @@
           "min": 2,
           "label": "Almeno due questioni arrivate a 4 o più"
         }
-      ]
+      ],
+      "art_prompt_key": "objective.something_must_break"
     },
     {
       "id": "OBJ_THE_LONGEST_REACH",

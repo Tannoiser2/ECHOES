@@ -62,9 +62,19 @@ centodiciotto simboli, si impara quello che si vede.
 
 | | |
 |---|---|
-| soggetti da illustrare (`art_prompt_key`) | **113** |
+| soggetti da illustrare (`art_prompt_key`) | **132** |
 | gia' disegnati | **11** |
-| ancora segnaposto | **102** |
+| ancora segnaposto | **121** |
+
+E **di cosa e' fatto quel numero**, mazzo per mazzo:
+
+| mazzo | soggetti | disegnati | da fare |
+|---|---|---|---|
+| Carte Asset | 48 | 1 | **47** |
+| Carte **Casata** (una per vita) | 32 | 0 | **32** |
+| Carte Destino | 23 | 0 | **23** |
+| Carte Obiettivo | 19 | 0 | **19** |
+| Tessere Regione | 10 | 10 | **0** |
 
 I prompt pronti da mandare a chi disegna stanno in
 [BRIEF_ARTE.md](BRIEF_ARTE.md), generati dagli stessi dati.
@@ -105,7 +115,7 @@ posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 
 ### b. L'arte
 
-**102 soggetti su 113 sono ancora segnaposto.** E' il pezzo piu' grosso
+**121 soggetti su 132 sono ancora segnaposto.** E' il pezzo piu' grosso
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
 
