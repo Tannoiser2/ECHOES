@@ -10,6 +10,235 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-506 — La rosa esagonale, misurata: il centro decide tutto
+
+**disegno, 0.1.476.** Domanda del committente:
+
+> *«Ora devi farmi un controllo sulla mappa, meglio la situazione attuale (6
+> tessere 3x2) oppure tessere esagonali con un esagono centrale e sei esagoni
+> attorno? (ogni entita' ha un esagono associato che si deve per forza usare
+> nella saga, tipo Aldric la capitale Ceerax le montagne ecc.) e tre delle sei
+> rimaste (se usiamo 10 esagoni totali) si pescano casualmente per dare
+> varieta' alla partita.»*
+
+e la precisazione che ha fatto la sonda:
+
+> *«gli esagoni non hanno tutti i lati con varchi, la capitale per esempio si,
+> ma le montagne solo due o tre varchi e la sonda deve misurare se qualcuno tra
+> le tante combinazioni rimane isolata, in quel caso si puo' pensare che A: gli
+> esagoni presi per le entita' vanno a un punto preciso della rosa e che quindi
+> rende impossibile l'isolamento, B: le tessere vengono ruotate finche' non
+> sono piu' isolate, C: si pescano e si posizionano a mano altre tessere finche'
+> si risolve il problema»*
+
+**Questo verbale non decide**: misura, e la parola resta al committente. Quello
+che decide e' la raccomandazione in fondo, che vale se lui non dice altro.
+
+### Zero: questa domanda ha gia' una risposta sua, a verbale
+
+[D-279](#d-279), dopo la prima partita provata a schermo: *«la mappa deve essere
+con le immagini affiancate a quadrato con un 3x2, non a esagoni»* — e la ragione
+scritta li': l'esagono **ritagliava meta' del quadro** consegnato, e disegnava
+una forma che sul tavolo non esisteva. Questo verbale non la ribalta: la rimisura
+su una domanda che allora non era stata fatta, quella dei **varchi**.
+
+### Uno: B e C sono gia' la regola di oggi. La novita' e' A
+
+La posa di [D-390](#d-390) fa gia' due dei tre rimedi proposti:
+
+- **B, ruotare** — ogni tessera si gira finche' il lato che si tocca porta un
+  varco su tutte e due;
+- **C, mettere da parte e riprovare** — una tessera che non entra da nessuna
+  parte si mette da parte, e ci si riprova dopo aver posato le altre.
+
+La novita' e' **A**, il posto fisso. Ed e' anche l'unica delle tre che *toglie*
+liberta' alla posa, quindi era quella da guardare con sospetto. **Il sospetto
+era sbagliato, e la misura lo dice forte**: A e' il rimedio che funziona, e le
+altre due da sole non bastano.
+
+### Due: i varchi di oggi quasi non vincolano
+
+| | |
+|---|---|
+| Regioni aperte su **tutti e quattro** i lati | **9 su 10** |
+| l'unica che non lo e' | Isola Muta, due varchi (N, O) |
+| lati aperti | **38 su 40** |
+
+E' una decisione sua — [D-393](#d-393), *«aggiungi qualche lato per tornare ai 7
+della griglia precedente»*. La conseguenza va detta: lo **0 isolate su 151.200
+pose** di [MISURA_TESSERE](MISURA_TESSERE.md) misura una mappa **col vincolo
+quasi spento**, e non e' la prova che un sistema di varchi tenga. Il confronto
+col fiore su quel numero non si puo' fare, e la sonda infatti non lo usa.
+
+### Tre: come si misura una cosa che non e' ancora un dato
+
+I varchi esagonali non esistono. Inventarli avrebbe misurato la mia mano, quindi
+`cli/run_flower_probe.gd` **spazza tutte le forme possibili** di una tessera. A
+meno della rotazione una forma e' una **collana**: con almeno due varchi ce ne
+sono **4 su quattro lati** e **12 su sei**. Le composizioni sono tutti i
+multinsiemi: **84** per il 3x2, **31.824** per la rosa, enumerate tutte.
+
+Per ognuna, quattro domande diverse:
+
+1. **esiste una posa senza isolate?** Se no, nessuno dei tre rimedi salva quella
+   composizione: si cambiano i varchi e basta;
+2. **la regola di posa la trova?** Su tutti gli ordini distinti quando sono
+   pochi, altrimenti su **48 ordini pescati col seme 7000** — e questo e' il
+   solo numero campionato del verbale;
+3. **la tessera piu' aperta al centro** — la strategia A, letta sui varchi;
+4. **la piu' avara al centro** — il peggio che una posizione fissa decisa senza
+   guardare i varchi possa fare.
+
+**Il 3x2 non e' riscritto**: lo posa `WorldStateFactory._lay_the_tiles`, cioe' il
+motore vero, con Regioni finte che portano i varchi spazzati. La rosa la posa la
+sonda, perche' il motore e' quadrato: e' la stessa regola, portata all'esagono.
+
+**E la sonda si prova prima di parlare**, su cinque casi con la risposta
+calcolata a mano — tre che devono dare «esiste» e due «non esiste». Non era
+pedanteria: **un'ottimizzazione aveva spento la ricerca libera sul 3x2** — le 4
+composizioni senza posa erano diventate **0 in silenzio** — e a prenderla e'
+stato il caso fabbricato dei sei corridoi.
+
+### Quattro: le due geometrie, come sono fatte
+
+| | 3x2 | rosa |
+|---|---|---|
+| caselle | 6 | **7** |
+| lati per tessera | 4 | 6 |
+| confini possibili | 7 | **12** |
+| vicini, casella per casella | 2 · 3 · 2 · 2 · 3 · 2 | **6** · 3 · 3 · 3 · 3 · 3 · 3 |
+| confini per mappa, misurati oggi | **6,80** | — |
+
+**Il numero che conta e' il 6.** Nella rosa una casella confina con **tutte** le
+altre, e nessuna tessera dista piu' di due passi da nessun'altra. Sul 3x2 il
+grado massimo e' 3 e la distanza arriva a 3. La rosa non e' «il 3x2 con un lato
+in piu'»: e' **un mondo con un cuore**, e MUOVERE, RIVENDICARE e il controllo
+delle Regioni cambiano di conseguenza.
+
+### Cinque: il 3x2, spazzato
+
+| 84 composizioni, il motore vero, tutti gli ordini distinti | |
+|---|---|
+| pose stese | 2.560 · **rotte 1.212 (47,3%)** |
+| composizioni senza **nessuna** posa buona | **4 (4,8%)** |
+| composizioni che la regola rompe in almeno un ordine | 75 (89,3%) |
+| composizioni che la regola non sbaglia mai | 9 (10,7%) |
+| **con almeno 3 varchi su 4 per tessera** | **0 rotture**, su 7 composizioni |
+| con 22 lati aperti su 24 o piu' | **0 rotture** |
+| con 15 lati aperti su 24 o piu' | **0 composizioni senza posa** |
+
+Oggi il gioco sta a **38 su 40** — dentro la banda sicura, con margine. Ma se le
+montagne scendessero a due varchi come il committente le immagina, **il 3x2 si
+romperebbe eccome**: il difetto che gli esagoni dovrebbero curare non e' della
+forma, e' della generosita' dei varchi.
+
+### Sei: la rosa, spazzata
+
+| 31.824 composizioni, la stessa regola portata all'esagono | |
+|---|---|
+| pose stese | 1.512.336 · **rotte 949.315 (62,8%)** |
+| composizioni senza **nessuna** posa buona | **153 (0,48%)** |
+| composizioni che la regola rompe in almeno un ordine | **31.512 (99,0%)** |
+| composizioni che la regola non sbaglia mai | 312 (0,98%) |
+| con 22 lati aperti su 42 o piu' | **0 composizioni senza posa** |
+| con 37 lati aperti su 42 o piu' | **0 rotture** |
+
+E questi due numeri vanno letti insieme, perche' dicono due cose opposte:
+
+- **una posa buona quasi sempre esiste** — 153 composizioni su 31.824 non ce
+  l'hanno, mezzo per cento, e sono tutte composizioni avarissime (152 su 153
+  hanno una tessera a due varchi, e nessuna arriva a 22 lati aperti su 42);
+- **ma la posa in ordine di pesca quasi sempre puo' sbagliare**: il 99% delle
+  composizioni ha almeno un ordine che lascia una tessera isolata o fuori. Sulla
+  rosa **l'ordine conta molto piu' che sul 3x2** (99% contro 89%, e 63% delle
+  pose contro 47%), perche' la prima tessera finisce al centro e il centro tocca
+  tutti.
+
+### Sette: le tre strategie, misurate
+
+| | composizioni rotte su 31.824 | |
+|---|---|---|
+| **A — la tessera piu' aperta al centro** | **373 (1,2%)** | il rimedio vero |
+| **A — con una tessera a sei varchi al centro** | **0 su 12.376** | impossibile rompersi |
+| A' — la piu' avara al centro | 616 (1,9%) | il peggio della posizione fissa |
+| B/C — ruotare, riposizionare | 153 (0,48%) non si salvano | ma servono a ogni partita |
+
+**La A del committente funziona, ma non per il motivo che dava lui.** Non conta
+che il posto sia fisso: conta **chi ci va**. La stessa regola con la tessera
+sbagliata al centro rompe quasi il doppio delle composizioni (616 contro 373).
+
+**E c'e' un caso in cui l'isolamento e' impossibile per costruzione**: se al
+centro va una tessera **aperta su tutti e sei i lati**, ogni petalo con almeno
+un varco lo ruota verso il centro e trova il passaggio. Il centro tocca tutti e
+sei, quindi la mappa e' un pezzo solo. **Zero rotture su 12.376 composizioni**,
+e la dimostrazione sta in tre righe — la misura serve solo a confermare che il
+codice fa quello che la dimostrazione dice.
+
+**Un fatto di geometria che spiega il resto:** i tre lati che contano per un
+petalo — verso il centro e verso i due vicini d'anello — sono **tre lati di
+fila**, e quello di mezzo e' il centro. Quindi una tessera con due varchi
+**opposti** non puo' guardare il centro e l'anello nello stesso momento: o l'uno
+o l'altro. E' il motivo per cui sette tessere a varchi opposti non fanno una
+rosa, ed e' uno dei casi fabbricati della sonda.
+
+### Otto: quello che la rosa costa, e non e' l'isolamento
+
+- **la varieta' della mappa cala di dieci volte.** Con quattro tessere su sette
+  decise da chi siede, una saga con quelle quattro case vede **20** mappe
+  diverse invece delle 210 di oggi. In tutto, le combinazioni «chi siede × che
+  mappa» passano da **14.700 a 1.400**;
+- **le sei famiglie di Asset**: 116 mani di sette tessere su 120 le portano
+  tutte (96,7%), meglio delle 180 su 210 (85,7%) di oggi — ma oggi il rimedio di
+  [D-313](#d-313) **ripara** le trenta che mancano scambiando una tessera, e
+  sulla rosa quattro tessere su sette non si possono scambiare: il rimedio
+  lavorerebbe solo sulle tre pescate;
+- **una tessera in piu' in scatola** (sette invece di sei), e il parco resta 10;
+- **l'app va ridisegnata**: `map_view.gd` posa una griglia a colonne e righe, la
+  cornice 3x2 sta in `world_state_factory`, e l'export di stampa, la sonda delle
+  tessere e le prove della mappa la seguono;
+- **l'arte invece non costa niente**: le tessere Regione sono ancora **senza
+  faccia fisica** e 102 soggetti su 113 sono segnaposto. Se la forma cambia,
+  questo e' il momento in cui costa meno.
+
+### Nove: quello che **non** e' misurato
+
+- **cosa farebbe la rosa al bilanciamento** — Verita', seggi bloccati, passaggi
+  di mano della terra. Per misurarlo bisogna costruire il motore esagonale: la
+  sonda misura la geometria e l'isolamento, non la partita;
+- **il 99% della rosa e' su 48 ordini per composizione**, non su tutti: gli
+  ordini distinti di sette tessere sono fino a 5.040, e spazzarli tutti sarebbe
+  costato giorni. Il numero e' un campione dichiarato, e va letto come «quasi
+  sempre», non come «31.512 esatte»;
+- **la sonda spazza le composizioni, non le partite.** «Sei corridoi tutti
+  opposti» e' una mano che il parco vero non puo' nemmeno distribuire — nel
+  parco di corridoi ce ne sono due. Serve a dire **quali mani sono cattive**; il
+  mestiere del parco e' non poterle dare.
+
+### La raccomandazione
+
+**Resta il 3x2**, e non per inerzia: perche' il difetto che la rosa curerebbe —
+le tessere isolate — **oggi non esiste**, e quando esistera' (il giorno in cui i
+varchi diventano avari davvero) la cura non e' la forma, e' una regola sulla
+generosita' dei varchi, che il 3x2 puo' avere domani: **almeno tre varchi su
+quattro per tessera, e 0 rotture su tutte le composizioni**.
+
+**E la parte forte della sua idea non e' l'esagono: e' «ogni casa porta la sua
+tessera».** Quella si puo' avere sul 3x2 senza toccare ne' l'app ne' la scatola —
+e' una lista di tessere fisse nella Chronicle — e paga la varieta' allo stesso
+prezzo, che va deciso con gli occhi aperti: dieci volte meno mappe.
+
+**Se invece la rosa la vuole lo stesso**, la misura dice come si stampa senza
+rischi, e va stampata sul tabellone in una riga: **al centro va la capitale, e la
+capitale e' aperta su tutti e sei i lati; nessun esagono sotto i due varchi.**
+Con quella riga l'isolamento e' impossibile, e le strategie B e C restano quello
+che sono gia' oggi — il modo in cui si posa, non un rimedio a un difetto.
+
+**Il giorno in cui i dieci esagoni avranno i loro varchi, la sonda dice in
+mezz'ora quante mani si rompono davvero**: e' la stessa domanda del cancello
+delle tessere, fatta sul parco vero invece che su tutte le composizioni.
+
+---
+
 ## D-478 — Le due schede si dividono il mestiere, e la fascia si chiude
 
 **implemented in 0.1.448.** Parola del committente, davanti alla pagina: *«la
