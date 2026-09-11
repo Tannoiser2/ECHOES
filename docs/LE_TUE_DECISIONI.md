@@ -272,10 +272,10 @@ guarda domande **e** verbale, ed è zero.
 
 | | |
 |---|---|
-| voci scritte | **141** |
+| voci scritte | **142** |
 | chiuse | **130** |
-| aperte | **11** |
-| di cui **aspettano una tua decisione** | **0** |
+| aperte | **12** |
+| di cui **aspettano una tua decisione** | **1** |
 | di cui sono mie da fare | **11** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,19 +305,19 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
+| 🔴 | **1** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **2** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
+**Due.** Delle dodici voci aperte, due le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro è fermo su una tua parola.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **nessuna**
+# 🔴 Aspettano te: **una**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
 sono state quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai
@@ -350,6 +350,40 @@ posti — vedi [D-427](DECISIONS.md#d-427).)*
 Delle voci aperte non ce n'era **nessuna** che aspettasse una tua parola — le
 due 🔵 aspettano una partita, non una decisione. *«Se una rossa nasce di nuovo,
 nasce qui»*, dicevo. Eccola.
+
+### R19. [138](ISSUES.md#138) — la distanza sulla mappa non la legge nessuno: **aperta in 0.1.480**
+
+Questa nasce da una tua domanda, che era la piu' importante che hai fatto sulla
+mappa: *«ma se alcune tessere NON vanno verso il centro? devono per forza
+passare per la tessera adiacente?»*
+
+Si', e ho preso quella strada: la rosa che ti ho consegnato ha **due petali
+dietro una vicina** — il porto (o l'isola) e la montagna (o le miniere) — e il
+mondo ha smesso di essere una ruota. Il porto dista **quattro passi** dalla
+montagna, e due caselle sono **gole** che una casa puo' tenere.
+
+**Solo che dentro il gioco tutto questo e' muto.** Ho cercato: il motore non
+calcola nessuna distanza. Del grafo legge **un passo solo** — chi tocca chi — e
+la guardia che rifiuta di isolare una Regione. L'unica cosa che la rosa ha gia'
+reso viva e' la casella **CHIUDI LA STRADA**, che su una ruota non poteva
+tagliare fuori niente.
+
+Quindi la geografia c'e' sul tavolo, nel disegno e sulla stampa, e non c'e'
+nella partita. Le strade, e sono una tua scelta:
+
+| | cosa | cosa cambia al tavolo |
+|---|---|---|
+| **1** | un verbo che costa di piu' lontano | MUOVERE paga un gettone in piu' per ogni passo oltre il primo |
+| **2** | una carta che arriva solo alla vicina | il bersaglio a segni gia' esiste, si aggiunge la portata |
+| **3** | una gola che rende | chi tiene `P2` o `P5` prende qualcosa da chi ci passa |
+| **4** | niente | la rosa e' una scelta di disegno e di stampa, e si scrive che lo e' |
+
+La **4** non e' una resa: una mappa che si guarda e si capisce vale da sola, e
+il gioco funziona senza. Ma va detta, invece che lasciata a sembrare una regola.
+
+**Quello che non faccio senza la tua parola:** misurare le prime tre costa un
+giro per ciascuna, e una regola che rende la mappa decisiva puo' bloccare un
+seggio — che e' il vincolo che non si negozia. Dimmi quale, e misuro quella.
 
 ### ✔ R14. [131](ISSUES.md#131) — il verbo doppio: **aperta in 0.1.446**
 
@@ -1584,9 +1618,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
 muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **nessuna aspetta una tua parola**.
+fuori dalla lista, e **una aspettano una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 

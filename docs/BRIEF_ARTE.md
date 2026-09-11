@@ -1004,11 +1004,10 @@ chiome, radure, sentieri stretti.
 What this land is right now: Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.
 Dominant accent: verde profondo, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top and upper-left edges; the upper-right, lower-right, bottom and lower-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.eredan` — Eredan
@@ -1023,11 +1022,10 @@ tetti fitti, mura, una piazza, magazzini sul lato.
 What this land is right now: La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.
 Dominant accent: oro spento, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right, bottom and lower-left edges; the lower-right and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.isola_muta` — L'Isola Muta
@@ -1042,11 +1040,10 @@ L'Isola Muta.
 What this land is right now: Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.
 Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges: draw the way through on every side, including the right and bottom edges, which a landslide token covers once the tile is on the table. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top edge; the upper-right, lower-right, bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.miniere_antiche` — Miniere Antiche
@@ -1061,11 +1058,10 @@ imbocchi di galleria, sterili, impalcature, buio calibrato.
 What this land is right now: Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.
 Dominant accent: verde-azzurro, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom edge; the top, upper-right, lower-right, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.montagne_rosse` — Montagne Rosse
@@ -1080,11 +1076,10 @@ pietra rossa, creste, neve solo su un versante.
 What this land is right now: Pietra rossa e vento. Qualcosa di molto vecchio dorme qui, e il suo sonno si sta assottigliando.
 Dominant accent: grigio-rosso, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom edge; the top, upper-right, lower-right, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.palude_canali` — La Palude dei Canali
@@ -1099,11 +1094,10 @@ La Palude dei Canali.
 What this land is right now: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.
 Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom, lower-left and upper-left edges; the top, upper-right and lower-right edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.porto_cinerino` — Porto Cinerino
@@ -1118,11 +1112,10 @@ secche, moli, barche in secca.
 What this land is right now: Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.
 Dominant accent: azzurro spento, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top edge; the upper-right, lower-right, bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.strada_mercanti` — Strada dei Mercanti
@@ -1137,11 +1130,10 @@ una strada che attraversa tutto, soste, ponti, carri.
 What this land is right now: Il raccordo. Non produce nulla e tocca tutto: chi la tiene sa prima degli altri.
 Dominant accent: ambra, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the lower-right and bottom edges; the top, upper-right, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.terre_nahr` — Terre Nahr
@@ -1156,11 +1148,10 @@ erba bassa, piste, tende smontabili, orizzonte alto.
 What this land is right now: Pascoli larghi e magri. I Nahr li percorrono da sempre; quest'anno li stanno lasciando.
 Dominant accent: ocra chiaro, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom, lower-left and upper-left edges; the top, upper-right and lower-right edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ### `region.valle_verde` — Valle Verde
@@ -1175,11 +1166,10 @@ campi a strisce, un fiume, argini, fienili sparsi.
 What this land is right now: Il ventre del regno. Quest'anno la terra restituisce meno di quanto riceve.
 Dominant accent: verde spento, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
-edges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right and lower-right edges; the bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 ## entity

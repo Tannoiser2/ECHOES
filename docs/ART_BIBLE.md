@@ -154,9 +154,8 @@ Dominant accent: {ACCENTO}, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. {VARCHI} Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 **Variation key per biome:**

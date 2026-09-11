@@ -5,9 +5,10 @@
 #   GODOT=/path/to/godot tools/run_tiles_probe.sh --check  # esce 1 se e' vecchio
 #
 # La promessa che il committente ha chiesto per nome — «non ci devono essere
-# tessere isolate» — non si campiona: si enumera. 210 pescate per 720 ordini
-# fanno 151.200 pose, e questa le fa tutte chiamando la posa del motore.
-# Quattro minuti, ed e' il prezzo di una promessa provata invece che creduta.
+# tessere isolate» — non si campiona: si enumera. Con la rosa (D-510) le caselle
+# sono sette e fisse e la tessera non si gira, quindi le rose possibili sono
+# otto invece di 151.200 pose: un secondo invece di quattro minuti, e la stessa
+# promessa provata invece che creduta.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

@@ -10,6 +10,140 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-510 — La rosa esagonale, e la tessera che non si gira
+
+**implemented (0.1.480)** — parola del committente, in due messaggi:
+
+> *«Penso che opterò per la mappa esagonale, quindi poi lavoriamo su quella»*
+>
+> *«la tessera NON si gira, i testi devono essere visibili nella stessa
+> direzione, l'opzione A, per me rimane quella da preferire: se esce Eredan va
+> al centro, se esce Montagne va in un'altra posizione»*
+
+La mappa era un **3x2 di tessere quadrate** che si posavano una alla volta
+accanto a una gia' posata, **girandole** finche' il lato accostato portava un
+varco su tutte e due (D-275, D-389, D-390, D-464). Adesso e' una **rosa
+esagonale**: un centro e sei petali, ogni tessera con la sua casella, e nessuna
+che si gira.
+
+### Perche' la rotazione doveva sparire
+
+Girare non dava fastidio a nessuno perche' non serviva quasi mai: nel dato
+spedito **nove tessere su dieci erano aperte su tutti e quattro i lati**, e
+solo L'Isola Muta ne aveva due. Con varchi veri su un esagono la rotazione
+diventa obbligatoria e **visibile**, e un'illustrazione che deve reggere sei
+giri non puo' avere un sopra ne' un nome che si legge. Il committente lo ha
+posto come vincolo: *«i testi devono essere visibili nella stessa direzione»*.
+
+E la sua obiezione era esatta, non un dubbio. Misurata: con le tessere posate
+**come sono stampate**, senza rotazione e senza posto fisso, restano in media
+**2 tessere su 6 staccate dalla mappa**, e solo il **6%** delle 60.480 pose ne
+salva tutte e sei. Una tessera a tre varchi di fila messa nella seconda
+posizione dell'anello ha **zero** dei tre lati che contano aperti.
+
+### Quello che il posto fisso compra
+
+Tolta la rotazione, i varchi **smettono di appartenere alla tessera e
+appartengono alla casella**: i due lati di ogni confine si stampano insieme,
+quindi combaciano sempre o non combaciano mai. Da qui, **per costruzione**:
+
+- **nessuna strada morta** — un varco guarda sempre un altro varco;
+- **nessuna tessera isolata** — la catena si decide a matita, non alla pescata;
+- e la regola del ripescare che il committente aveva previsto — *«i giocatori
+  pescano finche' non trovano una combinazione valida»* — **non scatta mai**.
+  Non e' stata scritta: una regola che al tavolo non si esegue confonde e basta.
+
+### Le sette caselle e le dieci tessere
+
+`C` al centro, `P1`..`P6` in senso orario dall'alto. Dieci tessere per sette
+caselle, quindi tre petali ne hanno due di candidate:
+
+| casella | candidate | varchi |
+|---|---|---|
+| C | Eredan | N, NE, S, SO |
+| P1 | Strada dei Mercanti | SE, S |
+| P2 | Terre di Nahr · Palude dei Canali | S, SO, NO |
+| P3 | Porto Cinerino · L'Isola Muta | N |
+| P4 | Il Bosco dei Confini | N, NO |
+| P5 | Valle Verde | N, NE, SE |
+| P6 | Montagne Rosse · Miniere Antiche | S |
+
+**Otto rose possibili** (2x2x2), ed e' poche abbastanza da guardarle **tutte**:
+`validate_physical` le enumera e pretende le quattro promesse — nessuna casella
+vuota, nessuna isolata, nessuna strada morta, tutte e sei le famiglie.
+
+### Due petali stanno dietro una vicina
+
+`P3` e `P6` **non guardano la capitale**: ci si arriva solo passando per `P2` e
+per `P5`. E' la risposta alla domanda del committente — *«ma se alcune tessere
+NON vanno verso il centro? devono per forza passare per la tessera adiacente?»*
+— e la ragione per cui conviene: con sei raggi tutto sta a due passi e la
+capitale non e' un luogo, e' uno svincolo. Spazzati **tutti i 4.096 disegni**
+possibili di raggi e strade, **1.582 restano connessi**, e con gli **stessi sei
+passaggi** si ottiene un diametro di **2** (la ruota) o di **6** (la catena):
+non decide quanti varchi metti, decide dove.
+
+Il disegno scelto ha **8 collegamenti su 12** interni, diametro **4**, passo
+medio **1,90** — il porto dista quattro passi dalla montagna — e due **gole**:
+chi siede a `P2` tiene la via del porto, chi siede a `P5` quella della montagna.
+Costa **un passaggio in meno** della ruota.
+
+E rende viva una casella che non mordeva: **CHIUDI LA STRADA** (`SEAL_ROAD` ->
+`CLOSE_PASSAGE`) esiste dal Consiglio, ma con sei raggi nessuna chiusura poteva
+tagliare fuori niente, e la guardia che riapre non entrava mai in funzione.
+
+**Dichiarato, perche' e' la meta' che non si vede:** oggi **nessuno calcola le
+distanze**. Del grafo il motore legge un passo solo — chi tocca chi — piu' la
+guardia che rifiuta di isolare una Regione. La geografia c'e' sul tavolo e nel
+disegno; perche' conti *dentro* il gioco va costruito qualcosa che la legga, ed
+e' un giro a se (ISSUES 138).
+
+### Cosa costa
+
+**La varieta' della mappa.** Si passa da 210 pescate per 720 ordini a **otto
+rose**. La rete di strade e' la stessa ogni partita, e cambia solo quale
+regione siede dove. E' il prezzo del non girare, e si paga qui. La leva, se
+servisse: le caselle con una sola candidata sono `P1`, `P4` e `P5` — dandone
+una seconda a ciascuna si va a **64 rose**, al costo di tre illustrazioni in
+piu'.
+
+E **le tessere in gioco passano da sei a sette**, perche' la rosa ha sette
+caselle. Il cancello dei 100 semi resta **0 seggi bloccati su 8**, tavolo misto
+e uniforme.
+
+### Il rimedio di D-313, tolto
+
+D-313 rimediava a valle: sei tessere pescate alla cieca su dieci lasciavano
+fuori una famiglia in **45 mappe su 210**, e una regola di stesura scambiava la
+tessera piu' inutile con una che portava la mancante. Con le caselle fisse le
+rose sono otto e **tutte e otto offrono tutte e sei le famiglie**: la copertura
+e' diventata una guardia a monte, e il rimedio e' stato tolto invece di restare
+li' a non scattare.
+
+### La guardia ha morso ai dati veri, al primo giro
+
+Scritta la guardia delle otto rose, il primo giro e' andato **rosso sui dati
+spediti**: Eredan era aperta su tutti e sei i lati ma solo quattro petali la
+guardano, quindi due varchi della capitale guardavano un muro. Sedici strade
+morte, due per rosa. Lo studio di disegno che ha preceduto il codice non le
+aveva viste, perche' guardava i confini d'anello e dava il centro per buono.
+**La capitale ha quattro porte, non sei.**
+
+### E il prompt d'arte torna a dire la verita'
+
+D-429 aveva scelto di far arrivare la strada a **tutti** i bordi e di coprire
+col gettone i lati che il dato chiude, proprio perche' la tessera si girava e
+un disegno che nomina i suoi lati chiusi, girato, mente. Adesso il disegno ha
+un sopra: nomina i lati aperti e dice che gli altri sono chiusi **dal terreno**
+— rupe, acqua alta, bosco fitto fino al bordo. Le Montagne Rosse hanno una via
+sola, in basso, verso la Valle. Il gettone «varco chiuso» torna a servire per
+quello per cui era nato: una strada che il Consiglio chiude.
+
+**Le dieci illustrazioni vanno rifatte**: erano quadrate, ed erano l'unica arte
+finita della scatola (10 su 10).
+
+---
+
 ## D-509 — Il mazzetto ascolta anche quello che vuoi
 
 **implemented in 0.1.478.** Punto 5 di [ISSUES 136](ISSUES.md#136), *«gli

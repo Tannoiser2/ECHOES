@@ -216,16 +216,36 @@ func test_discarding_is_drawing() -> void:
 func test_a_stone_buys_a_covered_card() -> void:
 	var live: RefCounted = _table()
 	var chronicle: Dictionary = _chronicle_of(live)
+	# **La coppia si cerca, non si spera** (D-510). Prima questa prova prendeva
+	# la prima casa senza Pietre e la prima tessera dove stava, e andava bene
+	# finche' la mappa era quella: sulla rosa la casa senza Pietre si trovava
+	# sotto un Maniero gia' costruito, il BUILD_STRUCTURE faceva noop, e la
+	# prova andava rossa per la mappa invece che per la regola. Adesso si cerca
+	# una casa senza Pietre **su una tessera dove un Maniero ci sta**, e se al
+	# tavolo non c'e' si va rossi dicendo quello.
 	var seat: String = ""
 	for entity_id in live.world["turn_order"]:
 		if live.service.stones_held(str(entity_id)) == 0:
 			seat = str(entity_id)
 			break
 	assert_ne(seat, "", "una casa senza Pietre esiste al tavolo pescato")
+	# La tessera dove alzarla: una **senza Maniero**, perche' un secondo Maniero
+	# sulla stessa tessera e' un noop e la prova andrebbe rossa per la mappa
+	# invece che per la regola.
+	var where: String = ""
+	for region_id in live.world["regions"]:
+		var built: bool = false
+		for piece in ((live.world["regions"][str(region_id)] as Dictionary).get(
+				"structures", []) as Array):
+			if str((piece as Dictionary).get("structure_type", "")) == "STR_KEEP":
+				built = true
+		if not built:
+			where = str(region_id)
+			break
+	assert_ne(where, "", "e sulla rosa c'e' una tessera dove un Maniero ci sta")
 	var before: int = HandRhythm.cover_for(chronicle, live.service, seat)
 	assert_eq(before, 1, "senza Pietre copre il pavimento")
 
-	var where: String = str((live.service.regions_with_presence(seat) as Array)[0])
 	live.applier.apply(Effect.make(
 		"BUILD_STRUCTURE", "region", where,
 		{"structure_type": "STR_KEEP", "owner": seat, "grade": 1},

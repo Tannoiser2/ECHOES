@@ -1,27 +1,37 @@
 extends SceneTree
-## **Tutte le pose possibili delle tessere, enumerate** (D-390, richiesta del
-## committente: *«devi calcolare dopo aver deciso i varchi tutte le possibili
-## combinazioni e capire quante combinazioni rendono tessere isolate»*).
+## **Tutte le rose possibili, stese dal motore** (D-390, riscritta da D-510).
 ##
 ##   godot --headless --path godot --script res://cli/run_tiles_probe.gd
 ##
-## Duecento semi sono un campione. Le combinazioni vere sono
-## **C(10,6) = 210 pescate x 6! = 720 ordini = 151.200 pose**, e questa sonda le
-## fa tutte, chiamando **la posa del motore** — `WorldStateFactory._lay_the_tiles`
-## — invece di riscriverla: una sonda che reimplementa la regola che sta provando
-## prova la sua copia, non il gioco.
+## Richiesta del committente, e resta la stessa: *«devi calcolare dopo aver
+## deciso i varchi tutte le possibili combinazioni e capire quante combinazioni
+## rendono tessere isolate»*.
 ##
-## Per ogni posa si guardano due cose diverse:
+## Quello che e' cambiato e' quante sono. Con le tessere quadrate che si
+## posavano girandole (D-390) le pose erano **C(10,6) = 210 pescate x 720
+## ordini = 151.200**, e questa sonda le faceva tutte in quattro minuti. Con la
+## rosa esagonale (D-510) le caselle sono sette e fisse, la tessera non si gira,
+## e l'ordine di pesca non conta: le rose possibili sono **il prodotto delle
+## candidate di ogni casella**, e si contano in un secondo.
 ##
-## 1. **le tessere posate**: sei, o meno? Una che non si attacca da nessuna
-##    parte resta in mano.
-## 2. **la connessione**: dalla prima si arriva a tutte? La posa la garantisce
-##    per costruzione — si entra solo attraverso un varco — ma una promessa per
-##    costruzione va verificata, non creduta.
+## La sonda le enumera **chiamando la posa del motore** — `_lay_the_rose` — e
+## non riscrivendola: una sonda che reimplementa la regola che sta provando
+## prova la sua copia, non il gioco. Per ogni rosa si guardano tre cose:
+##
+## 1. **le caselle riempite**: sette, o meno?
+## 2. **la connessione**: dalla capitale si arriva ovunque? Due petali stanno
+##    **dietro** una vicina, e ci si deve arrivare lo stesso.
+## 3. **le strade morte**: un varco che guarda un muro. Il posto fisso le rende
+##    impossibili per costruzione, e qui si verifica invece di crederci.
+##
+## La stessa promessa la sorveglia anche `validate_physical`, dal lato dei dati.
+## Questa la guarda dal lato del **motore**: sono due strade diverse verso lo
+## stesso numero, ed e' voluto.
 
 const DataSet := preload("res://scripts/core/data_set.gd")
 const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
 
+const CASELLE: Array = ["C", "P1", "P2", "P3", "P4", "P5", "P6"]
 
 var _out: Array = []
 
@@ -36,11 +46,6 @@ func _initialize() -> void:
 		var text: String = str(arg)
 		if text.begins_with("--out="):
 			options["out"] = text.substr(6)
-		# Solo per tarare i varchi: si guardano le prime N pescate invece di
-		# tutte e 210, cosi' una prova costa venti secondi invece di quattro
-		# minuti. Il documento committato si fa **senza** questa opzione.
-		if text.begins_with("--pescate="):
-			options["pescate"] = int(text.substr(10))
 	var data: RefCounted = DataSet.new()
 	if not data.load_from("res://data"):
 		for error in data.errors:
@@ -48,114 +53,118 @@ func _initialize() -> void:
 		quit(3)
 		return
 
-	var pool: Array = []
+	# Le candidate di ogni casella, dal dato. Il parco non si ricopia qui: una
+	# tessera nuova in scatola deve comparire in questo documento da sola.
+	var per_casella: Dictionary = {}
 	var chronicle: Dictionary = data.chronicles["CHR_00"]
 	for region_id in ((chronicle.get("region_pool", {}) as Dictionary).get("candidates", []) as Array):
-		pool.append(str(region_id))
-	pool.sort()
-	var quante: int = int((chronicle.get("region_pool", {}) as Dictionary).get("count", 6))
+		var slot: String = str((data.regions[str(region_id)] as Dictionary).get("map_slot", ""))
+		if not per_casella.has(slot):
+			per_casella[slot] = []
+		(per_casella[slot] as Array).append(str(region_id))
+	for slot in per_casella:
+		(per_casella[slot] as Array).sort()
 
-	_say("# ECHOES — tutte le pose delle tessere, enumerate")
+	_say("# ECHOES — tutte le rose possibili, enumerate")
 	_say("")
 	_say("<!-- FILE GENERATO — si rifa' con `tools/run_tiles_probe.sh`. -->")
 	_say("")
 	_say("La promessa del committente (D-390): *«deve essere calcolato in modo che")
-	_say("ci sia sempre la possibilita' di muoversi in tutte e sei le tessere")
-	_say("pescate, e che quindi non ci siano tessere isolate»*. Duecento semi sono")
-	_say("un campione; qui ci sono **tutte** le pose che il gioco puo' produrre.")
+	_say("ci sia sempre la possibilita' di muoversi in tutte le tessere pescate, e")
+	_say("che quindi non ci siano tessere isolate»*. Non si campiona: si enumera.")
+	_say("Con la rosa (D-510) le rose possibili sono poche abbastanza da guardarle")
+	_say("**tutte**, e questa sonda le stende **col motore**.")
 	_say("")
 	_say("```")
-	_say("  %d tessere nel parco, %d pescate." % [pool.size(), quante])
-	var combinazioni: Array = _combinations(pool, quante)
-	_say("  Pescate possibili: %d" % combinazioni.size())
-	if int(options.get("pescate", 0)) > 0:
-		combinazioni = combinazioni.slice(0, int(options["pescate"]))
-		_say("  ATTENZIONE: taratura, solo le prime %d" % combinazioni.size())
+	var rose: Array = _every_rose(per_casella)
+	_say("  %d caselle, %d tessere nel parco." % [CASELLE.size(), data.regions.size()])
+	for slot in CASELLE:
+		var quali: Array = (per_casella.get(str(slot), []) as Array)
+		_say("    %-3s %d candidat%s: %s" % [
+			str(slot), quali.size(), "a" if quali.size() == 1 else "e",
+			" · ".join(PackedStringArray(quali)),
+		])
+	_say("  **Rose possibili: %d**" % rose.size())
+	_say("")
 
-	var pose: int = 0
 	var incomplete: int = 0
 	var sconnesse: int = 0
-	var peggiori: Dictionary = {}   # pescata -> quante pose lasciano fuori qualcuno
-	var mai: Dictionary = {}        # tessera -> quante volte e' rimasta in mano
-	var pescate_rotte: int = 0
+	var morte: int = 0
 	var archi_totali: int = 0
 	var vicoli: int = 0
 	var tessere_poste: int = 0
+	var dietro_conta: Dictionary = {}
 
-	for combo in combinazioni:
-		var rotte_qui: int = 0
-		for order in _permutations(combo as Array):
-			pose += 1
-			var world: Dictionary = {}
-			var finta: Dictionary = {"regions": order}
-			WorldStateFactory._lay_the_tiles(world, finta, data)
-			var posate: Dictionary = world["map_positions"] as Dictionary
-			var vicini: Dictionary = world["adjacency"] as Dictionary
-			if posate.size() < quante:
-				incomplete += 1
-				rotte_qui += 1
-				for tile in (order as Array):
-					if not posate.has(str(tile)):
-						mai[str(tile)] = int(mai.get(str(tile), 0)) + 1
-			# La connessione, su quello che e' stato posato.
-			var chiavi: Array = posate.keys()
-			if not chiavi.is_empty():
-				var visti: Dictionary = {}
-				var coda: Array = [str(chiavi[0])]
-				while not coda.is_empty():
-					var qui: String = str(coda.pop_back())
-					if visti.has(qui):
-						continue
-					visti[qui] = true
-					for n in (vicini.get(qui, []) as Array):
-						coda.append(str(n))
-				if visti.size() < chiavi.size():
-					sconnesse += 1
-			for tile in posate:
-				var grado: int = (vicini.get(str(tile), []) as Array).size()
-				archi_totali += grado
-				tessere_poste += 1
-				if grado <= 1:
-					vicoli += 1
-		if rotte_qui > 0:
-			pescate_rotte += 1
-			peggiori[" · ".join(PackedStringArray(combo as Array))] = rotte_qui
+	for rosa in rose:
+		var world: Dictionary = {}
+		WorldStateFactory._lay_the_rose(world, {"regions": rosa}, data)
+		var posate: Dictionary = world["map_positions"] as Dictionary
+		var vicini: Dictionary = world["adjacency"] as Dictionary
+		if posate.size() < CASELLE.size():
+			incomplete += 1
 
-	_say("  Ordini per pescata: %d" % (pose / maxi(1, combinazioni.size())))
-	_say("  **Pose enumerate: %d**" % pose)
-	_say("")
+		# La connessione si guarda **dalla capitale**, che e' il posto da cui una
+		# persona guarda il tavolo.
+		var capitale: String = ""
+		for region_id in (rosa as Array):
+			if str((data.regions[str(region_id)] as Dictionary).get("map_slot", "")) == "C":
+				capitale = str(region_id)
+		var visti: Dictionary = {}
+		if capitale != "":
+			var coda: Array = [capitale]
+			while not coda.is_empty():
+				var qui: String = str(coda.pop_back())
+				if visti.has(qui):
+					continue
+				visti[qui] = true
+				for n in (vicini.get(qui, []) as Array):
+					coda.append(str(n))
+		if visti.size() < posate.size():
+			sconnesse += 1
+
+		# Le strade morte: un varco stampato che non trova il suo gemello.
+		for region_id in (rosa as Array):
+			var aperti: int = ((data.regions[str(region_id)] as Dictionary).get("edges", []) as Array).size()
+			var usati: int = (vicini.get(str(region_id), []) as Array).size()
+			morte += maxi(0, aperti - usati)
+
+		for tile in posate:
+			var grado: int = (vicini.get(str(tile), []) as Array).size()
+			archi_totali += grado
+			tessere_poste += 1
+			if grado <= 1:
+				vicoli += 1
+		# Chi sta **dietro** una vicina: non tocca la capitale.
+		if capitale != "":
+			for region_id in (rosa as Array):
+				if str(region_id) == capitale:
+					continue
+				if not (vicini.get(capitale, []) as Array).has(str(region_id)):
+					dietro_conta[str(region_id)] = int(dietro_conta.get(str(region_id), 0)) + 1
+
 	_say("== LA DOMANDA ==")
-	_say("  pose che lasciano fuori una tessera   %6d  (%.3f%%)" % [
-		incomplete, 100.0 * float(incomplete) / float(maxi(1, pose))
+	_say("  rose che lasciano una casella vuota   %6d  (%.3f%%)" % [
+		incomplete, 100.0 * float(incomplete) / float(maxi(1, rose.size()))
 	])
-	_say("  pose che lasciano una tessera isolata %6d  (%.3f%%)" % [
-		sconnesse, 100.0 * float(sconnesse) / float(maxi(1, pose))
+	_say("  rose che lasciano una tessera isolata %6d  (%.3f%%)" % [
+		sconnesse, 100.0 * float(sconnesse) / float(maxi(1, rose.size()))
 	])
-	_say("  pescate che si rompono in almeno un ordine  %d su %d" % [
-		pescate_rotte, combinazioni.size()
-	])
+	_say("  varchi che guardano un muro           %6d  (strade morte)" % morte)
 	_say("")
-	_say("  E com'e' fatta la mappa, su tutte le pose:")
-	_say("    confini per mappa      %.2f" % (float(archi_totali) / 2.0 / float(maxi(1, pose))))
+	_say("  E com'e' fatta la rosa, su tutte:")
+	_say("    confini per mappa      %.2f" % (
+		float(archi_totali) / 2.0 / float(maxi(1, rose.size()))
+	))
 	_say("    tessere con un vicino solo  %.1f%%" % (
 		100.0 * float(vicoli) / float(maxi(1, tessere_poste))
 	))
-	if not mai.is_empty():
+	if not dietro_conta.is_empty():
 		_say("")
-		_say("  Le tessere che restano in mano:")
-		var chi: Array = mai.keys()
+		_say("  Le tessere che stanno **dietro** una vicina (non toccano la capitale):")
+		var chi: Array = dietro_conta.keys()
 		chi.sort()
 		for tile in chi:
-			_say("    %-24s %d volte" % [str(tile), int(mai[tile])])
-	if not peggiori.is_empty():
-		_say("")
-		_say("  Le pescate che si rompono, con quanti ordini su %d:" % (
-			pose / maxi(1, combinazioni.size())
-		))
-		var quali: Array = peggiori.keys()
-		quali.sort()
-		for k in quali:
-			_say("    %-70s %d" % [str(k), int(peggiori[k])])
+			_say("    %-24s in %d rose su %d" % [str(tile), int(dietro_conta[tile]), rose.size()])
 	_say("```")
 	var testo: String = "\n".join(PackedStringArray(_out)) + "\n"
 	var dove: String = str(options.get("out", ""))
@@ -172,48 +181,18 @@ func _initialize() -> void:
 	quit(0)
 
 
-## Le combinazioni di `quante` fra `pool`, in ordine.
-func _combinations(pool: Array, quante: int) -> Array:
-	var out: Array = []
-	var indici: Array = []
-	for i in range(quante):
-		indici.append(i)
-	while true:
-		var combo: Array = []
-		for i in indici:
-			combo.append(str(pool[int(i)]))
-		out.append(combo)
-		var k: int = quante - 1
-		while k >= 0 and int(indici[k]) == pool.size() - quante + k:
-			k -= 1
-		if k < 0:
-			break
-		indici[k] = int(indici[k]) + 1
-		for j in range(k + 1, quante):
-			indici[j] = int(indici[j - 1]) + 1
-	return out
-
-
-## Tutte le permutazioni di una pescata, in ordine (Heap iterativo).
-func _permutations(combo: Array) -> Array:
-	var out: Array = []
-	var a: Array = combo.duplicate()
-	var n: int = a.size()
-	var c: Array = []
-	for i in range(n):
-		c.append(0)
-	out.append(a.duplicate())
-	var i: int = 0
-	while i < n:
-		if int(c[i]) < i:
-			var j: int = 0 if i % 2 == 0 else int(c[i])
-			var tmp: Variant = a[j]
-			a[j] = a[i]
-			a[i] = tmp
-			out.append(a.duplicate())
-			c[i] = int(c[i]) + 1
-			i = 0
-		else:
-			c[i] = 0
-			i += 1
+## Tutte le rose: una candidata per casella, in ordine stabile.
+func _every_rose(per_casella: Dictionary) -> Array:
+	var out: Array = [[]]
+	for slot in CASELLE:
+		var quali: Array = (per_casella.get(str(slot), []) as Array)
+		if quali.is_empty():
+			continue
+		var next: Array = []
+		for parziale in out:
+			for region_id in quali:
+				var copia: Array = (parziale as Array).duplicate()
+				copia.append(str(region_id))
+				next.append(copia)
+		out = next
 	return out

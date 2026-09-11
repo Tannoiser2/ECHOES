@@ -10408,6 +10408,41 @@ non vale qui** e' meta' di una trattativa; ma vanno sotto, dove non intralciano
 la scelta.
 
 
+### 138. La distanza sulla mappa non la legge nessuno
+
+`regole` · `mappa` · `da-decidere` · trovata in 0.1.480 · **aperta in 0.1.480**
+
+Con la rosa esagonale (D-510) il mondo ha finalmente una **geografia**: due
+petali stanno dietro una vicina, il porto dista quattro passi dalla montagna, e
+due caselle sono **gole** che una casa puo' tenere. Tutto questo **oggi non lo
+legge nessuno.**
+
+Cercato nel motore: non c'e' cammino minimo, non c'e' «a due passi», non c'e'
+raggiungibilita'. Del grafo si legge **un passo solo** — `adjacency`, chi tocca
+chi — piu' la guardia che rifiuta di isolare una Regione quando il Consiglio
+chiude una strada.
+
+Quindi la geografia e' vera sul tavolo e nel disegno, ed e' **muta nel gioco**.
+La sola cosa che D-510 ha gia' reso viva e' la casella **CHIUDI LA STRADA**, che
+su una ruota non poteva tagliare fuori niente.
+
+Le strade possibili, da scegliere e da misurare:
+
+1. **un verbo che costa di piu' lontano** — MUOVERE che paga un gettone in piu'
+   per ogni passo oltre il primo;
+2. **una carta che arriva solo alla vicina** — il bersaglio a segni gia' esiste
+   (D-274), qui si aggiungerebbe la portata;
+3. **una gola che rende** — chi tiene `P2` o `P5` prende qualcosa da chi ci
+   passa;
+4. **niente**, e allora la rosa e' una scelta di disegno e di stampa, e si
+   scrive che lo e'.
+
+**Da non fare a caso:** prima si misura quanto le tre strade spostano il
+cancello dei 100 semi, poi si sceglie. Una regola che rende la mappa decisiva
+puo' bloccare un seggio, ed e' il vincolo che non si negozia.
+
+---
+
 ### 135. Il menu, il verbale e le frasi: quello che l'app chiede non si capisce
 
 `ux` · `regole` · voluta dal committente · **aperta in 0.1.460**

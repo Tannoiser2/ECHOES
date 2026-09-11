@@ -897,6 +897,7 @@ const DEFS := {
 			"presence_slots",
 			"art_prompt_key",
 			"build_slots",
+			"map_slot",
 			"edges",
 		],
 		"additional_properties": false,
@@ -941,14 +942,16 @@ const DEFS := {
 			"edges": {
 				"type": "Array",
 				"min_items": 1,
-				"max_items": 4,
+				"max_items": 6,
 				"element": {
 					"type": "String",
 					"enum": [
 						"N",
-						"E",
+						"NE",
+						"SE",
 						"S",
-						"O",
+						"SO",
+						"NO",
 					],
 				},
 			},
@@ -1000,6 +1003,18 @@ const DEFS := {
 			},
 			"map_position": {
 				"type": "Dictionary",
+			},
+			"map_slot": {
+				"type": "String",
+				"enum": [
+					"C",
+					"P1",
+					"P2",
+					"P3",
+					"P4",
+					"P5",
+					"P6",
+				],
 			},
 		},
 	},
@@ -1865,9 +1880,6 @@ const DEFS := {
 			"tokens_in_bag": {
 				"type": "int",
 				"min": 0,
-			},
-			"map_rotations": {
-				"type": "Dictionary",
 			},
 		},
 	},
