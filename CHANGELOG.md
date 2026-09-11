@@ -5,6 +5,73 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.475 — La mappa compra la memoria: le coperte si guadagnano
+
+[D-505](docs/DECISIONS.md#d-505). Parola del committente: *«aggiungiamo combo:
+se hai una pietra o una presenza o qualunque altra cosa che ci viene in mente
+puoi alzare il numero di carte che puoi coprire, fino al massimo delle tre che
+ti rimangono»*.
+
+### Aggiunto
+
+- **ogni Pietra costruita e tua alza di uno** il numero di carte che puoi
+  coprire a fine turno. `cover_per_round` diventa **il pavimento**, e il resto
+  si guadagna sulla mappa. Al tavolo e' un gesto: conti i segnalini delle Pietre
+  col tuo colore sulle tue tessere;
+- **e il tetto vero non sta nel dato**: sono le carte che ti restano in mano.
+  Coprire tutto quello che resta e' legale e costa non tenere niente per il
+  turno dopo — quindi il tetto e' una scelta, non un numero d'autore;
+- **il numero dice da dove viene**, nel verbale e nel menu di chi gioca: *«2
+  carte coperte (1 di base · +1 per 1 Pietra che tieni)»*. Un numero guadagnato
+  che non spiega come, al tavolo nessuno lo controlla;
+- **e il tavolo lo mostra**: quante coperte ha un seggio e quante potra'
+  coprirne. E' pubblico perche' si ricava dalle Pietre, che stanno sulla mappa
+  davanti a tutti. **Quali** carte siano resta il segreto.
+
+### Perche' la Pietra
+
+**Le Pietre si alzavano poco** ([ISSUES 111](docs/ISSUES.md#111)) e non avevano
+una ragione oltre il conto del controllo. E ACQUISIRE — l'unico verbo che
+costruisce — e' l'ultimo dei sette: **23 volte in 15 anni** contro le 180 di
+FORGIARE. Adesso costruire compra memoria.
+
+**E il terreno non e' una Pietra:** Foresta, Sorgente, Sito antico e Passo sono
+`owned: false`, stanno sulla tessera e nessuno li ha costruiti. Una prova lo
+tiene fermo, perche' e' il conto che gonfierebbe in silenzio.
+
+### Misurato
+
+Cento semi dal 7000:
+
+| cosa alza le coperte | Verita' misto | Verita' uniforme | Consigli | seggi bloccati |
+|---|---|---|---|---|
+| niente — 1 fissa (0.1.474) | 396 / 394 | 413 / 412 | 5,58 · 5,44 | 0 su 8 |
+| 2 fisse per tutti | 488 / 484 | 441 / 435 | 5,54 · 5,39 | 0 su 8 |
+| **ogni Pietra che tieni** | **488 / 483** | **446 / 441** | 5,49 · 5,41 | **0 su 8** |
+| ogni Regione che tieni | 490 / 484 | 433 / 429 | 5,58 · 5,41 | 0 su 8 |
+
+**La regola guadagnata da' lo stesso risultato di quella regalata** — 488 Verita'
+sul misto, come due coperte per tutti — ma non e' una taratura: e' una cosa che
+chi gioca si costruisce. E **sull'uniforme la Pietra batte tutto**: 446 contro
+441 e 433.
+
+**La valanga che temevo non c'e': 0 seggi bloccati su 8** in tutte e tre le
+varianti. `max_commit_assets: 3` taglia comunque a tre e `max_stable_control: 2`
+fa pagare chi tiene troppo.
+
+**E quasi nessuno arriva piu' al Consiglio a mani vuote:** i non proponenti che
+impegnano almeno una carta passano dall'**81% al 97%**, e il proponente da 1,54 a
+**1,98** carte per Consiglio. Il numero peggiorato, scritto: il margine medio
+sull'uniforme scende da 1,16 a **0,91** — quattro ottimizzatori col piatto pieno
+tornano a somigliarsi — mentre sul misto sale da 1,56 a **1,74**.
+
+**E la scala si usa tutta.** Contato sui verbali di 15 anni, su 540 momenti in
+cui si copre: **1 carta il 33%**, **2 il 49%**, **3 — al tetto — il 18%**. Un
+turno su cinque qualcuno copre tutto quello che gli resta. *(Avevo previsto che
+il tetto restasse teorico: la previsione era mia, il conto e' della sonda.)*
+
+---
+
 ## 0.1.474 — Il ritmo a cinque, e la carta coperta per il Consiglio
 
 [D-504](docs/DECISIONS.md#d-504), [ISSUES 136](docs/ISSUES.md#136). Forma decisa

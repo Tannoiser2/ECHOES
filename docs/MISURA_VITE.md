@@ -16,34 +16,34 @@ caratteri misti, come al cancello — e dopo quanto tempo.
 | vite scritte oltre la prima | 24 |
 | **vite che non si sono mai sedute** | **3** |
 | salti d'era giocati | 168 |
-| trasformazioni sedute | 246 |
+| trasformazioni sedute | 240 |
 | salti brevi (sotto 50 anni) / medi / lunghi (oltre 150) | 32 / 96 / 40 |
 
 ## Le vite, una per una
 
 | uniforme | misto | vita | casa | porta | segno atteso | anni (mediana) |
 |---|---|---|---|---|---|---|
-| 18 | 17 | Gli Ospiti di Nahr | ENT_NAHR | ON_TAG | `burden_shared` | 457 |
-| 17 | 17 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 290 |
-| 13 | 12 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 452 |
-| 11 | 9 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 511 |
-| 10 | 8 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 373 |
-| 7 | 8 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 452 |
-| 6 | 7 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 290 |
-| 7 | 6 | Le Strade della Cenere | ENT_CENERE | ON_TAG | `condition:cut_off` | 426 |
-| 6 | 6 | L'Archivio Aperto | ENT_LYRA | ON_TAG | `ledger_public` | 552 |
-| 4 | 6 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 349 |
-| 5 | 4 | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | 475 |
-| 4 | 4 | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | 461 |
+| 17 | 16 | Le Custodi della Cenere | ENT_CENERE | LINE_EXHAUSTED | — | 290 |
+| 10 | 14 | Gli Ospiti di Nahr | ENT_NAHR | ON_TAG | `burden_shared` | 343 |
+| 11 | 12 | I Frati del Vetro | ENT_VETRO | LINE_EXHAUSTED | — | 452 |
+| 11 | 11 | La Lega delle Sette | ENT_LIBERE | ON_TAG | `charter_written` | 373 |
+| 12 | 4 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 457 |
+| 5 | 9 | L'Egemonia di Eredan | ENT_LIBERE | ON_TAG | `scar:emptied@REG_VALLE_VERDE` | 511 |
+| 6 | 8 | Il Banco Nero | ENT_SALE | ON_TAG | `debt_called` | 511 |
+| 7 | 6 | La Repubblica della Valle | ENT_ALDRIC | LINE_EXHAUSTED | — | 290 |
+| 4 | 7 | Le Strade della Cenere | ENT_CENERE | ON_TAG | `condition:cut_off` | 437 |
+| 6 | 4 | Il Culto della Misura | ENT_LYRA | LINE_EXHAUSTED | — | 343 |
+| 4 | 5 | L'Archivio Aperto | ENT_LYRA | ON_TAG | `ledger_public` | 340 |
+| 4 | 5 | La Scuola del Vetro | ENT_VETRO | ON_TAG | `escort_sworn` | 372 |
+| 4 | 4 | L'Accademia delle Misure | ENT_LYRA | ON_TAG | `succession_by_law` | 494 |
+| 3 | 4 | La Reggenza del Granaio | ENT_ALDRIC | ON_TAG | `grain_requisitioned` | 380 |
+| 3 | 4 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 340 |
 | 3 | 3 | La Corona Restaurata | ENT_ALDRIC | ON_TAG | `heir_named` | 372 |
-| 3 | 3 | La Mano Rimessa | ENT_SALE | ON_TAG | `debt_forgiven` | 706 |
-| 4 | 2 | La Scuola del Vetro | ENT_VETRO | ON_TAG | `escort_sworn` | 462 |
-| 3 | 2 | La Diaspora di Nahr | ENT_NAHR | ON_TAG | `twice_uprooted` | 192 |
-| 1 | 3 | Il Regno di Nahr | ENT_NAHR | ON_TAG | `nahr_settled` | 622 |
-| 1 | 2 | L'Inquisizione del Vetro | ENT_VETRO | ON_TAG | `relic_shown` | 290 |
-| 1 | 1 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 169 |
-| 1 | **0** | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | 565 |
-| **0** | 1 | La Leggenda della Montagna | ENT_VAERAX | ON_TAG | `mountain_forgotten` | 90 |
+| 3 | 2 | Vaerax Ridestato | ENT_VAERAX | ON_TAG | `crystal_exploited` | 210 |
+| 2 | 2 | L'Inquisizione del Vetro | ENT_VETRO | ON_TAG | `relic_shown` | 320 |
+| **0** | 3 | La Mano Rimessa | ENT_SALE | ON_TAG | `debt_forgiven` | 706 |
+| **0** | 1 | I Forni Riaccesi | ENT_CENERE | ON_TAG | `scar:open_wound` | 661 |
+| 1 | **0** | La Leggenda della Montagna | ENT_VAERAX | ON_TAG | `mountain_forgotten` | 301 |
 | **0** | **0** | L'Assemblea Permanente | ENT_LIBERE | LINE_EXHAUSTED | — | — |
 | **0** | **0** | La Compagnia del Sale | ENT_SALE | LINE_EXHAUSTED | — | — |
 | **0** | **0** | Il Culto della Montagna | ENT_VAERAX | ON_DEATH | — | — |
@@ -55,12 +55,12 @@ Il conto e' mutazioni su 168 salti giocati.
 
 | casa | mutazioni | ogni quanti salti |
 |---|---|---|
-| ENT_ALDRIC | 27 | 1 ogni 6.2 |
-| ENT_CENERE | 48 | 1 ogni 3.5 |
-| ENT_LIBERE | 38 | 1 ogni 4.4 |
-| ENT_LYRA | 31 | 1 ogni 5.4 |
-| ENT_NAHR | 44 | 1 ogni 3.8 |
-| ENT_SALE | 21 | 1 ogni 8.0 |
-| ENT_VAERAX | 3 | 1 ogni 56.0 |
-| ENT_VETRO | 34 | 1 ogni 4.9 |
+| ENT_ALDRIC | 26 | 1 ogni 6.5 |
+| ENT_CENERE | 45 | 1 ogni 3.7 |
+| ENT_LIBERE | 36 | 1 ogni 4.7 |
+| ENT_LYRA | 27 | 1 ogni 6.2 |
+| ENT_NAHR | 47 | 1 ogni 3.6 |
+| ENT_SALE | 17 | 1 ogni 9.9 |
+| ENT_VAERAX | 6 | 1 ogni 28.0 |
+| ENT_VETRO | 36 | 1 ogni 4.7 |
 

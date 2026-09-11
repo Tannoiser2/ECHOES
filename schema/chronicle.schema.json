@@ -999,6 +999,34 @@
               "maximum": 3,
               "description": "Quante carte si **coprono** alla fine di ogni turno (D-504). Una carta coperta esce dalla mano, resta segreta agli altri, e **al Consiglio si impegna solo quello che si e' coperto**: l'impegno diventa una scelta presa prima di sapere di cosa si parlera', invece che a mano aperta davanti alla domanda. A 1 su tre turni fanno tre coperte per Atto, che e' esattamente `max_commit_assets`. A 0 nessuno copre e il Consiglio impegna dalla mano come prima."
             },
+            "cover_bonus": {
+              "type": "object",
+              "description": "**Quante coperte in piu' la casa si guadagna sulla mappa** (D-505, forma decisa dal committente: *«se hai una pietra o una presenza o qualunque altra cosa che ci viene in mente puoi alzare il numero di carte che puoi coprire, fino al massimo delle tre che ti rimangono»*). Con questo `cover_per_round` diventa **il pavimento** e il resto si guadagna: e' il ponte che mancava fra le due meta' della direzione di casa — le Azioni cambiano il mondo, il Consiglio decide cosa il mondo ricordera', e adesso **la mappa compra la memoria**. Omesso, il numero e' fisso e vale il pavimento.",
+              "additionalProperties": false,
+              "properties": {
+                "per_stone": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Quante coperte in piu' per ogni **Pietra costruita e sua**. Non conta il terreno (Foresta, Sorgente, Sito antico, Passo sono `owned: false`): conta quello che la casa **ha costruito**. E' la sorgente piu' ferma delle tre — una Pietra non si sposta, si vede sulla tessera, e si conta una volta."
+                },
+                "per_control": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Quante in piu' per ogni **Regione tenuta**. Piu' generoso della Pietra: una casa ne tiene una o due, e il conto cambia a ogni riconto del controllo."
+                },
+                "per_token": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Quante in piu' per ogni **pedina posata**. Il piu' generoso e il piu' ballerino: le pedine sono cinque e si muovono ogni turno, quindi al tavolo il numero si ricalcola ogni volta."
+                },
+                "cap": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3,
+                  "description": "Il tetto scritto. Il tetto **vero** e' un altro e non sta nel dato: le carte che restano in mano dopo aver giocato le Occasioni. Coprire tutto quello che resta e' legale, e costa non tenere niente per il turno dopo — quindi il tetto e' una scelta e non un numero d'autore."
+                }
+              }
+            },
             "identity_cards": {
               "type": "integer",
               "minimum": 0,

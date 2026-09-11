@@ -900,8 +900,16 @@ func choose_cover(entity_id: String, how_many: int, session: RefCounted) -> Arra
 		if remaining.is_empty():
 			break
 		var picked: int = await _choose(
-			"  %s copre una carta per il Consiglio (non sai ancora di cosa si parlera):"
-			% _name(entity_id, session),
+			# **Quante, e perche'** (D-505): il numero se l'e' guadagnato sulla
+			# mappa, e una regola che da' un numero senza dire da dove viene
+			# diventa un numero che nessuno controlla.
+			"  %s copre %d di %d per il Consiglio — %s\n  (non sai ancora di cosa si parlera):" % [
+				_name(entity_id, session), chosen.size() + 1, how_many,
+				" · ".join(PackedStringArray(HandRhythm.cover_reasons(
+					session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary,
+					session.service, entity_id
+				))),
+			],
 			labels
 		)
 		if picked < 0 or picked >= remaining.size():

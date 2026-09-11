@@ -206,6 +206,121 @@ func test_discarding_is_drawing() -> void:
 	assert_eq(live.service.hand_size(seat), 5, "e il turno dopo la mano e di nuovo cinque")
 
 
+## **Una Pietra compra una coperta** (D-505), e questa e' la prova che regge
+## tutto il giro: parola del committente, *«se hai una pietra o una presenza o
+## qualunque altra cosa puoi alzare il numero di carte che puoi coprire»*.
+##
+## Provata **girando il mondo**, non l'interruttore: si conta quanto copre una
+## casa, le si costruisce una Pietra, e si riconta. Se il conto non cambia, la
+## mappa non compra niente e la regola e' scritta e non letta.
+func test_a_stone_buys_a_covered_card() -> void:
+	var live: RefCounted = _table()
+	var chronicle: Dictionary = _chronicle_of(live)
+	var seat: String = ""
+	for entity_id in live.world["turn_order"]:
+		if live.service.stones_held(str(entity_id)) == 0:
+			seat = str(entity_id)
+			break
+	assert_ne(seat, "", "una casa senza Pietre esiste al tavolo pescato")
+	var before: int = HandRhythm.cover_for(chronicle, live.service, seat)
+	assert_eq(before, 1, "senza Pietre copre il pavimento")
+
+	var where: String = str((live.service.regions_with_presence(seat) as Array)[0])
+	live.applier.apply(Effect.make(
+		"BUILD_STRUCTURE", "region", where,
+		{"structure_type": "STR_KEEP", "owner": seat, "grade": 1},
+		Effect.source("test", "TEST", seat, 1, 1, 0)
+	))
+	assert_eq(live.service.stones_held(seat), 1, "la Pietra e' sua e sta sulla mappa")
+	assert_eq(
+		HandRhythm.cover_for(chronicle, live.service, seat), before + 1,
+		"e adesso copre una carta in piu'"
+	)
+
+
+## **Il terreno non e' una Pietra.** Foresta, Sorgente, Sito antico e Passo sono
+## `owned: false`: stanno sulla tessera, non sono di nessuno, e **non si sono
+## costruiti**. Senza questa prova il conto gonfierebbe in silenzio — una casa
+## che si siede su un bosco si troverebbe una coperta in piu' che non ha pagato.
+func test_the_terrain_is_not_a_stone() -> void:
+	var live: RefCounted = _table()
+	var chronicle: Dictionary = _chronicle_of(live)
+	var seat: String = str((live.world["turn_order"] as Array)[0])
+	var before: int = HandRhythm.cover_for(chronicle, live.service, seat)
+	var stones_before: int = live.service.stones_held(seat)
+	var where: String = str((live.service.regions_with_presence(seat) as Array)[0])
+	live.applier.apply(Effect.make(
+		"BUILD_STRUCTURE", "region", where,
+		{"structure_type": "STR_FOREST", "grade": 1},
+		Effect.source("test", "TEST", seat, 1, 1, 0)
+	))
+	assert_eq(
+		live.service.stones_held(seat), stones_before,
+		"un bosco non entra nel conto delle Pietre"
+	)
+	assert_eq(
+		HandRhythm.cover_for(chronicle, live.service, seat), before,
+		"e non compra nessuna coperta"
+	)
+
+
+## **Il tetto vero e' la mano, non il dato** — e questo e' il tetto che il
+## committente ha scelto: *«fino al massimo delle tre che ti rimangono»*.
+##
+## **Fabbricata**: si da' alla casa un bonus enorme e una sola carta in mano. Il
+## dato direbbe tre, il tavolo dice una.
+func test_what_is_left_in_hand_is_the_real_cap() -> void:
+	var live: RefCounted = _table()
+	var chronicle: Dictionary = _chronicle_of(live)
+	var seat: String = str((live.world["turn_order"] as Array)[0])
+	var decks: Dictionary = chronicle["personal_decks"] as Dictionary
+	var written: Variant = decks.get("cover_bonus")
+	decks["cover_bonus"] = {"per_token": 3, "cap": 3}
+	assert_eq(
+		HandRhythm.cover_for(chronicle, live.service, seat), 3,
+		"col bonus grosso il dato dice tre"
+	)
+
+	var hand: Array = live.world["entities"][seat]["hand"] as Array
+	while hand.size() > 1:
+		hand.remove_at(hand.size() - 1)
+	await live.chronicle.call("_cover_and_churn", 1, 1, Mute.new())
+	assert_eq(
+		live.service.covered_size(seat), 1,
+		"ma con una carta in mano se ne copre una: il tetto e' quello che resta"
+	)
+	if written == null:
+		decks.erase("cover_bonus")
+	else:
+		decks["cover_bonus"] = written
+
+
+## **E il numero dice da dove viene.** Un numero guadagnato che non spiega come,
+## al tavolo e' un numero che nessuno puo' controllare.
+func test_the_number_says_where_it_comes_from() -> void:
+	var live: RefCounted = _table()
+	var chronicle: Dictionary = _chronicle_of(live)
+	var seat: String = ""
+	for entity_id in live.world["turn_order"]:
+		if live.service.stones_held(str(entity_id)) > 0:
+			seat = str(entity_id)
+			break
+	if seat == "":
+		seat = str((live.world["turn_order"] as Array)[0])
+		live.applier.apply(Effect.make(
+			"BUILD_STRUCTURE", "region",
+			str((live.service.regions_with_presence(seat) as Array)[0]),
+			{"structure_type": "STR_KEEP", "owner": seat, "grade": 1},
+			Effect.source("test", "TEST", seat, 1, 1, 0)
+		))
+	var reasons: Array = HandRhythm.cover_reasons(chronicle, live.service, seat)
+	assert_true(str(reasons[0]).contains("di base"), "la prima ragione e' il pavimento")
+	assert_true(
+		" · ".join(PackedStringArray(reasons)).contains("Pietra"),
+		"e la seconda nomina la Pietra: %s" % str(reasons)
+	)
+
+
 ## **E dove la Chronicle non dichiara il ritmo, non cambia niente.**
 ##
 ## Provato girando l'interruttore invece di fidarsi: CHR_TEST non lo dichiara, e

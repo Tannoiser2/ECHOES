@@ -11,6 +11,7 @@ extends RefCounted
 ## Solo lettura, come i pannelli: costruire il modello non muove il mondo.
 
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
+const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
 
 
 static func build(session: RefCounted) -> Dictionary:
@@ -37,6 +38,16 @@ static func build(session: RefCounted) -> Dictionary:
 		(out["seats"] as Array).append({
 			"name": session.service.name_of(str(entity_id)),
 			"covered": session.service.covered_size(str(entity_id)),
+			# **E quante potra' coprirne il turno prossimo** (D-505). Anche
+			# questo e' pubblico, e non per scelta: si ricava dalle Pietre e
+			# dalle Regioni, che stanno **sulla mappa davanti a tutti**. Un
+			# numero che al tavolo si conta guardando le tessere e che l'app non
+			# dicesse sarebbe l'app che dice meno del tavolo.
+			"covers_per_round": HandRhythm.cover_for(
+				data.chronicles[str(world["chronicle_id"])] as Dictionary,
+				session.service, str(entity_id)
+			),
+			"stones": session.service.stones_held(str(entity_id)),
 		})
 
 	# Le domande, come le vede il tavolo: una velata mostra il dorso (-1),

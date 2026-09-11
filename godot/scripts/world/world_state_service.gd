@@ -269,6 +269,30 @@ func contest_is_on() -> bool:
 	return not _contest_rules().is_empty()
 
 
+## **Le Pietre che questa casa tiene** (D-505): quelle costruite e sue, su tutta
+## la mappa. Non conta il terreno — Foresta, Sorgente, Sito antico e Passo sono
+## `owned: false`, stanno li' e non sono di nessuno — quindi il numero e' quello
+## che una casa **ha costruito**, non quello che ha trovato.
+##
+## Al tavolo e' un gesto: guardi le tue tessere e conti i segnalini delle Pietre
+## col tuo colore.
+func stones_held(entity_id: String) -> int:
+	var count: int = 0
+	for region_id in world["regions"]:
+		var region: Dictionary = world["regions"][str(region_id)] as Dictionary
+		for structure in (region.get("structures", []) as Array):
+			var record: Dictionary = structure as Dictionary
+			if str(record.get("owner", "")) != entity_id:
+				continue
+			var definition: Variant = data.structure_types.get(
+				str(record.get("structure_type", ""))
+			)
+			if definition == null or not bool((definition as Dictionary)["owned"]):
+				continue
+			count += 1
+	return count
+
+
 func control_count(entity_id: String) -> int:
 	var count: int = 0
 	for region_id in world["regions"]:

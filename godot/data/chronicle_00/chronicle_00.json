@@ -392,6 +392,10 @@
         "size": 18,
         "hand_at_round_start": 5,
         "cover_per_round": 1,
+        "cover_bonus": {
+          "per_stone": 1,
+          "cap": 3
+        },
         "identity_cards": 2
       }
     }
