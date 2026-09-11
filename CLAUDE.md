@@ -139,6 +139,11 @@ invece di ricopiarlo).
   che misura i **dati della scatola** deve costruirsi il suo.
 - **Una prova che cerca una condizione fra i dati spediti può smettere di provare**
   senza dirlo, se quella condizione sparisce. Fabbricatela.
+- **Due Godot sullo stesso progetto insieme si danno fastidio.** Girando la suite
+  mentre girava una sonda, il giro ha riportato **115 suite su 127 file** —
+  dodici sparite senza un errore — e in fondo *«tutto verde»*. Girata da sola le
+  conta tutte e 127. Un conto che cala senza che nessuno si lamenti va guardato:
+  lì era rotta la misura, non il gioco.
 - **ThorVG non disegna `<text>`** negli SVG: provato, 0 pixel su 200941.
 
 ---

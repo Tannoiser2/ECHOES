@@ -131,6 +131,8 @@ func _racconta(menus: Array) -> void:
 	var con_effetto_qui: int = 0
 	var solo_passa: int = 0
 	var turni: int = 0
+	var frasi: Dictionary = {}
+	var piu_lunga: int = 0
 	for menu in menus:
 		var labels: Array = (menu as Dictionary)["labels"] as Array
 		var subjects: Array = (menu as Dictionary)["subjects"] as Array
@@ -186,6 +188,14 @@ func _racconta(menus: Array) -> void:
 				solo_passa += 1
 		var chiave: String = _famiglia(str((menu as Dictionary)["prompt"]))
 		per_prompt[chiave] = int(per_prompt.get(chiave, 0)) + 1
+		# **Quante frasi diverse si legge una persona** (ISSUES 136, punto 7).
+		# Non quante domande: quante **frasi**. Una domanda che riscrive la sua
+		# intestazione a ogni passo — «copre 1 di 3», «copre 2 di 3» — al tavolo
+		# non e' la stessa domanda che continua: e' un cartello nuovo da
+		# rileggere, e chi gioca lo rilegge.
+		var frase: String = str((menu as Dictionary)["prompt"]).strip_edges()
+		frasi[frase] = int(frasi.get(frase, 0)) + 1
+		piu_lunga = maxi(piu_lunga, frase.length())
 
 	print("")
 	print("== SONDA DEI MENU — cosa vede chi gioca%s ==" % (
@@ -200,6 +210,14 @@ func _racconta(menus: Array) -> void:
 		senza_posto, senza_posto * 100 / maxi(voci, 1),
 	])
 	print("  scorciatoie, non viste   %d — la mano e la mappa le offrono col gesto" % scorciatoie)
+	print("")
+	print("**Quante frasi diverse si legge, per fare sempre le stesse cose**")
+	print("  frasi di domanda diverse %d  (su %d menu)" % [frasi.size(), menus.size()])
+	print("  la piu' lunga            %d caratteri" % piu_lunga)
+	var lunghe: Array = frasi.keys()
+	lunghe.sort_custom(func(a, b): return str(a).length() > str(b).length())
+	for i in range(mini(3, lunghe.size())):
+		print("    %s" % str(lunghe[i]).replace("\n", " / "))
 	print("")
 	print("**Voci ripetute parola per parola dentro lo stesso menu**")
 	print("  menu che ne hanno       %d su %d (%d%%)" % [

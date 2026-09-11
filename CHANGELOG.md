@@ -5,6 +5,67 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.477 — Due copie della stessa carta sono due carte
+
+[D-507](docs/DECISIONS.md#d-507). Punto 7 di [ISSUES 136](docs/ISSUES.md#136),
+*«un'altra ora con l'app in mano»*, e l'ora ha trovato due cose.
+
+### Corretto
+
+- **le copie sono copie.** In scatola una carta ha piu' di una copia
+  (`deck_copies`: **132 copie su 48 carte diverse**), quindi una mano con due
+  «Giuramento» e' normale — ma i menu contavano i **nomi**: stampavano la stessa
+  riga due volte, e scelta la prima **la seconda copia spariva**. Non si poteva
+  ne' coprire ne' scartare ne' impegnare, mentre il Consiglio le conta come
+  multinsieme dal principio. Adesso il pulsante e' uno e dice **«(ne hai 2)»**,
+  e le copie si usano tutte;
+- **e anche il cervello ne faceva le spese**: la policy chiedeva due coperte e
+  il filtro del motore ne teneva una, **in silenzio**;
+- **la domanda non cambia piu' sotto le dita.** Era *«Le Citta' Libere copre 1
+  di 2 per il Consiglio — 1 di base · +2 per 2 Pietre che tieni (non sai ancora
+  di cosa si parlera):»* — **124 caratteri** — e al passo dopo diventava «copre
+  2 di 2». Adesso il numero e le ragioni si dicono **una volta**, prima del
+  rito, e la domanda resta *«Le Citta' Libere — quale carta copri?»*. Il
+  progresso lo racconta una riga, che e' il posto giusto: una riga puo'
+  cambiare, una domanda no.
+
+### Misurato
+
+Dieci anni dal seme 3000, un seggio giocato da una persona
+(`cli/run_menu_probe.gd`):
+
+| | prima | dopo |
+|---|---|---|
+| **frasi di domanda diverse** | **85** | **44** |
+| la piu' lunga | **124** caratteri | **48** |
+| menu con voci ripetute parola per parola | **116 su 1034 (11%)** | **0 (0%)** |
+| voci coinvolte | 314 su 4476 (7%) | **0** |
+
+E il cancello, 100 semi dal 7000:
+
+**0 su 8 seggi bloccati** su tutti e due i tavoli, e il gioco non si e'
+spostato: Verita' **489/483** sul misto e **448/443** sull'uniforme, contro le
+488/483 e 446/441 di 0.1.475; Consigli 5,51 · 5,40 contro 5,49 · 5,41. Il
+difetto stava nel menu, e correggerlo non ha cambiato il gioco.
+
+Suite **827 prove in 127 suite, 75.127 asserzioni**; i 29 cancelli veloci verdi.
+
+### Il costo, scritto
+
+Il cervello copre le carte che chiedeva davvero, e le sonde lunghe si sono
+spostate di un soffio: **le vite che non si siedono mai passano da 3 a 4 su 24**
+(*«I Forni Riaccesi»* si sedeva una volta su 168 salti d'era, adesso nessuna) e
+le trasformazioni sedute da **240 a 236**.
+
+### Una trappola nuova, a verbale
+
+**Due Godot sullo stesso progetto insieme si danno fastidio**: girando la suite
+mentre girava una sonda, il giro ha riportato **115 suite su 127 file** — dodici
+sparite senza un errore — e in fondo «tutto verde». Girata da sola le conta
+tutte e 127.
+
+---
+
 ## 0.1.476 — La rosa esagonale, misurata: il centro decide tutto
 
 [D-506](docs/DECISIONS.md#d-506). Domanda del committente: *«meglio la

@@ -10,6 +10,117 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-507 — Due copie della stessa carta sono due carte, e la domanda non cambia sotto le dita
+
+**implemented in 0.1.477.** Punto 7 di [ISSUES 136](ISSUES.md#136), *«un'altra
+ora con l'app in mano»* — e l'ora ha trovato due cose, misurate con
+`cli/run_menu_probe.gd` su dieci anni dal seme 3000, con un seggio giocato da
+una persona e tre dalla policy.
+
+### Uno: le copie non erano copie
+
+In scatola una carta ha **piu' di una copia** — `deck_copies`: 24 carte in
+quattro copie, 12 in due, 12 in una, **132 copie su 48 carte diverse**. Quindi
+una mano con due «Giuramento» e' normale, e al tavolo quelle sono **due carte**:
+si posano tutt'e due.
+
+I menu invece contavano i **nomi**, e sbagliavano due volte:
+
+1. **stampavano la stessa riga due volte.** Due «Giuramento — bonds, forza 1» in
+   fila non sono due scelte: sono una scelta che lo schermo non sa distinguere.
+   Misurato: **116 menu su 1034 (11%)**, e **314 voci su 4476 (7%)**;
+2. **e scelta la prima, la seconda copia spariva.** Il ciclo saltava l'id gia'
+   scelto (`if chosen.has(asset_id): continue`), quindi la seconda copia non si
+   poteva **ne' coprire ne' scartare ne' impegnare**.
+
+**E il punto 2 e' il difetto vero, perche' contraddiceva una regola che c'era
+gia'**: `ConfluenceController.commit` le carte le conta come **multinsieme** dal
+principio — *«la stessa carta non si spende due volte»*, con `find` e `remove_at`
+su una copia del piatto. Il Consiglio avrebbe accettato la seconda copia; il
+menu non la offriva piu'. E anche il **cervello** ne faceva le spese: la policy
+chiedeva due coperte e il filtro del motore (`out.has(id)`) ne teneva una,
+**in silenzio**.
+
+Adesso la regola sta in un posto solo — `scripts/seat/hand_menu.gd` — perche' la
+fanno in sei: coprire, scartare, impegnare, riprendersi una carta dopo una
+sconfitta, e i due filtri con cui il motore controlla le risposte. Sei copie
+della stessa regola divergono in silenzio: e' la lezione 9 di casa.
+
+**Al tavolo e' quello che uno fa senza pensarci:** le due copie identiche stanno
+una sopra l'altra, il pulsante e' uno e dice **«(ne hai 2)»**, e se le copri
+tutt'e due davanti a te ce ne sono due.
+
+### Due: l'intestazione cambiava sotto le dita
+
+Il rito del turno chiede fino a sette domande — due Azioni col loro bersaglio,
+le carte da coprire, quelle da buttare — e ognuna riscriveva la sua
+intestazione:
+
+> *«Le Citta' Libere copre 1 di 2 per il Consiglio — 1 di base · +2 per 2 Pietre
+> che tieni / (non sai ancora di cosa si parlera):»*
+
+**124 caratteri**, e al passo dopo cambiava in «copre 2 di 2». Non e' la stessa
+domanda che continua: e' un cartello nuovo da rileggere, e chi gioca lo rilegge.
+
+Adesso il numero, le ragioni e il prezzo **si dicono una volta**, prima del rito,
+e la domanda resta la stessa parola per parola: **«Le Citta' Libere — quale carta
+copri?»**. Il progresso lo dice il racconto — *«Coperta. Te ne restano 2 da
+coprire.»* — che e' il posto giusto: una riga che racconta puo' cambiare, una
+domanda no.
+
+### Misurato
+
+Dieci anni dal seme 3000, un seggio giocato da una persona:
+
+| | prima | dopo |
+|---|---|---|
+| **frasi di domanda diverse** | **85** | **44** |
+| la piu' lunga | **124** caratteri | **48** |
+| menu con voci ripetute parola per parola | **116 su 1034 (11%)** | **0 su 1038 (0%)** |
+| voci coinvolte | 314 su 4476 (7%) | **0** |
+
+E il cancello che non si negozia, 100 semi dal 7000:
+
+**0 su 8 seggi bloccati su un solo livello**, tavolo misto e uniforme. E il
+gioco non si e' spostato — che e' il punto, perche' il difetto stava nel menu:
+Verita' **489 scritte / 483 diverse** sul misto e **448 / 443** sull'uniforme,
+contro le 488/483 e 446/441 di [D-505](#d-505); Consigli **5,51 · 5,40** contro
+5,49 · 5,41.
+
+### Il costo, scritto
+
+Il cervello adesso copre le carte che chiedeva davvero, quindi le sonde lunghe
+si sono spostate di un soffio, e va detto: **le vite che non si siedono mai
+passano da 3 a 4 su 24** — *«I Forni Riaccesi»* (ENT_CENERE, su
+`scar:open_wound`) si sedeva **una volta** su 168 salti d'era e adesso nessuna —
+e le trasformazioni sedute da **240 a 236**. E' dentro il rumore di una vita che
+si apriva una volta su centosessantotto, ma e' un numero peggiorato e si scrive:
+le conta [MISURA_VITE](MISURA_VITE.md), che e' un cancello e le guarda a ogni
+giro.
+
+### Le prove, e che mordano
+
+`test_the_copies_are_copies.gd`, sei prove su una **mano fabbricata** con due
+copie della stessa carta. Cercarla fra i dati spediti voleva dire misurare la
+pesca invece del menu, e il giorno in cui la pesca cambia la prova smetterebbe
+di provare in silenzio.
+
+E si sono provate **al rovescio**: rimessa per un momento la regola vecchia (il
+menu che conta i nomi), due prove vanno rosse — *«e dice quante ne hai»* e *«la
+seconda e' la sua altra copia, non un'altra carta»*. Una prova che non puo'
+fallire non prova niente.
+
+### E una trappola nuova per CLAUDE.md
+
+**Due Godot sullo stesso progetto insieme si danno fastidio.** Girando la suite
+mentre girava una sonda, il giro ha riportato **115 suite su 127 file**, dodici
+sparite senza un errore, e in fondo *«tutto verde»*. Non era il codice: era il
+secondo processo. Girata da sola, la suite ne conta tutte e 127 (**827 prove, 75.127 asserzioni**). Il numero che
+conta e' sempre il codice di uscita, ma **un conto che cala senza che nessuno si
+lamenti va guardato**: qui era la misura a essere rotta, non il gioco.
+
+---
+
 ## D-506 — La rosa esagonale, misurata: il centro decide tutto
 
 **disegno, 0.1.476.** Domanda del committente:
