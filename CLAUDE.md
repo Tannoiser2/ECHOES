@@ -51,8 +51,8 @@ Tutti vogliono `export GODOT=~/godot/Godot_v4.7.1-stable_linux.x86_64`.
 **Sono trentacinque, e non si girano a mano uno per uno.** Li gira
 [`tools/gates.py`](tools/gates.py), in tre modi:
 
-- **senza argomenti** — i **29 veloci**, ventisei secondi in tutto: dopo ogni modifica;
-- **`--lenti`** — le **6 sonde lunghe**: una volta, prima di aprire la PR;
+- **senza argomenti** — i **30 veloci**, ventisette secondi in tutto: dopo ogni modifica;
+- **`--lenti`** — le **5 sonde lunghe**: una volta, prima di aprire la PR;
 - **`--rigenera`** — rifà i documenti generati invece di controllarli, quando uno
   va rosso solo perché è vecchio. È il rosso che costa più tempo di tutti.
   **Da solo rifà i veloci e basta**: se hai toccato il mondo — una regola del
@@ -91,7 +91,7 @@ Linux, e serve solo a dire in quale corsia va un cancello.
 | `bash tools/run_council_catalogue.sh --check` | 1 s | `docs/CATALOGO_CONSIGLI.md` |
 | `bash tools/run_card_catalogue.sh --check` | 1 s | `docs/CATALOGO_CARTE.md` |
 | `bash tools/run_lives_survey.sh --check` | 186 s | `docs/MISURA_VITE.md`: **quante delle vite scritte delle case si siedono davvero al tavolo**, in dodici saghe sui due tavoli |
-| `bash tools/run_tiles_probe.sh --check` | 328 s | `docs/MISURA_TESSERE.md`: **tutte le pose possibili della mappa**, enumerate — 210 pescate per 720 ordini — e quante lasciano una tessera isolata |
+| `bash tools/run_tiles_probe.sh --check` | 1 s | `docs/MISURA_TESSERE.md`: **tutte le rose possibili**, enumerate col motore — le caselle sono sette e fisse (D-510), quindi sono otto e non 151.200 — e quante lasciano una tessera isolata o un varco contro un muro |
 | `bash tools/run_card_skeleton.sh --check` | 1 s | `docs/SCHELETRO_CARTE.md`: **cosa porta ogni faccia**, ricavato dalle facce vere — i blocchi di ogni mazzo, su quante carte, e una carta vera per mazzo |
 | `bash tools/run_card_sheets.sh --check` | 1 s | `docs/SCHEDE_CARTE.md` e `docs/schede/*.json`: **la scheda di ogni tipo di carta** — cos'e', cosa c'e' scritto sopra voce per voce e da dove viene, l'immagine e il suo prompt generale — e **il dato di ogni carta**, col prompt composto, pronto per generarle senza aprire Godot |
 | `bash tools/run_box_survey.sh --check` | 1 s | `docs/MISURA_CASELLE.md`: **cosa una casella del Consiglio sa dire e cosa il Consiglio fa lo stesso** — il vocabolario letto chiamandolo, non ricopiato |

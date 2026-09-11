@@ -383,7 +383,7 @@
           "REG_TERRE_NAHR",
           "REG_VALLE_VERDE"
         ],
-        "count": 6
+        "count": 7
       },
       "acquire_rules": {
         "can_build_stone": true

@@ -73,6 +73,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import itertools
 import json
 import re
 import sys
@@ -1358,6 +1359,7 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     guai.extend(il_potere_della_casa(documenti))
     guai.extend(params_muti(documenti))
     guai.extend(il_velo_sulle_carte(documenti))
+    guai.extend(le_rose_possibili(documenti))
     return guai
 
 
@@ -1908,6 +1910,136 @@ def due_domande(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     return guai
 
 
+def _famiglie_dello_schema() -> set[str]:
+    """Le sei famiglie, prese dall'enum di `asset_sources` nello schema della
+    Regione. Dallo schema e non dai dati: vedi la nota in `le_rose_possibili`."""
+    schema = json.loads(
+        (REPO_ROOT / "schema" / "region.schema.json").read_text(encoding="utf-8")
+    )
+    blocco = schema["$defs"]["region"]["properties"]["asset_sources"]
+    famiglie = set(blocco["items"]["enum"])
+    if not famiglie:
+        raise SystemExit("l'enum delle famiglie della Regione e' vuoto")
+    return famiglie
+
+
+LATI = ["N", "NE", "SE", "S", "SO", "NO"]          # in senso orario dall'alto
+CASELLE = ["C", "P1", "P2", "P3", "P4", "P5", "P6"]
+
+
+def _petalo(casella: str) -> int:
+    """Il petalo (0..5) di una casella, o -1 per il centro."""
+    return -1 if casella == "C" else int(casella[1:]) - 1
+
+
+def _lato_fra(qui: str, la: str) -> str:
+    """Il lato con cui `qui` guarda `la`, vuoto se non si toccano."""
+    a, b = _petalo(qui), _petalo(la)
+    if a < 0 and b < 0:
+        return ""
+    if a < 0:
+        return LATI[b]
+    if b < 0:
+        return LATI[(a + 3) % 6]
+    if (a + 1) % 6 == b:
+        return LATI[(a + 2) % 6]
+    if (b + 1) % 6 == a:
+        return LATI[(a + 4) % 6]
+    return ""
+
+
+def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
+    """**Tutte le rose che la scatola sa fare, guardate una per una** (D-510).
+
+    Sette caselle e dieci tessere: tre petali ne hanno due di candidate, quindi
+    le rose possibili sono otto — poche abbastanza da contarle **tutte** invece
+    di misurarne un campione. La tessera non si gira, quindi quello che una rosa
+    e' si sa prima di giocarla, e ogni difetto qui e' un difetto stampato sul
+    cartone.
+
+    Per ognuna si pretendono quattro cose:
+
+    1. **nessuna casella vuota**: ogni posto della rosa ha almeno una candidata;
+    2. **nessuna tessera isolata**: dal centro si arriva ovunque — il raggio non
+       c'e' su tutti i petali (P3 e P6 stanno dietro una vicina, ed e' voluto),
+       ma una strada che porti fuori dev'esserci;
+    3. **nessuna strada morta**: un varco guarda sempre un altro varco. E' la
+       promessa che il posto fisso compra, e qui si verifica invece di fidarsi;
+    4. **tutte e sei le famiglie sul tavolo**: una famiglia che non sta sulla
+       mappa non si puo' andare a prendere (D-313). Prima era un rimedio a valle
+       — si stendeva la mappa e poi la si aggiustava; adesso che le rose sono
+       otto e' una guardia a monte, e il rimedio e' stato tolto."""
+    guai: List[str] = []
+    regioni = documenti.get("region", [])
+    if not regioni:
+        return guai
+
+    per_casella: Dict[str, List[Dict[str, Any]]] = {}
+    for regione in regioni:
+        casella = str(regione.get("map_slot", ""))
+        if casella not in CASELLE:
+            guai.append("tessera senza un posto nella rosa: %s (map_slot «%s»)"
+                        % (regione.get("id"), casella))
+            continue
+        per_casella.setdefault(casella, []).append(regione)
+    if guai:
+        return guai
+    for casella in CASELLE:
+        if casella not in per_casella:
+            guai.append("casella della rosa senza nessuna candidata: %s — il posto resterebbe "
+                        "vuoto sul tavolo" % casella)
+    if guai:
+        return guai
+
+    # **Le famiglie si leggono dallo schema, non dai dati.** Ricavarle dalle
+    # tessere renderebbe la guardia cieca proprio al difetto che deve prendere:
+    # togliere una famiglia da tutte le tessere la farebbe *sparire* invece che
+    # *mancare*. E' la trappola della prova che smette di provare.
+    famiglie = sorted(_famiglie_dello_schema())
+    for scelta in itertools.product(*[sorted(per_casella[c], key=lambda r: str(r.get("id")))
+                                      for c in CASELLE]):
+        rosa = dict(zip(CASELLE, scelta))
+        nome = " ".join("%s=%s" % (c, rosa[c].get("id")) for c in CASELLE)
+        varchi = {c: set(str(l) for l in (rosa[c].get("edges") or [])) for c in CASELLE}
+
+        # 3. una strada morta e' un varco che guarda un muro.
+        vicini: Dict[str, List[str]] = {c: [] for c in CASELLE}
+        for qui in CASELLE:
+            for la in CASELLE:
+                lato = _lato_fra(qui, la)
+                if qui == la or not lato:
+                    continue
+                aperto_qui = lato in varchi[qui]
+                aperto_la = _lato_fra(la, qui) in varchi[la]
+                if aperto_qui and aperto_la:
+                    vicini[qui].append(la)
+                elif aperto_qui:
+                    guai.append("strada morta: il varco %s di %s guarda il muro di %s — rosa %s"
+                                % (lato, rosa[qui].get("id"), rosa[la].get("id"), nome))
+
+        # 2. dal centro si arriva ovunque.
+        visti = {"C"}
+        coda = ["C"]
+        while coda:
+            qui = coda.pop()
+            for la in vicini[qui]:
+                if la not in visti:
+                    visti.add(la)
+                    coda.append(la)
+        for casella in CASELLE:
+            if casella not in visti:
+                guai.append("tessera isolata: da Eredan non si arriva a %s (%s) — rosa %s"
+                            % (rosa[casella].get("id"), casella, nome))
+
+        # 4. tutte e sei le famiglie.
+        offerte = {str(f) for c in CASELLE for f in (rosa[c].get("asset_sources") or [])}
+        for famiglia in famiglie:
+            if famiglia not in offerte:
+                guai.append("famiglia fuori dalla mappa: %s non sta su nessuna tessera — rosa %s"
+                            % (famiglia, nome))
+    return guai
+
+
 def racconta(documenti: Dict[str, List[Dict[str, Any]]]) -> None:
     conto = censimento(documenti)
     scritti = {_nudo(t) for t in conto["scritti"]} - LIVELLI
@@ -1979,6 +2111,33 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
     def mano_taciuta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         voce(prova, bersaglio)["read_by"] = [
             m for m in voce(prova, bersaglio)["read_by"] if m != "tension"]
+
+    def rosa_senza_posto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """A una tessera si toglie la casella: non saprebbe dove andare."""
+        prova["region"][0]["map_slot"] = ""
+
+    def rosa_casella_vuota(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Si svuota un petalo: sul tavolo resterebbe un buco."""
+        for regione in prova["region"]:
+            if regione.get("map_slot") == "P1":
+                regione["map_slot"] = "P4"
+
+    def rosa_strada_morta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Si apre un varco che nessuno ricambia: guarda un muro."""
+        for regione in prova["region"]:
+            if regione.get("map_slot") == "C" and "SE" not in regione["edges"]:
+                regione["edges"] = regione["edges"] + ["SE"]
+
+    def rosa_tessera_isolata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Si mura il petalo che sta dietro un'altra: non lo raggiunge piu' nessuno."""
+        for regione in prova["region"]:
+            if regione.get("map_slot") == "P2":
+                regione["edges"] = [l for l in regione["edges"] if l != "S"]
+
+    def rosa_famiglia_fuori(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Si toglie una famiglia da ogni tessera che la porta: sparisce dal tavolo."""
+        for regione in prova["region"]:
+            regione["asset_sources"] = [f for f in regione["asset_sources"] if f != "BONDS"]
 
     def risonanza_cieca(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         """Alla prima carta con due Temi si toglie la scelta."""
@@ -2670,6 +2829,19 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Risonanza cieca"),
         pianta("secondo Tema che non esiste", tema_inventato,
                "secondo Tema che non esiste"),
+        # **Le otto rose** (D-510): la guardia le conta tutte, e qui si prova
+        # che morda su ognuna delle quattro promesse. La strada morta e' il
+        # difetto che ha preso i dati veri al primo giro — Eredan era aperta su
+        # sei lati con solo quattro raggi.
+        pianta("una tessera senza il suo posto nella rosa", rosa_senza_posto,
+               "senza un posto nella rosa"),
+        pianta("una casella della rosa senza candidate", rosa_casella_vuota,
+               "senza nessuna candidata"),
+        pianta("un varco che guarda un muro", rosa_strada_morta, "strada morta"),
+        pianta("il petalo dietro un'altra, murato", rosa_tessera_isolata,
+               "tessera isolata"),
+        pianta("una famiglia che non sta su nessuna tessera", rosa_famiglia_fuori,
+               "famiglia fuori dalla mappa"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

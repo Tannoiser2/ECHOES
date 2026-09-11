@@ -40,6 +40,7 @@
         "presence_slots",
         "art_prompt_key",
         "build_slots",
+        "map_slot",
         "edges"
       ],
       "additionalProperties": false,
@@ -83,18 +84,20 @@
         },
         "edges": {
           "type": "array",
-          "description": "**I varchi sui lati della tessera** (D-390, parola del committente: *«Eredan ha adiacenze in tutti e quattro i lati, mentre magari le montagne le hanno solo su due; se due lati hanno adiacenze in comune lo spostamento e' permesso»*). Quali dei quattro lati portano un varco, nell'orientamento stampato: N in alto, E a destra, S in basso, O a sinistra. Due tessere accostate si toccano **solo se il lato che combacia e' aperto su tutte e due**. La tessera si posa girandola: la rotazione con cui e' stata posata sta nel mondo (`map_rotations`), non qui. `adjacency` resta la mappa d'autore, e vale solo per le Chronicle che non pescano le tessere.",
+          "description": "**I varchi sui lati della tessera esagonale** (D-510). La tessera **non si gira**: ognuna ha il suo posto nella rosa (`map_slot`) ed e' stampata gia' orientata per quello, cosi' i nomi si leggono tutti nello stesso verso. I sei lati, in senso orario dall'alto: N, NE, SE, S, SO, NO. Due tessere accostate si toccano **solo se il lato che combacia e' aperto su tutte e due** — e siccome il posto e' fisso, i due lati di ogni confine si stampano insieme e una strada morta non puo' esistere. `adjacency` resta la mappa d'autore, e vale solo per le Chronicle che non pescano.",
           "items": {
             "type": "string",
             "enum": [
               "N",
-              "E",
+              "NE",
+              "SE",
               "S",
-              "O"
+              "SO",
+              "NO"
             ]
           },
           "minItems": 1,
-          "maxItems": 4,
+          "maxItems": 6,
           "uniqueItems": true
         },
         "asset_sources": {
@@ -184,6 +187,19 @@
             "y"
           ],
           "additionalProperties": false
+        },
+        "map_slot": {
+          "type": "string",
+          "description": "**Il posto di questa tessera nella rosa** (D-510). `C` e' il centro — la capitale, aperta su tutti e sei i lati; `P1`..`P6` sono i sei petali in senso orario dall'alto. Sette posti e dieci tessere: tre petali hanno due candidate, e la pescata sceglie quale delle due siede quell'anno. Il posto e' fisso perche' la tessera non si gira: e' quello che permette di stampare i varchi sul disegno.",
+          "enum": [
+            "C",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+          ]
         }
       }
     }

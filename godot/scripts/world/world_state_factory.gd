@@ -210,20 +210,21 @@ static func _build_map(world: Dictionary, chronicle: Dictionary, data: RefCounte
 	# mai. Adesso sono stato: un passo che frana toglie un arco, e da quel
 	# momento due Regioni smettono di essere vicine.
 	#
-	# **Sul tavolo pescato la posa comanda** (D-275), e **il confine e' un
-	# varco** (D-390, parola del committente): le tessere si posano una alla
-	# volta accanto a una gia' posata, girandole finche' il lato che si tocca
-	# porta un varco su tutte e due. Vicino non e' piu' «chi si tocca»: e' chi
-	# si tocca **attraverso un varco aperto sui due lati**.
+	# **Sul tavolo pescato la rosa comanda** (D-275, riscritta da D-390 e poi
+	# da D-510): ogni tessera ha la sua casella nella rosa e ci va dritta,
+	# perche' non si gira. Vicino non e' «chi si tocca»: e' chi si tocca
+	# **attraverso un varco aperto sui due lati** — e i due lati di un confine
+	# sono stampati insieme, quindi combaciano sempre o non combaciano mai.
 	#
 	# La riga di prima diceva *«se un giorno una tessera vorra' un lato chiuso,
 	# sara' un segno stampato, e sara' un'altra decisione»*. Quel giorno e'
-	# arrivato: il segno stampato e' `region.edges`.
+	# arrivato: il segno stampato e' `region.edges`, e il suo posto e'
+	# `region.map_slot`.
 	#
 	# Il grafo dichiarato (`adjacency`) resta agli anni scritti, dove la mappa
 	# e' d'autore.
 	if not (chronicle.get("region_pool", {}) as Dictionary).is_empty():
-		_lay_the_tiles(world, chronicle, data)
+		_lay_the_rose(world, chronicle, data)
 	else:
 		world["adjacency"] = {}
 		for region_id in chronicle["regions"]:
@@ -235,358 +236,206 @@ static func _build_map(world: Dictionary, chronicle: Dictionary, data: RefCounte
 			world["adjacency"][str(region_id)] = links
 
 
-## **La posa delle tessere** (D-275, riscritta da D-390 su parola del
-## committente).
+## **La rosa esagonale** (D-510, parola del committente: *«la tessera NON si
+## gira, i testi devono essere visibili nella stessa direzione»*).
 ##
-## > *«Bisogna dare delle adiacenze: per esempio Eredan ha adiacenze in tutti e
-## > quattro i lati, mentre magari le montagne le hanno solo su due. Se due lati
-## > hanno adiacenze in comune lo spostamento e' permesso. Questo naturalmente
-## > deve essere calcolato in modo che ci sia sempre la possibilita' di muoversi
-## > in tutte e sei le tessere pescate, e che quindi non ci siano tessere
-## > isolate.»*
+## Fino a D-390 la mappa era un 3x2 di tessere quadrate che si posavano
+## **girandole** finche' il lato accostato portava un varco su tutte e due.
+## Girare e' esattamente quello che il committente ha tolto, e la ragione e'
+## fisica: con nove tessere su dieci aperte su tutti i lati girare non serviva
+## mai e nessuno se n'era accorto, ma su un esagono con uno o tre varchi la
+## rotazione diventa obbligatoria e visibile — e un'illustrazione che deve
+## reggere sei giri non puo' avere un sopra, ne' un nome che si legge.
 ##
-## Fino a D-389 la posa era una **griglia**: le tessere andavano in fila
-## nell'ordine di pesca, e ogni lato accostato era un confine aperto. Cioe' i
-## `edges` della tessera non esistevano, e il `adjacency` scritto a mano non lo
-## leggeva nessuno: due tessere erano vicine perche' il caso le aveva messe
-## vicine, non perche' i loro varchi combaciassero.
+## **Tolta la rotazione, il posto dev'essere fisso**, e allora i varchi
+## smettono di appartenere alla tessera e appartengono alla **casella**: i due
+## lati di ogni confine si stampano insieme, quindi **una strada morta — un
+## varco che guarda un muro — non puo' esistere**. E' una promessa per
+## costruzione, non una misura che tiene finche' tiene.
 ##
-## **Adesso la posa e' una regola, ed e' una regola che si esegue al tavolo:**
+## La rosa ha **sette caselle**: `C` al centro, la capitale, aperta su tutti e
+## sei i lati; `P1`..`P6` i sei petali in senso orario dall'alto. Dieci tessere
+## per sette caselle: tre petali ne hanno due di candidate, e la pescata sceglie
+## quale delle due siede quell'anno. Le rose possibili sono **otto**, e
+## `validate_physical` le controlla **tutte una per una** invece di misurarne
+## un campione.
 ##
-## 1. la prima tessera si posa e basta;
-## 2. ogni tessera dopo si posa **accanto a una gia' posata**, girandola finche'
-##    **il lato che si tocca porta un varco su tutte e due**;
-## 3. una tessera che non si puo' posare da nessuna parte si mette da parte, e
-##    ci si riprova dopo aver posato le altre.
+## **E quattro petali guardano la capitale, due no.** `P3` (il porto, o
+## l'isola) e `P6` (la montagna, o le miniere) si raggiungono **solo passando
+## per la vicina**. E' quello che da' al mondo una geografia invece di una
+## ruota: la capitale diventa un luogo e non uno svincolo, il porto dista
+## quattro passi dalla montagna, e chi siede a `P2` o a `P5` tiene una gola.
+## Rende anche viva la casella CHIUDI LA STRADA, che con sei raggi non poteva
+## tagliare fuori niente e quindi era una minaccia che non morde.
 ##
-## **Da qui la promessa che il committente chiede viene per costruzione**: ogni
-## tessera entra attaccandosi a una gia' posata **attraverso un varco**, quindi
-## la mappa e' connessa mentre nasce, e non c'e' niente da verificare dopo.
-## Quello che va verificato e' l'altra meta' — che le sei tessere ci stiano
-## **tutte** — e lo prova `test_the_map_is_one_piece` su cento semi.
-##
-## Deterministica: le caselle libere si guardano in un ordine fisso (riga per
-## riga), e le quattro rotazioni in ordine di quarto di giro. Nessun dado.
-const QUARTERS: Array = ["N", "E", "S", "O"]
+## Costa la varieta', e il costo si scrive: le mappe possibili passano da
+## duecentodieci pescate per settecentoventi ordini a **otto**. E' il prezzo
+## del non girare, e lo si paga qui.
+
+## I sei lati, in senso orario dall'alto. L'indice **e'** la direzione: il
+## petalo `p` sta dalla parte di `SIDES[p]` rispetto al centro.
+const SIDES: Array = ["N", "NE", "SE", "S", "SO", "NO"]
+
+## Le sette caselle, e dove stanno sul foglio. Le colonne di lato scendono di
+## mezza tessera: e' la forma che fa una rosa di esagoni, ed e' la stessa che
+## l'app disegna.
+const SLOTS: Array = ["C", "P1", "P2", "P3", "P4", "P5", "P6"]
+const SLOT_AT: Dictionary = {
+	"C": Vector2i(1, 1),
+	"P1": Vector2i(1, 0),
+	"P2": Vector2i(2, 1),
+	"P3": Vector2i(2, 2),
+	"P4": Vector2i(1, 2),
+	"P5": Vector2i(0, 2),
+	"P6": Vector2i(0, 1),
+}
 
 
-## Il lato `side` della tessera, girata di `turn` quarti di giro in senso orario.
-static func _turned(side: String, turn: int) -> String:
-	return str(QUARTERS[(QUARTERS.find(side) + turn) % 4])
+## Il petalo (0..5) di una casella, o -1 per il centro.
+static func _petal_of(slot: String) -> int:
+	return -1 if slot == "C" else int(slot.substr(1)) - 1
 
 
-## I varchi di una tessera come stanno sul tavolo, girata di `turn`.
-static func _openings(region_id: String, turn: int, data) -> Array:
-	if data == null:
-		return QUARTERS.duplicate()
-	var region: Variant = data.regions.get(region_id)
-	if region == null:
-		return QUARTERS.duplicate()
-	var printed: Array = (region as Dictionary).get("edges", []) as Array
-	# Una tessera senza varchi scritti e' aperta su tutti e quattro i lati: e'
-	# la forma di prima di questa decisione, e un dato vecchio non deve
-	# spegnere la mappa in silenzio.
-	if printed.is_empty():
-		return QUARTERS.duplicate()
-	var out: Array = []
-	for side in printed:
-		out.append(_turned(str(side), turn))
-	return out
-
-
-## Il lato di `here` che guarda `there`, se sono accostate.
-static func _side_towards(here: Vector2i, there: Vector2i) -> String:
-	var step: Vector2i = there - here
-	if step == Vector2i(0, -1):
-		return "N"
-	if step == Vector2i(1, 0):
-		return "E"
-	if step == Vector2i(0, 1):
-		return "S"
-	if step == Vector2i(-1, 0):
-		return "O"
+## Il lato con cui la casella `a` guarda la casella `b`, vuoto se non si
+## toccano. Il centro guarda il petalo `p` dalla parte di `p`; il petalo guarda
+## il centro dalla parte opposta; due petali vicini si guardano di sbieco.
+static func _side_between(a: String, b: String) -> String:
+	var here: int = _petal_of(a)
+	var there: int = _petal_of(b)
+	if here < 0 and there < 0:
+		return ""
+	if here < 0:
+		return str(SIDES[there])
+	if there < 0:
+		return str(SIDES[(here + 3) % 6])
+	if (here + 1) % 6 == there:
+		return str(SIDES[(here + 2) % 6])
+	if (there + 1) % 6 == here:
+		return str(SIDES[(here + 4) % 6])
 	return ""
 
 
-## Il lato opposto: quello che l'altra tessera deve avere aperto perche' il
-## varco combaci.
-static func _facing(side: String) -> String:
-	return _turned(side, 2)
+## La casella di una tessera, letta dal dato. Vuota se la Regione non si
+## conosce: la rosa non le inventa un posto.
+static func _slot_of(region_id: String, data) -> String:
+	if data == null:
+		return ""
+	var region: Variant = data.regions.get(region_id)
+	if region == null:
+		return ""
+	return str((region as Dictionary).get("map_slot", ""))
 
 
-static func _lay_the_tiles(world: Dictionary, chronicle: Dictionary, data = null) -> void:
-	var order: Array = chronicle["regions"] as Array
-	var at: Dictionary = {}        # tessera -> Vector2i
-	var turned: Dictionary = {}    # tessera -> quarti di giro
-	var occupied: Dictionary = {}  # "x,y" -> tessera
-	var left: Array = order.duplicate()
+## I varchi stampati su una tessera. Non c'e' piu' una rotazione da applicare:
+## la tessera sta sul tavolo come e' disegnata.
+static func _openings(region_id: String, data) -> Array:
+	if data == null:
+		return []
+	var region: Variant = data.regions.get(region_id)
+	if region == null:
+		return []
+	return (region as Dictionary).get("edges", []) as Array
 
-	# La prima si posa nell'origine, dritta.
-	if not left.is_empty():
-		var first: String = str(left.pop_front())
-		at[first] = Vector2i(0, 0)
-		turned[first] = 0
-		occupied["0,0"] = first
 
-	# E le altre si attaccano, una per giro, finche' se ne posa almeno una.
-	while not left.is_empty():
-		var placed_one: bool = false
-		for index in range(left.size()):
-			var tile: String = str(left[index])
-			var spot: Dictionary = _where_it_fits(tile, at, turned, occupied, data)
-			if spot.is_empty():
-				continue
-			at[tile] = spot["at"] as Vector2i
-			turned[tile] = int(spot["turn"])
-			occupied["%d,%d" % [(spot["at"] as Vector2i).x, (spot["at"] as Vector2i).y]] = tile
-			left.remove_at(index)
-			placed_one = true
-			break
-		if not placed_one:
-			# Nessuna delle rimaste si attacca: la mappa si chiude con quelle
-			# posate, e chi guarda il mondo vede sei tessere o meno. Non e' un
-			# errore silenzioso — `test_the_map_is_one_piece` lo prende.
-			break
-
-	# Le coordinate si rimettono in alto a sinistra: la prima tessera parte
-	# dall'origine e le altre le crescono attorno, anche all'indietro, quindi
-	# senza questa riga il salvataggio porterebbe colonne negative e l'app
-	# disegnerebbe fuori dal foglio.
-	var min_x: int = 0
-	var min_y: int = 0
-	var first_seen: bool = false
-	for tile in at:
-		var spot: Vector2i = at[tile] as Vector2i
-		if not first_seen:
-			min_x = spot.x
-			min_y = spot.y
-			first_seen = true
+## **La rosa si stende**: ogni tessera nella sua casella, dritta.
+static func _lay_the_rose(world: Dictionary, chronicle: Dictionary, data = null) -> void:
+	var at: Dictionary = {}  # casella -> tessera
+	for region_id in chronicle["regions"]:
+		var slot: String = _slot_of(str(region_id), data)
+		if slot == "":
 			continue
-		min_x = mini(min_x, spot.x)
-		min_y = mini(min_y, spot.y)
+		at[slot] = str(region_id)
+
 	world["map_positions"] = {}
-	world["map_rotations"] = {}
-	for tile in at:
-		var spot: Vector2i = at[tile] as Vector2i
-		world["map_positions"][str(tile)] = [spot.x - min_x, spot.y - min_y]
-		world["map_rotations"][str(tile)] = int(turned[tile])
+	for slot in SLOTS:
+		if not at.has(str(slot)):
+			continue
+		var spot: Vector2i = SLOT_AT[str(slot)] as Vector2i
+		world["map_positions"][str(at[str(slot)])] = [spot.x, spot.y]
 
-	# **L'adiacenza e' il varco, non l'accostamento** (D-390): due tessere che
-	# si toccano di lato sono vicine solo se quel lato porta un varco su tutte
-	# e due.
+	# **L'adiacenza e' il varco** (D-390), e adesso il varco e' stampato: due
+	# caselle vicine si toccano se il lato che combacia e' aperto su tutte e
+	# due. Niente rotazione da consultare, e niente da verificare dopo — le
+	# otto rose le guarda `validate_physical`, una per una.
 	world["adjacency"] = {}
-	for here in at:
+	for here in SLOTS:
+		if not at.has(str(here)):
+			continue
 		var links: Array = []
-		for there in at:
-			if str(here) == str(there):
+		for there in SLOTS:
+			if str(here) == str(there) or not at.has(str(there)):
 				continue
-			if _passage_between(
-				str(here), at[here] as Vector2i, int(turned[here]),
-				str(there), at[there] as Vector2i, int(turned[there]), data
-			):
-				links.append(str(there))
+			if _passage_between(str(here), str(there), at, data):
+				links.append(str(at[str(there)]))
 		links.sort()
-		world["adjacency"][str(here)] = links
+		world["adjacency"][str(at[str(here)])] = links
 
 
-## C'e' un varco fra queste due tessere, come stanno sul tavolo?
-static func _passage_between(
-	here: String, here_at: Vector2i, here_turn: int,
-	there: String, there_at: Vector2i, there_turn: int, data
-) -> bool:
-	var side: String = _side_towards(here_at, there_at)
+## C'e' un varco fra queste due caselle, come stanno sul tavolo?
+static func _passage_between(here: String, there: String, at: Dictionary, data) -> bool:
+	var side: String = _side_between(here, there)
 	if side == "":
 		return false
-	return _openings(here, here_turn, data).has(side) \
-		and _openings(there, there_turn, data).has(_facing(side))
+	return _openings(str(at[here]), data).has(side) \
+		and _openings(str(at[there]), data).has(_side_between(there, here))
 
 
-## Dove e come si posa questa tessera: la prima casella libera accostata a una
-## gia' posata, con la prima rotazione che fa combaciare un varco. Vuoto se non
-## si posa da nessuna parte.
-static func _where_it_fits(
-	tile: String, at: Dictionary, turned: Dictionary, occupied: Dictionary, data
-) -> Dictionary:
-	# Le caselle libere accostate a quelle occupate, in ordine fisso: per
-	# tessera posata nell'ordine in cui e' stata posata, e per lato N/E/S/O.
-	var seen: Dictionary = {}
-	var spots: Array = []
-	for placed in at:
-		var base: Vector2i = at[placed] as Vector2i
-		for side in QUARTERS:
-			var step: Vector2i = base + _step_of(side)
-			var key: String = "%d,%d" % [step.x, step.y]
-			if occupied.has(key) or seen.has(key):
-				continue
-			seen[key] = true
-			spots.append(step)
-	# **Si posa dove attacca meglio**, non dove attacca per primo: fra le pose
-	# che fanno combaciare almeno un varco si prende quella che ne fa combaciare
-	# **di piu'**. E' quello che fa una persona al tavolo, ed e' la differenza
-	# fra una mappa e una catena: col «primo posto libero» la meta' delle
-	# tessere finiva con un vicino solo (misurato: 646 su 1.200).
-	var best: Dictionary = {}
-	var best_joins: int = 0
-	for spot in spots:
-		# **La mappa e' un 3x2** (D-464, parola del committente): sei tessere
-		# in tre colonne e due righe, come stanno sul tavolo e sullo schermo.
-		# Una casella che farebbe uscire la posa dal rettangolo non si guarda.
-		if not _stays_in_the_frame(spot as Vector2i, at):
-			continue
-		for turn in range(4):
-			var joins: int = 0
-			for side in QUARTERS:
-				var neighbour: Vector2i = (spot as Vector2i) + _step_of(str(side))
-				var key: String = "%d,%d" % [neighbour.x, neighbour.y]
-				if not occupied.has(key):
-					continue
-				var other: String = str(occupied[key])
-				if _passage_between(
-					tile, spot as Vector2i, turn,
-					other, at[other] as Vector2i, int(turned[other]), data
-				):
-					joins += 1
-			if joins > best_joins:
-				best_joins = joins
-				best = {"at": spot, "turn": turn}
-	return best
-
-
-## Il rettangolo del tavolo: tre colonne per due righe (D-464). La prima
-## tessera parte dall'origine e le altre crescono attorno, anche all'indietro:
-## quello che conta e' l'ingombro, non le coordinate.
-const MAP_COLUMNS: int = 3
-const MAP_ROWS: int = 2
-
-
-static func _stays_in_the_frame(spot: Vector2i, at: Dictionary) -> bool:
-	var min_x: int = spot.x
-	var max_x: int = spot.x
-	var min_y: int = spot.y
-	var max_y: int = spot.y
-	for tile in at:
-		var placed: Vector2i = at[tile] as Vector2i
-		min_x = mini(min_x, placed.x)
-		max_x = maxi(max_x, placed.x)
-		min_y = mini(min_y, placed.y)
-		max_y = maxi(max_y, placed.y)
-	return max_x - min_x + 1 <= MAP_COLUMNS and max_y - min_y + 1 <= MAP_ROWS
-
-
-static func _step_of(side: String) -> Vector2i:
-	match side:
-		"N":
-			return Vector2i(0, -1)
-		"E":
-			return Vector2i(1, 0)
-		"S":
-			return Vector2i(0, 1)
-	return Vector2i(-1, 0)
-
-
-## La pesca delle tessere (D-263): stessa forma di `resolve_seats`, candidate
-## ordinate prima di mescolare, cosi' un riordino innocuo del dato non cambia
-## ogni saga. Il dado lo passa il chiamante, **derivato dal seme** — la mappa
-## non consuma il caso della partita.
+## **La pesca della rosa** (D-510). Prima si pescavano sei tessere su dieci e
+## poi si posavano dove capitava; adesso le caselle sono sette e fisse, quindi
+## si pesca **una candidata per casella**. Dove la candidata e' una sola non
+## c'e' niente da pescare: e' quella, e il posto e' suo.
 ##
-## **E la mappa deve offrire tutte e sei le famiglie** (D-313). Ogni tessera e'
-## fonte di due famiglie; sei tessere pescate su dieci fanno venti caselle per
-## sei famiglie, e senza un rimedio **quarantacinque mappe su duecentodieci**
-## ne lasciavano fuori una — ventotto volte l'Autorita', che usciva da due sole
-## tessere. Una famiglia che non sta sulla mappa non si puo' andare a prendere:
-## quelle otto carte le pesca solo chi e' a terra, alla cieca.
+## Deterministica come `resolve_seats`: le candidate di ogni casella si
+## ordinano prima di mescolare, cosi' un riordino innocuo del dato non cambia
+## ogni saga, e il dado lo passa il chiamante, derivato dal seme.
 ##
-## Riequilibrare le fonti porta il conto da 45 a 30, ed e' il minimo teorico
-## con due famiglie per tessera: servirebbero cinque tessere a famiglia — trenta
-## caselle — e ce ne sono venti. Le ultime trenta mappe le chiude **una regola
-## di stesura**, ed e' una regola che una persona sa eseguire:
+## **E la regola di stesura di D-313 non serve piu'.** Serviva perche' sei
+## tessere pescate alla cieca su dieci lasciavano fuori una famiglia in
+## quarantacinque mappe su duecentodieci: un rimedio a valle, che rimetteva a
+## posto la mappa dopo averla sbagliata. Con le caselle fisse le rose possibili
+## sono otto, si contano tutte, e `validate_physical` controlla **ognuna** —
+## la copertura e' diventata una guardia a monte, e un rimedio che non scatta
+## mai e' un rimedio che va tolto.
 ##
-## > Stese le sei tessere, se una famiglia non compare da nessuna parte, togli
-## > la tessera piu' inutile — quella le cui due famiglie sono gia' offerte da
-## > un'altra — e mettine una che porti la famiglia mancante.
-##
-## Deterministica come tutto il resto: le mancanti si guardano in ordine, e la
-## sostituta e' la prima candidata rimasta che la offre.
+## Senza `data` la rosa non sa dove vanno le tessere: allora si torna alla
+## pesca cieca di prima, perche' restituire una mappa vuota spegnerebbe il
+## mondo in silenzio.
 static func resolve_map(chronicle: Dictionary, rng: RefCounted, data = null) -> Array:
 	var pool: Dictionary = chronicle.get("region_pool", {}) as Dictionary
 	if pool.is_empty():
 		return (chronicle["regions"] as Array).duplicate()
-	var drawn: Array = (pool.get("always", []) as Array).duplicate()
+	var by_slot: Dictionary = {}
+	for region_id in pool["candidates"]:
+		var slot: String = _slot_of(str(region_id), data)
+		if slot == "":
+			continue
+		if not by_slot.has(slot):
+			by_slot[slot] = []
+		(by_slot[slot] as Array).append(str(region_id))
+	if by_slot.is_empty():
+		return _blind_draw(pool, rng)
+	var drawn: Array = []
+	for slot in SLOTS:
+		if not by_slot.has(str(slot)):
+			continue
+		var candidates: Array = (by_slot[str(slot)] as Array)
+		candidates.sort()
+		drawn.append(str((rng.shuffle(candidates) as Array)[0]))
+	return drawn
+
+
+## Il ripiego di quando le caselle non si sanno: la pesca di prima di D-510.
+static func _blind_draw(pool: Dictionary, rng: RefCounted) -> Array:
 	var candidates: Array = []
 	for region_id in pool["candidates"]:
-		if not drawn.has(str(region_id)):
-			candidates.append(str(region_id))
+		candidates.append(str(region_id))
 	candidates.sort()
-	var spare: Array = []
+	var drawn: Array = []
 	for region_id in rng.shuffle(candidates):
 		if drawn.size() >= int(pool["count"]):
-			spare.append(str(region_id))
-			continue
+			break
 		drawn.append(str(region_id))
-	return _every_family_on_the_map(drawn, spare, data)
-
-
-## Le famiglie che una tessera offre. Vuoto se la Regione non si conosce: il
-## rimedio non inventa niente, si limita a non poter fare niente.
-static func _sources_of(region_id: String, data) -> Array:
-	if data == null:
-		return []
-	var region: Variant = data.regions.get(region_id)
-	if region == null:
-		return []
-	return (region as Dictionary).get("asset_sources", []) as Array
-
-
-## La regola di stesura di D-313, applicata. Senza `data` — o senza tessere di
-## scorta — la mappa resta com'e': un rimedio che non puo' guardare le fonti
-## non deve tirare a indovinare.
-static func _every_family_on_the_map(drawn: Array, spare: Array, data) -> Array:
-	if data == null or spare.is_empty():
-		return drawn
-	var out: Array = drawn.duplicate()
-	var left: Array = spare.duplicate()
-	for family in ASSET_FAMILIES:
-		var offered: bool = false
-		for region_id in out:
-			if _sources_of(str(region_id), data).has(str(family)):
-				offered = true
-				break
-		if offered:
-			continue
-		# Chi entra: la prima di scorta che porta la famiglia mancante.
-		var comes_in: int = -1
-		for i in range(left.size()):
-			if _sources_of(str(left[i]), data).has(str(family)):
-				comes_in = i
-				break
-		if comes_in < 0:
-			continue
-		# Chi esce: la tessera piu' inutile — quella le cui due famiglie sono
-		# gia' offerte da un'altra. Si guarda dall'ultima pescata, cosi' le
-		# tessere fisse di `always` escono per ultime.
-		var goes_out: int = -1
-		for i in range(out.size() - 1, -1, -1):
-			var mine: Array = _sources_of(str(out[i]), data)
-			if mine.is_empty():
-				continue
-			var redundant: bool = true
-			for f in mine:
-				var elsewhere: bool = false
-				for j in range(out.size()):
-					if j != i and _sources_of(str(out[j]), data).has(str(f)):
-						elsewhere = true
-						break
-				if not elsewhere:
-					redundant = false
-					break
-			if redundant:
-				goes_out = i
-				break
-		if goes_out < 0:
-			continue
-		out[goes_out] = str(left[comes_in])
-		left.remove_at(comes_in)
-	return out
+	return drawn
 
 
 ## Con la mappa pescata (D-263) l'anno fa solo le domande che la mappa sa

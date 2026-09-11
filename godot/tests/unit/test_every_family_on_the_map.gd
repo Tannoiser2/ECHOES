@@ -1,25 +1,37 @@
 extends "res://tests/test_case.gd"
-## **La mappa offre tutte e sei le famiglie** (D-313).
+## **La rosa offre tutte e sei le famiglie** (D-313, rifatta da D-510).
 ##
-## Ogni tessera e' fonte di due famiglie. Sei tessere su dieci fanno venti
-## caselle per sei famiglie, e senza rimedio quarantacinque mappe su
-## duecentodieci ne lasciavano fuori una. Una famiglia fuori mappa non si puo'
+## Ogni tessera e' fonte di due famiglie, e una famiglia fuori mappa non si puo'
 ## andare a prendere: quelle otto carte le pesca solo chi e' a terra, alla
 ## cieca.
 ##
-## Qui si prova la regola di stesura su **tutte** le mappe possibili, non su un
-## campione: la sonda enumera le combinazioni e chiede al motore di rimediare.
+## Fino a D-509 era un **rimedio a valle**: si pescavano sei tessere su dieci —
+## e quarantacinque mappe su duecentodieci lasciavano fuori una famiglia — poi
+## una regola di stesura scambiava la tessera piu' inutile con una che portava
+## la mancante. Con la rosa le caselle sono sette e fisse, le rose possibili
+## sono **otto**, e la copertura e' diventata una **guardia a monte**:
+## `validate_physical` le conta tutte prima che la scatola esca.
+##
+## Qui si prova l'altra meta', quella che il cancello dei dati non puo' vedere:
+## che il **motore** stenda davvero una di quelle otto, e che ce le sappia
+## stendere tutte.
 
 const WorldStateFactory := preload("res://scripts/world/world_state_factory.gd")
+const RngService := preload("res://scripts/core/rng_service.gd")
 
 const FAMILIES: Array = ["FORCE", "AUTHORITY", "PEOPLE", "KNOWLEDGE", "WEALTH", "BONDS"]
+const SLOTS: Array = ["C", "P1", "P2", "P3", "P4", "P5", "P6"]
 
 
+## Le famiglie che una tessera offre. **Mai vuote**: una fonte che torna vuota
+## renderebbe `_missing` una prova che dice sempre «manca tutto», e una che dice
+## sempre «non manca niente» a seconda del verso. Qui si va rossi subito.
 func _sources(region_id: String) -> Array:
-	var region: Variant = session.data.regions.get(region_id)
-	if region == null:
-		return []
-	return (region as Dictionary).get("asset_sources", []) as Array
+	var region: Variant = data().regions.get(region_id)
+	assert_true(region != null, "la tessera %s sta nella scatola" % region_id)
+	var out: Array = (region as Dictionary).get("asset_sources", []) as Array
+	assert_true(out.size() > 0, "e dice da quali famiglie e' fonte: %s" % region_id)
+	return out
 
 
 func _missing(map: Array) -> Array:
@@ -35,118 +47,70 @@ func _missing(map: Array) -> Array:
 	return out
 
 
-## Tutte le combinazioni di `pick` fra `ids`, in ordine stabile.
-func _combinations(ids: Array, pick: int) -> Array:
-	if pick == 0:
-		return [[]]
-	if ids.size() < pick:
-		return []
-	var out: Array = []
-	for i in range(ids.size() - pick + 1):
-		var rest: Array = ids.slice(i + 1)
-		for tail in _combinations(rest, pick - 1):
-			var one: Array = [str(ids[i])]
-			one.append_array(tail as Array)
-			out.append(one)
-	return out
-
-
-func before_each() -> void:
-	new_session()
-
-
-## Il difetto, misurato: quante mappe **non rimediate** lasciano fuori una
-## famiglia. Non e' zero, ed e' giusto che non lo sia: e' il numero che la
-## regola di stesura deve chiudere.
-func test_the_bare_draw_still_leaves_families_out() -> void:
+## **Quante rose ci sono davvero, e il motore le stende tutte.**
+##
+## Il conto non si ricopia: si ricava dal dato, moltiplicando le candidate di
+## ogni casella. Cosi' il giorno che una tessera nuova entra in scatola questa
+## prova pretende di vederla uscire, invece di restare ferma a otto.
+func test_the_engine_lays_every_rose_there_is() -> void:
+	var per_slot: Dictionary = {}
 	var ids: Array = []
-	for region_id in session.data.regions:
+	for region_id in data().regions:
 		ids.append(str(region_id))
+		var slot: String = str((data().regions[region_id] as Dictionary).get("map_slot", ""))
+		assert_true(SLOTS.has(slot), "%s ha una casella della rosa: «%s»" % [str(region_id), slot])
+		per_slot[slot] = int(per_slot.get(slot, 0)) + 1
 	ids.sort()
-	assert_eq(ids.size(), 10, "il parco tessere ne ha dieci")
-	var maps: Array = _combinations(ids, 6)
-	assert_eq(maps.size(), 210, "sei tessere su dieci fanno duecentodieci mappe")
-	var monche: int = 0
-	for map in maps:
-		if not _missing(map as Array).is_empty():
-			monche += 1
-	# Riequilibrate le fonti (Bosco dei Confini: Gente -> Autorita') il conto
-	# scende da 45 a 30, che e' il minimo con due famiglie per tessera.
-	assert_eq(monche, 30, "mappe monche prima della regola di stesura")
+	assert_eq(per_slot.size(), SLOTS.size(), "tutte e sette le caselle hanno una candidata")
+	var quante: int = 1
+	for slot in SLOTS:
+		quante *= int(per_slot[str(slot)])
 
-
-## E la regola le chiude tutte: **zero** mappe senza una famiglia.
-func test_the_layout_rule_closes_every_map() -> void:
-	var ids: Array = []
-	for region_id in session.data.regions:
-		ids.append(str(region_id))
-	ids.sort()
-	var monche: int = 0
-	var toccate: int = 0
-	for map in _combinations(ids, 6):
-		var drawn: Array = (map as Array).duplicate()
-		var spare: Array = []
-		for region_id in ids:
-			if not drawn.has(str(region_id)):
-				spare.append(str(region_id))
-		# Le sei gia' stese stanno in `always`, le altre quattro restano di
-		# scorta: e' esattamente il gesto della regola al tavolo.
-		var fixed: Array = WorldStateFactory.resolve_map(
-			{"region_pool": {"candidates": ids, "count": 6, "always": drawn}},
-			session.rng, session.data
+	# **Il dado se lo fa questa prova.** `session` qui e' nulla, e in GDScript
+	# leggere una proprieta' su nulla **interrompe la funzione senza errore**:
+	# la prova direbbe «verde» a meta' strada. E' costato un giro.
+	var viste: Dictionary = {}
+	for i in range(400):
+		var rng: RefCounted = RngService.new(4200 + i)
+		var drawn: Array = WorldStateFactory.resolve_map(
+			{"region_pool": {"candidates": ids, "count": SLOTS.size()}},
+			rng, data()
 		)
-		if fixed != drawn:
-			toccate += 1
-		if not _missing(fixed).is_empty():
-			monche += 1
-	assert_eq(monche, 0, "dopo la regola di stesura nessuna mappa lascia fuori una famiglia")
-	assert_true(toccate > 0, "e la regola ha toccato qualche mappa: %d" % toccate)
-
-
-## La sostituzione non rompe la mappa: restano sei tessere, tutte diverse.
-func test_the_repair_keeps_six_distinct_tiles() -> void:
-	var ids: Array = []
-	for region_id in session.data.regions:
-		ids.append(str(region_id))
-	ids.sort()
-	for map in _combinations(ids, 6):
-		var drawn: Array = (map as Array).duplicate()
-		var fixed: Array = WorldStateFactory.resolve_map(
-			{"region_pool": {"candidates": ids, "count": 6, "always": drawn}},
-			session.rng, session.data
-		)
-		assert_eq(fixed.size(), 6, "sei tessere restano sei")
+		assert_eq(drawn.size(), SLOTS.size(), "sette tessere, una per casella")
 		var seen: Dictionary = {}
-		for region_id in fixed:
+		for region_id in drawn:
 			assert_false(seen.has(str(region_id)), "nessuna tessera due volte")
 			seen[str(region_id)] = true
+		assert_eq(_missing(drawn), [], "nessuna rosa lascia fuori una famiglia: %s" % str(drawn))
+		var sorted_map: Array = drawn.duplicate()
+		sorted_map.sort()
+		viste["/".join(PackedStringArray(sorted_map))] = true
+	assert_eq(viste.size(), quante,
+		"il motore stende tutte e %d le rose che la scatola sa fare (ne ha stese %d)"
+		% [quante, viste.size()])
 
 
 ## **E la partita vera la usa davvero.**
 ##
-## Le due prove qui sopra chiamano `resolve_map` a mano: proverebbero verde
-## anche se `GameSession` si fosse dimenticata di passargli il set di dati — e
-## allora al tavolo la regola non ci sarebbe. Questa apre CHR_00, che e'
-## l'unica Chronicle a pescare la mappa, e guarda le tessere uscite.
+## La prova qui sopra chiama `resolve_map` a mano: proverebbe verde anche se
+## `GameSession` si fosse dimenticata di passargli il set di dati — e allora al
+## tavolo la rosa non ci sarebbe. Questa apre CHR_00, che e' l'unica Chronicle
+## a pescare la mappa, e guarda le tessere uscite.
 func test_a_real_setup_never_leaves_a_family_out() -> void:
 	var monche: int = 0
 	var mappe: Dictionary = {}
 	for i in range(60):
 		var seed_value: int = 7000 + i
-		var seats: Array = GameSession.seats_for(session.data, "CHR_TEST", seed_value)
-		var other: RefCounted = GameSession.new(session.data)
-		if not other.setup("CHR_00", seats, seed_value):
-			other.dispose()
-			continue
-		var laid: Array = []
-		for region_id in other.world["regions"]:
-			laid.append(str(region_id))
-		laid.sort()
-		mappe[", ".join(PackedStringArray(laid))] = true
-		assert_eq(laid.size(), 6, "sei tessere sul tavolo")
-		if not _missing(laid).is_empty():
+		var opened: RefCounted = GameSession.new(data())
+		var seats: Array = GameSession.seats_for(data(), "CHR_00", seed_value)
+		assert_true(opened.setup("CHR_00", seats, seed_value),
+			"CHR_00 si apre al seme %d" % seed_value)
+		var map: Array = (opened.world["regions"] as Dictionary).keys()
+		assert_eq(map.size(), SLOTS.size(), "sette tessere sul tavolo al seme %d" % seed_value)
+		if not _missing(map).is_empty():
 			monche += 1
-		other.dispose()
-	assert_eq(monche, 0, "nessuna partita di CHR_00 apre senza una famiglia")
-	# E la sonda non e' cieca: sessanta semi hanno steso mappe diverse.
-	assert_true(mappe.size() > 5, "mappe diverse viste: %d" % mappe.size())
+		map.sort()
+		mappe["/".join(PackedStringArray(map))] = true
+		opened.dispose()
+	assert_eq(monche, 0, "nessuna partita vera comincia con una famiglia fuori mappa")
+	assert_true(mappe.size() >= 2, "e sessanta semi non danno sempre la stessa rosa (%d)" % mappe.size())

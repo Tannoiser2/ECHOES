@@ -5,6 +5,114 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.480 — La rosa esagonale, e la tessera che non si gira
+
+Parola del committente, in due tempi: *«penso che opterò per la mappa
+esagonale»*, e poi il vincolo che ha deciso tutto — *«la tessera NON si gira, i
+testi devono essere visibili nella stessa direzione, l'opzione A per me rimane
+quella da preferire»*.
+
+La mappa era un **3x2 di tessere quadrate** posate una alla volta **girandole**
+finché un varco combaciava. Adesso è una **rosa esagonale**: un centro e sei
+petali, ogni tessera con la sua casella, nessuna che si gira.
+[D-510](docs/DECISIONS.md#d-510).
+
+### Aggiunto
+
+- **`map_slot` sulla Regione**: `C` al centro, `P1`..`P6` in senso orario
+  dall'alto. Sette caselle e dieci tessere, quindi tre petali hanno due
+  candidate: **otto rose possibili**;
+- **`edges` a sei lati** (`N NE SE S SO NO`) al posto dei quattro. I varchi non
+  appartengono più alla tessera ma alla **casella**: i due lati di ogni confine
+  si stampano insieme, e da lì **nessuna strada morta, per costruzione**;
+- **la guardia delle otto rose** in `validate_physical`, che le enumera **tutte**
+  e pretende quattro cose: nessuna casella vuota, nessuna tessera isolata,
+  nessun varco che guarda un muro, tutte e sei le famiglie sul tavolo. Cinque
+  difetti piantati in più nel `--self-test`, che sale a **68**;
+- **due petali dietro una vicina**: `P3` (porto o isola) e `P6` (montagna o
+  miniere) non guardano la capitale. Risponde alla domanda del committente
+  — *«devono per forza passare per la tessera adiacente?»* — sì, e serve:
+  il diametro del mondo passa da **2** a **4**, e nascono due **gole**.
+
+### Tolto
+
+- **la rotazione**, e con lei `map_rotations` dal mondo e dallo schema. Era
+  quasi invisibile perché nove tessere su dieci erano aperte su tutti i lati;
+- **il rimedio di D-313**: serviva perché sei tessere pescate alla cieca su
+  dieci lasciavano fuori una famiglia in **45 mappe su 210**. Con le caselle
+  fisse tutte e otto le rose offrono tutte e sei le famiglie, e la copertura è
+  diventata una guardia a monte invece che un rattoppo a valle;
+- **la sonda del fiore** (`cli/run_flower_probe.gd`, D-506): confrontava il 3x2
+  col la rosa, e per farlo chiamava la posa quadrata del motore — che non esiste
+  più. La domanda che misurava è chiusa (il committente ha scelto la rosa) e la
+  risposta sta nel verbale; quello che resta da sorvegliare lo enumera
+  `run_tiles_probe`, che adesso guarda **tutte e otto** le rose col motore. La
+  CI l'ha presa dove la suite taceva: `test_probes_compile` va rosso su una
+  sonda che non compila, ma solo la CI si accorge che una prova **è andata in
+  errore a metà**;
+- **la regola del ripescare** che il committente aveva previsto: con il raggio
+  stampato su ogni petalo una tessera connette sempre, quindi non sarebbe mai
+  scattata. Una regola che al tavolo non si esegue confonde e basta.
+
+### Corretto
+
+- **la capitale aveva due porte di troppo.** La guardia nuova è andata rossa
+  **sui dati spediti al primo giro**: Eredan era aperta su tutti e sei i lati,
+  ma solo quattro petali la guardano — due varchi guardavano un muro, sedici
+  strade morte in otto rose. Lo studio di disegno che ha preceduto il codice
+  non le aveva viste, perché controllava i confini d'anello e dava il centro
+  per buono. **Eredan ha quattro porte**;
+- **il prompt d'arte torna a dire la verità sui lati.** [D-429](docs/DECISIONS.md#d-429)
+  faceva arrivare la strada a tutti i bordi e copriva col gettone i lati chiusi,
+  perché un disegno che nomina i suoi lati chiusi, girato, mente. Adesso il
+  disegno ha un sopra: nomina i lati aperti e dice che gli altri sono chiusi
+  **dal terreno**. Le Montagne Rosse hanno una via sola, in basso, verso la
+  Valle;
+- **l'app disegnava un 3x2 e la rosa ne chiede 3x3.** `map_view` teneva
+  colonne e righe in due costanti: con sette tessere la riga in basso finiva
+  **fuori dal foglio, in silenzio**. Adesso la griglia si conta dalle caselle
+  occupate, e le colonne di lato scendono di mezza tessera — che è la forma che
+  fa una rosa di esagoni. Le tessere restano quadrate sullo schermo: disegnarle
+  esagonali è un giro a sé;
+- **due prove che si appoggiavano al tavolo invece che alla regola**: quella
+  della Pietra cercava la prima tessera dove la casa stava, e sulla rosa ci
+  trovava un Maniero già costruito; quella della saga sperava che un seme
+  fissato pescasse un'altra mappa, e con otto rose non è più garantito. Tutte
+  e due adesso **fabbricano** la condizione.
+
+### Costa
+
+- **la varietà della mappa: da 210 pescate per 720 ordini a otto rose.** La rete
+  di strade è la stessa ogni partita e cambia solo quale regione siede dove. È
+  il prezzo del non girare. La leva è nei verbali: tre tessere in più portano a
+  64 rose;
+- **le tessere in gioco passano da sei a sette**, perché la rosa ha sette
+  caselle;
+- **le dieci illustrazioni vanno rifatte**: erano quadrate, ed erano l'unica
+  arte finita della scatola.
+
+### Misurato
+
+Cento semi, `--runs=100 --seed=7000`, col tavolo passato da sei tessere a sette:
+
+| | |
+|---|---|
+| **seggi bloccati su un solo livello** | **0 su 8**, tavolo misto *e* uniforme |
+| Consigli per anno (tavolo uniforme) | media 5,25 · mediana 5 · da 3 a 6 |
+| Verità scritte (tavolo uniforme) | 431, di cui 428 diverse |
+
+E la suite: **838 prove in 129 suite, 90.804 asserzioni**, tutto verde.
+
+### Aperto
+
+- **[ISSUES 138](docs/ISSUES.md#138) — la distanza sulla mappa non la legge
+  nessuno.** Cercato nel motore: niente cammino minimo, niente «a due passi».
+  Del grafo si legge un passo solo. La geografia c'è sul tavolo e nel disegno,
+  ed è muta nel gioco: quattro strade possibili, ed è una decisione del
+  committente (**R19**, la sezione rossa).
+
+---
+
 ## 0.1.479 — La lista dell'arte dice di cosa e' fatta
 
 Parola del committente: *«aggiungi la carta Casata alla lista dell'arte da

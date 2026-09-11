@@ -563,9 +563,8 @@ Dominant accent: {ACCENTO}, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. {VARCHI} Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
-condition, scar) sit legibly on top; detail concentrates at the borders. Square
-framing. No text, no letters, no numerals, no map labels, no compass rose, no
-frame.
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
 Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
@@ -596,7 +595,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "righe": [
     {
       "voce": "VARCHI",
-      "testo": "alto · destra · basso · sinistra"
+      "testo": "alto · NO"
     },
     {
       "voce": "SEGNI",
@@ -614,7 +613,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "arte": {
     "chiave": "region.bosco_confini",
     "scena": "Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.",
-    "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Il Bosco dei Confini:\nchiome, radure, sentieri stretti.\nWhat this land is right now: Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.\nDominant accent: verde profondo, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. A visible way in and out reaches all four edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. Square\nframing. No text, no letters, no numerals, no map labels, no compass rose, no\nframe."
+    "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Il Bosco dei Confini:\nchiome, radure, sentieri stretti.\nWhat this land is right now: Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.\nDominant accent: verde profondo, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top and upper-left edges; the upper-right, lower-right, bottom and lower-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
   },
   "pie": "REG_BOSCO_CONFINI",
   "copie": 1,

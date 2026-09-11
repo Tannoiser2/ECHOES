@@ -120,33 +120,52 @@ func read(path: String) -> bool:
 ## tavolo **non si vede**: si potrebbe leggere solo nell'app, che e' esattamente
 ## quello che la direzione di questo progetto vieta.
 const VARCHI_DETTI: Dictionary = {
-	"N": "top", "E": "right", "S": "bottom", "O": "left",
+	"N": "top", "NE": "upper-right", "SE": "lower-right",
+	"S": "bottom", "SO": "lower-left", "NO": "upper-left",
 }
 
 
+## **I varchi si disegnano dove stanno, e i chiusi sono terreno** (D-510).
+##
+## D-429 aveva scelto la strada opposta — la strada arriva a **tutti** i bordi e
+## i lati chiusi li copre un gettone — e la ragione era buona: la tessera si
+## posava **girandola** (D-390), quindi un disegno che nomina i suoi lati
+## chiusi, girato di novanta gradi, mente.
+##
+## Il committente ha tolto la rotazione: *«la tessera NON si gira, i testi
+## devono essere visibili nella stessa direzione»*. Ogni tessera ha la sua
+## casella nella rosa e ci va dritta, quindi il disegno **ha un sopra** e puo'
+## dire la verita' sui suoi lati — anzi deve, perche' un varco dipinto dove il
+## dato non ne ha uno sarebbe una strada che il tavolo vede e il motore no.
+## Il gettone «varco chiuso» torna a servire per quello per cui era nato: una
+## strada che il Consiglio chiude, non un rattoppo a un disegno che non poteva
+## sapere dove sarebbe finito.
 static func _passages_line(face: Dictionary) -> String:
 	var sides: Array = face.get("edges", []) as Array
 	if sides.is_empty():
 		return ""
-	# **Quattro varchi disegnati, e i chiusi li copre un gettone** (D-429, strada
-	# (2) scelta dal committente). Prima questa riga diceva a chi disegna
-	# *«questi due lati sono chiusi dal terreno»*, e allora l'illustrazione aveva
-	# un sopra: la tessera si posa **girandola** finche' un varco combacia
-	# (D-390), e un disegno che nomina i suoi lati chiusi girato di novanta gradi
-	# mente. Adesso ogni tessera si illustra con la strada che arriva a **tutti e
-	# quattro i bordi** — cosi' il disegno non gira mai — e i lati che il dato
-	# chiude si coprono al tavolo con la pedina «varco chiuso».
+	var open_sides: PackedStringArray = PackedStringArray()
 	var closed: PackedStringArray = PackedStringArray()
 	for side in VARCHI_DETTI:
-		if not sides.has(str(side)):
+		if sides.has(str(side)):
+			open_sides.append(str(VARCHI_DETTI[str(side)]))
+		else:
 			closed.append(str(VARCHI_DETTI[str(side)]))
+	var line: String = (
+		"FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is"
+		+ " never rotated on the table, so the image has a top and every label"
+		+ " reads upright. Nothing that matters may sit in the six corners a"
+		+ " hexagonal die-cut removes. A visible way in and out reaches the %s"
+		+ " edge%s"
+	) % [_listed(open_sides), "" if open_sides.size() == 1 else "s"]
 	if closed.is_empty():
-		return "A visible way in and out reaches all four edges."
-	return (
-		"A visible way in and out reaches all four edges: draw the way through on"
-		+ " every side, including the %s edge%s, which a landslide token covers"
-		+ " once the tile is on the table."
-	) % [_listed(closed), "" if closed.size() == 1 else "s"]
+		return line + "."
+	return line + ("; the %s edge%s %s closed by the land itself — cliff, deep"
+		+ " water or dense wood running right up to the border, with no way"
+		+ " through.") % [
+			_listed(closed), "" if closed.size() == 1 else "s",
+			"is" if closed.size() == 1 else "are",
+		]
 
 
 ## «top, right and bottom» invece di «top and right and bottom».

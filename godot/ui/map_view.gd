@@ -19,8 +19,10 @@ const SignLabels := preload("res://scripts/core/sign_labels.gd")
 ## una mappa di sei bolli piccoli in mezzo al vuoto spreca l'unica vista che
 ## racconta dove sono le cose - e il terreno, che e' il motivo per cui la tessera
 ## e' disegnata, a 46 pixel non si vede.
-## La griglia del tavolo (D-464): tre colonne, due righe, una fuga fra le
-## tessere dove si vede il varco, e gli spazi dei segnalini.
+## La griglia del tavolo, **al minimo** (D-464, allargata da D-510): tre colonne
+## e due righe sono il piu' piccolo foglio che si disegna, e la rosa ne chiede
+## tre e tre. Le vere le conta `_relayout` dalle caselle occupate: una costante
+## che decide quanto mondo ci sta e' una costante che un giorno lo taglia.
 const GRID_COLUMNS: int = 3
 const GRID_ROWS: int = 2
 const SEAM: float = 14.0
@@ -292,13 +294,21 @@ func _relayout() -> void:
 	# esattamente quello che la regola legge.
 	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
 	if not posa.is_empty():
-		# **La mappa e' un 3x2** (D-464, parola del committente): tre colonne
-		# e due righe sempre, anche quando le tessere posate sono meno. Sopra
-		# la riga alta e sotto la riga bassa corre la striscia dei segnalini
-		# di stato della Regione — sei spazi per tessera — e la tessera e' il
-		# lato piu' grande che ci sta con quelle due strisce.
+		# **La rosa e' un 3x3 con due buchi** (D-510): la griglia si ricava
+		# dalle caselle occupate invece di essere una costante, cosi' il
+		# giorno che la rosa cambia forma la vista la segue da sola — con le
+		# due costanti di prima, 3x2, le sette tessere della rosa uscivano dal
+		# foglio in silenzio. Sopra la riga alta e sotto la riga bassa corre la
+		# striscia dei segnalini di stato della Regione — sei spazi per tessera
+		# — e la tessera e' il lato piu' grande che ci sta con quelle due.
 		var columns: int = GRID_COLUMNS
 		var rows: int = GRID_ROWS
+		for region_id in _regions:
+			var where: Variant = posa.get(str(region_id))
+			if where == null:
+				continue
+			columns = maxi(columns, int((where as Array)[0]) + 1)
+			rows = maxi(rows, int((where as Array)[1]) + 1)
 		var strip: float = SLOT + SLOT_GAP * 2.0
 		var side: float = minf(
 			(size.x - SEAM * float(columns - 1)) / float(columns),
@@ -312,13 +322,20 @@ func _relayout() -> void:
 		)
 		var origin: Vector2 = (size - block) * 0.5 + Vector2(0.0, strip)
 		_grid_origin = origin
+		# **E le colonne di lato scendono di mezza tessera**, che e' la forma
+		# che fa una rosa di esagoni: senza quel mezzo passo la stessa posa si
+		# leggerebbe come una scacchiera, e il petalo in alto a destra
+		# sembrerebbe accanto al centro invece che sopra di lui.
 		for region_id in _regions:
 			var spot: Variant = posa.get(str(region_id))
 			if spot == null:
 				continue
+			var column: int = int((spot as Array)[0])
+			var row: int = int((spot as Array)[1])
+			var lift: float = 0.0 if column % 2 == 1 else -side * 0.5
 			_points[str(region_id)] = origin + Vector2(
-				(float(int((spot as Array)[0])) + 0.5) * side + SEAM * float(int((spot as Array)[0])),
-				(float(int((spot as Array)[1])) + 0.5) * side + SEAM * float(int((spot as Array)[1]))
+				(float(column) + 0.5) * side + SEAM * float(column),
+				(float(row) + 0.5) * side + SEAM * float(row) + lift
 			)
 		return
 
