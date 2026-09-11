@@ -96,6 +96,26 @@ ottimizzatori con carte meno comode chiudono un filo meno proposte. Sul misto
 non si vede (+1 Verita' diverse). Il prezzo e' quello, e vale: **un obiettivo
 che non si puo' nemmeno provare non e' una scelta**, e la scelta e' il gioco.
 
+**E ci sono due numeri migliorati, che valgono quanto l'altro.**
+
+**Le vite delle case.** Con carte diverse in mano le saghe finiscono
+diversamente, e [MISURA_VITE](MISURA_VITE.md) risale: **le vite che non si
+siedono mai tornano da 4 a 3** su 24 (*«I Forni Riaccesi»*, che
+[D-507](#d-507) aveva visto scomparire, torna al tavolo) e **le trasformazioni
+sedute passano da 236 a 251**, quindici in piu' su 168 salti d'era.
+
+**E il margine del Consiglio sull'uniforme, che era il costo dichiarato di
+[D-505](#d-505).** Li' era sceso da 1,16 a **0,91** — quattro ottimizzatori col
+piatto pieno che tornavano a somigliarsi — e adesso
+[MISURA_PARTECIPAZIONE](MISURA_PARTECIPAZIONE.md) lo da' a **1,42**: sopra
+perfino il valore di prima. Con mazzetti che portano cose diverse, quattro
+cervelli uguali smettono di giocare la stessa partita. Il resto e' fermo dov'era:
+**97% dei non proponenti impegna almeno una carta** su tutti e due i tavoli, e
+l'opposizione nel margine resta al 95-98%.
+
+Nessuno dei due era il bersaglio di questo giro: sono venuti dietro, e si
+scrivono lo stesso.
+
 ### Il margine, che e' zero, e va scritto
 
 La carta che entra la prestano i mazzi comuni, e **a montaggio finito il Sapere

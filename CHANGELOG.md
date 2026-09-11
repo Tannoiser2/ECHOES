@@ -56,6 +56,12 @@ quattro ottimizzatori con carte meno comode chiudono un filo meno proposte. Sul
 misto non si vede, e la spesa vale il prezzo: un obiettivo che non si puo'
 nemmeno provare non e' una scelta, e la scelta e' il gioco.
 
+**E due migliorati**, che non erano il bersaglio e sono venuti dietro: le **vite
+che non si siedono mai tornano da 4 a 3** su 24 (con le trasformazioni sedute da
+236 a **251**), e **il margine del Consiglio sull'uniforme risale da 0,91 a
+1,42** — era il costo dichiarato di 0.1.475, e con mazzetti che portano cose
+diverse quattro cervelli uguali smettono di giocare la stessa partita.
+
 ### Il costo, e il margine
 
 **La carta che entra la prestano i mazzi comuni, e il margine e' zero:** a
