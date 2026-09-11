@@ -142,6 +142,16 @@ quello per cui era nato: una strada che il Consiglio chiude.
 **Le dieci illustrazioni vanno rifatte**: erano quadrate, ed erano l'unica arte
 finita della scatola (10 su 10).
 
+### E la sonda che ha portato qui si ritira
+
+`cli/run_flower_probe.gd` (D-506) spazzava tutte le forme di una tessera per
+rispondere alla domanda *«meglio il 3x2 di oggi o una rosa esagonale?»*. Il
+committente ha risposto, e la meta' quadrata della sonda chiamava
+`_lay_the_tiles`, che con questa decisione non esiste piu'. Una sonda che misura
+una domanda chiusa su un motore che non c'e' e' una sonda da togliere, non da
+riscrivere: quello che resta da sorvegliare lo fa `run_tiles_probe`, che adesso
+enumera **tutte e otto le rose** chiamando la posa vera.
+
 ---
 
 ## D-509 — Il mazzetto ascolta anche quello che vuoi

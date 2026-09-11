@@ -42,6 +42,14 @@ petali, ogni tessera con la sua casella, nessuna che si gira.
   dieci lasciavano fuori una famiglia in **45 mappe su 210**. Con le caselle
   fisse tutte e otto le rose offrono tutte e sei le famiglie, e la copertura è
   diventata una guardia a monte invece che un rattoppo a valle;
+- **la sonda del fiore** (`cli/run_flower_probe.gd`, D-506): confrontava il 3x2
+  col la rosa, e per farlo chiamava la posa quadrata del motore — che non esiste
+  più. La domanda che misurava è chiusa (il committente ha scelto la rosa) e la
+  risposta sta nel verbale; quello che resta da sorvegliare lo enumera
+  `run_tiles_probe`, che adesso guarda **tutte e otto** le rose col motore. La
+  CI l'ha presa dove la suite taceva: `test_probes_compile` va rosso su una
+  sonda che non compila, ma solo la CI si accorge che una prova **è andata in
+  errore a metà**;
 - **la regola del ripescare** che il committente aveva previsto: con il raggio
   stampato su ogni petalo una tessera connette sempre, quindi non sarebbe mai
   scattata. Una regola che al tavolo non si esegue confonde e basta.
