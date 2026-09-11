@@ -10265,7 +10265,25 @@ si puo' giocare.
    nato come ostacolo al mazzo di Echi, e quel mazzo non si fa piu': **il buco
    resta lo stesso**, perche' la Cronaca che la saga eredita non sa dire chi ha
    ottenuto cosa;
-7. un'altra ora con l'app in mano.
+7. ✔ **un'altra ora con l'app in mano** — **fatta in 0.1.477**
+   ([D-507](DECISIONS.md#d-507)). Ha trovato due cose, e tutt'e due erano
+   misurabili col menu in mano (`cli/run_menu_probe.gd`, dieci anni dal seme
+   3000, un seggio giocato da una persona).
+
+   **Le copie non erano copie.** In scatola una carta ha piu' di una copia
+   (132 copie su 48 carte diverse), quindi due «Giuramento» in mano sono
+   normali — ma i menu contavano i nomi: la stessa riga stampata due volte
+   (**116 menu su 1034, 11%**), e scelta la prima **la seconda copia spariva**,
+   quindi non si poteva ne' coprire ne' scartare ne' impegnare. Il Consiglio le
+   contava come multinsieme dal principio: la regola c'era, il menu la
+   contraddiceva. E anche il cervello ne faceva le spese, in silenzio. Adesso
+   il pulsante e' uno, dice **«(ne hai 2)»**, e i doppioni sono **0**.
+
+   **E l'intestazione cambiava sotto le dita**: *«Le Citta' Libere copre 1 di 2
+   per il Consiglio — 1 di base · +2 per 2 Pietre che tieni»*, **124
+   caratteri**, e al passo dopo «copre 2 di 2». Le frasi di domanda diverse
+   passano da **85 a 44** e la piu' lunga da **124 a 48 caratteri**: il numero e
+   le ragioni si dicono una volta, la domanda resta la stessa.
 
 **E in 0.1.474 il ritmo della mano l'ha riscritto il committente**
 ([D-504](DECISIONS.md#d-504)): *«nel primo turno si pescano 5 carte, se ne

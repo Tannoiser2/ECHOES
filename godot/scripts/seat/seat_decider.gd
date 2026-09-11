@@ -32,6 +32,7 @@ const PolicyDecider := preload("res://scripts/seat/policy_decider.gd")
 const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
 const StoneRules := preload("res://scripts/world/stone_rules.gd")
 const AssetText := preload("res://scripts/core/asset_text.gd")
+const HandMenu := preload("res://scripts/seat/hand_menu.gd")
 const GameSession := preload("res://scripts/chronicle/game_session.gd")
 const SignLabels := preload("res://scripts/core/sign_labels.gd")
 
@@ -885,36 +886,49 @@ func choose_cover(entity_id: String, how_many: int, session: RefCounted) -> Arra
 	if not _is_human(entity_id):
 		return fallback.choose_cover(entity_id, how_many, session)
 	var chosen: Array = []
+	# **Quante, e perche'** (D-505): il numero se l'e' guadagnato sulla mappa, e
+	# una regola che da' un numero senza dire da dove viene diventa un numero
+	# che nessuno controlla. **Ma si dice una volta**, prima del rito, non
+	# riscrivendo la domanda a ogni carta: l'intestazione che cambia sotto le
+	# dita e' un cartello nuovo da rileggere (ISSUES 136, punto 7).
+	_say("  %s copre %s per il Consiglio: %s." % [
+		_name(entity_id, session),
+		"1 carta" if how_many == 1 else "%d carte" % how_many,
+		" · ".join(PackedStringArray(HandRhythm.cover_reasons(
+			session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary,
+			session.service, entity_id
+		))),
+	])
+	_say("  Non sai ancora di cosa si parlera.")
 	while chosen.size() < how_many:
+		var left: Array = HandMenu.left_after(
+			session.service.ranked_by_strength(session.service.hand(entity_id)), chosen
+		)
+		if left.is_empty():
+			break
 		var remaining: Array = []
 		var labels: Array = []
-		for asset_id in session.service.ranked_by_strength(session.service.hand(entity_id)):
-			if chosen.has(asset_id):
-				continue
-			var asset: Dictionary = session.data.assets[str(asset_id)]
+		# **Le copie si accorpano**: due «Giuramento» in mano sono un pulsante
+		# solo che dice quante ne hai, e restano due carte da coprire.
+		for entry in HandMenu.folded(left):
+			var asset_id: String = str((entry as Dictionary)["asset"])
+			var asset: Dictionary = session.data.assets[asset_id]
 			remaining.append(asset_id)
-			labels.append("%s — %s, forza %d\n%s" % [
+			labels.append("%s — %s, forza %d%s\n%s" % [
 				str(asset["title"]), str(asset["family"]).to_lower(),
-				int(asset["strength"]), AssetText.note(asset, session.data),
+				int(asset["strength"]),
+				HandMenu.copies_note(int((entry as Dictionary)["copies"])),
+				AssetText.note(asset, session.data),
 			])
-		if remaining.is_empty():
-			break
 		var picked: int = await _choose(
-			# **Quante, e perche'** (D-505): il numero se l'e' guadagnato sulla
-			# mappa, e una regola che da' un numero senza dire da dove viene
-			# diventa un numero che nessuno controlla.
-			"  %s copre %d di %d per il Consiglio — %s\n  (non sai ancora di cosa si parlera):" % [
-				_name(entity_id, session), chosen.size() + 1, how_many,
-				" · ".join(PackedStringArray(HandRhythm.cover_reasons(
-					session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary,
-					session.service, entity_id
-				))),
-			],
-			labels
+			"  %s — quale carta copri?" % _name(entity_id, session), labels
 		)
 		if picked < 0 or picked >= remaining.size():
 			return fallback.choose_cover(entity_id, how_many, session) if chosen.is_empty() else chosen
 		chosen.append(remaining[picked])
+		# Il progresso e' una riga che racconta, non una domanda che si riscrive.
+		if chosen.size() < how_many:
+			_say("  Coperta. Te ne restano %d da coprire." % (how_many - chosen.size()))
 	return chosen
 
 
@@ -930,25 +944,26 @@ func choose_discards(entity_id: String, most: int, session: RefCounted) -> Array
 	if not _is_human(entity_id):
 		return fallback.choose_discards(entity_id, most, session)
 	var chosen: Array = []
+	# Il prezzo si dice **una volta**, e poi la domanda resta la stessa.
+	_say("  %s: scartare e pescare, tenere e scommettere." % _name(entity_id, session))
 	while chosen.size() < most:
+		var left: Array = HandMenu.left_after(session.service.hand(entity_id), chosen)
+		if left.is_empty():
+			break
 		var remaining: Array = []
 		var labels: Array = []
-		for asset_id in session.service.hand(entity_id):
-			if chosen.has(asset_id):
-				continue
-			var asset: Dictionary = session.data.assets[str(asset_id)]
+		for entry in HandMenu.folded(left):
+			var asset_id: String = str((entry as Dictionary)["asset"])
+			var asset: Dictionary = session.data.assets[asset_id]
 			remaining.append(asset_id)
-			labels.append("Scarta «%s» — %s, forza %d" % [
+			labels.append("Scarta «%s» — %s, forza %d%s" % [
 				str(asset["title"]), str(asset["family"]).to_lower(),
 				int(asset["strength"]),
+				HandMenu.copies_note(int((entry as Dictionary)["copies"])),
 			])
-		if remaining.is_empty():
-			break
 		labels.append("Tengo il resto in mano")
 		var picked: int = await _choose(
-			"  %s: scartare e pescare, tenere e scommettere. Cosa butta?"
-			% _name(entity_id, session),
-			labels
+			"  %s — cosa butti?" % _name(entity_id, session), labels
 		)
 		if picked < 0 or picked >= remaining.size():
 			break
@@ -972,20 +987,34 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 	var relevant: Array = session.service.relevant_families(str(context["tension_id"]))
 
 	var chosen: Array = []
+	# **Da dove viene il piatto** (D-504): dove si copre, quello che si impegna e'
+	# solo quello che si e' messo da parte, e chi gioca deve vedere che il menu e'
+	# piu' corto per quella ragione e non perche' l'app si sia scordata delle sue
+	# carte. Detto **una volta**, con il tetto: poi la domanda resta la stessa.
+	_say("  %s impegna %s, fino a %d." % [
+		_name(entity_id, session),
+		"fra le sue coperte" if HandRhythm.council_pays_from_covered(
+			session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary
+		) else "dalla mano",
+		limit,
+	])
 	while chosen.size() < limit:
+		var left: Array = HandMenu.left_after(ranked, chosen)
+		if left.is_empty():
+			break
 		var remaining: Array = []
 		var labels: Array = []
-		for asset_id in ranked:
-			if chosen.has(asset_id):
-				continue
-			var asset: Dictionary = session.data.assets[str(asset_id)]
+		for entry in HandMenu.folded(left):
+			var asset_id: String = str((entry as Dictionary)["asset"])
+			var asset: Dictionary = session.data.assets[asset_id]
 			remaining.append(asset_id)
 			# What it is worth *here*, and what it does on the way out. Choosing
 			# what to put down without either is choosing blind, and a quarter of
 			# the library now does something to the world when committed (D-042).
-			labels.append("%s — %s, vale %d\n%s" % [
+			labels.append("%s — %s, vale %d%s\n%s" % [
 				str(asset["title"]), str(asset["family"]).to_lower(),
 				AssetText.value_on(asset, relevant),
+				HandMenu.copies_note(int((entry as Dictionary)["copies"])),
 				# **Coi dati**, se no il nome della domanda resta l'id: la riga
 				# diceva «costa: TEN_FAMINE scende» invece di «La Carestia
 				# scende», ed e' proprio il difetto che il committente chiama
@@ -993,21 +1022,9 @@ func choose_commit(entity_id: String, context: Dictionary, limit: int, session: 
 				# sola: bisogna solo darle il catalogo.
 				AssetText.note(asset, session.data),
 			])
-		if remaining.is_empty():
-			break
 		labels.append("Non impegno altro")
 		var picked: int = await _choose(
-			"  %s impegna %s (%d di %d):" % [
-				_name(entity_id, session),
-				# **Da dove viene il piatto** (D-504): dove si copre, quello che
-				# si impegna e' solo quello che si e' messo da parte, e chi
-				# gioca deve vedere che il menu e' piu' corto per quella ragione
-				# e non perche' l'app si sia scordata delle sue carte.
-				"fra le sue coperte" if HandRhythm.council_pays_from_covered(
-					session.data.chronicles[str(session.world["chronicle_id"])] as Dictionary
-				) else "dalla mano",
-				chosen.size(), limit,
-			],
+			"  %s — quale carta impegni?" % _name(entity_id, session),
 			labels
 		)
 		if picked < 0:
@@ -1039,17 +1056,25 @@ func choose_recovery(context: Dictionary, session: RefCounted) -> Dictionary:
 		var stance: Dictionary = (context.get("stances", {}) as Dictionary).get(seat, {})
 		if str(stance.get("stance", "")) != "OPPOSE":
 			continue
-		var options: Array = []
-		var labels: Array = []
+		var standing: Array = []
 		for asset_id in (context.get("commits", {}) as Dictionary).get(seat, []):
 			var asset: Variant = session.data.assets.get(str(asset_id))
 			# ALWAYS_DISCARD never comes back, whoever wins: offering it would be
 			# offering a choice the resolver is about to ignore.
 			if asset == null or str(asset["discard_or_retain_rule"]) == "ALWAYS_DISCARD":
 				continue
-			options.append(str(asset_id))
-			labels.append("%s — %s, forza %d" % [
+			standing.append(str(asset_id))
+		var options: Array = []
+		var labels: Array = []
+		# Due copie impegnate sono due carte sul piatto, ma **te ne riprendi una**
+		# (§12.3): una voce sola, che dice quante ne hai messe.
+		for entry in HandMenu.folded(standing):
+			var asset_id: String = str((entry as Dictionary)["asset"])
+			var asset: Dictionary = session.data.assets[asset_id] as Dictionary
+			options.append(asset_id)
+			labels.append("%s — %s, forza %d%s" % [
 				str(asset["title"]), str(asset["family"]).to_lower(), int(asset["strength"]),
+				HandMenu.copies_note(int((entry as Dictionary)["copies"])),
 			])
 		if options.size() < 2:
 			continue

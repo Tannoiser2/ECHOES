@@ -15,6 +15,7 @@ const ConfluenceResolution := preload("res://scripts/confluence/confluence_resol
 const ConditionEvaluator := preload("res://scripts/world/condition_evaluator.gd")
 const HousePowerRules := preload("res://scripts/world/house_power_rules.gd")
 const HandRhythm := preload("res://scripts/world/hand_rhythm.gd")
+const HandMenu := preload("res://scripts/seat/hand_menu.gd")
 const EffectNarrator := preload("res://scripts/chronicle/effect_narrator.gd")
 const CouncilEconomy := preload("res://scripts/confluence/council_economy.gd")
 
@@ -414,15 +415,10 @@ func _ask_cover(decider: Object, entity_id: String, how_many: int) -> Array:
 	# **Quello che torna si filtra**, come per gli scarti: un decisore che
 	# rispondesse con piu' carte del dovuto, o con una che non ha in mano, ne
 	# coprirebbe di piu' o farebbe fallire l'Effetto in silenzio. Il motore non
-	# si fida di una risposta: la controlla.
-	var out: Array = []
-	var hand: Array = session.service.hand(entity_id)
-	for asset_id in asked:
-		if out.size() >= how_many:
-			break
-		if hand.has(str(asset_id)) and not out.has(str(asset_id)):
-			out.append(str(asset_id))
-	return out
+	# si fida di una risposta: la **conta**, una per copia — e due «Giuramento»
+	# in mano sono due carte da coprire, non un nome che si ripete
+	# (ISSUES 136, punto 7).
+	return HandMenu.kept(asked, session.service.hand(entity_id), how_many)
 
 
 ## E quali buttare. Chi non risponde non butta niente: tenere e' il ripiego
@@ -431,14 +427,7 @@ func _ask_discards(decider: Object, entity_id: String, most: int) -> Array:
 	if most <= 0 or not decider.has_method("choose_discards"):
 		return []
 	var asked: Array = await decider.choose_discards(entity_id, most, session) as Array
-	var out: Array = []
-	var hand: Array = session.service.hand(entity_id)
-	for asset_id in asked:
-		if out.size() >= most:
-			break
-		if hand.has(str(asset_id)) and not out.has(str(asset_id)):
-			out.append(str(asset_id))
-	return out
+	return HandMenu.kept(asked, session.service.hand(entity_id), most)
 
 
 ## La carta buttata torna nel **proprio** scarto, e da li' nel proprio mazzetto
