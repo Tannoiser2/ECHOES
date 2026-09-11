@@ -45,6 +45,146 @@ piu' la linguetta. Il numero non e' scritto a mano: lo chiede alla carta.
 
 ---
 
+## D-505 — La mappa compra la memoria: le coperte si guadagnano
+
+**implemented in 0.1.475.** Parola del committente:
+
+> *«Aggiungiamo combo: se hai una pietra o una presenza o qualunque altra cosa
+> che ci viene in mente puoi alzare il numero di carte che puoi coprire, fino al
+> massimo delle tre che ti rimangono.»*
+
+### Il buco che tappa, e non e' una taratura
+
+La direzione di casa dice *«le Azioni cambiano il mondo. Il Consiglio decide
+cosa il mondo ricordera'»*, e fino a qui le due meta' si toccavano male: quello
+che una casa faceva sulla mappa **non le comprava peso in Consiglio**. Una
+Pietra alzata valeva nel conto del controllo e in niente altro.
+
+Adesso `personal_decks.cover_per_round` e' **il pavimento**, e il resto si
+guadagna: **ogni Pietra costruita e tua alza di uno il numero di carte che puoi
+coprire**. Il tetto scritto e' 3; il tetto **vero** e' un altro, e l'ha scelto il
+committente — *le carte che ti restano in mano*. Coprire tutto quello che resta
+e' legale e costa non tenere niente per il turno dopo, quindi il tetto non e' un
+numero d'autore: e' una scelta che si rifa' ogni turno.
+
+**Al tavolo e' un gesto solo:** guardi le tue tessere, conti i segnalini delle
+Pietre col tuo colore, e sai quante carte puoi girare a faccia in giu'.
+
+### Perche' la Pietra e non la presenza
+
+Tre ragioni, e due sono misurate:
+
+- **sta ferma.** Le pedine sono cinque e si muovono ogni turno: il numero
+  ballerebbe, e al tavolo si ricalcolerebbe ogni volta. Una Pietra si conta una
+  volta e resta;
+- **le Pietre si alzavano poco**, ed era una voce aperta
+  ([ISSUES 111](ISSUES.md#111)). Questo gli da' la ragione che non avevano;
+- **lega il verbo meno giocato alla cosa piu' preziosa.** ACQUISIRE e' l'ultimo
+  di sette: **23 volte in 15 anni** contro le 180 di FORGIARE. E' anche l'unico
+  verbo che costruisce una Pietra (D-412). Adesso costruire compra memoria.
+
+**E il terreno non e' una Pietra.** Foresta, Sorgente, Sito antico e Passo sono
+`owned: false`: stanno sulla tessera, non sono di nessuno, e nessuno li ha
+costruiti. Una prova lo tiene fermo, perche' e' esattamente il conto che
+gonfierebbe in silenzio — una casa che si siede su un bosco non ha pagato niente.
+
+### Misurato, e le tre strade messe in fila
+
+Cento semi dal 7000:
+
+| cosa alza le coperte | Verita' misto | Verita' uniforme | Consigli | seggi bloccati |
+|---|---|---|---|---|
+| niente — 1 fissa (D-504) | 396 / 394 | 413 / 412 | 5,58 · 5,44 | 0 su 8 |
+| 2 fisse per tutti | 488 / 484 | 441 / 435 | 5,54 · 5,39 | 0 su 8 |
+| **ogni Pietra che tieni** | **488 / 483** | **446 / 441** | 5,49 · 5,41 | **0 su 8** |
+| ogni Regione che tieni | 490 / 484 | 433 / 429 | 5,58 · 5,41 | 0 su 8 |
+
+**La regola guadagnata da' lo stesso risultato di quella regalata** — 488 Verita'
+sul tavolo misto, come `cover_per_round: 2` — con la differenza che non e' una
+mia taratura: e' una cosa che chi gioca si costruisce. E **sul tavolo uniforme la
+Pietra batte tutto**: 446 contro le 441 del due fisso e le 433 del controllo.
+Quattro ottimizzatori che si guadagnano le coperte scrivono piu' memoria di
+quattro a cui le si regalano.
+
+### La valanga che non c'e'
+
+Era il rischio vero, e lo avevo detto prima di misurare: se la posizione sulla
+mappa compra peso in Consiglio, chi e' avanti e' avanti **due volte**, e il
+vincolo che non si negozia — *0 seggi bloccati su un solo livello su 8* — e'
+esattamente il posto dove una valanga va in rosso.
+
+**Non si vede: 0 su 8 in tutte e tre le varianti**, su tutti e due i tavoli. Due
+regole che c'erano gia' lo tengono chiuso: `max_commit_assets: 3` taglia comunque
+a tre — quindi chi e' molto avanti non impegna piu' di chi e' avanti poco — e
+`max_stable_control: 2` fa pagare chi tiene troppe Regioni.
+
+### La scala si usa tutta, e il tetto si tocca
+
+Contato sui verbali di 15 anni dal seme 7000, quattro seggi per nove turni — 540
+momenti in cui si copre:
+
+| quante coperte | quante volte |
+|---|---|
+| 1 (nessuna Pietra) | 172 — **33%** |
+| 2 (una Pietra) | 256 — **49%** |
+| **3 (due Pietre o piu', al tetto)** | **94 — 18%** |
+
+E le Pietre tenute: **239** momenti con una, **122** con due, **11** con tre — e
+li' il tetto morde, perche' 1 + 3 sarebbe quattro e si ferma a tre.
+
+**Quindi la scala e' viva su tutti e tre i gradini**, e il tetto non e' una
+decorazione: un turno su cinque qualcuno arriva a coprire tutto quello che gli
+resta, e quel turno non tiene niente per il dopo. *(Avevo previsto il contrario —
+che il tetto restasse teorico e servisse una prova fabbricata per vederlo. La
+previsione era mia, il conto e' della sonda.)*
+
+### Chi arriva al Consiglio con qualcosa in mano
+
+`run_participation_probe`, e qui c'e' il numero piu' grosso del giro:
+
+| | 1 fissa (D-504) | con le Pietre |
+|---|---|---|
+| **non proponenti che impegnano almeno una carta** | 81% · 81% | **97% · 97%** |
+| carte impegnate dal proponente | 1,54 · 1,66 | **1,98 · 2,06** |
+| carte impegnate dagli altri tre | 4,31 · 4,43 | **5,44 · 5,33** |
+| margine medio | 1,56 · 1,16 | **1,74** · **0,91** |
+| Consigli con opposizione nel margine | 97% · 98% | 96% · **99%** |
+
+**Quasi nessuno arriva piu' al Consiglio a mani vuote: da quattro su cinque a
+diciannove su venti.** Era il difetto vero del ritmo a una coperta — chi non
+aveva coperto niente non aveva niente da mettere sul piatto — e le Pietre lo
+chiudono. E il tetto di `max_commit_assets: 3` comincia a mordere: il proponente
+impegna 1,98 carte invece di 1,54.
+
+**Il numero peggiorato, scritto:** il margine medio sull'**uniforme** scende da
+1,16 a **0,91**. Quattro ottimizzatori col piatto pieno tornano a somigliarsi —
+e' l'effetto opposto a quello che D-504 aveva guadagnato li', e resta da vedere
+se al tavolo di una persona conta. Sul misto il margine invece **sale**, da 1,56
+a 1,74.
+
+### Il numero dice da dove viene
+
+Un numero guadagnato che non spiega **come** e' un numero che al tavolo nessuno
+controlla. Quindi il verbale lo dice — *«Re Aldric mette da parte 2 carte
+coperte (1 di base · +1 per 1 Pietra che tieni)»* — e lo dice il menu di una
+persona prima di farla scegliere.
+
+**E il tavolo lo mostra**, perche' e' pubblico e non per scelta: si ricava dalle
+Pietre e dalle Regioni, che stanno **sulla mappa davanti a tutti**. Il modello
+del tavolo porta per ogni seggio quante coperte ha e **quante potra' coprirne**;
+quali carte siano resta il segreto.
+
+### Quello che resta aperto
+
+- **`per_control` e `per_token` sono nel dato e spenti.** La tabella dice cosa
+  costano; la scelta e' del committente e si sposta con una parola;
+- **niente.** Avevo scritto qui che il tetto a tre non si tocca in una partita
+  vera, e che ci sarebbe voluta una prova fabbricata per vederlo. **Era una mia
+  supposizione e la sonda l'ha smentita** prima che restasse nel verbale: vedi la
+  scala qui sotto.
+
+---
+
 ## D-504 — Il ritmo a cinque, e la carta coperta per il Consiglio
 
 **implemented in 0.1.474.** Forma decisa dal committente, per intero:

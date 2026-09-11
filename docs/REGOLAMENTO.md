@@ -10,7 +10,7 @@ alla volta.
 ## Avvertenza sulla versione
 
 Questo regolamento descrive **il gioco che la scatola gioca oggi**, alla
-versione 0.1.474, e non il gioco che vorrebbe essere: ogni regola scritta qui è
+versione 0.1.475, e non il gioco che vorrebbe essere: ogni regola scritta qui è
 una regola che il motore esegue e che i cancelli sorvegliano. Dove una cosa è
 stampata sui pezzi ma non ha ancora un effetto, sta scritto nel
 [capitolo 18](#18-quello-che-questo-regolamento-non-copre-ancora) e non in mezzo
@@ -476,9 +476,10 @@ ANNO (Chronicle)
 2. **AZIONI.** In ordine di turno, ogni casa spende le sue **2 Occasioni**, una
    dopo l'altra, prima di passare la parola. Le Occasioni **non si accumulano**
    fra i round: quelle non spese sono perse.
-3. **SI COPRE.** Ogni casa gira **1 carta** a faccia in giù davanti a sé: è la
-   sola che potrà impegnare al Consiglio. Poi tiene o scarta quello che le resta.
-   Si copre **prima** della Deriva, quindi senza sapere quale domanda esploderà.
+3. **SI COPRE.** Ogni casa gira a faccia in giù davanti a sé **1 carta, più una
+   per ogni Pietra sua** — fino a quante gliene restano in mano: sono le sole che
+   potrà impegnare al Consiglio. Poi tiene o scarta quello che le resta. Si copre
+   **prima** della Deriva, quindi senza sapere quale domanda esploderà.
 4. **DERIVA.** Nel gioco di oggi la Deriva **non c'è**: il mondo non spinge una
    domanda per conto suo. Il Calore lo fanno i giocatori, con le Risonanze — e i
    due insieme farebbero tre volte i gettoni che il gioco vuole.
@@ -514,11 +515,21 @@ un gesto solo.
    quello che manca. Se ne hai **più** di cinque — capita: ACQUISIRE ne mette una
    in mano dentro il turno — ne scarti fino a tornare a cinque.
 2. **Giochi le tue 2 Occasioni**, cioè normalmente due carte (capitolo 7).
-3. **Copri 1 carta**: la giri a faccia in giù davanti a te. Esce dalla mano — non
-   la puoi più giocare — e **al Consiglio potrai impegnare solo quello che hai
-   coperto**. La scegli **senza sapere di cosa si parlerà**: la domanda si apre
-   dopo, e la Deriva può ancora farne esplodere un'altra.
-4. **Delle due che ti restano, tieni o scarta**, come vuoi.
+3. **Copri le tue carte per il Consiglio**: le giri a faccia in giù davanti a
+   te. Escono dalla mano — non le puoi più giocare — e **al Consiglio potrai
+   impegnare solo quello che hai coperto**. Le scegli **senza sapere di cosa si
+   parlerà**: la domanda si apre dopo, e la Deriva può ancora farne esplodere
+   un'altra.
+
+   **Quante ne copri lo dice la mappa.** Una è tua di diritto. Poi **ogni Pietra
+   che hai costruito e che è tua ne aggiunge una** — guarda le tue tessere e
+   conta i segnalini col tuo colore. Il terreno non conta: Foresta, Sorgente,
+   Sito antico e Passo stanno lì e non li hai costruiti tu.
+
+   **Il tetto è quello che ti resta in mano.** Se hai diritto a tre coperte ma in
+   mano te ne restano due, copri due. E se le copri tutte, quel turno non tieni
+   niente per il prossimo: è una scelta, non un premio.
+4. **Di quello che ti resta, tieni o scarta**, come vuoi.
 
 **Scartare è pescare.** La mano torna a cinque all'inizio del turno prossimo,
 quindi buttare non ti costa niente e la carta buttata torna nel **tuo** scarto,
@@ -526,10 +537,11 @@ da cui rientrerà nel mazzetto. Tenere è la scommessa: *questa mi serve fra un
 turno*. Chi scarta vede più carte e macina il mazzo; chi tiene punta su una
 carta precisa.
 
-**Alla fine dell'Atto hai 3 carte coperte** davanti a te, e sono quelle con cui
-vai al Consiglio — esattamente il numero massimo che un Consiglio accetta. Una
-coperta che non spendi **resta coperta**: all'ultimo Consiglio dell'anno puoi
-arrivare con più di tre da scegliere.
+**Alla fine dell'Atto hai da 3 a 9 carte coperte** davanti a te, secondo quanto
+hai costruito, e sono quelle con cui vai al Consiglio. Un Consiglio ne accetta
+**3 per casa**, quindi chi ha costruito arriva con la scelta e chi no arriva col
+minimo. Una coperta che non spendi **resta coperta**: all'ultimo Consiglio
+dell'anno puoi arrivare con un mucchietto.
 
 **Quando il pozzo finisce, si rimescola lo scarto.** È questo che rende il
 mazzetto un mazzo e non una scorta: le carte giocate tornano dentro, e quelle
@@ -541,9 +553,14 @@ mezza, quindi quello che compri lo rivedi.
 > *Braccia Ferme*, *Censimento* e *Carovana*. Gioca *Mercenari* per FORGIARE e
 > *Censimento* per TRAMARE: due Occasioni spese. Le restano tre carte. Copre il
 > *Sigillo* — è forte, e al Consiglio vale in ogni caso — e lo gira a faccia in
-> giù. Delle due che le restano scarta *Braccia Ferme*, che non le serve, e tiene
-> *Carovana* perché al turno dopo vuole muovere sulla strada. Al turno seguente
-> ha *Carovana* in mano e ne pesca quattro: di nuovo cinque.
+> giù. Kessa **non ha Pietre**, quindi ne copre una sola: delle due che le
+> restano scarta *Braccia Ferme*, che non le serve, e tiene *Carovana* perché al
+> turno dopo vuole muovere sulla strada. Al turno seguente ha *Carovana* in mano
+> e ne pesca quattro: di nuovo cinque.
+>
+> Aldric, nello stesso turno, ha **un Presidio** alzato a Eredan: lui ne copre
+> **due**, e al Consiglio arriverà con il doppio da scegliere. È la differenza
+> che si è costruito con un'Occasione, tre round prima.
 
 ### 6.4 A fine Atto: i mucchi e il Consiglio
 
@@ -956,7 +973,7 @@ a partire dal capoparte.
 ### 10.6 L'impegno delle carte
 
 Ogni casa impegna fino a **3** carte, e **le prende dal suo mucchietto coperto**
-— quello che ha costruito una carta per turno (capitolo 6.3). **Una carta tenuta
+— quello che ha costruito turno per turno (capitolo 6.3). **Una carta tenuta
 in mano non si impegna**: al Consiglio arriva solo quello che avevi messo da
 parte prima di sapere di cosa si sarebbe parlato. È la regola che rende il
 Consiglio un impegno e non un ripensamento.
@@ -1651,8 +1668,8 @@ Le voci aperte, tutte, con chi le può muovere, stanno in
 | **pedine di presenza** | 5 per casa |
 | **mazzetto personale** | 18 carte, di cui 2 d'identità |
 | **la mano a inizio turno** | esattamente 5: si pesca quel che manca, si scarta quel che sta sopra |
-| **si copre a fine turno** | 1 carta, che è la sola impegnabile al Consiglio |
-| **carte coperte a fine Atto** | 3 per casa |
+| **si copre a fine turno** | 1 carta, **+1 per ogni Pietra tua** — fino a quante te ne restano in mano |
+| **carte coperte a fine Atto** | da 3 a 9 per casa, secondo quanto hai costruito |
 | **carte impegnabili a un Consiglio** | 3 per casa |
 | **Consigli in un anno** | almeno uno per Atto, due se qualcuno forza — misurati **5,68** l'anno |
 | **regioni sulla mappa** | 6 pescate su 10 |

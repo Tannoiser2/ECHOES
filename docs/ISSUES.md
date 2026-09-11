@@ -10277,6 +10277,16 @@ tornano davvero in mano. Il costo e' scritto nel verbale: **21 Verita' in meno**
 sul tavolo misto, perche' chi si oppone arriva con piu' peso e cadono piu'
 proposte.
 
+**E in 0.1.475 le coperte si guadagnano** ([D-505](DECISIONS.md#d-505)), parola
+sua: *«se hai una pietra o una presenza o qualunque altra cosa puoi alzare il
+numero di carte che puoi coprire, fino al massimo delle tre che ti rimangono»*.
+Ogni **Pietra** costruita e sua ne aggiunge una, e il tetto vero e' quello che
+resta in mano. Le 21 Verita' non tornano soltanto: il misto passa a **488** e
+l'uniforme a **446**, e **i seggi bloccati restano 0 su 8** — la valanga che
+temevo non c'e'. Questo chiude anche una voce vecchia: **le Pietre si alzavano
+poco** ([111](#111)) e adesso comprano la cosa piu' preziosa del gioco, la
+memoria del mondo.
+
 **Dove sono i numeri del punto 2 dopo 0.1.470.** Tolte le carte Eco, il tavolo
 misurato non e' piu' quello di 0.1.469 e i numeri vanno riletti insieme: i
 Consigli passano da 5,58 a **5,68** l'anno, le Verita' da 360 a **393/391**

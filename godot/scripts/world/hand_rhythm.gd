@@ -50,3 +50,71 @@ static func cover_per_round(chronicle: Dictionary) -> int:
 ## coperte; dove non si copre, con la mano aperta come sempre.
 static func council_pays_from_covered(chronicle: Dictionary) -> bool:
 	return cover_per_round(chronicle) > 0
+
+
+## **Quante carte copre *questa* casa, in questo turno** (D-505).
+##
+## Parola del committente: *«se hai una pietra o una presenza o qualunque altra
+## cosa che ci viene in mente puoi alzare il numero di carte che puoi coprire,
+## fino al massimo delle tre che ti rimangono»*.
+##
+## Quindi `cover_per_round` non e' piu' il numero: e' **il pavimento**. Il resto
+## lo guadagna la casa sulla mappa, e questo e' il punto — fino a qui quello che
+## si faceva sul tavolo non comprava **peso in Consiglio**, e la direzione di
+## casa dice che le Azioni cambiano il mondo e il Consiglio decide cosa il mondo
+## ricordera'. Con questa regola le due meta' si toccano: **la mappa compra la
+## memoria**.
+##
+## Il tetto e' doppio, e il secondo e' quello che conta: `cover_bonus.cap` nel
+## dato, e **le carte che restano in mano** nel fatto. Coprire tutto quello che
+## resta e' legale ed e' un sacrificio vero — quel turno non tieni niente per il
+## prossimo — quindi il tetto non e' un numero d'autore, e' una scelta.
+static func cover_for(
+	chronicle: Dictionary, service: RefCounted, entity_id: String
+) -> int:
+	var floor_cards: int = cover_per_round(chronicle)
+	if floor_cards <= 0:
+		return 0
+	var bonus: Dictionary = (
+		chronicle.get("personal_decks", {}) as Dictionary
+	).get("cover_bonus", {}) as Dictionary
+	if bonus.is_empty():
+		return floor_cards
+	var earned: int = 0
+	# **Le Pietre che ha costruito**: stanno ferme e si vedono sulla tessera.
+	earned += service.stones_held(entity_id) * int(bonus.get("per_stone", 0))
+	# **Le Regioni che tiene**, se la Chronicle lo dichiara.
+	earned += service.control_count(entity_id) * int(bonus.get("per_control", 0))
+	# **Le pedine posate.** Piu' generoso e piu' ballerino: cambiano ogni turno,
+	# e al tavolo si ricontano ogni volta.
+	earned += service.tokens_placed(entity_id) * int(bonus.get("per_token", 0))
+	return mini(floor_cards + earned, int(bonus.get("cap", floor_cards + earned)))
+
+
+## Le ragioni del numero, in italiano, per chi gioca: *«1 di base · +1 per la
+## Pietra che tieni»*. Una regola che dà un numero senza dire da dove viene, al
+## tavolo diventa un numero che nessuno controlla.
+static func cover_reasons(
+	chronicle: Dictionary, service: RefCounted, entity_id: String
+) -> Array:
+	var floor_cards: int = cover_per_round(chronicle)
+	if floor_cards <= 0:
+		return []
+	var out: Array = ["%d di base" % floor_cards]
+	var bonus: Dictionary = (
+		chronicle.get("personal_decks", {}) as Dictionary
+	).get("cover_bonus", {}) as Dictionary
+	for entry in [
+		["per_stone", service.stones_held(entity_id), "Pietra che tieni", "Pietre che tieni"],
+		["per_control", service.control_count(entity_id), "Regione che tieni", "Regioni che tieni"],
+		["per_token", service.tokens_placed(entity_id), "pedina posata", "pedine posate"],
+	]:
+		var each: int = int(bonus.get(str((entry as Array)[0]), 0))
+		var how_many: int = int((entry as Array)[1])
+		if each <= 0 or how_many <= 0:
+			continue
+		out.append("+%d per %d %s" % [
+			each * how_many, how_many,
+			str((entry as Array)[2]) if how_many == 1 else str((entry as Array)[3]),
+		])
+	return out

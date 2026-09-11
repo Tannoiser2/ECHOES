@@ -352,12 +352,16 @@ func _level_the_hands(act: int, round_number: int, decider: Object) -> void:
 ## turno dopo, quindi **scartare e' pescare**, e tenere e' una scommessa su una
 ## carta precisa.
 func _cover_and_churn(act: int, round_number: int, decider: Object) -> void:
-	var how_many: int = HandRhythm.cover_per_round(_chronicle)
-	if how_many <= 0:
+	if HandRhythm.cover_per_round(_chronicle) <= 0:
 		return
 	for entity_id in session.service.active_entities():
 		var id: String = str(entity_id)
-		var wanted: int = mini(how_many, session.service.hand_size(id))
+		# **Quante ne copre questa casa lo dice la mappa** (D-505): il numero
+		# della Chronicle e' il pavimento, il resto se l'e' guadagnato. E il
+		# tetto vero e' quello che le resta in mano — coprire tutto e' legale,
+		# e vuol dire non tenere niente per il turno dopo.
+		var earned: int = HandRhythm.cover_for(_chronicle, session.service, id)
+		var wanted: int = mini(earned, session.service.hand_size(id))
 		var chosen: Array = []
 		if wanted > 0:
 			chosen = await _ask_cover(decider, id, wanted)
@@ -381,9 +385,15 @@ func _cover_and_churn(act: int, round_number: int, decider: Object) -> void:
 				covered += 1
 		if covered > 0:
 			# **Quale carta non si dice**, nemmeno nel verbale: e' coperta, ed
-			# e' il punto della regola.
-			log.bullet("%s mette da parte %s coperta." % [
-				_name(id), "1 carta" if covered == 1 else "%d carte" % covered,
+			# e' il punto della regola. **Quante** invece si', col perche': il
+			# numero lo ha guadagnato sulla mappa, e un numero senza ragione e'
+			# un numero che nessuno controlla.
+			log.bullet("%s mette da parte %s (%s)." % [
+				_name(id),
+				"1 carta coperta" if covered == 1 else "%d carte coperte" % covered,
+				" · ".join(PackedStringArray(
+					HandRhythm.cover_reasons(_chronicle, session.service, id)
+				)),
 			])
 		var churn: Array = await _ask_discards(decider, id, session.service.hand_size(id))
 		for asset_id in churn:
