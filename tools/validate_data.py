@@ -1181,6 +1181,46 @@ def check_biome_vocabularies_agree(
         )
 
 
+def check_every_biome_has_its_accent(
+    documents: Dict[str, List[Dict[str, Any]]],
+    origins: Dict[str, str],
+    report: "Report",
+) -> None:
+    """**Ogni bioma ha il suo colore nell'ART_BIBLE**, o il prompt esce monco.
+
+    Il prompt di una tessera si compone sostituendo `{ACCENTO}` e
+    `{DESCRIZIONE}` con la riga del suo bioma (`art_bible.prompt_for`). Se
+    quella riga non c'e', il motore **non si lamenta**: mette il ripiego
+    «l'accento della sua famiglia» e come descrizione ripete il nome del posto.
+    Ne esce un prompt che si legge benissimo e non dice niente — «Top-down
+    painted map tile of L'Isola Muta: L'Isola Muta» — e chi genera le immagini
+    lo scopre guardando il risultato, non leggendolo.
+
+    E' successo davvero: MARSH e ISLAND sono entrati coi dati e la tavola degli
+    accenti ne conosceva otto su dieci, quindi **due tessere su quindici**
+    avevano il prompt col segnaposto dentro. Da qui in poi un bioma nuovo senza
+    colore fa rosso prima della stampa.
+    """
+    import json as _json
+
+    bible = SCHEMA_DIR.parent / "docs" / "ART_BIBLE.md"
+    tessera = SCHEMA_DIR / "region.schema.json"
+    if not bible.exists() or not tessera.exists():
+        return
+    biomi = _json.loads(tessera.read_text(encoding="utf-8"))
+    biomi = biomi["$defs"]["region"]["properties"]["biome"].get("enum", [])
+    # Le righe della variation key: `| \`CITY\` | oro spento | descrizione |`.
+    scritti = set(re.findall(r"^\|\s*`([A-Z_]+)`\s*\|", bible.read_text(encoding="utf-8"), re.M))
+    mancanti = sorted(set(biomi) - scritti)
+    if mancanti:
+        report.fail(
+            "docs/ART_BIBLE.md",
+            "questi biomi non hanno la loro riga nella variation key, e il "
+            "prompt delle loro tessere esce col segnaposto invece del colore: "
+            + ", ".join(mancanti),
+        )
+
+
 def check_every_region_can_call_the_council(
     documents: Dict[str, List[Dict[str, Any]]],
     origins: Dict[str, str],
@@ -1831,6 +1871,7 @@ def main() -> int:
         check_objectives_are_shareable(documents, origins, report)
         check_condition_vocabularies_agree(documents, origins, report)
         check_biome_vocabularies_agree(documents, origins, report)
+        check_every_biome_has_its_accent(documents, origins, report)
         check_objective_scales_are_sane(documents, origins, report)
         check_a_saga_plays_one_game(documents, origins, report)
         check_the_gate_and_the_thresholds_do_not_overlap(documents, origins, report)

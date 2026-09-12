@@ -40,6 +40,12 @@ func _initialize() -> void:
 		quit(3)
 		return
 
+	# **La cartella si svuota prima di riempirla** (D-516). Un export scrive i
+	# fogli che servono adesso e lasciava quelli di prima: il giorno in cui le
+	# tessere sono passate da sei a otto per foglio, `region_03.svg` — tre
+	# tessere **quadrate**, gia' presenti negli altri due — e' rimasto li', e
+	# chi stampa la cartella stampa anche lui. Un avanzo non si lamenta.
+	_empty_dir("%s/fogli" % out_dir)
 	if not _make_dir("%s/fogli" % out_dir):
 		printerr("non riesco a scrivere in %s" % out_dir)
 		quit(4)
@@ -209,6 +215,18 @@ func _readme(index: Array, proof: bool, bible: RefCounted) -> String:
 
 func _make_dir(path: String) -> bool:
 	return DirAccess.make_dir_recursive_absolute(path) == OK
+
+
+## Via i fogli del giro prima: restano solo quelli che questo export scrive.
+## Tocca **soltanto gli `.svg`** della cartella dei fogli — quello che non e'
+## roba sua non si cancella.
+func _empty_dir(path: String) -> void:
+	var dir: DirAccess = DirAccess.open(path)
+	if dir == null:
+		return
+	for name in dir.get_files():
+		if str(name).ends_with(".svg"):
+			dir.remove(str(name))
 
 
 func _write(path: String, text: String) -> bool:

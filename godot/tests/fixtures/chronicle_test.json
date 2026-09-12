@@ -291,7 +291,13 @@
           2
         ],
         "reveal_at": 2
-      }
+      },
+      "starting_control": [
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "entity_id": null
+        }
+      ]
     },
     {
       "id": "CHR_TEST_HEIR",
@@ -600,7 +606,13 @@
           2
         ],
         "reveal_at": 2
-      }
+      },
+      "starting_control": [
+        {
+          "region_id": "REG_MINIERE_ANTICHE",
+          "entity_id": null
+        }
+      ]
     }
   ]
 }

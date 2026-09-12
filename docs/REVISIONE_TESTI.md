@@ -22,7 +22,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 **`REG_BOCCA_MINIERA`**
 > La Bocca della Miniera
 
-> Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.
+> Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro. Il buio non e' vuoto: quello che dorme sotto le Montagne Rosse dorme anche qui.
 
 > Dalla galleria alta si esce sulla strada dei mercanti. Non tutti sanno che esiste.
 
@@ -60,7 +60,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 **`REG_MINIERE_ANTICHE`**
 > Miniere Antiche
 
-> Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.
+> Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso, e il respiro di cio' che dorme sotto la montagna.
 
 > Il Cristallo Rosso non riflette la luce delle torce: la restituisce più tardi.
 
@@ -84,7 +84,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 **`REG_PALUDE_CANALI`**
 > La Palude dei Canali
 
-> Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.
+> Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. I Nahr la attraversano coi carri alti: e' la stessa terra che percorrono, in un'eta' in cui l'acqua non se n'e' andata.
 
 > Sotto il fango i canali vecchi tengono ancora: chi sa leggerli attraversa in un giorno.
 
@@ -7368,7 +7368,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Una promessa serve più a impedire un'alleanza che a farne una, e resta scritta.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_BETROTHAL, bersaglio`**
@@ -7396,7 +7396,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Non è un accordo: è una cosa che c'era prima dell'accordo, e che nessuno ha firmato.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_BLOOD_TIE, bersaglio`**
@@ -7424,7 +7424,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Rompere un patto davanti al tavolo scalda ogni domanda ancora aperta.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_BROKEN_PACT, bersaglio`**
@@ -7452,7 +7452,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Piccolo, ricordato con precisione, e restituito al momento giusto.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_FAVOR, bersaglio`**
@@ -7480,7 +7480,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Chi ha mangiato al tuo tavolo non può dire di no davanti a tutti. Può dirlo dopo.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_GUEST_RIGHT, bersaglio`**
@@ -7508,7 +7508,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Chi consegna un figlio compra una parola, e la paga a casa propria.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_HOSTAGE, bersaglio`**
@@ -7536,7 +7536,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Un giuramento impegnato resta impegnato anche dopo, ed è la sua unica forza.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_OATH, bersaglio`**
@@ -7564,7 +7564,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Nessuno se lo ricorda tranne le due persone che contano, e una delle due lo tira fuori adesso.
 
-> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.
+> ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, L'Isola Muta, Il Molo Nuovo, La Bocca della Miniera.
 
 
 **`AST_BONDS_OLD_DEBT, bersaglio`**
@@ -7592,7 +7592,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Contano i carri che passano, e sanno quali contare. Ogni conta ferma la strada.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_BORDER_WATCH, bersaglio`**
@@ -7620,7 +7620,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Chi apre una porta così non resta lì a difenderla.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_BURNED_GATE, bersaglio`**
@@ -7648,7 +7648,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Uomini con attrezzi da lavoro tenuti come lance. Bastano finché nessuno li conta — ma i campi restano soli.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_LEVY, bersaglio`**
@@ -7676,7 +7676,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Valgono lo stesso ovunque li porti. Dove passano, però, resta l'inquietudine.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_MERCENARIES, bersaglio`**
@@ -7704,7 +7704,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Richiamare i vecchi reggimenti dice al mondo che la cosa è seria.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_OLD_ARMY, bersaglio`**
@@ -7732,7 +7732,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Fermare un carro costa sempre meno che farlo partire.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_ROADBLOCK, bersaglio`**
@@ -7760,7 +7760,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Non serve prendere una cosa per impedire che sia di qualcun altro — ma l'assedio affama anche la terra intorno.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_SIEGE, bersaglio`**
@@ -7788,7 +7788,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 
 > Arrivano dove la questione è aperta, e la paura non si spegne insieme alla questione.
 
-> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
+> ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 
 **`AST_FORCE_WARBAND, bersaglio`**

@@ -10,6 +10,279 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-516 — La tessera si stampa esagonale
+
+**implemented (0.1.486)** — parola del committente: *«apri il giro del foglio di
+stampa esagonale»*, dopo che preparando i prompt e' saltato fuori che il
+print-and-play stampava ancora un quadrato.
+
+`print_sheet.gd` impaginava la tessera in una cella **80x80**, col commento
+*«quadrata come chiede il MASTER PROMPT 3»*. Quel MASTER PROMPT l'aveva
+riscritto [D-510](#d-510) — la tessera e' un **esagono a lato piatto**, e
+[D-512](#d-512) l'aveva gia' portato sullo schermo. Il foglio era rimasto
+indietro, e **chi stampava ritagliava un quadrato** per un posto che sul tavolo
+e' un esagono.
+
+### La cella e' la scatola dell'esagono
+
+`80 x 69,28` — cioe' `2R` per `√3 R`. La cella non e' la tessera: e' il
+rettangolo che la contiene, e il cartone e' la sagoma dentro.
+
+Da qui viene tutto il resto, e sono cinque cose che il quadrato non chiedeva:
+
+- **il ritaglio**. Il fondo, il quadro dipinto e il velo si disegnano **dentro**
+  un `clipPath` esagonale: quello che cadeva fuori era carta da buttare, e
+  stamparci sopra era stampare per niente;
+- **il quadro prende tutta la cella** invece di stare in un riquadro dentro di
+  lei. Con il ritaglio non serve piu' il margine, e l'illustrazione media della
+  tessera passa da **91% a 100%** (`SCHELETRO_CARTE`);
+- **il testo si tiene dentro la sagoma.** In basso l'esagono e' largo quanto un
+  lato: una riga larga `cell.x - pad*2` uscirebbe dai due angoli di sotto. La
+  larghezza utile si prende dalla **mezza larghezza al punto piu' basso** dove
+  una riga puo' finire — il caso peggiore — e le righe si centrano invece di
+  appoggiarsi a sinistra, dove sotto la punta il cartone non c'e';
+- **il piede sale in alto**, sotto il lato piatto. Al primo giro era rimasto in
+  basso e si accavallava col nome: in fondo lo spazio e' meta';
+- **la linea di taglio e' il perimetro**, non quattro segni agli angoli — un
+  esagono non ha angoli da indovinare. E sta nel **foglio**, non nella faccia:
+  la stessa tessera mostrata sullo schermo non deve portarsi dietro le linee per
+  le forbici. (Questo l'ha detto una prova che c'era gia'.)
+
+### Quello che si guadagna
+
+Le celle passano da sei a **otto per foglio** — due colonne per quattro righe
+invece di due per tre — e le quindici tessere stanno in **due fogli invece di
+tre**. Le tessere della stessa colonna si toccano sul lato piatto: un taglio
+solo ne separa due.
+
+### La prova
+
+`test_the_printed_tile_is_a_hexagon` guarda quattro cose: che la cella sia la
+scatola di un esagono **a lato piatto** (due vertici alla stessa altezza in
+cima, non una punta); che la tessera si stringa verso i lati piatti, col caso
+che deve dare non-zero; che **nessuna riga stampata cada fuori dalla sagoma**,
+su ogni tessera vera e non su una finta; e che il foglio ne regga otto.
+
+---
+
+## D-515 — Due biomi senza colore, e due prompt che non dicevano niente
+
+**implemented (0.1.485)** — parola del committente: *«tutti i prompt pronti per
+rigenerare le immagini»*. Preparandoli, due su quindici non lo erano.
+
+Il prompt di una tessera si compone sostituendo `{ACCENTO}` e `{DESCRIZIONE}`
+con la riga del suo bioma nella variation key dell'ART_BIBLE. Quella tavola
+conosceva **otto biomi**; i dati ne usano **dieci**. Mancavano `MARSH` e
+`ISLAND` — i due entrati con La Palude dei Canali e L'Isola Muta.
+
+E il motore, quando la riga non c'e', **non si lamenta**: mette il ripiego
+«l'accento della sua famiglia» e come descrizione ripete il nome del posto. Ne
+usciva questo, che si legge benissimo e non dice niente:
+
+> Top-down three-quarter painted map tile of **L'Isola Muta**: *L'Isola Muta*.
+> […] Dominant accent: *l'accento della sua famiglia*.
+
+Due tessere su quindici andavano in stampa cosi', e chi genera le immagini se
+ne sarebbe accorto **guardando il risultato**, non leggendo il prompt.
+
+Adesso `MARSH` e' **verde torbido** — acqua ferma, canne alte, passerelle di
+legno, isolotti bassi — e `ISLAND` **grigio perla**: uno scoglio alto
+circondato d'acqua da ogni lato, nessun molo, erba rada sul dorso.
+
+### La guardia
+
+`check_every_biome_has_its_accent` pretende che **ogni bioma dello schema abbia
+la sua riga** nella variation key. Il difetto e' controprovato togliendo la riga
+appena scritta: la guardia lo nomina.
+
+Restano sei prompt col ripiego, e sono i **sei Destini condivisi**: quelli una
+casa non ce l'hanno per disegno ([D-115](#d-115)), e li' il ripiego e' la
+risposta giusta.
+
+---
+
+## D-514 — L'Isola Muta da' Legami, e le famiglie tornano in quota
+
+**implemented (0.1.484)** — parola del committente, dopo una domanda sua:
+*«E i tipi di carte che tessere permettono di pescare? Torna?»*. Contato, **non
+tornava**.
+
+### Il conto che non tornava
+
+Il mazzo e' equo per costruzione: 48 carte, **otto per famiglia**, il 17%
+ciascuna. La mappa no. Sette tessere danno due fonti l'una — quattordici posti
+per sei famiglie, quota equa **2,33** — e su tutte e 144 le rose il conto era
+questo:
+
+| famiglia | nel mazzo | sulla mappa | tessere (min / media / max) | rose al minimo |
+|---|---|---|---|---|
+| FORCE | 17% | 19% | 2 / 2,67 / 4 | 64 su 144 |
+| WEALTH | 17% | 19% | 2 / 2,67 / 3 | 48 |
+| AUTHORITY | 17% | 18% | 2 / 2,50 / 3 | 72 |
+| KNOWLEDGE | 17% | 18% | **1** / 2,50 / 4 | 16 |
+| PEOPLE | 17% | 14% | 2 / 2,00 / 2 | sempre 2 |
+| BONDS | 17% | **12%** | **1** / 1,67 / 2 | 48 |
+
+Cioe' **la Forza si raggiungeva con il 60% di tessere in piu' dei Legami**, a
+parita' di carte nel mazzo. E il caso stretto: in **48 rose su 144** — un terzo
+— i Legami stavano su **una tessera sola**, e quella tessera era **sempre P6**,
+che da [D-513](#d-513) e' sempre la terra di Vaerax.
+
+Non e' un accesso negato: ACQUISIRE pesca da qualunque mazzo, e la fonte serve
+a **pescare due e tenerne una** (`action_resolver._has_source_for`, che guarda
+la **presenza** e non il controllo). Ma la pesca doppia e' il vantaggio vero, e
+per un terzo delle partite quella sui Legami stava in casa del drago.
+
+### La correzione, e perche' e' una riga sola
+
+Il colpevole era identificabile: la casella `P3` ha tre candidate — Porto
+Cinerino e Il Molo Nuovo danno RICCHEZZA e LEGAMI, **L'Isola Muta** dava
+CONOSCENZA e **FORZA**. Quando usciva lei, i Legami restavano solo su P6.
+
+L'Isola Muta adesso da' **CONOSCENZA e LEGAMI**. Uno scoglio senza porto e
+senza campane, dove chi sbarca parla piano, e' un posto di patti taciti piu'
+che di spade.
+
+| | prima | dopo |
+|---|---|---|
+| BONDS, tessere per rosa | 1 / **1,67** / 2 | 2 / **2,00** / 2 |
+| FORCE, tessere per rosa | 2 / **2,67** / 4 | 2 / **2,33** / 3 |
+
+Tutt'e due in quota, e **nessun'altra famiglia si muove**: AUTHORITY, PEOPLE,
+KNOWLEDGE e WEALTH restano dov'erano. Non c'e' piu' nessuna rosa in cui i
+Legami stanno su una tessera sola.
+
+### Le sedici carte che mentivano
+
+Cambiare una fonte ha fatto rosse **sedici carte su 48**: otto di Forza e otto
+di Legami portano stampata la riga *«Fonti: ...»* con l'elenco delle tessere da
+cui quella famiglia si pesca, e quell'elenco era diventato falso.
+
+Le ha prese `check_asset_sources_are_true`, la guardia nata apposta nel giorno
+in cui la mappa fu ridistribuita e **quaranta carte su quarantotto** cominciarono
+a mentire senza che nessun test se ne accorgesse. Riscritte **dal dato**, non a
+mano.
+
+---
+
+## D-513 — La sede di una casa e' una casella intera
+
+**implemented (0.1.483)** — parola del committente, scelta fra tre strade
+proposte: *«La 1»* — cioe' dare la garanzia della sede **per costruzione**,
+come la capitale ce l'aveva gia' senza che nessuno l'avesse scritto.
+
+La domanda che ha aperto la voce era di quelle corte: *«quando si pesca il re
+che tessera si usa?»*. La risposta, guardando il motore, e' semplice — la
+casella `C` pesca fra Eredan e Eredan delle Sei Porte, e tutte e due portano
+scritto il Re — ma cercandola e' venuto fuori che **per le altre due case con
+una terra la risposta non c'era**.
+
+### Il difetto, e perche' non se ne lamentava niente
+
+Due pescate indipendenti: **quattro case su otto** (`entity_pool`) e **una
+tessera per ognuna delle sette caselle** (`resolve_map`). Una tessera puo'
+nascere con una casa sopra — `control` sul dato — ed e' il gettone che sta gia'
+sul cartone quando la scatola si apre.
+
+Il verso facile il motore lo sapeva gia' fare: una tessera che esce con sopra
+una casa che **non** gioca nasce libera (`world_state_factory.gd:197`). Sul
+verso opposto — una casa che gioca e la cui terra **non e' uscita** — non aveva
+niente da dire, e nessuno se ne lamentava: la partita cominciava, e un
+giocatore cominciava da nessuna parte.
+
+Misurato chiamando il motore su **1000 semi**, coi dati di 0.1.482:
+
+| casa | la sua terra | candidate della sua casella | seduta senza terra |
+|---|---|---|---|
+| Re Aldric | Eredan *o* Eredan delle Sei Porte | 2 su 2 sono sue | **0** su 482 |
+| Popolo Nahr | Terre Nahr | 1 su 2 | **247** su 475 |
+| Vaerax | Montagne Rosse | 1 su 3 | **326** su 514 |
+
+Il Re era salvo **per caso**: D-511 gli aveva dato una seconda candidata che era
+la stessa citta' in un'altra eta', e quindi portava lo stesso padrone. Le altre
+due avevano sorelle di casella che erano altri posti.
+
+### La regola
+
+> **Se una tessera nasce con una casa sopra, quella casa sta su tutte le
+> candidate di quella casella.**
+
+E' la stessa forma della rete minima di D-511, applicata a chi ci abita invece
+che alle strade, e per la stessa ragione: **la pescata puo' cambiare l'eta' di
+una terra, non portarla via**.
+
+Attuata senza tessere nuove e senza toccare la geografia: tre candidate prendono
+il padrone che la loro casella gia' aveva.
+
+- `P2` — **La Palude dei Canali** passa al Popolo Nahr. I Nahr sono un popolo
+  che si sposta, non un castello: e' la stessa terra che percorrono, in un'eta'
+  in cui l'acqua non se n'e' andata;
+- `P6` — **Miniere Antiche** e **La Bocca della Miniera** passano a Vaerax. Sono
+  la stessa montagna vista da dentro: il Cristallo Rosso e' in fondo alle
+  gallerie, e cio' che dorme sotto le Montagne Rosse dorme anche li'.
+
+Le tre descrizioni lo dicono, perche' un gettone che sta sul cartone senza che
+il testo lo nomini e' una regola che il tavolo non spiega.
+
+### Quello che costa, dichiarato
+
+Piu' mondo gia' spartito quando la partita comincia: le tessere che nascono con
+un padrone passano da **0,90 a 1,47 per partita** (1000 semi, stesso strumento
+prima e dopo). E' il prezzo della garanzia, ed e' il verso giusto in cui
+sbagliare: una casa che comincia da nessuna parte non e' un inizio difficile,
+e' un inizio che non c'e'.
+
+Sul tavolo vero non si sente: cento semi, stesso seme prima e dopo.
+
+| cento semi | prima | dopo |
+|---|---|---|
+| seggi bloccati su un livello, misto | 0 su 8 | 0 su 8 |
+| seggi bloccati su un livello, uniforme | 0 su 8 | 0 su 8 |
+| Consigli per anno, misto | 5,39 | 5,43 |
+| Verita' scritte, misto | 466 (462 diverse) | 467 (464) |
+| Consigli per anno, uniforme | 5,30 | 5,33 |
+| Verita' scritte, uniforme | 453 (451 diverse) | 454 (452) |
+
+### Il banco non pescava, e cinque prove l'hanno detto
+
+Il primo giro della suite e' andato **rosso in cinque punti** — due sul libro
+delle cronache, tre sull'equilibrio — e la causa non era il motore: era che
+**`CHR_TEST` non pesca la mappa**. Il banco nomina sei Regioni per id, e fra
+quelle ci sono le Miniere Antiche. Passandole a Vaerax, sul banco Vaerax
+cominciava con **due Regioni su sei**, cioe' gia' al suo `max_stable_control`
+di 2 — e una casa che e' gia' al limite non ha piu' niente da spingere. Gli
+Echi su 24 partite sono scesi da almeno dodici a **sei**, e la partita di
+guardia al seme 4242 ha smesso di scrivere Verita'.
+
+Il rimedio non e' stato spostare una soglia: il banco adesso **dichiara il suo
+controllo iniziale** (`starting_control`, con le Miniere libere), che e' dove lo
+schema dice che deve stare da D-049 — *«il controllo iniziale non puo' stare
+nella definizione della Regione: quella porterebbe nella seconda saga le casate
+della prima»*. Un banco che prende il padrone dalla scatola cambia sotto ogni
+volta che la scatola cambia, e misura i dati mentre credi che misuri il motore.
+
+Vale la pena tenerlo scritto anche come numero, perche' e' il vero avvertimento
+di questo giro: **su un tavolo piccolo, una terra in piu' a chi e' gia' al
+limite spegne una casa.** Sul tavolo vero — sette caselle, quattro case su otto
+— la tabella qui sopra dice che non succede. Su un tavolo di sei Regioni con
+quattro case fisse, succede.
+
+### Le guardie
+
+- `validate_physical` prende la regola dal lato dei **dati** — quinta cosa che
+  si pretende da ogni rosa — e va rossa nominando la causa: *«sede non
+  garantita: X tiene ..., ma nessuna casella della rosa la porta su tutte le sue
+  candidate»*. Il suo difetto e' **piantato** e non cercato (togliere la casa a
+  una sola candidata), perche' oggi il difetto fra i dati non c'e' piu' e una
+  prova che cerca un difetto riparato smette di provare senza dirlo;
+- `test_a_house_always_finds_its_land` la prende dal lato del **motore**, in tre
+  prove: il caso fabbricato che **deve** dare non-zero (ferendo una candidata,
+  la casa resta senza terra una volta su tre); le trecento rose vere, dove non
+  succede mai; e sessanta partite aperte davvero, dove ogni casa seduta trova il
+  suo gettone sul tavolo.
+
+---
+
 ## D-512 — Lo schermo disegna la rosa, e il dito prende la tessera
 
 **implemented (0.1.482)** — nessuna parola nuova del committente: e' la

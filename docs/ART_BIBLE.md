@@ -170,6 +170,8 @@ text, no letters, no numerals, no map labels, no compass rose, no frame.
 | `ROAD` | ambra | una strada che attraversa tutto, soste, ponti, carri |
 | `FOREST` | verde profondo | chiome, radure, sentieri stretti |
 | `COAST` | azzurro spento | secche, moli, barche in secca |
+| `MARSH` | verde torbido | acqua ferma, canne alte, passerelle di legno, isolotti bassi |
+| `ISLAND` | grigio perla | uno scoglio alto circondato d'acqua da ogni lato, nessun molo, erba rada sul dorso |
 
 Chiavi in uso: `region.<nome>`.
 

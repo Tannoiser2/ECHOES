@@ -995,13 +995,13 @@ no border. Not gory, not horror.
 ### `region.bocca_miniera` — La Bocca della Miniera
 
 - **soggetto**: La Bocca della Miniera
-- **scena**: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.
+- **scena**: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro. Il buio non e' vuoto: quello che dorme sotto le Montagne Rosse dorme anche qui.
 - **id**: `REG_BOCCA_MINIERA`
 
 ```
 ECHOES — Region tile. Top-down three-quarter painted map tile of La Bocca della Miniera:
 imbocchi di galleria, sterili, impalcature, buio calibrato.
-What this land is right now: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.
+What this land is right now: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro. Il buio non e' vuoto: quello che dorme sotto le Montagne Rosse dorme anche qui.
 Dominant accent: verde-azzurro, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the upper-right, lower-right and bottom edges; the top, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
@@ -1072,9 +1072,9 @@ text, no letters, no numerals, no map labels, no compass rose, no frame.
 
 ```
 ECHOES — Region tile. Top-down three-quarter painted map tile of L'Isola Muta:
-L'Isola Muta.
+uno scoglio alto circondato d'acqua da ogni lato, nessun molo, erba rada sul dorso.
 What this land is right now: Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
+Dominant accent: grigio perla, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top edge; the upper-right, lower-right, bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
@@ -1085,13 +1085,13 @@ text, no letters, no numerals, no map labels, no compass rose, no frame.
 ### `region.miniere_antiche` — Miniere Antiche
 
 - **soggetto**: Miniere Antiche
-- **scena**: Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.
+- **scena**: Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso, e il respiro di cio' che dorme sotto la montagna.
 - **id**: `REG_MINIERE_ANTICHE`
 
 ```
 ECHOES — Region tile. Top-down three-quarter painted map tile of Miniere Antiche:
 imbocchi di galleria, sterili, impalcature, buio calibrato.
-What this land is right now: Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.
+What this land is right now: Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso, e il respiro di cio' che dorme sotto la montagna.
 Dominant accent: verde-azzurro, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom edge; the top, upper-right, lower-right, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
@@ -1139,14 +1139,14 @@ text, no letters, no numerals, no map labels, no compass rose, no frame.
 ### `region.palude_canali` — La Palude dei Canali
 
 - **soggetto**: La Palude dei Canali
-- **scena**: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.
+- **scena**: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. I Nahr la attraversano coi carri alti: e' la stessa terra che percorrono, in un'eta' in cui l'acqua non se n'e' andata.
 - **id**: `REG_PALUDE_CANALI`
 
 ```
 ECHOES — Region tile. Top-down three-quarter painted map tile of La Palude dei Canali:
-La Palude dei Canali.
-What this land is right now: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
+acqua ferma, canne alte, passerelle di legno, isolotti bassi.
+What this land is right now: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. I Nahr la attraversano coi carri alti: e' la stessa terra che percorrono, in un'eta' in cui l'acqua non se n'e' andata.
+Dominant accent: verde torbido, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom, lower-left and upper-left edges; the top, upper-right and lower-right edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,

@@ -32,7 +32,7 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
 | **objective** | 0 su 19 | 100% | 52% | 52% |
 | **entity** | 0 su 32 | 100% | 52% | 52% |
-| **region** | 0 su 15 | 100% | 91% | 92% |
+| **region** | 0 su 15 | 100% | 100% | 100% |
 
 ## Il mazzo `asset`
 
