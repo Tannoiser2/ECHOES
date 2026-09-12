@@ -5,6 +5,40 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.484 — L'Isola Muta dà Legami, e le famiglie tornano in quota
+
+Parola del committente dopo una sua domanda — *«E i tipi di carte che tessere
+permettono di pescare? Torna?»*. Contato: **non tornava**.
+[D-514](docs/DECISIONS.md#d-514).
+
+### Corretto
+
+- **i Legami erano la famiglia povera della mappa.** Il mazzo è equo — 8 carte
+  per famiglia, il 17% ciascuna — ma le tessere davano ai Legami il **12%** e
+  alla Forza il **19%**: la Forza si raggiungeva con il 60% di tessere in più, a
+  parità di carte. E in **48 rose su 144** i Legami stavano su **una tessera
+  sola**, che da [D-513](docs/DECISIONS.md#d-513) è sempre la terra di Vaerax;
+- **L'Isola Muta dà CONOSCENZA e LEGAMI** invece di CONOSCENZA e FORZA. Uno
+  scoglio senza porto e senza campane, dove chi sbarca parla piano, è un posto
+  di patti taciti più che di spade.
+
+| tessere per rosa | prima | dopo |
+|---|---|---|
+| BONDS | 1 / **1,67** / 2 | 2 / **2,00** / 2 |
+| FORCE | 2 / **2,67** / 4 | 2 / **2,33** / 3 |
+
+Tutt'e due in quota, nessun'altra famiglia si muove, e non c'è più nessuna rosa
+in cui i Legami stiano su una tessera sola.
+
+- **sedici carte su 48 mentivano** dopo il cambio: otto di Forza e otto di
+  Legami portano stampata la riga «Fonti: …» con l'elenco delle tessere da cui
+  quella famiglia si pesca. Le ha prese `check_asset_sources_are_true` — la
+  guardia nata il giorno in cui quaranta carte su quarantotto cominciarono a
+  mentire senza che nessun test se ne accorgesse — e sono state riscritte **dal
+  dato**.
+
+---
+
 ## 0.1.483 — La sede di una casa è una casella intera
 
 Parola del committente, scelta fra tre strade: *«La 1»*. Nasce da una domanda

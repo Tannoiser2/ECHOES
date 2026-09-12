@@ -18,18 +18,18 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `charter_for_all` | 11 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
 | `charter_written` | 47 | 0 | 2 | `asset_physical`, `destiny`, `entity`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `condition:abandoned` | 6 | 0 | 1 | `asset_physical`, `destiny_physical`, `tension`, `chronicle`, `destiny` |  |
-| `condition:contested` | 479 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `tag_rule`, `tension` |  |
+| `condition:contested` | 480 | 2 | 3 | `asset`, `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `tag_rule`, `tension` |  |
 | `condition:cut_off` | 129 | 1 | 1 | `asset`, `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tension` |  |
 | `condition:emptied` | 15 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective`, `tension` |  |
 | `condition:exploited` | 4 | 1 | 1 | `chronicle`, `destiny`, `entity_strategic_profile`, `objective`, `tension` |  |
 | `condition:guarded` | 87 | 0 | 0 | `entity_strategic_profile`, `tag_rule` |  |
-| `condition:indebted` | 190 | 0 | 0 | `chronicle`, `consequence`, `destiny_physical`, `tag_rule`, `tension` |  |
+| `condition:indebted` | 191 | 0 | 0 | `chronicle`, `consequence`, `destiny_physical`, `tag_rule`, `tension` |  |
 | `condition:lean` | 74 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `tension` |  |
 | `condition:mourning` | 15 | 0 | 0 | `asset`, `asset_physical`, `tension`, `chronicle` |  |
-| `condition:plundered` | 13 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
-| `condition:rationed` | 233 | 0 | 0 | `asset`, `asset_physical`, `chronicle`, `consequence`, `tag_rule`, `tension` |  |
+| `condition:plundered` | 14 | 0 | 0 | `asset_physical`, `consequence`, `tag_rule`, `tension`, `chronicle` |  |
+| `condition:rationed` | 232 | 0 | 0 | `asset`, `asset_physical`, `chronicle`, `consequence`, `tag_rule`, `tension` |  |
 | `condition:starving` | 53 | 0 | 0 | `asset`, `asset_physical`, `consequence`, `destiny_physical`, `tag_rule`, `tension`, `chronicle`, `entity_strategic_profile` |  |
-| `condition:unrest` | 371 | 5 | 0 | `asset`, `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule`, `tension` |  |
+| `condition:unrest` | 372 | 5 | 0 | `asset`, `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule`, `tension` |  |
 | `crown_divided` | 11 | 2 | 1 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
 | `crystal_exploited` | 10 | 3 | 0 | `asset_physical`, `chronicle`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
 | `crystal_measured` | 13 | 0 | 0 | `chronicle`, `entity_strategic_profile` |  |
@@ -42,8 +42,8 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `discovery:relic` | 6 | 0 | 3 | `destiny`, `objective` |  |
 | `discovery:supervised_record` | 3 | 0 | 0 | `destiny`, `objective` |  |
 | `discovery:the_charter` | 33 | 0 | 0 | `destiny`, `entity_strategic_profile`, `objective` |  |
-| `discovery:the_ledger` | 575 | 0 | 0 | `destiny`, `entity_strategic_profile`, `objective` |  |
-| `discovery:the_omen` | 442 | 0 | 1 | `destiny`, `objective` |  |
+| `discovery:the_ledger` | 574 | 0 | 0 | `destiny`, `entity_strategic_profile`, `objective` |  |
+| `discovery:the_omen` | 441 | 0 | 1 | `destiny`, `objective` |  |
 | `discovery:trade_ledger` | 226 | 0 | 1 | `destiny`, `objective` |  |
 | `discovery:written_law` | 113 | 0 | 1 | `destiny`, `objective` |  |
 | `distribution_audited` | 6 | 0 | 0 | `chronicle` |  |
@@ -54,13 +54,13 @@ Misura: `cli/run_world_marks_probe.gd`, 100 partite, tavolo misto, semi da 7000.
 | `hard_bargain` | 1 | 0 | 0 | — |  |
 | `heir_named` | 145 | 0 | 0 | `asset_physical`, `entity` |  |
 | `knowledge_shared` | 118 | 0 | 1 | `asset_physical`, `destiny_physical`, `chronicle`, `entity_strategic_profile`, `destiny` |  |
-| `ledger_public` | 216 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
+| `ledger_public` | 215 | 1 | 1 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
 | `mine_sealed` | 3 | 3 | 3 | `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile` |  |
 | `mountain_forgotten` | 1 | 0 | 1 | `chronicle`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile`, `tag_rule` |  |
 | `nahr_settled` | 7 | 0 | 2 | `asset_physical`, `destiny`, `destiny_physical`, `entity`, `entity_strategic_profile` |  |
-| `no_charter` | 6 | 1 | 0 | `asset_physical`, `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
+| `no_charter` | 7 | 1 | 0 | `asset_physical`, `destiny`, `destiny_physical`, `chronicle`, `entity_strategic_profile` |  |
 | `oath_broken` | 3 | 1 | 0 | `asset_physical`, `chronicle`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `tag_rule` |  |
-| `order_restored` | 293 | 0 | 2 | `entity_strategic_profile`, `destiny`, `destiny_physical` |  |
+| `order_restored` | 294 | 0 | 2 | `entity_strategic_profile`, `destiny`, `destiny_physical` |  |
 | `price_in_lives` | 10 | 0 | 0 | — | nessuno lo guarda |
 | `question_unresolved` | 33 | 5 | 0 | `asset_physical`, `consequence`, `destiny`, `destiny_physical`, `entity_strategic_profile`, `objective` |  |
 | `quota_guaranteed` | 7 | 0 | 0 | `chronicle` |  |

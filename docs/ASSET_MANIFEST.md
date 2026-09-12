@@ -79,7 +79,7 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` |
 | REG_BOCCA_MINIERA | La Bocca della Miniera | UNDERGROUND | SECONDARY | 4 | KNOWLEDGE, BONDS | `region.bocca_miniera` |
 | REG_BOSCO_CONFINI | Il Bosco dei Confini | FOREST | SECONDARY | 3 | AUTHORITY, FORCE | `region.bosco_confini` |
-| REG_ISOLA_MUTA | L'Isola Muta | ISLAND | SECONDARY | 2 | KNOWLEDGE, FORCE | `region.isola_muta` |
+| REG_ISOLA_MUTA | L'Isola Muta | ISLAND | SECONDARY | 2 | KNOWLEDGE, BONDS | `region.isola_muta` |
 | REG_MOLO_NUOVO | Il Molo Nuovo | COAST | SECONDARY | 4 | WEALTH, BONDS | `region.molo_nuovo` |
 | REG_PALUDE_CANALI | La Palude dei Canali | MARSH | SECONDARY | 3 | PEOPLE, KNOWLEDGE | `region.palude_canali` |
 | REG_PASSO_CARRI | Il Passo dei Carri | ROAD | SECONDARY | 4 | WEALTH, KNOWLEDGE | `region.passo_carri` |

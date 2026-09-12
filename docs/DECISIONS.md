@@ -10,6 +10,70 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-514 — L'Isola Muta da' Legami, e le famiglie tornano in quota
+
+**implemented (0.1.484)** — parola del committente, dopo una domanda sua:
+*«E i tipi di carte che tessere permettono di pescare? Torna?»*. Contato, **non
+tornava**.
+
+### Il conto che non tornava
+
+Il mazzo e' equo per costruzione: 48 carte, **otto per famiglia**, il 17%
+ciascuna. La mappa no. Sette tessere danno due fonti l'una — quattordici posti
+per sei famiglie, quota equa **2,33** — e su tutte e 144 le rose il conto era
+questo:
+
+| famiglia | nel mazzo | sulla mappa | tessere (min / media / max) | rose al minimo |
+|---|---|---|---|---|
+| FORCE | 17% | 19% | 2 / 2,67 / 4 | 64 su 144 |
+| WEALTH | 17% | 19% | 2 / 2,67 / 3 | 48 |
+| AUTHORITY | 17% | 18% | 2 / 2,50 / 3 | 72 |
+| KNOWLEDGE | 17% | 18% | **1** / 2,50 / 4 | 16 |
+| PEOPLE | 17% | 14% | 2 / 2,00 / 2 | sempre 2 |
+| BONDS | 17% | **12%** | **1** / 1,67 / 2 | 48 |
+
+Cioe' **la Forza si raggiungeva con il 60% di tessere in piu' dei Legami**, a
+parita' di carte nel mazzo. E il caso stretto: in **48 rose su 144** — un terzo
+— i Legami stavano su **una tessera sola**, e quella tessera era **sempre P6**,
+che da [D-513](#d-513) e' sempre la terra di Vaerax.
+
+Non e' un accesso negato: ACQUISIRE pesca da qualunque mazzo, e la fonte serve
+a **pescare due e tenerne una** (`action_resolver._has_source_for`, che guarda
+la **presenza** e non il controllo). Ma la pesca doppia e' il vantaggio vero, e
+per un terzo delle partite quella sui Legami stava in casa del drago.
+
+### La correzione, e perche' e' una riga sola
+
+Il colpevole era identificabile: la casella `P3` ha tre candidate — Porto
+Cinerino e Il Molo Nuovo danno RICCHEZZA e LEGAMI, **L'Isola Muta** dava
+CONOSCENZA e **FORZA**. Quando usciva lei, i Legami restavano solo su P6.
+
+L'Isola Muta adesso da' **CONOSCENZA e LEGAMI**. Uno scoglio senza porto e
+senza campane, dove chi sbarca parla piano, e' un posto di patti taciti piu'
+che di spade.
+
+| | prima | dopo |
+|---|---|---|
+| BONDS, tessere per rosa | 1 / **1,67** / 2 | 2 / **2,00** / 2 |
+| FORCE, tessere per rosa | 2 / **2,67** / 4 | 2 / **2,33** / 3 |
+
+Tutt'e due in quota, e **nessun'altra famiglia si muove**: AUTHORITY, PEOPLE,
+KNOWLEDGE e WEALTH restano dov'erano. Non c'e' piu' nessuna rosa in cui i
+Legami stanno su una tessera sola.
+
+### Le sedici carte che mentivano
+
+Cambiare una fonte ha fatto rosse **sedici carte su 48**: otto di Forza e otto
+di Legami portano stampata la riga *«Fonti: ...»* con l'elenco delle tessere da
+cui quella famiglia si pesca, e quell'elenco era diventato falso.
+
+Le ha prese `check_asset_sources_are_true`, la guardia nata apposta nel giorno
+in cui la mappa fu ridistribuita e **quaranta carte su quarantotto** cominciarono
+a mentire senza che nessun test se ne accorgesse. Riscritte **dal dato**, non a
+mano.
+
+---
+
 ## D-513 — La sede di una casa e' una casella intera
 
 **implemented (0.1.483)** — parola del committente, scelta fra tre strade

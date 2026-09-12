@@ -86,7 +86,7 @@ le Pietre e i gradi che le degradano.
 | `structure:palace` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `structure:sealed` | 0 | 4 | 10 | 4 |  |
 | `structure:tollgate` | 0 | 391 | 13 | 95 |  |
-| `structure:watchtower` | 100 | 361 | 113 | 77 |  |
+| `structure:watchtower` | 100 | 361 | 111 | 78 |  |
 
 ## un gettone accanto alla tessera
 
@@ -97,18 +97,18 @@ lo stato di adesso: si mette e si toglie.
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
 | `condition:abandoned` | 0 | 6 | 0 | 6 |  |
-| `condition:contested` | 0 | 479 | 242 | 80 |  |
+| `condition:contested` | 0 | 480 | 243 | 80 |  |
 | `condition:cut_off` | 0 | 129 | 241 | 36 |  |
 | `condition:emptied` | 0 | 15 | 4 | 11 |  |
 | `condition:exploited` | 0 | 4 | 0 | 3 |  |
 | `condition:guarded` | 0 | 87 | 15 | 50 |  |
-| `condition:indebted` | 0 | 190 | 44 | 82 |  |
-| `condition:lean` | 0 | 74 | 120 | 34 |  |
+| `condition:indebted` | 0 | 191 | 44 | 82 |  |
+| `condition:lean` | 0 | 74 | 119 | 34 |  |
 | `condition:mourning` | 0 | 15 | 47 | 10 |  |
-| `condition:plundered` | 0 | 13 | 5 | 9 |  |
-| `condition:rationed` | 0 | 233 | 176 | 62 |  |
+| `condition:plundered` | 0 | 14 | 5 | 10 |  |
+| `condition:rationed` | 0 | 232 | 175 | 63 |  |
 | `condition:starving` | 0 | 53 | 123 | 21 |  |
-| `condition:unrest` | 0 | 371 | 282 | 76 |  |
+| `condition:unrest` | 0 | 372 | 282 | 76 |  |
 
 ## un dischetto rotondo
 
@@ -118,11 +118,11 @@ le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 
 | segno | all'apertura | posato | tolto | a fine partita | |
 |---|---|---|---|---|---|
-| `scar:abandoned` | 0 | 40 | 0 | 34 |  |
+| `scar:abandoned` | 0 | 39 | 0 | 34 |  |
 | `scar:broken_bridge` | 0 | 3 | 64 | 3 | **tolta piu' volte di quante si posa** |
 | `scar:broken_word` | 0 | 3 | 0 | 3 |  |
 | `scar:burned_records` | 0 | 13 | 0 | 13 |  |
-| `scar:changed_hands` | 0 | 62 | 0 | 47 |  |
+| `scar:changed_hands` | 0 | 63 | 0 | 48 |  |
 | `scar:divided_seal` | 0 | 1 | 0 | 1 |  |
 | `scar:dragonfall` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `scar:emptied` | 0 | 16 | 0 | 15 |  |
@@ -130,7 +130,7 @@ le Cicatrici. Si tolgono di rado, e serve un pezzo che sappia farlo.
 | `scar:plundered` | 0 | 19 | 0 | 18 |  |
 | `scar:sealed_border` | 0 | 8 | 0 | 7 |  |
 | `scar:the_empty_chair` | 0 | 50 | 0 | 43 |  |
-| `scar:unanswered` | 0 | 74 | 130 | 42 | **tolta piu' volte di quante si posa** |
+| `scar:unanswered` | 0 | 74 | 130 | 43 | **tolta piu' volte di quante si posa** |
 
 ## sulla scheda della casa
 
@@ -151,9 +151,9 @@ chi sei adesso, e la vita che stai vivendo.
 | `discovery:shared_record` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `discovery:supervised_record` | 0 | 3 | 0 | 3 |  |
 | `discovery:the_charter` | 0 | 33 | 0 | 24 |  |
-| `discovery:the_ledger` | 0 | 575 | 0 | 99 |  |
+| `discovery:the_ledger` | 0 | 574 | 0 | 99 |  |
 | `discovery:the_measure` | 0 | 0 | 0 | 0 | **non arriva mai** |
-| `discovery:the_omen` | 0 | 442 | 0 | 97 |  |
+| `discovery:the_omen` | 0 | 441 | 0 | 97 |  |
 | `discovery:trade_ledger` | 0 | 226 | 0 | 87 |  |
 | `discovery:written_law` | 0 | 113 | 0 | 60 |  |
 | `escort_sworn` | 0 | 379 | 121 | 93 |  |
@@ -188,7 +188,7 @@ chi sei adesso, e la vita che stai vivendo.
 | `life:INC_VETRO_SCHOOL` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `migrating` | 54 | 0 | 0 | 54 |  |
 | `order` | 48 | 0 | 0 | 48 |  |
-| `renowned` | 0 | 384 | 0 | 99 |  |
+| `renowned` | 0 | 385 | 0 | 99 |  |
 | `scholar` | 48 | 0 | 0 | 48 |  |
 | `sleeping` | 44 | 0 | 0 | 44 |  |
 | `spoke_and_lost` | 0 | 5 | 0 | 5 |  |
@@ -225,16 +225,16 @@ quello che il mondo ricorda (ISSUES 110).
 | `grain_requisitioned` | 0 | 18 | 0 | 14 |  |
 | `heir_named` | 0 | 145 | 0 | 71 |  |
 | `knowledge_shared` | 0 | 118 | 0 | 68 |  |
-| `ledger_public` | 0 | 216 | 0 | 84 |  |
+| `ledger_public` | 0 | 215 | 0 | 84 |  |
 | `legend:debt_called` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `legend:oath_broken` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `legend:order_restored` | 0 | 0 | 0 | 0 | *fuori portata: si scrive al salto d'era* |
 | `mine_sealed` | 0 | 3 | 0 | 3 |  |
 | `mountain_forgotten` | 0 | 1 | 0 | 1 |  |
 | `nahr_settled` | 0 | 7 | 0 | 7 |  |
-| `no_charter` | 0 | 6 | 0 | 4 |  |
+| `no_charter` | 0 | 7 | 0 | 5 |  |
 | `oath_broken` | 0 | 3 | 8 | 3 |  |
-| `order_restored` | 0 | 293 | 0 | 100 |  |
+| `order_restored` | 0 | 294 | 0 | 100 |  |
 | `petition_heard` | 0 | 0 | 0 | 0 | **non arriva mai** |
 | `price_in_lives` | 0 | 10 | 0 | 9 |  |
 | `question_unresolved` | 0 | 33 | 31 | 14 |  |
