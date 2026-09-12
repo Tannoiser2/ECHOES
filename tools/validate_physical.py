@@ -1997,7 +1997,7 @@ def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     e' si sa prima di giocarla, e ogni difetto qui e' un difetto stampato sul
     cartone.
 
-    Per ognuna si pretendono quattro cose:
+    Per ognuna si pretendono cinque cose:
 
     1. **nessuna casella vuota**: ogni posto della rosa ha almeno una candidata;
     2. **nessuna tessera isolata**: dal centro si arriva ovunque — il raggio non
@@ -2012,7 +2012,12 @@ def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     4. **tutte e sei le famiglie sul tavolo**: una famiglia che non sta sulla
        mappa non si puo' andare a prendere (D-313). Prima era un rimedio a valle
        — si stendeva la mappa e poi la si aggiustava; adesso e' una guardia a
-       monte, e il rimedio e' stato tolto.
+       monte, e il rimedio e' stato tolto;
+    5. **la sede di una casa e' una casella intera** (D-513): se una tessera
+       nasce con una casa sopra, quella casa dev'essere su **tutte** le
+       candidate di almeno una casella. E' la stessa regola della (3), applicata
+       a chi ci abita invece che alle strade — e per la stessa ragione: la
+       pescata puo' cambiare l'eta' di una terra, non portarla via.
 
     **Le strade interrotte non sono piu' un difetto** (D-511, parola del
     committente). D-510 le vietava, e con le strade stampate sul lato quel
@@ -2078,6 +2083,38 @@ def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                 "porta, a %s non ci arriva piu' nessuno. Le candidate di una casella "
                 "possono **aggiungere** strade, mai togliere quella che regge la mappa"
                 % casella
+            )
+    if guai:
+        return guai
+
+    # (5) **La sede di una casa e' una casella intera** (D-513, la strada scelta
+    # dal committente). Una tessera puo' nascere con una casa sopra (`control`):
+    # quella e' la sua terra. La pescata puo' cambiarne l'eta' — Eredan o Eredan
+    # delle Sei Porte, la stessa citta' in due secoli — ma non portarla via.
+    #
+    # Se la casa sta su qualche candidata e non su **tutte** quelle di almeno
+    # una casella, una rosa puo' uscire senza la sua terra: e allora quella
+    # casa, se il tavolo la pesca, comincia da nessuna parte. Prima di D-513
+    # succedeva a Vaerax un terzo delle volte e ai Nahr un quarto, e non se ne
+    # lamentava niente — il motore fa nascere libera la tessera di una casa che
+    # non gioca (`world_state_factory.gd`), ma non ha nulla da dire sul verso
+    # opposto. La capitale la regola ce l'aveva gia', per caso: tutt'e due le
+    # sue candidate portano il Re.
+    case_con_terra: Dict[str, List[str]] = {}
+    for regione in regioni:
+        chi = regione.get("control")
+        if chi:
+            case_con_terra.setdefault(str(chi), []).append(str(regione.get("id")))
+    for casa in sorted(case_con_terra):
+        sicura = any(
+            all(str(r.get("control") or "") == casa for r in per_casella[c])
+            for c in CASELLE
+        )
+        if not sicura:
+            guai.append(
+                "sede non garantita: %s tiene %s, ma nessuna casella della rosa la porta "
+                "su tutte le sue candidate — una pescata puo' lasciarla seduta senza la "
+                "sua terra" % (casa, ", ".join(sorted(case_con_terra[casa])))
             )
     if guai:
         return guai
@@ -2210,6 +2247,25 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             if regione.get("map_slot") == "P5":
                 regione["edges"] = [l for l in regione["edges"] if l != "N"]
                 break
+
+    def rosa_sede_non_garantita(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Si toglie la casa a **una sola** candidata della casella che la ospita.
+
+        E' il difetto di D-513, ed e' fabbricato e non cercato: le tre caselle
+        che sono sede oggi ce l'hanno su tutte le candidate, quindi cercarlo fra
+        i dati vorrebbe dire non provare niente. Togliendolo a una sola, la
+        pescata a volte regge — ed e' proprio il caso che non si vede giocando:
+        la casa comincia da nessuna parte una volta su tre."""
+        case = [r for r in prova["region"] if r.get("control")]
+        if not case:
+            return
+        casa = str(case[0]["control"])
+        sorelle = [r for r in prova["region"]
+                   if str(r.get("control") or "") == casa
+                   and r.get("map_slot") == case[0].get("map_slot")]
+        if len(sorelle) < 2:
+            return
+        sorelle[-1]["control"] = None
 
     def rosa_famiglia_fuori(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         """Si toglie una famiglia da ogni tessera che la porta: sparisce dal tavolo."""
@@ -2922,6 +2978,10 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "la rete minima non tiene"),
         pianta("una famiglia che non sta su nessuna tessera", rosa_famiglia_fuori,
                "famiglia fuori dalla mappa"),
+        # **La sede garantita** (D-513): la casella intera e' la terra di una
+        # casa, e la pescata puo' cambiarne l'eta' ma non portarla via.
+        pianta("una casa che sta solo su qualche candidata della sua casella",
+               rosa_sede_non_garantita, "sede non garantita"),
     ]
     puliti = controlla(documenti)
     print("  %s %s" % ("OK " if not puliti else "MANCATO", "dati veri: nessun guaio"))

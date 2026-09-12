@@ -10,6 +10,124 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-513 — La sede di una casa e' una casella intera
+
+**implemented (0.1.483)** — parola del committente, scelta fra tre strade
+proposte: *«La 1»* — cioe' dare la garanzia della sede **per costruzione**,
+come la capitale ce l'aveva gia' senza che nessuno l'avesse scritto.
+
+La domanda che ha aperto la voce era di quelle corte: *«quando si pesca il re
+che tessera si usa?»*. La risposta, guardando il motore, e' semplice — la
+casella `C` pesca fra Eredan e Eredan delle Sei Porte, e tutte e due portano
+scritto il Re — ma cercandola e' venuto fuori che **per le altre due case con
+una terra la risposta non c'era**.
+
+### Il difetto, e perche' non se ne lamentava niente
+
+Due pescate indipendenti: **quattro case su otto** (`entity_pool`) e **una
+tessera per ognuna delle sette caselle** (`resolve_map`). Una tessera puo'
+nascere con una casa sopra — `control` sul dato — ed e' il gettone che sta gia'
+sul cartone quando la scatola si apre.
+
+Il verso facile il motore lo sapeva gia' fare: una tessera che esce con sopra
+una casa che **non** gioca nasce libera (`world_state_factory.gd:197`). Sul
+verso opposto — una casa che gioca e la cui terra **non e' uscita** — non aveva
+niente da dire, e nessuno se ne lamentava: la partita cominciava, e un
+giocatore cominciava da nessuna parte.
+
+Misurato chiamando il motore su **1000 semi**, coi dati di 0.1.482:
+
+| casa | la sua terra | candidate della sua casella | seduta senza terra |
+|---|---|---|---|
+| Re Aldric | Eredan *o* Eredan delle Sei Porte | 2 su 2 sono sue | **0** su 482 |
+| Popolo Nahr | Terre Nahr | 1 su 2 | **247** su 475 |
+| Vaerax | Montagne Rosse | 1 su 3 | **326** su 514 |
+
+Il Re era salvo **per caso**: D-511 gli aveva dato una seconda candidata che era
+la stessa citta' in un'altra eta', e quindi portava lo stesso padrone. Le altre
+due avevano sorelle di casella che erano altri posti.
+
+### La regola
+
+> **Se una tessera nasce con una casa sopra, quella casa sta su tutte le
+> candidate di quella casella.**
+
+E' la stessa forma della rete minima di D-511, applicata a chi ci abita invece
+che alle strade, e per la stessa ragione: **la pescata puo' cambiare l'eta' di
+una terra, non portarla via**.
+
+Attuata senza tessere nuove e senza toccare la geografia: tre candidate prendono
+il padrone che la loro casella gia' aveva.
+
+- `P2` — **La Palude dei Canali** passa al Popolo Nahr. I Nahr sono un popolo
+  che si sposta, non un castello: e' la stessa terra che percorrono, in un'eta'
+  in cui l'acqua non se n'e' andata;
+- `P6` — **Miniere Antiche** e **La Bocca della Miniera** passano a Vaerax. Sono
+  la stessa montagna vista da dentro: il Cristallo Rosso e' in fondo alle
+  gallerie, e cio' che dorme sotto le Montagne Rosse dorme anche li'.
+
+Le tre descrizioni lo dicono, perche' un gettone che sta sul cartone senza che
+il testo lo nomini e' una regola che il tavolo non spiega.
+
+### Quello che costa, dichiarato
+
+Piu' mondo gia' spartito quando la partita comincia: le tessere che nascono con
+un padrone passano da **0,90 a 1,47 per partita** (1000 semi, stesso strumento
+prima e dopo). E' il prezzo della garanzia, ed e' il verso giusto in cui
+sbagliare: una casa che comincia da nessuna parte non e' un inizio difficile,
+e' un inizio che non c'e'.
+
+Sul tavolo vero non si sente: cento semi, stesso seme prima e dopo.
+
+| cento semi | prima | dopo |
+|---|---|---|
+| seggi bloccati su un livello, misto | 0 su 8 | 0 su 8 |
+| seggi bloccati su un livello, uniforme | 0 su 8 | 0 su 8 |
+| Consigli per anno, misto | 5,39 | 5,43 |
+| Verita' scritte, misto | 466 (462 diverse) | 467 (464) |
+| Consigli per anno, uniforme | 5,30 | 5,33 |
+| Verita' scritte, uniforme | 453 (451 diverse) | 454 (452) |
+
+### Il banco non pescava, e cinque prove l'hanno detto
+
+Il primo giro della suite e' andato **rosso in cinque punti** — due sul libro
+delle cronache, tre sull'equilibrio — e la causa non era il motore: era che
+**`CHR_TEST` non pesca la mappa**. Il banco nomina sei Regioni per id, e fra
+quelle ci sono le Miniere Antiche. Passandole a Vaerax, sul banco Vaerax
+cominciava con **due Regioni su sei**, cioe' gia' al suo `max_stable_control`
+di 2 — e una casa che e' gia' al limite non ha piu' niente da spingere. Gli
+Echi su 24 partite sono scesi da almeno dodici a **sei**, e la partita di
+guardia al seme 4242 ha smesso di scrivere Verita'.
+
+Il rimedio non e' stato spostare una soglia: il banco adesso **dichiara il suo
+controllo iniziale** (`starting_control`, con le Miniere libere), che e' dove lo
+schema dice che deve stare da D-049 — *«il controllo iniziale non puo' stare
+nella definizione della Regione: quella porterebbe nella seconda saga le casate
+della prima»*. Un banco che prende il padrone dalla scatola cambia sotto ogni
+volta che la scatola cambia, e misura i dati mentre credi che misuri il motore.
+
+Vale la pena tenerlo scritto anche come numero, perche' e' il vero avvertimento
+di questo giro: **su un tavolo piccolo, una terra in piu' a chi e' gia' al
+limite spegne una casa.** Sul tavolo vero — sette caselle, quattro case su otto
+— la tabella qui sopra dice che non succede. Su un tavolo di sei Regioni con
+quattro case fisse, succede.
+
+### Le guardie
+
+- `validate_physical` prende la regola dal lato dei **dati** — quinta cosa che
+  si pretende da ogni rosa — e va rossa nominando la causa: *«sede non
+  garantita: X tiene ..., ma nessuna casella della rosa la porta su tutte le sue
+  candidate»*. Il suo difetto e' **piantato** e non cercato (togliere la casa a
+  una sola candidata), perche' oggi il difetto fra i dati non c'e' piu' e una
+  prova che cerca un difetto riparato smette di provare senza dirlo;
+- `test_a_house_always_finds_its_land` la prende dal lato del **motore**, in tre
+  prove: il caso fabbricato che **deve** dare non-zero (ferendo una candidata,
+  la casa resta senza terra una volta su tre); le trecento rose vere, dove non
+  succede mai; e sessanta partite aperte davvero, dove ogni casa seduta trova il
+  suo gettone sul tavolo.
+
+---
+
 ## D-512 — Lo schermo disegna la rosa, e il dito prende la tessera
 
 **implemented (0.1.482)** — nessuna parola nuova del committente: e' la

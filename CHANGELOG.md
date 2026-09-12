@@ -5,6 +5,71 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.483 — La sede di una casa è una casella intera
+
+Parola del committente, scelta fra tre strade: *«La 1»*. Nasce da una domanda
+corta — *«quando si pesca il re che tessera si usa?»* — la cui risposta c'era
+per il Re e **non c'era per le altre due case con una terra**.
+[D-513](docs/DECISIONS.md#d-513).
+
+### Corretto
+
+- **una casa poteva sedersi senza la sua terra.** Le case si pescano (quattro su
+  otto) e le tessere pure (una per casella): se la terra di una casa non usciva,
+  quella casa cominciava la partita **da nessuna parte**, e niente se ne
+  lamentava. Misurato su 1000 semi coi dati di 0.1.482: **Vaerax 326 volte su
+  514**, **il Popolo Nahr 247 su 475**. Il Re era salvo per caso — le due
+  candidate della capitale sono la stessa città in due età, e portano tutt'e due
+  il suo nome;
+- adesso la regola è la stessa per tutti: **se una tessera nasce con una casa
+  sopra, quella casa sta su tutte le candidate di quella casella**. La pescata
+  può cambiare l'età di una terra, non portarla via.
+
+### Cambiato
+
+- **La Palude dei Canali** è del Popolo Nahr, **Miniere Antiche** e **La Bocca
+  della Miniera** sono di Vaerax: nessuna tessera nuova e nessun varco spostato,
+  solo il padrone che la loro casella già aveva. Le tre descrizioni lo dicono.
+
+### Misurato
+
+| | prima | dopo |
+|---|---|---|
+| Vaerax seduto senza la sua montagna | 326 su 514 | **0** |
+| Popolo Nahr seduto senza i suoi pascoli | 247 su 475 | **0** |
+| Re Aldric senza Eredan | 0 su 482 | 0 |
+| tessere che nascono con un padrone | 0,90 per partita | **1,47** |
+
+Il costo è l'ultima riga, ed è dichiarato: più mondo già spartito quando la
+partita comincia. Sul tavolo vero non si sente — cento semi, prima e dopo:
+
+| cento semi | prima | dopo |
+|---|---|---|
+| seggi bloccati su un livello (misto / uniforme) | 0 e 0 su 8 | 0 e 0 su 8 |
+| Consigli per anno (misto / uniforme) | 5,39 / 5,30 | 5,43 / 5,33 |
+| Verità scritte (misto / uniforme) | 466 / 453 | 467 / 454 |
+
+### Corretto anche
+
+- **il banco di prova prendeva il padrone dalla scatola.** `CHR_TEST` non pesca
+  la mappa: nomina sei Regioni per id, Miniere Antiche compresa. Col passaggio a
+  Vaerax, sul banco Vaerax cominciava con due Regioni su sei — già al suo
+  `max_stable_control` — e **cinque prove sono andate rosse**: gli Echi su 24
+  partite da dodici a sei, e la partita di guardia che smetteva di scrivere
+  Verità. Adesso il banco **dichiara** il suo controllo iniziale
+  (`starting_control`), che è dove [D-049](docs/DECISIONS.md#d-049) dice che
+  deve stare. Un banco che prende il padrone dalla scatola misura i dati mentre
+  credi che misuri il motore.
+
+### Guardie
+
+- `validate_physical` — quinta cosa pretesa da ogni rosa, col difetto
+  **piantato** (togliere la casa a una sola candidata), non cercato fra i dati;
+- `test_a_house_always_finds_its_land` — tre prove: il caso fabbricato che deve
+  dare non-zero, le trecento rose vere, e sessanta partite aperte davvero.
+
+---
+
 ## 0.1.482 — Lo schermo disegna la rosa, e il dito prende la tessera
 
 Nessuna parola nuova del committente: è la conseguenza di D-510 che mancava. La

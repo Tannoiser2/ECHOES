@@ -22,7 +22,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 **`REG_BOCCA_MINIERA`**
 > La Bocca della Miniera
 
-> Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.
+> Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro. Il buio non e' vuoto: quello che dorme sotto le Montagne Rosse dorme anche qui.
 
 > Dalla galleria alta si esce sulla strada dei mercanti. Non tutti sanno che esiste.
 
@@ -60,7 +60,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 **`REG_MINIERE_ANTICHE`**
 > Miniere Antiche
 
-> Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso.
+> Gallerie scavate da mani che nessuno ricorda. In fondo, il Cristallo Rosso, e il respiro di cio' che dorme sotto la montagna.
 
 > Il Cristallo Rosso non riflette la luce delle torce: la restituisce più tardi.
 
@@ -84,7 +84,7 @@ possono spostare nella frase, non togliere. 3099 testi in lettura.
 **`REG_PALUDE_CANALI`**
 > La Palude dei Canali
 
-> Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro.
+> Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. I Nahr la attraversano coi carri alti: e' la stessa terra che percorrono, in un'eta' in cui l'acqua non se n'e' andata.
 
 > Sotto il fango i canali vecchi tengono ancora: chi sa leggerli attraversa in un giorno.
 
