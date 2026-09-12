@@ -29,7 +29,7 @@ viceversa (`retro`).
 | **carta Destino** | tarocco 70×120 mm | 23 | 23 | si' | `schede/destiny.json` |
 | **carta Obiettivo** | tarocco 70×120 mm | 19 | 19 | si' | `schede/objective.json` |
 | **carta Casata** | tarocco 70×120 mm | 32 | 32 | si' | `schede/entity.json` |
-| **tessera Regione** | tessera 80×80 mm | 10 | 10 | si' | `schede/region.json` |
+| **tessera Regione** | tessera 80×80 mm | 15 | 15 | si' | `schede/region.json` |
 
 ## Il record di una carta, uguale per tutti i tipi
 
@@ -144,7 +144,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
     },
     {
       "voce": "PRENDI",
-      "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini."
+      "testo": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata."
     }
   ],
   "arte": {
@@ -545,7 +545,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 7. tessera Regione — tessera 80×80 mm · 10 facce · 10 pezzi
+## 7. tessera Regione — tessera 80×80 mm · 15 facce · 15 pezzi
 
 **Cos'e'.** La tessera di mappa: **porta i segni** che ogni carta Azione bersaglia, e i varchi con cui si posa accanto alle altre.
 
@@ -584,10 +584,10 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 
 ```json
 {
-  "id": "REG_BOSCO_CONFINI",
+  "id": "REG_BOCCA_MINIERA",
   "tipo": "region",
-  "titolo": "Il Bosco dei Confini",
-  "sottotitolo": "foresta · 3 pedine · 2 Pietre",
+  "titolo": "La Bocca della Miniera",
+  "sottotitolo": "sottosuolo · 4 pedine · 2 Pietre",
   "angolo": "",
   "accento": "#8a8172",
   "famiglia": "",
@@ -595,27 +595,27 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
   "righe": [
     {
       "voce": "VARCHI",
-      "testo": "alto · NO"
+      "testo": "basso · SE · NE"
     },
     {
       "voce": "SEGNI",
-      "testo": "dominio: l'antico · #bosco"
+      "testo": "dominio: l'antico · dominio: le risorse · #cristallo · #miniera"
     },
     {
       "voce": "CI STANNO",
-      "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+      "testo": "archivio · granaio · presidio · insediamento · pedaggio"
     },
     {
       "voce": "FONTI",
-      "testo": "autorità, forza"
+      "testo": "sapere, legami"
     }
   ],
   "arte": {
-    "chiave": "region.bosco_confini",
-    "scena": "Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.",
-    "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Il Bosco dei Confini:\nchiome, radure, sentieri stretti.\nWhat this land is right now: Alberi alti e sentieri che non restano dove li lasci. Il confine passa di qui, ma nessuno l'ha mai visto scritto.\nDominant accent: verde profondo, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top and upper-left edges; the upper-right, lower-right, bottom and lower-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
+    "chiave": "region.bocca_miniera",
+    "scena": "Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.",
+    "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of La Bocca della Miniera:\nimbocchi di galleria, sterili, impalcature, buio calibrato.\nWhat this land is right now: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.\nDominant accent: verde-azzurro, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the upper-right, lower-right and bottom edges; the top, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
   },
-  "pie": "REG_BOSCO_CONFINI",
+  "pie": "REG_BOCCA_MINIERA",
   "copie": 1,
   "segreta": false
 }

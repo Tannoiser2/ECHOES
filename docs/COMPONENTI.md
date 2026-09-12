@@ -15,9 +15,9 @@ cosa manca perche' l'app dica **tutto** quello che dice il tavolo.
 | Carte **Destino** | 23 | 23 | 70x120 mm | **tutte** | 6 |
 | Carte **Obiettivo** (coperte) | 19 | 19 | 70x120 mm | **tutte** | 5 |
 | Carte **Casata** (una per vita) | 32 | 32 | 70x120 mm | **nessuna** | 8 |
-| Tessere **Regione** | 10 | 10 | 80x80 mm | **nessuna** | 2 |
+| Tessere **Regione** | 15 | 15 | 80x80 mm | **nessuna** | 3 |
 
-**84 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
+**85 fogli A4 di carte e tessere**, piu' quattro fogli-fustella (i segni
 delle Regioni, i segni delle case, i segni del mondo, la traccia dei valori).
 
 ## 2. I segnalini che si posano
@@ -62,9 +62,9 @@ centodiciotto simboli, si impara quello che si vede.
 
 | | |
 |---|---|
-| soggetti da illustrare (`art_prompt_key`) | **132** |
+| soggetti da illustrare (`art_prompt_key`) | **137** |
 | gia' disegnati | **11** |
-| ancora segnaposto | **121** |
+| ancora segnaposto | **126** |
 
 E **di cosa e' fatto quel numero**, mazzo per mazzo:
 
@@ -74,7 +74,7 @@ E **di cosa e' fatto quel numero**, mazzo per mazzo:
 | Carte **Casata** (una per vita) | 32 | 0 | **32** |
 | Carte Destino | 23 | 0 | **23** |
 | Carte Obiettivo | 19 | 0 | **19** |
-| Tessere Regione | 10 | 10 | **0** |
+| Tessere Regione | 15 | 10 | **5** |
 
 I prompt pronti da mandare a chi disegna stanno in
 [BRIEF_ARTE.md](BRIEF_ARTE.md), generati dagli stessi dati.
@@ -105,17 +105,17 @@ che le legge dalle facce vere; la colonna «d'autore» da questi dati.
 | Carte Destino | **23** | 23 su 23 | d'autore |
 | Carte Obiettivo | **19** | — | ricavata dai dati (D-445) |
 | Carte Casata | **32** | — | ricavata dai dati |
-| Tessere Regione | **10** | — | ricavata dai dati |
+| Tessere Regione | **15** | — | ricavata dai dati |
 
 **Nessun pezzo esce senza faccia**, e da [D-365](DECISIONS.md#d-365) la
-tessera dice anche **dove si costruisce**: 10 tessere su 10 dichiarano i
-loro spazi-Pietra, **21 in tutto**, e il bioma decide che cosa ci sta —
+tessera dice anche **dove si costruisce**: 15 tessere su 15 dichiarano i
+loro spazi-Pietra, **33 in tutto**, e il bioma decide che cosa ci sta —
 6 Pietre che una casa alza, 4 che sono la terra stessa. I 25 segni con
 posto `TILE_SLOT` hanno finalmente il cartone che li ospita.
 
 ### b. L'arte
 
-**121 soggetti su 132 sono ancora segnaposto.** E' il pezzo piu' grosso
+**126 soggetti su 137 sono ancora segnaposto.** E' il pezzo piu' grosso
 in quantita' e il piu' facile da parallelizzare: i prompt sono gia'
 scritti e la scatola si stampa e si gioca anche cosi'.
 

@@ -14,7 +14,7 @@ che entra. Il numero accanto e' su quante facce del mazzo quel blocco c'e'.
 | **destiny** | 70x120 — il tarocco che resta in vista | 23 | 23 |
 | **objective** | 70x120 — il tarocco che resta in vista | 19 | 19 |
 | **entity** | 70x120 — il tarocco che resta in vista | 32 | 32 |
-| **region** | 80x80 — la tessera quadrata della mappa | 10 | 10 |
+| **region** | 80x80 — la tessera quadrata della mappa | 15 | 15 |
 
 ## Se il testo ci sta
 
@@ -26,13 +26,13 @@ tavolo si legge peggio, e questa tabella dice **quante**.
 
 | mazzo | corpo rimpicciolito | la piu' stretta | illustrazione media | la piu' piccola |
 |---|---|---|---|---|
-| **asset** | 0 su 48 | 100% | 48% | 41% |
+| **asset** | 0 su 48 | 100% | 46% | 38% |
 | **tension** | 0 su 60 | 100% | — | — |
 | **council** | 48 su 60 | 79% | — | — |
 | **destiny** | 0 su 23 | 100% | 52% | 52% |
 | **objective** | 0 su 19 | 100% | 52% | 52% |
 | **entity** | 0 su 32 | 100% | 52% | 52% |
-| **region** | 0 su 10 | 100% | 91% | 92% |
+| **region** | 0 su 15 | 100% | 91% | 92% |
 
 ## Il mazzo `asset`
 
@@ -67,7 +67,7 @@ E porta il suo **Eco** (D-359): si cala al posto di un'Azione se le condizioni c
 > SEMPRE  Potere +1 · se il bersaglio ha #pascolo: +1 ancora e posa #inquieta
 > AL CONSIGLIO  1 · +1 se si discute di Potere o Vie
 > IMPEGNI  +1 sul suo tema · si scarta se la impegni · se la impegni al Consiglio, dove si discute non e' piu' #contesa
-> PRENDI  ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.
+> PRENDI  ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.
 
 ## Il mazzo `tension`
 
@@ -214,24 +214,24 @@ La casa, in vista tutta la partita: cosa sa fare e cosa vuole lasciare.
 
 La tessera di mappa. **Porta i segni** che ogni carta Azione bersaglia.
 
-**Lo scheletro** — 80x80 — la tessera quadrata della mappa, 10 facce, 10 pezzi:
+**Lo scheletro** — 80x80 — la tessera quadrata della mappa, 15 facce, 15 pezzi:
 
 | blocco | su quante facce |
 |---|---|
-| il titolo | 10 su 10 |
-| il sottotitolo | 10 su 10 |
-| l'illustrazione | 10 su 10 |
-| **VARCHI** | 9 su 10 |
-| **SEGNI** | 10 su 10 |
-| **CI STANNO** | 10 su 10 |
-| **FONTI** | 10 su 10 |
-| **VARCHI SE** | 1 su 10 |
+| il titolo | 15 su 15 |
+| il sottotitolo | 15 su 15 |
+| l'illustrazione | 15 su 15 |
+| **VARCHI** | 14 su 15 |
+| **SEGNI** | 15 su 15 |
+| **CI STANNO** | 15 su 15 |
+| **FONTI** | 15 su 15 |
+| **VARCHI SE** | 1 su 15 |
 
 **Una carta vera**, come esce dal foglio di stampa:
 
-> **Il Bosco dei Confini**
-> foresta · 3 pedine · 2 Pietre
-> VARCHI  alto · NO
-> SEGNI  dominio: l'antico · #bosco
-> CI STANNO  archivio · canale · granaio · presidio · insediamento · pedaggio
-> FONTI  autorità, forza
+> **La Bocca della Miniera**
+> sottosuolo · 4 pedine · 2 Pietre
+> VARCHI  basso · SE · NE
+> SEGNI  dominio: l'antico · dominio: le risorse · #cristallo · #miniera
+> CI STANNO  archivio · granaio · presidio · insediamento · pedaggio
+> FONTI  sapere, legami

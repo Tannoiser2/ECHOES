@@ -876,9 +876,17 @@ def check_a_drawn_map_bears_every_theme(
     Due invarianti, e insieme garantiscono che **ogni Tema abbia un mazzetto
     vivo su qualunque mappa esca**:
 
-    1. per ogni dominio usato dalle candidate, le tessere candidate che lo
-       portano devono essere almeno `N - count + 1`: cosi' e' impossibile
-       pescare una mappa senza quel dominio;
+    1. per ogni dominio usato dalle candidate, dev'essere **impossibile pescare
+       una mappa senza**. Come si verifica dipende da come si pesca:
+
+       - **a caselle** (D-510): la mappa ha sette posti e ognuno prende una
+         delle sue candidate. Allora un dominio e' garantito se **una casella
+         ce l'ha su tutte le sue candidate** — comunque vada quella pescata, il
+         dominio siede. Contare le tessere non serve piu' e sbaglierebbe: con
+         quindici candidate e sette pescate il principio dei cassetti chiede
+         nove portatrici, mentre a caselle ne basta **una per posto**;
+       - **alla cieca** (com'era prima, e come restano le Chronicle senza
+         `map_slot`): le portatrici devono essere almeno `N - count + 1`.
     2. ogni Tema deve avere almeno una candidata **a fuoco libero** (senza
        `focus_region_tags`): il suo dominio e' garantito dal punto 1, quindi
        la candidata regge su ogni mappa, e il mazzetto del Tema non e' mai
@@ -897,11 +905,33 @@ def check_a_drawn_map_bears_every_theme(
         candidates = [str(r) for r in pool.get("candidates", [])]
         count = int(pool.get("count", 0))
         minimum = len(candidates) - count + 1
+
+        # Le candidate raccolte per casella. Vuoto se la Chronicle pesca alla
+        # cieca, e allora si torna al conto di prima.
+        by_slot: Dict[str, List[str]] = {}
+        for region_id in candidates:
+            slot = str(regions.get(region_id, {}).get("map_slot", ""))
+            if slot:
+                by_slot.setdefault(slot, []).append(region_id)
+
+        def domains_of(region_id: str) -> set:
+            return {
+                str(tag)[len("domain:"):]
+                for tag in regions.get(region_id, {}).get("tags", [])
+                if str(tag).startswith("domain:")
+            }
+
+        # `sure` sono i domini che **una casella intera** porta: quelli siedono
+        # su qualunque mappa. `carriers` resta il conto delle tessere, e serve
+        # al ripiego della pescata cieca.
+        sure: set = set()
+        for slot, quali in by_slot.items():
+            common = set.intersection(*[domains_of(r) for r in quali]) if quali else set()
+            sure |= common
         carriers: Dict[str, int] = {}
         for region_id in candidates:
-            for tag in regions.get(region_id, {}).get("tags", []):
-                if str(tag).startswith("domain:"):
-                    carriers[str(tag)[len("domain:"):]] = carriers.get(str(tag)[len("domain:"):], 0) + 1
+            for domain in domains_of(region_id):
+                carriers[domain] = carriers.get(domain, 0) + 1
         tension_ids = [str(t) for t in (chronicle.get("tension_pool") or {}).get("candidates", [])]
         free_by_theme: Dict[str, int] = {}
         for tension_id in tension_ids:
@@ -909,7 +939,15 @@ def check_a_drawn_map_bears_every_theme(
             if tension is None:
                 continue
             domain = str(tension.get("domain", ""))
-            if carriers.get(domain, 0) < minimum:
+            if by_slot:
+                if domain not in sure:
+                    report.fail(
+                        where,
+                        f"il dominio {domain} non e' garantito: nessuna casella della rosa "
+                        f"lo porta su tutte le sue candidate, quindi una mappa puo' uscire "
+                        f"senza, e «{tension_id}» non reggerebbe",
+                    )
+            elif carriers.get(domain, 0) < minimum:
                 report.fail(
                     where,
                     f"il dominio {domain} sta su {carriers.get(domain, 0)} tessere candidate "

@@ -785,12 +785,20 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
 
     # 17. Bersagli garantiti sul tavolo pescato (PZ-3, D-273): una carta a
     # bersaglio REGION deve poter nominare un luogo su OGNI mappa pescata.
-    # Stessa matematica dei domini (D-265): con N candidate e K pescate, i
-    # segni stampati su almeno N-K+1 tessere ci sono per costruzione. Contano
-    # i segni STAMPATI: condizioni e pietre sono strade in piu', non il
+    # Contano i segni STAMPATI: condizioni e pietre sono strade in piu', non il
     # pavimento. Il bersaglio libero (senza any_tag) e' garantito da solo.
+    #
+    # **Come si verifica dipende da come si pesca** (D-510). Con le caselle
+    # della rosa un segno c'e' per costruzione se **una casella ce l'ha su tutte
+    # le sue candidate**: comunque vada quella pescata, quel posto siede. Il
+    # conto delle tessere — N-K+1, il principio dei cassetti — vale solo per le
+    # Chronicle che pescano alla cieca, e su una pescata a caselle darebbe un
+    # numero piu' alto del vero: quindici candidate e sette pescate ne
+    # chiederebbero nove, mentre ne basta una per posto.
     stampati_per_tessera = {str(r.get("id")): {str(t) for t in r.get("tags", [])}
                             for r in documenti.get("region", [])}
+    stampati_slot = {str(r.get("id")): str(r.get("map_slot", ""))
+                     for r in documenti.get("region", [])}
     for cronaca in documenti.get("chronicle", []):
         pool = cronaca.get("region_pool") or {}
         candidate = [str(c) for c in pool.get("candidates", [])]
@@ -798,12 +806,30 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         if not candidate or pescate <= 0:
             continue
         pavimento = len(candidate) - pescate + 1
+        per_casella_qui: Dict[str, List[str]] = {}
+        for rid in candidate:
+            slot = str(stampati_slot.get(rid, ""))
+            if slot:
+                per_casella_qui.setdefault(slot, []).append(rid)
         for carta in documenti.get("asset", []):
             bersaglio = (carta.get("physical") or {}).get("target") or {}
             if str(bersaglio.get("scope", "")) != "REGION":
                 continue
             segni = [str(t) for t in bersaglio.get("any_tag", [])]
             if not segni:
+                continue
+            if per_casella_qui:
+                sicuro = any(
+                    all(any(s in stampati_per_tessera.get(rid, set()) for s in segni)
+                        for rid in quali)
+                    for quali in per_casella_qui.values()
+                )
+                if not sicuro:
+                    guai.append(
+                        "bersaglio non garantito sul tavolo pescato: %s nomina segni che "
+                        "nessuna casella della rosa di %s porta su tutte le sue candidate, "
+                        "quindi una mappa puo' uscire senza"
+                        % (carta.get("id"), cronaca.get("id")))
                 continue
             porta = sum(1 for rid in candidate
                         if any(s in stampati_per_tessera.get(rid, set()) for s in segni))
@@ -832,6 +858,20 @@ def controlla(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
                         continue
                     segni_riga = [str(s) for s in riga.get("any_tag", [])]
                     if not segni_riga:
+                        continue
+                    # Stessa regola del bersaglio (D-510): a caselle basta che
+                    # **una casella** porti il segno su tutte le sue candidate.
+                    if per_casella_qui:
+                        if not any(
+                            all(any(s in stampati_per_tessera.get(rid, set()) for s in segni_riga)
+                                for rid in quali)
+                            for quali in per_casella_qui.values()
+                        ):
+                            guai.append(
+                                "clausola non garantita sul tavolo pescato: %s guarda segni "
+                                "che nessuna casella della rosa di %s porta su tutte le sue "
+                                "candidate, quindi una mappa puo' uscire senza"
+                                % (carta.get("id"), cronaca.get("id")))
                         continue
                     porta_riga = sum(
                         1 for rid in candidate
@@ -1963,12 +2003,23 @@ def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     2. **nessuna tessera isolata**: dal centro si arriva ovunque — il raggio non
        c'e' su tutti i petali (P3 e P6 stanno dietro una vicina, ed e' voluto),
        ma una strada che porti fuori dev'esserci;
-    3. **nessuna strada morta**: un varco guarda sempre un altro varco. E' la
-       promessa che il posto fisso compra, e qui si verifica invece di fidarsi;
+    3. **la rete minima e' connessa**: presa per ogni casella la sola parte
+       comune a tutte le sue candidate, quella rosa dev'essere gia' in un pezzo.
+       E' la regola che rende vera la (2) **per costruzione** invece che per
+       fortuna — una candidata puo' solo *aggiungere* strade, mai togliere
+       quella che regge la mappa — e va rossa nominando la causa invece di una
+       delle rose rotte;
     4. **tutte e sei le famiglie sul tavolo**: una famiglia che non sta sulla
        mappa non si puo' andare a prendere (D-313). Prima era un rimedio a valle
-       — si stendeva la mappa e poi la si aggiustava; adesso che le rose sono
-       otto e' una guardia a monte, e il rimedio e' stato tolto."""
+       — si stendeva la mappa e poi la si aggiustava; adesso e' una guardia a
+       monte, e il rimedio e' stato tolto.
+
+    **Le strade interrotte non sono piu' un difetto** (D-511, parola del
+    committente). D-510 le vietava, e con le strade stampate sul lato quel
+    divieto costava tutta la varieta': la rete era una sola, sempre. Adesso una
+    casella puo' avere candidate coi varchi diversi, e un varco che incontra il
+    muro della vicina e' **una strada che finisce contro la roccia** — il motore
+    la legge gia' cosi', perche' un passaggio richiede i due lati."""
     guai: List[str] = []
     regioni = documenti.get("region", [])
     if not regioni:
@@ -1995,6 +2046,42 @@ def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
     # tessere renderebbe la guardia cieca proprio al difetto che deve prendere:
     # togliere una famiglia da tutte le tessere la farebbe *sparire* invece che
     # *mancare*. E' la trappola della prova che smette di provare.
+    # (3) **La rete minima.** Per ogni casella solo i varchi che *tutte* le sue
+    # candidate portano: se quella rosa e' gia' connessa lo sono tutte, perche'
+    # una candidata piu' aperta puo' solo aggiungere strade. E' la regola di
+    # disegno che tiene in piedi la promessa grossa adesso che le candidate di
+    # uno stesso posto possono avere varchi diversi.
+    minimi = {
+        c: set.intersection(*[set(str(l) for l in (r.get("edges") or []))
+                              for r in per_casella[c]])
+        for c in CASELLE
+    }
+    magri: Dict[str, List[str]] = {c: [] for c in CASELLE}
+    for qui in CASELLE:
+        for la in CASELLE:
+            lato = _lato_fra(qui, la)
+            if qui == la or not lato:
+                continue
+            if lato in minimi[qui] and _lato_fra(la, qui) in minimi[la]:
+                magri[qui].append(la)
+    visti_magri, coda_magra = {"C"}, ["C"]
+    while coda_magra:
+        qui = coda_magra.pop()
+        for la in magri[qui]:
+            if la not in visti_magri:
+                visti_magri.add(la)
+                coda_magra.append(la)
+    for casella in CASELLE:
+        if casella not in visti_magri:
+            guai.append(
+                "la rete minima non tiene: togliendo i varchi che solo qualche candidata "
+                "porta, a %s non ci arriva piu' nessuno. Le candidate di una casella "
+                "possono **aggiungere** strade, mai togliere quella che regge la mappa"
+                % casella
+            )
+    if guai:
+        return guai
+
     famiglie = sorted(_famiglie_dello_schema())
     for scelta in itertools.product(*[sorted(per_casella[c], key=lambda r: str(r.get("id")))
                                       for c in CASELLE]):
@@ -2002,34 +2089,24 @@ def le_rose_possibili(documenti: Dict[str, List[Dict[str, Any]]]) -> List[str]:
         nome = " ".join("%s=%s" % (c, rosa[c].get("id")) for c in CASELLE)
         varchi = {c: set(str(l) for l in (rosa[c].get("edges") or [])) for c in CASELLE}
 
-        # 3. una strada morta e' un varco che guarda un muro.
+        # Le vicine: due caselle si toccano solo se il lato che combacia e'
+        # aperto sui due lati. Un varco che incontra un muro e' **una strada
+        # interrotta**, e da D-511 non e' piu' un difetto: il motore la legge
+        # gia' cosi', e qui si conta e basta.
         vicini: Dict[str, List[str]] = {c: [] for c in CASELLE}
         for qui in CASELLE:
             for la in CASELLE:
                 lato = _lato_fra(qui, la)
                 if qui == la or not lato:
                     continue
-                aperto_qui = lato in varchi[qui]
-                aperto_la = _lato_fra(la, qui) in varchi[la]
-                if aperto_qui and aperto_la:
+                if lato in varchi[qui] and _lato_fra(la, qui) in varchi[la]:
                     vicini[qui].append(la)
-                elif aperto_qui:
-                    guai.append("strada morta: il varco %s di %s guarda il muro di %s — rosa %s"
-                                % (lato, rosa[qui].get("id"), rosa[la].get("id"), nome))
 
-        # 2. dal centro si arriva ovunque.
-        visti = {"C"}
-        coda = ["C"]
-        while coda:
-            qui = coda.pop()
-            for la in vicini[qui]:
-                if la not in visti:
-                    visti.add(la)
-                    coda.append(la)
-        for casella in CASELLE:
-            if casella not in visti:
-                guai.append("tessera isolata: da Eredan non si arriva a %s (%s) — rosa %s"
-                            % (rosa[casella].get("id"), casella, nome))
+        # **La connessione non si ricontrolla qui**, e non e' una dimenticanza:
+        # con la rete minima connessa (controllo 2) e le candidate che possono
+        # solo *aggiungere* strade, una rosa isolata non puo' esistere. Un
+        # controllo che non potrebbe mai mordere e' un controllo che non c'e':
+        # la promessa la tiene il 2, che ha il suo difetto piantato.
 
         # 4. tutte e sei le famiglie.
         offerte = {str(f) for c in CASELLE for f in (rosa[c].get("asset_sources") or [])}
@@ -2122,17 +2199,17 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
             if regione.get("map_slot") == "P1":
                 regione["map_slot"] = "P4"
 
-    def rosa_strada_morta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        """Si apre un varco che nessuno ricambia: guarda un muro."""
-        for regione in prova["region"]:
-            if regione.get("map_slot") == "C" and "SE" not in regione["edges"]:
-                regione["edges"] = regione["edges"] + ["SE"]
+    def rosa_rete_minima_rotta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Si toglie a **una sola** candidata di P5 il varco che tiene P6.
 
-    def rosa_tessera_isolata(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        """Si mura il petalo che sta dietro un'altra: non lo raggiunge piu' nessuno."""
+        E' il difetto che D-511 rende possibile e che la rete minima prende:
+        finche' l'altra candidata ce l'ha la mappa a volte regge, quindi
+        enumerare le rose direbbe «qualcuna si rompe» senza dire perche'. La
+        regola invece nomina la causa."""
         for regione in prova["region"]:
-            if regione.get("map_slot") == "P2":
-                regione["edges"] = [l for l in regione["edges"] if l != "S"]
+            if regione.get("map_slot") == "P5":
+                regione["edges"] = [l for l in regione["edges"] if l != "N"]
+                break
 
     def rosa_famiglia_fuori(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         """Si toglie una famiglia da ogni tessera che la porta: sparisce dal tavolo."""
@@ -2346,19 +2423,23 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
         con_faccia["physical"]["observes"] = ["segno_inventato_apposta"]
 
     def bersaglio_stretto(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        # Una carta ri-mirata sulla sola #capitale: una tessera su dieci, e la
-        # meta' delle mappe pescate non avrebbe dove posarla.
+        # Una carta ri-mirata sul solo #isola. Fino a D-510 il difetto si
+        # piantava su #capitale; con la rosa la capitale **siede sempre**, e
+        # quel bersaglio e' diventato garantito — cioe' non era piu' un difetto.
+        # L'isola invece e' una delle tre candidate di P3: due mappe su tre non
+        # avrebbero dove posarla.
         carta = next(a for a in prova["asset"]
                      if (a.get("physical") or {}).get("target", {}).get("scope") == "REGION"
                      and (a["physical"]["target"].get("any_tag")))
-        carta["physical"]["target"]["any_tag"] = ["capital"]
+        carta["physical"]["target"]["any_tag"] = ["island"]
 
     def clausola_stretta(prova: Dict[str, List[Dict[str, Any]]]) -> None:
-        # Una riga di Destino ri-mirata sulla sola #capitale: una tessera su
-        # dieci, e meta' delle mappe pescate non la porterebbe (D-327).
+        # Una riga di Destino ri-mirata sul solo #isola: una delle tre candidate
+        # di P3, quindi due mappe su tre non la porterebbero (D-327). Prima era
+        # #capitale, che con la rosa e' garantito e non prova piu' niente.
         riga = next(r for d in prova["destiny"] for r in _righe_di_regione(d)
                     if r.get("any_tag"))
-        riga["any_tag"] = ["capital"]
+        riga["any_tag"] = ["island"]
 
     def clausola_col_nome(prova: Dict[str, List[Dict[str, Any]]]) -> None:
         # Una riga che torna a nominare una Regione per nome: e' il difetto che
@@ -2829,17 +2910,16 @@ def autotest(documenti: Dict[str, List[Dict[str, Any]]]) -> int:
                "Risonanza cieca"),
         pianta("secondo Tema che non esiste", tema_inventato,
                "secondo Tema che non esiste"),
-        # **Le otto rose** (D-510): la guardia le conta tutte, e qui si prova
-        # che morda su ognuna delle quattro promesse. La strada morta e' il
-        # difetto che ha preso i dati veri al primo giro — Eredan era aperta su
-        # sei lati con solo quattro raggi.
+        # **Le rose possibili** (D-510, riscritta da D-511): la guardia le conta
+        # tutte, e qui si prova che morda su ognuna delle promesse. La strada
+        # morta non c'e' piu' fra queste: da D-511 e' lecita, ed e' contata
+        # invece che vietata.
         pianta("una tessera senza il suo posto nella rosa", rosa_senza_posto,
                "senza un posto nella rosa"),
         pianta("una casella della rosa senza candidate", rosa_casella_vuota,
                "senza nessuna candidata"),
-        pianta("un varco che guarda un muro", rosa_strada_morta, "strada morta"),
-        pianta("il petalo dietro un'altra, murato", rosa_tessera_isolata,
-               "tessera isolata"),
+        pianta("la rete minima spezzata da una candidata sola", rosa_rete_minima_rotta,
+               "la rete minima non tiene"),
         pianta("una famiglia che non sta su nessuna tessera", rosa_famiglia_fuori,
                "famiglia fuori dalla mappa"),
     ]

@@ -55,13 +55,18 @@
         "ENT_VAERAX"
       ],
       "regions": [
+        "REG_BOCCA_MINIERA",
         "REG_BOSCO_CONFINI",
         "REG_EREDAN",
+        "REG_EREDAN_SEI_PORTE",
         "REG_ISOLA_MUTA",
         "REG_MINIERE_ANTICHE",
+        "REG_MOLO_NUOVO",
         "REG_MONTAGNE_ROSSE",
         "REG_PALUDE_CANALI",
+        "REG_PASSO_CARRI",
         "REG_PORTO_CINERINO",
+        "REG_RADURA_TAGLIATA",
         "REG_STRADA_MERCANTI",
         "REG_TERRE_NAHR",
         "REG_VALLE_VERDE"
@@ -372,13 +377,18 @@
       },
       "region_pool": {
         "candidates": [
+          "REG_BOCCA_MINIERA",
           "REG_BOSCO_CONFINI",
           "REG_EREDAN",
+          "REG_EREDAN_SEI_PORTE",
           "REG_ISOLA_MUTA",
           "REG_MINIERE_ANTICHE",
+          "REG_MOLO_NUOVO",
           "REG_MONTAGNE_ROSSE",
           "REG_PALUDE_CANALI",
+          "REG_PASSO_CARRI",
           "REG_PORTO_CINERINO",
+          "REG_RADURA_TAGLIATA",
           "REG_STRADA_MERCANTI",
           "REG_TERRE_NAHR",
           "REG_VALLE_VERDE"

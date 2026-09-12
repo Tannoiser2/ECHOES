@@ -11,7 +11,7 @@
         "army",
         "common"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -96,7 +96,7 @@
         "garrison",
         "border"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -186,7 +186,7 @@
         "roads",
         "control"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -282,7 +282,7 @@
         "terror",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -372,7 +372,7 @@
         "hired",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -455,7 +455,7 @@
         "siege",
         "pressure"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -556,7 +556,7 @@
         "legacy",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -638,7 +638,7 @@
         "irreversible",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Forza. Fonti: Eredan, Montagne Rosse, L'Isola Muta, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -729,7 +729,7 @@
         "law",
         "common"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -808,7 +808,7 @@
         "law",
         "symbol"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -889,7 +889,7 @@
         "record",
         "administration"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -981,7 +981,7 @@
         "tradition",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1062,7 +1062,7 @@
         "law",
         "judgement"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -1155,7 +1155,7 @@
         "title",
         "grant"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -1239,7 +1239,7 @@
         "prohibition",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -1321,7 +1321,7 @@
         "succession",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini.",
+      "acquisition_rule": "ACQUISIRE su Autorità. Fonti: Eredan, Terre Nahr, Il Bosco dei Confini, Eredan delle Sei Porte, La Radura Tagliata.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2108,7 +2108,7 @@
         "secret",
         "common"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2197,7 +2197,7 @@
         "record",
         "roads"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -2286,7 +2286,7 @@
         "record",
         "trade"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -2367,7 +2367,7 @@
         "proof",
         "discovery"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2458,7 +2458,7 @@
         "record",
         "memory"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2550,7 +2550,7 @@
         "voice",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -2632,7 +2632,7 @@
         "awakening",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2726,7 +2726,7 @@
         "secret",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta.",
+      "acquisition_rule": "ACQUISIRE su Sapere. Fonti: Miniere Antiche, Strada dei Mercanti, La Palude dei Canali, L'Isola Muta, Il Passo dei Carri, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2816,7 +2816,7 @@
         "food",
         "common"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -2906,7 +2906,7 @@
         "trade",
         "food"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -2998,7 +2998,7 @@
         "roads",
         "trade"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -3088,7 +3088,7 @@
         "trade",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -3177,7 +3177,7 @@
         "debt",
         "trade"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "FLAT_BONUS",
         "value": 1
@@ -3260,7 +3260,7 @@
         "food",
         "control"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -3344,7 +3344,7 @@
         "crown",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -3432,7 +3432,7 @@
         "land",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Ricchezza. Fonti: Valle Verde, Strada dei Mercanti, Porto Cinerino, Il Passo dei Carri, Il Molo Nuovo.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -3519,7 +3519,7 @@
         "debt",
         "common"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -3601,7 +3601,7 @@
         "custom",
         "kinship"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "RELEVANT_BONUS",
         "value": 1
@@ -3684,7 +3684,7 @@
         "debt",
         "memory"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 1
@@ -3765,7 +3765,7 @@
         "pact",
         "kinship"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -3851,7 +3851,7 @@
         "pact",
         "kinship"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "OPPOSE_BONUS",
         "value": 2
@@ -3937,7 +3937,7 @@
         "kinship",
         "pact"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -4027,7 +4027,7 @@
         "coercion",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0
@@ -4113,7 +4113,7 @@
         "betrayal",
         "risky"
       ],
-      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino.",
+      "acquisition_rule": "ACQUISIRE su Legami. Fonti: Montagne Rosse, Miniere Antiche, Porto Cinerino, Il Molo Nuovo, La Bocca della Miniera.",
       "confluence_modifier": {
         "kind": "NONE",
         "value": 0

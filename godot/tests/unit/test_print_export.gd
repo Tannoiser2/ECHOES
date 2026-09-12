@@ -757,7 +757,7 @@ func test_the_region_tile_shows_its_signs() -> void:
 		if prose != "":
 			assert_false(printed.contains(prose),
 				"%s stampa ancora il racconto" % str(tile["id"]))
-	assert_eq(tessere, 10, "le tessere Regione")
+	assert_eq(tessere, 15, "le tessere Regione (dieci della rosa, cinque alternative)")
 
 
 ## **Nessuna faccia stampa piu' il racconto** (D-344), su nessun mazzo. La prova
