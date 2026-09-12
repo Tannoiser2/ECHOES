@@ -5,6 +5,47 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.482 — Lo schermo disegna la rosa, e il dito prende la tessera
+
+Nessuna parola nuova del committente: è la conseguenza di D-510 che mancava. La
+scatola ha tessere esagonali da due versioni, e l'app continuava a disegnare
+**quadrati messi a rosa**. [D-512](docs/DECISIONS.md#d-512).
+
+### Corretto
+
+- **il dito prendeva i sei angoli che la fustella toglie.** `_region_at` usava
+  due confronti — `|dx| <= R and |dy| <= R` — che su un esagono prendono anche
+  gli angoli: un tocco **fuori dal cartone** accendeva la tessera. Adesso il
+  dito guarda dentro il poligono, che è la stessa figura che si disegna;
+- **la tessera si disegna esagonale**: il quadro dipinto ritagliato dentro la
+  sagoma, il bordo del padrone e l'anello dell'offerta sulla forma vera, e la
+  fascia del nome stretta quanto il lato di sotto invece che quanto la tessera;
+- **i segnalini di stato** stavano «sopra la riga alta, sotto la riga bassa»
+  (D-464), che su una rosa non vuol dire niente: adesso stanno dalla parte
+  opposta al centro del tavolo, e Pietre e Cicatrici si tengono alla larghezza
+  vera dell'esagono a quell'altezza;
+- **le fughe fra tessere** si guardavano in due direzioni, il passo della
+  griglia. Sulla rosa i vicini stanno tutt'intorno: sei direzioni, e la coppia
+  si riconosce dalla distanza fra i centri.
+
+### Aggiunto
+
+- `test_the_map_is_a_rose_of_hexagons`: i quattro angoli del riquadro **fuori**
+  dalla sagoma e il centro dentro, il lato piatto sopra e sotto (girata di
+  trenta gradi sarebbe un'altra mappa), i sei petali intorno alla capitale a un
+  passo d'incastro.
+
+### Dichiarato
+
+**Quanto cambia il bersaglio del dito non è misurato.** A parità di raggio
+l'esagono vale 2,60 R² contro i 4 R² del quadrato — il 65% — ma l'incastro
+esagonale lascia crescere il raggio (da ~W/6 a ~W/5 dove comanda la larghezza) e
+l'area torna vicina a prima. `MISURA_PAGINA` guarda i pannelli, non il bersaglio
+della tessera: il suo «allineato» su questa modifica non dice niente, e sarebbe
+disonesto spacciarlo per una conferma.
+
+---
+
 ## 0.1.481 — Le strade cambiano, e una può finire contro la roccia
 
 Parola del committente: *«aggiungi le tessere alternative per far variare le
