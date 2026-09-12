@@ -5,6 +5,43 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.487 — La distanza si paga in Azioni, e non serve altro
+
+Parola del committente, che conteneva già la risposta: *«ci si può spostare
+nelle tessere adiacenti, quindi la geometria già rende, perché per spostarsi da
+una parte all'altra bisogna scegliere l'azione muoversi»*.
+[D-517](docs/DECISIONS.md#d-517) — chiude [ISSUES 138](docs/ISSUES.md#138),
+l'ultima voce rossa.
+
+### Misurato
+
+- **la distanza la paga MUOVERE.** Tutte e sette le Azioni costano una
+  Opportunità: un passo **è** un'Azione. E si va solo verso una vicina di varco
+  — anche per **posare** una pedina nuova, che è la maggioranza dei casi (8,44
+  delle 10,46 MUOVERE l'anno);
+- `P3` e `P6`, dietro una vicina, stanno a **1,83 passi** dalla capitale (due
+  passi in 120 rose su 144); il viaggio più lungo è di **quattro passi in 82
+  rose su 144**;
+- e si vede sul tavolo, su cento partite:
+
+| | apertura | fine anno | pedine guadagnate |
+|---|---|---|---|
+| la capitale | 1,39 | 2,46 | **+1,07** |
+| a un passo | 0,61 | 1,61 | **+1,00** |
+| dietro una vicina | 0,48 | 0,88 | **+0,39** |
+
+Il primo passo è quasi gratis; **il secondo taglia il guadagno a meno di due
+quinti**.
+
+### Non fatto, e dichiarato
+
+Nessuna delle tre strade proposte dalla voce — un verbo che costa di più
+lontano, una carta con la portata, una gola che rende: metterebbero un secondo
+prezzo sopra uno che già morde. **Nessuna riga di motore è cambiata**: questo
+giro è una misura e un verbale.
+
+---
+
 ## 0.1.486 — La tessera si stampa esagonale
 
 Parola del committente: *«apri il giro del foglio di stampa esagonale»*.

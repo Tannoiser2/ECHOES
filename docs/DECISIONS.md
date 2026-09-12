@@ -10,6 +10,77 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-517 — La distanza si paga in Azioni, e non serve altro
+
+**implemented (0.1.487)** — parola del committente, che conteneva gia' la
+risposta: *«Vai con 138, e' anche vero che ci si puo' spostare nelle tessere
+adiacenti, quindi la geometria gia' rende, perche' per spostarsi da una parte
+all'altra bisogna scegliere l'azione muoversi»*.
+
+Aveva ragione, e [ISSUES 138](ISSUES.md#138) aveva cercato nel posto sbagliato.
+La voce diceva: *«non c'e' cammino minimo, non c'e' «a due passi», non c'e'
+raggiungibilita'»*, e concludeva che la geografia fosse **muta nel gioco**. Il
+primo e' vero e il secondo no: **la distanza non si paga con un conto, si paga
+con le Azioni.**
+
+### Dove si paga
+
+- tutte e sette le Azioni costano `ao_cost: 1`, quindi **un passo e' un'Azione**
+  — non un gettone in piu' accanto a qualcos'altro, ma una cosa che non fai;
+- si va **solo verso una vicina di varco**: `_check_move` chiede
+  `can_move_to`, che chiede `neighbours_of`, e con la rosa quel grafo lo
+  costruisce `_lay_the_rose` **dai varchi stampati** — non dall'`adjacency`
+  d'autore, che infatti sulle cinque tessere di [D-511](#d-511) e' vuoto;
+- e vale anche per **posare** una pedina nuova dalla riserva, che e' la
+  maggioranza dei casi: **8,44 delle 10,46 MUOVERE giocate l'anno** sono pose.
+  La geografia non decide solo quanto ci metti: decide **dove puoi arrivare**.
+
+Quindi `P3` e `P6` — le due caselle dietro una vicina, a **1,83 passi di media
+dalla capitale**, a due passi in 120 rose su 144 — costano **due Azioni** dove
+le altre ne costano una. Il viaggio piu' lungo della rosa e' di **quattro passi
+in 82 rose su 144**, tre in 54, due in otto.
+
+### E si vede sul tavolo
+
+Cento partite, `run_move_probe`, presenze per casella:
+
+| | apertura | fine anno | pedine guadagnate |
+|---|---|---|---|
+| la capitale (0 passi) | 1,39 | 2,46 | **+1,07** |
+| a un passo (`P1 P2 P4 P5`) | 0,61 | 1,61 | **+1,00** |
+| dietro una vicina (`P3 P6`) | 0,48 | 0,88 | **+0,39** |
+
+Il **guadagno** e' la colonna che conta: toglie il vantaggio di chi parte gia'
+occupato. Il primo passo e' quasi gratis — una casella a un passo si riempie
+come la capitale — e **il secondo taglia il guadagno a meno di due quinti**.
+
+E' esattamente la forma che deve avere: con poche Opportunita' l'anno, la
+seconda Azione per arrivare da qualche parte quasi nessuno la spende.
+
+### Il numero che non va letto male
+
+La stessa sonda dice che «la porta» — cacciata, segno che sbarra, adiacenza,
+Regione piena — ferma **1 occasione su 400, lo 0,2%**. Leggerlo come «la
+geografia non morde» sarebbe sbagliato, ed e' il modo piu' facile di sbagliare
+questa misura: quel conto guarda i **rifiuti**, e il cervello non tenta
+l'impossibile — sceglie una vicina. Il morso della distanza non sta nel
+rifiuto, sta nel **percorso**.
+
+### Cosa non si fa
+
+Le tre strade che la voce proponeva — un verbo che costa di piu' lontano, una
+carta con la portata, una gola che rende — restano possibili e **nessuna e'
+necessaria**: metterebbero un secondo prezzo sopra uno che gia' morde, e una
+regola che rende la mappa decisiva puo' bloccare un seggio.
+
+E il collo di bottiglia del movimento resta quello di sempre, che non e' la
+distanza: **la carta** (53,0% delle occasioni) e **il gettone** (33,5%). Quella
+e' [ISSUES 48](ISSUES.md#48), e non e' questa.
+
+Nessuna riga di motore cambiata: questo giro e' una **misura e un verbale**.
+
+---
+
 ## D-516 — La tessera si stampa esagonale
 
 **implemented (0.1.486)** — parola del committente: *«apri il giro del foglio di

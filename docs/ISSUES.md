@@ -10408,7 +10408,7 @@ non vale qui** e' meta' di una trattativa; ma vanno sotto, dove non intralciano
 la scelta.
 
 
-### 138. La distanza sulla mappa non la legge nessuno
+### 138. ✅ La distanza sulla mappa non la legge nessuno — CHIUSA in 0.1.487: la paga il movimento, e si vede (+1,00 contro +0,39)
 
 `regole` · `mappa` · `da-decidere` · trovata in 0.1.480 · **aperta in 0.1.480**
 
@@ -10440,6 +10440,51 @@ Le strade possibili, da scegliere e da misurare:
 **Da non fare a caso:** prima si misura quanto le tre strade spostano il
 cancello dei 100 semi, poi si sceglie. Una regola che rende la mappa decisiva
 puo' bloccare un seggio, ed e' il vincolo che non si negozia.
+
+---
+
+**CHIUSA in 0.1.487 ([D-517](DECISIONS.md#d-517)), con la strada 4 corretta dai
+numeri.** Parola del committente: *«e' anche vero che ci si puo' spostare nelle
+tessere adiacenti, quindi la geometria gia' rende, perche' per spostarsi da una
+parte all'altra bisogna scegliere l'azione muoversi»*. Aveva ragione, e il
+motore lo conferma.
+
+**La distanza la paga MUOVERE.** Tutte e sette le Azioni costano `ao_cost: 1`,
+quindi un passo **e'** un'Azione: una cosa che non fai. E si va solo verso una
+**vicina di varco** — `can_move_to` chiede `neighbours_of`, e con la rosa quelle
+vicine sono i varchi stampati (`_lay_the_rose`), non il grafo d'autore. Vale
+anche per **posare** una pedina nuova dalla riserva, che e' la maggioranza dei
+casi: **8,44 delle 10,46 MUOVERE giocate l'anno** sono pose, non spostamenti.
+
+Quindi `P3` e `P6` — le due caselle dietro una vicina, a **1,83 passi di media
+dalla capitale**, a due passi in 120 rose su 144 — costano **due Azioni** dove
+le altre ne costano una. E il viaggio piu' lungo della rosa e' di **quattro
+passi in 82 rose su 144**.
+
+**E si vede sul tavolo.** Cento partite, presenze per casella:
+
+| | apertura | fine anno | pedine guadagnate |
+|---|---|---|---|
+| la capitale (0 passi) | 1,39 | 2,46 | **+1,07** |
+| a un passo (`P1 P2 P4 P5`) | 0,61 | 1,61 | **+1,00** |
+| dietro una vicina (`P3 P6`) | 0,48 | 0,88 | **+0,39** |
+
+Il **guadagno** e' la colonna che conta, perche' toglie il vantaggio di chi
+parte gia' occupato. Il primo passo e' quasi gratis — una casella a un passo si
+riempie come la capitale — e il **secondo taglia il guadagno a meno di due
+quinti**.
+
+**Il numero che non va letto male:** la sonda dice che «la porta» (adiacenza,
+cacciata, Regione piena) ferma **1 occasione su 400, lo 0,2%**. Leggerlo come
+«la geografia non morde» sarebbe sbagliato: quel conto misura i **rifiuti**, e
+il cervello non tenta l'impossibile — sceglie una vicina. Il morso della
+distanza non e' nel rifiuto, e' nel **percorso**.
+
+**Quello che resta vero, e che non serve:** il motore non calcola cammini
+minimi, e continua a non farlo. Il collo di bottiglia del movimento non e' la
+distanza ma **la carta** (53,0% delle occasioni) e **il gettone** (33,5%) — che
+e' la voce 48, non questa. Le strade 1, 2 e 3 restano possibili e nessuna e'
+necessaria: metterebbero un secondo prezzo sopra uno che gia' morde.
 
 ---
 

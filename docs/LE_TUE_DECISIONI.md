@@ -273,9 +273,9 @@ guarda domande **e** verbale, ed è zero.
 | | |
 |---|---|
 | voci scritte | **142** |
-| chiuse | **130** |
-| aperte | **12** |
-| di cui **aspettano una tua decisione** | **1** |
+| chiuse | **131** |
+| aperte | **11** |
+| di cui **aspettano una tua decisione** | **0** |
 | di cui sono mie da fare | **11** |
 
 E il ritmo, voce per voce, per fascia di venticinque versioni:
@@ -305,19 +305,19 @@ aspetta me, non devi farci niente.
 
 | | quante | chi la muove |
 |---|---|---|
-| 🔴 | **1** | **tu**, con una parola. Nessuna sta sulla strada, nessuna è fuori |
+| 🔴 | **nessuna** | **tu** — e oggi non c'è niente che aspetti una tua parola |
 | 🔵 | **2** | **una persona che gioca**. Non si misurano: si verificano giocando |
 | 🟡 | **2** | **io**, da sola, senza aspettare niente |
 | ⚪ | **7** | nessuno, per adesso: sono fuori dalla lista finché non giochi |
 
-**Due.** Delle dodici voci aperte, due le posso muovere senza di te — ed è il
-numero che va detto per primo. **Il giro è fermo su una tua parola.**
+**Due.** Delle undici voci aperte, due le posso muovere senza di te — ed è il
+numero che va detto per primo. **Il giro non è fermo su nessuna tua parola.**
 
 <!-- COLORI: fine -->
 
 ---
 
-# 🔴 Aspettano te: **una**
+# 🔴 Aspettano te: **nessuna**
 
 **Per centoquarantanove versioni qui non c'è stato niente**, e adesso ce ne
 sono state quattro: la **R14**, la **R15**, la **R16** e la **R17**, e le hai
@@ -351,7 +351,7 @@ Delle voci aperte non ce n'era **nessuna** che aspettasse una tua parola — le
 due 🔵 aspettano una partita, non una decisione. *«Se una rossa nasce di nuovo,
 nasce qui»*, dicevo. Eccola.
 
-### R19. [138](ISSUES.md#138) — la distanza sulla mappa non la legge nessuno: **aperta in 0.1.480**
+### ✔ R19. [138](ISSUES.md#138) — la distanza sulla mappa non la legge nessuno: **aperta in 0.1.480**
 
 Questa nasce da una tua domanda, che era la piu' importante che hai fatto sulla
 mappa: *«ma se alcune tessere NON vanno verso il centro? devono per forza
@@ -384,6 +384,36 @@ il gioco funziona senza. Ma va detta, invece che lasciata a sembrare una regola.
 **Quello che non faccio senza la tua parola:** misurare le prime tre costa un
 giro per ciascuna, e una regola che rende la mappa decisiva puo' bloccare un
 seggio — che e' il vincolo che non si negozia. Dimmi quale, e misuro quella.
+
+**E la tua parola e' arrivata, e conteneva gia' la risposta** ([D-517](DECISIONS.md#d-517),
+0.1.487):
+
+> *«Vai con 138, e' anche vero che ci si puo' spostare nelle tessere adiacenti,
+> quindi la geometria gia' rende, perche' per spostarsi da una parte all'altra
+> bisogna scegliere l'azione muoversi.»*
+
+Avevi ragione, e avevo guardato nel posto sbagliato. Cercavo un **cammino
+minimo** nel motore e non c'era; ma la distanza non si paga con un conto, si
+paga con **le Azioni**. Tutte e sette costano una Opportunita', quindi un passo
+**e'** un'Azione — una cosa che non fai — e si va solo verso una vicina di
+varco. Vale anche per **posare** una pedina nuova, che e' la maggioranza dei
+casi: 8,44 delle 10,46 MUOVERE l'anno sono pose.
+
+Quindi le due caselle dietro una vicina costano **due Azioni** dove le altre ne
+costano una. E cento partite dicono che questo si vede:
+
+| | apertura | fine anno | pedine guadagnate |
+|---|---|---|---|
+| la capitale | 1,39 | 2,46 | **+1,07** |
+| a un passo | 0,61 | 1,61 | **+1,00** |
+| dietro una vicina | 0,48 | 0,88 | **+0,39** |
+
+Il primo passo e' quasi gratis; **il secondo taglia il guadagno a meno di due
+quinti**. La geografia non era muta: parlava con la voce dell'economia, e io
+stavo ascoltando quella della geometria.
+
+Non ho aggiunto niente al gioco. Le tre strade restano possibili, e nessuna e'
+necessaria: metterebbero un secondo prezzo sopra uno che gia' morde.
 
 ### ✔ R14. [131](ISSUES.md#131) — il verbo doppio: **aperta in 0.1.446**
 
@@ -1618,9 +1648,9 @@ generare, non si scrive.**
 
 <!-- IN UNA RIGA: inizio - generato da tools/issues_survey.py -->
 
-**Quello che resta da dire in una riga:** delle dodici voci aperte ne posso
+**Quello che resta da dire in una riga:** delle undici voci aperte ne posso
 muovere **due** da sola. Due le verifica una persona che gioca, sette stanno
-fuori dalla lista, e **una aspettano una tua parola**.
+fuori dalla lista, e **nessuna aspetta una tua parola**.
 
 <!-- IN UNA RIGA: fine -->
 
