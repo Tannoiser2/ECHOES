@@ -10,6 +10,77 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-512 — Lo schermo disegna la rosa, e il dito prende la tessera
+
+**implemented (0.1.482)** — nessuna parola nuova del committente: e' la
+conseguenza di D-510 che mancava. Con la rosa esagonale in scatola, l'app
+continuava a disegnare **quadrati messi a rosa**, e la direzione di casa dice il
+contrario da 0.1.218:
+
+> ECHOES e' prima di tutto un gioco da tavolo, con un'app di supporto.
+
+Un'app che mostra una forma che sul tavolo non c'e' non e' di supporto: e' una
+seconda mappa sotto quella vera.
+
+### Cosa cambia, e perche' non e' solo la forma
+
+- **la posa.** Le colonne distano `1,5 R` e le righe `√3 R`, e le colonne di
+  lato scendono di mezza riga: e' il passo dell'incastro degli esagoni, non un
+  accorgimento grafico. `map_positions` resta la verita' del mondo — [colonna,
+  riga] — e la vista la legge come coordinata d'esagono;
+- **il quadro dipinto** si ritaglia dentro la sagoma (`draw_colored_polygon` con
+  le coordinate della tessitura prese dal riquadro): l'immagine resta intera, e
+  a essere tagliati sono i sei angoli che la fustella toglie comunque. E' la
+  ragione per cui D-279 aveva rifiutato l'esagono nel 2024 — allora il cartone
+  era quadrato e ritagliarlo avrebbe nascosto meta' del quadro; adesso il
+  ritaglio **e'** la tessera;
+- **il bordo** di chi tiene il posto e l'anello dell'offerta seguono la sagoma;
+- **la fascia del nome** si stringe: in basso l'esagono e' largo quanto un lato,
+  non quanto la tessera, e una fascia larga come prima usciva dai due angoli;
+- **i segnalini di stato** stavano *«sopra la riga alta, sotto la riga bassa»*
+  (D-464). Sulla rosa «riga alta» non vuol dire niente: adesso la striscia sta
+  dalla parte **opposta al centro del tavolo**, e per la capitale — che al
+  centro ci sta — sotto. Le Pietre e le Cicatrici si tengono alla larghezza vera
+  dell'esagono a quell'altezza, invece che a quella del centro;
+- **le fughe** fra tessere si guardavano in due direzioni (destra e sotto, il
+  passo della griglia). Sulla rosa i vicini stanno tutt'intorno, e la coppia si
+  riconosce dalla distanza fra i centri: sei direzioni invece di due.
+
+### Il difetto che il quadrato aveva per costruzione
+
+`_region_at` prendeva la tessera con due confronti — `|dx| <= R and |dy| <= R` —
+e su un esagono quei due confronti prendono **anche i sei angoli che la fustella
+toglie**. Cioe' un tocco che cade fuori dal cartone accendeva la tessera, e chi
+giocava poteva posare una pedina puntando un punto che sul tavolo non esiste.
+Adesso il dito guarda dentro il poligono, che e' **la stessa figura che si
+disegna**: una sola geometria per il disegno e per il tocco.
+
+### Quanto costa al dito, dichiarato
+
+L'esagono toglie i sei angoli: a parita' di raggio l'area del bersaglio scende a
+**2,60 R²** contro i **4 R²** del quadrato, cioe' al 65%. Ma l'incastro
+esagonale lascia crescere il raggio — dove la larghezza comanda, da `W/6` a
+circa `W/5` — e l'area torna **vicina a quella di prima**. Il conto esatto
+dipende da quanto e' larga la finestra, e non e' misurato: `MISURA_PAGINA`
+guarda i pannelli, non il bersaglio della tessera, quindi il suo «allineato» su
+questa modifica **non dice niente**, ed e' giusto scriverlo invece di spacciarlo
+per una conferma.
+
+Quello che si guadagna non e' l'area ma la **verita'**: un tocco che prende una
+tessera e' un tocco che sta sulla tessera.
+
+### La prova
+
+`test_the_map_is_a_rose_of_hexagons` guarda i tre numeri che si possono
+sbagliare in silenzio: che i quattro angoli del riquadro stiano **fuori** dalla
+sagoma (e che meta' strada verso i quattro versi stia **dentro**, che e' il caso
+che deve dare non-zero); che l'esagono abbia il lato piatto sopra e sotto — se
+fosse girato di trenta gradi i varchi non combacerebbero piu' con quelli
+stampati; e che i sei petali cadano intorno alla capitale a un passo
+d'incastro, col nord davvero sopra.
+
+---
+
 ## D-511 — Le strade cambiano, e una strada puo' finire contro la roccia
 
 **implemented (0.1.481)** — parola del committente: *«aggiungi le tessere

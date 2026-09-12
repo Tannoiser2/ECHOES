@@ -36,8 +36,42 @@ const RADIUS_MIN: float = 42.0
 const RADIUS_MAX: float = 92.0
 var _radius: float = RADIUS_MIN
 
+## **L'esagono della rosa** (D-512), nell'orientamento che i dati chiamano per
+## nome: lato piatto sopra e sotto, punte a sinistra e a destra. Cosi' i sei
+## lati sono `N NE SE S SO NO` in senso orario dall'alto — gli stessi che la
+## tessera porta stampati — e il petalo a nord sta **davvero** sopra il centro.
+const SQRT3: float = 1.7320508
+
+
+## I sei vertici, a partire dalla punta di destra.
+static func _hex_points(centre: Vector2, r: float) -> PackedVector2Array:
+	var out: PackedVector2Array = PackedVector2Array()
+	for k in range(6):
+		var a: float = deg_to_rad(60.0 * float(k))
+		out.append(centre + Vector2(r * cos(a), -r * sin(a)))
+	return out
+
+
+## Dove cade la casella [colonna, riga] rispetto alla prima. Le colonne pari
+## scendono di mezza riga: e' l'incastro degli esagoni.
+static func _hex_offset(column: int, row: int, r: float) -> Vector2:
+	var lift: float = 0.0 if column % 2 == 1 else -0.5
+	return Vector2(1.5 * r * float(column), SQRT3 * r * (float(row) + lift))
+
+
+## Quanto e' larga la tessera a `dy` dal suo centro: sopra e sotto l'esagono si
+## stringe, e un segnalino messo alla larghezza del centro uscirebbe dal cartone.
+static func _hex_half_width(dy: float, r: float) -> float:
+	return maxf(0.0, r * (1.0 - absf(dy) / (SQRT3 * r)))
+
 ## Region id -> centre, in pixels. Rebuilt on every resize.
 var _points: Dictionary = {}
+
+## **Si gioca sulla rosa?** Vero quando il mondo porta una posa e non c'e' il
+## quadro d'autore sotto. Una domanda sola, in un posto solo: era scritta in
+## tre punti diversi come «map_positions non vuoto e board nullo», ed e' il
+## genere di riga che diverge in silenzio.
+var _hex: bool = false
 var _regions: Array = []
 var _session: RefCounted
 var _viewer: String = ""
@@ -282,6 +316,8 @@ func _relayout() -> void:
 	if _session == null:
 		return
 	_points.clear()
+	_hex = not (_session.world.get("map_positions", {}) as Dictionary).is_empty() \
+		and _board() == null
 	# Sei tessere e la mappa piu grande possibile che le contiene: il raggio esce
 	# dallo spazio disponibile invece di essere una costante, cosi la stessa vista
 	# funziona in una finestra stretta e a schermo intero.
@@ -294,13 +330,14 @@ func _relayout() -> void:
 	# esattamente quello che la regola legge.
 	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
 	if not posa.is_empty():
-		# **La rosa e' un 3x3 con due buchi** (D-510): la griglia si ricava
-		# dalle caselle occupate invece di essere una costante, cosi' il
-		# giorno che la rosa cambia forma la vista la segue da sola — con le
-		# due costanti di prima, 3x2, le sette tessere della rosa uscivano dal
-		# foglio in silenzio. Sopra la riga alta e sotto la riga bassa corre la
-		# striscia dei segnalini di stato della Regione — sei spazi per tessera
-		# — e la tessera e' il lato piu' grande che ci sta con quelle due.
+		# **La rosa e' fatta di esagoni** (D-512): le tessere si accostano come
+		# sul tavolo, lato a lato, e non come quadrati messi a rosa. Le colonne
+		# distano `1,5 R` e le righe `√3 R`, e le colonne di lato scendono di
+		# mezza riga: e' il passo dell'incastro, non un accorgimento grafico.
+		#
+		# `map_positions` resta la verita' del mondo — [colonna, riga] — e qui
+		# si legge come coordinata d'esagono. La vista segue la posa: se un
+		# giorno la rosa cambia forma, cambia da sola.
 		var columns: int = GRID_COLUMNS
 		var rows: int = GRID_ROWS
 		for region_id in _regions:
@@ -310,33 +347,27 @@ func _relayout() -> void:
 			columns = maxi(columns, int((where as Array)[0]) + 1)
 			rows = maxi(rows, int((where as Array)[1]) + 1)
 		var strip: float = SLOT + SLOT_GAP * 2.0
-		var side: float = minf(
-			(size.x - SEAM * float(columns - 1)) / float(columns),
-			(size.y - strip * 2.0 - SEAM * float(rows - 1)) / float(rows)
+		# Largo: `1,5 R` per colonna piu' le due mezze punte ai lati = 1,5(c-1)+2.
+		# Alto: `√3 R` per riga, piu' la mezza riga di sfasamento e le strisce.
+		_radius = minf(
+			(size.x - SEAM) / (1.5 * float(columns - 1) + 2.0),
+			(size.y - strip * 2.0 - SEAM) / (SQRT3 * (float(rows) + 0.5))
 		)
-		_radius = side * 0.5
-		_grid_side = side
+		_radius = clampf(_radius, RADIUS_MIN * 0.5, RADIUS_MAX)
+		_grid_side = _radius * 2.0
 		var block: Vector2 = Vector2(
-			side * float(columns) + SEAM * float(columns - 1),
-			side * float(rows) + SEAM * float(rows - 1) + strip * 2.0
+			_radius * (1.5 * float(columns - 1) + 2.0),
+			_radius * SQRT3 * (float(rows) + 0.5) + strip * 2.0
 		)
-		var origin: Vector2 = (size - block) * 0.5 + Vector2(0.0, strip)
+		var origin: Vector2 = (size - block) * 0.5 + Vector2(_radius, strip + _radius * SQRT3 * 0.5)
 		_grid_origin = origin
-		# **E le colonne di lato scendono di mezza tessera**, che e' la forma
-		# che fa una rosa di esagoni: senza quel mezzo passo la stessa posa si
-		# leggerebbe come una scacchiera, e il petalo in alto a destra
-		# sembrerebbe accanto al centro invece che sopra di lui.
 		for region_id in _regions:
 			var spot: Variant = posa.get(str(region_id))
 			if spot == null:
 				continue
 			var column: int = int((spot as Array)[0])
 			var row: int = int((spot as Array)[1])
-			var lift: float = 0.0 if column % 2 == 1 else -side * 0.5
-			_points[str(region_id)] = origin + Vector2(
-				(float(column) + 0.5) * side + SEAM * float(column),
-				(float(row) + 0.5) * side + SEAM * float(row) + lift
-			)
+			_points[str(region_id)] = origin + _hex_offset(column, row, _radius)
 		return
 
 	# Con il quadro le coordinate dei dati si prendono **alla lettera**: chi ha
@@ -432,16 +463,15 @@ func _offered_at(point: Vector2) -> String:
 
 
 func _region_at(point: Vector2) -> String:
-	# Sul tavolo pescato la tessera e' un quadrato (D-279): il dito prende il
-	# quadrato. Col cerchio, i quattro angoli di ogni tessera — cioe' un
-	# quinto della sua superficie — non rispondevano al tocco.
-	var square: bool = _session != null and not (
-		_session.world.get("map_positions", {}) as Dictionary
-	).is_empty() and _board() == null
+	# **Il dito prende la tessera, non il rettangolo che la contiene** (D-512).
+	# Con la forma quadrata bastavano due confronti; su un esagono quei due
+	# confronti prenderebbero anche i sei angoli che la fustella toglie — cioe'
+	# un tocco che cade **fuori dal cartone** e accende la tessera lo stesso.
+	# Si guarda dentro il poligono, che e' la stessa figura che si disegna.
 	for region_id in _points:
 		var centre: Vector2 = _points[region_id]
-		if square:
-			if absf(point.x - centre.x) <= _radius and absf(point.y - centre.y) <= _radius:
+		if _hex:
+			if Geometry2D.is_point_in_polygon(point, _hex_points(centre, _radius)):
 				return str(region_id)
 		elif point.distance_to(centre) <= _radius:
 			return str(region_id)
@@ -477,40 +507,38 @@ func _draw() -> void:
 ## cose»*). Nella fuga fra due tessere accostate: un ponte chiaro se il varco
 ## c'e' su tutte e due, un muro scuro se no.
 func _draw_seams() -> void:
-	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
-	var at: Dictionary = {}
-	for region_id in posa:
-		var spot: Array = posa[region_id] as Array
-		at["%d,%d" % [int(spot[0]), int(spot[1])]] = str(region_id)
 	var links: Dictionary = _session.world.get("adjacency", {}) as Dictionary
-	var half: float = _radius
-	for region_id in posa:
-		var here: String = str(region_id)
-		if not _points.has(here):
-			continue
-		var spot: Array = posa[here] as Array
-		var centre: Vector2 = _points[here]
-		for step in [Vector2i(1, 0), Vector2i(0, 1)]:
-			var key: String = "%d,%d" % [int(spot[0]) + step.x, int(spot[1]) + step.y]
-			if not at.has(key):
+	# **Sei direzioni, non due** (D-512). Col quadrato bastava guardare a destra
+	# e in basso; su una rosa i vicini stanno tutt'intorno, e la coppia si
+	# riconosce dalla distanza fra i centri — il passo dell'incastro — invece
+	# che da un passo di griglia. Ogni coppia una volta sola: `here < there`.
+	var passo: float = SQRT3 * _radius
+	var seen: Array = _points.keys()
+	seen.sort()
+	for i in range(seen.size()):
+		for j in range(i + 1, seen.size()):
+			var here: String = str(seen[i])
+			var there: String = str(seen[j])
+			var a: Vector2 = _points[here]
+			var b: Vector2 = _points[there]
+			if absf(a.distance_to(b) - passo) > _radius * 0.30:
 				continue
-			var there: String = str(at[key])
+			var mid: Vector2 = (a + b) * 0.5
+			var across: Vector2 = (b - a).normalized()
+			var along: Vector2 = across.orthogonal() * (_radius * 0.34)
 			var open: bool = (links.get(here, []) as Array).has(there)
-			var seam: Vector2 = centre + Vector2(
-				(half + SEAM * 0.5) if step.x == 1 else 0.0,
-				(half + SEAM * 0.5) if step.y == 1 else 0.0
-			)
-			var along: Vector2 = Vector2(0.0, half * 0.34) if step.x == 1 else Vector2(half * 0.34, 0.0)
-			var across: Vector2 = Vector2(SEAM * 0.5 + 6.0, 0.0) if step.x == 1 else Vector2(0.0, SEAM * 0.5 + 6.0)
 			if open:
-				var bridge: Rect2 = Rect2(seam - along - across, (along + across) * 2.0)
-				draw_rect(bridge, Color("#b08a4e"), true)
-				draw_rect(bridge, Color("#e8b563"), false, 1.5)
+				# Il varco: un ponte chiaro nella fuga, largo quanto il lato.
+				draw_line(mid - along, mid + along, Color("#b08a4e"), SEAM, true)
+				draw_line(mid - along, mid + along, Color("#e8b563"), 2.0, true)
 			else:
-				# Il muro: un lato chiuso si vede quanto un varco aperto.
-				var wall: Vector2 = Vector2(0.0, half) if step.x == 1 else Vector2(half, 0.0)
-				draw_line(seam - wall, seam + wall, Color("#0b0a08"), SEAM - 2.0, false)
-				draw_line(seam - wall, seam + wall, Color("#5a2f27"), 3.0, true)
+				# Il muro: un lato chiuso si vede quanto un varco aperto. E
+				# quando il varco c'e' da una parte sola — **una strada
+				# interrotta** (D-511) — la strada che muore contro la roccia
+				# la racconta il muro, che e' quello che si vede al tavolo.
+				var wall: Vector2 = across.orthogonal() * (_radius * 0.5)
+				draw_line(mid - wall, mid + wall, Color("#0b0a08"), SEAM - 2.0, true)
+				draw_line(mid - wall, mid + wall, Color("#5a2f27"), 3.0, true)
 
 
 ## Roads first, so the Regions sit on top of them. Drawn once per pair: the
@@ -554,13 +582,13 @@ func _draw_region(region_id: String) -> void:
 	if _board() != null:
 		_draw_over_board(region_id, centre, control, offered)
 		return
-	# **Sul tavolo pescato la tessera e' un quadrato** (D-279, parola del
-	# committente: «la mappa deve essere con le immagini affiancate a quadrato
-	# con un 3x2, non a esagoni»). Le tessere di cartone si accostano lato a
-	# lato: l'esagono era una figura che sul tavolo non esiste, e nascondeva
-	# meta' del quadro dipinto ritagliandolo.
-	if not (_session.world.get("map_positions", {}) as Dictionary).is_empty():
-		_draw_square_tile(region_id, centre, control, offered)
+	# **Sul tavolo la tessera e' un esagono** (D-512). D-279 l'aveva fatta
+	# quadrata, e la ragione era giusta allora: la mappa era un 3x2 di cartoni
+	# quadrati, e ritagliare a esagono avrebbe nascosto meta' del quadro. Da
+	# D-510 il cartone e' esagonale davvero, e lo schermo deve dire quello che
+	# dice il tavolo — con dei quadrati messi a rosa direbbe un'altra cosa.
+	if _hex:
+		_draw_hex_tile(region_id, centre, control, offered)
 		return
 	# Il terreno, generato dal bioma e dall'id: la tessera si riconosce da lontano
 	# per quello che e', non per l'etichetta scritta sotto (D-057). Il centro
@@ -626,11 +654,14 @@ func _draw_region(region_id: String) -> void:
 ## il terreno generato, dipinto dentro lo stesso quadrato. Sopra ci vanno le
 ## sole cose che il quadro non sa: chi la tiene, chi ci sta, cosa le e'
 ## successo quest'anno.
-func _draw_square_tile(
+func _draw_hex_tile(
 	region_id: String, centre: Vector2, control: Variant, offered: bool
 ) -> void:
 	var definition: Dictionary = _session.data.regions[region_id]
 	var half: float = _radius
+	# La fuga fra due cartoni: l'esagono si disegna un filo piu' piccolo del
+	# passo della posa, cosi' fra due tessere si vede il lato che si toccano.
+	var shape: PackedVector2Array = _hex_points(centre, half - SEAM * 0.25)
 	var box: Rect2 = Rect2(centre - Vector2(half, half), Vector2(half, half) * 2.0)
 	var lift: float = 0.0
 	if offered:
@@ -640,39 +671,57 @@ func _draw_square_tile(
 
 	var painted: Texture2D = ArtLibrary.texture(str(definition.get("art_prompt_key", "")))
 	if painted != null:
-		draw_texture_rect(painted, box, false, Color(1, 1, 1).lightened(lift))
+		# Il quadro **ritagliato dentro l'esagono**: le coordinate della
+		# tessitura si prendono dal riquadro che lo contiene, cosi' l'immagine
+		# resta intera e a essere tagliati sono solo i sei angoli — che sul
+		# cartone la fustella toglie comunque.
+		var uv: PackedVector2Array = PackedVector2Array()
+		for p in shape:
+			uv.append((p - box.position) / box.size)
+		draw_colored_polygon(shape, Color(1, 1, 1).lightened(lift), uv, painted)
 	else:
 		var art: Dictionary = RegionArt.plan(region_id, str(definition["biome"]))
-		draw_rect(box, Color(str(art["ground"])).lightened(lift), true)
-		_draw_terrain_strokes(art, box, lift)
-	# Il centro resta calmo anche qui: un velo sotto i segnalini, perche' un
-	# pezzo chiaro su un campo chiaro sparisce.
-	draw_circle(centre, half * 0.62, Color(0.07, 0.06, 0.05, 0.28))
+		draw_colored_polygon(shape, Color(str(art["ground"])).lightened(lift))
+		_draw_terrain_strokes(art, box.grow(-half * 0.20), lift)
+	# Il centro resta calmo: un velo sotto i segnalini, perche' un pezzo chiaro
+	# su un campo chiaro sparisce.
+	draw_circle(centre, half * 0.52, Color(0.07, 0.06, 0.05, 0.28))
 
-	# Il bordo: la fuga fra due tessere accostate, e chi tiene il posto.
+	# Il bordo: chi tiene il posto, sulla sagoma vera e non su un rettangolo.
 	var ring: Color = Color("#2a241c")
 	var width: float = 2.0
 	if control != null:
 		ring = _entity_colour(str(control))
 		width = 4.0
-	draw_rect(box, ring, false, width)
+	_draw_hex_outline(shape, ring, width)
 	if offered:
 		var lit: bool = _hovered == region_id or _landing == region_id
-		draw_rect(
-			box.grow(-3.0), Color("#e8b563") if lit else Color("#7a6338"), false,
-			3.0 if lit else 2.0
+		_draw_hex_outline(
+			_hex_points(centre, half - SEAM * 0.25 - 4.0),
+			Color("#e8b563") if lit else Color("#7a6338"), 3.0 if lit else 2.0
 		)
 
 	# Il nome sta **dentro** la tessera, in basso, ed e' un nodo (D-444): qui
-	# resta solo la fascia scura che lo stacca dal quadro.
+	# resta solo la fascia scura che lo stacca dal quadro. In basso l'esagono e'
+	# largo quanto un lato, non quanto la tessera: una fascia larga come prima
+	# uscirebbe dai due angoli.
+	var band_y: float = half * SQRT3 * 0.5 - 26.0
+	var band_half: float = _hex_half_width(band_y, half) - 4.0
 	draw_rect(
-		Rect2(centre + Vector2(-half + 4.0, half - 24.0), Vector2(half * 2.0 - 8.0, 22.0)),
+		Rect2(centre + Vector2(-band_half, band_y), Vector2(band_half * 2.0, 22.0)),
 		Color(0.05, 0.04, 0.03, 0.62), true
 	)
 
 	_draw_echo(centre, region_id)
 	_draw_presence(centre, region_id)
 	_draw_slots(centre, region_id, _session.world["regions"][region_id])
+
+
+## Il contorno di una sagoma chiusa. `draw_polyline` lascia aperto l'ultimo
+## lato, e un esagono con un lato mancante si legge come un difetto.
+func _draw_hex_outline(shape: PackedVector2Array, tint: Color, width: float) -> void:
+	for i in range(shape.size()):
+		draw_line(shape[i], shape[(i + 1) % shape.size()], tint, width, true)
 
 
 ## **Gli spazi della tessera** (D-464, parola del committente). Ogni tessera
@@ -684,11 +733,15 @@ func _draw_square_tile(
 func _draw_slots(centre: Vector2, region_id: String, region: Dictionary) -> void:
 	var data: RefCounted = _session.data if _session != null else null
 	var half: float = _radius
-	var posa: Dictionary = (_session.world.get("map_positions", {}) as Dictionary)
-	var row: int = int(((posa.get(region_id, [0, 0])) as Array)[1])
+	# **La striscia sta dalla parte di fuori** (D-464, portata alla rosa da
+	# D-512). Col 3x2 «fuori» voleva dire sopra la riga alta e sotto la riga
+	# bassa; sulla rosa vuol dire dalla parte opposta al centro del tavolo — e
+	# per la capitale, che al centro ci sta, vuol dire sotto.
+	var alto: bool = centre.y < _rose_centre().y - 1.0
+	var mezza: float = half * SQRT3 * 0.5
 	var outer_y: float = (
-		centre.y - half - SLOT_GAP - SLOT * 0.5 if row == 0
-		else centre.y + half + SLOT_GAP + SLOT * 0.5
+		centre.y - mezza - SLOT_GAP - SLOT * 0.5 if alto
+		else centre.y + mezza + SLOT_GAP + SLOT * 0.5
 	)
 
 	var conditions: Array = []
@@ -718,24 +771,41 @@ func _draw_slots(centre: Vector2, region_id: String, region: Dictionary) -> void
 		if i < conditions.size():
 			_draw_token(str(conditions[i]), box, data)
 
-	# Dentro la tessera, sopra il nome: le Pietre (quadrati) e le Cicatrici (tondi).
-	var inner_y: float = centre.y + half - 24.0 - SLOT_GAP - SLOT * 0.5
+	# Dentro la tessera, sopra il nome: le Pietre (quadrati) e le Cicatrici
+	# (tondi). Sulla rosa la riga si tiene alla **larghezza vera dell'esagono a
+	# quell'altezza**: con la mezza larghezza del centro i pezzi di bordo
+	# finirebbero fuori dal cartone, dove la fustella non ha lasciato niente.
+	var inner_y: float = centre.y + mezza - 26.0 - SLOT_GAP - SLOT * 0.5
+	if not _hex:
+		inner_y = centre.y + half - 24.0 - SLOT_GAP - SLOT * 0.5
+	var inner_half: float = _hex_half_width(inner_y - centre.y, half) if _hex else half
 	var stones: Array = []
 	for record in region.get("structures", []):
 		stones.append(record as Dictionary)
 	for i in range(STONE_SLOTS):
-		var at: Vector2 = Vector2(centre.x - half + 4.0 + SLOT * 0.5 + float(i) * pitch, inner_y)
+		var at: Vector2 = Vector2(centre.x - inner_half + 4.0 + SLOT * 0.5 + float(i) * pitch, inner_y)
 		var box: Rect2 = Rect2(at - Vector2(SLOT, SLOT) * 0.5, Vector2(SLOT, SLOT))
 		draw_rect(box, Color(0.08, 0.07, 0.05, 0.85), true)
 		draw_rect(box, Color("#4a4238"), false, 1.0)
 		if i < stones.size():
 			_draw_stone(stones[i] as Dictionary, box, data)
 	for i in range(SCAR_SLOTS):
-		var at: Vector2 = Vector2(centre.x + half - 4.0 - SLOT * 0.5 - float(SCAR_SLOTS - 1 - i) * pitch, inner_y)
+		var at: Vector2 = Vector2(centre.x + inner_half - 4.0 - SLOT * 0.5 - float(SCAR_SLOTS - 1 - i) * pitch, inner_y)
 		draw_circle(at, SLOT * 0.5, Color(0.08, 0.07, 0.05, 0.85))
 		draw_arc(at, SLOT * 0.5, 0.0, TAU, 20, Color("#4a4238"), 1.0, true)
 		if i < scars.size():
 			_draw_token(str(scars[i]), Rect2(at - Vector2(SLOT, SLOT) * 0.5, Vector2(SLOT, SLOT)), data)
+
+
+## Il centro della rosa: la media delle tessere poste. Serve a una cosa sola —
+## sapere da che parte e' **fuori**, per ogni tessera.
+func _rose_centre() -> Vector2:
+	if _points.is_empty():
+		return size * 0.5
+	var sum: Vector2 = Vector2.ZERO
+	for region_id in _points:
+		sum += _points[region_id] as Vector2
+	return sum / float(_points.size())
 
 
 ## Un segnalino di condizione o di Cicatrice nel suo spazio.
