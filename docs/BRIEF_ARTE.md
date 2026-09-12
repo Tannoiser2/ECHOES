@@ -992,6 +992,24 @@ no border. Not gory, not horror.
 
 ## region
 
+### `region.bocca_miniera` — La Bocca della Miniera
+
+- **soggetto**: La Bocca della Miniera
+- **scena**: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.
+- **id**: `REG_BOCCA_MINIERA`
+
+```
+ECHOES — Region tile. Top-down three-quarter painted map tile of La Bocca della Miniera:
+imbocchi di galleria, sterili, impalcature, buio calibrato.
+What this land is right now: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.
+Dominant accent: verde-azzurro, over the game's muted earth palette. Cartography
+crossed with painted landscape. Readable terrain silhouette from above, clear
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the upper-right, lower-right and bottom edges; the top, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
+deliberately calm and uncluttered so overlay tokens (control, presence,
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
+```
+
 ### `region.bosco_confini` — Il Bosco dei Confini
 
 - **soggetto**: Il Bosco dei Confini
@@ -1023,6 +1041,24 @@ What this land is right now: La città del trono. Vive di leggi, di titoli e del
 Dominant accent: oro spento, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right, bottom and lower-left edges; the lower-right and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
+deliberately calm and uncluttered so overlay tokens (control, presence,
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
+```
+
+### `region.eredan_sei_porte` — Eredan delle Sei Porte
+
+- **soggetto**: Eredan delle Sei Porte
+- **scena**: La stessa citta' del trono, in un'eta' in cui ha aperto tutte le mura. Sei porte, e non tutte portano da qualche parte.
+- **id**: `REG_EREDAN_SEI_PORTE`
+
+```
+ECHOES — Region tile. Top-down three-quarter painted map tile of Eredan delle Sei Porte:
+tetti fitti, mura, una piazza, magazzini sul lato.
+What this land is right now: La stessa citta' del trono, in un'eta' in cui ha aperto tutte le mura. Sei porte, e non tutte portano da qualche parte.
+Dominant accent: oro spento, over the game's muted earth palette. Cartography
+crossed with painted landscape. Readable terrain silhouette from above, clear
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right, lower-right, bottom, lower-left and upper-left edges. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
 condition, scar) sit legibly on top; detail concentrates at the borders. No
 text, no letters, no numerals, no map labels, no compass rose, no frame.
@@ -1064,6 +1100,24 @@ condition, scar) sit legibly on top; detail concentrates at the borders. No
 text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
+### `region.molo_nuovo` — Il Molo Nuovo
+
+- **soggetto**: Il Molo Nuovo
+- **scena**: Il porto quando ha smesso di essere solo un porto: una strada larga sale in citta', un'altra taglia il bosco.
+- **id**: `REG_MOLO_NUOVO`
+
+```
+ECHOES — Region tile. Top-down three-quarter painted map tile of Il Molo Nuovo:
+secche, moli, barche in secca.
+What this land is right now: Il porto quando ha smesso di essere solo un porto: una strada larga sale in citta', un'altra taglia il bosco.
+Dominant accent: azzurro spento, over the game's muted earth palette. Cartography
+crossed with painted landscape. Readable terrain silhouette from above, clear
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, lower-left and upper-left edges; the upper-right, lower-right and bottom edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
+deliberately calm and uncluttered so overlay tokens (control, presence,
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
+```
+
 ### `region.montagne_rosse` — Montagne Rosse
 
 - **soggetto**: Montagne Rosse
@@ -1100,6 +1154,24 @@ condition, scar) sit legibly on top; detail concentrates at the borders. No
 text, no letters, no numerals, no map labels, no compass rose, no frame.
 ```
 
+### `region.passo_carri` — Il Passo dei Carri
+
+- **soggetto**: Il Passo dei Carri
+- **scena**: La strada dei mercanti dove si biforca: un braccio scende in citta', l'altro si arrampica verso la pietra rossa.
+- **id**: `REG_PASSO_CARRI`
+
+```
+ECHOES — Region tile. Top-down three-quarter painted map tile of Il Passo dei Carri:
+una strada che attraversa tutto, soste, ponti, carri.
+What this land is right now: La strada dei mercanti dove si biforca: un braccio scende in citta', l'altro si arrampica verso la pietra rossa.
+Dominant accent: ambra, over the game's muted earth palette. Cartography
+crossed with painted landscape. Readable terrain silhouette from above, clear
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the lower-right, bottom and lower-left edges; the top, upper-right and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
+deliberately calm and uncluttered so overlay tokens (control, presence,
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
+```
+
 ### `region.porto_cinerino` — Porto Cinerino
 
 - **soggetto**: Porto Cinerino
@@ -1113,6 +1185,24 @@ What this land is right now: Banchine grigie di sale e cenere. Tutto quello che 
 Dominant accent: azzurro spento, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top edge; the upper-right, lower-right, bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
+deliberately calm and uncluttered so overlay tokens (control, presence,
+condition, scar) sit legibly on top; detail concentrates at the borders. No
+text, no letters, no numerals, no map labels, no compass rose, no frame.
+```
+
+### `region.radura_tagliata` — La Radura Tagliata
+
+- **soggetto**: La Radura Tagliata
+- **scena**: Il bosco dei confini dopo che qualcuno ci ha aperto una via verso la costa. I ceppi sono in fila, e qualcuno li conta.
+- **id**: `REG_RADURA_TAGLIATA`
+
+```
+ECHOES — Region tile. Top-down three-quarter painted map tile of La Radura Tagliata:
+chiome, radure, sentieri stretti.
+What this land is right now: Il bosco dei confini dopo che qualcuno ci ha aperto una via verso la costa. I ceppi sono in fila, e qualcuno li conta.
+Dominant accent: verde profondo, over the game's muted earth palette. Cartography
+crossed with painted landscape. Readable terrain silhouette from above, clear
+edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right and upper-left edges; the lower-right, bottom and lower-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
 condition, scar) sit legibly on top; detail concentrates at the borders. No
 text, no letters, no numerals, no map labels, no compass rose, no frame.

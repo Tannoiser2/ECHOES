@@ -1583,7 +1583,7 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 
 <!-- ARTE: inizio - generato da tools/issues_survey.py -->
 
-**121 illustrazioni su 132 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due decisioni che lo bloccavano — il formato di una carta e come si disegna una tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista perché non è una voce: è la scatola.
+**126 illustrazioni su 137 sono ancora un segnaposto** (`docs/COMPONENTI.md`). I prompt sono tutti scritti, e generati dai dati veri. È lavoro meccanico, e le due decisioni che lo bloccavano — il formato di una carta e come si disegna una tessera — sono chiuse: **si può commissionare quando vuoi**. Non è nella lista perché non è una voce: è la scatola.
 
 | mazzo | soggetti | disegnati | da fare |
 |---|---|---|---|
@@ -1591,7 +1591,7 @@ adesso è esattamente il giro che vuoi chiudere. Restano scritte dove sono.
 | Carte **Casata** (una per vita) | 32 | 0 | **32** |
 | Carte Destino | 23 | 0 | **23** |
 | Carte Obiettivo | 19 | 0 | **19** |
-| Tessere Regione | 10 | 10 | **0** |
+| Tessere Regione | 15 | 10 | **5** |
 
 <!-- ARTE: fine -->
 

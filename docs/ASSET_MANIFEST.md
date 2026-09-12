@@ -68,18 +68,23 @@ family, 22 copies per family deck, 132 cards in the box (D-040).
 | AST_WEALTH_SALT | Sale | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.salt` |
 | AST_WEALTH_TOLL | Pedaggio | WEALTH | 1 | COMMON | 4 | DISCARD | `asset.wealth.toll` |
 
-## Region tiles (10)
+## Region tiles (15)
 | id | nome | biome | ruolo | slot | fonti Asset | art_prompt_key |
 |---|---|---|---|---|---|---|
 | REG_EREDAN | Eredan | CITY | PRIMARY | 4 | AUTHORITY, FORCE | `region.eredan` |
+| REG_EREDAN_SEI_PORTE | Eredan delle Sei Porte | CITY | PRIMARY | 4 | AUTHORITY, FORCE | `region.eredan_sei_porte` |
 | REG_MINIERE_ANTICHE | Miniere Antiche | UNDERGROUND | PRIMARY | 4 | KNOWLEDGE, BONDS | `region.miniere_antiche` |
 | REG_MONTAGNE_ROSSE | Montagne Rosse | MOUNTAIN | PRIMARY | 3 | FORCE, BONDS | `region.montagne_rosse` |
 | REG_TERRE_NAHR | Terre Nahr | STEPPE | PRIMARY | 4 | AUTHORITY, PEOPLE | `region.terre_nahr` |
 | REG_VALLE_VERDE | Valle Verde | VALLEY | PRIMARY | 4 | PEOPLE, WEALTH | `region.valle_verde` |
+| REG_BOCCA_MINIERA | La Bocca della Miniera | UNDERGROUND | SECONDARY | 4 | KNOWLEDGE, BONDS | `region.bocca_miniera` |
 | REG_BOSCO_CONFINI | Il Bosco dei Confini | FOREST | SECONDARY | 3 | AUTHORITY, FORCE | `region.bosco_confini` |
 | REG_ISOLA_MUTA | L'Isola Muta | ISLAND | SECONDARY | 2 | KNOWLEDGE, FORCE | `region.isola_muta` |
+| REG_MOLO_NUOVO | Il Molo Nuovo | COAST | SECONDARY | 4 | WEALTH, BONDS | `region.molo_nuovo` |
 | REG_PALUDE_CANALI | La Palude dei Canali | MARSH | SECONDARY | 3 | PEOPLE, KNOWLEDGE | `region.palude_canali` |
+| REG_PASSO_CARRI | Il Passo dei Carri | ROAD | SECONDARY | 4 | WEALTH, KNOWLEDGE | `region.passo_carri` |
 | REG_PORTO_CINERINO | Porto Cinerino | COAST | SECONDARY | 4 | WEALTH, BONDS | `region.porto_cinerino` |
+| REG_RADURA_TAGLIATA | La Radura Tagliata | FOREST | SECONDARY | 3 | AUTHORITY, FORCE | `region.radura_tagliata` |
 | REG_STRADA_MERCANTI | Strada dei Mercanti | ROAD | SECONDARY | 4 | WEALTH, KNOWLEDGE | `region.strada_mercanti` |
 
 ## Entity cards (8)

@@ -400,6 +400,197 @@
         "y": 0.55
       },
       "map_slot": "P4"
+    },
+    {
+      "id": "REG_EREDAN_SEI_PORTE",
+      "name": "Eredan delle Sei Porte",
+      "biome": "CITY",
+      "role": "PRIMARY",
+      "adjacency": [],
+      "edges": [
+        "N",
+        "NE",
+        "SE",
+        "S",
+        "SO",
+        "NO"
+      ],
+      "asset_sources": [
+        "AUTHORITY",
+        "FORCE"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "domain:TERRITORY",
+        "capital",
+        "domain:RESOURCE"
+      ],
+      "presence_slots": 4,
+      "build_slots": 3,
+      "control": "ENT_ALDRIC",
+      "private_information": "Le due porte nuove le ha aperte un re che voleva il mare. Il mare non e' arrivato.",
+      "description": "La stessa citta' del trono, in un'eta' in cui ha aperto tutte le mura. Sei porte, e non tutte portano da qualche parte.",
+      "art_prompt_key": "region.eredan_sei_porte",
+      "name_forms": {
+        "definite": "Eredan delle Sei Porte",
+        "locative": "a Eredan delle Sei Porte",
+        "genitive": "di Eredan delle Sei Porte"
+      },
+      "map_position": {
+        "x": 0.81,
+        "y": 0.27
+      },
+      "map_slot": "C"
+    },
+    {
+      "id": "REG_PASSO_CARRI",
+      "name": "Il Passo dei Carri",
+      "biome": "ROAD",
+      "role": "SECONDARY",
+      "adjacency": [],
+      "edges": [
+        "S",
+        "SE",
+        "SO"
+      ],
+      "asset_sources": [
+        "WEALTH",
+        "KNOWLEDGE"
+      ],
+      "tags": [
+        "domain:SURVIVAL",
+        "trade",
+        "domain:TERRITORY",
+        "domain:RESOURCE"
+      ],
+      "presence_slots": 4,
+      "build_slots": 3,
+      "control": null,
+      "private_information": "Il tratto che sale alla montagna lo tiene aperto una sola famiglia, e si fa pagare.",
+      "description": "La strada dei mercanti dove si biforca: un braccio scende in citta', l'altro si arrampica verso la pietra rossa.",
+      "art_prompt_key": "region.passo_carri",
+      "name_forms": {
+        "definite": "il Passo dei Carri",
+        "locative": "al Passo dei Carri",
+        "genitive": "del Passo dei Carri"
+      },
+      "map_position": {
+        "x": 0.5,
+        "y": 0.22
+      },
+      "map_slot": "P1"
+    },
+    {
+      "id": "REG_MOLO_NUOVO",
+      "name": "Il Molo Nuovo",
+      "biome": "COAST",
+      "role": "SECONDARY",
+      "adjacency": [],
+      "edges": [
+        "N",
+        "NO",
+        "SO"
+      ],
+      "asset_sources": [
+        "WEALTH",
+        "BONDS"
+      ],
+      "tags": [
+        "domain:TERRITORY",
+        "domain:RESOURCE",
+        "harbor"
+      ],
+      "presence_slots": 4,
+      "build_slots": 2,
+      "control": null,
+      "private_information": "La strada per la citta' l'hanno pagata i mercanti, e se ne ricordano a ogni Consiglio.",
+      "description": "Il porto quando ha smesso di essere solo un porto: una strada larga sale in citta', un'altra taglia il bosco.",
+      "art_prompt_key": "region.molo_nuovo",
+      "name_forms": {
+        "definite": "il Molo Nuovo",
+        "locative": "al Molo Nuovo",
+        "genitive": "del Molo Nuovo"
+      },
+      "map_position": {
+        "x": 0.93,
+        "y": 0.6
+      },
+      "map_slot": "P3"
+    },
+    {
+      "id": "REG_RADURA_TAGLIATA",
+      "name": "La Radura Tagliata",
+      "biome": "FOREST",
+      "role": "SECONDARY",
+      "adjacency": [],
+      "edges": [
+        "N",
+        "NO",
+        "NE"
+      ],
+      "asset_sources": [
+        "AUTHORITY",
+        "FORCE"
+      ],
+      "tags": [
+        "domain:ANCIENT",
+        "forest",
+        "domain:RESOURCE"
+      ],
+      "presence_slots": 3,
+      "build_slots": 2,
+      "control": null,
+      "private_information": "Hanno tagliato per fare la strada al mare. Quello che stava sotto gli alberi adesso si vede.",
+      "description": "Il bosco dei confini dopo che qualcuno ci ha aperto una via verso la costa. I ceppi sono in fila, e qualcuno li conta.",
+      "art_prompt_key": "region.radura_tagliata",
+      "name_forms": {
+        "definite": "la Radura Tagliata",
+        "locative": "nella Radura Tagliata",
+        "genitive": "della Radura Tagliata"
+      },
+      "map_position": {
+        "x": 0.7,
+        "y": 0.9
+      },
+      "map_slot": "P4"
+    },
+    {
+      "id": "REG_BOCCA_MINIERA",
+      "name": "La Bocca della Miniera",
+      "biome": "UNDERGROUND",
+      "role": "SECONDARY",
+      "adjacency": [],
+      "edges": [
+        "S",
+        "SE",
+        "NE"
+      ],
+      "asset_sources": [
+        "KNOWLEDGE",
+        "BONDS"
+      ],
+      "tags": [
+        "domain:ANCIENT",
+        "domain:RESOURCE",
+        "crystal_site",
+        "mine"
+      ],
+      "presence_slots": 4,
+      "build_slots": 2,
+      "control": null,
+      "private_information": "Dalla galleria alta si esce sulla strada dei mercanti. Non tutti sanno che esiste.",
+      "description": "Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.",
+      "art_prompt_key": "region.bocca_miniera",
+      "name_forms": {
+        "definite": "la Bocca della Miniera",
+        "locative": "alla Bocca della Miniera",
+        "genitive": "della Bocca della Miniera"
+      },
+      "map_position": {
+        "x": 0.22,
+        "y": 0.35
+      },
+      "map_slot": "P6"
     }
   ]
 }

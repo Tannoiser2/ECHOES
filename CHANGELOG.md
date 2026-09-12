@@ -5,6 +5,74 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.481 — Le strade cambiano, e una può finire contro la roccia
+
+Parola del committente: *«aggiungi le tessere alternative per far variare le
+strade»*, e poi, alla sola domanda rimasta, *«interrotte»*.
+
+D-510 aveva comprato una promessa forte — niente strade morte, **per
+costruzione** — e l'aveva pagata con tutta la varietà: la rete di strade era
+**una sola, per sempre**, e le otto rose cambiavano solo quale regione sedeva
+dove. Adesso ne cambiano **dodici**. [D-511](docs/DECISIONS.md#d-511).
+
+### Aggiunto
+
+- **cinque tessere nuove**, una seconda candidata per `C`, `P1`, `P3`, `P4` e
+  `P6`: *Eredan delle Sei Porte*, *Il Passo dei Carri*, *Il Molo Nuovo*, *La
+  Radura Tagliata*, *La Bocca della Miniera*. Ognuna **aggiunge** varchi
+  rispetto alla sorella di casella, e nessuna ne toglie;
+- **la guardia della rete minima**: presa per ogni casella la sola parte comune
+  a tutte le sue candidate, quella rosa dev'essere già in un pezzo. È la riga
+  che tiene in piedi la promessa grossa — *nessuna tessera isolata* — adesso che
+  le candidate di uno stesso posto possono avere varchi diversi;
+- **le strade interrotte contate** dalla sonda delle tessere, insieme alle reti
+  distinte: sono il prezzo, e un prezzo si scrive.
+
+### Tolto
+
+- **il divieto delle strade morte.** Una strada interrotta — un varco che
+  incontra il muro della vicina — al tavolo si legge da sé: una strada che
+  finisce contro la roccia. Il motore non cambia di una riga, perché un
+  passaggio richiede già i due lati aperti;
+- **il controllo che cercava una tessera isolata rosa per rosa.** Con la rete
+  minima connessa non può più esistere, quindi quel controllo non poteva più
+  mordere — e una guardia che non morde, qui, non esiste.
+
+### Corretto
+
+- **tre guardie ragionavano ancora sulla pescata cieca.** Il principio dei
+  cassetti — *«con N candidate e K pescate serve che il segno stia su N−K+1
+  tessere»* — con quindici candidate e sette pescate ne chiedeva nove: **102
+  errori** fra domini, bersagli delle carte e clausole dei Destini. La
+  matematica giusta per una pescata a caselle è più semplice: **un segno è
+  garantito se una casella ce l'ha su tutte le sue candidate**;
+- **quaranta carte dicevano fonti vecchie.** La riga «Fonti:» sulle carte nomina
+  le Regioni da cui si pesca quella famiglia, e cinque tessere nuove l'hanno resa
+  falsa. Riscritta dal dato, come la guardia pretende;
+- **due difetti piantati avevano smesso di essere difetti.** Puntavano su
+  **#capitale**, che con la rosa siede sempre: un bersaglio ormai garantito, e
+  quindi una prova che non provava più niente. Spostati su **#isola**, che è una
+  delle tre candidate di P3.
+
+### Misurato
+
+| | prima | adesso |
+|---|---|---|
+| tessere in scatola | 10 | **15** |
+| rose possibili | 8 | **144** |
+| **reti di strade distinte** | **1** | **12** |
+| confini per mappa | sempre 8 | **8,67** di media |
+| tessere isolate | 0 | **0** |
+| strade interrotte | 0, vietate | **2,0 per rosa** |
+
+### Costa
+
+- **le illustrazioni da rifare passano da dieci a quindici**;
+- **due strade interrotte per partita**, in media: al tavolo si vedono, e vanno
+  spiegate una volta nel regolamento.
+
+---
+
 ## 0.1.480 — La rosa esagonale, e la tessera che non si gira
 
 Parola del committente, in due tempi: *«penso che opterò per la mappa

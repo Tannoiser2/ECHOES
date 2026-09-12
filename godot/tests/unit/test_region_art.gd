@@ -32,18 +32,34 @@ func test_every_stroke_stays_inside_its_tile() -> void:
 ## Ogni bioma ha una tavolozza e un vocabolario suoi. Un bioma che cade nel ramo
 ## di riserva disegna la steppa e nessuno se ne accorge finche' non lo guarda.
 func test_every_biome_in_the_data_has_its_own_drawing() -> void:
-	var seen: Dictionary = {}
+	# **Due tessere che possono stare sul tavolo insieme devono disegnare cose
+	# diverse** (D-511). Fino a 0.1.480 la regola era piu' stretta — una Regione,
+	# un bioma — e bastava perche' le Regioni erano dieci e i biomi dieci. Le
+	# candidate di una stessa casella pero' **non escono mai insieme**: sono la
+	# stessa terra in un'altra eta' (Eredan e Eredan delle Sei Porte, il Porto e
+	# il Molo Nuovo), e pretendere che disegnino terreni diversi sarebbe
+	# pretendere che siano posti diversi. Quello che conta e' che la mappa stesa
+	# non abbia due tessere uguali, e le tessere stese vengono da caselle diverse.
+	var per_shape: Dictionary = {}
 	for region_id in data().regions:
-		var biome: String = str(data().regions[str(region_id)]["biome"])
+		var region: Dictionary = data().regions[str(region_id)] as Dictionary
+		var biome: String = str(region["biome"])
 		assert_true(
 			RegionArt.BIOMES.has(biome),
 			"%s: il bioma %s ha la propria tavolozza" % [str(region_id), biome]
 		)
 		var plan: Dictionary = RegionArt.plan(str(region_id), biome)
 		var shape: String = "%s|%d" % [str(plan["ground"]), (plan["strokes"] as Array).size()]
-		assert_false(seen.has(shape), "%s non disegna quello che disegna gia un'altra" % biome)
-		seen[shape] = true
-	assert_true(seen.size() >= 6, "sei Regioni, sei disegni diversi: %d" % seen.size())
+		var slot: String = str(region.get("map_slot", str(region_id)))
+		if per_shape.has(shape):
+			assert_eq(
+				str(per_shape[shape]), slot,
+				("%s disegna quello che disegna gia' una tessera di un'altra "
+					+ "casella: sul tavolo si vedrebbero due terre uguali") % str(region_id)
+			)
+		per_shape[shape] = slot
+	assert_true(per_shape.size() >= 7,
+		"sette caselle, sette disegni diversi: %d" % per_shape.size())
 
 
 ## Stessa Regione, stesso disegno: la mappa non deve cambiare fra due partite, e

@@ -20,7 +20,8 @@ func test_reduced_content_matches_the_milestone() -> void:
 	assert_eq(loaded.assets.size(), 48, "48 Asset, 8 per famiglia: il traguardo §19.4 (D-040)")
 	# Dieci da 0.1.227 (D-265): le sei di sempre piu' le quattro tessere di
 	# PZ-2 — porto, palude, isola, bosco — con i domini bilanciati a 5/5/5/5.
-	assert_eq(loaded.regions.size(), 10, "10 tessere in scatola: le sei di sempre piu' le quattro di PZ-2")
+	assert_eq(loaded.regions.size(), 15,
+		"15 tessere in scatola: le dieci della rosa piu' le cinque candidate alternative (D-511)")
 	# **Sette da 0.1.394** (D-423, parola del committente: *«Segnare»*). I sei di
 	# §10 piu' SEGNARE, che e' nato da un difetto misurato: sette facce su 96
 	# avevano il nome stampato e nessun verbo, perche' quello che facevano —

@@ -171,15 +171,47 @@ func test_a_border_is_a_passage_open_on_both_sides() -> void:
 	opened.dispose()
 
 
-## **Due petali stanno dietro una vicina** (D-510). `P3` e `P6` non guardano la
-## capitale: ci si arriva **solo passando per** `P2` e per `P5`. E' quello che
-## da' al mondo una geografia invece di una ruota — con sei raggi tutto sarebbe
-## a due passi e la capitale sarebbe uno svincolo — ed e' anche quello che
-## rende viva la casella CHIUDI LA STRADA, che su una ruota non puo' tagliare
-## fuori niente. Senza questa prova i raggi tornerebbero senza che nessuno se
-## ne accorga.
-func test_two_petals_stand_behind_a_neighbour() -> void:
-	for seed_value in range(7000, 7010):
+## **La rete di strade cambia da una partita all'altra** (D-511, parola del
+## committente: *«aggiungi le tessere alternative per far variare le strade»*).
+##
+## Con D-510 le strade erano stampate sul lato e la rete era **una sola**, per
+## sempre: cambiava solo quale regione sedeva dove. Adesso tre caselle hanno
+## candidate coi varchi diversi, e la rete che esce non e' sempre la stessa.
+##
+## Questa prova guarda la cosa che il giocatore vede — **il mondo e' fatto
+## diverso** — e non il conto delle tessere: si raccolgono le reti di piu' semi
+## e se ne pretende piu' d'una. Dire la rete per caselle e non per regioni non
+## e' un dettaglio: due candidate dello stesso posto coi soliti varchi fanno la
+## **stessa** rete, ed e' giusto che contino per una.
+func test_the_road_network_changes_between_games() -> void:
+	var reti: Dictionary = {}
+	for seed_value in range(7000, 7040):
+		var opened: RefCounted = _open(seed_value)
+		var vicini: Dictionary = opened.world["adjacency"] as Dictionary
+		var archi: Array = []
+		for region_id in opened.world["regions"]:
+			var mio: String = _casella_di(str(region_id))
+			for n in (vicini.get(str(region_id), []) as Array):
+				var suo: String = _casella_di(str(n))
+				if mio < suo:
+					archi.append("%s-%s" % [mio, suo])
+		assert_true(archi.size() > 0, "al seme %d la rosa ha delle strade" % seed_value)
+		archi.sort()
+		reti["|".join(PackedStringArray(archi))] = true
+		opened.dispose()
+	assert_true(reti.size() >= 2,
+		"quaranta semi danno piu' di una rete di strade (ne hanno data %d)" % reti.size())
+
+
+## **E dal centro si arriva sempre ovunque**, comunque vada la pescata.
+##
+## E' la promessa che il committente ha chiesto per nome, e adesso che le
+## candidate di una casella possono avere varchi diversi non e' piu' ovvia: la
+## tiene una regola di disegno — *una candidata puo' solo aggiungere strade,
+## mai togliere quella che regge la mappa* — che `validate_physical` sorveglia
+## sui dati. Qui si prova che il **motore** la rispetti davvero, su venti semi.
+func test_from_the_capital_you_always_get_everywhere() -> void:
+	for seed_value in range(7000, 7020):
 		var opened: RefCounted = _open(seed_value)
 		var vicini: Dictionary = opened.world["adjacency"] as Dictionary
 		var capitale: String = ""
@@ -187,22 +219,18 @@ func test_two_petals_stand_behind_a_neighbour() -> void:
 			if _casella_di(str(region_id)) == "C":
 				capitale = str(region_id)
 		assert_ne(capitale, "", "la capitale sta al centro, al seme %d" % seed_value)
-		var dietro: Array = []
-		for region_id in opened.world["regions"]:
-			if str(region_id) == capitale:
-				continue
-			if not (vicini[capitale] as Array).has(str(region_id)):
-				dietro.append(str(region_id))
-		assert_eq(dietro.size(), 2,
-			"due petali non guardano la capitale, al seme %d: %s" % [seed_value, str(dietro)])
-		# E ci si arriva lo stesso, passando per la vicina.
-		for region_id in dietro:
-			var passando: bool = false
-			for n in (vicini[str(region_id)] as Array):
-				if (vicini[capitale] as Array).has(str(n)):
-					passando = true
-			assert_true(passando,
-				"a %s si arriva passando per una vicina (seme %d)" % [str(region_id), seed_value])
+		var visti: Dictionary = {capitale: true}
+		var coda: Array = [capitale]
+		while not coda.is_empty():
+			var qui: String = str(coda.pop_back())
+			for n in (vicini.get(qui, []) as Array):
+				if not visti.has(str(n)):
+					visti[str(n)] = true
+					coda.append(str(n))
+		assert_eq(
+			visti.size(), (opened.world["regions"] as Dictionary).size(),
+			"da %s si arriva a tutte, al seme %d" % [capitale, seed_value]
+		)
 		opened.dispose()
 
 

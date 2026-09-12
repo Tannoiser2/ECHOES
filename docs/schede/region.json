@@ -9,8 +9,8 @@
       80
     ]
   },
-  "facce": 10,
-  "pezzi": 10,
+  "facce": 15,
+  "pezzi": 15,
   "cos_e": "La tessera di mappa: **porta i segni** che ogni carta Azione bersaglia, e i varchi con cui si posa accanto alle altre.",
   "immagine": "Il **terreno**, che prende tutta la tessera: il quadro e' il bioma, e il testo ci sta sopra in basso. I varchi si vedono sui lati.",
   "sottotitolo": "il bioma e i posti (`biome`, `presence_slots`, `build_slots`)",
@@ -92,6 +92,42 @@
   ],
   "carte": [
     {
+      "id": "REG_BOCCA_MINIERA",
+      "tipo": "region",
+      "titolo": "La Bocca della Miniera",
+      "sottotitolo": "sottosuolo · 4 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "basso · SE · NE"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: l'antico · dominio: le risorse · #cristallo · #miniera"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "sapere, legami"
+        }
+      ],
+      "arte": {
+        "chiave": "region.bocca_miniera",
+        "scena": "Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of La Bocca della Miniera:\nimbocchi di galleria, sterili, impalcature, buio calibrato.\nWhat this land is right now: Dove la miniera si apre al mondo: un piazzale, due strade battute, e il buio che comincia subito dietro.\nDominant accent: verde-azzurro, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the upper-right, lower-right and bottom edges; the top, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
+      },
+      "pie": "REG_BOCCA_MINIERA",
+      "copie": 1,
+      "segreta": false
+    },
+    {
       "id": "REG_BOSCO_CONFINI",
       "tipo": "region",
       "titolo": "Il Bosco dei Confini",
@@ -160,6 +196,42 @@
         "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Eredan:\ntetti fitti, mura, una piazza, magazzini sul lato.\nWhat this land is right now: La città del trono. Vive di leggi, di titoli e del grano che sale dalla Valle.\nDominant accent: oro spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right, bottom and lower-left edges; the lower-right and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
       },
       "pie": "REG_EREDAN",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_EREDAN_SEI_PORTE",
+      "tipo": "region",
+      "titolo": "Eredan delle Sei Porte",
+      "sottotitolo": "citta · 4 pedine · 3 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · NE · SE · basso · SO · NO"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · dominio: il territorio · #capitale · dominio: le risorse"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "autorità, forza"
+        }
+      ],
+      "arte": {
+        "chiave": "region.eredan_sei_porte",
+        "scena": "La stessa citta' del trono, in un'eta' in cui ha aperto tutte le mura. Sei porte, e non tutte portano da qualche parte.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Eredan delle Sei Porte:\ntetti fitti, mura, una piazza, magazzini sul lato.\nWhat this land is right now: La stessa citta' del trono, in un'eta' in cui ha aperto tutte le mura. Sei porte, e non tutte portano da qualche parte.\nDominant accent: oro spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right, lower-right, bottom, lower-left and upper-left edges. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
+      },
+      "pie": "REG_EREDAN_SEI_PORTE",
       "copie": 1,
       "segreta": false
     },
@@ -236,6 +308,42 @@
       "segreta": false
     },
     {
+      "id": "REG_MOLO_NUOVO",
+      "tipo": "region",
+      "titolo": "Il Molo Nuovo",
+      "sottotitolo": "costa · 4 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · NO · SO"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: il territorio · dominio: le risorse · #porto"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "ricchezza, legami"
+        }
+      ],
+      "arte": {
+        "chiave": "region.molo_nuovo",
+        "scena": "Il porto quando ha smesso di essere solo un porto: una strada larga sale in citta', un'altra taglia il bosco.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Il Molo Nuovo:\nsecche, moli, barche in secca.\nWhat this land is right now: Il porto quando ha smesso di essere solo un porto: una strada larga sale in citta', un'altra taglia il bosco.\nDominant accent: azzurro spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, lower-left and upper-left edges; the upper-right, lower-right and bottom edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
+      },
+      "pie": "REG_MOLO_NUOVO",
+      "copie": 1,
+      "segreta": false
+    },
+    {
       "id": "REG_MONTAGNE_ROSSE",
       "tipo": "region",
       "titolo": "Montagne Rosse",
@@ -308,6 +416,42 @@
       "segreta": false
     },
     {
+      "id": "REG_PASSO_CARRI",
+      "tipo": "region",
+      "titolo": "Il Passo dei Carri",
+      "sottotitolo": "strada · 4 pedine · 3 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "basso · SE · SO"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: la sopravvivenza · #commercio · dominio: il territorio · dominio: le risorse"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "ricchezza, sapere"
+        }
+      ],
+      "arte": {
+        "chiave": "region.passo_carri",
+        "scena": "La strada dei mercanti dove si biforca: un braccio scende in citta', l'altro si arrampica verso la pietra rossa.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Il Passo dei Carri:\nuna strada che attraversa tutto, soste, ponti, carri.\nWhat this land is right now: La strada dei mercanti dove si biforca: un braccio scende in citta', l'altro si arrampica verso la pietra rossa.\nDominant accent: ambra, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the lower-right, bottom and lower-left edges; the top, upper-right and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
+      },
+      "pie": "REG_PASSO_CARRI",
+      "copie": 1,
+      "segreta": false
+    },
+    {
       "id": "REG_PORTO_CINERINO",
       "tipo": "region",
       "titolo": "Porto Cinerino",
@@ -340,6 +484,42 @@
         "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of Porto Cinerino:\nsecche, moli, barche in secca.\nWhat this land is right now: Banchine grigie di sale e cenere. Tutto quello che il mare concede passa da qui, e paga.\nDominant accent: azzurro spento, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top edge; the upper-right, lower-right, bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
       },
       "pie": "REG_PORTO_CINERINO",
+      "copie": 1,
+      "segreta": false
+    },
+    {
+      "id": "REG_RADURA_TAGLIATA",
+      "tipo": "region",
+      "titolo": "La Radura Tagliata",
+      "sottotitolo": "foresta · 3 pedine · 2 Pietre",
+      "angolo": "",
+      "accento": "#8a8172",
+      "famiglia": "",
+      "corpo": [],
+      "righe": [
+        {
+          "voce": "VARCHI",
+          "testo": "alto · NO · NE"
+        },
+        {
+          "voce": "SEGNI",
+          "testo": "dominio: l'antico · #bosco · dominio: le risorse"
+        },
+        {
+          "voce": "CI STANNO",
+          "testo": "archivio · canale · granaio · presidio · insediamento · pedaggio"
+        },
+        {
+          "voce": "FONTI",
+          "testo": "autorità, forza"
+        }
+      ],
+      "arte": {
+        "chiave": "region.radura_tagliata",
+        "scena": "Il bosco dei confini dopo che qualcuno ci ha aperto una via verso la costa. I ceppi sono in fila, e qualcuno li conta.",
+        "prompt": "ECHOES — Region tile. Top-down three-quarter painted map tile of La Radura Tagliata:\nchiome, radure, sentieri stretti.\nWhat this land is right now: Il bosco dei confini dopo che qualcuno ci ha aperto una via verso la costa. I ceppi sono in fila, e qualcuno li conta.\nDominant accent: verde profondo, over the game's muted earth palette. Cartography\ncrossed with painted landscape. Readable terrain silhouette from above, clear\nedges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top, upper-right and upper-left edges; the lower-right, bottom and lower-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is\ndeliberately calm and uncluttered so overlay tokens (control, presence,\ncondition, scar) sit legibly on top; detail concentrates at the borders. No\ntext, no letters, no numerals, no map labels, no compass rose, no frame."
+      },
+      "pie": "REG_RADURA_TAGLIATA",
       "copie": 1,
       "segreta": false
     },

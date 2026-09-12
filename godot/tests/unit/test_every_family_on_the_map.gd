@@ -70,7 +70,7 @@ func test_the_engine_lays_every_rose_there_is() -> void:
 	# leggere una proprieta' su nulla **interrompe la funzione senza errore**:
 	# la prova direbbe «verde» a meta' strada. E' costato un giro.
 	var viste: Dictionary = {}
-	for i in range(400):
+	for i in range(3000):
 		var rng: RefCounted = RngService.new(4200 + i)
 		var drawn: Array = WorldStateFactory.resolve_map(
 			{"region_pool": {"candidates": ids, "count": SLOTS.size()}},

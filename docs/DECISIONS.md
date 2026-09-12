@@ -10,6 +10,105 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-511 — Le strade cambiano, e una strada puo' finire contro la roccia
+
+**implemented (0.1.481)** — parola del committente: *«aggiungi le tessere
+alternative per far variare le strade»*, e poi, alla sola domanda che restava,
+*«interrotte»*.
+
+D-510 aveva vinto una promessa forte — **nessuna strada morta, per costruzione**
+— e l'aveva pagata senza accorgersene: **la rete di strade era una sola, per
+sempre**. Le otto rose possibili cambiavano solo *quale regione* sedeva in P2,
+P3 e P6, mai dove passavano le strade. Il costo stava scritto in D-510, ma si e'
+visto davvero solo guardando il disegno, quando il committente ha chiesto perche'
+un esempio con tre varchi su P4 fosse impossibile: **perche' lo era**.
+
+### Perche' non bastava aggiungere tessere
+
+E' un teorema, non un limite dell'implementazione. Se ogni casella pesca la sua
+candidata **indipendentemente** e un varco deve sempre trovare il suo gemello,
+le strade non possono variare: se la candidata A di P4 e' aperta verso P5 e la
+A' e' chiusa, la tessera di P5 dovrebbe essere contemporaneamente aperta e
+chiusa, perche' con A' pescata incontrerebbe un muro.
+
+Le vie d'uscita erano tre: pescare le due tessere di un confine **a coppie**
+(niente interrotte, ma una regola in piu' da eseguire a mano), fare delle strade
+**pedine separate** (un altro gioco), o **accettare le strade interrotte**. Il
+committente ha scelto la terza.
+
+### Cosa cambia
+
+Una **strada interrotta** e' un varco che incontra il muro della vicina. Al
+tavolo si legge da se': una strada che finisce contro la roccia. E il motore non
+cambia di una riga, perche' un passaggio richiede **gia'** i due lati aperti
+(D-390): quello che cambia e' solo la guardia, che smette di vietarle e comincia
+a contarle.
+
+### Le cinque tessere nuove
+
+| casella | seconda candidata | cosa apre |
+|---|---|---|
+| `C` | **Eredan delle Sei Porte** | verso il porto e verso la montagna |
+| `P1` | **Il Passo dei Carri** | verso la montagna |
+| `P3` | **Il Molo Nuovo** | verso la capitale e verso il bosco |
+| `P4` | **La Radura Tagliata** | verso il porto |
+| `P6` | **La Bocca della Miniera** | verso la capitale e verso la strada |
+
+Tutte **aggiungono** varchi rispetto alla sorella di casella, e nessuna ne
+toglie. Non e' un caso: e' la regola che tiene in piedi tutto il resto.
+
+### La regola che salva la promessa grossa
+
+Il primo disegno provato — una seconda candidata per ogni casella, coi varchi
+scelti a sentimento — lasciava **76 pescate su 128 con una tessera isolata**.
+Aggiungere tessere non rompe solo le strade morte: rompe la promessa che il
+committente ha chiesto per nome.
+
+Quello che la salva sta in una riga:
+
+> **La rete minima dev'essere connessa.** Presa per ogni casella la sola parte
+> comune a tutte le sue candidate, quella rosa dev'essere gia' in un pezzo.
+
+Da li' la connessione viene **per costruzione**: una candidata piu' aperta puo'
+solo aggiungere strade, mai togliere quella che regge la mappa. E' una guardia
+sola, va rossa nominando la **causa**, e ha reso inutile il controllo che
+enumerava le rose cercando una isolata — che infatti e' stato tolto, perche' non
+poteva piu' mordere.
+
+### I numeri
+
+| | D-510 | D-511 |
+|---|---|---|
+| tessere in scatola | 10 | **15** |
+| rose possibili | 8 | **144** |
+| **reti di strade distinte** | **1** | **12** |
+| confini per mappa | sempre 8 | **8,67** di media |
+| tessere isolate | 0 | **0** |
+| strade interrotte | 0 (vietate) | **2,0 per rosa** |
+
+### Quello che ha morso per strada
+
+Tre guardie diverse ragionavano ancora sulla **pescata cieca** — il principio dei
+cassetti, *«con N candidate e K pescate serve che il segno stia su N-K+1
+tessere»* — e con quindici candidate e sette pescate chiedevano nove portatrici:
+**102 errori** fra domini, bersagli delle carte e clausole dei Destini. La
+matematica giusta per una pescata a caselle e' un'altra e piu' semplice: **un
+segno e' garantito se una casella ce l'ha su tutte le sue candidate**. Contare le
+tessere, li', da' un numero piu' alto del vero.
+
+E due difetti piantati hanno smesso di essere difetti: puntavano su
+**#capitale**, che con la rosa siede sempre ed e' diventato un bersaglio
+garantito. Sono stati spostati su **#isola**, che e' una delle tre candidate di
+P3 e quindi due mappe su tre non la portano.
+
+### Cosa resta aperto
+
+Le dieci illustrazioni erano gia' da rifare per l'esagono (D-510); adesso sono
+**quindici**. E [ISSUES 138](ISSUES.md#138) non si muove: la geografia adesso
+cambia da una partita all'altra, ma la distanza continua a non leggerla nessuno.
+
+---
+
 ## D-510 — La rosa esagonale, e la tessera che non si gira
 
 **implemented (0.1.480)** — parola del committente, in due messaggi:

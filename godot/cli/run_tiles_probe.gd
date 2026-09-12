@@ -21,8 +21,10 @@ extends SceneTree
 ## 1. **le caselle riempite**: sette, o meno?
 ## 2. **la connessione**: dalla capitale si arriva ovunque? Due petali stanno
 ##    **dietro** una vicina, e ci si deve arrivare lo stesso.
-## 3. **le strade morte**: un varco che guarda un muro. Il posto fisso le rende
-##    impossibili per costruzione, e qui si verifica invece di crederci.
+## 3. **le strade interrotte**: un varco che guarda il muro della vicina. Da
+##    D-511 non sono un difetto ma una conseguenza voluta — e' quello che si
+##    paga perche' le strade cambino da una partita all'altra — quindi qui si
+##    **contano**, che e' il numero che serve per sapere quanto pesano.
 ##
 ## La stessa promessa la sorveglia anche `validate_physical`, dal lato dei dati.
 ## Questa la guarda dal lato del **motore**: sono due strade diverse verso lo
@@ -85,6 +87,7 @@ func _initialize() -> void:
 			" · ".join(PackedStringArray(quali)),
 		])
 	_say("  **Rose possibili: %d**" % rose.size())
+	var reti: Dictionary = {}
 	_say("")
 
 	var incomplete: int = 0
@@ -128,6 +131,19 @@ func _initialize() -> void:
 			var usati: int = (vicini.get(str(region_id), []) as Array).size()
 			morte += maxi(0, aperti - usati)
 
+		# **Quante reti di strade distinte**, che e' la cosa che D-511 compra:
+		# la rete si dice con le caselle, non con le tessere, perche' due
+		# candidate dello stesso posto coi soliti varchi fanno la stessa rete.
+		var archi: Array = []
+		for region_id in (rosa as Array):
+			var mio: String = str((data.regions[str(region_id)] as Dictionary).get("map_slot", ""))
+			for n in (vicini.get(str(region_id), []) as Array):
+				var suo: String = str((data.regions[str(n)] as Dictionary).get("map_slot", ""))
+				if mio < suo:
+					archi.append("%s-%s" % [mio, suo])
+		archi.sort()
+		reti["|".join(PackedStringArray(archi))] = true
+
 		for tile in posate:
 			var grado: int = (vicini.get(str(tile), []) as Array).size()
 			archi_totali += grado
@@ -149,7 +165,11 @@ func _initialize() -> void:
 	_say("  rose che lasciano una tessera isolata %6d  (%.3f%%)" % [
 		sconnesse, 100.0 * float(sconnesse) / float(maxi(1, rose.size()))
 	])
-	_say("  varchi che guardano un muro           %6d  (strade morte)" % morte)
+	_say("  strade interrotte (varco contro muro)  %6d  in tutto, %.1f per rosa" % [
+		morte, float(morte) / float(maxi(1, rose.size()))
+	])
+	_say("")
+	_say("  **Reti di strade distinte: %d**" % reti.size())
 	_say("")
 	_say("  E com'e' fatta la rosa, su tutte:")
 	_say("    confini per mappa      %.2f" % (
