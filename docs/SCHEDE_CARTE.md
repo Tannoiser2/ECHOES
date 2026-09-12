@@ -29,7 +29,7 @@ viceversa (`retro`).
 | **carta Destino** | tarocco 70×120 mm | 23 | 23 | si' | `schede/destiny.json` |
 | **carta Obiettivo** | tarocco 70×120 mm | 19 | 19 | si' | `schede/objective.json` |
 | **carta Casata** | tarocco 70×120 mm | 32 | 32 | si' | `schede/entity.json` |
-| **tessera Regione** | tessera 80×80 mm | 15 | 15 | si' | `schede/region.json` |
+| **tessera Regione** | tessera 80×69 mm | 15 | 15 | si' | `schede/region.json` |
 
 ## Il record di una carta, uguale per tutti i tipi
 
@@ -545,7 +545,7 @@ Nel JSON ogni carta porta gia' il prompt **composto**, in `arte.prompt`.
 }
 ```
 
-## 7. tessera Regione — tessera 80×80 mm · 15 facce · 15 pezzi
+## 7. tessera Regione — tessera 80×69 mm · 15 facce · 15 pezzi
 
 **Cos'e'.** La tessera di mappa: **porta i segni** che ogni carta Azione bersaglia, e i varchi con cui si posa accanto alle altre.
 

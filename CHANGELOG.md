@@ -5,6 +5,45 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.486 — La tessera si stampa esagonale
+
+Parola del committente: *«apri il giro del foglio di stampa esagonale»*.
+[D-516](docs/DECISIONS.md#d-516).
+
+### Corretto
+
+- **il print-and-play stampava ancora un quadrato.** La cella era `80×80`, col
+  commento «quadrata come chiede il MASTER PROMPT 3» — un MASTER PROMPT che
+  [D-510](docs/DECISIONS.md#d-510) aveva riscritto e che
+  [D-512](docs/DECISIONS.md#d-512) aveva già portato sullo schermo. Chi stampava
+  ritagliava un quadrato per un posto che sul tavolo è un esagono;
+- la cella è **80 × 69,28** — la scatola di un esagono a lato piatto largo 80 —
+  e il cartone è la sagoma dentro.
+
+### Cambiato
+
+- **il fondo, il quadro e il velo si ritagliano dentro la sagoma**; il quadro
+  prende tutta la cella e l'illustrazione media della tessera passa da **91% a
+  100%**;
+- **il testo si tiene dentro l'esagono**: larghezza presa dalla mezza larghezza
+  al punto più basso dove una riga può finire, e righe centrate invece che
+  appoggiate a sinistra;
+- **il piede sale in alto**, sotto il lato piatto, dove non si accavalla col
+  nome;
+- **la linea di taglio è il perimetro** e sta nel foglio, non nella faccia: la
+  tessera mostrata sullo schermo non porta le linee per le forbici;
+- **otto tessere per foglio invece di sei**: le quindici stanno in due fogli
+  invece di tre.
+
+### Prova
+
+- `test_the_printed_tile_is_a_hexagon` — la cella è la scatola di un esagono a
+  lato piatto, la tessera si stringe verso i lati piatti (col caso che deve dare
+  non-zero), **nessuna riga stampata cade fuori dalla sagoma** su nessuna delle
+  quindici tessere, e il foglio ne regge otto.
+
+---
+
 ## 0.1.485 — Due biomi senza colore, e due prompt che non dicevano niente
 
 Parola del committente: *«tutti i prompt pronti per rigenerare le immagini»*.

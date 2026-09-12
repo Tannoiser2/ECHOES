@@ -10,6 +10,61 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-516 — La tessera si stampa esagonale
+
+**implemented (0.1.486)** — parola del committente: *«apri il giro del foglio di
+stampa esagonale»*, dopo che preparando i prompt e' saltato fuori che il
+print-and-play stampava ancora un quadrato.
+
+`print_sheet.gd` impaginava la tessera in una cella **80x80**, col commento
+*«quadrata come chiede il MASTER PROMPT 3»*. Quel MASTER PROMPT l'aveva
+riscritto [D-510](#d-510) — la tessera e' un **esagono a lato piatto**, e
+[D-512](#d-512) l'aveva gia' portato sullo schermo. Il foglio era rimasto
+indietro, e **chi stampava ritagliava un quadrato** per un posto che sul tavolo
+e' un esagono.
+
+### La cella e' la scatola dell'esagono
+
+`80 x 69,28` — cioe' `2R` per `√3 R`. La cella non e' la tessera: e' il
+rettangolo che la contiene, e il cartone e' la sagoma dentro.
+
+Da qui viene tutto il resto, e sono cinque cose che il quadrato non chiedeva:
+
+- **il ritaglio**. Il fondo, il quadro dipinto e il velo si disegnano **dentro**
+  un `clipPath` esagonale: quello che cadeva fuori era carta da buttare, e
+  stamparci sopra era stampare per niente;
+- **il quadro prende tutta la cella** invece di stare in un riquadro dentro di
+  lei. Con il ritaglio non serve piu' il margine, e l'illustrazione media della
+  tessera passa da **91% a 100%** (`SCHELETRO_CARTE`);
+- **il testo si tiene dentro la sagoma.** In basso l'esagono e' largo quanto un
+  lato: una riga larga `cell.x - pad*2` uscirebbe dai due angoli di sotto. La
+  larghezza utile si prende dalla **mezza larghezza al punto piu' basso** dove
+  una riga puo' finire — il caso peggiore — e le righe si centrano invece di
+  appoggiarsi a sinistra, dove sotto la punta il cartone non c'e';
+- **il piede sale in alto**, sotto il lato piatto. Al primo giro era rimasto in
+  basso e si accavallava col nome: in fondo lo spazio e' meta';
+- **la linea di taglio e' il perimetro**, non quattro segni agli angoli — un
+  esagono non ha angoli da indovinare. E sta nel **foglio**, non nella faccia:
+  la stessa tessera mostrata sullo schermo non deve portarsi dietro le linee per
+  le forbici. (Questo l'ha detto una prova che c'era gia'.)
+
+### Quello che si guadagna
+
+Le celle passano da sei a **otto per foglio** — due colonne per quattro righe
+invece di due per tre — e le quindici tessere stanno in **due fogli invece di
+tre**. Le tessere della stessa colonna si toccano sul lato piatto: un taglio
+solo ne separa due.
+
+### La prova
+
+`test_the_printed_tile_is_a_hexagon` guarda quattro cose: che la cella sia la
+scatola di un esagono **a lato piatto** (due vertici alla stessa altezza in
+cima, non una punta); che la tessera si stringa verso i lati piatti, col caso
+che deve dare non-zero; che **nessuna riga stampata cada fuori dalla sagoma**,
+su ogni tessera vera e non su una finta; e che il foglio ne regga otto.
+
+---
+
 ## D-515 — Due biomi senza colore, e due prompt che non dicevano niente
 
 **implemented (0.1.485)** — parola del committente: *«tutti i prompt pronti per

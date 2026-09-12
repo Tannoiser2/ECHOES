@@ -8,8 +8,8 @@ extends RefCounted
 ## sono diversi. In piu' non serve un contesto di rendering: gira sotto
 ## `--headless` come tutto il resto, senza GPU e senza display.
 ##
-## Misure vere, in millimetri: carta 63x88, tessera 80x80, foglio A4, tre carte
-## per tre. Il `viewBox` e' in mm, quindi quello che esce e' in scala 1:1 e si
+## Misure vere, in millimetri: carta 63x88, tessera esagonale larga 80 e alta
+## 69,28 (`√3/2 · 80`), foglio A4, tre carte per tre. Il `viewBox` e' in mm, quindi quello che esce e' in scala 1:1 e si
 ## stampa senza «adatta alla pagina» - che e' il modo in cui un print-and-play
 ## esce sbagliato di due millimetri e nessuno capisce perche'.
 ##
@@ -27,19 +27,56 @@ const PAGE_H: float = 297.0
 ## ruolo al tavolo. 63x88 e' la carta da gioco classica (bustine standard) per
 ## i mazzi che si mescolano e stanno in mano; 70x120 e' il tarocco per le
 ## carte-identita' che restano in vista tutta la partita; 44x68 e' la mini per
-## i riferimenti che stanno accanto ai tracciati; 80x80 la tessera Regione,
-## quadrata come chiede il MASTER PROMPT 3.
+## i riferimenti che stanno accanto ai tracciati; **80 x 69,28 la tessera
+## Regione**, che e' la scatola di un **esagono a lato piatto largo 80** (D-516):
+## la cella non e' la tessera, e' il rettangolo che la contiene. Fino alla
+## 0.1.485 era 80x80 «quadrata come chiede il MASTER PROMPT 3», e quel MASTER
+## PROMPT era stato riscritto da D-510 senza che il foglio se ne accorgesse —
+## chi stampava ritagliava un quadrato e sul tavolo serviva un esagono.
 const SHAPES: Dictionary = {
 	"CARD": {"w": 63.0, "h": 88.0, "cols": 3, "rows": 3},
 	"TAROT": {"w": 70.0, "h": 120.0, "cols": 2, "rows": 2},
 	"MINI": {"w": 44.0, "h": 68.0, "cols": 4, "rows": 4},
-	"TILE": {"w": 80.0, "h": 80.0, "cols": 2, "rows": 3},
+	"TILE": {"w": 80.0, "h": 69.28, "cols": 2, "rows": 4},
 }
 
 const CARD_W: float = 63.0
 const CARD_H: float = 88.0
 const TILE_W: float = 80.0
-const TILE_H: float = 80.0
+const TILE_H: float = 69.28
+
+## **La sagoma della tessera** (D-516): esagono a lato piatto sopra e sotto,
+## punte a sinistra e a destra — lo stesso orientamento che i dati chiamano per
+## nome (`N NE SE S SO NO` in senso orario dall'alto) e che lo schermo disegna
+## da D-512. La cella la contiene esatta: larga `2R`, alta `√3 R`.
+const SQRT3: float = 1.7320508
+
+
+## I sei vertici della tessera dentro la cella che comincia in `x, y`.
+static func hex_points(x: float, y: float, cell: Vector2) -> PackedVector2Array:
+	var r: float = cell.x * 0.5
+	var centre: Vector2 = Vector2(x + r, y + cell.y * 0.5)
+	var out: PackedVector2Array = PackedVector2Array()
+	for k in range(6):
+		var a: float = deg_to_rad(60.0 * float(k))
+		out.append(centre + Vector2(r * cos(a), -r * sin(a)))
+	return out
+
+
+## Quanto e' larga la tessera a `dy` dal suo centro: sopra e sotto si stringe, e
+## quello che si stampa alla larghezza del centro finirebbe **fuori dal
+## cartone**, dove la fustella non ha lasciato niente.
+static func hex_half_width(dy: float, r: float) -> float:
+	return maxf(0.0, r * (1.0 - absf(dy) / (SQRT3 * r)))
+
+
+## La sagoma come `points` per l'SVG.
+static func _hex_points_attr(x: float, y: float, cell: Vector2) -> String:
+	var parts: PackedStringArray = PackedStringArray()
+	for point in hex_points(x, y, cell):
+		parts.append("%.2f,%.2f" % [point.x, point.y])
+	return " ".join(parts)
+
 
 const INK: String = "#efe7d8"
 const DIM: String = "#8a8172"
@@ -128,7 +165,18 @@ static func page_svg(
 		var row: int = index / cols
 		var x: float = left + float(column) * cell.x
 		var y: float = top + float(row) * cell.y
-		out.append(_crop_marks(x, y, cell))
+		# I quattro segni agli angoli sono per una carta rettangolare. Su una
+		# tessera esagonale il taglio e' **il perimetro**: un esagono non ha
+		# angoli da indovinare, e la linea si disegna tutta. Sta qui e non nella
+		# faccia perche' e' roba del foglio: la stessa tessera, mostrata sullo
+		# schermo, non deve portarsi dietro le linee per le forbici.
+		if shape == "TILE":
+			out.append(
+				'<polygon points="%s" fill="none" stroke="#bbbbbb" stroke-width="0.15"/>'
+				% _hex_points_attr(x, y, cell)
+			)
+		else:
+			out.append(_crop_marks(x, y, cell))
 		out.append(_face_svg(faces[index], x, y, cell))
 
 	out.append("</svg>")
@@ -201,8 +249,17 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 	# descrizione e le fonti non salgono sul tavolo - si leggono altrove - e una
 	# tessera che le stampa e' una tessera con l'illustrazione grande la meta'.
 	var full_tile: bool = str(face["terrain"]) != ""
+	var hex: bool = str(face["shape"]) == "TILE"
 	if full_tile:
-		art_h = cell.x - pad * 2.0
+		art_h = cell.y
+	# **Sulla tessera il testo si tiene dentro la sagoma** (D-516). In basso
+	# l'esagono e' largo quanto un lato, non quanto la cella: una riga larga
+	# `cell.x - pad*2` uscirebbe dai due angoli di sotto, cioe' verrebbe via
+	# con la fustella. Si prende la mezza larghezza **al punto piu' basso** dove
+	# una riga puo' finire: e' il caso peggiore, quindi ogni riga ci sta.
+	if hex:
+		var lowest: float = cell.y - pad - 2.6 - cell.y * 0.5
+		inner = hex_half_width(lowest, cell.x * 0.5) * 2.0 - pad
 
 	# **Una carta con l'illustrazione vera va al vivo**, come la ART_BIBLE la
 	# descrive dalla 0.0: «il soggetto occupa i due terzi alti; il terzo basso e'
@@ -282,7 +339,10 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 				break
 			cursor += leading
 			lines.append({
-				"x": pad, "y": cursor, "size": size, "bold": bool(item["bold"]),
+				# Sulla tessera le righe stanno **in mezzo**: appoggiate a
+				# sinistra finirebbero sotto la punta, dove il cartone non c'e'.
+				"x": (cell.x - inner) * 0.5 if hex else pad,
+				"y": cursor, "size": size, "bold": bool(item["bold"]),
 				"colour": str(item["colour"]), "text": str(text),
 			})
 		if overflow:
@@ -294,7 +354,7 @@ static func layout(face: Dictionary, cell: Vector2) -> Dictionary:
 		footer += " · dietro il paravento"
 	return {
 		"pad": pad, "accent": accent, "art_h": art_h, "has_art": has_art, "full_tile": full_tile,
-		"painted": painted,
+		"painted": painted, "hex": hex, "inner": inner,
 		"art_key": str(face["art_prompt_key"]), "corner": str(face["corner"]),
 		"lines": lines, "footer": footer, "overflow": overflow, "scale": scale,
 	}
@@ -314,10 +374,23 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 	var drawn: Dictionary = layout(face, cell)
 	var pad: float = float(drawn["pad"])
 	var accent: String = str(drawn["accent"])
+	var hex: bool = bool(drawn.get("hex", false))
 	var out: Array = ["<g>"]
-	out.append('<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="%s"/>' % [
-		x, y, cell.x, cell.y, PAPER
-	])
+	if hex:
+		# **Il cartone e' l'esagono, non la cella** (D-516). La cella e' solo il
+		# rettangolo che lo contiene: quello che si stampa fuori dalla sagoma
+		# viene via con la fustella, quindi non ci si stampa niente. Il ritaglio
+		# vale per il fondo, per il quadro e per il velo — una sola figura, la
+		# stessa che si taglia.
+		var shape: String = _hex_points_attr(x, y, cell)
+		var clip: String = "taglio%d_%d" % [int(roundf(x * 10.0)), int(roundf(y * 10.0))]
+		out.append('<clipPath id="%s"><polygon points="%s"/></clipPath>' % [clip, shape])
+		out.append('<g clip-path="url(#%s)">' % clip)
+		out.append('<polygon points="%s" fill="%s"/>' % [shape, PAPER])
+	else:
+		out.append('<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="%s"/>' % [
+			x, y, cell.x, cell.y, PAPER
+		])
 
 	if bool(drawn["has_art"]):
 		# L'arte vera, se qualcuno l'ha consegnata: incorporata come `data:` URI
@@ -327,13 +400,13 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 		if picture != "":
 			# Al vivo l'immagine parte dall'angolo della carta, senza margine: e'
 			# quello che si taglia, ed e' il motivo per cui il prompt chiede 2:3.
-			var edge: float = 0.0 if bool(drawn["painted"]) and not bool(drawn["full_tile"]) else pad
+			var edge: float = 0.0 if (bool(drawn["painted"]) and not bool(drawn["full_tile"])) or hex else pad
 			out.append(
 				'<image href="%s" x="%.2f" y="%.2f" width="%.2f" height="%.2f"'
 				% [
 					picture, x + edge, y + edge,
 					cell.x - edge * 2.0,
-					cell.y if bool(drawn["painted"]) and not bool(drawn["full_tile"])
+					cell.y if (bool(drawn["painted"]) and not bool(drawn["full_tile"])) or hex
 						else float(drawn["art_h"]),
 				]
 				+ ' preserveAspectRatio="xMidYMid slice"/>'
@@ -341,9 +414,13 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 		# Una Regione porta il proprio terreno, non il segnaposto generico: e' la
 		# stessa immagine che la mappa disegna sullo schermo (D-057).
 		elif bool(drawn["full_tile"]):
+			# Il terreno prende **tutta la cella**: e' il ritaglio a farne una
+			# tessera, e un margine qui lascerebbe intorno alla sagoma una
+			# cornice di carta nera che sul cartone non c'e'.
+			var edge_t: float = 0.0 if hex else pad
 			out.append(RegionArt.svg(
-				str(face["id"]), str(face["terrain"]), x + pad, y + pad,
-				cell.x - pad * 2.0, float(drawn["art_h"])
+				str(face["id"]), str(face["terrain"]), x + edge_t, y + edge_t,
+				cell.x - edge_t * 2.0, cell.y - edge_t * 2.0 if hex else float(drawn["art_h"])
 			))
 		else:
 			out.append(ArtPlaceholder.svg(
@@ -364,6 +441,12 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 			'<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="url(#velo)"/>'
 			% [x, y + top, cell.x, cell.y - top]
 		)
+
+	if hex:
+		# Chiuso il ritaglio: il **testo** si disegna dopo, perche' e' gia' stato
+		# tenuto dentro la sagoma da `layout` e non ha bisogno di essere tagliato
+		# — e se un giorno ne uscisse, e' meglio vederlo che vederlo sparire.
+		out.append("</g>")
 
 	for line in drawn["lines"]:
 		var item: Dictionary = line
@@ -392,10 +475,28 @@ static func _face_svg(face: Dictionary, x: float, y: float, cell: Vector2) -> St
 
 	# Il pie' di pagina e' l'id, che sul tavolo non serve a nessuno e in playtest
 	# serve a tutto: e' come si dice «questa carta qui» a chi tiene il registro.
-	out.append(_text(x + pad, y + cell.y - pad, str(drawn["footer"]), 1.9, "#5f584c", false))
-	out.append('<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="none" stroke="%s"' % [
-		x, y, cell.x, cell.y, accent
-	] + ' stroke-width="0.4"/>')
+	# **Il piede e il filetto si tengono dentro la sagoma** (D-516): sul
+	# rettangolo finivano fuori dal cartone, cioe' su carta che si butta. Il
+	# piede sale dove l'esagono e' ancora largo abbastanza per leggerlo, e il
+	# filetto e' il perimetro vero.
+	if hex:
+		# Sulla tessera il piede va **in alto**, sotto il lato piatto: in basso
+		# c'e' il nome, e li' l'esagono e' largo quanto un lato — le due righe si
+		# accavallerebbero, che e' quello che succedeva al primo giro.
+		var foot_y: float = y + 4.6
+		var foot_half: float = hex_half_width(foot_y - (y + cell.y * 0.5), cell.x * 0.5)
+		out.append(_text(
+			x + cell.x * 0.5 - foot_half + pad * 0.5, foot_y, str(drawn["footer"]),
+			1.9, "#5f584c", false
+		))
+		out.append('<polygon points="%s" fill="none" stroke="%s" stroke-width="0.4"/>' % [
+			_hex_points_attr(x, y, cell), accent
+		])
+	else:
+		out.append(_text(x + pad, y + cell.y - pad, str(drawn["footer"]), 1.9, "#5f584c", false))
+		out.append('<rect x="%.2f" y="%.2f" width="%.2f" height="%.2f" fill="none" stroke="%s"' % [
+			x, y, cell.x, cell.y, accent
+		] + ' stroke-width="0.4"/>')
 	out.append("</g>")
 	return "\n".join(PackedStringArray(out))
 
