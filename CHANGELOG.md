@@ -5,6 +5,29 @@ Il progetto segue le milestone della specifica esecutiva v0.2.
 
 ---
 
+## 0.1.485 — Due biomi senza colore, e due prompt che non dicevano niente
+
+Parola del committente: *«tutti i prompt pronti per rigenerare le immagini»*.
+Preparandoli, due su quindici non lo erano.
+[D-515](docs/DECISIONS.md#d-515).
+
+### Corretto
+
+- **la variation key dell'ART_BIBLE conosceva otto biomi su dieci.** Mancavano
+  `MARSH` e `ISLAND`, e il motore in quel caso non si lamenta: mette il ripiego
+  «l'accento della sua famiglia» e come descrizione **ripete il nome del
+  posto**. Due tessere su quindici andavano in stampa con un prompt che si
+  legge benissimo e non dice niente;
+- `MARSH` è **verde torbido**, `ISLAND` **grigio perla**, e i quindici prompt
+  delle tessere sono completi.
+
+### Guardia
+
+- `check_every_biome_has_its_accent` — ogni bioma dello schema deve avere la sua
+  riga nella variation key. Controprovata togliendo la riga appena scritta.
+
+---
+
 ## 0.1.484 — L'Isola Muta dà Legami, e le famiglie tornano in quota
 
 Parola del committente dopo una sua domanda — *«E i tipi di carte che tessere

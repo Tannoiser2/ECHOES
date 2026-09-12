@@ -10,6 +10,42 @@ observation for 0.2, deliberately *not* acted on · **todo** = known gap.
 
 ---
 
+## D-515 — Due biomi senza colore, e due prompt che non dicevano niente
+
+**implemented (0.1.485)** — parola del committente: *«tutti i prompt pronti per
+rigenerare le immagini»*. Preparandoli, due su quindici non lo erano.
+
+Il prompt di una tessera si compone sostituendo `{ACCENTO}` e `{DESCRIZIONE}`
+con la riga del suo bioma nella variation key dell'ART_BIBLE. Quella tavola
+conosceva **otto biomi**; i dati ne usano **dieci**. Mancavano `MARSH` e
+`ISLAND` — i due entrati con La Palude dei Canali e L'Isola Muta.
+
+E il motore, quando la riga non c'e', **non si lamenta**: mette il ripiego
+«l'accento della sua famiglia» e come descrizione ripete il nome del posto. Ne
+usciva questo, che si legge benissimo e non dice niente:
+
+> Top-down three-quarter painted map tile of **L'Isola Muta**: *L'Isola Muta*.
+> […] Dominant accent: *l'accento della sua famiglia*.
+
+Due tessere su quindici andavano in stampa cosi', e chi genera le immagini se
+ne sarebbe accorto **guardando il risultato**, non leggendo il prompt.
+
+Adesso `MARSH` e' **verde torbido** — acqua ferma, canne alte, passerelle di
+legno, isolotti bassi — e `ISLAND` **grigio perla**: uno scoglio alto
+circondato d'acqua da ogni lato, nessun molo, erba rada sul dorso.
+
+### La guardia
+
+`check_every_biome_has_its_accent` pretende che **ogni bioma dello schema abbia
+la sua riga** nella variation key. Il difetto e' controprovato togliendo la riga
+appena scritta: la guardia lo nomina.
+
+Restano sei prompt col ripiego, e sono i **sei Destini condivisi**: quelli una
+casa non ce l'hanno per disegno ([D-115](#d-115)), e li' il ripiego e' la
+risposta giusta.
+
+---
+
 ## D-514 — L'Isola Muta da' Legami, e le famiglie tornano in quota
 
 **implemented (0.1.484)** — parola del committente, dopo una domanda sua:

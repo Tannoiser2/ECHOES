@@ -1072,9 +1072,9 @@ text, no letters, no numerals, no map labels, no compass rose, no frame.
 
 ```
 ECHOES — Region tile. Top-down three-quarter painted map tile of L'Isola Muta:
-L'Isola Muta.
+uno scoglio alto circondato d'acqua da ogni lato, nessun molo, erba rada sul dorso.
 What this land is right now: Uno scoglio grande, senza porto e senza campane. Chi ci sbarca parla piano, e non sa dire perche'.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
+Dominant accent: grigio perla, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the top edge; the upper-right, lower-right, bottom, lower-left and upper-left edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
@@ -1144,9 +1144,9 @@ text, no letters, no numerals, no map labels, no compass rose, no frame.
 
 ```
 ECHOES — Region tile. Top-down three-quarter painted map tile of La Palude dei Canali:
-La Palude dei Canali.
+acqua ferma, canne alte, passerelle di legno, isolotti bassi.
 What this land is right now: Acqua ferma e canne. I canali di un'altra eta' affiorano quando la stagione e' secca, e qualcosa affiora con loro. I Nahr la attraversano coi carri alti: e' la stessa terra che percorrono, in un'eta' in cui l'acqua non se n'e' andata.
-Dominant accent: l'accento della sua famiglia, over the game's muted earth palette. Cartography
+Dominant accent: verde torbido, over the game's muted earth palette. Cartography
 crossed with painted landscape. Readable terrain silhouette from above, clear
 edges that can tile against neighbouring regions. FLAT-TOP HEXAGON framing, drawn in ONE FIXED ORIENTATION: the tile is never rotated on the table, so the image has a top and every label reads upright. Nothing that matters may sit in the six corners a hexagonal die-cut removes. A visible way in and out reaches the bottom, lower-left and upper-left edges; the top, upper-right and lower-right edges are closed by the land itself — cliff, deep water or dense wood running right up to the border, with no way through. Composition: the centre is
 deliberately calm and uncluttered so overlay tokens (control, presence,
